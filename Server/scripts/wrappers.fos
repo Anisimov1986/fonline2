@@ -1,0 +1,138 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "serializator.fos"
+
+#define CLEAN_ITEM_WRAPPERS_TIME       (REAL_DAY(1))
+
+class ItemHolderWrapper
+{
+	#define _GetKey		("ItemHolder_" + Npc.Id)
+	
+	private Critter@ Npc;
+	private dictionary Containers;
+	
+	ItemHolderWrapper(Critter& npc)
+	{
+		@Npc = npc;
+		Load();
+	}
+	
+	bool HoldsItems(int key)
+	{
+		return Containers.exists("" + key);
+	}
+	
+	Item@[] PopItems(int key)
+	{
+		Item@[] items;
+		Item@ container = GetContainer(key, false);
+		if(valid(container))
+		{
+			container.GetItems(0, items);
+			Containers.delete("" + key);
+			Save();
+		}
+		
+		return items;
+	}
+	
+	void PutItems(int key, Item@[] items)
+	{
+		Item@ container = GetContainer(key, true);
+		if(!valid(container))
+			return;
+			
+		Log("Moving items");
+		MoveItems(items, container, 0);
+	}
+	
+	private Item@ GetContainer(int key, bool create)
+	{
+		Item@ container;
+		if(Containers.exists("" + key))
+		{
+			Containers.get("" + key, @container);
+			return container;
+		}
+		else if(create)
+		{
+			@container = Npc.AddItem(PID_HIDDEN_CONTAINER, 1);
+			if(!valid(container))
+				return null;
+			_ItemSetHidden(container);
+			Containers.set("" + key, @container);
+			
+			uint[] values = {Npc.Id, key};
+			CreateTimeEvent(__FullSecond + CLEAN_ITEM_WRAPPERS_TIME, "__CleanItemWrappers", values, true);
+			
+			Save();
+		}
+		
+		return container;
+	}
+
+	private void Load()
+	{
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+			return;
+		
+		uint size = 0;
+		serializator.Get(size);
+		for (uint i = 0; i < size; i++)
+		{
+			string key = "";
+			serializator.Get(key);
+			Item@ item;
+			serializator.Get(item);
+			if(valid(item))
+				Containers.set(key, @item);
+		}
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		string@[] keys;
+		Containers.keys(keys);
+		serializator.Set(keys.length);
+		for (uint i = 0; i < keys.length(); i++)
+		{
+			Item@ container;
+			Containers.get(keys[i], @container);
+			serializator.Set(keys[i]);
+			serializator.Set(container.Id);
+		}
+		serializator.Save(_GetKey);
+	}
+}
+
+
+uint __CleanItemWrappers(array<uint>@ values)
+{
+	if (values.length() != 2) 
+	{
+		return 0;
+	}
+
+	Critter@ critter = GetCritter(values[0]);
+	int key = values[1];
+	
+	if (!valid(critter))
+	{
+		return 0;
+	}
+	
+	ItemHolderWrapper wrapper(critter);
+	Item@[] items = wrapper.PopItems(key);
+	
+	for (uint i = 0; i < items.length(); i++)
+	{
+		DeleteItem(items[i]);
+	}
+	
+	Log("__CleanItemWrappers " + values[0] + " " + values[1]);
+	
+	return 0;
+}

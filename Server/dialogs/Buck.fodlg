@@ -1,0 +1,227 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+13 2020 D _param p SK_REPAIR < 130 D _var p name_mem_player_npc = 1 #
+6 2030 D _param p PE_PROF_ARMORER ! 0 D _param p SK_REPAIR } 130 D _var p prof_armorer { 6 #
+3 2040 D _var p name_mem_npc_player < 3 #
+14 2050 D _var p name_mem_npc_player = 3 D _param p ST_LEVEL } 15 #
+10 2060 #
+11 2070 D _script economy_dialogs@d_IsEnoughCaps 1 6000 D _param p PE_PROF_ARMORER ! 3 D _var p prof_armorer = 7 R _script economy_dialogs@r_TakeCaps 1 6000 R _param p PE_PROF_ARMORER = 3 R _var p prof_armorer = 8 R _param p ST_EXPERIENCE + 1500 #
+0 2080 @
+3 3000 None 0 #
+4 3010 R _var p name_mem_npc_player = 3 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+2 5010 @
+10 6000 None 0 #
+0 6010 @
+6 7000 None 0 #
+7 7010 @
+7 8000 None 0 #
+8 8010 D _param p PE_PROF_ARMORER = 1 #
+9 8020 D _param p PE_PROF_ARMORER = 2 R _var p prof_armorer = 7 @
+8 9000 None 0 #
+0 9010 @
+9 10000 economy_dialogs@dlg_PreparePrice 0 #
+0 10010 @
+11 11000 None 0 #
+0 11010 @
+13 12000 None 0 #
+13 12010 @
+14 13000 None 0 #
+15 13010 R _var p name_mem_npc_player = 4 #
+16 13020 R _var p name_mem_npc_player = 5 R _script dialog@r_ShowLocation 1 16 #
+0 13030 @
+15 14000 None 0 #
+0 14010 @
+16 15000 None 0 #
+0 15010 R _script dialog@r_ShowLocation 1 16 &
+
+[engl]
+{100}{}{Buck}
+{200}{}{You see: Buck.}
+{210}{}{You see Buck, the gun store merchant.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{2000}{}{Hi there. I'm Buck, former barge engineer of the Poseidon Oil Rig, and this is my store. How can I help you?}
+{2010}{}{I'd like to see your wares.@@Show me what you've got.@@Let's trade.@@Wanna trade, Buck?}
+{2020}{}{I want to learn from you.}
+{2030}{}{Engineer?}
+{2040}{}{Poseidon Oil Rig? What's that?}
+{2050}{}{You mentioned earlier that the Enclave took over the Oil Rig you worked on. Got any idea how to get to them?}
+{2060}{}{Buck? Do you need some spare bucks, nyah nyah?}
+{2070}{}{(Armorer profession level 3.) I've got what you asked for. Can you teach me now?}
+{2080}{}{Nevermind, goodbye.}
+{3000}{}{[He sighs.] I used to work there. Then those Enclave fuckers came. [He pauses and starts to look at you carefully.] You're not one of them, are you?}
+{3010}{}{No, not at all. So, what happened?}
+{4000}{}{Well, shit hit the fan, that's what happened. They killed all the crew and took over the place. I don't know what are they doing out there right now.}
+{4010}{}{How did you manage to survive?}
+{5000}{}{I had my time off when it all happened. Two days later and poof, I'd be dead. I hope they never find me here. }
+{5010}{}{Yeah, that would be pretty bad I guess. Let me ask for something else.}
+{6000}{}{Oh so funny, I almost crapped my pants. Can someone please remove this mental abomination?}
+{6010}{}{Uh, sorry, that wasn't the best quality joke. Bye.}
+{7000}{}{Yes, I'm an engineer, I know this and that about constructing vessels and armors.}
+{7010}{}{Armors, you say?}
+{8000}{}{Yep. Why do you ask?}
+{8010}{}{Perfect, you are just the man I need. Could you share your knowledge with me?}
+{8020}{}{Perfect, you are just the man I need. Could you share your knowledge with me?}
+{9000}{}{I don't mind, but unfortunately you don't seem to have decent knowledge about the subject here. Come back when you do.}
+{9010}{}{Okay, see you later.}
+{10000}{}{I don't mind, but not for free. Since I cannot work as an engineer anymore, I have to sustain myself in other ways, right? So basically I'm gonna need @lex prof3_price@ caps from you. Deal?}
+{10010}{}{Sure, just give me some time. I'll be back.}
+{11000}{}{Very well. Let me just find ... ah, here it is. We also need ... where did I put it? There, can you pass me that from top shelf? Thanks. Right, so... First thing you need to know ... [He teaches you how to build the most advanced armors you've ever seen. Wooow.] ...All clear?}
+{11010}{}{Clear as the sky. Thanks Buck. }
+{12000}{}{Nah, you're not ready to learn from me yet. (Required Skill: Science 130%.)}
+{12010}{}{Uh, okay.}
+{13000}{}{[His eyes widen in disbelief.] What? Why would anybody want to do that?}
+{13010}{}{Well, I would, because I want to join.}
+{13020}{}{I've got my own score to settle with them.}
+{13030}{}{That's none of your business, Buck. Goodbye.}
+{14000}{}{The fuck? No way! Even If I knew anything, I wouldn't tell you. Get the fuck out!}
+{14010}{}{I'll join them, one way or another. And then you'll be sorry. Later, Buck.}
+{15000}{}{Well... You seem to know your way around the Wasteland... Hell, I'll tell you what I know. I don't know any means to get back to the Rig, but I've heard some stories about Enclave patrols appearing north of San Fran recently. They seem to be originating from the old gas station there. [He marks the location on your Pip-Boy.] Make them pay for what they did.}
+{15010}{}{I will, Buck, I will. Goodbye.}
+
+[russ]
+{100}{}{Бак}
+{200}{}{Вы видите: Бака.}
+{210}{}{Вы видите: Бака, владельца оружейного магазина.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{2000}{}{Привет. Я Бак, бывший инженер  нефтяной платформы Посейдон. Что я могу сделать для вас?}
+{2010}{}{[Бартер] Я хотел бы видеть ваши товары.}
+{2020}{}{Я хочу изучить твою профессию...}
+{2030}{}{Инженер?}
+{2040}{}{Нефтяная платформа Посейдон? Что это?}
+{2050}{}{Ты говорил что Анклав захватил нефтяную вышку на которой ты работал. Есть идеи как туда попасть?}
+{2060}{}{Бак? Нет лишних пары БАКсов?}
+{2070}{}{ [Профессия: Оружейник(Броня) уровень 3] Я принес все что нужно.}
+{2080}{}{Ничего, до свидания.}
+{3000}{}{Раньше я там работал, на нефтяной вышке около побережья, но потом ... [Вздыхает] Потом пришли эти больные ублюдки из Анклава. [Тщательно наблюдает за вами] вы ведь не один из них?}
+{3010}{}{Нет, совсем нет. Так что же случилось?}
+{4000}{}{Дерьмо, случилось полное дерьмо, они убили всю команду и заняли вышку. Не знаю чем они там сейчас занимаются, но точно ничем хорошим. }
+{4010}{}{Как вам удалось выжить?}
+{5000}{}{Я был еще на отдыхе когда это произошло. Надеюсь они меня не найдут.}
+{5010}{}{Понятно, ну у меня есть еще вопрос.}
+{6000}{}{Ох, так смешно что я чуть не обгадил штаны. Кто-нибудь уберите эту жертву аборта с глаз долой.}
+{6010}{}{Ну, извините, это была не самая смешная шутка. Пока.}
+{7000}{}{Да, я инженер, я знаю все о строительсве, машинах и бронежилетах.}
+{7010}{}{Бронежилетах?}
+{8000}{}{Да. А тебе зачем?}
+{8010}{}{Отлично, это как раз то, что мне нужно. Можете ли вы научить меня делать эти "доспехи"?}
+{8020}{}{Отлично, это как раз то, что мне нужно. Можете ли вы научить меня делать эти "доспехи"?}
+{9000}{}{Я не против, но к сожалению, вы, кажется, не имеете нужных знаний чтобы приступить к учебе. [Требуется Профессия: Оружейник(Броня) уровень 2]}
+{9010}{}{Понятно, увидимся позже.}
+{10000}{}{Я не против, но не бесплатно. Поскольку я не могу работать в качестве инженера больше, мне требуется искать другие пути наполнения своего кошелька. Так что вам придется заплатить @lex prof3_price@ крышек, ну что?}
+{10010}{}{Конечно, просто дайте мне немного времени, и я вернусь.}
+{11000}{}{Очень хорошо. Позвольте мне только найти ... Ах, вот оно. Нам также необходимо ... куда же я его положил?Ага, вы можете передать мне вон ту штуку, с верхней полки? Спасибо. Так, первое что вам нужно знать... [Он обучает вас созданию лучшей брони. Вау.] ... Все понятно? }
+{11010}{}{Ясно. Благодарю Бак.}
+{12000}{}{Ваших знаний не достаточно, возвращайтесь когда поднаберете опыта. [Требуется ремонт 130]}
+{12010}{}{Ну ладно.}
+{13000}{}{[Недоверчиво сотрит на вас.] Что? Зачем это кому-то?}
+{13010}{}{Ну, например мне, я хочу вступить в Анклав.}
+{13020}{}{У меня с ними личные счеты.}
+{13030}{}{Не твое дело, давай Бак, бывай.}
+{14000}{}{Какого х..? Ни за что! Даже если бы я знал я бы не сказал такому ублюдку как ты. Убирайся пока я не нашпиговал тебя свинцом!}
+{14010}{}{Так или иначе я вступлю к ним. А потом ты пожалеешь, горько пожалеешь Бак, но будет поздно.}
+{15000}{}{Ну... Похоже ты бывалый странник... Черт, ладно, расскажу все что знаю. Я на знаю как попасть на вышку, но есть слухи что патруль Анклава недавно видели на севере от Сан-Франциско. Похоже у них есть база где-то около старой заправки, вот здесь. [Он отмечает точку в вашем пип-бое.] Заставь их заплатить за все.}
+{15010}{}{Заставлю Бак, спасибо.}
+
+[pols]
+{100}{}{Buck}
+{200}{}{Widzisz: Buck.}
+{210}{}{Widzisz Buck'a, właściciela sklepu z bronią.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{2000}{}{Witaj, jestem Buck, były inżynier platformy wiertniczej Posejdon, a to jest mój sklep. W czym ci mogę pomóc?}
+{2010}{}{Chcę zobaczyć co masz na składzie.@@Pokaż mi, co tam masz.@@Pohandlujmy.@@Chcesz pohandlować, Buck?}
+{2020}{}{Chcę się od ciebie czegoś nauczyć.}
+{2030}{}{Inżynier?}
+{2040}{}{Platforma wiernicza Posejdon? Co to?}
+{2050}{}{Wspomniałeś wcześniej, że Enklawa przejęła kontrolę nad platformą wiertniczą na której pracowałeś. Masz jakiś pomysł jak się tam dostać?}
+{2060}{}{Buck? Potrzebujesz paru baksów, he-he?}
+{2070}{}{(Profesja Płatnerz poziom 3.) Mam wszystko o co prosiłeś. Czy teraz możesz mnie uczyć?}
+{2080}{}{Nieważne, żegnaj.}
+{3000}{}{[Wzdycha] Kiedyś tam pracowałem. A potem ci skurwiele z Enklawy przyleźli. [Przerywa i patrzy na ciebie z ostrożnością] Nie jesteś @sex@|jednym||jedną| z nich, prawda?}
+{3010}{}{Nie, skądże. Więc, co się stało?}
+{4000}{}{Cóż, wszystko pierdolnęło, to co się stało. Wszystkich powytrzelali jak kaczki i przejęli całą platformę. Nie mam pojęcia co teraz robią.}
+{4010}{}{Jak ci się udało to przeżyć?}
+{5000}{}{Byłem na urlopie kiedy do tego doszło. Gdyby wydarzyło się to ledwie dwa dni później to i ja byłbym trupem. Mam nadzieję, że nigdy mnie tu nie znajdą.}
+{5010}{}{Ta, to nie byłoby przyjemne. Pozwól, że zapytam o coś innego.}
+{6000}{}{O tak, ale śmieszne, normalnie zaraz zesram się ze śmiechu. Czy może ktoś zabrać tą abominację umysłową?}
+{6010}{}{Uh, sorry. To nie był zbyt mokry żart. Pójdę już.}
+{7000}{}{Tak, jestem inżynierem. Wiem to i owo o konstrukcji pojazdów, statków, pancerzy i takich tam.}
+{7010}{}{Pancerze, mówisz?}
+{8000}{}{Ta. Czemu pytasz?}
+{8010}{}{Świetnie, jesteś dokładnie tym kogo szukałem. Możesz podzielić się ze mną swoją wiedzą?}
+{8020}{}{Świetnie, jesteś dokładnie tym kogo szukałem. Możesz podzielić się ze mną swoją wiedzą?}
+{9000}{}{Nie ma sprawy, ale niestety nie wydaje mi się, że masz wystarczająco dużo wiedzy na ten temat. Przyjdź kiedy się dokształcisz.}
+{9010}{}{Okej, przyjdę kiedy indziej.}
+{10000}{}{Nie ma sprawy, ale nie zrobię tego za darmo. Ponieważ nie pracuję już jako inżynier, muszę się utrzymywać z innych źródeł, nie? Więc po prostu potrzebuję od ciebie @lex prof3_price@ kapsli za naukę. Zgoda?}
+{10010}{}{Jasne, daj mi jedynie trochę czasu. Wkrótcę wrócę.}
+{11000}{}{W porządku. Pozwól mi tylko znaleźć...a, tutaj jest. Potrzebujemy również...gdzie ja to połozyłem, do chuja? A! Dobra, możesz mi podać to to to tamto z górnej półki? Dzięki. No dobra, w porządku, a więc...pierwsza rzecz jaką musisz wiedzieć, to...[Buck uczy cię jak konstruować najbardziej skomplikowane i zaawansowane pancerze jakie kiedykolwiek widziałeś. Wow!]...wszystko jasne?}
+{11010}{}{Jak Słońce, Buck. Dzięki.}
+{12000}{}{Niee, nie sądzę, że jesteś gotowy na pobieranie u mnie lekcji. (Wymagane: Nauki Ścisłe 130%)}
+{12010}{}{Uh, okay.}
+{13000}{}{[Jego oczy rozszerzają się z niedowierzania.] Co? Czemu ktokolwiek chciałby to zrobić?}
+{13010}{}{Cóż, ja @sex@|chciałbym||chciałabym|, ponieważ chcę do nich dołączyć.}
+{13020}{}{Mam z nimi parę rachunków do wyrównania.}
+{13030}{}{Nie twój interes, Buck. Żegnaj.}
+{14000}{}{Co do chuja? Nie ma mowy! Nawet gdybym cokolwiek wiedział, to bym ci nie powiedział. Wypierdalaj stąd, ale już!}
+{14010}{}{Dołączę do nich, prędzej czy później. A wtedy będziesz żałował. Do zobaczenia, Buck.}
+{15000}{}{Cóż...wygląda na to, że wiesz co robisz. Kurde, no dobra, powiem ci co wiem. Nie mam zielonego pojęcia jak dostać się na platformę wiertniczą, ale słyszałem pogłoski o patrolach Enklawy zauważonych na północ od San Fransisco. Wszystkie ślady zaczynają się i kończą w pobliżu pewnej starej stacji benzynowej tam. [Podaje ci współrzędne, które zapisujesz w swoim Pip-Boyu.] Jeśli ich znajdziesz, to spraw by ponieśli konsekwencje.}
+{15010}{}{Tak zrobię, Buck, tak zrobię. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{2000}{}{Hi there. I'm Buck, former barge engineer of the Poseidon Oil Rig, and this is my store. How can I help you?}
+{2010}{}{I'd like to see your wares.@@Show me what you've got.@@Let's trade.@@Wanna trade, Buck?}
+{2020}{}{I want to learn from you.}
+{2030}{}{Engineer?}
+{2040}{}{Poseidon Oil Rig? What's that?}
+{2050}{}{You mentioned earlier that the Enclave took over the Oil Rig you worked on. Got any idea how to get to them?}
+{2060}{}{Buck? Do you need some spare bucks, nyah nyah?}
+{2070}{}{(Armorer profession level 3.) I've got what you asked for. Can you teach me now?}
+{2080}{}{Nevermind, goodbye.}
+{3000}{}{[He sighs.] I used to work there. Then those Enclave fuckers came. [He pauses and starts to look at you carefully.] You're not one of them, are you?}
+{3010}{}{No, not at all. So, what happened?}
+{4000}{}{Well, shit hit the fan, that's what happened. They killed all the crew and took over the place. I don't know what are they doing out there right now.}
+{4010}{}{How did you manage to survive?}
+{5000}{}{I had my time off when it all happened. Two days later and poof, I'd be dead. I hope they never find me here. }
+{5010}{}{Yeah, that would be pretty bad I guess. Let me ask for something else.}
+{6000}{}{Oh so funny, I almost crapped my pants. Can someone please remove this mental abomination?}
+{6010}{}{Uh, sorry, that wasn't the best quality joke. Bye.}
+{7000}{}{Yes, I'm an engineer, I know this and that about constructing vessels and armors.}
+{7010}{}{Armors, you say?}
+{8000}{}{Yep. Why do you ask?}
+{8010}{}{Perfect, you are just the man I need. Could you share your knowledge with me?}
+{8020}{}{Perfect, you are just the man I need. Could you share your knowledge with me?}
+{9000}{}{I don't mind, but unfortunately you don't seem to have decent knowledge about the subject here. Come back when you do.}
+{9010}{}{Okay, see you later.}
+{10000}{}{I don't mind, but not for free. Since I cannot work as an engineer anymore, I have to sustain myself in other ways, right? So basically I'm gonna need @lex prof3_price@ caps from you. Deal?}
+{10010}{}{Sure, just give me some time. I'll be back.}
+{11000}{}{Very well. Let me just find ... ah, here it is. We also need ... where did I put it? There, can you pass me that from top shelf? Thanks. Right, so... First thing you need to know ... [He teaches you how to build the most advanced armors you've ever seen. Wooow.] ...All clear?}
+{11010}{}{Clear as the sky. Thanks Buck. }
+{12000}{}{Nah, you're not ready to learn from me yet. (Required Skill: Science 130%.)}
+{12010}{}{Uh, okay.}
+{13000}{}{[His eyes widen in disbelief.] What? Why would anybody want to do that?}
+{13010}{}{Well, I would, because I want to join.}
+{13020}{}{I've got my own score to settle with them.}
+{13030}{}{That's none of your business, Buck. Goodbye.}
+{14000}{}{The fuck? No way! Even If I knew anything, I wouldn't tell you. Get the fuck out!}
+{14010}{}{I'll join them, one way or another. And then you'll be sorry. Later, Buck.}
+{15000}{}{Well... You seem to know your way around the Wasteland... Hell, I'll tell you what I know. I don't know any means to get back to the Rig, but I've heard some stories about Enclave patrols appearing north of San Fran recently. They seem to be originating from the old gas station there. [He marks the location on your Pip-Boy.] Make them pay for what they did.}
+{15010}{}{I will, Buck, I will. Goodbye.}
+

@@ -1,0 +1,82 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p name_mem_player_npc = 0 #
+3 1020 D _var p name_mem_player_npc = 1 @
+2 2000 None 0 #
+0 2010 D _item p PID_BOTTLE_CAPS } 2000 D _param p TRAIT_SKILLED = 0 R _item p PID_BOTTLE_CAPS - 2000 R _var p name_mem_player_npc = 1 R _script map_outfit@r_outfittp 0  #
+0 2020 R _var p name_mem_player_npc = 1 @
+3 3000 None 0 #
+0 3010 D _item p PID_BOTTLE_CAPS } 2000 D _param p TRAIT_SKILLED = 0 R _item p PID_BOTTLE_CAPS - 2000 R _var p name_mem_player_npc = 1 R _script map_outfit@r_outfittp 0  #
+0 3020 D _param p ST_GENDER = 1 D _param p TRAIT_SKILLED = 0 R _var p name_mem_player_npc = 1 R _script dialog@r_ChangeCrType 1 6 #
+0 3030 D _param p ST_GENDER = 0 D _param p TRAIT_SKILLED = 0 R _var p name_mem_player_npc = 1 R _script dialog@r_ChangeCrType 1 13 #
+0 3040 R _var p name_mem_player_npc = 1 &
+
+[engl]
+{100}{}{Jess}
+{200}{}{You see: Jess.}
+{210}{}{This young, extravagantly dressed woman seems to be busy with some sketches on her desk.}
+{1000}{}{Initial preferences}
+{1010}{}{first time met}
+{1020}{}{met again}
+{2000}{}{Hi there, never seen you before, you new in town? I'm Jess, and this is my store. If you're lookin' for some change in your style, you're in the right place! Only two grand and you can choose whichever outfit you like!@@Hi there, nice to meet you, stranger. I'm Jess, and this is my outfit store. Wanna look as good as I do? It's only two thousand caps for a new look, care to try something?@@Hello there, I'm Jess. Came to take a look at my outfits? 2000 caps per outfit, regardless of size!}
+{2010}{}{Yeah, show me what you've got. [Pay 2000 caps.]@@Okay, let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@What do you have? [Pay 2000 caps.]@@Have anything interesting? [Pay 2000 caps.]}
+{2020}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.@@Are you saying I lack style? The nerve! I bid you good day.}
+{3000}{}{It's you again! Want a new outfit? Only 2000 caps!@@You're back, it's always nice to see customers returning... What do you need this time?@@Hello again, If you've got two thousand caps I can fix you up with something new!}
+{3010}{}{Show me what you've got. [Pay 2000 caps.]@@Let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@Let's get to business. [Pay 2000 caps.]@@Have anything interesting this time? [Pay 2000 caps.]}
+{3020}{}{I'm kinda tired with this outfit, here, take it. (Remove your outfit.)@@I think I've had enough of this outfit, take it. (Remove your outfit.)@@I'm bored with this outfit, you can take it back for free. (Remove your outfit.)@@I've had enough of his outfit, you can take it. (Remove your outfit.)}
+{3030}{}{I'm kinda tired with this outfit, here, take it. (Remove your outfit.)@@I think I've had enough of this outfit, take it. (Remove your outfit.)@@I'm bored with this outfit, you can take it back for free. (Remove your outfit.)@@I've had enough of his outfit, you can take it. (Remove your outfit.)}
+{3040}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.@@Just came to say hello.@@Just passing through, nice to meet you again, Jess.@@Just passing through.@@I'm just... looking around.}
+
+[russ]
+{100}{}{Jess}
+{200}{}{You see: Jess}
+{210}{}{This young, extravagantly dressed woman seems to be busy with some sketches on her desk.}
+{1000}{}{Initial preferences}
+{1010}{}{first time met}
+{1020}{}{met again}
+{2000}{}{Hi there, never seen you before, you new in town? I'm Jess, and this is my store. If you're lookin' for some change in your style, you're in the right place! Only two grand and you can choose whichever outfit you like!@@Hi there, nice to meet you, stranger. I'm Jess, and this is my outfit store. Wanna take a look what I have? It's only two thousand caps for a new look, care to try something?@@Hello there, I'm Jess. Came to take a look at my outfits? 2000 caps per outfit, regardless of size!}
+{2010}{}{Yeah, show me what you've got. [Pay 2000 caps.]@@Okay, let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@What do you have? [Pay 2000 caps.]@@Have anything interesting? [Pay 2000 caps.]}
+{2020}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.}
+{3000}{}{It's you again! Want some new outfit? 2000 caps only!@@You're back, it's always nice to see the customers returning... What do you need this time?@@Hello again, If you've got two thousand caps I can fix you up with something new!}
+{3010}{}{Show me what you've got. [Pay 2000 caps.]@@Let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@Let's get to business. [Pay 2000 caps.]@@Have anything interesting this time? [Pay 2000 caps.]}
+{3020}{}{I'm kinda tired with this outfit, here, take it. (Remove your outfit).@@I think I've had enough of this outfit, take it. (Remove your outfit)@@I'm bored with this outfit, you can take it back for free. (Remove your outfit)}
+{3030}{}{I'm tired of this outfit, Take it back. [Remove your skin.]}
+{3040}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.@@Just came to say hello.@@Just passing through, nice to meet you again, Jess.@@Just passing thru.@@I'm just... looking around.}
+
+[pols]
+{100}{}{Jess}
+{200}{}{You see: Jess}
+{210}{}{This young, extravagantly dressed woman seems to be busy with some sketches on her desk.}
+{1000}{}{Initial preferences}
+{1010}{}{first time met}
+{1020}{}{met again}
+{2000}{}{Hi there, never seen you before, you new in town? I'm Jess, and this is my store. If you're lookin' for some change in your style, you're in the right place! Only two grand and you can choose whichever outfit you like!@@Hi there, nice to meet you, stranger. I'm Jess, and this is my outfit store. Wanna take a look what I have? It's only two thousand caps for a new look, care to try something?@@Hello there, I'm Jess. Came to take a look at my outfits? 2000 caps per outfit, regardless of size!}
+{2010}{}{Yeah, show me what you've got. [Pay 2000 caps.]@@Okay, let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@What do you have? [Pay 2000 caps.]@@Have anything interesting? [Pay 2000 caps.]}
+{2020}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.}
+{3000}{}{It's you again! Want some new outfit? 2000 caps only!@@You're back, it's always nice to see the customers returning... What do you need this time?@@Hello again, If you've got two thousand caps I can fix you up with something new!}
+{3010}{}{Show me what you've got. [Pay 2000 caps.]@@Let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@Let's get to business. [Pay 2000 caps.]@@Have anything interesting this time? [Pay 2000 caps.]}
+{3020}{}{I'm kinda tired with this outfit, here, take it. (Remove your outfit).@@I think I've had enough of this outfit, take it. (Remove your outfit)@@I'm bored with this outfit, you can take it back for free. (Remove your outfit)}
+{3030}{}{I'm tired of this outfit, Take it back. [Remove your skin.]}
+{3040}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.@@Just came to say hello.@@Just passing through, nice to meet you again, Jess.@@Just passing thru.@@I'm just... looking around.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{first time met}
+{1020}{}{met again}
+{2000}{}{Hi there, never seen you before, you new in town? I'm Jess, and this is my store. If you're lookin' for some change in your style, you're in the right place! Only two grand and you can choose whichever outfit you like!@@Hi there, nice to meet you, stranger. I'm Jess, and this is my outfit store. Wanna look as good as I do? It's only two thousand caps for a new look, care to try something?@@Hello there, I'm Jess. Came to take a look at my outfits? 2000 caps per outfit, regardless of size!}
+{2010}{}{Yeah, show me what you've got. [Pay 2000 caps.]@@Okay, let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@What do you have? [Pay 2000 caps.]@@Have anything interesting? [Pay 2000 caps.]}
+{2020}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.@@Are you saying I lack style? The nerve! I bid you good day.}
+{3000}{}{It's you again! Want a new outfit? Only 2000 caps!@@You're back, it's always nice to see customers returning... What do you need this time?@@Hello again, If you've got two thousand caps I can fix you up with something new!}
+{3010}{}{Show me what you've got. [Pay 2000 caps.]@@Let me see what you have... [Pay 2000 caps.]@@Right, I'll take a look.@@Let's get to business. [Pay 2000 caps.]@@Have anything interesting this time? [Pay 2000 caps.]}
+{3020}{}{I'm kinda tired with this outfit, here, take it. (Remove your outfit.)@@I think I've had enough of this outfit, take it. (Remove your outfit.)@@I'm bored with this outfit, you can take it back for free. (Remove your outfit.)@@I've had enough of his outfit, you can take it. (Remove your outfit.)}
+{3030}{}{I'm kinda tired with this outfit, here, take it. (Remove your outfit.)@@I think I've had enough of this outfit, take it. (Remove your outfit.)@@I'm bored with this outfit, you can take it back for free. (Remove your outfit.)@@I've had enough of his outfit, you can take it. (Remove your outfit.)}
+{3040}{}{Hmm, maybe some other time.@@Nice to meet you Jess, but I've gotta go.@@Gotta go, sorry.@@I don't have the time right now.@@Later.@@Not now, see you later.@@I don't have the cash for this right now.@@I think I look good enough already. Goodbye.@@Just came to say hello.@@Just passing through, nice to meet you again, Jess.@@Just passing through.@@I'm just... looking around.}
+

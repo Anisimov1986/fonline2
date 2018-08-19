@@ -1,0 +1,36 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_start_questcaravan = 1 R _var p q_start_questcaravan_creation = 1 R _var p q_start_questcaravan = 2 R _item p PID_CARAVAN_HOLO + 1 R _script dialog@r_ShowQuestMessage 1 9311 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Raider}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+
+[russ]
+{100}{}{Рейдер}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+
+[pols]
+{100}{}{Najeźdźca}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+
+[ptbr]
+{100}{}{Saqueador}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+

@@ -1,0 +1,40 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Huberto}
+{200}{}{You see: Huberto.}
+{210}{}{This man, dressed in a makeshift jacket looking at you with disgust.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Get off our turf!@@This is our turf, get the fuck outta here.@@Get lost, wimp.@@You piece of shit, get lost!@@Bob, look at this little shit...@@Wanna piece of me, huh?@@My fist, your face, wanna try?}
+
+[russ]
+{100}{}{Хуберто}
+{200}{}{Вы видите : человека в кожаной куртке с дубинкой в руках.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Я выбивал из мутантов всю дурь голыми руками.@@Ты похож на задохлика, проваливай отсюда.@@Ты видишь мою дубинку? Когда я закончу с тобой, ты будешь скулить как побитая шлюха.@@Боб посмотри какой доходяга к нам приперся.}
+
+[pols]
+{100}{}{Huberto}
+{200}{}{Widzisz potężnie zbudowanego mężczyznę. Jego twarz wykrzywia złośliwy grymas.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Nie ma chuja na naszej dzielni!@@Zapierdalam zielonych gołymi rękami!@@Spierdalaj stąd, @sex@|cieniasie||gówniaro|, na dzielni rządzimy my!@@Co się gapisz? Przylutować w ryj?@@Bob, zobacz co za ścierwo się tu przypałętało!}
+
+[ptbr]
+{100}{}{Humberto}
+{200}{}{Você vê um homem em jaqueta de couro a segurar uma espécie de cacetete. Ele tem uma expressão bem má.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{A gangue tem que ser forte!@@ Eu ganho de mutantes de mãos vazias que nem uns pedaços de merda.@@ Tu não parece ser forte, só tua gangue, se manda daqui.@@Tá vendo isso aqui? Meu porrete, vai encarar ou vai correr.@@Ou Bob, olha pra esse verme que chegou na gente aqui.}

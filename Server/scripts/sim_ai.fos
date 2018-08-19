@@ -1,0 +1,584 @@
+// Author: Wesan
+
+#include "_macros.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "npc_common_h.fos"
+#include "_ai.fos"
+#include "utils_h.fos"
+
+#define TeamId               StatBase[ ST_TEAM_ID ]
+#define SAME_TEAM            # ( cr, attacker )( cr.TeamId == attacker.TeamId )
+
+import bool critter_use_skill( Critter& cr, int skill, Critter@ targetCr, Item@ targetItem, Scenery@ targetScen ) from "main";
+import void HealCritter( Critter& player ) from "stdlib";
+import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
+// Sim Mobs
+
+// ESSENTIALS START
+bool IsFriendly( Critter& cr, Critter& target )
+{
+    if( SAME_TEAM( cr, target ) )
+        return true;
+
+    if( cr.TeamId == TEAM_SIM_PLAYER && target.TeamId == TEAM_SIM_FRIENDLY )
+        return true;
+
+    else if( cr.TeamId == TEAM_SIM_FRIENDLY && target.TeamId == TEAM_SIM_PLAYER )
+        return true;
+
+    return false;
+}
+
+bool IsNeutral( Critter& cr, Critter& target )
+{
+    if( cr.TeamId == TEAM_SIM_PLAYER && target.TeamId == TEAM_SIM_NEUTRAL )
+        return true;
+
+    else if( cr.TeamId == TEAM_SIM_FRIENDLY || cr.TeamId == TEAM_SIM_ENEMY || cr.TeamId == TEAM_SIM_ENEMY1 || cr.TeamId == TEAM_SIM_ENEMY2 || cr.TeamId == TEAM_SIM_ENEMY3 || cr.TeamId == TEAM_SIM_ANTIPLAYER || cr.TeamId == TEAM_SIM_NEUTRAL &&
+             target.TeamId == TEAM_SIM_NEUTRAL ||  target.TeamId == TEAM_SIM_ANTIPLAYER )
+        return true;
+
+    return false;
+}
+
+bool IsEnemy( Critter& cr, Critter& target )
+{
+    if( cr.TeamId == TEAM_SIM_PLAYER &&
+        target.TeamId == TEAM_SIM_ENEMY || target.TeamId == TEAM_SIM_ENEMY1 || target.TeamId == TEAM_SIM_ENEMY2 || target.TeamId == TEAM_SIM_ENEMY3 || target.TeamId == TEAM_SIM_ANTIPLAYER )
+        return true;
+
+    if( cr.TeamId == TEAM_SIM_ENEMY &&
+        target.TeamId == TEAM_SIM_PLAYER || target.TeamId == TEAM_SIM_ENEMY1 || target.TeamId == TEAM_SIM_ENEMY2 || target.TeamId == TEAM_SIM_ENEMY3 )
+        return true;
+
+    if( cr.TeamId == TEAM_SIM_ENEMY1 &&
+        target.TeamId == TEAM_SIM_PLAYER || target.TeamId == TEAM_SIM_ENEMY || target.TeamId == TEAM_SIM_ENEMY2 || target.TeamId == TEAM_SIM_ENEMY3 )
+        return true;
+
+    if( cr.TeamId == TEAM_SIM_ENEMY2 &&
+        target.TeamId == TEAM_SIM_PLAYER || target.TeamId == TEAM_SIM_ENEMY || target.TeamId == TEAM_SIM_ENEMY1 || target.TeamId == TEAM_SIM_ENEMY3 )
+        return true;
+
+    if( cr.TeamId == TEAM_SIM_ENEMY3 &&
+        target.TeamId == TEAM_SIM_PLAYER || target.TeamId == TEAM_SIM_ENEMY || target.TeamId == TEAM_SIM_ENEMY1 || target.TeamId == TEAM_SIM_ENEMY2 )
+        return true;
+
+    if( cr.TeamId == TEAM_SIM_ANTIPLAYER &&
+        target.TeamId == TEAM_SIM_PLAYER )
+        return true;
+
+    return false;
+}
+
+void Attack( Critter& cr, Critter& attacker ) // Attack function
+{
+    NpcPlane@ plane = cr.GetCurPlane();
+    if( valid( plane ) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id )
+        return;
+    AttackCritter( cr, attacker );
+}
+
+
+#define RUN_AWAY_PRIORITY    ( 1000 )
+
+void Run( Critter& critter, Critter@ commandTarget ) // For NPCs to run away.
+{
+    Map@ map = critter.GetMap();
+
+    // critter.DropPlanes();
+    if( !valid( commandTarget ) )
+    {
+        return;
+    }
+
+    uint16 bestRunAwayHx = commandTarget.HexX;
+    uint16 bestRunAwayHy = commandTarget.HexY;
+
+    int    bestDistance = 2;
+
+    for( int i = 0; i < 5; i++ )
+    {
+        uint16 runAwayHx = commandTarget.HexX;
+        uint16 runAwayHy = commandTarget.HexY;
+        int    distance;
+
+        map.GetHexCoordWall( critter.HexX, critter.HexY, runAwayHx, runAwayHy, 175 - i * 20, Random( 15, 25 ) );
+        distance = DISTANCE( runAwayHx, runAwayHy, critter.HexX, critter.HexY );
+        if( distance > bestDistance )
+        {
+            bestDistance = distance;
+            bestRunAwayHx = runAwayHx;
+            bestRunAwayHy = runAwayHy;
+        }
+
+        runAwayHx = commandTarget.HexX;
+        runAwayHy = commandTarget.HexY;
+        map.GetHexCoordWall( critter.HexX, critter.HexY, runAwayHx, runAwayHy, 185 + i * 20, Random( 15, 25 ) );
+        distance = DISTANCE( runAwayHx, runAwayHy, critter.HexX, critter.HexY );
+        if( distance > bestDistance )
+        {
+            bestDistance = distance;
+            bestRunAwayHx = runAwayHx;
+            bestRunAwayHy = runAwayHy;
+        }
+
+        if( bestDistance > 15 )
+        {
+            break;
+        }
+    }
+
+    if( bestDistance > 2 )
+    {
+        AddWalkPlane( critter, RUN_AWAY_PRIORITY + 1, 0, 0, bestRunAwayHx, bestRunAwayHy, Random( 0, 5 ), true, 1 );
+
+        NpcPlane@ plane = CreatePlane();
+        plane.Type = AI_PLANE_MISC;
+        plane.Priority = RUN_AWAY_PRIORITY;
+        plane.Misc_WaitSecond = __FullSecond + REAL_SECOND( 1 ) * Random( 2, 6 );
+        critter.AddPlane( plane );
+    }
+}
+
+void KillMyTeam( Critter& cr ) // Murdeer
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        if( npcs[ i ].Stat[ ST_TEAM_ID ] == cr.Stat[ ST_TEAM_ID ] )
+            npcs[ i ].ToDead( ANIM2_DEAD_PULSE, cr );
+    }
+    return;
+}
+
+
+void HandleDialog( Critter& cr ) // Set proper dialog number
+{
+    Map@      map = cr.GetMap();
+    Location@ location = map.GetLocation();
+
+    int       dialognumber = location.GetProtoId() + cr.ParamBase[ ST_DIALOG_ID ];
+    cr.ParamBase[ ST_DIALOG_ID ] = dialognumber;
+}
+// ESSENTIALS END
+
+// HANDLES START
+
+void BasicSetup( Critter& npc ) // Set basic things.
+{
+    if( npc.TeamId == TEAM_SIM_FRIENDLY || npc.TeamId == TEAM_SIM_PLAYER )
+        SETFLAG( npc.ParamBase[ CR_FLAGS1 ], NPC_FRIENDLY );
+    npc.ParamBase[ ST_AI_ID ] = 0;
+    npc.StatBase[ ST_REPLICATION_TIME ] = -2;
+    npc.ModeBase[ MODE_NO_DROP ]          = 1;
+    npc.ModeBase[ MODE_NO_STEAL ]         = 1;
+    npc.ModeBase[ MODE_NO_LOOT ]          = 1;
+    npc.ModeBase[ MODE_UNLIMITED_AMMO ] = 1;
+    HandleDialog( npc );
+}
+
+void BasicDR( Critter& npc )                           // Set of death and respawn events.
+{
+    npc.SetEvent( CRITTER_EVENT_DEAD, "_Death" );      // When dies
+    npc.SetEvent( CRITTER_EVENT_RESPAWN, "_Respawn" ); // On respawn if it's available.
+}
+
+void BotDR( Critter& npc )                             // Set of death and respawn events.
+{
+    npc.SetEvent( CRITTER_EVENT_DEAD, "_BotDeath" );   // When dies
+    npc.SetEvent( CRITTER_EVENT_RESPAWN, "_Respawn" ); // On respawn if it's available.
+}
+
+void _Death( Critter& cr, Critter@ killer )
+{
+    if( !valid( killer ) )
+        return;
+    if( killer.IsPlayer() )
+        return;      // score to add later
+}
+
+void _BotDeath( Critter& cr, Critter@ killer )
+{
+    if( !valid( killer ) )
+        return;
+    if( killer.IsPlayer() )
+        return;      // score to add later
+
+    KillMyTeam( cr );
+}
+
+
+void _Respawn( Critter& npc )
+{
+    return;     // nothing yet
+}
+
+
+void CombatShow( Critter& npc )            // Show critter function, If role set it becomes npc sight.
+{
+    if( npc.StatBase[ ST_NPC_ROLE ] != 0 ) // Sight executed function
+    {
+        npc.ShowCritterDist1 = npc.StatBase[ ST_NPC_ROLE ];
+        npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_1, "_CombatShow" );
+    }
+    else
+        npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_CombatShow" );
+}
+
+
+void _CombatShow( Critter& npc, Critter& cr )
+{
+    if( cr.Id == npc.Id )
+        return;
+    if( SAME_TEAM( npc, cr ) )
+        return;
+    if( npc.IsSee( cr ) && IsEnemy( npc, cr ) )
+        Attack( npc, cr );
+}
+
+void EscapeShow( Critter& npc )            // Show critter function, If role set it becomes npc sight.
+{
+    if( npc.StatBase[ ST_NPC_ROLE ] != 0 ) // Sight executed function
+    {
+        npc.ShowCritterDist1 = npc.StatBase[ ST_NPC_ROLE ];
+        npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_1, "_EscapeShow" );
+    }
+    else
+        npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_EscapeShow" );
+}
+
+
+void _EscapeShow( Critter& npc, Critter& cr )
+{
+    if( cr.Id == npc.Id )
+        return;
+    if( SAME_TEAM( npc, cr ) )
+        return;
+    if( npc.IsSee( cr ) && IsEnemy( npc, cr ) )
+        Run( npc, cr );
+    return;
+}
+
+void EscapeOnFight( Critter& npc )                                         // Show critter function, If role set it becomes npc sight.
+{
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_EscapeSomeoneAttacked" ); // If someone gets attacked in his sight.
+    npc.SetEvent( CRITTER_EVENT_ATTACKED, "_EscapeOnAttacked" );           // If he gets attacked and sees enemy.
+}
+
+void _EscapeSomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+    if( IsEnemy( cr, attacker ) && cr.IsSee( attacker ) )
+    {
+        Run( cr, attacker );
+        return;
+    }
+    if( IsEnemy( cr, attacked ) && cr.IsSee( attacked ) )
+    {
+        Run( cr, attacker );
+        return;
+    }
+
+    if( attacker.Id == cr.Id )
+        return;
+    if( attacker.Id == attacked.Id )
+        return;
+    if( SAME_TEAM( cr, attacker ) )
+        return;
+    if( _IsAggressor( attacked ) )
+        return;
+    if( IsFriendly( cr, attacker ) )
+        return;
+
+    if( cr.IsSee( attacker ) )
+        Run( cr, attacker );
+}
+
+bool _EscapeOnAttacked( Critter& npc, Critter& attacker )
+{
+    if( SAME_TEAM( npc, attacker ) || IsFriendly( npc, attacker ) )
+    {
+        if( HAS_CHANCE( 40 ) )
+            npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70382 );
+
+        return true;
+    }
+
+    Run( npc, attacker );
+    return true;
+
+}
+
+void WillBarter( Critter& npc ) // Trader
+{
+    npc.StatBase[ ST_TALK_DISTANCE ]      = 5;
+    npc.StatBase[ ST_MAX_TALKERS ]        = 3;
+    npc.SkillBase[ SK_BARTER ]            = 200;
+    npc.ModeBase[ MODE_NO_ITEM_GARBAGER ] = 1;
+    npc.ModeBase[ MODE_NO_BARTER ]        = 0;
+    npc.ModeBase[ MODE_NO_ENEMY_STACK ]   = 1;
+    _CritSetExtMode( npc, MODE_EXT_TRADER );
+    npc.SetEvent( CRITTER_EVENT_BARTER, "_Barter" );              // Allowed Trade
+}
+
+bool _Barter( Critter& npc, Critter& player, bool attach, uint barterCount )
+{
+    return true;
+}
+
+void CombatOnFight( Critter& npc )                                         // Show critter function, If role set it becomes npc sight.
+{
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_CombatSomeoneAttacked" ); // If someone gets attacked in his sight.
+    npc.SetEvent( CRITTER_EVENT_ATTACKED, "_CombatOnAttacked" );           // If he gets attacked and sees enemy.
+}
+
+void _CombatSomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+    if( IsEnemy( cr, attacker ) && cr.IsSee( attacker ) )
+    {
+        Attack( cr, attacker );
+        return;
+    }
+    if( IsEnemy( cr, attacked ) && cr.IsSee( attacked ) )
+    {
+        Attack( cr, attacked );
+        return;
+    }
+
+    if( attacker.Id == cr.Id )
+        return;
+    if( attacker.Id == attacked.Id )
+        return;
+    if( SAME_TEAM( cr, attacker ) )
+        return;
+    if( _IsAggressor( attacked ) )
+        return;
+    if( IsFriendly( cr, attacker ) )
+        return;
+
+    if( cr.IsSee( attacker ) )
+        Attack( cr, attacker );
+}
+
+bool _CombatOnAttacked( Critter& npc, Critter& attacker )
+{
+    if( SAME_TEAM( npc, attacker ) || IsFriendly( npc, attacker ) )
+    {
+        if( HAS_CHANCE( 40 ) )
+            npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70382 );
+
+        return true;
+    }
+
+    return false;
+
+}
+
+void CombatOnFightSoldier( Critter& npc )                                  // Show critter function, If role set it becomes npc sight.
+{
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_CombatSomeoneAttacked" ); // If someone gets attacked in his sight.
+    npc.SetEvent( CRITTER_EVENT_ATTACKED, "_CombatOnAttackedSoldier" );    // If he gets attacked and sees enemy.
+}
+
+
+bool _CombatOnAttackedSoldier( Critter& npc, Critter& attacker )
+{
+    if( SAME_TEAM( npc, attacker ) || IsFriendly( npc, attacker ) )
+    {
+        if( HAS_CHANCE( 40 ) )
+            npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70382 );
+
+        return true;
+    }
+
+    if( npc.Stat[ ST_CURRENT_HP ] <= npc.Stat[ ST_MAX_LIFE ] / 2  && npc.Timeout[ TO_SK_FIRST_AID ] <= 0 )
+    {
+        if( HAS_CHANCE( 10 ) )
+        {
+            critter_use_skill( npc, SK_FIRST_AID, npc, null, null );
+        }
+    }
+
+    return false;
+
+}
+
+void IdleStand( Critter& npc )                        // Healing when standing
+{
+    npc.SetEvent( CRITTER_EVENT_IDLE, "_IdleStand" ); // When still.
+}
+
+
+void _IdleStand( Critter& npc )
+{
+    if( npc.Stat[ ST_CURRENT_HP ] <= npc.Stat[ ST_MAX_LIFE ] / 2  && npc.Timeout[ TO_SK_FIRST_AID ] <= 0 )
+    {
+        if( HAS_CHANCE( 10 ) )
+        {
+            critter_use_skill( npc, SK_FIRST_AID, npc, null, null );
+            npc.Wait( 750 );
+        }
+    }
+    npc.Wait( 75 );
+}
+
+void IdlePatrol( Critter& npc )                        // Patroling when not busy.
+{
+    npc.SetEvent( CRITTER_EVENT_IDLE, "_IdlePatrol" ); // When still.
+}
+
+
+// CRITTER PATROLLING
+#define QUEST_PATROL_ENTIRE    ( 388 )
+
+void _IdlePatrol( Critter& cr )
+{
+    if( cr.Stat[ ST_CURRENT_HP ] <= cr.Stat[ ST_MAX_LIFE ] / 2  && cr.Timeout[ TO_SK_FIRST_AID ] <= 0 )
+    {
+        if( HAS_CHANCE( 10 ) )
+        {
+            critter_use_skill( cr, SK_FIRST_AID, cr, null, null );
+            cr.Wait( 750 );
+        }
+    }
+
+    if( HAS_CHANCE( 25 ) )
+    {
+        Map@   map = cr.GetMap();
+        uint   entiresnum = map.CountEntire( QUEST_PATROL_ENTIRE );
+        uint16 hexX = 0;
+        uint16 hexY = 0;
+        uint   mapId;
+        uint8  dir;
+        cr.GetHomePos( mapId, hexX, hexY, dir );
+
+        uint8[] entires;
+        for( uint8 i = 0; i < entiresnum; i++ )
+        {
+            uint16 hexX2 = 0;
+            uint16 hexY2 = 0;
+            map.GetEntireCoords( QUEST_PATROL_ENTIRE, i, hexX2, hexY2 );
+            if( hexX == hexX2 && hexY == hexY2 )
+            {
+
+                map.SetData( i, 0 );
+                break;
+            }
+        }
+
+        for( uint j = 0; j < entiresnum; j++ )
+        {
+            if( map.GetData( j ) == 0 )
+                entires.insertLast( j );
+        }
+        uint8 newentire = entires[ Random( 0, entires.length() - 1 ) ];
+
+        map.GetEntireCoords( QUEST_PATROL_ENTIRE, newentire, hexX, hexY );
+        map.SetData( newentire, 1 );
+        cr.SetHomePos( hexX, hexY, Random( 0, 5 ) );
+    }
+    cr.Wait( 75 );
+}
+
+void AntiOneHex( Critter& npc ) // Will sometimes move away from close range.
+{
+    npc.ShowCritterDist2 = 2;
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_2, "_AntiOnehex" );
+}
+
+void _AntiOnehex( Critter& npc, Critter& cr )
+{
+    if( cr.Id == npc.Id )
+        return;
+    if( SAME_TEAM( npc, cr ) )
+        return;
+    if( npc.IsSee( cr ) && IsEnemy( npc, cr ) )
+        Run( npc, cr );
+    return;
+}
+// HANDLES END
+
+
+// CRITTER INITS
+
+// GUARD - Basic ai type, fights with enemies, helps friendlies.
+void Guard( Critter& npc, bool firstTime ) // Basic staionary npc.
+{
+    if( firstTime )
+    {}
+
+    BasicSetup( npc );    // Moved out of first time for safety.
+    BasicDR( npc );       // Death and Respawn.
+    CombatShow( npc );    // Aggresive response on vision.
+    CombatOnFight( npc ); // Fight when fight happens.
+    IdleStand( npc );     // Will stand still and heal if needed
+}
+
+// Patroling Guard
+void Patrol( Critter& npc, bool firstTime ) // Basic staionary npc.
+{
+    if( firstTime )
+    {}
+
+    BasicSetup( npc );    // Moved out of first time for safety.
+    BasicDR( npc );       // Death and Respawn
+    CombatShow( npc );    // Aggresive response on vision.
+    CombatOnFight( npc ); // Fight when fight happens.
+    IdlePatrol( npc );    // Will stand still and heal if needed
+}
+
+// Civilian
+void Civilian( Critter& npc, bool firstTime ) // Basic staionary npc.
+{
+    if( firstTime )
+    {}
+
+    BasicSetup( npc );    // Moved out of first time for safety.
+    BasicDR( npc );       // Death and Respawn
+    EscapeShow( npc );    // Runs on contact with enemy.
+    EscapeOnFight( npc ); // Runs when hit or someone hit.
+}
+
+// Shopkeeper
+void Trader( Critter& npc, bool firstTime ) // Basic staionary npc.
+{
+    if( firstTime )
+    {}
+
+    BasicSetup( npc );    // Moved out of first time for safety.
+    BasicDR( npc );       // Death and Respawn
+    EscapeShow( npc );    // Runs on contact with enemy.
+    WillBarter( npc );    // Can sell shit.
+    EscapeOnFight( npc ); // Runs when hit or someone hit.
+}
+
+// Advanced fighter
+void Soldier( Critter& npc, bool firstTime ) // Basic staionary npc.
+{
+    if( firstTime )
+    {}
+
+    BasicSetup( npc );           // Moved out of first time for safety.
+    BasicDR( npc );              // Death and Respawn.
+    CombatShow( npc );           // Aggresive response on vision.
+    CombatOnFightSoldier( npc ); // Fight when fight happens. Fa chance.
+    IdleStand( npc );            // Will stand still and heal if needed
+    AntiOneHex( npc );           // Will run from onehex range
+}
+
+
+// Hub. Killing it kills whole team on map.
+void Hub( Critter& npc, bool firstTime ) // Basic staionary npc.
+{
+    if( firstTime )
+    {}
+
+    BasicSetup( npc );    // Moved out of first time for safety.
+    BotDR( npc );         // Death and kill everyone else.
+    EscapeShow( npc );    // Runs on contact with enemy.
+    EscapeOnFight( npc ); // Runs when hit or someone hit.
+}

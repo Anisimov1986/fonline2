@@ -1,0 +1,65 @@
+#ifndef __UTILS__
+#define __UTILS__
+
+#define _GroupIndex                      # (cr)   (cr.Param[MAIN_FACTION])
+#ifndef __UTILS_MODULE__
+
+import void SendHpInfo(Critter& cr, int heal) from "utils";
+import bool ItemsIsSafe(Critter& cr) from "utils";
+import bool HasItem(Critter@ cr, uint pid) from "utils";
+import bool HasItemInHands(Critter@ cr, uint pid) from "utils";
+import bool HasItemsInHands(Critter@ cr, uint pid1, uint pid2) from "utils";
+import Item@ GetEquippedItem(Critter& cr, uint Pid) from "utils";
+import Location@ GetLocationOf(Critter& critter) from "utils";
+import bool IsEncounterMap(Map@ map) from "utils";
+import bool IsSpecialMap(Map@ map) from "utils";
+import bool IsDungeonMap(Map@ map) from "utils";
+import bool IsTownMap(Map@ map) from "utils";
+import bool IsGuardedTownMap(Map@ map) from "utils";
+import bool IsTentMap(Map@ map) from "utils";
+import bool IsBaseMap(Map@ map) from "utils";
+import bool IsQuestMap(Map@ map) from "utils";
+import int stringReplaceText( string& s, string& f, string& t ) from "utils";
+import string GetCritterName( Critter& cr ) from "utils";
+import void VerboseAction( Critter& cr, string& text ) from "utils";
+import void VerboseAction( Critter& cr, Critter& target, string& text ) from "utils";
+import string GetIP(uint ip) from "utils";
+import void FillBag( Item@ locker, uint16 pid, double chance, uint min, uint max  ) from "utils";
+import void FillBag( Item@ locker, uint16[]& pids,double chance, uint min, uint max  ) from "utils";
+import void FillBagOverride( Item@ locker, uint16 pid, double chance, uint min, uint max) from "utils";
+import void FillBagOverride( Item@ locker, uint16[]& pids, double chance, uint min, uint max) from "utils";
+import int GetUvar(uint uvar, uint masterid, uint slaveid) from "utils";
+import void SetUvar(uint uvar, uint masterid, uint slaveid, uint value) from "utils";
+import void ClearEnemyStack(Critter& critter) from "utils";
+import void ClearEnemyStacksOnMap(Map@ map) from "utils";
+import bool FindPreferredGridApprox(Map& map, uint16& hx, uint16& hy) from "utils";
+import bool ReloadWeapon(Critter& cr) from "utils";
+import void ClearEvents(Critter& cr) from "utils";
+import void SetGroupInfo(Critter& cr, uint faction, uint rank, uint mode) from "utils";
+import uint GetGroupIndex(Critter& cr) from "utils";
+import void SetGroupIndex(Critter& cr, uint val) from "utils";
+import bool IsCurrentEnemy(Critter& cr, uint targetId) from "utils";
+import void SpecialMessage(Critter& cr, uint title, uint message, uint file, uint titlecolor, uint messagecolor) from "utils";
+import uint GetLocationCritters(Location& loc, uint findType, array<Critter@>& critters) from "utils";
+import void CheckForbiddenItems(array<Item@>& items, bool toDelete)  from "utils";
+import bool ForbiddenItem(Item& item) from "utils";
+import bool CanRequestHelp(Critter& player) from "utils";
+import void SetRequestedHelp(Critter& player) from "utils";
+import int GetLvar(Critter& critter, uint lvar) from "utils";
+import int GetLvar(uint id, uint lvar) from "utils";
+import void SetLvar(Critter& critter, uint lvar, uint value) from "utils";
+import void SetLvar(uint id, uint lvar, uint value) from "utils";
+import string@ GetSafePlayerName(uint id) from "utils";
+import bool GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy ) from "utils";
+import void SaveAnyData(uint value, string key) from "utils";
+import uint GetAnyData(string key) from "utils";
+import uint[] GetAnyDataArray(string key) from "utils";
+import int GetGroupMaxLevel(array<Critter@> group) from "utils";
+import void StoreItems( Map& map, Critter& cr , bool inform) from "utils";
+import void BringItems( Map& map, Critter& cr , bool inform) from "utils";
+import void RemoveItems( Critter& cr ) from "utils";
+import void Ress( Critter& cr ) from "utils";
+import void MakeOwner( Location& loc, Critter& cr ) from "utils";
+#endif // __UTILS__
+
+#endif

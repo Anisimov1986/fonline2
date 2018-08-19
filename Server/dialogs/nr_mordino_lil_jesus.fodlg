@@ -1,0 +1,55 @@
+[comment]
+Ваши комментарии / Your comments.
+
+[data]
+lang=engl russ ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script game_event_bishop_attacks_mordino@dialogIsReadyToFinishEvent 0  #
+0 2020 @
+3 3000 None 0 #
+0 3010 R _script game_event_bishop_attacks_mordino@dialogFinishEvent 0  &
+
+[engl]
+{100}{}{Jesus Mordino}
+{210}{}{You see: a tanned young man, wearing leather and lots of chains. His face is covered in scars.}
+{210}{}{You see Little Jesus Mordino.}
+{210}{}{You see Little Jesus Mordino. He's wearing black leather, and playing with one of his knives.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Why are you bothering me? Can't you see I'm busy?@@Yeah?@@What now?@@Don't fuckin' waste my time!}
+{2010}{}{I've killed those Bishop faggots. Break out the caps.@@The Bishop's men are dead. Give me my cash.@@I've disposed of those Bishop men. Give my my caps now.}
+{2020}{}{Sorry.@@Whatever.@@Nevermind.}
+{3000}{}{Nice job... Here are you caps, you earned them. Oh yeah, and a little extra too.@@Okay, okay. Here are your caps, and a little bonus.}
+{3010}{}{Thanks.@@Good, thanks.@@Yeah, thanks.@@Thanks. I will get going now.}
+
+[russ]
+{100}{}{Иисус Мордино}
+{210}{}{Вы видите загорелого молодого человека, одетого в черную кожу и цепи. Его лицо отмечено шрамами.}
+{210}{}{Вы видите Маленького Иисуса Мордино.}
+{210}{}{Вы видите Маленького Иисуса Мордино. Он в основном одет в черную кожу и играет с одним из своих ножей.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Why are you bothering me? Can't you see I'm busy?}
+{2010}{}{I've killed this Bishop's faggots. Break out the caps.}
+{2020}{}{Sorry.}
+{3000}{}{You've done nice job. Thank you for your assitance. Here's your caps and take this.}
+{3010}{}{Thanks.}
+
+[ptbr]
+{100}{}{Jesus Mordino}
+{210}{}{Você vê um homem jovem bronzeado, vestido em couro adornado com correntes. Seu rosto é repleto de cicatrizes.}
+{210}{}{Você vê o Pequeno Jesus Mordino.}
+{210}{}{Você vê o Pequeno Jesus Mordino. Está vestido em couro preto a brincar com uma de suas facas.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{O que que tu quer? Não tá vendo que tou ocupado?}
+{2010}{}{Matei aqueles imundos dos Bispo. Cadê a grana?}
+{2020}{}{Foi mal.}
+{3000}{}{... a grana tá aqui. Agora se manda!}
+{3010}{}{Valeu.}
+

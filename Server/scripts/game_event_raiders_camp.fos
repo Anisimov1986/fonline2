@@ -1,0 +1,676 @@
+#include "entire_h.fos"
+#include "_colors.fos"
+#include "_maps.fos"
+#include "_itempid.fos"
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_common_critters.fos" 
+#include "game_event_common_loot.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos" 
+
+#define EVENT_DURATION                   (REAL_MINUTE(15))
+#define GOSSIP_DELAY                     (REAL_MINUTE(3))
+#define GOSSIP_DURATION                  (REAL_MINUTE(11))
+#define SIGHT_RANGE                      (40)
+#define PATROL_PROBABILITY               (0.3)
+
+#define HIGHWAYMEN_RAIDERS_CAMP_EVENT_ID (62)
+#define GANG_RAIDERS_CAMP_EVENT_ID       (63)
+#define RAIDER_RAIDERS_CAMP_EVENT_ID     (64)
+#define ROGUES_RAIDERS_CAMP_EVENT_ID     (65)
+#define KHANS_RAIDERS_CAMP_EVENT_ID      (66)
+
+#define ROLE_PEASANT                     (288100)
+#define ROLE_HIGHWAYMEN_PATROL           (288101)
+#define ROLE_GANG_PATROL                 (288102)
+#define ROLE_RAIDER_PATROL               (288103)
+#define ROLE_ROGUE_PATROL                (288104)
+#define ROLE_KHAN_PATROL                 (288105)
+
+import void SpawnEventFlares(Map& map, uint entire) from "game_event_utils";
+import void RemoveEventFlares(Map& map) from "game_event_utils";
+import int GetNextTime(uint Id) from "game_events";
+import Location@+ GetNearestVisibleLocation(uint x, uint y) from "game_event_utils";
+import double CountAliveCrittersPercent(Map &map) from "game_event_utils";
+
+
+// Peasants initialization
+int[] peasantParams = {ST_REPLICATION_TIME, -1, ST_BAG_ID, BAG_WEAKSHIT}; 
+int[] peasantPids = {NPC_PID_PEASANT1, NPC_PID_PEASANT2, NPC_PID_PEASANT3, NPC_PID_PEASANT4, NPC_PID_PEASANT5};
+CritterTemplate peasantCritterTemplate = CritterTemplate(peasantPids, ROLE_PEASANT)
+		.SetStartEntire(ENTIRE_EVENT_DEFENDER_SPAWN)
+		.SetCritterParams(peasantParams);
+
+		
+//Patrol critters initialization
+CritterEventsTemplate badPatrolCritterTemplate = CritterEventsTemplate()
+	.AddT(badCritterTemplate)
+	.WhenT(InitializeCritter(true))
+		.ExecuteT(InitializePatrol(ENTIRE_EVENT_MOB_PATROL))
+	.WhenT(CritterIdle())
+		.ExecuteT(Conditionally(HasChance(10), Patrol(ENTIRE_EVENT_MOB_PATROL)));
+
+		
+CritterTemplate patrolHighwaymenCritterTemplate = CritterTemplate(highwaymenCritterTemplate, ROLE_HIGHWAYMEN_PATROL)
+		.SetStartEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetShowCritterDist1(40)
+		.SetAttachEventManager(true);
+CritterEventsManager patrolHighwaymenCritterEvents = CritterEventsManager(ROLE_HIGHWAYMEN_PATROL)
+		.Add(badPatrolCritterTemplate);
+
+		
+CritterTemplate patrolGangCritterTemplate = CritterTemplate(gangCritterTemplate, ROLE_GANG_PATROL)
+		.SetStartEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetShowCritterDist1(40)
+		.SetAttachEventManager(true);
+CritterEventsManager patrolGangCritterEvents = CritterEventsManager(ROLE_GANG_PATROL)
+		.Add(badPatrolCritterTemplate);
+		
+		
+CritterTemplate patrolRaiderCritterTemplate = CritterTemplate(raiderCritterTemplate, ROLE_RAIDER_PATROL)
+		.SetStartEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetAttachEventManager(true);
+CritterEventsManager patrolRaiderCritterEvents = CritterEventsManager(ROLE_RAIDER_PATROL)
+		.Add(badPatrolCritterTemplate);
+
+		
+CritterTemplate patrolRogueCritterTemplate = CritterTemplate(rogueCritterTemplate, ROLE_ROGUE_PATROL)
+		.SetStartEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetAttachEventManager(true);
+CritterEventsManager patrolRogueCritterEvents = CritterEventsManager(ROLE_ROGUE_PATROL)
+		.Add(badPatrolCritterTemplate);
+
+		
+CritterTemplate patrolKhanCritterTemplate = CritterTemplate(khanCritterTemplate, ROLE_KHAN_PATROL)
+		.SetStartEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_PATROL)
+		.SetAttachEventManager(true);
+CritterEventsManager patrolKhanCritterEvents = CritterEventsManager(ROLE_KHAN_PATROL)
+		.Add(badPatrolCritterTemplate);	
+		
+		
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + HIGHWAYMEN_RAIDERS_CAMP_EVENT_ID, RaidersCampEvent(HIGHWAYMEN_RAIDERS_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Highwaymen)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD2)
+		.SetEnemy(ROLE_HIGHWAYMEN, ROLE_HIGHWAYMEN_PATROL)
+		.AddExplosivesLoot(PID_FRAG_GRENADE, 10, 15)
+		.AddExplosivesLoot(PID_PLASMA_GRENADE, 10, 15)
+		.AddExplosivesLoot(PID_MOLOTOV_COCKTAIL, 10, 15)
+		.AddExplosivesLoot(PID_DYNAMITE, 2, 4)
+		.AddExplosivesLoot(PID_PLASTIC_EXPLOSIVES, 2, 4)
+		.AddExplosivesLoot(PID_MINE, 2, 4)
+		.AddToolsLoot(PID_MULTI_TOOL, 1, 3)
+		.AddToolsLoot(PID_KEVLAR_POLYMER, 2, 4)
+		.AddToolsLoot(PID_HIGH_GRADE_STEEL, 2, 4)
+		.AddToolsLoot(PID_CHEMICAL_COMPONENTS, 2, 4)
+		.AddToolsLoot(PID_ENERGY_TRANSFORMER, 2, 4)
+		.AddToolsLoot(PID_ROPE, 4, 6)
+		.AddToolsLoot(PID_METAL_TRASH, 8, 12)
+		.AddToolsLoot(PID_CORD, 4, 8)
+		.AddToolsLoot(PID_GUNPOWDER, 8, 12)
+		.AddToolsLoot(rarePreWarLoot)
+		.AddAmmoLoot(PID_10MM_AP, 400, 800)
+		.AddAmmoLoot(PID_5MM_AP, 400, 800)
+		.AddAmmoLoot(PID_14MM_AP, 150, 300)
+		.AddAmmoLoot(PID_MICRO_FUSION_CELL, 50, 100)
+		.AddAmmoLoot(PID_HN_AP_NEEDLER_CARTRIDGE, 50, 100)
+		.AddAmmoLoot(PID_ROCKET_AP, 5, 10)
+		.AddAmmoLoot(PID_FLAMETHROWER_FUEL_MK_II, 15, 30)
+		.AddAmmoLoot(commonL3Loot)	
+		.AddPapersLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddPapersLoot(PID_LOCKPICKS, 0, 1)
+		.AddPapersLoot(PID_ELECTRONIC_LOCKPICKS, 1, 1, 0.015)
+		.AddPapersLoot(PID_NUKA_COLA, 0, 2)
+		.AddPapersLoot(PID_SUPER_STIMPAK, 0, 2)
+		.AddPapersLoot(PID_MENTATS, 0, 2)
+		.AddPapersLoot(PID_BUFFOUT, 0, 2)
+		.AddPapersLoot(PID_PSYCHO, 0, 1)
+		.AddPapersLoot(PID_JET, 0, 2)
+		.AddPapersLoot(PID_CIGARETTES, 0, 2)
+		.AddPapersLoot(PID_SCOUT_HANDBOOK, 1, 1, 0.35)
+		.AddPapersLoot(PID_GUNS_AND_BULLETS, 1, 1, 0.35)
+		.AddPapersLoot(rareBookLoot)	
+	);
+	
+	events.set("" + GANG_RAIDERS_CAMP_EVENT_ID, RaidersCampEvent(GANG_RAIDERS_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Gang)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD2)
+		.SetEnemy(ROLE_GANG, ROLE_GANG_PATROL)
+		.AddExplosivesLoot(PID_FRAG_GRENADE, 10, 15)
+		.AddExplosivesLoot(PID_PLASMA_GRENADE, 10, 15)
+		.AddExplosivesLoot(PID_MOLOTOV_COCKTAIL, 10, 15)
+		.AddExplosivesLoot(PID_DYNAMITE, 2, 4)
+		.AddExplosivesLoot(PID_PLASTIC_EXPLOSIVES, 2, 4)
+		.AddExplosivesLoot(PID_MINE, 2, 4)
+		.AddToolsLoot(PID_MULTI_TOOL, 1, 3)
+		.AddToolsLoot(PID_KEVLAR_POLYMER, 2, 4)
+		.AddToolsLoot(PID_HIGH_GRADE_STEEL, 2, 4)
+		.AddToolsLoot(PID_CHEMICAL_COMPONENTS, 2, 4)
+		.AddToolsLoot(PID_ENERGY_TRANSFORMER, 2, 4)
+		.AddToolsLoot(PID_ROPE, 4, 6)
+		.AddToolsLoot(PID_METAL_TRASH, 8, 12)
+		.AddToolsLoot(PID_CORD, 4, 8)
+		.AddToolsLoot(PID_GUNPOWDER, 8, 12)
+		.AddToolsLoot(rarePreWarLoot)
+		.AddAmmoLoot(commonL2Loot)	
+		.AddAmmoLoot(PID_10MM_AP, 400, 800)
+		.AddAmmoLoot(PID_5MM_AP, 400, 800)
+		.AddAmmoLoot(PID_14MM_AP, 150, 300)
+		.AddAmmoLoot(PID_MICRO_FUSION_CELL, 50, 100)
+		.AddAmmoLoot(PID_HN_AP_NEEDLER_CARTRIDGE, 50, 100)
+		.AddAmmoLoot(PID_ROCKET_AP, 5, 10)
+		.AddAmmoLoot(PID_FLAMETHROWER_FUEL_MK_II, 15, 30)
+		.AddPapersLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddPapersLoot(PID_LOCKPICKS, 0, 1)
+		.AddPapersLoot(PID_ELECTRONIC_LOCKPICKS, 1, 1, 0.015)
+		.AddPapersLoot(PID_NUKA_COLA, 0, 2)
+		.AddPapersLoot(PID_SUPER_STIMPAK, 0, 2)
+		.AddPapersLoot(PID_MENTATS, 0, 2)
+		.AddPapersLoot(PID_BUFFOUT, 0, 2)
+		.AddPapersLoot(PID_PSYCHO, 0, 1)
+		.AddPapersLoot(PID_JET, 0, 2)
+		.AddPapersLoot(PID_CIGARETTES, 0, 2)
+		.AddPapersLoot(PID_SCOUT_HANDBOOK, 1, 1, 0.35)
+		.AddPapersLoot(PID_GUNS_AND_BULLETS, 1, 1, 0.35)
+		.AddPapersLoot(rareBookLoot)	
+	);
+	
+	events.set("" + RAIDER_RAIDERS_CAMP_EVENT_ID, RaidersCampEvent(RAIDER_RAIDERS_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Raiders_Metal_Armor)
+		.AddGroupId(GROUP_Raiders_Weak)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD2)
+		.SetEnemy(ROLE_RAIDER, ROLE_RAIDER_PATROL)
+		.AddExplosivesLoot(PID_FRAG_GRENADE, 10, 15)
+		.AddExplosivesLoot(PID_PLASMA_GRENADE, 10, 15)
+		.AddExplosivesLoot(PID_MOLOTOV_COCKTAIL, 10, 15)
+		.AddExplosivesLoot(PID_DYNAMITE, 2, 4)
+		.AddExplosivesLoot(PID_PLASTIC_EXPLOSIVES, 2, 4)
+		.AddExplosivesLoot(PID_MINE, 2, 4)
+		.AddToolsLoot(PID_MULTI_TOOL, 1, 3)
+		.AddToolsLoot(PID_KEVLAR_POLYMER, 2, 4)
+		.AddToolsLoot(PID_HIGH_GRADE_STEEL, 2, 4)
+		.AddToolsLoot(PID_CHEMICAL_COMPONENTS, 2, 4)
+		.AddToolsLoot(PID_ENERGY_TRANSFORMER, 2, 4)
+		.AddToolsLoot(PID_ROPE, 4, 6)
+		.AddToolsLoot(PID_METAL_TRASH, 8, 12)
+		.AddToolsLoot(PID_CORD, 4, 8)
+		.AddToolsLoot(PID_GUNPOWDER, 8, 12)
+		.AddToolsLoot(rarePreWarLoot)
+		.AddAmmoLoot(PID_10MM_AP, 400, 800)
+		.AddAmmoLoot(PID_5MM_AP, 400, 800)
+		.AddAmmoLoot(PID_14MM_AP, 150, 300)
+		.AddAmmoLoot(PID_MICRO_FUSION_CELL, 50, 100)
+		.AddAmmoLoot(PID_HN_AP_NEEDLER_CARTRIDGE, 50, 100)
+		.AddAmmoLoot(PID_ROCKET_AP, 5, 10)
+		.AddAmmoLoot(PID_FLAMETHROWER_FUEL_MK_II, 15, 30)
+		.AddAmmoLoot(commonL3Loot)
+		.AddPapersLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddPapersLoot(PID_LOCKPICKS, 0, 1)
+		.AddPapersLoot(PID_ELECTRONIC_LOCKPICKS, 1, 1, 0.015)
+		.AddPapersLoot(PID_NUKA_COLA, 0, 2)
+		.AddPapersLoot(PID_SUPER_STIMPAK, 0, 2)
+		.AddPapersLoot(PID_MENTATS, 0, 2)
+		.AddPapersLoot(PID_BUFFOUT, 0, 2)
+		.AddPapersLoot(PID_PSYCHO, 0, 1)
+		.AddPapersLoot(PID_JET, 0, 2)
+		.AddPapersLoot(PID_CIGARETTES, 0, 2)
+		.AddPapersLoot(PID_SCOUT_HANDBOOK, 1, 1, 0.35)
+		.AddPapersLoot(PID_GUNS_AND_BULLETS, 1, 1, 0.35)
+		.AddPapersLoot(rareBookLoot)	
+	);
+	
+	events.set("" + ROGUES_RAIDERS_CAMP_EVENT_ID, RaidersCampEvent(ROGUES_RAIDERS_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Rogues)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD2)
+		.SetEnemy(ROLE_ROGUE, ROLE_ROGUE_PATROL)
+		.AddExplosivesLoot(PID_FRAG_GRENADE, 15, 20)
+		.AddExplosivesLoot(PID_PLASMA_GRENADE, 15, 20)
+		.AddExplosivesLoot(PID_MOLOTOV_COCKTAIL, 10, 15)
+		.AddExplosivesLoot(PID_DYNAMITE, 4, 6)
+		.AddExplosivesLoot(PID_PLASTIC_EXPLOSIVES, 4, 6)
+		.AddExplosivesLoot(PID_MINE, 4, 6)
+		.AddToolsLoot(PID_MULTI_TOOL, 1, 3)
+		.AddToolsLoot(PID_KEVLAR_POLYMER, 4, 6)
+		.AddToolsLoot(PID_HIGH_GRADE_STEEL, 4, 6)
+		.AddToolsLoot(PID_CHEMICAL_COMPONENTS, 4, 6)
+		.AddToolsLoot(PID_ENERGY_TRANSFORMER, 4, 6)
+		.AddToolsLoot(PID_ROPE, 7, 9)
+		.AddToolsLoot(PID_METAL_TRASH, 12, 16)
+		.AddToolsLoot(PID_CORD, 7, 9)
+		.AddToolsLoot(PID_GUNPOWDER, 12, 16)
+		.AddToolsLoot(rarePreWarLoot)
+		.AddAmmoLoot(PID_10MM_AP, 600, 1000)
+		.AddAmmoLoot(PID_5MM_AP, 600, 1000)
+		.AddAmmoLoot(PID_14MM_AP, 300, 450)
+		.AddAmmoLoot(PID_MICRO_FUSION_CELL, 75, 150)
+		.AddAmmoLoot(PID_HN_AP_NEEDLER_CARTRIDGE, 75, 150)
+		.AddAmmoLoot(PID_ROCKET_AP, 10, 15)
+		.AddAmmoLoot(PID_FLAMETHROWER_FUEL_MK_II, 20, 45)
+		.AddAmmoLoot(commonL4Loot)	
+		.AddPapersLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddPapersLoot(PID_LOCKPICKS, 0, 1)
+		.AddPapersLoot(PID_ELECTRONIC_LOCKPICKS, 1, 1, 0.015)
+		.AddPapersLoot(PID_NUKA_COLA, 2, 4)
+		.AddPapersLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddPapersLoot(PID_MENTATS, 2, 4)
+		.AddPapersLoot(PID_BUFFOUT, 2, 4)
+		.AddPapersLoot(PID_PSYCHO, 1, 2)
+		.AddPapersLoot(PID_JET, 2, 4)
+		.AddPapersLoot(PID_CIGARETTES, 2, 4)
+		.AddPapersLoot(PID_SCOUT_HANDBOOK, 1, 1, 0.35)
+		.AddPapersLoot(PID_GUNS_AND_BULLETS, 1, 1, 0.35)
+		.AddPapersLoot(rareBookLoot)	
+	);
+	
+	events.set("" + KHANS_RAIDERS_CAMP_EVENT_ID, RaidersCampEvent(KHANS_RAIDERS_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Rogues)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventRaidersCampD2)
+		.SetEnemy(ROLE_KHAN, ROLE_KHAN_PATROL)
+		.AddExplosivesLoot(PID_FRAG_GRENADE, 15, 20)
+		.AddExplosivesLoot(PID_PLASMA_GRENADE, 15, 20)
+		.AddExplosivesLoot(PID_MOLOTOV_COCKTAIL, 10, 15)
+		.AddExplosivesLoot(PID_DYNAMITE, 4, 6)
+		.AddExplosivesLoot(PID_PLASTIC_EXPLOSIVES, 4, 6)
+		.AddExplosivesLoot(PID_MINE, 4, 6)
+		.AddToolsLoot(PID_MULTI_TOOL, 1, 3)
+		.AddToolsLoot(PID_KEVLAR_POLYMER, 4, 6)
+		.AddToolsLoot(PID_HIGH_GRADE_STEEL, 4, 6)
+		.AddToolsLoot(PID_CHEMICAL_COMPONENTS, 4, 6)
+		.AddToolsLoot(PID_ENERGY_TRANSFORMER, 4, 6)
+		.AddToolsLoot(PID_ROPE, 7, 9)
+		.AddToolsLoot(PID_METAL_TRASH, 12, 16)
+		.AddToolsLoot(PID_CORD, 7, 9)
+		.AddToolsLoot(PID_GUNPOWDER, 12, 16)
+		.AddToolsLoot(rarePreWarLoot)
+		.AddAmmoLoot(PID_10MM_AP, 600, 1000)
+		.AddAmmoLoot(PID_5MM_AP, 600, 1000)
+		.AddAmmoLoot(PID_14MM_AP, 300, 450)
+		.AddAmmoLoot(PID_MICRO_FUSION_CELL, 75, 150)
+		.AddAmmoLoot(PID_HN_AP_NEEDLER_CARTRIDGE, 75, 150)
+		.AddAmmoLoot(PID_ROCKET_AP, 10, 15)
+		.AddAmmoLoot(PID_FLAMETHROWER_FUEL_MK_II, 20, 45)
+		.AddAmmoLoot(commonL4Loot)	
+		.AddPapersLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddPapersLoot(PID_LOCKPICKS, 0, 1)
+		.AddPapersLoot(PID_ELECTRONIC_LOCKPICKS, 1, 1, 0.015)
+		.AddPapersLoot(PID_NUKA_COLA, 2, 4)
+		.AddPapersLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddPapersLoot(PID_MENTATS, 2, 4)
+		.AddPapersLoot(PID_BUFFOUT, 2, 4)
+		.AddPapersLoot(PID_PSYCHO, 1, 2)
+		.AddPapersLoot(PID_JET, 2, 4)
+		.AddPapersLoot(PID_CIGARETTES, 2, 4)
+		.AddPapersLoot(PID_SCOUT_HANDBOOK, 1, 1, 0.35)
+		.AddPapersLoot(PID_GUNS_AND_BULLETS, 1, 1, 0.35)
+		.AddPapersLoot(rareBookLoot)	
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	RaidersCampEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+		
+		uint[] values = {id};
+		CreateTimeEvent(__FullSecond + EVENT_DURATION, "e_event_stop", values, true);
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	RaidersCampEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start( Critter& cr, int id, int , int)
+{
+	event_start(id);
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class RaidersCampEvent
+{	
+	private int eventId, enemyRole, enemyPatrolRole;
+	private AutoLootGenerator explosivesLootGenerator, toolsLootGenerator, ammoLootGenerator, papersLootGenerator;
+	private WorldMapLocationGenerator worldMapLocationGenerator;
+
+	
+	RaidersCampEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	RaidersCampEvent@ AddGroupId(uint groupId)
+	{
+		worldMapLocationGenerator.AddGroupId(groupId);
+		return @this;
+	}
+	
+	RaidersCampEvent@ AddLocationPid(uint terrainType, uint locationPid)
+	{
+		worldMapLocationGenerator.AddLocationPid(terrainType, locationPid);
+		return @this;
+	}
+	
+	RaidersCampEvent@ SetEnemy(int enemyRole, int enemyPatrolRole)
+	{
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		critterTemplate.SetShowCritterDist1(SIGHT_RANGE);
+	
+		this.enemyRole = enemyRole;
+		this.enemyPatrolRole = enemyPatrolRole;
+		return @this;
+	}
+	
+	RaidersCampEvent@ AddExplosivesLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		explosivesLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+		
+	RaidersCampEvent@ AddExplosivesLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.explosivesLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	RaidersCampEvent@ AddToolsLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		toolsLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+		
+	RaidersCampEvent@ AddToolsLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.toolsLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	RaidersCampEvent@ AddAmmoLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		ammoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+		
+	RaidersCampEvent@ AddAmmoLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.ammoLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	RaidersCampEvent@ AddPapersLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		papersLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	RaidersCampEvent@ AddPapersLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		papersLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+		
+	RaidersCampEvent@ AddPapersLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.papersLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	bool IsEventMap(Map& map)
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		return autoLocation.IsLocationMap(map);
+	}
+	
+	void StartEvent()
+	{	
+		AutoLocation autoLocation = AutoLocation(eventId);
+		Location @location = autoLocation.Create(worldMapLocationGenerator);
+		if (!valid(location))
+		{
+			return;
+		}
+		
+		location.Visible = true;
+		location.AutoGarbage = false;
+		location.Color = COLOR_RED;
+	
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			autoLocation.Delete();
+			return;
+		}
+		
+		AddEnemies(map);
+		AddLoot(map);
+		AddPeasants(map);
+		map.SetScript("_MapInit");
+
+		SpawnEventFlares(map, ENTIRE_EVENT_FLARE_SPAWN);
+		InitializeGossip(location);
+	}
+	
+	void InitializeGossip(Location &location)
+	{		
+		Location @townLocation = GetNearestVisibleLocation(location.WorldX, location.WorldY);
+		if (!valid(townLocation)) 
+		{
+			return;
+		}
+		
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		int critterPid = critterTemplate.GetCritterPids()[0];
+		
+		GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, GOSSIP_DURATION);
+		gossipDefinition.SetGossipId(eventId);
+		gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+		gossipDefinition.SetDelay(GOSSIP_DELAY);
+		gossipDefinition.SetSourceLocationId(location.Id);
+		gossipDefinition.SetMsgId(STR_RAIDERS_CAMP_EVENT_GOSSIP_LOC);
+		gossipDefinition.SetSourceMsgId(STR_RAIDERS_CAMP_EVENT_GOSSIP_NO_LOC);
+		gossipDefinition.SetLexems("$locationname" + "@msg GM " + STR_LOC_NAME(townLocation.GetProtoId()) + "@"
+				+ "$crittername" + "@msg DLG " + STR_NPC_PROTO_NAME(critterPid) + "@");
+		StartGossip(gossipDefinition);
+	}
+	
+	void StopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+	
+		autoLocation.Delete();
+		
+		Location @location = autoLocation.GetLocation();
+		
+		location.Visible = false;
+		location.AutoGarbage = true;
+		location.Update();
+	
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			return;
+		}
+	
+		RemoveEventFlares(map);
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+	}
+	
+	private void AddLoot(Map& map)
+	{
+		explosivesLootGenerator.SpawnLootToContainers(map, 10, true, true);
+		toolsLootGenerator.SpawnLootToContainers(map, 11, true, true); 
+		ammoLootGenerator.SpawnLootToContainers(map, 12, true, true);
+		papersLootGenerator.SpawnLootToContainers(map, 13, true, true);
+	}
+	
+	private void AddPeasants(Map& map)
+	{
+		uint[] animations = {ANIM2_DEAD_PRONE_FRONT, ANIM2_DEAD_PRONE_BACK, ANIM2_DEAD_FRONT, ANIM2_DEAD_BACK, ANIM2_DEAD_BLOODY_SINGLE, ANIM2_DEAD_BLOODY_BURST};
+		int peasantCount = 0.85 * map.CountEntire(peasantCritterTemplate.GetStartEntire());
+	
+		for (int i = 0; i < peasantCount; i++)
+		{
+			Critter@ critter = peasantCritterTemplate.Spawn(map);
+		}
+		
+		peasantCritterTemplate.ToDeadAll(map, animations);
+	}
+	
+	private void AddEnemies(Map& map)
+	{	
+		//Regular critters
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		int enemyCount = 0.75 * map.CountEntire(critterTemplate.GetStartEntire());
+		
+		for (int i = 0; i < enemyCount; i++)
+		{
+			critterTemplate.Spawn(map);
+		}
+		
+		//Patrol critters
+		CritterTemplate@ patrolCritterTemplate = GetCritterTemplate(enemyPatrolRole);
+		int patrolEnemyCount = 0.4 * map.CountEntire(patrolCritterTemplate.GetStartEntire());
+		
+		for (int i = 0; i < patrolEnemyCount; i++)
+		{
+			patrolCritterTemplate.Spawn(map);
+		}
+	}
+	
+	void TryStopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+	
+		Location @location = autoLocation.GetLocation();
+		Map @map = location.GetMapByIndex(0);
+
+		if (!valid(map)) 
+		{
+			return;
+		}
+		
+		if (CountAliveCrittersPercent(map) < 0.25)
+		{
+			StopEvent();
+		}
+	}
+}
+
+RaidersCampEvent@ findEvent(Map& map)
+{
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	string@[] keys;
+	events.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		RaidersCampEvent @event;
+		
+		if (events.get(keys[i], @event) && event.IsEventMap(map))
+		{
+			return event;
+		}
+	}
+	
+	return null;
+}
+
+void _MapInit(Map& map, bool firstTime)
+{
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_MapCritterOut");
+}
+
+void _MapCritterOut(Map& map, Critter& cr)
+{
+	RaidersCampEvent @event = findEvent(map);
+	if (valid(event))
+	{
+		event.TryStopEvent();
+	}
+}

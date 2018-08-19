@@ -1,0 +1,54 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 @
+4 2000 None 0 #
+0 2010 D _script tc_dialogs@d_CanTakeOver 0  R _script tc@r_StartTc 0  #
+0 2020 &
+
+[engl]
+{100}{}{Sheriff}
+{200}{}{You see a random guy.}
+{210}{}{You see the sheriff of Modoc.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Who are you and what do you want?}
+{2010}{}{I am your new boss and now this town belongs to us. Prepare money and booze.@@We're here for your money, your booze, and your womenfolk. Not necessarily in that order.}
+{2020}{}{Nothing. Bye.}
+
+[russ]
+{100}{}{Шериф}
+{200}{}{Вы видите обычного парня.}
+{210}{}{Вы видите шерифа Модока.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Кто ты такой и что ты хочешь?}
+{2010}{}{Я ваш новый босс, и теперь этот город принадлежит нам. Готовьте деньги и выпивку.}
+{2020}{}{Ничего. Пока.}
+
+[pols]
+{100}{}{Szeryf}
+{200}{}{Widzisz zwyczajnego kolesia.}
+{210}{}{Widzisz szeryfa Modoc.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Kim jesteś i czego chcesz?}
+{2010}{}{Jestem twoim nowym szefem, od teraz miasto należy do nas. Przygotuj forsę, wódkę i dziewczyny.}
+{2020}{}{Nothing. Bye.}
+
+[ptbr]
+{100}{}{Xerife}
+{200}{}{Você vê um cara qualquer.}
+{210}{}{Você está vendo o xerife de Modoc.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Quem é você e o que quer?}
+{2010}{}{Somos os novos chefes e essa cidade agora é nossa! Queremos dinheiro e bebida.@@Estamos aqui para seu dinheiro, bebida e mulheres. Não necessariamente na mesma ordem.}
+{2020}{}{Nada não. Tchau.}
+

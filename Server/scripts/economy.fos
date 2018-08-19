@@ -1,0 +1,34 @@
+#include "_macros.fos"
+
+int inflationreward=0;
+int inflationprice=0;
+
+uint RewardMod(uint caps)
+{
+	if( inflationreward!=0 )
+		caps += caps * inflationreward / float(100);
+	return caps;
+}
+
+uint PriceMod(uint caps)
+{
+	if( inflationprice!=0 )
+		caps += caps * inflationprice / float(100);
+	return caps;
+}
+
+void SetInflationReward(Critter& cr, int percent, int, int)
+{
+	inflationreward=percent;
+}
+
+void SetInflationPrice(Critter& cr, int percent, int, int)
+{
+	inflationprice=percent;
+}
+
+void SetInflation(Critter& cr, int percent, int, int)
+{
+	inflationreward=percent;
+	inflationprice=percent;
+}

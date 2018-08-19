@@ -1,0 +1,2582 @@
+﻿# Create 08.2007 Cvet
+
+# Version info
+{1}{}{FOnline2 3a Temporada}
+
+####################################################################################################################################
+#
+#		Months, Day of week
+#
+####################################################################################################################################
+
+{21}{}{Janeiro}
+{22}{}{Fevereiro}
+{23}{}{Março}
+{24}{}{Abril}
+{25}{}{Maio}
+{26}{}{Junho}
+{27}{}{Julho}
+{28}{}{Agosto}
+{29}{}{Setembro}
+{30}{}{Outubro}
+{31}{}{Novembro}
+{32}{}{Dezembro}
+
+{33}{}{Domingo}
+{34}{}{Segunda-feira}
+{35}{}{Terça-feira}
+{36}{}{Quarta-feira}
+{37}{}{Quinta-feira}
+{38}{}{Sexta-feira}
+{39}{}{Sábado}
+
+####################################################################################################################################
+#
+#		Material Types (from PROTO.MSG)
+#
+####################################################################################################################################
+
+{40}{}{Vidro}
+{41}{}{Metal}
+{42}{}{Plástico}
+{43}{}{Madeira}
+{44}{}{Lama}
+{45}{}{Pedra}
+{46}{}{Cimento}
+{47}{}{Madeira}
+
+####################################################################################################################################
+#
+#		Misc
+#
+####################################################################################################################################
+
+{50}{}{.}
+{52}{}{,}
+{53}{}{ }
+{54}{}{ e }
+{55}{}{ ou }
+
+####################################################################################################################################
+#
+#		Music/Video
+#
+####################################################################################################################################
+
+# Main theme
+{80}{}{08vats}
+# Intro, from 90 to 99
+
+####################################################################################################################################
+#
+#		Chat
+#
+####################################################################################################################################
+
+# On head messages
+{100}{}{|0xF8F993 %s}                     # Normal
+{102}{}{|0xFF0000 %s}               	  # Shout
+{104}{}{|0xFF00FF **%s**}                 # Emote
+{106}{}{|0x00FFFF ...%s...}               # Whisp
+{108}{}{|0xF8F993 [%s]}                     # Social
+
+# Message box
+{120}{}{%s: |0xF8F993 %s}                 # Normal
+{122}{}{%s: |0xFF0000 %s}           	  # Shout
+{124}{}{%s: |0xFF00FF **%s**}             # Emote
+{126}{}{%s: |0x00FFFF ...%s...}           # Whisp
+{128}{}{%s: |0xF8F993 [%s]}               # Social
+{130}{}{Radio %u> |0xFFFFFE ..%s..}       # Radio
+{132}{}{%s}                               # NetMsg
+
+####################################################################################################################################
+#
+#		FixBoy
+#
+####################################################################################################################################
+
+{200}{}{Parâmetros:}
+{201}{}{Ferramentas:}
+{202}{}{Itens:}
+{205}{}{unid.}
+{206}{}{você tem }
+{210}{}{Você criou o(s) item(ns) com sucesso.}
+{211}{}{Você não conseguiu criar o(s) item(ns).}
+{212}{}{Você está bastante cansado. Tente mais tarde.}
+
+####################################################################################################################################
+#
+#		Interface text
+#
+####################################################################################################################################
+{249}{}{Prisão}
+
+{250}{}{|4291317840 Este recurso ainda não foi implementado. Utilize o FOConfig.exe ou Launcher.exe para editar as configuraçôes de jogo.}
+{251}{}{Captura de tela salva.}
+{252}{}{Captura de tela não salva.}
+{253}{}{Log salvo.}
+{254}{}{Log não salvo.}
+
+{260}{}{Zoom %d %%}
+{265}{}{Jogo pausado}
+
+# Dialog
+{275}{}{Negociar}
+{276}{}{Falar}
+{277}{}{Log}
+# Barter
+{280}{}{Oferecer}
+{281}{}{Falar}
+{282}{}{Terminar}
+{283}{}{Dizer}
+# Menu
+{290}{}{Salvar jogo}    # Singleplayer
+{291}{}{Carregar jogo}    # Singleplayer
+{292}{}{Opcoes}
+{293}{}{Sair}
+{294}{}{Continuar}
+# Login
+{295}{}{Jogar}
+{296}{}{Registrar-se}
+{297}{}{Opcoes}
+{298}{}{Creditos}
+{299}{}{Sair}
+{300}{}{|0xAECF45 Novo jogo}     # Singleplayer
+{301}{}{|0xAECF45 Carregar jogo}    # Singleplayer
+{302}{}{}
+{303}{}{}
+{304}{}{}
+{305}{}{}
+{306}{}{}
+# Dialog box
+{310}{}{Cancelar}
+{311}{}{Ok}
+{312}{}{Seguir}
+{313}{}{Modo aberto}
+{314}{}{Modo escondido}
+{315}{}{Tempo-Real}
+{316}{}{Cb. Turno}
+# Reg name
+{320}{}{Nome}
+{321}{}{Senha}
+# Cha
+{325}{}{Pronto}
+{326}{}{Volta}
+{327}{}{Imprimir}
+{328}{}{Habilidades}
+{329}{}{Pts. de habilidades}
+# Reg
+{335}{}{Especialidades}
+{336}{}{Pontos prim.}
+# Perk
+{340}{}{Pegar}
+{341}{}{Voltar}
+# Global map
+{350}{}{Você não pode liderar este grupo.}
+{351}{}{Coords: %d : %d\nZone: %d : %d}
+{352}{}{Coords: %d : %d\nZone: %d : %d\n%s\n%s}
+{353}{}{%s\n%s}
+{354}{}{Coords:}
+{355}{}{Zona:}
+# Aim
+{360}{}{Alvo está bloqueado.}
+# Split
+{365}{}{Mover itens}
+{366}{}{Todos}
+# Timer
+{370}{}{Timer}
+# Say screen
+{375}{}{Pronto}
+{376}{}{Volta}
+{377}{}{Diz...}
+# Input box
+{380}{}{Escrever}
+{381}{}{Volta}
+# Town view
+{385}{}{Voltar}
+{386}{}{Entrar}
+{387}{}{Contornar}
+# Save/Load
+{390}{}{Salvar}
+{391}{}{Carregar}
+{392}{}{Pronto}
+{393}{}{Volta}
+{394}{}{Nova gravação}
+{395}{}{Digite o nome da gravação}
+
+####################################################################################################################################
+#
+#		Inventory
+#
+####################################################################################################################################
+
+{400}{}{FO}
+{401}{}{PE}
+{402}{}{RE}
+{403}{}{CA}
+{404}{}{IN}
+{405}{}{AG}
+{406}{}{SO}
+{407}{}{Pts de vida}
+{408}{}{Classe Armad. }
+{409}{}{  Normal}
+{410}{}{  Laser}
+{411}{}{  Fogo}
+{412}{}{  Plasma}
+{413}{}{  Explosão}
+{414}{}{Sem item}
+{415}{}{Dan:}
+{416}{}{Dist:}
+{417}{}{Munição:}
+{418}{}{(Não equipado)}
+{419}{}{Você não tem pontos de ação o suficiente para usar o inventário.}
+{420}{}{Cap. de carga:}
+{421}{}{MOVER ITENS}
+{422}{}{TODOS}
+{423}{}{AJUSTAR TIMER}
+{424}{}{Dano desarmado:}
+{425}{}{Você não pode pegar isso. Você já está carregando o máximo que consegue.}
+{426}{}{Não há espaço para guardar este objeto.}
+{429}{}{Você ganhou %d pontos de experiência por usar suas habilidades furtirvas com sucesso.}
+{430}{}{Peso}
+{433}{}{Você não pôde encontrar nada para pegar isso.}
+{434}{}{Tem VALUE/MAX_VALUE AMMO.}
+{435}{}{Peso: VALUE gramm.}
+{436}{}{Peso: VALUE funt.}
+{437}{}{Custo: VALUE coins.}
+{438}{}{Custos do vendedor: VALUE coins.}
+{440}{}{Sobrecarregado}
+{441}{}{Esgueirando}
+{442}{}{Nível}
+{443}{}{Envenenado}
+{444}{}{Radiado}
+{445}{}{Ferido}
+{446}{}{Viciado}
+{447}{}{Tempo VALUE}
+{448}{}{Muito grande}
+{449}{}{Seu turno VALUE}
+{450}{}{Combate em Turno}
+{451}{}{  Elétrico}
+{452}{}{Quantidade:}
+
+####################################################################################################################################
+#
+#		Radio
+#
+####################################################################################################################################
+{454}{}{Tarde demais para chamar por ajuda.}
+{455}{}{Rádio}
+{456}{}{Canal}
+{457}{}{Atualizar}
+{458}{}{Emitir}
+{459}{}{Recepção}
+{460}{}{Em todos os locais}
+{461}{}{5 zonas}
+{462}{}{2 zonas}
+{463}{}{Local}
+{464}{}{Mapa}
+{465}{}{Emissão iniciada.}
+{466}{}{Emissão concluída.}
+{467}{}{Emissão alterada.}
+{468}{}{Recepção iniciada.}
+{469}{}{Recepção concluída.}
+{470}{}{Recepção alterada.}
+{471}{}{Canal alterado.}
+{474}{}{Incapaz de alterar o canal.}
+{475}{}{Incapaz de alterar a emissão.}
+{476}{}{Incapaz de alterar a recepção.}
+{477}{}{Incapaz de alterar o tipo de emissão.}
+{478}{}{Incapaz de alterar o tipo de recepção.}
+{479}{}{Você não tem um rádio ajustado para emissão.}
+
+####################################################################################################################################
+#
+#		Barter
+#
+####################################################################################################################################
+
+{480}{}{Pronto, negócio feito.}
+{481}{}{Não, não gostei desta oferta, não.}
+{482}{}{Desculpa, você não pode carregar tudo isto.}
+{483}{}{Desculpe, isto é demais para ser carregado.}
+{484}{}{Nenhum item foi selecionado ao momento de fechar negócio.}
+{485}{}{Desculpe-me mas uns dos itens que você quis já foram vendidos para a pessoa ali (aponta).}
+{486}{}{Você não pode fazer negócio agora.}
+{487}{}{Você não pode fazer negócio com esta pessoa.}
+{490}{}{%s quer negociar com você. Modo de negócio : %s.}
+{491}{}{aberto}
+{492}{}{oculto}
+{493}{}{Você não pode fazer negócio com esta pessoa agora. Tente depois.}
+{495}{}{A negociar com %s. Seu modo: %s, o modo do outro: %s.}
+{496}{}{%s está pronto para negociar.}
+{497}{}{Desculpe mas aceito apenas tampinhas.@@Desculpe, sem tralhas, apenas tampinhas.@@Só aceito tampinhas.}
+{498}{}{Desculpe mas eu não quero nenhum @lex items@, você vai ter que me ofertar alguma outra coisa.}
+{499}{}{O mercante aceita apenas tampinhas por @lex items@, mas você não ofereceu o suficiente.}
+
+####################################################################################################################################
+#
+#		Items info
+#
+####################################################################################################################################
+
+#Wear
+{500}{}{Deterioração: VALUE%.}
+{501}{}{A manuntenção foi concluída.}
+{502}{}{A manuntenção adicional foi concluída.}
+{503}{}{Pequeno defeito.}
+{504}{}{Defeito razoável.}
+{505}{}{Defeito grave.}
+{506}{}{Não pode ser reparado.}
+{507}{}{Durabilidade: VALUE%.}
+
+{510}{}{A manuntenção já foi feita.}
+{511}{}{A manuntenção foi concluída.}
+{512}{}{Falha na manuntenção.}
+{515}{}{Consertado com sucesso.}
+{516}{}{Falha ao consertar.}
+
+{520}{}{Sua armadura quebrou.}
+{521}{}{Sua arma quebrou.}
+{522}{}{Sua arma emperrou.}
+
+#Key
+{550}{}{Código da chave: KEY_ID.}
+
+#Car
+{560}{}{Número do carro CAR_ID.}
+{561}{}{Combustível: VALUE/MAX_VALUE.}
+{562}{}{Dano: VALUE%.}
+
+{570}{}{Perfuração de armadura.}
+{571}{}{MD mod: }
+{572}{}{RD mod: }
+{573}{}{CA mod: }
+{574}{}{Características: }
+{575}{}{CA}
+
+####################################################################################################################################
+#
+#		PipBoy, Timeouts
+#
+####################################################################################################################################
+
+{700}{}{----- Estado -----}
+{701}{}{Saldo no Banco}
+{702}{}{%d tampinhas}
+{703}{}{}
+{704}{}{}
+{705}{}{}
+{706}{}{}
+{720}{}{----- Missão -----}
+{723}{}{<<<<< Estatística >>>>>}
+{725}{}{----- Mapas -----}
+{730}{}{----- Informações -----}
+
+{740}{}{----- Aguardos -----}
+{741}{}{%s segundos}
+{742}{}{%s minutos}
+{790}{}{Aguardo de transição. Espere.}
+{791}{}{Aguardo de combate. Espere.}
+{792}{}{Aguardo de furtividade. Espere.}
+
+{795}{}{Informações do processo de inicialização sendo carregadas...}
+{796}{}{Erro ao carregar! Favor reiniciar o PipBoy.}
+
+####################################################################################################################################
+#
+#		Dialogs
+#
+####################################################################################################################################
+
+{800}{}{Você não pode falar com um capanga.}
+{801}{}{O PNJ não pode falar com você agora.}
+{802}{}{O PNJ está ocupado.}
+{803}{}{Está longe demais para falar.}
+{804}{}{Oi.} # No dialogs.
+{805}{}{O PNJ está falando com outra pessoa.}
+{806}{}{Erro de configuraçôes do "Predialog".}
+{807}{}{O link do diálogo está quebrado.}
+{808}{}{Erro na construção do diálogo.}
+{809}{}{PNJ não encontrado.}
+{810}{}{O pointer do diálogo é inválido.}
+
+####################################################################################################################################
+#
+#		Global map
+#
+####################################################################################################################################
+
+{900}{}{Você não encontrou o local. Ele foi engolido pelo deserto.}
+{901}{}{De alguma forma, este local foi movido.}
+{902}{}{Você não encontrou a entrada do local.}
+{903}{}{Você não encontrou o estacionamento.}
+{904}{}{O local está cheio, tente depois.}
+{950}{}{Está pronto para seguir %s para %s?}
+{952}{}{Prepare-se para seguir %s para %s.}
+{970}{}{um estranho}
+{972}{}{deserto}
+
+####################################################################################################################################
+#
+#		Maintenance
+#
+####################################################################################################################################
+
+{1001}{}{|4291317840 Usuário incorreto.}
+{1002}{}{|4291317840 Senha incorreta.}
+{1003}{}{|4291317840 Uma conta com tal usuário já existe, escolha outro nome de usuário.}
+{1004}{}{|4291317840 Um jogador com este login já está no jogo.}
+{1005}{}{|4291317840 Informações do FOPERCIAS incorretas.}
+{1006}{}{|4291317840 Registro com sucesso.}
+{1007}{}{|4291317840 Conectando-se ao servidor.}
+{1008}{}{|4291317840 Falha de conexão! Em caso de persistência contate a gerência do servidor.}
+{1009}{}{|4291317840 Nome de usuário ou senha incorretos.}
+{1010}{}{|4291317840 Conexão estabelecida, autenticando...}
+{1012}{}{|4291317840 Hexas para aparecer no jogo está em uso, tente entrar no jogo daqui a pouco.}
+{1013}{}{|4291317840 Ativando/desativando as instruções para jogadores.}
+{1014}{}{|4291317840 Nome incorreto. Provavelmente muito longo ou curto.}
+{1015}{}{|4291317840 Uma das declinações do nome está incorreta. Provavelmente muito longo ou curto.}
+{1016}{}{|4291317840 Sexo incorreto.}
+{1017}{}{|4291317840 Idade incorreta.}
+{1018}{}{|4291317840 Não foi possível conectar-se ao servidor.}
+{1019}{}{|4291317840 Erro nas informações inseridas.}
+{1020}{}{|4291317840 Erro ao procurar o local de iniciação, contate a administração do servidor.}
+{1021}{}{|4291317840 Erro ao procurar o mapa de iniciação, contate a administração do servidor.}
+{1022}{}{|4291317840 Erro ao procurar as coordenadas de iniciação, contate a administração do servidor.}
+{1023}{}{|4291317840 Erro no banco de dados, contete a gerência do servidor.}
+{1024}{}{|4291317840 Versão do protocolo de conexão está incorreta, favor atualize o cliente.}
+{1025}{}{|4291317840 Erro ao transmitir dados, tente novamente.}
+{1026}{}{|4291317840 A mensagem de conexão está incorreta.}
+{1027}{}{|4291317840 Houve um erro interno do servidor #1, favor contate a administração do servidor.}
+{1028}{}{|4291317840 Autenticado, a carregar mapa.}
+{1029}{}{|4291317840 Escolha três habilidades para Especializar-se.}
+{1030}{}{|4291317840 O nome deve ser em algum dos idiomas.}
+{1031}{}{|4291317840 O nome deve conter ao menos 70% de letras.}
+{1032}{}{|4291317840 Você não pode utilizar o espaço como primeiro ou último símbolo para seu nome.}
+{1033}{}{|4291317840 Você não pode utilizar dois espaços consecutivos para seu nome.}
+{1034}{}{|4291317840 Sua conta foi banida.}
+{1035}{}{|4291317840 Caracteres inválidos no nome.}
+{1036}{}{|4291317840 Caracteres inválidos na senha.}
+{1037}{}{|4291317840 Falha ao carregar a interface do usuário.}
+{1038}{}{|4291317840 Falha ao executar o script de início.}
+{1039}{}{|4291317840 Idioma selecionado não suportado. A utilizar o idioma padrão.}
+{1040}{}{|4291317840 O jogo pode não funcionar propriamente em resoluções inferiores a 800x600 ou superiores a 1280x1024.}
+{1041}{}{|4291317840 *Toc-toc* tem alguém aí?}
+{1042}{}{|4291317840 Registro de contas frequentes foram registradas neste IP.}
+{1043}{}{|4291317840 Seu IP foi banido.}
+{1044}{}{|4291317840 Tempo mínimo de um computador para uma conta é dez minutos.}
+{1045}{}{|4291317840 Tempo restante: @lex time@ minutos.}
+{1046}{}{|4291317840 Você foi banido.}
+{1047}{}{|4291317840 Banido por: @lex banby@, Duração: @lex time@ horas, Comentário: @lex reason@.}
+{1048}{}{|4291317840 Erro no script, favor contate a administração do servidor.}
+{1049}{}{|4291317840 Seu personagem está finalmente morto, você não pode utilizar esta conta para continuar a jogar.}
+
+# Singleplayer messages
+{1070}{}{|4291317840 Jogo salvo.}
+{1071}{}{|4291317840 Erro ao salvar jogo.}
+{1072}{}{|4291317840 Jogo carregado.}
+{1073}{}{|4291317840 Erro ao carregar jogo.}
+{1074}{}{|4291317840 Novo jogo iniciado.}
+{1075}{}{|4291317840 Falha ao iniciar um novo jogo.}
+
+####################################################################################################################################
+#
+#		Character
+#
+####################################################################################################################################
+
+#
+# STAT LEVEL DESCRIPTIONS
+#
+{2301}{}{M.Ruim}
+{2302}{}{Ruim}
+{2303}{}{Fraco}
+{2304}{}{Regular}
+{2305}{}{Normal}
+{2306}{}{Bom}
+{2307}{}{Mt. bom}         # Abbreviated for character editor
+{2308}{}{Ótimo}
+{2309}{}{Excelente}
+{2310}{}{Heróico}
+
+#Abbreviated, for editor
+{2311}{}{M.Ruim}
+{2312}{}{Ruim}
+{2313}{}{Fraco}
+{2314}{}{Regul.}
+{2315}{}{Normal}
+{2316}{}{Bom}
+{2317}{}{M.Bom}
+{2318}{}{Ótimo}
+{2319}{}{Excel.}
+{2320}{}{Heróico}
+
+
+#
+#   SKILL ATTRIBUTES
+#
+#   Updated: 6/5/97 KSW
+#   Updated to New Skill System: 9/16/98 rwh2
+#
+{3300}{}{+ (4 x AG)}
+{3301}{}{+ (2 x AG)}
+{3302}{}{+ (2 xAG)}
+{3303}{}{+ (2 x (AG + FO))}
+{3304}{}{+ (2 x (AG + FO))}
+{3305}{}{+ (4 x AG)}
+{3306}{}{+ (2 x (PE + IN))}
+{3307}{}{+ (PE + IN)}
+{3308}{}{+ (3 x AG)}
+{3309}{}{+ (PE + AG)}
+{3310}{}{+ (3 x AG)}
+{3311}{}{+ (PE + AG)}
+{3312}{}{+ (4 x IN)}
+{3313}{}{+ (3 x IN)}
+{3314}{}{+ (5 x CA)}
+{3315}{}{+ (4 x CA)}
+{3316}{}{+ (5 x SO)}
+{3317}{}{+ (2 x (RE + IN))}
+#
+# SKILLDEX
+#
+{3340}{}{HABILIDADES}
+{3341}{}{CANCELAR}
+
+#
+#   Skill Use Text
+#
+{3400}{}{Você não pode curar os mortos... ainda.}
+{3400}{}{Deixe o morto descansar em paz.}
+{3400}{}{Morreu, contente-se.}
+{3401}{}{Você usou muito daquela habilidade. Descanse um pouco.}
+{3401}{}{Você está bastante cansado.}
+{3401}{}{Este exagero pode matar você.}
+{3402}{}{Você não precisa de cuidados de primeiros socorros.}
+{3403}{}{Você não precisa de ajuda médica.}
+{3404}{}{Para curar este treauma você precisa de habilidades Médicas.}
+{3405}{}{Para curar estes ferimentos você precisa de habilidades em Primeiros socorros.}
+
+{3412}{}{Você cura o olho ferido.}
+{3413}{}{Você cura o braço direito que estava quebrado.}
+{3414}{}{Você cura o braço esquerdo que estava quebrado.}
+{3415}{}{Você cura a perna direita que estava quebrada.}
+{3416}{}{Você cura a perna esquerda que estava quebrada.}
+{3422}{}{Você falhou em sarar seu olho ferido.}
+{3423}{}{Você falhou em curar seu braço direito quebrado.}
+{3424}{}{Você falhou em curar seu braço esquerdo quebrado.}
+{3425}{}{Você falhou em curar sua perna esquerda quebrada.}
+{3426}{}{Você falhou em curar sua perna direita quebrada.}
+
+{3430}{}{Alguém tentou lhe roubar!}
+{3431}{}{Alguém tentou colocar algo em seus bolsos!}
+
+{3438}{}{Você precisa de uma gazua eletrônica.}
+{3439}{}{Esta tranca não pode ser gazuada.}
+{3440}{}{Você falhou na gazua da trava.}
+{3441}{}{Você falhou em organizar a armadilha.}
+{3442}{}{Você organizou a armadilha com sucesso.}
+{3443}{}{Você não pode remover a armadilha.}
+{3444}{}{Você removeu a armadilha.}
+{3445}{}{Você não pode tentar esgueirar-se por aí quando tem pessoas o notando.}
+{3446}{}{Você percebeu um mecanismo de armadilha}
+
+{3450}{}{Você foi curado em %d pontos de vida.}
+{3451}{}{Você já parece estar saudável.}
+{3452}{}{%s já parece estar saudável.}
+{3453}{}{Você não conseguiu melhorar em nada este ferimento.}
+{3455}{}{Você ganhou %d pontos de experiência por usar suas habilidades.}
+{3459}{}{\nskill_use: habilidade utilizada foi inválida.}
+{3461}{}{Você falhou em encontrar quaisquer armadilhas.}
+{3462}{}{Você não aprendeu nada.}
+{3463}{}{Você não pode consertar isto.}
+{3470}{}{Você foi pego tentando roubar %s.}
+{3471}{}{Você roubou %s.}
+{3472}{}{Você foi pego tentando plantar uma armadilha em %s.}
+{3473}{}{Você plantou uma armadilha em %s.}
+{3495}{}{Você não é habilidoso o suficiente para curar injúrias em membros.}
+{3496}{}{Esta unidade robótica está além de reparos.}
+
+#
+#	 PC STAT NAMES
+#
+{4000}{}{Pontos do personagem}
+{4001}{}{Próximo nivel}
+{4002}{}{Pontos de habilidade nao utilizados}
+{4003}{}{Nivel}
+{4004}{}{Experiencia}
+{4005}{}{Reputacao}
+{4006}{}{Karma}
+{4007}{}{Vantagens}
+{4008}{}{Mortes}
+{4009}{}{Pontos de habilidade}
+{4010}{}{Especializaçoes}
+{4011}{}{Caracteristicas opcionais}
+{4012}{}{Habilidades}
+#
+#	 PC STAT DESCRIPTIONS
+#
+{4050}{}{Quantidade de pontos de personagem livres que podem ser utilizados para os atributos primários.}
+{4051}{}{A quantidade de pontos de experiência necessários para alcançar um outro nível.}
+{4052}{}{Pontos ganhos por subir um nível. Pode ser usado para aumentar as habilidades em 1%, ou uma especialidade em 2%, por ponto utilizado.}
+{4053}{}{A competência geral de um personagem. Uma forma de mensurar suas experiências e habilidades.}
+{4054}{}{Uma recompensa por completar tarefas específicas ou derrotar inimigos em combate. Mais pontos de experiência são requeridos para se alcançar níveis mais altos.}
+{4055}{}{O que o mundo sabe de suas ações e feitos. Isto irá modificar reações de PNJs.}
+{4056}{}{Estes são os efeitos das escolhas que você faz durante o jogo.}
+{4057}{}{Vantagens são habilidades adicionais. A cada três níveis de experiência você pode escolher uma vantagem.}
+{4058}{}{Um contador que registra no tipo e número de criaturas que você você matou ou que morreram em sua presença.}
+{4059}{}{Use pontos de habilidades livres para aumentar o nível de uma habilidade.  Quanto mais habilidoso você torna-se em uma habilidade, mais pontos terá que gastar.  Alcançar a maestria em uma habilidade requer bastante tempo e esforço.}
+{4060}{}{Especializações são habilidades na qual você tem mais facilidade com lidar. A cada especialização ganha +20% e aumenta o dobro mais rápido.  Você deve escolher três especialidades.}
+{4061}{}{Características opcionais descrevem seu personagem com mais detalhes.  Todas as características aqui trazem efeitos positivos e negativos.  Você deve escolher até duas características opcionais durante a criação de personagem.}
+{4062}{}{Habilidades são aprendidas com conhecimento.  Habilidades melhoram ao se ganhar experiência ou durante o passar do tempo por eventos especiais.  Quanto mais alto o nível da sua habilidade, melhor você é com ela.}
+
+#
+#  Experience-gain messages
+#
+{4090}{}{|0xFFFFFF Você subiu um nível.}
+{4091}{}{|0xFFFFFF Você ganhou VALUE pontos de experiência.}
+{4092}{}{Você ganhou %d pontos de experiência por matar: %s.}
+{4093}{}{%s você ganhou %d pts. de experiência.}
+{4094}{}{Por derrotar seus inimigos, }  # 622-626 prepend to line 621
+{4095}{}{Por massacrar seus inimigos, }
+{4096}{}{Você foi vitorioso em combate, }
+{4097}{}{Por esmagar seus inimigos, }
+{4098}{}{Por destruir seus inimigos sem levar uma arranhão, }
+
+#
+# Editor
+#
+{4104}{}{IDADE}
+{4105}{}{SEXO}
+{4106}{}{NOME}
+{4107}{}{HOMEM}
+{4108}{}{MULHER}
+{4109}{}{VANTAG.}
+{4110}{}{KARMA}
+{4111}{}{MORTES}
+{4112}{}{PTS. DE HABIL.}
+{4113}{}{Nível: %d}
+{4114}{}{Exp: %d}
+{4115}{}{Próx. Nível: %d}
+
+#
+# Damage info texts
+#
+
+{4250}{}{Pt. de vida  %d/%d}
+
+#
+# Karma
+#
+
+{6000}{}{Karma}
+{6001}{}{: %d (%s)}  # Value, Desc
+{6002}{}{Esta estatística representa sua reputação geral. Quanto maior o número, melhor conhecido e respeitado você é. Se é negativo, você será odiado por alguns por suas más ações.}
+
+{6099}{}{9} # Max values
+{6100}{}{1000} # Min value
+{6101}{}{Salvador dos Condenados} # Desc
+{6102}{}{2000} # Picture index
+{6103}{}{750}
+{6104}{}{Guardião dos Oprimidos}
+{6105}{}{2001}
+{6106}{}{500}
+{6107}{}{Escudo da Esperança}
+{6108}{}{2002}
+{6109}{}{250}
+{6110}{}{Defensor}
+{6111}{}{2003}
+{6112}{}{-249}
+{6113}{}{Viajante}
+{6114}{}{2004}
+{6115}{}{-500}
+{6116}{}{Traidor}
+{6117}{}{2005}
+{6118}{}{-750}
+{6119}{}{Espada do Desespero}
+{6120}{}{2006}
+{6121}{}{-1000}
+{6122}{}{Praga dos Oprimidos}
+{6123}{}{2007}
+{6124}{}{-2147483648}
+{6125}{}{Semente do Mal}
+{6126}{}{2008}
+
+#
+# Town reputation
+#
+
+{6405}{}{Reputacao}
+{6406}{}{Representa a sua reputação de um determinado local.}
+
+# Name
+{6500}{}{Idolatrado}
+{6501}{}{Querido}
+{6502}{}{Aceito}
+{6503}{}{Neutro}
+{6504}{}{Antipático}
+{6505}{}{Odiado}
+{6506}{}{Difamado}
+
+# Desc
+{6550}{}{Todo mundo nesta área gosta de você. Você é o queridinho da cidade; é apontado como um exemplo brilhante de tudo o que uma pessoa pode ser.}
+{6551}{}{As pessoas acenam e cumprimentam, onde quer que você vá nesta área. Todo mundo já ouviu falar de você, e eles gostam do que ouvem.}
+{6552}{}{Embora você não seja recebido de braços abertos, a maioria das pessoas nesta área, pelo menos acenam em reconhecimento quando você se encontra. Você não se dá bem como a maioria.}
+{6553}{}{Embora normalmente desconfiado com estranhos, as pessoas desta área não formaram sua opinião sobre você, ainda.}
+{6554}{}{Você é apenas mais um forasteiro nesta área. Provavelmente até não é bom.}
+{6555}{}{Você comprovou que sua desconfiança inicial estava certa. As pessoas nesta área olham para você e sussurram uns com os outros quando você chega perto. Eles sabem que você não é bom.}
+{6556}{}{Olhando e resmungando, alguns atravessam a rua para evitar andar perto de você, enquanto outros, cospem e se afastam quando você chega perto. Você é a pior coisa que tem se arrastado para esta área.}
+
+#
+# Addiction title
+#
+
+{6900}{}{Vicios}
+{6901}{}{Coisas que você se viciou.}
+
+####################################################################################################################################
+#
+#        Items games
+#
+####################################################################################################################################
+
+# Message when pointing the cursor on an object
+{10000}{}{Você vê: NAME.}
+# Object inspecting message
+{10001}{}{NAME}
+# Name or info not found
+{10010}{}{Você não vê nada de estranho.}
+# Item not found in container (possible another critter take it)
+{10020}{}{Item não encontrado, possivelmente foi pego por alguém.}
+
+# Container
+{10100}{}{Trancado.}
+{10101}{}{Você vasculha o %s.}
+{10102}{}{Você fecha o %s.}
+{10103}{}{Você precisa de @lex itemname@ para abrir esta porta.}
+{10104}{}{Você precisa de @lex itemname@ para abrir a tranca.}
+{10105}{}{Você não pode abrir isto. Os guardas continuam vivos.}
+{10106}{}{Acesso proibido: a chave expirou.}
+#
+# Use text messages
+#
+{10200}{}{Você usa %s.}
+{10201}{}{Você usa %s em %s.}
+{10202}{}{Isso não fez efeito algum.}
+{10203}{}{Você percebe que morreu.}
+{10204}{}{Enquanto você se abaixa, você percebe que morreu.}
+{10205}{}{Opa, você chegou tarde demais.} # This is relating to a critter being dead.
+{10206}{}{Isto não vai funcinoar em um cadáver.}
+{10207}{}{Você acende o sinalizador.}
+{10208}{}{O sinalizador já está aceso.}
+{10209}{}{Você ajusta o timer.}
+{10210}{}{O timer já está passsando!}
+{10211}{}{A entrada parece estar bloqueada.}
+# Solar scotcher
+{10240}{}{Não há luz o suficiente para recarregar este item.}
+# Car
+{10250}{}{Você carrega o veículo com mais energia.}
+{10251}{}{O veículo está completamente carregado.}
+{10252}{}{O veículo foi reparado com sucesso.}
+{10253}{}{Não há necessidade de reparar este veículo.}
+{10254}{}{O motor não pode usar esta fonte de energia.}
+{10255}{}{Sem energia.}
+{10256}{}{O veículo está quebrado.}
+{10257}{}{Não há espaço no veículo. Tire algumas pessoas.}
+{10258}{}{Seu carisma não deixa você guiar tantas pessoas, remova algumas delas.}
+{10259}{}{Deixa o grupo que está na água.}
+# Drugs
+{10300}{}{Você ganhou @lex value@ @lex name@.}
+{10301}{}{Você perdeu @lex value@ @lex name@.}
+{10302}{}{Você começa a se sentir melhor.}
+{10303}{}{Você sofre um ataque cardíaco fulminante por overdose.}
+{10304}{}{Isto não fez tanto efeito assim.}
+{10305}{}{%s sucumbe por conta dos efeitos adversos das drogas.}
+{10306}{}{Você foi drogado com alguma coisa!}
+{10307}{}{Alguém tentou drogar você com alguma coisa!}
+# Geiger
+{10350}{}{O contador Geiger está descarregado.}
+{10351}{}{O contador Geiger está ativado.}
+{10352}{}{O contador Geiger está desativado.}
+{10353}{}{Você passa o contador Geiger pelo corpo. O contador G-M aponta: @lex rem@.}
+{10354}{}{O contador G-M acusa: @lex rem@.}
+{10355}{}{Nada acontece.}
+{10356}{}{Contador Geiger carregado.}
+{10357}{}{A carga do contador Geiger é @lex cur@/@lex max@.}
+# Weapon Damage strings
+{10400}{}{Leve}
+{10401}{}{Médio}
+{10402}{}{Pesado}
+{10403}{}{Extremo}
+# Weapon Range strings
+{10410}{}{Curto}
+{10411}{}{Médio}
+{10412}{}{Longo}
+# Books
+{10450}{}{Você lê o livro.}
+{10451}{}{Você não aprende nada de novo.}
+{10452}{}{Você aprendeu novas informações cientfíficas.}
+{10453}{}{Você aprendeu sobre reparar eletrônicos quebrados.}
+{10454}{}{Você aprendeu novas maneiras de cuidar de ferimentos.}
+{10455}{}{Você aprendeu como manusear melhor as suas armas.}
+{10456}{}{Você aprendeu como manusear melhor suas armas de energia.}
+{10457}{}{Você aprendeu bastante sobre escotismo.}
+# Use on
+{10500}{}{Os suprimentos da bolsa de médico esgotaram-se.}
+{10501}{}{Os suprimentos do kit de primeiros socorros esgoratam-se.}
+{10502}{}{Você não pode fazer isto em combate.}
+{10503}{}{Esta pessoa não vai negociar com você.}
+{10504}{}{Esta pessoa não tem nada para lhe dizer.}
+{10505}{}{Você não pode pegar este item. Você já está no seu limite máximo de capacidade de peso.}
+{10506}{}{Os suprimentos da mochila de paramédico acabaram.}
+{10507}{}{Os suprimentos do kit de primeiros socorros de campo acabaram.}
+{10508}{}{Este ser não pode carregar nada.}
+# Grave
+{10550}{}{A tumba foi descoberta.}
+{10551}{}{A tumba foi coberta.}
+
+####################################################################################################################################
+#
+#		Craft
+#
+####################################################################################################################################
+
+{10650}{}{Você produziu @lex number@ peças.}
+
+####################################################################################################################################
+#
+#		Custom Items
+#
+####################################################################################################################################
+
+#Armors
+
+{10700}{}{Res. a Normal}
+{10701}{}{Res. a Laser}
+{10702}{}{Res. a Fogo}
+{10703}{}{Res. a Plasma}
+
+{10705}{}{Res. a Elétrico}
+{10706}{}{Res. a Explosão}
+{10707}{}{Tolerância a dano}
+{10708}{}{Tolerância a laser}
+{10709}{}{Durabilidade}
+
+{10710}{}{Tolerância a Fogo}
+{10711}{}{Tolerância a Plasma}
+{10712}{}{Tolerância a Elétrico}
+{10713}{}{Tolerância a Explosão}
+
+{10715}{}{Cl. de Armadura}
+{10716}{}{Anti Crít}
+{10717}{}{Res. a Radiação}
+{10718}{}{Res. a Veneno}
+{10719}{}{Pt. de Ação}
+
+{10720}{}{Lim. de Peso}
+
+#Weapons
+
+{10800}{}{Dano min.}
+{10801}{}{Dano máx.}
+{10802}{}{Precisão}
+{10803}{}{Chance Crit}
+{10804}{}{PA reduzido}
+
+{10805}{}{Chance Crit}
+{10806}{}{Alcance}
+
+
+
+{10809}{}{Durável}
+
+####################################################################################################################################
+#
+#		Weapon perks
+#
+####################################################################################################################################
+{10851}{}{Longa distância}
+{10852}{}{Precisa}
+{10853}{}{Penetração}
+{10854}{}{Impacto cinético}
+{10855}{}{Escopo Longa dis.}
+{10856}{}{Recarga rápida}
+{10857}{}{Visão norturna}
+{10858}{}{Flameboy}
+{10859}{}{Nocaute aprimorado}
+{10860}{}{Curta distância}
+
+####################################################################################################################################
+#
+#		Calibers (from PROTO.MSG)
+#
+####################################################################################################################################
+
+#
+# Caliber Types for weapons
+#
+{10900}{}{None}
+{10901}{}{Míssil}
+{10902}{}{Combustível}
+{10903}{}{Cél. de Energia C}
+{10904}{}{Cél. de Energia D}
+{10905}{}{.223}
+{10906}{}{5mm}
+{10907}{}{cal .40}
+{10908}{}{10mm}
+{10909}{}{cal .44}
+{10910}{}{14mm}
+{10911}{}{cal 12}
+{10912}{}{9mm}
+{10913}{}{BB}
+{10914}{}{cal .45}
+{10915}{}{2mm}
+{10916}{}{4.7mm caseless}
+{10917}{}{HN needler}
+{10918}{}{7.62mm}
+{10919}{}{.700 Nitro Express}
+{10920}{}{Míssil de sinal}
+{10922}{}{Calibre .50}
+
+####################################################################################################################################
+#
+#		Critters game
+#
+####################################################################################################################################
+
+#
+#	Male
+#
+
+# First words
+# For age and conditions
+{11000}{}{Você vê }
+{11001}{}{Este é você }
+# For special
+{11002}{}{Parece que }
+# For damages
+{11003}{}{Ele está }
+
+# Self look
+{11005}{}{Droga, este é você cara.}
+{11005}{}{Nossa! É você!}
+{11005}{}{Quem é esse?}
+{11005}{}{Cara, você pode controlá-lo.}
+{11005}{}{Pare de me encarar!!!}
+
+# Default view
+{11010}{}{Você vê: NAME.}
+{11011}{}{Você vê alguém nocauteado: NAME.}
+{11012}{}{Você vê um cadáver: NAME.}
+{11013}{}{Você vê os restos mortais de: NAME.}
+{11014}{}{Você não vê nada de mais.}
+
+# Gender
+{11015}{}{Man}
+{11016}{}{Woman}
+
+# Age, max age 99
+# <=16
+{11116}{}{um adolescente}
+# <=30
+{11130}{}{um jovem adulto}
+# <=40
+{11140}{}{um adulto}
+# <=60
+{11160}{}{um adulto de terceira idade}
+# >60
+{11199}{}{um senhor}
+
+# Conditions
+# Prepare to fight
+{11212}{}{seu corpo está tenso, está pronto para atacar a qualquer segundo}
+# Knock out face up
+{11221}{}{ele deita-se no chão, obviamente que não foi para pegar um bronze}
+# Knock out face down
+{11222}{}{ele decidiu cochilar}
+# Dead normal face up
+{11231}{}{ele parece estar um pouco morto}
+# Dead normal face down
+{11232}{}{está morto}
+
+# Special
+# S
+{11301}{}{franzino}
+{11302}{}{frágil}
+{11303}{}{fraco}
+{11308}{}{fortinho}
+{11309}{}{forte}
+{11310}{}{m. forte}
+# P
+# E
+{11321}{}{ficha frágil}
+{11322}{}{ficha frágil}
+{11325}{}{ficha mediana}
+{11326}{}{ficha mediana}
+# C
+{11331}{}{não atraente}
+{11332}{}{não atraente}
+{11333}{}{não atraente}
+{11337}{}{atraente}
+{11338}{}{encantador}
+{11339}{}{sociável}
+{11340}{}{bastante encontador}
+# I
+{11341}{}{retardado}
+{11342}{}{um pouco idiota}
+{11343}{}{imbecil}
+{11347}{}{intelectual}
+{11348}{}{intelectual}
+{11349}{}{gênio}
+{11350}{}{personalidade genial}
+# A
+{11351}{}{sedentário}
+{11352}{}{dedentário}
+{11357}{}{normal}
+{11358}{}{acrobata}
+{11359}{}{esportista}
+{11360}{}{esportista}
+# L
+{11361}{}{pobre coitado}
+{11362}{}{azarado}
+{11363}{}{infeliz}
+{11368}{}{entusiasta}
+{11369}{}{sortudo}
+{11370}{}{muito sortudo}
+
+# Damages
+# Poisoned
+{11400}{}{hematomas estranhos na pele}
+# Radiated
+{11401}{}{brilho estranho no corpo}
+# Eyes
+{11402}{}{olhos estão feridos}
+# Right Arm
+{11403}{}{o braço direito está coberto de sangue}
+# Left Arm
+{11404}{}{o braço esquerdo sangra}
+# Right Leg
+{11405}{}{parece que a perna direita está quebrada}
+# Left Leg
+{11406}{}{parece que a perna esquerda está injuriada}
+
+#
+#	Female
+#
+
+# First words
+# For age and conditions
+{12000}{}{Você vê }
+{12001}{}{É você }
+# For special
+{12002}{}{Parece que }
+# For damages
+{12003}{}{Ela tem }
+
+# Self look
+{12005}{}{É você.}
+{12005}{}{Nossa! É você!}
+{12005}{}{Quem é esta?}
+{12005}{}{Pare de me encarar!!!}
+{12005}{}{Eu sou sexy, não sou?}
+
+# Age, max age 99
+# <=16
+{12116}{}{menina}
+# <=30
+{12130}{}{mulher}
+# <=40
+{12140}{}{uma mulher de meia-idade}
+# <=60
+{12160}{}{uma senhora}
+# >60
+{12199}{}{uma idosa}
+
+# Conditions
+# Prepare to fight
+{12212}{}{o corpo dela está tenso, ela está pronta para atacar a qualquer segundo}
+# Knock out face up
+{12221}{}{ela deita-se no chão, obviamente que não é para bronzear}
+# Knock out face down
+{12222}{}{ela decidiu tirar um cochilo}
+# Dead normal face up
+{12231}{}{ela está um pouco morta}
+# Dead normal face down
+{12232}{}{ela está morta}
+
+# Special
+# S
+{12301}{}{franzina}
+{12302}{}{frágil}
+{12303}{}{fraca}
+{12308}{}{fortinha}
+{12309}{}{forte}
+{12310}{}{m. forte}
+# P
+# E
+{12321}{}{ficha frágil}
+{12322}{}{ficha frágil}
+{12325}{}{ficha mediana}
+{12326}{}{ficha mediana}
+# C
+{12331}{}{não atraente}
+{12332}{}{não atraente}
+{12333}{}{não atraente}
+{12337}{}{atraente}
+{12338}{}{encantadora}
+{12339}{}{sociável}
+{12340}{}{bastante encontadora}
+# I
+{12341}{}{retardada}
+{12342}{}{um pouco idiota}
+{12343}{}{imbecil}
+{12347}{}{intelectual}
+{12348}{}{intelectual}
+{12349}{}{gênio}
+{12350}{}{personalidade genial}
+# A
+{12351}{}{sedentária}
+{12352}{}{dedentária}
+{12357}{}{normal}
+{12358}{}{acrobata}
+{12359}{}{esportista}
+{12360}{}{esportista}
+# L
+{12361}{}{pobre coitada}
+{12362}{}{azarada}
+{12363}{}{infeliz}
+{12368}{}{entusiasta}
+{12369}{}{sortuda}
+{12370}{}{muito sortuda}
+
+# Damages
+# Poisoned
+{12400}{}{bolhas estranhas na pele}
+# Radiated
+{12401}{}{estranho brilho no corpo}
+# Eyes
+{12402}{}{olhos estão machucados}
+# Right Arm
+{12403}{}{o braço direito está fraturado}
+# Left Arm
+{12404}{}{escorre sangue do braço direito}
+# Right Leg
+{12405}{}{a perna direita está fraturada}
+# Left Leg
+{12406}{}{a perna esquerda está fraturada}
+
+#
+# Without awareness: 0 + 1 + [2]
+# With awareness: 3 + [2] + [4]
+#
+{12500}{}{Ele parece }    # Male
+{12501}{}{Ela parece }   # Female
+{12502}{}{Isto parece }    # It
+{12510}{}{Está morto}             # Dead condition
+{12511}{}{Quase morto}      # <34% hp
+{12512}{}{Severamente machucado} # <67% hp
+{12513}{}{Machucado}          # <100% hp
+{12514}{}{Bem}           # 100% hp
+{12520}{}{está com fratura}        # Male hurt
+{12521}{}{, mas tem fratura}  # Male unhurt
+{12522}{}{está com fratura}       # Female hurt
+{12523}{}{, mas tem fraturas} # Female unhurt
+{12524}{}{está com fratura}       # It hurt
+{12525}{}{, mas tem fraturas} # It unhurt
+{12530}{}{Ele tem CUR/MAX pt. de vida}  # Male
+{12531}{}{Ela tem CUR/MAX pt. de vida} # Female
+{12532}{}{Isto tem CUR/MAX pt. de vida}  # It
+{12540}{}{ e está com uma WEAPON}                            # Gun without holder
+{12541}{}{ e está com uma WEAPON carregada com CUR/MAX de AMMO} # Gun with holder
+{12542}{}{ e está com MISC em mãos}                               # Any other item
+
+#
+# Other
+#
+
+{12600}{}{Sua personagem não pode se mover.}
+
+####################################################################################################################################
+#
+#		Plagues
+#
+####################################################################################################################################
+
+{12800}{}{Você está sentindo muita náusea.}
+{12801}{}{Você está sentindo náuseas, e depois de vomitar, começou a sentir-se levemente fadigado.}
+{12802}{}{Você está fadigado, os vômitos não param e seu sua recuperação está comprometida.}
+{12803}{}{Você está com hemorragia severa. Você está muito doente e seus cabelos está caindo.}
+{12804}{}{Você está sangrando violentamente e continuamente. O vômito está tingido de vermelho do seu sangue. Sua pele está se desprendendo dos ossos.}
+{12805}{}{Seu intestino sangra e você tem diarréia severa. Você se sente inchado e está em intensa agonia.}
+{12806}{}{Você morreu por envenamento por radiação.}
+{12807}{}{Você recebeu uma grande dose de radiação.}
+{12808}{}{O contador Geiger está soando.}
+{12809}{}{O contador Geiger está clicando intensamente.}
+{12810}{}{Você foi envenenado!}
+{12811}{}{Você levou dano por envenenamento.}
+{12812}{}{Você sente-se um pouco melhor.}
+{12813}{}{Você sente-se melhor.}
+
+####################################################################################################################################
+#
+#		Scores
+#
+####################################################################################################################################
+
+{13000}{}{Heróis por uma hora}
+{13001}{}{Sr. Vilão (karma mín.)}
+{13011}{}{Sr. Superherói (karma máx.)}
+{13021}{}{Evento (mudança de karma para os máximos por uma hora)}
+
+{13030}{}{Hall da Fama}
+{13031}{}{Honorável Porta-voz (Quem falou mais)}
+{13041}{}{Honorável Negociador (Quem lucrou mais)}
+{13051}{}{Honorável Zumbi (Quem morreu mais)}
+{13061}{}{Honorável Príncipe Encantado (O maior harum-scarum)}
+{13071}{}{Honorável Maníaco (O mais inadequado)}
+{13081}{}{Honorável Escoteiro (Quem mais andou)}
+{13091}{}{Honorável Doutor (O mais filantrópico)}
+{13101}{}{Honorável Franco-atirador (Quem mais atirou)}
+{13111}{}{Honorável Espadachim (Quem mais cortou-perfurou)}
+{13121}{}{Honorável Pugilista (Quem mais bateu)}
+{13131}{}{Honorável Larápio (Quem mais roubou)}
+
+{13140}{}{Profisisonais}
+{13141}{}{Transportador (Número máx. de pessoas transportadas)}
+{13151}{}{Assassino (Número máx. de criaturas mortas)}
+{13161}{}{Atirador (Número máx. de danos críticos)}
+{13171}{}{Aventureiro (Número máx. de tarefas completas)}
+{13181}{}{Invasor (Número máx. de trancas abertas)}
+{13191}{}{Quebra-ossos (Máx. dano corpo-a-corpo)}
+{13201}{}{Eike Batista (Quantidade máx. de dinheiro possuído)}
+{13211}{}{Industrialista (Mais itens manufaturados)}
+
+{13240}{}{Cidades}
+{13241}{}{Facção a controlar Vermelheiro}
+{13251}{}{Facção a controlar Serra Quebrada}
+{13261}{}{Facção a controlar Modoc}
+{13271}{}{Facção a controlar Favelão}
+{13281}{}{Facção a controlar Calango}
+{13291}{}{Facção a controlar Klamath}
+
+{13300}{}{Tempo do controle da cidade GMT+2}
+{13301}{}{Vermelheiro}
+{13311}{}{Serra Quebrada}
+{13321}{}{Modoc}
+{13331}{}{Favelão}
+{13341}{}{Calango}
+{13351}{}{Klamath}
+
+{13400}{}{Bases}
+{13401}{}{Atual controlador do Arsenal do Exército de Sierra}
+{13411}{}{Atual controlador da Base Militar Mariposa}
+{13421}{}{Atual controlador da Catedral}
+{13431}{}{O melhor controlador do Arsenal do Exército de Sierra}
+{13441}{}{O melhor controlador da Base Militar Mariposa}
+{13451}{}{O melhor controlador da Catedral}
+{13461}{}{Arsenal do Exército de Sierra atualmente ao lado de}
+{13471}{}{Base Militar Mariposa atualmente ao lado de}
+{13481}{}{Catedral atualmente ao lado de}
+{13491}{}{Lado preferido no geral}
+
+####################################################################################################################################
+#
+#		Stats (with STAT.MSG + 2000)
+#
+####################################################################################################################################
+
+
+# ST_STRENGTH
+{100001}{}{Forca}
+{100002}{}{Força física bruta. Uma grande força é bom para personagens físicos. Modifica: pontos de vida, Danos de corpo a Corpo e carregar peso.}
+
+# ST_PERCEPTION
+{100011}{}{Percepcao}
+{100012}{}{A capacidade de ver, ouvir, saborear e perceber coisas incomuns. A alta percepção é importante para um franco-atirador. Modifica: Seqüência e combate a distância.}
+# ST_ENDURANCE
+{100021}{}{Resistencia}
+{100022}{}{Energia e resistência física. Um personagem com grande resistência vai sobreviver onde os outros não podem. Modifica: Pontos de Vida, Resistência a veneno e Radiação, pts de vida adicionais por nível.}
+# ST_CHARISMA
+{100031}{}{Carisma}
+{100032}{}{Uma combinação de aparência e charme. Um alto Carisma É importante para os personagens que querem influenciar as pessoas com as palavras. Modifica: reações de PNJs, e os preços de troca.}
+# ST_INTELLECT
+{100041}{}{Inteligencia}
+{100042}{}{O conhecimento, sabedoria e capacidade de pensar rapidamente. Ser inteligênte é importante para qualquer personagem. Modifica: pontos de perícia por nível, opções de diálogo, e muitas habilidades.}
+# ST_AGILITY
+{100051}{}{Agilidade}
+{100052}{}{Coordenação e capacidade de se mover rapidamente. A alta agilidade é importante para qualquer personagem ativo. Modifica: Pontos de Ação, Armadura, e muitas outras habilidades.}
+# ST_LUCK
+{100061}{}{Sorte}
+{100062}{}{O destino. O karma. Uma sorte extremamente alta ou baixa afetará seu personagem de alguma forma. Eventos e situações serão alteradas por quanta sorte (ou azar) o seu personagem tiver.}
+# ST_MAX_LIFE
+{100071}{}{Pontos de Vida maximos}
+{100072}{}{Quanto dano seu personagem pode levar antes de morrer.}
+# ST_ACTION_POINTS
+{100081}{}{Pontos de Acao maximos}
+{100082}{}{O Número de ações que seu personagem pode executar durante um turno de combate.}
+{100083}{}{Pontos de ação}
+# ST_ARMOR_CLASS
+{100091}{}{Classe de armadura}
+{100092}{}{Modifica a chance de atingir um personagem em particular.}
+{100093}{}{Classe de armadura}
+# ST_MELEE_DAMAGE
+{100101}{}{Dano fisico}
+{100102}{}{A quantidade de dano bônus que seu personagem inflinge em combate corpo-a-corpo.}
+{100103}{}{Dano físico}
+# ST_CARRY_WEIGHT
+{100111}{}{Capacidade de Carga}
+{100112}{}{A quantidade máxima de equipamentos que seu personagem pode carregar em kilogramas.}
+{100113}{}{Cap. de carga}
+# ST_SEQUENCE
+{100121}{}{Sequencia}
+{100122}{}{Determina quão breve seu personagem pode reagir em turnos de combate.}
+{100123}{}{Sequência}
+# ST_HEALING_RATE
+{100131}{}{Taxa de cura}
+{100132}{}{No fim de cada dia, seu personagem irá curar 1 HP para cada ponto de taxa de cura.  Quando você descansa você cura a cada seis horas.}
+{100133}{}{Taxa de cura}
+# ST_CRITICAL_CHANCE
+{100141}{}{Chance de critico}
+{100142}{}{A chance de causar um ataque crítico em combate é aumentada por esta quantidade.}
+{100143}{}{Chance crít.}
+# ST_MAX_CRITICAL
+{100151}{}{Melhores Críticos}
+{100152}{}{Melhores Críticos}
+# ST_NORMAL_ABSORB
+{100161}{}{Tolerancia a dano}
+{100162}{}{Tolerância a dano}
+# ST_LASER_ABSORB
+{100171}{}{Tolerancia a Laser}
+{100172}{}{Tolerância a Laser}
+# ST_FIRE_ABSORB
+{100181}{}{Tolerancia a Laser}
+{100182}{}{Tolerância a Laser}
+# ST_PLASMA_ABSORB
+{100191}{}{Tolerancia a Plasma}
+{100192}{}{Tolerância a Plasma}
+# ST_ELECTRO_ABSORB
+{100201}{}{Tolerancia a Eletricidade}
+{100202}{}{Tolerância a Eletricidade}
+# ST_EMP_ABSORB
+{100211}{}{Tolerancia a PEM}
+{100212}{}{Tolerância a PEM}
+# ST_EXPLODE_ABSORB
+{100221}{}{Tolerancia a Explosao}
+{100222}{}{Tolerância a Explosão}
+# ST_NORMAL_RESIST
+{100231}{}{Resistencia a dano}
+{100232}{}{Qualquer dano levado é reduzido por esta quantidade. Resistência a dano pode ser aumentado por usar uma armadura.}
+{100233}{}{Res. a dano}
+# ST_LASER_RESIST
+{100241}{}{Resistencia a Laser}
+{100242}{}{Resistência a Laser}
+# ST_FIRE_RESIST
+{100251}{}{Resistencia ao Fogo}
+{100252}{}{Resistência ao Fogo}
+# ST_PLASMA_RESIST
+{100261}{}{Resistencia a Plasma}
+{100262}{}{Resistência a Plasma}
+# ST_ELECTRO_RESIST
+{100271}{}{Resistencia a Eletricidade}
+{100272}{}{Resistência a Eletricidade}
+# ST_EMP_RESIST
+{100281}{}{Resistencia a PEM}
+{100282}{}{Resistência a PEM}
+# ST_EXPLODE_RESIST
+{100291}{}{Resistencia a Explosao}
+{100292}{}{Resistência a Explosão}
+# ST_RADIATION_RESISTANCE
+{100301}{}{Resistencia a Radiacao}
+{100302}{}{A quantidade de radiação que você é exposto é reduzido por esta porcentagem. A Resistência a Radiação pode ser modificada pelo tipo de armadura utilizada ou drogas anti-radiação.}
+{100303}{}{Res. Radiação}
+# ST_POISON_RESISTANCE
+{100311}{}{Resistencia a Veneno}
+{100312}{}{Reduz o dano por envenenamento por esta quantidade.}
+{100313}{}{Res. Veneno}
+
+# 100700
+# ST_AGE
+{100701}{}{Idade}
+{100702}{}{Idade}
+# ST_GENDER
+{100711}{}{Genero}
+{100712}{}{Gênero}
+# ST_CURRENT_HP
+{100721}{}{Pontos de vida atual}
+{100722}{}{Pontos de vida atual}
+# ST_POISONING_LEVEL
+{100731}{}{Nível de envenenamento atual}
+{100732}{}{Nível de envenenamento atual}
+{100733}{}{Ní. de veneno Nvl}
+{100734}{}{Nível de envenenamento: }
+# ST_RADIATION_LEVEL
+{100741}{}{Nível de radiação atual}
+{100742}{}{Nível de radiação atual}
+{100743}{}{Ní. Rad. Nvl}
+{100744}{}{Nível de Rad.: }
+
+# 100760
+# ST_EXPERIENCE
+{100761}{}{Experiencia}
+{100762}{}{Recompensa pela execução de tarefas específicas ou vitória contra os inimigos em batalha. Necessário para obter níveis superiores.}
+# ST_LEVEL
+{100771}{}{Nivel}
+{100772}{}{Competência geral do seu personagem. Varia dependendo das experiências que você vivenciou.}
+# ST_UNSPENT_SKILL_POINTS
+{100781}{}{Pontos de habilidade nao utilizados}
+{100782}{}{O número de pontos ganhos a cada nível.}
+
+# 100800
+# ST_KARMA
+{100801}{}{Karma}
+{100802}{}{Este parâmetro á responsável pela sua reputação. Quanto mais alto é, melhor será tratado por personagens bons.}
+
+# 101, ST_BONUS_LOOK
+{101011}{}{Bonus em Campo de Visao}
+
+# 112, ST_BASE_CRTYPE
+{101121}{}{Tipo do corpo}
+
+# 150..165, 3d layers
+{101501}{}{Pele}
+{101511}{}{Mão direita}
+{101521}{}{Mão esquerda}
+{101531}{}{Tronco}
+{101541}{}{Pés}
+{101551}{}{Mãos}
+{101561}{}{Cabeça}
+{101571}{}{Cabelo}
+{101581}{}{Olhos}
+{101591}{}{Bigode}
+{101601}{}{Rabo-de-cavalo}
+{101611}{}{Barba}
+{101621}{}{Ombro}
+{101631}{}{Braço}
+{101641}{}{Volta}
+{101651}{}{Mochila}
+
+####################################################################################################################################
+#
+#		Skills (with SKILL.MSG + 3000)
+#
+####################################################################################################################################
+
+# 102000
+# SK_SMALL_GUNS
+{102001}{}{Armas Leves}
+{102002}{}{O uso, cuidados e conhecimentos gerais de pequenas armas de fogo - pistolas, semi-metralhadoras e rifles.}
+# SK_BIG_GUNS
+{102011}{}{Armas Pesadas}
+{102012}{}{O uso e manutenção das grandes armas - metralhadoras, lança-foguetes, lança-chamas e tal.}
+# SK_ENERGY_WEAPONS
+{102021}{}{Armas de Energia}
+{102022}{}{O cuidado e a alimentação de armas baseadas em energia. Como armar e operar as armas que usam tecnologia laser ou plasma.}
+# SK_UNARMED
+{102031}{}{Combate corporal}
+{102032}{}{Conhecimento em combate mano a mano e com armas brancas. Ao adicinar pontos de habilidade entre 100% e 200% você aumenta a velocidade do seu personagem estando equipado com armas de combate corporal.}
+# SK_SCAVENGING
+{102041}{}{Catador}
+{102042}{}{A habilidade de se extrair com sucesso utensílios de vários tipos e locais oriundos de vários tipos de lixo.}
+# SK_THROWING
+{102051}{}{Arremesso}
+{102052}{}{A habilidade de arremessar objetos utilizando o músculo como propulsão como facas de arremesso, lanças, pedras e granadas.}
+# SK_FIRST_AID
+{102061}{}{Primeiros Socorros}
+{102062}{}{Habilidade geral de cura. Usado para curar pequenos cortes, arranhões e outros males menores. Em termos de jogo, o uso de primeiros socorros pode curar mais pontos de vida ao longo do tempo do que apenas descansar.}
+{102063}{}{Primeiros socorros}
+# SK_DOCTOR
+{102071}{}{Medicina}
+{102072}{}{A cura de ferimentos e principais membros mutilados. Sem essa habilidade, ele vai ter um período muito longo de tempo para restaurar membros mutilados.}
+{102073}{}{Medicina}
+# SK_SNEAK
+{102081}{}{Furtividade}
+{102082}{}{Movimento silencioso, habilidade de passar desapercebido. Se for bem sucedido, você dificilmente será notado. Você não pode correr e esgueirar-se ao mesmo tempo.}
+{102083}{}{Furtividade}
+# SK_LOCKPICK
+{102091}{}{Arrombamento}
+{102092}{}{A habilidade de abrir fechaduras sem a chave adequada. O uso de gazuas ou lockpicks eletrônicas vai aumentar muito essa habilidade.}
+{102093}{}{Arrombamento}
+# SK_STEAL
+{102101}{}{Roubo}
+{102102}{}{A capacidade de roubar coisas. Pode ser usado para roubar de pessoas ou lugares.}
+{102103}{}{Roubo}
+# SK_TRAPS
+{102111}{}{Armadilhas}
+{102112}{}{A descoberta e remoção de armadilhas. Além disso, ajustes dos explosivos para fins de demolição.}
+{102113}{}{TArmadilhas}
+# SK_SCIENCE
+{102121}{}{Ciencia}
+{102122}{}{Abrange uma variedade de habilidades de alta tecnologia, como computadores, biologia, física e geologia.}
+{102123}{}{Ciência}
+# SK_REPAIR
+{102131}{}{Reparo}
+{102132}{}{A aplicação prática da habilidade ciência para a fixação de equipamentos quebrados, máquinas e eletrônicos.}
+{102133}{}{Reparo}
+# SK_SPEECH
+{102141}{}{Persuasao}
+{102142}{}{A capacidade de comunicar de uma maneira prática e eficiente. A habilidade de convencer os outros de que sua posição é correta. A capacidade de mentir e não ser pego.}
+# SK_BARTER
+{102151}{}{Negociacao}
+{102152}{}{Negociação e tarefas relacionadas com o comércio. A capacidade de obter melhores preços para os itens que você vende e os preços mais baixos para os itens que você comprar.}
+# SK_GAMBLING
+{102161}{}{Jogatina}
+{102162}{}{Os conhecimentos e habilidades práticas relacionadas com apostas. A habilidade de cartas, dados e outros jogos.}
+# SK_OUTDOORSMAN
+{102171}{}{Escotismo}
+{102172}{}{Conhecimento prático do ar livre, habilidade de sobrevivência. O conhecimento das plantas e dos animais.}
+
+# 102300
+# TO_SK_FIRST_AID, timeouts
+{102301}{}{Primeiros socorros}
+# TO_SK_DOCTOR, timeouts
+{102311}{}{Medicina}
+# TO_SK_REPAIR, timeouts
+{102321}{}{Reparo}
+# TO_SK_SCIENCE, timeouts
+{102331}{}{Ciência}
+# TO_SK_LOCKPICK, timeouts
+{102341}{}{Arrombamento}
+# TO_SK_STEAL, timeouts
+{102351}{}{Roubo}
+
+# 102380
+# TO_BATTLE, timeouts
+{102381}{}{Batalha}
+# TO_TRANSFER, timeouts
+#{102391}{}{Transições}
+# TO_REMOVE_FROM_GAME, timeouts
+{102401}{}{Sair do jogo}
+# TO_REPLICATION, timeouts
+{102411}{}{Replicação}
+# TO_KARMA_VOTING, timeouts
+{102421}{}{Votar}
+# TO_MEDICATION, timeouts
+{102451}{}{Medicação}
+# TO_JAIL, timeouts
+{102501}{}{Prisão}
+# TO_PSYHO, timeouts
+{102511}{}{Opióide}
+# TO_BUFFOUT , timeouts
+{102521}{}{Hipertrofiador}
+# TO_NUKA	, timeouts
+{102531}{}{Nuka-Cola}
+# TO_CIGGS, timeouts
+{102541}{}{Cigarros}
+# TO_JET, timeouts
+{102551}{}{Jet}
+# TO_SPAWN, timeouts
+{102561}{}{Aparecer}
+
+####################################################################################################################################
+#
+#		Kills (from PROTO.MSG)
+#
+####################################################################################################################################
+
+#
+# Kill Types names
+#
+
+# 102600
+# BT_MEN..BT_BIG_BAD_BOSS, bodytypes
+{102601}{}{Homens}
+{102602}{}{Esta linha mostra o número de seres humanos masculinos que você matou durante o curso de suas aventuras.}
+{102611}{}{Mulheres}
+{102612}{}{Esta linha mostra o número de seres humanos do sexo feminino que você matou durante o curso de suas aventuras.}
+{102621}{}{Criancas}
+{102622}{}{Esta linha mostra o número de jovens crianças humanas que você matou durante o curso de suas aventuras. Seu Monstro.}
+{102631}{}{Super Mutantes}
+{102632}{}{O número de Super Mutantes que você matou durante o curso de suas aventuras.}
+{102641}{}{Carnicais}
+{102642}{}{Esta linha mostra o número de mutantes carniçais masculinos e femininos que você matou durante o curso de suas aventuras.}
+{102651}{}{Brahmin}
+{102652}{}{Esta linha mostra o número de brahmin (vacas mutantes) que você matou durante as suas viagens.}
+{102661}{}{Radscorpioes}
+{102662}{}{O número de Radscorpions mutantes que você matou durante a sua aventura.}
+{102671}{}{Ratos}
+{102672}{}{O número de ratos que você matou. Inclui todos os membros da família de rato.}
+{102681}{}{Caravelas}
+{102682}{}{Este é o número de Caravelas mutantes que você matou.}
+{102691}{}{Centauros}
+{102692}{}{Seu registro de Centaurs mutantes mortos.}
+{102701}{}{Robos}
+{102702}{}{Este é o número de robôs que você destruídos ou desmontou.}
+{102711}{}{Caes}
+{102712}{}{O número total de cães que você enviou para o grande canil no céu.}
+{102721}{}{Manti}
+{102722}{}{Esta linha mostra o número total de Manti mortos, ou bichos similares que você tenha esmagado até o momento.}
+{102731}{}{Iucapias}
+{102732}{}{Esta linha mostra a quantidade de Iucapiã mortos, e qualquer um de sua espécie.}
+{102741}{}{Plantas}
+{102742}{}{Esta linha mostra o número de plantas que você eliminou do mundo.}
+{102751}{}{Kalangos}
+{102752}{}{O número de lagartos que você apagou da face do planeta.}
+{102761}{}{Aliens}
+{102762}{}{Uma contagem de coisas estranhas morto por sua mão.}
+{102771}{}{Formigas gigantes}
+{102772}{}{O número de insetos que você exterminou.}
+{102781}{}{Chefe grande e mau}
+{102782}{}{A quantidade de maníacos homicidas cibernéticos criados por engenharia genética que você matou.}
+{102791}{}{Besouros gigantes}
+{102792}{}{O número de besouros que você exterminou.}
+{102801}{}{Vespas gigantes}
+{102802}{}{O número de vespas gigantes que você exterminou.}
+{102811}{}{Viajantes}
+{102812}{}{Uma contagem de viajantes que você matou.}
+
+####################################################################################################################################
+#
+#		Perks (with PERK.MSG)
+#
+####################################################################################################################################
+
+# 103000
+# PE_BOOKWORM
+{103001}{}{Traça de livro}
+{103002}{}{Traça de livro.}
+# PE_AWARENESS
+{103011}{}{Conquista: Cautela}
+{103012}{}{Cautela, você terá informações detalhadas sobre qualquer criatura que você examine. Você vê seus pontos de vida exatos e com informações sobre qualquer arma que eles estão equipados.}
+{103013}{}{Cautela}
+# PE_BONUS_HTH_ATTACKS
+{103021}{}{Bonus de ataque}
+{103022}{}{Ou você aprendeu os segredos do Oriente, ou você apenas soca rápido. De qualquer forma, você gasta 1 PA a menos em qualquer ação de corpo-a-corpo.} 
+# PE_BONUS_HTH_DAMAGE
+{103031}{}{Bonus de dano}
+{103032}{}{As experiências em combate desarmado lhe ensinou onde realmente dói. Você causa +2 pontos de dano para ataques corpo-a-corpo para cada nível desta vantagem.}
+# PE_BONUS_MOVE
+{103041}{}{Bonus de movimento}
+{103042}{}{Para cada nível de bônus em movimento você ganha +2 PA a cada turno para serem utilizados apenas para propósido de movimento.}
+# PE_BONUS_RANGED_DAMAGE
+{103051}{}{Bonus de dano a distancia}
+{103052}{}{Seus treinos em armas de fogo e projéteis em geral lhe fizeram mais mortífero. Para cara nível desta vantagem você ganha +2 pontos de dano por ataque com armas.} 
+# PE_BONUS_RATE_OF_FIRE
+{103061}{}{Bonus frequencia de tiro}
+{103062}{}{Esta vantagem lhe confere a capacidade de apertar o gatilho um pouco mais rápido sem perder a precisão. Cada ataque de armas de distância custam 1 PA a menos.}
+# PE_EARLIER_SEQUENCE
+{103071}{}{Reacao precoce}
+{103072}{}{Você torna-se mais rápido em reagir em combate visto que os pontos de Sequência aumentam em +2 para cada nível desta vantagem.}
+# PE_FASTER_HEALING
+{103081}{}{Cura rapida}
+{103082}{}{A cada nível desta vantagem você ganha um bônus de +2 para sua taxa de cura que entra como adição a sua cura, fazendo você sarar mais rápido.}
+# PE_MORE_CRITICALS
+{103091}{}{Mais criticos}
+{103092}{}{Você tem mais chances de causar acertos críticos em combate com esta vantagem. A cada nível de Mais Críticos você ganha +8% para chance de críticos.}
+# PE_NIGHT_VISION
+{103101}{}{Visao noturna}
+{103102}{}{Você pode ver melhor na escuridão. Isto irá reduzir o limiar de escuridão em 20%}
+# PE_MORE_CRITICALS2
+{103111}{}{Ainda mais critico}
+{103112}{}{Não utilizado} #CHECK WITH THE GUYS
+# PE_RAD_RESISTANCE
+{103121}{}{Resistencia a radiacao}
+{103122}{}{Não utilizado} #CHECK WITH THE GUYS
+# PE_TOUGHNESS
+{103131}{}{Durao/Durona}
+{103132}{}{Quando você é durão(ona), você leva menos dano. Cada nível desta vantagem lhe confere +8% de resistência a todos os tipos de dano.}
+# PE_STRONG_BACK
+{103141}{}{Costas fortes}
+{103142}{}{Leia-se Mula. Você pode carregar +22 Kgs para cada nível desta vantagem.}
+# PE_SHARPSHOOTER
+{103151}{}{Atirador(a) de Elite}
+{103152}{}{Você tem talento nato. Com esta vantagem você tem +8% chance de acertos além de aumentar sua Percepção para Campo de Visão e perceber Furtivos.}
+# PE_SILENT_RUNNING
+{103161}{}{Operacao Silenciosa}
+{103162}{}{Com esta vantagem você tem a habilidade de mover-se rapidamente e ainda permanecer quieto. Com esta vantagem você pode correr furtivamente.}
+# PE_SURVIVALIST
+{103171}{}{Sobrevivente}
+{103172}{}{Não utlizado.}
+# PE_MASTER_TRADER
+{103181}{}{Mestre Mercador}
+{103182}{}{Não utilizado.}
+# PE_EDUCATED
+{103191}{}{Educado(a)}
+{103192}{}{Com esta vantagem, você ganha +2 pontos para serem distribuídos entre suas habilidades. Após o nível 26, a quantidade ganha á reduzida 1/2.}
+# PE_HEALER
+{103201}{}{Curandeiro(a)}
+{103202}{}{A cada nível desta vantagem você ganha um bônus de cura de +4~10 PV ao utilizar suas habilidades em Primeiros socorros.} 
+# PE_FORTUNE_FINDER
+{103211}{}{Caçador de tesouros}
+{103212}{}{Nao utilizado.}
+# PE_BETTER_CRITICALS
+{103221}{}{Melhores Criticos}
+{103222}{}{Não é só uma questão de acertar em locais críticos, tem que se fazer estrago. Você ganha +20 no potencial de danos críticos.}
+# PE_EMPATHY
+{103231}{}{Empatia}
+{103232}{}{Não utilizado.}
+# PE_SLAYER
+{103241}{}{Matador(a)}
+{103242}{}{O Matador(a) anda sobre a Terra!  Em combate corporal todos os seus ataques são críticos, causando destruição.}
+# PE_SNIPER
+{103251}{}{Sniper}
+{103252}{}{Não utilizado.}
+# PE_SILENT_DEATH
+{103261}{}{Morte silenciosa}
+{103262}{}{Com esta vantagem você causa o dobro de dano ao acertar um inimigo em corpo-a-corpo enquanto ele estiver de costas.}
+# PE_ACTION_BOY
+{103271}{}{Garoto(a) da Açao}
+{103272}{}{A cada nível desta vantagem você ganha +1 PA para ser utilizado em qualquer tarefa.}
+# PE_MENTAL_BLOCK
+{103281}{}{Bloqueio Mental}
+{103282}{}{Não utilizado.}
+# PE_LIFEGIVER
+{103291}{}{Doador da vida}
+{103292}{}{Depois desta vantagem, só falta você ressucitar no terceiro dia! Você ganha absurdos +40 PV a cada nível desta vantagem.}
+# PE_DODGER
+{103301}{}{Evasor}
+{103302}{}{Os outros tem menos chance de atingir você em um ataque. Você ganha extras +40 CA. Só falta você sair da Matrix também.}
+# PE_SNAKEATER
+{103311}{}{Comedor de cobras}
+{103312}{}{Não utilizado}
+# PE_MR_FIXIT
+{103321}{}{Chico(a) Faz-tudo}
+{103322}{}{Com esta vantagem você ganha + 10% à suas habilidades em Reparo e Ciência.}
+# PE_MEDIC
+{103331}{}{Medico}
+{103332}{}{Você tem jeito para a coisa. Esta vantagem lhe confere +25% para suas habilidades em primeiros socorros e medicina. O intervalo de uso é reduzido em 1/2.}
+# PE_MASTER_THIEF
+{103341}{}{Mestre Ladino}
+{103342}{}{Você tem jeito para a coisa. Esta vantagem lhe confere +20% para suas habilidades em Roubo e Arrombamento.}
+# PE_SPEAKER
+{103351}{}{Porta-voz}
+{103352}{}{Não utilizado.}
+# PE_HEAVE_HO
+{103361}{}{Cancelado}
+{103362}{}{Cancelado.}
+# PE_FRIENDLY_FOE
+{103371}{}{Cancelado}
+{103372}{}{Cancelado}
+# PE_PICKPOCKET
+{103381}{}{Cleptomaníaco}
+{103382}{}{Você consegue roubar bem mais discretamente não obstante o tamanho do item ou se a vítima está de frente ou costas.}
+# PE_GHOST
+{103391}{}{Fantasma}
+{103392}{}{Esta vantagem lhe confere +30% em suas habilidades em furtividade em noite. Isto acumula mesmo que alcance o máximo em furtividade.}
+# PE_CULT_OF_PERSONALITY
+{103401}{}{Culto de personalidade}
+{103402}{}{Não utilizado.}
+# PE_SCROUNGER
+{103411}{}{Pedinte}
+{103412}{}{Não utilizado.}
+# PE_EXPLORER
+{103421}{}{Explorador}
+{103422}{}{Não utilizado.}
+# PE_FLOWER_CHILD
+{103431}{}{Hippie}
+{103432}{}{Não utilizado.}
+# PE_PATHFINDER
+{103441}{}{Conquista: Desbravador}
+{103442}{}{O tempo de viagem no mapa-mundo é reduzido em 30%. Você também ganha 30% em escotismo.}
+{103443}{}{Desbravador}
+# PE_ANIMAL_FRIEND
+{103451}{}{Amigo animal}
+{103452}{}{Não utilizado.}
+# PE_SCOUT
+{103461}{}{Escolta}
+{103462}{}{.TECH.}
+# PE_MYSTERIOUS_STRANGER
+{103471}{}{Estranho misterioso}
+{103472}{}{Não utilizado.}
+# PE_RANGER
+{103481}{}{Patrulheiro}
+{103482}{}{Não utilizado.}
+# PE_QUICK_POCKETS
+{103491}{}{Maos rapidas}
+{103492}{}{Olhe o título e a imagem. Não entendeu? Sem problemas. Os custos de PA para acesso ao inventário é reduzido e você gasta -1 PA para recarregar armas.}
+# PE_SMOOTH_TALKER
+{103501}{}{Charlatao}
+{103502}{}{Não utilizado.}
+# PE_SWIFT_LEARNER
+{103511}{}{Swift Learner}
+{103512}{}{Não utilizado.}
+# PE_TAG
+{103521}{}{Aprendizagem rapida!}
+{103522}{}{Não utilizado.}
+# PE_MUTATE
+{103531}{}{Mutacao!}
+{103532}{}{Não utilizado.}
+# PE_ANTICRIT
+{103541}{}{Anticritico}
+{103542}{}{Você é um sortudo filho da mãe e tem +18% de chance de evitar levar um acerto crítico.}
+# PE_PROF_GUNSMITH 
+{103551}{}{Profissao: Armeiro}
+{103552}{}{The general know how and technical knowledge of producing conventional arms, starting with pistols, shotguns, all kind of sub-machine guns, rifles, high grade long range projectile weaponry and heavy arms.}
+# PE_PROF_SCIENTIST 
+{103561}{}{Profissao: Cientista}
+{103562}{}{The technical know how of  maintaining and producing energy-based weapons.}
+# PE_PROF_ARMORER 
+{103571}{}{Profissao: Arneiro}
+{103572}{}{The general skill of producing high durability materials forming defensive wear for purposes of resisting incoming damage.}
+# PE_PROF_CHEMIST 
+{103581}{}{Profissao: Químico}
+{103582}{}{Scientific knowledge of producing various drugs and medicines.}
+# PE_ADRENALINE_RUSH
+{103801}{}{Choque de adrenalina}
+{103802}{}{With this Perk, you gain +1 to your AP and +10% DR when you drop below half of your maximum hit points.}
+# PE_CAUTIOUS_NATURE
+{103811}{}{Cauteloso por natureza}
+{103812}{}{NÃO PEGUE ESTA HABILIDADE. ESTÁ DESATIVADA.}
+# PE_COMPREHENSION
+{103821}{}{Compreensao}
+{103822}{}{Não utilizado.}
+# PE_DEMOLITION_EXPERT
+{103831}{}{Especialista em Demolicao}
+{103832}{}{Não utilizado.}
+# PE_GAMBLER
+{103841}{}{Jogador}
+{103842}{}{Não utilizado.}
+# PE_GAIN_STRENGTH
+{103851}{}{Ganho de Forca}
+{103852}{}{Com esta vantagem você ganha mais +2 de Força.}
+# PE_GAIN_PERCEPTION
+{103861}{}{Ganho de Percepcao}
+{103862}{}{Com esta vantagem você ganha mais +2 de Percepção.}
+# PE_GAIN_ENDURANCE
+{103871}{}{Ganho de Resistencia}
+{103872}{}{Com esta vantagem você ganha mais +2 de Resistência.}
+# PE_GAIN_CHARISMA
+{103881}{}{Ganho de Carisma}
+{103882}{}{Com esta vantagem você ganha mais +2 de Carisma.}
+# PE_GAIN_INTELLIGENCE
+{103891}{}{Ganho de Inteligencia}
+{103892}{}{Com esta vantagem você ganha mais +2 de Inteligência.}
+# PE_GAIN_AGILITY
+{103901}{}{Ganho de Agilidade}
+{103902}{}{Com esta vantagem você ganha mais +2 de Agilidade.}
+# PE_GAIN_LUCK
+{103911}{}{Ganho de Sorte}
+{103912}{}{Com esta vantagem você ganha mais +2 de Sorte.}
+# PE_HARMLESS
+{103921}{}{Inofensivo}
+{103922}{}{Não utilizado.}
+# PE_HERE_AND_NOW
+{103931}{}{Aqui e Agora}
+{103932}{}{Não utilizado.}
+# PE_HTH_EVADE
+{103941}{}{Esquivar}
+{103942}{}{Se ambos os slots de itens estiverem vazios or com armas classificadas como de corpo-a-corpo você ganha +2 de PA convertidos e somados a CA mais 1/12 do total de suas habilidades.}
+# PE_KAMA_SUTRA_MASTER
+{103951}{}{Guru do Kama Sutra}
+{103952}{}{Não utilizado.}
+# PE_KARMA_BEACON
+{103961}{}{Karma resplandecente}
+{103962}{}{Não utilizado.}
+# PE_LIGHT_STEP
+{103971}{}{Passos leves}
+{103972}{}{Você é ágil, sortudo e sempre cauteloso(a). Esta vantagem reduz suas chances de ativar uma armadilha em 90%.}
+# PE_LIVING_ANATOMY
+{103981}{}{Anatomia dos vivos}
+{103982}{}{Você tem um melhor entendimento dos pontos fracos de criaturas vivas. Com esta habilidade você ganha +20% em Medicina e ganha +5 de dano bônus para as criaturas vivas.}
+# PE_MAGNETIC_PERSONALITY
+{103991}{}{Personalidade magnetica}
+{103992}{}{Você é uma celebridade, um líder nato! Com esta habilidade você pode ter mais duas pessoas lhe seguindo.}
+# PE_NEGOTIATOR
+{104001}{}{Negociador}
+{104002}{}{Não utilizado.}
+# PE_PACK_RAT
+{104011}{}{Conquista: Acumulador}
+{104012}{}{Você é eficiente em organizar o seu inventário em geral. Isto faz com que torne-se mais fácil você carregar aquele pesinho extra que sempre precisamos.}
+{104013}{}{Acumulador}
+# PE_PYROMANIAC
+{104021}{}{Conquista: Piromaniaco}
+{104022}{}{Você causa um dano extra com armas baseadas em fogo e os inimigos quase sempre morrem de uma maneira flamejanto mais doloroso inflingindo +50 de dano em jogadores e +25 em PNJs.}
+{104023}{}{Piromaníaco}
+# PE_QUICK_RECOVERY
+{104031}{}{Recuperacao rapida}
+{104032}{}{Você é rápido em se recuperar ao ser derrubado(a).}
+# PE_SALESMAN
+{104041}{}{Vendedor}
+{104042}{}{Não utilizado.}
+# PE_STONEWALL
+{104051}{}{Parede de pedra}
+{104052}{}{Agora é muito menos provável que você seja noucateado em combate.}
+# PE_THIEF
+{104061}{}{Ladino}
+{104062}{}{O sangue de ladino corre através de suas veias. Com a Vantagem de Ladino, reduz o intervalo entre um roubo e outro reduz em 10 sec.TECH.}
+# PE_WEAPON_HANDLING
+{104071}{}{Mauseio de armas}
+{104072}{}{Você pode usar armas muito maiores do que você conseguiria. Você ganha +3 de força para propósitos de manuseio de armamento.}
+# PE_TERMINATOR
+{104081}{}{Terminator}
+{104082}{}{Forget about limbs crippling, blindness, knock-downs! Your skeleton and titanium-alloy vital organs will not break even if a tank crosses you! All critical hits ignored.}
+# PE_GECKO_SKINNING
+{104091}{}{Escalpelacao de calango}
+{104092}{}{Você tem o conhecimento de como escalpelar devidamente os kalangos de forma a obter suas couraças.}
+
+# PE_IMPLANT_ENVIRONMENTAL	
+{104311}{}{Enviromental Implant}
+{104312}{}{This implant provides it's user's body with additional healing and resistance capabilities, making it more adapted to harsh conditions of the Wasteland. You gain +10 Healing Rate, +40% Poison Resistance and +50% Radiation Resistance.}
+# PE_IMPLANT_ACCURACY
+{104321}{}{Accuracy Implant}
+{104322}{}{This cyber enhancement uses neurolinking to provide additional accuracy for the users of long range weapons. Your character gains +40% to Small Guns, Big Guns, Energy Weapons skills and +5 field of view.}
+# PE_IMPLANT_DEFENCE
+{104331}{}{Defence Implant}
+{104332}{}{This implant injects various bone-strenghtening compounds into your system, making your body exceptionally resistant. You gain +4% Damage Resistance and +2 Damage Treshold to any type of attacks.}     
+# PE_IMPLANT_MEDIC
+{104341}{}{Medical Implant}
+{104342}{}{This implant artificially enhances your medical knowledge by a direct cyber uplink into your brain. Your character gains +100% First Aid and Doctor skills, plus a Living Anatomy Perk.}     
+# PE_IMPLANT_ENGINEER
+{104351}{}{Engineering Implant}
+{104352}{}{This implant provides its owner with vast information about engineering and advanced weapon systems design. You gain +100% Repair, Science and Energy Weapons skill.}    
+# PE_IMPLANT_SPEED
+{104361}{}{Speed Implant}
+{104362}{}{This enhancement makes your muscles extra durable and resistant to stress, making your body much more agile. Your character moves 10% faster, gains 1 Action Point and 6 Sequence.}    
+# PE_IMPLANT_SURVIVOR
+{104371}{}{Survival Implant}
+{104372}{}{This high-tech piece of bio-engineering alters its user's senses and making them exceptionally keen. Potential threats are much more easier to spot, and your brain is able to absorb knowledge faster.You gain +100% Outdoorsman skill, +30% Experience and an additional 30 Hit Points.}  
+# PE_IMPLANT_MARKSMAN
+{104381}{}{Marksmanship Implant}
+{104382}{}{This implant enhances your sight, with additional viewing spectrums normal humans can't see, providing you with exceptional ability to spot weak points and deal devastating damage. You gain +4 Critical Roll, +4 Critical Chance and see additional 2 hexes further.}  
+# PE_IMPLANT_SCOUT
+{104391}{}{Scouting Implant}
+{104392}{}{This bio-upgrade gives you an unprecedented ability to evade attacks and scout surroundings undetected. Your character gains +50% Sneak skill and +30 Armor Class.}  
+# PE_IMPLANT_ENCHACEMENT
+{104401}{}{Enhancement Implant}
+{104402}{}{The exceptional technology used in this implant allows you to attain additional characteristcs, making you more versatile than most humans. You gain 1 additional Perk.}
+# PE_IMPLANT_CHEMCONTROL
+{104411}{}{Chem Control Implant}
+{104412}{}{This implant constantly injects multiple chem reactive compounds into your blood system, allowing you to prolong drug effects on your body and make them more effective. Drugs last twice as long, and Super Stimpaks are 130% effective.}
+
+# PE_AIMBUFF
+{104421}{}{Aim Enhance}
+{104422}{}{Hit Chance Boost}
+# PE_LOOK_BONUS
+{104461}{}{Aim Enhance}
+{104462}{}{Hit Chance Boost}
+# SIMULATION
+{104471}{}{Simulation}
+{104472}{}{You are in Simulation system. Nothing is Real. Everything is permitted.}
+
+# PE_ACHIEV_ZED_KILLED
+{104511}{}{Conquista: Zed ta morto, cara!}
+{104512}{}{Você matou Zed. Você fará +5 de dano contra carniçais.}
+{104513}{}{Zed morreu cara! O Zed morreud.}
+# PE_ACHIEV_KILLGORE_KILLED
+{104521}{}{Conquista: Trucidação do Carniceiro}
+{104522}{}{Você matou o Carniceiro. Você fará +5 de dano contra ratos e todos os outros roedores.}
+{104523}{}{Trucidação do Carniceiro}
+# PE_ACHIEV_ARESBOSS_KILLED
+{104531}{}{Conquista: Comandante caido}
+{104532}{}{Você matou o Comandante. Você fará +5 de dano contra mutantes.}
+{104533}{}{Comandante Caído}
+# PE_NCR_CITIZENSHIP
+{104541}{}{Cidadania de Areia Negra}
+{104542}{}{Você é um cidadão orgulhoso da República da Nova Califórnia. Você deve ser regonhecido pelos militares e possivelmente não atacado á vista, dependendo das ordens. A cidadania pode ser perdida ao se tomar posturas hostis na cidade.}
+# PE_ACHIEV_VORPAL_KILLED
+{104551}{}{Conquista: I want to believe}
+{104552}{}{s4E11...}
+{104553}{}{I want to believe}
+# PE_ACHIEV_TESTER
+{104651}{}{Conquista: Beta Tester}
+{104652}{}{Você tornou-se um beta tester neste beta test :p.}
+{104653}{}{Beta Tester}
+
+# PE_ACHIEV_WASTELAND_IS_HARSH
+{104661}{}{Conquista: A Vida do Deserto e Foda.}
+{104662}{}{Você matou um outro jogador.}
+{104663}{}{A Vida do Deserto e Foda}
+
+# PE_ACHIEV_HEAVE_HO
+{104671}{}{Conquista: Lançamento longo!}
+{104672}{}{Sua longa prática em arremessar objetos aumentou sua técnica significativamente. Por conta disto o alcance de arremesso subiu agora para +6.}
+{104673}{}{Lançamento longo!}
+
+# PE_ACHIEV_ABER_KILLED
+{104681}{}{Conquista: Alberto, a Aberracao}
+{104682}{}{Você matou a Aberração. A partir de agora você causa +5 dano a mais a centauros e floaters.}
+{104683}{}{Alberto, a Aberração}
+
+# PE_ACHIEV_DC_MOTHER_KILLED
+{104691}{}{Conquista: Nossa Senhora!}
+{104692}{}{Você matou a mãe Iucapiã.  A partir de agora você causa +5 dano a mais a iucapiãs.}
+{104693}{}{Nossa senhora!}
+
+# 104700
+# ADDICTION_NUKA_COLA, addictions
+{104701}{}{Vicio em Nuka-Cola}
+{104702}{}{Você está com sede de Nuka-Cola. E Só Nuka-Cola vai fazer passar esta sede.}
+# ADDICTION_BUFFOUT, addictions
+{104711}{}{Vicio por hipertrofiador}
+{104712}{}{Você começa a tremer.}
+# ADDICTION_MENTATS, addictions
+{104721}{}{Vicio por Mentats}
+{104722}{}{Você se sente lerdo.}
+# ADDICTION_PSYCHO, addictions
+{104731}{}{Vicio em Psycho}
+{104732}{}{Você sente tonturas.}
+# ADDICTION_RADAWAY, addictions
+{104741}{}{Vicio por RadAway}
+{104742}{}{Você sente náuseas.}
+# ADDICTION_JET, addictions
+{104751}{}{Vicio por Jet}
+{104752}{}{Tudo está se movendo tão devagar... você precisa de um pouco de Jet, AGORA!}
+# ADDICTION_CIGARETTES, addictions
+{104761}{}{Vicio em cigarros}
+{104762}{}{//TECH.}
+
+# 104800
+# KARMA_BERSERKER
+{104801}{}{Berserker}
+{104802}{}{Você matou um grande número de pessoas. Isto é uma coisa pelo qual não é bom ser conhecido. Entretanto, pessoas do lado errado gostarão um pouco mais de você.}
+# KARMA_CHAMPION
+{104811}{}{Campeao}
+{104812}{}{Suas ações lhe revelaram para os outros como o campeão do povo. Sua guerra contra o mal e a tirania é conhecida. Pessoas honrosas gostarão a mais de você.}
+# KARMA_CHILDKILLER
+{104821}{}{Matador de criancas}
+{104822}{}{Você matou crianças, a juventude do deserto. Isto é considerado uma coisa muito ruim. Você é uma pessoa má, muito má.}
+# KARMA_SEXPERT
+{104831}{}{Sexomaniaco}
+{104832}{}{Você sabe fazer sexo. Você sabe preliminares. Você sabe como agradar um membro do sexo oposto e deixá-los com fome para mais.}
+# KARMA_PRIZEFIGHTER
+{104841}{}{Campeao de Boxe}
+{104842}{}{Você é o campeão dos pesos pesados do norte da Califórnia. Você ganhou fama, respeito e o amor de milhares... e um bônus para sua resistência e habilidade desarmado.}
+# KARMA_GIGOLO
+{104851}{}{Gigolo}
+{104852}{}{{Vamos ser honestos: Você dorme com qualquer coisa que anda sobre duas pernas. Às vezes você não é nem um pouco exigente.}
+# KARMA_GRAVE_DIGGER
+{104861}{}{Profanador de Tumbas}
+{104862}{}{"Eles estão mortos, eles não se importam", se tornou o seu lema. Desenterrar os restos dos outros é mais do que um passatempo para você.}
+# KARMA_MARRIED
+{104871}{}{Casado}
+{104872}{}{Você se casou. Ei, o problema é seu, não nosso.}
+# KARMA_PORN_STAR
+{104881}{}{Estrela Porno}
+{104882}{}{Você é um grande, brilhante, estrela de porno. Suas façanhas sexuais são bem conhecidas em toda a New Reno.}
+# KARMA_SLAVER
+{104891}{}{Traficante de escravos}
+{104892}{}{Você foi marcado como um membro Slaver's Guild. A tatuagem em sua testa faz sua profissão evidente para todos que encontrar.}
+# KARMA_VIRGIN_WASTES
+{104901}{}{Virgem do Deserto}
+{104902}{}{Você realmente precisa sair mais. Suas façanhas sexuais têm sido ... bem, bidimensionais.}
+# KARMA_MAN_SALVATORE
+{104911}{}{Homem feito: Salvatore}
+{104912}{}{Você é um mafioso da família Salvatore. Está bem conhecido e respeitado.}
+# KARMA_MAN_BISHOP
+{104921}{}{Homem feito: Bishop}
+{104922}{}{Você é um mafioso da família Bishop. Está bem conhecido e respeitado.}
+# KARMA_MAN_MORDINO
+{104931}{}{Homem feito: Mordino}
+{104932}{}{Você é um mafioso da família Mordino. Está bem conhecido e respeitado.}
+# KARMA_MAN_WRIGHT
+{104941}{}{Homem feito: Wright}
+{104942}{}{Você é um mafioso da família Wright. Está bem conhecido e respeitado.}
+# KARMA_SEPARATED
+{104951}{}{Divorciado}
+{104952}{}{Sua esposa não esta mais com você. Espero que você esteja feliz.}
+# KARMA_PEDOBEAR
+{104961}{}{Pedobear}
+{104962}{}{Você estuprou uma criaça. Como pode fazer isto, seu filho da puta? Espero que tenha muitos problemas com isso pelo resto de sua vida.}
+# KARMA_VC_GUARDSMAN
+{104971}{}{Guardsman}
+{104972}{}{Вы гвардеец Города-убежища, гордость и краса вооруженных сил. Вы можете носить одежду форменных цветов. Вам даже немного стыдно вашей собственной улётности и неотразимости.}
+
+
+# 105000
+# DAMAGE_POISONED, damages
+{105001}{}{Envenenado}
+{105002}{}{Seu personagem foi envenenado. O veneno te causará dano durante um tempo, até que se cure ou que seja eliminado pelo seu sistema.}
+# DAMAGE_RADIATED, damages
+{105011}{}{Contaminado (RAD)}
+{105012}{}{Seu personagem foi contaminado com Radiação. Quanto mais radiação, mais mortal será o efeito.}
+# DAMAGE_EYE, damages
+{105021}{}{Olhos feridos}
+{105022}{}{Seu personagem foi seriamente atingido em um ou ambos os olhos. Isso afeta sua percepção.}
+# DAMAGE_RIGHT_ARM, damages
+{105031}{}{Braco direito fraturado}
+{105032}{}{Seu braço direito foi gravemente ferido e não pode ser usado. Se um braço quebrar, você não pode usar armas de duas mãos. Se ambos os braços quebrarem, você não poderá usar armas.}
+# DAMAGE_LEFT_ARM, damages
+{105041}{}{Braco esquerdo fraturado}
+{105042}{}{Seu braço esquerdo foi gravemente ferido e não pode ser usado. Se um braço quebrar, você não pode usar armas de duas mãos. Se ambos os braços quebrarem, você não poderá usar armas.}
+# DAMAGE_RIGHT_LEG, damages
+{105051}{}{Perna direita fraturada}
+{105052}{}{Seu personagem está com a perna direita mutilada.}
+# DAMAGE_LEFT_LEG, damages
+{105061}{}{Perna esquerda fraturada}
+{105062}{}{Seu personagem está com a perna esquerda mutilada.}
+
+
+####################################################################################################################################
+#
+#		Traits (with TRAIT.MSG)
+#
+####################################################################################################################################
+
+# 105500
+# TRAIT_FAST_METABOLISM
+{105501}{}{Metabolismo Acelerado}
+{105502}{}{A sua taxa metabólica é o dobro do normal. Isso significa que você é muito menos resistente à radiação e veneno, mas o seu corpo recupera depressa.}
+# TRAIT_BRUISER
+{105511}{}{Brutamonte}
+{105512}{}{Um pouco mais lento, mas um pouco maior. Você não pode lutar com frequência, mas eles vão sentir dor quando lutar! A possibilidade de críticos é reduzida em 30%, mas sua força é maior.}
+# TRAIT_SMALL_FRAME
+{105521}{}{Franzino}
+{105522}{}{Você não é tão grande como as pessoas comuns, mas isso nunca te deixou pra baixo. Você não pode carregar muito peso, mas você é mais ágil.}
+# TRAIT_ONE_HANDER
+{105531}{}{Mao Dominante}
+{105532}{}{Uma das suas mãos é muito dominante. Você se destacar com armas de uma mão, mas as armas de duas mãos são um problema.}
+# TRAIT_FINESSE
+{105541}{}{Destreza}
+{105542}{}{Seus ataques mostram muita destreza. Você não faz tanto dano, mas tem mais acertos críticos.}
+# TRAIT_KAMIKAZE
+{105551}{}{Kamikaze}
+{105552}{}{Você pode agir muito mais rápido que o normal. Isso diminui sua classe de armadura para apenas o que você está vestindo, mas sua reação é muito mais rápida no combate.}
+# TRAIT_HEAVY_HANDED
+{105561}{}{Mao Pesada}
+{105562}{}{Você bate com mais força. Seus ataques são brutais, mas falta destreza. Você raramente causa dano crítico, mas sempre faz mais em corpo-a-corpo.}
+# TRAIT_FAST_SHOT
+{105571}{}{Veloz}
+{105572}{}{Você não tem tempo para apontar precisamente porque você dispara mais rápido do que as pessoas normais. Para atacar com armas você usa um ponto de ação a menos e você inflinge mais dano.}
+# TRAIT_BLOODY_MESS
+{105581}{}{Sanguinario}
+{105582}{}{Por uma estranha ironia do destino, as pessoas ao seu redor morrem violentamente. Você sempre vê a pior forma que uma pessoa pode morrer.}
+# TRAIT_JINXED
+{105591}{}{Azarado}
+{105592}{}{A coisa boa é que todos ao seu redor possui falhas mais críticas em combate, a única coisa ruim é que você também!}
+# TRAIT_GOOD_NATURED
+{105601}{}{Diplomata}
+{105602}{}{Você estudou habilidades pacíficas quando você estava crescendo. Suas habilidades de combate começam em um nível mais baixo, mas suas habilidades em Primeiros Socorros, Médico, fala e negociação são melhores.}
+# TRAIT_CHEM_RELIANT
+{105611}{}{Viciado}
+{105612}{}{Ficará mais facilmente viciados em drogas. Sua chance de ser viciado em drogas é o dobro do normal, mas seus efeitos duram duas vezes mais.}
+# TRAIT_CHEM_RESISTANT
+{105621}{}{Res. as Drogas}
+{105622}{}{As drogas afetam apenas a metade do tempo normal, mas a sua chance de ser viciado é também apenas 50% do normal.}
+# TRAIT_BONEHEAD
+{105631}{}{Cabeça dura}
+{105632}{}{Seu crânio recebeu um trama que o fez duro e forte como pedra. Infelizmente isso deixou menos espaço para algo mais importante. Você tem um ponto a menos de inteligência mas sua cabeça pode levar mais ataques sem grandes consequências.}
+# TRAIT_MUTATED
+{105641}{}{Mutante}
+{105642}{}{Você é um Super Mutante. Seu corpo é excepcionalmente resistente mas em contrapartida você não pode correr. Seu tamanho anormal também o faz incapaz de vestir armaduras de alta ponta feitas para tamanhos de humanos normais.}
+# TRAIT_EVADER
+{105651}{}{Evasor}
+{105652}{}{Pés rápidos sempre foram sua vantagem, ser atingido nunca foi uma opção. Você sofre 10% a menos de ser atingido mas você perde 2 pontos de resistência.}
+# TRAIT_GIFTED
+{105661}{}{Super Dotado}
+{105662}{}{Você tem mais habilidades do que a maioria. Suas estatísticas primárias aumentam em +1, mas você perde 10% em todas as habilidades para começar, e recebe menos 5 pontos de perícia por nível.}
+
+
+# Reputation groups
+#105700
+# REPUTATION_JT
+{105701}{}{Sucatao}
+#REPUTATION_BOS
+{105711}{}{Irmandade do Aco}
+#REPUTATION_RAIDERS
+{105721}{}{Ladroes de estrada}
+#REPUTATION_NCR
+{105731}{}{RNC}
+#REPUTATION_SIM
+{105741}{}{Simulation Points}
+
+####################################################################################################################################
+#
+#		3d attributes
+#
+####################################################################################################################################
+
+# Body types
+{150100}{}{Normal}
+{150101}{}{Wiry}
+{150102}{}{Strong}
+{150103}{}{Fat}
+{150104}{}{Skeleton}
+
+# Skin colors
+{151000}{}{White 1}
+{151001}{}{White 2}
+{151002}{}{White 3}
+{151003}{}{Black 1}
+{151004}{}{Black 2}
+{151005}{}{Black 3}
+{151006}{}{Brown 1}
+{151007}{}{Brown 2}
+{151008}{}{Brown 3}
+{151009}{}{Red 1}
+{151010}{}{Red 2}
+{151011}{}{Red 3}
+{151012}{}{Tan 1}
+{151013}{}{Tan 2}
+{151014}{}{Tan 3}
+{151015}{}{Yellow 1}
+{151016}{}{Yellow 2}
+{151017}{}{Yellow 3}
+
+# Hair colors
+{151199}{}{Hair Color}
+{151200}{}{Brown}
+{151201}{}{Grey Brown}
+{151202}{}{Black}
+{151203}{}{Grey Black}
+{151204}{}{White}
+{151205}{}{Grey White}
+{151206}{}{Blonde}
+{151207}{}{Grey Blonde}
+{151208}{}{Red}
+{151209}{}{Grey Red}
+
+# Hair male
+{152000}{}{None}
+{152010}{}{Afro}
+{152020}{}{Bald}
+{152030}{}{Bowl}
+{152040}{}{Crown}
+{152050}{}{Greaser}
+{152060}{}{Long}
+{152070}{}{Military}
+{152080}{}{Mohawk}
+{152090}{}{Ponytail}
+{152100}{}{Shaggy}
+{152110}{}{Short}
+{152120}{}{Shoulder}
+
+# Hair female
+{152210}{}{Afro}
+{152220}{}{Bowl}
+{152230}{}{Beehive}
+{152240}{}{Betty Page}
+{152250}{}{Bob}
+{152260}{}{Bun}
+{152270}{}{Chin}
+{152280}{}{Long 1}
+{152290}{}{Long 2}
+{152300}{}{Long 3}
+{152310}{}{Mohawk}
+{152320}{}{Ponytail}
+{152330}{}{Pulled}
+{152340}{}{Short}
+
+# Mustache male
+{153000}{}{None}
+{153010}{}{Full}
+{153020}{}{Fu Manchu}
+{153030}{}{Goatee}
+{153040}{}{Guvnor}
+{153050}{}{Handlebar}
+{153060}{}{Hermit}
+{153070}{}{Mutton}
+{153080}{}{Small}
+{153090}{}{Stubble}
+
+# Mustache generic
+{153200}{}{Flap}
+
+# Ponytail
+{154000}{}{None}
+{154010}{}{Wide}
+{154020}{}{Thin}
+
+# Beard male
+{155000}{}{None}
+{155010}{}{Amish}
+{155020}{}{Full}
+{155030}{}{Fu Manchu}
+{155040}{}{Goatee}
+{155050}{}{Guvnor}
+{155060}{}{Hermit}
+{155070}{}{Stubble}
+
+####################################################################################################################################
+#
+#		Misc2 values names (100000 + pid*10 + number of val)
+#
+####################################################################################################################################
+
+{1001000}{}{Заряд}
+{1001001}{}{}
+{1001002}{}{}
+
+####################################################################################################################################
+#
+#		Aim
+#
+####################################################################################################################################
+
+{1005001}{}{Mira: Cabeça}
+{1005002}{}{Mira: Braço direito}
+{1005003}{}{Mira: Braço esquerdo}
+{1005004}{}{Mira: Tronco}
+{1005005}{}{Mira: Perna direita}
+{1005006}{}{Mira: Perna esquerda}
+{1005007}{}{Mira: Olhos}
+{1005008}{}{Mira: Genitália}
+
+####################################################################################################################################
+#
+#		Factions
+#
+####################################################################################################################################
+
+#Interface
+{1006001}{}{Lista de Faccoes}
+{1006002}{}{Faccao}
+{1006003}{}{Membro}
+
+{1006010}{}{Criar}
+{1006011}{}{Convidar}
+{1006012}{}{Sair}
+{1006013}{}{Lista}
+{1006014}{}{Volta}
+{1006015}{}{Banir}
+{1006017}{}{Gerenciar}
+
+{1006019}{}{Promover}
+{1006020}{}{Rebaixar}
+
+{1006021}{}{Mensagem}
+{1006022}{}{Aliados}
+{1006023}{}{Inimigos}
+{1006024}{}{Deletar}
+{1006025}{}{Clamar}
+{1006026}{}{Neutro}
+{1006027}{}{Classificar}
+
+{1006050}{}{Nome}
+{1006051}{}{Rank}
+{1006052}{}{Lista dos membros:}
+{1006053}{}{Pontuacao}
+
+#Ranks
+{1006100}{}{Nenhum}
+{1006101}{}{Membro}
+{1006102}{}{Oficial}
+{1006103}{}{Lider}
+
+####################################################################################################################################
+#
+#		Achievements
+#
+####################################################################################################################################
+
+{1007000}{}{Conquista alcancada}
+
+####################################################################################################################################
+#
+#		Options
+#
+####################################################################################################################################
+
+{1008000}{}{Configuracoes}
+{1008005}{}{Padrao}
+{1008006}{}{OK}
+{1008007}{}{Cancelar}
+
+{1008020}{}{Correr sempre}
+{1008021}{}{Interface}
+{1008022}{}{Efeitos críticos}
+{1008023}{}{Inf. dos seguidores}
+{1008024}{}{Cores de Karma}
+{1008025}{}{Viagem Rapida}
+
+{1008040}{}{Desl.}
+{1008041}{}{Ligar}
+{1008042}{}{Padrao}
+{1008043}{}{Puro}
+
+####################################################################################################################################
+#
+#		Intellect words
+#
+####################################################################################################################################
+
+{1999000000}{}{ }
+
+{1999000001}{}{ }
+
+####################################################################################################################################
+#
+#		Help
+#
+####################################################################################################################################
+
+# F7 - on/off NPC name illuminating.
+# F9 - on/off bullet tracing.
+
+{2000000000}{}{
+Hot keys:
+
+F1 - Liga/desliga Ajuda.
+F2 - Salva as mensagens em um arquivo.
+F3 - Captura uma imagem.
+F4 - Ativa os painéis de entrada de texto.
+F5 - Expande a janela de mensagens.
+F6 - Visualizar o nome de jogadores.
+F7 - Visualizar os tempos de espera.
+F8 - Ativa rolagem pelo Mouse (ajuda no modo janela).
+F9 - Ativa ver o PV dos personagens.
+F12 - Minimize a janela do cliente.
+Setas - Rolagem do mapa.
+Esc - Menu.
+<,> - Gira sentido horário/anti-horário.
+Home - Centraliza no personagem (funciona no mapa-mundi).
+A - Ataca.
+C - Ficha do Personagem.
+Ctrl + D - Joga todos os itens do inventário no chão.
+G - Pega um item do chão.
+Ctrl + G - Pega um item específico do chão.
+Ctrl + L - Pega todos os itens do chão.
+I - Inventário.
+P - Pipboy.
+F - Fazboy.
+B - Troca entre os slots ativos.
+M - Troca o menu do mouse.
+N - Troca o modo de itens.
+S - Habilíndice.
+Z - Zoom em mapas.
+1-8 - Escolha rápida de habilidades.
+? - Tempo de jogo atual.
++,- - Ajuste de brilho.
+Ctrl + +,- - Ajustar volume dos efeitos especiais.
+Shift + +,- - Ajustar volume das músicas.
+Alt + +,- - Ajuste de modo Sono.
+
+Outras teclas de atalho (podem ser redefinidas em hotkeys.ini):
+R - Recarregar arma.
+Alt + 5 - Primeiros socorros em você @sex@|mesmo|mesma|.
+Alt + 6 - Use medicina em você @sex@|mesmo|mesma|.
+Alt + 3 - Use o Super Estimulante em você @sex@|mesmo|mesma|.
+Alt + q,w,a,s,d,z,x,c - Auto-mira partes do corpo.
+Alt + e - Redefine a auto-mira.
+
+Atalho de comunicação:
+Digite . ou /, então:
+s S - gritar,
+w W - sussurrar,
+e E - emoção,
+r R - rádio,
+h H - enviar um sinal de sinalização pelo rádio.
+
+Não é necessário dar barra de espaço depois do comento e é ignorado quando presente.
+Digite uma mensagem e aperte Enter.
+
+Envio de mensagens também é disponível com:
+Ctrl + Enter - gritar,
+Alt + Enter - sussurrar,
+Shift + Enter - rádio.
+Useful Commands:
+Sending Message to admins: ~requesthelp
+Suicide when on -HP: ~suicide OR ~cuttheveins
+Ignoring the Player: ~ignore PLAYERNAME
+Check ignored list: ~ignorelist
+Molerat Arena
+Betting on First molerat: ~bet1 OR ~bet one OR ~b1 OR ~b 1
+Betting on Second molerat: ~bet2 OR ~bet two OR ~b2 OR ~b 2
+Refresh namecolorizing: ~names
+Flip the bootlecap: ~flip OR ~toss OR ~cointoss
+Check reroll price for your char: ~reroll
+}
+
+####################################################################################################################################
+#
+#		Credits
+#
+####################################################################################################################################
+
+# # == "|0xff8c8c84 "
+# @ == "|0xff706050 "
+# normal == "|0xff907824 "
+
+{2000001000}{}{35} # Speed
+{2000001010}{}{
+Under construction
+
+
+
+
+
+
+
+
+
+
+
+
+Under construction
+
+
+
+
+
+
+
+
+
+Under construction
+
+
+
+
+
+
+
+Under construction
+
+
+
+
+
+
+
+
+
+Under construction
+
+
+
+
+
+
+
+
+Under construction
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yes, is still Under construction
+}
+# Shift + Credits
+{2000001020}{}{
+Hello world!
+}

@@ -1,0 +1,36 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 R _script dialog@r_OpenDoor 3 52 59 4759 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Vault Door}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Opening Vault door, please stand by...@@Vault door opening, please stand by...}
+
+[russ]
+{100}{}{Дверь Убежища}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Открытие дверей Убежища... Ожидайте.}
+
+[pols]
+{100}{}{Wrota Krypty}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Otwieranie śluzy... Proszę czekać.}
+
+[ptbr]
+{100}{}{Portão do Abrigo}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{A abrir portão do Abrigo, por favor aguarde...@@A abrir portão do Abrigo, favor aguardar...}
+

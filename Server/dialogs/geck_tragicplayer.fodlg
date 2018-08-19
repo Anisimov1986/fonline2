@@ -1,0 +1,96 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+5 1020 D _var p name_mem_player_npc = 1 @
+2 2000 None 0 #
+4 2010 D _item p PID_DECK_OF_CARDS } 1 R _item p PID_DECK_OF_CARDS - 1 R _script dialog@r_NodeChancePercent 3 10 4 3 R _var p name_mem_player_npc = 1 #
+4 2020 D _item p PID_MARKED_DECK_OF_CARDS } 1 R _item p PID_MARKED_DECK_OF_CARDS - 1 R _script dialog@r_NodeChancePercent 3 20 4 3 R _var p name_mem_player_npc = 1 #
+0 2030 @
+3 3000 None 0 #
+0 3010 R _param p ST_EXPERIENCE + 200 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+0 4010 R _param p ST_EXPERIENCE + 1000 R _script economy_dialogs@r_GiveCaps 1 1000 @
+5 5000 None 0 #
+4 5010 D _item p PID_DECK_OF_CARDS } 1 R _script dialog@r_NodeChancePercent 3 10 4 3 R _item p PID_DECK_OF_CARDS - 1 #
+4 5020 D _item p PID_MARKED_DECK_OF_CARDS } 1 R _script dialog@r_NodeChancePercent 3 20 4 3 R _item p PID_MARKED_DECK_OF_CARDS - 1 #
+0 5030 &
+
+[engl]
+{100}{}{Tragic professional player}
+{1000}{}{Predialogue installations}
+{1010}{}{unknown}
+{1020}{}{known}
+{2000}{}{[The ghoul is shuffling the cards using fancy tricks.] Ah, hello there my smoothskin friend. You came to test yourself with the best Tragic player in the Wasteland? We could do that... If you win I will buy your deck from you, if you lose I will take it for free deck. Sounds fine?}
+{2010}{}{Yes, let's play. [Use a deck of normal cards.]@@Sure, let's give it a try. [Use a deck of normal cards.]@@Yeah, why not? [Use a deck of normal cards.]@@Sure, let's do it. [Use a deck of normal cards.]}
+{2020}{}{Yes, let's play. [Use a deck of rare cards.]@@Sure, let's play. [Use a deck of rare cards.]@@Yeah, why not... [Use a deck of rare cards.]}
+{2030}{}{Um, I don't have a deck right now. I'll come back later.@@I don't have a deck, maybe later.@@I'll be back when I have a deck.}
+{3000}{}{Very well, smoothskin! Let the game commence! [You fail to beat him and lose in a few turns.] You lose, sorry. Maybe try again some other time?@@All right, smoothie! Let's get this started! [You fail to beat him and lose in a couple of turns.] You have lost, smoothskin. Come back later for another match.}
+{3010}{}{Fuck...@@Damn, you're good.@@Crap.@@I will beat you next time, you'll see!@@Ah, crap.}
+{4000}{}{Very well Let the game commence! [Somehow, you manage to beat the ghoul.] Holy shit! I haven't lost in a while! I'll buy that deck of yours! [He throws you a bag of @lex tragic_reward@ caps]. I hope for a rematch soon, stranger!}
+{4010}{}{Awesome!@@Yeah, that's it!@@Yeah!@@Fuck yeah!@@Yeah, sure, I will come back later.}
+{5000}{}{Back again? Care for another round of Tragic?@@You're back. Wanna play another round of Tragic?@@Look who's back, my favourite opponent! Came to play again?@@It's you again. I bet you wanna play another round, right?}
+{5010}{}{Yes, let's play. [Use a deck of normal cards.]@@Sure, let's give it another try. [Use a deck of normal cards.]@@Yeah, sure, why not? [Use a deck of normal cards.]@@Sure, let's do play. [Use a deck of normal cards.]}
+{5020}{}{Yes, let's play. [Use a deck of rare cards.]@@Sure, let's play. [Use a deck of rare cards.]@@Yeah, why not... [Use a deck of rare cards.]@@Sure, let's give it another try. [Use a deck of rare cards.]}
+{5030}{}{Um, I don't have a deck right now. I'll come back later.@@I don't have a deck, maybe later.@@I'll be back when I have a deck.@@Just passing through.@@I'm was just passing by.@@Just came to watch your card tricks. Do your magic, and don't mind me.}
+
+[russ]
+{100}{}{Профессиональный игрок в трагик}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{неизвестно}
+{1020}{}{известно}
+{2000}{}{[Гуль ловко мешает карты используя хитрые фокусы.] О, привет мой гладкокожий друг. Ты пришел бросить вызов лучшему игроку пустошу в Трагик? Можем попробовать... Если ты выиграешь - я куплю твою колоду, если проиграешь - я забираю ее так. Устраивает?}
+{2010}{}{Да, давай сыграем. [Использовать обычную колоду.]@@Конечно, давай начнем. [Использовать обычную колоду.]@@Конечно, почему бы и нет? [Использовать обычную колоду.]@@Давай начнем. [Использовать обычную колоду.]}
+{2020}{}{Да, давай сыграем. [Использовать колоду редких карт.]@@Конечно давай начнем. [Использовать колоду редких карт.]@@Конечно, почему бы и нет... [Использовать колоду редких карт.]}
+{2030}{}{Мм, похоже у меня нет колоды прямо сейчас. Приду попозже.@@Нет с собой колоды, возможно позже.@@Найду колоду и вернусь.}
+{3000}{}{Отлично, гладкокожий! Да начнется игра! [Вы быстро проиграли за несколько ходов.] Ты проиграл, извини. Еще сыграем как-нибудь?@@Хорошо, гладкокожий! Давай начнем! [Вы быстро проиграли за несколько ходов.] Ты проиграл, гладкокожий. Приходи - сыграем еще.}
+{3010}{}{Твою ж мать...@@Черт, а ты хорош.@@Дерьмо.@@В следующий раз удача будет на моей стороне, вот увидишь@@Вот дерьмо.}
+{4000}{}{Отлично, да начнется игра! [Непостижимым образом вы обыграли гуля.] Черт подери! Как же давно я никому не проигрыал! Я куплю твою колоду! [Бросает вам мешочек с @lex tragic_reward@ капсов]. Надеюсь на скорый реванш, незнакомец!}
+{4010}{}{Обалдеть!@@Даа, вот оно!@@ДАА!@@Да, детка!@@Конечно, я еще подойду.}
+{5000}{}{Вернулся-таки? Готов сыграть в Трагик еще разок?@@Да ты вернулся. Готов сыграть в Трагик еще разок?@@Смотрите кто пришел, мой любимый соперник! Готов снова сыграть?@@Снова ты. Готов поспорить ты хочешь сыграть еще раунд, ага?}
+{5010}{}{Да, давай сыграем. [Использовать обычную колоду.]@@Конечно, давай попробуем еще разок. [Использовать обычную колоду.]@@Да конечно, почему бы и нет. [Использовать обычную колоду.]@@Конечно, давай начнем. [Использовать обычную колоду.]}
+{5020}{}{Да, давай сыграем. [Использовать колоду редких карт.]@@Конечно, давай сыграем. [Использовать колоду редких карт.]@@Почему бы и нет... [Использовать колоду редких карт.]@@Конечно, поехали. [Использовать колоду редких карт.]}
+{5030}{}{Эх, нет сейчас колоды с собой. Как-нибудь в другой раз.@@Нет колоды, может позже.@@Найду колоду - подойду.@@Просто проходил мимо.@@Да я тут просто мимо пробегал.@@Всего лишь захотел снова увидеть твои фокусы, просто не обращай на меня внимание.}
+
+[pols]
+{100}{}{Tragic professional player}
+{1000}{}{Predialogue installations}
+{1010}{}{unknown}
+{1020}{}{known}
+{2000}{}{[The ghoul is shuffling the cards using fancy tricks.] Ah, hello there my smoothskin friend. You came to test yourself with the best Tragic player in the Wasteland? We could do that... If you win I will buy your deck from you, if you lose I will take it for free deck. Sounds fine?}
+{2010}{}{Yes, let's play. [Use a deck of normal cards.]@@Sure, let's give it a try. [Use a deck of normal cards.]@@Yeah, why not? [Use a deck of normal cards.]@@Sure, let's do it. [Use a deck of normal cards.]}
+{2020}{}{Yes, let's play. [Use a deck of rare cards.]@@Sure, let's play. [Use a deck of rare cards.]@@Yeah, why not... [Use a deck of rare cards.]}
+{2030}{}{Um, I don't have a deck right now. I'll come back later.@@I don't have a deck, maybe later.@@I'll be back when I have a deck.}
+{3000}{}{Very well, smoothskin! Let the game commence! [You fail to beat him and lose in a few turns.] You lose, sorry. Maybe try again some other time?@@All right, smoothie! Let's get this started! [You fail to beat him and lose in a couple of turns.] You have lost, smoothskin. Come back later for another match.}
+{3010}{}{Fuck...@@Damn, you're good.@@Crap.@@I will beat you next time, you'll see!@@Ah, crap.}
+{4000}{}{Very well Let the game commence! [Somehow, you manage to beat the ghoul.] Holy shit! I haven't lost in a while! I'll buy that deck of yours! [He throws you a bag of @lex tragic_reward@ caps]. I hope for a rematch soon, stranger!}
+{4010}{}{Awesome!@@Yeah, that's it!@@Yeah!@@Fuck yeah!@@Yeah, sure, I will come back later.}
+{5000}{}{Back again? Care for another round of Tragic?@@You're back. Wanna play another round of Tragic?@@Look who's back, my favourite opponent! Came to play again?@@It's you again. I bet you wanna play another round, right?}
+{5010}{}{Yes, let's play. [Use a deck of normal cards.]@@Sure, let's give it another try. [Use a deck of normal cards.]@@Yeah, sure, why not? [Use a deck of normal cards.]@@Sure, let's do play. [Use a deck of normal cards.]}
+{5020}{}{Yes, let's play. [Use a deck of rare cards.]@@Sure, let's play. [Use a deck of rare cards.]@@Yeah, why not... [Use a deck of rare cards.]@@Sure, let's give it another try. [Use a deck of rare cards.]}
+{5030}{}{Um, I don't have a deck right now. I'll come back later.@@I don't have a deck, maybe later.@@I'll be back when I have a deck.@@Just passing through.@@I'm was just passing by.@@Just came to watch your card tricks. Do your magic, and don't mind me.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{unknown}
+{1020}{}{known}
+{2000}{}{[The ghoul is shuffling the cards using fancy tricks.] Ah, hello there my smoothskin friend. You came to test yourself with the best Tragic player in the Wasteland? We could do that... If you win I will buy your deck from you, if you lose I will take it for free deck. Sounds fine?}
+{2010}{}{Yes, let's play. [Use a deck of normal cards.]@@Sure, let's give it a try. [Use a deck of normal cards.]@@Yeah, why not? [Use a deck of normal cards.]@@Sure, let's do it. [Use a deck of normal cards.]}
+{2020}{}{Yes, let's play. [Use a deck of rare cards.]@@Sure, let's play. [Use a deck of rare cards.]@@Yeah, why not... [Use a deck of rare cards.]}
+{2030}{}{Um, I don't have a deck right now. I'll come back later.@@I don't have a deck, maybe later.@@I'll be back when I have a deck.}
+{3000}{}{Very well, smoothskin! Let the game commence! [You fail to beat him and lose in a few turns.] You lose, sorry. Maybe try again some other time?@@All right, smoothie! Let's get this started! [You fail to beat him and lose in a couple of turns.] You have lost, smoothskin. Come back later for another match.}
+{3010}{}{Fuck...@@Damn, you're good.@@Crap.@@I will beat you next time, you'll see!@@Ah, crap.}
+{4000}{}{Very well Let the game commence! [Somehow, you manage to beat the ghoul.] Holy shit! I haven't lost in a while! I'll buy that deck of yours! [He throws you a bag of @lex tragic_reward@ caps]. I hope for a rematch soon, stranger!}
+{4010}{}{Awesome!@@Yeah, that's it!@@Yeah!@@Fuck yeah!@@Yeah, sure, I will come back later.}
+{5000}{}{Back again? Care for another round of Tragic?@@You're back. Wanna play another round of Tragic?@@Look who's back, my favourite opponent! Came to play again?@@It's you again. I bet you wanna play another round, right?}
+{5010}{}{Yes, let's play. [Use a deck of normal cards.]@@Sure, let's give it another try. [Use a deck of normal cards.]@@Yeah, sure, why not? [Use a deck of normal cards.]@@Sure, let's do play. [Use a deck of normal cards.]}
+{5020}{}{Yes, let's play. [Use a deck of rare cards.]@@Sure, let's play. [Use a deck of rare cards.]@@Yeah, why not... [Use a deck of rare cards.]@@Sure, let's give it another try. [Use a deck of rare cards.]}
+{5030}{}{Um, I don't have a deck right now. I'll come back later.@@I don't have a deck, maybe later.@@I'll be back when I have a deck.@@Just passing through.@@I'm was just passing by.@@Just came to watch your card tricks. Do your magic, and don't mind me.}
+

@@ -1,0 +1,47 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+#include "_macros.fos"
+
+IGUIElementTextOpt@ chat;
+void InitChatScreen()
+{
+	GUI_CreateScreen(CLIENT_SCREEN_CHAT,"chat.png")
+    .CanMove(true)
+    .Transparent(true);
+    
+    @chat = GUI_AddText(CLIENT_SCREEN_CHAT)
+        .Position(5,5)
+        .TextBoxSize(350, 410)
+        .Text("",FONT_FALLOUT,0,0, FT_UPPER | FT_BORDERED );	
+    
+}
+
+void AddChatMessage( string& message)
+{
+    string text=chat.getText();
+    text+=message;
+    
+    string@[] lines = split( text, "\n" );
+    while (lines.length()>41)
+        lines.removeAt(0);
+    text="";
+    for (uint i = 0; i < lines.length();i++)
+    {
+        text+=(lines[i]+"\n");
+    }
+    chat.setText(text);
+    
+    if (!GUI_IsTransparentScreen(CLIENT_SCREEN_CHAT))
+    {
+        __NewChatMessages = true;
+    }
+}
+
+void ShowChatScreen()
+{
+    __NewChatMessages = false;
+	if (GUI_IsTransparentScreen(CLIENT_SCREEN_CHAT))
+		HideScreen(CLIENT_SCREEN_CHAT,0,0,0);
+	else
+		ShowScreen(CLIENT_SCREEN_CHAT,0,0,0);
+}

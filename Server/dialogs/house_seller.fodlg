@@ -1,0 +1,162 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script house@d_IsAnyHouseAvailable 0  #
+4 2020 D _script house@d_IsNoHouseAvailable 0  #
+6 2030 D _script house@d_OwnsHouse 0  #
+7 2040 D _script house@d_OwnsHouse 0  #
+5 2050 R _script house@r_PresentHouses 0  #
+0 2060 @
+3 3000 house@dlg_LoadAvailableHouses 0 #
+8 3010 D _script house@d_IsHouseCountAvailable 1 1 R _script house@r_SetOwner 1 0 #
+8 3020 D _script house@d_IsHouseCountAvailable 1 2 R _script house@r_SetOwner 1 1 #
+8 3030 D _script house@d_IsHouseCountAvailable 1 3 R _script house@r_SetOwner 1 2 #
+8 3040 D _script house@d_IsHouseCountAvailable 1 4 R _script house@r_SetOwner 1 3 #
+8 3050 D _script house@d_IsHouseCountAvailable 1 5 R _script house@r_SetOwner 1 4 #
+8 3060 D _script house@d_IsHouseCountAvailable 1 6 R _script house@r_SetOwner 1 5 #
+8 3070 D _script house@d_IsHouseCountAvailable 1 7 R _script house@r_SetOwner 1 6 #
+8 3080 D _script house@d_IsHouseCountAvailable 1 8 R _script house@r_SetOwner 1 7 #
+8 3090 D _script house@d_IsHouseCountAvailable 1 9 R _script house@r_SetOwner 1 8 #
+0 3100 @
+4 4000 None 0 @
+5 5000 None 0 @
+6 6000 house@dlg_AddOccupant 0 #
+0 6010 @
+7 7000 house@dlg_RemoveOccupant 0 #
+0 7010 @
+8 8000 None 0 @
+20 9000 None 0 &
+
+[engl]
+{100}{}{House Seller}
+{200}{}{You see: a House Seller}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{What do you want?}
+{2010}{}{I want to buy a house.@@I want to buy myself a house.@@I want to buy a house.}
+{2020}{}{I want to buy a house.@@I want to buy myself a house.@@I want to buy a house.}
+{2030}{}{I want to add a person to my house.@@I want to invite someone to my house.@@I've got some friends that I want to invite to my house.}
+{2040}{}{I want to evict a person from my house.@@I want to remove an invitation to my house.}
+{2050}{}{Can you show me which houses are available now?}
+{2060}{}{Eh, nevermind.@@Nevermind.@@Just passing through.@@Just looking around, don't mind me.}
+{3000}{}{Which one?}
+{3010}{}{@lex houseName0@.}
+{3020}{}{@lex houseName1@.}
+{3030}{}{@lex houseName2@.}
+{3040}{}{@lex houseName3@.}
+{3050}{}{@lex houseName4@.}
+{3060}{}{@lex houseName5@.}
+{3070}{}{@lex houseName6@.}
+{3080}{}{@lex houseName7@.}
+{3090}{}{@lex houseName8@.}
+{3100}{}{I changed my mind, Bye.}
+{4000}{}{I'm sorry, but we don't have free houses at the moment.}
+{5000}{}{Sure thing. [She waves to a boy standing nearby.] Hey, move your ass, kid! Show @sex@|this gentleman||that fine lady| all the houses in town. [She turns back to you.] Just follow the kid, he'll show you around.}
+{6000}{}{Please tell me the name.@@Tell me the name.}
+{6010}{}{[Use 'Say' command to type names.]}
+{7000}{}{Type name.}
+{7010}{}{[Use 'Say' command to type names.]}
+{8000}{}{Here are the keys. Welcome to our town.@@Great. Here are the keys. Welcome to our fine town.}
+{9000}{}{You do not have enough money to purchase this house.@@I'm sorry, but you do not have enough money to buy this house.}
+
+[russ]
+{100}{}{Продавец домов}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Что вы хотите?}
+{2010}{}{Купить дом.}
+{2020}{}{Купить дом.}
+{2030}{}{Я хочу поселить человека в мой дом.}
+{2040}{}{Я хочу выселить человека из моего дома.}
+{2050}{}{Покажите мне дома.}
+{2060}{}{Эх, ничего.}
+{3000}{}{Какой именно?}
+{3010}{}{@lex houseName0@.}
+{3020}{}{@lex houseName1@.}
+{3030}{}{@lex houseName2@.}
+{3040}{}{@lex houseName3@.}
+{3050}{}{@lex houseName4@.}
+{3060}{}{@lex houseName5@.}
+{3070}{}{@lex houseName6@.}
+{3080}{}{@lex houseName7@.}
+{3090}{}{@lex houseName8@.}
+{3100}{}{Я передумал , пока.}
+{4000}{}{Сейчас нет домов на продажу.}
+{5000}{}{Малыш, покажет вам все дома в городе. Просто следуйте за ребенком.}
+{6000}{}{Введите имя.}
+{6010}{}{Используйте кнопку "Сказать" чтобы ввести имя.}
+{7000}{}{Введите имя.}
+{7010}{}{Используйте кнопку "Сказать" чтобы ввести имя.}
+{8000}{}{Вот ключи. Добро пожаловать в наш город.}
+{9000}{}{У вас нет достаточно денег, чтобы купить этот дом.}
+
+[pols]
+{100}{}{Sprzedawca domów}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Czym mogę służyć?}
+{2010}{}{Chcę kupić dom.}
+{2020}{}{Chcę kupić dom.}
+{2030}{}{Chcę przyznać pewnej osobie wstęp do mojego domu.}
+{2040}{}{Chcę wyrzucić pewną osobę z mojego domu.}
+{2050}{}{Pokaż mi domy.}
+{2060}{}{Ech, nieważne.}
+{3000}{}{Który?}
+{3010}{}{@lex houseName0@.}
+{3020}{}{@lex houseName1@.}
+{3030}{}{@lex houseName2@.}
+{3040}{}{@lex houseName3@.}
+{3050}{}{@lex houseName4@.}
+{3060}{}{@lex houseName5@.}
+{3070}{}{@lex houseName6@.}
+{3080}{}{@lex houseName7@.}
+{3090}{}{@lex houseName8@.}
+{3100}{}{@sex@|Zmieniłem||Zmieniłam| zdanie, do widzenia.}
+{4000}{}{Przykro mi, w tej chwili żaden dom nie jest dostępny.}
+{5000}{}{[Zwraca się do małego pomocnika.] Hej, dzieciaku, pokaż @sex@|panu||pani| wszystkie domy w mieście. [Ponownie obraca się w twoim kierunku.] Po prostu podążaj za tym dzieckiem.}
+{6000}{}{Podaj mi imię.}
+{6010}{}{(użyj "say", aby wpisać imię lub wyjdź.)}
+{7000}{}{Podaj mi imię.}
+{7010}{}{(użyj "say", aby wpisać imię lub wyjdź.)}
+{8000}{}{Proszę, oto klucze. Witamy w naszym mieście.}
+{9000}{}{Przykro mi, ale nie masz wystarczającej ilości pieniędzy, aby zakupić ten dom.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{What do you want?}
+{2010}{}{I want to buy a house.@@I want to buy myself a house.@@I want to buy a house.}
+{2020}{}{I want to buy a house.@@I want to buy myself a house.@@I want to buy a house.}
+{2030}{}{I want to add a person to my house.@@I want to invite someone to my house.@@I've got some friends that I want to invite to my house.}
+{2040}{}{I want to evict a person from my house.@@I want to remove an invitation to my house.}
+{2050}{}{Can you show me which houses are available now?}
+{2060}{}{Eh, nevermind.@@Nevermind.@@Just passing through.@@Just looking around, don't mind me.}
+{3000}{}{Which one?}
+{3010}{}{@lex houseName0@.}
+{3020}{}{@lex houseName1@.}
+{3030}{}{@lex houseName2@.}
+{3040}{}{@lex houseName3@.}
+{3050}{}{@lex houseName4@.}
+{3060}{}{@lex houseName5@.}
+{3070}{}{@lex houseName6@.}
+{3080}{}{@lex houseName7@.}
+{3090}{}{@lex houseName8@.}
+{3100}{}{I changed my mind, Bye.}
+{4000}{}{I'm sorry, but we don't have free houses at the moment.}
+{5000}{}{Sure thing. [She waves to a boy standing nearby.] Hey, move your ass, kid! Show @sex@|this gentleman||that fine lady| all the houses in town. [She turns back to you.] Just follow the kid, he'll show you around.}
+{6000}{}{Please tell me the name.@@Tell me the name.}
+{6010}{}{[Use 'Say' command to type names.]}
+{7000}{}{Type name.}
+{7010}{}{[Use 'Say' command to type names.]}
+{8000}{}{Here are the keys. Welcome to our town.@@Great. Here are the keys. Welcome to our fine town.}
+{9000}{}{You do not have enough money to purchase this house.@@I'm sorry, but you do not have enough money to buy this house.}
+

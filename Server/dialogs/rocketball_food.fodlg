@@ -1,0 +1,160 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+7 2010 #
+0 2020 @
+6 3000 None 0 #
+2 3010 #
+0 3020 @
+7 4000 None 0 #
+8 4010 #
+10 4020 #
+11 4030 @
+8 5000 None 0 #
+6 5010 D _item p PID_BOTTLE_CAPS } 10 R _item p PID_BOTTLE_CAPS - 10 R _item p PID_MUTATED_FRUIT + 1 R _script map_ncr@r_NCRProfit 1 1 #
+6 5020 D _item p PID_BOTTLE_CAPS } 50 R _item p PID_BOTTLE_CAPS - 50 R _item p PID_MUTATED_FRUIT + 5 R _script map_ncr@r_NCRProfit 1 5 #
+6 5030 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_MUTATED_FRUIT + 10 R _script map_ncr@r_NCRProfit 1 10 #
+2 5040 @
+10 6000 None 0 #
+6 6010 D _item p PID_BOTTLE_CAPS } 15 R _item p PID_BOTTLE_CAPS - 15 R _item p PID_MEAT_ON_A_STICK + 1 R _script map_ncr@r_NCRProfit 1 2 #
+6 6020 D _item p PID_BOTTLE_CAPS } 75 R _item p PID_BOTTLE_CAPS - 75 R _item p PID_MEAT_ON_A_STICK + 5 R _script map_ncr@r_NCRProfit 1 8 #
+6 6030 D _item p PID_BOTTLE_CAPS } 150 R _item p PID_BOTTLE_CAPS - 150 R _item p PID_MEAT_ON_A_STICK + 10 R _script map_ncr@r_NCRProfit 1 15 #
+2 6040 @
+11 7000 None 0 #
+6 7010 D _item p PID_BOTTLE_CAPS } 20 R _item p PID_BOTTLE_CAPS - 20 R _item p PID_IGUANA_ON_A_STICK + 1 R _script map_ncr@r_NCRProfit 1 2 #
+6 7020 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_IGUANA_ON_A_STICK + 5 R _script map_ncr@r_NCRProfit 1 10 #
+6 7030 D _item p PID_BOTTLE_CAPS } 200 R _item p PID_BOTTLE_CAPS - 200 R _item p PID_IGUANA_ON_A_STICK + 10 R _script map_ncr@r_NCRProfit 1 20 #
+2 7040 &
+
+[engl]
+{100}{}{Bartender}
+{200}{}{You see: Bartender.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, interested in Iguana bits?@@ Well, well. What did the desert drag in now?@@A customer! Do you want some food?@@Hard day, eh?@@What's your poison?}
+{2010}{}{Give me something to eat.}
+{2020}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] I think i ...hic... go home maybe.}
+{3000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{3010}{}{Thank's. I need something more.}
+{3020}{}{Awesome, bye.}
+{4000}{}{Yeah, Fruit is ten caps, Meat costs fifteen.  I also have Iguana for  twenty caps. So, Which one do you want?}
+{4010}{}{Fruit.}
+{4020}{}{Meat.}
+{4030}{}{Iguana.}
+{5000}{}{Sure, how much do you need? One Fruit for 10 caps.}
+{5010}{}{Just one.}
+{5020}{}{Five will be good.}
+{5030}{}{Ten , I need to stock up.}
+{5040}{}{Naah I changed my mind.}
+{6000}{}{Sure, how much do you need? One Meat is for 15 caps.}
+{6010}{}{Just one.}
+{6020}{}{Five will be good.}
+{6030}{}{Ten , I need to stock up.}
+{6040}{}{Naah I changed my mind.}
+{7000}{}{Sure, how much do you need? One Iguana is for 20 caps.}
+{7010}{}{Just one.}
+{7020}{}{Five will be good.}
+{7030}{}{Ten , I need to stock up.}
+{7040}{}{Naah I changed my mind.}
+
+[russ]
+{100}{}{Бармен}
+{200}{}{Вы видите туповатого парня, протирающего стакан.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Ну и кого тут опять пустошь принесла?@@О клиент! как насчет поесть?@@Только лучшая еда, такой вы не найдете больше нигде в пустоши!@@Тяжелый денек?@@Привет путник, поесть или поговорить?}
+{2010}{}{Дай мне чего-нибудь поесть.}
+{2020}{}{[Уйти] Пожалуй я пойду.@@[Уйти] Пока.@@[Уйти] Мне пора.@@[Уйти] Пожалуй мне уже хватит..ик.}
+{3000}{}{Хорошо, вот получите.}
+{3010}{}{Спасибо. Мне нужно кое-что еще.}
+{3020}{}{Отлично, пока.}
+{4000}{}{Да, мутофрукты по 10, мясо по 15. Есть ещё Игуана на палке за 20. что предпочитаете?}
+{4010}{}{Фрукт.}
+{4020}{}{Мясо.}
+{4030}{}{Игуана.}
+{5000}{}{Конечно, сколько вам нужно? Один фрукт за 10 крышек.}
+{5010}{}{Только один.}
+{5020}{}{Взьму пяток.}
+{5030}{}{Пожалуй десять в самый раз.}
+{5040}{}{Нее, я передумал.}
+{6000}{}{Конечно, сколько вам нужно? Один кусок 15 крышек.}
+{6010}{}{Один.}
+{6020}{}{Пять будет в самый раз.}
+{6030}{}{Возьму десять.}
+{6040}{}{Нее, я передумал.}
+{7000}{}{Конечно, сколько вам нужно? Одна игуана 20 крышек.}
+{7010}{}{Одну.}
+{7020}{}{Пять будет в самый раз.}
+{7030}{}{Возьму десять.}
+{7040}{}{Нее, я передумал.}
+
+[pols]
+{100}{}{Bartender}
+{200}{}{You see: Bartender.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, interested in Iguana bits?@@ Well, well. What did the desert drag in now?@@A customer! Do you want some food?@@Hard day, eh?@@What's your poison?}
+{2010}{}{Give me something to eat.}
+{2020}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] I think i ...hic... go home maybe.}
+{3000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{3010}{}{Thank's. I need something more.}
+{3020}{}{Awesome, bye.}
+{4000}{}{Yeah, Fruit is ten caps, Meat costs fifteen.  I also have Iguana for  twenty caps. So, Which one do you want?}
+{4010}{}{Fruit.}
+{4020}{}{Iguana.}
+{4030}{}{Meat.}
+{5000}{}{Sure, how much do you need? One Fruit for 10 caps.}
+{5010}{}{Just one.}
+{5020}{}{Five will be good.}
+{5030}{}{Ten , I need to stock up.}
+{5040}{}{Naah I changed my mind.}
+{6000}{}{Sure, how much do you need? One Meat is for 15 caps.}
+{6010}{}{Just one.}
+{6020}{}{Five will be good.}
+{6030}{}{Ten , I need to stock up.}
+{6040}{}{Naah I changed my mind.}
+{7000}{}{Sure, how much do you need? One Iguana is for 20 caps.}
+{7010}{}{Just one.}
+{7020}{}{Five will be good.}
+{7030}{}{Ten , I need to stock up.}
+{7040}{}{Naah I changed my mind.}
+
+[ptbr]
+{100}{}{Bartender}
+{200}{}{You see: Bartender.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, interested in Iguana bits?@@ Well, well. What did the desert drag in now?@@A customer! Do you want some food?@@Hard day, eh?@@What's your poison?}
+{2010}{}{Give me something to eat.}
+{2020}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] I think i ...hic... go home maybe.}
+{3000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{3010}{}{Thank's. I need something more.}
+{3020}{}{Awesome, bye.}
+{4000}{}{Yeah, Fruit is ten caps, Meat costs fifteen.  I also have Iguana for  twenty caps. So, Which one do you want?}
+{4010}{}{Fruit.}
+{4020}{}{Iguana.}
+{4030}{}{Meat.}
+{5000}{}{Sure, how much do you need? One Fruit for 10 caps.}
+{5010}{}{Just one.}
+{5020}{}{Five will be good.}
+{5030}{}{Ten , I need to stock up.}
+{5040}{}{Naah I changed my mind.}
+{6000}{}{Sure, how much do you need? One Meat is for 15 caps.}
+{6010}{}{Just one.}
+{6020}{}{Five will be good.}
+{6030}{}{Ten , I need to stock up.}
+{6040}{}{Naah I changed my mind.}
+{7000}{}{Sure, how much do you need? One Iguana is for 20 caps.}
+{7010}{}{Just one.}
+{7020}{}{Five will be good.}
+{7030}{}{Ten , I need to stock up.}
+{7040}{}{Naah I changed my mind.}
+

@@ -1,0 +1,169 @@
+#ifndef __BAGS__
+#define __BAGS__
+
+#define BAG_Internal                             ( 0 )
+#define BAG_Empty                                ( 1 )
+
+#define BAG_CaveBanditLvl1                       ( 12 ) // Caverns bandits with SledgeHummer. Used in cave_mobs.fos
+#define BAG_CaveBanditLvl2                       ( 18 ) // Caverns bandits with SMG/DEagle/Assault. Used in cave_mobs.fos
+
+#define BAG_Caravan_BlackGuard                   ( 25 ) // Caravan guard with supersledge/fist
+#define BAG_VaultCity_Guard                      ( 65 ) // VCity guard Combat shotgun/Assault rifle/14mm pistol. Also used in cave_mobs.fos
+#define BAG_VaultCity_Military                   ( 67 ) // VCity military pancor/fn_fal/assault
+
+#define BAG_BHMutant                             ( 97 )
+#define BAG_KNIFE                                ( 106 )
+#define BAG_CHILD                                ( 116 )
+
+#define BAG_DeathClawWeapon                      ( 142 )
+
+#define BAG_All_Slaves_MaleSlaver                ( 147 )
+
+#define BAG_RDRC_BHCaravan_MasterTrader          ( 164 ) // Master Trader female w/ H&K CAWS
+#define BAG_RDRC_BHCaravan_BigGunGuardMale       ( 165 ) // Big Gun Guard male w/ Minigun
+#define BAG_RDRC_BHCaravan_BigGunGuardFemale     ( 165 ) // Big Gun Guard female w/ Minigun
+
+#define BAG_RDRC_GCaravan_GenericGhoul           ( 166 ) // Generic Ghoul w/ Shotgun  (Caravan Leader)
+#define BAG_RDRC_GCaravan_ReactorGhoul           ( 167 ) // Reactor Ghoul w/ Hunting rifle
+#define BAG_RDRC_GCaravan_ReactorGhoul2          ( 168 ) // Reactor Ghoul w/ Assault Rifle
+
+#define BAG_RDRC_Raiders_RaiderMale              ( 169 ) // Raider male w/ Assault Rifle
+#define BAG_RDRC_Raiders_RaiderMale2             ( 170 ) // Raider male w/ Combat Shotgun
+#define BAG_RDRC_Raiders_RaiderFemale            ( 171 ) // Raider female w/ H&K CAWS
+#define BAG_RDRC_Raiders_RaiderFemale2           ( 172 ) // Raider female w/ Grease Gun
+
+#define BAG_Navarro_EnclavePatrol_Male2          ( 174 ) // Enclave Patrol male w/ Plasma Pistol
+#define BAG_SF_Band1_MercenearyFemale2           ( 182 ) // Merceneary female w/ Ripper
+#define BAG_SF_Band2_ElronologistMale2           ( 184 ) // Used in map_redding_miners.fos
+#define BAG_SF_Caravan_GrandMasterTraderMale     ( 191 ) // Used in map_redding_miners.fos
+#define BAG_SF_Caravan_VaultCityPatrolMale       ( 192 ) // Used in caravan.fos
+#define BAG_SF_Caravan_VaultCityPatrolMale2      ( 193 ) // Used in q_mirelurks_lair.fos
+#define BAG_SF_Caravan_VaultCityPatrolFemale     ( 194 ) // Used in caravan.fos
+#define BAG_SF_Caravan_VaultCityPatrolFemale2    ( 195 )
+#define BAG_All_Unity_BigGunGuardFemale          ( 201 ) // Used in q_mirelurks_lair.fos
+
+#define BAG_NCR_Caravan_NCRRangerMale            ( 225 ) // Used in sf_invasion.fos
+
+#define BAG_All_BountyHunters_1                  ( 234 )
+#define BAG_All_BountyHunters_2                  ( 235 )
+#define BAG_All_BountyHunters_3                  ( 236 )
+#define BAG_All_BountyHunters_4                  ( 237 )
+#define BAG_All_BountyHunters_5                  ( 238 )
+#define BAG_All_BountyHunters_6                  ( 239 )
+#define BAG_All_BountyHunters_7                  ( 240 )
+#define BAG_All_BountyHunters_8                  ( 241 )
+#define BAG_All_BountyHunters_9                  ( 242 )
+#define BAG_All_BountyHunters_10                 ( 243 ) // Plasma Rifle
+
+// Military base holdup.
+
+#define BAG_BaseEnclaveEngineer                  ( 260 )
+#define BAG_BaseEnclaveInfantry                  ( 261 )
+#define BAG_BaseBosEngineer                      ( 262 )
+#define BAG_BaseBosInfantry                      ( 263 )
+#define BAG_BaseSaboteur                         ( 264 )
+#define BAG_EnclaveSoldier                       ( 265 )
+#define BAG_BaseBosPaladin                       ( 266 )
+
+#define BAG_Sniper1                              ( 270 )         // ai_pattern special bags. >>
+#define BAG_Sniper2                              ( 271 )
+#define BAG_Sniper3                              ( BAG_Sniper2 )
+#define BAG_Sniper4                              ( BAG_Sniper3 ) // Gauss Rifle
+#define BAG_Medic1                               ( 274 )
+#define BAG_Medic2                               ( 275 )         // Plasma pistol
+#define BAG_Term1                                ( 276 )
+#define BAG_Term2                                ( BAG_Term1 )
+#define BAG_Term3                                ( BAG_Term1 )
+#define BAG_Term4                                ( BAG_Term1 )
+// без изменений
+#define BAG_Slayer1                              ( 280 ) // CattleProd
+#define BAG_Slayer2                              ( 281 ) // SuperSledge
+#define BAG_Slayer3                              ( 282 ) // Ripper << ai_pattern special bags.
+
+#define BAG_Eli                                  ( 283 ) // Eli special bag.
+#define BAG_ClaimJumper                          ( 284 )
+
+#define BAG_Bandit0                              ( 285 )
+#define BAG_Bandit                               ( 286 )
+
+#define BAG_Robber                               ( 287 )
+
+#define BAG_Bootlegger1                          ( 288 )
+#define BAG_Bootlegger2                          ( 289 )
+#define BAG_Bootlegger3                          ( 290 )
+#define BAG_Bootlegger4                          ( 291 )
+
+#define BAG_Thug0                                ( 292 )
+#define BAG_Thug                                 ( 293 )
+
+#define BAG_Moonshiner                           ( 294 )
+
+#define BAG_Marauder0                            ( 295 )
+#define BAG_Marauder1                            ( 296 )
+#define BAG_Marauder                             ( 297 )
+
+#define BAG_Raider0                              ( 298 )
+#define BAG_Raider                               ( 299 )
+
+#define BAG_Ghoul                                ( 300 )
+
+#define BAG_GANG                                 ( 301 )
+#define BAG_GANG35plus149                        ( 302 )
+#define BAG_GANG44                               ( 303 )
+#define BAG_GANG45                               ( 304 )
+#define BAG_GANG105                              ( 305 )
+#define BAG_GANG135                              ( 306 )
+#define BAG_GANG136plus137plus139                ( 307 )
+#define BAG_GANG138                              ( 308 )
+
+#define BAG_PUNKER                               ( 309 )
+#define BAG_PUNKER149                            ( 310 )
+#define BAG_PUNKER45                             ( 311 )
+#define BAG_PUNKER105                            ( 312 )
+#define BAG_PUNKER136                            ( 313 )
+#define BAG_PUNKER141                            ( 314 )
+                                                 
+#define BAG_FIREGECKO                            ( 315 )
+
+#define BAG_HIGHNPC                              ( 316 )
+                                                 
+#define BAG_ENCLAVE1                             ( 317 )
+#define BAG_ENCLAVE2                             ( 318 )
+                                                 
+#define BAG_MUTANT1                              ( 319 )
+#define BAG_MUTANT2                              ( 320 )
+                                                 
+#define BAG_2NECRO                               ( 321 )
+#define BAG_3NECRO                               ( 322 )
+#define BAG_4NECRO                               ( 323 )
+                                                 
+#define BAG_CHILD                                ( 324 )
+#define BAG_CITIZEN UM                           ( 325 )
+#define BAG_CITIZEN SG                           ( 326 )
+#define BAG_THUG UM                              ( 327 )
+#define BAG_THUG SG                              ( 328 )
+                                                 
+#define BAG_CARAVANGUARD                         ( 329 )
+#define BAG_CARAVANLEADER                        ( 330 )
+
+#define BAG_BOS                                  ( 331 )
+#define BAG_JTSCOUT                              ( 332 )
+#define BAG_HUBGUARD                             ( 333 )
+#define BAG_VCGUARD                              ( 334 )
+#define BAG_GECKOGUARD                           ( 335 )
+#define BAG_NCRRANGER                            ( 336 )
+                                                 
+#define BAG_WEAKSHIT                             ( 337 )
+#define BAG_HOBO                                 ( 338 )
+#define BAG_HUNT                                 ( 339 )
+#define BAG_SMG                                  ( 340 )
+#define BAG_NIGGA                                ( 341 )
+#define BAG_REDNECK                              ( 342 )
+#define BAG_HUBO                                 ( 343 )
+#define BAG_HUBO                                 ( 344 )
+
+#define BAG_ARESMUTANT1                          ( 345 )
+#define BAG_ARESMUTANT2                          ( 346 )
+#define BAG_ARESMUTANT3                          ( 347 )
+
+#endif // __BAGS__

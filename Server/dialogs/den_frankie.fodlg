@@ -1,0 +1,233 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+9 2030 D _var p klam_bobwhiskey = 1 #
+0 2040 @
+3 3000 None 0 #
+5 3010 #
+8 3020 #
+0 3030 @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BOOZE + 1 R _item p PID_BOTTLE_CAPS - 10 #
+3 5020 #
+7 5030 #
+0 5040 @
+6 6000 None 0 #
+3 6010 #
+0 6020 @
+7 7000 None 0 #
+6 7010 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BOOZE + 1 R _item p PID_BOTTLE_CAPS - 10 #
+3 7020 #
+0 7030 @
+8 8000 None 0 #
+7 8010 #
+3 8020 #
+0 8030 @
+9 9000 None 0 #
+10 9010 @
+10 10000 None 0 #
+11 10010 @
+11 11000 None 0 #
+12 11010 @
+12 12000 None 0 #
+13 12010 @
+13 13000 None 0 #
+0 13010 R _var p klam_bobwhiskey = 2 &
+
+[engl]
+{100}{}{Frankie}
+{200}{}{You see the owner of The Hole.}
+{200}{}{You see Frankie, owner of The Hole.}
+{210}{}{This is Frankie. He owns this joint.}
+{210}{}{This man appears to be the owner of this place.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{I'm Frankie and yer standing in 'The Hole.' Best damn bar in a hundred miles! Everyone crawls into The Hole when it's time to get loose. Now don't you be causing too much trouble, y'hear?}
+{2010}{}{Yeah, okay. Whatever.}
+{2020}{}{I see why you call this place "The Hole."}
+{2030}{}{Whiskey Bob sent me. I've got a message for you.}
+{2040}{}{Nothing today, bye.}
+{3000}{}{What's yer pleasure?}
+{3010}{}{Whiskey.}
+{3020}{}{Info.}
+{3030}{}{Nothing today, bye.}
+{4000}{}{Hey! You better shut your hole!}
+{4010}{}{Just get me a drink.}
+{4020}{}{I'll just leave instead.}
+{5000}{}{Whiskey's ten a shot.}
+{5010}{}{I'll take it.}
+{5020}{}{Can't afford it. Can I get something else?}
+{5030}{}{Why does your whiskey cost so much more than Becky's?}
+{5040}{}{No thanks. Bye.}
+{6000}{}{Anything else?}
+{6010}{}{Yes.}
+{6020}{}{Nope, thanks.}
+{7000}{}{Those New Reno families charge an arm and a leg for their booze. I don't know how she does it!}
+{7010}{}{Too bad. I'll take a drink anyway.}
+{7020}{}{I wanted something else.}
+{7030}{}{I guess I'll just go buy whiskey from her. bye.}
+{8000}{}{Information I do not have.}
+{8010}{}{Really? How about why Becky's drinks are so much cheaper than yours?}
+{8020}{}{I thought bartenders know everything. I want something else then.}
+{8030}{}{Then I'm in the wrong place. Bye.}
+{9000}{}{Oh yeah? What does that old bastard want?}
+{9010}{}{Uh, he wanted me to tell you the next batch of hooch is ready.@@The next batch of booze is ready.@@He said the next batch is ready.@@The booze is ready, he said.}
+{10000}{}{Is it? Okay, I'll send a man to pick it up then. Thanks.@@It is? Shit, that's great news. I'll send a runner over to pick it up. Thanks, @sex@|pal||sis'|.}
+{10010}{}{There is more, wait.@@Wait, there is more.@@Wait, there was one other thing.}
+{11000}{}{Yeah, what?@@There was? What?}
+{11010}{}{You'll have to pay him double this time.@@He's gonna charge you double for that, Frankie.@@He's, uh, charging double this time.}
+{12000}{}{[Frankie's face reddens.] That stingy piece of shit! He tries this every goddamn time. I give that old fucker the most caps he could ever squeeze and he... shit. What a fucktard.}
+{12010}{}{Yeah, great. Can I go now?@@Yeah, yeah, right.Can I go?@@Uhm... Can I go now?}
+{13000}{}{No! Not by a long shot! You get yer ass back to Bob, and tell that sonuvabitch I'll be picking up, but at the goddamn rate we agreed on. Don't keep me waiting, ya hear?.}
+{13010}{}{Yeah, sure thing, Frankie.@@You've got it.}
+
+[russ]
+{100}{}{Фрэнки}
+{200}{}{Вы видите хозяина "Дыры"}
+{210}{}{Это Фрэнки, владелец "Дыры". Этот парень явно непривлекательный.}
+{210}{}{Вы видите деловитого вида человека.}
+{210}{}{This appears to be the owner of this place.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Приветствую! Я Фрэнки, хозяин "Дыры". Чем могу помочь?}
+{2010}{}{Да, хорошо. Какая разница.}
+{2020}{}{Я понимаю, почему вы называете это место "дыра".}
+{2030}{}{Виски Боб послал меня. У меня есть сообщение для вас.}
+{2040}{}{Ничего сегодня, пока.}
+{3000}{}{Что вам предложить?}
+{3010}{}{Виски.}
+{3020}{}{Информацию.}
+{3030}{}{Ничего сегодня, пока.}
+{4000}{}{Эй! Тебе лучше захлопнуть свою дыру.}
+{4010}{}{Просто делай свою работу и принеси мне выпить.}
+{4020}{}{Все, я ухожу.}
+{5000}{}{$10 за стопку.}
+{5010}{}{Я беру.}
+{5020}{}{Не могу себе это позволить, есть что-то другое?}
+{5030}{}{Почему ваш виски стоит гораздо дороже, чем у Бекки?}
+{5040}{}{Нет, спасибо. Пока.}
+{6000}{}{Что-нибудь еще?}
+{6010}{}{Да.}
+{6020}{}{Нет, спасибо.}
+{7000}{}{Эти новые семьи Рено дерут слишком много за выпивку. Я не знаю, как она это делает!}
+{7010}{}{Плохо. Я все равно выпью.}
+{7020}{}{Я хотел что-то еще.}
+{7030}{}{Тогда, я просто пойду и куплю вискаря у Бекки.}
+{8000}{}{Информация у меня нет.}
+{8010}{}{Правда, а как насчет почему ваш виски стоит гораздо дороже, чем у Бекки?}
+{8020}{}{Я думал, бармены знали все. Ладно не бери в голову.}
+{8030}{}{Тогда я не в том месте. Пока.}
+{9000}{}{О, да? И что это старый ублюдок хочет?}
+{9010}{}{Э-э, он просил сказать вам, что следующая партия самогона готова.}
+{10000}{}{Да? Отличные новости, я пошлю к нему посыльного. Спасибо приятель.}
+{10010}{}{Подождите, была еще одна вещь.}
+{11000}{}{Что еще?}
+{11010}{}{Стоимость удволась.}
+{12000}{}{(Лицо Фрэнки наливается кровью) Этот скупой кусок дерьма! Он пытается поднять цену каждый проклятый раз. Вот дерьмо. Мне нужно выпить.}
+{12010}{}{Теперь я могу идти? Это все?}
+{13000}{}{Нет! Не так быстро. Передай Бобу, что я заплачу сколько плачу обычно и не центом больше.}
+{13010}{}{Хорошо, праильно Фрэнки.}
+
+[pols]
+{100}{}{Frankie}
+{200}{}{Widzisz właściciela "Dziury".}
+{200}{}{Widzisz Frankiego, właściciela "Dziury".}
+{210}{}{Oto Frankie. Ten przybytek należy do niego.}
+{210}{}{Zdaje się, że jest to właściciel tego miejsca.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Jestem Frankie, a ty znajdujesz się w "Dziurze". Najlepszy bar na sto mil stąd! Kiedy ktoś chce się ostro narąbać, przytacza się tutaj. Ale nie będziesz robić zbyt wielu problemów, słyszysz?}
+{2010}{}{Słyszę, ta.}
+{2020}{}{Ta, OK. Jeden chuj.}
+{2030}{}{Rozumiem, dlaczego nazywasz to miejsce "Dziurą".}
+{2040}{}{Przysłał mnie Whiskey Bob. Mam dla ciebie wiadomość.}
+{3000}{}{Czym mogę służyć?}
+{3010}{}{Whiskey.}
+{3020}{}{Informacją.}
+{3030}{}{Dzisiaj podziękuję, do widzenia.}
+{4000}{}{Hej! Lepiej zamknij swoją... dziurę.}
+{4010}{}{Po prostu rób co masz robić i nalej mi coś do picia.}
+{4020}{}{Wychodzę stąd..}
+{5000}{}{Whiskey chodzi po $10 za szklankę.}
+{5010}{}{Oto pieniądze.}
+{5020}{}{Nie stać mnie. Mogę coś innego?}
+{5030}{}{Dlaczego twoja whiskey kosztuje o tyle więcej, niż u Becky?}
+{5040}{}{Nie, dzięki. Do widzenia.}
+{6000}{}{Coś jeszcze?}
+{6010}{}{Yes.}
+{6020}{}{Nie, dzięki.}
+{7000}{}{Te cholerne rodziny z New Reno żądają majątku za swój alkohol. Nie mam pojęcia, jak ona to robi!}
+{7010}{}{Przykro. Ale nieważne, i tak mi nalej.}
+{7020}{}{@sex@|Chciałem||Chciałam| czegoś innego.}
+{7030}{}{Chyba pójdę napić się u niej. Do widzenia.}
+{8000}{}{Nie posiadam informacji.}
+{8010}{}{Naprawdę? A dlaczego whiskey u Becky jest o tyle tańsza, niż twoja?}
+{8020}{}{@sex@|Myślałem||Myślałam|, że barmani wiedzą wszystko. Poproszę coś jeszcze.}
+{8030}{}{W takim razie, jestem w złym miejscu. Do widzenia.}
+{9000}{}{Tak? Czego chce ten zastany staruch?}
+{9010}{}{Hm, mam powiadomić, że kolejna dostawa gorzałki jest w drodze.}
+{10000}{}{Już jest? Cholera, to świetna wiadomość. Wysyłam chłopaków po odbiór. Dzięki.}
+{10010}{}{Czekaj, jest jeszcze jedna sprawa.}
+{11000}{}{Jeszcze? Co?}
+{11010}{}{On, hm, tym razem nalicza podwójną cenę.}
+{12000}{}{[Twarz Frankiego czerwienieje.] Co za zasrana kupa gówna! Próbuje tego za każdym razem. Jestem najlepszym interesem w życiu tego pieprzonego, starego gnoja, a on... Kurwa! Muszę się napić.}
+{12010}{}{Mogę już iść? To wszystko? }
+{13000}{}{Nie! To nie kurwa wszystko! Tak nie może być. Wracaj do Boba i powiedz mu, że zabieram towar, ale po cenie którą uzgodniliśmy. Nie każ mi czekać.}
+{13010}{}{W porządku, jasne, Frankie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{I'm Frankie and yer standing in 'The Hole.' Best damn bar in a hundred miles! Everyone crawls into The Hole when it's time to get loose. Now don't you be causing too much trouble, y'hear?}
+{2010}{}{Yeah, okay. Whatever.}
+{2020}{}{I see why you call this place "The Hole."}
+{2030}{}{Whiskey Bob sent me. I've got a message for you.}
+{2040}{}{Nothing today, bye.}
+{3000}{}{What's yer pleasure?}
+{3010}{}{Whiskey.}
+{3020}{}{Info.}
+{3030}{}{Nothing today, bye.}
+{4000}{}{Hey! You better shut your hole!}
+{4010}{}{Just get me a drink.}
+{4020}{}{I'll just leave instead.}
+{5000}{}{Whiskey's ten a shot.}
+{5010}{}{I'll take it.}
+{5020}{}{Can't afford it. Can I get something else?}
+{5030}{}{Why does your whiskey cost so much more than Becky's?}
+{5040}{}{No thanks. Bye.}
+{6000}{}{Anything else?}
+{6010}{}{Yes.}
+{6020}{}{Nope, thanks.}
+{7000}{}{Those New Reno families charge an arm and a leg for their booze. I don't know how she does it!}
+{7010}{}{Too bad. I'll take a drink anyway.}
+{7020}{}{I wanted something else.}
+{7030}{}{I guess I'll just go buy whiskey from her. bye.}
+{8000}{}{Information I do not have.}
+{8010}{}{Really? How about why Becky's drinks are so much cheaper than yours?}
+{8020}{}{I thought bartenders know everything. I want something else then.}
+{8030}{}{Then I'm in the wrong place. Bye.}
+{9000}{}{Oh yeah? What does that old bastard want?}
+{9010}{}{Uh, he wanted me to tell you the next batch of hooch is ready.@@The next batch of booze is ready.@@He said the next batch is ready.@@The booze is ready, he said.}
+{10000}{}{Is it? Okay, I'll send a man to pick it up then. Thanks.@@It is? Shit, that's great news. I'll send a runner over to pick it up. Thanks, @sex@|pal||sis'|.}
+{10010}{}{There is more, wait.@@Wait, there is more.@@Wait, there was one other thing.}
+{11000}{}{Yeah, what?@@There was? What?}
+{11010}{}{You'll have to pay him double this time.@@He's gonna charge you double for that, Frankie.@@He's, uh, charging double this time.}
+{12000}{}{[Frankie's face reddens.] That stingy piece of shit! He tries this every goddamn time. I give that old fucker the most caps he could ever squeeze and he... shit. What a fucktard.}
+{12010}{}{Yeah, great. Can I go now?@@Yeah, yeah, right.Can I go?@@Uhm... Can I go now?}
+{13000}{}{No! Not by a long shot! You get yer ass back to Bob, and tell that sonuvabitch I'll be picking up, but at the goddamn rate we agreed on. Don't keep me waiting, ya hear?.}
+{13010}{}{Yeah, sure thing, Frankie.@@You've got it.}
+

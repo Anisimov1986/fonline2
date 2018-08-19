@@ -1,0 +1,99 @@
+[comment]
+
+
+[data]
+lang=engl russ pols
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 @
+4 2000 None 1 #
+7 2010 #
+6 2020 #
+4 2030 #
+0 2040 @
+6 3000 None 0 #
+0 3010 R _script sim_scripts@r_startlobby 0  #
+4 3020 @
+7 4000 sim_scripts@dlg_joinlobby 0 #
+4 4010 @
+10 5000 None 0 #
+4 5010 @
+11 6000 None 0 @
+12 7000 None 0 #
+4 7010 @
+13 8000 None 0 &
+
+[engl]
+{100}{}{Simulation Console}
+{200}{}{You see: Simulation Console}
+{210}{}{A Vault 8 simulation console made to initilize the simulation process. }
+{210}{}{You see a robust older woman, with a cheerful smile on her face.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Please Enter a command.}
+{2010}{}{Join simulation.}
+{2020}{}{Host simulation.}
+{2030}{}{Check points.}
+{2040}{}{Exit}
+{3000}{}{Initiating. Are you sure?}
+{3010}{}{Yes.}
+{3020}{}{No.}
+{4000}{}{Please specify host name.}
+{4010}{}{Back}
+{5000}{}{Lobby Host not found.}
+{5010}{}{Back}
+{6000}{}{Request Sent.}
+{7000}{}{Player is not owner of the lobby. Owner is : }
+{7010}{}{Back}
+{8000}{}{Joining to this room is disabled.}
+
+[russ]
+{100}{}{Мама}
+{200}{}{Вы видите старую женщину, которая кажется доброй.}
+{210}{}{Вы видите Маму, которая занята уборкой и приготовлением еды.}
+{210}{}{Вы видите пожилую женщину, у нее добрая улыбка.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Welcome to Vault 8 Simulation Lab. Press a button and you shall enjoy virtual reality of highest quality guaranteed by Vault-Tec amazing technology!}
+{2010}{}{I want to join a simulation.}
+{2020}{}{Access inventory.}
+{2030}{}{Exit simulation.}
+{2040}{}{I want to join a simulation.}
+{3000}{}{Initiating. Are you sure?}
+{3010}{}{Yes.}
+{3020}{}{No.}
+{4000}{}{Please specify host name.}
+{4010}{}{Back}
+{5000}{}{Lobby Host not found.}
+{5010}{}{Back}
+{6000}{}{Question Sent.}
+{7000}{}{Player is not owner of the lobby. Owner is : }
+{7010}{}{Back}
+{8000}{}{Joining to this room is disabled.}
+
+[pols]
+{100}{}{Mamuśka}
+{200}{}{Widzisz miło wyglądającą, starszą kobietę.}
+{210}{}{You see Mom, busily cooking and cleaning.}
+{210}{}{Widzisz tęgą, starszą kobietę, ze szczerym uśmiechem na twarzy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Welcome to Vault 8 Simulation Lab. Press a button and you shall enjoy virtual reality of highest quality guaranteed by Vault-Tec amazing technology!}
+{2010}{}{I want to join a simulation.}
+{2020}{}{Access inventory.}
+{2030}{}{Exit simulation.}
+{2040}{}{I want to join a simulation.}
+{3000}{}{Initiating. Are you sure?}
+{3010}{}{Yes.}
+{3020}{}{No.}
+{4000}{}{Please specify host name.}
+{4010}{}{Back}
+{5000}{}{Lobby Host not found.}
+{5010}{}{Back}
+{6000}{}{Question Sent.}
+{7000}{}{Player is not owner of the lobby. Owner is : }
+{7010}{}{Back}
+{8000}{}{Joining to this room is disabled.}
+

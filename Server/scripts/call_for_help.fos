@@ -1,0 +1,60 @@
+// Author: cvet
+// Server and client stuff for radio
+#include "_macros.fos"
+#include "mapdata_h.fos"
+import Item@ GetEquippedItem(Critter& cr, uint Pid) from "utils";
+
+void unsafe_CallForHelp( Critter& player, int , int , int, string@ message , int[] @ )
+{
+	if(!valid(player) || !player.IsLife())
+        return;
+
+    Item@ radio = GetEquippedItem(player, PID_RADIO);
+    if(!valid(radio))
+    {
+        Log("Possible radio distress hacker: " + player.Name);
+        return;
+    }
+	Map @ map = player.GetMap(); 
+	
+	if(!valid(map)) return; // check if our map is ok
+	if(map.GetLocation().Visible)
+    {
+        player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT , 70313 );
+        return;
+    }
+	Location @ loc = map.GetLocation();  // get location id
+	if(!valid(loc)) return;  
+	uint locPid = loc.GetProtoId(); // get proto id of loc.
+	if((locPid>=LOCATION_ENCOUNTERS_START) && (locPid<=LOCATION_ENCOUNTERS_END))
+	{
+		if(__FullSecond - (GetRootMapData(loc,MAP_DATA_ENCOUNTER_CREATION)) > int(REAL_MINUTE(5)))
+		{
+			player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT , 70314 );
+			return;
+		}
+		uint16 channel = radio.RadioChannel;
+		if(valid(message))
+		{
+			RadioMessage(channel, message);
+			player.Say(SAY_WHISP, message);
+		}
+		loc.Color=COLOR_RED;
+		array<Critter@> players;
+		GetAllPlayers(players);
+		for(uint i = 0; i < players.length(); i++)
+		{
+			@radio = GetEquippedItem(players[i], PID_RADIO);
+			if(valid(radio) && radio.RadioChannel == channel)
+			{
+				if(player.Id != players[i].Id)
+					players[i].SetKnownLoc(true, loc.Id);
+			}
+		}
+	}
+	else
+	{
+        player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT , 70315);
+        return;
+    }
+}

@@ -1,0 +1,109 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+2 1020 @
+2 2000 None 0 #
+5 2010 #
+3 2020 #
+0 2030 @
+3 3000 None 0 #
+5 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 None 0 #
+0 5010 &
+
+[engl]
+{100}{}{Lara}
+{200}{}{You see Lara.}
+{210}{}{She's seems to be the leader of this gang.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{The name's Lara; I run this gang. You better not be here to cause trouble or you're in for a world of hurt.}
+{2010}{}{Got any work?}
+{2020}{}{Just looking around.}
+{2030}{}{No problem. Bye.}
+{3000}{}{If you didn't come to the Den for a specific reason you should probably leave. It is'nt safe around these parts.}
+{3010}{}{Got any work?}
+{3020}{}{No worries, I can handle myself.}
+{3030}{}{Okay, thanks.}
+{4000}{}{No doubt. Otherwise you probably wouldn't have made it here alive.}
+{4010}{}{Got any work?}
+{4020}{}{Okay, thanks.}
+{5000}{}{Not right now. Sorry pal.}
+{5010}{}{Thanks anyway. Bye.}
+
+[russ]
+{100}{}{Лара}
+{200}{}{Вы видите: Лара.}
+{210}{}{Вы видите: Лара - бойкая девушка, бандитка и анархистка по жизни.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Меня зовут Лара. Я здесь главная. Мы продаем оружие и прочие интересные штучки. Ты кто?@@Я Лара. Ты кто? И что тут делаешь?}
+{2010}{}{Есть работенка для меня? Я @sex@|мог||могла| бы помочь тебе в твоем нелегком деле.}
+{2020}{}{Я @pname@. Просто @sex@|проходил мимо, решил зайти вот.||проходила мимо, решила зайти вот.|.}
+{2030}{}{Нет проблем. Пока.}
+{3000}{}{Тут не безопасно и не стоит тут ошиватся без веской причины.}
+{3010}{}{Есть работенка для меня?}
+{3020}{}{Я могу за себя постоять.}
+{3030}{}{Хорошо, спасибо.}
+{4000}{}{Без сомнения. Иначе ты был бы уже труп.}
+{4010}{}{Есть работенка для меня?}
+{4020}{}{Хорошо, спасибо.}
+{5000}{}{Не в данный момент. Извини приятель.}
+{5010}{}{Спасибо в любом случае. Пока.}
+
+[pols]
+{100}{}{Lara}
+{200}{}{Widzisz Larę.}
+{210}{}{Oto szefowa tego gangu.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Jestem Lara; kieruję tym gangiem. Lepiej nie sprawiaj kłopotów, chyba że szukasz guza.}
+{2010}{}{Masz jakąś robotę?}
+{2020}{}{Tylko się rozglądam.}
+{2030}{}{Nie ma problemu. Do widzenia.}
+{3000}{}{Jeśli nie jesteś w Norze z konkretnej przyczyny, lepiej stąd zmykaj. Nie jest tu zbyt bezpiecznie.}
+{3010}{}{Masz jakąś robotę?}
+{3020}{}{Potrafię o siebie zadbać.}
+{3030}{}{OK, dzięki.}
+{4000}{}{Nie wątpię. W innym przypadku nie @sex@|dotarłbyś||dotarałbyś| tutaj @sex@|żywy||żywa|.}
+{4010}{}{Masz jakąś robotę?}
+{4020}{}{OK, dzięki.}
+{5000}{}{Nie w tej chwili. Przykro mi.}
+{5010}{}{I tak dzięki. Do widzenia.}
+
+[ptbr]
+{100}{}{Lara}
+{200}{}{Você vê a Lara.}
+{210}{}{Ela parece ser o líder desta gangue.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Sou a Lara; mando nesta gangue. Melhor tomar cuidado com o que faz por aqui.}
+{2010}{}{Tem algum trabalho?}
+{2020}{}{Só dando uma olhada.}
+{2030}{}{Sem problemas. Valeu.}
+{3000}{}{Se não veio pro Favelão por uma razão específica é melhor que vá embora. Não é seguro ficar por aqui.}
+{3010}{}{Tem algum trabalho?}
+{3020}{}{Sem problemas, eu posso cuidarr de mim @sex@|mesmo||mesma|.}
+{3030}{}{Certo, @sex@|obrigado||obrigada|.}
+{4000}{}{Sem dúvidas. Ou então você provavelmente nem conseguiria chegar aqui @sex@|vivo||viva|.}
+{4010}{}{Tem algum trabalho?}
+{4020}{}{Tá certo, @sex@|obrigado||obrigada|.}
+{5000}{}{Agora não tenho. Desculpa @sex@|amigo||amiga|.}
+{5010}{}{Valeu então. Fui.}
+

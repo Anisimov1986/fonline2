@@ -1,0 +1,44 @@
+#include "_macros.fos"
+
+
+
+void _MapInit(Map& map, bool)
+{
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "PlayerKilled");
+    map.SetEvent(MAP_EVENT_OUT_CRITTER, "_CrOut");
+}
+
+void _LobbyInit(Map& map, bool)
+{
+    map.SetEvent(MAP_EVENT_IN_CRITTER, "_LobbyCrIn");
+}
+
+void _LobbyCrIn(Map& map, Critter& cr)
+{
+	if( cr.GetAccess() == ACCESS_ADMIN )
+		return;
+	Item@[] items;
+	if (cr.GetItems( -1, items )>0)
+		DeleteItems(items);
+}
+
+void PlayerKilled(Map& map, Critter& cr, Critter@ killer)
+{
+	if( !cr.IsPlayer() )
+		return;
+	if (valid(killer))
+		killer.StatBase[ ST_EXPERIENCE ]+=2000;
+}
+
+void _CrOut(Map& map, Critter& cr)
+{
+	if( !cr.IsPlayer() )
+		return;
+	if ( cr.Param[PVPTEAM] != 0)
+		cr.ParamBase[PVPTEAM] = 0;
+}
+
+
+
+
+

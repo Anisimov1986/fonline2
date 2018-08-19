@@ -1,0 +1,107 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 D _item p PID_BOTTLE_CAPS } 650 R _item p PID_BOTTLE_CAPS - 650 R _item p PID_HOLODISK + 1 #
+4 3020 D _item p PID_BOTTLE_CAPS } 3250 R _item p PID_BOTTLE_CAPS - 3250 R _item p PID_HOLODISK + 5 #
+4 3030 D _item p PID_BOTTLE_CAPS } 6500 R _item p PID_BOTTLE_CAPS - 6500 R _item p PID_HOLODISK + 10 #
+0 3040 @
+4 4000 None 0 #
+4 4010 D _item p PID_BOTTLE_CAPS } 650 R _item p PID_BOTTLE_CAPS - 650 R _item p PID_HOLODISK + 1 #
+4 4020 D _item p PID_BOTTLE_CAPS } 3250 R _item p PID_BOTTLE_CAPS - 3250 R _item p PID_HOLODISK + 5 #
+4 4030 D _item p PID_BOTTLE_CAPS } 6500 R _item p PID_BOTTLE_CAPS - 6500 R _item p PID_HOLODISK + 10 #
+0 4040 &
+
+[engl]
+{100}{}{Scavenger}
+{200}{}{You see: Scavenger.}
+{210}{}{The man smells of burnt oil and recently-digested alcohol.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello there, need anything from my shoppe??@@What do you need, @sex@|dude||baby|?@@Yeah?.@@I've got the best shit you won't find anywhere else in the Boneyard! Wanna do business?@@Come closer, take a look at my stuff!@@Looking for something specific? I've got shitloads of junk from all over the Boneyard.@@Want something?@@Need something?@@So... need anything?}
+{2010}{}{Let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.@@I'll take a look at your wares.@@I want to purchase something.@@I'll take a look at your stock.@@Let's trade.@@Let's trade.@@Let's trade.@@Let's see what you have.@@Let's barter...@@Got anything interesting?@@What do you have to offer?@@Show me your wares.@@Let's do some business.}
+{2020}{}{I'm interested in purchasing a few holotapes. Do you have any?@@I'm looking for holotapes. Got any?@@I'm looking for holotapes. You got any?@@Someone told me you've got holotapes for sale.}
+{2030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{3000}{}{Yeah, I have loads of them. Scavengers bring them, and I sell them further. It's just 650 caps per tape. How many do you need?@@Yeah, I have some. How many do you want?@@Yeah, I have those. In fact I have lots. How many do you need?}
+{3010}{}{One.@@Just one.@@Only one.@@One, at least for now.}
+{3020}{}{Five.@@Give me five.@@Five would be okay.@@I think five would be good.}
+{3030}{}{Ten.@@Ten, don't ask.@@I need ten.@@I want to buy ten.}
+{3040}{}{I've changed my mind. Goodbye.@@On second thought, maybe some other time.@@Nevermind, I've gotta go.}
+{4000}{}{Awesome, here you go. Anything else?@@All right, here, take them. Anything else?@@Okay, take them. Want anything else?}
+{4010}{}{Yes. One more.@@I'll take one more.@@Hmmm, maybe one more holotape?}
+{4020}{}{Give me five more.@@Yeah, I'll buy five more.}
+{4030}{}{Ten more please.@@I'll take ten of those holotapes.}
+{4040}{}{Nah, thanks. I'm leaving.@@Nope, that's all. See you later.@@No, thanks. Gotta go.@@That's all, I've gotta go now.}
+
+[russ]
+{100}{}{Торговец}
+{200}{}{Вы видите торговца.}
+{210}{}{Вы видите торговца.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{---}
+{2000}{}{Здравствуйте, добро пожаловать в мой магазин.@@Так-так ну и что тут к нам из пустоши выползло?@@О Клиент! У нас отличный выбор и отменное качество!@@Вы пришли сюда, чтобы купить что-то? В таком случае я думаю, что это ваш счастливый день.@@Таких товаров как у меня не найти больше нигде в пустоши.@@Добро пожаловать путник, руки держи при себе, смотреть можно, трогать нельзя.}
+{2010}{}{Давай посмотрим что у тебя есть.@@Ближе к делу.@@Давай уже торговать.@@Я здесь для того чтобы заниматся бизнесом, давай уже приступим.@@Что у тебя есть на обмен?}
+{2020}{}{Я ищу чистые голодиски, может у вас есть?}
+{2030}{}{Я передумал.@@Не сейчас.@@Пока.@@Как нибудь в другой раз.@@Мне уже пора.}
+{3000}{}{Да, у меня их полно. Собиратели часто приносят этот хлам. Сколько тебе нужно?}
+{3010}{}{Один.}
+{3020}{}{Пять.}
+{3030}{}{Десять.}
+{3040}{}{Я передумал.}
+{4000}{}{Отлично, еще что-то?}
+{4010}{}{Да. Пожалуй еще одну штуку.}
+{4020}{}{Возьму еще пять.}
+{4030}{}{Еще десять штук.}
+{4040}{}{Спасибо, мне уже пора.}
+
+[pols]
+{100}{}{Handlarz}
+{200}{}{Widzisz handlarza.}
+{210}{}{Widzisz handlarza.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Cześć, witam w moim sklepie. Pooglądaj towary, zobacz czego potrzebujesz i zawołaj mnie, kiedy podejmiesz decyzję.@@Zaraz napijemy się wódeczki, wpadną dupeczki - i ubijemy ten interes!@@Nonono, co tutaj przywiało z pustyni... [Zaciera ręce.] Słucham, w czym mogę pomóc?@@O, klient! Proszę, spójrz na moją ofertę.@@Masz zamiar coś kupić? W takim razie, to twój szczęśliwy dzień.@@Najlepszy towar na całym Pustkowiach! Proszę, rozejrzyj się.@@Wyglądasz na osobę, która potrafi docenić doskonałą jakość oraz okazyjne ceny.@@Witaj, nieznajomy. Możemy pohandlować bez niepotrzebnych niemiłych sytuacji - strażnicy wszystko obserwują.@@Nie jestem w nastroju na pogawędki. Kupujesz coś, czy wychodzisz?@@Witaj, wędrowcze. Staraj się nic nie uszkodzić, inaczej będziesz @sex@|musiał||musiała| za to zapłacić. To jak, pohandlujemy?}
+{2010}{}{Jasne, handlujmy.@@Pewnie, przejdźmy do interesów.@@Co ciekawego możesz mi zaoferować?@@Pokaż, co masz na sprzedaż.@@Hm, @sex@|chciałbym||chciałabym| coś kupić.@@Interesuje mnie kilka rzeczy z twojego asortymentu.@@Zobaczmy, co tam masz.@@Co masz do zaoferowania?@@Pokaż mi swoje produkty.}
+{2020}{}{Interesuje mnie kupno kilku pustych holodysków. Masz jakieś?}
+{2030}{}{Nie chcę handlować.@@Nie teraz.@@Do widzenia.@@[Wyjdź.] Może innym razem.@@To ja już sobie pójdę.@@Po tym, co tutaj @sex@|zobaczyłem||zobaczyłam|, nie wiem czy @sex@|chciałbym||chciałabym| z tobą ubić muchę w kiblu.@@Potrzebuję czegoś innego.@@[Wyjdź.] Muszę już iść.@@[Wyjdź.] Nie tego @sex@|szukałem||szukałam|.@@Dzięki - ale nie.@@Wychodzę.@@[Wyjdź.] Do zobaczenia.}
+{3000}{}{Taa, mam ich tutaj pełno. Zbieracze mi je przynoszą, a ja je potem odsprzedaję. Jedynie 650 kapsli za jeden. Konkretnie ilu potrzebujesz?}
+{3010}{}{Jednego.}
+{3020}{}{Pięciu.}
+{3030}{}{Dziesięciu.}
+{3040}{}{Zmieniłem zdanie.}
+{4000}{}{W porządku, trzymaj. Coś jeszcze?}
+{4010}{}{Tak. Daj mi jeszcze jednego.}
+{4020}{}{Daj mi jeszcze pięć.}
+{4030}{}{Jeszcze dziesięć takich.}
+{4040}{}{Niee, dzięki. Na razie to tyle.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello there, need anything from my shoppe??@@What do you need, @sex@|dude||baby|?@@Yeah?.@@I've got the best shit you won't find anywhere else in the Boneyard! Wanna do business?@@Come closer, take a look at my stuff!@@Looking for something specific? I've got shitloads of junk from all over the Boneyard.@@Want something?@@Need something?@@So... need anything?}
+{2010}{}{Let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.@@I'll take a look at your wares.@@I want to purchase something.@@I'll take a look at your stock.@@Let's trade.@@Let's trade.@@Let's trade.@@Let's see what you have.@@Let's barter...@@Got anything interesting?@@What do you have to offer?@@Show me your wares.@@Let's do some business.}
+{2020}{}{I'm interested in purchasing a few holotapes. Do you have any?@@I'm looking for holotapes. Got any?@@I'm looking for holotapes. You got any?@@Someone told me you've got holotapes for sale.}
+{2030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{3000}{}{Yeah, I have loads of them. Scavengers bring them, and I sell them further. It's just 650 caps per tape. How many do you need?@@Yeah, I have some. How many do you want?@@Yeah, I have those. In fact I have lots. How many do you need?}
+{3010}{}{One.@@Just one.@@Only one.@@One, at least for now.}
+{3020}{}{Five.@@Give me five.@@Five would be okay.@@I think five would be good.}
+{3030}{}{Ten.@@Ten, don't ask.@@I need ten.@@I want to buy ten.}
+{3040}{}{I've changed my mind. Goodbye.@@On second thought, maybe some other time.@@Nevermind, I've gotta go.}
+{4000}{}{Awesome, here you go. Anything else?@@All right, here, take them. Anything else?@@Okay, take them. Want anything else?}
+{4010}{}{Yes. One more.@@I'll take one more.@@Hmmm, maybe one more holotape?}
+{4020}{}{Give me five more.@@Yeah, I'll buy five more.}
+{4030}{}{Ten more please.@@I'll take ten of those holotapes.}
+{4040}{}{Nah, thanks. I'm leaving.@@Nope, that's all. See you later.@@No, thanks. Gotta go.@@That's all, I've gotta go now.}
+

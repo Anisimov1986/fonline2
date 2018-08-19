@@ -1,0 +1,127 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+12 1010 D _var p name_mem_player_npc = 4 R _script dialog@r_NodeChancePercent 3 50 12 13 #
+11 1020 D _var p name_mem_player_npc = 3 #
+6 1030 D _item p PID_BROTHERHOOD_COMBAT_ARMOR > 0 R _script dialog@r_Wait 0  #
+12 1040 D _var p name_mem_player_npc < 3 R _script dialog@r_NodeChancePercent 3 70 13 12 @
+6 2000 Attack 0 #
+7 2010 R _var p name_mem_player_npc = 3 R _script dialog@r_NodeChancePercent 3 50 7 8 #
+9 2020 D _param p MAIN_FACTION ! 2 D _item p PID_BROTHERHOOD_COMBAT_ARMOR } 1 R _item p PID_BROTHERHOOD_COMBAT_ARMOR - 1 R _item n PID_BROTHERHOOD_COMBAT_ARMOR + 1 R _var p name_mem_player_npc = 3 R _var p q_finders_check = 2 #
+65507 2030 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_AttackGroup 1 208 R _script dialog@r_AttackGroup 1 209 R _script dialog@r_AttackGroup 1 211 R _script dialog@r_AttackGroup 1 212 @
+7 3000 None 0 #
+0 3010 R _var p name_mem_player_npc = 4 @
+8 4000 Attack 0 #
+9 4010 D _item p PID_BROTHERHOOD_COMBAT_ARMOR } 1 D _param p MAIN_FACTION ! 2 R _item p PID_BROTHERHOOD_COMBAT_ARMOR - 1 R _item n PID_BROTHERHOOD_COMBAT_ARMOR + 1 R _var p name_mem_player_npc = 3 R _var p q_finders_check = 2 #
+65507 4020 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_AttackGroup 1 208 R _script dialog@r_AttackGroup 1 209 R _script dialog@r_AttackGroup 1 210 R _script dialog@r_AttackGroup 1 211 R _script dialog@r_AttackGroup 1 212 @
+9 5000 None 0 #
+10 5010 R _script dialog@r_RunNpc 4 71 70 0 208 R _script dialog@r_RunNpc 4 70 71 0 209 R _script dialog@r_RunNpc 4 68 71 5 210 R _script dialog@r_RunNpc 4 64 69 4 211 R _script dialog@r_RunNpc 4 64 73 4 212 @
+10 6000 None 0 @
+11 7000 None 0 @
+12 8000 None 0 @
+13 9000 None 0 &
+
+[engl]
+{100}{}{Caravan Guard}
+{200}{}{You see: Caravan Guard.}
+{210}{}{This man is seems to be guarding the bunker entrance.}
+{1000}{}{Initial preferences}
+{1010}{}{lied succesfully/nothing}
+{1020}{}{gave up the armor}
+{1030}{}{found armor}
+{1040}{}{Answer text}
+{2000}{}{I see you managed to open that crate... What did you find?@@I see you did manage to open that goddamn crate... What did you find?}
+{2010}{}{[Lie.] Nothing interesting.@@[Lie.] Just some cigarettes, nothing more.@@[Lie.] Nothing in particular.@@[Lie.] Nothing worth bartering.}
+{2020}{}{A Brotherhood Armor. Here, take it.@@A Brotherhood Armor, I think you should keep it.}
+{2030}{}{It's none of your business. Get out of my way.@@Fuck off, it's none of your business, dude.@@None of your fucking business, man.}
+{3000}{}{All right. Tough luck, heh?@@Too bad.@@Uhum.@@Right...}
+{3010}{}{Yep. I think it's time for me to go.@@Yeah. I've gotta go.}
+{4000}{}{I know when someone is lying to me. Give back what you found, we cracked the bunker, so the loot should be ours.@@You're lying. Give back what you found, you wouldn've done shit if we didin't blow that fucking door.}
+{4010}{}{All right, all right. Here it is, a Brotherhood Armor. Take it, and leave me be.@@Okay, you win. I found a Brotherhood Armor. Here, take it.}
+{4020}{}{No way.@@Over my dead body.@@You won't take anything from me.@@If you want it, you'll have to kill me first.}
+{5000}{}{What a wuss... @@Good. Now, get lost.@@Yeah, you fucking wimp. Get lost.@@Yeah, keep walking, you pussy.}
+{5010}{}{Damn.@@Jerk.@@I won't forget this!@@I won't forget this...@@You will regret this... someday.}
+{6000}{}{Hey! Nate, guys? Look what I've just gotten off this wimp!@@ Hey guys, look what I've found!@@Hey guys, look what I've just found!}
+{7000}{}{Pleasure doing business with you, pussy.@@Get lost, you wimp.@@What a jerk, get lost.@@You're pathetic.@@Go away, wimpy.}
+{8000}{}{Keep moving.@@Nothing to see here.@@Got a smoke?@@Get going.@@I don't have time for this.@@Get lost.@@Got a light?@@I hope we'll move out soon, this place gives me the creeps.@@Nate better not skimp on our share again...}
+{9000}{}{ }
+
+[russ]
+{100}{}{Охранник}
+{200}{}{Вы видите охранника.}
+{210}{}{Вы видите профессионального охранника. Довольно крепкий парень. В любом случае не стоит попадаться ему под горячую руку.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{ }
+{1020}{}{gave up the armor}
+{1030}{}{found armor}
+{1040}{}{Answer text}
+{2000}{}{I see you managed to open that crate... What did you find?@@I see you did manage to open that goddamn crate... What did you find?}
+{2010}{}{[Lie.] Nothing interesting.@@[Lie.] Just some cigarettes, nothing more.@@[Lie.] Nothing in particular.@@[Lie.] Nothing worth bartering.}
+{2020}{}{A Brotherhood Armor. Here, take it.@@A Brotherhood Armor, I think you should keep it.}
+{2030}{}{It's none of your business. Get out of my way.@@Fuck off, it's none of your business, Nate.@@None of your business, Nate.}
+{3000}{}{All right. Tough luck, heh?@@Too bad.@@Uhum.@@Right...}
+{3010}{}{Yep. I think it's time for me to go.@@Yeah. I've gotta go.}
+{4000}{}{I know when someone is lying to me. Give back what you found, we cracked the bunker, so the loot should be ours.@@You're lying. Give back what you found, you wouldn've done shit if we didin't blow that fucking door.}
+{4010}{}{All right, all right. Here it is, a Brotherhood Armor. Take it, and leave me be.@@Okay, you win. I found a Brotherhood Armor. Here, take it.}
+{4020}{}{No way.@@Over my dead body.@@You won't take anything from me.@@If you want it, you'll have to kill me first.}
+{5000}{}{I see you can be reasoned with... Now, if you excuse me...@@Good. Now, get lost.@@Yeah, you fucking wimp. Get lost.}
+{5010}{}{Yeah, right.@@Whatever.@@I won't forget this!}
+{6000}{}{Hey! Nate, guys? Look what I've got!@@ Hey guys, look what I've found!@@Hey guys, look what I've just found!}
+{7000}{}{Pleasure doing business with you, pussy.@@Get lost, you wimp.@@What a jerk, get lost.@@You're pathetic.@@Go away, wimpy.}
+{8000}{}{Yeah? Want to do business?@@Hey, back already? Wanna trade?@@You wanna barter or what?}
+{9000}{}{ }
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz profesjonalnego strażnika. Wydaje się być doskonale wyszkolony, lepiej nie robić żadnych problemów w jego okolicy.}
+{1000}{}{Initial preferences}
+{1010}{}{ }
+{1020}{}{gave up the armor}
+{1030}{}{found armor}
+{1040}{}{Answer text}
+{2000}{}{I see you managed to open that crate... What did you find?@@I see you did manage to open that goddamn crate... What did you find?}
+{2010}{}{[Lie.] Nothing interesting.@@[Lie.] Just some cigarettes, nothing more.@@[Lie.] Nothing in particular.@@[Lie.] Nothing worth bartering.}
+{2020}{}{A Brotherhood Armor. Here, take it.@@A Brotherhood Armor, I think you should keep it.}
+{2030}{}{It's none of your business. Get out of my way.@@Fuck off, it's none of your business, Nate.@@None of your business, Nate.}
+{3000}{}{All right. Tough luck, heh?@@Too bad.@@Uhum.@@Right...}
+{3010}{}{Yep. I think it's time for me to go.@@Yeah. I've gotta go.}
+{4000}{}{I know when someone is lying to me. Give back what you found, we cracked the bunker, so the loot should be ours.@@You're lying. Give back what you found, you wouldn've done shit if we didin't blow that fucking door.}
+{4010}{}{All right, all right. Here it is, a Brotherhood Armor. Take it, and leave me be.@@Okay, you win. I found a Brotherhood Armor. Here, take it.}
+{4020}{}{No way.@@Over my dead body.@@You won't take anything from me.@@If you want it, you'll have to kill me first.}
+{5000}{}{I see you can be reasoned with... Now, if you excuse me...@@Good. Now, get lost.@@Yeah, you fucking wimp. Get lost.}
+{5010}{}{Yeah, right.@@Whatever.@@I won't forget this!}
+{6000}{}{Hey! Nate, guys? Look what I've got!@@ Hey guys, look what I've found!@@Hey guys, look what I've just found!}
+{7000}{}{Pleasure doing business with you, pussy.@@Get lost, you wimp.@@What a jerk, get lost.@@You're pathetic.@@Go away, wimpy.}
+{8000}{}{Yeah? Want to do business?@@Hey, back already? Wanna trade?@@You wanna barter or what?}
+{9000}{}{ }
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{lied succesfully/nothing}
+{1020}{}{gave up the armor}
+{1030}{}{found armor}
+{1040}{}{Answer text}
+{2000}{}{I see you managed to open that crate... What did you find?@@I see you did manage to open that goddamn crate... What did you find?}
+{2010}{}{[Lie.] Nothing interesting.@@[Lie.] Just some cigarettes, nothing more.@@[Lie.] Nothing in particular.@@[Lie.] Nothing worth bartering.}
+{2020}{}{A Brotherhood Armor. Here, take it.@@A Brotherhood Armor, I think you should keep it.}
+{2030}{}{It's none of your business. Get out of my way.@@Fuck off, it's none of your business, dude.@@None of your fucking business, man.}
+{3000}{}{All right. Tough luck, heh?@@Too bad.@@Uhum.@@Right...}
+{3010}{}{Yep. I think it's time for me to go.@@Yeah. I've gotta go.}
+{4000}{}{I know when someone is lying to me. Give back what you found, we cracked the bunker, so the loot should be ours.@@You're lying. Give back what you found, you wouldn've done shit if we didin't blow that fucking door.}
+{4010}{}{All right, all right. Here it is, a Brotherhood Armor. Take it, and leave me be.@@Okay, you win. I found a Brotherhood Armor. Here, take it.}
+{4020}{}{No way.@@Over my dead body.@@You won't take anything from me.@@If you want it, you'll have to kill me first.}
+{5000}{}{What a wuss... @@Good. Now, get lost.@@Yeah, you fucking wimp. Get lost.@@Yeah, keep walking, you pussy.}
+{5010}{}{Damn.@@Jerk.@@I won't forget this!@@I won't forget this...@@You will regret this... someday.}
+{6000}{}{Hey! Nate, guys? Look what I've just gotten off this wimp!@@ Hey guys, look what I've found!@@Hey guys, look what I've just found!}
+{7000}{}{Pleasure doing business with you, pussy.@@Get lost, you wimp.@@What a jerk, get lost.@@You're pathetic.@@Go away, wimpy.}
+{8000}{}{Keep moving.@@Nothing to see here.@@Got a smoke?@@Get going.@@I don't have time for this.@@Get lost.@@Got a light?@@I hope we'll move out soon, this place gives me the creeps.@@Nate better not skimp on our share again...}
+{9000}{}{ }
+

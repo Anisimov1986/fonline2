@@ -1,0 +1,152 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+7 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+2 4030 #
+0 4040 @
+5 5000 None 0 #
+6 5010 #
+2 5020 #
+0 5030 @
+6 6000 None 0 #
+5 6010 #
+2 6020 #
+0 6030 @
+7 7000 None 0 #
+2 7010 #
+0 7020 &
+
+[engl]
+{100}{}{Barkus}
+{200}{}{You see: yet another Vault City official.}
+{210}{}{You see Barkus, the Vault City Servant Coordinator.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal citizen}
+{2000}{}{Yes?}
+{2010}{}{What is this building?}
+{2020}{}{I'm looking for the Vault.}
+{2030}{}{Nothing today, thanks.}
+{3000}{}{This? Why, this is the Servant Allocation Center. Were you in need of a servant?@@Can't you read the sign out front? This is the Servant Allocation Center.}
+{3010}{}{Servant Allocation Center? What's that?}
+{3020}{}{No, just curious. Thanks.}
+{4000}{}{You must be new around here. I'll explain it... slowly. Citizens who need help with menial tasks come here to have a Servant assigned to them for the day.}
+{4010}{}{What's the difference between servants and er... slaves?}
+{4020}{}{Where do you get all these servants?}
+{4030}{}{Oh, I had some other questions...}
+{4040}{}{All right, just curious, thanks. Good day.}
+{5000}{}{Servants are not slaves, remember that! There is NO slavery in Vault City. We take care of these refugees, and they have a good life... better than they would get in the wastes.}
+{5010}{}{Where do you get all these servants?}
+{5020}{}{Hmmm. I had another question...}
+{5030}{}{That's all I needed to know then, thanks. Good day.}
+{6000}{}{Our servants are usually refugees from raider attacks or contractual prisoners who wish to work off their sentence in a productive manner.}
+{6010}{}{What's the difference between servants and er... slaves?}
+{6020}{}{Hmmm. Another question then...}
+{6030}{}{I see. Thanks for the information.}
+{7000}{}{The Vault? It's that huge hole in the mountain on the east side of the city. Head out the front door, turn left and walk straight ahead. You can't miss it.}
+{7010}{}{I had another question for you.}
+{7020}{}{Thanks for the directions. Goodbye.}
+
+[russ]
+{100}{}{Баркус}
+{200}{}{Вы видите должностное лицо Города.}
+{210}{}{Вы видите Баркуса, Координатора по Слугам Города.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal citizen}
+{2000}{}{Да, в чем дело? Я отстаю от графика.}
+{2010}{}{Что это за здание?}
+{2020}{}{Я ищу Убежище.}
+{2030}{}{Извините. Ошибся дверью. До свидания.}
+{3000}{}{Это Центр Распределения Слуг.}
+{3010}{}{Центр Распределения Слуг? Что это?}
+{3020}{}{Любопытно. Спасибо.}
+{4000}{}{Граждане, которым нужна помощь во всякой простой работе, приходят сюда и получают на день слугу.}
+{4010}{}{Как-то уж очень похоже на рабство.}
+{4020}{}{А где вы берете всех этих слуг?}
+{4030}{}{У меня есть еще вопросы...}
+{4040}{}{Любопытно. Спасибо.}
+{5000}{}{На вашем месте я выбирал бы выражения. Это НЕ рабство. Мы заботимся об этих беженцах, им очень хорошо живется... по крайней мере, лучше, чем в пустошах.}
+{5010}{}{А где вы берете всех этих слуг?}
+{5020}{}{У меня есть еще вопросы...}
+{5030}{}{Ну хорошо, понятно, мне просто было любопытно. Счастливо.}
+{6000}{}{Обычно наши слуги - беженцы из пустошей или заключенные, которые хотят отбыть свой срок, занимаясь общественно полезным трудом.}
+{6010}{}{О, так тут попрасту держат рабов? Почему бы вам не называть вещи своими именами?}
+{6020}{}{У меня есть еще вопросы...}
+{6030}{}{Любопытно. Спасибо.}
+{7000}{}{Убежище? Это огромная дыра в горе в восточной части города. Выходите из передней двери, поверните налево и идите прямо. Не пропустите.}
+{7010}{}{У меня есть еще вопросы...}
+{7020}{}{Спасибо за указания. До встречи.}
+
+[pols]
+{100}{}{Barkus}
+{200}{}{Widzisz... kolejnego... urzędnika Kryptopolis.}
+{210}{}{Widzisz Barkusa, Koordynatora Przydzielania Służących.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal citizen}
+{2000}{}{Tak?}
+{2010}{}{Co to za budynek?}
+{2020}{}{Szukam Krypty.}
+{2030}{}{Dziękuję, do widzenia.}
+{3000}{}{To? Ach, to Centrum Przydzialania Służących. Potrzebujesz służącego?}
+{3010}{}{Centrum Przydzialania Służących? Co to?}
+{3020}{}{Nie, tak tylko pytam z ciekawości. Dzięki.}
+{4000}{}{Musisz być @sex@|nowy||nowa| w tych stronach. Wyjaśnię to... powoli. Obywatele, którzy potrzebują pomocy w codziennych obowiązkach przychodzą tutaj, aby został im przydzielony służący.}
+{4010}{}{Jaka jest różnica między służącymia a... hm... niewolnikami?}
+{4020}{}{Skąd bierzecie tych wszystkich służących?}
+{4030}{}{Och, mam kilka innych pytań...}
+{4040}{}{W porządku, @sex@|byłem||byłam| tylko @sex@|ciekawy||ciekawa|, dzięki. Miłego dnia.}
+{5000}{}{Służący to nie niewolnicy, pamiętaj! Niewolnictwo w Kryptopolis *nie istnieje*. Opiekujemy się tymi uchodźcami, żyje im się dobrze... lepiej, niż na Pustkowiach.}
+{5010}{}{Skąd bierzecie tych wszystkich służących?}
+{5020}{}{Hmmm. Mam inne pytanie...}
+{5030}{}{To wszystko, co @sex@|chciałem||chciałam| wiedzieć, dzięki. Miłego dnia.}
+{6000}{}{Nasi służący to zwykle uchodźcy z ataków najeźdźców lub więźniowie, którzy wyrażają wolę odpracowania swojego wyroku w produktywny sposób.}
+{6010}{}{Jaka jest różnica między służącymia a... hm... niewolnikami?}
+{6020}{}{Hmmm. W takim razie, kolejne pytanie...}
+{6030}{}{Rozumiem. Dzięki za informacje.}
+{7000}{}{Krypta? To ta wielka dziura w górze we wschodniej części miasta. Wyjdź frontowymi drzwiami, skręć w lewo i idź cały czas prosto. Nie da się jej przegapić.}
+{7010}{}{Mam kolejne pytanie.}
+{7020}{}{Dzięki za wskazówki. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal citizen}
+{2000}{}{Yes?}
+{2010}{}{What is this building?}
+{2020}{}{I'm looking for the Vault.}
+{2030}{}{Nothing today, thanks.}
+{3000}{}{This? Why, this is the Servant Allocation Center. Were you in need of a servant?@@Can't you read the sign out front? This is the Servant Allocation Center.}
+{3010}{}{Servant Allocation Center? What's that?}
+{3020}{}{No, just curious. Thanks.}
+{4000}{}{You must be new around here. I'll explain it... slowly. Citizens who need help with menial tasks come here to have a Servant assigned to them for the day.}
+{4010}{}{What's the difference between servants and er... slaves?}
+{4020}{}{Where do you get all these servants?}
+{4030}{}{Oh, I had some other questions...}
+{4040}{}{All right, just curious, thanks. Good day.}
+{5000}{}{Servants are not slaves, remember that! There is NO slavery in Vault City. We take care of these refugees, and they have a good life... better than they would get in the wastes.}
+{5010}{}{Where do you get all these servants?}
+{5020}{}{Hmmm. I had another question...}
+{5030}{}{That's all I needed to know then, thanks. Good day.}
+{6000}{}{Our servants are usually refugees from raider attacks or contractual prisoners who wish to work off their sentence in a productive manner.}
+{6010}{}{What's the difference between servants and er... slaves?}
+{6020}{}{Hmmm. Another question then...}
+{6030}{}{I see. Thanks for the information.}
+{7000}{}{The Vault? It's that huge hole in the mountain on the east side of the city. Head out the front door, turn left and walk straight ahead. You can't miss it.}
+{7010}{}{I had another question for you.}
+{7020}{}{Thanks for the directions. Goodbye.}
+

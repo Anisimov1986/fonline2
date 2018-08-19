@@ -1,0 +1,122 @@
+#include "_client_defines.fos"
+
+string[]KEY_STR={"1","2","3","4","5","6","7","8","9","0","q","w","e","r","t","y","u","i","o","p","[","]","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","alt","alt","ctrl","ctrl","shift","shift"};
+int[]KEY_DIK={DIK_1,DIK_2,DIK_3,DIK_4,DIK_5,DIK_6,DIK_7,DIK_8,DIK_9,DIK_0,DIK_Q,DIK_W,DIK_E,DIK_R,DIK_T,DIK_Y,DIK_U,DIK_I,DIK_O,DIK_P,DIK_LBRACKET,DIK_RBRACKET,DIK_A,DIK_S,DIK_D,DIK_F,DIK_G,DIK_H,DIK_J,DIK_K,DIK_L,DIK_Z,DIK_X,DIK_C,DIK_V,DIK_B,DIK_N,DIK_M,DIK_F1,DIK_F2,DIK_F3,DIK_F4,DIK_F5,DIK_F6,DIK_F7,DIK_F8,DIK_F9,DIK_F10,DIK_LMENU,DIK_RMENU,DIK_LCONTROL,DIK_RCONTROL,DIK_LSHIFT,DIK_RSHIFT};
+dictionary keyValues;
+dictionary keyLib;
+string strVal;
+
+void InitBinds()
+{
+keyLib.deleteAll();
+keyValues.deleteAll();
+for(uint i=0; i<KEY_STR.length(); ++i)
+	{
+	string inttostring=KEY_DIK[i];
+		keyLib.set(inttostring, KEY_STR[i]);
+	}
+file f;
+    if( f.open( "hotkeys.ini", "r" ) == 0 )
+	{
+			string line;
+			int lineNumber = 0;
+			uint i=0;
+			while(f.readLine(line) > 0)
+			{
+				lineNumber++;
+								
+				string@[]@ elements;
+				@elements = splitEx(line, "=");
+				if(elements.length() == 2)
+				{
+					removeWhiteCharsAtBeginingAndEnd(elements[0]);
+					removeWhiteCharsAtBeginingAndEnd(elements[1]);
+					elements[0]=strlwr(elements[0]);
+					elements[1]=strlwr(elements[1]);
+					keyValues.set(elements[1], elements[0]);
+					 
+				}
+				
+			}
+			f.close();
+	
+	}
+else Message("Can't read hotkeys.ini - binds disabled");
+}
+
+string IsKey( bool AltDown, bool CtrlDown, bool ShiftDown, uint8 Keypressed )
+{
+string keysfromcli;
+string pressed = Keypressed;
+	if (AltDown) keysfromcli=keysfromcli+"alt ";
+	if (CtrlDown) keysfromcli=keysfromcli+"ctrl ";
+	if (ShiftDown) keysfromcli=keysfromcli+"shift ";
+	if (getKey(pressed, strVal))keysfromcli=keysfromcli+strVal;
+	keysfromcli=strlwr(keysfromcli);
+	//Message(keysfromcli);
+	if(getVal(keysfromcli, strVal)&&(keysfromcli.length()>0))
+	{
+	//Message(strVal);
+	return strVal;
+	}
+return "fail";
+}
+
+bool getVal(const string& keyName, string& value)
+{
+		return keyValues.get(keyName, value);
+}
+bool getKey(const string& keyName, string& value)
+{
+		return keyLib.get(keyName, value);
+}
+
+void removeWhiteCharsAtBeginingAndEnd(string@ line)
+{
+	removeWhiteCharsAtBegining(line);
+	removeWhiteCharsAtEnding(line);
+}
+
+void removeWhiteCharsAtBegining(string@ line)
+{
+	if(line.length() == 0 || @line == null) return;
+
+	uint charsToErase=0;
+	while(line[charsToErase] == " " || line[charsToErase] == "\t" || line[charsToErase] == "\r" || line[charsToErase] == "\n")
+	{
+		charsToErase++;
+
+		if(charsToErase >= line.length()) 
+		{
+			break;
+		}
+	}
+	
+	if(charsToErase > 0)
+	{
+		line = substring(line, charsToErase, line.length() - charsToErase);
+	}
+}
+
+void removeWhiteCharsAtEnding(string@ line)
+{
+	if(line.length() == 0 || @line == null) return;
+
+	uint charsToErase=0;
+	int i = line.length() - 1;
+	while(line[i] == " " || line[i] == "\t" || line[i] == "\r" || line[i] == "\n")
+	{
+		charsToErase++;
+		i--;
+
+		if(i < 0) 
+		{
+			break;
+		}
+	}
+	
+	if(charsToErase > 0)
+	{
+		line = substring(line, 0, i + 1);
+	}
+}

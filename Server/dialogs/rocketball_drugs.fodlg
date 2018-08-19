@@ -1,0 +1,90 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+6 3010 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_JET + 1 R _script map_ncr@r_NCRProfit 1 100 #
+6 3020 D _item p PID_BOTTLE_CAPS } 5000 R _item p PID_BOTTLE_CAPS - 5000 R _item p PID_JET + 5 R _script map_ncr@r_NCRProfit 1 500 #
+6 3030 D _item p PID_BOTTLE_CAPS } 10000 R _item p PID_BOTTLE_CAPS - 10000 R _item p PID_JET + 10 R _script map_ncr@r_NCRProfit 1 1000 #
+2 3040 @
+6 4000 None 0 #
+2 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Shady Person}
+{200}{}{You see: Shady Person.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Psst.. i've got stuff you know.. The stuff.. you know.. The stuff you need to win. interested?}
+{2010}{}{Yeah. I am interested.}
+{2020}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] Not interested.}
+{3000}{}{The price is 1000 caps each. Take it or leave it.}
+{3010}{}{Ok. Give me one.@@I need one.@@I'll take one.}
+{3020}{}{Five will be good.@@Give me five.@@I want five.}
+{3030}{}{Ten , I need to stock up.@@Give me ten.@@I'm kinda itchy, give me ten.@@I want ten.}
+{3040}{}{I changed my mind, sorry.@@Nevermind that.}
+{4000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{4010}{}{Thank's. I need something more.}
+{4020}{}{Awesome, bye.}
+
+[russ]
+{100}{}{Shady Person}
+{200}{}{You see: Shady Person.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Psst.. i've got stuff you know.. The stuff.. you know.. The stuff you need to win. interested?}
+{2010}{}{Yeah. I am interested.}
+{2020}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] Not interested.}
+{3000}{}{The price is 1000 caps each. Take it or leave it.}
+{3010}{}{Ok. Give me one.@@I need one.@@I'll take one.}
+{3020}{}{Five will be good.@@Give me five.@@I want five.}
+{3030}{}{Ten , I need to stock up.@@Give me ten.@@I'm kinda itchy, give me ten.@@I want ten.}
+{3040}{}{I changed my mind, sorry.@@Nevermind that.}
+{4000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{4010}{}{Thank's. I need something more.}
+{4020}{}{Awesome, bye.}
+
+[pols]
+{100}{}{Shady Person}
+{200}{}{You see: Shady Person.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Psst.. i've got stuff you know.. The stuff.. you know.. The stuff you need to win. interested?}
+{2010}{}{Yeah. I am interested.}
+{2020}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] Not interested.}
+{3000}{}{The price is 1000 caps each. Take it or leave it.}
+{3010}{}{Ok. Give me one.@@I need one.@@I'll take one.}
+{3020}{}{Five will be good.@@Give me five.@@I want five.}
+{3030}{}{Ten , I need to stock up.@@Give me ten.@@I'm kinda itchy, give me ten.@@I want ten.}
+{3040}{}{I changed my mind, sorry.@@Nevermind that.}
+{4000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{4010}{}{Thank's. I need something more.}
+{4020}{}{Awesome, bye.}
+
+[ptbr]
+{100}{}{Shady Person}
+{200}{}{You see: Shady Person.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Psst.. i've got stuff you know.. The stuff.. you know.. The stuff you need to win. interested?}
+{2010}{}{Yeah. I am interested.}
+{2020}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] Not interested.}
+{3000}{}{The price is 1000 caps each. Take it or leave it.}
+{3010}{}{Ok. Give me one.@@I need one.@@I'll take one.}
+{3020}{}{Five will be good.@@Give me five.@@I want five.}
+{3030}{}{Ten , I need to stock up.@@Give me ten.@@I'm kinda itchy, give me ten.@@I want ten.}
+{3040}{}{I changed my mind, sorry.@@Nevermind that.}
+{4000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{4010}{}{Thank's. I need something more.}
+{4020}{}{Awesome, bye.}
+

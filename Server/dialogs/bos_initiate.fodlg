@@ -1,0 +1,62 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _param p TRAIT_SKILLED = 1 #
+2 1020 D _param p MAIN_FACTION ! 2 #
+3 1030 D _param p MAIN_FACTION = 2 @
+2 2000 None 0 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Brotherhood Initiate}
+{200}{}{You see: Brotherhood Initiate}
+{210}{}{This person is one of the many new recruits flocking to the Brotherhood ranks.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{I can't wait to scorch something's ass!@@When do we get the power armor?@@I'm glad I left the Hub swamp and winded up here.@@Hi.@@Hey.@@Joining the Brotherhood is a smart move.@@Didn't I see you at the bazaar in Shady Sands?@@I'm new here.@@You should talk to my commanding Knight.@@Get out of my face.@@You stink.@@Why don't you join up?@@I've been all over the wastes.@@You wouldn't last a day in the Brotherhood.@@I've completed my basic training.@@Join us or go away.@@What are you doing here?@@I left my family to join the Brotherhood.@@Want something?@@You ever shoot a turbo plasma?@@Think you're tough?@@What?@@I can't wait to kill something!}
+{3000}{}{Hi.@@Hey.@@Didn't I see you at the bazaar in Shady Sands?@@I'm new here.@@How long have you been in the Brotherhood?@@You aren't as strong as me!@@I've completed my basic training, have you?@@I heard you didn't have to go to boot camp.@@What are you doing here?@@I left my family to join the Brotherhood.@@Want something?@@You ever shoot a turbo plasma?@@What?@@We are Brothers now.@@If they tell you to go to the Glow, don't do it!@@I miss home.}
+{4000}{}{Get out of here, the Brotherhood doesn't tolerate you mutants.@@Get the hell outta here.@@Get lost, mutant!@@We don't tolerate your kind around here.@@Get the fuck out of here, while you still can, mutant.@@We don't tolerate you FEV rejects around here.@@Fucking mutant!}
+
+[russ]
+{100}{}{Brotherhood Initiate}
+{200}{}{You see: Brotherhood Initiate}
+{210}{}{This person is one of the many new recruits flocking to the Brotherhood ranks.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{I can't wait to kill something!@@When do we get the power armor?@@I'm glad I left the Hub swamp and wound up here.@@Hi.@@Hey.@@Joining the Brotherhood is a smart move.@@Didn't I see you at the bazaar in Shady Sands?@@I'm new here.@@You should talk to my commanding Knight.@@Get out of my face.@@You stink.@@Why don't you join up?@@I've been all over the wastes.@@You wouldn't last a day in the Brotherhood.@@I've completed my basic training.@@Join us or go away.@@What are you doing here?@@I left my family to join the Brotherhood.@@Want something?@@You ever shoot a turbo plasma?@@Think you're tough?@@What?}
+{3000}{}{Hi.@@Hey.@@Didn't I see you at the bazaar in Shady Sands?@@I'm new here.@@How long have you been in the Brotherhood?@@You aren't as strong as me!@@I've completed my basic training, have you?@@I heard you didn't have to go to boot camp.@@What are you doing here?@@I left my family to join the Brotherhood.@@Want something?@@You ever shoot a turbo plasma?@@What?@@We are Brothers now.@@If they tell you to go to the Glow, don't do it!@@I miss home.}
+{4000}{}{Get lost, the Brotherhood doesn't like you mutants.@@Get the hell outta here.@@Get lost, mutant!@@We don't tolerate your kind around here.}
+
+[pols]
+{100}{}{Rekrut Bractwa}
+{200}{}{Widzisz: Rekruta Bractwa}
+{210}{}{Ta osoba jest jedn¹ z wielu nowych rekrutów Bractwa Stali.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Nie mogï¿½ siï¿½ doczekaï¿½, kiedy bï¿½dï¿½ mï¿½gï¿½ usmoliï¿½ czemuï¿½ dupsko!@@Kiedy dostanï¿½ wreszcie jakis pancerz wspomagany?@@Cieszï¿½ siï¿½, ï¿½e opuï¿½ciï¿½em to bagno w Hubie i przyszedï¿½em tutaj.@@Czeï¿½ï¿½.@@Witaj.@@Doï¿½ï¿½czenie do Bractwa Stali to byï¿½ dobry pomysï¿½.@@Czy ja ciï¿½ przypadkiem nie widziaï¿½em gdzieï¿½ na bazarze w Cienistych Piaskach?@@Jestem tu nowy.@@Powinieneï¿½ porozmawiaï¿½ z moim przeï¿½oï¿½onym Rycerzem.@@Zejdï¿½ mi z oczu, czï¿½owieku.@@ï¿½mierdzisz jak nieumyty siusiacz.@@Czemu siï¿½ nie przyï¿½ï¿½czysz?@@Byï¿½em juï¿½ chyba w kaï¿½dym zakamarku Pustkowii@@Nie wytrzymaï¿½byï¿½ nawet dnia w Bractwie.@@Zakoï¿½czyï¿½em juï¿½ podstawowe szkolenie.@@Doï¿½ï¿½cz do nas, albo zjeï¿½dzaj.@@Co ty tu robisz?@@Zostawiï¿½em swojï¿½ rodzinï¿½, ï¿½eby doï¿½ï¿½czyï¿½ do Bractwa.@@Chcesz czegoï¿½?@@Miaï¿½eï¿½ kiedyï¿½ okazjï¿½ strzeliï¿½ z Turbo Plazmy?@@Myï¿½lisz, ï¿½e jesteï¿½ twardy?@@Co?}
+{3000}{}{Czeï¿½ï¿½.@@Witaj.@@Czy ja ciï¿½ przypadkiem nie widziaï¿½em gdzieï¿½ na bazarze w Cienistych Piaskach?@@Jestem tu nowy.@@Od jak dawna jesteï¿½ w Bractwie?@@Nie jesteï¿½ taki twardy jak ja.@@Zakoï¿½czyï¿½em juï¿½ podstawowe szkolenie, a ty?@@Sï¿½yszaï¿½em, ï¿½e ominï¿½ï¿½ ciï¿½ obï¿½z dla rekrutï¿½w.@@Co ty tu robisz?@@Zostawiï¿½em swojï¿½ rodzinï¿½, ï¿½eby doï¿½ï¿½czyï¿½ do Bractwa.@@Chcesz czegoï¿½?@@Miaï¿½eï¿½ kiedyï¿½ okazjï¿½ strzeliï¿½ z Turbo Plazmy?@@Co?@@Teraz jesteï¿½my Braï¿½mi.@@Jeï¿½li powiedzï¿½ ci, ï¿½ebyï¿½ poszedï¿½ do Blasku, to nie rï¿½b tego.@@Tï¿½sknie za domem.}
+{4000}{}{Wynoï¿½ siï¿½, Bractwo nie toleruje was, mutantï¿½w.@@Wypierdalaj stï¿½d, pï¿½ki jeszcze moï¿½esz, mutancie.@@Pieprzony mutant!@@Nie tolerujemy tutaj takich jak ty, wyrzutku po kuracji FEVsem.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{I can't wait to scorch something's ass!@@When do we get the power armor?@@I'm glad I left the Hub swamp and winded up here.@@Hi.@@Hey.@@Joining the Brotherhood is a smart move.@@Didn't I see you at the bazaar in Shady Sands?@@I'm new here.@@You should talk to my commanding Knight.@@Get out of my face.@@You stink.@@Why don't you join up?@@I've been all over the wastes.@@You wouldn't last a day in the Brotherhood.@@I've completed my basic training.@@Join us or go away.@@What are you doing here?@@I left my family to join the Brotherhood.@@Want something?@@You ever shoot a turbo plasma?@@Think you're tough?@@What?@@I can't wait to kill something!}
+{3000}{}{Hi.@@Hey.@@Didn't I see you at the bazaar in Shady Sands?@@I'm new here.@@How long have you been in the Brotherhood?@@You aren't as strong as me!@@I've completed my basic training, have you?@@I heard you didn't have to go to boot camp.@@What are you doing here?@@I left my family to join the Brotherhood.@@Want something?@@You ever shoot a turbo plasma?@@What?@@We are Brothers now.@@If they tell you to go to the Glow, don't do it!@@I miss home.}
+{4000}{}{Get out of here, the Brotherhood doesn't tolerate you mutants.@@Get the hell outta here.@@Get lost, mutant!@@We don't tolerate your kind around here.@@Get the fuck out of here, while you still can, mutant.@@We don't tolerate you FEV rejects around here.@@Fucking mutant!}
+

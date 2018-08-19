@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Doctor Troy}
+{200}{}{You see: Dr. Troy.}
+{210}{}{You see  a middle-aged man wearing lab coat. He seems to be busy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not VC member}
+{2000}{}{Excuse me, but what are you doing here?@@Please, leave now!@@I am extremely busy! No time to talk.@@Stop bothering me, I've got important work to do!}
+
+[russ]
+{100}{}{доктор Трой}
+{200}{}{Вы видите мужчину средних лет в халате. Он, кажется, занят.}
+{210}{}{Вы видите Доктора Троя.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not VC member}
+{2000}{}{Простите, но, что вы здесь делаете?@@Пожалуйста, уходите!@@Я занят! Нет времени, на разговоры!@@Не отвлекайте меня, у меня важная работа.}
+
+[pols]
+{100}{}{Doktor Troy}
+{200}{}{Widzisz mężczyznę w średnim wieku, ubranego w kitel. Wygląda na mocno zajętego.}
+{210}{}{Widzisz doktora Troya.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not VC member}
+{2000}{}{Przepraszam, co tutaj robisz?@@Proszę, wyjdź natychmiast!@@Jestem zajęty! Nie mam czasu na rozmowy!@@Przestań mnie zaczepiać, mam ważniejsze rzeczy na głowie!}
+
+[ptbr]
+{100}{}{Doutor Troy}
+{200}{}{Você vê um homem de meia idade vestindo jaleco. Ele parece estar bastante ocupado.}
+{210}{}{Você vê o Dr. Troy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not VC member}
+{2000}{}{Desculpe-me, mas o que veio fazer aqui mesmo?@@Por favor, saia agora!@@Estou ocupado! Não tenho tempo para conversar!@@Pare de me incomodar, eu tenho coisas mais importantes a fazer!}
+

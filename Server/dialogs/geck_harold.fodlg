@@ -1,0 +1,375 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+4 1020 @
+3 2000 None 0 #
+11 2010 #
+5 2020 #
+15 2030 #
+16 2040 #
+17 2050 #
+0 2060 D _script tc_dialogs@d_CanTakeOver 0  R _script tc@r_StartTc 0  #
+0 2070 @
+4 3000 None 0 #
+11 3010 #
+15 3020 #
+16 3030 #
+17 3040 #
+5 3050 #
+0 3060 D _script tc_dialogs@d_CanTakeOver 0  R _script tc@r_StartTc 0  #
+0 3070 @
+5 4000 None 0 #
+7 4010 #
+6 4020 @
+6 5000 None 0 #
+7 5010 #
+4 5020 @
+7 6000 None 0 #
+8 6010 #
+0 6020 @
+8 7000 None 0 #
+9 7010 @
+9 8000 None 0 #
+10 8010 @
+10 9000 None 0 #
+4 9010 #
+18 9020 #
+0 9030 @
+11 10000 None 0 #
+4 10010 #
+12 10020 #
+0 10030 @
+12 11000 None 0 #
+0 11010 #
+13 11020 @
+13 12000 None 0 #
+4 12010 #
+0 12020 @
+15 13000 None 0 #
+4 13010 #
+0 13020 @
+16 14000 None 0 #
+4 14010 #
+0 14020 @
+17 15000 None 0 #
+4 15010 #
+0 15020 @
+18 16000 None 0 #
+19 16010 #
+20 16020 #
+4 16030 #
+0 16040 @
+19 17000 None 0 #
+21 17010 @
+20 18000 None 0 #
+19 18010 #
+0 18020 @
+21 19000 None 0 #
+4 19010 #
+0 19020 &
+
+[engl]
+{100}{}{Harold}
+{110}{}{Avatar_harold.png}
+{200}{}{You see a particularly leathery-looking Ghoul.}
+{200}{}{You see Harold.}
+{210}{}{You see a very old but still spry-looking ghoul.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, smoothskin. The name's Harold. I help keep this town running.}
+{2010}{}{Smoothskin? Why did you call me that?}
+{2020}{}{Hello, Harold. What do you do here?}
+{2030}{}{Is there someplace I can barter or re-supply here?}
+{2040}{}{Is that a tree growing out of your head?}
+{2050}{}{Harold, I'd like to know where I can get some healing.}
+{2060}{}{Shut up, from now this city belongs to us.}
+{2070}{}{Hello, Harold. Just passing through. Goodbye.}
+{3000}{}{Whatcha need, youngster?}
+{3010}{}{Why does everyone around here call me smoothskin?}
+{3020}{}{Is there someplace I can barter or re-supply here?}
+{3030}{}{Is that a tree growing out of your head?}
+{3040}{}{Harold, I'd like to know where I can get some healing.}
+{3050}{}{Hello, Harold. What do you do here?}
+{3060}{}{Shut up, from now this city belongs to us.}
+{3070}{}{Just passing through. Goodbye.}
+{4000}{}{Wha-whatever it takes to keep this place together. Better job on it than me.}
+{4010}{}{This place is coming apart?}
+{4020}{}{You don't sound so good.}
+{5000}{}{Yep, but I'm doing great for being dead! I never get tired of the looks when I tell that one.}
+{5010}{}{Ahh, right....So you say the place is falling apart?}
+{5020}{}{Dead, you say? Well, in that case you're doing great. So good you can answer my next question.}
+{6000}{}{Well, sorta. Our atomic reactor's a mite...sensitive. The people I got running it mean well, but... well, they are not the sharpest tools in the shed. If you know what I mean.}
+{6010}{}{What do you mean?}
+{6020}{}{Well, I'd love to stay and chat with you but I've got things to do and places to go. Good luck.}
+{7000}{}{Need a little time on the whetstone yourself, huh? I mean they are not too bright. Here's an example. The other day I get a report. On it, it says the main coolant valve should be shut down. That woulda caused a meltdown that would make the Grand Canyon look like a pig wallow.}
+{7010}{}{That sounds bad.}
+{8000}{}{Uh, yeah, that would be bad. Now, I got things fixed up in time, but we came close to the end there. They need someone to watch out for �em.}
+{8010}{}{Good thing you're here to help them.}
+{9000}{}{Who'd a thought I'd be making things right?  Although if we don't get this plant working better quick, there is gonna be trouble.}
+{9010}{}{Hmm, sounds like a real problem all right. Let me ask you something else.}
+{9020}{}{Trouble? What kind of trouble?}
+{9030}{}{Well, I've taken enough of your valuable time. Goodbye.}
+{10000}{}{You cut with the dull edge of the knife, don't ya?  You don't look like an orange peel left in the sun all day. Your skin's still soft and purty.}
+{10010}{}{Got me there. I'll try to make my next question a little more worthwhile.}
+{10020}{}{You just better not be getting any funny ideas about my soft skin.}
+{10030}{}{Uh, well, I better be going. Goodbye.}
+{11000}{}{Funny ideas? Well, you mean like skinning you alive with a rusty, dull, old knife and then grafting your still-warm, wet, glistening, oh-so-soft, skin over my crusty-rotten gook?}
+{11010}{}{Hey! You just keep the hell away from me. I'm getting out of here while I still have my skin!}
+{11020}{}{Yeah, that's exactly what I meant. Good call.}
+{12000}{}{More skin! ... Need more skin! (chuckles) What happ'n? Drop your sense of humor in the dust on the way into town?}
+{12010}{}{How about I change the subject with another question?}
+{12020}{}{Well, you just better keep your grubby mitts off my skin. Goodbye.}
+{13000}{}{Well, you might try talking to Wooz over in the Harp. You can't miss it - it's just across the way.}
+{13010}{}{Thanks. Let me ask you something else.}
+{13020}{}{That's all I need to know for now. Goodbye.}
+{14000}{}{Jealous? His name's Herbert. I talk to him when I get lonely... Heh heh. Just kiddin'... His name's Bob.}
+{14010}{}{Right...Well, maybe you or Bob will know the answer to this.}
+{14020}{}{Thanks, that's way more than I need to know for now. Goodbye.}
+{15000}{}{Just talk to my assistant, Lenny. He'll be able to fix ya right up.}
+{15010}{}{Thanks. Let me ask you something else.}
+{15020}{}{Thanks, that's all I need to know for now. Goodbye.}
+{16000}{}{We're leaking radioactive coolant into the groundwater. Now that means, anyone using that water is not gunna need a night-light to take a midnight piss. Also, we need more fuel because our power plant is not burnin' it very efficiently.}
+{16010}{}{What happens if you don't fix the plant?}
+{16020}{}{Who do you buy your fuel from?}
+{16030}{}{Sorry to hear it. Let me ask you about something else.}
+{16040}{}{I think I'm going to have to leave you to your troubles for right now. Goodbye.}
+{17000}{}{If we don't, you can bet those boneheads from Vault City will shut down our power plant, permanently.}
+{17010}{}{What will you do then?}
+{18000}{}{We get our fuel from the Broken Hills. That's a mining community some ways south.}
+{18010}{}{What happens if you don't fix the plant?}
+{18020}{}{Hmm, I think I should let you figure this out on your own. Goodbye.}
+{19000}{}{Take dirt naps. Vault City doesn't play nice. They'll just come up here and kill all of us if we don't get things running smooth. Well, at least I'll have a tree for a monument.}
+{19010}{}{Sounds like you need to fix the plant pretty badly. Let me ask you something else right now, though.}
+{19020}{}{Sounds like trouble. I need to run off and see what I can do. Bye.}
+
+[russ]
+{100}{}{Гарольд}
+{200}{}{Вы видите мертвяка.}
+{200}{}{Вы видите Гарольда.}
+{210}{}{Вы видите мертвяка. По его манере общения с другими вы понимаете, что он здесь главный.}
+{210}{}{Вы видите Гарольда. Кажется, что этот мертвяк такой же древний, как время.}
+{210}{}{Вы видите Гарольда. Старина даже еще не развалился от времени.}
+{210}{}{Вы видите Гарольда. Кажется, его дерево плодоносит!}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Так чем я могу тебе помочь, гладкокожий?@@Что тебе нужно?@@Зашёл поздороватся?@@Давно я тебя здесь не видел.@@Всё бродишь по пустоши?@@А мы тут Гекко отстраиваем...@@О, ты как раз к ужину зашёл!@@Что мне тебе расказать?@@Устал я что-то, что там у тебя?@@Хочешь что-то сказать?@@Что ты хочешь узнать?@@О чём будем говорить?@@Какие дела обсудим?}
+{2010}{}{Гладкокожий? Почему ты меня так называешь?}
+{2020}{}{Здравствуйте, Гарольд. Что вы делаете здесь?}
+{2030}{}{Где я могу пополнить запасы?}
+{2040}{}{Это что, дерево у тебя из головы растет?}
+{2050}{}{Гарольд, где я могу получить медицинскую помощь?}
+{2060}{}{Заткнись, теперь этот город принадлежит нам.}
+{2070}{}{Здравствуйте, Гарольд. Просто мимо проходил. До свидания.}
+{3000}{}{Чего тебе, мальчик?}
+{3010}{}{Почему все здесь называют меня гладкокожий?}
+{3020}{}{Где я могу пополнить запасы?}
+{3030}{}{Это что, дерево у тебя из головы растет?}
+{3040}{}{Гарольд, где я могу получить медицинскую помощь?}
+{3050}{}{Здравствуйте, Гарольд. Что вы делаете здесь?}
+{3060}{}{Заткнись, теперь этот город принадлежит нам.}
+{3070}{}{Просто мимо проходил. До свидания.}
+{4000}{}{Все возможное, чтобы заботится об этом месте.}
+{4010}{}{Что не так с этим местом?}
+{4020}{}{Звучит не очень весело.}
+{5000}{}{Да, но я могу много работать и не уставать, потому что я мертвяк.}
+{5010}{}{Понятно, так что вы говорите не так с этим местом?}
+{5020}{}{Мертвяк, ну чтож понятно. У меня другой вопрос.}
+{6000}{}{Наш реактор очень чувствительный, люди которые обслуживают знают это, но они не очень хороший иструмент для обслуживания реактор, если вы понимаете о чем я.}
+{6010}{}{Что ты имеешь в виду?}
+{6020}{}{Ну, я хотел бы остаться и поболтать с вами, но у меня есть еще дела. Удачи.}
+{7000}{}{Нужно много времени тратить на самообучение, да? Я имею ввиду очень не очень хорошие специалисты.}
+{7010}{}{Это звучит плохо.}
+{8000}{}{Да, в этом нет ничего хорошего, мне приходтся постоянно присматривать за ними.}
+{8010}{}{Хорошо, что вы здесь, чтобы помочь им.}
+{9000}{}{Если бы я был уверен, что смогу сделать все правильно, могут быть проблемы.}
+{9010}{}{Мдаа, но у меня есть другой вопрос.}
+{9020}{}{Проблемы? Какие проблемы?}
+{9030}{}{Ну, я портатил уже достаточно вашего драгоценного времени. До свидания.}
+{10000}{}{Вы не похожи на апельсиновую корку оставленную на солнце на весь день. Ваша кожа все еще мягкая и упругая.}
+{10010}{}{Не бери в голову, у меня другой вопрос.}
+{10020}{}{Вам лучше не придумывать никаких глупых идей по поводу моей кожи.}
+{10030}{}{Ну, что ж, я, пожалуй, пойду. До свидания.}
+{11000}{}{Глупые идеи? Например срезать вашу гладкую и упругую кожу жравым ножем и натянуть на себя?}
+{11010}{}{Эй! Держитесь подальше от меня. Я ухожу отсюда, пока я до сих пор в своей коже!}
+{11020}{}{Да, это именно то, что я имел в виду.}
+{12000}{}{Более кожи! ... Мне нужно больше кожи! (Смеется) Что случилось? Вы забыли ваше чувство юмора дома?}
+{12010}{}{Давайте сменим тему.}
+{12020}{}{Ну, просто держитесвои шаловливые ручки подальше от моей кожи. До свидания.}
+{13000}{}{Ну, вы можете попробовать поговорить с Вузом в баре арфа.}
+{13010}{}{Спасибо. Позвольте спросить кое-что еще.}
+{13020}{}{Это все, что мне нужно знать. До свидания.}
+{14000}{}{Его зовут Герберт. Я поговорю с ним, когда мне одиноко... Хе-хе. Просто шучу... Его зовут Боб.}
+{14010}{}{Понятно ... Ну, может быть, вы или Боб знаете ответ на мой вопрос.}
+{14020}{}{Спасибо, это намного больше, чем мне нужно знать. До свидания.}
+{15000}{}{Просто поговорите с моим помощником, Ленни.}
+{15010}{}{Спасибо. Позвольте спросить кое-что еще.}
+{15020}{}{Это все, что мне нужно знать. До свидания.}
+{16000}{}{Мы починить исправить главную уставку, сейчас утечка радиации загрязняет грунтовые воды.}
+{16010}{}{Что произойдет, если вы не почините реактор?}
+{16020}{}{У кого вы покупаете топливо?}
+{16030}{}{Грустно это слышать. Позвольте мне спросить вас о другом.}
+{16040}{}{Я думаю, что я буду вынужден покинуть вас, и оставить вас наедине с вашими проблемами. До свидания.}
+{17000}{}{Если этого не сделать, могу поспорить, что тупицы из Города Убежища закроют насовсем наш реактор.}
+{17010}{}{Что вы будете делать тогда?}
+{18000}{}{Мы получаем топливо из Брокен Хиллс. Они добывают его в шахтах.}
+{18010}{}{Что произойдет, если вы не почините реактор?}
+{18020}{}{Ладно, мне уже пора. Пока.}
+{19000}{}{Ничего, они просто прийдут сюда и убьют всех.}
+{19010}{}{Похоже у вас нет выбора, нужно починить реактор. У меня есть другой вопрос.}
+{19020}{}{Похоже, у вас большие неприятности. Я бы вам помог если бы это было в моих силах.}
+
+[pols]
+{100}{}{Harold}
+{110}{}{Avatar_harold.png}
+{200}{}{Widzisz wyjątkowo łykowatego ghula.}
+{200}{}{Widzisz Harolda.}
+{210}{}{Widzisz bardzo starego, ale wciąż żwawego ghula.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hejka gładkoskórku. Harold jestem. Trzymam to miasto na nogach.}
+{2010}{}{Gładkoskórek? Czemu mnie tak nazwałeś?}
+{2020}{}{Witaj, Haroldzie. Czym się tutaj zajmujesz?}
+{2030}{}{Jest tu jakieś miejsce, gdzie można by wymienić towary i zaopatrzyć się?}
+{2040}{}{Czy to coś, co wyrasta z twojej głowy, to drzewo?}
+{2050}{}{Haroldzie, czy mógłbyś mi powiedzieć, gdzie tu się można wyleczyć?}
+{2060}{}{Zamknij się, od teraz to miasto należy do nas.}
+{2070}{}{Witaj Harold. Tylko tak przelotnie zaglądam. Do widzenia.}
+{3000}{}{Czegóż ci trza, młodziku?}
+{3010}{}{Gładkoskórku? Czemu wszyscy mnie tu tak nazywają?}
+{3020}{}{Jest tu jakieś miejsce, gdzie można by wymienić towary i zaopatrzyć się?}
+{3030}{}{Czy to coś, co wyrasta z twojej głowy, to drzewo?}
+{3040}{}{Haroldzie, czy mógłbyś mi powiedzieć, gdzie tu się można wyleczyć?}
+{3050}{}{Witaj, Haroldzie. Czym się tutaj zajmujesz?}
+{3060}{}{Zamknij się, od teraz to miasto należy do nas.}
+{3070}{}{Tylko tak przelotnie zaglądam. Do widzenia.}
+{4000}{}{Co-cokolwiek potrzeba, by utrzymać to miejsce w jednym kawałku. Bardziej to służy jemu niż mnie.}
+{4010}{}{Czy to miejsce się rozlatuje?}
+{4020}{}{Nie wyglądasz zbyt dobrze.}
+{5000}{}{Tia, ale świetnie się trzymam jak na kogoś martwego! Nigdy nie nudzi mnie mina tych, którym to powiadam.}
+{5010}{}{Ach, tak... a więc mówisz, że to miejsce się rozlatuje??}
+{5020}{}{Martwego, powiadasz? Cóż, w takim razie trzymasz się świetnie. Jak to dobrze, że możesz odpowiedzieć na moje następne pytanie.}
+{6000}{}{No, mniej więcej. Nasz reaktor atomowy jezd odrobinkę... wrażliwy. Ludzie, których tu mam do pilnowania go, mają dobre chęci, ale... cóż, nie są najostrzejszymi narzędziami w tej szufladzie. Jeśli wiesz o co mi chodzi.}
+{6010}{}{O co ci chodzi?}
+{6020}{}{Byłoby bardzo miło zostać i pogadać z tobą, ale są rzeczy, które muszę zrobić i miejsca, które muszę odwiedzić. Do widzenia.}
+{7000}{}{Też trza ci trochę czasu, żeby się naostrzyć, co? Chodzi mi o to, że nie są zbyt bystrzy. Oto przykład. Któregoś dnia dostaję raport mówiący, że zawór głównego zespołu chłodzącego powinien zostać zakręcony. To by zrobiło takież roztopienie rdzenia, że cały Wielki Kanion wyglądałby jak małpi gaj.}
+{7010}{}{To brzmi groźnie.}
+{8000}{}{O taaak, to by było groźne. No, wszystko zostało naprawione na czas, ale byliśmy bliscy zejścia. Potrzeba im kogoś, co by ich pilnował.}
+{8010}{}{Na szczęście jesteś tu, żeby im pomóc.}
+{9000}{}{Któż by pomyślał, że zrobię to jak trzeba? Tym niemniej jeżeli szybko naprawimy elektrowni, to będą kłopoty.}
+{9010}{}{Hmm, rzeczywiście, to brzmi jak prawdziwy problem. Pozwól, że zapytam cię o coś innego.}
+{9020}{}{Kłopoty? Jakiego rodzaju kłopoty?}
+{9030}{}{Cóż, dość już chyba @sex@|zmarnowałem||zmarnowałam| twojego cennego czasu. Do widzenia.}
+{10000}{}{Tniesz tępą stroną noża, czyż nie? Nie wyglądasz jak pomarańczowa pestka wystawiona przez cały dzień na słońce. Twoja skóra wciąż jest gładka i zdrowa.}
+{10010}{}{Tu mnie masz. Postaram się, żeby następne pytanie było mądrzejsze.}
+{10020}{}{YLepiej, żebyś nie miał żadnych śmiesznych pomysłów na temat mojej gładkiej skóry.}
+{10030}{}{Uch, no cóż, lepiej już pójdę. Do widzenia.}
+{11000}{}{Śmiesznych pomysłów? Masz na myśli obdarcie cię za życia zardzewiałym, tępym, starym nożem i przyszycie twojej wciąż ciepłej, wilgotnej, lśniącej, och-jak-cudownie-gładkiej skóry do mojego szorstkiego, rozkładającego się, ociekającego śluzem cielska?}
+{11010}{}{Hej! Trzymaj się ode mnie z daleka, potworze. Wynoszę się stąd, póki jeszcze wciąż mam swoją skórę!}
+{11020}{}{Właśnie, dokładnie to mam na myśli. Dobrze to ująłeś.}
+{12000}{}{Więcej skóóry! Muszę mieć więcej skóóry! [Krztusi się ze śmiechu.] Cożeż się stało? Twojeż poczucie humoru zgubiło się gdzieś na pustyni?}
+{12010}{}{Może zmienimy ten temat? Mam inne pytanie.}
+{12020}{}{Chyba lepiej będzie, jeśli pójdę go poszukać. Do widzenia.}
+{13000}{}{Może spróbuj z Woozem w Harfie. Nie możesz przegapić tego miejsca - to dokładnie naprzeciwko.}
+{13010}{}{Dzięki. Pozwól, że spytam o coś innego.}
+{13020}{}{Dzięki, to wszystko, co @sex@|chciałem||chciałam| wiedzieć. Do widzenia.}
+{14000}{}{Zazdrość cię bierze? Nazywa się Herbert. Rozmawiam z nim, kiedy czuję się samotny... hehe. Tylkoż żartuję... nazywa się Bob!}
+{14010}{}{Jasne... a więc może ty albo Bob będziecie znali odpowiedź na następne pytanie.}
+{14020}{}{Dzięki. To wszystko, co co @sex@|chciałem||chciałam| wiedzieć. Do widzenia.}
+{15000}{}{Po prostu pogadaj z moim asystentem Lennym. On cię równo oporządzi.}
+{15010}{}{Dzięki. Pozwól, że zapytam o coś innego.}
+{15020}{}{Dzięki. To wszystko, co co @sex@|chciałem||chciałam| wiedzieć. Do widzenia.}
+{16000}{}{Nasze promieniotwórcze chłodziwo przecieka do wód gruntowych. To z kolei oznacza, że ktokolwiek się tej wody napije, nie będzie już potrzebował nocnej lampki, gdy mu się w środku nocy zachce siusiu. Poza tym potrzebujemy więcej paliwa, bo nasza elektrownia nie spala go zbyt wydajnie.}
+{16010}{}{Co się stanie, jeśli nie naprawicie elektrowni?}
+{16020}{}{Od kogo kupujecie paliwo?}
+{16030}{}{Przykro mi to słyszeć. Pozwól, że zapytam o coś innego.}
+{16040}{}{Chyba na razie zostawię cię z twoimi problemami. Do widzenia.}
+{17000}{}{Można się założyć, że te dranie z Kryptopolis wyłączą wtedy naszą elektrownię. Na zawsze.}
+{17010}{}{I co się wtedy z wami stanie?}
+{18000}{}{Zdobywamy nasze paliwo w Broken Hills. To taka osada górnicza na południe stąd.}
+{18010}{}{Co się stanie, jeśli nie naprawicie elektrowni?}
+{18020}{}{Hmm, chyba lepiej będzie, jeśli pozwolę ci poradzić sobie z tym samodzielnie. Do widzenia.}
+{19000}{}{Zrobimy sobie dłuuga drzemkę. Kryptopolis nie gra fair. Po prostu przyjdą tu i zabiją nas wszystkich. No, ale przynajmniej będę miał już drzewo do posadzenia na grobie.}
+{19010}{}{Wychodzi na to, że naprawdę potrzebujecie naprawić tę elektrownię. Pozwól, że teraz zapytam cię o coś innego.}
+{19020}{}{Brzmi niebezpiecznie. Muszę lecieć zobaczyć, co się da z tym zrobić. Na razie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, smoothskin. The name's Harold. I help keep this town running.}
+{2010}{}{Smoothskin? Why did you call me that?}
+{2020}{}{Hello, Harold. What do you do here?}
+{2030}{}{Is there someplace I can barter or re-supply here?}
+{2040}{}{Is that a tree growing out of your head?}
+{2050}{}{Harold, I'd like to know where I can get some healing.}
+{2060}{}{Shut up, from now this city belongs to us.}
+{2070}{}{Hello, Harold. Just passing through. Goodbye.}
+{3000}{}{Whatcha need, youngster?}
+{3010}{}{Why does everyone around here call me smoothskin?}
+{3020}{}{Is there someplace I can barter or re-supply here?}
+{3030}{}{Is that a tree growing out of your head?}
+{3040}{}{Harold, I'd like to know where I can get some healing.}
+{3050}{}{Hello, Harold. What do you do here?}
+{3060}{}{Shut up, from now this city belongs to us.}
+{3070}{}{Just passing through. Goodbye.}
+{4000}{}{Wha-whatever it takes to keep this place together. Better job on it than me.}
+{4010}{}{This place is coming apart?}
+{4020}{}{You don't sound so good.}
+{5000}{}{Yep, but I'm doing great for being dead! I never get tired of the looks when I tell that one.}
+{5010}{}{Ahh, right....So you say the place is falling apart?}
+{5020}{}{Dead, you say? Well, in that case you're doing great. So good you can answer my next question.}
+{6000}{}{Well, sorta. Our atomic reactor's a mite...sensitive. The people I got running it mean well, but... well, they are not the sharpest tools in the shed. If you know what I mean.}
+{6010}{}{What do you mean?}
+{6020}{}{Well, I'd love to stay and chat with you but I've got things to do and places to go. Good luck.}
+{7000}{}{Need a little time on the whetstone yourself, huh? I mean they are not too bright. Here's an example. The other day I get a report. On it, it says the main coolant valve should be shut down. That woulda caused a meltdown that would make the Grand Canyon look like a pig wallow.}
+{7010}{}{That sounds bad.}
+{8000}{}{Uh, yeah, that would be bad. Now, I got things fixed up in time, but we came close to the end there. They need someone to watch out for �em.}
+{8010}{}{Good thing you're here to help them.}
+{9000}{}{Who'd a thought I'd be making things right?  Although if we don't get this plant working better quick, there is gonna be trouble.}
+{9010}{}{Hmm, sounds like a real problem all right. Let me ask you something else.}
+{9020}{}{Trouble? What kind of trouble?}
+{9030}{}{Well, I've taken enough of your valuable time. Goodbye.}
+{10000}{}{You cut with the dull edge of the knife, don't ya?  You don't look like an orange peel left in the sun all day. Your skin's still soft and purty.}
+{10010}{}{Got me there. I'll try to make my next question a little more worthwhile.}
+{10020}{}{You just better not be getting any funny ideas about my soft skin.}
+{10030}{}{Uh, well, I better be going. Goodbye.}
+{11000}{}{Funny ideas? Well, you mean like skinning you alive with a rusty, dull, old knife and then grafting your still-warm, wet, glistening, oh-so-soft, skin over my crusty-rotten gook?}
+{11010}{}{Hey! You just keep the hell away from me. I'm getting out of here while I still have my skin!}
+{11020}{}{Yeah, that's exactly what I meant. Good call.}
+{12000}{}{More skin! ... Need more skin! (chuckles) What happ'n? Drop your sense of humor in the dust on the way into town?}
+{12010}{}{How about I change the subject with another question?}
+{12020}{}{Well, you just better keep your grubby mitts off my skin. Goodbye.}
+{13000}{}{Well, you might try talking to Wooz over in the Harp. You can't miss it - it's just across the way.}
+{13010}{}{Thanks. Let me ask you something else.}
+{13020}{}{That's all I need to know for now. Goodbye.}
+{14000}{}{Jealous? His name's Herbert. I talk to him when I get lonely... Heh heh. Just kiddin'... His name's Bob.}
+{14010}{}{Right...Well, maybe you or Bob will know the answer to this.}
+{14020}{}{Thanks, that's way more than I need to know for now. Goodbye.}
+{15000}{}{Just talk to my assistant, Lenny. He'll be able to fix ya right up.}
+{15010}{}{Thanks. Let me ask you something else.}
+{15020}{}{Thanks, that's all I need to know for now. Goodbye.}
+{16000}{}{We're leaking radioactive coolant into the groundwater. Now that means, anyone using that water is not gunna need a night-light to take a midnight piss. Also, we need more fuel because our power plant is not burnin' it very efficiently.}
+{16010}{}{What happens if you don't fix the plant?}
+{16020}{}{Who do you buy your fuel from?}
+{16030}{}{Sorry to hear it. Let me ask you about something else.}
+{16040}{}{I think I'm going to have to leave you to your troubles for right now. Goodbye.}
+{17000}{}{If we don't, you can bet those boneheads from Vault City will shut down our power plant, permanently.}
+{17010}{}{What will you do then?}
+{18000}{}{We get our fuel from the Broken Hills. That's a mining community some ways south.}
+{18010}{}{What happens if you don't fix the plant?}
+{18020}{}{Hmm, I think I should let you figure this out on your own. Goodbye.}
+{19000}{}{Take dirt naps. Vault City doesn't play nice. They'll just come up here and kill all of us if we don't get things running smooth. Well, at least I'll have a tree for a monument.}
+{19010}{}{Sounds like you need to fix the plant pretty badly. Let me ask you something else right now, though.}
+{19020}{}{Sounds like trouble. I need to run off and see what I can do. Bye.}
+

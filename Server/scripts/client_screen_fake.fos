@@ -1,0 +1,619 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+import void Transparency(bool enable) from "client_main";
+
+IGUIElementCheckBoxOpt@[] OptionState;
+IGUIElementImageOpt@[] CombatMode;
+
+class ScreenOntions : IGUIScreenCallbackShow
+{
+	void OnShow(int , int , int )
+	{
+		CritterCl@ chosen = GetChosen();
+		if (__AlwaysRun)
+			OptionState[0].setState(true);
+		else 
+			OptionState[0].setState(false);
+		if (IsDefaultIface())
+			OptionState[1].setState(false);
+		else 
+			OptionState[1].setState(true);
+		if (__OverHeadEffects)
+			OptionState[2].setState(true);
+		else 
+			OptionState[2].setState(false);
+		if (valid(chosen) && chosen.Param[SHOW_FOLLOW]==0)
+			OptionState[3].setState(true);
+		else if (valid(chosen) && chosen.Param[SHOW_FOLLOW]==1)
+			OptionState[3].setState(false);
+		if (valid(chosen) && chosen.Param[KARMA_COLORS]==0)
+			OptionState[4].setState(true);
+		else if (valid(chosen) && chosen.Param[KARMA_COLORS]==1)
+			OptionState[4].setState(false);
+		if (valid(chosen) && chosen.Param[TRAVEL_MODE]==1)
+			OptionState[5].setState(true);
+		else if (valid(chosen) && chosen.Param[TRAVEL_MODE]==0)
+			OptionState[5].setState(false);
+            
+        if (__GlobalMessages)
+            OptionState[6].setState(true);
+        else
+            OptionState[6].setState(false);
+        
+        if (__Transparency)
+            OptionState[7].setState(true);
+        else
+            OptionState[7].setState(false);
+            
+        if( valid(chosen) )
+        {
+            if ( FLAG( chosen.Param[ CR_CONFIG_FLAGS ], CR_CFG_NO_RELOAD ) )   
+                OptionState[8].setState(false);
+            else 
+                OptionState[8].setState(true);
+            if ( FLAG( chosen.Param[ CR_CONFIG_FLAGS ], CR_CFG_FACTION_ICONS ) )   
+                OptionState[9].setState(true);
+            else 
+                OptionState[9].setState(false);
+        }
+
+        for(uint i=0; i<CombatMode.length(); i++)
+			CombatMode[i].setVisible(false);
+		switch( __DefaultCombatMode )
+		{
+			case 0:
+				CombatMode[1].setVisible(true);
+				combatstate=1;
+				break;
+			case 1:
+				CombatMode[0].setVisible(true);
+				combatstate=0;
+				break;
+			case 2:
+				CombatMode[2].setVisible(true);
+				combatstate=2;
+				break;
+		}
+	}
+}
+
+class ScreenButton : IGUIElementCallbackMouseClick
+{
+
+    void OnMouseClick( int id,int click )
+    {
+		::ShowScreen( CLIENT_FAKE_OPTIONS, 0, 0, 0 );
+    }
+}
+
+class Buttons : IGUIElementCallbackMouseClick
+{
+	int id;
+	Buttons(uint id)
+	{
+		this.id=id;
+	}
+    void OnMouseClick(int mm, int click)
+    {
+			PushButton(id);
+				
+    }
+}
+
+void PushButton(int id)
+{
+	switch( id )
+    {
+		case 0:
+		break;
+		case 1:
+			CloseOptions(id);
+		break;
+		case 2:
+			CloseOptions(id);
+		break;
+		case 3:
+			ChangeCombatMode();
+		break;
+	}		
+}
+int combatstate=0;
+void ChangeCombatMode()
+{
+	for(uint i=0; i<CombatMode.length(); i++)
+			CombatMode[i].setVisible(false);
+	switch( combatstate )
+		{
+		case 0:
+		__DefaultCombatMode=0;
+		CombatMode[1].setVisible(true);
+		combatstate=1;
+		break;
+		case 1:
+		__DefaultCombatMode=2;
+		CombatMode[2].setVisible(true);
+		combatstate=2;
+		break;
+		case 2:
+		__DefaultCombatMode=0;
+		CombatMode[1].setVisible(true);
+		combatstate=3;
+		break;
+		case 3:
+		__DefaultCombatMode=1;
+		CombatMode[0].setVisible(true);
+		combatstate=0;
+		break;
+		}
+	CritterCl@ chosen = GetChosen();
+	if(valid(chosen))
+		RunServerScriptUnsafe( "test@unsafe_changemod", __DefaultCombatMode, 0, 0, null, null );
+}
+
+class OptionCheckBoxes : IGUIElementCallbackMouseClick
+{
+	uint id;
+	bool type;
+	OptionCheckBoxes(uint id)
+	{
+		this.id=id;
+		this.type = type;
+	}
+	
+     void OnMouseClick(int mm, int click)
+    {
+		ChangeParam(id);
+		
+	}
+}
+
+void ChangeParam(uint id)
+{
+	CritterCl@ chosen = GetChosen();
+	switch( id )
+    {
+	case 0:
+		if (OptionState[id].IsChecked())
+			__AlwaysRun=true;
+		else 
+			__AlwaysRun=false;
+		break;
+	case 1:
+		if (OptionState[id].IsChecked())
+			SetInterface(1);
+		else 
+			SetInterface(0);
+		break;
+	case 2:
+		if (OptionState[id].IsChecked())
+			__OverHeadEffects=true;
+		else 
+			__OverHeadEffects=false;
+		break;
+	case 3:
+		if (OptionState[id].IsChecked() && valid(chosen))
+			RunServerScriptUnsafe( "unsafe@unsafe_ChangeParam", SHOW_FOLLOW, 0, 0, null, null );
+		else if (valid(chosen))
+			RunServerScriptUnsafe( "unsafe@unsafe_ChangeParam", SHOW_FOLLOW, 1, 0, null, null );
+		break;
+	case 4:
+		if (OptionState[id].IsChecked() && valid(chosen))
+			RunServerScriptUnsafe( "unsafe@unsafe_ChangeParam", KARMA_COLORS, 0, 0, null, null );
+		else if (valid(chosen))
+			RunServerScriptUnsafe( "unsafe@unsafe_ChangeParam", KARMA_COLORS, 1, 0, null, null );
+		break;
+	case 5:
+		if (OptionState[id].IsChecked() && valid(chosen))
+			RunServerScriptUnsafe( "unsafe@unsafe_ChangeParam", TRAVEL_MODE, 1, 0, null, null );
+		else if (valid(chosen))
+			RunServerScriptUnsafe( "unsafe@unsafe_ChangeParam", TRAVEL_MODE, 0, 0, null, null );
+		break;
+    case 6:
+        if (OptionState[id].IsChecked())
+            __GlobalMessages=true;
+        else
+            __GlobalMessages=false; 
+        break;
+    case 7:
+        if (OptionState[id].IsChecked())
+        {
+            __Transparency=true;
+            if (GUI_GetActiveMainScreen() == CLIENT_MAIN_SCREEN_GAME)
+                Transparency(true);
+        }
+        else
+        {
+            __Transparency=false;
+            Transparency(false);
+        }
+        break;
+    case 8:
+        if (OptionState[id].IsChecked() && valid(chosen))
+        {
+            if ( FLAG( chosen.Param[ CR_CONFIG_FLAGS ], CR_CFG_NO_RELOAD ) )
+            {
+                int param = chosen.Param[ CR_CONFIG_FLAGS ];
+                UNSETFLAG( param, CR_CFG_NO_RELOAD );
+                RunServerScriptUnsafe( "unsafe@unsafe_SetFlag", param, 0, 0, null, null );
+            }
+        }
+        else if (valid(chosen))
+        {
+            if ( !FLAG( chosen.Param[ CR_CONFIG_FLAGS ], CR_CFG_NO_RELOAD ) )
+            {
+                int param = chosen.Param[ CR_CONFIG_FLAGS ];
+                SETFLAG( param, CR_CFG_NO_RELOAD );
+                RunServerScriptUnsafe( "unsafe@unsafe_SetFlag", param, 0, 0, null, null );
+            }
+        }
+        break;
+    case 9:
+        if (OptionState[id].IsChecked() && valid(chosen))
+        {
+            if ( !FLAG( chosen.Param[ CR_CONFIG_FLAGS ], CR_CFG_FACTION_ICONS ) )
+            {
+                int param = chosen.Param[ CR_CONFIG_FLAGS ];
+                SETFLAG( param, CR_CFG_FACTION_ICONS );
+                RunServerScriptUnsafe( "unsafe@unsafe_SetFlag", param, 0, 0, null, null );
+            }
+        }
+        else if (valid(chosen))
+        {
+            if ( FLAG( chosen.Param[ CR_CONFIG_FLAGS ], CR_CFG_FACTION_ICONS ) )
+            {
+                int param = chosen.Param[ CR_CONFIG_FLAGS ];
+                UNSETFLAG( param, CR_CFG_FACTION_ICONS );
+                RunServerScriptUnsafe( "unsafe@unsafe_SetFlag", param, 0, 0, null, null );
+            }
+        }
+        break;
+    }
+}
+
+
+
+void InitFakeScreen()
+{
+	ScreenButton Options;
+    GUI_AddButton ( CLIENT_MAIN_SCREEN_LOGIN )
+	.Visible(true)
+	.CallbackMouseClick( Options )
+	.Position("LogOptions")
+    .DownPic(GetIfaceIniStr("LogOptionsPicDn") );
+	
+	ScreenButton Options1;
+    GUI_AddButton ( CLIENT_SCREEN_MENU )
+	.Visible(true)
+	.CallbackMouseClick( Options1 )
+	.Position("MoptOptions")
+    .DownPic(GetIfaceIniStr("MoptOptionsPicDn") );
+	
+	GUI_AddText(CLIENT_MAIN_SCREEN_LOGIN)
+	.Position("LogPlayText")
+	.TextOptions(FONT_FAT,COLOR_MENU, FT_CENTERX)
+	.Text(GetMsgStr( TEXTMSG_GAME, 295 ));
+	
+	GUI_AddText(CLIENT_MAIN_SCREEN_LOGIN)
+	.Position("LogRegText")
+	.TextOptions(FONT_FAT,COLOR_MENU, FT_CENTERX)
+	.Text(GetMsgStr( TEXTMSG_GAME, 296 ));
+	
+	GUI_AddText(CLIENT_MAIN_SCREEN_LOGIN)
+	.Position("LogOptionsText")
+	.TextOptions(FONT_FAT,COLOR_MENU, FT_CENTERX)
+	.Text(GetMsgStr( TEXTMSG_GAME, 297 ));
+	
+	GUI_AddText(CLIENT_MAIN_SCREEN_LOGIN)
+	.Position("LogCreditsText")
+	.TextOptions(FONT_FAT,COLOR_MENU, FT_CENTERX)
+	.Text(GetMsgStr( TEXTMSG_GAME, 298 ));
+	
+	GUI_AddText(CLIENT_MAIN_SCREEN_LOGIN)
+	.Position("LogExitText")
+	.TextOptions(FONT_FAT,COLOR_MENU, FT_CENTERX)
+	.Text(GetMsgStr( TEXTMSG_GAME, 299 ));
+
+	
+}
+void InitOptionsScreen()
+{
+//Main interface
+
+	OptionState.resize(6);
+	ScreenOntions screenOntions;
+	GUI_CreateScreen(CLIENT_FAKE_OPTIONS,"prefscrn.frm")
+	.CallbackShow(screenOntions)
+    .CanMove(false)
+    .Modal(false)
+	.AutoCursor(true, CURSOR_DEFAULT);
+	
+	
+	for(uint i=0; i<OptionState.length(); i++)
+	{
+		GUI_AddText(CLIENT_FAKE_OPTIONS)
+		.Position(208,48+i*66)
+		.TextBoxSize(150, 10)
+		.TextOptions(FONT_FAT,COLOR_SAND)
+		.Text(GetMsgStr( TEXTMSG_GAME, 1008020+i));
+		
+		if (i==1)
+		{
+			GUI_AddText(CLIENT_FAKE_OPTIONS)
+			.Position(256,70+i*66)
+			.TextBoxSize(50, 10)
+			.TextOptions(FONT_FALLOUT,COLOR_SAND)
+			.Text(GetMsgStr( TEXTMSG_GAME, 1008042));
+			
+			GUI_AddText(CLIENT_FAKE_OPTIONS)
+			.Position(320,70+i*66)
+			.TextBoxSize(50, 10)
+			.TextOptions(FONT_FALLOUT,COLOR_SAND)
+			.Text(GetMsgStr( TEXTMSG_GAME, 1008043));
+		
+		}
+		else
+		{
+			GUI_AddText(CLIENT_FAKE_OPTIONS)
+			.Position(272,70+i*66)
+			.TextBoxSize(35, 10)
+			.TextOptions(FONT_FALLOUT,COLOR_SAND)
+			.Text(GetMsgStr( TEXTMSG_GAME, 1008040));
+			
+			GUI_AddText(CLIENT_FAKE_OPTIONS)
+			.Position(328,70+i*66)
+			.TextBoxSize(35, 10)
+			.TextOptions(FONT_FALLOUT,COLOR_SAND)
+			.Text(GetMsgStr( TEXTMSG_GAME, 1008041));
+		}
+		
+		OptionCheckBoxes check(i);
+		@OptionState[i]=GUI_AddCheckBox( CLIENT_FAKE_OPTIONS )
+		.CallbackMouseClick(check)
+		.Visible(true)
+		.Position(296,75+i*66)
+		.UnCheckedPic("b0.png")
+		.CheckedPic("b1.png");
+	}
+
+	Buttons b0(0);
+    GUI_AddButton( CLIENT_FAKE_OPTIONS )
+	.Visible(true)
+	.CallbackMouseClick( b0 )
+	.Position(24,449)
+	.UpPic("lilredup.frm")
+    .DownPic("lilreddn.frm");
+	
+	Buttons b1(1);
+    GUI_AddButton( CLIENT_FAKE_OPTIONS )
+	.Visible(true)
+	.CallbackMouseClick( b1 )
+	.Position(148,449)
+	.UpPic("lilredup.frm")
+    .DownPic("lilreddn.frm");
+	
+	Buttons b2(2);
+    GUI_AddButton( CLIENT_FAKE_OPTIONS )
+	.Visible(true)
+	.CallbackMouseClick( b2 )
+	.Position(264,449)
+	.UpPic("lilredup.frm")
+    .DownPic("lilreddn.frm");
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(100,12)
+	.TextBoxSize(200, 20)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008000));
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(44,449)
+	.TextBoxSize(70, 20)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008005));
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(168,449)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008006));
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(284,449)
+	.TextBoxSize(60, 20)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008007));
+	
+	//Combat Mode
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(40,44)
+	.TextBoxSize(180, 10)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text("Combat Mode");
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(20,83)
+	.TextBoxSize(80, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text("Real-time");
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(65,66)
+	.TextBoxSize(80, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text("Both modes");
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(120,83)
+	.TextBoxSize(80, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text("Turn-based");
+	
+	CombatMode.resize(3);
+	for(uint i=0; i<CombatMode.length(); i++)
+	{
+		@CombatMode[i]=GUI_AddImage(CLIENT_FAKE_OPTIONS, "s"+i+".png", PT_ART_INTRFACE, 74, 74);
+		CombatMode[i].setVisible(false);
+	}
+    
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(26,124)
+	.TextBoxSize(180, 10)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text("Global Messages");
+    
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(60,153)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008040));
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(120,153)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008041));
+    
+    OptionState.resize(10);
+    OptionCheckBoxes check6(6);
+	@OptionState[6]=GUI_AddCheckBox( CLIENT_FAKE_OPTIONS )
+	.CallbackMouseClick(check6)
+	.Visible(true)
+	.Position(74,152)
+	.UnCheckedPic("s0.png")
+	.CheckedPic("s2.png");
+    
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(36,204)
+	.TextBoxSize(180, 10)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text("Transparency");
+    
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(60,233)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008040));
+	
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(120,233)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008041));
+    
+    OptionCheckBoxes check7(7);
+    @OptionState[7]=GUI_AddCheckBox( CLIENT_FAKE_OPTIONS )
+	.CallbackMouseClick(check7)
+	.Visible(true)
+	.Position(74,234)
+	.UnCheckedPic("s0.png")
+	.CheckedPic("s2.png");
+    
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(42,286)
+	.TextBoxSize(180, 10)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text("Auto Reload");
+
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(60,313)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008040));
+
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(120,313)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008041));
+
+	OptionCheckBoxes check8(8);
+    @OptionState[8]=GUI_AddCheckBox( CLIENT_FAKE_OPTIONS )
+	.CallbackMouseClick(check8)
+	.Visible(true)
+	.Position(74,316)
+	.UnCheckedPic("s0.png")
+	.CheckedPic("s2.png");
+
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(42,364)
+	.TextBoxSize(180, 10)
+	.TextOptions(FONT_FAT,COLOR_SAND)
+	.Text("Faction Icons");
+
+    GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(60,393)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008040));
+
+	GUI_AddText(CLIENT_FAKE_OPTIONS)
+	.Position(120,393)
+	.TextBoxSize(35, 10)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1008041));
+
+	OptionCheckBoxes check9(9);
+    @OptionState[9]=GUI_AddCheckBox( CLIENT_FAKE_OPTIONS )
+	.CallbackMouseClick(check9)
+	.Visible(true)
+	.Position(74,394)
+	.UnCheckedPic("s0.png")
+	.CheckedPic("s2.png");
+
+    Buttons b3(3);
+    GUI_AddButton( CLIENT_FAKE_OPTIONS )
+	.Visible(false)
+	.CallbackMouseClick( b3 )
+	.ClickableZone(74, 74, 46, 46);
+
+}
+
+void CloseOptions(int id)
+{
+	::HideScreen( CLIENT_FAKE_OPTIONS, 0, 0, 0 );
+	if (GUI_GetActiveScreen()==CLIENT_SCREEN_MENU)
+		::HideScreen( CLIENT_SCREEN_MENU, 0, 0, 0 );
+}
+
+void SetInterface(int num)
+{
+file f;
+	switch( num )
+	{
+		case 0:
+			if( f.open( "interface.cfg", "w" ) == 0 )
+			{
+				f.writeString("#data/interface_cmbt.zip");
+				f.close();
+				Restart();
+			}
+		break;
+		case 1:
+			if( f.open( "interface.cfg", "w" ) == 0 )
+			{
+				f.writeString("data/interface_cmbt.zip");
+				f.close();
+				Restart();
+			}
+		break;
+	}
+}
+
+bool IsDefaultIface()
+{
+	string line;
+	file f;
+	if( f.open( "interface.cfg", "r" ) == 0 )
+    {
+		
+		f.readLine(line);
+		f.close();
+	}
+	if (line=="#data/interface_cmbt.zip")
+	{
+		return true;
+	}
+	return false;
+}

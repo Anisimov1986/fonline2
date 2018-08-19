@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Beggar}
+{200}{}{You see: Beggar.}
+{210}{}{He is dressed in old, smelly rags. It seems like he has been living on the streets for quite some time.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Oh God, please give me some money! I'm starving!@@Have mercy, spare a poor man a few caps!@@I have no place to crash.@@Nights sometimes get very cold, and then it gets really bad.@@I'd be better off dead.@@Do you have any fresh water, please?@@Fuck this shit.@@I think I'll get some rope.@@I need some caps, please!@@Will you help me? Please!@@I'm hungry.@@I haven't eaten in days, please!@@Can you just put me out of my misery?@@Life's a piece of shit, when you look at it.@@Always look on the bright side of life, they said.}
+
+[russ]
+{100}{}{Нищий}
+{200}{}{Вы видите нищего.}
+{210}{}{Вы видите нищего. Он гол как сокол и готов съесть слона. Худой как нитка, вы могли бы поклясться, что можно видеть сквозь него.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{[Он жалобно протягивает руку] Поодаа-а-айте на пропитание, ради бога, а то так пить хочется, что жрать нечего и переночевать негде!}
+
+[pols]
+{100}{}{Żebrak}
+{200}{}{Widzisz biedaka ubranego w stare, śmierdzące szmaty.}
+{210}{}{Widzisz biedaka ubranego w stare, śmierdzące szmaty. Wygląda na to, że śpi na ulicach.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Błagam, daj mi trochę pieniędzy - umieram z głodu!@@Okaż trochę współczucia, daj biedakowi trochę drobnych!@@Nie mam gdzie spać.@@Noce są czasem bardzo mroźne, wtedy jest najgorzej.@@Chciałbym mieć więcej pieniędzy, ledwo udaje mi się przeżyć z dnia na dzień.@@Masz może choć trochę świeżej wody?@@Już wolałbym żeby zastrzelił mnie któryś z tych żołnieży walczących dookoła cały czas, nie mogę już tak dłużej wytrzymać.@@Pomożesz mi? Proszę!@@Jestem głodny.@@Tak bardzo chce mi się pić, nie jadłem od kilku dni - proszę!@@Pomożesz mi wyjść z mojej nędzy?}
+
+[ptbr]
+{100}{}{Mendigo}
+{200}{}{Você vê um mendigo.}
+{210}{}{Ele está vestido em trapos velhos e fedidos. Parece que vive nestas condições por um tempo.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Pelamor de Deus, me dê um trocado! Eu tô passando fome!@@Tenha misericórdia, dê umas tampinhas para um necessitado!@@Eu não tenho onde ficar.@@As vezes as noites ficam muito frias e lascam tudo.@@Eu estaria melhor morto.@@Cê tem água, por favor?@@Pra porra com essa merda.@@Vou procurar uma corda.@@Preciso de umas tampinhas, por favor!@@Me ajuda por favor!@@Tô com fome.@@Não como faz dias, por favor!@@Pode me ajudar a sair dessa situação?@@A vida é uma merda.@@Sempre olhe pelo lado bom, dizem.}
+

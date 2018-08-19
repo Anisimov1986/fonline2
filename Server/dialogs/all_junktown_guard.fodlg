@@ -1,0 +1,132 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+7 1010 D _script dialog@d_HoldsItems 0  #
+2 1020 D _script dialog@d_IsOffender 0  #
+3 1030 @
+2 2000 None 0 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _var p q_my_first_tent = 0 #
+6 4020 D _var p q_my_first_tent = 1 #
+0 4030 @
+5 5000 None 0 #
+0 5010 #
+6 5020 R _var p q_my_first_tent = 1 @
+6 6000 None 0 #
+0 6010 #
+4 6020 @
+7 7000 None 0 #
+0 7010 R _script dialog@r_RetrieveItems 0  #
+0 7020 &
+
+[engl]
+{100}{}{Junktown guard}
+{200}{}{You see: Junktown guard.}
+{210}{}{This tough looking man is keeping constant watch over this place.}
+{1000}{}{Predialogue installations}
+{1010}{}{stuff}
+{1020}{}{- is offender}
+{1030}{}{- is not offender}
+{2000}{}{Well, what do we have have?@@Get lost, troublemaker.@@ We don't want your kind in here.@@Don't try to do anything stupid, you hear?@@Get the fuck outta my sight, troublemaker.@@Get lost!@@Great, our troublemaker is here.@@We are watching you, punk.@@Cause more trouble and you'll be in a world of shit.}
+{3000}{}{What do you want?@@Yeah?@@What do you want?@@State your business or get lost.}
+{3010}{}{Can I ask some questions?@@I've got some questions.@@I need some pointers.}
+{3020}{}{I need to be elsewhere.@@Gotta go.@@Bye.}
+{4000}{}{Yeah, but be quick about it.@@I guess...@@Yeah.@@Go on.@@Hope this won't take long...@@Shoot.}
+{4010}{}{Is there any safe place here where I could rest?@@Any idea where I could rest?@@I wanna take a nap... without being robbed or something. Any hints?}
+{4020}{}{Who did you say I should ask about that safe place to rest?}
+{4030}{}{Nevermind.@@Whatever.@@I've gotta go.}
+{5000}{}{Yeah, you can stay in The Crash House Hotel for couple of days, but I am not sure if there are any rooms available now. Or... you could just make yourself a tent and sleep somewhere near the town. Just don't sleep inside the walls.}
+{5010}{}{The hotel sounds good. I'll check that.@@Okay, thanks.@@I'll check it out then.}
+{5020}{}{A tent? And how would I make one?}
+{6000}{}{Go and ask Melsak. He's our local herdsman. A bit weird fella even for a tribal, if you ask me. But, who cares, as long as he doesn't do anything stupid.}
+{6010}{}{Thanks, I will.@@Okay, I will.@@Okay, thanks.}
+{6020}{}{Thanks, I will. Can I ask you something else?@@There was one more thing...@@One more thing...}
+{7000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{7010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{7020}{}{No, thanks, you can keep it.}
+
+[russ]
+{100}{}{Охранник Джанктауна}
+{200}{}{Вы видите охранника.}
+{210}{}{Суровый охранник оглядывает окрестности сосредоточенным взглядом.}
+{1000}{}{Predialogue installations}
+{1010}{}{stuff}
+{1020}{}{- is offender}
+{1030}{}{- is not offender}
+{2000}{}{Мне не нравится ваше поведение.@@Вы должны быть более осторожным в ваших действиях.@@Чего тебе?@@Ааааа, наш нарушитель пришел. Чего тебе?@@Мы следим за тобой.}
+{3000}{}{Привет. Могу чем-нибудь помочь?@@Нужна помощь?@@У вас все в порядке?}
+{3010}{}{Можно задать несколько вопросов?}
+{3020}{}{Я пожалуй пойду.}
+{4000}{}{Конечно.@@Я надеюсь, что смогу на них ответить.}
+{4010}{}{У вас есть какое-нибудь безопасное место, где я могу отдохнуть?}
+{4020}{}{У кого вы сказали можно узнать о безопасном месте?}
+{4030}{}{Не важно.}
+{5000}{}{Да вы можете остановится в гостинице Crash House на несколько дней, но я не уверен в том что там есть свободные комнаты. Вы также можете разбить лагерь неподалеку от города, никто не будет возражать.}
+{5010}{}{О, гостиница мне подходит, пойду узнаю по поводу свободных мест.}
+{5020}{}{Лагерь? И как же мне это сделать?}
+{6000}{}{Вам лучше узнать это у Мельсака. Он местный пастух. Немного странный, по моему мнению. Но он делает свою работу хорошо, так что это не имеет значения.}
+{6010}{}{Спасибо, так и сделаю.}
+{6020}{}{Спасибо, так и сделаю. А пока можно задать вам ещё один вопрос?}
+{7000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{7010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{7020}{}{No, thanks, you can keep it.}
+
+[pols]
+{100}{}{Strażnik Złomowa}
+{200}{}{Strażnik Złomowa.}
+{210}{}{Twardo wyglądający strażnik, dokładnie zwracający uwagę na wszystko, co dzieje się dookoła.}
+{1000}{}{Predialogue installations}
+{1010}{}{stuff}
+{1020}{}{- is offender}
+{1030}{}{- is not offender}
+{2000}{}{Nie podoba mi się twoje zachowanie.@@Uważaj na siebie.@@Czego chcesz?@@O, oto nasza gwiazda. Czego tu szukasz?@@Obserwujemy cię, cwaniaczku.}
+{3000}{}{Cześć. Mogę w czymś pomóc?@@Masz jakiekolwiek pytania?@@Wszystko w porządku?@@Potrzebujesz pomocy?}
+{3010}{}{Czy mogę zadać kilka pytań?}
+{3020}{}{Nie, naprawdę nie.}
+{4000}{}{Jasne.@@Pewnie że możesz.@@Oczywiście.@@Obym mógł na nie odpowiedzieć.}
+{4010}{}{Czy jest tu gdzieś bezpieczne miejsce, w którym @sex@|mógłbym||mogłabym| odpocząć?}
+{4020}{}{Kogo @sex@|powinienem||powinnam| spytać o to bezpieczne miejsce?}
+{4030}{}{Nieważne.}
+{5000}{}{Jasne, możesz zostać na parę dni w hotelu - chociaż nie jestem pewien, czy mają w tej chwili wolne pokoje. Możesz też rozbić namiot gdzieś poza miastem, nie mamy nic przeciwko.}
+{5010}{}{Hotel brzmi nieźle. Dzięki, sprawdzę to.}
+{5020}{}{Namiot? Ale jak miałbym go zbudować?}
+{6000}{}{@sex@|Powinieneś||Powinnaś| o to spytać Melsaka. Jest tutaj dozorcą braminów. Nieco ekscentryczny, ale swoją robotę wykonuje dobrze - a to się liczy.}
+{6010}{}{Dzięki, tak właśnie zrobię.}
+{6020}{}{Dzięki, tak właśnie zrobię. Mogę spytać o coś jeszcze?}
+{7000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{7010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{7020}{}{No, thanks, you can keep it.}
+
+[ptbr]
+{100}{}{Guarda do Sucatão}
+{200}{}{Você vê um guarda do Sucatão.}
+{210}{}{Esse homem está de olhos atentos para cuidar deste lugar.}
+{1000}{}{Predialogue installations}
+{1010}{}{- is offender}
+{1020}{}{- is not offender}
+{2000}{}{Olha só quem tá por aqui!@@Cai fora, arruaceiro.@@Não queremos lixo que nem tu aqui.@@Não tente fazer idiotice, entendeu?@@Sai de perto de mim, bagunceiro.@@Se manda!@@Que maravilha! Nosso arruaceiro está aqui.@@Estamos de olho, seu merda.@@Arranje mais confusão e vamos atrás de você.}
+{3000}{}{O quê que tu quer?@@Sim?@@O que tu quer?@@Diga o que quer ou vá embora.}
+{3010}{}{Posso perguntar umas coisas?}
+{3020}{}{Eu preciso estar em outro lugar.@@Preciso ir.@@Tchau.}
+{4000}{}{Aham, mas pergunte rápido.@@Creio que sim...@@Sim.@@Pode falar.@@Espero que não demore muito...@@Manda.}
+{4010}{}{Há algum lugar seguro onde eu poderia descansar?}
+{4020}{}{Quem você acha que eu deveria perguntar sobre algum lugar seguro para descansar?}
+{4030}{}{Deixa pra lá.}
+{5000}{}{É, você pode ficar no The Crash House Hotel por alguns dias mas eu não posso garantir que eles tenham quartos disponíveis. Ou, você poderia montar uma tenda e dormir em algum lugar próximo a cidade. Só não durma dentro da cidade, na rua.}
+{5010}{}{O hotel parece uma boa ideia. Vou dar uma olhada nisso.}
+{5020}{}{Uma tenda? E como eu montaria uma?}
+{6000}{}{Pergunta pro Melsak. Ele é o vaqueiro local. Um cara mei estranho, se quer saber... mas... quem se importa, enquanto ele não quebrar as leis.}
+{6010}{}{Valeu, vou perguntar.}
+{6020}{}{Valeu, vou perguntar. Posso perguntar outra coisa?}
+{7000}{}{Ei, você foi um dos que foi atacados aqui. Eu acho que estou com seus pertences. Acho que quer de volta, não?}
+{7010}{}{Claro! Obrigado! [Pega as coisas de volta.]@@É, obrigado. [Pega as coisas de voltaT.]@@É... [Pega as coisas de volta.]}
+

@@ -1,0 +1,325 @@
+#ifndef __CRITTER_BASIC_COMMANDS__
+#define __CRITTER_BASIC_COMMANDS__
+
+#include "_defines.fos"
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "wrappers.fos"
+
+#define RELASE_ME_FROM_JAIL_MESSAGE_ID     (1)
+
+#define LOOT_TYPE_REMEMBER          (1)
+#define LOOT_TYPE_DELETE            (2)  
+
+#define LOOT_PLANE_IDENTIFIER		       (110)
+
+
+import bool GetEntireFreeHex( Map& map, int number, uint16& hx, uint16& hy ) from "entire";
+import bool IsProtectedFromSkill(Critter& critter, int skill, Critter@ targetCritter, Item@ targetItem, Scenery@ targetScenery) from "custom_data";
+import int GetOffenceLevel(Critter& critter) from "critter_offence";
+import void ProcessOffence(Critter& critter, int severity) from "critter_offence";
+import void RemoveDeadBlocker( Critter& cr ) from "main";
+
+
+class SeePlayerStealingSuccessful : SeeSomeoneStealingEvent
+{	
+	void SeeSomeoneStealing(Critter& critter, Critter& victim, Critter& thief, bool success, Item& item, uint count, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = thief.IsPlayer() && success;
+		@commandTarget = thief;		
+	}
+}
+
+
+class SeePlayerStealingUnuccessful : SeeSomeoneStealingEvent
+{	
+	void SeeSomeoneStealing(Critter& critter, Critter& victim, Critter& thief, bool success, Item& item, uint count, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = thief.IsPlayer() && !success;
+		@commandTarget = thief;		
+	}
+}
+
+
+class SeePlayerUsingProtectedSkill : SeeSomeoneUseSkillEvent
+{
+	void SeeSomeoneUseSkill(Critter& critter, Critter& skillCritter, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = valid(skillCritter) && IsProtectedFromSkill(skillCritter, skill, onCritter, onItem, onScenery);
+		@commandTarget = skillCritter;
+	}
+}
+
+
+class TargetIsOffender : CommandPredicate
+{
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return false;
+		}
+	
+		return GetOffenceLevel(commandTarget) > 0;
+	}
+}
+
+
+class NoCritterHavePlane : CommandPredicate
+{
+	int planeId;
+	
+	NoCritterHavePlane(int planeId)
+	{
+		this.planeId = planeId;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return true;
+		}
+			
+		Map@ map = commandTarget.GetMap();
+		if(!valid(map))
+		{
+			return true;
+		}
+		
+		int extraPlaneId = 0;
+		if (valid(commandTarget))
+		{
+			extraPlaneId = commandTarget.Id;
+		}
+		
+		Critter@[] critters;
+		map.GetCritters(0, FIND_LIFE | FIND_ONLY_NPC, critters);
+		for (uint i = 0; i < critters.length(); i++)
+		{
+			if(critters[i].GetPlanes(LOOT_PLANE_IDENTIFIER, extraPlaneId, null) > 0)
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+}
+
+
+class SetFlagNoHome : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		critter.ModeBase[MODE_NO_HOME] = 1;
+	}
+}
+
+
+class UnsetFlagNoHome : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		critter.ModeBase[MODE_NO_HOME] = 0;
+	}
+}
+
+
+class RecordOffence : Command
+{
+	private int severity;
+
+	RecordOffence(int severity)
+	{
+		this.severity = severity;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		ProcessOffence(commandTarget, severity);
+	}
+}
+
+
+class SetOffenderJailTimeout : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return;
+		}
+	
+		int offenceLevel = GetOffenceLevel(commandTarget);
+		int timeout = 0;
+		
+		if (offenceLevel <= 1)
+		{
+			timeout = REAL_MINUTE(5);
+		}
+		else if (offenceLevel == 2)
+		{
+			timeout = REAL_MINUTE(10);
+		}
+		else if (offenceLevel == 3)
+		{
+			timeout = REAL_MINUTE(30);
+		}
+		else
+		{
+			timeout = REAL_MINUTE(60);
+		}
+		
+		commandTarget.TimeoutBase[TO_JAIL] = __FullSecond + timeout;
+	}
+}
+
+
+class TransitToTownJail : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		uint16 hexX = 0, hexY = 0;
+		
+		if (!valid(commandTarget))
+		{
+			return;
+		}
+	
+		if (critter.GetMapId() != commandTarget.GetMapId())
+		{
+			return;
+		}
+	
+		//Transit to jail - current map
+		Map@ map = commandTarget.GetMap();
+		
+		if (map.CountEntire(DEFAULT_TOWN_JAIL_ENTIRE) > 0 && GetEntireFreeHex(map, DEFAULT_TOWN_JAIL_ENTIRE, hexX, hexY))
+		{
+			commandTarget.TransitToMap(map.Id, hexX, hexY, commandTarget.Dir); 
+		}
+		else
+		{
+			//Transit to jail - try other maps
+			Location@ location = map.GetLocation();
+			
+			for (uint i = 0; i < location.GetMapCount(); i++)
+			{
+				Map@ map = location.GetMapByIndex(i);
+				if (map.CountEntire(DEFAULT_TOWN_JAIL_ENTIRE) > 0 && GetEntireFreeHex(map, DEFAULT_TOWN_JAIL_ENTIRE, hexX, hexY))
+				{
+					commandTarget.TransitToMap(map.Id, hexX, hexY, commandTarget.Dir);
+					break;
+				}
+			}
+		}
+		
+		//Set jail flag
+		commandTarget.ParamBase[JAILED] = 1;
+		
+		//Revive
+		if (commandTarget.IsDead())
+		{
+			RemoveDeadBlocker(commandTarget);
+			commandTarget.ToLife();
+		}
+		
+		//Refresh view
+		commandTarget.RefreshVisible();
+		
+		//Add release timer
+		commandTarget.AddTimeEvent("__CTEReleaseFromJailTimeout", commandTarget.TimeoutBase[TO_JAIL] - __FullSecond, CTE_RELEASE_FROM_JAIL);
+	}
+}
+
+uint __CTEReleaseFromJailTimeout(Critter& critter, int identifier, uint& rate)
+{
+	critter.SendMessage(RELASE_ME_FROM_JAIL_MESSAGE_ID, critter.Id, MESSAGE_TO_ALL_ON_MAP);
+	return 0;
+}
+
+class ReleaseFromTownJail : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return;
+		}
+		
+		commandTarget.TransitToGlobal(false);
+		commandTarget.ParamBase[JAILED] = 0;
+	}
+}
+
+
+class Loot : Command
+{
+	private int mode;
+	
+	Loot(int mode)
+	{
+		this.mode = mode;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if (valid(commandTarget))
+		{
+			Item@[] items;
+			commandTarget.GetItems(SLOT_INV, items);
+			commandTarget.GetItems(SLOT_HAND1, items);
+			commandTarget.GetItems(SLOT_HAND2, items);
+			commandTarget.GetItems(SLOT_ARMOR, items);
+			
+			Map@ map = commandTarget.GetMap();
+			if (valid(map))
+			{
+				map.GetItems(commandTarget.HexX, commandTarget.HexY, items);
+			}
+			
+			CheckForbiddenItems(items, false);
+			
+			if (mode == LOOT_TYPE_DELETE)
+			{
+				for (uint i = 0; i < items.length(); i++)
+				{
+					if (valid(items[i]))
+					{
+						DeleteItem(items[i]);
+					}
+				}
+			}
+			else if (mode == LOOT_TYPE_REMEMBER)
+			{
+				ItemHolderWrapper wrapper(critter);
+				wrapper.PutItems(commandTarget.Id, items);
+			}
+			else
+			{
+				Log("Unknown loot mode " + mode);
+			}
+			
+			_CritAnimatePickup(critter);
+			critter.Wait(2000);
+		}
+	}
+}
+
+
+class LookAt : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return;
+		}
+		
+		critter.SetDir(GetDirection(critter.HexX, critter.HexY, commandTarget.HexX, commandTarget.HexY)); 
+	}
+}
+
+
+#endif

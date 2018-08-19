@@ -1,0 +1,168 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script quest_5vs5@d_IsReadyForTeam1 1 1 #
+7 2020 D _script quest_5vs5@d_PlayerHaveBriefcase 0  R _script quest_5vs5@r_GiveBriefcaseToNpc 0  #
+0 2030 @
+3 3000 None 0 #
+8 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _script quest_5vs5@d_IsMember 1 1 #
+6 4020 D _script quest_5vs5@d_IsNotMember 1 1 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+10 9010 D _script quest_5vs5@d_IsReadyForTeam1 1 1 D _script quest_5vs5@d_IsValidTeam1 1 1 R _script quest_5vs5@r_Team1Join 2 1 0 #
+10 9020 D _script quest_5vs5@d_IsReadyForTeam1 1 1 D _script quest_5vs5@d_IsValidTeam1 1 1 R _script quest_5vs5@r_Team1Join 2 1 1 #
+0 9030 @
+10 10000 None 0 #
+5 10010 D _script quest_5vs5@d_IsMember 1 1 #
+6 10020 D _script quest_5vs5@d_IsNotMember 1 1 &
+
+[engl]
+{100}{}{Louis Salvatore}
+{200}{}{You see Louis Salvatore.}
+{210}{}{You see an elderly, well-dressed gentleman. He is carrying an oxygen tank, and he seems to have difficulty breathing.}
+{210}{}{You see Louis Salvatore. He is carrying an oxygen tank, and he seems
+ to have difficulty breathing.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{[Salvatore is sitting and scrolling the book he's reading. He has nervous ticks and trouble breathing.] Yes son?}
+{2010}{}{Mr. Salvatore. I was informed you're seeking for able fighters which are outside the conflict of New Reno families. My team and myself might be interested in such contract.}
+{2020}{}{The package. We've got it Mr. Salvatore.}
+{2030}{}{Forgive me Mister. I was simply worried about your health and decided to check in. I'll take my leave now.}
+{3000}{}{Closes a book and stares trough him for a brief moment. You've heard well my son. You and atleast two other worthy people. [He raises his finger] But not more than five will need to do certain delivery for me...}
+{3010}{}{That's why I'm here Mister.Tell me about it.}
+{3020}{}{I see. I will go and prepare my people. We will be back.}
+{4000}{}{Wait a moment.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{[Salvatore gives you coordinates of delivery location]. Go son. Don't fuck it up or you will lose your money.}
+{5010}{}{[Exit]}
+{6000}{}{[Frowns and stares at him.] Actually... I won't give you this job. Don't ask why.}
+{6010}{}{Y-yes. Mr...}
+{7000}{}{[Nods and his goons enter and take it away from him. He stands up and offers a hand.] Good job son. If you will need some money. You're welcome to come again with your people.}
+{7010}{}{I will Mr. Salvatore. Thank you.}
+{8000}{}{This is kind of sticky job. [He changes his tone to more aggresive and dangerous.] And I have rats and spies all around me. My door needs to be guarded 24/7! How did you even got in here?! [He shakes his head slowly.] That's why I need someone from outside. Someone who won't be spied on and will complete my task.}
+{8010}{}{[Continue]}
+{9000}{}{You will meet certain people there. And don't even think about running away from there. Play it cool. Be nice. They will think you're another savage and nothing will stop them from blowing a hole in your chest.}
+{9010}{}{I see Mister. I won't make you regret this. [Realtime]}
+{9020}{}{I see Mister. I won't make you regret this. [Turnbased]}
+{9030}{}{I need to regear first. I will be back soon.}
+{10000}{}{[takes deep breath and mumbles something to himself] They will have a delivery for you. And you will bring it back. If you won't You're learn why we're most respected family in the hard way. I want 1000 bottlecaps from you as insurance. You get them and pay after the job is done. Anything else?}
+{10010}{}{No Mister. I'm ready.}
+{10020}{}{No Mister. I'm ready.}
+
+[russ]
+{100}{}{Louis Salvatore}
+{200}{}{You see Louis Salvatore.}
+{210}{}{You see an elderly, well-dressed gentleman. He is carrying an oxygen tank, and he seems to have difficulty breathing.}
+{210}{}{You see Louis Salvatore. He is carrying an oxygen tank, and he seems
+ to have difficulty breathing.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{[Salvatore is sitting and scrolling the book he's reading. He has nervous ticks and trouble breathing.] Yes son?}
+{2010}{}{Mr. Salvatore. I was informed you're seeking for able fighters which are outside the conflict of New Reno families. My team and myself might be interested in such contract.}
+{2020}{}{The package. We've got it Mr. Salvatore.}
+{2030}{}{Forgive me Mister. I was simply worried about your health and decided to check in. I'll take my leave now.}
+{3000}{}{Closes a book and stares trough him for a brief moment. You've heard well my son. You and atleast two other worthy people. [He raises his finger] But not more than five will need to do certain delivery for me...}
+{3010}{}{That's why I'm here Mister.Tell me about it.}
+{3020}{}{I see. I will go and prepare my people. We will be back.}
+{4000}{}{Wait a moment.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{[Salvatore gives you coordinates of delivery location]. Go son. Don't fuck it up or you will lose your money.}
+{5010}{}{[Exit]}
+{6000}{}{[Frowns and stares at him.] Actually... I won't give you this job. Don't ask why.}
+{6010}{}{Y-yes. Mr...}
+{7000}{}{[Nods and his goons enter and take it away from him. He stands up and offers a hand.] Good job son. If you will need some money. You're welcome to come again with your people.}
+{7010}{}{I will Mr. Salvatore. Thank you.}
+{8000}{}{This is kind of sticky job. [He changes his tone to more aggresive and dangerous.] And I have rats and spies all around me. My door needs to be guarded 24/7! How did you even got in here?! [He shakes his head slowly.] That's why I need someone from outside. Someone who won't be spied on and will complete my task.}
+{8010}{}{[Continue]}
+{9000}{}{You will meet certain people there. And don't even think about running away from there. Play it cool. Be nice. They will think you're another savage and nothing will stop them from blowing a hole in your chest.}
+{9010}{}{I see Mister. I won't make you regret this. [Realtime]}
+{9020}{}{I see Mister. I won't make you regret this. [Turnbased]}
+{9030}{}{I need to regear first. I will be back soon.}
+{10000}{}{[takes deep breath and mumbles something to himself] They will have a delivery for you. And you will bring it back. If you won't You're learn why we're most respected family in the hard way. I want 1000 bottlecaps from you as insurance. You get them and pay after the job is done. Anything else?}
+{10010}{}{No Mister. I'm ready.}
+{10020}{}{No Mister. I'm ready.}
+
+[pols]
+{100}{}{Louis Salvatore}
+{200}{}{You see Louis Salvatore.}
+{210}{}{You see an elderly, well-dressed gentleman. He is carrying an oxygen tank, and he seems to have difficulty breathing.}
+{210}{}{You see Louis Salvatore. He is carrying an oxygen tank, and he seems
+ to have difficulty breathing.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{[Salvatore is sitting and scrolling the book he's reading. He has nervous ticks and trouble breathing.] Yes son?}
+{2010}{}{Mr. Salvatore. I was informed you're seeking for able fighters which are outside the conflict of New Reno families. My team and myself might be interested in such contract.}
+{2020}{}{The package. We've got it Mr. Salvatore.}
+{2030}{}{Forgive me Mister. I was simply worried about your health and decided to check in. I'll take my leave now.}
+{3000}{}{Closes a book and stares trough him for a brief moment. You've heard well my son. You and atleast two other worthy people. [He raises his finger] But not more than five will need to do certain delivery for me...}
+{3010}{}{That's why I'm here Mister.Tell me about it.}
+{3020}{}{I see. I will go and prepare my people. We will be back.}
+{4000}{}{Wait a moment.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{[Salvatore gives you coordinates of delivery location]. Go son. Don't fuck it up or you will lose your money.}
+{5010}{}{[Exit]}
+{6000}{}{[Frowns and stares at him.] Actually... I won't give you this job. Don't ask why.}
+{6010}{}{Y-yes. Mr...}
+{7000}{}{[Nods and his goons enter and take it away from him. He stands up and offers a hand.] Good job son. If you will need some money. You're welcome to come again with your people.}
+{7010}{}{I will Mr. Salvatore. Thank you.}
+{8000}{}{This is kind of sticky job. [He changes his tone to more aggresive and dangerous.] And I have rats and spies all around me. My door needs to be guarded 24/7! How did you even got in here?! [He shakes his head slowly.] That's why I need someone from outside. Someone who won't be spied on and will complete my task.}
+{8010}{}{[Continue]}
+{9000}{}{You will meet certain people there. And don't even think about running away from there. Play it cool. Be nice. They will think you're another savage and nothing will stop them from blowing a hole in your chest.}
+{9010}{}{I see Mister. I won't make you regret this. [Realtime]}
+{9020}{}{I see Mister. I won't make you regret this. [Turnbased]}
+{9030}{}{I need to regear first. I will be back soon.}
+{10000}{}{[takes deep breath and mumbles something to himself] They will have a delivery for you. And you will bring it back. If you won't You're learn why we're most respected family in the hard way. I want 1000 bottlecaps from you as insurance. You get them and pay after the job is done. Anything else?}
+{10010}{}{Dzięki, do zobaczenia.}
+{10020}{}{No Mister. I'm ready.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{[Salvatore is sitting and scrolling the book he's reading. He has nervous ticks and trouble breathing.] Yes son?}
+{2010}{}{Mr. Salvatore. I was informed you're seeking for able fighters which are outside the conflict of New Reno families. My team and myself might be interested in such contract.}
+{2020}{}{The package. We've got it Mr. Salvatore.}
+{2030}{}{Forgive me Mister. I was simply worried about your health and decided to check in. I'll take my leave now.}
+{3000}{}{Closes a book and stares trough him for a brief moment. You've heard well my son. You and atleast two other worthy people. [He raises his finger] But not more than five will need to do certain delivery for me...}
+{3010}{}{That's why I'm here Mister.Tell me about it.}
+{3020}{}{I see. I will go and prepare my people. We will be back.}
+{4000}{}{Wait a moment.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{[Salvatore gives you coordinates of delivery location]. Go son. Don't fuck it up or you will lose your money.}
+{5010}{}{[Exit]}
+{6000}{}{[Frowns and stares at him.] Actually... I won't give you this job. Don't ask why.}
+{6010}{}{Y-yes. Mr...}
+{7000}{}{[Nods and his goons enter and take it away from him. He stands up and offers a hand.] Good job son. If you will need some money. You're welcome to come again with your people.}
+{7010}{}{I will Mr. Salvatore. Thank you.}
+{8000}{}{This is kind of sticky job. [He changes his tone to more aggresive and dangerous.] And I have rats and spies all around me. My door needs to be guarded 24/7! How did you even got in here?! [He shakes his head slowly.] That's why I need someone from outside. Someone who won't be spied on and will complete my task.}
+{8010}{}{[Continue]}
+{9000}{}{You will meet certain people there. And don't even think about running away from there. Play it cool. Be nice. They will think you're another savage and nothing will stop them from blowing a hole in your chest.}
+{9010}{}{I see Mister. I won't make you regret this. [Realtime]}
+{9020}{}{I see Mister. I won't make you regret this. [Turnbased]}
+{9030}{}{I need to regear first. I will be back soon.}
+{10000}{}{[takes deep breath and mumbles something to himself] They will have a delivery for you. And you will bring it back. If you won't You're learn why we're most respected family in the hard way. I want 1000 bottlecaps from you as insurance. You get them and pay after the job is done. Anything else?}
+{10010}{}{No Mister. I'm ready.}
+{10020}{}{No Mister. I'm ready.}
+

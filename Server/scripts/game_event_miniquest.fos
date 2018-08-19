@@ -1,0 +1,998 @@
+#include "_itempid.fos"
+#include "_msgstr.fos"
+#include "_npc_pids.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_common_loot.fos"
+#include "game_event_gossip_h.fos"
+#include "economy_h.fos"
+#include "utils_h.fos"
+
+
+#define MINIQUEST_COOLDOWN              (REAL_MINUTE(20))
+#define EVENT_DURATION                  (REAL_MINUTE(20))
+#define FARMER_MINIQUEST_EVENT_ID       (44)
+#define GUARD_MINIQUEST_EVENT_ID        (45)
+#define ALCO_MINIQUEST_EVENT_ID         (46)
+#define CHILD_MINIQUEST_EVENT_ID        (47)
+#define PROSTITUTE_MINIQUEST_EVENT_ID   (48)
+#define GUARD2_MINIQUEST_EVENT_ID       (49)
+#define FIRE_GECKO_MINIQUEST_EVENT_ID   (72)
+#define BP1_MINIQUEST_EVENT_ID          (73)
+#define BP2_MINIQUEST_EVENT_ID          (74)
+#define BP3_MINIQUEST_EVENT_ID          (75)
+#define BP4_MINIQUEST_EVENT_ID          (76)
+
+
+import int GetNextTime(uint Id) from "game_events";
+import void AddKarma( Critter& cr, int Value ) from "karma";
+
+
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + FARMER_MINIQUEST_EVENT_ID, MiniQuestEvent(FARMER_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_mod_farmer)
+		.AddCritterDialogIds(DIALOG_redd_farmer)
+		.SetQuestDialogId(DIALOG_event_miniquest_farmer)
+		.AddQuestItem(PID_SHOVEL) //289
+		.AddQuestItem(PID_AXE) //543
+		.AddQuestItem(PID_RUBBER_BOOTS) //262
+		.AddQuestItem(PID_FULL_WATER_BAG) //704
+		.AddQuestItem(PID_ROPE) //127
+		.AddQuestItem(PID_PICKAXE) // 1033
+		.AddQuestItem(PID_PRIMITIVE) //1034
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(1500)
+		.SetRewardCash(50)
+		.SetTimeoutVar(LVAR_event_mq_farmer)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_FARMER_MINIQUEST_GOSSIP_LOC, STR_FARMER_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + GUARD_MINIQUEST_EVENT_ID, MiniQuestEvent(GUARD_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_hub_policeman)
+		.AddCritterDialogIds(DIALOG_all_junktown_guard)
+		.AddCritterDialogIds(DIALOG_ncr_guard)
+		.AddCritterDialogIds(DIALOG_all_guard)
+		.AddCritterDialogIds(DIALOG_adyt_gunrunner_guard)
+		.AddCritterDialogIds(DIALOG_adyt_blades_guard)
+		.AddCritterDialogIds(DIALOG_vc_guard)
+		.SetQuestDialogId(DIALOG_event_miniquest_guard)
+		.AddQuestItem(PID_10MM_PISTOL) //8
+		.AddQuestItem(PID_DESERT_EAGLE) //18
+		.AddQuestItem(PID_HUNTING_RIFLE) //10
+		.AddQuestItem(PID_SHOTGUN) //94
+		.AddQuestItem(PID_GREASE_GUN) //332
+		.AddQuestItem(PID_10MM_SMG) //9
+		.AddQuestItem(PID_44_MAGNUM_REVOLVER) //313
+		.AddQuestItem(PID_9MM_MAUSER) //122
+		.AddQuestItem(PID_COMBAT_SHOTGUN) //242
+		.AddQuestItem(PID_TOMMY_GUN) //238
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(2000)
+		.SetRewardCash(300)
+		.SetTimeoutVar(LVAR_event_mq_guard)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_GUARD_MINIQUEST_GOSSIP_LOC, STR_GUARD_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + ALCO_MINIQUEST_EVENT_ID, MiniQuestEvent(ALCO_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_poorman)
+		.AddCritterDialogIds(DIALOG_all_alco)
+		.AddCritterDialogIds(DIALOG_redd_alco)
+		.SetQuestDialogId(DIALOG_event_miniquest_alco)
+		.AddQuestItem(PID_BEER) //124
+		.AddQuestItem(PID_BOOZE) //125
+		.AddQuestItem(PID_GAMMA_GULP_BEER) //310
+		.AddQuestItem(PID_ROENTGEN_RUM) //311
+		.AddQuestItem(PID_ROT_GUT) //469
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(1500)
+		.SetRewardCash(0)
+		.SetTimeoutVar(LVAR_event_mq_alco)
+		.SetGossipMsgId(STR_ALCO_MINIQUEST_GOSSIP_LOC, STR_ALCO_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + CHILD_MINIQUEST_EVENT_ID, MiniQuestEvent(CHILD_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_child)
+		.AddCritterDialogIds(DIALOG_klam_child)
+		.AddCritterDialogIds(DIALOG_redd_child)
+		.SetQuestDialogId(DIALOG_event_miniquest_child)
+		.AddQuestItem(PID_MUTATED_FRUIT) //71
+		.AddQuestItem(PID_IGUANA_ON_A_STICK) //81
+		.AddQuestItem(PID_MEAT_JERKY) //284
+		.AddQuestItem(PID_CHEEZY_POOFS) //295
+		.AddQuestItem(PID_FROZEN_DINNER) //227
+		.AddQuestItem(PID_BOX_OF_NOODLES) //226
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(1500)
+		.SetRewardCash(0)
+		.SetTimeoutVar(LVAR_event_mq_child)
+		.SetKarma(20)
+		.SetGossipMsgId(STR_CHILD_MINIQUEST_GOSSIP_LOC, STR_CHILD_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + PROSTITUTE_MINIQUEST_EVENT_ID, MiniQuestEvent(PROSTITUTE_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_prostitute)
+		.SetQuestDialogId(DIALOG_event_miniquest_prostitute)
+		.SetQuestItemsCount(500, 500)
+		.AddQuestItem(PID_BOTTLE_CAPS) //41
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(10)
+		.SetRewardCash(0)
+		.SetTimeoutVar(LVAR_event_mq_prostitute)
+		.SetKarma(-20)
+		.SetGossipMsgId(STR_PROSTITUTE_MINIQUEST_GOSSIP_LOC, STR_PROSTITUTE_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + GUARD2_MINIQUEST_EVENT_ID, MiniQuestEvent(GUARD2_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_sf_guard)
+		.AddCritterDialogIds(DIALOG_Askorti_guard)
+		.AddCritterDialogIds(DIALOG_klam_trapper)
+		.AddCritterDialogIds(DIALOG_geck_guard)
+		.AddCritterDialogIds(DIALOG_redd_guard)
+		.SetQuestDialogId(DIALOG_event_miniquest_guard)
+		.AddQuestItem(PID_14MM_PISTOL) //22
+		.AddQuestItem(PID_NEEDLER_PISTOL) //388
+		.AddQuestItem(PID_HK_CAWS) //10
+		.AddQuestItem(PID_ASSAULT_RIFLE) //23
+		.AddQuestItem(PID_HUNTING_RIFLE) //10
+		.AddQuestItem(PID_10MM_SMG) //9
+		.AddQuestItem(PID_44_MAGNUM_REVOLVER) //313
+		.AddQuestItem(PID_COMBAT_SHOTGUN) //242
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(3000)
+		.SetRewardCash(500)
+		.SetTimeoutVar(LVAR_event_mq_guard2)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_GUARD_MINIQUEST_GOSSIP_LOC, STR_GUARD_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + FIRE_GECKO_MINIQUEST_EVENT_ID, MiniQuestEvent(FIRE_GECKO_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_mod_citizen)
+		.SetQuestDialogId(DIALOG_event_miniquest_fire_gecko)
+		.AddQuestItem(PID_FIRE_GECKO_PELT) //556
+		.SetQuestItemsCount(1, 10)
+		.SetCountdown(1, 1)
+		.SetRewardExp(100)
+		.SetRewardCash(350)
+		.SetTimeoutVar(LVAR_event_mq_fire_gecko)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_FIRE_GECKO_MINIQUEST_GOSSIP_LOC, STR_FIRE_GECKO_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + BP1_MINIQUEST_EVENT_ID, MiniQuestEvent(BP1_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_citizen)
+		.AddCritterDialogIds(DIALOG_sf_citizen)
+		.AddCritterDialogIds(DIALOG_mod_citizen)
+		.AddCritterDialogIds(DIALOG_redd_citizen)
+		.AddCritterDialogIds(DIALOG_vc_citizen_floater)
+		.AddCritterDialogIds(DIALOG_vc_citizen)
+		.AddCritterDialogIds(DIALOG_bh_male)
+		.AddCritterDialogIds(DIALOG_bh_female)
+		.AddCritterDialogIds(DIALOG_adyt_resident)
+		.SetQuestDialogId(DIALOG_event_miniquest_bp)
+		.AddQuestItem(PID_M60_BLUEPRINTS) //10918
+		.AddQuestItem(PID_PLASMA_PISTOL_BLUEPRINTS) //10880
+		.AddQuestItem(PID_MAGNUM_REVOLVER_BLUEPRINTS) //10925
+		.AddQuestItem(PID_DESERT_EAGLE_BLUEPRINTS) //10924
+		.AddQuestItem(PID_HUNTING_RIFLE_BLUEPRINTS) //10919
+		.AddQuestItem(PID_SCOPED_HUNTING_RIFLE_BLUEPRINTS) //10930
+		.AddQuestItem(PID_M3A1_GREASE_GUN) //10922
+		.AddQuestItem(PID_DESERT_EAGLE_EXT_MAG_BLUEPRINTS) //10931
+		.AddQuestItem(PID_44_MAGNUM_SPEEDLOADER_BLUEPRINTS) //10932
+		.AddQuestItem(PID_POWER_FIST_BLUEPRINTS) //10886
+		.AddQuestItem(PID_LEATHER_ARMOR_BLUEPRINTS) //10928
+		.AddQuestItem(PID_LEATHER_ARMOR_MARK_II_BLUEPRINTS) //10927
+		.AddQuestItem(PID_COMBAT_LEATHER_JACKET_BLUEPRINTS) //10929
+		.AddQuestItem(PID_RAD_X_BLUEPRINTS) //10952
+		.AddQuestItem(PID_RADAWAY_BLUEPRINTS) //10953
+		.SetQuestItemsCount(1, 5)
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(1000)
+		.SetRewardCash(500)
+		.SetTimeoutVar(LVAR_event_mq_bp1)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_BP_MINIQUEST_GOSSIP_LOC, STR_BP_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + BP2_MINIQUEST_EVENT_ID, MiniQuestEvent(BP2_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_citizen)
+		.AddCritterDialogIds(DIALOG_sf_citizen)
+		.AddCritterDialogIds(DIALOG_mod_citizen)
+		.AddCritterDialogIds(DIALOG_redd_citizen)
+		.AddCritterDialogIds(DIALOG_vc_citizen_floater)
+		.AddCritterDialogIds(DIALOG_vc_citizen)
+		.AddCritterDialogIds(DIALOG_bh_male)
+		.AddCritterDialogIds(DIALOG_bh_female)
+		.AddCritterDialogIds(DIALOG_adyt_resident)
+		.SetQuestDialogId(DIALOG_event_miniquest_bp)
+		.AddQuestItem(PID_MINIGUN_BLUEPRINTS) //10887
+		.AddQuestItem(PID_MAGNETO_LASER_PISTOL_BLUEPRINTS) //10915
+		.AddQuestItem(PID_COMBAT_SHOTGUN_BLUEPRINTS) //10920
+		.AddQuestItem(PID_TOMMY_GUN_BLUEPRINTS) //10921
+		.AddQuestItem(PID_10MM_SMG_BLUEPRINTS) //10923
+		.AddQuestItem(PID_ASSAULT_RIFLE_BLUEPRINTS) //10893
+		.AddQuestItem(PID_14MM_PISTOL_BLUEPRINTS) //10895
+		.AddQuestItem(PID_THROWING_KNIFE_BLUEPRINTS) //10933
+		.AddQuestItem(PID_CATTLE_PROD_BLUEPRINTS) //10917
+		.AddQuestItem(PID_FRAG_GRENADE_BLUEPRINTS) //10916
+		.AddQuestItem(PID_METAL_ARMOR_MARK_II_BLUEPRINTS) //10898
+		.AddQuestItem(PID_METAL_ARMOR_BLUEPRINTS) //10926
+		.AddQuestItem(PID_RIPPER_BLUEPRINTS) //10885
+		.AddQuestItem(PID_BUFFOUT_BLUEPRINTS) //10951
+		.SetQuestItemsCount(1, 5)
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(2000)
+		.SetRewardCash(1000)
+		.SetTimeoutVar(LVAR_event_mq_bp2)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_BP_MINIQUEST_GOSSIP_LOC, STR_BP_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + BP3_MINIQUEST_EVENT_ID, MiniQuestEvent(BP3_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_citizen)
+		.AddCritterDialogIds(DIALOG_sf_citizen)
+		.AddCritterDialogIds(DIALOG_mod_citizen)
+		.AddCritterDialogIds(DIALOG_redd_citizen)
+		.AddCritterDialogIds(DIALOG_vc_citizen_floater)
+		.AddCritterDialogIds(DIALOG_vc_citizen)
+		.AddCritterDialogIds(DIALOG_bh_male)
+		.AddCritterDialogIds(DIALOG_bh_female)
+		.AddCritterDialogIds(DIALOG_adyt_resident)
+		.SetQuestDialogId(DIALOG_event_miniquest_bp)
+		.AddQuestItem(PID_LASER_RIFLE_BLUEPRINTS) //10882
+		.AddQuestItem(PID_PLASMA_PISTOL_EXT_CART_BLUEPRINTS) //10899
+		.AddQuestItem(PID_HK_CAWS_BLUEPRINTS) //10891
+		.AddQuestItem(PID_FN_FAL_BLUEPRINTS) //10892
+		.AddQuestItem(PID_223_PISTOL_BLUEPRINTS) //10866
+		.AddQuestItem(PID_MEGA_POWER_FIST_BLUEPRINTS) //10861		
+		.AddQuestItem(PID_SUPER_SLEDGE_BLUEPRINTS) //10883
+		.AddQuestItem(PID_SUPER_CATTLE_PROD_BLUEPRINTS) //10884
+		.AddQuestItem(PID_TESLA_ARMOR_BLUEPRINTS) //10897
+		.AddQuestItem(PID_ROCKET_LAUNCHER_BLUEPRINTS) //10889
+		.AddQuestItem(PID_IMPROVED_FLAMER_BLUEPRINTS) //10890
+		.AddQuestItem(PID_ASSAULT_RIFLE_EXT_MAG_BLUEPRINTS) //10900
+		.SetQuestItemsCount(1, 5)
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(3000)
+		.SetRewardCash(1500)
+		.SetTimeoutVar(LVAR_event_mq_bp3)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_BP_MINIQUEST_GOSSIP_LOC, STR_BP_MINIQUEST_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + BP4_MINIQUEST_EVENT_ID, MiniQuestEvent(BP4_MINIQUEST_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_citizen)
+		.AddCritterDialogIds(DIALOG_sf_citizen)
+		.AddCritterDialogIds(DIALOG_mod_citizen)
+		.AddCritterDialogIds(DIALOG_redd_citizen)
+		.AddCritterDialogIds(DIALOG_vc_citizen_floater)
+		.AddCritterDialogIds(DIALOG_vc_citizen)
+		.AddCritterDialogIds(DIALOG_bh_male)
+		.AddCritterDialogIds(DIALOG_bh_female)
+		.AddCritterDialogIds(DIALOG_adyt_resident)
+		.SetQuestDialogId(DIALOG_event_miniquest_bp)
+		.AddQuestItem(PID_LASER_RIFLE_BLUEPRINTS) //10882
+		.AddQuestItem(PID_YK32_PULSE_PISTOL_BLUEPRINTS) //10859
+		.AddQuestItem(PID_NEEDLER_PISTOL_BLUEPRINTS) //10894	
+		.SetQuestItemsCount(1, 5)
+		.SetCountdown(5, 20)
+		.SetBonus(2.0, 1.5, 1.25) 
+		.SetRewardExp(4000)
+		.SetRewardCash(2000)
+		.SetTimeoutVar(LVAR_event_mq_bp4)
+		.SetKarma(10)
+		.SetGossipMsgId(STR_BP_MINIQUEST_GOSSIP_LOC, STR_BP_MINIQUEST_GOSSIP_NO_LOC)
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	MiniQuestEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+		
+		uint[] values = {id};
+		CreateTimeEvent(__FullSecond + EVENT_DURATION, "e_event_stop", values, true);
+	}
+}
+
+uint e_event_init(array<uint>@ values) 
+{
+	MiniQuestEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.InitEvent();
+	}
+	
+	return 0;
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	MiniQuestEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start(Critter& player, int id, int moveTester, int)
+{
+	event_start(id);
+		
+	MiniQuestEvent @event;
+	if (moveTester > 0 && events.get("" + id, @event))
+	{
+		//Move tester near event critter if moveTester > 0
+		uint16 x = 0, y = 0;
+		
+		Critter@ questCritter = GetCritter(event.GetCritterId());
+		if(!valid(questCritter))
+		{
+			return;
+		}
+		
+		x = questCritter.HexX;
+		y = questCritter.HexY;
+		
+		Map@ map = questCritter.GetMap();
+		if(!valid(map))
+		{
+			return;
+		}
+		
+		if (GetFreeHex(map, 2, x, y))
+		{
+			player.TransitToMap(map.Id, x, y, 0, true);
+		}
+	}
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class MiniQuestEvent
+{	
+	#define _GetKey ("MiniQuestEvent" + eventId)
+	private int eventId, questDialogId, tempReplicationTime, karma = 0;
+	private uint critterId, questItemPid, countdown, countdownStart, gossipLocMsgId = 0, gossipNoLocMsgId = 0; 
+	
+	private uint minQuestItemsCount = 1, maxQuestItemsCount = 1, minCountdown = 1000000000, maxCountdown = 1000000000, rewardExp, rewardCash, timeoutVar = 0;
+	private uint[] questItemPids, critterDialogIds;
+	
+	double firstBonus = 1, secondBonus = 1, thirdBonus = 1;
+	
+	bool started = false, loaded = false;
+
+	
+	MiniQuestEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	private void Load()
+	{
+		if (loaded)
+		{
+			return;
+		}
+	
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(eventId);
+		serializator.Get(critterId);
+		serializator.Get(questItemPid);
+		serializator.Get(tempReplicationTime);
+		serializator.Get(countdown);
+		serializator.Get(countdownStart);
+		serializator.Get(started);
+		
+		loaded = true;
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(eventId);
+		serializator.Set(critterId);
+		serializator.Set(questItemPid);
+		serializator.Set(tempReplicationTime);
+		serializator.Set(countdown);
+		serializator.Set(countdownStart);
+		serializator.Set(started);
+		
+		serializator.Save(_GetKey);
+	}
+	
+	MiniQuestEvent@ AddQuestItem(uint questItemPid)
+	{
+		questItemPids.insertLast(questItemPid);
+		return @this;
+	}
+		
+	MiniQuestEvent@ SetQuestDialogId(uint dialogId)
+	{
+		this.questDialogId = dialogId;
+		return @this;
+	}
+	
+	MiniQuestEvent@ AddCritterDialogIds(uint dialogId)
+	{
+		critterDialogIds.insertLast(dialogId);
+		return @this;
+	}
+	
+	MiniQuestEvent@ SetQuestItemsCount(uint minItemsCount, uint maxItemsCount)
+	{
+		this.minQuestItemsCount = minItemsCount;
+		this.maxQuestItemsCount = maxItemsCount;
+		return @this;
+	}
+	
+	MiniQuestEvent@ SetCountdown(uint minCountdown, uint maxCountdown)
+	{
+		this.minCountdown = minCountdown;
+		this.maxCountdown = maxCountdown;
+		return @this;
+	}
+	
+	MiniQuestEvent@ SetBonus(double firstBonus, double secondBonus, double thirdBonus)
+	{
+		this.firstBonus = firstBonus;
+		this.secondBonus = secondBonus;
+		this.thirdBonus = thirdBonus;
+		return @this;
+	}
+	
+	MiniQuestEvent@ SetRewardCash(uint rewardCash)
+	{
+		this.rewardCash = rewardCash;
+		return @this;
+	}
+	
+	MiniQuestEvent@ SetRewardExp(uint rewardExp)
+	{
+		this.rewardExp = rewardExp;
+		return @this;
+	}
+	
+	MiniQuestEvent@ SetKarma(int karma)
+	{
+		this.karma = karma;
+		return @this;
+	}
+	
+	MiniQuestEvent@ SetTimeoutVar(uint timeoutVar)
+	{
+		this.timeoutVar = timeoutVar;
+		return @this;
+	}
+
+	MiniQuestEvent@ SetGossipMsgId(uint gossipLocMsgId, uint gossipNoLocMsgId)
+	{
+		this.gossipLocMsgId = gossipLocMsgId;
+		this.gossipNoLocMsgId = gossipNoLocMsgId;
+		return @this;
+	}	
+	
+	uint GetCritterId()
+	{
+		Load();
+		return critterId;
+	}
+	
+	int GetQuestDialogId()
+	{
+		return questDialogId;
+	}
+	
+	uint GetItemPid()
+	{
+		Load();
+		return questItemPid;
+	}
+	
+	bool IsStarted()
+	{
+		return started;
+	}
+	
+	void InitEvent()
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		Critter@ critter = GetCritter(critterId);	
+		
+		if(!valid(critter))
+		{
+			return;
+		}
+	
+		critter.SetEvent(CRITTER_EVENT_TALK , "_Talk");
+	}
+	
+	void StartEvent()
+	{	
+		Load();
+		
+		if (started)
+		{
+			return;
+		}
+	
+		critterId = FindCritterId();
+
+		InitializeCritter();
+
+		if (questItemPids.length() > 0)
+		{
+			questItemPid = questItemPids[Random(0, questItemPids.length() - 1)];
+			
+			if (!IsItemAviable(questItemPid))
+			{
+                questItemPid = GetAviableItem(questItemPid, true);
+			}
+		}	
+		else
+		{
+			questItemPid = 0;
+		}
+		
+		countdownStart = Random(minCountdown, maxCountdown);
+		countdown = countdownStart;
+		
+		InitializeGossip();
+		
+		started = true;
+			
+		Save();
+	}
+	
+	void InitializeGossip()
+	{
+		if (gossipLocMsgId > 0)
+		{
+			Critter@ critter = GetCritter(critterId);
+			if (!valid(critter)) 
+			{
+				return;
+			}
+		
+			Map@ map = critter.GetMap();
+			if (!valid(map)) 
+			{
+				return;
+			}
+
+			Location@ location = map.GetLocation();
+			if (!valid(location)) 
+			{
+				return;
+			}
+			
+			GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, EVENT_DURATION);
+			gossipDefinition.SetGossipId(eventId);
+			gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+			gossipDefinition.SetSourceLocationId(location.Id);
+			gossipDefinition.SetMsgId(gossipLocMsgId);
+			gossipDefinition.SetSourceMsgId(gossipNoLocMsgId);
+			gossipDefinition.SetLexems("$itemname" + "@msg ITEM " + STR_ITEM_NAME(questItemPid) + "@"
+					+ "$locationname" + "@msg GM " + STR_LOC_NAME(location.GetProtoId()) + "@");
+			StartGossip(gossipDefinition);
+		}
+	}
+	
+	void StopEvent()
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		ClearCritter();
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+		
+		started = false;
+		
+		EraseAnyData(_GetKey);
+	}
+	
+	void QuestFinished(Critter& player)
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+	
+		//Reward
+		double bonus = 1;
+		
+		if (countdown == countdownStart)
+		{
+			bonus = firstBonus;
+		}
+		else if (countdown + 1 == countdownStart)
+		{
+			bonus = secondBonus;
+		}
+		else if (countdown + 2 == countdownStart)
+		{
+			bonus = thirdBonus;
+		}
+		
+		uint count = 0;
+		if (questItemPid >= 0)
+		{
+			count = player.CountItem(questItemPid);
+		
+			if (count < minQuestItemsCount)
+			{
+				return;
+			}
+			
+			if (count > maxQuestItemsCount)
+			{
+				count = maxQuestItemsCount;
+			}
+			
+			player.DeleteItem(questItemPid, count);
+		}
+		else
+		{
+			count = 1;
+		}
+		
+		if (bonus * rewardExp * count > 0)
+		{
+			player.StatBase[ ST_EXPERIENCE ] += bonus * rewardExp * count;
+		}
+		
+		if (bonus * rewardCash * count > 0)
+		{
+			player.AddItem(PID_BOTTLE_CAPS, RewardMod(bonus * rewardCash * count));
+		}
+		
+		//Timeout var
+		if (timeoutVar != 0)
+		{
+			GameVar @tVar = GetLocalVar(timeoutVar, player.Id);
+			
+			if (valid(tVar))
+			{
+				tVar = __FullSecond;
+			}
+		}
+		
+		//Karma
+		if (karma != 0)
+		{
+			AddKarma(player, karma);
+		}
+		
+		
+		//Countdown
+		countdown--;
+		if (countdown == 0)
+		{
+			StopEvent();
+		}
+		else
+		{
+			Save();
+		}
+	}
+	
+	bool HaveQuestItem(Critter& player)
+	{
+		Load();
+		
+		if (!started)
+		{
+			return false;
+		}
+		
+		if (questItemPid > 0 && player.CountItem(questItemPid) >= minQuestItemsCount)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	bool HaveQuestTimeout(Critter& player)
+	{
+		if (timeoutVar == 0)
+		{
+			return false;
+		}
+	
+	    GameVar @tVar = GetLocalVar(timeoutVar, player.Id);
+		
+		if(!valid(tVar))
+		{
+			return false;
+		}
+		
+		if(uint(tVar.GetValue()) + MINIQUEST_COOLDOWN <= __FullSecond )
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private uint FindCritterId()
+	{
+		Critter@[] allCritters;
+		Critter@[] questCritters;
+		
+		GetAllNpc(0, allCritters);
+		
+		for(uint i = 0; i < allCritters.length(); i++)
+		{
+			if (!Present(allCritters[i].Param[ST_DIALOG_ID], critterDialogIds))
+			{
+				continue;
+			}
+			
+			if (allCritters[i].IsDead())
+			{
+				continue;
+			}
+			
+			if (FLAG(allCritters[i].ParamBase[CR_FLAGS1], NPC_GIVING_QUEST))
+			{
+				continue;
+			}
+			
+			if (FLAG(allCritters[i].ParamBase[CR_FLAGS1], NPC_GIVING_QUEST_INVISIBLE))
+			{
+				continue;
+			}
+		
+			Map@ map = allCritters[i].GetMap();
+			if (!valid(map)) 
+			{
+				continue;
+			}
+
+			Location@ location = map.GetLocation();
+			if (!valid(location)) 
+			{
+				continue;
+			}
+			
+			if (location.GetProtoId() == LOCATION_Island_Prison)
+			{
+				continue;
+			}
+			
+			if (!location.Visible)
+			{
+				continue;
+			}
+				
+			questCritters.insertLast(allCritters[i]);			
+		}
+		
+		uint randomIdx = Random(0, questCritters.length() - 1);
+		
+		if (valid (questCritters[randomIdx]))
+		{
+			return questCritters[randomIdx].Id;
+		}
+		
+		return 0;			
+	}
+	
+	private void InitializeCritter()
+	{
+		Critter@ critter = GetCritter(critterId);
+		if (!valid(critter)) 
+		{
+			return;
+		}
+		
+		SETFLAG(critter.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST);
+		
+		tempReplicationTime = critter.ParamBase[ST_REPLICATION_TIME];
+		critter.ParamBase[ST_REPLICATION_TIME] = 0;
+		critter.SetEvent(CRITTER_EVENT_TALK , "_Talk");
+	}
+	
+	private void ClearCritter()
+	{
+		Critter@ critter = GetCritter(critterId);	
+		if(!valid(critter))
+		{
+			return;
+		}
+		
+		UNSETFLAG(critter.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST);
+		critter.ParamBase[ST_REPLICATION_TIME] = tempReplicationTime;
+		critter.SetEvent(CRITTER_EVENT_TALK , "");
+	}
+}
+
+MiniQuestEvent@ findEvent(uint critterId)
+{
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	string@[] keys;
+	events.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		MiniQuestEvent @event;
+		
+		if (events.get(keys[i], @event) && event.GetCritterId() == critterId)
+		{
+			return event;
+		}
+	}
+	
+	return null;
+}
+
+bool _Talk(Critter& critter, Critter& player, bool attach, uint talkCount)
+{
+    if(attach)
+    {
+		MiniQuestEvent @event = findEvent(critter.Id);
+		if (valid(event))
+		{
+			//Nasty hook, but it solves many issues and allows to create generic dialog functions.
+			//Function bool RunDialog(Critter&, uint16, uint16, uint16, bool) will not work perfectly.
+			if (critter.ParamBase[ST_DIALOG_ID] != event.GetQuestDialogId())
+			{
+				uint tempDialogId = critter.ParamBase[ST_DIALOG_ID];
+				critter.ParamBase[ST_DIALOG_ID] = event.GetQuestDialogId();
+				RunDialog(player, critter, false);
+				critter.ParamBase[ST_DIALOG_ID] = tempDialogId;
+				return false;
+			}
+		}
+    }
+    return true;
+}
+
+void dlg_Prepare(Critter& player, Critter@ critter, string@ lexems)
+{
+    if(!IS_DIALOG_GENERATED(lexems))
+	{
+        return;
+	}
+	
+	MiniQuestEvent @event = findEvent(critter.Id);
+	if (valid(event))
+	{
+		if (event.GetItemPid() > 0)
+		{
+			lexems += "$itemname" + "@msg ITEM " + STR_ITEM_NAME(event.GetItemPid()) + "@";
+		}
+	}
+}
+
+bool d_HaveQuestItem(Critter& player, Critter@ critter)
+{
+	MiniQuestEvent @event = findEvent(critter.Id);
+	if (valid(event))
+	{
+		return event.HaveQuestItem(player);
+	}
+
+	return false;
+}
+
+bool d_NotHaveQuestItem(Critter& player, Critter@ critter)
+{
+	return !d_HaveQuestItem(player, critter);
+}
+
+bool d_NotHaveQuestTimeout(Critter& player, Critter@ critter)
+{
+	MiniQuestEvent @event = findEvent(critter.Id);
+	if (valid(event))
+	{
+		return !event.HaveQuestTimeout(player);
+	}
+
+	return false;
+}
+
+void r_QuestFinished(Critter& player, Critter@ critter)
+{
+	MiniQuestEvent @event = findEvent(critter.Id);
+	if (valid(event))
+	{
+		if (!event.HaveQuestTimeout(player) && event.HaveQuestItem(player))
+		{
+			event.QuestFinished(player);
+		}
+	}
+}

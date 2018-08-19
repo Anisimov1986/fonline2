@@ -1,0 +1,92 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+0 2030 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 500 R _script economy_dialogs@r_TakeCaps 1 500 R _item p PID_KEVLAR_POLYMER + 1 R _script tc@r_AddFeeToLocker 1 25 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 2500 R _script economy_dialogs@r_TakeCaps 1 2500 R _item p PID_KEVLAR_POLYMER + 5 R _script tc@r_AddFeeToLocker 1 125 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 5000 R _script economy_dialogs@r_TakeCaps 1 5000 R _item p PID_KEVLAR_POLYMER + 10 R _script tc@r_AddFeeToLocker 1 250 #
+0 3040 @
+4 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Skeeter}
+{200}{}{You see: Skeeter}
+{210}{}{You see: Skeeter}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{I'm Skeeter, and this is my workshop. Whatcha want?@@Hello there, I'm Skeeter, and this is my workshop. Need anything?}
+{2010}{}{Let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.@@I'll take a look at your wares.@@I want to purchase something.@@I'll take a look at your stock.@@Let's trade.@@Let's trade.@@Let's trade.@@Let's see what you have.@@Let's barter...@@Got anything interesting?@@What do you have to offer?@@Show me your wares.@@Let's do some business.}
+{2020}{}{Got any Kevlar Polymer?@@I've heard you're selling Kevlar Polymer.@@Got any Kevlar Polymer, Skeeter?}
+{2030}{}{I don't want to trade.@@Not now.@@Bye.@@See you some other time.@@I'm going take my leave.@@I will go.@@I have to be somewhere else.@@I need something else.@@[Leave] This isn't what I was looking for.@@Thanks, but no thanks.@@I'm leaving.@@Whatever.@@See you. later.}
+{3000}{}{Sure thing, Only @lex kevlar2_price@ caps. How many do you want?@@Okay... @lex kevlar2_price@ caps per one. How many do you want?@@All right, @lex kevlar2_price@ caps per one. How many do you need?}
+{3010}{}{Just one.@@One.@@One is enough.@@I'll take one.@@Well, only one.}
+{3020}{}{Five is enough.@@Give me five.@@I need five.@@Five would be okay I guess.@@Five would be great.}
+{3030}{}{Give me ten, I've got the caps.@@Ten.@@I need ten.@@Give me ten.@@Ten, I'm running low.}
+{3040}{}{Not now. Bye.}
+{4000}{}{Thanks for the trade.@@Thanks.@@Okay, thanks.}
+{4010}{}{Yeah, see you later Skeeter.@@See you later.@@Later, Skeeter.@@Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+
+[russ]
+{100}{}{Скитер}
+{200}{}{Вы видите : Скитера}
+{210}{}{Вы видите : Скитера}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Здравствуйте, добро пожаловать в мой магазин. Не стестняйтесь смотреть и спрашивать. Хорошо?@@У меня лучший выбор!@@Руки не распускай, сломаешь придется заплатить.}
+{2010}{}{Давай посмотрим что у тебя есть.@@Ближе к делу.@@Давай уже торговать.@@Я здесь для того чтобы заниматся бизнесом, давай уже приступим.@@Что у тебя есть на обмен?}
+{2020}{}{Вы продаете кевлар?}
+{2030}{}{Я передумал.@@Не сейчас.@@Пока.@@Как нибудь в другой раз.@@Мне уже пора.}
+{3000}{}{Да, всего по @lex kevlar2_price@ монет. Сколько возьмете?}
+{3010}{}{Пока одну штуку.}
+{3020}{}{Пять в самы раз.}
+{3030}{}{Давай десяток.}
+{3040}{}{Мне не подходит. Пока.}
+{4000}{}{Держи.}
+{4010}{}{Да, увидимся позже Скитер.}
+
+[pols]
+{100}{}{Skeeter}
+{200}{}{Widzisz Skeetera.}
+{210}{}{Widzisz Skeetera.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Cześć, witam w moim sklepie. Pooglądaj towary, zobacz czego potrzebujesz i zawołaj mnie, kiedy podejmiesz decyzję.@@Zaraz napijemy się wódeczki, wpadną dupeczki - i ubijemy ten interes!@@Nonono, co tutaj przywiało z pustyni... [Zaciera ręce.] Słucham, w czym mogę pomóc?@@O, klient! Proszę, spójrz na moją ofertę.@@Masz zamiar coś kupić? W takim razie, to twój szczęśliwy dzień.@@Najlepszy towar na całym Pustkowiach! Proszę, rozejrzyj się.@@Wyglądasz na osobę, która potrafi docenić doskonałą jakość oraz okazyjne ceny.@@Witaj, nieznajomy. Możemy pohandlować bez niepotrzebnych niemiłych sytuacji - strażnicy wszystko obserwują.@@Nie jestem w nastroju na pogawędki. Kupujesz coś, czy wychodzisz?@@Witaj, wędrowcze. Staraj się nic nie uszkodzić, inaczej będziesz @sex@|musiał||musiała| za to zapłacić. To jak, pohandlujemy?}
+{2010}{}{Jasne, handlujmy.@@Pewnie, przejdźmy do interesów.@@Co ciekawego możesz mi zaoferować?@@Pokaż, co masz na sprzedaż.@@Hm, @sex@|chciałbym||chciałabym| coś kupić.@@Interesuje mnie kilka rzeczy z twojego asortymentu.@@Zobaczmy, co tam masz.@@Co masz do zaoferowania?@@Pokaż mi swoje produkty.}
+{2020}{}{Hej, wciąż sprzedajesz polimery kevlarowe?}
+{2030}{}{Nie chcę handlować.@@Nie teraz.@@Do widzenia.@@[Wyjdź.] Może innym razem.@@To ja już sobie pójdę.@@Po tym, co tutaj @sex@|zobaczyłem||zobaczyłam|, nie wiem czy @sex@|chciałbym||chciałabym| z tobą ubić muchę w kiblu.@@Potrzebuję czegoś innego.@@[Wyjdź.] Muszę już iść.@@[Wyjdź.] Nie tego @sex@|szukałem||szukałam|.@@Dzięki - ale nie.@@Wychodzę.@@[Wyjdź.] Do zobaczenia.}
+{3000}{}{Jasne, tylko @lex kevlar2_price@ kapsli za sztukę. Ile chcesz?}
+{3010}{}{Cóż, zaledwie jedną.}
+{3020}{}{Pięć będzie w sam raz.}
+{3030}{}{Dziesięć, przydadzą się.}
+{3040}{}{Cóż, nie teraz. Do widzenia.}
+{4000}{}{Łap, dzięki - i zapraszam ponownie!}
+{4010}{}{Taa, do zobaczenia, Skeeter.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{I'm Skeeter, and this is my workshop. Whatcha want?@@Hello there, I'm Skeeter, and this is my workshop. Need anything?}
+{2010}{}{Let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.@@I'll take a look at your wares.@@I want to purchase something.@@I'll take a look at your stock.@@Let's trade.@@Let's trade.@@Let's trade.@@Let's see what you have.@@Let's barter...@@Got anything interesting?@@What do you have to offer?@@Show me your wares.@@Let's do some business.}
+{2020}{}{Got any Kevlar Polymer?@@I've heard you're selling Kevlar Polymer.@@Got any Kevlar Polymer, Skeeter?}
+{2030}{}{I don't want to trade.@@Not now.@@Bye.@@See you some other time.@@I'm going take my leave.@@I will go.@@I have to be somewhere else.@@I need something else.@@[Leave] This isn't what I was looking for.@@Thanks, but no thanks.@@I'm leaving.@@Whatever.@@See you. later.}
+{3000}{}{Sure thing, Only @lex kevlar2_price@ caps. How many do you want?@@Okay... @lex kevlar2_price@ caps per one. How many do you want?@@All right, @lex kevlar2_price@ caps per one. How many do you need?}
+{3010}{}{Just one.@@One.@@One is enough.@@I'll take one.@@Well, only one.}
+{3020}{}{Five is enough.@@Give me five.@@I need five.@@Five would be okay I guess.@@Five would be great.}
+{3030}{}{Give me ten, I've got the caps.@@Ten.@@I need ten.@@Give me ten.@@Ten, I'm running low.}
+{3040}{}{Not now. Bye.}
+{4000}{}{Thanks for the trade.@@Thanks.@@Okay, thanks.}
+{4010}{}{Yeah, see you later Skeeter.@@See you later.@@Later, Skeeter.@@Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+

@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Shona}
+{200}{}{Shona, local medic.}
+{210}{}{A very pretty, slim woman passionate about helping others by treating their wounds and healing their injuries.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{If you need any supplies, ask Doc Morbid.@@I do all I can do to help my people.@@I am a good medic, doc says.@@Speak to Doc Morbid. He might teach you something.@@Doc Morbid is great in his area.@@Sorry, you have to see Doc Morbid if you need medical attention.@@Need medical attention? Speak to Doc Morbid.@@I am doing well.}
+
+[russ]
+{100}{}{Шона}
+{200}{}{Шона, местный медик.}
+{210}{}{Очень красивая, стройная женщина, страстно любит помогать другим.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Если вам нужны медикаменты, спросите доктора Морбида.@@Я делаю все, что могу, чтобы помочь своему народу.@@Я хороший медик, так доктор говорит.@@Поговорите с доктором Морбидом. Может он и вас чему-то научит.@@К сожалению, вы должны обратится к доктору Морбиду, если вам нужна медицинская помощь.@@У меня все хорошо.}
+
+[pols]
+{100}{}{Shona}
+{200}{}{Widzisz atrakcyjną, młodą kobietę.}
+{210}{}{{Widzisz Shonę, miejscową lekarkę.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Jeśli potrzebujesz lekarstw, pogadaj z doktorem.@@Robię co mogę, żeby pomagać ludziom.@@Doktor mówi, że jestem dobra.@@Porozmawiaj z doktorem, może cię czegoś nauczy.@Doktor zna się na rzeczy.@@Pogadaj z doktorem, jestem zajęta.@@Nie mam teraz czasu.@@Wiem co robię, nie patrz się tak.}
+
+[ptbr]
+{100}{}{Jona}
+{200}{}{Jona, a médica do local.}
+{210}{}{Uma mulher magra e bonita, que ajuda os outros como pode.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Se precisar de suprimentos, fale com doutor Mórbido.@@eu falo o que posso para ajudar o meu povo.@@O doutor diz que eu sou uma boa médica.@@Fale com o Doutor Mórbido. Ele pode lhe ensinar algo.@@Doutor Mórbido é ótimo em sua área.@@Desculpe-me mas se precisar de cuidados médicos você deve falar com o doutor Mórbido.@@Precisa de cuidados médicos? Fale com o doutor Mórbido? Fale com o doutor Mórbido.@@Eu estou bem, obrigado por perguntar.}
+

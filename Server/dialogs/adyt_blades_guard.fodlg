@@ -1,0 +1,72 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+4 1010 D _script dialog@d_HoldsItems 0  #
+2 1020 D _param p TRAIT_SKILLED = 0 #
+3 1030 D _param p TRAIT_SKILLED = 1 @
+2 2000 None 0 @
+3 3000 None 0 @
+4 4000 None 0 #
+0 4010 R _script dialog@r_RetrieveItems 0  #
+0 4020 &
+
+[engl]
+{100}{}{Blade}
+{200}{}{You see: a member of the Blades. }
+{210}{}{This person is a Blades gang member.}
+{1000}{}{Initial preferences}
+{1010}{}{stuff}
+{1020}{}{normal}
+{1030}{}{mutant}
+{2000}{}{I sure wish those Regulators were gone for good. You are in the only safe place left in the Boneyard. At least for now, that is...@@I've seen a Deathclaw rip a man to pieces in seconds.@@We're pretty safe here.@@I sure could use a smoke.@@Got smokes?@@The Blades will cut you up!@@Fuck them Regulators.@@Those Regulators will get some...@@Watch out for Regulators when you're crossing the Boneyard.@@I've heard some strange stories about a warehouse up northwest...@@Are you lost? This ain't no place for pussies.@@I wish Razor was still with us.@@Whatever you do, keep an eye out for Regulators.@@Got any beer?@@You're not from around here, are you?@@I've got work to do.@@If you're looking for work, I ain't got any.@@If you're looking for work, check the Gecko Express office.@@Ever been to San Francisco?@@Don't wander south near the Cathedral, some fucked up shit goin' on in there.@@Don't bother me, I'm busy.@@Yeah, what?@@Go bother someone else.@@Yeah, whatever.}
+{3000}{}{What are you doing here, mutant?@@You've got some nerve showing up here, mutie.@@Get the hell outta my face, mutie.@@You ain't welcome here.@@I'm keepin' an eye on you, mutie.@@Get lost.@@Get the fuck outta here, mutie!@@I don't like your ugly face, mutant!@@We don't want your kind here, mutant.@@You'd better get outta here, before someone gets nervous. This ain't the Hub you know.@@The locals don't really appreciate your kind in here... Nor do we.@@Get back to whatever shithole you crawled out from.@@You lost, mutie? This ain't the Hub...@@We'll be watching you closely, mutant.@@Go back wherever you came from, mutant.}
+{4000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{4010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{4020}{}{No, thanks, you can keep it.}
+
+[russ]
+{100}{}{Лезвие}
+{200}{}{Вы видите члена банды Лезвий}
+{210}{}{Человек, которого вы видите - член банды Лезвий}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{stuff}
+{1020}{}{-}
+{1030}{}{Answer text}
+{2000}{}{Хочу чтобы эти Регуляторы исчезли ради всего святого. Ты в единственном безопасном месте, оставшимся в Бониярде. По крайней мере пока это так...@@Я видел как Коготь Смерти разорвал человека.. на кусочки.. за секунду..@@Нам тут вполне безопасно.@@С удовольствием бы перекурил...@@Есть курево?@@Лезвия тебя порежут!@@Нахер регуляторов!@@Регуляторы своё получат...@@Остерегайся Регуляторов, путешествуя по Бониярду.@@Я слышал несколько странных историй о Складе на Северо-Западе...@@Ты заблудился? Здесь не место для сосунков.@@Хотел бы я чтобы Лезвие всё ещё было с нами.@@Что бы ты не делал, остерегайся Регуляторов.@@Пивка нет?@@Ты же не из этих мест, да?@@У меня есть чем заняться.@@Если ты ищешь работу - мне нечего предложить тебе.@@Если нужна работа - советую заглянуть в офис Гекко-Экспресс.@@Ты бывал в Сан-Франциско?@@Не шатайся на юге возле Собора, там творится невероятная херня.@@Не лезь ко мне, я занят.@@Да, что?@@Иди докопайся до кого-нибудь ещё.@@Ага, да-да...}
+{3000}{}{Что ты здесь делаешь, мутант?@@И хватило ведь смелости сюда заявиться мутанту.@@Уберсь с моих глаз, мутант.@@Тебе здесь не рады.@@Я за тобой слежу, зелёный.@@Проваливай.@@Иди отсюда нахрен, мути...@@Мне не нравится твоё уродливое лицо, ошибка природы.@@Нам не нужны тут мутанты!@@Шёл бы ты отсюда, пока народ не стал напрягаться... Это не Хаб, сечёшь?@@Местные мутантов не любят. Мы тоже...@@Иди в ту дыру откуда ты выполз!@@Заблудился, мутантик? Здесь не Хаб...@@Мы будем внимательно за тобой следить, ...мутант...@@Иди туда, откуда пришёл, мутант.}
+{4000}{}{Эй, это тебе тут надрали задницу? Кажется у меня твои пожитки.. Хочешь их назад, а?}
+{4010}{}{Да! Конечно! [Вы забираете обратно свои вещи.]@@Да! Спасибо!. [Вы забираете обратно свои вещи.]@@Отлично!... [Забираете обратно свои вещи.]}
+{4020}{}{Нет, спасибо, ты можешь оставить их себе.}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz profesjonalnego strażnika. Wydaje się być doskonale wyszkolony, lepiej nie robić żadnych problemów w jego okolicy.}
+{1000}{}{Initial preferences}
+{1010}{}{stuff}
+{1020}{}{-}
+{1030}{}{Answer text}
+{2000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.}
+{3000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.}
+{4000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{4010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{4020}{}{No, thanks, you can keep it.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{stuff}
+{1020}{}{normal}
+{1030}{}{mutant}
+{2000}{}{I sure wish those Regulators were gone for good. You are in the only safe place left in the Boneyard. At least for now, that is...@@I've seen a Deathclaw rip a man to pieces in seconds.@@We're pretty safe here.@@I sure could use a smoke.@@Got smokes?@@The Blades will cut you up!@@Fuck them Regulators.@@Those Regulators will get some...@@Watch out for Regulators when you're crossing the Boneyard.@@I've heard some strange stories about a warehouse up northwest...@@Are you lost? This ain't no place for pussies.@@I wish Razor was still with us.@@Whatever you do, keep an eye out for Regulators.@@Got any beer?@@You're not from around here, are you?@@I've got work to do.@@If you're looking for work, I ain't got any.@@If you're looking for work, check the Gecko Express office.@@Ever been to San Francisco?@@Don't wander south near the Cathedral, some fucked up shit goin' on in there.@@Don't bother me, I'm busy.@@Yeah, what?@@Go bother someone else.@@Yeah, whatever.}
+{3000}{}{What are you doing here, mutant?@@You've got some nerve showing up here, mutie.@@Get the hell outta my face, mutie.@@You ain't welcome here.@@I'm keepin' an eye on you, mutie.@@Get lost.@@Get the fuck outta here, mutie!@@I don't like your ugly face, mutant!@@We don't want your kind here, mutant.@@You'd better get outta here, before someone gets nervous. This ain't the Hub you know.@@The locals don't really appreciate your kind in here... Nor do we.@@Get back to whatever shithole you crawled out from.@@You lost, mutie? This ain't the Hub...@@We'll be watching you closely, mutant.@@Go back wherever you came from, mutant.}
+{4000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{4010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{4020}{}{No, thanks, you can keep it.}
+

@@ -1,0 +1,495 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+50 1010 D _var p name_mem_player_npc } 4 #
+40 1020 D _var p name_mem_player_npc = 3 #
+30 1030 D _var p name_mem_player_npc = 2 #
+10 1040 D _var p name_mem_player_npc = 1 #
+2 1050 D _var p name_mem_player_npc < 1 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 R _var p name_mem_player_npc = 1 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _item p PID_PREWAR_1 } 1 D or D _item p PID_PREWAR_2 } 1 D or D _item p PID_PREWAR_3 } 1 #
+0 4020 @
+5 5000 None 0 #
+6 5010 D _item p PID_PREWAR_1 } 1 R _var p name_mem_npc_player + 1 R _item p PID_PREWAR_1 - 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+6 5020 D _item p PID_PREWAR_2 } 1 R _var p name_mem_npc_player + 1 R _item p PID_PREWAR_2 - 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+6 5030 D _item p PID_PREWAR_3 } 1 R _var p name_mem_npc_player + 1 R _item p PID_PREWAR_3 - 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+0 5040 @
+6 6000 economy_dialogs@dlg_PreparePrice 0 #
+5 6010 D _var p name_mem_npc_player < 4 #
+0 6020 D _var p name_mem_npc_player < 4 #
+20 6030 D _var p name_mem_player_npc = 1 D _var p name_mem_npc_player } 4 R _var p name_mem_player_npc = 2 #
+20 6040 D _var p name_mem_player_npc = 1 D _var p name_mem_npc_player } 4 R _var p name_mem_player_npc = 2 @
+10 7000 None 0 #
+11 7010 D _item p PID_PREWAR_1 } 1 D or D _item p PID_PREWAR_2 } 1 D or D _item p PID_PREWAR_3 } 1 #
+0 7020 @
+11 8000 None 0 #
+12 8010 D _item p PID_PREWAR_1 } 1 R _item p PID_PREWAR_1 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+12 8020 D _item p PID_PREWAR_2 } 1 R _item p PID_PREWAR_2 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+12 8030 D _item p PID_PREWAR_3 } 1 R _item p PID_PREWAR_3 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+0 8040 @
+12 9000 economy_dialogs@dlg_PreparePrice 0 #
+11 9010 D _var p name_mem_npc_player < 4 #
+0 9020 D _var p name_mem_npc_player < 4 #
+20 9030 D _var p name_mem_player_npc = 1 D _var p name_mem_npc_player } 4 R _var p name_mem_player_npc = 2 #
+20 9040 D _var p name_mem_player_npc = 1 D _var p name_mem_npc_player } 4 R _var p name_mem_player_npc = 2 @
+20 10000 None 0 #
+21 10010 D _param p ST_LEVEL < 15 R _var p name_mem_player_npc = 2 #
+40 10020 D _param p ST_LEVEL } 15 R _var p name_mem_player_npc = 3 #
+0 10030 @
+21 11000 None 0 #
+0 11010 R _var p name_mem_player_npc = 2 @
+30 12000 None 0 #
+31 12010 D _item p PID_PREWAR_1 } 1 D or D _item p PID_PREWAR_2 } 1 D or D _item p PID_PREWAR_3 } 1 #
+0 12020 @
+31 13000 None 0 #
+32 13010 D _item p PID_PREWAR_1 } 1 R _item p PID_PREWAR_1 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+32 13020 D _item p PID_PREWAR_2 } 1 R _item p PID_PREWAR_2 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+32 13030 D _item p PID_PREWAR_3 } 1 R _item p PID_PREWAR_3 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+0 13040 @
+32 14000 economy_dialogs@dlg_PreparePrice 0 #
+31 14010 D _var p name_mem_npc_player < 4 D _param p ST_LEVEL < 15 #
+0 14020 D _var p name_mem_npc_player < 4 D _param p ST_LEVEL < 15 #
+31 14030 D _var p name_mem_npc_player < 4 D _param p ST_LEVEL } 15 #
+0 14040 D _param p ST_LEVEL } 15 D _param p ST_LEVEL < 4 #
+31 14050 D _var p name_mem_npc_player } 4 D _param p ST_LEVEL < 15 #
+0 14060 D _var p name_mem_npc_player } 4 D _param p ST_LEVEL < 15 #
+39 14070 D _var p name_mem_player_npc = 2 D _var p name_mem_npc_player } 4 D _param p ST_LEVEL } 15 R _var p name_mem_player_npc = 3 #
+39 14080 D _var p name_mem_player_npc = 2 D _var p name_mem_npc_player } 4 D _param p ST_LEVEL } 15 R _var p name_mem_player_npc = 3 @
+39 15000 None 0 #
+40 15010 #
+0 15020 @
+40 16000 None 0 #
+41 16010 D _param p ST_INTELLECT { 5 #
+42 16020 D _param p ST_INTELLECT > 5 R _script dialog@r_ShowLocation 1 16 R _var p name_mem_player_npc = 4 #
+45 16030 R _var p name_mem_player_npc = 5 #
+44 16040 @
+41 17000 None 0 #
+42 17010 R _script dialog@r_ShowLocation 1 16 R _var p name_mem_player_npc = 4 #
+45 17020 R _var p name_mem_player_npc = 5 #
+44 17030 @
+42 18000 None 0 #
+43 18010 #
+0 18020 @
+43 19000 None 0 @
+44 20000 None 0 @
+45 21000 None 0 @
+50 22000 None 0 #
+51 22010 D _var p name_mem_player_npc = 4 #
+55 22020 D _var p name_mem_player_npc = 5 #
+0 22030 @
+51 23000 None 0 #
+52 23010 D _item p PID_PREWAR_1 } 1 R _item p PID_PREWAR_1 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+52 23020 D _item p PID_PREWAR_2 } 1 R _item p PID_PREWAR_2 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+52 23030 D _item p PID_PREWAR_3 } 1 R _item p PID_PREWAR_3 - 1 R _var p name_mem_npc_player + 1 R _script economy_dialogs@r_GiveCaps 1 500 #
+0 23040 @
+52 24000 economy_dialogs@dlg_PreparePrice 0 #
+51 24010 #
+0 24020 @
+55 25000 None 0 #
+0 25010 &
+
+[engl]
+{100}{}{Suspicious Man}
+{200}{}{You see: Suspicious Man.}
+{210}{}{You see a strange looking man. He's constantly looking around, as if he was being followed.}
+{210}{}{Closer examination reveals he has a tatoo in the shape of the letter "E" with stars around it on his arm.}
+{1000}{}{Predialogue installations}
+{1010}{}{After giving the location of gas station}
+{1020}{}{4  prewar and 15 lvl}
+{1030}{}{progress}
+{1040}{}{known}
+{1050}{}{unknown}
+{2000}{}{[The man observes cautiosly as you approach him.] Yes? You want something?}
+{2010}{}{Who are you?}
+{2020}{}{Uh, sorry.@@I've mistaken you for someone else.@@Nevermind.}
+{3000}{}{My name is not important here. The important thing is, what do you want from me?}
+{3010}{}{I don't know... What are you doing here?}
+{3020}{}{Nothing, I guess.}
+{4000}{}{Well, I'm a trader... of sorts. My friends are very interested in the history of this once great land. In particular, they are very keen on certain Pre-War relics. And so, I act as their middle-man, travelling far and wide, and buying anything interesting that I might run into. Now, you don't happen to have anything like that on you?}
+{4010}{}{Then I'm in luck! It happens that I've have run into some of those... relics you mentioned. }
+{4020}{}{I see. I'll drop by if I ever run into those relics of yours. Goodbye.}
+{5000}{}{Show me what you've got then.@@Let me see what you have then.@@Let me take a look...}
+{5010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{5020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{5030}{}{I've never seen this before.@@Maybe you'll like this piece I found...@@Look at this.@@See this?@@Can you identify this?@@I've found this in the desert down south.}
+{5040}{}{Hmmm, on second thought, maybe later.@@Nevermind.@@Damn, I've just remembered something. Gotta go.}
+{6000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@  caps, standard payment.  I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@  caps for your trouble.}
+{6010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{6020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{6030}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{6040}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{7000}{}{Back again?@@You're back...@@Back already I see...}
+{7010}{}{Yeah, I've found some Pre-War stuff you seek.@@I've found some relics.@@I've got some nice Pre-War relics for you.}
+{7020}{}{Just passing by.@@Just passin through.@@Nevermind.}
+{8000}{}{Show me what you've got then.@@Let me see what you have then.@@Let me take a look.@@Let's see...@@What  have you brought this time?}
+{8010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{8020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{8030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{8040}{}{Hmmm, on second thought, maybe later.@@Nevermind.@@Damn, I've just remembered something. Gotta go.@@I need to go now.}
+{9000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@ caps, standard payment.  I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@ caps for your trouble.}
+{9010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{9020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{9030}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{9040}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{10000}{}{[He rushes to you and grabs your shoulder.] Hold on there, @sex@|mister||miss|.}
+{10010}{}{Hell, what do you want?@@What?@@What the-}
+{10020}{}{Yeah, what?}
+{10030}{}{I don't have time for this.}
+{11000}{}{You've been an invaluable asset to my... archeological endavours. Talk to me when you're a bit more experienced, I might have an interesting offer for you.}
+{11010}{}{Uh, okay. I've gotta go.}
+{12000}{}{Hello there. I've been keeping an eye on your progress.@@Hello again. I've been watching your progress carefully.}
+{12010}{}{Yeah, great. I've got some relics for you, man.@@That's nice. I came to do business though.@@Let's cut the crap and get to business.}
+{12020}{}{Good to hear. I'm just passing by.}
+{13000}{}{Show me what you've got then.@@Let me see what you have then.@@Let me take a look...}
+{13010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{13020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{13030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{13040}{}{Maybe later.@@Nevermind.@@Damn, I've gotta go.@@I need to go now.}
+{14000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@ caps, standard payment. I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@Looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@ caps for your trouble.}
+{14010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{14030}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14040}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{14050}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14060}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{14070}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14080}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{15000}{}{Say, will you hold on for a moment? I need to talk to you.}
+{15010}{}{Shoot.@@Okay, I'm listening.@@Yeah?}
+{15020}{}{I don't have the time for this.@@Sorry, I've gotta go.@@Maybe later.}
+{16000}{}{You've been quite instrumental to my... efforts. I think you should meet my friends, they need skilled @sex@|men||women|| like yourself. }
+{16010}{}{Really? And who are those "friends" of yours?}
+{16020}{}{I see. Where can I meet those "friends" of yours then?}
+{16030}{}{I have better things to do, sorry. Gotta go.@@I don't give a fuck about your friends.@@You're wasting your time here.}
+{16040}{}{I need to think about this.See you later.@@Give me some time to think about this. Goodbye.@@I'll have to think about this. Got to go.}
+{17000}{}{I think you should know that already, don't you? [He shows you his tatoo with a letter "E" surrounded by a circle of white stars.]}
+{17010}{}{Okay then... So where should I be headed?}
+{17020}{}{No way, I don't want to be dragged into this.@@I don't want to get involved in this shit.}
+{17030}{}{I need to think about this.See you later.@@Give me some time to think about this. Goodbye.@@I'll have to think about this. Got to go.}
+{18000}{}{Head to the old gas station north of San Francisco. That's all I'm allowed to say now. [He marks the location on your Pip-Boy.] Go now, @pname@.}
+{18010}{}{What? How do you know my name?}
+{18020}{}{Got it. Goodbye... whoever you are.}
+{19000}{}{We know many things, you'll learn that soon enough.@@We know many things. }
+{20000}{}{Take your time then.@@As you wish.}
+{21000}{}{What a dissapointment.}
+{22000}{}{So, our paths cross again.@@Need something?@@It's you again. Do you want something from me?}
+{22010}{}{Are you still interested in Pre-War relics?}
+{22020}{}{Are you still interested in Pre-War relics?}
+{22030}{}{Nevermind.@@Just passing.@@No, goodbye.@@Nope.}
+{23000}{}{My task stays the same, @pname@. Show me your findings.}
+{23010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{23020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{23030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{23040}{}{Hmmm, on second thought, maybe later.@@Nevermind.@@Damn, I've just remembered something. Gotta go.@@I need to go now.}
+{24000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@ caps, standard payment.  I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@Looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@ caps for your trouble.@@I'll take it. Here's @lex prewar_reward@ caps.}
+{24010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{24020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{25000}{}{I may be. Or may not. Depends who wants to sell them. You get my drift?}
+{25010}{}{Yeah. See you round.@@Fuck you.@@Screw you.@I get it.}
+
+[russ]
+{100}{}{Подозрительный человек}
+{200}{}{Вы видете Подозрительного человека.}
+{210}{}{Вы видете странно выглядещего человека. Он постоянно оглядывается по сторонам, как будто подозревает, что за ним следят.}
+{210}{}{При ближайшем рассмотрении вы заметили у на его руке татуировку в виде буквы "А", окруженную звездами.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{После посещения заправочной станции}
+{1020}{}{4  реликвии и 15 лвл}
+{1030}{}{прогресс}
+{1040}{}{известно}
+{1050}{}{неизвестно}
+{2000}{}{[Человек подозительно смотрит на вас, когда вы подходите ближе.] Да? Тебе что-то нужно?}
+{2010}{}{Кто ты?}
+{2020}{}{Ээ, извините.@@Кажется я принял вас за кого-то другого.@@Неважно.}
+{3000}{}{Мое имя нитак уж и важно. Важно чего тебе от меня надо?}
+{3010}{}{Я не знаю... А чем ты здесь занимаешься?}
+{3020}{}{Ничем, я подозреваю.}
+{4000}{}{Можно сказать я торговец... в какой-то мере. Мои друзья очень интересуются историей этой когда-то великой страны. Если точнее, они просто помешаны на довоенных реликвиях. Я у них вобщем вроде посредника, катаюсь тут и там, скупаю интересные вещи, на которые натыкаюсь. Итак, у тебя случаем ничего подобного нет?}
+{4010}{}{Похоже мне повезло! Совершенно случайно у меня завалялись несколько... реликвий, о которых ты говорил. }
+{4020}{}{Ясно. Буду иметь ввиду, если когда-нибудь найду одну из твоих так называемых реликвий. Пока.}
+{5000}{}{Покажи мне, что у тебя есть.@@Давай-ка посмотрим, что там у тебя.@@Дай-ка я посмотрю...}
+{5010}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{5020}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.@@Вот у меня кое-что есть...@@Посмотри на этот кусок мусора.@@Ты знаешь, что это такое?}
+{5030}{}{Никогда раньше подобного не видел.@@Быть может тебе понравиться что я тут нашел...@@Гляди-ка.@@Видишь это?@@Можешь посмотреть что это?@@Нашел где-то в пустыне далеко на юге.}
+{5040}{}{Ээ, в другой раз, может позже.@@Неважно.@@Дерьмо, я тут кое-что вспомнил. Надо идти.}
+{6000}{}{Мм..выглядит неплохо, пожалуй куплю. Вот тебе @lex prewar_reward@ капсов - стандартная цена.  Моим друзьям это определенно понравится, Отправлю с первым верти... *тьфу* караваном всмысле.@@Совсем неплохо, забираю. Вот держи - @lex prewar_reward@ капсов, обычная цена.@@Интересненько... Вот @lex prewar_reward@ капсов - держи за беспокоства.}
+{6010}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{6020}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{6030}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{6040}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{7000}{}{Снова ты?}
+{7010}{}{Да,нашел тебе еще немного довоенного хлама.@@.@@У меня тут завалялось для тебя пара довоенных реликвий.}
+{7020}{}{Просто проходил мимо.}
+{8000}{}{Покажи мне, что у тебя есть.@@Давай-ка посмотрим, что там у тебя.@@Дай-ка я посмотрю...}
+{8010}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{8020}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{8030}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{8040}{}{Ээ, в другой раз, может позже.@@Неважно.@@Дерьмо, я тут кое-что вспомнил. Надо идти.}
+{9000}{}{Мм..выглядит неплохо, пожалуй куплю. Вот тебе @lex prewar_reward@ капсов - стандартная цена.  Моим друзьям это определенно понравится, Отправлю с первым верти... *тьфу* караваном всмысле.@@Совсем неплохо, забираю. Вот держи - @lex prewar_reward@ капсов, обычная цена.@@Интересненько... Вот @lex prewar_reward@ капсов - держи за беспокоства.}
+{9010}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{9020}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{9030}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{9040}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{10000}{}{[Он внезапно хватает вас за плечо.] Пойдем-ка отойдем, @sex@|мистер||мисс|.}
+{10010}{}{Черт! чего тебе от меня нужно?@@Что?@@Что за-}
+{10020}{}{Да, чего?}
+{10030}{}{У меня нет на это времени.}
+{11000}{}{Твой вклад в мою коллецию археологических находок просто неоценим. Поговори со мной когда чуть наберешься опыта, возможно у меня будет для тебя очень интересное предложение.}
+{11010}{}{Ух, ладно не пора. Надо идти.}
+{12000}{}{Эй привет. я за тобой приглядываю. }
+{12010}{}{Отлично. У меня тут несколько твоих любимых реликвий.@@Мило. Я кстати по делу.@@Давай ближе к делу уже.}
+{12020}{}{Рад слышать. Просто проходил мимо}
+{13000}{}{Покажи мне, что у тебя есть.@@Давай-ка посмотрим, что там у тебя.@@Дай-ка я посмотрю...}
+{13010}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{13020}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{13030}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{13040}{}{Ээ, в другой раз, может позже.@@Неважно.@@Дерьмо, я тут кое-что вспомнил. Надо идти.}
+{14000}{}{Мм..выглядит неплохо, пожалуй куплю. Вот тебе @lex prewar_reward@ капсов - стандартная цена.  Моим друзьям это определенно понравится, Отправлю с первым верти... *тьфу* караваном всмысле.@@Совсем неплохо, забираю. Вот держи - @lex prewar_reward@ капсов, обычная цена.@@Интересненько... Вот @lex prewar_reward@ капсов - держи за беспокоства.}
+{14010}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{14020}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{14030}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{14040}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{14050}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{14060}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{14070}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{14080}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{15000}{}{Слушай, задержись на минутку? Есть разговор.}
+{15010}{}{Слушаю.@@Хорошо, я слушаю.@@Да?}
+{15020}{}{У меня нет на это времени.@@Извини, надо идти.@@Может позже.}
+{16000}{}{Знаешь, ты был очень полезен.... в моих поисках. Кажется ты вполне готов встретиться с моими друзьями, им нужны умелые @sex@|мужчины|женщины|| как ты. }
+{16010}{}{Серьезно? Так кто же такие эти твои друзья?}
+{16020}{}{Понятно. Так где я могу встретить этих твоих друзей?}
+{16030}{}{У меня сейчас времени нет, извини надо идти.@@Мне до твоих друзей дела нет.@@Ты тут мое время тратишь.}
+{16040}{}{Надо подумать, может позже.@@Дай мне немного подумать. Пока.@@Мне надо хорошенько подумать, пора идти.}
+{17000}{}{Я думаю ты уже обо всем итак догадался, разве нет? [Он показывает вам татуировку на руке - буква "А" в круге из белых звезд.]}
+{17010}{}{Ладно... Куда мне надо идти?}
+{17020}{}{Ну нет, я в это дерьмо не полезу.@@Нее это ни для меня.}
+{17030}{}{Надо подумать, увидимся.@@Дай мне время подумать, пока.@@Надо подумать, пока.}
+{18000}{}{Направляйся на старую заправочную станцию к северу от Сан-Франциско. Это все, что мне разрешено сказать. [Он отмечает координаты в вашем пип-бое.] Теперь иди, @pname@.}
+{18010}{}{Что? Ты как узнал мое имя?}
+{18020}{}{Понятно. Счастливо... кем бы ты не был.}
+{19000}{}{Мы в курсе многих вещей, ты это быстро поймешь.}
+{20000}{}{Похоже тебе пора.}
+{21000}{}{Жаль.}
+{22000}{}{Итак, наши дорожки снова пересеклись.@@Чего-то надо?@@Опять ты. Что-то хотел?}
+{22010}{}{Так ты еще интересуешься довоенными реликвиями?}
+{22020}{}{Так ты еще интересуешься довоенными реликвиями?}
+{22030}{}{Ничего.@@Просто проходил мимо.@@Нет, пока.@@Нет.}
+{23000}{}{У меня все по прежнему, @pname@. Покажи, что у тебя есть.}
+{23010}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{23020}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{23030}{}{Ты глянь, никогда ничего подобного не встречал.@@Ты хоть знаешь что это?@@Да нашел в каких-то руинах.@@Да я без понятия для чего эта вещь может быть.@@Ну, я нашел эту...вещь.}
+{23040}{}{Ээ, в другой раз, может позже.@@Неважно.@@Дерьмо, я тут кое-что вспомнил. Надо идти.}
+{24000}{}{Мм..выглядит неплохо, пожалуй куплю. Вот тебе @lex prewar_reward@ капсов - стандартная цена.  Моим друзьям это определенно понравится, Отправлю с первым верти... *тьфу* караваном всмысле.@@Совсем неплохо, забираю. Вот держи - @lex prewar_reward@ капсов, обычная цена.@@Интересненько... Вот @lex prewar_reward@ капсов - держи за беспокоства.}
+{24010}{}{У меня еще есть.@@Это еще ни все, что я нашел.@@Есть еще кое-что.@@Вот глянь.@@Еще кое-что.}
+{24020}{}{Спасибо.@@Приятно иметь с тобой дело.@@Отлично, пока.@@Счастливо.@@Увидимся.}
+{25000}{}{Может да, может и нет. Зависит от того, кто пытается продать, как тебе?}
+{25010}{}{Да. видимся.@@Пошел ты.@@Да чтоб ты...@Понятно.}
+
+[pols]
+{100}{}{Suspicious man}
+{200}{}{You see: Suspisious Man.}
+{210}{}{You see a strange looking man. He's constantly looking around, as if he was being followed.}
+{210}{}{Closer examination reveals he has a tatoo in the shape of the letter "E" with stars around it on his arm.}
+{1000}{}{Predialogue installations}
+{1010}{}{After giving the location of gas station}
+{1020}{}{4  prewar and 15 lvl}
+{1030}{}{progress}
+{1040}{}{known}
+{1050}{}{unknown}
+{2000}{}{[Mężczyzna obserwuje cię z uwagą] Tak? Chcesz czegoś?}
+{2010}{}{Kim jesteś?}
+{2020}{}{Nieważne, pójdę już.}
+{3000}{}{Moje imię nie jest ważne. Ważne jest raczej to, czego ty chcesz ode mnie?}
+{3010}{}{Jeszcze nie wiem. Czym się zajmujesz?}
+{3020}{}{W sumie nic.}
+{4000}{}{Cóż, jestem swego rodzaju...handlarzem. Moi przyjaciele są niezwykle zainteresowani historią tej ziemi. Przede wszystkim poszukują pewnych przedwojennych reliktów. I więc ja podróżuję wszem i wobec, i kupuję wszystko interesujące na co wpadnę. I tu pojawiasz się ty...nie znalazłeś przypadkiem czegoś z tym rodzaju?}
+{4010}{}{W takim razie mam szczęście! Tak się składa, że wpadłem na kilka tych reliktów, o których wspomniałeś.}
+{4020}{}{Rozumiem. Wpadnę więc jak znajdę jakieś 'relikty'. Do widzenia.}
+{5000}{}{Pokaż więc, co tam masz.}
+{5010}{}{Cóż, znalazłem to...coś.}
+{5020}{}{Wiesz co to jest?}
+{5030}{}{Spójrz na to.}
+{5040}{}{Nieważne, jednak myślę, że nie. Żegnam.}
+{6000}{}{Hmm, wygląda interesująco. Wezmę to. Oto twoja nagroda, @lex prewar_reward@ kapsli, standardowa stawka.}
+{6010}{}{To jeszcze nie wszystko, mam więcej.}
+{6020}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{6030}{}{To jeszcze nie wszystko, mam więcej.}
+{6040}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{7000}{}{Już spowrotem?}
+{7010}{}{Tak, wpadłem na kilka tych reliktów, o których wspomniałeś.}
+{7020}{}{Tak tylko odwiedzam. Trzymaj się.}
+{8000}{}{Pokaż więc, co tam masz.}
+{8010}{}{Cóż, znalazłem to...coś.}
+{8020}{}{Wiesz co to jest?}
+{8030}{}{Spójrz na to.}
+{8040}{}{Nieważne, jednak myślę, że nie. Żegnam.}
+{9000}{}{Hmm, wygląda interesująco. Wezmę to. Oto twoja nagroda, @lex prewar_reward@ kapsli, standardowa stawka.}
+{9010}{}{To jeszcze nie wszystko, mam więcej.}
+{9020}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{9030}{}{To jeszcze nie wszystko, mam więcej.}
+{9040}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{10000}{}{[Podbiega do ciebie i łapie cię za ramię.] Poczekaj chwilę, @sex@|kolego||panienko|.}
+{10010}{}{Co? Czego chcesz?}
+{10020}{}{No, co?}
+{10030}{}{Daj mi spokój, nie mam na to czasu.}
+{11000}{}{Byłeś bardzo pomocny w moim...archeologicznym przedsięwzięciu. Porozmawiaj ze mną kiedy nabierzesz więcej doświadczenia, być może złoże ci propozycję.}
+{11010}{}{W porządku. Musze lecieć.}
+{12000}{}{Witaj, obserwowałem twoje postępy.}
+{12010}{}{Świetnie, ale póki co mam parę reliktów na sprzedaż.}
+{12020}{}{Dobrze słyszeć. Ja już sobie pójdę.}
+{13000}{}{No to pokaż, co tam masz.}
+{13010}{}{Cóż, znalazłem to...coś.}
+{13020}{}{Wiesz co to jest?}
+{13030}{}{Spójrz na to.}
+{13040}{}{Nieważne, może później.}
+{14000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@ caps, standard payment. I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@Looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@ caps for your trouble.}
+{14010}{}{To jeszcze nie wszystko, mam więcej.}
+{14020}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{14030}{}{To jeszcze nie wszystko, mam więcej.}
+{14040}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{14050}{}{To jeszcze nie wszystko, mam więcej.}
+{14060}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{14070}{}{To jeszcze nie wszystko, mam więcej.}
+{14080}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{15000}{}{Poczekaj chwilę. Zanim do tego dojdzie, muszę z tobą porozmawiać.}
+{15010}{}{W porządku, słucham.}
+{15020}{}{Wybacz, ale nie mam na to czasu.}
+{16000}{}{Byłeś bardzo pomocny w moim...archeologicznym przedsięwzięciu. Myślę, że powinieneś poznać moich przyjaciół. Potrzebują oni @sex@|takich uzdolnionych gości||takie uzdolnione kobiety| jak ty.}
+{16010}{}{Naprawdę? A kim są ci twoi "przyjaciele"?}
+{16020}{}{Rozumiem. Więc gdzie moge poznać tych twoich "przyjaciół"?}
+{16030}{}{Marnujesz czas, mam lepsze rzeczy do roboty.}
+{16040}{}{Muszę się nad tym zastanowić. Do zobaczenia wkrótce.}
+{17000}{}{Myślę, że już ich znasz. [Pokazuje ci swój tatuaż z literą E otoczoną przez kółko z białych gwiazd.]}
+{17010}{}{O, w porządku. Więc...gdzie mam iść?}
+{17020}{}{Nie ma mowy, nie mam najmniejszego zamiaru dać się w to wciągnąć.}
+{17030}{}{Muszę się nad tym zastanowić. Do zobaczenia wkrótce.}
+{18000}{}{Udaj się do starej stacji benzynowej na północ od San Fransisco. To wszystko, co mogę teraz powiedzieć. [Zaznacza lokację w twoim Pip-Boyu.] Idź już, @pname@.}
+{18010}{}{Co? Skąd znasz moje imię?}
+{18020}{}{Jasne. Żegnaj...kimkolwiek jesteś.}
+{19000}{}{Wiemy wiele rzeczy. Wkrótce sam się o tym przekonasz.}
+{20000}{}{Zatem bez pośpiechu.}
+{21000}{}{Jaka szkoda.}
+{22000}{}{Nasze ścieżki znów się zbiegają. Czego chcesz tym razem?}
+{22010}{}{Wciąż kolekcjonujesz przedwojenne relikty?}
+{22020}{}{Wciąż kolekcjonujesz przedwojenne relikty?}
+{22030}{}{Niczego. Trzymaj się.}
+{23000}{}{Moje zadanie wciąż jest takie samo, @pname@. Pokaż mi, co tam masz.}
+{23010}{}{Cóż, znalazłem to...coś.}
+{23020}{}{Wiesz co to jest?}
+{23030}{}{Spójrz na to.}
+{23040}{}{Nieważne, może później.}
+{24000}{}{Hmm, wygląda interesująco. Wezmę to. Oto twoja nagroda, @lex prewar_reward@ kapsli, standardowa stawka.}
+{24010}{}{To jeszcze nie wszystko, mam więcej.}
+{24020}{}{Miło robić z tobą interesy. Do zobaczenia.}
+{25000}{}{Być może tak, być może nie. Sporo zależy od tego kto chce je sprzedać. Wiesz, co mam na myśli?}
+{25010}{}{Ta, rozumiem. Pieprz się.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{After giving the location of gas station}
+{1020}{}{4  prewar and 15 lvl}
+{1030}{}{progress}
+{1040}{}{known}
+{1050}{}{unknown}
+{2000}{}{[The man observes cautiosly as you approach him.] Yes? You want something?}
+{2010}{}{Who are you?}
+{2020}{}{Uh, sorry.@@I've mistaken you for someone else.@@Nevermind.}
+{3000}{}{My name is not important here. The important thing is, what do you want from me?}
+{3010}{}{I don't know... What are you doing here?}
+{3020}{}{Nothing, I guess.}
+{4000}{}{Well, I'm a trader... of sorts. My friends are very interested in the history of this once great land. In particular, they are very keen on certain Pre-War relics. And so, I act as their middle-man, travelling far and wide, and buying anything interesting that I might run into. Now, you don't happen to have anything like that on you?}
+{4010}{}{Then I'm in luck! It happens that I've have run into some of those... relics you mentioned. }
+{4020}{}{I see. I'll drop by if I ever run into those relics of yours. Goodbye.}
+{5000}{}{Show me what you've got then.@@Let me see what you have then.@@Let me take a look...}
+{5010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{5020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{5030}{}{I've never seen this before.@@Maybe you'll like this piece I found...@@Look at this.@@See this?@@Can you identify this?@@I've found this in the desert down south.}
+{5040}{}{Hmmm, on second thought, maybe later.@@Nevermind.@@Damn, I've just remembered something. Gotta go.}
+{6000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@  caps, standard payment.  I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@  caps for your trouble.}
+{6010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{6020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{6030}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{6040}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{7000}{}{Back again?@@You're back...@@Back already I see...}
+{7010}{}{Yeah, I've found some Pre-War stuff you seek.@@I've found some relics.@@I've got some nice Pre-War relics for you.}
+{7020}{}{Just passing by.@@Just passin through.@@Nevermind.}
+{8000}{}{Show me what you've got then.@@Let me see what you have then.@@Let me take a look.@@Let's see...@@What  have you brought this time?}
+{8010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{8020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{8030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{8040}{}{Hmmm, on second thought, maybe later.@@Nevermind.@@Damn, I've just remembered something. Gotta go.@@I need to go now.}
+{9000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@ caps, standard payment.  I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@ caps for your trouble.}
+{9010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{9020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{9030}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{9040}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{10000}{}{[He rushes to you and grabs your shoulder.] Hold on there, @sex@|mister||miss|.}
+{10010}{}{Hell, what do you want?@@What?@@What the-}
+{10020}{}{Yeah, what?}
+{10030}{}{I don't have time for this.}
+{11000}{}{You've been an invaluable asset to my... archeological endavours. Talk to me when you're a bit more experienced, I might have an interesting offer for you.}
+{11010}{}{Uh, okay. I've gotta go.}
+{12000}{}{Hello there. I've been keeping an eye on your progress.@@Hello again. I've been watching your progress carefully.}
+{12010}{}{Yeah, great. I've got some relics for you, man.@@That's nice. I came to do business though.@@Let's cut the crap and get to business.}
+{12020}{}{Good to hear. I'm just passing by.}
+{13000}{}{Show me what you've got then.@@Let me see what you have then.@@Let me take a look...}
+{13010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{13020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{13030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{13040}{}{Maybe later.@@Nevermind.@@Damn, I've gotta go.@@I need to go now.}
+{14000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@ caps, standard payment. I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@Looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@ caps for your trouble.}
+{14010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{14030}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14040}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{14050}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14060}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{14070}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{14080}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{15000}{}{Say, will you hold on for a moment? I need to talk to you.}
+{15010}{}{Shoot.@@Okay, I'm listening.@@Yeah?}
+{15020}{}{I don't have the time for this.@@Sorry, I've gotta go.@@Maybe later.}
+{16000}{}{You've been quite instrumental to my... efforts. I think you should meet my friends, they need skilled @sex@|men||women|| like yourself. }
+{16010}{}{Really? And who are those "friends" of yours?}
+{16020}{}{I see. Where can I meet those "friends" of yours then?}
+{16030}{}{I have better things to do, sorry. Gotta go.@@I don't give a fuck about your friends.@@You're wasting your time here.}
+{16040}{}{I need to think about this.See you later.@@Give me some time to think about this. Goodbye.@@I'll have to think about this. Got to go.}
+{17000}{}{I think you should know that already, don't you? [He shows you his tatoo with a letter "E" surrounded by a circle of white stars.]}
+{17010}{}{Okay then... So where should I be headed?}
+{17020}{}{No way, I don't want to be dragged into this.@@I don't want to get involved in this shit.}
+{17030}{}{I need to think about this.See you later.@@Give me some time to think about this. Goodbye.@@I'll have to think about this. Got to go.}
+{18000}{}{Head to the old gas station north of San Francisco. That's all I'm allowed to say now. [He marks the location on your Pip-Boy.] Go now, @pname@.}
+{18010}{}{What? How do you know my name?}
+{18020}{}{Got it. Goodbye... whoever you are.}
+{19000}{}{We know many things, you'll learn that soon enough.@@We know many things. }
+{20000}{}{Take your time then.@@As you wish.}
+{21000}{}{What a dissapointment.}
+{22000}{}{So, our paths cross again.@@Need something?@@It's you again. Do you want something from me?}
+{22010}{}{Are you still interested in Pre-War relics?}
+{22020}{}{Are you still interested in Pre-War relics?}
+{22030}{}{Nevermind.@@Just passing.@@No, goodbye.@@Nope.}
+{23000}{}{My task stays the same, @pname@. Show me your findings.}
+{23010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{23020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{23030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.@@I have this thingy here...@@Look at this piece of junk.@@Do you know what this is?}
+{23040}{}{Hmmm, on second thought, maybe later.@@Nevermind.@@Damn, I've just remembered something. Gotta go.@@I need to go now.}
+{24000}{}{Hmm... looks interesting, I'll take it. Here's @lex prewar_reward@ caps, standard payment.  I'm sure my friends will like it, I'll send it with the next fl... southbound caravan.@@Looking good, I'll take it. Here's @lex prewar_reward@ caps, standard payment.@@Interesting... I'll take it. Here's @lex prewar_reward@ caps for your trouble.@@I'll take it. Here's @lex prewar_reward@ caps.}
+{24010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{24020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{25000}{}{I may be. Or may not. Depends who wants to sell them. You get my drift?}
+{25010}{}{Yeah. See you round.@@Fuck you.@@Screw you.@I get it.}
+

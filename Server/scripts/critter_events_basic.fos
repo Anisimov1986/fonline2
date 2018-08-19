@@ -1,0 +1,1127 @@
+#ifndef __CRITTER_BASIC_EVENTS__
+#define __CRITTER_BASIC_EVENTS__
+
+#include "critter_events_manager.fos"
+#include "utils_h.fos"
+
+
+import bool AddAttackPlane( Critter& npc, uint priority, int identifier, Critter& target, int minHp, bool run) from "npc_planes";
+import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes"; 
+import bool critter_use_skill( Critter& cr, int skill, Critter@ targetCr, Item@ targetItem, Scenery@ targetScen ) from "main";
+
+
+//Better think twice, until you start to rework this
+#define TIME_UNIT_REAL_MS           (1)
+#define TIME_UNIT_REAL_SECOND       (2)
+#define TIME_UNIT_REAL_MINUTE       (3)
+#define TIME_UNIT_REAL_HOUR         (4)
+#define TIME_UNIT_REAL_DAY          (5)
+#define TIME_UNIT_REAL_MONTH        (6)
+#define TIME_UNIT_REAL_YEAR         (7)
+
+#define WAIT_PLANE_IDENTIFIER		(101)
+#define MOVE_TO_PLANE_IDENTIFIER	(102)
+#define ATTACK_PLANE_IDENTIFIER		(103)
+
+#define RUN_AWAY_PRIORITY           (1000)
+
+
+////////////////
+//Basic events//
+////////////////
+
+class SeeCritterAttacks : SeeSomeoneAttackEvent
+{
+	void SeeSomeoneAttack(Critter& critter, Critter& attacker, Critter& attacked, bool& processCommands, Critter@& commandTarget)
+	{			
+		processCommands = true;
+		@commandTarget = attacker;
+	}
+}
+
+
+class CritterTimerTimeout : CTETimeoutEvent
+{
+	private int timerId; 
+	
+	CritterTimerTimeout(int timerId)
+	{
+		this.timerId = timerId;
+	}
+	
+	uint CTETimeout(Critter& critter, int identifier, uint& rate, bool& processCommands, Critter@& commandTarget)
+	{	
+		processCommands = identifier == timerId;
+		return 0;
+	}
+}
+
+
+class TimerTimeout : TimeoutEvent
+{
+	private int timerId; 
+	
+	TimerTimeout(int timerId)
+	{
+		this.timerId = timerId;
+	}
+	
+	uint Timeout(Critter& critter, int identifier, array<uint>@ values, bool& processCommands, Critter@& commandTarget)
+	{	
+		processCommands = identifier == timerId;
+		return 0;
+	}
+}
+
+
+class PlayerShown : ShowCritterEvent
+{
+	void ShowCritter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = showCritter.IsPlayer();
+		@commandTarget = showCritter;
+	}
+}
+
+
+class PlayerShown1 : Show1CritterEvent
+{
+	void Show1Critter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget)
+	{			
+		processCommands = showCritter.IsPlayer();
+		@commandTarget = showCritter;
+	}
+}
+
+
+class PlayerShown2 : Show2CritterEvent
+{
+	void Show2Critter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = showCritter.IsPlayer();
+		@commandTarget = showCritter;
+	}
+}
+
+
+class CritterShown1 : Show1CritterEvent
+{
+	void Show1Critter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = !showCritter.IsPlayer();
+		@commandTarget = showCritter;
+	}
+}
+
+
+class SeePlayerAttacking : SeeSomeoneAttackedEvent
+{
+	void SeeSomeoneAttacked(Critter& critter, Critter& attacked, Critter& attacker, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = attacker.IsPlayer();
+		@commandTarget = attacker;
+	}
+}
+
+
+class AttackedByPlayer : AttackedEvent
+{
+	bool Attacked(Critter& critter, Critter& attacker, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = attacker.IsPlayer();
+		@commandTarget = attacker;
+		return processCommands;
+	}
+}
+
+
+class CritterAttacked : AttackedEvent
+{
+	bool Attacked(Critter& critter, Critter& attacker, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = true;
+		@commandTarget = attacker;
+		return processCommands;
+	}
+}
+
+
+class SeePlayerKilling : SeeSomeoneDeadEvent
+{
+	void SeeSomeoneDead(Critter& critter, Critter& killed, Critter@ killer, bool& processCommands, Critter@& commandTarget)
+	{
+		if (valid(killer))
+		{
+			processCommands = killer.IsPlayer();
+			@commandTarget = killer;
+		}
+	}
+}
+
+
+class SeePlayerDead : SeeSomeoneDeadEvent 
+{
+	void SeeSomeoneDead(Critter& critter, Critter& killed, Critter@ killer, bool& processCommands, Critter@& commandTarget)
+	{
+		if (valid(killer))
+		{
+			processCommands = killed.IsPlayer();
+			@commandTarget = killed;
+		}
+	}
+}
+
+
+class CritterMessageReceived : MessageEvent
+{
+	private int message;
+
+	CritterMessageReceived(int message)
+	{
+		this.message = message;
+	}
+
+	void Message(Critter& critter, Critter& messenger, int message, int value, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = false;
+		
+		if (message != this.message)
+		{
+			return;
+		}
+	
+		@commandTarget = GetCritter(value);
+		if (!valid(commandTarget))
+		{
+			return;
+		}
+		
+		processCommands = true;
+	}
+}
+
+
+class PlaneFinished : PlaneEndEvent
+{
+	private int planeId;
+	bool withSuccess;
+
+	PlaneFinished(int planeId, bool withSuccess)
+	{
+		this.planeId = planeId;
+		this.withSuccess = withSuccess;
+	}
+
+	int PlaneEnd(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem, bool& processCommands, Critter@& commandTarget)
+	{
+		if (!valid(plane) || plane.Identifier != planeId)
+		{
+			return PLANE_RUN_GLOBAL;;
+		}
+
+		processCommands = withSuccess && reason == REASON_SUCCESS || !withSuccess;
+		@commandTarget = GetCritter(plane.IdentifierExt);
+		
+		return PLANE_RUN_GLOBAL;
+	}
+}
+
+
+class InitializeCritter : InitializeEvent
+{
+	private bool firstTime;
+	
+	InitializeCritter(bool firstTime)
+	{
+		this.firstTime = firstTime;
+	}
+
+	void Initialize(Critter& critter, bool firstTime, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = this.firstTime == firstTime;	
+	}
+}
+
+
+class CritterIdle : IdleEvent
+{
+	void Idle(Critter& critter, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = true;
+	}
+}
+
+
+class CritterDead : DeadEvent
+{
+	void Dead(Critter& critter, Critter@ killer, bool& processCommands, Critter@& commandTarget)
+	{
+		processCommands = true;
+		@commandTarget = killer;
+	}
+}
+
+
+////////////////////
+//Basic predicates//
+////////////////////
+
+class CAnd : CommandPredicate
+{
+	private CommandPredicate@ c1, c2;
+	
+	CAnd(CommandPredicate@ c1, CommandPredicate@ c2)
+	{
+		@this.c1 = c1;
+		@this.c2 = c2;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		return c1.Test(critter, commandTarget) && c2.Test(critter, commandTarget);
+	}
+}
+
+class CNot : CommandPredicate
+{
+	private CommandPredicate@ c1;
+	
+	CNot(CommandPredicate@ c1)
+	{
+		@this.c1 = c1;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		return !c1.Test(critter, commandTarget);
+	}
+}
+
+
+class HasChance : CommandPredicate
+{
+	private int chance;
+	
+	HasChance(int chance)
+	{
+		this.chance = chance;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		return HAS_CHANCE(chance);
+	}
+}
+
+
+class TargetHasKarmaBelow : CommandPredicate
+{
+	private int karmaLimit;
+	
+	TargetHasKarmaBelow(int karmaLimit)
+	{
+		this.karmaLimit = karmaLimit;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return false;
+		}
+	
+		return commandTarget.StatBase[ST_KARMA] < karmaLimit;
+	}
+}
+
+
+class TargetHasRole : CommandPredicate
+{
+	private int role;
+	
+	TargetHasRole(int role)
+	{
+		this.role = role;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		return commandTarget.StatBase[ST_NPC_ROLE] == role;
+	}
+}
+
+
+class IsSneaking : CommandPredicate
+{
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return false;
+		}
+	
+		return commandTarget.Mode[MODE_HIDE] > 0;
+	}
+}
+
+
+class DistanceBetween : CommandPredicate
+{
+	private int minDistance;
+	private int maxDistance;
+	
+	DistanceBetween(int minDistance, int maxDistance)
+	{
+		this.minDistance = minDistance;
+		this.maxDistance = maxDistance;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return false;
+		}
+		
+		int distance =  GetDistantion(critter.HexX, critter.HexY, commandTarget.HexX, commandTarget.HexY);
+	
+		return minDistance <= distance && distance <= maxDistance;
+	}
+}
+
+
+class IsSeenByTarget : CommandPredicate
+{
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{
+		if (!valid(commandTarget))
+		{
+			return false;
+		}
+	
+		return critter.IsSeenBy(commandTarget);
+	}
+}
+
+
+class CritterHPBelowTresholdPercent : CommandPredicate
+{
+	uint treshold;
+
+	CritterHPBelowTresholdPercent(uint treshold)
+	{
+		this.treshold = treshold;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{	
+		return critter.Stat[ST_CURRENT_HP] <= treshold * critter.Stat[ST_MAX_LIFE] / 100;
+	}
+}
+
+
+class CritterHPAboveTresholdPercent : CommandPredicate
+{
+	uint treshold;
+
+	CritterHPAboveTresholdPercent(uint treshold)
+	{
+		this.treshold = treshold;
+	}
+
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{	
+		return critter.Stat[ST_CURRENT_HP] > treshold * critter.Stat[ST_MAX_LIFE] / 100;
+	}
+}
+
+
+class CriterTimerNotActive : CommandPredicate
+{
+	private int timerId; 
+	
+	CriterTimerNotActive(int timerId)
+	{
+		this.timerId = timerId;
+	}
+	
+	bool Test(Critter& critter, Critter@ commandTarget)
+	{	
+		return critter.GetTimeEvents(timerId, null, null, null) == 0;
+	}
+}
+
+
+
+//////////////////
+//Basic commands//
+//////////////////
+
+class Conditionally : Command
+{
+	private Command@ command;
+	private CommandPredicate@ commandPredicate;
+
+	Conditionally(CommandPredicate@ commandPredicate, Command@ command)
+	{
+		@this.command = command;
+		@this.commandPredicate = commandPredicate;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if (commandPredicate.Test(critter, commandTarget))
+		{
+			command.Execute(critter, commandTarget);
+		}
+	}
+}
+
+
+class ConditionallyNot : Command
+{
+	private Command@ command;
+	private CommandPredicate@ commandPredicate;
+
+	ConditionallyNot(CommandPredicate@ commandPredicate, Command@ command)
+	{
+		@this.command = command;
+		@this.commandPredicate = commandPredicate;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if (!commandPredicate.Test(critter, commandTarget))
+		{
+			command.Execute(critter, commandTarget);
+		}
+	}
+}
+
+
+class SendMessage : Command
+{
+	int messageId, messageTo;
+
+	SendMessage(int messageId, int messageTo)
+	{
+		this.messageId = messageId;
+		this.messageTo = messageTo;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{		
+		uint commandTargetId = 0;
+	
+		if (valid(commandTarget))
+		{
+			commandTargetId = commandTarget.Id;
+		}
+	
+		critter.SendMessage(messageId, commandTargetId, messageTo);
+	}
+}
+
+
+class SendMessageAsTarget : Command
+{
+	int messageId, messageTo;
+
+	SendMessageAsTarget(int messageId, int messageTo)
+	{
+		this.messageId = messageId;
+		this.messageTo = messageTo;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{		
+		if (!valid(commandTarget))
+		{
+			return;
+		}
+	
+		commandTarget.SendMessage(messageId, commandTarget.Id, messageTo);
+	}
+}
+
+
+class MessageSelf : Command
+{
+	int messageId;
+
+	MessageSelf(int messageId)
+	{
+		this.messageId = messageId;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		int commandTargetId = 0;
+		
+		if (valid(commandTarget))
+		{
+			commandTargetId = commandTarget.Id;
+		}
+	
+		CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+			
+		if (valid(critterEventsManager))
+		{
+			critterEventsManager.Message(critter, critter, messageId, commandTargetId);
+		}
+	}
+}
+
+
+class MoveToEntire : Command
+{
+	private bool run;
+	private int entireNum;
+
+	MoveToEntire(int entireNum, bool run)
+	{
+		this.entireNum = entireNum;
+		this.run = run;
+	}
+	
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		uint16 hexX = critter.HexX;
+		uint16 hexY = critter.HexY;
+		Map@ map = critter.GetMap();
+		
+		if(!valid(map))
+		{
+			return;
+		}
+		
+		if(!map.GetNearEntireCoords(entireNum, hexX, hexY))
+		{
+			return;
+		}
+		
+		AddWalkPlane(critter, AI_PLANE_WALK_PRIORITY, MOVE_TO_PLANE_IDENTIFIER, 0, hexX, hexY, GetDirection(critter.HexX, critter.HexY, hexX, hexY), run, 1);
+	}
+}
+
+
+class MoveToTarget : Command
+{
+	private bool run;
+	private int planeId;
+
+	
+	MoveToTarget(bool run)
+	{
+		this.run = run;
+		this.planeId = MOVE_TO_PLANE_IDENTIFIER;
+	}
+	
+	MoveToTarget(bool run, int planeId)
+	{
+		this.run = run;
+		this.planeId = planeId;
+	}
+	
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		Map@ map = critter.GetMap();
+		
+		if (!valid(map))
+		{
+			return;
+		} 
+		
+		if (!valid(commandTarget))
+		{
+			return;
+		} 
+		
+		AddWalkPlane(critter, AI_PLANE_WALK_PRIORITY, planeId, commandTarget.Id, commandTarget.HexX, commandTarget.HexY, 
+				GetDirection(critter.HexX, critter.HexY, commandTarget.HexX, commandTarget.HexY), run, 1);
+	}
+}
+
+
+class Say : Command
+{
+	private uint8 howSay;
+	private uint16 textMsg;
+	private uint stringNum;
+	private string@ lexems;
+
+	Say(uint8 howSay, uint16 textMsg, uint stringNum)
+	{
+		this.howSay = howSay;
+		this.textMsg = textMsg;
+		this.stringNum = stringNum;
+		@this.lexems = null;
+	}
+
+	Say(int chance, uint8 howSay, uint16 textMsg, uint stringNum, string@ lexems)
+	{
+		this.howSay = howSay;
+		this.textMsg = textMsg;
+		this.stringNum = stringNum;
+		@this.lexems = lexems;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if(critter.IsDead() || critter.IsKnockout())
+		{
+			return;
+		}
+		
+		if(valid(lexems)) 
+		{
+			critter.SayMsg(howSay, textMsg, stringNum, lexems);
+		}
+		else
+		{
+			critter.SayMsg(howSay, textMsg, stringNum);
+		}
+	}
+}
+
+
+class Inform : Command
+{
+	private uint16 textMsg;
+	private uint stringNum;
+	private string@ lexems;
+
+	Inform(uint16 textMsg, uint stringNum)
+	{
+		this.textMsg = textMsg;
+		this.stringNum = stringNum;
+		@this.lexems = null;
+	}
+
+	Inform(uint16 textMsg, uint stringNum, string@ lexems)
+	{
+		this.textMsg = textMsg;
+		this.stringNum = stringNum;
+		@this.lexems = lexems;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if(!valid(commandTarget))
+		{
+			return;
+		}
+		
+		if(valid(lexems)) 
+		{
+			commandTarget.SayMsg(SAY_NETMSG, textMsg, stringNum, lexems);
+		}
+		else
+		{
+			commandTarget.SayMsg(SAY_NETMSG, textMsg, stringNum);
+		}
+	}
+}
+
+
+//Better think twice, until you start to rework this
+uint ComputeDuration(uint duration, uint unit)
+{
+	if (unit == TIME_UNIT_REAL_MS)
+	{
+		return REAL_MS(duration);
+	} 
+	else if (unit == TIME_UNIT_REAL_SECOND)
+	{
+		return REAL_SECOND(duration);
+	} 
+	else if (unit == TIME_UNIT_REAL_MINUTE)
+	{
+		return REAL_MINUTE(duration);
+	} 
+	else if (unit == TIME_UNIT_REAL_HOUR)
+	{
+		return REAL_HOUR(duration);
+	} 
+	else if (unit == TIME_UNIT_REAL_DAY)
+	{
+		return REAL_DAY(duration);
+	} 
+	else if (unit == TIME_UNIT_REAL_MONTH)
+	{
+		return REAL_MONTH(duration);
+	} 
+	else if (unit == TIME_UNIT_REAL_YEAR)
+	{
+		return REAL_YEAR(duration);
+	} 
+	else
+	{
+		Log("Unknown time unit " + unit);
+		return duration;
+	} 	
+}
+
+class StartCritterTimer : Command
+{
+	private uint timerId, timeout, unit;
+
+	StartCritterTimer(uint timerId, uint timeout, uint unit)
+	{
+		this.timerId = timerId;
+		this.timeout = timeout;
+		//Better think twice, until you start to rework this
+		this.unit = unit;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		critter.AddTimeEvent("__CTETimeout", ComputeDuration(timeout, unit), timerId);
+	}
+}
+
+
+class StartTimer : Command
+{
+	private uint timerId, timeout, unit;
+
+	StartTimer(uint timerId, uint timeout, uint unit)
+	{
+		this.timerId = timerId;
+		this.timeout = timeout;
+		//Better think twice, until you start to rework this
+		this.unit = unit;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		uint[] values = {critter.Id, timerId, valid(commandTarget) ? commandTarget.Id : 0};
+		CreateTimeEvent(__FullSecond + ComputeDuration(timeout, unit), "__Timeout", values, true);
+	}
+}
+
+
+class Wait : Command
+{
+	private uint timeout, unit;
+
+	Wait(uint timeout, uint unit)
+	{
+		this.timeout = timeout;
+		//Better think twice, until you start to rework this
+		this.unit = unit;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if(!valid(commandTarget))
+		{
+			return;
+		}
+	
+		NpcPlane@ plane = CreatePlane();
+		plane.Type = AI_PLANE_MISC;
+		plane.Identifier = WAIT_PLANE_IDENTIFIER;
+		plane.Priority = AI_PLANE_MISC_PRIORITY;
+		plane.Misc_WaitSecond = __FullSecond + ComputeDuration(timeout, unit);
+		critter.AddPlane(plane);
+	}
+}
+
+
+class Attack : Command
+{
+	private uint minPriority, maxPriority;
+
+	Attack()
+	{
+		this.minPriority = AI_PLANE_ATTACK_PRIORITY;
+		this.maxPriority = AI_PLANE_ATTACK_PRIORITY;
+	}
+	
+	Attack(uint minPriority, uint maxPriority)
+	{
+		this.minPriority = minPriority;
+		this.maxPriority = maxPriority;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if(!valid(commandTarget))
+		{
+			return;
+		}
+	
+		AddAttackPlane(critter, Random(minPriority, maxPriority), ATTACK_PLANE_IDENTIFIER, commandTarget, __DeadHitPoints, true);
+		critter.AddEnemyInStack(commandTarget.Id);
+	}
+}
+
+
+class CancelSneaking : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if(!valid(commandTarget))
+		{
+			return;
+		}
+	
+		commandTarget.ModeBase[MODE_HIDE] = 0;
+	}
+}
+
+
+class InitializePatrol : Command
+{
+	int entire;
+	
+	InitializePatrol(int entire)
+	{
+		this.entire = entire;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		Map@ map = critter.GetMap();
+		
+		if (valid(map))
+		{
+			uint entiresCount = map.CountEntire(entire);
+			uint16 hexX = 0;
+			uint16 hexY = 0;
+			
+			for (uint i = 0; i < entiresCount; i++)
+			{
+				map.GetEntireCoords(entire, i, hexX, hexY);
+
+				if (critter.HexX == hexX && critter.HexY == hexY)
+				{
+					critter.SetHomePos(hexX, hexY, Random(0,5));
+					map.SetData(i, 1);
+					return;
+				}	
+			}
+		}
+	}
+}
+
+
+class Patrol : Command
+{
+	int entire;
+	bool run;
+	
+	Patrol(int entire)
+	{
+		this.entire = entire;
+		this.run = false;
+	}
+	
+	Patrol(int entire, bool run)
+	{
+		this.entire = entire;
+		this.run = run;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		Map@ map = critter.GetMap();
+		
+		if (valid(map))
+		{
+			uint16 hexX = 0, hexY = 0;
+			uint homeEntiresCount = map.CountEntire(entire);
+			uint8 dir;
+			uint[] freeEntires;
+			
+			critter.GetHomePos(map.Id, hexX, hexY, dir);
+			
+			for (uint i = 0; i < homeEntiresCount; i++)
+			{
+				uint16 hexXEntire=0;
+				uint16 hexYEntire=0;
+				map.GetEntireCoords(entire, i, hexXEntire, hexYEntire);
+				
+				if (hexX == hexXEntire && hexY == hexYEntire)
+				{
+					map.SetData(i, 0);
+					break;
+				}
+			}
+			
+			
+			for (uint j = 0; j < homeEntiresCount; j++)
+			{
+				if (map.GetData(j) == 0)
+				{
+					freeEntires.insertLast(j);
+				}
+			}
+			
+			if (freeEntires.length() > 0)
+			{
+				uint newEntireIndex = freeEntires[Random(0, freeEntires.length() - 1)];
+				dir = Random(0,5);
+				
+				map.GetEntireCoords(entire, newEntireIndex, hexX, hexY);
+				map.SetData(newEntireIndex, 1);
+				critter.SetHomePos(hexX, hexY, dir);
+				if (run)
+				{
+					AddWalkPlane(critter, AI_PLANE_WALK_PRIORITY, MOVE_TO_PLANE_IDENTIFIER, 0, hexX, hexY, dir, true, 1);
+				}
+				
+				return;
+			}
+			else
+			{
+				Log("Patrol failed. No free patrol entire found. Map proto id: " + critter.GetMapProtoId());
+			}
+		}
+	}
+}
+
+
+class SetTargetLocalVar : Command
+{
+	private uint localVar;
+	private int value;
+
+	SetTargetLocalVar(uint localVar, int value)
+	{
+		this.localVar = localVar;
+		this.value = value;
+	}
+
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if(!valid(commandTarget))
+		{
+			return;
+		}
+		
+		GameVar@ lvar = GetLocalVar(localVar, commandTarget.Id);
+		
+		if(valid(lvar) && lvar != value)
+		{
+			lvar = value;
+		}
+	}
+}
+
+
+class LookAround : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		uint direction = critter.Dir;
+		Map@ map = critter.GetMap();
+		
+		if (!valid(map))
+		{
+			return;
+		}
+		
+		while (direction == critter.Dir)
+		{
+			direction = Random(0, 5);
+		}
+		
+		if ((critter.Dir == 0 && direction == 5) 
+			|| (critter.Dir == 5 && direction == 0) 
+			|| (critter.Dir > direction && critter.Dir - direction == 1)
+			|| (critter.Dir < direction && direction - critter.Dir == 1))
+		{
+			critter.SetDir(direction);
+		}
+		else
+		{
+			uint16 hexX = critter.HexX;
+			uint16 hexY = critter.HexY;
+			map.MoveHexByDir(hexX, hexY, direction, 1);
+			if (map.IsHexPassed(hexX, hexY) && !valid(map.GetCritter(hexX, hexY)) && map.GetItems(hexX, hexY, null) == 0)
+			{
+				critter.MoveToDir(direction);
+			}
+		}
+
+	}
+}
+
+
+class Heal : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		if (!critter.IsKnockout() && critter.IsLife())
+		{
+			critter_use_skill(critter, SK_FIRST_AID, critter, null, null);
+		}
+	}
+}
+
+
+class RunAway : Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget)
+	{
+		Map@ map = critter.GetMap();
+
+		//critter.DropPlanes();
+		if (!valid(commandTarget))
+		{
+			return;
+		}
+		
+		uint16 bestRunAwayHx = commandTarget.HexX;
+		uint16 bestRunAwayHy = commandTarget.HexY;
+		
+		int bestDistance = 2;
+		
+		for (int i = 0; i < 5; i++)
+		{
+			uint16 runAwayHx = commandTarget.HexX;
+			uint16 runAwayHy = commandTarget.HexY;
+			int distance;
+				
+			map.GetHexCoordWall(critter.HexX, critter.HexY, runAwayHx, runAwayHy, 175 - i * 20, Random(15, 25));
+			distance = DISTANCE(runAwayHx, runAwayHy, critter.HexX, critter.HexY);
+			if (distance > bestDistance)
+			{
+				bestDistance = distance;
+				bestRunAwayHx = runAwayHx;
+				bestRunAwayHy = runAwayHy;
+			}
+			
+			runAwayHx = commandTarget.HexX;
+			runAwayHy = commandTarget.HexY;
+			map.GetHexCoordWall(critter.HexX, critter.HexY, runAwayHx, runAwayHy, 185 + i * 20, Random(15, 25));
+			distance = DISTANCE(runAwayHx, runAwayHy, critter.HexX, critter.HexY);
+			if (distance > bestDistance)
+			{
+				bestDistance = distance;
+				bestRunAwayHx = runAwayHx;
+				bestRunAwayHy = runAwayHy;
+			}
+
+			if (bestDistance > 15)
+			{
+				break;
+			}
+		}
+		
+		if (bestDistance > 2) 
+		{
+			AddWalkPlane(critter, RUN_AWAY_PRIORITY + 1, 0, 0, bestRunAwayHx, bestRunAwayHy, Random(0, 5), true, 1);
+			
+			NpcPlane@ plane = CreatePlane();
+			plane.Type = AI_PLANE_MISC;
+			plane.Priority = RUN_AWAY_PRIORITY;
+			plane.Misc_WaitSecond = __FullSecond + REAL_SECOND(1) * Random(2, 6);
+			critter.AddPlane(plane);
+		}
+	}
+}
+
+#endif

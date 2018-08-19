@@ -1,0 +1,52 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+0 2020 &
+
+[engl]
+{100}{}{Gun Runners Trader}
+{200}{}{You see: Gun Runner trader.}
+{210}{}{This bald, aging man in an old armor seems to be browsing some papers on his desk.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{You here for businnes or talk? We're only interested in business, so make it quick.@@We've got some of the finest weaponry in wastes. Need to fuck someone up real good?@@If you absolutely, positively have to waste every motherfucker in the neighbourhood, take no subsitutes!@@The Gun Runners are open for business. Wanna trade?@@Wanna trade?@@We've got some nice guns for ya, check'em out!@@What do you want?@@The Gun Runners are open for businnes.}
+{2010}{}{Let's do business.@@Let's trade.@@Yeah, What do you have?@@Show me what you've got.@@All right, let's trade.}
+{2020}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+
+[russ]
+{100}{}{Торговец}
+{200}{}{Вы видите торговца.}
+{210}{}{Вы видите торговца.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{---}
+{2000}{}{Здравствуйте, добро пожаловать в мой магазин.@@Так-так ну и что тут к нам из пустоши выползло?@@О Клиент! У нас отличный выбор и отменное качество!@@Вы пришли сюда, чтобы купить что-то? В таком случае я думаю, что это ваш счастливый день.@@Таких товаров как у меня не найти больше нигде в пустоши.@@Добро пожаловать путник, руки держи при себе, смотреть можно, трогать нельзя.}
+{2010}{}{Давай посмотрим что у тебя есть.@@Ближе к делу.@@Давай уже торговать.@@Я здесь для того чтобы заниматся бизнесом, давай уже приступим.@@Что у тебя есть на обмен?}
+{2020}{}{Я передумал.@@Не сейчас.@@Пока.@@Как нибудь в другой раз.@@Мне уже пора.}
+
+[pols]
+{100}{}{Handlarz}
+{200}{}{Widzisz handlarza.}
+{210}{}{Widzisz handlarza.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Cześć, witam w moim sklepie. Pooglądaj towary, zobacz czego potrzebujesz i zawołaj mnie, kiedy podejmiesz decyzję.@@Zaraz napijemy się wódeczki, wpadną dupeczki - i ubijemy ten interes!@@Nonono, co tutaj przywiało z pustyni... [Zaciera ręce.] Słucham, w czym mogę pomóc?@@O, klient! Proszę, spójrz na moją ofertę.@@Masz zamiar coś kupić? W takim razie, to twój szczęśliwy dzień.@@Najlepszy towar na całym Pustkowiach! Proszę, rozejrzyj się.@@Wyglądasz na osobę, która potrafi docenić doskonałą jakość oraz okazyjne ceny.@@Witaj, nieznajomy. Możemy pohandlować bez niepotrzebnych niemiłych sytuacji - strażnicy wszystko obserwują.@@Nie jestem w nastroju na pogawędki. Kupujesz coś, czy wychodzisz?@@Witaj, wędrowcze. Staraj się nic nie uszkodzić, inaczej będziesz @sex@|musiał||musiała| za to zapłacić. To jak, pohandlujemy?}
+{2010}{}{Jasne, handlujmy.@@Pewnie, przejdźmy do interesów.@@Co ciekawego możesz mi zaoferować?@@Pokaż, co masz na sprzedaż.@@Hm, @sex@|chciałbym||chciałabym| coś kupić.@@Interesuje mnie kilka rzeczy z twojego asortymentu.@@Zobaczmy, co tam masz.@@Co masz do zaoferowania?@@Pokaż mi swoje produkty.}
+{2020}{}{Nie chcę handlować.@@Nie teraz.@@Do widzenia.@@[Wyjdź.] Może innym razem.@@To ja już sobie pójdę.@@Po tym, co tutaj @sex@|zobaczyłem||zobaczyłam|, nie wiem czy @sex@|chciałbym||chciałabym| z tobą ubić muchę w kiblu.@@Potrzebuję czegoś innego.@@[Wyjdź.] Muszę już iść.@@[Wyjdź.] Nie tego @sex@|szukałem||szukałam|.@@Dzięki - ale nie.@@Wychodzę.@@[Wyjdź.] Do zobaczenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{You here for businnes or talk? We're only interested in business, so make it quick.@@We've got some of the finest weaponry in wastes. Need to fuck someone up real good?@@If you absolutely, positively have to waste every motherfucker in the neighbourhood, take no subsitutes!@@The Gun Runners are open for business. Wanna trade?@@Wanna trade?@@We've got some nice guns for ya, check'em out!@@What do you want?@@The Gun Runners are open for businnes.}
+{2010}{}{Let's do business.@@Let's trade.@@Yeah, What do you have?@@Show me what you've got.@@All right, let's trade.}
+{2020}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+

@@ -1,0 +1,346 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p q_jt_mike_marry = 1 #
+7 2020 #
+11 2030 D _var p q_jt_marry_e-parts = 0 #
+13 2040 D _var p q_jt_marry_e-parts > 0 D _script quest@quest_checkcd 1 9012 #
+9 2050 D _var p q_marry_benjami = 0 #
+8 2060 #
+0 2070 @
+3 3000 None 0 #
+16 3010 R _var p q_jt_mike_marry = 2 #
+15 3020 R _var p q_jt_mike_marry = 2 #
+4 3030 #
+18 3040 D _item p PID_BROC_FLOWER } 1 R _item p PID_BROC_FLOWER - 1 R _var p q_jt_mike_marry = 3 R _param p ST_EXPERIENCE + 500 #
+18 3050 D _item p PID_BROC_FLOWER } 1 R _item p PID_BROC_FLOWER - 1 R _var p q_jt_mike_marry = 3 R _param p ST_EXPERIENCE + 500 #
+4 3060 D _item p PID_BROC_FLOWER } 1 R _item p PID_BROC_FLOWER - 1 #
+18 3070 D _item p PID_FLOWER } 1 R _item p PID_FLOWER - 1 R _var p q_jt_mike_marry = 3 R _param p ST_EXPERIENCE + 500 #
+18 3080 D _item p PID_FLOWER } 1 R _item p PID_FLOWER - 1 R _var p q_jt_mike_marry = 3 R _param p ST_EXPERIENCE + 500 #
+17 3090 D _item p PID_FLOWER } 1 R _item p PID_FLOWER - 1 R _var p q_jt_mike_marry = 4 R _param p ST_EXPERIENCE + 1000 @
+4 4000 None 0 #
+5 4010 #
+0 4020 R _var p q_jt_mike_marry = 2 R _script dialog@r_ShowQuestMessage 1 9007 @
+5 5000 None 0 #
+0 5010 R _var p q_jt_mike_marry = 2 R _script dialog@r_ShowQuestMessage 1 9007 @
+6 6000 None 0 #
+7 6010 #
+0 6020 @
+7 7000 None 0 #
+8 7010 #
+7 7020 #
+11 7030 D _var p q_jt_marry_e-parts = 0 #
+9 7040 D _var p q_marry_benjami = 0 #
+13 7050 D _var p q_jt_marry_e-parts > 0 D _script quest@quest_checkcd 1 9012 R _var p q_jt_marry_e-parts = 2 #
+0 7060 @
+8 8000 None 0 #
+7 8010 #
+0 8020 @
+9 9000 None 0 #
+10 9010 #
+0 9020 @
+10 10000 None 0 #
+0 10010 R _var p q_marry_benjami = 1 R _item p PID_TAPE_RECORDER + 1 R _script dialog@r_ShowQuestMessage 1 9005 #
+0 10020 @
+11 11000 None 0 #
+12 11010 R _var p q_jt_marry_e-parts = 1 #
+0 11020 @
+12 12000 None 0 #
+0 12010 @
+13 13000 None 0 #
+14 13010 D _item p PID_ELECTRONIC_PART } 5 R _item p PID_ELECTRONIC_PART - 5 R _script economy_dialogs@r_GiveCaps 1 150 R _param p ST_EXPERIENCE + 950 R _script quest@quest_setcd 2 9012 122 R _var p q_jt_marry_e-parts = 2 R _script karma@r_AddKarma 1 10 #
+0 13020 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 #
+0 15010 R _script dialog@r_ShowQuestMessage 1 9007 @
+16 16000 None 0 #
+0 16010 R _script dialog@r_ShowQuestMessage 1 9007 @
+17 17000 None 0 #
+19 17010 R _script dialog@r_FadeOut 1 0 @
+18 18000 None 0 #
+0 18010 R _script dialog@r_ShowQuestMessage 1 9007 @
+19 19000 None 0 #
+0 19010 R _param p ST_CHARISMA + 1 R _script dialog@r_ShowQuestMessage 1 9007 &
+
+[engl]
+{100}{}{Mary Ann}
+{200}{}{You see: a woman in a black leather jacket with green mohawk.}
+{210}{}{You see: Mary Ann, she might be a techinician.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hey, you lost or something?@@You lost or something?@@What?}
+{2010}{}{I'm looking for Mary Ann.}
+{2020}{}{Who are you?}
+{2030}{}{I've noticed you are using electronic parts to work, maybe I could help with supplying them.}
+{2040}{}{I brought electronic parts.}
+{2050}{}{Is there anything I can help with?}
+{2060}{}{What's good in junktown?}
+{2070}{}{Bye.@@ See you.@@I'm going.}
+{3000}{}{[She sighs.] What now?@@What now?@@I'm busy, make it quick.@@Is this really important?}
+{3010}{}{My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3020}{}{Mike wants to go out with you.}
+{3030}{}{You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{3040}{}{[You give her a broc flower.] My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3050}{}{[You give her a broc flower.] Mike wants to go out with you.}
+{3060}{}{[You give her a broc flower.] You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{3070}{}{[You give her a white flower.] My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3080}{}{[You give her a white flower.] Mike wants to go out with you.}
+{3090}{}{[You give her a white flower.] You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{4000}{}{Forget it, I barely even know you. You do this often, asking girls out the first time you see them?}
+{4010}{}{So, that's a yes?}
+{4020}{}{Hmm, so that's a no. Well better luck next time, right? See you.}
+{5000}{}{Are you some fucking retard or what? Get lost!@@You deaf? Get lost!@@Get lost, weirdo.}
+{5010}{}{Right, I'm going.@@Yeah, yeah...@@Fine.@@Whatever.}
+{6000}{}{I'm Mary Ann, I run the power generator here, you could call me the junktowns technician. I fix and get things running.}
+{6010}{}{Can we talk about something else?@@I wanted to ask you some more questions.}
+{6020}{}{Bye.@@ See you.@@I'm going.}
+{7000}{}{Make it quick.@@Make it snappy.}
+{7010}{}{What can you tell me about Junktown?}
+{7020}{}{Who are you?}
+{7030}{}{I've noticed you are using electronic parts to work, maybe I could help with supplying them.}
+{7040}{}{Is there anything I can help with?}
+{7050}{}{I brought electronic parts.}
+{7060}{}{I will go.@@I'm leaving.@@Maybe later.}
+{8000}{}{Tough, but honest community. Bunch of trappers, craftsmen, people with certain skills that have came together to have a better shot of a normal life. I like it here.}
+{8010}{}{Something else.}
+{8020}{}{I will go.@@I'm leaving.@@Later.}
+{9000}{}{Hmmm... yeah, there is one thing. I've got a shitload of work to do, and can't leave right now. Could you take this recorder and bring it to Benjami? He's the bartender at Skum Pitt.}
+{9010}{}{Uhm...}
+{9020}{}{Nah, I will go.}
+{10000}{}{I don't have time for games.}
+{10010}{}{Yeah, sure. I'll do it.@@Okay, I'll do it.}
+{10020}{}{I changed my mind.@@I don't have time right now.}
+{11000}{}{In fact you could, I'm short of electronic parts. Those are hard to come by, if you could gather some for me, I would take as much as you can bring me. Five at start would be very nice and I would be very thankful, what do you say?}
+{11010}{}{I think, I could do that.}
+{11020}{}{I don't want to do that, maybe some other time.}
+{12000}{}{Thanks, come back when you can spare some, if you find any.}
+{12010}{}{Okay, I'm gonna go.}
+{13000}{}{So do you have at least five of them?}
+{13010}{}{Yes, here you go. [Give 5 electronic parts]}
+{13020}{}{Not yet.}
+{14000}{}{[She takes the electronic parts and takes a look at them] These will be real handy. Thanks, more is always appreciated.}
+{14010}{}{Sure.@@Ok, maybe I will bring more.@@Bye.}
+{15000}{}{Tell him to grow up and act like a man, instead of sending some messangers. Men these days and how he's supposed to be a sheriff if he can't stand up for himself, really not my type. Definitely no.}
+{15010}{}{Okay, I get it. Later.@@Right...@@Fine.}
+{16000}{}{I don't have time for silly games, you tell him that a man who can't stand up for himself is no man I am willing to date. Not my type, not at all.}
+{16010}{}{Okay, I get it. Later.@@Right...@@Fine.}
+{17000}{}{[She blushes and gets a bit nervous.] What a beautiful flower... Thank you, honey. [Licks her lips.] Sure, let's have some fun.}
+{17010}{}{Yeah, let's do this right here, right now!@@Yeah baby, let's do this!}
+{18000}{}{Oh, that's so romantic! Tell him that I'm open for a date, and he can show up personally this time. Thank you! [She gives you a kiss in the cheek.]}
+{18010}{}{Sure, I'll go and tell him that right now.}
+{19000}{}{[She sighs.] That was so... intense, darling. I like a bit of thrill and romance, and there's no one interesting in this little town. The only nice guy here is Mike... I know that he's got a crush on me, but he's afraid to go and ask me out. That's sad, 'cause he's nice, he's quite hot, too... I'd love to have some fun with him, if he'd come and asked me out.}
+{19010}{}{Oh honey, you're the craziest girl I've ever met. We should hook up some other time, you know? Anyway, I need to be going now, see you later! [You slowly walk away, feeling like a boss.] (Charisma: +1)}
+
+[russ]
+{100}{}{Mary Ann}
+{200}{}{You see: a woman in a black leather jacket with green mohawk.}
+{210}{}{You see: Mary Ann, she might be a techinician.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{[She is working with some kind of tools] Hey, you lost or something?}
+{2010}{}{I'm looking for Mary Ann.}
+{2020}{}{Who are you?}
+{2030}{}{I've noticed you are using electronic parts to work, maybe I could help with supplying them.}
+{2040}{}{I brought electronic parts.}
+{2050}{}{Is there anything I can help with?}
+{2060}{}{What's good in junktown?}
+{2070}{}{Bye.@@ See you.@@I'm going.}
+{3000}{}{[She sighs.] What now?}
+{3010}{}{My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3020}{}{Mike wants to go out with you.}
+{3030}{}{You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{3040}{}{[You give her a broc flower.] My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3050}{}{[You give her a broc flower.] Mike wants to go out with you.}
+{3060}{}{[You give her a broc flower.] You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{3070}{}{[You give her a white flower.] My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3080}{}{[You give her a white flower.] Mike wants to go out with you.}
+{3090}{}{[You give her a white flower.] You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{4000}{}{Forget it, seriously I barely even know you. You do this often, asking girls out almost the first time you see them?}
+{4010}{}{So, that's a yes?}
+{4020}{}{Hmm, so that's a no. Well better luck next time, right? See you.}
+{5000}{}{Are you stupid or something? No. I'm not very interested in any affairs.}
+{5010}{}{Alright, sorry for interrupting you.}
+{6000}{}{I'm Mary Ann, I run the power generator here, you could call me the junktowns technician. I fix and get things running.}
+{6010}{}{More questions.}
+{6020}{}{Bye.@@ See you.@@I'm going.}
+{7000}{}{Speak up, I'm listening, but don't expect me to tell stories like some grandma.}
+{7010}{}{What can you tell me about junktown?}
+{7020}{}{Who are you?}
+{7030}{}{I've noticed you are using electronic parts to work, maybe I could help with supplying them.}
+{7040}{}{Is there anything I can help with?}
+{7050}{}{I brought electronic parts.}
+{7060}{}{I will go.@@I'm leaving.@@Maybe later.}
+{8000}{}{Tough, but honest community. Bunch trappers, craftsmen, people with certain skills have came together to have a better shot of a normal life, I like it here, much work, I'm busy and I'm very thankful for that.}
+{8010}{}{Something else.}
+{8020}{}{I will go.@@I'm leaving.@@Later.}
+{9000}{}{Yeah, I was wondering if you'll ask. There is something you could bring to Benjami. He is the bartender at Skum Pit, if you aren't familiar with him already.}
+{9010}{}{Go on.}
+{9020}{}{Nah, I will go.}
+{10000}{}{Here take this Record-O-Matic to Benjami, can you do that for me?}
+{10010}{}{Sure.@@Okay, I will be on my way.}
+{10020}{}{I changed my mind.@@I don't have time right now.}
+{11000}{}{In fact you could, I'm short of electronic parts. Those are hard to come by, if you could gather some for me, I would take as much as you can bring me. Five at start would be very nice and I would be very thankful, what do you say?}
+{11010}{}{I think, I could do that.}
+{11020}{}{I don't want to do that, maybe some other time.}
+{12000}{}{Thanks, come back when you can spare some, if you find any.}
+{12010}{}{Okay, I'm gonna go.}
+{13000}{}{So do you have at least five of them?}
+{13010}{}{Yes, here you go. [Give 5 electronic parts]}
+{13020}{}{Not yet.}
+{14000}{}{[She takes the electronic parts and takes a look at them] These will be real handy. Thanks, more is always appreciated.}
+{14010}{}{Sure.@@Ok, maybe I will bring more.@@Bye.}
+{15000}{}{Tell him to grow up and act like a man, instead of sending some messangers. Men these days and how he's supposed to be a sheriff if he can't stand up for himself, really not my type. Definitely no.}
+{15010}{}{I see well, okay then. I will not disturb you anymore, maybe some oter time.}
+{16000}{}{I don't have time for virgins and silly games, you tell him that any man who cannot stand up for himself is no man I am willing to date. Not my type, not at all.}
+{16010}{}{Maybe I didn't say it quite right, but looks like you know who fits you better. I'll carry on.}
+{17000}{}{[She blushes and gets a bit nervous.] What a beautiful flower... Thank you, honey. [Licks her lips.] Sure, let's have some fun.}
+{17010}{}{Oh yeah, let's do that babe!}
+{18000}{}{[She beams with joy.] Oh, that's so romantic! Tell him that I'm open for a date, and he can show up personally this time. Thank you! [She gives you a kiss in the cheek.]}
+{18010}{}{[You blush, surprised by her reaction.] Sure, I'll go and tell him that right now.}
+{19000}{}{[She sighs.] That was so... intense, darling. I like a bit of thrill and romance, and there's noone interesting in that pathetic city. [She sighs again.] The only nice guy here is Mike... I know that he's got a crush on me, but he's afraid to go and ask me out. That's sad, 'cause he's nice, he's quite hot, too... I'd love to have some fun with him, if he'd come and asked me out.}
+{19010}{}{[You wipe the sweat from the forehead.] Oh honey, you're the craziest slut I've ever met. I gotta be going, bye. [You give her a last kiss and slowly walk away, feeling like a boss.] (Charisma: +1)}
+
+[pols]
+{100}{}{Mary Ann}
+{200}{}{Widzisz kobietę w skórzanej kurtce i zielonym irokezie na głowie.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{[Mary odkłada narzędzia] Cześć, @sex@|zgubiłeś||zgubiłaś| się?}
+{2010}{}{Szukam Mary Ann.}
+{2020}{}{Kim jesteś?}
+{2030}{}{Nie potrzebujesz może części elektronicznych?}
+{2040}{}{@sex@|Przyniosłem||Przyniosłam| scalaki.}
+{2050}{}{Można ci w czymś pomóc?}
+{2060}{}{Co wiesz o tym miejscu?}
+{2070}{}{Na razie.@@Trzymaj się.@@Muszę już iść.}
+{3000}{}{[Wzdycha.] Co znowu?}
+{3010}{}{Mój znajomy jest trochę nieśmiały, ale bardzo chciałby poznać cię bliżej. To bardzo porządny gość, tylko trochę wycofany. Nie umówiłabyś się z nim?}
+{3020}{}{Mike chciałby się z tobą umówić.}
+{3030}{}{Jesteś taka ładna... Może byśmy... no wiesz... poszli na pięterko? [Mrugasz okiem i posyłasz jej swój najbardziej zalotny uśmiech.]}
+{3040}{}{[Dajesz jej kwiat broca.] Mój przyjaciel jest nieśmiały, ale bardzo chciałby się z tobą umówić...}
+{3050}{}{[Podajesz Mary kwiat broca.] Mike chce się z tobą umówić.}
+{3060}{}{[Wręczasz Mary kwiat broca.] Jesteś taka ładna... Może byśmy... no wiesz... poszli na pięterko? [Mrugasz okiem i posyłasz jej swój najbardziej zalotny uśmiech.]}
+{3070}{}{[Podajesz Mary biały kwiatek.] Wiesz, mam znajomego, który chciałby spędzić z tobą trochę czasu...}
+{3080}{}{[Wręczasz jej biały kwiatek.] Mike chciałby się z tobą umówić na randkę.}
+{3090}{}{[Wyciągasz biały kwiatek.] Może byśmy... ty i ja... no wiesz...}
+{4000}{}{W ogóle ciebie nie znam. Tak bardzo cię ciśnie, że na dzień dobry walisz prosto z mostu?}
+{4010}{}{Czyli zgadzasz się?}
+{4020}{}{Wiesz jak ciężko znaleźć kogoś, kto pójdzie do łóżka za darmo? Spróbować nie zaszkodzi, nie? Na razie.}
+{5000}{}{@sex@|Co za kretyn. Myśl mózgiem, a nie chujem. Nie mam czasu na takie pierdoły||Głupia lesbo, nie mam czasu na duperele, poszukaj sobie lepiej faceta|.}
+{5010}{}{Dobra, znikam.}
+{6000}{}{Jestem Mary, odpowiadam za zasilanie w Złomowie. Pilnuję generatorów, kabli i prądnic. Taka tam robota.}
+{6010}{}{Mam więcej pytań.}
+{6020}{}{Na razie.@@Do zobaczenia.@@Bywaj.}
+{7000}{}{No to gadaj, tylko szybko.}
+{7010}{}{Co wiesz o Złomowie?}
+{7020}{}{Kim jesteś?}
+{7030}{}{Nie potrzeba ci może części elektronicznych?}
+{7040}{}{Pomóc ci w czymś?}
+{7050}{}{@sex@|Przyniosłem||Przyniosłam| części.}
+{7060}{}{Chyba już pójdę.@@Na razie.@@Do zobaczenia.}
+{8000}{}{Złomowo? Surowi, ale uczciwi ludzie. Traperzy, rzemieślnicy, zbieracze, ochroniarze, handlarze... Razem próbujemy tu w miarę normalnie żyć, na tyle, na ile się da.}
+{8010}{}{Porozmawiajmy o czymś innym.}
+{8020}{}{Muszę spadać.@@Na razie, trzymaj się.@@Do zobaczenia.}
+{9000}{}{Tak mam jedno sprawę do załatwienia. @sex@|Mógłbyś||Mogałbyś| skoczyć do Benjamiego? Jest barmanem w Skum Pitt.}
+{9010}{}{Kontynuuj.}
+{9020}{}{Nie mam teraz czasu, na razie.}
+{10000}{}{Zanieś mu ten magnetofon, to tyle.}
+{10010}{}{Jasne.@@W porządku, już idę.}
+{10020}{}{@sex@|Zmieniłem||Zmieniłam| zdanie, nie mam teraz czasu.}
+{11000}{}{@sex@|Spostrzegawczy||Spostrzegawcza| jesteś! Tak, potrzebuję tych części, niełatwo je znaleźć. Na początek jakieś pięć by wystarczyło. Poszukasz ich dla mnie?}
+{11010}{}{Pewnie, mogę ich poszukać.}
+{11020}{}{Mam inne sprawy na głowie, może innym razem.}
+{12000}{}{Dzięki! Wróć, jeśli jakieś znajdziesz.}
+{12010}{}{W porządku, muszę już iść.}
+{13000}{}{Masz już te części? Pięć sztuk?}
+{13010}{}{Tak, trzymaj.}
+{13020}{}{Jeszcze nie.}
+{14000}{}{Dzięki, chyba są w porządku. Za jakiś czas będę potrzebowała następnych, także jeśli jeszcze jakieś znajdziesz, wiesz co robić.}
+{14010}{}{Pewnie.@@Może.@@Na razie.}
+{15000}{}{Że co? Jakby naprawdę chciał się ze mną umówić, to by sam tu przylazł. Przekaż mu żeby zachował się jak facet, a nie jak ciota. I ten koleś jest szeryfem? Dziękuję, z takimi typami nie chcę mieć do czynienia.}
+{15010}{}{Rozumiem, nie będę ci już przeszadzać. Na razie.}
+{16000}{}{Nie mam czasu na jakieś głupie gierki, jak nie ma jaj żeby samemu ze mną pogadać, to niech poszuka sobie jakiejś innej sieroty. Ja lubię facetów, a nie jakichś pedziów.}
+{16010}{}{Może źle się @sex@|wyraziłem||wyraziłam|... Ale widzę, że masz bardzo konkretne gusta. Będę się zawijać, na razie.}
+{17000}{}{[Mary rumieni się.] Jaki piękny... Dziękuję, kochanie. [Przygryza wargę.] W sumie... czemu nie? Trochę relaksu nie zaszkodzi.}
+{17010}{}{Tak jest, rozbieraj się!}
+{18000}{}{[Rozpromienia się.] Och, to takie romantyczne! Powiedz mu że chętnię się z nim umówię, jeśli tylko pojawi się u mnie. Dzięki! [Całuje cię w policzek.]}
+{18010}{}{Um... w porządku, już do niego lecę.}
+{19000}{}{[Mary wzdycha zadowolona.] To było takie... intensywne. Szkoda że na tym zadupiu nie ma nikogo sensownego z kim możnaby się zgadać... No, może poza Mike'iem. Wiem że na mnie leci, jest całkiem przystojny, tylko straszna z niego pierdoła, pewnie boi się do mnie zagadać. A chętnie bym się z nim umówiła, jeśli tylko by się tu pofatygował...}
+{19010}{}{[Wycierasz pot z twarzy.] Cóż, jego strata. Dziewczyno, jesteś najlepszą laską z jaką @sex@|spałem||spałam| od lat! Czas już na mnie, trzymaj się ciepło! [Dajesz jej pożegnalny pocałunek i powoli odchodzisz w blasku chwały.] (Charyzma: +1)}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hey, you lost or something?@@You lost or something?@@What?}
+{2010}{}{I'm looking for Mary Ann.}
+{2020}{}{Who are you?}
+{2030}{}{I've noticed you are using electronic parts to work, maybe I could help with supplying them.}
+{2040}{}{I brought electronic parts.}
+{2050}{}{Is there anything I can help with?}
+{2060}{}{What's good in junktown?}
+{2070}{}{Bye.@@ See you.@@I'm going.}
+{3000}{}{[She sighs.] What now?@@What now?@@I'm busy, make it quick.@@Is this really important?}
+{3010}{}{My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3020}{}{Mike wants to go out with you.}
+{3030}{}{You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{3040}{}{[You give her a broc flower.] My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3050}{}{[You give her a broc flower.] Mike wants to go out with you.}
+{3060}{}{[You give her a broc flower.] You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{3070}{}{[You give her a white flower.] My friend is quite shy and curious about you, wondering if your open for a date. He's a really nice guy, just not very experienced, you know.}
+{3080}{}{[You give her a white flower.] Mike wants to go out with you.}
+{3090}{}{[You give her a white flower.] You're such a gorgeous girl, darling. Would you like to... Well, you know? [You wink and send her your best sexy smile.]}
+{4000}{}{Forget it, I barely even know you. You do this often, asking girls out the first time you see them?}
+{4010}{}{So, that's a yes?}
+{4020}{}{Hmm, so that's a no. Well better luck next time, right? See you.}
+{5000}{}{Are you some fucking retard or what? Get lost!@@You deaf? Get lost!@@Get lost, weirdo.}
+{5010}{}{Right, I'm going.@@Yeah, yeah...@@Fine.@@Whatever.}
+{6000}{}{I'm Mary Ann, I run the power generator here, you could call me the junktowns technician. I fix and get things running.}
+{6010}{}{Can we talk about something else?@@I wanted to ask you some more questions.}
+{6020}{}{Bye.@@ See you.@@I'm going.}
+{7000}{}{Make it quick.@@Make it snappy.}
+{7010}{}{What can you tell me about Junktown?}
+{7020}{}{Who are you?}
+{7030}{}{I've noticed you are using electronic parts to work, maybe I could help with supplying them.}
+{7040}{}{Is there anything I can help with?}
+{7050}{}{I brought electronic parts.}
+{7060}{}{I will go.@@I'm leaving.@@Maybe later.}
+{8000}{}{Tough, but honest community. Bunch of trappers, craftsmen, people with certain skills that have came together to have a better shot of a normal life. I like it here.}
+{8010}{}{Something else.}
+{8020}{}{I will go.@@I'm leaving.@@Later.}
+{9000}{}{Hmmm... yeah, there is one thing. I've got a shitload of work to do, and can't leave right now. Could you take this recorder and bring it to Benjami? He's the bartender at Skum Pitt.}
+{9010}{}{Uhm...}
+{9020}{}{Nah, I will go.}
+{10000}{}{I don't have time for games.}
+{10010}{}{Yeah, sure. I'll do it.@@Okay, I'll do it.}
+{10020}{}{I changed my mind.@@I don't have time right now.}
+{11000}{}{In fact you could, I'm short of electronic parts. Those are hard to come by, if you could gather some for me, I would take as much as you can bring me. Five at start would be very nice and I would be very thankful, what do you say?}
+{11010}{}{I think, I could do that.}
+{11020}{}{I don't want to do that, maybe some other time.}
+{12000}{}{Thanks, come back when you can spare some, if you find any.}
+{12010}{}{Okay, I'm gonna go.}
+{13000}{}{So do you have at least five of them?}
+{13010}{}{Yes, here you go. [Give 5 electronic parts]}
+{13020}{}{Not yet.}
+{14000}{}{[She takes the electronic parts and takes a look at them] These will be real handy. Thanks, more is always appreciated.}
+{14010}{}{Sure.@@Ok, maybe I will bring more.@@Bye.}
+{15000}{}{Tell him to grow up and act like a man, instead of sending some messangers. Men these days and how he's supposed to be a sheriff if he can't stand up for himself, really not my type. Definitely no.}
+{15010}{}{Okay, I get it. Later.@@Right...@@Fine.}
+{16000}{}{I don't have time for silly games, you tell him that a man who can't stand up for himself is no man I am willing to date. Not my type, not at all.}
+{16010}{}{Okay, I get it. Later.@@Right...@@Fine.}
+{17000}{}{[She blushes and gets a bit nervous.] What a beautiful flower... Thank you, honey. [Licks her lips.] Sure, let's have some fun.}
+{17010}{}{Yeah, let's do this right here, right now!@@Yeah baby, let's do this!}
+{18000}{}{Oh, that's so romantic! Tell him that I'm open for a date, and he can show up personally this time. Thank you! [She gives you a kiss in the cheek.]}
+{18010}{}{Sure, I'll go and tell him that right now.}
+{19000}{}{[She sighs.] That was so... intense, darling. I like a bit of thrill and romance, and there's no one interesting in this little town. The only nice guy here is Mike... I know that he's got a crush on me, but he's afraid to go and ask me out. That's sad, 'cause he's nice, he's quite hot, too... I'd love to have some fun with him, if he'd come and asked me out.}
+{19010}{}{Oh honey, you're the craziest girl I've ever met. We should hook up some other time, you know? Anyway, I need to be going now, see you later! [You slowly walk away, feeling like a boss.] (Charisma: +1)}
+

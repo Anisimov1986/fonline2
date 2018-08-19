@@ -1,0 +1,292 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "_npc_pids.fos"
+#include "_itempid.fos"
+
+#include "utils_h.fos"
+#include "pids_groups.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos" 
+
+#define ROLE_ATTACKER		( 288000 )
+#define ATTACKERS			( 7 )
+#define SUPPLY_AMMO			( 0 )
+#define SUPPLY_ARMORS		( 1 )
+#define SUPPLY_WEAPONS		( 2 )
+#define SUPPLY_MEDS		    ( 3 )
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import int GetNextTime(uint Id) from "game_events";
+import void FixState(Item& item) from "lockers";
+
+int[] params = { MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK ,10,
+PE_BETTER_CRITICALS ,1,PE_BONUS_RATE_OF_FIRE,1,PE_BONUS_RANGED_DAMAGE,2,
+MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_ATTACKER, ST_REPLICATION_TIME, -1 };
+const int[] AttackerPids = { NPC_PID_SIERRAENCLAVE2,NPC_PID_SIERRAENCLAVE3,NPC_PID_SIERRAENCLAVE4 };
+const int[] WeaponPids = { PID_BOZAR,PID_ROCKET_LAUNCHER,PID_M72_GAUSS_RIFLE ,PID_YK42B_PULSE_RIFLE};
+    
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0]==0)
+		return 0;
+	event_start(values[0]);
+	return GetNextTime(values[0]);
+}
+
+void event_start(uint id)
+{
+	Map@ map = GetMapByPid(MAP_sf_dock,0);
+	if (!valid(map))
+		return;
+	AddNewMessage( "Enclave supply arrived in San Francisco docks. Time until departure:",REAL_MINUTE(10), 1, COLOR_GREEN, true, id);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(10), "e_event_stop", id, true);
+	map.AddItem( 121, 284, PID_BOAT, 1 );
+	SpawnLockers(map);
+	uint entiresnum = map.CountEntire(ENTIRE_EVENT_MOB_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	uint8 dir=0;
+	uint attackers=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (attackers>=ATTACKERS)
+			break;
+		if (map.GetEntireCoords (ENTIRE_EVENT_MOB_SPAWN, i, hexX, hexY,dir) && AddAttacker(hexX,hexY,dir))
+			attackers++;
+	}
+	InitializeGossip(id);
+	BlockShip(map);
+}
+
+void InitializeGossip(uint id)
+{	
+	Location@ location = GetLocationByPid(LOCATION_SanFrancisco, 0);
+	if (!valid(location)) 
+	{
+		return;
+	}
+	
+	GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, REAL_MINUTE(10));
+	gossipDefinition.SetGossipId(id);
+	gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+	gossipDefinition.SetSourceLocationId(location.Id);
+	gossipDefinition.SetMsgId(STR_SF_BOAT_EVENT_GOSSIP_LOC);
+	gossipDefinition.SetSourceMsgId(STR_SF_BOAT_EVENT_GOSSIP_NO_LOC);
+	StartGossip(gossipDefinition);
+}
+
+void SpawnLockers(Map& map)
+{
+	uint entiresnum = map.CountEntire(ENTIRE_EVENT_BOX_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_EVENT_BOX_SPAWN, i, hexX, hexY))
+		{
+			Item@ locker = map.AddItem( hexX, hexY, Random(197,204), 1 );
+			if (!valid(locker))
+				continue;
+			SETFLAG(locker.LockerCondition, LOCKER_GUARDED );
+			locker.LockerId=ROLE_ATTACKER;
+			AddLoot(locker,i);
+			FixState(locker);
+		}
+	}
+}
+
+
+
+uint e_event_stop(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_sf_dock,0);
+	if (!valid(map))
+		return 0;
+	array<Item@> boats;
+	map.GetItems(PID_BOAT, boats);
+	for (uint i=0 ; i<boats.length() ; i++)
+	{
+		DeleteItem(boats[i]);
+	}
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_ATTACKER)
+			DeleteNpc(npcs[i]);
+	}
+	uint entiresnum = map.CountEntire(ENTIRE_EVENT_BOX_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_EVENT_BOX_SPAWN, i, hexX, hexY))
+		{
+			Item@[] items;
+			map.GetItems( hexX, hexY, items );
+			for (uint8 j=0; j<items.length();j++)
+			{
+				if (items[j].GetType() == ITEM_TYPE_CONTAINER)
+				DeleteItem(items[j]);
+			}
+
+		}
+	}
+	StopGossip(values[0], GOSSIP_SCOPE_EVENT);
+	UnBlockShip();
+	return 0;
+}
+
+bool AddAttacker(uint16 hexX,uint16 hexY, uint8 dir)
+{
+	Map@ map = GetMapByPid(MAP_sf_dock,0);
+	if(!GetFreeHex(map, 1,hexX, hexY))
+		return false;
+
+	Critter@ attacker = map.AddNpc(AttackerPids[(Random(0,AttackerPids.length()-1))], hexX, hexY,	dir,	params, null, null);
+	if (!valid(attacker))
+		return false;
+	Item@ weapon = attacker.AddItem(WeaponPids[Random(0,WeaponPids.length()-1)], 1);
+
+	attacker.SetScript("_AttackerInit");
+	attacker.SetFavoriteItem(SLOT_HAND1, weapon.GetProtoId ());
+	Critter@[] deffenders;
+	map.GetCritters(0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, deffenders);
+	AttackTargets(attacker, deffenders);
+	return true;
+}
+
+void _AttackerInit(Critter& attacker, bool firstTime)
+{
+	attacker.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_Show");
+	attacker.SetEvent(CRITTER_EVENT_DEAD, "_Dead");
+}
+
+void AttackTargets(Critter@ attacker, Critter@[] targets) 
+{
+	for (uint i = 0; i < targets.length(); i++)
+	{
+		AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY, AI_PLANE_ATTACK_PRIORITY + 20), targets[i], true);
+		attacker.AddEnemyInStack(targets[i].Id);
+	}
+}
+
+void _Show(Critter& npc, Critter& cr)
+{
+	if (cr.IsPlayer() && !npc.CheckEnemyInStack(cr.Id))
+	{
+		npc.AddEnemyInStack( cr.Id );
+		AddAttackPlane( npc, Random(AI_PLANE_ATTACK_PRIORITY, AI_PLANE_ATTACK_PRIORITY + 20), cr ,true);
+	}
+}
+
+
+void _Dead(Critter& mob, Critter@ killer)
+{
+    mob.ClearEnemyStack();
+}
+
+void AddLoot(Item@ locker, uint type)
+{
+	if( !valid( locker ) )
+		return;
+	switch( type )
+    {
+    case SUPPLY_AMMO:
+		FillBagOverride( locker, PID_4_7MM_CASELESS, 			25,   10, 50 );
+        FillBagOverride( locker, PID_50CAL,    			        25,   10, 50 );
+		FillBagOverride( locker, PID_2MM_EC_AMMO,    			25,   10, 50 );
+		FillBagOverride( locker, PID_HN_AP_NEEDLER_CARTRIDGE,   25,   50, 100 );
+		FillBagOverride( locker, PID_5MM_AP,   				    50,  500, 1000 );
+		FillBagOverride( locker, PID_7_62MM_AMMO,   		    50,  300, 400 );
+		FillBagOverride( locker, PID_223_FMJ,   			    50,  300, 400 );
+		FillBagOverride( locker, PID_ROCKET_AP,   			    50,   50, 100 );
+        break;
+	case SUPPLY_ARMORS:
+		FillBagOverride( locker, Pids_ArmorHIGH, 			    50,    1, 1 );
+		FillBagOverride( locker, Pids_ArmorHIGH, 			    50,    1, 1 );
+		FillBagOverride( locker, PID_BLACK_COMBAT_ARMOR, 	    25,    1, 1 );
+        FillBagOverride( locker, Pids_T4_PARTS_PA, 	            5,     1, 1 );
+        
+        break;
+	case SUPPLY_WEAPONS:
+		FillBagOverride( locker, Pids_T4_PARTS_WEAPONS, 		5,     1, 1 );
+		FillBagOverride( locker, Pids_ENERGY, 				    50,    1, 1 );
+		FillBagOverride( locker, Pids_ENERGY, 				    50,    1, 1 );
+		FillBagOverride( locker, Pids_BG, 				        50,    1, 1 );
+		FillBagOverride( locker, Pids_BG, 				        50,    1, 1 );
+		FillBagOverride( locker, Pids_RIFLESregular, 			50,    1, 1 );
+		FillBagOverride( locker, Pids_RIFLESregular, 			50,    1, 1 );
+		FillBagOverride( locker, Pids_WeaponsMISC, 				50,    1, 1 );
+		FillBagOverride( locker, Pids_WeaponsMISC, 				50,    1, 1 );
+		FillBagOverride( locker, PID_WAKIZASHI_BLADE, 			5,    1, 1 );
+        break;	
+	case SUPPLY_MEDS:
+		FillBagOverride( locker, PID_BUFFOUT, 					90,    1, 5 );
+		FillBagOverride( locker, PID_PSYCHO, 					90,    1, 5 );
+		FillBagOverride( locker, PID_JET, 				    	90,    1, 5 );
+		FillBagOverride( locker, PID_HYPO, 				   		20,    1, 3 );
+		FillBagOverride( locker, PID_NUKA_COLA, 				90,    1, 5 );
+		FillBagOverride( locker, PID_JET_ANTIDOTE, 				50,    1, 5 );
+		FillBagOverride( locker, PID_CIGARETTES, 				90,    1, 5 );
+        break;
+	default:
+        break;
+	}
+}
+
+void BlockShip(Map& map)
+{
+	Item@ blocker = map.AddItem( 113, 258, PID_DOOR_BLOCKER, 1 );
+    if (valid(blocker))
+    {
+        UNSETFLAG( blocker.Flags, ITEM_NO_BLOCK );
+        SETFLAG( blocker.Flags, ITEM_SHOOT_THRU );
+    }
+    
+    Map@ map2 = GetMapByPid(MAP_sf_tanker,0);
+    if (!valid(map2))
+        return;
+	Item@ blocker2 = map2.AddItem( 83, 120, PID_DOOR_BLOCKER, 1 );
+    if (valid(blocker2))
+    {
+        UNSETFLAG( blocker2.Flags, ITEM_NO_BLOCK );
+        SETFLAG( blocker2.Flags, ITEM_SHOOT_THRU );
+    }
+}
+
+void UnBlockShip()
+{
+	Map@ map = GetMapByPid(MAP_sf_dock,0);
+    Map@ map2 = GetMapByPid(MAP_sf_tanker,0);
+    if (!valid(map) || !valid(map2))
+        return;
+	Item@ blockerItem = map.GetItem( 113, 258, PID_DOOR_BLOCKER );
+    if( valid( blockerItem ) )
+        DeleteItem( blockerItem );
+	Item@ blockerItem2 = map2.GetItem( 83, 120, PID_DOOR_BLOCKER );
+    if( valid( blockerItem2 ) )
+        DeleteItem( blockerItem2 );
+}
+
+void event_start( Critter& cr, int, int , int)
+{
+	event_start(1);
+}
+void event_stop( Critter& cr, int, int , int)
+{
+	uint[] val={1};
+    e_event_stop(val);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(1);
+}
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	uint[] val={1};
+    e_event_stop(val);
+}

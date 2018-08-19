@@ -1,0 +1,252 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+5 1010 D _script caravan_fo2@d_HasPreparedCaravan 0  #
+2 1020 @
+2 2000 None 0 #
+10 2010 D _script caravan_fo2@d_HasNoPreparedCaravan 0  #
+6 2020 #
+7 2030 #
+8 2040 #
+0 2050 @
+4 3000 caravan_fo2@dlg_LoadAvailableFollowers 1 #
+4 3010 D _script caravan_fo2@d_IsAvailableFollowers 1 1 R _script caravan_fo2@r_KickFollower 1 0 #
+4 3020 D _script caravan_fo2@d_IsAvailableFollowers 1 2 R _script caravan_fo2@r_KickFollower 1 1 #
+4 3030 D _script caravan_fo2@d_IsAvailableFollowers 1 3 R _script caravan_fo2@r_KickFollower 1 2 #
+4 3040 D _script caravan_fo2@d_IsAvailableFollowers 1 4 R _script caravan_fo2@r_KickFollower 1 3 #
+4 3050 D _script caravan_fo2@d_IsAvailableFollowers 1 5 R _script caravan_fo2@r_KickFollower 1 4 #
+4 3060 D _script caravan_fo2@d_IsAvailableFollowers 1 6 R _script caravan_fo2@r_KickFollower 1 5 #
+4 3070 D _script caravan_fo2@d_IsAvailableFollowers 1 7 R _script caravan_fo2@r_KickFollower 1 6 #
+4 3080 D _script caravan_fo2@d_IsAvailableFollowers 1 8 R _script caravan_fo2@r_KickFollower 1 7 #
+4 3090 D _script caravan_fo2@d_IsAvailableFollowers 1 9 R _script caravan_fo2@r_KickFollower 1 8 #
+0 3100 R _script caravan_fo2@r_StartCaravan 0  #
+0 3110 @
+5 4000 None 0 #
+4 4010 R _script caravan_fo2@r_RefreshFollowersCaravan 0  #
+11 4020 #
+9 4030 R _script caravan_fo2@r_CancelCaravan 0  #
+0 4040 @
+6 5000 None 0 #
+0 5010 #
+2 5020 @
+7 6000 None 0 #
+0 6010 #
+2 6020 @
+8 7000 None 0 #
+2 7010 #
+0 7020 @
+9 8000 None 0 @
+10 9000 None 0 #
+5 9010 R _script caravan_fo2@r_PrepareCaravan 1 1 #
+5 9020 R _script caravan_fo2@r_PrepareCaravan 1 3 #
+5 9030 R _script caravan_fo2@r_PrepareCaravan 1 5 #
+5 9040 R _script caravan_fo2@r_PrepareCaravan 1 7 @
+11 10000 None 0 #
+5 10010 R _script caravan_fo2@r_SetCombatMode 1 2 #
+5 10020 R _script caravan_fo2@r_SetCombatMode 1 1 #
+5 10030 &
+
+[engl]
+{100}{}{Caravan Master}
+{200}{}{You see: Caravan Master.}
+{210}{}{This man seems to be in charge of the caravans going in and out of the Hub.}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{Hello there, stranger. I'm in charge of the caravans here. I'm very busy, so long story short: you want to sign up? Currently we have caravans headin' to San Francisco, Shady Sands and Vault City. We also we have a Far Go Traders Caravan goin' round the Great Circle, but it's a long road.}
+{2010}{}{Yeah, I want to sign up.@@I want to sign up for the caravan escort duty.@@I want to sign up for a caravan.}
+{2020}{}{What about some other destinations?@@Any other destinations?@@Are there any other destinations?}
+{2030}{}{What's your job like?@@Tell my about you job, what is it like?}
+{2040}{}{Do you have anything to trade?@@Got anything to trade, Caravan Master?}
+{2050}{}{I think I'll pass. Later.}
+{3000}{}{Before we go, check list of caravan members. [Click on name to exclude player from caravan]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{All right, lets go.}
+{3110}{}{Just a minute!}
+{4000}{}{Okay, ready to go?@@Ready to shake some dust?@@Ready to get goin'?@@Are you ready?}
+{4010}{}{Yes, let's get going.@@Sure, I'm ready.@@I'm ready.@@I was born ready.@@Yeah, I'm ready.}
+{4020}{}{I want to change combat mode.}
+{4030}{}{On second thought, I think I'm needed elsewhere.}
+{4040}{}{Just a minute!}
+{5000}{}{No. Not at the moment, at least.}
+{5010}{}{Okay, thanks.}
+{5020}{}{Sorry, can I ask you something else then?}
+{6000}{}{It's okay I guess. I don't have much to do besides filling paperwork and hiring new mercenaries. I get by, one might say.}
+{6010}{}{I get it. Gotta go.}
+{6020}{}{Can we talk about something else?}
+{7000}{}{No, I just take care of the caravan escorts. Ask somewhere else in town.}
+{7010}{}{Okay, Some more questions, please?}
+{7020}{}{Okay, I will.}
+{8000}{}{Right. Coward.@@Yeah, go, you pussy.@@Get lost then, I've got other people waiting.}
+{9000}{}{Okay, so, which caravan do you want me to assign you to?}
+{9010}{}{The caravan to Vault City.}
+{9020}{}{The Hub-San Francisco caravan.}
+{9030}{}{Caravan to Shady Sands, if that's okay.}
+{9040}{}{The Far Go Traders caravan.}
+{10000}{}{Which one?}
+{10010}{}{Turn based.}
+{10020}{}{Real Time.}
+{10030}{}{[Back.]}
+
+[russ]
+{100}{}{Глава каравана}
+{200}{}{Вы видите: главного караванщика}
+{210}{}{Этот парень кажется главный в караване каравана.}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{Привет путник, я главный в караване. Вы выглядите опытным путешественником, у меня появилась идея. Готовы ли вы к главному путешествию в жизни?}
+{2010}{}{Это было бы здорово. Запишите меня .}
+{2020}{}{Ты водишь караваны только в Хаб? Как насчет Города убежища или Сан-Франциско?}
+{2030}{}{Быть за главного в караване, это сложно?}
+{2040}{}{Караван? Это значит, что вы торговцы не так ли? Давайте поторгуем.}
+{2050}{}{К сожалению, не интересует. До свидания.}
+{3000}{}{Вот состав нашего каравана.[нажмите на имя чтобы исключить игрока из каравана]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{Да все верно, отправляемся...}
+{3110}{}{Эээ, я вернусь позже.}
+{4000}{}{Все в порядке? Готовы к отправлению?}
+{4010}{}{Да, давайте отправлятся.}
+{4020}{}{Я хочу изменить тип боя на энкаунтерах.}
+{4030}{}{Я передумал, я не пойду с тобой.}
+{4040}{}{Эээ, я вернусь позже.}
+{5000}{}{Мне жаль, если мой маршрут не достаточно хорош для вас. Может кто-то другой согласится пойти с вами.}
+{5010}{}{Так и сделаю.}
+{5020}{}{Извините, могу я задать вопрос?}
+{6000}{}{Трудно быть лидером каравана. Нужно постоянно искать наемников и следить за ними. Искать товар. Еще и пустошь не место для праздных прогулок, рейдеры не дремлют.}
+{6010}{}{Звучит интересно. До свидания.}
+{6020}{}{Можно другой вопрос?}
+{7000}{}{Я похож на скучного кассира, который сидит за прилавком весь день?  Нет! Я путешественник.}
+{7010}{}{Хорошо, хорошо. Можно вопрос?}
+{7020}{}{А я так надеялся, ну ты и мудак.}
+{8000}{}{Тогда какого хрена ты тратишь мое время?}
+{9000}{}{Хорошо, куда отправимся?}
+{9010}{}{Город Убежище}
+{9020}{}{Сан-Франциско}
+{9030}{}{НКР}
+{9040}{}{Караван Фар-Го.}
+{10000}{}{Какой тип боя вы хотите установить?}
+{10010}{}{Пошаговый.}
+{10020}{}{Реальное время.}
+{10030}{}{Не знаю.}
+
+[pols]
+{100}{}{Zarządca karawany}
+{200}{}{Widzisz zarządcę karawany}
+{210}{}{Widzisz ogolonego na łyso mężczyznę w średnim wieku ubranego w pancerz bojowy. Wygląda na zajętego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{Czego chcesz? Mam tu karawany do wysłania, więc się sprężaj. Jak chcesz dołączyć podaj mi swoje imię, muszę mieć porządek w papierach. W tym momencie obsługujemy trasy do Kryptopolis i San Francisco. @sex@|Zainteresowany||Zainteresowana|?}
+{2010}{}{Tak jest! Nazywam się @pname@, zapisz mnie.}
+{2020}{}{A nie obsługujecie jakichś innych szlaków?}
+{2030}{}{Opowiedz mi o twojej robocie.}
+{2040}{}{Karawana? To może pohandlujemy?}
+{2050}{}{Może innym razem. Czas na mnie.}
+{3000}{}{Zanim wyruszymy, sprawdź liste strażników karawany. [Kliknij na nick aby wyłączyć gracza z karawany]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{W porządku, ruszamy!}
+{3110}{}{Chwileczkę...}
+{4000}{}{No, to możemy ruszać?}
+{4010}{}{Jasne, ruszajmy!}
+{4020}{}{Chcę zmienić tryb walki.}
+{4030}{}{@sex@|Rozmyśliłem||Rozmyśliłam| się, innym razem.}
+{4040}{}{Daj mi pięć minut.}
+{5000}{}{Jak ci nie pasi, to @sex@|sam||sama| sobie zapierdalaj gdzie chcesz. Ja mam trasy do obsłużenia.}
+{5010}{}{A żebyś wiedział. Na razie.}
+{5020}{}{Dobra, a mogę spytać jeszcze o coś?}
+{6000}{}{Jak to jest? Chujowo jest. Ciągle trzeba pilnować towaru, sprawdzać ile dotarło do celu i w jakim stanie, do tego trzeba odpalać coś ochronie, a czasy takie, że dużo karawan, duża konkurencja, ten biznes nie jest już tak opłacalny jak kiedyś. Do tego te skurwysyny czasem podwędzą coś z lawety, nie ma lekko, mówię ci.}
+{6010}{}{Rozumiem. Muszę już iść.}
+{6020}{}{Ciekawe. Jeszcze jedno...}
+{7000}{}{Czy ja wyglądam jak jakiś jebany handlarzyk? Nie! Bo ja nie handluję, tylko odbieram i wysyłam karawany, @sex|idioto||głupia cipo|!}
+{7010}{}{Uważaj, bo ci pikawka stanie. Może pogadamy o czymś innym?}
+{7020}{}{A spierdalaj.}
+{8000}{}{To idź pierdolić smuty komu innemu!}
+{9000}{}{Dobra, cel?}
+{9010}{}{Kryptopolis.}
+{9020}{}{San Francisco.}
+{9030}{}{Shady Sands.}
+{9040}{}{The Far Go Around Wasteland caravan.}
+{10000}{}{Na?}
+{10010}{}{Turowy.}
+{10020}{}{Czas rzeczywisty.}
+{10030}{}{@sex@|Chciałem||Chciałam| coś innego.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{Hello there, stranger. I'm in charge of the caravans here. I'm very busy, so long story short: you want to sign up? Currently we have caravans headin' to San Francisco, Shady Sands and Vault City. We also we have a Far Go Traders Caravan goin' round the Great Circle, but it's a long road.}
+{2010}{}{Yeah, I want to sign up.@@I want to sign up for the caravan escort duty.@@I want to sign up for a caravan.}
+{2020}{}{What about some other destinations?@@Any other destinations?@@Are there any other destinations?}
+{2030}{}{What's your job like?@@Tell my about you job, what is it like?}
+{2040}{}{Do you have anything to trade?@@Got anything to trade, Caravan Master?}
+{2050}{}{I think I'll pass. Later.}
+{3000}{}{Before we go, check list of caravan members. [Click on name to exclude player from caravan]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{All right, lets go.}
+{3110}{}{Just a minute!}
+{4000}{}{Okay, ready to go?@@Ready to shake some dust?@@Ready to get goin'?@@Are you ready?}
+{4010}{}{Yes, let's get going.@@Sure, I'm ready.@@I'm ready.@@I was born ready.@@Yeah, I'm ready.}
+{4020}{}{I want to change combat mode.}
+{4030}{}{On second thought, I think I'm needed elsewhere.}
+{4040}{}{Just a minute!}
+{5000}{}{No. Not at the moment, at least.}
+{5010}{}{Okay, thanks.}
+{5020}{}{Sorry, can I ask you something else then?}
+{6000}{}{It's okay I guess. I don't have much to do besides filling paperwork and hiring new mercenaries. I get by, one might say.}
+{6010}{}{I get it. Gotta go.}
+{6020}{}{Can we talk about something else?}
+{7000}{}{No, I just take care of the caravan escorts. Ask somewhere else in town.}
+{7010}{}{Okay, Some more questions, please?}
+{7020}{}{Okay, I will.}
+{8000}{}{Right. Coward.@@Yeah, go, you pussy.@@Get lost then, I've got other people waiting.}
+{9000}{}{Okay, so, which caravan do you want me to assign you to?}
+{9010}{}{The caravan to Vault City.}
+{9020}{}{The Hub-San Francisco caravan.}
+{9030}{}{Caravan to Shady Sands, if that's okay.}
+{9040}{}{The Far Go Traders caravan.}
+{10000}{}{Which one?}
+{10010}{}{Turn based.}
+{10020}{}{Real Time.}
+{10030}{}{[Back.]}
+

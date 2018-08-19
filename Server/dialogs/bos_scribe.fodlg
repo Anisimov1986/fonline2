@@ -1,0 +1,62 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _param p TRAIT_SKILLED = 1 #
+2 1020 D _param p MAIN_FACTION ! 2 #
+3 1030 D _param p MAIN_FACTION = 2 @
+2 2000 None 0 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Brotherhood Scribe}
+{200}{}{You see: Brotherhood Scribe.}
+{210}{}{This person is responsible for saving Brotherhood's knowledge and technology.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Can't you see I'm busy here?@@Yes?@@What is it?@@Security!@@Hello there.@@Have you seen my glasses?@@Join the Brotherhood, they said. It'll be glorious, they said...@@I'm smarter than you.@@Scribes never get any respect...@@Quiet, you.@@Greetings.@@Was there something you wanted?@@Are you here to clean the floors?@@Yes?@@Eureka!@@What are you doing here?@@I'm tired.@@Wanna gamble?@@Please just leave me alone.@@Go away!@@The Brotherhood keeps us safe.@@You're making me nervous.@@What time is it?@@Good day.@@Good news, everyone!@@I don't have time to converse with the likes of you.@@Science is the pursuit of true knowledge.@@Don't trust those tribals up north, they'll shoot you down in seconds flat.@@I trust that you are not here to harm me?@@Salutations!@@Get on with it!@@Did you have a point to make, or are you just going to stand there like an idiot?@@Get away from me!@@Oh look, a simpleton.}
+{3000}{}{Can't you see I'm busy here?@@Yes?@@What is it?@@Hello there.@@Have you seen my glasses?@@Hello.@@I heard an Elder say the Enclave's making a big move soon.@@Greetings, fellow member.@@Was there something you wanted?@@Are you here for security duty?@@Yes?@@Eureka!@@I always feel safer with you guys around.@@I'm tired.@@Wanna gamble?@@Don't you love being in the Brotherhood?@@You're making me nervous.@@What time is it?@@Good day.@@Good news, everyone!@@I'm very busy. Is this important?@@Science is the pursuit of true knowledge.@@Don't trust those tribals up north, they'll shoot you down in seconds flat.@@Salutations!@@How are you?@@Seen any action lately?}
+{4000}{}{Get outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!}
+
+[russ]
+{100}{}{Brotherhood Scribe}
+{200}{}{You see: Brotherhood Scribe.}
+{210}{}{This person is probably from the non-combat personnel of the Brotherhood.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Can't you see I'm busy here?@@Yes?@@What is it?@@Security!@@Hello there.@@Have you seen my glasses?@@Join the Brotherhood, they said. It'll be glorious, they said...@@I'm smarter than you.@@Scribes never get any respect...@@Quiet, you.@@Greetings.@@Was there something you wanted?@@Are you here to clean the floors?@@Yes?@@Eureka!@@What are you doing here?@@I'm tired.@@Wanna gamble?@@Please just leave me alone.@@Go away!@@The Brotherhood keeps us safe.@@You're making me nervous.@@What time is it?@@Good day.@@Good news, everyone!@@I don't have time to converse with the likes of you.@@Science is the pursuit of true knowledge.@@Don't trust those tribals up north, they'll shoot you down in seconds flat.@@I trust that you are not here to harm me?@@Salutations!@@Get on with it!@@Did you have a point to make, or are you just going to stand there like an idiot?@@Get away from me!@@Oh look, a simpleton.}
+{3000}{}{Can't you see I'm busy here?@@Yes?@@What is it?@@Hello there.@@Have you seen my glasses?@@Hello.@@I heard an Elder say the Enclave's making a big move soon.@@Greetings, fellow member.@@Was there something you wanted?@@Are you here for security duty?@@Yes?@@Eureka!@@I always feel safer with you guys around.@@I'm tired.@@Wanna gamble?@@Don't you love being in the Brotherhood?@@You're making me nervous.@@What time is it?@@Good day.@@Good news, everyone!@@I'm very busy. Is this important?@@Science is the pursuit of true knowledge.@@Don't trust those tribals up north, they'll shoot you down in seconds flat.@@Salutations!@@How are you?@@Seen any action lately?}
+{4000}{}{Get outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!}
+
+[pols]
+{100}{}{Skryba Bractwa}
+{200}{}{Widzisz: Skryba Bractwa.}
+{210}{}{Ta osoba odpowiedzialna jest za zapisywanie wiedzy i technologii zgromadzonej przez Bractwo.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Nie widzisz, �e jestem zaj�ty?@@Tak?@@O co chodzi?@@Ochrona!@@Witaj.@@Widzia�e� moje okulary?@@Do��cz do Bractwa, m�wili. B�dzie wspaniale, m�wili...@@Jestem bardziej inteligentny od ciebie.@@Nikt nie szanuje skryb...@@Cicho b�d�.@@Pozdrowienia.@@Chcia�e� czego� ode mnie?@@Jeste� tutaj by umy� pod�ogi?@@Tak?@@Eureka!@@Co ty tu robisz?@@Jestem zm�czony.@@Chcesz zagra� w pokera?@@Prosz�, po prostu zostaw mnie w spokoju.@@Odejd�!@@Bractwo dba o nasze bezpiecz�stwo.@@Dzia�asz mi na nerwy.@@Kt�ra godzina?@@Dzie� dobry.@@Dobra wiadomo��, wszyscy!@@Nie mam czasu na zadawanie si� z takimi jak ty.@@Nauka to pogo� za prawdziw� wiedz�.@@Nie ufaj tym dzikusom z p�nocy, zestrzel� ci� w par� sekund.@@Ufam, �e nie jeste� tutaj by sprawia� k�opoty?@@Salut!@@M�w�e wreszcie o co ci chodzi!@@Chcesz co� powiedzie�, czy po prostu b�dziesz tu sta� jak kretyn?@@Odejd� ode mnie!@@O, sp�jrzcie, jaki� prostak si� tu przypa��ta�.}
+{3000}{}{Nie widzisz, �e jestem zaj�ty?@@Tak?@@O co chodzi?@@Witaj, @sex@|Bracie||Siostro|.@@Widzia�e� moje okulary?@@Cze��.@@Us�ysza�em jak Starszy powiedzia�, �e Enklawa prawdopodobnie wykona wkr�tce jaki� ruch.@@Pozdrowienia, @sex@|Bracie||Siostro|.@@Potrzebujesz czego�?@@Masz teraz s�u�b� wartownicza tutaj, zgadza si�?@@Tak?@@Eureka!@@Zawsze czuje si� bezpieczniej kiedy jeste�cie w pobli�u.@@Zm�czony jestem.@@Co powiedz na partyjk� pokera?@@Te� si� cieszysz, �e jeste� w Bractwie?@@Wybacz, ale dzia�asz mi na nerwy.@@Kt�ra godzina?@@Dzie� dobry.@@Dobra wiadomo��, wszyscy!@@Jestem bardzo zaj�ty. Czy masz co� wa�nego do powiedzenia?@@Nauka to pogo� za prawdziw� wiedz�.@@Nie ufaj tym dzikusom z p�nocy, zestrzel� ci� w par� sekund.@@Salut!@@Jak si� masz?@@Bra�e� udzia� w czym� ciekawym ostatnio?}
+{4000}{}{Wyno� si� st�d, mutancie!@@Wypieprzaj, zmutowana paskudo!@@Wypieprzaj st�d w tej chwili, mutancie!@@Nie tolerujemy tutaj takich jak ty, wyrzutku po kuracji FEVsem.@@Ostrzegam ci�. Wypierdalaj!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Can't you see I'm busy here?@@Yes?@@What is it?@@Security!@@Hello there.@@Have you seen my glasses?@@Join the Brotherhood, they said. It'll be glorious, they said...@@I'm smarter than you.@@Scribes never get any respect...@@Quiet, you.@@Greetings.@@Was there something you wanted?@@Are you here to clean the floors?@@Yes?@@Eureka!@@What are you doing here?@@I'm tired.@@Wanna gamble?@@Please just leave me alone.@@Go away!@@The Brotherhood keeps us safe.@@You're making me nervous.@@What time is it?@@Good day.@@Good news, everyone!@@I don't have time to converse with the likes of you.@@Science is the pursuit of true knowledge.@@Don't trust those tribals up north, they'll shoot you down in seconds flat.@@I trust that you are not here to harm me?@@Salutations!@@Get on with it!@@Did you have a point to make, or are you just going to stand there like an idiot?@@Get away from me!@@Oh look, a simpleton.}
+{3000}{}{Can't you see I'm busy here?@@Yes?@@What is it?@@Hello there.@@Have you seen my glasses?@@Hello.@@I heard an Elder say the Enclave's making a big move soon.@@Greetings, fellow member.@@Was there something you wanted?@@Are you here for security duty?@@Yes?@@Eureka!@@I always feel safer with you guys around.@@I'm tired.@@Wanna gamble?@@Don't you love being in the Brotherhood?@@You're making me nervous.@@What time is it?@@Good day.@@Good news, everyone!@@I'm very busy. Is this important?@@Science is the pursuit of true knowledge.@@Don't trust those tribals up north, they'll shoot you down in seconds flat.@@Salutations!@@How are you?@@Seen any action lately?}
+{4000}{}{Get outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!}
+

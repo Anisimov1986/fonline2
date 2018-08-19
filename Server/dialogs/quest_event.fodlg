@@ -1,0 +1,53 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 game_event_quests@dlg_Prepare 0 #
+0 2010 D _script game_event_quests@d_HaveQuestItem 0  R _script game_event_quests@r_QuestFinished 0  #
+0 2020 &
+
+[engl]
+{100}{}{Child}
+{200}{}{You see: a child.}
+{210}{}{You see a little dirty child with some rags on him. He looks at you with hungry eyes.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Please, bring me @lex itemname@.}
+{2010}{}{I've got this for you.@@I have this thing you wanted.@@I brought the thing you wanted.}
+{2020}{}{I will come back soon@@Later.@@Nevermind.}
+
+[russ]
+{100}{}{Ребенок}
+{200}{}{Вы видите ребенка.}
+{210}{}{Вы видите маленького грязного ребенка в каких-то обмотках. Он смотрит на вас голодными глазами.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Вы должны принести мне @lex itemname@.}
+{2010}{}{Я принес то что нужно.}
+{2020}{}{Я скоро вернусь!}
+
+[pols]
+{100}{}{Dziecko}
+{200}{}{Widzisz dziecko.}
+{210}{}{Widzisz małego, brudnego dzieciaka ubranego w jakieś szmaty. Spogląda na ciebie wygłodzonymi oczętami.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Przynieś mi @lex itemname@.}
+{2010}{}{Mam dla ciebie ten przedmiot.}
+{2020}{}{Wrócę niedługo.}
+
+[ptbr]
+{100}{}{Criança}
+{200}{}{Você vê uma criança.}
+{210}{}{Você vê uma pequena criança, bastante suja vestindo alguns trapos. Ela olha para você com olhos famintos.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Você precisa me trazer @lex itemname@.}
+{2010}{}{Tenho esse item para você.}
+{2020}{}{Depois eu passo por aqui.}

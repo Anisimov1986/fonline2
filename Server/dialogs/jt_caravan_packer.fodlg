@@ -1,0 +1,139 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _script quest_caravan_box@d_IsOngoing 0  #
+2 1020 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+20 1030 @
+20 2000 None 0 #
+3 2010 D _script quest_caravan_box@d_NotStarted 0  D _script quest@quest_checkcd 1 9305 #
+0 2020 @
+2 3000 None 0 #
+3 3010 D _script quest_caravan_box@d_NotStarted 0  D _script quest@quest_checkcd 1 9305 #
+0 3020 @
+3 4000 None 0 #
+0 4010 R _script quest_caravan_box@r_StartQuest 0  #
+0 4020 @
+4 5000 None 0 #
+5 5010 D _script quest_caravan_box@d_IsDone 0  R _script quest_caravan_box@r_CompleteQuest 0  R _script quest@quest_setcd 2 9305 30 R _script karma@r_AddKarma 1 1 R _script dialog@r_PackRat 0  #
+6 5020 @
+5 6000 None 0 #
+0 6010 @
+6 7000 None 0 #
+0 7010 @
+7 8000 None 0 #
+0 8010 &
+
+[engl]
+{100}{}{Caravan Packer}
+{200}{}{You see: Caravan packer.}
+{210}{}{This man seems pretty busy with sorting the goods from the cart.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{You again? What now? I am busy.@@It's you? What do you want this time?@@Can't you see I'm busy?}
+{2010}{}{Want help with those boxes again?@@I came to see if you got more work for me.@@I need more cash. Need help with those boxes again?@@Need any more help?}
+{2020}{}{Nevermind.@@Whatever.@@Never mind.}
+{3000}{}{Can't you see I'm busy?@@What the hell do you want?@@What?@@I'm busy, get lost.@@I've got shit to do, get lost.}
+{3010}{}{Got any job that needs to be done?@@I'm looking for a job.@@I'm looking for work.@@Got any work?@@I need cash, got any work?}
+{3020}{}{Just looking around.@@Whatever.@@Just passing by.@@Nevermind.@@I'm going.}
+{4000}{}{Well... you could help me with those boxes over there. Think you can handle it? I need ten boxes brought over there, inside the building.@@Right... have some work for ya. Think you can take these goddamn boxes over there, to the room in that building behind the wall?}
+{4010}{}{Yeah, I can manage that.@@Sure.@@Yep.@@No problem, I can do that.@@You bet.@@I'll do it.}
+{4020}{}{No way.@@I've got better things to do.@@I've got better things to do than hauling boxes.@@Screw it.@@Nevermind.}
+{5000}{}{You done?@@Done already?@@Are you finished?}
+{5010}{}{Yeah.@@Yeah, that was the last box.@@Yep.@@It's done.}
+{5020}{}{Not yet.@@Nope.@@These boxes are so heavy, I can't do it in 10 seconds you know?}
+{6000}{}{Good, here's your pay. Three hundred straight. Don't spend it all on booze.@@All right, here's your dough. 300 caps.@@At last, thought you'd never finish. Get your three hundred caps and get lost.}
+{6010}{}{Thanks.@@Phew.@@At last.@@Thanks man.@@All right.}
+{7000}{}{Then hurry the fuck up, I don't have the whole day.@@Then get your shit together and fetch those boxes?@@Then why the fuck are you still standing here? Get to work, now!@@Then get to work, now!}
+{7010}{}{Yeah, yeah...@@Yeah, whatever.@@Whatever.}
+{8000}{}{Come back later.@@Not now, come back later.}
+{8010}{}{Okay.@@All right.}
+
+[russ]
+{100}{}{Caravan Packer}
+{200}{}{You see Caravan packer.}
+{210}{}{He looks pretty busy with the caravans.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{What now? I am busy.}
+{2010}{}{Do you have some job for me?}
+{2020}{}{So am I, you filth!}
+{3000}{}{Don't you see that I am busy?}
+{3010}{}{Do you have some job for me?}
+{3020}{}{I'm just looking around, thanks and bye.}
+{4000}{}{Yes, well, I'd like you to help me unload some boxes from the caravan cart. Think you could take 10 boxes and drop them where the others are?}
+{4010}{}{Sure, I'll do it.}
+{4020}{}{No way, you loser!}
+{5000}{}{Are you done with the work?}
+{5010}{}{Yes, finished the last box right now.}
+{5020}{}{Not yet.}
+{6000}{}{Good, here is your reward, 300 caps, don't you go spend it all on Iguana. I have more work for you later if you're still in need of some cash.}
+{6010}{}{Thanks.}
+{7000}{}{Then hurry up. I don't have the whole day.}
+{7010}{}{Yeah, yeah...}
+{8000}{}{Not now, come back later.}
+{8010}{}{Okay.}
+
+[pols]
+{100}{}{Tragarz}
+{200}{}{Widzisz tragarza.}
+{210}{}{Ten człowiek wygląda na całkowicie pochłoniętego swoją pracą.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{Czego chcesz? Próbuję tu pracować, do cholery!}
+{2010}{}{Pracować? A nie znalazłoby się coś dla mnie?}
+{2020}{}{Nie przeszkadzaj sobie, robolu.}
+{3000}{}{Nie widzisz, że mam co robić?}
+{3010}{}{Nie miałbyś jakiejś roboty dla mnie?}
+{3020}{}{Podziwiam tylko piękno ciężkiej pracy.}
+{4000}{}{No miałbym. Nie wyglądasz na zbyt @sex@|silnego||silną|, ale co tam... Dasz radę przenieść dziesięć skrzyń z wozu, o tam, do namiotu?}
+{4010}{}{Pewnie, łatwizna.}
+{4020}{}{Nic z tego, sam sobie je noś.}
+{5000}{}{Już @sex@|skończyłeś||skończyłaś|?}
+{5010}{}{Tak.}
+{5020}{}{Jeszcze nie.}
+{6000}{}{No, nareszcie. Masz tu zapłatę, 300 kapsli. Tylko nie przećpaj od razu wyszystkiego. Jak będziesz @sex@|chciał||chciała| jeszcze dorobić, wpadnij za jakiś czas.}
+{6010}{}{W porządku, dzięki.}
+{7000}{}{To rusz dupę!}
+{7010}{}{Już, moment...}
+{8000}{}{Przyjdź później, na razie nie ma roboty.}
+{8010}{}{Dobra.}
+
+[ptbr]
+{100}{}{Estivador}
+{200}{}{Você vê o chefe estivador da caravana.}
+{210}{}{Ele parece bastante ocupado.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{O que é agora? Tô ocupado.@@Não vê que tou ocupado?}
+{2010}{}{Eu tou procurando por emprego. Tem algum?}
+{2020}{}{Tenho que ir.}
+{3000}{}{Sim?@@O que você quer?@@Eu tou ocupado então fala rápido.}
+{3010}{}{Estou procurando por emprego..}
+{3020}{}{Só dando uma olhada.}
+{4000}{}{Na verdade, ahm... acho que você poderia pegar dez caixas e colocá-las onde as outras estão?}
+{4010}{}{Ok@@Claro@@Está certo@@Claro, posso fazer isso.}
+{4020}{}{Não.@@Eu tenho mais o que fazer.@@Um outro dia talvez.@@Agora não, quem sabe depois.}
+{5000}{}{Terminou?}
+{5010}{}{Sim. Me pague.@@Terminei, cadê o meu pagamento?@@Pronto. Vim falar sobre o pagamento.}
+{5020}{}{Ainda não.@@Trabalhando nisso.@@Ainda trabalhando nisso.}
+{6000}{}{Certo. Tá aqui seu pagamento, trezentas tampas. Talvez precise de ajuda depois, daí passa por aqui. @@Certo. Aqui estão as trezentas tampas. Passe por aqui depois.}
+{6010}{}{Obrigado.@@certo.@@Obrigado, tchau.@@Bom, aquelas caixas eram bastante pesadas.}
+{7000}{}{Então se apresse! Eu não tenho o dia todo para ficar esperando você terminar este serviço!}
+{7010}{}{É, é.}
+{8000}{}{Agora não, venha depois.@@Vem depois.@@Não preciso de ajuda agora, vem depois.}
+{8010}{}{Certo.@@Tudo bem.@@É, tá.}
+

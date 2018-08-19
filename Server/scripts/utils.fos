@@ -1,0 +1,784 @@
+// Misc Utils
+
+#include "_defines.fos"
+#include "_macros.fos"
+#include "_msgstr.fos"
+
+#include "utils_for_array.fos"
+#include "mapdata_h.fos"
+import void   GenerateStats( Item& item ) from "custom_items";
+import bool   IsItemAviable( uint16 pid ) from "blueprints";
+import uint16 GetAviableItem( uint16 pid, bool allowrare ) from "blueprints";
+import int    ProcessRareLootRules( uint16 protoId, uint mapId, int count ) from "rare_loot_queue";
+#define __UTILS_MODULE__
+#include "utils_h.fos"
+
+int GetGroupMaxLevel( array< Critter@ > group )
+{
+    int maxlevel = 0;
+    for( uint i = 0; i < group.length(); i++ )
+    {
+        if( valid( group[ i ] ) && ( group[ i ].Stat[ ST_LEVEL ] > maxlevel ) )
+            maxlevel = group[ i ].Stat[ ST_LEVEL ];
+    }
+    return maxlevel;
+}
+
+void SaveAnyData( uint value, string key )
+{
+    if( value == 0 )
+    {
+        if( IsAnyData( key ) )
+            EraseAnyData( key );
+    }
+    else
+    {
+        uint[] values;
+        values.insertLast( value );
+        SetAnyData( key, values );
+    }
+}
+
+uint GetAnyData( string key )
+{
+    uint[] values;
+    if( IsAnyData( key ) )
+    {
+        GetAnyData( key, values );
+        if( values.length == 1 )
+            return values[ 0 ];
+    }
+    return 0;
+}
+
+uint[] GetAnyDataArray( string key )
+{
+    uint[] values;
+    if( IsAnyData( key ) )
+    {
+        if( GetAnyData( key, values ) )
+            return values;
+    }
+    return values;
+}
+
+void SendHpInfo( Critter& cr, int heal )
+{
+    if( heal > 0 && valid( cr.GetMap() ) )
+    {
+        if( cr.IsPlayer() )
+            cr.RunClientScript( "client_main@OwhMessage", cr.Id, heal, 0, null, null );
+        Critter@[] crits;
+        cr.GetCritters( true, FIND_LIFE | FIND_ONLY_PLAYERS, crits );
+        for( int i = 0, j = crits.length(); i < j; i++ )
+            crits[ i ].RunClientScript( "client_main@OwhMessage", cr.Id, heal, 0, null, null );
+    }
+}
+
+bool ItemsIsSafe( Critter& cr )
+{
+    return ( cr.Mode[ MODE_NO_LOOT ] != 0 && cr.Mode[ MODE_NO_DROP ] != 0 && cr.Mode[ MODE_NO_STEAL ] != 0 );
+}
+
+bool HasItem( Critter@ cr, uint pid )
+{
+    Item@ item = cr.GetItem( pid, -1 );
+    return valid( item );
+}
+
+bool HasItemInHands( Critter@ cr, uint pid )
+{
+    Item@ hand1 = _CritGetItemHand( cr );
+    if( valid( hand1 ) && ( hand1.GetProtoId() == pid ) )
+        return true;
+    Item@ hand2 = _CritGetItemHandExt( cr );
+    if( valid( hand2 ) && ( hand2.GetProtoId() == pid ) )
+        return true;
+    return false;
+}
+
+bool HasItemsInHands( Critter@ cr, uint pid1, uint pid2 )
+{
+    Item@ hand1 = _CritGetItemHand( cr );
+    if( valid( hand1 ) && ( ( hand1.GetProtoId() == pid1 ) || hand1.GetProtoId() == pid2 ) )
+        return true;
+    Item@ hand2 = _CritGetItemHandExt( cr );
+    if( valid( hand2 ) && ( ( hand2.GetProtoId() == pid1 ) || hand2.GetProtoId() == pid2 ) )
+        return true;
+    return false;
+}
+
+Item@ GetEquippedItem( Critter& cr, uint Pid )
+{
+    Item@ hand1 = _CritGetItemHand( cr );
+    Item@ hand2 = _CritGetItemHandExt( cr );
+    if( valid( hand1 ) && ( hand1.GetProtoId() == Pid ) )
+        return hand1;
+    if( valid( hand2 ) && ( hand2.GetProtoId() == Pid ) )
+        return hand2;
+    return null;
+}
+
+Location@ GetLocationOf( Critter& critter )
+{
+    Map@ map = critter.GetMap();
+    if( !valid( map ) )
+        return null;
+    return map.GetLocation();
+}
+
+bool IsEncounterMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+    return map.GetLocation().IsEncounter();
+}
+
+bool IsSpecialMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+    return map.GetLocation().IsSpecial();
+}
+
+bool IsDungeonMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+    return map.GetLocation().IsDungeon();
+}
+
+bool IsQuestMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+    return map.GetLocation().IsQuest();
+}
+
+bool IsTownMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+
+    return map.GetLocation().IsTown();
+}
+
+bool IsGuardedTownMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+
+    return map.GetLocation().IsTown() && map.GetLocation().IsGuarded();
+}
+
+bool IsTentMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+    return map.GetLocation().IsTent();
+}
+
+bool IsBaseMap( Map@ map )
+{
+    if( !valid( map ) )
+        return false;
+    return map.GetLocation().IsBase();
+}
+
+int stringReplaceText( string& s, string& f, string& t )
+{
+    int ch = 0, p = -1;
+    while( ( p = findFirst( s, f ) ) >= 0 )
+    {
+        s = substring( s, 0, p ) + t + substring( s, p + f.length(), s.length() - ( p + f.length() ) );
+        ch++;
+    }
+    return ( ch );
+}
+
+string GetCritterName( Critter& cr )
+{
+    string name = cr.Name;
+
+    if( cr.IsNpc() )     // see also: client_main@in_message
+    {
+        uint num = STR_NPC_NAME( cr.Stat[ ST_DIALOG_ID ], cr.GetProtoId() );
+        name = "@msg dlg " + num + "@";
+    }
+
+    return ( name );
+}
+
+void VerboseAction( Critter& cr, string& text )
+{
+    if( text.length() > 0 )
+    {
+        stringReplaceText( text, "CRITTER", GetCritterName( cr ) );
+
+        uint color = COLOR_RGB( 58, 137, 133 );
+        cr.Say( SAY_NORM_ON_HEAD, "|" + color + " **" + text + "**" );
+    }
+}
+
+void VerboseAction( Critter& cr, Critter& target, string& text )
+{
+    if( text.length() > 0 )
+    {
+        stringReplaceText( text, "TARGET", GetCritterName( target ) );
+        VerboseAction( cr, text );
+    }
+}
+
+string GetIP( uint ip )
+{
+    if( ip > 0 )
+    {
+        string result = "";
+        for( uint i = 0; i < 4; i++ )
+        {
+            result += ( i == 0 ? "" : "." ) + ( ( ip >> ( i * 8 ) ) & 0xFF );
+        }
+        return result;
+    }
+    return "unknown ip";
+}
+
+void FillBag( Item@ locker, uint16 pid, double chance, uint min, uint max  )
+{
+    uint16[] pids = { pid };
+    FillBag( locker, pids, chance, min,  max  );
+}
+
+void FillBag( Item@ locker, uint16[]& pids, double chance, uint min, uint max )
+{
+    FillBag( locker, pids, chance, min, max, false, false );
+}
+
+void FillBagAllowRare( Item@ locker, uint16 pid, double chance, uint min, uint max )
+{
+    uint16[] pids = { pid };
+    FillBag( locker, pids, chance, min, max, true, false );
+}
+
+void FillBagAllowRare( Item@ locker, uint16[]& pids, double chance, uint min, uint max )
+{
+    FillBag( locker, pids, chance, min, max, true, false );
+}
+
+void FillBag( Item@ locker, uint16[]& pids, double chance, uint min, uint max, bool allowRare, bool override )
+{
+    uint       count = Random( min, max );
+    uint16     pid = pids[ Random( 0, pids.length() - 1 ) ];
+    float      randomChance = float( Random( 1, 10000 ) ) / 100.0f;
+    ProtoItem@ ItemProto = GetProtoItem( override ? pid : GetAviableItem( pid, allowRare ) );
+    if( !valid( ItemProto ) )
+        return;
+
+    if( count > 0 && chance >= randomChance )
+    {
+        if( !override )
+            count = ProcessRareLootRules( ItemProto.ProtoId, locker.MapId, count );
+        if( count > 0 )
+        {
+            if( ItemProto.Stackable )
+            {
+                locker.AddItem( ItemProto.ProtoId, count, 0 );
+            }
+            else
+            {
+                for( uint i = 0; i < count; i++ )
+                {
+                    Item@ advItem = locker.AddItem( ItemProto.ProtoId, 1, 0 );
+                    if( valid( advItem ) )
+                    {
+                        GenerateStats( advItem );
+                    }
+                }
+            }
+        }
+    }
+}
+
+void FillBagOverride( Item@ locker, uint16 pid, double chance, uint min, uint max )
+{
+    uint16[] pids = { pid };
+    FillBag( locker, pids, chance, min, max, false, true );
+}
+
+void FillBagOverride( Item@ locker, uint16[]& pids, double chance, uint min, uint max )
+{
+    FillBag( locker, pids, chance, min, max, false, true );
+}
+
+/**
+ * Wrapper function for retrieving the value of an UVAR ("Unicum" variable).
+ * @param uvar Target UVAR.
+ * @param masterid MasterId corresponding to some critter.
+ * @param slaveid SlaveId corresponding to another critter.
+ * @return Value of the UVAR.
+ */
+int GetUvar( uint uvar, uint masterid, uint slaveid )
+{
+    GameVar@ var = GetUnicumVar( uvar, masterid, slaveid );
+    if( valid( var ) )
+        return var.GetValue();
+    else
+        Log( "UVar " + uvar + " with masterid " + masterid + " not valid" );
+    return -1;
+}
+
+/**
+ * Wrapper function for setting the value of an UVAR ("Unicum" variable).
+ * @param uvar Target UVAR.
+ * @param masterid MasterId corresponding to some critter.
+ * @param slaveid SlaveId corresponding to another critter.
+ * @param value Value of the UVAR to set.
+ */
+void SetUvar( uint uvar, uint masterid, uint slaveid, uint value )
+{
+    GameVar@ var = GetUnicumVar( uvar, masterid, slaveid );
+    if( valid( var ) )
+        var = value;
+    else
+    {
+        Log( "UVar " + uvar + " with masterid " + masterid + " not valid" );
+    }
+}
+
+void SetGroupIndex( Critter& cr, uint val )
+{
+    cr.ParamBase[ MAIN_FACTION ] = val;
+}
+
+uint GetGroupIndex( Critter& cr )
+{
+    return cr.Param[ MAIN_FACTION ];
+}
+
+/**
+ * Clear EnemyStack of target NPC.
+ * @param critter Target NPC.
+ * @remarks The EnemyStack is an array/memory filled with ids of hostile critters.
+ */
+void ClearEnemyStack( Critter& critter )
+{
+    critter.ErasePlane( AI_PLANE_ATTACK, true );
+    critter.ClearEnemyStack();
+}
+
+/**
+ * Clear all EnemyStacks of all NPCs on specified map.
+ * @param map Target Map.
+ * @remarks The EnemyStack is an array/memory filled with ids of hostile critters.
+ */
+void ClearEnemyStacksOnMap( Map@ map )
+{
+    array< Critter@ > crits;
+    uint              num = map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, crits );
+    for( uint i = 0; i < num; i++ )
+        ClearEnemyStack( crits[ i ] );
+}
+
+string@ GetSafePlayerName( uint id )
+{
+    string@ name = GetPlayerName( id );
+    if( valid( name ) )
+        return name;
+    return @ "[player not found]";
+}
+
+string GetSafePlayerName( uint id, string& onSuccess, string& onError )
+{
+    string@ name = GetPlayerName( id );
+    if( valid( name ) )
+        return ( name + onSuccess );
+
+    return ( "[" + onError + "]" );
+}
+
+/**
+ * Clears all current critter events
+ * @param cr Critter handle.
+ */
+void ClearEvents( Critter& cr )
+{
+    for( uint i = 0; i < CRITTER_EVENT_MAX; i++ )
+        cr.SetEvent( i, null );
+}
+
+bool FindPreferredGridApprox( Map& map, uint16& hx, uint16& hy )
+{
+    if( map.FindNearestGridApprox( hx, hy, true ) )
+        return true;
+    return map.FindNearestGridApprox( hx, hy, false );
+}
+
+bool ReloadWeapon( Critter& cr )
+{
+    Item@ weapon = _CritGetItemHand( cr );
+    if( !valid( weapon ) || weapon.GetType() != ITEM_TYPE_WEAPON )
+        return false;
+
+    int skillNum = GetProtoItem( weapon.GetProtoId() ).Weapon_Skill_0;
+    if( skillNum == SK_THROWING )
+        return false;
+
+    Item@ ammo = cr.GetItem( weapon.AmmoPid, -1 );
+    if( !valid( ammo ) )
+        return false;
+
+    uint count = MIN( ammo.GetCount(), weapon.Proto.Weapon_MaxAmmoCount - weapon.AmmoCount );
+    if( count > 0 )
+    {
+        weapon.AmmoCount += count;
+        weapon.AmmoPid = ammo.GetProtoId();
+        _SubItem( ammo, count );
+        cr.Action( ACTION_RELOAD_WEAPON, 3, weapon );
+        weapon.Update();
+    }
+    return true;
+}
+
+void SetGroupInfo( Critter& cr, uint faction, uint rank, uint mode )
+{
+    // cr.StatBase[ST_TEAM_ID] = faction;
+    // cr.StatBase[ST_FACTION_RANK] = rank;
+    // cr.StatBase[ST_FACTION_MODE] = mode;
+    cr.StatBase[ ST_TEAM_ID ] = faction;
+    cr.ParamBase[ MAIN_FACTION ] = faction;
+    cr.ParamBase[ MAIN_FACTION_RANK ] = rank;
+}
+
+/**
+ * Checks if a target with given id is the critter's enemy, based on the enemy stack and attack planes
+ */
+bool IsCurrentEnemy( Critter& cr, uint targetId )
+{
+    if( cr.CheckEnemyInStack( targetId ) )
+        return true;
+    array< NpcPlane@ > plans;
+    cr.GetPlanes( plans );     // cr.GetPlanesByType(AI_PLANE_ATTACK, plans);
+    for( uint i = 0, j = plans.length(); i < j; i++ )
+        if( plans[ i ].Type == AI_PLANE_ATTACK && plans[ i ].Attack_TargId == targetId )
+            return true;
+    return false;
+}
+
+void SpecialMessage( Critter& cr, uint title, uint message, uint file, uint titlecolor, uint messagecolor )
+{
+    cr.SayMsg( SAY_SPECIAL_MSG, TEXTMSG_QUEST, STR_SPECIAL_MESSAGE, "$Title" + title + "$Message" + message + "$File" + file + "$TitleColor" + titlecolor + "$MessageColor" + messagecolor );
+}
+
+void _CrLevelOut( Map& map, Critter& cr )
+{
+    if( cr.IsPlayer() )
+        map.SetData( MAP_DATA_PLAYERS_INSIDE, ( map.GetData( MAP_DATA_PLAYERS_INSIDE ) - 1 ) );
+}
+
+void _CrLevelIn( Map& map, Critter& cr )
+{
+    if( cr.IsPlayer() )
+        map.SetData( MAP_DATA_PLAYERS_INSIDE, ( map.GetData( MAP_DATA_PLAYERS_INSIDE ) + 1 ) );
+}
+
+void _NpcToHome( Map& map, bool firstTime )
+{
+    map.SetData( MAP_DATA_PLAYERS_INSIDE, 0 );
+    map.SetEvent( MAP_EVENT_OUT_CRITTER, "_CrLevelOut" );
+    map.SetEvent( MAP_EVENT_IN_CRITTER, "_CrLevelIn" );
+    CreateTimeEvent( __FullSecond + REAL_MINUTE( 10 ), "e_NpcToHome", map.Id, false );
+}
+
+uint e_NpcToHome( uint[] @ values )
+{
+    Map@ map = GetMap( values[ 0 ] );
+    if( !valid( map ) )
+        return 0;
+    if( map.GetData( MAP_DATA_PLAYERS_INSIDE ) == 0 )
+        NpcToHome( map );
+    return REAL_MINUTE( 10 );
+}
+
+void NpcToHome( Map& map )
+{
+    bool allok = true;
+    Critter@[] critters;
+    map.GetCritters( 0, FIND_LIFE | FIND_ONLY_NPC, critters );
+    for( uint j = 0; j < 2; j++ )
+    {
+        for( uint i = 0; i < critters.length(); i++ )
+        {
+            uint16 hexX = 0, hexY = 0;
+            uint8  dir = 0;
+            critters[ i ].GetHomePos( map.Id, hexX, hexY, dir );
+            if( hexX == 0 && hexY == 0 )
+                continue;
+            if( critters[ i ].HexX == hexX && critters[ i ].HexY == hexY )
+                continue;
+            if( map.IsHexPassed( hexX, hexY ) )
+                critters[ i ].TransitToMap( map.Id, hexX, hexY, dir );
+            else
+                allok = false;
+        }
+        if( allok )
+            break;
+    }
+}
+
+/* ******************************** вспомогательные функции ******************************** */
+// Search free hex near specified coords
+// if found return true
+// if not false
+// map where we search hex
+// radius where we search hex
+// hx, hy coors of found hex
+
+bool GetFreeHex( Map& map, uint radius, uint16& hx, uint16& hy )
+{
+    if( hx == 0 || hy == 0 || hx >= ( map.GetWidth() - radius ) || hy >= ( map.GetHeight() - radius ) )
+        return false;    // Check borders
+    int numTry = 10;     // число попыток найти свободный гекс
+    int xDelta = 0;
+    int yDelta = 0;
+
+    for( int i = 0; i < numTry; i++ )
+    {
+        xDelta = Random( 0, radius * 2 ) - radius;
+        yDelta = Random( 0, radius * 2 ) - radius;
+        if( map.IsHexPassed( hx + xDelta, hy + yDelta ) )
+        {
+            hx += xDelta;
+            hy += yDelta;
+            return true;
+        }
+    }
+    return false;
+}
+
+uint GetLocationCritters( Location& loc, uint findType, array< Critter@ >& critters )
+{
+    uint          result = 0;
+
+    array< Map@ > maps;
+    uint          mLen = loc.GetMaps( maps );
+    for( uint m = 0; m < mLen; m++ )
+    {
+        result += maps[ m ].GetCritters( 0, findType, critters );
+    }
+
+    return ( result );
+}
+
+bool ForbiddenItem( Item& item )
+{
+    if( FLAG( item.Flags, ITEM_GAG ) )
+        return true;
+    else if( FLAG( item.Flags, ITEM_HIDDEN ) )
+        return true;
+    else if( item.GetType() == ITEM_TYPE_WB )
+        return true;
+    else if( item.GetType() == ITEM_TYPE_CONTAINER )
+        return true;
+    else if( item.GetProtoId() == PID_CARAVAN_BOX )
+        return true;
+    return false;
+}
+
+void CheckForbiddenItems( array< Item@ >& items, bool toDelete )
+{
+    for( uint i = 0, j = items.length(); i < j; i++ )
+    {
+        if( !valid( items[ i ] ) )
+            continue;
+
+        if( ( items[ i ].GetType() < 1 || items[ i ].GetType() > 7 ) && items[ i ].GetType() != ITEM_TYPE_BLUEPRINT )
+        {
+            if( toDelete )
+                DeleteItem( items[ i ] );
+            @items[ i ] = null;
+        }
+        else if( !FLAG( items[ i ].Flags, ITEM_CAN_PICKUP ) )
+        {
+            if( toDelete )
+                DeleteItem( items[ i ] );
+            @items[ i ] = null;
+        }
+        else if( FLAG( items[ i ].Flags, ITEM_GAG ) )
+        {
+            if( toDelete )
+                DeleteItem( items[ i ] );
+            @items[ i ] = null;
+        }
+        else if( FLAG( items[ i ].Flags, ITEM_HIDDEN ) )
+            @items[ i ] = null;
+        else if( items[ i ].GetType() == ITEM_TYPE_WB )
+        {
+            if( toDelete )
+                DeleteItem( items[ i ] );
+            @items[ i ] = null;
+        }
+        else if( items[ i ].GetType() == ITEM_TYPE_CONTAINER )
+        {
+            if( toDelete )
+                DeleteItem( items[ i ] );
+            @items[ i ] = null;
+        }
+        else if( items[ i ].GetProtoId() == PID_CARAVAN_BOX )
+        {
+            if( toDelete )
+                DeleteItem( items[ i ] );
+            @items[ i ] = null;
+        }
+        else if( items[ i ].GetProtoId() >= 9900 && items[ i ].GetProtoId() <= 10006 )
+        {
+            if( toDelete )
+                DeleteItem( items[ i ] );
+            @items[ i ] = null;
+        }
+    }
+}
+
+bool CanRequestHelp( Critter& player )
+{
+    return ( GetLvar( player, LVAR_gm_help_timeout ) == 0 );
+}
+
+void SetRequestedHelp( Critter& player )
+{
+    SetLvar( player, LVAR_gm_help_timeout, 1 );
+    CreateTimeEvent( AFTER( REAL_MINUTE( 15 ) ), "e_UnsetRequestedHelp", player.Id, true );
+}
+
+uint e_UnsetRequestedHelp( array< uint >@ values )
+{
+    SetLvar( values[ 0 ], LVAR_gm_help_timeout, 0 );
+    return 0;
+}
+
+void SetLvar( Critter& critter, uint lvar, uint value )
+{
+    SetLvar( critter.Id, lvar, value, "LVAR", "critter" );
+}
+
+void SetLvar( uint id, uint lvar, uint value )
+{
+    SetLvar( id, lvar, value, "LVAR", "critter" );
+}
+
+void SetLvar( uint id, uint lvar, uint value, string& typeShort, string& typeLong )
+{
+    GameVar@ var = GetLocalVar( lvar, id );
+    if( valid( var ) )
+        var = value;
+    else
+        Log( typeShort + " " + lvar + " for " + typeLong + " with id " + id + " not valid" );
+}
+
+int GetLvar( Critter& critter, uint lvar )
+{
+    return GetLvar( critter.Id, lvar );
+}
+
+int GetLvar( uint id, uint lvar )
+{
+    return ( GetLvar( id, lvar, "LVAR" ) );
+}
+
+int GetLvar( uint id, uint lvar, string& typeShort )
+{
+    GameVar@ var = GetLocalVar( lvar, id );
+    if( valid( var ) )
+        return var.GetValue();
+    else
+        Log( typeShort + " " + lvar + " with id " + id + " not valid" );
+    return -1;
+}
+
+void StoreItems( Map& map, Critter& cr, bool inform )
+{
+    Item@[] storages;
+    map.GetItems( 11414, storages );
+    Item@ Container;
+    if( storages.length() > 0 )
+    {
+        for( uint i = 0, l = storages.length(); i < l; i++ )
+        {
+            int OwnerId = storages[ i ].Val4;
+            int OwnerId2 = cr.Id;
+
+            if(  OwnerId == OwnerId2 ) // Has container already
+            {
+                @Container = storages[ i ];
+            }
+        }
+    }
+    else
+    {
+        @Container = map.AddItem( 0, 0, 11414, 1 );
+        Container.Val4 = cr.Id;
+    }
+
+    Item@[] items;
+    if( cr.GetItems( -1, items ) > 0 )             // No storing when no items.
+    {
+        CheckForbiddenItems( items, false );
+        if( !valid( map ) )
+        {
+            DeleteItems( items );
+            return;
+        }
+        MoveItems( items, Container, 0 );
+        if( inform == true )
+            cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Your items were stored. You will get informed when getting them back." );
+    }
+
+
+}
+
+void BringItems( Map& map, Critter& cr, bool inform )
+{
+    Item@[] storages;
+    map.GetItems( 11414, storages );
+
+    for( uint i = 0, l = storages.length(); i < l; i++ )
+    {
+
+        int OwnerId = storages[ i ].Val4;
+        int OwnerId2 = cr.Id;
+        if(  OwnerId == OwnerId2 )
+        {
+            Item@[] items;
+            if( storages[ i ].GetItems( 0, items ) > 0 )
+            {
+                MoveItems( items, cr );
+                if( inform == true )
+                    cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Your items are back in your inventory." );
+            }
+            DeleteItem( storages[ i ] );
+        }
+    }
+
+}
+
+void RemoveItems( Critter& cr )
+{
+    Item@[] items;
+    cr.GetItems( -1, items );
+    DeleteItems( items );
+}
+
+void Ress( Critter& cr )
+{
+    if( cr.IsDead() )
+        cr.ToLife();
+    cr.StatBase[ ST_CURRENT_HP ] = cr.Stat[ ST_MAX_LIFE ];
+    cr.RefreshVisible();
+    cr.TimeoutBase[ TO_REPLICATION ] = 0;
+    cr.StatBase[ ST_REPLICATION_TIME ] = 0;
+}
+
+void MakeOwner( Location& loc, Critter& cr )
+{
+    GameVar@ Owner = GetLocalVar( LLVAR_Value0, loc.Id );
+    Owner = cr.Id;
+}

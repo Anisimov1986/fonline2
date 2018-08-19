@@ -1,0 +1,262 @@
+// Author: rifleman17
+#include "_macros.fos"
+#include "mapdata_h.fos"
+#include "utils_for_array.fos"
+#define DEFAULT_AUTO_CLOSE_DELAY    ( REAL_MINUTE( 3 ) )
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import void PlayCloseLockerSound(Item& locker) from "sounds";
+import void KillStandingOnBlocker(Item& door, uint anim2) from "doors";
+import bool IsStandingOnBlocker(Item& door) from "doors";
+import bool BlockMultihexDoor(Item& door) from "doors";
+import bool IsMovableContainer(Item& locker) from "movable_container";
+import void SadSuffocate(uint mappid,uint x,uint y,uint id) from "map_sierra";
+
+uint e_AutoCloseDoor( uint[] @ val )
+{
+    Item@ door = GetItem( val[ 0 ] );
+    if( not valid( door ) )
+    {
+        return 0;
+    }
+    if( !FLAG( door.LockerCondition, LOCKER_ISOPEN ) )
+        return 0;
+    uint autoCloseDelay = door.Val3 == 0 ? DEFAULT_AUTO_CLOSE_DELAY : REAL_SECOND( door.Val3 );
+    return TryCloseDoor(door, true) ? 0 : autoCloseDelay;
+}
+
+//import bool TryCloseDoor(Item& door, bool playSound) from "item";
+bool TryCloseDoor(Item& door, bool playSound)
+{
+    uint16 x = 0;
+    uint16 y = 0;
+    Map@ map = door.GetMapPosition( x, y );
+    if( not valid( map ) )
+        return true;
+	if( !FLAG( door.LockerCondition, LOCKER_ISOPEN ) )
+        return true;
+	if (door.Val6>0 && map.GetData(MAP_DATA_PLAYERS_INSIDE)!=0)
+		return false;
+
+    Critter@ cr = map.GetCritter( x, y );
+	if( valid(cr) )
+    {
+		if( door.Val1 == 2 && !cr.IsDead() )
+			cr.ToDead( ANIM2_DEAD_EXPLODE, null );
+
+		if( cr.IsLife() )
+			return false;
+		else
+			cr.TransitToMap( map.Id, x - 1, y, cr.Dir );
+	}
+    if( door.Val1 == 2 )
+		KillStandingOnBlocker( door, ANIM2_DEAD_EXPLODE );
+
+    if(IsStandingOnBlocker(door))
+		return false;
+
+	
+    if( door.LockerClose() )
+    {
+		BlockMultihexDoor(door);
+		
+		if(playSound)
+			PlayCloseLockerSound(door);
+		if (door.Val7==5)
+			SadSuffocate(MAP_sad_level2,84, 110, 2019);
+        return true;
+	}
+
+    return false;
+}
+
+// Дверь, которая не открывается стандартными способами
+void _ClosedDoorInit( Item& door, bool firstTime )
+{
+    door.SetEvent( ITEM_EVENT_SKILL, "_UseDoor" );
+}
+
+bool _UseDoor( Item& door, Critter& cr, int skill )
+{
+    return true;
+}
+
+// Дверь, при использовании которой открывается диалог
+void _DialogDoorInit( Item& door, bool firstTime )
+{
+    door.SetEvent( ITEM_EVENT_SKILL, "_UseDialogDoor" );
+}
+
+bool _UseDialogDoor( Item& door, Critter& cr, int skill )
+{
+    RunDialog( cr, door.Val3, door.HexX, door.HexY, false );
+    return true;
+}
+
+// Голодиск с номером, присвоенном в Val0
+void _HoloInit( Item& item, bool firstTime )
+{
+    if( item.GetProtoId() != PID_HOLODISK )
+        return;
+    item.HolodiskNumber = item.Val0;
+    item.SetScript( "" );
+    item.Update();
+
+}
+
+// Настройка автоматического удаления предмета через икс часов
+void SetDeleteItem( Item& item, uint delHours )
+{
+    CreateTimeEvent( __FullSecond + delHours * 60 * 60, "e_DeleteItem", item.Id, true );
+}
+
+uint e_DeleteItem( uint[] @ val )
+{
+    Item@ item = GetItem( val[ 0 ] );
+    if( valid( item ) )
+        DeleteItem( item );
+    return 0;
+}
+
+// Охраняемая дверь или другой предмет
+// в Val0 - пишется время автоматического закрытия двери, в реальных минутах, если больше 0, дверь будет автоматически закрываться
+// обратите внимание, игрок может застрять за дверью, если пройдет внутрь, а она захлопнется
+// в Val1 прописывается номер роли НПЦ которые будут говорить, должно быть отличным от ноля
+// если скрипт только на одно использование - в Val2 - нужно указать любое значение, это может использоваться для охраняемых предметов, например оружия
+#define STR_DONTOUCH    ( 540 )
+
+
+void _GuardedItemInit( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_GuardedItemSkill" );
+}
+
+bool _GuardedItemSkill( Item& item, Critter& cr, int skill )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return false;
+    int  role = item.Val1;
+    bool reset = ( item.Val2 > 0 ? true : false );
+    if( cr.IsPlayer() )
+    {
+        uint guards = map.GetNpcCount( role, FIND_LIFE | FIND_ONLY_NPC );
+        if( guards == 0 )
+        {
+            if( reset )
+            {
+                item.SetEvent( ITEM_EVENT_SKILL, "" );
+                item.SetScript( null );
+            }
+            if( item.GetType() == ITEM_TYPE_DOOR || item.GetType() == ITEM_TYPE_CONTAINER )
+            {
+                if( item.Val0 > 0 )
+                    CreateTimeEvent( __FullSecond + REAL_MINUTE( item.Val0 == 0 ? 2 : item.Val0 ), "e_AutoCloseDoor", item.Id, true );
+            }
+            return false;
+        }
+        Critter@ guard = map.GetNpc( role, FIND_LIFE | FIND_ONLY_NPC, Random( 0, guards - 1 ) );
+        if( valid( guard ) )
+        {
+            GameVar@ counter = GetUnicumVar( UVAR_guarded_item_skill, guard.Id, cr.Id );
+            if( valid( counter ) )
+            {
+                if( counter < 2 )
+                {
+                    NpcPlane@[] planes;
+                    if( guard.GetPlanes( AI_PLANE_ATTACK, planes ) > 0 )
+                    {
+                        for( uint i = 0, l = planes.length(); i < l; i++ )
+                        {
+                            if( planes[ i ].Attack_TargId == cr.Id )
+                            {
+                                if( reset )
+                                {
+                                    item.SetEvent( ITEM_EVENT_SKILL, "" );
+                                    item.SetScript( null );
+                                }
+                                return false;
+                            }
+                        }
+                    }
+                    counter = counter.GetValue() + 1;
+                    guard.SayMsg( SAY_SHOUT, TEXTMSG_TEXT, STR_DONTOUCH, "$pname" + GetPlayerName( cr.Id ) );
+                }
+                else
+                {
+                    counter = 0;
+                    AddAttackPlane( guard, 0, cr );
+                }
+            }
+        }
+        return true;
+    }
+    else
+    {
+        // Нпц такие двери открыть тоже не смогут
+        return true;
+    }
+}
+
+void unsafe_GroundPickUp(Critter& player, int, int, int, string@, int[]@)
+{
+	Map@ map = player.GetMap();
+	if(!valid(map))
+		return;
+		
+	Item@[] items;
+	uint count = map.GetItems(player.HexX, player.HexY, items);
+	
+//	if(items.length() < 2)
+//		return;
+		
+	if( count < 1 )
+		return;
+		
+	if (count > 1000)
+		count = 1000;
+
+	array<int> itemsIds;
+	for( uint i=0; i<count; i++ )
+	{
+		Item@ item = items[i];
+		if( !valid(item) || item.IsNotValid )
+			continue;
+
+		// skip specific items
+
+		if( FLAG( item.Flags, ITEM_HIDDEN ) || !FLAG( item.Flags, ITEM_CAN_PICKUP ))
+			continue;
+
+		if( item.Proto.Type == ITEM_TYPE_DOOR || item.Proto.Type == ITEM_TYPE_CAR )
+			continue;
+
+		if( item.Proto.Type == ITEM_TYPE_CONTAINER && !IsMovableContainer(item) )
+			continue;
+
+		itemsIds.insertLast( int(item.Id) );
+		itemsIds.insertLast( int(item.GetCount()) );
+	}
+
+	if( itemsIds.length() > 0 )
+		player.RunClientScript("client_screen_ground_pickup@ShowGroundPickupScreen", 0, 0, 0, null, itemsIds);
+}
+
+void unsafe_GroundPickUpAnimation( Critter& player, int, int, int, string@, int[]@ )
+{
+	player.Animate( 0, ANIM2_PICKUP, null, true, true );
+}
+
+void _ItemDialog( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_ItemDialogSkill" );
+}
+
+bool _ItemDialogSkill( Item& item, Critter& cr, int skill )
+{
+    if( item.Val0 > 0 && cr.IsPlayer() )
+    {
+	RunDialog( cr, item.Val0, item.HexX, item.HexY, false );
+    }
+
+    return( true );
+}

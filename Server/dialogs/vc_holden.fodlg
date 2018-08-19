@@ -1,0 +1,89 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+0 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Holden}
+{200}{}{You see: Sub-Amenities Officer Holden.}
+{210}{}{You see a citizen in blue jumpsuit without any number on the back.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{Yes, what is it?}
+{2010}{}{What is this place?}
+{2020}{}{Can I see what you have in stock?@@Can I see your stock?@@Can I see what you have?}
+{2030}{}{Nothing today, thanks.}
+{3000}{}{This is the Sub-Amenities Office B. We handle the distribution of pharmaceutical supplies in Vault City. Maybe you were looking for some place else?}
+{3010}{}{No, this is the place I was looking for. Can I see what you have in stock?}
+{3020}{}{Nothing today, thanks.}
+{4000}{}{Next time, you should try the store in the Courtyard outside the city. They should carry everything you... Outsiders need.}
+{4010}{}{I'll shop where I want to, got it?}
+{4020}{}{Thanks for the information. Goodbye.}
+
+[russ]
+{100}{}{Холден}
+{200}{}{Вы видите гражданина в синем комбинезоне без номера на спине.}
+{210}{}{Вы видите Холдена.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{Да, что такое?}
+{2010}{}{Что это за место ?}
+{2020}{}{Могу ли я посмотреть, что у вас есть в наличии ?}
+{2030}{}{Ничего, спасибо.}
+{3000}{}{Это офис B... мы занимаемся распределением фармацевтических товаров, в Городе-Убежище. Может быть, вы искали другое место?}
+{3010}{}{Нет, это то место, которое я искал. Могу ли я посмотреть, что у вас есть в наличии ?}
+{3020}{}{Ничего, спасибо.}
+{4000}{}{Вы должны пойти в магазин во дворе за городом. У них есть все, что вам... внешним нужно.}
+{4010}{}{Я закупаюсь где захочу, понял?}
+{4020}{}{Спасибо за информацию . До свидания.}
+
+[pols]
+{100}{}{Holden}
+{200}{}{Widzisz obywatela w niebieskim kombinezonie bez żadnego numeru na plecach.}
+{210}{}{Widzisz Podoficera Biura Zaopatrzeń, Holdena.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{Tak, słucham?}
+{2010}{}{Co to za miejsce?}
+{2020}{}{Mogę zobaczyć, co masz na sprzedaż?}
+{2030}{}{Ach, przepraszam, do widzenia.}
+{3000}{}{Oto Biuro Zaopatrzeń B... Zajmujemy się dystrybucją farmaceutyków w tym mieście. Na pewno tego miejsca @sex@|szukałeś||szukałaś|?}
+{3010}{}{To jest miejsce, którego szukam. Mogę zobaczyć, co masz na sprzedaż?}
+{3020}{}{Ach, przepraszam, do widzenia.}
+{4000}{}{Następnym razem, możesz spróbować sklepu w zewnętrznej części miasta. Mają wszystko czego wy potrzebujecie wy, z zewnątrz.}
+{4010}{}{Będę @sex@|robił||robiła| zakupy tam, gdzie mi się podoba, zrozumiano?}
+{4020}{}{Dzięki za informacje. Do widzenia.}
+
+[ptbr]
+{100}{}{Henrique}
+{200}{}{Você vê um cidadão em traje azul sem números na parte de trás.}
+{210}{}{Você vê o sub-oficial almoxarife Henrique.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{Sim, o que deseja?}
+{2010}{}{Que lugar é esse?}
+{2020}{}{Posso ver o que tem para vender?}
+{2030}{}{Não, hoje não. @sex@|Obrigado||Obrigada|.}
+{3000}{}{Este é o Sub-Almoxarifado B. Fazemos a logística dos suprimentos farmacêuticos da Cidade do Abrigo. Talvez você estivesse procurando outra coisa?}
+{3010}{}{Não, este é o local que eu estava procurando. Posso ver o que tem a venda?}
+{3020}{}{Em nada. @sex@|Obrigado||Obrigada|.}
+{4000}{}{Da próxima vez, você deveria tentar os mercados no Pátio, a área externa fora da cidade. Eles tem todo o tipo de coisas que vocês... gentinha do mundo precisa.}
+{4010}{}{Eu faço compras onde eu quiser, entendeu?}
+{4020}{}{Obrigado pela informação. Até breve.}
+

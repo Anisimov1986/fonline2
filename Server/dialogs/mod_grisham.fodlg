@@ -1,0 +1,84 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+6 1020 @
+2 2000 None 0 #
+4 2010 #
+0 2020 @
+4 3000 None 0 #
+6 3010 @
+6 4000 None 0 #
+4 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Grisham}
+{200}{}{A very active old man.}
+{210}{}{You can't quite place him, but he looks familiar.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{-}
+{2000}{}{The name's Grisham. Welcome to my slaughterhouse. You dropping off or picking up?}
+{2010}{}{Can you tell me a little bit about the slaughterhouse?}
+{2020}{}{I have to go now.}
+{3000}{}{Not much to tell. You want something slaughtered, you bring it here to me. I'll kill it for ya and make it into some of the best jerky you've ever tasted.}
+{3010}{}{I see.}
+{4000}{}{So what can I do for you?}
+{4010}{}{Can you tell me a little bit about the slaughterhouse?}
+{4020}{}{I have to go now.}
+
+[russ]
+{100}{}{Гришэм}
+{200}{}{Очень активный старик.}
+{210}{}{Старик содержит эту бойню.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{-}
+{2000}{}{Меня зовут Гришем. Добро пожаловать на мою бойню. Вы сдавать или забирать?}
+{2010}{}{Можете ли вы рассказать мне немного о бойне?}
+{2020}{}{Мне уже пора.}
+{3000}{}{Тут особо не о чем говорить. Я держу эту в Модоке. Вы хотите кого-то забить, вы приносите его мне. Я забиваю скот и делаю лучшее вяленое мясо в округе.}
+{3010}{}{Понятно.}
+{4000}{}{Так что я могу для вас сделать?}
+{4010}{}{Можете ли вы рассказать мне немного о бойне?}
+{4020}{}{Уже ухожу.}
+
+[pols]
+{100}{}{Grisham}
+{200}{}{Bardzo aktywny staruszek.}
+{210}{}{Nie możesz go sobie przypomnieć, niemniej wygląda on dla ciebie znajomo.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{-}
+{2000}{}{Nazywam się Grisham. Witaj w mojej rzeźni. Zostawiasz coś, czy raczej zabierasz?}
+{2010}{}{Czy możesz mi powiedzieć coś o rzeźni?}
+{2020}{}{Muszę już iść. Do zobaczenia.}
+{3000}{}{Niewiele mam do opowiadania. Prowadzę rzeźnię w Modoc. Jeśli chcesz coś ubić, przyprowadzasz to do mnie. Zabiję to dla ciebie i zrobię z tego doskonałą, chrupiącą i aromatyczną wędzonkę.}
+{3010}{}{Rozumiem.}
+{4000}{}{Co mogę dla ciebie zrobić?}
+{4010}{}{Czy możesz mi powiedzieć coś o rzeźni?}
+{4020}{}{Muszę już iść. Do zobaczenia.}
+
+[ptbr]
+{100}{}{Jorge}
+{200}{}{Um homem de idade bastante ativo.}
+{210}{}{Você não o conhece bem mas ele parece familiar.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{-}
+{2000}{}{Meu nome é Jorge. Sou o dono do açougue. Vai deixar algo aqui ou pegar?}
+{2010}{}{O que você faz aqui?}
+{2020}{}{Eu tenho que ir agora.}
+{3000}{}{Não tem segredo. Esse é o único açougue de Modoc. Se você quiser abater algum animal, traz aqui que eu faço o serviço e transformo na melhor carne seca que você já comeu.}
+{3010}{}{Entendi.}
+{4000}{}{Então, quer alguma coisa?}
+{4010}{}{Pode me explicar mais sobre o abatedouro?}
+{4020}{}{Eu tenho que ir.}
+

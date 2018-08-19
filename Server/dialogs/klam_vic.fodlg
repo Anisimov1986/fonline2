@@ -1,0 +1,223 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+3 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+5 2010 R _var n name_mem_npc_player = 1 #
+0 2020 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+20 4020 #
+0 4030 @
+5 5000 None 0 #
+6 5010 #
+7 5020 #
+9 5030 #
+4 5040 @
+6 6000 None 0 #
+7 6010 #
+9 6020 #
+4 6030 @
+7 7000 None 0 #
+8 7010 #
+6 7020 #
+9 7030 #
+4 7040 @
+8 8000 None 0 #
+4 8010 @
+9 9000 None 0 #
+6 9010 #
+7 9020 #
+4 9030 @
+20 10000 None 0 #
+21 10010 #
+4 10020 @
+21 11000 None 0 #
+4 11010 #
+0 11020 &
+
+[engl]
+{100}{}{Vic}
+{200}{}{You see Vic.}
+{210}{}{You see Vic, one of Klamath's traders.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Well hey there buddy, I'm Vic, who might you be?}
+{2010}{}{Hi Vic, my name is @pname@. What are you doing here?}
+{2020}{}{Oops! Sorry, wrong person.}
+{3000}{}{Oh, look! It's @pname@ again. What do you need now?}
+{3010}{}{Just a few questions, if I may...}
+{3020}{}{Nothing, I'm leaving.}
+{4000}{}{Sure, I've got time for some chit-chat. What's on your mind?}
+{4010}{}{Mind telling me what you're doing here, Vic?}
+{4020}{}{What's there to do in Klamath?}
+{4030}{}{That's about it, thanks. Bye!}
+{5000}{}{Well, this is my place, I live here. You might even call it a home, heh-heh. A while ago I used to be a trader, was traveling a lot, never had enough time to take care of this old place. I stopped traveling a couple years back, and I've kinda settled myself in.}
+{5010}{}{You used to be a trader?}
+{5020}{}{You did a lot of traveling?}
+{5030}{}{What are you doing now?}
+{5040}{}{Let me ask you something else then.}
+{6000}{}{Yes, you see... I bought and sold all kinds of junk all over the wasteland. But my age and health don't let me wander round so much these days, I can barely make it to the Den.}
+{6010}{}{You did a lot of traveling?}
+{6020}{}{What are you doing now?}
+{6030}{}{Let me ask you something else then.}
+{7000}{}{You betcha. First as a trader, then a lot of interesting things happened.}
+{7010}{}{You must have some pretty good stories, huh?}
+{7020}{}{You used to be a trader?}
+{7030}{}{What are you doing now?}
+{7040}{}{Let me ask you something else then.}
+{8000}{}{Stories you wouldn't believe, pal. But you ain't gonna hear them from me. I got sick of people not believing me. You try telling someone that you... well, nevermind. I gave up on it. No more of my traveling stories, no sir-ee!.}
+{8010}{}{Let me ask you something else then.}
+{9000}{}{I repair stuff and collect valuable junk most of the time... though my customers give me a bit of hassle, saying it takes me longer to repair something than it does to build a new one. I could care less. Fast ain't always better than slow, y'know.}
+{9010}{}{You used to be a trader?}
+{9020}{}{You were traveling a lot?}
+{9030}{}{Let me ask you something else then.}
+{10000}{}{Well, if you're new to our little community, then you've come to the right place to pick up a few pointers. First, there's the Buckner place, right by the entrance to the town. You can trade there, or in the Golden Gecko, run by Sajag.}
+{10010}{}{What else?}
+{10020}{}{Let me ask you something else.}
+{11000}{}{Trapper Town's just south of here and the canyon's to the west - a big ol' flying machine crashed there a few years ago... a vertibird. By now it's pretty much one of the town's attractions, heh. Finally, there's the bathhouse, one of my favourites. @sex@|Nice girls, fresh clean water and [wink] - the best service, if you know what I mean.|| You might be a lady yourself, but if you don't mind being, ahem, "served" by another lady... you should pay it a visit.|}
+{11010}{}{Thanks for the info, but I had another question.}
+{11020}{}{That's all I needed to know, thanks!}
+
+[russ]
+{100}{}{Вик}
+{200}{}{Вы видите Вика, торговца.}
+{200}{}{Вы видите мужчину среднего возраста, похож на одного из странствующих торговцев.}
+{210}{}{Это Вик, торговец старинными вещами.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Ну привет приятель, Я Вик, а ты кто такой?}
+{2010}{}{Привет Вик, меня зовут @pname@. Чем ты тут занимаешься?}
+{2020}{}{Опс! Обознался.}
+{3000}{}{Рад тебя видеть снова. Какое дело тебя привело ко мне?}
+{3010}{}{Всего несколько вопросов, если можно...}
+{3020}{}{Ничего, уже ухожу.}
+{4000}{}{У меня достаточно времени для болтовни. Что у тебя на уме?}
+{4010}{}{Ум говорит мне, спросить что ты тут делаешь, Вик?}
+{4020}{}{Что тут интересного? В Кламате.}
+{4030}{}{Мне пора бежать. Увидимся, Вик!}
+{5000}{}{Ну, это мое место, я живу здесь. Можно даже назвать его домом, хе-хе.Некоторое время назад я был торговцем, много путешествовал, никогда не было времени, чтобы позаботиться об этом старом месте.Я перестал путешествовать пару лет назад, и я осел здесь.}
+{5010}{}{Ты был торговцем?}
+{5020}{}{Ты много путешествовал?}
+{5030}{}{Чем сейчас занимаешься?}
+{5040}{}{Я хотел бы узнать кое-что другое.}
+{6000}{}{Да... Я покупал и продавал все что можно найти в пустоши. Но мой возраст и состояние здоровья не позволяют мне бродить вокруг так много в последнее время. Я едва могу добраться до Дена.}
+{6010}{}{Ты много путешествовал?}
+{6020}{}{Чем сейчас занимаешься?}
+{6030}{}{Я хотел бы узнать кое-что другое.}
+{7000}{}{Еще бы. Видел много интересных мест.}
+{7010}{}{У тебя должно быть много историй о путешествиях?}
+{7020}{}{Ты был торговцем?}
+{7030}{}{Чем сейчас занимаешься?}
+{7040}{}{Я хотел бы узнать кое-что другое.}
+{8000}{}{Истории,в которые ты даже не поверишь приятель. Но ты услышишь их от меня.Я устал от людей которые не верят мне. Ты пытаетесь сказать кому-то, что ты ... Ну, по фигу. Хватит с меня. Не будет больше моих историй.}
+{8010}{}{Я хотел бы узнать кое-что другое.}
+{9000}{}{Я ремонтирую и собираю всякие ценные вещи большую часть времени... хотя мои клиенты создают мне немало хлопот.}
+{9010}{}{Ты был торговцем?}
+{9020}{}{Ты много путешествовал?}
+{9030}{}{Я хотел бы узнать кое-что другое.}
+{10000}{}{Ну, если вы новичок в нашем маленьком сообществе, то вы пришли в нужное место, чтобы получить несколько указаний. Во-первых, есть место Бакнер, прямо на въезде в город. Вы можете торговать там, или в Золотом Гекко.}
+{10010}{}{Что-то еще?}
+{10020}{}{Я хотел бы узнать кое-что другое.}
+{11000}{}{Наконец, есть баня, одна из моих любимых. @sex@|Приличные девушки,свежая чистая вода и отличный сервис, если вы понимаете, что я имею в виду.|| Если вы леди и вам нравится общество других леди, вам обязательно нужно посетить это место.|}
+{11010}{}{Спасибо за информацию, но у меня был другой вопрос.}
+{11020}{}{Спасибо за информацию, Вик. Мне пора.}
+
+[pols]
+{100}{}{Vic}
+{200}{}{You see Vica.}
+{210}{}{Widzisz Vica, jednego z handlarzy Klamath.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Witaj, mam na imię Vic. A ty?}
+{2010}{}{Witaj Vic, nazywam się @pname@. Co porabiasz?}
+{2020}{}{@sex@|Pomyliłem||Pomyliłam| cię z kimś innym.}
+{3000}{}{O patrzcie, to znowu @pname@. Potrzebujesz czegoś?}
+{3010}{}{Tylko parę pytań, Vic.}
+{3020}{}{Nie.}
+{4000}{}{Nie spieszy mi się nigdzie. Co @sex@||chciałbyś|chciałabyś| wiedzieć?}
+{4010}{}{Czym się zajmujesz, Vic?}
+{4020}{}{Jest w tej mieścinie coś do roboty?}
+{4030}{}{To by było na tyle, na razie!}
+{5000}{}{No, tutaj mieszkam, w sumie można nawet powiedzieć że to mój dom. Kiedyś, kiedy handlowałem i sporo podróżowałem, rzadko tutaj zaglądałem. Teraz już nie wyściubiam stąd nosa, ustatkowałem się jako tako.}
+{5010}{}{Byłeś handlarzem?}
+{5020}{}{Dużo podróżowałeś?}
+{5030}{}{To czym się teraz zajmujesz?}
+{5040}{}{@sex@|Chciałbym||Chciałabym| spytać o coś innego.}
+{6000}{}{Tak, widzisz, kupowałem i sprzedawałem różny szmelc, przemierzyłem całe Pustkowia wzdłuż i wszerz. No ale lata lecą, i już nie mogę aż tyle wędrować, czasami zaglądam co najwyżej do Nory.}
+{6010}{}{Dużo podróżowałeś?}
+{6020}{}{A co porabiasz teraz?}
+{6030}{}{Może inne pytanie.}
+{7000}{}{Pewnie. Kupowałem i sprzedawałem różne rzeczy, dużo się działo, mówię ci.}
+{7010}{}{Pewnie słyszałeś dużo opowieści, co Vic?}
+{7020}{}{Handlowałeś?}
+{7030}{}{To czym się teraz zajmujesz?}
+{7040}{}{Inne pytanie...}
+{8000}{}{Nie @sex@|uwierzyłbyś, kolego||uwierzyłabyś, koleżanko|. Ale nie bede już nic mówił, znudziło mi się opowiadanie ciągle tego samego ludziom którzy i tak w to nie wierzą... Nieważne. Wystarczy już tego gadania.}
+{8010}{}{Mam inne pytania.}
+{9000}{}{Głównie naprawiam i zbieram różne rzeczy... Co prawda klienci gadają, że szybciej zrobisz nową rzecz od zera, niż ją naprawisz... ale co mnie to. Szybko nie znaczy lepiej, co nie?}
+{9010}{}{Handlowawałeś?}
+{9020}{}{Dużo podróżowałeś?}
+{9030}{}{Powiedz mi o czymś innym.}
+{10000}{}{@sex@|Jeśli jesteś tu nowy, to dobrze trafiłeś, mogę ci trochę pomóc.||Jesteś tu nowa? Zawsze chętnie pomogę damie w potrzebie!| Na poczatek, jest lokal Bucknerów, zaraz przy wejściu do miasteczka. Możesz tam trochę pohandlować, ewentualnie jest jeszcze Złoty Gekon, Sajag jest właścicielem.}
+{10010}{}{Coś jeszcze?}
+{10020}{}{Mam inne pytania, Vic.}
+{11000}{}{Osada Traperów jest na południe stąd, na zachód jest kanion z wrakiem jakiejś dziwnej maszyny latającej, która rozbiła się tam parę lat temu. Teraz to jedna z niewielu atrakcji tej mieściny... Ludzie mówią, że winne jest Bractwo Stali - rozpuścili sztuczną mgłę, czy coś takiego. Mniejsza z tym. Są jeszcze łaźnie, w sumie to chyba najlepsze miejsce żeby się rozerwać. @sex@|Ładne dziewczyny, czysta woda i... [Mruga porozumiewawczo.] ...hm, najlepsza "obsługa" w okolicy.|| Jeśli nie przeszkadza ci "obsługa" przez inne dziewczęta, powinnaś tam wpaść, naprawdę polecam.|}
+{11010}{}{Dzięki za wskazówki, mam parę innych pytań.}
+{11020}{}{To wszystko, co @sex@|chciałem||chciałam| wiedzieć. Dzięki, Vic!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Well hey there buddy, I'm Vic, who might you be?}
+{2010}{}{Hi Vic, my name is @pname@. What are you doing here?}
+{2020}{}{Oops! Sorry, wrong person.}
+{3000}{}{Oh, look! It's @pname@ again. What do you need now?}
+{3010}{}{Just a few questions, if I may...}
+{3020}{}{Nothing, I'm leaving.}
+{4000}{}{Sure, I've got time for some chit-chat. What's on your mind?}
+{4010}{}{Mind telling me what you're doing here, Vic?}
+{4020}{}{What's there to do in Klamath?}
+{4030}{}{That's about it, thanks. Bye!}
+{5000}{}{Well, this is my place, I live here. You might even call it a home, heh-heh. A while ago I used to be a trader, was traveling a lot, never had enough time to take care of this old place. I stopped traveling a couple years back, and I've kinda settled myself in.}
+{5010}{}{You used to be a trader?}
+{5020}{}{You did a lot of traveling?}
+{5030}{}{What are you doing now?}
+{5040}{}{Let me ask you something else then.}
+{6000}{}{Yes, you see... I bought and sold all kinds of junk all over the wasteland. But my age and health don't let me wander round so much these days, I can barely make it to the Den.}
+{6010}{}{You did a lot of traveling?}
+{6020}{}{What are you doing now?}
+{6030}{}{Let me ask you something else then.}
+{7000}{}{You betcha. First as a trader, then a lot of interesting things happened.}
+{7010}{}{You must have some pretty good stories, huh?}
+{7020}{}{You used to be a trader?}
+{7030}{}{What are you doing now?}
+{7040}{}{Let me ask you something else then.}
+{8000}{}{Stories you wouldn't believe, pal. But you ain't gonna hear them from me. I got sick of people not believing me. You try telling someone that you... well, nevermind. I gave up on it. No more of my traveling stories, no sir-ee!.}
+{8010}{}{Let me ask you something else then.}
+{9000}{}{I repair stuff and collect valuable junk most of the time... though my customers give me a bit of hassle, saying it takes me longer to repair something than it does to build a new one. I could care less. Fast ain't always better than slow, y'know.}
+{9010}{}{You used to be a trader?}
+{9020}{}{You were traveling a lot?}
+{9030}{}{Let me ask you something else then.}
+{10000}{}{Well, if you're new to our little community, then you've come to the right place to pick up a few pointers. First, there's the Buckner place, right by the entrance to the town. You can trade there, or in the Golden Gecko, run by Sajag.}
+{10010}{}{What else?}
+{10020}{}{Let me ask you something else.}
+{11000}{}{Trapper Town's just south of here and the canyon's to the west - a big ol' flying machine crashed there a few years ago... a vertibird. By now it's pretty much one of the town's attractions, heh. Finally, there's the bathhouse, one of my favourites. @sex@|Nice girls, fresh clean water and [wink] - the best service, if you know what I mean.|| You might be a lady yourself, but if you don't mind being, ahem, "served" by another lady... you should pay it a visit.|}
+{11010}{}{Thanks for the info, but I had another question.}
+{11020}{}{That's all I needed to know, thanks!}
+

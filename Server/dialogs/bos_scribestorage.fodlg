@@ -1,0 +1,45 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p Bos_Access_Level } 1 D _var p scribe_door = 0 D _param p MAIN_FACTION = 2 R _script dialog@r_teleport 1 501 R _var p scribe_door = 1 #
+2 1020 D _var p Bos_Access_Level } 1 D _var p scribe_door = 1 D _param p MAIN_FACTION = 2 R _script dialog@r_teleport 1 500 R _var p scribe_door = 0 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{In}
+{1020}{}{Out}
+{2000}{}{ }
+
+[russ]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Out}
+{2000}{}{ }
+
+[pols]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Out}
+{2000}{}{ }
+
+[ptbr]
+{100}{}{Terminal de acesso}
+{200}{}{Você vê terminal de acesso.}
+{1000}{}{Predialogue installations}
+{1010}{}{Entrar}
+{1020}{}{Sair}
+{2000}{}{ }
+

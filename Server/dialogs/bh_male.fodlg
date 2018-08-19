@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 None 0 &
+
+[engl]
+{100}{}{Man}
+{200}{}{You see: Resident.}
+{210}{}{You see a male townsperson. He's dirty, but he carries his head high.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Glad to have you in town.@@Gonna stick around for a while?@@I hope you like it here!@@Hey there, pal.@@How you doing?@@Catch me later.@@Yeah?@@You need something?@@What's up?}
+
+[russ]
+{100}{}{Горожанин}
+{200}{}{Вы видите двуногое человекообразное создание мужского пола.}
+{210}{}{Вы видите горожанина мужского пола. Он грязен и оборван, но голову держит прямо и гордо.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Ответ}
+{2000}{}{О, посмотрите-ка, что из пустыни выползло.@@Некоторые мои лучшие друзья - мутанты и гули.@@Если бы у нас было больше лампочек...@@Чем это воняет?@@Я боюсь, что НКР может попробовать захватить нас.@@Интересно, стоит перебираться в Нью-Рино или поискать другое место?@@Я не имею ничего против мутантов, но они так забавно выглядят...@@Жизнь - сильная штука. А вот Филова рыгаловка, кажется, не очень...@@У моего кота изо рта пахнет кошачьей едой.}
+
+[pols]
+{100}{}{Mieszkaniec}
+{200}{}{Widzisz mieszkańca miasta płci męskiej.}
+{210}{}{Widzisz mieszkańca miasta płci męskiej. Jest brudny, ale głowę trzyma podniesioną.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Miło widzieć cię w mieście.@@Zostaniesz tu na trochę?@@Mam nadzieję, że ci się tu podoba!@@Cześć.@@Jak się masz?@@Wpadnij potem, kupię piwo.}
+
+[ptbr]
+{100}{}{Homem}
+{200}{}{Você vê um residente.}
+{210}{}{Você vê um morador da região. Ele está sujo mas está de cabeça erguida.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Legal que tu tá aqui pela cidade.@@Vai ficar por algum tempo por aqui?@@Tomara que tu goste daqui!@@Diz aí, chapa.@@Como vai?@@Chega aqui depois.@@Oi?@@Quer alguma coisa?@@Diz aí!}
+

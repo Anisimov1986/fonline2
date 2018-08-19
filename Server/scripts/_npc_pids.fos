@@ -1,0 +1,656 @@
+﻿#ifndef __NPC_PIDS__
+#define __NPC_PIDS__
+
+#define NPC_PID_ClaimJumper1         ( 541 )
+#define NPC_PID_ClaimJumper2         ( 542 )
+#define NPC_PID_ClaimJumper3         ( 543 )
+#define NPC_PID_ClaimJumper4         ( 544 )
+#define NPC_PID_ClaimJumper5         ( 545 )
+#define NPC_PID_ClaimJumper6         ( 700 )
+
+#define NPC_PID_BANDIT1         ( 701 )
+#define NPC_PID_BANDIT2         ( 702 )
+#define NPC_PID_BANDIT3         ( 703 )
+#define NPC_PID_BANDIT4         ( 704 )
+#define NPC_PID_BANDIT5         ( 705 )
+#define NPC_PID_BANDIT6         ( 706 )
+
+#define NPC_PID_ROBBER1         ( 707 )
+#define NPC_PID_ROBBER2         ( 708 )
+#define NPC_PID_ROBBER3         ( 709 )
+#define NPC_PID_ROBBER4         ( 710 )
+#define NPC_PID_ROBBER5         ( 711 )
+#define NPC_PID_ROBBER6         ( 712 )
+
+#define NPC_PID_BOOTLEGGER1         ( 713 )
+#define NPC_PID_BOOTLEGGER2         ( 714 )
+#define NPC_PID_BOOTLEGGER3         ( 715 )
+#define NPC_PID_BOOTLEGGER4         ( 716 )
+
+#define NPC_PID_THUG1         ( 717 )
+#define NPC_PID_THUG2         ( 718 )
+#define NPC_PID_THUG3         ( 719 )
+#define NPC_PID_THUG4         ( 720 )
+#define NPC_PID_THUG5         ( 721 )
+#define NPC_PID_THUG6         ( 722 )
+
+#define NPC_PID_MOONSHINER1         ( 723 )
+#define NPC_PID_MOONSHINER2         ( 724 )
+#define NPC_PID_MOONSHINER3         ( 725 )
+#define NPC_PID_MOONSHINER4         ( 726 )
+#define NPC_PID_MOONSHINER5         ( 727 )
+#define NPC_PID_MOONSHINER6         ( 728 )
+
+#define NPC_PID_MARAUDER1         ( 729 )
+#define NPC_PID_MARAUDER2         ( 730 )
+#define NPC_PID_MARAUDER3         ( 731 )
+#define NPC_PID_MARAUDER4         ( 732 )
+#define NPC_PID_MARAUDER5         ( 733 )
+#define NPC_PID_MARAUDER6         ( 734 )
+
+#define NPC_PID_RAIDER1         ( 735 )
+#define NPC_PID_RAIDER2         ( 736 )
+#define NPC_PID_RAIDER3         ( 737 )
+#define NPC_PID_RAIDER4         ( 738 )
+#define NPC_PID_RAIDER5         ( 739 )
+#define NPC_PID_RAIDER6         ( 740 )
+
+#define NPC_PID_GHOUL1         ( 741 )
+#define NPC_PID_GHOUL2         ( 742 )
+#define NPC_PID_GHOUL3         ( 743 )
+#define NPC_PID_GHOUL4         ( 744 )
+#define NPC_PID_GHOUL5         ( 745 )
+#define NPC_PID_GHOUL6         ( 781)
+
+#define NPC_PID_PUNKER1         ( 746 )
+#define NPC_PID_PUNKER2         ( 747 )
+#define NPC_PID_PUNKER3         ( 748 )
+#define NPC_PID_PUNKER4         ( 749 )
+#define NPC_PID_PUNKER5         ( 750 )
+
+#define NPC_PID_RIPPER1         ( 751 )
+#define NPC_PID_RIPPER2         ( 752 )
+#define NPC_PID_RIPPER3         ( 753 )
+#define NPC_PID_RIPPER4         ( 754 )
+#define NPC_PID_RIPPER5         ( 755 )
+
+#define NPC_PID_RAIDER11         ( 756 )
+#define NPC_PID_RAIDER22         ( 757 )
+#define NPC_PID_RAIDER33         ( 758 )
+#define NPC_PID_RAIDER44         ( 759 )
+#define NPC_PID_RAIDER55         ( 760 )
+
+#define NPC_PID_GANG1         ( 761 )
+#define NPC_PID_GANG2         ( 762 )
+#define NPC_PID_GANG3         ( 763 )
+#define NPC_PID_GANG4         ( 764 )
+#define NPC_PID_GANG5         ( 765 )
+
+#define NPC_PID_HIGHWAYMEN1         ( 766 )
+#define NPC_PID_HIGHWAYMEN2         ( 767 )
+#define NPC_PID_HIGHWAYMEN3         ( 768 )
+#define NPC_PID_HIGHWAYMEN4         ( 769 )
+#define NPC_PID_HIGHWAYMEN5         ( 770 )
+
+#define NPC_PID_PRESSGANG1          ( 771 )
+#define NPC_PID_PRESSGANG2          ( 772 )
+#define NPC_PID_PRESSGANG3          ( 773 )
+#define NPC_PID_PRESSGANG4          ( 774 )
+#define NPC_PID_PRESSGANG5          ( 775 )
+
+#define NPC_PID_MERCENARY1          ( 776 )
+#define NPC_PID_MERCENARY2          ( 777 )
+#define NPC_PID_MERCENARY3          ( 778 )
+#define NPC_PID_MERCENARY4          ( 779 )
+#define NPC_PID_MERCENARY5          ( 780 )
+
+#define NPC_PID_REGULATOR2          ( 782 )
+#define NPC_PID_REGULATOR3          ( 783 )
+#define NPC_PID_REGULATOR4          ( 784 )
+#define NPC_PID_REGULATOR5          ( 785 )
+
+#define NPC_PID_KHAN1               ( 786 )
+#define NPC_PID_KHAN2               ( 787 )
+#define NPC_PID_KHAN3               ( 788 )
+#define NPC_PID_KHAN4               ( 789 )
+#define NPC_PID_KHAN5               ( 790 )
+
+#define NPC_PID_ROGUES1             ( 791 )
+#define NPC_PID_ROGUES2             ( 792 )
+#define NPC_PID_ROGUES3             ( 793 )
+#define NPC_PID_ROGUES4             ( 794 )
+#define NPC_PID_ROGUES5             ( 795 )
+
+#define NPC_PID_ENCLAVE1             ( 796 )
+#define NPC_PID_ENCLAVE2             ( 797 )
+#define NPC_PID_ENCLAVE3             ( 798 )
+#define NPC_PID_ENCLAVE4             ( 799 )
+#define NPC_PID_ENCLAVE5             ( 800 )
+
+#define NPC_PID_MUTANT1              ( 801 )
+#define NPC_PID_MUTANT2              ( 802 )
+#define NPC_PID_MUTANT3              ( 803 )
+#define NPC_PID_MUTANT4              ( 804 )
+#define NPC_PID_MUTANT5              ( 805 )
+
+#define NPC_PID_1NECROGHOUL1         ( 806 )
+#define NPC_PID_1NECROGHOUL2         ( 807 )
+#define NPC_PID_1NECROGHOUL3         ( 808 )
+#define NPC_PID_1NECROGHOUL4         ( 809 )
+#define NPC_PID_1NECROGHOUL5         ( 810 )
+#define NPC_PID_1NECROGHOUL6         ( 811 )
+
+#define NPC_PID_2NECROGHOUL1         ( 812 )
+#define NPC_PID_2NECROGHOUL2         ( 813 )
+#define NPC_PID_2NECROGHOUL3         ( 814 )
+#define NPC_PID_2NECROGHOUL4         ( 815 )
+#define NPC_PID_2NECROGHOUL5         ( 816 )
+
+#define NPC_PID_SIERRAENCLAVE1         ( 817 )
+#define NPC_PID_SIERRAENCLAVE2         ( 818 )
+#define NPC_PID_SIERRAENCLAVE3         ( 819 )
+#define NPC_PID_SIERRAENCLAVE4         ( 820 )
+
+#define NPC_PID_SIERRABOS1         ( 821 )
+#define NPC_PID_SIERRABOS2         ( 822 )
+#define NPC_PID_SIERRABOS3         ( 823 )
+#define NPC_PID_SIERRABOS4         ( 824 )
+
+#define NPC_PID_ABOMINATION        ( 825 )
+#define NPC_PID_MONSTROSITY        ( 826 )
+
+#define NPC_V15rat                 ( 827 )
+#define NPC_V15pigrat              ( 828 )
+#define NPC_V15molerat             ( 829 )
+#define NPC_V15boss                ( 830 )
+
+#define NPC_GLOWrobobrain             ( 831 )
+#define NPC_GLOWeyebot                ( 832 )
+
+#define NPC_PID_JunktownScout1            ( 840 )
+#define NPC_PID_JunktownScout2            ( 841 )
+#define NPC_PID_JunktownScout3            ( 842 )
+#define NPC_PID_JunktownScout4            ( 843 )
+#define NPC_PID_JunktownScout5            ( 844 )
+
+#define NPC_PID_TraderGuard1               ( 845 )
+#define NPC_PID_TraderGuard2               ( 846 )
+#define NPC_PID_TraderGuard3               ( 847 )
+#define NPC_PID_TraderGuard4               ( 848 )
+#define NPC_PID_Trader                     ( 849 )
+
+#define NPC_PID_BANDIT11         ( 850 )
+#define NPC_PID_BANDIT21         ( 851 )
+#define NPC_PID_BANDIT31         ( 852 )
+#define NPC_PID_BANDIT41         ( 853 )
+#define NPC_PID_BANDIT51         ( 854 )
+#define NPC_PID_BANDIT61         ( 855 )
+
+#define NPC_PID_ROBBER11         ( 856 )
+#define NPC_PID_ROBBER21         ( 857 )
+#define NPC_PID_ROBBER31         ( 858 )
+#define NPC_PID_ROBBER41         ( 859 )
+#define NPC_PID_ROBBER51         ( 860 )
+#define NPC_PID_ROBBER61         ( 861 )
+
+#define NPC_PID_CARAVANLEADER         ( 862 )
+#define NPC_PID_CARAVANGUARD1         ( 863 )
+#define NPC_PID_CARAVANGUARD2         ( 864 )
+#define NPC_PID_CARAVANGUARD3         ( 865 )
+#define NPC_PID_CARAVANGUARD4         ( 866 )
+#define NPC_PID_CARAVANGUARD5         ( 867 )
+#define NPC_PID_CARAVANGUARD6         ( 868 )
+#define NPC_PID_CARAVANGUARD7         ( 869 )
+#define NPC_PID_CARAVANGUARD8         ( 870 )
+
+#define NPC_PID_BOS1         ( 871 )
+#define NPC_PID_BOS2         ( 872 )
+#define NPC_PID_BOS3         ( 873 )
+#define NPC_PID_BOS4         ( 874 )
+#define NPC_PID_BOS5         ( 875 )
+
+#define NPC_PID_HUBGUARD1         ( 876 )
+#define NPC_PID_HUBGUARD2         ( 877 )
+#define NPC_PID_HUBGUARD3         ( 878 )
+#define NPC_PID_HUBGUARD4         ( 879 )
+#define NPC_PID_HUBGUARD5         ( 880 )
+
+#define NPC_PID_VCGUARD1         ( 881 )
+#define NPC_PID_VCGUARD2         ( 882 )
+#define NPC_PID_VCGUARD3         ( 883 )
+#define NPC_PID_VCGUARD4         ( 884 )
+#define NPC_PID_VCGUARD5         ( 885 )
+
+#define NPC_PID_GECKOGHOUL1         ( 886 )
+#define NPC_PID_GECKOGHOUL2         ( 887 )
+#define NPC_PID_GECKOGHOUL3         ( 888 )
+#define NPC_PID_GECKOGHOUL4         ( 889 )
+#define NPC_PID_GECKOGHOUL5         ( 890 )
+
+#define NPC_PID_BLADE1         ( 891 )
+#define NPC_PID_BLADE2         ( 892 )
+#define NPC_PID_BLADE3         ( 893 )
+#define NPC_PID_BLADE4         ( 894 )
+#define NPC_PID_BLADE5         ( 895 )
+
+#define NPC_PID_UNITY1         ( 896 )
+#define NPC_PID_UNITY2         ( 897 )
+#define NPC_PID_UNITY3         ( 898 )
+
+#define NPC_PID_NCR1         ( 899 )
+#define NPC_PID_NCR2         ( 900 )
+#define NPC_PID_NCR3         ( 901 )
+#define NPC_PID_NCR4         ( 902 )
+#define NPC_PID_NCR5         ( 903 )
+
+#define NPC_PID_CARAVANLEADER2         ( 904 )
+#define NPC_PID_CARAVANGUARD12         ( 905 )
+#define NPC_PID_CARAVANGUARD22         ( 906 )
+#define NPC_PID_CARAVANGUARD32         ( 907 )
+#define NPC_PID_CARAVANGUARD42         ( 908 )
+#define NPC_PID_CARAVANGUARD52         ( 909 )
+#define NPC_PID_CARAVANGUARD62         ( 910 )
+#define NPC_PID_CARAVANGUARD72         ( 911 )
+#define NPC_PID_CARAVANGUARD82         ( 912 )
+
+#define NPC_PID_WEAKSHIT1         ( 913 )
+#define NPC_PID_WEAKSHIT2         ( 914 )
+#define NPC_PID_WEAKSHIT3         ( 915 )
+#define NPC_PID_WEAKSHIT4         ( 916 )
+#define NPC_PID_CHILD1            ( 917 )
+
+#define NPC_PID_PEASANT1         ( 918 )
+#define NPC_PID_PEASANT2         ( 919 )
+#define NPC_PID_PEASANT3         ( 920 )
+#define NPC_PID_PEASANT4         ( 921 )
+#define NPC_PID_PEASANT5         ( 922 )
+#define NPC_PID_CHILD2           ( 923 )
+
+#define NPC_PID_SCAV1         ( 924 )
+#define NPC_PID_SCAV2         ( 925 )
+#define NPC_PID_SCAV3         ( 926 )
+#define NPC_PID_SCAV4         ( 927 )
+#define NPC_PID_SCAV5         ( 928 )
+
+#define NPC_PID_HOBO1         ( 929 )
+#define NPC_PID_HOBO2         ( 930 )
+#define NPC_PID_HOBO3         ( 931 )
+#define NPC_PID_HOBO4         ( 932 )
+
+#define NPC_PID_TRAP1         ( 933 )
+#define NPC_PID_TRAP2         ( 934 )
+#define NPC_PID_TRAP3         ( 935 )
+
+#define NPC_PID_HUNT1         ( 936 )
+#define NPC_PID_HUNT2         ( 937 )
+#define NPC_PID_HUNT3         ( 938 )
+
+#define NPC_PID_PROSP1         ( 939 )
+#define NPC_PID_PROSP2         ( 940 )
+#define NPC_PID_PROSP3         ( 941 )
+
+#define NPC_PID_HOME1         ( 942 )
+#define NPC_PID_HOME2         ( 943 )
+#define NPC_PID_HOME3         ( 944 )
+#define NPC_PID_HOME3         ( 945 )
+
+#define NPC_PID_HUBO1         ( 946 )
+#define NPC_PID_HUBO2         ( 947 )
+#define NPC_PID_HUBO3         ( 948 )
+#define NPC_PID_HUBO3         ( 949 )
+#define NPC_PID_HUBO3         ( 950 )
+
+#define NPC_PID_NIGHTKIN         ( 960 ) // event NPC
+#define NPC_PID_ROBEDMAN         ( 961 ) // event NPC
+
+#define NPC_PID_BISHOP1    ( 962 ) // event NPC
+#define NPC_PID_BISHOP2    ( 963 )
+#define NPC_PID_BISHOP3    ( 964 )
+#define NPC_PID_BISHOP4    ( 965 )
+
+#define NPC_PID_WRIGHT_SON1 ( 966 ) // event NPC
+#define NPC_PID_WRIGHT_SON2 ( 967 )
+#define NPC_PID_WRIGHT_SON3 ( 968 )
+#define NPC_PID_WRIGHT_SON4 ( 969 )
+
+#define NPC_PID_COMMANDER ( 970 )
+
+#define NPC_PID_SmallSilverGecko         ( 80 )
+#define NPC_PID_ToughSilverGecko         ( 81 )
+#define NPC_PID_GoldenGecko              ( 83 )
+#define NPC_PID_ToughGoldenGecko         ( 86 )
+#define NPC_PID_FireGecko                ( 240 )
+#define NPC_PID_ToughFireGecko           ( 241 )
+#define NPC_PID_ToxicGecko               ( 1016 )
+#define NPC_PID_MatureToxicGecko         ( 1017 )
+
+#define NPC_PID_SmallRadscorpion         ( 5 )
+#define NPC_PID_SmallRadscorpion2        ( 355 )
+#define NPC_PID_LargeRadscorpion         ( 6 )
+#define NPC_PID_LargeRadscorpion2        ( 356 )
+#define NPC_PID_LargeRadscorpion3        ( 357 )
+#define NPC_PID_LargeRadscorpion3        ( 357 )
+#define NPC_PID_MutatedRadscorpion         ( 487 )
+
+#define NPC_PID_GiantBeetle              ( 487 )
+#define NPC_PID_RegularRat               ( 11 )
+#define NPC_PID_Rat                      ( 266 )
+#define NPC_PID_MutatedRat               ( 116 )
+#define NPC_PID_RegularPigRat            ( 112 )
+#define NPC_PID_ToughPigRat              ( 113 )
+#define NPC_PID_Molerat                  ( 110 )
+#define NPC_PID_GreaterMolerat           ( 111 )
+#define NPC_PID_MutatedMolerat           ( 117 )
+#define NPC_PID_MutatedPigrat           ( 118 )
+
+#define NPC_PID_Ant                      ( 382 )
+#define NPC_PID_Rabid_Dogs               ( 485 )
+#define NPC_PID_Coyote1                  ( 486 )
+#define NPC_PID_Coyote2                  ( 475 )
+#define NPC_PID_WildDog1                  ( 471 )
+#define NPC_PID_WildDog2                  ( 472 )
+#define NPC_PID_WildDog3                  ( 473 )
+#define NPC_PID_WildDog4                  ( 474 )
+#define NPC_PID_WildDog5                  ( 476 )
+
+#define NPC_PID_SporePlant               ( 16 )
+#define NPC_PID_SporePlant2              ( 481 )
+
+#define NPC_PID_MasterMerchantFemale     ( 61 )
+#define NPC_PID_BadMerchantMale          ( 56 )
+#define NPC_PID_PrimitiveMale            ( 3 )
+#define NPC_PID_PrimitiveFemale          ( 4 )
+
+#define NPC_PID_MaleSlave		         ( 18 )
+#define NPC_PID_HealthyFemaleSlave       ( 19 )
+#define NPC_PID_HealthyMaleSlave         ( 20 )
+#define NPC_PID_MaleOrphan               ( 50 )
+#define NPC_PID_FemaleOrphan             ( 51 )
+#define NPC_PID_MaleSlaver               ( 217 )
+#define NPC_PID_FemaleSlaver             ( 218 )
+#define NPC_PID_CuteFemaleSlave          ( 17 )
+#define NPC_PID_StrongMaleSlave          ( 22 )
+#define NPC_PID_GenericFemaleSlave       ( 27 )
+#define NPC_PID_GenericMaleSlave         ( 28 )
+
+#define NPC_PID_MaleTrapper              ( 95 )
+#define NPC_PID_FemaleTrapper            ( 96 )
+#define NPC_PID_MeleeThugMale            ( 32 )
+#define NPC_PID_MeleeThugFemale          ( 33 )
+
+#define NPC_PID_BanditMale               ( 212 )
+#define NPC_PID_BanditFemale             ( 213 )
+
+#define NPC_PID_AverageMerchantMale      ( 58 )
+#define NPC_PID_WeakMeleeGuardMale       ( 69 )
+#define NPC_PID_WeakMeleeGuardFemale     ( 70 )
+
+#define NPC_PID_MaleSlaver2              ( 58 )
+
+#define NPC_PID_ToughFemaleThug          ( 31 )
+
+#define NPC_PID_ToughMaleThug            ( 30 )
+#define NPC_PID_ToughFemaleThug          ( 31 )
+#define NPC_PID_FemaleCombatSlave        ( 23 )
+#define NPC_PID_MaleCombatSlave          ( 24 )
+
+#define NPC_PID_Brahmin                  ( 10 )
+#define NPC_PID_Brahmin2                 ( 191 )
+#define NPC_PID_Brahmin3                 ( 404 )
+#define NPC_PID_WeakBrahmin              ( 114 )
+#define NPC_PID_WildBrahmin              ( 219 )
+
+#define NPC_PID_Mantis                   ( 12 )
+#define NPC_PID_MediumMantis             ( 216 )
+
+#define NPC_PID_WildDog                  ( 82 )
+
+#define NPC_PID_HomesteaderMale          ( 220 )
+#define NPC_PID_HomesteaderFemale        ( 221 )
+
+#define NPC_PID_JunktownTrader		     ( 591 )
+#define NPC_PID_JunktownDoctor		     ( 200 )
+#define NPC_PID_MasterTraderFemale       ( 61 )
+#define NPC_PID_BigGunGuardMale          ( 48 )
+#define NPC_PID_BigGunGuardFemale        ( 49 )
+
+#define NPC_PID_GenericGhoul             ( 159 )
+
+#define NPC_PID_RaiderMale               ( 238 )
+#define NPC_PID_RaiderFemale             ( 239 )
+
+#define NPC_PID_Alien                    ( 242 )
+#define NPC_PID_ToughAlien               ( 243 )
+
+#define NPC_PID_SmDeathclaw              ( 7 )
+#define NPC_PID_Deathclaw                ( 8 )
+#define NPC_PID_SmToughDeathclaw         ( 244 )
+#define NPC_PID_ToughDeathclaw           ( 245 )
+
+#define NPC_PID_Centaur                  ( 248 )
+#define NPC_PID_MeanCentaur              ( 249 )
+#define NPC_PID_Floater                  ( 246 )
+#define NPC_PID_NastyFloater             ( 247 )
+
+#define NPC_PID_EnclavePatrolMale        ( 250 )
+#define NPC_PID_EnclavePatrolFemale      ( 251 )
+
+#define NPC_PID_MercenaryMale            ( 254 )
+#define NPC_PID_MercenearyFemale         ( 255 )
+#define NPC_PID_ElronologistMale         ( 278 )
+#define NPC_PID_ElronologistFemale       ( 279 )
+#define NPC_PID_PressGangMale            ( 252 )
+#define NPC_PID_PressGangFemale          ( 253 )
+
+#define NPC_PID_GrandMasterTraderMale    ( 142 )
+#define NPC_PID_VaultCityPatrolMale      ( 222 )
+#define NPC_PID_VaultCityPatrolFemale    ( 223 )
+
+#define NPC_PID_Nightkin                 ( 256 )
+#define NPC_PID_ToughNightkin            ( 257 )
+#define NPC_PID_ToughGhoul               ( 258 )
+
+#define NPC_PID_BigGunThugMale           ( 38 )
+
+#define NPC_PID_Mobster                  ( 259 )
+#define NPC_PID_Yakuza                   ( 260 )
+#define NPC_PID_BigGunThugFemale         ( 39 )
+
+#define NPC_PID_FemaleHomesteader        ( 221 )
+
+#define NPC_PID_MauraderMale             ( 263 )
+#define NPC_PID_MauraderFemale           ( 264 )
+
+#define NPC_PID_MasterTraderFemale       ( 61 )
+#define NPC_PID_NCRRangerMale            ( 261 )
+#define NPC_PID_NCRRangerFemale          ( 262 )
+
+#define NPC_PID_BountyHunter_1           ( 181 )
+#define NPC_PID_BountyHunter_2           ( 182 )
+#define NPC_PID_BountyHunter_3           ( 183 )
+#define NPC_PID_BountyHunter_4           ( 184 )
+#define NPC_PID_BountyHunter_5           ( 185 )
+#define NPC_PID_BountyHunter_6           ( 186 )
+#define NPC_PID_BountyHunter_7           ( 187 )
+#define NPC_PID_BountyHunter_8           ( 187 )
+#define NPC_PID_BountyHunter_9           ( 189 )
+#define NPC_PID_BountyHunter_10          ( 190 )
+
+#define NPC_PID_MaleHunter               ( 202 )
+#define NPC_PID_FemaleHunter             ( 203 )
+
+#define NPC_PID_MaleCannibal             ( 204 )
+#define NPC_PID_FemaleCannibal           ( 205 )
+
+#define NPC_PID_HolyMan                  ( 206 )
+#define NPC_PID_HolyWoman                ( 207 )
+
+#define NPC_PID_MaleNomad                ( 208 )
+#define NPC_PID_FemaleNomad              ( 210 )
+
+#define NPC_PID_AgileMaleThug            ( 34 )
+#define NPC_PID_AgileFemaleThug          ( 35 )
+#define NPC_PID_MaleGunThug              ( 36 )
+#define NPC_PID_FemaleGunThug            ( 37 )
+
+#define NPC_PID_Wolve                    ( 484 )
+
+#define NPC_PID_SmallGoldenGecko         ( 488 )  
+
+#define NPC_PID_BlackArmoredRebel        ( 489 )  // Мятежник, прочный
+#define NPC_PID_GiantBeetle_2            ( 490 )
+#define NPC_PID_CaveRobber_male_1        ( 499 )  // Рандомные бандиты в пещерах
+#define NPC_PID_CaveRobber_female_1      ( 500 )
+#define NPC_PID_CaveRobber_male_2        ( 501 )
+#define NPC_PID_CaveRobber_female_2      ( 502 )
+#define NPC_PID_CaveRobber_male_3        ( 503 )
+#define NPC_PID_CaveRobber_female_3      ( 504 )
+#define NPC_PID_VCGuardsman              ( 506 )  // Гвардеец ГУ, черная ББ
+#define NPC_PID_VBBat                    ( 507 )  // Летучая мышь из Ван-Буррена
+#define NPC_PID_Eli                      ( 516 )  // Странник Илай
+#define NPC_PID_JACKAL_SNIPER            ( 526 )
+#define NPC_PID_JACKAL_TERMINATOR        ( 527 )
+#define NPC_PID_Behemoth                 ( 528 )
+#define NPC_PID_FO2_Nightkin             ( 538 )
+#define NPC_PID_FO2_Nightkin_Sneaky      ( 539 )
+#define NPC_PID_FO2_Super_Mutant         ( 540 )
+#define NPC_PID_ChuckLee		         ( 546 )
+#define NPC_PID_RaiderLeader	         ( 547 )
+#define NPC_PID_RaiderStrong	         ( 548 )
+#define NPC_PID_RaiderFemale	         ( 549 )
+#define NPC_PID_RaiderAgile		         ( 550 )
+
+#define NPC_PID_GeneralKlamath           ( 605 )  // General Traders
+#define NPC_PID_GeneralDen               ( 606 )
+#define NPC_PID_GeneralRedding           ( 607 )
+#define NPC_PID_GeneralModoc             ( 608 )
+#define NPC_PID_GeneralGecko             ( 609 )
+#define NPC_PID_GeneralVaultOut          ( 610 )
+#define NPC_PID_GeneralVaultIn           ( 611 )
+#define NPC_PID_GeneralBroken            ( 612 )
+#define NPC_PID_GeneralNewReno           ( 613 )
+#define NPC_PID_GeneralSanFrancisco      ( 614 )
+#define NPC_PID_GeneralNCROut            ( 615 )
+#define NPC_PID_GeneralNCRIn             ( 616 )
+#define NPC_PID_GeneralHUB               ( 617 )
+#define NPC_PID_GeneralBoneyard          ( 618 )
+
+#define NPC_PID_DoctorVaultIn            ( 619 )  // Town Doctors
+#define NPC_PID_DoctorVaultOut           ( 620 )
+#define NPC_PID_DoctorNCR                ( 621 )
+#define NPC_PID_DoctorHUB                ( 622 )
+#define NPC_PID_DoctorBoneyard           ( 623 )
+#define NPC_PID_DoctorSanFrancisco       ( 624 )
+#define NPC_PID_DoctorNewReno            ( 625 )
+#define NPC_PID_DoctorBrokenHills        ( 626 )
+#define NPC_PID_DoctorRedding            ( 627 )
+
+#define NPC_PID_BartenderSanFrancisco    ( 628 )  // Bartenders
+#define NPC_PID_BartenderBrokenHillsMain ( 629 )
+#define NPC_PID_BartenderBrokenHillsWife ( 630 )
+#define NPC_PID_BartenderNewRenoSalvatore( 631 )
+#define NPC_PID_BartenderNewRenoCasino   ( 632 )
+#define NPC_PID_BartenderGecko           ( 633 )
+#define NPC_PID_BartenderVaultCity       ( 634 )
+#define NPC_PID_BartenderModoc           ( 635 )
+#define NPC_PID_BartenderKlamathWife     ( 636 )
+#define NPC_PID_BartenderKlamathDude     ( 637 )
+#define NPC_PID_BartenderDenCasino       ( 638 )
+#define NPC_PID_BartenderDenBrothel      ( 639 )
+#define NPC_PID_BartenderDenMoms         ( 640 )
+#define NPC_PID_BartenderHub             ( 641 )
+#define NPC_PID_BartenderJunktown        ( 642 )
+#define NPC_PID_BartenderReddingMalamute ( 643 )
+#define NPC_PID_BartenderReddingCoffins  ( 644 )
+#define NPC_PID_BartenderNCROutside      ( 645 )
+#define NPC_PID_BartenderNCRInside       ( 646 )
+
+#define NPC_PID_SpecialTankerGuns        ( 647 )  // SpecialTraders
+#define NPC_PID_SpecialTankerAmors       ( 648 )
+#define NPC_PID_SpecialChinaBaldie       ( 649 )
+#define NPC_PID_SpecialBrokenCaravanLeader ( 650 )
+#define NPC_PID_SpecialBrokenHusband     ( 651 )
+#define NPC_PID_SpecialNewRenoArms       ( 652 )
+#define NPC_PID_SpecialGeckoSkeeter      ( 653 )
+#define NPC_PID_SpecialGeckoSheriff      ( 654 )
+#define NPC_PID_SpecialVaultCityAArmor   ( 655 )
+#define NPC_PID_SpecialVaultCityBWeapon  ( 656 )
+#define NPC_PID_SpecialModocTanner       ( 657 )
+#define NPC_PID_SpecialModocWilly        ( 658 )
+#define NPC_PID_SpecialDenSecondDude     ( 659 )
+#define NPC_PID_SpecialHubJacob          ( 660 )
+#define NPC_PID_SpecialHubGuns           ( 661 )
+#define NPC_PID_SpecialBoneGunrunners    ( 662 )
+
+#define NPC_PID_Khan1                    ( 835 ) // Khans event npc's
+#define NPC_PID_Khan2                    ( 836 )
+#define NPC_PID_Khan3                    ( 837 )
+#define NPC_PID_Khan4                    ( 838 )
+#define NPC_PID_Khan5                    ( 839 )
+
+#define NPC_PID_JunktownScoutPatrol1     ( 955 )
+#define NPC_PID_JunktownScoutPatrol2     ( 956 )
+#define NPC_PID_JunktownScoutPatrol3     ( 957 )
+#define NPC_PID_JunktownScoutPatrol4     ( 958 )
+#define NPC_PID_JunktownScoutPatrol5     ( 959 )
+
+#define NPC_PID_PATROL_SCOUT		     ( 953 )
+
+#define NPC_PID_BookHub                  ( 29 )  // Book Sellers
+#define NPC_PID_BookNecroLibrary         ( 31 )
+#define NPC_PID_FurnitureSeller          ( 159 ) // Hub Furniture Seller
+
+#define NPC_PID_METRO_FLOATER            ( 1021 )
+#define NPC_PID_METRO_BEAST              ( 1022 )
+
+#define NPC_PID_SE_CARAVAN_LEADER	     ( 1023 )
+
+#define NPC_PID_SE_VAULT_DWELLER         ( 1024 )
+
+#define NPC_PID_RADSCORPION_EGG          ( 1400 )
+#define NPC_PID_ANT_EGG                  ( 1401 )
+#define NPC_PID_GECKO_EGG                ( 1402 )
+#define NPC_PID_DEATHCLAW_EGG            ( 1403 )
+#define NPC_PID_WANAMINGO_EGG            ( 1404 )
+
+
+/*const uint16[] Pids_AllNpc={
+        NPC_PID_SmallSilverGecko,NPC_PID_ToughSilverGecko,NPC_PID_GoldenGecko,NPC_PID_ToughGoldenGecko,NPC_PID_FireGecko,NPC_PID_ToughFireGecko,
+        NPC_PID_SmallRadscorpion,NPC_PID_LargeRadscorpion,
+        NPC_PID_RegularRat,NPC_PID_RegularPigRat,NPC_PID_ToughPigRat,NPC_PID_Molerat,NPC_PID_GreaterMolerat,
+        NPC_PID_Ant,NPC_PID_SporePlant,
+        NPC_PID_MasterMerchantFemale,NPC_PID_BadMerchantMale,NPC_PID_PrimitiveMale,NPC_PID_PrimitiveFemale,
+        NPC_PID_HealthyFemaleSlave,NPC_PID_HealthyMaleSlave,NPC_PID_MaleOrphan,NPC_PID_FemaleOrphan,NPC_PID_MaleSlaver,NPC_PID_FemaleSlaver,NPC_PID_CuteFemaleSlave,NPC_PID_StrongMaleSlave,NPC_PID_GenericFemaleSlave,NPC_PID_GenericMaleSlave,
+        NPC_PID_MaleTrapper,NPC_PID_FemaleTrapper,NPC_PID_MeleeThugMale,NPC_PID_MeleeThugFemale,
+        NPC_PID_BanditMale,NPC_PID_BanditFemale,
+        NPC_PID_AverageMerchantMale,NPC_PID_WeakMeleeGuardMale,NPC_PID_WeakMeleeGuardFemale,
+        NPC_PID_MaleSlaver2,
+        NPC_PID_ToughFemaleThug,
+        NPC_PID_ToughMaleThug,NPC_PID_ToughFemaleThug,NPC_PID_FemaleCombatSlave,NPC_PID_MaleCombatSlave,
+        NPC_PID_Brahmin,NPC_PID_WeakBrahmin,NPC_PID_WildBrahmin,
+        NPC_PID_Mantis,NPC_PID_MediumMantis,
+        NPC_PID_WildDog,
+        NPC_PID_HomesteaderMale,NPC_PID_HomesteaderFemale,
+        NPC_PID_MasterTraderFemale,NPC_PID_BigGunGuardMale,NPC_PID_BigGunGuardFemale,
+        NPC_PID_GenericGhoul,
+        NPC_PID_RaiderMale,NPC_PID_RaiderFemale,
+        NPC_PID_Alien,NPC_PID_ToughAlien,
+        NPC_PID_SmToughDeathclaw,NPC_PID_ToughDeathclaw,
+        NPC_PID_Centaur,NPC_PID_MeanCentaur,NPC_PID_Floater,NPC_PID_NastyFloater,
+        NPC_PID_EnclavePatrolMale,NPC_PID_EnclavePatrolFemale,
+        NPC_PID_MercenaryMale,NPC_PID_MercenearyFemale,NPC_PID_ElronologistMale,NPC_PID_ElronologistFemale,NPC_PID_PressGangMale,NPC_PID_PressGangFemale,
+        NPC_PID_GrandMasterTraderMale,NPC_PID_VaultCityPatrolMale,NPC_PID_VaultCityPatrolFemale,
+        NPC_PID_Nightkin,NPC_PID_ToughNightkin,NPC_PID_ToughGhoul,
+        NPC_PID_BigGunThugMale,
+        NPC_PID_Mobster,NPC_PID_Yakuza,NPC_PID_BigGunThugFemale,
+        NPC_PID_FemaleHomesteader,
+        NPC_PID_MauraderMale,NPC_PID_MauraderFemale,
+        NPC_PID_MasterTraderFemale,NPC_PID_NCRRangerMale,NPC_PID_NCRRangerFemale,
+        NPC_PID_BountyHunter_1,NPC_PID_BountyHunter_2,NPC_PID_BountyHunter_3,NPC_PID_BountyHunter_4,NPC_PID_BountyHunter_5,NPC_PID_BountyHunter_6,NPC_PID_BountyHunter_7,NPC_PID_BountyHunter_8,NPC_PID_BountyHunter_9,NPC_PID_BountyHunter_10,
+        NPC_PID_MaleHunter,NPC_PID_FemaleHunter,
+        NPC_PID_MaleCannibal,NPC_PID_FemaleCannibal,
+        NPC_PID_HolyMan,NPC_PID_HolyWoman,
+        NPC_PID_MaleNomad,NPC_PID_FemaleNomad
+   };*/
+
+#endif // __NPC_PIDS__

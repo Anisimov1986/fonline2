@@ -1,0 +1,200 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p name_mem_npc_player = 1 #
+6 1020 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 #
+7 2020 #
+0 2030 D _script tc_dialogs@d_CanTakeOver 0  R _script tc@r_StartTc 0  #
+0 2040 @
+4 3000 None 0 #
+10 3010 @
+6 4000 None 0 #
+7 4010 #
+2 4020 #
+0 4030 @
+7 5000 None 0 #
+8 5010 #
+2 5020 @
+8 6000 None 0 #
+9 6010 #
+2 6020 #
+0 6030 @
+9 7000 None 0 #
+2 7010 #
+0 7020 @
+10 8000 None 0 #
+11 8010 @
+11 9000 None 0 #
+12 9010 @
+12 10000 None 0 #
+13 10010 #
+0 10020 @
+13 11000 None 0 #
+2 11010 #
+0 11020 &
+
+[engl]
+{100}{}{Sheriff}
+{200}{}{You see a strong black man.}
+{210}{}{You see Earl Marion, Redding Sheriff.}
+{210}{}{You see a powerfully built man looking at you intently.}
+{1000}{}{Predialogue installations}
+{1010}{}{Default}
+{1020}{}{New}
+{2000}{}{What can Sheriff Marion do for you?}
+{2010}{}{What's going on in town, Sheriff?}
+{2020}{}{What do you do as Sheriff?}
+{2030}{}{You know what? Now I'm Sheriff!}
+{2040}{}{I won't make any trouble. I was just leaving. Goodbye.}
+{3000}{}{Well we're getting all kinds of external pressures, as always. Keeps a man up at night, worrying about Redding's future.}
+{3010}{}{Redding's future? What do you mean?}
+{4000}{}{Howdy there. My name's Earl Marion. I'm the Sheriff in these here parts. Sounds downright picturesque, don't it? Well, that's my job.}
+{4010}{}{As the Sheriff, what do you do here in town?}
+{4020}{}{I just had a couple questions, Sheriff.}
+{4030}{}{I won't make any trouble. I was just leaving. Goodbye.}
+{5000}{}{Keep the peace, mostly. Stop them miners for tearing each other's damn heads off, keep folks from hassling Doc Johnson for their daily jet, and rally a defense when them raiders get greedy.}
+{5010}{}{Who's Doc Johnson?}
+{5020}{}{Sounds like tough work. I've got a couple questions, though.}
+{6000}{}{Good ole Painless Doc Johnson's our town doc. You have a toothache or a broken bone, he'll set you to right. He also sells medicine. All kinds of medicine, if you get my drift. For *whatever* ails ya.}
+{6010}{}{Sounds like a helpful guy to have around. Where is he here in town?}
+{6020}{}{Interesting. Let me ask you something else, Sheriff Marion.}
+{6030}{}{Thanks. I'll see you around. Goodbye.}
+{7000}{}{The Doc's office is at the west end of downtown here. He's just about always happy to see new patients.}
+{7010}{}{I see. Let me ask you something else.}
+{7020}{}{Maybe I'll go visit with him for a while. Goodbye, Sheriff.}
+{8000}{}{Sure. Redding can't stand alone forever. At some point we're going to need a friend. I just want to make sure we've got a friend when we need one. The *right* friend.}
+{8010}{}{There are wrong friends?}
+{9000}{}{You bet there are. New Reno would just gut Redding for our gold, and Vault City would keep us as second class citizens rather than make us real partners.}
+{9010}{}{You think the NCR would be different?}
+{10000}{}{I know it would be. The NCR is the future of the wastes. Working together for a bigger tomorrow. Just like their posters say. They want us to join them, not submit to them.}
+{10010}{}{I see. How can you influence Redding, though?}
+{10020}{}{Everyone's got an angle, all right. Goodbye, Sheriff.}
+{11000}{}{Well, the time's not right yet for a real move. But I let people know who they'll be able to count on when push comes to shove. That's enough?for now.}
+{11010}{}{Interesting. Let me ask you something else.}
+{11020}{}{Hmm, something to think about, anyhow. Goodbye.}
+
+[russ]
+{100}{}{Шериф}
+{200}{}{Вы видите сильного черного человека.}
+{210}{}{Вы видите Ерла Мариона, Шерифа Реддинга.}
+{210}{}{Вы видите крепко сложенного человека, который пристально вас рассматривает.}
+{1000}{}{Predialogue installations}
+{1010}{}{Default}
+{1020}{}{New}
+{2000}{}{Что может Шериф Мэрион сделать для вас?}
+{2010}{}{Что происходит в городе, шериф?}
+{2020}{}{А что вы делаете в этом городе, как шериф?}
+{2030}{}{Знаешь что? Теперь я Шериф! Ахахаха.}
+{2040}{}{Я буду вести себя тихо. Я уже ухожу. До свидания.}
+{3000}{}{Сейчас мы испытываем огромное давление из вне. Мы беспокоимся о нашем будущем.}
+{3010}{}{Будущее Реддинга? Что ты имеешь в виду?}
+{4000}{}{Здорово. Я Эрл Мерион. Я шериф в этом городишке. Звучит так колоритно, а? Ну, я и правда шериф.}
+{4010}{}{А что вы делаете в этом городе, как шериф?}
+{4020}{}{Я просто было несколько вопросов, шериф.}
+{4030}{}{Я буду вести себя тихо. Я уже ухожу. До свидания.}
+{5000}{}{По большей части охраняю мир и спокойствие.}
+{5010}{}{Кто такой Док Джонсон?}
+{5020}{}{Похоже, сложная работа. У меня есть пара вопросов.}
+{6000}{}{Док Джонсон наш городской доктор. У вас болит зуб или сломанна кость, он вас починит. Он также медикаменты. Очень много разных медикоментов, если понимаешь о чем я.}
+{6010}{}{Похоже очень полезный человек. Где его найти?}
+{6020}{}{Интересно. Позвольте узнать еще кое-что, шериф Мэрион.}
+{6030}{}{Спасибо. Увидимся. До свидания.}
+{7000}{}{Офис Дока находится в западной части города.}
+{7010}{}{Понятно. У меня другие вопросы.}
+{7020}{}{Может быть, я зайду к нему. До свидания, шериф.}
+{8000}{}{Конечно. Реддинг не может оставаться независимым всегда.А значит нам нужны друзья. Я надеюсь мы сможем выбрать правильных друзей.}
+{8010}{}{Есть неправильные друзья?}
+{9000}{}{Конечно есть. Нью-Рено просто высосет из нас все золото, Город-Убежище будет относится к нам как людям второго сорта.}
+{9010}{}{А что вы думаете по поводу НКР?}
+{10000}{}{НКР это будущее пустоши, работае вместе вы сможем приблизеть безоблачное завтра. Они хотят чтобы мы присоединились, а не покорить нас.}
+{10010}{}{Понимаю. Вы можете влиять на Реддинг?}
+{10020}{}{У всех своя точка зрения, все в порядке. До свидания, шериф.}
+{11000}{}{Еще ни пришло время действовать. Но я даю знать людям на кого они могут положится если что.}
+{11010}{}{Интересно. У меня другой вопрос.}
+{11020}{}{Хм,есть о чем подумать, во всяком случае. До свидания.}
+
+[pols]
+{100}{}{Szeryf}
+{200}{}{Widzisz silnego mężczyznę o czarnym kolorze skóry. Niektórzy mogliby powiedzieć, że murzyna. Czy też, afroamerykanina. Kwestie semantyczne nigdy nie były twoją mocną stroną.}
+{210}{}{Widzisz Earla Marona, szeryfa Redding.}
+{210}{}{Widzisz potężnie zbudowanego mężczyznę, zdaje się przyglądać ci się uważnie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Default}
+{1020}{}{New}
+{2000}{}{Witaj, w czym mogę pomóc?}
+{2010}{}{Co słychać, szeryfie?}
+{2020}{}{Szeryf? A co konretnie to tutaj oznacza?}
+{2030}{}{Wiesz co, czarnuchu? Teraz ja jestem szeryfem, przejmujemy to miasto!}
+{2040}{}{Nie chcę żadnych kłopotów. Już mnie tu nie ma.}
+{3000}{}{Sporo, wszyscy wtryniają się w nasze sprawy. Czasami myślę, do czego to wszystko zmierza.}
+{3010}{}{Redding do czegoś zmierza? Ciekawe. Niby do czego?}
+{4000}{}{Witaj, witaj. Nazywam się Earl Marion, jestem tutejszym szeryfem.}
+{4010}{}{A czym się zajmujesz?}
+{4020}{}{@sex@|Miałbym||Miałabym| parę pytań, szeryfie.}
+{4030}{}{Tylko @sex@|przechodziłem||przechodziłam|. Do widzenia.}
+{5000}{}{Pilnuję porządku. Głównie górników, łby by sobie pourywali bez mojej opieki. Do tego doktor Johnson, te ćpuńskie mordy ciągle łążą koło niego i sępią Jet. Czasami zdarza się też że bandyci chcieliby przejąć nasz urobek, wtedy zbieram ekipę i bronię dostępu do miasteczka.}
+{5010}{}{Doktor Johnson?}
+{5020}{}{Ciężka robota. Mam parę pytań.}
+{6000}{}{Heh, stary dobry "bezbolesny" doktorek Johnson jest naszym medykiem. Jeśli boli cię ząb, albo @sex@|złamałeś||złamałaś| kulasa, doktorek ci pomoże. Poza tym, sprzedaje lekarstwa. Właściwie każdy rodzaj lekarstwa. Na *wszystko*, jeśli nadążasz..}
+{6010}{}{Pomocny koleś. Gdzie go mogę znaleźć?}
+{6020}{}{Ciekawe. Mam inne pytania, szeryfie.}
+{6030}{}{Dzięki. Do zobaczenia.}
+{7000}{}{Jego gabinet jest na zachodnim skraju Redding. Doktorek zawsze chętnie przyjmuje pacjentów, a zatem wal śmiało.}
+{7010}{}{Rozumiem. Mogę spytać o coś innego?}
+{7020}{}{Może go kiedyś odwiedzę. Do zobaczenia, szeryfie.}
+{8000}{}{Niedługo będziemy musieli wybrać z kim się sprzymierzyć, bo sami nie damy rady. Pytanie tylko z kim, bo jeśli wybierzemy niewłaściwych sprzymierzeńców to, ekhem, *czarno* to widzę...}
+{8010}{}{A co za różnica?}
+{9000}{}{Mało wiesz, @sex@|chłopie||kobieto|, delikatnie mówiąc. Nowe Reno wyprułoby nas ze złota gdyby tylko mogli, a Kryptopolis zrobiłoby z nas jakichś pariasów, nie normalnych obywateli, czy choćby partnerów w handlu. Pierdoleni rasiści.}
+{9010}{}{Rozumiem że uważasz zbratanie się z RNK za najlepsze wyjście?}
+{10000}{}{Pewnie, że tak. Republika stanowi przyszłość Pustkowi. Możesz wierzyć albo nie, ale tak jest. Oni chcą, żebyśmy do nich dołączyli, a nie stali się ich, hm, czarnuchami, jeśli można tak powiedzieć.}
+{10010}{}{Chyba rozumiem. A jak niby masz zamiar na to wpłynąć?}
+{10020}{}{Każdy czegoś chce, szeryfie. Do widzenia.}
+{11000}{}{Teraz jeszcze nie czas żeby odkrywać karty. *Jeszcze* nie teraz. Ale ci co mają wiedzieć, wiedzą i zrobią to co trzeba, gdy ten czas nadejdzie.}
+{11010}{}{Aha. Mogę spytać o coś jeszcze?}
+{11020}{}{Jest nad czym myśleć. Żegnaj.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Default}
+{1020}{}{New}
+{2000}{}{What can Sheriff Marion do for you?}
+{2010}{}{What's going on in town, Sheriff?}
+{2020}{}{What do you do as Sheriff?}
+{2030}{}{You know what? Now I'm Sheriff!}
+{2040}{}{I won't make any trouble. I was just leaving. Goodbye.}
+{3000}{}{Well we're getting all kinds of external pressures, as always. Keeps a man up at night, worrying about Redding's future.}
+{3010}{}{Redding's future? What do you mean?}
+{4000}{}{Howdy there. My name's Earl Marion. I'm the Sheriff in these here parts. Sounds downright picturesque, don't it? Well, that's my job.}
+{4010}{}{As the Sheriff, what do you do here in town?}
+{4020}{}{I just had a couple questions, Sheriff.}
+{4030}{}{I won't make any trouble. I was just leaving. Goodbye.}
+{5000}{}{Keep the peace, mostly. Stop them miners for tearing each other's damn heads off, keep folks from hassling Doc Johnson for their daily jet, and rally a defense when them raiders get greedy.}
+{5010}{}{Who's Doc Johnson?}
+{5020}{}{Sounds like tough work. I've got a couple questions, though.}
+{6000}{}{Good ole Painless Doc Johnson's our town doc. You have a toothache or a broken bone, he'll set you to right. He also sells medicine. All kinds of medicine, if you get my drift. For *whatever* ails ya.}
+{6010}{}{Sounds like a helpful guy to have around. Where is he here in town?}
+{6020}{}{Interesting. Let me ask you something else, Sheriff Marion.}
+{6030}{}{Thanks. I'll see you around. Goodbye.}
+{7000}{}{The Doc's office is at the west end of downtown here. He's just about always happy to see new patients.}
+{7010}{}{I see. Let me ask you something else.}
+{7020}{}{Maybe I'll go visit with him for a while. Goodbye, Sheriff.}
+{8000}{}{Sure. Redding can't stand alone forever. At some point we're going to need a friend. I just want to make sure we've got a friend when we need one. The *right* friend.}
+{8010}{}{There are wrong friends?}
+{9000}{}{You bet there are. New Reno would just gut Redding for our gold, and Vault City would keep us as second class citizens rather than make us real partners.}
+{9010}{}{You think the NCR would be different?}
+{10000}{}{I know it would be. The NCR is the future of the wastes. Working together for a bigger tomorrow. Just like their posters say. They want us to join them, not submit to them.}
+{10010}{}{I see. How can you influence Redding, though?}
+{10020}{}{Everyone's got an angle, all right. Goodbye, Sheriff.}
+{11000}{}{Well, the time's not right yet for a real move. But I let people know who they'll be able to count on when push comes to shove. That's enough?for now.}
+{11010}{}{Interesting. Let me ask you something else.}
+{11020}{}{Hmm, something to think about, anyhow. Goodbye.}
+

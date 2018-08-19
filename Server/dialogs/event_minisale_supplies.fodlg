@@ -1,0 +1,46 @@
+[comment]
+Ваши комментарии / Your comments.
+
+[data]
+lang=engl russ ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+0 2020 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{unsued}
+{200}{}{unsued}
+{210}{}{unsued}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{I have some ehmmm... unofficial supplies. Would you like to trade?}
+{2010}{}{Let me see what you have.}
+{2020}{}{That's all for today.}
+{3000}{}{Guards! Get him!@@Rip his skin off!@@Thief! Thief!@@Guards! Shoot that bastard!}
+
+[russ]
+{100}{}{unsued}
+{200}{}{unsued}
+{210}{}{unsued}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{---}
+{2000}{}{У меня кое какие... левые припасы. Поторгуемся?}
+{2010}{}{Давай посмотрим что у тебя.}
+{2020}{}{На сегодня я всё.}
+{3000}{}{Охрана!@@Остановите вора!@@Вор! Вор!@@Охрана, стреляйте!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{Eu tenho umas... coisas não oficiais aqui. Quer dar uma olhada?}
+{2010}{}{Deixa eu ver o que tu tem aí!}
+{2020}{}{É só isso o que eu tenho por hoje.}
+{3000}{}{Guardaaaas!@@Socorro!@@Pega ladrãaaao! Pegaaaa!!@@Guardas! Pega ladrãaao!!}
+

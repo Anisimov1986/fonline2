@@ -1,0 +1,59 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p bosside = 14 #
+3 1020 D _var p bosside = 15 D or D _var p bosside = 16 @
+2 2000 None 0 #
+0 2010 D _var p bosside = 14 R _var p bosside = 15 R _script dialog@r_ShowQuestMessage 1 9334 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Crate}
+{200}{}{You see: Crate}
+{210}{}{A crate filled with some military equipment. You will need to take a closer look at the markings to determine what's inside of it.}
+{1000}{}{Initial preferences}
+{1010}{}{First time planting explosives.}
+{1020}{}{already planted}
+{2000}{}{[The crate's description matches the one you were given at the briefing. You open it, and find a set of explosives with a radio transmitter. You can arm it now.]}
+{2010}{}{[Arm the explosives.] Okay, here it goes.@@[Arm the explosives.] Here goes nothing.@@[Arm the explosives.] That should do.@@[Arm the explosives.] All right, you're gonna burn.@@[Arm the explosives.] Burn motherfucker, burn...}
+{3000}{}{[The explosives are already armed.]@@[There is no point in arming the explosives again.]}
+
+[russ]
+{100}{}{Crate}
+{200}{}{You see: Crate}
+{210}{}{A crate filled with some military equipment. You will need to take a closer look at the markings to determine what's inside of it.}
+{1000}{}{Initial preferences}
+{1010}{}{First time planting explosives.}
+{1020}{}{already planted}
+{2000}{}{[The crate's description matches the one you've been at the briefing. This must be the right place to plant the explosives.]}
+{2010}{}{[Plant explosives.] Okay, here it goes.@@[Plant explosives.] Here goes nothing.@@[Plant explosives.] That should do.@@[Plant explosives.] All right, you're gonna burn.@@[Plant explosives.] Burn motherfucker, burn...}
+{3000}{}{[The explosives have already been planted.]@@[You don't need to plant explosives twice.]@@[There's no need to plant another set of explosives here.]@@The explosives are already set.}
+
+[pols]
+{100}{}{Crate}
+{200}{}{You see: Crate}
+{210}{}{A crate filled with some military equipment. You will need to take a closer look at the markings to determine what's inside of it.}
+{1000}{}{Initial preferences}
+{1010}{}{First time planting explosives.}
+{1020}{}{already planted}
+{2000}{}{[The crate's description matches the one you've been at the briefing. This must be the right place to plant the explosives.]}
+{2010}{}{[Plant explosives.] Okay, here it goes.@@[Plant explosives.] Here goes nothing.@@[Plant explosives.] That should do.@@[Plant explosives.] All right, you're gonna burn.@@[Plant explosives.] Burn motherfucker, burn...}
+{3000}{}{[The explosives have already been planted.]@@[You don't need to plant explosives twice.]@@[There's no need to plant another set of explosives here.]@@The explosives are already set.}
+
+[ptbr]
+{100}{}{Caixote}
+{200}{}{Você vê um caixote.}
+{210}{}{Um caixote com alguns equipamentos militares. Você precisa olhar mais de perto nas marcações para ver o que há dentro dele.}
+{1000}{}{Initial preferences}
+{1010}{}{First time planting explosives.}
+{1020}{}{already planted}
+{2000}{}{[A descrição do caixote bate com a descrição que lhe disseram nas instruções. Você o abre e encontra um conjunto de explosivos com um transmissor a rádio. Você pode armá-lo agora.]}
+{2010}{}{[Arma os explosivos.] Certo, aqui vai.@@[Arma os explosivos.] Aqui vai.@@[Arma os explosivos.] Isso deve dar conta.@@[Arma os explosivos.] Certo, você vai queimar.@@[Arma os explosivos.] Queima filho da puta, queima...}
+{3000}{}{[Os explosivos já estão armados.]@@[Não há sentido em armar os explosivos novamente.]}
+

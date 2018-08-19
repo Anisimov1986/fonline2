@@ -1,0 +1,53 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+6 2010 @
+6 3000 None 0 &
+
+[engl]
+{100}{}{Metzger's guard}
+{200}{}{You see: Metzger's guard.}
+{210}{}{This tough looking man has a slaver tattoo on his forehead.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Yeah?@@What's up?@@What do you want?@@What?}
+{2010}{}{So, how are you doing, tough guy?}
+{3000}{}{Leave. Now.@@Get out.@@Fuck off.@@Get lost.@@I'm busy.@@Get movin'.}
+
+[russ]
+{100}{}{Охранник Мецгера}
+{200}{}{Охранник Мецгера, выглядит серьезно.}
+{210}{}{Крутой парень с татуировкой на лбу.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Что?@@Что случилось?@@Чего ты хочешь?}
+{2010}{}{Как поживаешь, крутой парень?}
+{3000}{}{Отвали я на дежурстве. @ @У меня нет времени на болтовню.@@Мне не о чем с тобой говорить.@@Отвали, понял?}
+
+[pols]
+{100}{}{Strażnik Metzgera}
+{200}{}{Strażnik Metzgera, koleś wygląda na twardziela.}
+{210}{}{Twardziel z tatuażem łowcy niewolników na czole. Metzger znakuje ich jak jakieś bydło.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Tja?@@Co jest?@@Czego chcesz?}
+{2010}{}{Jak się masz, twardzielu?}
+{3000}{}{Nie przeszkadzaj. Jestem na służbie.@@Odpierdol się, bo dostaniesz ołowiową sałatkę.@@Nie mam ci nic do powiedzenia.@@Zostaw mnie już w spokoju.}
+
+[ptbr]
+{100}{}{Capanga do Magarefe}
+{200}{}{Você vê um dos capangas do Magarefe.}
+{210}{}{Esse cara durão tem uma tatuagem de escravizador na testa.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Hã?@@Diz aí?@@O quê que tu quer?@@O quê?}
+{2010}{}{Então, como tão as coisas?}
+{3000}{}{Sai daqui. Agora.@@Cai fora.@@Some daqui.@@Se manda.@@Tô ocupado.}

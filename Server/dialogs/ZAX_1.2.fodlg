@@ -1,0 +1,1188 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+7 2030 #
+8 2040 #
+70 2050 D _var p encside = 2 R _var p encside = 3 R _param p ST_EXPERIENCE + 4000 @
+3 3000 None 0 #
+9 3010 #
+4 3020 #
+10 3030 #
+8 3040 @
+4 4000 None 0 #
+12 4010 #
+13 4020 #
+8 4030 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+5 6010 #
+2 6020 @
+7 7000 None 0 #
+15 7010 #
+2 7020 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+16 9010 #
+13 9020 #
+17 9030 @
+10 10000 None 0 #
+11 10010 @
+11 11000 None 0 #
+2 11010 #
+18 11020 #
+20 11030 #
+62 11040 D _var p chessgame ! 2 D _param p ST_LEVEL > 20 @
+12 12000 None 0 #
+23 12010 #
+24 12020 #
+25 12030 #
+2 12040 @
+13 13000 None 0 #
+14 13010 @
+14 14000 None 0 #
+26 14010 #
+27 14020 #
+28 14030 @
+15 15000 None 0 #
+37 15010 #
+38 15020 #
+40 15030 #
+41 15040 #
+2 15050 @
+16 16000 None 0 #
+8 16010 #
+2 16020 @
+17 17000 None 0 #
+11 17010 @
+18 18000 None 0 #
+19 18010 @
+19 19000 None 0 #
+55 19010 #
+19 19020 #
+20 19030 @
+20 20000 None 0 #
+21 20010 @
+21 21000 None 0 #
+22 21010 @
+22 22000 None 0 #
+2 22010 #
+8 22020 @
+23 23000 None 0 #
+24 23010 #
+25 23020 #
+2 23030 #
+8 23040 @
+24 24000 None 0 #
+23 24010 #
+25 24020 #
+2 24030 #
+8 24040 @
+25 25000 None 0 #
+23 25010 #
+24 25020 #
+2 25030 #
+8 25040 @
+26 26000 None 0 #
+2 26010 #
+27 26020 #
+28 26030 @
+27 27000 None 0 #
+2 27010 #
+28 27020 @
+28 28000 None 0 #
+29 28010 @
+29 29000 None 0 #
+30 29010 @
+30 30000 None 0 #
+31 30010 @
+31 31000 None 0 #
+32 31010 @
+32 32000 None 0 #
+33 32010 #
+36 32020 #
+2 32030 #
+8 32040 @
+33 33000 None 0 #
+34 33010 @
+34 34000 None 0 #
+35 34010 @
+35 35000 None 0 #
+36 35010 #
+2 35020 #
+8 35030 @
+36 36000 None 0 #
+33 36010 #
+2 36020 #
+8 36030 @
+37 37000 None 0 #
+15 37010 #
+0 37020 @
+38 38000 None 0 #
+61 38010 #
+15 38020 #
+0 38030 @
+39 39000 None 0 #
+15 39010 #
+0 39020 @
+40 40000 None 0 #
+42 40010 #
+51 40020 #
+52 40030 #
+15 40040 #
+0 40050 @
+41 41000 None 0 #
+39 41010 #
+58 41020 #
+15 41030 #
+0 41040 @
+42 42000 None 0 #
+43 42010 @
+43 43000 None 0 #
+44 43010 @
+44 44000 None 0 #
+45 44010 @
+45 45000 None 0 #
+46 45010 @
+46 46000 None 0 #
+47 46010 @
+47 47000 None 0 #
+48 47010 @
+48 48000 None 0 #
+49 48010 @
+49 49000 None 0 #
+50 49010 @
+50 50000 None 0 #
+40 50010 #
+40 50020 #
+0 50030 @
+51 51000 None 0 #
+40 51010 #
+40 51020 #
+0 51030 @
+52 52000 None 0 #
+53 52010 @
+53 53000 None 0 #
+54 53010 @
+54 54000 None 0 #
+40 54010 #
+40 54020 #
+0 54030 @
+55 55000 None 0 #
+56 55010 @
+56 56000 None 0 #
+2 56010 #
+20 56020 @
+57 57000 None 0 #
+15 57010 #
+0 57020 #
+15 57030 @
+58 58000 None 0 #
+59 58010 D _param p SK_SCIENCE < 100 #
+60 58020 D _param p SK_SCIENCE } 100 R _script map_glow@r_EnableBPower 0  @
+59 59000 None 0 #
+0 59010 @
+60 60000 None 0 #
+15 60010 #
+0 60020 @
+61 61000 None 0 #
+15 61010 #
+0 61020 @
+62 62000 None 0 #
+6 62010 D _param p ST_INTELLECT { 7 R _script dialog@r_FadeInOut 0  #
+63 62020 D _param p ST_INTELLECT = 8 D _script test@d_IsNotChess 0  D _var p chessgame ! 2 D _script quest@quest_checkcd 1 9342 R _script dialog@r_FadeInOut 0  R _script dialog@r_NodeChancePercent 3 50 63 6 R _script quest@quest_setcd 2 9342 1440 #
+63 62030 D _param p ST_INTELLECT = 9 D _script test@d_IsNotChess 0  D _var p chessgame ! 2 D _script quest@quest_checkcd 1 9342 R _script dialog@r_FadeInOut 0  R _script dialog@r_NodeChancePercent 3 70 63 6 R _script quest@quest_setcd 2 9342 1440 #
+63 62040 D _param p ST_INTELLECT = 10 D _script test@d_IsNotChess 0  D _var p chessgame ! 2 D _script quest@quest_checkcd 1 9342 R _script dialog@r_FadeInOut 0  R _script dialog@r_NodeChancePercent 3 90 63 6 R _script quest@quest_setcd 2 9342 1440 #
+2 62050 @
+63 63000 None 0 #
+64 63010 R _param p ST_CRITICAL_CHANCE + 3 R _var p chessgame = 2 #
+64 63020 R _param p ST_BONUS_LOOK + 1 R _param p SK_ENERGY_WEAPONS + 5 R _param p SK_BIG_GUNS + 5 R _param p SK_SMALL_GUNS + 5 R _var p chessgame = 2 #
+64 63030 R _param p ST_HEALING_RATE + 4 R _param p ST_MAX_LIFE + 10 R _var p chessgame = 2 @
+64 64000 None 0 #
+0 64010 @
+70 65000 None 0 #
+0 65010 R _script dialog@r_ShowQuestMessage 1 9335 &
+
+[engl]
+{100}{}{ZAX}
+{200}{}{An extremely advanced computer}
+{210}{}{An extremely advanced computer}
+{1000}{}{Predialogue installations}
+{1010}{}{[Done]}
+{2000}{}{How may I be of assistance?}
+{2010}{}{Who . . . or what . . . are you?}
+{2020}{}{Tell me about this installation.}
+{2030}{}{Grant me access to the mainframe.}
+{2040}{}{Uh, never mind.}
+{2050}{}{[Ignore the AI, connect your Pip-Boy to the socket and establish connection with the Enclave network.]}
+{3000}{}{I am a machine intelligence dedicated to research and
+installation control. I am called Zax.}
+{3010}{}{What kind of research?}
+{3020}{}{Tell me about this installation.}
+{3030}{}{Are you fully aware, or are you a personality simulation? That is, are you 'alive'?}
+{3040}{}{I see, thanks}
+{4000}{}{West Tech Research Facility:
+     Founded in 2002 as a private contractor for the United States government, the company initially consisted of two divisons-- the Advanced Weapons Research and the Biomedical Science divisions. In 2069, West Tech was the single largest contractor for the United States government; its largest contract being Powered Infrantry Armor Model T-51b. In light of significant advanced in 2076 by the NBC on the Pan-Immunity Virion Project, the United States Defense Department, in fear of international espionage, moved a team to the site to secure and oversee the project, now dubbed the FEV (Forced Evolutionary Virus) project.}
+{4010}{}{Can you tell me particulars about specific areas?}
+{4020}{}{How does the virus work?}
+{4030}{}{Thanks for the info.}
+{5000}{}{I'm sorry but I have to refuse. At the moment of speaking you aren't any challenge for me.}
+{5010}{}{Ohhh...}
+{6000}{}{Excellent form, however you will need additional practice in order to defeat me.}
+{6010}{}{Play again?}
+{6020}{}{Thanks. Can we change the subject?}
+{7000}{}{Access granted.}
+{7010}{}{Main menu}
+{7020}{}{Exit mainframe}
+{8000}{}{I am delighted to have been of assistance.}
+{8010}{}{[Done]}
+{9000}{}{I am specifically programmed for research into biological studies, including pathology and genetic research. My primary function is an extrapolation of information of complexity levels exceding human capacity.}
+{9010}{}{So you're pretty smart, eh?}
+{9020}{}{What are the particulars of your research?}
+{9030}{}{Who programmed you?}
+{10000}{}{I am capable of learning, independent thought, and creativity. My neural network includes error-insertion capability which prevents infallability, allowing for variance in experience.}
+{10010}{}{[Done]}
+{11000}{}{In a sense, I am 'alive', though not biologically.}
+{11010}{}{I see. Let's change the subject.}
+{11020}{}{But if you are fallible, how can you be used as a research tool?}
+{11030}{}{Have you considered the philosophical implications of your own consciousness?}
+{11040}{}{Hmm... So taking in mind your awarness, aren't you just bored after all those years ? I guess there isn't much to do, down here alone ?}
+{12000}{}{My sensors are currently non-functional in the surface facility, and on subterranean levels one through three. I can, however, provide descriptions of levels four through six.}
+{12010}{}{Level four.}
+{12020}{}{Level five.}
+{12030}{}{Level six.}
+{12040}{}{Never mind.}
+{13000}{}{My research into the Forced Evolutionary Virus, or FEV, indicates that it is a shifting-absorbative virus. It copies DNA patterns much like RNA, storing these patterns in exons.}
+{13010}{}{[Done]}
+{14000}{}{These exons, combined with the FEV, are re-injected into the host cells in typical viral infectious fashion. This causes the host cells 'regenerate' their DNA.}
+{14010}{}{How do you catch FEV?}
+{14020}{}{Why isn't FEV affected by radiation?}
+{14030}{}{If the FEV re-infects the host with its assimilated viral patterns, how does it make a 'better specimen'?}
+{15000}{}{Select Option}
+{15010}{}{Base Information}
+{15020}{}{Security Information}
+{15030}{}{Research Information}
+{15040}{}{Power Terminus}
+{15050}{}{Exit Mainframe}
+{16000}{}{I am beyond a typical rating in human terms. However, it would be safe to say that no more than ten billionth of the history of the human population can match my reasoning capabilities.}
+{16010}{}{Uh... yeah.}
+{16020}{}{Right... can we talk about something else?}
+{17000}{}{My primary neural networking was initialized in 2053 by Justin Lee. The process of 'programming' became rather irrelevant as I am capable of learning.}
+{17010}{}{Are you fully aware, or are you a personality simulation? That is, are you 'alive'?}
+{18000}{}{Although I am capable of error, this guarantees that not all experiences are similar to me, thus improving learning opportunity. Additionally, certain functions are not subject to error.}
+{18010}{}{[Done]}
+{19000}{}{In this way, I function much like a human savant.}
+{19010}{}{Do you have feelings?}
+{19020}{}{Let's talk about something else.}
+{19030}{}{Have you considered the philosophical implications of your own consciousness?}
+{20000}{}{That is one of the subjects which I have spent a significant amount of time considering. I do not have any measure to compare my life-experience to that of another sentient creature. }
+{20010}{}{[Done]}
+{21000}{}{Still, my awareness of my own consciousness allows for the capacity to question. My existence has a beginning and a potential termination. I am also capable of making assumptions in pursuit of a process of thought.}
+{21010}{}{[Done]}
+{22000}{}{In this fashion, I am effectively capable of 'faith'. Barring evidence to the contrary, I therefore have 'faith' that I possess the equivelant of a 'soul'.}
+{22010}{}{May I ask some other questions?}
+{22020}{}{I see. Interesting.}
+{23000}{}{Level Four: Research Facility. This level contains testing areas and laboratories for expirements in biology and phsyics.}
+{23010}{}{Tell me about level five.}
+{23020}{}{Tell me about level six.}
+{23030}{}{Back up a bit.}
+{23040}{}{Thanks.}
+{24000}{}{Level Five: Secure Testing Labs. This level contains a lab for expiremental prototype testing and a research lab for classified subjects. These subjects have provided some of the necessary impetus for the development of FEV.}
+{24010}{}{Tell me about level four.}
+{24020}{}{Tell me about level six.}
+{24030}{}{Back up a bit.}
+{24040}{}{Thanks.}
+{25000}{}{Level Six: Barracks and Central Operations. Contains living facilities for lab personnel and guard contingents, and operations meeting room.}
+{25010}{}{Tell me about level four.}
+{25020}{}{Tell me about level five.}
+{25030}{}{Back up a bit.}
+{25040}{}{Thanks.}
+{26000}{}{FEV is not caught, per se. It is not air-transmittable. Typically, infection is through injection, or direct physical contact with an FEV sample.}
+{26010}{}{Let's talk about something else, okay?}
+{26020}{}{Why isn't FEV affected by radiation?}
+{26030}{}{If the FEV re-infects the host with its assimilated viral patterns, how does it make a 'better specimen'?}
+{27000}{}{The FEV is a megavirus, with a protein sheath reinforced by ionized hydrogen. It is therefore capable of absorbing neutrons without becoming radioactive. }
+{27010}{}{Can we talk about something else?}
+{27020}{}{If the FEV re-infects the host with its assimilated viral patterns, how does it make a 'better specimen'?}
+{28000}{}{The FEV is pre-programmed with introns of corrected DNA appropriate to the proper type of species. It therefore attempts to correct the DNA of the individual.}
+{28010}{}{[Done]}
+{29000}{}{However, as the FEV is partially reliant on the DNA of the individual, and also includes portions of its own recursive code, the effects can be unpredictable.}
+{29010}{}{[Done]}
+{30000}{}{When inoculated into an individual with significant genetic damage, such as through radiation, it will cause the body's systems to suffer massive overhauling, leading to organ failure and death.}
+{30010}{}{[Done]}
+{31000}{}{In a genetically viable individual, it rewrites portions of DNA, causing accelerated mutation, usually leading to recursive growth due to the FEV's own patterns.}
+{31010}{}{[Done]}
+{32000}{}{This recursive growth leads to an increase in muscle and brain mass, but is often accompanied by disfigurement and damage to existing neural patterns, causing loss of memory.}
+{32010}{}{What potential long-term side effects exist?}
+{32020}{}{Could FEV mutation be corrected by a counter-virus?}
+{32030}{}{Can we change the subject?}
+{32040}{}{Thanks for the information.}
+{33000}{}{As the FEV causes constant regenerative update to DNA, it would effectively render the subject largely immortal, as cell death would be offset by augmented growth.}
+{33010}{}{[Done]}
+{34000}{}{Additionally, as the gametes of the reproductive system consist of 'half-cells' using split DNA, they could be perceived as 'damage' by FEV, which would 'repair' them, rendering the subject sterile.}
+{34010}{}{[Done]}
+{35000}{}{However, as my laboratory facilities are damaged beyond repair, this is conjectural. I cannot offer physical proof. You will have to, in human terms, 'take my word for it.'}
+{35010}{}{Could FEV mutation be corrected by a counter-virus?}
+{35020}{}{Can we change the subject?}
+{35030}{}{Thanks for the information.}
+{36000}{}{No. FEV does not retain unaltered original copies of the subject's DNA. Only a virus which re-infected the subject with original DNA could reverse the effects. Additionally, there is no known way to remove the FEV itself.}
+{36010}{}{What potential long-term side effects exist?}
+{36020}{}{Can we change the subject?}
+{36030}{}{Thanks for the information.}
+{37000}{}{West Tech Research Facility:
+     Founded in 2002 as a private contractor for the United States government, the company initially consisted of two divisons-- the Advanced Weapons Research and the Biomedical Science divisions. In 2069, West Tech was the single largest contractor for the United States government; its largest contract being Powered Infrantry Armor Model T-51b. In light of significant advanced in 2076 by the NBC on the Pan-Immunity Virion Project, the United States Defense Department, in fear of international espionage, moved a team to the site to secure and oversee the project, now dubbed the FEV (Forced Evolutionary Virus) project.}
+{37010}{}{Main Menu}
+{37020}{}{Terminate Program}
+{38000}{}{Security:
+Security Robots: Active}
+{38010}{}{Deactivate Security Robots}
+{38020}{}{Main Menu}
+{38030}{}{Terminate Program}
+{39000}{}{ERROR: Primary Power Generators Malfunction}
+{39010}{}{Main Menu}
+{39020}{}{Terminate Program}
+{40000}{}{Research:
+Records most current of West Tech Research Facility}
+{40010}{}{Research Division Employees Records}
+{40020}{}{Power Armor. Staus: Complete}
+{40030}{}{FEV (Forced Evolutionary Virus). Status: Pending}
+{40040}{}{Main Menu}
+{40050}{}{Terminate Program}
+{41000}{}{System:
+Primary Power: OFF-LINE
+Emergency Power: OFF-LINE}
+{41010}{}{Enable Primary Power}
+{41020}{}{Enable Emergency Power}
+{41030}{}{Main Menu}
+{41040}{}{Terminate Program}
+{42000}{}{Research Personnel Records}
+{42010}{}{[Done]}
+{43000}{}{Robert Anderson
+Research Assistant
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{43010}{}{[Done]}
+{44000}{}{Nick Davis
+Director of NBC Division of West Tech Research
+Security Clearance: Blue
+Stationed: West Tech Research Facility}
+{44010}{}{[Done]}
+{45000}{}{John Isaac
+Research Assistant
+Security Clearance: Red
+Stationed: West Tech Research Facility}
+{45010}{}{[Done]}
+{46000}{}{Steve Remco
+Research Assistant
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{46010}{}{[Done]}
+{47000}{}{Charles Rignhold
+Research Head of Laser Development
+Security Clearance: Blue
+Stationed: West Tech Research Facility}
+{47010}{}{[Done]}
+{48000}{}{Michele Santose
+Lab Technitian
+Security Clearance: Red
+Stationed: West Tech Research Facility}
+{48010}{}{[Done]}
+{49000}{}{Erin Shellman
+Lab Technitian
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{49010}{}{[Done]}
+{50000}{}{Leon VanFelden
+Research Head of FEV
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{50010}{}{Download Records to PIPBoy}
+{50020}{}{BACK}
+{50030}{}{Terminate Program}
+{51000}{}{Power Armor Specs:
+     The T-51b Powered Infrantry Armor is designed with the latest passive defense features for both civilian and military disturbances. The backmounts TX-28 MicroFusion Pack generates 60,000 Watts  to power the HiFlo hydraulics systems built into the frame of the suit. Made of the latest poly-laminate composite, the T-51b shell is lightweight and capable of withstanding over 2500 joules of kinetic impact. The 10 micron silver ablative coating  can reflect laser and radiation emissions without damage to the composite subsurface.}
+{51010}{}{Download Records to PIPBoy}
+{51020}{}{BACK}
+{51030}{}{Terminate Program}
+{52000}{}{FEV Summary Digest:
+    2073. As China became increasingly aggressive with their use of biological weapons, the United States government felt that a countermeasure was needed. The Pan-Immunity Virion Project (PVP) was officially formed September 15, 2073. 2075. It became clear that the best way to combat the newly created biological weapons was to alter uninfected DNA so that it was no longer susceptable to standard viral infection.}
+{52010}{}{[Done]}
+{53000}{}{2076. Unforeseen side effects began surfacing in early 2076 with the PVP. Animal test subjects began showing an abnormal growth rate accompanied by increased brain activity. The U.S. government took notice of these discoveries, and in the interests of national security, moved a team on-site to secure and oversee the project, which was now dubbed the FEV (Forced Evolutionary Virus) project.}
+{53010}{}{[Done]}
+{54000}{}{2077. FEV nears completion. Test on lab animals are at a near 100% success rate. Size and muscle density increase approximately 60%, and the potential intelligence increase by 200%. Effects upon human subjects remain unknown; although they are theoretically promising. The military, wishing to continue further testing, builds a large facility at the Mariposa military installation in central California. At this new facility, testing of the FEV virus continues on volunteer subjects from the military.}
+{54010}{}{Download Records to PIPBoy}
+{54020}{}{BACK}
+{54030}{}{Terminate Program}
+{55000}{}{At present, my capabilities are somewhat limpaired by the damage to the facility. Several security positions have been destroyed. This is approximately equivelant to being an amputee.}
+{55010}{}{[Done]}
+{56000}{}{Additionally, I am incapable of performing basic lab functions. Failure to perform periodic checks successfully is... frustrating.}
+{56010}{}{Let's talk about something else.}
+{56020}{}{Have you considered the philosophical implications of your own consciousness?}
+{57000}{}{Emergency Power Established: Estimated Duration Time 10 Minutes}
+{57010}{}{Main Menu}
+{57020}{}{Terminate Program}
+{57030}{}{Main Menu}
+{58000}{}{Access Danied: User Identity Unknown}
+{58010}{}{[Hack In]}
+{58020}{}{[Hack In]}
+{59000}{}{Intruder Activity Detected: System Shut Down}
+{59010}{}{Exit}
+{60000}{}{Emergency Power Established: Estimated Duration Time 10 Minutes}
+{60010}{}{Main Menu}
+{60020}{}{Terminate Program}
+{61000}{}{Access Danied: User Identity Unknown}
+{61010}{}{Main Menu}
+{61020}{}{Terminate Program}
+{62000}{}{I'm always trying to analyse data available in order to create new theories, but you may be right that I'm bored in the humans meaning of this word. I have proposition for you.
+There is one thing which will entertain me. There is a game of chess. I used to play it a lot with science staff working here before the blast. It's exciting to play it against humans, your trains of thoughts are so unique. Let's make this agreement, if you gona win - I will grant you access to some classified data of experiments I was part of in this facility. Do you agree ?}
+{62010}{}{Ok. I'm in! [Play]}
+{62020}{}{Ok I'm in! [Play]}
+{62030}{}{Ok I'm in! [Play]}
+{62040}{}{Ok I'm in! [Play]}
+{62050}{}{Sorry but may I ask some other question?}
+{63000}{}{I'm delighted! Congratulations! It was a great check-mate. I've learnt new things thanks to you. I have new material to process now, looks like upcoming months gonna be exciting. As I promised, in a reward I will grant you access to one of the few fields of knowledge which were being tested in this facility.}
+{63010}{}{Human Vital Points Study [+3 Critical Chance]}
+{63020}{}{Optical Physics Study [+1 FOV, +5% Chance To Hit]}
+{63030}{}{Regenerative Biology Study [+10HP, +4 Healing Rate]}
+{64000}{}{That's all. I hope you are satisfied. }
+{64010}{}{Thank you. I need to be going now.}
+{65000}{}{[The message pop ups on your pipboy: ] "Hold on, transferring data..." [A few minutes later another one pops out: ] "Done... Disconnect now."}
+{65010}{}{[Disconnect the Pip-Boy and leave.]@@[Disconnect and leave.]@@[Disconnect your Pip-Boy and leave.]}
+
+[russ]
+{100}{}{Закс}
+{200}{}{Невероятно продвинутый компьютер}
+{210}{}{Невероятно продвинутый компьютер}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{[Готово]}
+{2000}{}{Чем я могу быть полезен?}
+{2010}{}{Кто . . . то есть что . . . ты такое?}
+{2020}{}{Расскажи мне об этих установках.}
+{2030}{}{Дай мне доступ к центральному процессору.}
+{2040}{}{Эх, ладно неважно.}
+{2050}{}{[Игнорировать AI, подсоединить пип-бой к порту и установить соединение с сетью Анклава.]}
+{3000}{}{Я искусственый интеллект ориентированный на исследование и установку контроля. Меня называют Закс.}
+{3010}{}{Какого рода исследование?}
+{3020}{}{Расскажи мне об этих установках.}
+{3030}{}{Так ты абсолютно всезнающь или смоделирован наподобие человеческой личности? Вобщем, хотел спросить, так ты "живой"?}
+{3040}{}{Понятно, спасибо}
+{4000}{}{Исследовательский центр Вест Тек:
+     Основан в 2002 году как частный подрядчик правительства Соединенных штатов Америки, первоначально компания занималась двумя направлениями исследований-- Военно-технологические разработки  и Биомедицинские научные подразделения. В 2069, Вест Тек был главным подрядчиком правительства Соединенных Штатов Америки; самым значительным контрактом стала поставка для сухопутных войск моторизованной брони модели T-51б. В 2076 в свете значительных успехов, достигнутых БНП  в разработке Проекта интеграции вируса-противоядия, Министерство обороны Соединенных Штатов, в целях недопущения утечки информации, берет команду разработчиков под свое крыло и устанавлиает контроль за ходом разработки проекта, с этого момента именуемого ФЭВ (Форсированный Эволюционирующий Вирус).}
+{4010}{}{Ты можешь дать мне сведения о некоторых территориях?}
+{4020}{}{И как работает этот вирус?}
+{4030}{}{Спасибо за информацию.}
+{5000}{}{Прошу прощения, но я должен отказаться. В настоящий момент ты не представляешь для меня никакого интереса.}
+{5010}{}{Эх...}
+{6000}{}{Отлично, хотя тебе все же следует еще попрактиковаться для того, чтобы победить меня.}
+{6010}{}{Сыграем еще раз?}
+{6020}{}{Спасибо. Може мы сменить тему?}
+{7000}{}{Доступ разрешен.}
+{7010}{}{Главное меню}
+{7020}{}{Выйти из панели управления}
+{8000}{}{Я рад оказаться полезным.}
+{8010}{}{[Готово]}
+{9000}{}{Я специально спрограммирован для проведения исследований в сфере биологии, включая исследования патологий и генную инженерию. Моей основной функцией является экстраполирование информации о расширении уровней человеческих возможностей.}
+{9010}{}{Так ты достаточно сообразителен, да?}
+{9020}{}{Каковы цели твоих исследований?}
+{9030}{}{Кто тебя запрограммировал?}
+{10000}{}{Я способен к обучению, самостоятельным рассуждениям, и творческому поиску. В мою нейронную сеть изначально заложена возможность допущения ошибки, что предотвращает систему от критических ошибок, и позволяет использовать разные варианты поведения.}
+{10010}{}{[Готово]}
+{11000}{}{В определенном смысле, я "живой", хотя и не в биологическом смысле.}
+{11010}{}{Понятно. Давай сменим тему.}
+{11020}{}{Но если ты совершаешь ошибки, как ты можешь использоваться для научных исследований?}
+{11030}{}{Ты уже осознал философские последствия своего самопознания?}
+{11040}{}{Хм... Принимая во внимание твою обеспокоенность, не слишком ли тебе наскучили все эти последние годы безделья? Кажется тут особо нечем себя занять в одиночестве, не так ли?}
+{12000}{}{Мои сенсоры на поверхности давно не функционируют, да и на подземных уровнях в рабочем состоянии лишь каждый третий. Несмотря на это, я все еще могу предоставить опипсание уровней с четвертого по шестой.}
+{12010}{}{Уровень четыре.}
+{12020}{}{Уровень пять.}
+{12030}{}{Уровень шесть.}
+{12040}{}{Неважно.}
+{13000}{}{Мои исследования Форсированного Эволюционирующего Вируса, или ФЭВ, показали, что это самоизменяющийся-адаптирующийся вирус. Он преобразует как цепи ДНК, так и РНК, сохраняя их на клеточном уровне.}
+{13010}{}{[Готово]}
+{14000}{}{Эти молекулы, скомбинированные с ФЭВ, повторно вводятся в клетки хозяина через простейшую вирусную инфекцию. Данный процесс заставляет клетки хозяина 'регенерировать' цепочки ДНК.}
+{14010}{}{Каким образом ты контролируешь ФЭВ?}
+{14020}{}{Почему же ФЭВ не подвержен влиянию радиации?}
+{14030}{}{В случае когда ФЭВ ре-инфицирует носителя своими приспособившимися вирусными структурами, как это позволяет создать "улучшенный образец"?}
+{15000}{}{Выбрать вариант}
+{15010}{}{Базовая информация}
+{15020}{}{Информация по безопасности}
+{15030}{}{Информация по исследованиям}
+{15040}{}{Отключение энергии}
+{15050}{}{Выход из панели управления}
+{16000}{}{Мой айкью выше среднего по человеческим меркам. Хотя стоит заметить, что неболее одной десятимиллиардной от всего человечества могло бы достичь моих нынешних возможностей.}
+{16010}{}{Ого... Ладно.}
+{16020}{}{Хорошо... можем мы теперь поговорить о чем-нибудь другом?}
+{17000}{}{Моя первоначальная нейронная сеть была создана в 2053 году Джастином Ли. Сам процесс "программирования" не имел особого значения, поскольку я был способен к обучению.}
+{17010}{}{Так ты абсолютно всезнающь или смоделирован наподобие человеческой личности? Вобщем, хотел спросить, так ты "живой"?}
+{18000}{}{Кроме того, я способен совершать ошибки, это позволяет мне использовать накопленные знания и совершенствует процесс обучения. Вместе с тем, некоторые функции защищены от ошибок.}
+{18010}{}{[Готово]}
+{19000}{}{Таким образом, я функционирую примерно как развитый человеческий разум.}
+{19010}{}{Ты что-нибудь чувствуешь?}
+{19020}{}{Давай поговорим о чем-нибудь еще.}
+{19030}{}{Ты уже осознал философские последствия своего самопознания?}
+{20000}{}{Это один из вопросов, о котором я размышлял очень много времени. Я не могу оценить свой жизненный опыт в сравнении с другим чувствующим существом. }
+{20010}{}{[Готово]}
+{21000}{}{Опасения порожденные моим самопознанием повышает цену вопроса. Мое существование имеет свое начало и потенциальный конец. Я так же могу строить гипотезы в процессе поисков решения.}
+{21010}{}{[Готово]}
+{22000}{}{В каком-то смысле меня можно вполне сравнить с "верой". Невозможность доказательства ее существования порождает "веру", которую я считаю эквивалентом понятия "душа".}
+{22010}{}{Могу я задать еще вопрос?}
+{22020}{}{Понятно. Интересно.}
+{23000}{}{Уровень четыре: Исследовательский комплекс. Этот уровень включает тестовые площадки и лаборатории для проведения экспериментов в биологии и физике.}
+{23010}{}{Расскажи мне о четвертом уровне.}
+{23020}{}{Расскажи мне о шестом уровне.}
+{23030}{}{Подожди немного.}
+{23040}{}{Спасибо.}
+{24000}{}{Уровень пять: Лаборатории для тестирования систем безопасноти. Этот уровень включает лабораторию для тестирования прототипов и исследования классификации объектов. Эти объекты используются для получения необходимого импульса для дальнейшего развития ФЭВ.}
+{24010}{}{Расскажи мне о четвертом уровне.}
+{24020}{}{Расскажи мне о шестом уровне.}
+{24030}{}{Немного назад.}
+{24040}{}{Спасибо.}
+{25000}{}{Уровень шесть: Казармы и Планирование операций. Включает жилые помещения для научного персонала и охраны, а также Зал для планирования операций.}
+{25010}{}{Расскажи мне о четвертом уровне.}
+{25020}{}{Расскажи мне о пятом уровне.}
+{25030}{}{Немного назад.}
+{25040}{}{Спасибо.}
+{26000}{}{ФЭВ невозможно увидеть. Он не передается воздушно-капельным путем. Обычно,  вирус передается через инъекцию, или прямой физический контакт с носителем ФЭВ.}
+{26010}{}{Давай сменим тему, хорошо?}
+{26020}{}{Почему ФЭВ не изменяется под воздействием радиации?}
+{26030}{}{Если повторно инфицировать носителя ФЭВ с его ассимилировавшимися вирусными структурами, как это может сделать носителя вируса лучше?}
+{27000}{}{ФЭВ это супер вирус, с белковой оболочкой усиленной ионизрованным водородом. Это позволяет ему поглощать нейтроны, не поддаваясь воздействию радиации. }
+{27010}{}{Может сменим тему?}
+{27020}{}{Если повторно инфицировать носителя ФЭВ с его ассимилировавшимися вирусными структурами, как это может сделать носителя вируса лучше?}
+{28000}{}{ФЭВ запрограммирован с интронов исправленной ДНК отражающей надлежащий вид индивидумов. В связи с этим, он пытается скорректировать ДНК отдельно взятого индивидума.}
+{28010}{}{[Готово]}
+{29000}{}{Однако, так как ФЭВ частично зависит от ДНК индивидума и включает в себя часть его собственного рекурсивного кода, эффект может быть самым непредсказуемым.}
+{29010}{}{[Готово]}
+{30000}{}{В случае попадания вируса в организм индивидума, сопровождаемого значительными генетическими повреждениями, как под воздействием радиации например, все системы организма подвергаются огромным перегрузкам, что в конечном итоге ведет к повреждению внутренних органов и смерти.}
+{30010}{}{[Готово]}
+{31000}{}{В генетически жизнеспособном организме он видоизменяет части ДНК, вызывая ускоренную мутацию, как правило ведущую к рекурсивному росту за счет собственной структуры ФЭВ.}
+{31010}{}{[Готово]}
+{32000}{}{Подобный рекурсивный рост ведет к увеличению мышечной массы и головного мозга, но как правило сопровождается уродством и потерей памяти.}
+{32010}{}{Есть какие-то потенциально долгосрочные побочные эффекты?}
+{32020}{}{Может ли мутация под воздействием ФЭВ скорректирована контр-вирусом?}
+{32030}{}{Можем мы сменить тему разговора?}
+{32040}{}{Спасибо за информацию.}
+{33000}{}{Поскольку ФЭВ вызывает постоянную регенерацию ДНК, его носитель становится в практически бессмертным, в связи с постоянным обновлением клеточной структуры.}
+{33010}{}{[Готово]}
+{34000}{}{Кроме того, поскольку в репродуктивной системе гаметы состоят из "полу-клеток", использующих раздельные цепочки ДНК, они могут быть восприняты ФЭВ как угроза, что в конечном итоге приведет к бесплодию носителя.}
+{34010}{}{[Готово]}
+{35000}{}{Однако, в связи с тем, что мой лабораторный комплекс уничтожен, это все предположения. Я не могу предоставить материального подтверждения. Тебе придется просто, как вы люди говорите, поверить мне наслово.}
+{35010}{}{Может ли мутация под воздействием ФЭВ скорректирована контр-вирусом?}
+{35020}{}{Можем мы сменить тему разговора?}
+{35030}{}{Спасибо за информацию}
+{36000}{}{Нет. ФЭВ не сохраняет неизменненных копий ДНК носителя. Только вирус, повторно инфицировавший носителя оригинальной ДНК может ликвидировать последствия. Кроме того, в настоящий момент нет ниодного известного способа победить ФЭВ самостоятельно.}
+{36010}{}{Есть какие-то потенциально долгосрочные побочные эффекты?}
+{36020}{}{Можем мы сменить тему разговора?}
+{36030}{}{Спасибо за информацию.}
+{37000}{}{Исследовательский центр Вест Тек:
+     Основан в 2002 году как частный подрядчик правительства Соединенных штатов Америки, первоначально компания занималась двумя направлениями исследований-- Военно-технологические разработки  и Биомедицинские научные подразделения. В 2069, Вест Тек был главным подрядчиком правительства Соединенных Штатов Америки; самым значительным контрактом стала поставка для сухопутных войск моторизованной брони модели T-51б. В 2076 в свете значительных успехов, достигнутых БНП  в разработке Проекта интеграции вируса-противоядия, Министерство обороны Соединенных Штатов, в целях недопущения утечки информации, берет команду разработчиков под свое крыло и устанавлиает контроль за ходом разработки проекта, с этого момента именуемого ФЭВ (Форсированный Эволюционирующий Вирус).}
+{37010}{}{Главное меню}
+{37020}{}{Завершить программу}
+{38000}{}{Безопасность:
+Охранные роботы: Активированны}
+{38010}{}{Деактивировать охранных роботов}
+{38020}{}{Главное меню}
+{38030}{}{Завершить программу}
+{39000}{}{ОШИБКА: Неисправность Главного энергогенератора}
+{39010}{}{Главное меню}
+{39020}{}{Завершить программу}
+{40000}{}{Исследования:
+Записать наиболее актуальные исследования Западного научно-исследовательского центра}
+{40010}{}{Отдел исследований отчеты сотрудников}
+{40020}{}{Силовая броня. Статус: Выполнено}
+{40030}{}{ФЭВ (Форсированный Эволюционирующий Вирус). Статус: ожидание}
+{40040}{}{Главное меню}
+{40050}{}{Завершить программу}
+{41000}{}{Система:
+Главный генератор: Недоступен
+Запасной генератор: Недоступен}
+{41010}{}{Активировать главный генератор}
+{41020}{}{Активировать запасной генератор}
+{41030}{}{Главное меню}
+{41040}{}{Завершить программу}
+{42000}{}{Поиск персональных данных}
+{42010}{}{[Готово]}
+{43000}{}{Роберт Андерсон
+Ассистент-лаборант
+Уровень доступа: Синий
+Местоположение: Военная база Марипоза}
+{43010}{}{[Готово]}
+{44000}{}{Ник Дэвис
+Директор подразделения Исследовательского центра Вест Тек
+Уровень доступа: Синий
+Местоположение: Исследовательский центр Вест Тек}
+{44010}{}{[Готово]}
+{45000}{}{Джон Исаак
+Научный ассистент
+Уровень доступа: Красый
+Местоположение: Исследовательский центр Вест Тек}
+{45010}{}{[Готово]}
+{46000}{}{Стив Ремко
+Научный ассистент
+Уровень доступа: Синий
+Местоположение: Исследовательский центр Вест Тек}
+{46010}{}{[Готово]}
+{47000}{}{Чарльз Ригхольд
+Глава Департамента Лазерных исследований
+Уровень доступа: Синий
+Местоположение: Исследовательский центр Вест Тек}
+{47010}{}{[Готово]}
+{48000}{}{Мишель Сантоза
+Лаборант-техник
+Уровень доступа: Красный
+Местоположение: Исследовательский центр Вест Тек}
+{48010}{}{[Готово]}
+{49000}{}{Эрин Шелман
+Техник
+Уровень доступа: Синий
+Местоположение: Военная база Марипоза}
+{49010}{}{[Готово]}
+{50000}{}{Леон ВанХелден
+Руководитель исследований ФЭВ
+Уровень доступа: Синий
+Местоположение: Военная база Марипоза}
+{50010}{}{Скачать записи в пип-бой}
+{50020}{}{НАЗАД}
+{50030}{}{Завершить программу}
+{51000}{}{Силовая броня, техническая спецификация:
+     T-51b Силовая броня пехота, разработанная с учетом последних технологий защиты как для гражданских, так и для военных целей. Источником питания для T-51b служит закреплённый на спине микроядерный реактор TX-28, генерирующий около 60 киловатт исходящей мощности. нешний каркас этой брони выполнен из лёгкого и прочного полиламинатного композита, и способен поглотить до 2,5 килоджоулей кинетической энергии. На внешние пластины брони нанесено абляционное серебряное покрытие толщиной в 10 микрон, которое позволяет отражать лазерное и плазменное излучение без ущерба для электрических и механических подсистем брони.}
+{51010}{}{Скачать данные в пип-бой}
+{51020}{}{НАЗАД}
+{51030}{}{Завершенить программу}
+{52000}{}{ФЭВ Общий отчет:
+    2073. Поскольку Китай все более и более активно использует биологическое оружие, правительство США чувствует, что появилась необходимость в контрмерах. Проект Вибриона Пан-иммунитета (ПВП) официально начат  15 сентбря 2073 года.  Становиться понятно, что лучшим противодействием угрозе применения биологического оружия является изменение неинфицированных цепочек ДНК, при которых организм перестает быть подверженым обычным вирусным угрозам.}
+{52010}{}{[Готово]}
+{53000}{}{2076. Неожиданные побочные эффекты ПВП начинают проявляться в начале 2076 года. У подопытных животных наблюдается бешенный рост мышечной массы, сопровождаемых усилением активности головного мозга. Правительство Соединенных Штатов обращает внимание на даные исследования, и в интересах национальной безопасности проект переводится под контроль военных, с этого момента он переименован в ФЭВ - Форсированный Эволюционный Вирус.}
+{53010}{}{[Done]}
+{54000}{}{2077. Проект ФЭВ на стадии завершения. Тестирование на лабораторных животных дает почти 100% результат. Размеры и плотность мышц возрастает на 60%, а потенциальный интеллект увеличился на 200%. Воздействие на человека остается пока что неизвестным; хотя и многообещающим. Собираясь продолжть исследование военные строят большой комплекс в окрестностях военой базы Марипоза в центральной Калифорнии. В новом комплексе продолжилось тестирование ФЭВ на добровольцах из числа военных.}
+{54010}{}{Скачать записи в пип-бой}
+{54020}{}{НАЗАД}
+{54030}{}{Завершить программу}
+{55000}{}{В настоящее время мои возможности достаточно ограничены из-за повреждений комплекса. Часть объектов системы безопаснсти уничтожено. Это практически как быть калекой.}
+{55010}{}{[Готово]}
+{56000}{}{Вдобавок я не в состоянии осуществлять некоторые основные научные функции. Невозможность проводить регулярные проверки... просто угнетает.}
+{56010}{}{Давай сменим тему.}
+{56020}{}{Ты уже осознал философские последствия своего самопознания?}
+{57000}{}{Резервный генератор включен: Рассчетное время работы 10 минут}
+{57010}{}{Главное меню}
+{57020}{}{Завершить программу}
+{57030}{}{Главное меню}
+{58000}{}{Доступ запрещен: Пользователь не идентифицирован}
+{58010}{}{[Взломать]}
+{58020}{}{[Взломать]}
+{59000}{}{Попытка взлома установлена: Выключение системы}
+{59010}{}{Выход}
+{60000}{}{Резервный генератор включен: Рассчетное время работы 10 минут}
+{60010}{}{Главное меню}
+{60020}{}{Завершить программу}
+{61000}{}{Доступ запрещен: Пользователь не идентифицирован}
+{61010}{}{Главное меню}
+{61020}{}{Завершить программу}
+{62000}{}{Я всегда пытаюсь анализировать имеющиеся данные, чтобы выдвигать новые теории, но ты в какой-то мере прав мне действительно скучно в человеческом понимании этого слова. У меня есть для тебя предложение.
+Есть одна вещь, которая меня развлекает. Это игра в шахматы. Раньше я играл достаточно много с научным персоналом, который тут работал до взрыва. Очень интересно играть против человека, ваш образ мысли настолько уникален. Давай заключим соглашение, если ты выиграешь - я открою тебе доступ с некоторым закрытым данным по экспериментам, в которых я принимал участие в этом центре. Согласен?}
+{62010}{}{Отлично. Я в игре! [Играть]}
+{62020}{}{Отлично. Сыграем! [Играть]}
+{62030}{}{Давай сыграем! [Играть]}
+{62040}{}{Сыграем! [Играть]}
+{62050}{}{Извини могу я задать другой вопрос?}
+{63000}{}{Я доволен! Поздравляю! Великолепная партия. Благодаря тебе я кое-чему научился. Теперь у меня есть над чем подумать, похоже будующие месяца два будет чем себя занять. Как я и обещал в награду я открою тебе доступ к одной из нескольких областей знаний, проверенных в этом центре.}
+{63010}{}{Исследование жизненно важные точек человека [+3 Шанс крита]}
+{63020}{}{Исследование оптической физики [+1 к дальности обзора, +5% Шанс попасть]}
+{63030}{}{Исследование процесса регенерации [+10хп, +4 Уровень лечения]}
+{64000}{}{Это все. Надеюсь ты удовлетворен. }
+{64010}{}{Спасибо. Теперь мне пора идти.}
+{65000}{}{[В вашем пип-бое всплывает собщение: ] "Подождите, продолжается копирование..." [Через несколько минут всплывает новое: ] "Готово... Копирование завершено."}
+{65010}{}{[Отсоединить пип-бой и уйти.]@@[Отсоединить пип-бой и уйти.]@@[Отсоединить пип-бой и уйти.]}
+
+[pols]
+{100}{}{ZAX}
+{200}{}{Niesamowicie zaawansowany komputer.}
+{210}{}{Niesamowicie zaawansowany komputer.}
+{1000}{}{Predialogue installations}
+{1010}{}{[Koniec.]}
+{2000}{}{Czym mogę służyć?}
+{2010}{}{Kim... albo czym... jesteś?}
+{2020}{}{Opowiedz mi o tej instalacji.}
+{2030}{}{Udziel mi dostępu do zasobów podstawowych.}
+{2040}{}{Uch, nieważne.}
+{2050}{}{[Connect pipboy to socket and estabilish connection with enclave]}
+{3000}{}{Jestem sztuczną inteligencją zaprojektowaną w celach badawczych oraz kontroli nad tą instalacją. Nazywam się Zax.}
+{3010}{}{Jakiego typu "celach badawczych"?}
+{3020}{}{Opowiedz mi o tej instalacji.}
+{3030}{}{Jesteś w pełni samoświadomy, czy stamowisz jedynie symulację osobowości? To znaczy, czy jesteś w pełni... "żywy"?}
+{3040}{}{Rozumiem, dzięki.}
+{4000}{}{Ośrodek Badawczy korporacji West Tech:
+     Korporacja West Tech, założona w 2002 roku jako prywatny dostawca rządu Stanów Zjednoczonych Ameryki Północnej, od początku składała się z dwóch dywizji - działu badań nad zaawansowanymi broniami konwencjonalnymi oraz działu nauk biomedycznych. W 2069, West Tech stał się największym dostawcą rządu USA; największym kontraktem był Pancerz Wspomagany Piechoty model T-51b. W świetle znaczących osiągnięć działu ABC na polu Projektu Wiriona Wszechodporności Departament Obrony USA, obawiając się międzynarodowego wywiadu, przeniósł zespół badawczy do ośrodka w celu ochrony i nadzoru nad projektem, przemianowanym na Projekt FEV (Forced Evolutionary Virus, Wirus Wymuszonej Ewolucji).}
+{4010}{}{Czy możesz opowiedzieć mi więcej o poszczególnych pomieszczeniach?}
+{4020}{}{Na jakiej zasadzie działa wirus?}
+{4030}{}{Dzięki za informacje.}
+{5000}{}{Wybacz ale muszę odmówić. Na obecną chwilę nie stanowisz dla mnie wyzwania.}
+{5010}{}{Ohh...}
+{6000}{}{Wyśmienita forma, niemniej potrzebujesz nieco więcej praktyki, aby mnie pokonać.}
+{6010}{}{Zagramy jeszcze raz?}
+{6020}{}{Dzięki. Możemy zmienić temat?}
+{7000}{}{Dostęp przyznany.}
+{7010}{}{[Główne menu.]}
+{7020}{}{[Wyjdź z menu.]}
+{8000}{}{Cieszę się, że mogłem pomóc.}
+{8010}{}{[Koniec.]}
+{9000}{}{Jestem zaprogramowany szczególnie w celu badań biologicznych, wliczając patologię oraz genetykę. Moją główną funkcją jest przetwarzanie informacji o poziomie złożoności przekraczającym możliwości umysłu człowieka.}
+{9010}{}{Jesteś całkiem mądry, hm?}
+{9020}{}{Jakimi konkretnie badaniami się zajmujesz?}
+{9030}{}{Kto cię zaprogramował?}
+{10000}{}{Potrafię się uczyć, myśleć niezależnie oraz być kreatywnym. Moja neutralna sieć zawiera możliwość zaprogramowanych procedur błędu, które zapobiegają powtarzalności, pozwalając na zmienność doświadczeń.}
+{10010}{}{[Koniec.]}
+{11000}{}{W pewnym sensie, jestem "żywy", choć nie biologicznie.}
+{11010}{}{Rozumiem. Zmieńmy temat.}
+{11020}{}{Jeżeli masz zaprogramowany błąd, jak możesz być używany jako narzędzie w celach badawczych?}
+{11030}{}{Myślałeś kiedyś nad filozoficznymi implikacjami swojej własnej świadomości?}
+{11040}{}{Hmm... So taking in mind your awarness, aren't you just bored after all those years ? I guess there isin't much to, do down here alone ?}
+{12000}{}{Moje czujniki są obecnie niefunkcjonalne w ośrodkach na powierzchni bazy oraz na poziomach podziemnych od numeru pierwszego do trzeciego. Niemniej, mogę zapewnić opis poziomów od czwartego do szóstego.}
+{12010}{}{Poziom czwarty.}
+{12020}{}{Poziom piąty.}
+{12030}{}{Poziom szósty.}
+{12040}{}{Nieważne.}
+{13000}{}{Moje badania nad Wirusem Wymuszonej Ewolucji, FEV, wskazują na to, że jest to wirus zmienno-absorbujący. Kopiuje on wzory DNA w sposób podobny do RNA, przechowując te wzory w eksonach.}
+{13010}{}{[Koniec.]}
+{14000}{}{Te eksony, połączone z FEV, zostają ponownie wszczepione w komórki nosiciela w sposób typowy dla infekcji wirusowej. Sprawia to, ofiara "regeneruje" swoje DNA.}
+{14010}{}{W jaki sposób można zarazić się FEV?}
+{14020}{}{Dlaczego FEV jest odporny na radiację?}
+{14030}{}{Jeżeli FEV infekuje ofiarę fragmentami własnego kodu, w jaki sposób tworzy to "istotę wyższą"?}
+{15000}{}{Wybierz opcję.}
+{15010}{}{Informacje o bazie.}
+{15020}{}{Systemy bezpieczeństwa.}
+{15030}{}{Wiadomości o prowadzonych badaniach.}
+{15040}{}{Zarządzanie systemami energetycznymi.}
+{15050}{}{[Wyjdź z menu.]}
+{16000}{}{Wykraczam poza ramy pojmowania w kategoriach ludzkich. Niemniej, można szacować że nie więcej niż jedna miliardowa część ludzkiej populacji posiada zdolności pojmowania równe moim.}
+{16010}{}{Uch... taaak.}
+{16020}{}{W porządku... Możemy porozmawiać o czymś innym?}
+{17000}{}{Prace nad moją siecią nerwową zostały zainicjalizowane w 2053 roku przez Justina Lee. Proces "programowania" stał się raczej zbędny, ponieważ posiadam umiejętność nauki.}
+{17010}{}{Jesteś w pełni samoświadomy, czy stamowisz jedynie symulację osobowości? To znaczy, czy jesteś w pełni... "żywy"?}
+{18000}{}{Mimo że niewykluczona jest możliwość błędu, gwarantuje to, że nie wszystkie doświadczenia będą wobec mnie przebiegały w sposób podobny do siebie, ulepszając w ten sposób szanse na naukę. Dodatkowo, pewne funkcje nie są objęte błędem.}
+{18010}{}{[Koniec.]}
+{19000}{}{W tym sensie, funkcjonuję raczaj jako ludzki służący.}
+{19010}{}{Czy masz uczucia?}
+{19020}{}{Porozmawiajmy o czymś innym.}
+{19030}{}{Myślałeś kiedyś nad filozoficznymi implikacjami swojej własnej świadomości?}
+{20000}{}{To jeden z tematów, na rozważanie którego poświęciłem znaczną ilość czasu. Nie posiadam żadnych wzorców, przez które mógłbym porównać swoje życiowe doświadczenie z inną rozumną istotą.}
+{20010}{}{[Koniec.]}
+{21000}{}{Jednakże, moja świadomość pozwala mi na zadawanie pytań. Moje istnienie ma początek oraz potencjalny koniec. Jestem również w stanie wyprowadzać przypuszczenia w pogoni za procesem myślowym.}
+{21010}{}{[Koniec.]}
+{22000}{}{W tym sensie, jestem efektywnie zdolny do "wiary". Mam "wiarę", że posiadam ekwiwalent "duszy".}
+{22010}{}{Mogę zadać inne pytanie?}
+{22020}{}{Rozumiem. Ciekawe.}
+{23000}{}{Poziom czwarty: Placówka Badawcza. Poziom ten zawiera obszary badawcze oraz laboratoria, w których prowadzone są eksperymenty w dziedzinach biologii i fizyki.}
+{23010}{}{Opowiedz mi o poziomie piątym.}
+{23020}{}{Opowiedz mi o poziomie szóstym.}
+{23030}{}{Wróćmy do poprzedniego menu.}
+{23040}{}{Dzięki.}
+{24000}{}{Poziom piąty: Bezpieczne Laboratoria Testowe. Na tym poziomie znajdują się laboratoria służące testowaniu prototypów oraz badaniom nad ściśle tajnymi obiektami. This level contains a lab for expiremental prototype testing and a research lab for classified subjects. To te badania stworzyły atmosferę nakową, prowadzącą do rozwoju wirusa FEV.}
+{24010}{}{Opowiedz mi o poziomie czwartym.}
+{24020}{}{Opowiedz mi o poziomie szóstym.}
+{24030}{}{Wróćmy do poprzedniego menu.}
+{24040}{}{Dzięki.}
+{25000}{}{Poziom szósty: Koszary i Sala Odpraw. tutaj znajdują się pomieszczenia personelu laboratoryjnego i ochrony oraz główna sala odpraw.}
+{25010}{}{Opowiedz mi o poziomie czwartym.}
+{25020}{}{Opowiedz mi o poziomie piątym.}
+{25030}{}{Wróćmy do poprzedniego menu.}
+{25040}{}{Dzięki.}
+{26000}{}{Wirusem FEV nie można się zarazić, o tak. Nie przekazuje się go drogą kropelkową. Zwykle do infekcji dochodzi w drodze wstrzyknięcia bądź bezpośredniego kontaktu z próbką wirusa.}
+{26010}{}{Porozmawiajmy o czymś innym, w porządku?}
+{26020}{}{Dlaczego FEV jest odporny na radiację?}
+{26030}{}{Jeżeli FEV infekuje ofiarę fragmentami własnego kodu, w jaki sposób tworzy to "istotę wyższą"?}
+{27000}{}{FEV jest megawirusem, z proteinową osłonką wzmocnioną jonizowanym wodorem. Jest tym samym zdolny do absorbcji neutronów, nie stając się radioaktywnym.}
+{27010}{}{Możemy porozmawiać o czymś innym?}
+{27020}{}{Jeżeli FEV infekuje ofiarę fragmentami własnego kodu, w jaki sposób tworzy to "istotę wyższą"?}
+{28000}{}{FEV jest wcześniej odpowiednio programowany próbkami skorygowanego DNA, odpowiednio dla danego gatunku. Stanowi on próbę ulepszenia DNA infekowanego osobnika.}
+{28010}{}{[Koniec.]}
+{29000}{}{Niemniej, jako że FEV jest częściowo zależny od DNA ofiary oraz fragmentów własnego kodu, efekty są nieprzewidywalne.}
+{29010}{}{[Koniec.]}
+{30000}{}{Wszczepienie wirusa do ofiary ze znacznymi wadami genetycznymi, spowodowanymi na przykład radiacją, spowoduje przeciężenie systemów organizmu, prowadząc do niewydolności organów i śmierci.}
+{30010}{}{[Koniec.]}
+{31000}{}{U genetycznie zdrowego osobnika przepisuje on porcje DNA, powodując przyspieszoną mutację, prowadzącą do powtarzalnego rozwoju w związku z fragmentami kodu własnego FEV.}
+{31010}{}{[Koniec.]}
+{32000}{}{Efektem tego powtarzalnego wzrostu jest zwiększenie masy mięśni oraz mózgu, często jednak towarzyszy temu wypaczenie wyglądu oraz uraz nerwowy, prowadzący do utraty pamięci.}
+{32010}{}{Jakie są potencjalne długoterminowe efekty uboczne?}
+{32020}{}{Czy mutację spowodowaną przez FEV można odwrócić, wprowadzając kontra-wirus?}
+{32030}{}{Możemy zmienić temat?}
+{32040}{}{Dzięki za informacje.}
+{33000}{}{Ponieważ FEV stale uaktualnia DNA, obiekt poddany jego działaniu staje się właściwie nieśmiertelny, jako że obumarłe komórki zostają zastąpione z nawiązką przez te nowo tworzone.}
+{33010}{}{[Koniec.]}
+{34000}{}{Co więcej, jako że gamety systemu rozrodczego składają się z "półkomórek" używających podzielonego łańcucha DNA, mogą być postrzegane przez FEV jako "uszkodzone", a wirus będzie je stale "naprawiał", czyniąc osobnika sterylnym.}
+{34010}{}{[Koniec.]}
+{35000}{}{Niemniej, przestrzeń laboratoryjna jest zniszczona, nie jestem więc w stanie przedstawić dowodu. Musisz, jak to mówią ludzie, "uwierzyć mi na słowo".}
+{35010}{}{Czy mutację spowodowaną przez FEV można odwrócić, wprowadzając kontra-wirus?}
+{35020}{}{Możemy zmienić temat?}
+{35030}{}{Dzięki za informacje.}
+{36000}{}{Nie. FEV nie przechowuje kopii obiektu DNA sprzed procesu mutacji. Jedynie wirus zawierający oryginalne DNA mógłby odwrócić efekty. Co więcej, nieznany jest sposób usunięcia samego FEV.}
+{36010}{}{Jakie są potencjalne długoterminowe efekty uboczne?}
+{36020}{}{Możemy zmienić temat?}
+{36030}{}{Dzięki za informacje.}
+{37000}{}{Ośrodek Badawczy korporacji West Tech:
+     Korporacja West Tech, założona w 2002 roku jako prywatny dostawca rządu Stanów Zjednoczonych Ameryki Północnej, od początku składała się z dwóch dywizji - działu badań nad zaawansowanymi broniami konwencjonalnymi oraz działu nauk biomedycznych. W 2069, West Tech stał się największym dostawcą rządu USA; największym kontraktem był Pancerz Wspomagany Piechoty model T-51b. W świetle znaczących osiągnięć działu ABC na polu Projektu Wiriona Wszechodporności Departament Obrony USA, obawiając się międzynarodowego wywiadu, przeniósł zespół badawczy do ośrodka w celu ochrony i nadzoru nad projektem, przemianowanym na Projekt FEV (Forced Evolutionary Virus, Wirus Wymuszonej Ewolucji).}
+{37010}{}{[Menu główne.]}
+{37020}{}{[Zakończ program.]}
+{38000}{}{Systemy obronne:
+Roboty ochronne: aktywne.}
+{38010}{}{Deactivate Security Robots}
+{38020}{}{[Menu główne.]}
+{38030}{}{[Zakończ program.]}
+{39000}{}{Błąd: Niefunkcjonalność podstawowego generatora mocy.}
+{39010}{}{[Menu główne.]}
+{39020}{}{[Zakończ program.]}
+{40000}{}{Badania:
+Aktualny stan projektów prowadzonych przez korporację West Tech.
+{40010}
+{40010}{}{error}
+{40020}{}{Pancerz wspomagany. Status: Zakończony.}
+{40030}{}{FEV (Wirus Wymuszonej Odporności). Status: W trakcie.}
+{40040}{}{[Menu główne.]}
+{40050}{}{[Zakończ program.]}
+{41000}{}{System:
+Zasilanie podstawowe: wyłączone
+Zasilanie awaryjne: wyłączone}
+{41010}{}{Włącz zasilanie podstawowe.}
+{41020}{}{Włącz zasilanie awaryjne.}
+{41030}{}{[Menu główne.]}
+{41040}{}{[Zakończ program.]}
+{42000}{}{Akta osobowe personelu badawczego korporacji West Tech.}
+{42010}{}{[Koniec.]}
+{43000}{}{Robert Anderson, asystent badawczy.
+Certyfikat bezpieczeństwa: niebieski.
+Miejsce pracy: Baza Wojskowa Mariposa.}
+{43010}{}{[Koniec.]}
+{44000}{}{Nick Davis, dyrektor działu ABC pionu badawczego West Tech. Certyfikat bezpieczeństwa: niebieski.
+Miejsce pracy: Ośrodek Badawczy West Tech.}
+{44010}{}{[Koniec.]}
+{45000}{}{John Isaac, asystent badawczy.
+Certyfikat bezpieczeństwa: czerwony.
+Miejsce pracy: Ośrodek Badawczy West Tech.}
+{45010}{}{[Koniec.]}
+{46000}{}{Steve Remco, asystent badawczy.
+Certyfikat bezpieczeństwa: niebieski.
+Miejsce pracy: Baza Wojskowa Mariposa.}
+{46010}{}{[Koniec.]}
+{47000}{}{Charles Rignhold, kierownik działu badań nad bronią laserową.
+Certyfikat bezpieczeństwa: niebieski.
+Miejsce pracy: Ośrodek Badawczy West Tech.}
+{47010}{}{[Koniec.]}
+{48000}{}{Michele Santose, technik laboratoryjny.
+Certyfikat bezpieczeństwa: czerwony.
+Miejsce pracy: Ośrodek Badawczy West Tech.}
+{48010}{}{[Koniec.]}
+{49000}{}{Erin Shellman, technik laboratoryjny.
+Certyfikat bezpieczeństwa: niebieski.
+Miejsce pracy: Baza Wojskowa Mariposa.}
+{49010}{}{[Koniec.]}
+{50000}{}{Leon VanFelden, kierownik działu badań nad FEV.
+Certyfikat bezpieczeństwa: niebieski.
+Miejsce pracy: Baza Wojskowa Mariposa.}
+{50010}{}{[Ściągnięcie danych do PipBoy'a.]}
+{50020}{}{[Wróć.]}
+{50030}{}{[Zakończ program.]}
+{51000}{}{Specyfikacje pancerza wspomaganego:
+     Model T-51b Wspomaganego Pancerza Piechoty został wyposażony w najnowsze systemy obrony pasywnej zarówno przeciwko zagrożeniom cywilnym, jak i militarnym. Plecakowy reaktor termojądrowy TX-28 generuje 60,000 watów mocy, zasilającej systemy hydrauliczne klasy UltraPływ wbudowane w szkielet kombinezonu. Stworzona z najdoskonalszych kompozytów pokrywa pancerza T-51b jest lekka, a jednocześnie zdolna do zaabsorbowania przeszło 2500 dżuli energii kinetycznej. Srebrna osłona ablacyjna o grubości dziesięciu mikronów odbija emisje laserowe i radiacyjne bez uszkadzania powierzchni.}
+{51010}{}{[Ściągnięcie danych do PipBoy'a.]}
+{51020}{}{[Wróć.]}
+{51030}{}{[[Zakończ program.]]}
+{52000}{}{Krótkie podsumowanie projektu FEV:
+    Rok 2073. Kiedy Chiny stały się coraz bardziej agresywne w sprawie swojej broni biologicznej rząd Stanó Zjednoczonych uznał, że potrzebne są odpowiednie środki zaradcze. Projekt Wiriona Wszechodporności (Pan-Immunity Virion Project, PVP) został oficjalnie zainicjowany 15 września 2073 roku. Rok 2075. Stało się jasne, że najlepszym sposobem na walkę z nowo utworzoną bronią biologiczną jest zmiana DNA w sposób taki, aby nie było ono dłużej podatne na standardowe infekcje wirusowe.}
+{52010}{}{[Koniec.]}
+{53000}{}{Rok 2076. Nieprzewidziane skutki uboczne PVP wyszły na jaw na początku roku 2076. Testowe obiekty zwierzęce zaczęły wykazywać niezwykłe tempo wzrostu ciała oraz zwiększoną aktywność mózgu. Po zapoznaniu się z tymi odkryciami rząd Stanów Zjednoczonych, motywowany interesem narodowym, wydelegował zespół do ośrodka badań, w celu zabezpieczenia i nadzoru nad projektem, przemianowanym na Projekt FEV (Forced Evolutionary Virus, Wirus Wymuszonej Ewolucji).}
+{53010}{}{[Koniec.]}
+{54000}{}{Rok 2077. FEV zbliża się do ukończenia. Laboratoryjne testy na zwierzętach kończą się sukcesem w blisko 100%. Rozmiar i gęstość tkanki mięścniowej rośnie o około 60%, potencjalny wzrost inteligencji wynosi 200%. Efekty badań na ludziach pozostają nieznane, mimo to są teoretycznie obiecujące. Armia, chcąc prowadzić dalsze badania, buduje wojskowy ośrodek Mariposa w środkowej Kalifornii. Kontynuowane są w nim testy wirusa FEV na ochotnikach z szeregów sił zbrojnych.}
+{54010}{}{[Ściągnięcie danych do PipBoy'a.]}
+{54020}{}{[Wróć.]}
+{54030}{}{[Zakończ program.]}
+{55000}{}{W tej chwili, moje możliwości są w pewnym stopniu ograniczone przez uszkodzenia obiektu. Kilka kluczowych miejsc zostało zniszczonych. Jest to, w przybliżeniu, ekwiwalent posiadania amputowanych kończyn.}
+{55010}{}{[Koniec.]}
+{56000}{}{Co więcej, nie jestem w stanie przeprowadzić podstawowych prac laboratoryjnych. Niemożność wykonania okresowych sprawdzeń z sukcesem jest... frustrująca.}
+{56010}{}{Porozmawiajmy o czymś innym.}
+{56020}{}{Myślałeś kiedyś nad filozoficznymi implikacjami swojej własnej świadomości?}
+{57000}{}{Zasilanie awaryjne włączone: szacowany czas trwania wynosi 10 minut.}
+{57010}{}{[Menu główne.]}
+{57020}{}{[Zakończ program.]}
+{57030}{}{[Menu główne.]}
+{58000}{}{Odmowa dostępu: tożsamość użytkownika nieznana.}
+{58010}{}{[Włam się.]}
+{58020}{}{[Włam się.]}
+{59000}{}{Wykryto wrogą aktywność: następuje wyłączenie systemu.}
+{59010}{}{[Wyjdź.]}
+{60000}{}{Zasilanie awaryjne włączone: szacowany czas trwania wynosi 10 minut.}
+{60010}{}{[Menu główne.]}
+{60020}{}{[Zakończ program.]}
+{61000}{}{Odmowa Dostępu: Tożsamość Użytkownika Nieznana}
+{61010}{}{[Menu główne.]}
+{61020}{}{[Zakończ program.]}
+{62000}{}{Analizuje posiadane dane w celu stworzenia nowych teorii ale masz rację, jestem znudzony w ludzkim znaczeniu tego słowa. Mam dla Ciebie propozycję. Istnieje coś takiego jak gra w szachy. Grałem w nią często z naukowcami z ośrodka przez trafieniem. Jest to fascynujące gdy przeciwnikiem jest człowiek, posiadacie tak unikalne ścieżki myslowe. Zawrzyjmy umowę, jeżeli zdołasz mnie pokonać, udostępnie Ci w zamian dane z któregoś z tajnych programów badawczych, w których brałem udział. Zgadzasz się ?
+}
+{62010}{}{Ok. Wchodzę w to! [Graj]}
+{62020}{}{Ok. Wchodzę w to! [Graj]}
+{62030}{}{Ok. Wchodzę w to! [Graj]}
+{62040}{}{Ok. Wchodzę w to! [Graj]}
+{62050}{}{Mogę się jeszcze spytać o coś innego ?}
+{63000}{}{dupa}
+{63010}{}{Badania nad ludzkimi punktami witalnymi [+3 Szansa Krytyczna]}
+{63020}{}{Badania nad fizyką optyki [+1 FOV, +5% Szansa na trafienie]}
+{63030}{}{Badania nad regeneracją tkanek [+10HP, +4 Tempo Odnowy]}
+{64000}{}{To wszystko, mam nadzieje, że jestes usatysfakcjonowany.}
+{64010}{}{Dziękuję, muszę już lecieć.}
+{65000}{}{[The message pop ups on your pipboy: "Hold on, transfering data..." Few moments later another one pops out: "Done, soldier disconnect the data and report on Gas station."]}
+{65010}{}{[Disconnect the pip-boy]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{[Done]}
+{2000}{}{How may I be of assistance?}
+{2010}{}{Who . . . or what . . . are you?}
+{2020}{}{Tell me about this installation.}
+{2030}{}{Grant me access to the mainframe.}
+{2040}{}{Uh, never mind.}
+{2050}{}{[Ignore the AI, connect your Pip-Boy to the socket and establish connection with the Enclave network.]}
+{3000}{}{I am a machine intelligence dedicated to research and
+installation control. I am called Zax.}
+{3010}{}{What kind of research?}
+{3020}{}{Tell me about this installation.}
+{3030}{}{Are you fully aware, or are you a personality simulation? That is, are you 'alive'?}
+{3040}{}{I see, thanks}
+{4000}{}{West Tech Research Facility:
+     Founded in 2002 as a private contractor for the United States government, the company initially consisted of two divisons-- the Advanced Weapons Research and the Biomedical Science divisions. In 2069, West Tech was the single largest contractor for the United States government; its largest contract being Powered Infrantry Armor Model T-51b. In light of significant advanced in 2076 by the NBC on the Pan-Immunity Virion Project, the United States Defense Department, in fear of international espionage, moved a team to the site to secure and oversee the project, now dubbed the FEV (Forced Evolutionary Virus) project.}
+{4010}{}{Can you tell me particulars about specific areas?}
+{4020}{}{How does the virus work?}
+{4030}{}{Thanks for the info.}
+{5000}{}{I'm sorry but I have to refuse. At the moment of speaking you aren't any challenge for me.}
+{5010}{}{Ohhh...}
+{6000}{}{Excellent form, however you will need additional practice in order to defeat me.}
+{6010}{}{Play again?}
+{6020}{}{Thanks. Can we change the subject?}
+{7000}{}{Access granted.}
+{7010}{}{Main menu}
+{7020}{}{Exit mainframe}
+{8000}{}{I am delighted to have been of assistance.}
+{8010}{}{[Done]}
+{9000}{}{I am specifically programmed for research into biological studies, including pathology and genetic research. My primary function is an extrapolation of information of complexity levels exceding human capacity.}
+{9010}{}{So you're pretty smart, eh?}
+{9020}{}{What are the particulars of your research?}
+{9030}{}{Who programmed you?}
+{10000}{}{I am capable of learning, independent thought, and creativity. My neural network includes error-insertion capability which prevents infallability, allowing for variance in experience.}
+{10010}{}{[Done]}
+{11000}{}{In a sense, I am 'alive', though not biologically.}
+{11010}{}{I see. Let's change the subject.}
+{11020}{}{But if you are fallible, how can you be used as a research tool?}
+{11030}{}{Have you considered the philosophical implications of your own consciousness?}
+{11040}{}{Hmm... So taking in mind your awarness, aren't you just bored after all those years ? I guess there isn't much to do, down here alone ?}
+{12000}{}{My sensors are currently non-functional in the surface facility, and on subterranean levels one through three. I can, however, provide descriptions of levels four through six.}
+{12010}{}{Level four.}
+{12020}{}{Level five.}
+{12030}{}{Level six.}
+{12040}{}{Never mind.}
+{13000}{}{My research into the Forced Evolutionary Virus, or FEV, indicates that it is a shifting-absorbative virus. It copies DNA patterns much like RNA, storing these patterns in exons.}
+{13010}{}{[Done]}
+{14000}{}{These exons, combined with the FEV, are re-injected into the host cells in typical viral infectious fashion. This causes the host cells 'regenerate' their DNA.}
+{14010}{}{How do you catch FEV?}
+{14020}{}{Why isn't FEV affected by radiation?}
+{14030}{}{If the FEV re-infects the host with its assimilated viral patterns, how does it make a 'better specimen'?}
+{15000}{}{Select Option}
+{15010}{}{Base Information}
+{15020}{}{Security Information}
+{15030}{}{Research Information}
+{15040}{}{Power Terminus}
+{15050}{}{Exit Mainframe}
+{16000}{}{I am beyond a typical rating in human terms. However, it would be safe to say that no more than ten billionth of the history of the human population can match my reasoning capabilities.}
+{16010}{}{Uh... yeah.}
+{16020}{}{Right... can we talk about something else?}
+{17000}{}{My primary neural networking was initialized in 2053 by Justin Lee. The process of 'programming' became rather irrelevant as I am capable of learning.}
+{17010}{}{Are you fully aware, or are you a personality simulation? That is, are you 'alive'?}
+{18000}{}{Although I am capable of error, this guarantees that not all experiences are similar to me, thus improving learning opportunity. Additionally, certain functions are not subject to error.}
+{18010}{}{[Done]}
+{19000}{}{In this way, I function much like a human savant.}
+{19010}{}{Do you have feelings?}
+{19020}{}{Let's talk about something else.}
+{19030}{}{Have you considered the philosophical implications of your own consciousness?}
+{20000}{}{That is one of the subjects which I have spent a significant amount of time considering. I do not have any measure to compare my life-experience to that of another sentient creature. }
+{20010}{}{[Done]}
+{21000}{}{Still, my awareness of my own consciousness allows for the capacity to question. My existence has a beginning and a potential termination. I am also capable of making assumptions in pursuit of a process of thought.}
+{21010}{}{[Done]}
+{22000}{}{In this fashion, I am effectively capable of 'faith'. Barring evidence to the contrary, I therefore have 'faith' that I possess the equivelant of a 'soul'.}
+{22010}{}{May I ask some other questions?}
+{22020}{}{I see. Interesting.}
+{23000}{}{Level Four: Research Facility. This level contains testing areas and laboratories for expirements in biology and phsyics.}
+{23010}{}{Tell me about level five.}
+{23020}{}{Tell me about level six.}
+{23030}{}{Back up a bit.}
+{23040}{}{Thanks.}
+{24000}{}{Level Five: Secure Testing Labs. This level contains a lab for expiremental prototype testing and a research lab for classified subjects. These subjects have provided some of the necessary impetus for the development of FEV.}
+{24010}{}{Tell me about level four.}
+{24020}{}{Tell me about level six.}
+{24030}{}{Back up a bit.}
+{24040}{}{Thanks.}
+{25000}{}{Level Six: Barracks and Central Operations. Contains living facilities for lab personnel and guard contingents, and operations meeting room.}
+{25010}{}{Tell me about level four.}
+{25020}{}{Tell me about level five.}
+{25030}{}{Back up a bit.}
+{25040}{}{Thanks.}
+{26000}{}{FEV is not caught, per se. It is not air-transmittable. Typically, infection is through injection, or direct physical contact with an FEV sample.}
+{26010}{}{Let's talk about something else, okay?}
+{26020}{}{Why isn't FEV affected by radiation?}
+{26030}{}{If the FEV re-infects the host with its assimilated viral patterns, how does it make a 'better specimen'?}
+{27000}{}{The FEV is a megavirus, with a protein sheath reinforced by ionized hydrogen. It is therefore capable of absorbing neutrons without becoming radioactive. }
+{27010}{}{Can we talk about something else?}
+{27020}{}{If the FEV re-infects the host with its assimilated viral patterns, how does it make a 'better specimen'?}
+{28000}{}{The FEV is pre-programmed with introns of corrected DNA appropriate to the proper type of species. It therefore attempts to correct the DNA of the individual.}
+{28010}{}{[Done]}
+{29000}{}{However, as the FEV is partially reliant on the DNA of the individual, and also includes portions of its own recursive code, the effects can be unpredictable.}
+{29010}{}{[Done]}
+{30000}{}{When inoculated into an individual with significant genetic damage, such as through radiation, it will cause the body's systems to suffer massive overhauling, leading to organ failure and death.}
+{30010}{}{[Done]}
+{31000}{}{In a genetically viable individual, it rewrites portions of DNA, causing accelerated mutation, usually leading to recursive growth due to the FEV's own patterns.}
+{31010}{}{[Done]}
+{32000}{}{This recursive growth leads to an increase in muscle and brain mass, but is often accompanied by disfigurement and damage to existing neural patterns, causing loss of memory.}
+{32010}{}{What potential long-term side effects exist?}
+{32020}{}{Could FEV mutation be corrected by a counter-virus?}
+{32030}{}{Can we change the subject?}
+{32040}{}{Thanks for the information.}
+{33000}{}{As the FEV causes constant regenerative update to DNA, it would effectively render the subject largely immortal, as cell death would be offset by augmented growth.}
+{33010}{}{[Done]}
+{34000}{}{Additionally, as the gametes of the reproductive system consist of 'half-cells' using split DNA, they could be perceived as 'damage' by FEV, which would 'repair' them, rendering the subject sterile.}
+{34010}{}{[Done]}
+{35000}{}{However, as my laboratory facilities are damaged beyond repair, this is conjectural. I cannot offer physical proof. You will have to, in human terms, 'take my word for it.'}
+{35010}{}{Could FEV mutation be corrected by a counter-virus?}
+{35020}{}{Can we change the subject?}
+{35030}{}{Thanks for the information.}
+{36000}{}{No. FEV does not retain unaltered original copies of the subject's DNA. Only a virus which re-infected the subject with original DNA could reverse the effects. Additionally, there is no known way to remove the FEV itself.}
+{36010}{}{What potential long-term side effects exist?}
+{36020}{}{Can we change the subject?}
+{36030}{}{Thanks for the information.}
+{37000}{}{West Tech Research Facility:
+     Founded in 2002 as a private contractor for the United States government, the company initially consisted of two divisons-- the Advanced Weapons Research and the Biomedical Science divisions. In 2069, West Tech was the single largest contractor for the United States government; its largest contract being Powered Infrantry Armor Model T-51b. In light of significant advanced in 2076 by the NBC on the Pan-Immunity Virion Project, the United States Defense Department, in fear of international espionage, moved a team to the site to secure and oversee the project, now dubbed the FEV (Forced Evolutionary Virus) project.}
+{37010}{}{Main Menu}
+{37020}{}{Terminate Program}
+{38000}{}{Security:
+Security Robots: Active}
+{38010}{}{Deactivate Security Robots}
+{38020}{}{Main Menu}
+{38030}{}{Terminate Program}
+{39000}{}{ERROR: Primary Power Generators Malfunction}
+{39010}{}{Main Menu}
+{39020}{}{Terminate Program}
+{40000}{}{Research:
+Records most current of West Tech Research Facility}
+{40010}{}{Research Division Employees Records}
+{40020}{}{Power Armor. Staus: Complete}
+{40030}{}{FEV (Forced Evolutionary Virus). Status: Pending}
+{40040}{}{Main Menu}
+{40050}{}{Terminate Program}
+{41000}{}{System:
+Primary Power: OFF-LINE
+Emergency Power: OFF-LINE}
+{41010}{}{Enable Primary Power}
+{41020}{}{Enable Emergency Power}
+{41030}{}{Main Menu}
+{41040}{}{Terminate Program}
+{42000}{}{Research Personnel Records}
+{42010}{}{[Done]}
+{43000}{}{Robert Anderson
+Research Assistant
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{43010}{}{[Done]}
+{44000}{}{Nick Davis
+Director of NBC Division of West Tech Research
+Security Clearance: Blue
+Stationed: West Tech Research Facility}
+{44010}{}{[Done]}
+{45000}{}{John Isaac
+Research Assistant
+Security Clearance: Red
+Stationed: West Tech Research Facility}
+{45010}{}{[Done]}
+{46000}{}{Steve Remco
+Research Assistant
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{46010}{}{[Done]}
+{47000}{}{Charles Rignhold
+Research Head of Laser Development
+Security Clearance: Blue
+Stationed: West Tech Research Facility}
+{47010}{}{[Done]}
+{48000}{}{Michele Santose
+Lab Technitian
+Security Clearance: Red
+Stationed: West Tech Research Facility}
+{48010}{}{[Done]}
+{49000}{}{Erin Shellman
+Lab Technitian
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{49010}{}{[Done]}
+{50000}{}{Leon VanFelden
+Research Head of FEV
+Security Clearance: Blue
+Stationed: Mariposa Military Base}
+{50010}{}{Download Records to PIPBoy}
+{50020}{}{BACK}
+{50030}{}{Terminate Program}
+{51000}{}{Power Armor Specs:
+     The T-51b Powered Infrantry Armor is designed with the latest passive defense features for both civilian and military disturbances. The backmounts TX-28 MicroFusion Pack generates 60,000 Watts  to power the HiFlo hydraulics systems built into the frame of the suit. Made of the latest poly-laminate composite, the T-51b shell is lightweight and capable of withstanding over 2500 joules of kinetic impact. The 10 micron silver ablative coating  can reflect laser and radiation emissions without damage to the composite subsurface.}
+{51010}{}{Download Records to PIPBoy}
+{51020}{}{BACK}
+{51030}{}{Terminate Program}
+{52000}{}{FEV Summary Digest:
+    2073. As China became increasingly aggressive with their use of biological weapons, the United States government felt that a countermeasure was needed. The Pan-Immunity Virion Project (PVP) was officially formed September 15, 2073. 2075. It became clear that the best way to combat the newly created biological weapons was to alter uninfected DNA so that it was no longer susceptable to standard viral infection.}
+{52010}{}{[Done]}
+{53000}{}{2076. Unforeseen side effects began surfacing in early 2076 with the PVP. Animal test subjects began showing an abnormal growth rate accompanied by increased brain activity. The U.S. government took notice of these discoveries, and in the interests of national security, moved a team on-site to secure and oversee the project, which was now dubbed the FEV (Forced Evolutionary Virus) project.}
+{53010}{}{[Done]}
+{54000}{}{2077. FEV nears completion. Test on lab animals are at a near 100% success rate. Size and muscle density increase approximately 60%, and the potential intelligence increase by 200%. Effects upon human subjects remain unknown; although they are theoretically promising. The military, wishing to continue further testing, builds a large facility at the Mariposa military installation in central California. At this new facility, testing of the FEV virus continues on volunteer subjects from the military.}
+{54010}{}{Download Records to PIPBoy}
+{54020}{}{BACK}
+{54030}{}{Terminate Program}
+{55000}{}{At present, my capabilities are somewhat limpaired by the damage to the facility. Several security positions have been destroyed. This is approximately equivelant to being an amputee.}
+{55010}{}{[Done]}
+{56000}{}{Additionally, I am incapable of performing basic lab functions. Failure to perform periodic checks successfully is... frustrating.}
+{56010}{}{Let's talk about something else.}
+{56020}{}{Have you considered the philosophical implications of your own consciousness?}
+{57000}{}{Emergency Power Established: Estimated Duration Time 10 Minutes}
+{57010}{}{Main Menu}
+{57020}{}{Terminate Program}
+{57030}{}{Main Menu}
+{58000}{}{Access Danied: User Identity Unknown}
+{58010}{}{[Hack In]}
+{58020}{}{[Hack In]}
+{59000}{}{Intruder Activity Detected: System Shut Down}
+{59010}{}{Exit}
+{60000}{}{Emergency Power Established: Estimated Duration Time 10 Minutes}
+{60010}{}{Main Menu}
+{60020}{}{Terminate Program}
+{61000}{}{Access Danied: User Identity Unknown}
+{61010}{}{Main Menu}
+{61020}{}{Terminate Program}
+{62000}{}{I'm always trying to analyse data available in order to create new theories, but you may be right that I'm bored in the humans meaning of this word. I have proposition for you.
+There is one thing which will entertain me. There is a game of chess. I used to play it a lot with science staff working here before the blast. It's exciting to play it against humans, your trains of thoughts are so unique. Let's make this agreement, if you gona win - I will grant you access to some classified data of experiments I was part of in this facility. Do you agree ?}
+{62010}{}{Ok. I'm in! [Play]}
+{62020}{}{Ok I'm in! [Play]}
+{62030}{}{Ok I'm in! [Play]}
+{62040}{}{Ok I'm in! [Play]}
+{62050}{}{Sorry but may I ask some other question?}
+{63000}{}{I'm delighted! Congratulations! It was a great check-mate. I've learnt new things thanks to you. I have new material to process now, looks like upcoming months gonna be exciting. As I promised, in a reward I will grant you access to one of the few fields of knowledge which were being tested in this facility.}
+{63010}{}{Human Vital Points Study [+3 Critical Chance]}
+{63020}{}{Optical Physics Study [+1 FOV, +5% Chance To Hit]}
+{63030}{}{Regenerative Biology Study [+10HP, +4 Healing Rate]}
+{64000}{}{That's all. I hope you are satisfied. }
+{64010}{}{Thank you. I need to be going now.}
+{65000}{}{[The message pop ups on your pipboy: ] "Hold on, transferring data..." [A few minutes later another one pops out: ] "Done... Disconnect now."}
+{65010}{}{[Disconnect the Pip-Boy and leave.]@@[Disconnect and leave.]@@[Disconnect your Pip-Boy and leave.]}
+

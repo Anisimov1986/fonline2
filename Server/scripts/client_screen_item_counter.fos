@@ -1,0 +1,67 @@
+// author: [SoT]Skycast
+#include "client_gui_h.fos"
+#include "_defines.fos"
+#include "_macros.fos"
+IGUIElementTextOpt@ itemCountText;
+/*
+class ClickablePanel : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int,int) {
+		itemCountText.Position("IntAmmoCountText");
+		itemCountText.Position(itemCountText.GetPosX(),itemCountText.GetPosX()-2);
+		//IntItemOffsX        = 0                   # Смещение по оси X для нажатого окна слота
+		//IntItemOffsY        = -2                  # Смещение по оси Y для нажатого окна слота
+		itemCountText.TextColor(COLOR_DDGREEN);
+	}
+}
+*/
+
+void InitItemCountScreen() 
+{
+	@itemCountText = GUI_AddText(CLIENT_MAIN_SCREEN_GAME)
+		.Position("IntAmmoCountText")
+		.TextOptions(FONT_SPECIAL, COLOR_TEXT)
+		.Visible(false);
+/*		
+	ClickablePanel clickablePanelCallback;	
+	GUI_AddImage(CLIENT_MAIN_SCREEN_GAME)
+		.Position("IntItem")
+		.CallbackMouseClick(clickablePanelCallback);
+	*/
+}
+
+void ShowHideCountScreen() 
+{
+	itemCountText.Visible(!itemCountText.isVisible());
+}
+
+void UpdateItemCountScreen() 
+{
+	itemCountText.Visible(false);
+	if (!__GameBar) 
+		return;
+	CritterCl @chosen =  GetChosen();
+
+	if(@chosen == null)
+		return;
+	ItemCl@ item = chosen.GetItem(0, SLOT_HAND1); 
+	if(valid(item) && item.IsStackable()) 
+	{
+		uint itemCount = item.GetCount(); 
+		if(itemCount > 99) 
+		{
+			itemCountText.setText("" + itemCount);
+			itemCountText.Visible(true);
+		} 
+		else if(itemCount > 9) 
+		{
+			itemCountText.setText("0" + itemCount);
+			itemCountText.Visible(true);
+		}
+		else if(itemCount > 1) 
+		{
+			itemCountText.setText("00" + itemCount);
+			itemCountText.Visible(true);
+		}
+	}
+}

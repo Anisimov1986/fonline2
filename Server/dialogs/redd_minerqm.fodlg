@@ -1,0 +1,91 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 @
+3 3000 None 0 #
+5 3010 D _item p PID_KOKOWEEF_MINE_SCRIP } 3 R _item p PID_KOKOWEEF_MINE_SCRIP - 3 R _item p PID_MINE + 1 #
+5 3020 D _item p PID_KOKOWEEF_MINE_SCRIP } 3 R _item p PID_KOKOWEEF_MINE_SCRIP - 3 R _item p PID_DYNAMITE + 1 #
+5 3030 D _item p PID_KOKOWEEF_MINE_SCRIP } 4 R _item p PID_KOKOWEEF_MINE_SCRIP - 4 R _item p PID_PLASTIC_EXPLOSIVES + 1 #
+0 3040 @
+4 4000 None 0 @
+5 5000 None 0 #
+3 5010 #
+0 5020 &
+
+[engl]
+{100}{}{Miners Quartermaster}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{Are you a miner?@@You a miner?@@You a miner or what?}
+{2010}{}{Yes, I am. I came to purchase equipment.@@Yeah.@@Yeah, I am.@@Sure.}
+{2020}{}{Erm... No?@@Nope.@@Not at all.@@No.}
+{3000}{}{Alright, what do you need? Remember: three scrips for mines and dynamite explosives, four scrips for remotely triggered explosives.}
+{3010}{}{I'll buy a mine.@@I'll take a mine.@@Give me a mine.}
+{3020}{}{I'll buy dynamite.@@I'll take the dynamite.@@Give me the dynamite.}
+{3030}{}{I'll buy the trigger explosives.@@I'll take the trigger explosives.}
+{3040}{}{I think I'll pass@@Nevermind.@@Later@@I've got to go.}
+{4000}{}{Then what the fuck are you wasting my time for?! Next!@@Then get the fuck out. Next!}
+{5000}{}{Here you go, something else?@@Okay, need anything else?@@Right, anything else?}
+{5010}{}{Yes.@@Yeah.@@Yep.}
+{5020}{}{No, thanks.@@Nope.@@Not now.}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[The ghoul is shuffling the cards with fancy tricks] Ah hello there my friend. You came to try yourself with the best Tragic player in the wasteland? You know what? You win i buy deck from you, you lose i take your deck. Sounds fine? Allright?}
+{2010}{}{Yes, let's play. [Use a deck of normal cards]}
+{2020}{}{Erm... No?}
+{3000}{}{Very well son! Let the game commence! [You fail to beat him and loose in few turns.] Good game I must say, but you have lost. Try again some other time.}
+{3010}{}{Fuck! I've lost.}
+{3020}{}{I'll buy explosives.}
+{3030}{}{I'll buy trigger explosives.}
+{3040}{}{I think I'll pass.}
+{4000}{}{Very well son! Let the game commence! [You somehow manage to beat the ghoul.] Holy shit! I haven't lost in a while! I'll buy that deck of yours! [He throws you a bag of 1000 caps] I hope we will play again someday.}
+{5000}{}{Here you go, something else?}
+{5010}{}{Yes.}
+{5020}{}{No, thank you.}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[The ghoul is shuffling the cards with fancy tricks] Ah hello there my friend. You came to try yourself with the best Tragic player in the wasteland? You know what? You win i buy deck from you, you lose i take your deck. Sounds fine? Allright?}
+{2010}{}{Yes, let's play. [Use a deck of normal cards]}
+{2020}{}{Erm... No?}
+{3000}{}{Very well son! Let the game commence! [You fail to beat him and loose in few turns.] Good game I must say, but you have lost. Try again some other time.}
+{3010}{}{Fuck! I've lost.}
+{3020}{}{I'll buy explosives.}
+{3030}{}{I'll buy trigger explosives.}
+{3040}{}{I think I'll pass.}
+{4000}{}{Very well son! Let the game commence! [You somehow manage to beat the ghoul.] Holy shit! I haven't lost in a while! I'll buy that deck of yours! [He throws you a bag of 1000 caps] I hope we will play again someday.}
+{5000}{}{Here you go, something else?}
+{5010}{}{Yes.}
+{5020}{}{No, thank you.}
+
+[ptbr]
+{100}{}{Minerador-chefe}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{Cê é minerador também?}
+{2010}{}{Sou. Queria comprar equipamento.}
+{2020}{}{Ahm... não?}
+{3000}{}{Tá, o que vai querer? Três cupons para explosivos de mina ou dinamite, quatro cupons para explosivos com detonador.}
+{3010}{}{Eu vou querer explosivos de mina.}
+{3020}{}{Eu vou querer explosivos de dinamite.}
+{3030}{}{Eu vou querer explosivos com detonador.}
+{3040}{}{Fica pra próxima.}
+{4000}{}{Então porque tu tá fazendo eu perder meu tempo aqui?! Próóximooo!}
+{5000}{}{Tá aqui. Quer mais alguma coisa?}
+{5010}{}{Sim.}
+{5020}{}{Não, obrigado.}
+

@@ -1,0 +1,164 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+8 2030 D _param p PE_PROF_GUNSMITH = 2 R _var p prof_gunsmith = 6 #
+10 2040 D _param p SK_REPAIR < 100 #
+4 2050 D _var p name_mem_player_npc = 0 D _param p PE_PROF_GUNSMITH { 1 D _param p SK_REPAIR } 100 R _var p prof_gunsmith = 4 #
+7 2060 D _var p name_mem_player_npc = 1 D _param p PE_PROF_GUNSMITH = 1 D _script economy_dialogs@d_IsEnoughCaps 1 4000 R _script economy_dialogs@r_TakeCaps 1 4000 R _param p PE_PROF_GUNSMITH = 2 R _var p prof_gunsmith = 5 R _param p ST_EXPERIENCE + 1000 R _script tc@r_AddFeeToLocker 1 200 #
+9 2070 D _var p name_mem_player_npc = 1 D _param p PE_PROF_GUNSMITH = 1 @
+3 3000 None 0 #
+2 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _param p PE_PROF_GUNSMITH = 1 #
+6 4020 D _param p PE_PROF_GUNSMITH = 0 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+0 5010 R _var p name_mem_player_npc = 1 @
+6 6000 None 0 #
+0 6010 @
+7 7000 economy_dialogs@dlg_PreparePrice 0 #
+8 7010 R _var p prof_gunsmith = 6 #
+0 7020 @
+8 8000 None 0 #
+0 8010 @
+9 9000 economy_dialogs@dlg_PreparePrice 0 #
+0 9010 @
+10 10000 None 0 &
+
+[engl]
+{100}{}{Neil}
+{200}{}{You see: Neil, guns trader in Caravans Office}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome, dear customer. I'm Neil, the main trader in this fine town. What are you looking for on this beautiful day?}
+{2010}{}{I'd like to trade.}
+{2020}{}{Main trader?}
+{2030}{}{Hey Neil, is there anyone else who can teach me more?}
+{2040}{}{I heard there is a skilled gunsmith in Broken Hills.}
+{2050}{}{I'd like to learn something from you.}
+{2060}{}{(Gunsmith profession level 2) I'm ready to learn.}
+{2070}{}{Hey, what'd you say I needed to bring for the lesson?}
+{3000}{}{Yeah, the main trader. What, you dare to doubt it?}
+{3010}{}{No, not at all. I want something else.}
+{3020}{}{You should do something about shrinking your ego a bit, dude. Bye.}
+{4000}{}{Learn? Who told you I'm a teacher of any kind? [Takes a quick look around, then lowers his voice.] Keep your mouth shut. My boss over there doesn't know about my little backstage business here. He thinks I'm wasting my time on disassembling all these useless guns and shit. What a blind dumb ballbag he is, so far I've earned... Nevermind. So yeah, I can teach you something about guns, how they work, how are they built and stuff like that. You up for it?}
+{4010}{}{Sure, any time.}
+{4020}{}{Yeah! Let's do it! Craft some Pew Pews!}
+{5000}{}{[Takes a look around again.] Good. @lex prof2_price@ caps is all we need here. There's enough... material to practice on. }
+{5010}{}{I'll let you know when I'm ready.}
+{6000}{}{Hold your horses, pal. Do you know anything about making guns, even the simplest ones? I won't waste my time, buzz off.}
+{6010}{}{You too.}
+{7000}{}{Perfect. Let me see these shiny things first. [A few minutes pass as he painstakingly counts each bottlecap.] ... @lex prof2_price@. Correct. Well then, stand over here and pretend you are trying to look closer at a gun you want to buy. So here's the deal... [He shows you how craft firearms. Why argue with a man when you can simply shoot him instead?] Right then, so if you're interested in anything else, just let me know.}
+{7010}{}{Fine. Hey, is there anyone else who might teach me more ... skills?}
+{7020}{}{Fine, goodbye.}
+{8000}{}{There is someone indeed. Ever been in New Reno? So if you see the New Reno Arms store, go downstairs and meet Algernon. He seems to be a bit crazy, but who wouldn't be after so many years of living in a basement? But yeah, he knows a shitload, and I mean a *shitload* of stuff about guns. I'm not sure if he knows anything else, to be honest.}
+{8010}{}{Thanks Neil, goodbye.}
+{9000}{}{@lex prof2_price@ caps. Caps only, I've got everything else.}
+{9010}{}{I'll let you know when I'm ready.}
+{10000}{}{You do not know enough yet. Come back with when you're more skilled.}
+
+[russ]
+{100}{}{Нил}
+{200}{}{Нил, торговец оружием.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Добро пожаловать дорогой клиент. Я Нил, главный торговец в этом прекрасном городе. Что вы ищете в этот прекрасный день?}
+{2010}{}{Я пришел торговать.}
+{2020}{}{Главный торговец?}
+{2030}{}{Эй Нил, а кто может научить меня еще чему-нибудь по поводу оружия?}
+{2040}{}{Я слышал, что вы самый квалифицированный оружейный мастер в Брокен Хиллс.}
+{2050}{}{Я хотел бы выучить вашу профессию...}
+{2060}{}{[Профессия: Оружейник(Оружие) уровень 2] Я готов приступить к обучению.}
+{2070}{}{Повтори что тебе нужно для начала обучения?}
+{3000}{}{Да, главный торговец. Что, вы сомневаетесь?}
+{3010}{}{Нет, совсем нет. У меня есть вопрос.}
+{3020}{}{Чувак ты должен что-то делать со своим эго. Пока.}
+{4000}{}{Учить? Кто сказал что я вообще могу кого-то чему-то учить? [шепчет] Держи язык за зубами. Мое начальсво не знает об этом маленьком бизнесе. Так что да, я могу научить вас кое-чему о пушках, как они работают, как они построены и все в таком духе. Вы к этому готовы?}
+{4010}{}{Конечно, в любое время.}
+{4020}{}{Да! Давай скорее! Изучать пиф-паф!}
+{5000}{}{Отлично. Тогда с тебя @lex prof2_price@ крышек и по рукам.}
+{5010}{}{Я дам вам знать, когда буду готов.}
+{6000}{}{Придержи коней приятель. Ты вообще знаешь что-нибудь о создании оружия? Я не хочу тратить время на бездаря. [Требуется Профессия: Оружейник(Оружие) уровень 1]}
+{6010}{}{Сам ты бездарь.}
+{7000}{}{Прекрасно. Дай я позабочусь об этих слестящих штучках сналала. [через некоторое время] ... @lex prof2_price@. Все верно. Ну чтож приступим. Так вот в чем дело... [Он показывает вам, как обращаться с огнестрельным оружием. Зачем спорить с человеком, когда можно просто застрелить его?] Ладно, так что если вы заинтересованы в чем-то еще, просто дайте мне знать.}
+{7010}{}{Прекрасно. Эй, есть кто-нибудь, кто может научить меня большему...?}
+{7020}{}{Хорошо, до свидания.}
+{8000}{}{Да, я знаю такого человека, это Элджернон. Его можно найти в Нью-Рено, на коммерческой улице в подвале оружейного магазина. Он похоже немного чокнутый, ну а кто останется в здравии после стольких лет в подвале? Но он все еще непревзойденный специалист в области оружия.}
+{8010}{}{Благодарю Нил, до свидания.}
+{9000}{}{Только @lex prof2_price@ крышек и все. }
+{9010}{}{Я дам тебе знать, когда буду готов.}
+{10000}{}{Да это так, но такую бестолочь как ты учить не буду. [Требуется ремонт 100]}
+
+[pols]
+{100}{}{Neil}
+{200}{}{Neil, sprzedawca broni.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Witam @sex@|szanownego klienta||szanowną klientkę|. Jestem Neil, największy kupiec w tym wspaniałym mieście. Czego poszukujesz w ten prześliczny dzień?}
+{2010}{}{Chcę pohandlować.}
+{2020}{}{Największy kupiec?}
+{2030}{}{Słuchaj Neil, mógłbyś nauczyć mnie czegoś więcej o broni palnej?}
+{2040}{}{Podobno w Broken Hills mieszka jakiś zdolny rusznikarz.}
+{2050}{}{@sex@|Chciałbym||Chciałabym| się od ciebie czegoś nauczyć.}
+{2060}{}{(Profesja: Rusznikarz, poziom 2.) Jestem @sex@|gotowy||gotowa|, zaczynajmy.}
+{2070}{}{Hej, przypomnisz mi co @sex@|miałem||miałam| przynieść na lekcję?}
+{3000}{}{Ta, największy. A co, śmiesz w to wątpić?}
+{3010}{}{Nie, skądże. Porozmawiajmy o czymś innym.}
+{3020}{}{Polecam odwiedzić jakiegoś specjalistę - twoje ego chyba nieco cię przerasta, koleś. Na razie.}
+{4000}{}{Ja, nauczać? Kto ci w ogóle powiedział, że ja jestem niby jakimś nauczycielem? [Szybko rozgląda się dookoła, ścisza głos.] Trzymaj gębę na kłódkę. Mój szef nic nie wie o tym drobnym interesie, który prowadzę tutaj na zapleczu. Myśli, że marnuję czas na rozkładanie tych wszystkich bezużytecznych spluw i takie tam. Co za ślepy, tępy frajer, tyle już zdążyłem na tym zarobić... Ekhem, nieważne. No więc, dobra, mogę cię nauczyć czegoś o pukawkach, na jakiej podstawie działają, jak są zbudowane i tak dalej. Jak, piszesz się na to?}
+{4010}{}{Jasne, w każdej chwili!}
+{4020}{}{Tak! Zróbmy to! Zbudujmy pukawki, bum-bum!}
+{5000}{}{[Ponownie się rozgląda.] Dobrze. @lex prof2_price@ kapsli to wszystko, czego potrzebujemy. Mam tutaj wystarczająco... materiałów do lekcji.}
+{5010}{}{Dam ci znać, kiedy będę @sex@|gotowy||gotowa|.}
+{6000}{}{Hola hola, @sex@|kolego||koleżanko|! Przecież ty nic nie wiesz o składaniu broni, nawet najprostrzych... Nie będę marnował swojego czasu, odwal się.}
+{6010}{}{Ty też.}
+{7000}{}{Doskonale. Najpierw pozwól mi rzucić okiem na te kochane błyszczące blaszki... [Kilka minut później.] ... @lex prof2_price@. Zgadza się. Dobra, stań tutaj i udawaj, że próbujesz dokładniej się przyjrzeć tej spluwie, jakbyś @sex@|chciał||chciała| ją kupić. W porządku, przede wszystkim chodzi o to, że... [Pokazuje ci, jak produkować broń palną. Po co z kimś dyskutować, kiedy można wpakować mu kulkę w łeb?] To wszystko. Jeśli interesuje cię coś jeszcze, daj mi znać.}
+{7010}{}{W porządku. Słuchaj, czy jest ktoś, kto mógłby nauczyć mnie jeszcze więcej?}
+{7020}{}{W porządku, do widzenia.}
+{8000}{}{Jest ktoś taki, taaak... @sex@|Byłeś||Byłaś| kiedyś w Nowym Reno? W tamtejszym sklepie ze spluwami zejdź na dół i porozmawiaj z Algernonem. Jest nieco... hm, zwariowany, ale kto nie byłby po latach życia w piwnicy? Ale tak, o spluwach wie w chuj dużo, no naprawdę w chuj. O spluwach, pukawkach, gnatach i tak dalej. Wydaje mi się, że poza tym nie wie niczego innego, mówiąc szczerze.}
+{8010}{}{Dzięki Neil, do widzenia.}
+{9000}{}{Tylko @lex prof2_price@ kapsli, całą resztę już mam.}
+{9010}{}{Dam ci znać, kiedy będę @sex@|gotowy||gotowa|.}
+{10000}{}{Nie wiesz jeszcze wszystkiego, co @sex@|powinieneś||powinnaś|. Wróć, kiedy nieco się podszkolisz. (wymagana umiejętność: Naprawa 100%.)}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome, dear customer. I'm Neil, the main trader in this fine town. What are you looking for on this beautiful day?}
+{2010}{}{I'd like to trade.}
+{2020}{}{Main trader?}
+{2030}{}{Hey Neil, is there anyone else who can teach me more?}
+{2040}{}{I heard there is a skilled gunsmith in Broken Hills.}
+{2050}{}{I'd like to learn something from you.}
+{2060}{}{(Gunsmith profession level 2) I'm ready to learn.}
+{2070}{}{Hey, what'd you say I needed to bring for the lesson?}
+{3000}{}{Yeah, the main trader. What, you dare to doubt it?}
+{3010}{}{No, not at all. I want something else.}
+{3020}{}{You should do something about shrinking your ego a bit, dude. Bye.}
+{4000}{}{Learn? Who told you I'm a teacher of any kind? [Takes a quick look around, then lowers his voice.] Keep your mouth shut. My boss over there doesn't know about my little backstage business here. He thinks I'm wasting my time on disassembling all these useless guns and shit. What a blind dumb ballbag he is, so far I've earned... Nevermind. So yeah, I can teach you something about guns, how they work, how are they built and stuff like that. You up for it?}
+{4010}{}{Sure, any time.}
+{4020}{}{Yeah! Let's do it! Craft some Pew Pews!}
+{5000}{}{[Takes a look around again.] Good. @lex prof2_price@ caps is all we need here. There's enough... material to practice on. }
+{5010}{}{I'll let you know when I'm ready.}
+{6000}{}{Hold your horses, pal. Do you know anything about making guns, even the simplest ones? I won't waste my time, buzz off.}
+{6010}{}{You too.}
+{7000}{}{Perfect. Let me see these shiny things first. [A few minutes pass as he painstakingly counts each bottlecap.] ... @lex prof2_price@. Correct. Well then, stand over here and pretend you are trying to look closer at a gun you want to buy. So here's the deal... [He shows you how craft firearms. Why argue with a man when you can simply shoot him instead?] Right then, so if you're interested in anything else, just let me know.}
+{7010}{}{Fine. Hey, is there anyone else who might teach me more ... skills?}
+{7020}{}{Fine, goodbye.}
+{8000}{}{There is someone indeed. Ever been in New Reno? So if you see the New Reno Arms store, go downstairs and meet Algernon. He seems to be a bit crazy, but who wouldn't be after so many years of living in a basement? But yeah, he knows a shitload, and I mean a *shitload* of stuff about guns. I'm not sure if he knows anything else, to be honest.}
+{8010}{}{Thanks Neil, goodbye.}
+{9000}{}{@lex prof2_price@ caps. Caps only, I've got everything else.}
+{9010}{}{I'll let you know when I'm ready.}
+{10000}{}{You do not know enough yet. Come back with when you're more skilled.}
+

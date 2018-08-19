@@ -1,0 +1,738 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+3 2000 None 1 #
+2 2010 #
+0 2020 @
+2 3000 None 1 #
+4 3010 #
+2 3020 R _item p PID_BOTTLE_CAPS + 500000 #
+5 3030 #
+18 3040 #
+6 3050 #
+3 3060 R _item p PID_BUFFOUT + 20 R _item p PID_CIGARETTES + 20 R _item p PID_JET + 20 R _item p PID_NUKA_COLA + 20 R _item p PID_PSYCHO + 20 R _item p PID_RAD_X + 20 R _item p PID_RADAWAY + 20 R _item p PID_SUPER_STIMPAK + 20 R _item p PID_MENTATS + 20 #
+0 3070 @
+4 4000 None 1 #
+2 4010 D _param p ST_LEVEL = 1 R _param p ST_EXPERIENCE + 3000 #
+2 4020 D _param p ST_LEVEL = 3 R _param p ST_EXPERIENCE + 12000 #
+2 4030 D _param p ST_LEVEL = 6 R _param p ST_EXPERIENCE + 21000 #
+2 4040 D _param p ST_LEVEL = 9 R _param p ST_EXPERIENCE + 30000 #
+2 4050 D _param p ST_LEVEL = 12 R _param p ST_EXPERIENCE + 39000 #
+2 4060 D _param p ST_LEVEL = 15 R _param p ST_EXPERIENCE + 48000 #
+2 4070 D _param p ST_LEVEL = 18 R _param p ST_EXPERIENCE + 57000 #
+2 4080 D _param p ST_LEVEL = 21 R _param p ST_EXPERIENCE + 66000 #
+2 4090 D _param p ST_LEVEL = 24 R _param p ST_EXPERIENCE + 75000 #
+2 4100 D _param p ST_LEVEL < 27 R _param p ST_EXPERIENCE + 1000 #
+2 4110 D _param p ST_LEVEL < 27 R _param p ST_EXPERIENCE + 5000 #
+2 4120 D _param p ST_LEVEL < 27 R _param p ST_EXPERIENCE + 10000 @
+5 5000 None 1 #
+3 5010 R _item p PID_LEATHER_JACKET + 1 #
+3 5020 R _item p PID_CURED_LEATHER_ARMOR + 1 #
+3 5030 R _item p PID_LEATHER_ARMOR + 1 #
+3 5040 R _item p PID_LEATHER_ARMOR_MK_II + 1 #
+3 5050 R _item p PID_METAL_ARMOR + 1 #
+3 5060 R _item p PID_METAL_ARMOR_MK_II + 1 #
+3 5070 R _item p PID_TESLA_ARMOR + 1 #
+3 5080 R _item p PID_COMBAT_ARMOR + 1 #
+3 5090 R _item p PID_COMBAT_ARMOR_MK_II + 1 #
+2 5100 @
+6 6000 None 1 #
+7 6010 #
+8 6020 #
+9 6030 #
+10 6040 #
+11 6050 #
+12 6060 #
+13 6070 #
+14 6080 #
+2 6090 @
+7 7000 None 1 #
+3 7010 R _item p PID_SPEAR + 1 #
+3 7020 R _item p PID_SHARP_SPEAR + 1 #
+3 7030 R _item p PID_KNIFE + 1 #
+3 7040 R _item p PID_COMBAT_KNIFE + 1 #
+3 7050 R _item p PID_CLUB + 1 #
+3 7060 R _item p PID_SWITCHBLADE + 1 #
+3 7070 R _item p PID_CROWBAR + 1 #
+3 7080 R _item p PID_SLEDGEHAMMER + 1 #
+3 7090 R _item p PID_SUPER_SLEDGE + 1 #
+3 7100 R _item p PID_CATTLE_PROD + 1 R _item p PID_SMALL_ENERGY_CELL + 200 #
+3 7110 R _item p PID_SUPER_CATTLE_PROD + 1 R _item p PID_SMALL_ENERGY_CELL + 200 #
+3 7120 R _item p PID_RIPPER + 1 R _item p PID_SMALL_ENERGY_CELL + 200 #
+2 7130 @
+8 8000 None 1 #
+3 8010 R _item p PID_BRASS_KNUCKLES + 1 #
+3 8020 R _item p PID_SPIKED_KNUCKLES + 1 #
+3 8030 R _item p PID_POWER_FIST + 1 R _item p PID_SMALL_ENERGY_CELL + 200 #
+3 8040 R _item p PID_MEGA_POWER_FIST + 1 R _item p PID_SMALL_ENERGY_CELL + 200 #
+2 8050 @
+9 9000 None 1 #
+3 9010 R _item p PID_THROWING_KNIFE + 50 #
+3 9020 R _item p PID_MOLOTOV_COCKTAIL + 50 #
+3 9030 R _item p PID_FRAG_GRENADE + 50 #
+3 9040 R _item p PID_PLASMA_GRENADE + 50 #
+3 9050 R _item p PID_PULSE_GRENADE + 50 #
+2 9060 @
+10 10000 None 1 #
+3 10010 R _item p PID_44_MAGNUM_REVOLVER + 1 R _item p PID_44_MAGNUM_JHP + 200 R _item p PID_44_FMJ_MAGNUM + 200 #
+3 10020 R _item p PID_44_MAGNUM_SPEEDLOADER + 1 R _item p PID_44_MAGNUM_JHP + 200 R _item p PID_44_FMJ_MAGNUM + 200 #
+3 10030 R _item p PID_NEEDLER_PISTOL + 1 R _item p PID_HN_NEEDLER_CARTRIDGE + 200 R _item p PID_HN_AP_NEEDLER_CARTRIDGE + 200 #
+3 10040 R _item p PID_10MM_JHP + 200 R _item p PID_10MM_AP + 200 R _item p PID_10MM_PISTOL + 1 #
+3 10050 R _item p PID_DESERT_EAGLE + 1 R _item p PID_44_MAGNUM_JHP + 200 R _item p PID_44_FMJ_MAGNUM + 200 #
+3 10060 R _item p PID_44_FMJ_MAGNUM + 200 R _item p PID_44_MAGNUM_JHP + 200 R _item p PID_DESERT_EAGLE_EXT_MAG + 1 #
+3 10070 R _item p PID_14MM_PISTOL + 1 R _item p PID_14MM_AP + 200 #
+3 10080 R _item p PID_223_FMJ + 200 R _item p PID_223_PISTOL + 1 #
+2 10090 @
+11 11000 None 1 #
+3 11010 R _item p PID_ROCKET_LAUNCHER + 1 R _item p PID_ROCKET_AP + 15 R _item p PID_EXPLOSIVE_ROCKET + 15 R _item p PID_EMP_ROCKET + 15 #
+3 11020 R _item p PID_FLAMER + 1 R _item p PID_FLAMETHROWER_FUEL + 100 R _item p PID_FLAMETHROWER_FUEL_MK_II + 100 #
+3 11030 R _item p PID_FLAMETHROWER_FUEL_MK_II + 100 R _item p PID_FLAMETHROWER_FUEL + 100 R _item p PID_IMPROVED_FLAMETHROWER + 1 #
+3 11040 R _item p PID_MINIGUN + 1 R _item p PID_5MM_JHP + 1000 R _item p PID_5MM_AP + 1000 #
+3 11050 R _item p PID_5MM_AP + 1000 R _item p PID_5MM_JHP + 1000 R _item p PID_AVENGER_MINIGUN + 1 #
+3 11060 R _item p PID_LIGHT_SUPPORT_WEAPON + 1 R _item p PID_223_FMJ + 1000 #
+3 11070 R _item p PID_M60 + 1 R _item p PID_7_62MM_AMMO + 1000 #
+2 11080 @
+12 12000 None 1 #
+3 12010 R _item p PID_10MM_JHP + 100 R _item p PID_10MM_AP + 100 R _item p PID_SPRINGER_RIFLE + 1 #
+3 12020 R _item p PID_ASSAULT_RIFLE + 1 R _item p PID_5MM_JHP + 500 R _item p PID_5MM_AP + 500 #
+3 12030 R _item p PID_ASSAULT_RIFLE_EXT_MAG + 1 R _item p PID_5MM_JHP + 500 R _item p PID_5MM_AP + 500 #
+3 12040 R _item p PID_FN_FAL + 1 R _item p PID_7_62MM_AMMO + 600 #
+3 12050 R _item p PID_XL70E3 + 1 R _item p PID_5MM_JHP + 500 R _item p PID_5MM_AP + 500 #
+3 12060 R _item p PID_SHOTGUN + 1 R _item p PID_SHOTGUN_SHELLS + 200 #
+3 12070 R _item p PID_SAWED_OFF_SHOTGUN + 1 R _item p PID_SHOTGUN_SHELLS + 200 #
+3 12080 R _item p PID_COMBAT_SHOTGUN + 1 R _item p PID_SHOTGUN_SHELLS + 400 #
+3 12090 R _item p PID_HK_CAWS + 1 R _item p PID_SHOTGUN_SHELLS + 400 #
+3 12100 R _item p PID_PANCOR_JACKHAMMER + 1 R _item p PID_SHOTGUN_SHELLS + 400 #
+3 12110 R _item p PID_SNIPER_RIFLE + 1 R _item p PID_223_FMJ + 300 #
+3 12120 R _item p PID_HUNTING_RIFLE + 1 R _item p PID_223_FMJ + 300 #
+3 12130 R _item p PID_SCOPED_HUNTING_RIFLE + 1 R _item p PID_223_FMJ + 300 #
+2 12140 @
+13 13000 None 1 #
+3 13010 R _item p PID_TOMMY_GUN + 1 R _item p PID_45_CALIBER_AMMO + 500 #
+3 13020 R _item p PID_HK_P90C + 1 R _item p PID_10MM_AP + 500 R _item p PID_10MM_JHP + 500 #
+3 13030 R _item p PID_10MM_SMG + 1 R _item p PID_10MM_JHP + 500 R _item p PID_10MM_AP + 500 #
+3 13040 R _item p PID_GREASE_GUN + 1 R _item p PID_45_CALIBER_AMMO + 500 #
+2 13050 @
+14 14000 None 1 #
+3 14010 R _item p PID_LASER_PISTOL + 1 R _item p PID_SMALL_ENERGY_CELL + 600 #
+3 14020 R _item p PID_MAGNETO_LASER_PISTOL + 1 R _item p PID_SMALL_ENERGY_CELL + 600 #
+3 14030 R _item p PID_PLASMA_PISTOL + 1 R _item p PID_SMALL_ENERGY_CELL + 600 #
+3 14040 R _item p PID_YK32_PULSE_PISTOL + 1 R _item p PID_SMALL_ENERGY_CELL + 600 #
+3 14050 R _item p PID_LASER_RIFLE + 1 R _item p PID_MICRO_FUSION_CELL + 600 #
+3 14060 R _item p PID_LASER_RIFLE_EXT_CAP + 1 R _item p PID_MICRO_FUSION_CELL + 600 #
+3 14070 R _item p PID_PLASMA_RIFLE + 1 R _item p PID_MICRO_FUSION_CELL + 600 #
+2 14080 @
+16 15000 None 0 #
+2 15010 @
+17 16000 None 0 #
+2 16010 @
+18 17000 None 0 #
+3 17010 R _item p PID_IMPLANT_ENVIRONMENTAL + 1 #
+3 17020 R _item p PID_IMPLANT_ACCURACY + 1 #
+3 17030 R _item p PID_IMPLANT_DEFENCE + 1 #
+3 17040 R _item p PID_IMPLANT_MEDIC + 1 #
+3 17050 R _item p PID_IMPLANT_ENGINEER + 1 #
+3 17060 R _item p PID_IMPLANT_SPEED + 1 #
+3 17070 R _item p PID_IMPLANT_SURVIVOR + 1 #
+3 17080 R _item p PID_IMPLANT_MARKSMAN + 1 #
+3 17090 R _item p PID_IMPLANT_SCOUT + 1 #
+3 17100 R _item p PID_IMPLANT_ENCHACEMENT + 1 #
+3 17110 R _item p PID_IMPLANT_CHEMCONTROL + 1 #
+2 17120 &
+
+[engl]
+{100}{}{Tester}
+{200}{}{You see: a bitch.}
+{210}{}{You see: a bitch.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Here you go.}
+{2010}{}{One more thing...}
+{2020}{}{That would be all.}
+{3000}{}{What do you need?}
+{3010}{}{Modify my lvl.}
+{3020}{}{Give me caps}
+{3030}{}{Give me an armor.}
+{3040}{}{Give me implant.}
+{3050}{}{Give me a weapon and some ammo.}
+{3060}{}{Give me some drugs.}
+{3070}{}{Nothing.}
+{4000}{}{What are we doing with your lvl? Max Cheat level is 27.}
+{4010}{}{Give me 3 levels.}
+{4020}{}{Give me 3 levels.}
+{4030}{}{Give me 3 levels.}
+{4040}{}{Give me 3 levels.}
+{4050}{}{Give me 3 levels.}
+{4060}{}{Give me 3 levels.}
+{4070}{}{Give me 3 levels.}
+{4080}{}{Give me 3 levels.}
+{4090}{}{Give me 3 levels.}
+{4100}{}{Give me 1k Experience}
+{4110}{}{Give me 5k Experience}
+{4120}{}{Give me 10k Experience}
+{5000}{}{What kind of armor do you need?}
+{5010}{}{Leather Jacket.}
+{5020}{}{Combat Leather Jacket.}
+{5030}{}{Leather Armor}
+{5040}{}{Leather Armor mk II}
+{5050}{}{Metal Armor}
+{5060}{}{Metal Armor mk II}
+{5070}{}{Tesla Armor}
+{5080}{}{Combat Armor}
+{5090}{}{Combat Armor mk II}
+{5100}{}{I' ve changed my mind...}
+{6000}{}{What kind of weapon  do you need?}
+{6010}{}{Melee weapons.}
+{6020}{}{Unarmed weapons.}
+{6030}{}{Thrown weapons.}
+{6040}{}{Small guns.}
+{6050}{}{Big guns.}
+{6060}{}{Rifles.}
+{6070}{}{Submachine guns.}
+{6080}{}{Energy weapons.}
+{6090}{}{I' ve changed my mind...}
+{7000}{}{And what specific melee weapon it would be?}
+{7010}{}{Spear}
+{7020}{}{Sharpened Spear}
+{7030}{}{Knife}
+{7040}{}{Combat Knife}
+{7050}{}{Club}
+{7060}{}{Switchblade}
+{7070}{}{Crowbar}
+{7080}{}{Sledgehammer}
+{7090}{}{Super Sledge}
+{7100}{}{Cattle Prod}
+{7110}{}{Super Cattle Prod}
+{7120}{}{Ripper}
+{7130}{}{I' ve changed my mind...}
+{8000}{}{And what specific unarmed weapon it would be?}
+{8010}{}{Brass Knuckles}
+{8020}{}{Spiked Knuckles}
+{8030}{}{Power Fist}
+{8040}{}{Mega Power Fist}
+{8050}{}{I' ve changed my mind...}
+{9000}{}{And what specific thrown weapon it would be?}
+{9010}{}{Throwing Knife}
+{9020}{}{Molotov Cocktail}
+{9030}{}{Frag Grenade}
+{9040}{}{Plasma Grenade}
+{9050}{}{Pulse Grenade}
+{9060}{}{I' ve changed my mind...}
+{10000}{}{And what specific small gun it would be?}
+{10010}{}{Magnum}
+{10020}{}{Magnum SL}
+{10030}{}{Needler Pistol}
+{10040}{}{10mm Pistol}
+{10050}{}{Desert Eagle}
+{10060}{}{Desert Eagle Expanded}
+{10070}{}{14mm Pistol}
+{10080}{}{.223 Pistol}
+{10090}{}{I' ve changed my mind...}
+{11000}{}{And what specific big gun it would be?}
+{11010}{}{Rocket Launcher}
+{11020}{}{Flamer}
+{11030}{}{Improved Flamer}
+{11040}{}{Minigun}
+{11050}{}{Avenger Minigun}
+{11060}{}{Light Support Weapon}
+{11070}{}{M60}
+{11080}{}{I' ve changed my mind...}
+{12000}{}{And what specific rifle it would be?}
+{12010}{}{Pipe Rifle}
+{12020}{}{Assault Rifle}
+{12030}{}{Assault Rifle Ext.}
+{12040}{}{FN FAL}
+{12050}{}{XL70E3}
+{12060}{}{Shotgun}
+{12070}{}{Sawed-off Shotgun}
+{12080}{}{Combat Shotgun}
+{12090}{}{H&K CAWS}
+{12100}{}{Pancor Jackhammer}
+{12110}{}{Sniper Rifle}
+{12120}{}{Hunting Rifle}
+{12130}{}{Scoped Hunting Rifle}
+{12140}{}{I' ve changed my mind...}
+{13000}{}{And what specific SMG it would be?}
+{13010}{}{Tommy Gun}
+{13020}{}{H&K P90c}
+{13030}{}{10mm SMG}
+{13040}{}{M3A1 Grease Gun}
+{13050}{}{I' ve changed my mind...}
+{14000}{}{And what specific energy weapon it would be?}
+{14010}{}{Laser Pistol}
+{14020}{}{Magneto-Laser Pistol}
+{14030}{}{Plasma Pistol}
+{14040}{}{YK32 Pulse Pistol}
+{14050}{}{Laser Rifle}
+{14060}{}{Laser Rifle Ext.}
+{14070}{}{Plasma Rifle}
+{14080}{}{I' ve changed my mind...}
+{15000}{}{Done.}
+{15010}{}{Cool, something more.}
+{16000}{}{Done.}
+{16010}{}{More.}
+{17000}{}{Choose the implant.}
+{17010}{}{[Environmental Implant.]}
+{17020}{}{[Accuracy Implant.]}
+{17030}{}{[Defence Implant.]}
+{17040}{}{[Medic Implant.]}
+{17050}{}{[Engineer Implant.]}
+{17060}{}{[Speed Implant.]}
+{17070}{}{[Survivor Implant.]}
+{17080}{}{[Marksman Implant.]}
+{17090}{}{[Scout Implant.]}
+{17100}{}{[Enhancement Implant.]}
+{17110}{}{[ChemControl Implant.]}
+{17120}{}{[Leave.]}
+
+[russ]
+{100}{}{Tester}
+{200}{}{You see: a bitch.}
+{210}{}{You see: a bitch.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Here you go.}
+{2010}{}{One more thing...}
+{2020}{}{That would be all.}
+{3000}{}{What do you need?}
+{3010}{}{Modify my lvl.}
+{3020}{}{Give me caps}
+{3030}{}{Give me an armor.}
+{3040}{}{Give me implant}
+{3050}{}{Give me a weapon and some ammo.}
+{3060}{}{Give me some drugs.}
+{3070}{}{Nothing.}
+{4000}{}{What are we doing with your lvl?}
+{4010}{}{Give me 3 levels.}
+{4020}{}{Give me 3 levels.}
+{4030}{}{Give me 3 levels.}
+{4040}{}{Give me 3 levels.}
+{4050}{}{Give me 3 levels.}
+{4060}{}{Give me 3 levels.}
+{4070}{}{Give me 3 levels.}
+{4080}{}{Give me 3 levels.}
+{4090}{}{Give me 3 levels.}
+{4100}{}{Give me 1k Experience}
+{4110}{}{Give me 5k Experience}
+{4120}{}{Give me 10k Experience}
+{5000}{}{What kind of armor do you need?}
+{5010}{}{Leather Jacket.}
+{5020}{}{Combat Leather Jacket.}
+{5030}{}{Leather Armor}
+{5040}{}{Leather Armor mk II}
+{5050}{}{Metal Armor}
+{5060}{}{Metal Armor mk II}
+{5070}{}{Tesla Armor}
+{5080}{}{Combat Armor}
+{5090}{}{Combat Armor mk II}
+{5100}{}{I' ve changed my mind...}
+{6000}{}{What kind of weapon  do you need?}
+{6010}{}{Melee weapons.}
+{6020}{}{Unarmed weapons.}
+{6030}{}{Thrown weapons.}
+{6040}{}{Small guns.}
+{6050}{}{Big guns.}
+{6060}{}{Rifles.}
+{6070}{}{Submachine guns.}
+{6080}{}{Energy weapons.}
+{6090}{}{I' ve changed my mind...}
+{7000}{}{And what specific melee weapon it would be?}
+{7010}{}{Spear}
+{7020}{}{Sharpened Spear}
+{7030}{}{Knife}
+{7040}{}{Combat Knife}
+{7050}{}{Club}
+{7060}{}{Switchblade}
+{7070}{}{Crowbar}
+{7080}{}{Sledgehammer}
+{7090}{}{Super Sledge}
+{7100}{}{Cattle Prod}
+{7110}{}{Super Cattle Prod}
+{7120}{}{Ripper}
+{7130}{}{I' ve changed my mind...}
+{8000}{}{And what specific unarmed weapon it would be?}
+{8010}{}{Brass Knuckles}
+{8020}{}{Spiked Knuckles}
+{8030}{}{Power Fist}
+{8040}{}{Mega Power Fist}
+{8050}{}{I' ve changed my mind...}
+{9000}{}{And what specific thrown weapon it would be?}
+{9010}{}{Throwing Knife}
+{9020}{}{Molotov Cocktail}
+{9030}{}{Frag Grenade}
+{9040}{}{Plasma Grenade}
+{9050}{}{Pulse Grenade}
+{9060}{}{I' ve changed my mind...}
+{10000}{}{And what specific small gun it would be?}
+{10010}{}{Magnum}
+{10020}{}{Magnum SL}
+{10030}{}{Needler Pistol}
+{10040}{}{10mm Pistol}
+{10050}{}{Desert Eagle}
+{10060}{}{Desert Eagle Expanded}
+{10070}{}{14mm Pistol}
+{10080}{}{.223 Pistol}
+{10090}{}{I' ve changed my mind...}
+{11000}{}{And what specific big gun it would be?}
+{11010}{}{Rocket Launcher}
+{11020}{}{Flamer}
+{11030}{}{Improved Flamer}
+{11040}{}{Minigun}
+{11050}{}{Avenger Minigun}
+{11060}{}{Light Support Weapon}
+{11070}{}{M60}
+{11080}{}{I' ve changed my mind...}
+{12000}{}{And what specific rifle it would be?}
+{12010}{}{Pipe Rifle}
+{12020}{}{Assault Rifle}
+{12030}{}{Assault Rifle Ext.}
+{12040}{}{FN FAL}
+{12050}{}{XL70E3}
+{12060}{}{Shotgun}
+{12070}{}{Sawed-off Shotgun}
+{12080}{}{Combat Shotgun}
+{12090}{}{H&K CAWS}
+{12100}{}{Pancor Jackhammer}
+{12110}{}{Sniper Rifle}
+{12120}{}{Hunting Rifle}
+{12130}{}{Scoped Hunting Rifle}
+{12140}{}{I' ve changed my mind...}
+{13000}{}{And what specific SMG it would be?}
+{13010}{}{Tommy Gun}
+{13020}{}{H&K P90c}
+{13030}{}{10mm SMG}
+{13040}{}{M3A1 Grease Gun}
+{13050}{}{I' ve changed my mind...}
+{14000}{}{And what specific energy weapon it would be?}
+{14010}{}{Laser Pistol}
+{14020}{}{Magneto-Laser Pistol}
+{14030}{}{Plasma Pistol}
+{14040}{}{YK32 Pulse Pistol}
+{14050}{}{Laser Rifle}
+{14060}{}{Laser Rifle Ext.}
+{14070}{}{Plasma Rifle}
+{14080}{}{I' ve changed my mind...}
+{15000}{}{Done.}
+{15010}{}{Cool, something more.}
+{16000}{}{Done.}
+{16010}{}{More.}
+{17000}{}{Choose the implant.}
+{17010}{}{[Environmental Implant.]}
+{17020}{}{[Accuracy Implant.]}
+{17030}{}{[Defence Implant.]}
+{17040}{}{[Medic Implant.]}
+{17050}{}{[Engineer Implant.]}
+{17060}{}{[Speed Implant.]}
+{17070}{}{[Survivor Implant.]}
+{17080}{}{[Marksman Implant.]}
+{17090}{}{[Scout Implant.]}
+{17100}{}{[Enhancement Implant.]}
+{17110}{}{[ChemControl Implant.]}
+{17120}{}{[Leave.]}
+
+[pols]
+{100}{}{Tester}
+{200}{}{Widzisz dziwkę.}
+{210}{}{Widzisz dziwkę.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Proszę bardzo.}
+{2010}{}{Jeszcze jedno...}
+{2020}{}{To wszystko.}
+{3000}{}{Czego chcesz?}
+{3010}{}{Zmień mój poziom.}
+{3020}{}{Give me caps}
+{3030}{}{Daj mi pancerz.}
+{3040}{}{Give me implant}
+{3050}{}{Daj mi broń i trochę amunicji.}
+{3060}{}{Daj mi trochę lekarstw.}
+{3070}{}{Niczego.}
+{4000}{}{To co robimy z twoim poziomem?}
+{4010}{}{Daj mi 3 poziomy.}
+{4020}{}{Daj mi 3 poziomy.}
+{4030}{}{Daj mi 3 poziomy.}
+{4040}{}{Daj mi 3 poziomy.}
+{4050}{}{Daj mi 3 poziomy.}
+{4060}{}{Daj mi 3 poziomy.}
+{4070}{}{Daj mi 3 poziomy.}
+{4080}{}{Daj mi 3 poziomy.}
+{4090}{}{Give me 3 levels.}
+{4100}{}{Give me 1k Experience}
+{4110}{}{Give me 5k Experience}
+{4120}{}{Give me 10k Experience}
+{5000}{}{Jakiego pancerza potrzebujesz?
+}
+{5010}{}{Skórzaną kurtkę.
+}
+{5020}{}{Bojową skórzaną kurtkę.
+}
+{5030}{}{Skórzany pancerz.
+}
+{5040}{}{Skórzany pancerz mk II.
+}
+{5050}{}{Metalowy pancerz.
+}
+{5060}{}{Metalowy pancerz mk II.}
+{5070}{}{Pancerz Tesli.}
+{5080}{}{Pancerz bojowy.}
+{5090}{}{Pancerz bojowy mk II.}
+{5100}{}{@sex@|Zmieniłem||Zmieniłam| zdanie...}
+{6000}{}{Jakiego rodzaju broni potrzebujesz?}
+{6010}{}{Broń biała.
+}
+{6020}{}{Broń do walki wręcz.}
+{6030}{}{Broń rzucana.}
+{6040}{}{Pistolet.}
+{6050}{}{Duża broń palna.
+}
+{6060}{}{Strzelby, karabiny.
+}
+{6070}{}{Broń półautomatyczna.
+}
+{6080}{}{Broń energetyczna.
+}
+{6090}{}{@sex@|Zmieniłem||Zmieniłam| zdanie...}
+{7000}{}{Jaka konkretnie broń biała cię interesuje?}
+{7010}{}{Włócznia.}
+{7020}{}{Zaostrzona włócznia.}
+{7030}{}{Nóż.}
+{7040}{}{Nóż bojowy.}
+{7050}{}{Pałka.}
+{7060}{}{Switchblade.}
+{7070}{}{Łom.}
+{7080}{}{Młot.}
+{7090}{}{Młot wspomagany.}
+{7100}{}{Pastuch elektryczny.}
+{7110}{}{Ulepszony pastuch elektryczny.}
+{7120}{}{Rozpruwacz.}
+{7130}{}{@sex@|Zmieniłem||Zmieniłam| zdanie...}
+{8000}{}{Jaka konkretnie broń do walki wręcz cię interesuje?}
+{8010}{}{Kastet.}
+{8020}{}{Kolczasty kastet.}
+{8030}{}{Rękawica wspomagana.}
+{8040}{}{Ulepszona rękawica wspomagana.}
+{8050}{}{@sex@|Zmieniłem||Zmieniłam| zdanie...}
+{9000}{}{Jaka konkretnie broń rzucana cię interesuje?}
+{9010}{}{Nóż do rzucania.}
+{9020}{}{Koktajl Mołotowa.}
+{9030}{}{Granat odłamkowy.}
+{9040}{}{Granat plaznowy.}
+{9050}{}{Granat EMP.}
+{9060}{}{@sex@|Zmieniłem|Zmieniłam| zdanie...}
+{10000}{}{Jaki konkretnie pistolet cię interesuje?}
+{10010}{}{Magnum.}
+{10020}{}{Magnum SL.}
+{10030}{}{Pistolet wstrzykujący.}
+{10040}{}{Pistolet 10mm.}
+{10050}{}{Desert Eagle.}
+{10060}{}{Desert Eagle, powiększony.}
+{10070}{}{Pistolet 14mm.}
+{10080}{}{Pistolet .223.}
+{10090}{}{@sex@|Zmieniłem||Zmieniłam| zdanie...}
+{11000}{}{Jaka konkretnie broń ciężka cię interesuje?}
+{11010}{}{Rakietnica.}
+{11020}{}{Miotacz ognia.}
+{11030}{}{Ulepszony miotacz ognia.}
+{11040}{}{Działko obrotowe.}
+{11050}{}{Działko obrotowe Avenger.}
+{11060}{}{Lekka broń wsparcia.}
+{11070}{}{M60.}
+{11080}{}{@sex@|Zmieniłem|Zmieniłam| zdanie...}
+{12000}{}{Jaki konkretnie karabin cię interesuje?}
+{12010}{}{Muszkiet.}
+{12020}{}{Karabin szturmowy.}
+{12030}{}{Karabin szturmowy, powiększony.}
+{12040}{}{FN FAL.}
+{12050}{}{XL70E3.}
+{12060}{}{Strzelba.}
+{12070}{}{Obrzyn.}
+{12080}{}{Strzelba bojowa.}
+{12090}{}{H&K CAWS.}
+{12100}{}{Pancor Jackhammer.}
+{12110}{}{Karabin snajperski.}
+{12120}{}{Strzelba myśliwska.}
+{12130}{}{Strzelba myśliwska z lunetą.}
+{12140}{}{@sex@|Zmieniłem|Zmieniłam| zdanie...}
+{13000}{}{Jaka konkretnie broń cię interesuje?}
+{13010}{}{Thompson M1928.}
+{13020}{}{H&K P90c.}
+{13030}{}{10mm SMG.}
+{13040}{}{M3A1.}
+{13050}{}{@sex@|Zmieniłem|Zmieniłam| zdanie...}
+{14000}{}{Jaka konkretnie broń cię interesuje?}
+{14010}{}{Pistolet laserowy.}
+{14020}{}{Pistolet magnetyczno-laserowy.}
+{14030}{}{Pistolet plazmowy.}
+{14040}{}{Pistolet pulsacyjny YK32.}
+{14050}{}{Karabin laserowy.}
+{14060}{}{Karabin laserowy, powiększony.}
+{14070}{}{Karabin plazmowy.}
+{14080}{}{@sex@|Zmieniłem||Zmieniłam| zdanie...}
+{15000}{}{Zrobione.}
+{15010}{}{Świetnie, jeszcze coś.}
+{16000}{}{Zrobione.}
+{16010}{}{Więcej.}
+{17000}{}{Choose the implant.}
+{17010}{}{[Environmental Implant.]}
+{17020}{}{[Accuracy Implant.]}
+{17030}{}{[Defence Implant.]}
+{17040}{}{[Medic Implant.]}
+{17050}{}{[Engineer Implant.]}
+{17060}{}{[Speed Implant.]}
+{17070}{}{[Survivor Implant.]}
+{17080}{}{[Marksman Implant.]}
+{17090}{}{[Scout Implant.]}
+{17100}{}{[Enhancement Implant.]}
+{17110}{}{[ChemControl Implant.]}
+{17120}{}{[Leave.]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Here you go.}
+{2010}{}{One more thing...}
+{2020}{}{That would be all.}
+{3000}{}{What do you need?}
+{3010}{}{Modify my lvl.}
+{3020}{}{Give me caps}
+{3030}{}{Give me an armor.}
+{3040}{}{Give me implant.}
+{3050}{}{Give me a weapon and some ammo.}
+{3060}{}{Give me some drugs.}
+{3070}{}{Nothing.}
+{4000}{}{What are we doing with your lvl? Max Cheat level is 27.}
+{4010}{}{Give me 3 levels.}
+{4020}{}{Give me 3 levels.}
+{4030}{}{Give me 3 levels.}
+{4040}{}{Give me 3 levels.}
+{4050}{}{Give me 3 levels.}
+{4060}{}{Give me 3 levels.}
+{4070}{}{Give me 3 levels.}
+{4080}{}{Give me 3 levels.}
+{4090}{}{Give me 3 levels.}
+{4100}{}{Give me 1k Experience}
+{4110}{}{Give me 5k Experience}
+{4120}{}{Give me 10k Experience}
+{5000}{}{What kind of armor do you need?}
+{5010}{}{Leather Jacket.}
+{5020}{}{Combat Leather Jacket.}
+{5030}{}{Leather Armor}
+{5040}{}{Leather Armor mk II}
+{5050}{}{Metal Armor}
+{5060}{}{Metal Armor mk II}
+{5070}{}{Tesla Armor}
+{5080}{}{Combat Armor}
+{5090}{}{Combat Armor mk II}
+{5100}{}{I' ve changed my mind...}
+{6000}{}{What kind of weapon  do you need?}
+{6010}{}{Melee weapons.}
+{6020}{}{Unarmed weapons.}
+{6030}{}{Thrown weapons.}
+{6040}{}{Small guns.}
+{6050}{}{Big guns.}
+{6060}{}{Rifles.}
+{6070}{}{Submachine guns.}
+{6080}{}{Energy weapons.}
+{6090}{}{I' ve changed my mind...}
+{7000}{}{And what specific melee weapon it would be?}
+{7010}{}{Spear}
+{7020}{}{Sharpened Spear}
+{7030}{}{Knife}
+{7040}{}{Combat Knife}
+{7050}{}{Club}
+{7060}{}{Switchblade}
+{7070}{}{Crowbar}
+{7080}{}{Sledgehammer}
+{7090}{}{Super Sledge}
+{7100}{}{Cattle Prod}
+{7110}{}{Super Cattle Prod}
+{7120}{}{Ripper}
+{7130}{}{I' ve changed my mind...}
+{8000}{}{And what specific unarmed weapon it would be?}
+{8010}{}{Brass Knuckles}
+{8020}{}{Spiked Knuckles}
+{8030}{}{Power Fist}
+{8040}{}{Mega Power Fist}
+{8050}{}{I' ve changed my mind...}
+{9000}{}{And what specific thrown weapon it would be?}
+{9010}{}{Throwing Knife}
+{9020}{}{Molotov Cocktail}
+{9030}{}{Frag Grenade}
+{9040}{}{Plasma Grenade}
+{9050}{}{Pulse Grenade}
+{9060}{}{I' ve changed my mind...}
+{10000}{}{And what specific small gun it would be?}
+{10010}{}{Magnum}
+{10020}{}{Magnum SL}
+{10030}{}{Needler Pistol}
+{10040}{}{10mm Pistol}
+{10050}{}{Desert Eagle}
+{10060}{}{Desert Eagle Expanded}
+{10070}{}{14mm Pistol}
+{10080}{}{.223 Pistol}
+{10090}{}{I' ve changed my mind...}
+{11000}{}{And what specific big gun it would be?}
+{11010}{}{Rocket Launcher}
+{11020}{}{Flamer}
+{11030}{}{Improved Flamer}
+{11040}{}{Minigun}
+{11050}{}{Avenger Minigun}
+{11060}{}{Light Support Weapon}
+{11070}{}{M60}
+{11080}{}{I' ve changed my mind...}
+{12000}{}{And what specific rifle it would be?}
+{12010}{}{Pipe Rifle}
+{12020}{}{Assault Rifle}
+{12030}{}{Assault Rifle Ext.}
+{12040}{}{FN FAL}
+{12050}{}{XL70E3}
+{12060}{}{Shotgun}
+{12070}{}{Sawed-off Shotgun}
+{12080}{}{Combat Shotgun}
+{12090}{}{H&K CAWS}
+{12100}{}{Pancor Jackhammer}
+{12110}{}{Sniper Rifle}
+{12120}{}{Hunting Rifle}
+{12130}{}{Scoped Hunting Rifle}
+{12140}{}{I' ve changed my mind...}
+{13000}{}{And what specific SMG it would be?}
+{13010}{}{Tommy Gun}
+{13020}{}{H&K P90c}
+{13030}{}{10mm SMG}
+{13040}{}{M3A1 Grease Gun}
+{13050}{}{I' ve changed my mind...}
+{14000}{}{And what specific energy weapon it would be?}
+{14010}{}{Laser Pistol}
+{14020}{}{Magneto-Laser Pistol}
+{14030}{}{Plasma Pistol}
+{14040}{}{YK32 Pulse Pistol}
+{14050}{}{Laser Rifle}
+{14060}{}{Laser Rifle Ext.}
+{14070}{}{Plasma Rifle}
+{14080}{}{I' ve changed my mind...}
+{15000}{}{Done.}
+{15010}{}{Cool, something more.}
+{16000}{}{Done.}
+{16010}{}{More.}
+{17000}{}{Choose the implant.}
+{17010}{}{[Environmental Implant.]}
+{17020}{}{[Accuracy Implant.]}
+{17030}{}{[Defence Implant.]}
+{17040}{}{[Medic Implant.]}
+{17050}{}{[Engineer Implant.]}
+{17060}{}{[Speed Implant.]}
+{17070}{}{[Survivor Implant.]}
+{17080}{}{[Marksman Implant.]}
+{17090}{}{[Scout Implant.]}
+{17100}{}{[Enhancement Implant.]}
+{17110}{}{[ChemControl Implant.]}
+{17120}{}{[Leave.]}
+

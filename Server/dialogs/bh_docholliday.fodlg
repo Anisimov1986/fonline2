@@ -1,0 +1,402 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+7 2030 #
+10 2040 #
+22 2050 D _param p ADDICTION_BUFFOUT ! 0 D or D _param p ADDICTION_PSYCHO ! 0 D or D _param p ADDICTION_JET ! 0 #
+65506 2060 #
+0 2070 @
+3 3000 None 0 #
+11 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+9 4030 @
+5 5000 None 0 #
+8 5010 #
+6 5020 #
+2 5030 #
+0 5040 @
+6 6000 None 0 #
+65507 6010 #
+9 6020 #
+9 6030 @
+7 7000 None 0 #
+12 7010 #
+13 7020 @
+8 8000 None 0 #
+15 8010 #
+9 8020 #
+16 8030 #
+0 8040 @
+9 9000 None 0 #
+15 9010 #
+65507 9020 @
+10 10000 None 0 #
+17 10010 #
+3 10020 @
+11 11000 economy_dialogs@dlg_PreparePrice 0 #
+14 11010 D _script economy_dialogs@d_IsEnoughCaps 1 500 R _script economy_dialogs@r_TakeCaps 1 500 R _param p ST_CURRENT_HP + 500 R _script dialog@r_DropPoison 0  R _script dialog@r_DropRadiation 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 #
+0 11020 @
+12 12000 None 0 #
+18 12010 #
+18 12020 @
+13 13000 None 0 #
+12 13010 #
+0 13020 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 #
+0 15010 @
+16 16000 None 0 #
+3 16010 #
+0 16020 @
+17 17000 None 0 #
+3 17010 @
+18 18000 None 0 #
+19 18010 @
+19 19000 None 0 #
+20 19010 #
+0 19020 @
+20 20000 None 0 #
+21 20010 #
+0 20020 @
+21 21000 None 0 #
+3 21010 #
+0 21020 @
+22 22000 economy_dialogs@dlg_PreparePrice 0 #
+14 22010 D _script economy_dialogs@d_IsEnoughCaps 1 450 R _script economy_dialogs@r_TakeCaps 1 450 R _script dialog@r_DropDrugs 0  #
+0 22020 &
+
+[engl]
+{100}{}{Doc Holliday}
+{200}{}{You see: Doc Holliday.}
+{210}{}{The man has an an air of knowledge about him. He also seems slightly sickly.}
+{210}{}{You see Doc Holliday.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{[Wheeze.] Hi there. I'm Doc Holliday. How can I help you?}
+{2010}{}{I'm hurt, Doc. Can you help me?}
+{2020}{}{What do you do here?}
+{2030}{}{Tell me about the town.}
+{2040}{}{Any gossip?}
+{2050}{}{Doc, I used some nasty stuff. Can you help me out?}
+{2060}{}{Just sell me some stimpacks.}
+{2070}{}{Forget it. Sorry.}
+{3000}{}{Let me take a look at that. I can heal you, but it'll cost.@@Yes, I can heal this... [Wheeze] for a price.}
+{3010}{}{How much?}
+{3020}{}{Forget it.}
+{4000}{}{What do I do here? You're in a clinic. I'm wearing a doctor's coat. I'm covered with blood.
+ There are sharp, pointy things lying all around. Either I'm a successful killer or a fair doctor. Take your pick.}
+{4010}{}{I guess I can call you a doctor.}
+{4020}{}{Don't get smart with me, old man.}
+{4030}{}{A really good doctor wouldn't be getting blood all over himself.}
+{5000}{}{That's right. I'm a doctor. Good to see that intelligence is alive and well in the post-nuclear
+ world.}
+{5010}{}{Ha! And it's kicking around inside the body of a 70-year-old man!}
+{5020}{}{I don't need to be taking this shit from you, old man.}
+{5030}{}{Ummm.. Yeah. I had more questions.}
+{5040}{}{Bye.}
+{6000}{}{Threaten the only doctor in town. Good thinking. [Cough] Friend, if you want something, you
+ can ask politely. Otherwise, get the hell out of my clinic.}
+{6010}{}{Bite me, old man. Get ready to die.}
+{6020}{}{Sorry. Bad day.}
+{6030}{}{I was just kidding around.}
+{7000}{}{Let's see. I was born here years ago. Place was just getting started. I picked up when I was a
+ teen and tooled around the place for a while. Met a woman. Fell in love. She died of a sickness that nobody could cure. It was then when I decided to become a doctor.}
+{7010}{}{Yeah? Go on.}
+{7020}{}{We were talking about Broken Hills, not your history.}
+{8000}{}{[You can see a glint of laughter in his eyes behind his glasses] Don't see it too many other
+ places these days.}
+{8010}{}{Hey!}
+{8020}{}{Old man, don't push me.}
+{8030}{}{...are the repository of what our elders once knew...}
+{8040}{}{Yeah, yeah, yeaha? I gotta go.}
+{9000}{}{Stripling,  you have a lot to learn about respect.@@Child, you have a lot to learn about humor.}
+{9010}{}{Yeah, all right.}
+{9020}{}{Okay, you've pissed me off. Now you're going to need to heal yourself.}
+{10000}{}{You'd be surprised what people say when they're in pain.}
+{10010}{}{Oh yeah? Like what?}
+{10020}{}{I changed my mind. I'd rather ask other questions.}
+{11000}{}{I'm going to examine you, might need some serious patching. But first, pay. @lex heal_price@ caps.}
+{11010}{}{I'll pay.}
+{11020}{}{Forget it.@@I don't have that much money.}
+{12000}{}{So then I traveled to San Francisco and studied under the Chinese there? An old gentleman by
+ the name of Mr. Fung. Taught me everything I know about medicine. And some wisdom, too.}
+{12010}{}{So then what happened?}
+{12020}{}{And this ties into Broken Hills, how?}
+{13000}{}{I'm getting to that! Kids these days. So impatient.}
+{13010}{}{Sorry. Go on.}
+{13020}{}{This sucks. I'm outta here.}
+{14000}{}{Friend, you just might make it. I don't want to see you crawling back half dead, do you understand? Now go on, I have work to do.}
+{14010}{}{Thanks.}
+{15000}{}{Relax, kid. Just joking around with you.}
+{15010}{}{Yeah, I know. So?}
+{16000}{}{And what we refuse to tell you little bastards! [He bursts out laughing] Kid, the next time you need to see me for some medical help, it's on the house.}
+{16010}{}{I had some other questions.}
+{16020}{}{Thanks. I'll see you around.}
+{17000}{}{Surprisingly little. Sorry, but when I'm concentrating on healing someone, I don't usually pay attention to their innermost secrets.}
+{17010}{}{Oh. Will you answer more questions?}
+{18000}{}{Then, I came back here and watched Marcus build the town from the shanties I remember from my youth into the "sprawling metropolis" you see before you. I saw people attracted by promises of wealth. I saw people grow up and die. I saw the currents of history.}
+{18010}{}{And so...?}
+{19000}{}{So, this means that I don't know most of the new people these days. Most of my memories are just that - memories.}
+{19010}{}{Oh. Well, thanks for the story.}
+{19020}{}{You jerk.}
+{20000}{}{No, thank you for listening to me ramble. Next time you're here and need healing, it's on the house.}
+{20010}{}{Thanks!}
+{20020}{}{Thanks. So long!}
+{21000}{}{Yeah. Hope it was worth it! [He cackles.]}
+{21010}{}{No. Not really. Tell me something else.}
+{21020}{}{No. You shriveled old jerk. Bye.}
+{22000}{}{Drugs are bad, remember? Eh, fine, give me @lex heal_drugs_price@ cpas and I'll take care of you.}
+{22010}{}{Take my money, do your stuff.}
+{22020}{}{No thanks, I don't have the money.}
+
+[russ]
+{100}{}{Док Холидей}
+{200}{}{Вы видите умудренного опытом старика в докторском халате.}
+{210}{}{Вы видите умудренного опытом старика в докторском халате, слегка запятнанном кровью. От него просто исходят лучи знаний и мудрости.}
+{210}{}{Вы видите доктора Xоллидэя.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{[Хрипит] Привет. Я Док Холлидей. Как я могу вам помочь?}
+{2010}{}{Мне нужна срочная медицинская помощь!}
+{2020}{}{Чем вы здесь занимаетесь?}
+{2030}{}{Расскажите мне об этом городе.}
+{2040}{}{Есть какие-нибудь свежие сплетни?}
+{2050}{}{Док, слушай я использовал некоторые не хорошие препараты.}
+{2060}{}{Можно купить у вас лекарства?}
+{2070}{}{Ничего. Извините за беспокойство.}
+{3000}{}{Дайте-ка взглянуть... я могу вылечить вас, но это будет стоить денег.@@Да, я могу вылечить это... [Хрипит] За плату.@@Вы ранены? Дайте-ка я подлечу.}
+{3010}{}{Сколько?}
+{3020}{}{Ладно, забыли.}
+{4000}{}{Что я тут делаю? Это больница. На мне надет докторский халат. Я покрыт кровью. Вокруг разложены острые блестящие штучки. Или я процветающий киллер, или честный доктор. Решайте сами.}
+{4010}{}{Пожалуй, я решу, что вы доктор.}
+{4020}{}{Не надо со мной умничать, старикан.}
+{4030}{}{По-настоящему хороший врач не будет весь измазан кровью.}
+{5000}{}{Верно. Я доктор. Как приятно видеть, что сообразительность сохранилась и после ядерной войны.}
+{5010}{}{Ха! А у наиболее продвинутых экземпляров даже усилилась!}
+{5020}{}{Я не потерплю, чтобы всякий старый хрен поливал меня грязью.}
+{5030}{}{Уммм... Да. У меня есть еще вопросы.}
+{5040}{}{Пока.}
+{6000}{}{Угрожаете единственному доктору в городе. Умно, ничего не скажешь. ::кашляет:: Радость моя, если вам что-нибудь нужно, просто попросите об этом вежливо. Иначе же - убирайтесь из моей больницы.}
+{6010}{}{Выкуси, старикашка. Готовься к смерти.}
+{6020}{}{Простите. Сегодня не мой день.}
+{6030}{}{Это была неудачная шутка.}
+{7000}{}{Посмотрим. Я родился здесь много лет назад. Здесь тогда все только начиналось. Я еще подростком был и болтался тут и там. Я встретил женщину и влюбился в нее. А потом она умерла от болезни. Я решил, что должен стать врачом.}
+{7010}{}{Да ну? Продолжайте.}
+{7020}{}{Мы говорили о Брокен Хиллс, а не о вашей биографии.}
+{8000}{}{[В его глазах за стеклами очков пляшут искорки смеха] Ну ты-то, без сомнения, продвинутый экземляр!}
+{8010}{}{Эй!}
+{8020}{}{Старик, не напрягай меня.}
+{8030}{}{Ха, да я так быстро продвигаюсь, что мне иногда свой затылок видно...}
+{8040}{}{Да, да, да... Мне пора.}
+{9000}{}{Деточка, вам столько еще надо узнать об уважении.@@Деточка, вам столько еще предстоит узнать о чувстве юмора..@@В пустошах стало совсем туго с чувстом юмора.}
+{9010}{}{Да, ладно.}
+{9020}{}{Ну все, мое терпение лопнуло.}
+{10000}{}{Вы даже и не представляете, что только люди не говорят, когда им больно.}
+{10010}{}{Да ну? Например?}
+{10020}{}{Пожалуй, я лучше спрошу о чем-то другом.}
+{11000}{}{О, как всё запущено! Да вам капитальный ремонт нужен. $ @lex heal_price@.}
+{11010}{}{Я заплачу.}
+{11020}{}{Ладно, забыли.}
+{12000}{}{Так что я отправился в Сан-Франциско и учился там у китайцев; один старик по имени Фанг научил меня всему, что я знаю о медицине. Кроме того, он учил меня своей мудрости.}
+{12010}{}{А что случилось потом?}
+{12020}{}{А как это связано с Брокен Хиллс?}
+{13000}{}{Сейчас, сейчас! Ох уж мне эти нынешние детки... никакого терпения...}
+{13010}{}{Прошу прощения. Продолжайте.}
+{13020}{}{Вот отстой. Я сваливаю.}
+{14000}{}{Так-с. Хорошо зафиксированный больной в анестезии не нуждается...Оппа... Собственно все, теперь предписываю покой, хвойные ванны и регулярное питание. Шутка. }
+{14010}{}{Спасибо.}
+{15000}{}{Да не надо так дергаться, детка. Уж и пошутить нельзя.}
+{15010}{}{Да, да, да... Мне пора.}
+{16000}{}{Да? Ну тогда ты уже в курсе, что тебе пора шею помыть. }
+{16010}{}{У меня есть еще вопросы.}
+{16020}{}{Падла...падла...подловил. Хе хе. Молодец, дедуля...}
+{17000}{}{На удивление немного. Прошу прощения, но когда я лечу людей, я не прислушиваюсь к их стррашным тайнам.}
+{17010}{}{О. Вы не ответите на другие вопросы?}
+{18000}{}{Потом, я вернулся сюда и открыл больницу. Я видел, как Маркус строил город. Он превратил его из палаточного городка, который я помню с детства, в человеческий муравейник, который ты видишь перед собой. Я видел людей, которых привлекала сюда жажда денег. Я видел, как люди росли и умирали. Я видел, как вершилась история.}
+{18010}{}{И это означает...}
+{19000}{}{Это означает, что сейчас я мало что знаю о нынешнем народце. Большая часть моих воспоминаний -- всего лишь воспоминания.}
+{19010}{}{Что ж, спасибо за рассказ.}
+{19020}{}{Ну ты и ублюдок! Ты заставил меня ждать все это время - и не сказал ничего дельного!}
+{20000}{}{Нет, спасибо вам за снисходительность к моей болтовне. Рад был пообщаться.}
+{20010}{}{Спасибо! Ну, как скажете...}
+{20020}{}{Спасибо! До скорого!}
+{21000}{}{Да. Надеюсь, дело того стоило! [Хмыкает]}
+{21010}{}{Нет. Не думаю. Расскажите мне что-нибудь еще.}
+{21020}{}{Нет. Ты никчемный старый болван. Чао.}
+{22000}{}{Наркотики это плохо, поянл? Хорошо, $ @lex heal_drugs_price@, и я позабочусь о вас.}
+{22010}{}{Возьмите мои деньги, и делайте то что нужно..}
+{22020}{}{Нет, спасибо, у меня нет денег.}
+
+[pols]
+{100}{}{Holiday}
+{200}{}{Widzisz zgarbionego starca w lekarskim kitlu.}
+{210}{}{Widzisz zgarbionego starca w poplamionym krwią lekarskim kitlu. Ten człowiek emanuje wiedzą. Wygląda na nieco schorowanego.}
+{210}{}{You see Doc Holliday.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{[Gwiżdże.] Witam. Jestem doktor Holliday. Jak mogę ci pomóc?}
+{2010}{}{Jestem @sex@|ranny||ranna| i potrzebuję twojej pomocy.}
+{2020}{}{Co tu robisz?}
+{2030}{}{Opowiedz mi o tym mieście.}
+{2040}{}{Jakieś plotki?}
+{2050}{}{Doktorze, słuchaj... @sex@|Brałem||Brałam| nieco nieprzyjemnych rzeczy.}
+{2060}{}{Po prostu sprzedaj mi parę stimpaków.}
+{2070}{}{Nic z tego. Przykro mi.}
+{3000}{}{Pozwól, że rzucę na to okiem. Mogę cię wyleczyć, ale to będzie kosztowało.@@Tak mogę to uleczyć? [Gwiżdże.] Za pewną cenę.}
+{3010}{}{Ile?}
+{3020}{}{Nic z tego.}
+{4000}{}{Co ja tu robię? Jesteś w szpitalu. Ja jestem w stroju lekarza. Cały jestem we krwi, a dookoła wala się pełno ostrych narzędzi. Albo jestem wyjątkowo aktywnym mordercą, albo pieprzonym lekarzem. Jak myślisz?}
+{4010}{}{Zgaduję, że jesteś lekarzem.}
+{4020}{}{Myślisz, że jesteś dowcipny, dziadku?}
+{4030}{}{Naprawdę dobry lekarz nie byłby chyba cały we krwi.}
+{5000}{}{Zgadza się, jestem lekarzem. Miło spotkać kogoś inteligentnego w tym post-nuklearnym świecie.}
+{5010}{}{Ha! Nieźle, jak na gościa z siedmioma krzyżykami na karku!}
+{5020}{}{Nie mam zamiaru brać nic z twoich łap, staruchu.}
+{5030}{}{Hmmm... Tak. Mam inne pytania.}
+{5040}{}{Do widzenia.}
+{6000}{}{Grozisz jedynemu lekarzowi w mieście. Kurde, ale z ciebie mądrala. [Kaszle.] @sex@|Mój drogi||Moja droga|, jeśli coś chcesz ode mnie - poproś. W przeciwnym razie spadaj z mojego szpitala.}
+{6010}{}{Pocałuj mnie gdzieś, staruchu. Szykuj się na śmierć.}
+{6020}{}{Przepraszam. Mam dzisiaj wyjątkowo zły dzień.}
+{6030}{}{Przepraszam, tylko @sex@|żartowałem||żartowałam|.}
+{7000}{}{Pomyślmy. Urodziłem się tu wiele lat temu. Miasteczko dopiero się rozkręcało. Tutaj się wychowałem i poznałem kobietę mojego życia. Zakochałem się z wzajemnością. Ona zmarła na nieznaną chorobę. Wtedy właśnie zdecydowałem, że zostanę lekarzem.}
+{7010}{}{Tak? Proszę, kontynuuj.}
+{7020}{}{Pytałem o historię Broken Hills, nie twoją.}
+{8000}{}{[Zauważasz błysk uśmiechu w jego oczach, skrytych za okularami.] W dzisiejszych czasach nie widuje się tego w wielu miejscach. Na przykład u młodych tego świata...}
+{8010}{}{Hej!}
+{8020}{}{Nie przeginaj, starcze.}
+{8030}{}{...można znaleźć skarbnicę tego, co starsi wiedzieli kiedyś...}
+{8040}{}{Ta, tak, taaak... Ale ja muszę już iść.}
+{9000}{}{Dziecko, musisz się nauczyć szacunku dla starszych.@@Dziecko, musisz się jeszcze wiele nauczyć o żartach.}
+{9010}{}{Ta, w porządku.}
+{9020}{}{No dobra, teraz mnie wkurzyłeś. Będziesz musiał SIEBIE wyleczyć z bardzo poważnych ran.}
+{10000}{}{Zdziwiłoby cię, co ludzie potrafią wyjawić w cierpieniu.}
+{10010}{}{Och tak? Co na przykład?}
+{10020}{}{@sex@|Zmieniłem||Zmieniłam| zdanie. Chcę spytać o coś innego.}
+{11000}{}{Zbadam cię. Zanosi się na sporo szycia. @lex heal_price@ kapsli.}
+{11010}{}{Zapłacę.}
+{11020}{}{Nic z tego.@@Nie mam tylu pieniędzy.}
+{12000}{}{Więc poszedłem do San Francisco i studiowałem pod kierownictwem pewnego Chińczyka... Starszego dżentelmena - pana Funga, który nauczył mnie wszystkiego, co wiem o medycynie. Nauczył mnie też rozsądku.}
+{12010}{}{Więc co się stało?}
+{12020}{}{A jaki to ma związek z Broken Hills?}
+{13000}{}{Właśnie do tego zdążam! Ta dzisiejsza młodzież... Taka niecierpliwa.}
+{13010}{}{Przepraszam. Kontynuuj.}
+{13020}{}{Mam dość. Spadam stąd.}
+{14000}{}{No, tylko nie chcę cię znowu widzieć, jak przyczołgujesz się z powrotem @sex@|półżywy||półżywa|. Teraz odejdź, mam sprawy do załatwienia.}
+{14010}{}{Dzięki.}
+{15000}{}{Uspokój się, dziecko. Tylko żartuję.}
+{15010}{}{Tak, tak, tak... Muszę iść.}
+{16000}{}{...i czym odmawiamy się z wami podzielić, mali dranie! [Wybucha śmiechem.] Dziecko, kiedy następnym razem będzie ci potrzebna darmowa pomoc medyczna - wal śmiało.}
+{16010}{}{Mam jeszcze inne pytania.}
+{16020}{}{Dzięki. Do zobaczenia.}
+{17000}{}{Zadziwiająco niewiele. Przykro mi, ale koncentruję się na operacji i nie mam zbyt wiele czasu na przesłuchiwanie pacjenta}
+{17010}{}{Och. Możesz mi odpowiedzieć na inne pytania?}
+{18000}{}{Wtedy wróciłem tu i obserwowałem, jak Marcus budował miasto z szałasów i namiotów, oraz jak przerodziło się ono w tę "metropolię", którą teraz oglądasz. Widziałem przybywających tu ludzi zachęconych obietnicami bogactwa. Widziałem, jak dorastali i jak umierali. Innymi słowy, widziałem całkiem niezły kawałek historii.}
+{18010}{}{A to oznacza..?}
+{19000}{}{To oznacza, że nie mam zbyt wielu znajomych wśród żywych}
+{19010}{}{Och. Cóż, dzięki za opowieść.}
+{19020}{}{Ty palancie! Tyle czasu straconego na bezsensowną opowieść!}
+{20000}{}{Nie, dziękuję ci bardzo za cierpliwość. Kiedy następnym razem będzie ci potrzebna darmowa pomoc medyczna - wal śmiało.}
+{20010}{}{Dzięki! Więc..?}
+{20020}{}{Dzięki. Do zobaczenia!}
+{21000}{}{Tak. Mam nadzieję, że było warto! [Śmieje się.]}
+{21010}{}{Nie. Nie całkiem. Opowiedz mi o czymś innym.}
+{21020}{}{Nie. Ty szurnięty stary palancie. Spadaj.}
+{22000}{}{Narkotyki są złe, rozumiesz? W porządku, @lex heal_drugs_price@ kapsli i się tobą zajmę.}
+{22010}{}{Bierz pieniądze i rób co do ciebie należy.}
+{22020}{}{Nie, dzięki, nie mam tyle pieniędzy.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{[Wheeze.] Hi there. I'm Doc Holliday. How can I help you?}
+{2010}{}{I'm hurt, Doc. Can you help me?}
+{2020}{}{What do you do here?}
+{2030}{}{Tell me about the town.}
+{2040}{}{Any gossip?}
+{2050}{}{Doc, I used some nasty stuff. Can you help me out?}
+{2060}{}{Just sell me some stimpacks.}
+{2070}{}{Forget it. Sorry.}
+{3000}{}{Let me take a look at that. I can heal you, but it'll cost.@@Yes, I can heal this... [Wheeze] for a price.}
+{3010}{}{How much?}
+{3020}{}{Forget it.}
+{4000}{}{What do I do here? You're in a clinic. I'm wearing a doctor's coat. I'm covered with blood.
+ There are sharp, pointy things lying all around. Either I'm a successful killer or a fair doctor. Take your pick.}
+{4010}{}{I guess I can call you a doctor.}
+{4020}{}{Don't get smart with me, old man.}
+{4030}{}{A really good doctor wouldn't be getting blood all over himself.}
+{5000}{}{That's right. I'm a doctor. Good to see that intelligence is alive and well in the post-nuclear
+ world.}
+{5010}{}{Ha! And it's kicking around inside the body of a 70-year-old man!}
+{5020}{}{I don't need to be taking this shit from you, old man.}
+{5030}{}{Ummm.. Yeah. I had more questions.}
+{5040}{}{Bye.}
+{6000}{}{Threaten the only doctor in town. Good thinking. [Cough] Friend, if you want something, you
+ can ask politely. Otherwise, get the hell out of my clinic.}
+{6010}{}{Bite me, old man. Get ready to die.}
+{6020}{}{Sorry. Bad day.}
+{6030}{}{I was just kidding around.}
+{7000}{}{Let's see. I was born here years ago. Place was just getting started. I picked up when I was a
+ teen and tooled around the place for a while. Met a woman. Fell in love. She died of a sickness that nobody could cure. It was then when I decided to become a doctor.}
+{7010}{}{Yeah? Go on.}
+{7020}{}{We were talking about Broken Hills, not your history.}
+{8000}{}{[You can see a glint of laughter in his eyes behind his glasses] Don't see it too many other
+ places these days.}
+{8010}{}{Hey!}
+{8020}{}{Old man, don't push me.}
+{8030}{}{...are the repository of what our elders once knew...}
+{8040}{}{Yeah, yeah, yeaha? I gotta go.}
+{9000}{}{Stripling,  you have a lot to learn about respect.@@Child, you have a lot to learn about humor.}
+{9010}{}{Yeah, all right.}
+{9020}{}{Okay, you've pissed me off. Now you're going to need to heal yourself.}
+{10000}{}{You'd be surprised what people say when they're in pain.}
+{10010}{}{Oh yeah? Like what?}
+{10020}{}{I changed my mind. I'd rather ask other questions.}
+{11000}{}{I'm going to examine you, might need some serious patching. But first, pay. @lex heal_price@ caps.}
+{11010}{}{I'll pay.}
+{11020}{}{Forget it.@@I don't have that much money.}
+{12000}{}{So then I traveled to San Francisco and studied under the Chinese there? An old gentleman by
+ the name of Mr. Fung. Taught me everything I know about medicine. And some wisdom, too.}
+{12010}{}{So then what happened?}
+{12020}{}{And this ties into Broken Hills, how?}
+{13000}{}{I'm getting to that! Kids these days. So impatient.}
+{13010}{}{Sorry. Go on.}
+{13020}{}{This sucks. I'm outta here.}
+{14000}{}{Friend, you just might make it. I don't want to see you crawling back half dead, do you understand? Now go on, I have work to do.}
+{14010}{}{Thanks.}
+{15000}{}{Relax, kid. Just joking around with you.}
+{15010}{}{Yeah, I know. So?}
+{16000}{}{And what we refuse to tell you little bastards! [He bursts out laughing] Kid, the next time you need to see me for some medical help, it's on the house.}
+{16010}{}{I had some other questions.}
+{16020}{}{Thanks. I'll see you around.}
+{17000}{}{Surprisingly little. Sorry, but when I'm concentrating on healing someone, I don't usually pay attention to their innermost secrets.}
+{17010}{}{Oh. Will you answer more questions?}
+{18000}{}{Then, I came back here and watched Marcus build the town from the shanties I remember from my youth into the "sprawling metropolis" you see before you. I saw people attracted by promises of wealth. I saw people grow up and die. I saw the currents of history.}
+{18010}{}{And so...?}
+{19000}{}{So, this means that I don't know most of the new people these days. Most of my memories are just that - memories.}
+{19010}{}{Oh. Well, thanks for the story.}
+{19020}{}{You jerk.}
+{20000}{}{No, thank you for listening to me ramble. Next time you're here and need healing, it's on the house.}
+{20010}{}{Thanks!}
+{20020}{}{Thanks. So long!}
+{21000}{}{Yeah. Hope it was worth it! [He cackles.]}
+{21010}{}{No. Not really. Tell me something else.}
+{21020}{}{No. You shriveled old jerk. Bye.}
+{22000}{}{Drugs are bad, remember? Eh, fine, give me @lex heal_drugs_price@ cpas and I'll take care of you.}
+{22010}{}{Take my money, do your stuff.}
+{22020}{}{No thanks, I don't have the money.}
+

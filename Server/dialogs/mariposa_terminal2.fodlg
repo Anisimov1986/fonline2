@@ -1,0 +1,79 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 R _script dialog@Type 0  #
+0 2020 R _script dialog@Type 0  @
+3 3000 None 0 #
+4 3010 D _param p SK_SCIENCE < 130 R _script dialog@Type 0  R _script dialog@r_OpenDoor_MapIndex 4 106 61 2143 4 R _script dialog@r_OpenDoor_MapIndex 4 112 61 2143 4 R _script dialog@r_OpenDoor_MapIndex 4 92 69 2142 4 R _script dialog@r_OpenDoor_MapIndex 4 92 74 2142 4 #
+5 3020 D _item p PID_LIEUTENANTS_FINGER } 1 R _script dialog@Type 0  R _item p PID_LIEUTENANTS_FINGER - 1 R _script dialog@r_OpenDoor_MapIndex 4 92 69 2142 4 R _script dialog@r_OpenDoor_MapIndex 4 92 74 2142 4 R _script dialog@r_OpenDoor_MapIndex 4 112 61 2143 4 R _script dialog@r_OpenDoor_MapIndex 4 106 61 2143 4 #
+0 3030 R _script dialog@Type 0  @
+4 4000 None 0 @
+5 5000 None 0 &
+
+[engl]
+{100}{}{Network Hub Terminal}
+{200}{}{You see: a Network Hub Terminal.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Gate Access Terminal Rebooted.}
+{2010}{}{Log In.}
+{2020}{}{Log out.}
+{3000}{}{Fingerprint authorisation required.}
+{3010}{}{[Hack In.]@@[Hack into the terminal.]}
+{3020}{}{[Use cut off Lieutenant's finger.]}
+{3030}{}{Log Off.@@Log out.@@Logoff.}
+{4000}{}{Emergency unlock. Additional security systems initiated.}
+{5000}{}{Access granted. }
+
+[russ]
+{100}{}{Network Hub Terminal}
+{200}{}{You see a Network Hub Terminal.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Experimental Gear Storage Access Terminal Rebooted.}
+{2010}{}{Log In}
+{2020}{}{Log Off}
+{3000}{}{Authorisation required. Enter safety codes.}
+{3010}{}{[Hack In]}
+{3020}{}{[Use codes from Holotape]}
+{3030}{}{Log Off}
+{4000}{}{ALERT!!! Unauthorised logging attempt. System emergency shutdown... Security System Activated!}
+{5000}{}{ERROR... [Something went wrong... but you hear the doors are opening]}
+
+[pols]
+{100}{}{Network Hub Terminal}
+{200}{}{You see a Network Hub Terminal.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Experimental Gear Storage Access Terminal Rebooted.}
+{2010}{}{Log In}
+{2020}{}{Log Off}
+{3000}{}{Authorisation required. Enter safety codes.}
+{3010}{}{[Hack In]}
+{3020}{}{[Use codes from Holotape]}
+{3030}{}{Log Off}
+{4000}{}{ALERT!!! Unauthorised logging attempt. System emergency shutdown... Security System Activated!}
+{5000}{}{ERROR... [Something went wrong... but you hear the doors are opening]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Experimental Gear Storage Access Terminal Rebooted.}
+{2010}{}{Log In.@@Login.}
+{2020}{}{og Off.@@Log out.@@Logoff.}
+{3000}{}{Authorisation required. Enter safety codes:}
+{3010}{}{[Hack In.]@@[Hack into the terminal.]}
+{3020}{}{[Use codes from the holodisk.]}
+{3030}{}{Log Off.@@Log out.@@Logoff.}
+{4000}{}{Warning. Unauthorised login attempt detected. Emergency system shutdown... Security system activated!}
+{5000}{}{Error. [Something went wrong, but you hear the doors are opening.]}
+

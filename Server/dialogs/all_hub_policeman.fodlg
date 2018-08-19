@@ -1,0 +1,64 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+3 1010 D _script dialog@d_HoldsItems 0  #
+2 1020 @
+2 2000 None 0 @
+3 3000 None 0 #
+0 3010 R _script dialog@r_RetrieveItems 0  #
+0 3020 &
+
+[engl]
+{100}{}{Guard}
+{200}{}{You see: Guard.}
+{210}{}{This person seems to be charged with keeping law and order in this area.}
+{1000}{}{Predialogue installations}
+{1010}{}{- holds items of player}
+{1020}{}{-}
+{2000}{}{I wish I was stationed closer to home.@@I ain't got time for this.@@Get the fuck outta my face.@@Get lost.@@I need a smoke.@@Move along.@@Keep your nose clean.@@Go bother someone else.@@No fighting, got it?@@Do something stupid, I dare you.@@We don't allow killin' in here, even if it's justified.@@Keep your nose clean while you're here.@@Move along.@@Get out of my sight!@@Stop bothering me!@@Keep moving.@@Move along, stranger.@@We're here to Prevent and Survey... or something like that.@@Keep your weapon holstered while you're here.@@Yeah, yeah, welcome to the Hub. Now get the fuck out of my face.@@Get lost.@@I need a good handjob.@@Move along.@@Go bother someone else.@@Do something stupid, like shooting someone. Come on now, don't be shy, go ahead and do it.@@Move along.@@Stop bothering me!@@We're here to Prevent and Survey...or something.@@Don't bother my ass. I'm on duty.@@ Respect teh law.@@No matter the justification, crime penalty is severe. The Sentence is Death.@@Patrolling the Hub almost makes you wish for a nuclear winter.@@I used to be a wastelander like you. Then I took a burst to the knee.@@I am the law@@Leave me alone, idiot.@@Let me guess...someone stole your ball gag.@@It was me who knocked up Mrs. Bishop.@@Why did the radscorpion cross the road? Because it was trying to avoid a Fallout!@@You look like shit.@@You're a pervert, aren't you? You like poking people in various body parts, huh?}
+{3000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{3010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{3020}{}{No, thanks, you can keep it.}
+
+[russ]
+{100}{}{Полицейский}
+{200}{}{Вы видите офицера полиции этого города.}
+{210}{}{Вы видите офицера полиции этого города, он внимательно следит за округой.}
+{1000}{}{Predialogue installations}
+{1010}{}{- holds items of player}
+{1020}{}{-}
+{2000}{}{Хотел бы я находился ближе к своему дому.@@Проходите.@@Держи нос по ветру.@@Никаких разборок в городе, крутой парень.@@Мы не позволяем тут устраивать разборки.@@Желаем вам приятного отдыха.@@Добро пожаловать!@@Служить и защищать!@@Не хватайся за пушку пока ты в городе, сынок.}
+{3000}{}{Эй ты тут недавно попал в передрягу?. Я похоже сохранил твои вещи. Хочешь получить их обратно?}
+{3010}{}{Спасибо, офицер. [Забираете свои вещи]}
+{3020}{}{Нет, спасибо, мне это больше не нужно.}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz miejscowego policjanta.}
+{210}{}{Widzisz miejscowego policjanta, który uważnie obserwuje okolicę.}
+{1000}{}{Predialogue installations}
+{1010}{}{- holds items of player}
+{1020}{}{-}
+{2000}{}{To co Władziu, za bezpieczny weekend?@@Tak, tak, witamy w Hubie. A teraz zejdź mi z oczu.@@Koko dżambo i do przodu - to moje hasło. Dobre, nie?@@Koniec pierdolenia, robota czeka.@@Przydałby się porządny handjob.@@Nie przeszkadzaj mi, jestem na służbie.@@Nie zatrzymuj się, idź dalej.@@Zrób coś głupiego, jak strzelanie do kogoś. No, śmiało. Nie krępuj się.@@Zostaw mnie w spokoju, idioto.@@Prawo to ja.@@Nieważny powód. Za przestępstwo trafiasz do piachu.@@Patrolując Hub tęsknisz za zimą nuklearną.@@Kiedyś byłem wastelanderem jak ty. Potem dostałem serią w kolano.@@Niech zgadnę...ktoś ci ukradł knebel.@@To ja jestem ojcem bachora Pani Bishop.@@Wyglądasz jakbyś tarzał się w gównie.@@Jesteś zboczony, nie? Lubisz szturchać różne części ciała innych ludzi, prawda?}
+{3000}{}{Hej, to ciebie tutaj zabili? Mam twoje rzeczy, chcesz je z powrotem?}
+{3010}{}{Jasne. Dzięki, panie władzo. [Zabierasz swoje rzeczy.]}
+{3020}{}{Nie, dzięki, możecie je zatrzymać.}
+
+[ptbr]
+{100}{}{Guarda}
+{200}{}{Você vê um guarda.}
+{210}{}{Esta pessoa parece ser encarregada de manter a lei e ordem neste local.}
+{1000}{}{Predialogue installations}
+{1010}{}{- holds items of player}
+{1020}{}{-}
+{2000}{}{Queria ter sido alocado perto de casa.@@Não tenho tempo pra isso.@@Some da minha vista.@@Se manda.@@Preciso fumar.@@Vai andando.@@Cuidado onde coloca o nariz.@@Vai perturbar outro.@@Sem brigas, entendeu?@@Faça alguma idiotice, faça...@@Não permitimos assassinato aqui, mesmo que justificado.@@Fique de nariz limpo enquanto estiver aqui.@@Circulando.@@Some da minha frente!@@Para de encher o saco!@@Circulando.@@Circulando, nada pra ver aqui, forasteiro.@@Nós estamos aqui para Prevenir e Vigiar... algo assim@@Guarde suas armas enquanto estiver aqui.}
+{3000}{}{Ei, tu é um dos que tavam naquela briga. Eu acho que tou com suas coisas. Acho que quer de volta, hein?}
+{3010}{}{Opa, valeu! [Pega seus pertences de volta.]}
+{3020}{}{Não, valeu. Pode ficar com o que tava comigo.}
+

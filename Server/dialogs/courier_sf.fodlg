@@ -1,0 +1,337 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+60 1010 D _var p q_geckoex_fail = 5 #
+54 1020 D _var p q_geckoex_fail = 4 R _var p q_geckoex_fail = 5 #
+3 1030 D _var p name_mem_npc_player } 1 #
+2 1040 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 D _var p name_mem_npc_player < 2 R _var p name_mem_npc_player = 2 #
+20 2020 D _var p q_geckoex_ncr = 4 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_ncr = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+20 2030 D _var p q_geckoex_adyt = 4 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_adyt = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+20 2040 D _var p q_geckoex_vc = 4 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_vc = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+5 2050 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_sf = 0 D _var p q_geckoex_ncr ! 4 D _var p q_geckoex_adyt ! 4 D _var p q_geckoex_vc ! 4 #
+55 2060 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_sf } 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_ncr = 4 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_adyt = 4 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_vc = 4 #
+21 2070 D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_ncr = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_adyt = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_vc = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_sf = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 50 R _script map_ncr@r_NCRProfit 1 5 #
+0 2080 @
+3 3000 None 0 #
+4 3010 D _var p name_mem_npc_player ! 2 R _var p name_mem_npc_player = 2 #
+20 3020 D _var p q_geckoex_ncr = 4 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_ncr = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+20 3030 D _var p q_geckoex_adyt = 4 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_adyt = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+20 3040 D _var p q_geckoex_vc = 4 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_vc = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+10 3050 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_sf = 0 D _var p q_geckoex_adyt ! 4 D _var p q_geckoex_ncr ! 4 D _var p q_geckoex_vc ! 4 #
+55 3060 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_sf } 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_ncr = 4 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_adyt = 4 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_vc = 4 #
+50 3070 D _var p q_geckoex_sf = 1 D or D _var p q_geckoex_sf = 2 D or D _var p q_geckoex_sf = 3 R _var p q_geckoex_fail + 1 R _var p q_geckoex_sf = 0 R _script quest@quest_setcd 2 9627 60 #
+21 3080 D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_ncr = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_adyt = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_vc = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_sf = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 50 R _script map_ncr@r_NCRProfit 1 5 #
+0 3090 @
+4 4000 None 0 #
+3 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 #
+3 5020 @
+6 6000 None 0 #
+7 6010 R _var p q_geckoex_sf = 1 R _item p PID_GECKEX_PACKAGE + 1 #
+8 6020 R _var p q_geckoex_sf = 2 R _item p PID_GECKEX_PACKAGE + 1 #
+9 6030 R _var p q_geckoex_sf = 3 R _item p PID_GECKEX_PACKAGE + 1 #
+3 6040 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+7 10010 R _var p q_geckoex_sf = 1 R _item p PID_GECKEX_PACKAGE + 1 #
+8 10020 R _var p q_geckoex_sf = 2 R _item p PID_GECKEX_PACKAGE + 1 #
+9 10030 R _var p q_geckoex_sf = 3 R _item p PID_GECKEX_PACKAGE + 1 #
+3 10040 @
+20 11000 None 0 #
+3 11010 #
+0 11020 @
+21 12000 None 0 #
+3 12010 #
+0 12020 @
+50 13000 None 0 #
+51 13010 D _var p q_geckoex_fail < 4 #
+54 13020 D _var p q_geckoex_fail } 4 @
+51 14000 None 0 #
+3 14010 @
+54 15000 None 0 #
+0 15010 @
+55 16000 None 0 #
+3 16010 @
+60 17000 None 0 &
+
+[engl]
+{100}{}{Mei}
+{200}{}{You see: a woman in a uniform of some sort. }
+{210}{}{This woman probably hails from the San Francisco Shi population. She looks at you with caution.}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to the Gecko Express, you ship, we deliver. My names's Mei, what do you need?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows as you enter.] Welcome to Gecko Express. You ship, we deliver. I'm Mei, and I run things around here. What do you want, shengren?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to Gecko Express, wastelander. You ship, we deliver, gen shou. I'm Mei, can I help you?}
+{2010}{}{So, what do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{2030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{2050}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What do you want, shengren?@@Need anything, wairen?@@What do you need, shengren?@@I'm listening, shengren.}
+{3010}{}{What do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{3020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{3030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{4000}{}{I'm in charge of the company office here. We do deliveries, mostly the ones regular caravans don't wanna take.}
+{4010}{}{Okay... Let's change the subject.@@I see. Let's talk about something else.@@Okay, thanks for the info. I wanted to ask you about something else.}
+{4020}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{Yes wairen, in fact we do. You want to be one of the Gecko couriers?@@Yes, we do. Want to get signed up?@@Yes, shengren, we do have some. Interested?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.@@You won't be dissapointed.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, wairen. Your zhi wu is very simple. You just need to deliver a package to one of our offices in Shady Sands, Adytum or Vault City. Which one do you prefer?@@Okay, the job's simple: take a package to one of our offices in Shady Sands, Adytum or Vault City. So, what'll it be, shengren?@@Zhu duo, you'll need to deliver a package to one of our offices: Shady Sands, Adytum, or Vault City. Which one do you want, shengren?}
+{6010}{}{Okay, I'll go to Shady Sands then.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{6020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6040}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Hmm.. It's a dangerous route, wairen. If you wish to stay alive, keep away from the desert and go southeast by the great sea.@@All right, take this package to Shady Sands. I'd recommend staying away from the Great Yellow Sands, wairen...}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{As you wish. It's a dangerous route, but you probably already know that. Watch yourself when you're out in the desert.@@All right, take this package to Adytum then. Keep you're eyes open, there are many foes awaiting you in the Great Yellow Waste.@@If that's what you want, wairen. Deliver this package to our office in Adytum. And keep safe while you're crossing the Great Yellow Sands.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{9000}{}{All right, shengren. Take this and deliver it to Vault City. Watch out for mutants and bandits on the road, some may be heavily armed.@@Okay. Take the package to Gecko Express office in Vault City. Keep an eye out for mutants and Khans.@@All right shengren, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled while crossing the desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{10000}{}{Okay, what will it be, shengren?@@As you wish, wairen, we still got some jobs to do. What will it be this time? Shady Sands, Adytum or Vault City?@@Where do you want to go, waiguoren?}
+{10010}{}{Okay, I'll go to Shady Sands.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{10020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10040}{}{I don't think I have the time right.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{11000}{}{Very good, very good... Here's your payment, shengren.@@All right, give it to me, wairen.@@Great, give it to me. Here's your payment.@@Good zhi vu, shengren. Here's your payment.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.@@Thanks Mei, let's talk about something else.}
+{11020}{}{I need to go now, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.@@I have to go.@@See you some other time, Mei.@@Thanks, goodbye, Mei.}
+{12000}{}{You never cease to amaze me, shengren. We are told to pay for every lost package that is delivered, and I'm obliged to do so... even if I don't trust you. Here's your reward. Anything else?@@And where did you find this wairen? No matter, you'd probably lie anyway. I'll pay you... this time. Anything else?@@All right, here's your pay. Want anything else?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Goodbye.@@Nope, that's all. Goodbye, Mei.@@No, I'm done here. See you later, Mei.}
+{13000}{}{I can't believe what I'm hearing, wairen...@@Bai mu, you did what?@@I can't believe this, you did what?@@This is very dissapointing, waiguoren.}
+{13010}{}{I just lost it, sorry.@@Sorry...@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{I'm going have to report this to my superiors. The job is out. I will give you another chance, shengren, but you better not fail us again.@@This is very zaogao, shengren. I'll give you another chance, but only because we lack personnel at the moment... Don't fail this time.}
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{Get lost, cao bao!@@Get away from my sight, chun huo!@@Go away, you sha gua!@@Get tlost, bai chi!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Stupid bitch.@@Whatever.@@Bitch.@@Cunt.}
+{16000}{}{You already have a delivery job going, shengren. Finish it first, then wel'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{I said, I don't wanna see you here again!@@Get the lost, shengren.@@I said, get lost!@@Get out of here now, or I'll call the guards!@@I said, get lost, chun huo!}
+
+[russ]
+{100}{}{Mei}
+{200}{}{You see: a woman in a uniform of some sort. }
+{210}{}{This woman probably hails from the San Francisco Shi population. She looks at you with caution.}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to the Gecko Express, you ship, we deliver. My names's Mei, what do you need?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows as you enter.] Welcome to Gecko Express. You ship, we deliver. I'm Mei, and I run things around here. What do you want, shengren?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to Gecko Express, wastelander. You ship, we deliver, gen shou. I'm Mei, can I help you?}
+{2010}{}{So, what do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{2030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{2050}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What do you want, shengren?@@Need anything, wairen?@@What do you need, shengren?@@I'm listening, shengren.}
+{3010}{}{What do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{3020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{3030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{4000}{}{I'm in charge of the company office here. We do deliveries, mostly the ones regular caravans don't wanna take.}
+{4010}{}{Okay... Let's change the subject.@@I see. Let's talk about something else.@@Okay, thanks for the info. I wanted to ask you about something else.}
+{4020}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{Yes wairen, in fact we do. You want to be one of the Gecko couriers?@@Yes, we do. Want to get signed up?@@Yes, shengren, we do have some. Interested?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.@@You won't be dissapointed.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, wairen. Your zhi wu is very simple. You just need to deliver a package to one of our offices in Shady Sands, Adytum or Vault City. Which one do you prefer?@@Okay, the job's simple: take a package to one of our offices in Shady Sands, Adytum or Vault City. So, what'll it be, shengren?@@Zhu duo, you'll need to deliver a package to one of our offices: Shady Sands, Adytum, or Vault City. Which one do you want, shengren?}
+{6010}{}{Okay, I'll go to Shady Sands then.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{6020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6040}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Hmm.. It's a dangerous route, wairen. If you wish to stay alive, keep away from the desert and go southeast by the great sea.@@All right, take this package to Shady Sands. I'd recommend staying away from the Great Yellow Sands, wairen...}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{As you wish. It's a dangerous route, but you probably already know that. Watch yourself when you're out in the desert.@@All right, take this package to Adytum then. Keep you're eyes open, there are many foes awaiting you in the Great Yellow Waste.@@If that's what you want, wairen. Deliver this package to our office in Adytum. And keep safe while you're crossing the Great Yellow Sands.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{9000}{}{All right, shengren. Take this and deliver it to Vault City. Watch out for mutants and bandits on the road, some may be heavily armed.@@Okay. Take the package to Gecko Express office in Vault City. Keep an eye out for mutants and Khans.@@All right shengren, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled while crossing the desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{10000}{}{Okay, what will it be, shengren?@@As you wish, wairen, we still got some jobs to do. What will it be this time? Shady Sands, Adytum or Vault City?@@Where do you want to go, waiguoren?}
+{10010}{}{Okay, I'll go to Shady Sands.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{10020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10040}{}{I don't think I have the time right.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{11000}{}{Very good, very good... Here's your payment, shengren.@@All right, give it to me, wairen.@@Great, give it to me. Here's your payment.@@Good zhi vu, shengren. Here's your payment.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.@@Thanks Mei, let's talk about something else.}
+{11020}{}{I need to go now, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.@@I have to go.@@See you some other time, Mei.@@Thanks, goodbye, Mei.}
+{12000}{}{You never cease to amaze me, shengren. We are told to pay for every lost package that is delivered, and I'm obliged to do so... even if I don't trust you. Here's your reward. Anything else?@@And where did you find this wairen? No matter, you'd probably lie anyway. I'll pay you... this time. Anything else?@@All right, here's your pay. Want anything else?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Goodbye.@@Nope, that's all. Goodbye, Mei.@@No, I'm done here. See you later, Mei.}
+{13000}{}{I can't believe what I'm hearing, wairen...@@Bai mu, you did what?@@I can't believe this, you did what?@@This is very dissapointing, waiguoren.}
+{13010}{}{I just lost it, sorry.@@Sorry...@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{I'm going have to report this to my superiors. The job is out. I will give you another chance, shengren, but you better not fail us again.@@This is very zaogao, shengren. I'll give you another chance, but only because we lack personnel at the moment... Don't fail this time.}
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{Get lost, cao bao!@@Get away from my sight, chun huo!@@Go away, you sha gua!@@Get tlost, bai chi!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Stupid bitch.@@Whatever.@@Bitch.@@Cunt.}
+{16000}{}{You already have a delivery job going, shengren. Finish it first, then wel'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{I said, I don't wanna see you here again!@@Get the lost, shengren.@@I said, get lost!@@Get out of here now, or I'll call the guards!@@I said, get lost, chun huo!}
+
+[pols]
+{100}{}{Mei}
+{200}{}{You see: a woman in a uniform of some sort. }
+{210}{}{This woman probably hails from the San Francisco Shi population. She looks at you with caution.}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to the Gecko Express, you ship, we deliver. My names's Mei, what do you need?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows as you enter.] Welcome to Gecko Express. You ship, we deliver. I'm Mei, and I run things around here. What do you want, shengren?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to Gecko Express, wastelander. You ship, we deliver, gen shou. I'm Mei, can I help you?}
+{2010}{}{So, what do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{2030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{2050}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What do you want, shengren?@@Need anything, wairen?@@What do you need, shengren?@@I'm listening, shengren.}
+{3010}{}{What do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{3020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{3030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{4000}{}{I'm in charge of the company office here. We do deliveries, mostly the ones regular caravans don't wanna take.}
+{4010}{}{Okay... Let's change the subject.@@I see. Let's talk about something else.@@Okay, thanks for the info. I wanted to ask you about something else.}
+{4020}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{Yes wairen, in fact we do. You want to be one of the Gecko couriers?@@Yes, we do. Want to get signed up?@@Yes, shengren, we do have some. Interested?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.@@You won't be dissapointed.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, wairen. Your zhi wu is very simple. You just need to deliver a package to one of our offices in Shady Sands, Adytum or Vault City. Which one do you prefer?@@Okay, the job's simple: take a package to one of our offices in Shady Sands, Adytum or Vault City. So, what'll it be, shengren?@@Zhu duo, you'll need to deliver a package to one of our offices: Shady Sands, Adytum, or Vault City. Which one do you want, shengren?}
+{6010}{}{Okay, I'll go to Shady Sands then.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{6020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6040}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Hmm.. It's a dangerous route, wairen. If you wish to stay alive, keep away from the desert and go southeast by the great sea.@@All right, take this package to Shady Sands. I'd recommend staying away from the Great Yellow Sands, wairen...}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{As you wish. It's a dangerous route, but you probably already know that. Watch yourself when you're out in the desert.@@All right, take this package to Adytum then. Keep you're eyes open, there are many foes awaiting you in the Great Yellow Waste.@@If that's what you want, wairen. Deliver this package to our office in Adytum. And keep safe while you're crossing the Great Yellow Sands.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{9000}{}{All right, shengren. Take this and deliver it to Vault City. Watch out for mutants and bandits on the road, some may be heavily armed.@@Okay. Take the package to Gecko Express office in Vault City. Keep an eye out for mutants and Khans.@@All right shengren, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled while crossing the desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{10000}{}{Okay, what will it be, shengren?@@As you wish, wairen, we still got some jobs to do. What will it be this time? Shady Sands, Adytum or Vault City?@@Where do you want to go, waiguoren?}
+{10010}{}{Okay, I'll go to Shady Sands.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{10020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10040}{}{I don't think I have the time right.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{11000}{}{Very good, very good... Here's your payment, shengren.@@All right, give it to me, wairen.@@Great, give it to me. Here's your payment.@@Good zhi vu, shengren. Here's your payment.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.@@Thanks Mei, let's talk about something else.}
+{11020}{}{I need to go now, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.@@I have to go.@@See you some other time, Mei.@@Thanks, goodbye, Mei.}
+{12000}{}{You never cease to amaze me, shengren. We are told to pay for every lost package that is delivered, and I'm obliged to do so... even if I don't trust you. Here's your reward. Anything else?@@And where did you find this wairen? No matter, you'd probably lie anyway. I'll pay you... this time. Anything else?@@All right, here's your pay. Want anything else?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Goodbye.@@Nope, that's all. Goodbye, Mei.@@No, I'm done here. See you later, Mei.}
+{13000}{}{I can't believe what I'm hearing, wairen...@@Bai mu, you did what?@@I can't believe this, you did what?@@This is very dissapointing, waiguoren.}
+{13010}{}{I just lost it, sorry.@@Sorry...@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{I'm going have to report this to my superiors. The job is out. I will give you another chance, shengren, but you better not fail us again.@@This is very zaogao, shengren. I'll give you another chance, but only because we lack personnel at the moment... Don't fail this time.}
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{Get lost, cao bao!@@Get away from my sight, chun huo!@@Go away, you sha gua!@@Get tlost, bai chi!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Stupid bitch.@@Whatever.@@Bitch.@@Cunt.}
+{16000}{}{You already have a delivery job going, shengren. Finish it first, then wel'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{I said, I don't wanna see you here again!@@Get the lost, shengren.@@I said, get lost!@@Get out of here now, or I'll call the guards!@@I said, get lost, chun huo!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to the Gecko Express, you ship, we deliver. My names's Mei, what do you need?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows as you enter.] Welcome to Gecko Express. You ship, we deliver. I'm Mei, and I run things around here. What do you want, shengren?@@[The woman speaks with hint of a strange, foreign sounding accent. She bows slightly as you walk towards her.] Welcome to Gecko Express, wastelander. You ship, we deliver, gen shou. I'm Mei, can I help you?}
+{2010}{}{So, what do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{2030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{2050}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{Got a job open perhaps?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What do you want, shengren?@@Need anything, wairen?@@What do you need, shengren?@@I'm listening, shengren.}
+{3010}{}{What do you do here?@@What's Gecko Express exactly?@@What do you do here, Mei?@@So, what business do you do here, exactly?}
+{3020}{}{I've got a package from Shady Sands.@@I've got the package for you from Shady Sands.@@I came to deliver a package from Shady Sands.@@I've got a package from Shady Sands right here.@@I was sent from the Shady Sands office, here's the package..}
+{3030}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3040}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{4000}{}{I'm in charge of the company office here. We do deliveries, mostly the ones regular caravans don't wanna take.}
+{4010}{}{Okay... Let's change the subject.@@I see. Let's talk about something else.@@Okay, thanks for the info. I wanted to ask you about something else.}
+{4020}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{Yes wairen, in fact we do. You want to be one of the Gecko couriers?@@Yes, we do. Want to get signed up?@@Yes, shengren, we do have some. Interested?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.@@You won't be dissapointed.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, wairen. Your zhi wu is very simple. You just need to deliver a package to one of our offices in Shady Sands, Adytum or Vault City. Which one do you prefer?@@Okay, the job's simple: take a package to one of our offices in Shady Sands, Adytum or Vault City. So, what'll it be, shengren?@@Zhu duo, you'll need to deliver a package to one of our offices: Shady Sands, Adytum, or Vault City. Which one do you want, shengren?}
+{6010}{}{Okay, I'll go to Shady Sands then.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{6020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6040}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Hmm.. It's a dangerous route, wairen. If you wish to stay alive, keep away from the desert and go southeast by the great sea.@@All right, take this package to Shady Sands. I'd recommend staying away from the Great Yellow Sands, wairen...}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{As you wish. It's a dangerous route, but you probably already know that. Watch yourself when you're out in the desert.@@All right, take this package to Adytum then. Keep you're eyes open, there are many foes awaiting you in the Great Yellow Waste.@@If that's what you want, wairen. Deliver this package to our office in Adytum. And keep safe while you're crossing the Great Yellow Sands.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{9000}{}{All right, shengren. Take this and deliver it to Vault City. Watch out for mutants and bandits on the road, some may be heavily armed.@@Okay. Take the package to Gecko Express office in Vault City. Keep an eye out for mutants and Khans.@@All right shengren, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled while crossing the desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{10000}{}{Okay, what will it be, shengren?@@As you wish, wairen, we still got some jobs to do. What will it be this time? Shady Sands, Adytum or Vault City?@@Where do you want to go, waiguoren?}
+{10010}{}{Okay, I'll go to Shady Sands.@@I'll go to Shady Sands.@@I'll take Shady Sands.@@Shady Sands.@@Okay, I'll take Shady Sands.@@I'll go to Shady Sands.}
+{10020}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10030}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10040}{}{I don't think I have the time right.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{11000}{}{Very good, very good... Here's your payment, shengren.@@All right, give it to me, wairen.@@Great, give it to me. Here's your payment.@@Good zhi vu, shengren. Here's your payment.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.@@Thanks Mei, let's talk about something else.}
+{11020}{}{I need to go now, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.@@I have to go.@@See you some other time, Mei.@@Thanks, goodbye, Mei.}
+{12000}{}{You never cease to amaze me, shengren. We are told to pay for every lost package that is delivered, and I'm obliged to do so... even if I don't trust you. Here's your reward. Anything else?@@And where did you find this wairen? No matter, you'd probably lie anyway. I'll pay you... this time. Anything else?@@All right, here's your pay. Want anything else?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Goodbye.@@Nope, that's all. Goodbye, Mei.@@No, I'm done here. See you later, Mei.}
+{13000}{}{I can't believe what I'm hearing, wairen...@@Bai mu, you did what?@@I can't believe this, you did what?@@This is very dissapointing, waiguoren.}
+{13010}{}{I just lost it, sorry.@@Sorry...@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{I'm going have to report this to my superiors. The job is out. I will give you another chance, shengren, but you better not fail us again.@@This is very zaogao, shengren. I'll give you another chance, but only because we lack personnel at the moment... Don't fail this time.}
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{Get lost, cao bao!@@Get away from my sight, chun huo!@@Go away, you sha gua!@@Get tlost, bai chi!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Stupid bitch.@@Whatever.@@Bitch.@@Cunt.}
+{16000}{}{You already have a delivery job going, shengren. Finish it first, then wel'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{I said, I don't wanna see you here again!@@Get the lost, shengren.@@I said, get lost!@@Get out of here now, or I'll call the guards!@@I said, get lost, chun huo!}
+

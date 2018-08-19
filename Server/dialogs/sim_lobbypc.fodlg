@@ -1,0 +1,306 @@
+[comment]
+
+
+[data]
+lang=engl russ pols
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 @
+4 2000 None 1 #
+7 2010 D _script sim_scripts@d_IsLobbyHost 0  #
+0 2020 R _script sim_scripts@r_AccessInventory 0  #
+11 2030 D _script sim_scripts@d_IsLobbyHost 0  #
+4 2040 D _script sim_scripts@d_IsLockedLobby 0  R _script sim_scripts@r_ToggleLobbyLock 0  #
+4 2050 D _script sim_scripts@d_IsNotLockedLobby 0  R _script sim_scripts@r_ToggleLobbyLock 0  #
+0 2060 D _script sim_scripts@d_IsLobbyHost 0  R _script sim_scripts@r_deletelobby 0  #
+0 2070 D _script sim_scripts@d_IsNotLobbyHost 0  R _script sim_scripts@r_leavelobby 0  #
+0 2080 @
+6 3000 None 0 #
+0 3010 #
+4 3020 @
+7 4000 None 0 #
+7 4010 D _script sim_scripts@d_IsLobbyClean 0  #
+10 4020 D _script sim_scripts@d_IsLobbyClean 0  #
+7 4030 D _script sim_scripts@d_IsLobbyClean 0  #
+4 4040 @
+10 5000 sim_scripts@dlg_PvPSetup 0 #
+0 5010 D _script sim_scripts@d_IsLobbyClean 0  D _script sim_scripts@d_CheckCapsPVP 0  R _script sim_scripts@r_LaunchPvpLobby 0  R _script sim_scripts@r_TakeCapsPVP 0  #
+10 5020 R _script sim_scripts@r_scrollpvplocations 0  #
+10 5030 R _script sim_scripts@r_scrollpvptier 0  #
+10 5040 #
+10 5050 #
+10 5060 R _script sim_scripts@r_ToggleVision 0  #
+4 5070 @
+11 6000 sim_scripts@dlg_LoadAvailablePlayers 0 #
+4 6010 #
+12 6020 #
+4 6030 D _script sim_scripts@d_IsAvailableSpot 1 1 R _script sim_scripts@r_KickPlayer2 1 0 #
+4 6040 D _script sim_scripts@d_IsAvailableSpot 1 2 R _script sim_scripts@r_KickPlayer2 1 1 #
+4 6050 D _script sim_scripts@d_IsAvailableSpot 1 3 R _script sim_scripts@r_KickPlayer2 1 2 #
+4 6060 D _script sim_scripts@d_IsAvailableSpot 1 4 R _script sim_scripts@r_KickPlayer2 1 3 #
+4 6070 D _script sim_scripts@d_IsAvailableSpot 1 5 R _script sim_scripts@r_KickPlayer2 1 4 #
+4 6080 D _script sim_scripts@d_IsAvailableSpot 1 6 R _script sim_scripts@r_KickPlayer2 1 5 #
+4 6090 D _script sim_scripts@d_IsAvailableSpot 1 7 R _script sim_scripts@r_KickPlayer2 1 6 #
+4 6100 D _script sim_scripts@d_IsAvailableSpot 1 8 R _script sim_scripts@r_KickPlayer2 1 7 #
+4 6110 D _script sim_scripts@d_IsAvailableSpot 1 9 R _script sim_scripts@r_KickPlayer2 1 8 #
+4 6120 D _script sim_scripts@d_IsAvailableSpot 1 10 R _script sim_scripts@r_KickPlayer2 1 9 #
+4 6130 D _script sim_scripts@d_IsAvailableSpot 1 11 R _script sim_scripts@r_KickPlayer2 1 10 #
+4 6140 D _script sim_scripts@d_IsAvailableSpot 1 12 R _script sim_scripts@r_KickPlayer2 1 11 #
+4 6150 D _script sim_scripts@d_IsAvailableSpot 1 13 R _script sim_scripts@r_KickPlayer2 1 12 #
+4 6160 D _script sim_scripts@d_IsAvailableSpot 1 14 R _script sim_scripts@r_KickPlayer2 1 13 #
+4 6170 D _script sim_scripts@d_IsAvailableSpot 1 15 R _script sim_scripts@r_KickPlayer2 1 14 #
+4 6180 D _script sim_scripts@d_IsAvailableSpot 1 16 R _script sim_scripts@r_KickPlayer2 1 15 #
+4 6190 D _script sim_scripts@d_IsAvailableSpot 1 17 R _script sim_scripts@r_KickPlayer2 1 16 #
+4 6200 D _script sim_scripts@d_IsAvailableSpot 1 18 R _script sim_scripts@r_KickPlayer2 1 17 #
+4 6210 D _script sim_scripts@d_IsAvailableSpot 1 19 R _script sim_scripts@r_KickPlayer2 1 18 #
+4 6220 D _script sim_scripts@d_IsAvailableSpot 1 20 R _script sim_scripts@r_KickPlayer2 1 19 #
+4 6230 D _script sim_scripts@d_IsAvailableSpot 1 21 R _script sim_scripts@r_KickPlayer2 1 20 #
+4 6240 D _script sim_scripts@d_IsAvailableSpot 1 22 R _script sim_scripts@r_KickPlayer2 1 21 #
+4 6250 D _script sim_scripts@d_IsAvailableSpot 1 23 R _script sim_scripts@r_KickPlayer2 1 22 #
+4 6260 D _script sim_scripts@d_IsAvailableSpot 1 24 R _script sim_scripts@r_KickPlayer2 1 23 #
+4 6270 D _script sim_scripts@d_IsAvailableSpot 1 25 R _script sim_scripts@r_KickPlayer2 1 24 #
+4 6280 D _script sim_scripts@d_IsAvailableSpot 1 26 R _script sim_scripts@r_KickPlayer2 1 25 #
+4 6290 D _script sim_scripts@d_IsAvailableSpot 1 27 R _script sim_scripts@r_KickPlayer2 1 26 #
+4 6300 D _script sim_scripts@d_IsAvailableSpot 1 28 R _script sim_scripts@r_KickPlayer2 1 27 #
+4 6310 D _script sim_scripts@d_IsAvailableSpot 1 29 R _script sim_scripts@r_KickPlayer2 1 28 #
+4 6320 D _script sim_scripts@d_IsAvailableSpot 1 30 R _script sim_scripts@r_KickPlayer2 1 29 #
+4 6330 D _script sim_scripts@d_IsAvailableSpot 1 31 R _script sim_scripts@r_KickPlayer2 1 30 @
+12 7000 sim_scripts@dlg_kickperson 0 #
+4 7010 @
+20 8000 None 0 #
+4 8010 @
+22 9000 None 0 #
+4 9010 &
+
+[engl]
+{100}{}{Simulation Console}
+{200}{}{You see: Simulation Console}
+{210}{}{A Vault 8 simulation console made to initilize the simulation process. }
+{210}{}{You see a robust older woman, with a cheerful smile on her face.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Please Enter a command.}
+{2010}{}{Choose simulation.}
+{2020}{}{Access inventory.}
+{2030}{}{Kick Player.}
+{2040}{}{Allow Joining.}
+{2050}{}{Disable Joining.}
+{2060}{}{Disband Lobby.}
+{2070}{}{Exit simulation.}
+{2080}{}{Nothing.}
+{3000}{}{Initiating. Are you sure?}
+{3010}{}{Yes.}
+{3020}{}{No.}
+{4000}{}{Choose Mode. Players must have clean inventory and lobby must be clean of items to proceed. Access inventory to store items. Host price is paid from your stored inventory.}
+{4010}{}{Holodisk Sim Boot.}
+{4020}{}{Player Vs Player}
+{4030}{}{Player Vs Enviroment.}
+{4040}{}{Back}
+{5000}{}{Map: @lex map@
+Tier: @lex tier@
+Bet: @lex bet@
+Teambalance: @lex teambalance@
+Vision after death: @lex vision@
+}
+{5010}{}{Launch Simulation [ Price @lex hostpricepvp@ ] }
+{5020}{}{Switch Map.}
+{5030}{}{Switch Tier.}
+{5040}{}{Set Bet.}
+{5050}{}{Toggle Teambalance.}
+{5060}{}{Toggle Vision}
+{5070}{}{Resign.}
+{6000}{}{Choose the person to kick.}
+{6010}{}{Back}
+{6020}{}{Kick by writing Player name.}
+{6030}{}{@lex follower0@}
+{6040}{}{@lex follower1@}
+{6050}{}{@lex follower2@}
+{6060}{}{@lex follower3@}
+{6070}{}{@lex follower4@}
+{6080}{}{@lex follower5@}
+{6090}{}{@lex follower6@}
+{6100}{}{@lex follower7@}
+{6110}{}{@lex follower8@}
+{6120}{}{@lex follower9@}
+{6130}{}{@lex follower10@}
+{6140}{}{@lex follower11@}
+{6150}{}{@lex follower12@}
+{6160}{}{@lex follower13@}
+{6170}{}{@lex follower14@}
+{6180}{}{@lex follower15@}
+{6190}{}{@lex follower16@}
+{6200}{}{@lex follower17@}
+{6210}{}{@lex follower18@}
+{6220}{}{@lex follower19@}
+{6230}{}{@lex follower20@}
+{6240}{}{@lex follower21@}
+{6250}{}{@lex follower22@}
+{6260}{}{@lex follower23@}
+{6270}{}{@lex follower24@}
+{6280}{}{@lex follower25@}
+{6290}{}{@lex follower26@}
+{6300}{}{@lex follower27@}
+{6310}{}{@lex follower28@}
+{6320}{}{@lex follower29@}
+{6330}{}{@lex follower30@}
+{7000}{}{Use SAY to write name of person you want to kick. }
+{7010}{}{Back}
+{8000}{}{Error. Player not found.}
+{8010}{}{Back}
+{9000}{}{Error. You are not owner of the lobby.}
+{9010}{}{Back}
+
+[russ]
+{100}{}{Мама}
+{200}{}{Вы видите старую женщину, которая кажется доброй.}
+{210}{}{Вы видите Маму, которая занята уборкой и приготовлением еды.}
+{210}{}{Вы видите пожилую женщину, у нее добрая улыбка.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Welcome to Vault 8 Simulation Lab. Press a button and you shall enjoy virtual reality of highest quality guaranteed by Vault-Tec amazing technology!}
+{2010}{}{I want to join a simulation.}
+{2020}{}{Access inventory.}
+{2030}{}{Kick Player.}
+{2040}{}{Allow Joining.}
+{2050}{}{Disable Joining.}
+{2060}{}{Disband Lobby.}
+{2070}{}{Exit simulation.}
+{2080}{}{I want to join a simulation.}
+{3000}{}{Initiating. Are you sure?}
+{3010}{}{Yes.}
+{3020}{}{No.}
+{4000}{}{Choose Mode.}
+{4010}{}{Holodisk Sim Boot.}
+{4020}{}{Player Vs Player}
+{4030}{}{Players Vs Simulations}
+{4040}{}{Back}
+{5000}{}{Map: 
+Tier:
+Bet: No
+Teambalance: No}
+{5010}{}{Launch Simulation [ Price @lex hostpricepvp@ ] }
+{5020}{}{Next Map.}
+{5030}{}{Switch Tier.}
+{5040}{}{Enable Bet}
+{5050}{}{Toggle Teambalance.}
+{5060}{}{Toggle Vision}
+{5070}{}{Resign.}
+{6000}{}{Use SAY to write name of person you want to kick.}
+{6010}{}{Back}
+{6020}{}{Kick by writing Player name.}
+{6030}{}{error}
+{6040}{}{error}
+{6050}{}{error}
+{6060}{}{error}
+{6070}{}{error}
+{6080}{}{error}
+{6090}{}{error}
+{6100}{}{error}
+{6110}{}{error}
+{6120}{}{error}
+{6130}{}{error}
+{6140}{}{error}
+{6150}{}{error}
+{6160}{}{error}
+{6170}{}{error}
+{6180}{}{error}
+{6190}{}{error}
+{6200}{}{error}
+{6210}{}{error}
+{6220}{}{error}
+{6230}{}{error}
+{6240}{}{error}
+{6250}{}{error}
+{6260}{}{error}
+{6270}{}{error}
+{6280}{}{error}
+{6290}{}{error}
+{6300}{}{error}
+{6310}{}{error}
+{6320}{}{error}
+{6330}{}{error}
+{7000}{}{Use SAY to write name of person you want to kick. }
+{7010}{}{Back}
+{8000}{}{Error. Player not found.}
+{8010}{}{Back}
+{9000}{}{Error. You are not owner of the lobby.}
+{9010}{}{Back}
+
+[pols]
+{100}{}{Mamuśka}
+{200}{}{Widzisz miło wyglądającą, starszą kobietę.}
+{210}{}{You see Mom, busily cooking and cleaning.}
+{210}{}{Widzisz tęgą, starszą kobietę, ze szczerym uśmiechem na twarzy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Welcome to Vault 8 Simulation Lab. Press a button and you shall enjoy virtual reality of highest quality guaranteed by Vault-Tec amazing technology!}
+{2010}{}{I want to join a simulation.}
+{2020}{}{Access inventory.}
+{2030}{}{Kick Player.}
+{2040}{}{Allow Joining.}
+{2050}{}{Disable Joining.}
+{2060}{}{Disband Lobby.}
+{2070}{}{Exit simulation.}
+{2080}{}{I want to join a simulation.}
+{3000}{}{Initiating. Are you sure?}
+{3010}{}{Yes.}
+{3020}{}{No.}
+{4000}{}{Choose Mode.}
+{4010}{}{Holodisk Sim Boot.}
+{4020}{}{Player Vs Player}
+{4030}{}{Players Vs Simulations}
+{4040}{}{Back}
+{5000}{}{Map: 
+Tier:
+Bet: No
+Teambalance: No}
+{5010}{}{Launch Simulation [ Price @lex hostpricepvp@ ] }
+{5020}{}{Next Map.}
+{5030}{}{Switch Tier.}
+{5040}{}{Enable Bet}
+{5050}{}{Toggle Teambalance.}
+{5060}{}{Toggle Vision}
+{5070}{}{Resign.}
+{6000}{}{Use SAY to write name of person you want to kick.}
+{6010}{}{Back}
+{6020}{}{Kick by writing Player name.}
+{6030}{}{error}
+{6040}{}{error}
+{6050}{}{error}
+{6060}{}{error}
+{6070}{}{error}
+{6080}{}{error}
+{6090}{}{error}
+{6100}{}{error}
+{6110}{}{error}
+{6120}{}{error}
+{6130}{}{error}
+{6140}{}{error}
+{6150}{}{error}
+{6160}{}{error}
+{6170}{}{error}
+{6180}{}{error}
+{6190}{}{error}
+{6200}{}{error}
+{6210}{}{error}
+{6220}{}{error}
+{6230}{}{error}
+{6240}{}{error}
+{6250}{}{error}
+{6260}{}{error}
+{6270}{}{error}
+{6280}{}{error}
+{6290}{}{error}
+{6300}{}{error}
+{6310}{}{error}
+{6320}{}{error}
+{6330}{}{error}
+{7000}{}{Use SAY to write name of person you want to kick. }
+{7010}{}{Back}
+{8000}{}{Error. Player not found.}
+{8010}{}{Back}
+{9000}{}{Error. You are not owner of the lobby.}
+{9010}{}{Back}
+

@@ -1,0 +1,64 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_adytum_well = 1 D _param p SK_REPAIR } 60 D or D _var p q_adytum_well = 1 D _item p PID_MULTI_TOOL } 1 D or D _var p q_adytum_well = 1 D _item p PID_SUPER_TOOL_KIT } 1 R _var p q_adytum_well = 2 R _var p q_adytum_wellpump = 1 R _script dialog@r_ShowQuestMessage 1 9318 #
+2 1020 D _var p q_adytum_well = 1 R _script dialog@r_QuestNotice 2 9318 2 #
+2 1030 D _var p q_adytum_well = 3 D _item p PID_ROPE } 1 R _var p q_adytum_well = 4 R _param p ST_EXPERIENCE + 250 R _item p PID_ROPE - 1 R _script dialog@r_CreateHiddenLocation 5 9300 500 500 4 9308 R _script dialog@r_ShowQuestMessage 1 9317 #
+2 1040 D _var p q_adytum_well = 3 D _item p PID_ROPE = 0 R _script dialog@r_QuestNotice 2 9318 4 #
+2 1050 D _var p q_adytum_well } 4 R _script dialog@r_TeleportToCreatedLocation 4 9308 0 100 1 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Well}
+{200}{}{You see a well.}
+{210}{}{You see a well. Well, it's a well, nothing unusual about it.}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{1030}{}{Rope adding}
+{1040}{}{Rope adding fail}
+{1050}{}{Enter the well instance}
+{2000}{}{ }
+
+[russ]
+{100}{}{Well}
+{200}{}{You see a well.}
+{210}{}{You see a well. Well, it's a well, nothing unusual about it.}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{1030}{}{Rope adding}
+{1040}{}{Rope adding fail}
+{1050}{}{Enter the well instance}
+{2000}{}{ }
+
+[pols]
+{100}{}{Studnia}
+{200}{}{Widzisz studnię.}
+{210}{}{Widzisz pionowe ujęcie wód podziemnych, sięgające do poziomu wodonośnego. Dzięki obecności zaawansowanych rozwiązań technicznych takich jak kołowrót, możliwy jest stały pobór wody ze studni.}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{1030}{}{Rope adding}
+{1040}{}{Rope adding fail}
+{1050}{}{Enter the well instance}
+{2000}{}{ }
+
+[ptbr]
+{100}{}{Poço}
+{200}{}{Você vê um poço.}
+{210}{}{Você vê um poço. É um poço comum, nada de mais quanto a isto.}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{1030}{}{Rope adding}
+{1040}{}{Rope adding fail}
+{1050}{}{Enter the well instance}
+{2000}{}{ }
+

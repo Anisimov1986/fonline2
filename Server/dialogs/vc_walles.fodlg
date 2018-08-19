@@ -1,0 +1,292 @@
+[comment]
+
+Most of it is frm F2.
+My nodes are: #13, #14 and #15, the last sentence in #61
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+7 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+8 4020 #
+0 4030 @
+5 5000 None 0 #
+65507 5010 #
+16 5020 #
+0 5030 @
+7 6000 None 0 #
+4 6010 #
+9 6020 #
+0 6030 @
+8 7000 None 0 #
+5 7010 #
+5 7020 #
+5 7030 #
+0 7040 @
+9 8000 None 0 #
+10 8010 #
+11 8020 #
+12 8030 #
+16 8040 #
+0 8050 @
+10 9000 None 0 #
+11 9010 #
+12 9020 #
+16 9030 #
+0 9040 @
+11 10000 None 0 #
+10 10010 #
+12 10020 #
+16 10030 #
+0 10040 @
+12 11000 None 0 #
+10 11010 #
+11 11020 #
+16 11030 #
+0 11040 @
+16 12000 None 0 #
+3 12010 #
+7 12020 #
+9 12030 #
+0 12040 &
+
+[engl]
+{100}{}{Wallace}
+{200}{}{You see: Wallace.}
+{210}{}{You see a thin man with a pinched face. He is wearing a sharply pressed Vault suit.}
+{210}{}{You see Wallace, Vault City's Customs Official.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-faction unknown}
+{2000}{}{Hello, traveler. Welcome to Vault City. Is there anything I can help you with?}
+{2010}{}{Who are you?}
+{2020}{}{What is this place?}
+{2030}{}{Nothing today, thanks.}
+{3000}{}{Name's Wallace. I'm the Customs Officer for Vault City. I accommodate those who wish to conduct business within our great walls.}
+{3010}{}{I'd like to enter the city.}
+{3020}{}{I see. Thanks for the information.}
+{4000}{}{If you want to enter Vault City, then you'll need a good reason. Only a Vault Citizen has the right to come and go as they please. All others must procure a Day Pass.}
+{4010}{}{What's a Day Pass?}
+{4020}{}{It's very important you let me in to speak to your leader.}
+{4030}{}{I see. Thanks for the information.}
+{5000}{}{Those who wish to deal directly with the merchants or the representatives of Vault City require a Day Pass. Currently we are not issuing them out as they are being re-worked, so no freelancers.}
+{5010}{}{You'll let me in, and you'll let me in now, or you're gonna be in a hole in the ground, old man.}
+{5020}{}{Right. Can I ask you some other questions?}
+{5030}{}{Nevermind, then. I have to go now anyway.}
+{6000}{}{This is the Customs Office for Vault City. We're responsible for keeping a log of all the goods that come to us via the caravans and supervising all transactions. All merchants must pass through customs before entering the city.}
+{6010}{}{I'd like to enter the city.}
+{6020}{}{What goods do you receive from the caravans?}
+{6030}{}{I see. Thanks for the information.}
+{7000}{}{Well, of course. Everyone desires an audience with the First Citizen. You don't look important enough to warrant the precious time of the First Citizen, I'm afraid.}
+{7010}{}{That's why it's vital I speak to her. I'll be sure to throw in a good word about how efficiently the Customs Office is being run. But if you can't help me, then...}
+{7020}{}{The information I possess is really important. Really.}
+{7030}{}{If I were you, I'd watch that tone of yours. I said I need to see her. Now.}
+{7040}{}{Nevermind, then.}
+{8000}{}{Depends on where the caravan is from. We get shipments from many places... servants from the Den, uranium from Broken Hills, and metal ore from Redding.}
+{8010}{}{What can you tell me about the Den?}
+{8020}{}{What can you tell me about Broken Hills?}
+{8030}{}{What can you tell me about Redding?}
+{8040}{}{Can I ask you another question?}
+{8050}{}{I see. Thanks for the information.}
+{9000}{}{A delightful place, really. Killers, thieves... the usual Outsider scum. A place where one such as yourself would feel right at home.}
+{9010}{}{What can you tell me about Broken Hills?}
+{9020}{}{What can you tell me about Redding?}
+{9030}{}{I had some other questions for you...}
+{9040}{}{*Thanks.* Goodbye.}
+{10000}{}{Broken Hills is a mining town to the south. As I understand it, mutants mine the uranium, and they ship it here by caravan.}
+{10010}{}{What can you tell me about the Den?}
+{10020}{}{What can you tell me about the Redding?}
+{10030}{}{Uh, yeah... look, I had some other questions for you...}
+{10040}{}{Thanks for the information.}
+{11000}{}{It's a mining town far to the west. The caravans from there were the most pleasant to deal with, but recently the shipments of ore are fluctuating considerably in quantity. It has us a bit worried... we depend on their ore a great deal.}
+{11010}{}{What can you tell me about the Den?}
+{11020}{}{What can you tell me about Broken Hills?}
+{11030}{}{More questions...}
+{11040}{}{Thanks for the information. Goodbye.}
+{12000}{}{Yes, what can I do for you?}
+{12010}{}{Who are you?}
+{12020}{}{What is this place?}
+{12030}{}{What kind of shipments do you receive here?}
+{12040}{}{Nothing today, thanks.}
+
+[russ]
+{100}{}{Уоллес}
+{200}{}{Вы видите Уоллеса.}
+{210}{}{Вы видите тощего, чахлого человечка с непривлекательным лицом. На нем надет облегающий костюм Убежища.}
+{210}{}{Вы видите Уоллеса, Представителя Таможенной Палаты Города Убежища.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-faction unknown}
+{2000}{}{Приветствую. Добро пожаловать в Город Убежища. Я могу чем-нибудь вам помочь?}
+{2010}{}{Кто вы?}
+{2020}{}{Что это за место?}
+{2030}{}{Сегодня ничем, спасибо.}
+{3000}{}{Меня зовут Уоллес. Я начальник Таможни Города Убежища. Я обслуживаю тех, у кого какие-то дела за нашими великими стенами.}
+{3010}{}{Мне хотелось бы попасть в город.}
+{3020}{}{Понятно. Спасибо за информацию.}
+{4000}{}{Если вы хотите попасть в Город Убежища, у вас должна быть на это серьезная причина. Только граждане Убежища имеют право входить и выходить, когда им вздумается. Все остальные должны получать дневной пропуск.}
+{4010}{}{Что за дневной пропуск?}
+{4020}{}{У меня есть чертовски серьёзная причина... Мне нужно поговорить с вашим начальством.}
+{4030}{}{Понятно. Спасибо за информацию.}
+{5000}{}{Дневной пропуск позволит вам находиться в стенах Города Убежища в течении дня. Все просто.}
+{5010}{}{Ты позволишь мне войти, и ты позволишь мне сейчас, или я тебя закопаю прямо здесь, старик.}
+{5020}{}{Позвольте задать вам еще один вопрос.}
+{5030}{}{Понятно. Спасибо за информацию.}
+{6000}{}{Это таможня Города Убежища. Мы отвечаем за учет всех товаров, которые поступают в город с караванами, и наблюдаем за всеми торговыми сделками. Перед тем, как входить в город, все торговцы должны пройти таможню.}
+{6010}{}{Мне хотелось бы попасть в город.}
+{6020}{}{Какие товары вы получаете с караванами?}
+{6030}{}{Понятно. Спасибо за информацию.}
+{7000}{}{Ну, конечно.Каждый желает аудиенции у Первого Гражданина. Я боюсь, вы не выглядите достаточно важными чтобы Первый Гражданин тратил на вас драгоценное время.}
+{7010}{}{Вот поэтому очень важно поговорить с ним. Я бы заодно замолвил словечко и за вас.}
+{7020}{}{Я обладаю информацией, очень важной информацией.}
+{7030}{}{Я бы на вашем месте, следил за своими словами, я сказал мне нужно СРОЧНО увидеть ваше начальство.}
+{7040}{}{Ну и ладно.}
+{8000}{}{Зависит от того, откуда караван. Мы получаем грузы из многих мест... Слуг - из Дена, уран - из Брокен Хиллс, а металл - из Реддинга.}
+{8010}{}{Что вы можете мне сказать о Дене?}
+{8020}{}{Что вы можете рассказать о Брокен Хиллс?}
+{8030}{}{Что вы можете мне сказать о Реддинге?}
+{8040}{}{Могу я задать вам еще вопрос?}
+{8050}{}{Понятно. Спасибо за информацию.}
+{9000}{}{Восхитительное место, действительно. Убийцы, воры .... Место, где, такие как вы чувствовали бы себя как дома.}
+{9010}{}{Что вы можете рассказать о Брокен Хиллс?}
+{9020}{}{Что вы можете мне сказать о Реддинге?}
+{9030}{}{Могу я задать вам еще вопрос?}
+{9040}{}{Понятно. Спасибо за информацию.}
+{10000}{}{Брокен Хиллс это шахтерский город на юге. Как я понимаю, мутанты добывать уран, и отправляют его сюда с караваном.}
+{10010}{}{Что вы можете мне сказать о Дене?}
+{10020}{}{Что вы можете мне сказать о Реддинге?}
+{10030}{}{Могу я задать вам еще вопрос?}
+{10040}{}{Понятно. Спасибо за информацию.}
+{11000}{}{It's a mining town far to the west. The caravans from there were the most pleasant to deal with, but recently the shipments of ore are fluctuating considerably in quantity. It has us a bit worried... we depend on their ore a great deal.}
+{11010}{}{Что вы можете мне сказать о Дене?}
+{11020}{}{Что вы можете рассказать о Брокен Хиллс?}
+{11030}{}{Могу я задать вам еще вопрос?}
+{11040}{}{Понятно. Спасибо за информацию.}
+{12000}{}{Да, то, что я могу сделать для вас?}
+{12010}{}{Кто вы?}
+{12020}{}{Что это за место?}
+{12030}{}{Какие товары вы получаете с караванами?}
+{12040}{}{Сегодня ничего, спасибо.}
+
+[pols]
+{100}{}{Wallace}
+{200}{}{Widzisz Wallace'a.}
+{210}{}{Widzisz szczupłego mężczyznę o ostrym wyrazie twarzy. Nosi mocno dopasowany kombinezon Krypty.}
+{210}{}{Widzisz Wallace'a, urzędnika Biura Odpraw Kryptopolis.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-faction unknown}
+{2000}{}{Dzień dobry, @sex@|podróżniku||podróżniczko|. Witamy w Kryptopolis. W czym mogę pomóc?}
+{2010}{}{Kim jesteś?}
+{2020}{}{Co to za miejsce?}
+{2030}{}{Niczym, dziękuję.}
+{3000}{}{Nazywam się Wallace. Jestem Oficerem Odpraw w Kryptopolis. Zajmuję się osobami, które chcą prowadzić interesy w obrębie murów naszego wspaniałego miasta.}
+{3010}{}{@sex@|Chciałbym||Chciałabym| wejść do miasta.}
+{3020}{}{"Zajmuję się?" Co to oznacza?}
+{4000}{}{Jeśli chcesz wejść do Kryptopolis, potrzebujesz dobrego powodu. Jedynie obywatele mogą wchodzić i wychodzić, kiedy tylko chcą. Wszyscy pozostali muszą uzyskać Przepustkę Dzienną.}
+{4010}{}{Czym jest Przepustka Dzienna?}
+{4020}{}{To bardzo istotne, abyś mnie wpuścił. Muszę rozmówić się z waszym przywódcą.}
+{4030}{}{Rozumiem. Dzięki za informacje.}
+{5000}{}{Ci, którzy chcą mieć do czynienia bezpośrednio z kupcami czy przedstawicielami władz Kryptopolis, wymagają Przepustki Dziennej. Obecnie ich nie wydajemy, ponieważ jesteśmy w trakcie zmiany systemu ich wydawania.}
+{5010}{}{Jestem @sex@|znajomą||znajomym| Piaska. Albo mnie wpuścisz, i to wpuścisz mnie teraz, albo pozostanie po tobie tylko dziura w ziemi, dziadku.}
+{5020}{}{W porządku. Mogę zadać inne pytanie?}
+{5030}{}{W takim razie, nieważne. I tak muszę już iść.}
+{6000}{}{Oto Biuro Odpraw Kryptopolis. Jesteśmy odpowiedzialni za przeszukiwanie wszystkich dóbr, jakie zostają przywożone do nas przez karawany oraz nadzorowanie wszelkich transakcji. Wszyscy kupcy muszą przejść przez odprawę, zanim wejdą do miasta.}
+{6010}{}{@sex@|Chciałbym||Chciałabym| wejść do miasta.}
+{6020}{}{Jakie towary otrzymujecie od karawan?}
+{6030}{}{Rozumiem. Dzięki za informacje.}
+{7000}{}{Cóż, oczywiście. Każdy pragnie audiencji u Pierwszego Obywatela. Nie wyglądasz jednak na dość ważną osobę, aby marnować jej cenny czas, przykro mi.}
+{7010}{}{Dlatego to tak istotne, abym @sex@|mógł||mogła| z nią porozmawiać. Możesz być pewien, że rzucę dobre słowo o tym, jak skutecznie zarządzane jest Biuro Odpraw. Ale jeśli nie możesz mi pomóc, cóż...}
+{7020}{}{Informacje, które posiadam, są naprawdę ważne. Naprawdę, serio. Nie kłamię.}
+{7030}{}{Gdybym @sex@|był||była| tobą, uważałabym na swój ton. @sex@|Powiedziałem||Powiedziałam|, że muszę się z nią widzieć. Już.}
+{7040}{}{W takim razie, hm, nieważne.}
+{8000}{}{Zależy, skąd jest karawana. Otrzymujemy dostawy z wielu miejsc... Służący z Nory, uran z Broken Hills, rudy metali z Redding.}
+{8010}{}{Co możesz mi opowiedzieć o Norze?}
+{8020}{}{Co możesz mi opowiedzieć o Broken Hills?}
+{8030}{}{Co możesz mi opowiedzieć o Redding?}
+{8040}{}{Możemy porozmawiać o czymś innym?}
+{8050}{}{Rozumiem. Dzięki za informacje}
+{9000}{}{Cudowne miejsce, naprawdę. Mordercy, złodzieje... Typowe ścierwa z zewnątrz. Komuś takiemu, jak ty, bardzo by się tam spodobało.}
+{9010}{}{Co możesz mi opowiedzieć o Broken Hills?}
+{9020}{}{Co możesz mi opowiedzieć o Redding?}
+{9030}{}{I had some other questions for you...}
+{9040}{}{*Dzięki.* Żegnam.}
+{10000}{}{Broken Hills to górnicze miasto na południu. O ile dobrze rozumiem, mutanty kopią tam uran, a potem wysyłają tutaj karawanami.}
+{10010}{}{Co możesz mi opowiedzieć o Norze?}
+{10020}{}{Co możesz mi opowiedzieć o Redding?}
+{10030}{}{Uch, tak... Spójrz, mam dla ciebie kilka innych pytań...}
+{10040}{}{Dzięki za informacje.}
+{11000}{}{To górnicze miasto na zachodzie. Karawany stamtąd są najprzyjemniejsze w obejściu, ale dostawy rudy z tamtego kierunku są ostatnimi czasy dość zmienne jeśli chodzi o ilość. Nieco nas to martwi... Jesteśmy zależni od ich rudy w wysokim stopniu.}
+{11010}{}{Co możesz mi opowiedzieć o Norze?}
+{11020}{}{Co możesz mi opowiedzieć o Broken Hills?}
+{11030}{}{Więcej pytań...}
+{11040}{}{Dzięki za informacje. Do widzenia.}
+{12000}{}{Tak, słucham? Co mogę dla ciebie zrobić}
+{12010}{}{Kim jesteś?}
+{12020}{}{Co to za miejsce?}
+{12030}{}{Jakiego rodzaju dostawy tutaj otrzymujecie?}
+{12040}{}{Nic, dzięki.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-faction unknown}
+{2000}{}{Hello, traveler. Welcome to Vault City. Is there anything I can help you with?}
+{2010}{}{Who are you?}
+{2020}{}{What is this place?}
+{2030}{}{Nothing today, thanks.}
+{3000}{}{Name's Wallace. I'm the Customs Officer for Vault City. I accommodate those who wish to conduct business within our great walls.}
+{3010}{}{I'd like to enter the city.}
+{3020}{}{I see. Thanks for the information.}
+{4000}{}{If you want to enter Vault City, then you'll need a good reason. Only a Vault Citizen has the right to come and go as they please. All others must procure a Day Pass.}
+{4010}{}{What's a Day Pass?}
+{4020}{}{It's very important you let me in to speak to your leader.}
+{4030}{}{I see. Thanks for the information.}
+{5000}{}{Those who wish to deal directly with the merchants or the representatives of Vault City require a Day Pass. Currently we are not issuing them out as they are being re-worked, so no freelancers.}
+{5010}{}{You'll let me in, and you'll let me in now, or you're gonna be in a hole in the ground, old man.}
+{5020}{}{Right. Can I ask you some other questions?}
+{5030}{}{Nevermind, then. I have to go now anyway.}
+{6000}{}{This is the Customs Office for Vault City. We're responsible for keeping a log of all the goods that come to us via the caravans and supervising all transactions. All merchants must pass through customs before entering the city.}
+{6010}{}{I'd like to enter the city.}
+{6020}{}{What goods do you receive from the caravans?}
+{6030}{}{I see. Thanks for the information.}
+{7000}{}{Well, of course. Everyone desires an audience with the First Citizen. You don't look important enough to warrant the precious time of the First Citizen, I'm afraid.}
+{7010}{}{That's why it's vital I speak to her. I'll be sure to throw in a good word about how efficiently the Customs Office is being run. But if you can't help me, then...}
+{7020}{}{The information I possess is really important. Really.}
+{7030}{}{If I were you, I'd watch that tone of yours. I said I need to see her. Now.}
+{7040}{}{Nevermind, then.}
+{8000}{}{Depends on where the caravan is from. We get shipments from many places... servants from the Den, uranium from Broken Hills, and metal ore from Redding.}
+{8010}{}{What can you tell me about the Den?}
+{8020}{}{What can you tell me about Broken Hills?}
+{8030}{}{What can you tell me about Redding?}
+{8040}{}{Can I ask you another question?}
+{8050}{}{I see. Thanks for the information.}
+{9000}{}{A delightful place, really. Killers, thieves... the usual Outsider scum. A place where one such as yourself would feel right at home.}
+{9010}{}{What can you tell me about Broken Hills?}
+{9020}{}{What can you tell me about Redding?}
+{9030}{}{I had some other questions for you...}
+{9040}{}{*Thanks.* Goodbye.}
+{10000}{}{Broken Hills is a mining town to the south. As I understand it, mutants mine the uranium, and they ship it here by caravan.}
+{10010}{}{What can you tell me about the Den?}
+{10020}{}{What can you tell me about the Redding?}
+{10030}{}{Uh, yeah... look, I had some other questions for you...}
+{10040}{}{Thanks for the information.}
+{11000}{}{It's a mining town far to the west. The caravans from there were the most pleasant to deal with, but recently the shipments of ore are fluctuating considerably in quantity. It has us a bit worried... we depend on their ore a great deal.}
+{11010}{}{What can you tell me about the Den?}
+{11020}{}{What can you tell me about Broken Hills?}
+{11030}{}{More questions...}
+{11040}{}{Thanks for the information. Goodbye.}
+{12000}{}{Yes, what can I do for you?}
+{12010}{}{Who are you?}
+{12020}{}{What is this place?}
+{12030}{}{What kind of shipments do you receive here?}
+{12040}{}{Nothing today, thanks.}
+

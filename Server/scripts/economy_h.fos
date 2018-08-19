@@ -1,0 +1,7 @@
+#ifndef __ECONOMY__
+#define __ECONOMY__
+
+import uint RewardMod(uint caps) from "economy";
+import uint PriceMod(uint caps) from "economy";
+
+#endif

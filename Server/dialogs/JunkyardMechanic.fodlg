@@ -1,0 +1,121 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+5 2020 #
+0 2030 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _item p PID_MPART_1 } 1 R _item p PID_MPART_1 - 1 R _script economy_dialogs@r_GiveCaps 1 700 #
+4 3020 D _item p PID_MPART_2 } 1 R _item p PID_MPART_2 - 1 R _script economy_dialogs@r_GiveCaps 1 700 #
+4 3030 D _item p PID_MPART_3 } 1 R _item p PID_MPART_3 - 1 R _script economy_dialogs@r_GiveCaps 1 700 #
+4 3040 D _item p PID_MPART_4 } 1 R _item p PID_MPART_4 - 1 R _script economy_dialogs@r_GiveCaps 1 700 #
+0 3050 @
+4 4000 None 0 #
+3 4010 #
+0 4020 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+6 5010 D _script economy_dialogs@d_IsEnoughCaps 1 2000 R _item p PID_SUPER_TOOL_KIT + 1 R _script economy_dialogs@r_TakeCaps 1 2000 R _script tc@r_AddFeeToLocker 1 100 #
+0 5020 @
+6 6000 None 0 #
+0 6010 &
+
+[engl]
+{100}{}{Junkyard Mechanic}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome to my junkyard, youngster. What do you need?@@Need anything?@@Can I help you?@@Want something from an old mechanic?}
+{2010}{}{I've found some old parts, got'em right here. Want to take a look?@@I've found some stuff you seek.@@I've found some things you seek.@@I've got some nice Pre-War relics for you.}
+{2020}{}{Got any Super Tool Kit?@@I'm looking for a Super Tool Kit, got any?}
+{2030}{}{Uh, wrong person. Bye.@@Just passing by.@@Just passing through.@@Nevermind.}
+{3000}{}{Sure youngster. Show me. I'll pay You @lex mpart_reward@ caps per any useful part.@@Okay, I'll pay you @lex mpart_reward@ for any useful part you've got.}
+{3010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3040}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3050}{}{Well, maybe later. Bye.@@Nevermind.@@Gotta go.@@I've got to go.}
+{4000}{}{A good part indeed. I buy it. Here's your pay.@@This will surely come in handy. Here's your pay.@@Thank you, I'm sure I'll find some use for it. Here are your caps.}
+{4010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{4020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.}
+{5000}{}{Sure, @lex stool2_price@ caps per one, want it?@@Yes, @lex stool2_price@ per one set. Interested?}
+{5010}{}{Yes please.@@Yeah.@@Yep.@@Yes.}
+{5020}{}{Nope.@@Too much.@@Nevermind.@@Maybe another time.}
+{6000}{}{Pleasure doing business with you.}
+{6010}{}{Sure, Bye.@@Yeah, bye.@@Goodbye.}
+
+[russ]
+{100}{}{Механик}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Добро пожаловать на мою свалку. Что вам нужно?}
+{2010}{}{Я принес интересные запчасти . Хотите покажу?}
+{2020}{}{Мне бы Суперремнабор.}
+{2030}{}{Ой, я обознался. Пока.}
+{3000}{}{Конечно. Если что-то действительно ценное, я заплачу тебе @lex mpart_reward@ крышек.}
+{3010}{}{Вот эта штука...}
+{3020}{}{Вот эта штука...}
+{3030}{}{Вот эта штука...}
+{3040}{}{Вот эта штука...}
+{3050}{}{В другой раз. Пока}
+{4000}{}{О отличный экземпляр, я покупаю.}
+{4010}{}{У меня есть еще.}
+{4020}{}{Благодарю вас. До свидания.}
+{5000}{}{У меня как раз есть, отдам за @lex stool2_price@.}
+{5010}{}{Согласен.}
+{5020}{}{Мне не подходит.}
+{6000}{}{Отличная сделка.}
+{6010}{}{Спасибо. До встречи.}
+
+[pols]
+{100}{}{Mechanik}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Witam na moim złomowisku. Czego chcesz?}
+{2010}{}{Mam pewien interesującą, mechaniczną... rzecz. Chciałbyś rzucić na to okiem?}
+{2020}{}{Masz jakiś duży zestaw narzędzi?}
+{2030}{}{Och, muszę już lecieć. Do zobaczenia.}
+{3000}{}{Jasne. Pokaż mi to. [Rzuca okiem na przedmiot.] Zapłacę ci @lex mpart_reward@ kapsli za każdą tego typu część.}
+{3010}{}{Oto ten przedmiot...}
+{3020}{}{Oto ten przedmiot...}
+{3030}{}{Oto ten przedmiot...}
+{3040}{}{Oto ten przedmiot...}
+{3050}{}{Cóż, może potem. Do widzenia.}
+{4000}{}{To bardzo dobra część. Kupię ją. Oto zapłata.}
+{4010}{}{Mam więcej.}
+{4020}{}{Wielkie dzięki. Do widzenia.}
+{5000}{}{Jasne, @lex stool2_price@ kapsli za sztukę?}
+{5010}{}{Poproszę.}
+{5020}{}{Nie-e.}
+{6000}{}{Interesy z tobą to czysta przyjemność.}
+{6010}{}{Pewnie. Do widzenia.}
+
+[ptbr]
+{100}{}{Mecânico do Sucatão}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Pode entrar aqui na minha Sucata. Pode falar.}
+{2010}{}{Tenho umas coisas mecânicas aqui. Quer dar uma olhada?}
+{2020}{}{Tem algum jogo grande de ferramentas?}
+{2030}{}{Umm, acho que vim no canto errado. Desculpa. Fui.}
+{3000}{}{Claro jovem. Deixa eu ver. Pago @lex mpart_reward@ tampinhas por qualquer parte útil.}
+{3010}{}{Eu tenho esta Coisinha...}
+{3020}{}{Eu tenho esta Coisinha...}
+{3030}{}{Eu tenho esta Coisinha...}
+{3040}{}{Eu tenho esta Coisinha...}
+{3050}{}{Tá, volto depois. Valeu.}
+{4000}{}{De fato é uma boa peça. Vou comprar. Tá aqui seu dinheiro.}
+{4010}{}{Tenho mais aqui.}
+{4020}{}{Valeu cara.}
+{5000}{}{Tenho sim; @lex stool2_price@ tampinhas por um, vai querer?}
+{5010}{}{Sim, por favor.}
+{5020}{}{Naah.}
+{6000}{}{Bom fazer negócio com você.}
+{6010}{}{Tá. Vou indo. Tchau.}
+

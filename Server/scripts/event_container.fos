@@ -1,0 +1,183 @@
+#include "_macros.fos"
+#include "_itempid.fos"
+#include "_maps.fos"
+
+#define SUMMER_CONTAINER_ID                 (1)
+
+dictionary @containers;
+void initContainers()
+{
+	if (!valid(containers))
+	{
+		@containers = dictionary();
+		
+		containers.set("" + SUMMER_CONTAINER_ID, EventContainer()
+				.SetLockerComplexity(75)
+				.SetForbiddenLocation(LOCATION_MADNESS_PVP)
+				.SetRespawnTime(REAL_SECOND(20), REAL_SECOND(30))
+				.AddLoot(PID_MENTATS, 10, 20)
+				.AddLoot(PID_BUFFOUT, 10, 20)
+				.AddLoot(PID_PSYCHO, 10, 20)
+				.AddLoot(PID_JET, 10, 20)
+				.AddLoot(PID_RAD_X, 10, 20)
+				.AddLoot(PID_RADAWAY, 10, 20)
+				.AddLoot(PID_ADVANCED_POWER_ARMOR_MK2, 1, 1, 0.05)
+		);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+// Usage:
+//     ~run event_container spawn_container containerId containerProtoId 0
+//         containerId: id of container definition. See initContainers
+//         containerProtoId: protoId of container
+// Example:
+//     ~run event_container spawn_container 1 129 0
+////////////////////////////////////////////////////////////////////////
+
+void spawn_container(Critter& cr, int eventContainerId, int protoId, int)
+{	
+	initContainers();
+	
+	EventContainer @eventContainer;
+	
+	if (!containers.get("" + eventContainerId, @eventContainer))
+	{
+		return;
+	}
+	
+	Map@ map =  cr.GetMap();
+	
+	if (!valid(map))
+	{
+		return;
+	}
+
+	Item@ container = map.AddItem(cr.HexX, cr.HexY, protoId, 1);
+	
+	if (!valid(container))
+	{
+		return;
+	}
+	
+	if (eventContainer.GetLockerComplexity() > 0)
+	{
+		container.LockerId = Random(1, 1000);
+		container.LockerComplexity = eventContainer.GetLockerComplexity();
+	}
+	
+	container.LockerOpen();
+	eventContainer.GenerateLoot(container);
+	
+	uint[] values = {eventContainerId, container.Id};
+    CreateTimeEvent(__FullSecond + eventContainer.ComputeRespawnTime(), "e_Spawn", values, true);
+}
+
+uint e_Spawn(uint[]@ values)
+{
+	initContainers();
+	
+	EventContainer @eventContainer;
+	
+	if (!containers.get("" + values[0], @eventContainer))
+	{
+		return 0;
+	}
+	
+	Item@ container = GetItem(values[1]);
+	
+	if(!valid(container))
+	{
+		return 0;
+	}
+	
+	eventContainer.GenerateLoot(container);
+        
+    return eventContainer.ComputeRespawnTime();
+}
+
+class EventContainer
+{
+	private int[] lootPids = {}, lootMinQuantities = {}, lootMaxQuantities = {};
+	private double[] probabilities = {};
+	private uint16 lockerComplexity;
+	private uint respawnTimeMin, respawnTimeMax, forbiddenLocation = 0;
+
+	EventContainer@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		return AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, 1);
+	}
+	
+	EventContainer@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		lootPids.insertLast(lootPid);
+		lootMinQuantities.insertLast(lootMinQuantity);
+		lootMaxQuantities.insertLast(lootMaxQuantity);
+		probabilities.insertLast(probability);
+		return @this;
+	}
+
+	EventContainer@ GenerateLoot(Item& container)
+	{
+		if (forbiddenLocation > 0)
+		{
+			Location@ location = GetLocationByPid(forbiddenLocation, 0);
+			
+			if (valid(location) && location.Visible)
+			{
+				return @this;
+			}
+		}
+		
+		if(_LockerIsOpen(container))
+		{
+			container.LockerClose();
+		}	
+		
+		Item@[] items;
+		container.GetItems(0, items);
+		DeleteItems(items);
+	
+		for (uint i = 0; i < lootPids.length(); i++)
+		{
+			if (Random(1, 100000) <= probabilities[i] * 100000)
+			{
+				int count = Random(lootMinQuantities[i], lootMaxQuantities[i]);
+				if (count > 0)
+				{
+					container.AddItem(lootPids[i], Random(lootMinQuantities[i], lootMaxQuantities[i]), 0);
+				}
+			}
+		}
+		return @this;
+	}
+	
+	uint16 GetLockerComplexity()
+	{
+		return lockerComplexity;
+	}
+	
+	EventContainer@ SetLockerComplexity(uint16 lockerComplexity)
+	{
+		this.lockerComplexity = lockerComplexity;
+		return @this;
+	}
+	
+	EventContainer@ SetForbiddenLocation(uint forbiddenLocation)
+	{
+		this.forbiddenLocation = forbiddenLocation;
+		return @this;
+	}
+	
+	uint ComputeRespawnTime()
+	{
+		return Random(respawnTimeMin, respawnTimeMax);
+	}
+	
+	EventContainer@ SetRespawnTime(uint respawnTimeMin, uint respawnTimeMax)
+	{
+		this.respawnTimeMin = respawnTimeMin;
+		this.respawnTimeMax = respawnTimeMax;
+		return @this;
+	}
+}

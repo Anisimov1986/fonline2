@@ -1,0 +1,154 @@
+/**
+ * Created: 10.7.2012
+ * Author: mikewall
+ */
+
+#include "_macros.fos"
+#include "base_defines.fos"
+
+import void GenerateStats(Item& item) from "custom_items";
+
+funcdef float CycleCalculation(uint);
+
+class BaseItemInfo
+{
+	uint Base;
+	uint Org;
+	ItemDefinition@[] ItemDefinitions;
+	
+	BaseItemInfo(uint base, uint org)
+	{
+		Base = base;
+		Org = org;
+	}
+	
+	BaseItemInfo@ AddItemDefinition(uint minCycle, uint16 itemPid, float startChance, uint minCount, uint maxCount, CycleCalculation@ countMultiplier = null)
+	{
+		ItemDefinition@ definition = ItemDefinition();
+		definition.MinCycle = minCycle;
+		definition.ItemPids.insertLast(itemPid);
+		definition.FlatStartChance = startChance;
+		definition.MinCount = minCount;
+		definition.MaxCount = maxCount;
+		@definition.CountMultiplier = countMultiplier;
+		ItemDefinitions.insertLast(definition);
+		return this;
+	}
+	
+	BaseItemInfo@ AddItemDefinition(uint minCycle, uint16 itemPid, CycleCalculation@ chance, uint minCount, uint maxCount, CycleCalculation@ countMultiplier = null)
+	{
+		ItemDefinition@ definition = ItemDefinition();
+		definition.MinCycle = minCycle;
+		definition.ItemPids.insertLast(itemPid);
+		@definition.Chance = chance;
+		definition.MinCount = minCount;
+		definition.MaxCount = maxCount;
+		@definition.CountMultiplier = countMultiplier;
+		ItemDefinitions.insertLast(definition);
+		return this;
+	}
+	
+	BaseItemInfo@ AddItemDefinition(uint minCycle, uint16[] itemPids, float startChance, uint minCount, uint maxCount, CycleCalculation@ countMultiplier = null)
+	{
+		ItemDefinition@ definition = ItemDefinition();
+		definition.MinCycle = minCycle;
+		for (uint i = 0; i < itemPids.length(); i++)
+		{
+			definition.ItemPids.insertLast(itemPids[i]);
+		}
+		definition.FlatStartChance = startChance;
+		definition.MinCount = minCount;
+		definition.MaxCount = maxCount;
+		@definition.CountMultiplier = countMultiplier;
+		ItemDefinitions.insertLast(definition);
+		return this;
+	}
+	
+	BaseItemInfo@ AddItemDefinition(uint minCycle, uint16[] itemPids, CycleCalculation@ chance, uint minCount, uint maxCount, CycleCalculation@ countMultiplier = null)
+	{
+		ItemDefinition@ definition = ItemDefinition();
+		definition.MinCycle = minCycle;
+		for (uint i = 0; i < itemPids.length(); i++)
+		{
+			definition.ItemPids.insertLast(itemPids[i]);
+		}
+		@definition.Chance = chance;
+		definition.MinCount = minCount;
+		definition.MaxCount = maxCount;
+		@definition.CountMultiplier = countMultiplier;
+		ItemDefinitions.insertLast(definition);
+		return this;
+	}
+	
+	void AddItemsToContainer(uint cycle, Item@ container)
+	{
+		for (uint i = 0; i < ItemDefinitions.length(); i++)
+		{
+			ItemDefinitions[i].AddToContainer(cycle, container);
+		}
+	}
+}
+
+class ItemDefinition
+{
+	uint MinCycle;
+	uint16[] ItemPids;
+	CycleCalculation@ Chance;
+	float FlatStartChance;
+	uint MinCount;
+	uint MaxCount;
+	CycleCalculation@ CountMultiplier;
+	
+	bool IsChosen(uint cycle)
+	{
+		if(cycle < MinCycle)
+			return false;
+		
+		float chance;
+		if(Chance is null)
+			chance = FlatStartChance + ((cycle - MinCycle) * ITEM_CYCLE_CHANCE_INCREMENT);
+		else
+			chance = Chance(cycle - MinCycle);
+			
+		float randomChance = float(Random(1, 10000)) / 100.0f;
+		return randomChance <= chance;
+	}
+	
+	bool AddToContainer(uint cycle, Item@ container)
+	{
+		if(!IsChosen(cycle))
+			return false;
+		
+		uint minCount = MinCount;
+		uint maxCount = MaxCount;
+		
+		if(!(CountMultiplier is null))
+		{
+			float multiplier = CountMultiplier(cycle);
+			minCount *= multiplier;
+			maxCount *= multiplier;
+		}
+		uint count = Random(minCount, maxCount);
+		ProtoItem@ ItemProto = GetProtoItem(ItemPids[Random(0, ItemPids.length() - 1)]);
+		if (count > 0)
+		{
+			if (ItemProto.Stackable)
+			{
+				container.AddItem(ItemProto.ProtoId, count, 0);
+			}
+			else
+			{
+				for (uint j = 0; j < count; j++)
+				{
+					Item@ advItem = container.AddItem(ItemProto.ProtoId, 1, 0);
+					if (valid(advItem)) 
+					{
+						GenerateStats(advItem);
+					}
+				}
+			
+			}
+		}
+		return true;
+	}
+}

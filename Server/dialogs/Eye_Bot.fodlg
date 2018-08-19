@@ -1,0 +1,41 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Floating Eye Bot}
+{200}{}{ }
+{210}{}{ }
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Combat sequence initiated...@@Acquiring target...@@Assesing threat level... engaging.@@Target acquired...@@Combat script loaded, engaging target.}
+
+[russ]
+{100}{}{Летучий глаз}
+{200}{}{ }
+{210}{}{ }
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Инициализация боевой последовательности...@@Выбор цели...@@Определение уровня угрозы...@@Определение цели...}
+
+[pols]
+{100}{}{Lewitujący Robot Oko}
+{200}{}{ }
+{210}{}{ }
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Tryb bojowy uruchomiony}
+
+[ptbr]
+{100}{}{Olho Flutuante}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Sequência de combate iniciado...@@Travando no alvo...@@Avaliando nível de ameaça... a atacar.@@Alvo travado...@@Rotina de combate carregado, a atacar alvo.}

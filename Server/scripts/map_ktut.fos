@@ -1,0 +1,573 @@
+#include "_defines.fos"
+#include "_npc_roles.fos"
+#include "_macros.fos"
+#include "_maps.fos"
+#include "utils_h.fos"
+#include "mapdata_h.fos"
+#include "_msgstr.fos"
+#include "npc_common_h.fos"
+#include "polygon_h.fos"
+
+import void ChangeSkin(  Critter@ cr, int skinnumber ) from "dialog";
+import void PlayOpenLockerSound( Item& locker ) from "sounds";
+import void PlayLockedLockerSound( Item& locker ) from "sounds";
+import void OnAutoOpen( Item& locker ) from "doors";
+import void OpenDoor( int hx, int hy, int pid, int mapId ) from "dialog";
+import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
+import void InjureCritter( Critter& cr, uint dmg, uint dmgType, uint8 dir, uint attackerId ) from "combat";
+
+import void r_CreateHiddenLocationHere( Critter& player, Critter@ npc, int locPid, int , int , int dayDelete, int varNum ) from "dialog";
+import void r_TeleportToCreatedLocation( Critter& player, Critter@ npc, int varNum, int mapIndex, int entire, int group ) from "dialog";
+
+#define ROLE_TURRET1    ( 2101 )
+#define ROLE_TURRET2    ( 2102 )
+#define ROLE_TEACHER    ( 2103 )
+#define ROLE_TURRET3    ( 2104 )
+#define ROLE_TURRET4    ( 2105 )
+#define ROLE_SUBJECT    ( 2106 )
+
+
+
+array< uint16 > tut_area_v =
+{
+    155, 78,
+    117, 78,
+    117, 136,
+    155, 136
+};
+IPolygon@       tut_area;
+
+void _MapInit( Map& map, bool firstTime )
+{
+
+    @tut_area = NewPolygon();
+    tut_area.AddVertices( tut_area_v );
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        Critter@ critter = npcs[ i ];
+
+        critter.ParamBase[ ST_AI_ID ] = 0;
+        critter.ParamBase[ ST_TEAM_ID ] = 4;
+        critter.ParamBase[ ST_DIALOG_ID ] = 0;
+        critter.ParamBase[ ST_KILL_EXPERIENCE ] = 0;
+        critter.StatBase[ ST_BAG_ID ] = 0;
+        critter.SetEvent( CRITTER_EVENT_ATTACKED,                "_Attacked" );
+        critter.ModeBase[ MODE_INVULNERABLE ] = 1;
+
+        if( critter.Stat[ ST_NPC_ROLE ] == ROLE_TEACHER )
+        {
+            critter.SetEvent( CRITTER_EVENT_SMTH_ATTACKED,   "_SomeoneAttacked" );
+            critter.SetEvent( CRITTER_EVENT_SMTH_USE_SKILL,  "_SomeoneUseSkill" );
+            critter.SetEvent( CRITTER_EVENT_SMTH_USE_ITEM,  "_SomeoneUseItem" );
+            critter.ParamBase[ ST_DIALOG_ID ] = 5062;
+
+        }
+    }
+
+    map.SetEvent( MAP_EVENT_OUT_CRITTER, "_CrOut" );
+    map.SetEvent( MAP_EVENT_IN_CRITTER, "_CrIn" );
+
+    Location@ location = map.GetLocation();
+    GameVar@  QUEST_STEP = GetLocalVar( LLVAR_Value0, location.Id );
+    GameVar@  PLAYERSKIN = GetLocalVar( LLVAR_Value1, location.Id );
+    GameVar@  TURRETSHIT = GetLocalVar( LLVAR_Value3, location.Id );
+}
+
+void enterTut( Critter& player, Critter@ npc )
+{
+    r_CreateHiddenLocationHere( player, npc, LOCATION_bos_tutorial, 0, 0, 3, LVAR_Tut_Kenny_creation );
+    r_TeleportToCreatedLocation( player, npc, LVAR_Tut_Kenny_creation, 0, 0, 0 );
+}
+
+void exit( Critter& player, Scenery& trigger, bool entered, uint8 dir )
+{
+    if( !player.IsPlayer() )
+        return;
+    
+    GameVar @ start_location = GetLocalVar(LVAR_start_location, player.Id);
+    Location@ location = GetLocation(start_location.GetValue());
+   
+    Map@ map = location.GetMapByIndex(0);
+    if( valid( map ) )
+        player.TransitToMap( map.Id, 0 );
+}
+
+bool _Attacked( Critter& follower, Critter& attacker )
+{
+    return true;
+}
+
+
+void _SomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+    Location@ loc = GetLocationOf( cr );
+    int       ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+    GameVar@  TURRETSHIT = GetLocalVar( LLVAR_Value3, loc.Id );
+    Map@      map = cr.GetMap();
+
+    Critter@  tutor = map.GetNpc( ROLE_TEACHER, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    Critter@  ghoul = map.GetNpc( ROLE_SUBJECT, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    Critter@  turret = map.GetNpc( ROLE_TURRET4, FIND_LIFE | FIND_ONLY_NPC, 0 );
+
+    uint8     mode = 0;
+    ProtoItem @ weapon = attacker.GetSlotProto( SLOT_HAND1, mode );
+    if( !valid( weapon ) )
+        return;
+
+    int dist = GetCrittersDistantion( attacked, attacker );
+    // Log("DISTANCE: " + dist);
+
+
+    if( attacker.Id == tutor.Id && attacked.Id == master.Id )
+    {
+        // Log("Tutor hits player.");
+        attacker.ErasePlane( AI_PLANE_ATTACK, true );
+        attacker.ClearEnemyStack();
+        master.StatBase[ ST_CURRENT_HP ] = master.Stat[ ST_MAX_LIFE ];
+        master.DamageBase[ DAMAGE_RIGHT_ARM ] = 1;
+        InjureCritter( master, 30, DAMAGE_NORMAL, 0, attacker.Id );
+        master.ModeBase[ MODE_INVULNERABLE ] = 1;
+    }
+
+    if( QUEST_STEP == 0 )
+    {
+        if( attacked.StatBase[ ST_NPC_ROLE ] == ROLE_TURRET1 && ( mode == 0 || mode == 64 ) )
+        {
+            QUEST_STEP += 1;
+            LaunchDialog( master );
+            MoveTutor( cr, 148, 98, 5 );
+        }
+    }
+    else if( QUEST_STEP == 1 )
+    {
+        if( attacked.StatBase[ ST_NPC_ROLE ] == ROLE_TURRET1 && mode == 1 )
+        {
+            QUEST_STEP += 1;
+            LaunchDialog( master );
+            MoveTutor( cr, 148, 91, 1 );
+        }
+    }
+    else if( QUEST_STEP == 2 )
+    {
+        if( attacked.StatBase[ ST_NPC_ROLE ] == ROLE_TURRET1 && mode == 1 && dist == 1 )
+        {
+            OpenDoor( 141, 102, 2151, map.Id );
+            QUEST_STEP += 1;
+            MoveTutor( cr, 131, 100, 4 );
+        }
+    }
+    else if( QUEST_STEP == 3 )
+    {
+        if( attacked.StatBase[ ST_NPC_ROLE ] == ROLE_TURRET2 )
+            TURRETSHIT += 1;
+        if( attacked.StatBase[ ST_NPC_ROLE ] == ROLE_TURRET3 )
+            TURRETSHIT += 1;
+
+        if( TURRETSHIT == 2 )
+        {
+            Map@ map = cr.GetMap();
+            OpenDoor( 129, 102, 2151, map.Id );
+            QUEST_STEP += 1;
+            MoveTutor( cr, 124, 93, 1 );
+        }
+        else
+        {
+            uint[] values = { loc.Id };
+            CreateTimeEvent( __FullSecond + REAL_SECOND( 1 ), "e_event_resetCount", values, true );
+        }
+    }
+    return;
+}
+
+void Attack( Critter& cr, Critter& attacker )
+{
+    NpcPlane@ plane = cr.GetCurPlane();
+    if( valid( plane ) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id )
+        return;
+
+
+    AttackCritter( cr, attacker );
+}
+
+uint e_event_resetCount( array< uint >@ values )
+{
+    GameVar@ TURRETSHIT = GetLocalVar( LLVAR_Value3, values[ 0 ] );
+    TURRETSHIT = 0;
+    return 0;
+}
+
+void _SomeoneUseSkill( Critter& cr, Critter& fromCr, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
+{
+    Location@ loc = GetLocationOf( cr );
+    int       ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+
+    if( skill == SK_FIRST_AID && QUEST_STEP == 8 )
+    {
+        master.StatBase[ ST_CURRENT_HP ] = master.Stat[ ST_MAX_LIFE ];
+        QUEST_STEP += 1;
+        LaunchDialog( master );
+    }
+    else if( skill == SK_DOCTOR && QUEST_STEP == 9 )
+    {
+        master.DamageBase[ DAMAGE_RIGHT_ARM ] = 0;
+        QUEST_STEP += 1;
+        LaunchDialog( master );
+    }
+}
+
+void _SomeoneUseItem( Critter& cr, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
+{
+    Location@ loc = GetLocationOf( cr );
+    int       ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+    Map@      map = cr.GetMap();
+
+    if( item.GetProtoId() == PID_SUPER_STIMPAK && QUEST_STEP == 10 )
+    {
+        OpenDoor( 105, 107, 2151, map.Id );
+        MoveTutor( cr, 97, 100, 3 );
+        QUEST_STEP += 1;
+        LaunchDialog( master );
+    }
+}
+
+void _InitSafe( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_LockpickSafe" );
+}
+
+bool _LockpickSafe( Item& locker, Critter& cr, int skill )
+{
+    Location@ loc = GetLocationOf( cr );
+    int       ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+
+    if( skill == SK_LOCKPICK && QUEST_STEP >= 4 )
+    {
+
+
+        PlayOpenLockerSound( locker );
+        locker.LockerOpen();
+        OnAutoOpen( locker );
+        if( QUEST_STEP == 4 )
+        {
+            QUEST_STEP += 1;
+            LaunchDialog( master );
+            MoveTutor( cr, 120, 105, 5 );
+            return true;
+        }
+    }
+    else if( skill == SKILL_PICK_ON_GROUND )
+    {
+        if( FLAG( locker.LockerCondition, LOCKER_ISOPEN ) )
+            cr.ShowContainer( null, locker, TRANSFER_HEX_CONT_DOWN );
+        else
+        {
+            PlayLockedLockerSound( locker );
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_ITEM_LOCKER_NEED_KEY );
+        }
+        return true;
+    }
+    return false;
+}
+
+
+void _InitDoor( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_LockpickDoor" );
+}
+
+bool _LockpickDoor( Item& locker, Critter& cr, int skill )
+{
+    Location@ loc = GetLocationOf( cr );
+    int       ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+
+    if( skill == SK_LOCKPICK && QUEST_STEP == 5 )
+    {
+
+        if( !HasItemsInHands( cr, PID_ELECTRONIC_LOCKPICKS, PID_ELEC_LOCKPICK_MKII ) )
+        {
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_NEED_ELECTRO );
+            return false;
+        }
+
+        PlayOpenLockerSound( locker );
+        locker.LockerOpen();
+        OnAutoOpen( locker );
+        if( QUEST_STEP == 5 )
+        {
+            QUEST_STEP += 1;
+            LaunchDialog( master );
+            MoveTutor( cr, 108, 97, 4 );
+            return true;
+        }
+    }
+    else if( skill == SKILL_PICK_ON_GROUND )
+    {
+        PlayLockedLockerSound( locker );
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_ITEM_LOCKER_NEED_KEY );
+        return true;
+    }
+    return false;
+}
+
+void _CrOut( Map& map, Critter& cr )
+{
+    if( !cr.IsPlayer() )
+        return;
+    if( cr.Param[ PE_AIMBUFF ] != 0 )
+        cr.ParamBase[ PE_AIMBUFF ] = 0;
+
+    if( cr.Mode[ MODE_NO_PVP ] != 0 )
+        cr.ModeBase[ MODE_NO_PVP ] = 0;
+
+    if( cr.Mode[ MODE_INVULNERABLE ] != 0 )
+        cr.ModeBase[ MODE_INVULNERABLE ] = 0;
+
+    cr.ParamBase[ ST_ACTION_POINTS ] = cr.ParamBase[ ST_ACTION_POINTS ] - 3;
+    
+    Item@[] items;
+    cr.GetItems( -1, items );
+    DeleteItems( items );
+    
+    Location@ location = map.GetLocation();
+    BringItems( map, cr );
+    GameVar@  PLAYERSKIN = GetLocalVar( LLVAR_Value1, location.Id );
+    ChangeSkin( cr, PLAYERSKIN.GetValue() );
+}
+
+void _CrIn( Map& map, Critter& cr )
+{
+    if( !cr.IsPlayer() )
+        return;
+    cr.ParamBase[ ST_ACTION_POINTS ] = cr.ParamBase[ ST_ACTION_POINTS ] + 3;
+    cr.ParamBase[ PE_AIMBUFF ] = 1;
+    cr.ModeBase[ MODE_NO_PVP ] = 1;
+    cr.ModeBase[ MODE_INVULNERABLE ] = 1;
+    Location@ location = map.GetLocation();
+    GameVar@  PLAYERSKIN = GetLocalVar( LLVAR_Value1, location.Id );
+    StoreItems( map, cr );
+    PLAYERSKIN = cr.ParamBase[ ST_BASE_CRTYPE ];
+    ChangeSkin( cr, 134 );
+
+}
+
+void t_ThrowDialog( Critter& player, Scenery& trigger, bool entered, uint8 dir, int var, int triggernum )
+{
+    if( !player.IsPlayer() )
+        return;
+
+    Location@ loc = GetLocationOf( player );
+    int       ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+    GameVar@  TRIGGERED = GetLocalVar( LLVAR_Value5, loc.Id );
+
+    if( QUEST_STEP == var && TRIGGERED == triggernum )
+    {
+        LaunchDialog( master );
+        TRIGGERED += 1;
+    }
+
+}
+
+void t_ShowDialog( Critter& player, Scenery& trigger, bool entered, uint8 dir )
+{
+    if( !player.IsPlayer() )
+        return;
+
+    Location@ loc = GetLocationOf( player );
+    int       ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+
+
+    if( QUEST_STEP == 6 )
+    {
+        QUEST_STEP += 1;
+        Map@ map = player.GetMap();
+        uint[] values = { map.Id };
+        CreateTimeEvent( __FullSecond + REAL_SECOND( 2 ), "e_talk", values, true );
+    }
+}
+
+
+
+void LaunchDialog( Critter& master )
+{
+    Map@ map = master.GetMap();
+    if( valid( map ) )
+    {
+        uint[] values = { master.Id };
+        CreateTimeEvent( __FullSecond + REAL_SECOND( 2 ), "e_event_showdialog", values, true );
+    }
+}
+
+
+
+uint e_event_showdialog( array< uint >@ values )
+{
+    Critter@ master = GetCritter( values[ 0 ] );
+    Map@     map = master.GetMap();
+    {
+        if( valid( map ) )
+            RunDialog( master, 5062, 1, 1, true );
+    }
+    return 0;
+}
+uint e_talk( array< uint >@ values )
+{
+    Map@      map = GetMap( values[ 0 ] );
+    Critter@  tutor = map.GetNpc( ROLE_TEACHER, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    Critter@  ghoul = map.GetNpc( ROLE_SUBJECT, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    Critter@  turret = map.GetNpc( ROLE_TURRET4, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    Location@ location = map.GetLocation();
+    GameVar@  TALKSTEP = GetLocalVar( LLVAR_Value4, location.Id );
+    int       ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+    GameVar@  QUEST_STEP = GetLocalVar( LVAR_Tut_Kenny, master.Id );
+
+    if( TALKSTEP == 0 )
+    {
+        tutor.Say( SAY_NORM, "This is our first aid training course." );
+        TALKSTEP += 1;
+    }
+    else if( TALKSTEP == 1 )
+    {
+        tutor.Say( SAY_NORM, "This fellow Subject will play a victim role." );
+        TALKSTEP += 1;
+    }
+    else if( TALKSTEP == 2 )
+    {
+        ghoul.Say( SAY_NORM, "NO! I did not volunteer for this!" );
+        TALKSTEP += 1;
+    }
+    else if( TALKSTEP == 3 )
+    {
+        tutor.Say( SAY_NORM, "Thats the spirit! It wont hurt much." );
+        TALKSTEP += 1;
+    }
+    else if( TALKSTEP == 4 )
+    {
+        turret.Say( SAY_NORM, "Error. Gun malfuction. Delivering a full burst." );
+        TALKSTEP += 1;
+        return ( REAL_SECOND( 2 ) );
+    }
+    else if( TALKSTEP == 5 )
+    {
+        turret.StatBase[ PE_BONUS_RANGED_DAMAGE ] = 8;
+        ghoul.ModeBase[ MODE_INVULNERABLE ] = 0;
+        Attack( turret, ghoul );
+        TALKSTEP += 1;
+        return ( REAL_SECOND( 4 ) );
+    }
+    else if( TALKSTEP == 6 )
+    {
+        tutor.Say( SAY_NORM, "Well... Shit! Guess you gonna learn it hard way." );
+        MoveTutor( tutor, 108, 97, 4 );
+        TALKSTEP += 1;
+    }
+    else if( TALKSTEP == 7 )
+    {
+        Item@ weapon = tutor.AddItem( PID_RED_RYDER_BB_GUN, 1 );
+        tutor.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+        // pulll out gun
+       // tutor.Say( SAY_NORM, "I'm not kidding, prepare!" );
+
+        Item@ door = map.GetItem( 117, 102, 2151 );
+        door.LockerClose();
+        MoveToDocZone( map );
+        TALKSTEP += 1;
+    }
+    else if( TALKSTEP == 8 )
+    {
+        // shoot
+        master.ModeBase[ MODE_INVULNERABLE ] = 0;
+        Attack( tutor, master );
+        TALKSTEP += 1;
+        QUEST_STEP += 1;
+        LaunchDialog( master );
+    }
+    else if( TALKSTEP == 9 )
+    {
+        return 0;
+    }
+    return ( REAL_SECOND( 3 ) );
+}
+
+
+void MoveToDocZone( Map& map )
+{
+    array< Critter@ > critters;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < critters.length(); i++ )
+    {
+        if( tut_area.IsWithin( critters[ i ] ) )
+        {
+            uint16 hx = 0;
+            uint16 hy = 0;
+            uint8  dir = 0;
+            uint   count = map.CountEntire( 510 );
+            for( uint s = 0; s < count; s++ )
+            {
+                if( map.GetEntireCoords( 510, s, hx, hy, dir ) && map.IsHexPassed( hx, hy ) )
+                {
+                    critters[ i ].TransitToMap( map.Id, hx, hy, dir );
+                }
+            }
+        }
+    }
+}
+
+// Makes Npc with certain role run to place, any simplier ideas? :F
+void MoveTutor( Critter@ npc, int HexX, int HexY, int dir )
+{
+    Map@     map = npc.GetMap();
+    Critter@ moved = map.GetNpc( ROLE_TEACHER, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    if( valid( moved ) )
+    {
+        AddWalkPlane( moved, AI_PLANE_WALK_PRIORITY, HexX, HexY, dir, false, 0 );
+        moved.SetHomePos( HexX, HexY, dir );
+    }
+}
+
+
+void StoreItems( Map& map, Critter& cr )
+{
+    Item@[] items;
+    cr.GetItems( -1, items );
+    CheckForbiddenItems( items, false );
+    if( !valid( map ) )
+    {
+        DeleteItems( items );
+        return;
+    }
+    Item@ Container = map.GetItem( 69, 69, 11433 );
+    MoveItems( items, Container, 0 );
+}
+
+void BringItems( Map& map, Critter& cr )
+{
+    Item@ Container = map.GetItem( 69, 69, 11433 );
+    Item@[] items;
+    Container.GetItems( 0, items );
+    MoveItems( items, cr );
+}
+
+import void PlayMusic( Map& map, string& musicName, uint pos, uint repeat ) from "media";
+void PlaySound( Critter& player, Critter@ npc, int number )
+{
+    //player.PlaySound( "BosTutorial-" + number + ".ogg", true );
+    PlayMusic( player.GetMap(), "BosTutorial-" + number + ".ogg", 0, 0 );
+}

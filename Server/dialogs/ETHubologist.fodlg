@@ -1,0 +1,89 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 1000 R _script economy_dialogs@r_TakeCaps 1 1000 R _item p PID_ENERGY_TRANSFORMER + 1 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 5000 R _script economy_dialogs@r_TakeCaps 1 5000 R _item p PID_ENERGY_TRANSFORMER + 5 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 10000 R _script economy_dialogs@r_TakeCaps 1 10000 R _item p PID_ENERGY_TRANSFORMER + 10 #
+0 3040 @
+4 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Scientist}
+{200}{}{You see: One of hubologist's scientist.}
+{210}{}{You see: One of hubologist's scientist.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Yes, what do you want? Did you come to get enlightment?@@Welcome, stranger. Did you come to be enlightened?}
+{2010}{}{Not really. But I heard you're selling Energy Transformers. Got any?@@Sorry, not interested. I came, because some guy told me you sell Energy Transformers. That true?}
+{2020}{}{No. Bye.@@Nope.@@No way, I'm leaving.}
+{3000}{}{Yes, I do. @lex entrans_price@ caps for one. How much do you need?@@Yes, that is true. One transformer costs a @lex entrans_price@ caps. How many do you need?}
+{3010}{}{Just one.@@One.@@I'll take one.@@I need one.}
+{3020}{}{Five is enough.@@Five would be good.@@I want five.@@I need five.@@Give me five.}
+{3030}{}{Give me ten, I have the money.@@Ten, I need to stock up.@@Ten, I need ten.@@I'll take ten of those.}
+{3040}{}{Ill pass. Bye.@@On second thought, I'll pass.@@Not today I guess.}
+{4000}{}{Here you go.@@There you are.@@Okay, take.@@We've got a deal.@@All right, there you go.}
+{4010}{}{Thank you. Bye.@@Thanks, I've got to go.@@Good, I need to be going now.@@Thanks.}
+
+[russ]
+{100}{}{Ученый}
+{200}{}{Вы видите: одиного из Хабологов.}
+{210}{}{Вы видите: одиного из Хабологов. Он ученый.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Да? Чего тебе надо?}
+{2010}{}{Я слышал, вы продаете трансформаторы.}
+{2020}{}{Ничего, просто мимо проходил.}
+{3000}{}{Да. По @lex entrans_price@ монет. Сколько нужно?}
+{3010}{}{Один.}
+{3020}{}{Пять.}
+{3030}{}{Штук десять.}
+{3040}{}{Мне не подходит. Пока.}
+{4000}{}{Держи.}
+{4010}{}{Спасибо. Пока.}
+
+[pols]
+{100}{}{Naukowiec}
+{200}{}{Jeden z naukowców Centrologów.}
+{210}{}{Jeden z naukowców Centrologów.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Tak? Czego chcesz?}
+{2010}{}{@sex@|Słyszałem||Słyszałam|, że sprzedajesz transformatory energii.}
+{2020}{}{Już nic, dzięki.}
+{3000}{}{Tak! @lex entrans_price@ kapsli za sztukę. Ile potrzebujesz?}
+{3010}{}{Tylko jeden.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Daj mi dziesięć, mam pieniądze.}
+{3040}{}{Jednak podziękuję. Na razie.}
+{4000}{}{Proszę bardzo.}
+{4010}{}{Dziękuję. Do zobaczenia.}
+
+[ptbr]
+{100}{}{Cientista}
+{200}{}{Você vê um dos cientistas Centrologistas.}
+{210}{}{Você vê um dos cientistas Centrologistas.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Oi? Veio a procura da iluminação?@@ @sex@|Bem-vindo||Bem-vinda|. Veio a procura da luz?}
+{2010}{}{Na verdade não. Ouvi dizer que tu vende Transformadores de Energia. Tem algum?@@Desculpa, sem interesse. Vim porque alguém me disse que vende Transformadores de Energia. Verdade?}
+{2020}{}{Não. Até.@@Não mesmo.@@Sem chance, @sex@|obrigado||obrigada| pela atenção.}
+{3000}{}{Vendo sim. @lex entrans_price@ tampinhas por um. Quer quantos?@@É. Um transformador custa @lex entrans_price@ tampinhas. Vai levar quanto?}
+{3010}{}{Só um.@@Um.@@Vou querer um.@@Preciso de um.}
+{3020}{}{Cinco tá bom.@@Cinco.@@Quero cinco.@@Preciso de cinco.@@Me dá cinco.}
+{3030}{}{Me dá dez.@@Dez, eu preciso ter um estoque.@@Dez, preciso de dez.@@Eu vou querer dez desses.}
+{3040}{}{Só queria saber mesmo. Valeu.@@Pensando melhor, vou passar desta vez.@@Acho que hoje não dá.}
+{4000}{}{Aqui está.@@Aqui vai.@@Certo, pega.@@Toma.@@Tá, aqui está.}
+{4010}{}{@sex@|Obrigado||Obrigada|.@@ @sex@|Obrigado||Obrigada|. Eu preciso ir andando.@@Bom, preciso ir agora.@@Valeu.}
+

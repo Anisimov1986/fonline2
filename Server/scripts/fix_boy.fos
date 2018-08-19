@@ -1,0 +1,344 @@
+// Author: cvet, rifleman17
+#include "_macros.fos"
+#include "_msgstr.fos"
+
+#include "fix_boy_defines.fos"
+#include "utils_for_array.fos"
+import int GetDeteriorationProcent(Item& item) from "repair"; //Import
+import void SetDeterioration( Item& item, int deteriorationProcent , int repairPool) from "repair"; //Import
+import void StatsGeneration(string player, Item& item, bool crafted) from "custom_items";
+import void AddExp(Critter& cr, uint exp , uint type) from "experience";
+import bool ConsumedBlueprintForPid(Critter& player, uint pid) from "blueprints";
+import bool TrueConsumedBlueprintForPid(Critter& player, uint pid) from "blueprints";
+import bool IsItemAviable(uint16 pid) from "blueprints";
+#define FIX_SUCCESS                ( FIXBOY_DEFAULT ^ FIXBOY_CHECK_TIMEOUT ^ FIXBOY_SET_TIMEOUT  ^ FIXBOY_SUB_MATERIALS ^ FIXBOY_ADD_CRAFT_ITEMS ^ FIXBOY_ADD_EXPERIENCE ^ FIXBOY_SEND_SUCC_MESSAGE)
+#define FIX_FAIL                   ( FIXBOY_DEFAULT ^ FIXBOY_ALLOW_CRAFT )
+
+// Усложненный крафт
+// - для отображения в пипбое требуется знание рецепта
+// - для производства необходимо находиться рядом со специальным станком
+// - у станка может задаваться таймаут на последующее использование. Таймаут сохраняется в AnyData. Создается также тайм эвент на очистку AnyData
+// - если на карте несколько одинаковых станков и у них указан таймаут - у него будет общее значение.
+
+/* У прессов для производства аммуниции и токарных станков есть по несколько изображений, но используется один прототип,
+   чтобы не добавлять лишние проверки в скрипт - просто переключайтесь между изображениями через параметр PicMap
+   в маппере, название кадра будет то же самое, меняется только цифра в конце.
+   Сейчас доступно по два варианта для станков:
+   art\scenery\manufact_ammo1.fofrm
+   art\scenery\manufact_ammo2.fofrm
+   art\scenery\manufact_lathe1.fofrm
+   art\scenery\manufact_lathe2.fofrm
+ */
+
+#define _WorkBenchTimeoutKey       # ( pid, map )( "WorkbenchTO_pid_" + pid + "_map_id" + map.Id )               // Таймаут на крафт для станка. Если равен = 0, значит истек.
+#define _WorkBenchChargesKey       # ( pid, map )( "WorkbenchCH_pid_" + pid + "_map_id" + map.Id )               // Число зарядов станка, если =0, запускается таймаут на обновление.
+#define DEFAULT_RADIUS             ( 5 )                                                                         // Радиус поиска станка в гексах, по умолчанию.
+#define DEFAULT_CHARGES            ( 2 )                                                                         // Число зарядов в станке по умолчанию.
+#define DEFAULT_TIMEOUT_MINUTES    # (cr)    ( ( 60 * 24 * 7 * 1 ) + ( 24 * 60 * ( 10 - cr.Stat[ ST_LUCK ] ) ) ) // Таймаут станка по умолчанию. Одна игровая неделя + влияние удачи.
+#define SCENERY_HUB_WORKBENCH      ( 4277 )                                                                      // Код прототипа сценери для крафта плазменных гранат (Хабологи)
+#define SCENERY_SHOE_WORKBENCH     ( 4278 )                                                                      // Код прототипа сценери для крафта Ши
+#define SCENERY_AMMO_PRESS         ( 4279 )                                                                      // Пресс для производства аммуниции (2 вида, различаются изображением терминала)
+#define SCENERY_LATHE              ( 4281 )                                                                      // Токарный станок (второй вариант - станок на не-ржавом столе)
+#define SCENERY_WORKBENCH          ( 4282 )                                                                      // Верстак по-умолчанию.
+#define SCENERY_STOVE              ( 3200 )                                                                      // Печь для плавки хитина
+#define STR_NO_WORKBENCH           ( 300 )                                                                       // Для производства требуется находиться рядом со cпециальным станком или верстаком.
+#define STR_TIMEOUT                ( 301 )                                                                       // Станок или верстак в неработоспособном состоянии. Производство невозможно. Попробуйте позже.
+#define STR_NO_CHARGES             ( 302 )                                                                       // Станок или верстак в неработоспособном состоянии. Произведен максимум возможных предметов. Производство невозможно.
+
+/*                РЕЦЕПТЫ                 */
+
+uint craftitem(CraftItem& craft)
+{
+	uint16[] out_pids;
+	craft.GetOutItems(out_pids, null);
+	ProtoItem@ proto = GetProtoItem(out_pids[0]);
+	return proto.Type;
+}
+
+bool IsBluePrint(Critter& player, CraftItem& craft)
+{
+    uint16[] out_pids;
+    craft.GetOutItems(out_pids, null);
+    return TrueConsumedBlueprintForPid(player,out_pids[0]);
+}
+
+int fix_Blueprint(Critter& player, int state, CraftItem& craft)
+{
+    if(state == FIXBOY_LIST || state == FIXBOY_BUTTON)
+    {
+        array<uint16> pids;
+        for(uint i = 0, j = craft.GetOutItems(pids, null); i < j; i++)           // usually, only one item
+        {
+            if(!IsItemAviable(pids[i]))
+                return FIX_FAIL;
+        }
+    }
+    return fix_AnyStuff( player, state, craft );
+}
+
+int fix_Sierra(Critter& player, int state, CraftItem& craft)
+{
+    if(state == FIXBOY_LIST || state == FIXBOY_BUTTON)
+    {
+        if( _CritCountItem( player, PID_T4_WBSierra ) < 1)
+            return FIX_FAIL;
+        
+        if( _CritCountItem( player, PID_T4_WBSierra ) > 0 && !CheckWorkbenchNearPlayer( player, 4285, 10 ))
+		{
+			_CritDeleteItem( player, PID_T4_WBSierra, (_CritCountItem( player, PID_T4_WBSierra )) );
+			return FIX_FAIL;
+		}
+    }
+    return fix_AnyStuff( player, state, craft );
+}
+
+int fix_Vault(Critter& player, int state, CraftItem& craft)
+{
+    if(state == FIXBOY_LIST || state == FIXBOY_BUTTON)
+    {
+		if( _CritCountItem( player, PID_T4_WBVault ) < 1)
+            return FIX_FAIL;
+        
+        else if( _CritCountItem( player, PID_T4_WBVault ) > 0 && !CheckWorkbenchNearPlayer( player, 4284, 10 ))
+		{
+			_CritDeleteItem( player, PID_T4_WBVault, (_CritCountItem( player, PID_T4_WBVault )) );
+			return FIX_FAIL;
+		}
+    }
+    return fix_AnyStuff( player, state, craft );
+}
+
+int fix_AnyStuff( Critter& player, int state, CraftItem& craft )
+{
+	if( state == FIXBOY_LIST )
+	{
+		if  (player.ParamBase[CRAFTTYPE]==0)return FIX_SUCCESS;
+		uint craftitemtype=craftitem(craft);
+		if  (player.ParamBase[CRAFTTYPE]==1 && craftitemtype!=1 && craftitemtype!=3 && craftitemtype!=4)return FIX_SUCCESS;
+		if  (player.ParamBase[CRAFTTYPE]==2 && craftitemtype==4 )return FIX_SUCCESS;
+		if  (player.ParamBase[CRAFTTYPE]==3 && craftitemtype==3 )return FIX_SUCCESS;
+		if  (player.ParamBase[CRAFTTYPE]==4 && craftitemtype==1 )return FIX_SUCCESS;
+        if  (player.ParamBase[CRAFTTYPE]==5 && IsBluePrint(player,craft))return FIX_SUCCESS;
+		return FIX_FAIL;
+	}
+	if( state == FIXBOY_BUTTON )
+        return FIX_SUCCESS;
+
+	if( state == FIXBOY_CRAFT )
+	{
+		//Temp solution for wb
+		if( _CritCountItem( player, PID_SPECIAL_WB1 ) > 0 && !CheckWorkbenchNearPlayer( player, 4277, 10 ))
+		{
+			_CritDeleteItem( player, PID_SPECIAL_WB1, (_CritCountItem( player, PID_SPECIAL_WB1 )) );
+			return FIX_FAIL;
+		}
+		if( _CritCountItem( player, PID_SPECIAL_WB2 ) > 0 && !CheckWorkbenchNearPlayer( player, 4283, 10 ))
+		{
+			_CritDeleteItem( player, PID_SPECIAL_WB2, (_CritCountItem( player, PID_SPECIAL_WB2 )) );
+			return FIX_FAIL;
+		}
+		if( _CritCountItem( player, PID_T4_WBVault ) > 0 && !CheckWorkbenchNearPlayer( player, 4284, 10 ))
+		{
+			_CritDeleteItem( player, PID_T4_WBVault, (_CritCountItem( player, PID_T4_WBVault )) );
+			return FIX_FAIL;
+		}
+		if( _CritCountItem( player, PID_T4_WBSierra ) > 0 && !CheckWorkbenchNearPlayer( player, 4285, 10 ))
+		{
+			_CritDeleteItem( player, PID_T4_WBSierra, (_CritCountItem( player, PID_T4_WBSierra )) );
+			return FIX_FAIL;
+		}
+		uint num=1;
+		if (player.ParamBase[CRAFT]>1)num=player.ParamBase[CRAFT];
+
+		uint16[] out_pids;
+		uint[] out_counts;
+		uint out_all=craft.GetOutItems(out_pids, out_counts);
+
+		uint16[] res_pids;
+		uint[] res_counts;
+		uint res_all=craft.GetNeedItems(res_pids,res_counts, null);
+
+		uint16[] tool_pids;
+		uint[] tool_counts;
+		bool[] ors;
+		uint tools_all=craft.GetNeedTools(tool_pids, tool_counts, ors);
+
+		for(uint i=0;i<res_all;i++)
+		{
+			if (player.CountItem(res_pids[i])<res_counts[i]*num)
+			return FIX_FAIL;
+		}
+		int resweight=0;
+		for(uint i=0;i<res_all;i++)
+		{
+			ProtoItem@ proto = GetProtoItem (res_pids[i]);
+			resweight+=proto.Weight * res_counts[i] * num;
+		}
+		int weight=0;
+		for(uint i=0;i<out_all;i++)
+		{
+			ProtoItem@ proto = GetProtoItem (out_pids[i]);
+			weight+=proto.Weight * out_counts[i] * num;
+		}
+		if (weight > 2 * player.Stat[ST_CARRY_WEIGHT] - player.ItemsWeight() + resweight)
+		{
+			player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_BARTER_OVERSIZE );
+			return FIX_FAIL;
+		}
+		for(uint i=0;i<num;i++)
+		{
+			int maxDeterioration = 0;
+			int maxDurability = 100;
+			for(uint j=0;j<res_all;j++)
+			{
+				ProtoItem@ proto = GetProtoItem(res_pids[j]);
+                if (valid(proto) && (proto.Stackable || !proto.Deteriorable))
+                {
+                    player.DeleteItem(res_pids[j],res_counts[j]);
+                    continue;
+                }
+                for(uint k=0;k<res_counts[j];k++)
+				{
+					Item@ item = player.GetItem(res_pids[j],-1);
+					if (valid(item))
+					{
+						int deterioration = GetDeteriorationProcent( item );
+						int durability = DURABILITY_PERCENT(item);
+						if( deterioration > maxDeterioration )
+							maxDeterioration = deterioration;
+						if ( durability < maxDurability )
+							maxDurability = durability;
+						player.DeleteItem(res_pids[j],1);
+					}
+				}
+			}
+			for(uint z=0;z<out_all;z++)
+			{
+				Item@ advItem = _CritAddItem( player, out_pids[z] , out_counts[z] );
+				if(!valid(advItem))
+					continue;
+				
+				if(advItem.GetType() == ITEM_TYPE_WEAPON && advItem.AmmoCount > 0)
+				{
+					// removing ammo from crafted weapon
+					advItem.AmmoCount = 0;
+					advItem.Update();
+				}
+				
+				if(Present(out_pids[z],Pids_Signed))
+				{
+					if ( ConsumedBlueprintForPid(player,out_pids[z]) && ( player.Perk[PE_IMPLANT_ENGINEER]> 0 ? 30 : 20 ) >= uint(Random(1,100)) )
+					{
+						StatsGeneration(GetPlayerName( player.Id ),advItem,true); //Temporary maximum bonus to all items
+					}
+					else 
+					{
+						advItem.Info = 2;
+						string color="|"+COLOR_TEXT;
+						advItem.SetLexems( "$statsname" + color + "$craftername" +GetPlayerName( player.Id ));
+						advItem.Update();
+					}
+				}
+				SetDeterioration(advItem, maxDeterioration , maxDurability);
+			}
+				
+		}
+		AddExp(player, craft.Experience*num , ACT_CRAFT);
+		player.AddScore(SCORE_CRAFTER, num);
+		player.SayMsg(SAY_FIX_RESULT, TEXTMSG_GAME, STR_CRAFTED, "$number" + num);
+		return FIX_SUCCESS;
+	}
+	return FIX_SUCCESS;
+}
+
+// Проверка, что рядом с игроком находится станок для производства того или иного итема
+// pidWorkbench - код прототипа элемента Scenery, который играет роль станка
+// radius - максимальное расстояние до станка, в котором должен находиться игрок
+bool CheckWorkbenchNearPlayer( Critter& player, int pidWorkbench, int radius )
+{
+    Map @ map = player.GetMap();
+    if( !valid( map ) )
+        return false;
+    return ( map.GetSceneries( player.HexX, player.HexY, radius, pidWorkbench, null ) > 0 );
+}
+
+void unsafe_ChangeNum( Critter& player, int num, int , int, string@, int[] @ )
+{
+    if (num>100)
+        return;
+    player.ParamBase[CRAFT]=num;
+}
+
+void unsafe_UpdateFix( Critter& player, int type, int , int, string@, int[] @ )
+{
+    if (type>100)
+        return;
+player.ParamBase[CRAFTTYPE]=type;
+player.DropTimers();
+player.ShowScreen(9, 0 , null);
+}
+
+void _WorkbenchSpecialInit( Item& workbench, bool firstTime )
+{
+	workbench.SetEvent( ITEM_EVENT_DROP, "_DropSpecialWorkbench" );
+}
+
+void _DropSpecialWorkbench( Item& workbench, Critter& cr)
+{
+    DeleteItem( workbench );
+}
+
+bool _InitWorkbenchFixBoy( Critter& player, Scenery& scenery, int skill, Item@ item )
+{
+    if( skill == SKILL_PICK_ON_GROUND )
+    {
+		if (scenery.ProtoId==4277)
+		{
+			if( _CritCountItem( player, PID_SPECIAL_WB1 ) < 1 )
+				_CritAddItem(player,PID_SPECIAL_WB1,1);
+		}
+		else if (scenery.ProtoId==4283)
+		{
+			if( _CritCountItem( player, PID_SPECIAL_WB2 ) < 1 )
+				_CritAddItem(player,PID_SPECIAL_WB2,1);
+		}
+		else if (scenery.ProtoId==4284)
+		{
+			if( _CritCountItem( player, PID_T4_WBVault ) < 1 )
+				_CritAddItem(player,PID_T4_WBVault,1);
+            player.DropTimers();
+		}
+		else if (scenery.ProtoId==4285)
+		{
+			if( _CritCountItem( player, PID_T4_WBSierra ) < 1 )
+				_CritAddItem(player,PID_T4_WBSierra,1);
+            player.DropTimers();
+		}
+		player.ShowScreen(9, 0 , null);
+	}	
+	return true;
+}
+
+void t_wb_remove( Critter& cr, Scenery& trigger, bool entered, uint8 dir )
+{
+    if(!entered)
+    {
+        RemoveWorkbenches(cr);
+        cr.DropTimers();
+    }
+}
+
+// removes workbench from player inventory
+void RemoveWorkbench(Critter& player, uint pid)
+{
+    if(player.CountItem(pid) > 0)
+        player.DeleteItem(pid, player.CountItem(pid));
+}
+// remove all workbenches from inventory
+void RemoveWorkbenches(Critter& player)
+{
+    RemoveWorkbench(player, PID_SPECIAL_WB1);
+    RemoveWorkbench(player, PID_SPECIAL_WB2);
+    RemoveWorkbench(player, PID_T4_WBVault);
+    RemoveWorkbench(player, PID_T4_WBSierra);
+}

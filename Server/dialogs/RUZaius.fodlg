@@ -1,0 +1,93 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 200 R _script economy_dialogs@r_TakeCaps 1 200 R _item p PID_REFINED_ORE + 1 R _script tc@r_AddFeeToLocker 1 10 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 1000 R _script economy_dialogs@r_TakeCaps 1 1000 R _item p PID_REFINED_ORE + 5 R _script tc@r_AddFeeToLocker 1 50 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 2000 R _script economy_dialogs@r_TakeCaps 1 2000 R _item p PID_REFINED_ORE + 10 R _script tc@r_AddFeeToLocker 1 100 #
+0 3040 @
+4 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Zaius}
+{200}{}{You see: Zaius, a mutant.}
+{210}{}{You see a mutant. Must be a local resident.}
+{210}{}{When you look closely, this mutant seems very old. His muscles, however, are still strong, and his hurt pride can still be seen in his eyes.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Mine's closed, It's private and only town miners can get inside. But you can buy Uranium from me.}
+{2010}{}{I came to buy Refined Uranium.}
+{2020}{}{I see. Later then.@@All right. See you later.@@I see. Goodbye.}
+{3000}{}{Very well, @lex rore_price@ caps per one. How many do you need?}
+{3010}{}{Just one.@@I'll take one.@@Just one.}
+{3020}{}{Five is enough.@@I need five.@@I'll take five.@@I'll buy five.}
+{3030}{}{Give me ten, I have the caps.@@Ten.@@I need ten.}
+{3040}{}{Well, maybe later. Bye.@@Nevermind.@@Maybe later.@@I've changed my mind.}
+{4000}{}{Here you go.@@Okay, here you go.@@Right, here you go.}
+{4010}{}{Thanks, I've gotta go.@@Thanks, I need to go now.@@Okay, thanks, see you later.}
+
+[russ]
+{100}{}{Зайус}
+{200}{}{Вы видите крепкого старого мутанта.}
+{210}{}{Вы видите Зайуса, бригадира шахты.}
+{210}{}{Приглядевшись, вы видите крепкого старого мутанта с киркой и в шахтерской каске.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Шахта закрыты, Только шахтеры могут попасть внутрь. Но если вам нужен уран вы можете купить его у меня.}
+{2010}{}{Да, мне нужен обогащенный уран.}
+{2020}{}{Буду знать. До свидания.}
+{3000}{}{Хорошо, @lex rore_price@ за штуку. Сколько нужно?}
+{3010}{}{Одну.}
+{3020}{}{Возьму пять.}
+{3030}{}{Давай десяток.}
+{3040}{}{Как-нибудь в другой раз.}
+{4000}{}{Держи.}
+{4010}{}{Спасибо.}
+
+[pols]
+{100}{}{Zaius}
+{200}{}{Widzisz Zaiusa, mutanta.}
+{210}{}{Widzisz miejscowego mutanta.}
+{210}{}{Ten mutant wygląda na bardzo starego. Niemniej, jego mięśnie są wciąż potężne, a w jego oczach wciąż tli się urażona duma.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Kopalnia jest zamknięta. Należy do prywatnych właścicieli i jedynie górnicy mogą wchodzić do środka. Ale możesz kupić uran ode mnie.}
+{2010}{}{Chcę kupić przetworzony uran.}
+{2020}{}{Dobrze wiedzieć. Na razie.}
+{3000}{}{Świetnie, @lex rore_price@ kapsli za sztukę. Ile potrzebujesz?}
+{3010}{}{Tylko jedną.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Daj mi dziesięć, mam pieniądze.}
+{3040}{}{Cóż, może potem. Na razie.}
+{4000}{}{Proszę bardzo.}
+{4010}{}{Dziękuję. Do widzenia.}
+
+[ptbr]
+{100}{}{Zaius}
+{200}{}{Você vê o Zaius, um mutante.}
+{210}{}{Você vê um mutante: deve ser um morador da região.}
+{210}{}{Ao olhar com atenção, percebe que o mutante parece bem velho. Seus músculos, entretanto, ainda estão fortes e seu orgulho ferido pode ser visto pelos seus olhos.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{A mina tá fechada. Agora é propriedade privada e somente o minerador da cidade pode entrar, mas você pode comprar urânio de mim.}
+{2010}{}{Eu vim comprar urânio refinado.}
+{2020}{}{@sex@|Obrigado||Obrigada| pela informação. Até mais.}
+{3000}{}{Certo, @lex rore_price@ tampinhas por pedaço de metal em bruto. Quantos você quer?}
+{3010}{}{Só um.}
+{3020}{}{Me dá cinco.}
+{3030}{}{Quero dez.}
+{3040}{}{Ah, tá certo. Volto depois.}
+{4000}{}{Tá aqui.}
+{4010}{}{Obrigado. Até mais.}
+

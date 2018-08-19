@@ -1,0 +1,125 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+
+void InitCharScreen()
+{
+	GUI_CreateScreen(CLIENT_SCREEN_CHARACTER2,GetIfaceIniStr( "ChaMainPic"))
+	.CloseOnMiss(true)
+	.AutoCursor(true,CURSOR_DEFAULT);
+		
+	int posX=0 , posY=0, Width=0, Height=0, Step=0;
+	string text;
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaName").Text("Test2",FONT_FAT,COLOR_SAND,FT_CENTERX|FT_CENTERY);
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaAge").Text("45",FONT_FAT,COLOR_SAND,FT_CENTERX|FT_CENTERY);
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaSex").Text("male",FONT_FAT,COLOR_SAND,FT_CENTERX|FT_CENTERY);
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaUnspentSPText").Text("skill points",FONT_FAT,COLOR_SAND,FT_CENTERX|FT_CENTERY);
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaUnspentSP").Text("01",FONT_BIG_NUM,COLOR_GRAY);
+	text = ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_CHA_LEVEL), "%d", "1" );
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaLevel").Text(text);
+	text = ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_CHA_EXPERIENCE), "%d", "0" );
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaExp").Text(text);
+	text = ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_CHA_NEXT_LEVEL), "%d", "1000" );
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaNextLevel").Text(text);
+	
+	
+	text = ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_DMG_LIFE), "%d", "69" );
+	text = ReplaceText( text, "%d", "70" );
+	GUI_AddText(CLIENT_SCREEN_CHARACTER2).Position("ChaDmgLife").Text(text);
+	
+	
+
+      
+	GetSpecialTextPosition("ChaSpecialText",posX,posY,Width,Height);
+	StrToInt(GetIfaceIniStr("ChaSpecialNextY"),Step);
+	
+	for (uint i=0; i < 7; i++)
+	{
+		GUI_AddText(CLIENT_SCREEN_CHARACTER2)
+		.Position(posX,posY+i*Step,Width,Height)
+		.Text("ST",FONT_BIG,COLOR_SAND,0,FT_CENTERX);
+	}	
+	GetSpecialTextPosition("ChaSpecialValue",posX,posY,0,0);
+	for (uint i=0; i < 7; i++)
+	{
+		GUI_AddText(CLIENT_SCREEN_CHARACTER2)
+		.Position(posX,posY+i*Step,Width,Height)
+		.Text("01",FONT_BIG_NUM,COLOR_GRAY);
+	}
+	GetSpecialTextPosition("ChaSpecialLevel",posX,posY,Width,Height);
+	for (uint i=0; i < 7; i++)
+	{
+		GUI_AddText(CLIENT_SCREEN_CHARACTER2)
+		.Position(posX,posY+i*Step,Width,Height)
+		.Text("Average",FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERY);
+	}
+	
+	
+	GetSpecialTextPosition("ChaSkillName",posX,posY,Width,Height);
+	StrToInt(GetIfaceIniStr("ChaSkillNextY"),Step);
+	for (uint i=0; i < 18; i++)
+	{
+		GUI_AddText(CLIENT_SCREEN_CHARACTER2)
+		.Position(posX,posY+i*Step,Width,Height)
+		.Text(GetMsgStr( TEXTMSG_GAME, STR_PARAM_NAME(200+i) ),FONT_FALLOUT,COLOR_TEXT);
+	}
+	GetSpecialTextPosition("ChaSkillValue",posX,posY,Width,Height);
+	for (uint i=0; i < 18; i++)
+	{
+		GUI_AddText(CLIENT_SCREEN_CHARACTER2)
+		.Position(posX,posY+i*Step,Width,Height)
+		.Text("30%",FONT_FALLOUT,COLOR_TEXT);
+	}
+	
+	GetSpecialTextPosition("ChaDmg",posX,posY,Width,Height);
+	StrToInt(GetIfaceIniStr("ChaDmgNextY"),Step);
+	for (uint i=0; i < 7; i++)
+	{
+		GUI_AddText(CLIENT_SCREEN_CHARACTER2)
+		.Position(posX,posY+i*Step,Width,Height)
+		.Text(GetMsgStr( TEXTMSG_GAME, STR_PARAM_NAME(500+i) ),FONT_FALLOUT,COLOR_TEXT);
+	}
+	
+	GetSpecialTextPosition("ChaStatsName",posX,posY,Width,Height);
+	StrToInt(GetIfaceIniStr("ChaStatsNextY "),Step);
+	uint[] number = {9,8};
+	for (uint i=0; i < 2; i++)
+	{
+		GUI_AddText(CLIENT_SCREEN_CHARACTER2)
+		.Position(posX,posY+i*Step,Width,Height)
+		.Text(GetMsgStr( TEXTMSG_GAME, STR_PARAM_NAME_SHORT(number[i]) ),FONT_FALLOUT,COLOR_TEXT);
+	}
+	
+}
+
+
+void ShowCharScreen()
+{
+	InitCharScreen();
+	if (GUI_GetActiveScreen()==CLIENT_SCREEN_CHARACTER2)
+		HideScreen(CLIENT_SCREEN_CHARACTER2,0,0,0);
+	else
+		ShowScreen(CLIENT_SCREEN_CHARACTER2,0,0,0);
+}
+
+
+void GetSpecialTextPosition(string IfString,int& out posX,int& out posY,int& out Width,int& out Height)
+{
+		string@ str=GetIfaceIniStr(IfString);
+		if(@str==null || str=="") return;
+
+		string@[]@ valuesStr=splitEx(str," ");
+		if(valuesStr.length()!=4) return;
+
+		int[] values(4);
+		for(int i=0;i<4;i++)
+			if(not StrToInt(valuesStr[i],values[i])) 
+				return;
+
+		posX=values[0];
+		posY=values[1];
+		Width=values[2]-values[0]+1;
+		Height=values[3]-values[1]+1;
+}

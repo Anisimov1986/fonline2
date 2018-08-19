@@ -1,0 +1,406 @@
+#include "critter_events_basic.fos"
+#include "critter_events_town.fos"
+#include "_npc_roles.fos"
+#include "entire_h.fos"
+#include "_ai.fos"
+
+#define EVIL_KARMA_LIMIT                 (-10000)
+
+#define RETURN_HOME_TIMER_ID               (1001)
+#define WARN_EVIL_TIMER_ID                 (1002)
+#define SEND_TO_JAIL_STEP_1_TIMER_ID       (1003)
+#define SEND_TO_JAIL_STEP_2_TIMER_ID       (1004)
+#define RELEASE_FROM_JAIL_TIMER_ID         (1005)
+#define KILL_EVIL_TIMER_ID                 (1006)
+
+#define THIEVE_SELF_MESSAGE_ID             (1000)
+#define KILL_THIEVE_MESSAGE_ID             (1001)
+#define WARN_EVIL_MESSAGE_ID               (1002)
+#define KILL_EVIL_MESSAGE_ID               (1003)
+#define	NEED_REINFORCEMENTS_MESSAGE_ID     (1999)
+
+
+CritterEventsManager helplessCitizen = CritterEventsManager(ROLE_HELPLESS_CITIZEN)
+	.When(SeeCritterAttacks())
+		.Execute(Conditionally(HasChance(60), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70119)))
+		.Execute(SetFlagNoHome())
+		.Execute(MoveToEntire(DEFAULT_HIDEOUT_ENTIRE, true))
+		.Execute(StartTimer(RETURN_HOME_TIMER_ID, 2, TIME_UNIT_REAL_MINUTE))
+	.When(TimerTimeout(RETURN_HOME_TIMER_ID))
+		.Execute(UnsetFlagNoHome())
+	.When(AttackedByPlayer())
+		.Execute(Conditionally(HasChance(60), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70119)))
+		.Execute(SetFlagNoHome())
+		.Execute(MoveToEntire(DEFAULT_HIDEOUT_ENTIRE, true))
+		.Execute(StartTimer(RETURN_HOME_TIMER_ID, 2, TIME_UNIT_REAL_MINUTE));	
+
+CritterEventsManager invisibleLaw = CritterEventsManager(ROLE_INVISIBLE_LAW)
+	.When(SeePlayerAttacking())     //Attacking, killing
+		.Execute(RecordOffence(1))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_1_TIMER_ID, 30, TIME_UNIT_REAL_SECOND))
+	.When(SeePlayerKilling())
+		.Execute(RecordOffence(2))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_1_TIMER_ID, 30, TIME_UNIT_REAL_SECOND))
+	.When(SeePlayerStealingSuccessful())      //Stealing
+		.Execute(MessageSelf(THIEVE_SELF_MESSAGE_ID))
+	.When(SeePlayerStealingUnuccessful())
+		.Execute(MessageSelf(THIEVE_SELF_MESSAGE_ID))
+	.When(CritterMessageReceived(THIEVE_SELF_MESSAGE_ID))	
+		.Execute(RecordOffence(1))
+		.Execute(SendMessageAsTarget(KILL_THIEVE_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_1_TIMER_ID, 30, TIME_UNIT_REAL_SECOND))	
+	.When(TimerTimeout(SEND_TO_JAIL_STEP_1_TIMER_ID))     //Send to jail
+		.Execute(Inform(TEXTMSG_TEXT, 70302))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_2_TIMER_ID, 15, TIME_UNIT_REAL_SECOND))
+	.When(TimerTimeout(SEND_TO_JAIL_STEP_2_TIMER_ID))
+		.Execute(SetOffenderJailTimeout())
+		.Execute(Loot(LOOT_TYPE_DELETE))
+		.Execute(TransitToTownJail())
+	.When(PlayerShown())      //Evil warning
+		.Execute(Conditionally(TargetHasKarmaBelow(EVIL_KARMA_LIMIT), StartTimer(WARN_EVIL_TIMER_ID, 2, TIME_UNIT_REAL_SECOND)))
+	.When(TimerTimeout(WARN_EVIL_TIMER_ID))
+		.Execute(Inform(TEXTMSG_TEXT, 70301))
+		.Execute(SendMessageAsTarget(WARN_EVIL_MESSAGE_ID, MESSAGE_TO_WHO_SEES_ME))
+		.Execute(StartTimer(KILL_EVIL_TIMER_ID, 30, TIME_UNIT_REAL_SECOND))
+	.When(TimerTimeout(KILL_EVIL_TIMER_ID))		//Kill evil
+		.Execute(SendMessageAsTarget(KILL_EVIL_MESSAGE_ID, MESSAGE_TO_WHO_SEES_ME));
+
+		
+CritterEventsManager jailWarden = CritterEventsManager(ROLE_JAIL_WARDEN)
+	.When(CritterMessageReceived(RELASE_ME_FROM_JAIL_MESSAGE_ID))
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70111))
+		.Execute(StartTimer(RELEASE_FROM_JAIL_TIMER_ID, 5, TIME_UNIT_REAL_SECOND))
+	.When(TimerTimeout(RELEASE_FROM_JAIL_TIMER_ID))	
+		.Execute(ReleaseFromTownJail())
+		.Execute(Inform(TEXTMSG_TEXT, 70303));
+
+		
+CritterEventsManager jailWardenAndNoobLaw = CritterEventsManager(ROLE_JAIL_WARDEN_AND_NOOB_LAW)
+	.When(CritterMessageReceived(RELASE_ME_FROM_JAIL_MESSAGE_ID))
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70111))
+		.Execute(StartTimer(RELEASE_FROM_JAIL_TIMER_ID, 5, TIME_UNIT_REAL_SECOND))
+	.When(TimerTimeout(RELEASE_FROM_JAIL_TIMER_ID))	
+		.Execute(ReleaseFromTownJail())
+		.Execute(Inform(TEXTMSG_TEXT, 70303))
+	.When(SeePlayerAttacking())     //Attacking, killing
+		.Execute(RecordOffence(1))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_1_TIMER_ID, 30, TIME_UNIT_REAL_SECOND))
+	.When(SeePlayerKilling())
+		.Execute(RecordOffence(2))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_1_TIMER_ID, 30, TIME_UNIT_REAL_SECOND))
+	.When(SeePlayerStealingSuccessful())      //Stealing
+		.Execute(MessageSelf(THIEVE_SELF_MESSAGE_ID))
+	.When(SeePlayerStealingUnuccessful())
+		.Execute(MessageSelf(THIEVE_SELF_MESSAGE_ID))
+	.When(CritterMessageReceived(THIEVE_SELF_MESSAGE_ID))	
+		.Execute(RecordOffence(1))
+		.Execute(SendMessageAsTarget(KILL_THIEVE_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_1_TIMER_ID, 30, TIME_UNIT_REAL_SECOND))	
+	.When(TimerTimeout(SEND_TO_JAIL_STEP_1_TIMER_ID))     //Send to jail
+		.Execute(Inform(TEXTMSG_TEXT, 70302))
+		.Execute(StartTimer(SEND_TO_JAIL_STEP_2_TIMER_ID, 15, TIME_UNIT_REAL_SECOND))
+	.When(TimerTimeout(SEND_TO_JAIL_STEP_2_TIMER_ID))
+		.Execute(SetOffenderJailTimeout())
+		.Execute(Loot(LOOT_TYPE_DELETE))
+		.Execute(TransitToTownJail());		
+
+CritterEventsManager guardsDog = CritterEventsManager(ROLE_GUARDS_DOG)
+	.When(SeePlayerAttacking())
+		.Execute(Attack())
+	.When(AttackedByPlayer())
+		.Execute(Attack())
+		.Execute(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+		.Execute(Conditionally(HasChance(40), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70135)))
+	.When(CritterMessageReceived(WARN_EVIL_MESSAGE_ID))
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70135))
+	.When(CritterMessageReceived(KILL_EVIL_MESSAGE_ID))	
+		.Execute(Attack());	
+		
+	
+CritterEventsManager guardPatrol = CritterEventsManager(ROLE_GUARD_PATROL)
+	.When(CritterMessageReceived(KILL_THIEVE_MESSAGE_ID))     //Kill thieves
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70117))
+		.Execute(Conditionally(DistanceBetween(0, 50), Attack()))
+	.When(SeePlayerAttacking())     //Attack attackers 
+		.Execute(Attack())
+	.When(PlayerShown1())     //Offender warning
+		.Execute(Conditionally(CAnd(TargetIsOffender(), IsSeenByTarget()), LookAt()))
+		.Execute(Conditionally(CAnd(TargetIsOffender(), IsSeenByTarget()), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70114)))
+	.When(SeePlayerUsingProtectedSkill())     //Skill protection
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70120))
+	.When(PlayerShown1())     //Sneaking
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), LookAt()))
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70112)))
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), CancelSneaking()))
+	.When(AttackedByPlayer())     //Call for reinforcements
+		.Execute(Attack())
+		.Execute(Conditionally(HasChance(40), Say(SAY_NORM_ON_HEAD, TEXTMSG_COMBAT, 700002)))
+		.Execute(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.When(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.Execute(Conditionally(DistanceBetween(0, 50), Attack()))
+	.When(InitializeCritter(true))     //Patrol
+		.Execute(InitializePatrol(DEFAULT_PATROL_ENTIRE))
+	.When(CritterIdle())
+		.Execute(Conditionally(HasChance(10), Patrol(DEFAULT_PATROL_ENTIRE)))
+	.When(PlaneFinished(ATTACK_PLANE_IDENTIFIER, true))     //Insulting killed offender
+		.Execute(Conditionally(HasChance(20), Say(SAY_NORM_ON_HEAD, TEXTMSG_COMBAT, 700003)));
+
+		
+CritterEventsManager carParkGuard = CritterEventsManager(ROLE_CAR_PARK_GUARD)
+	.When(CritterMessageReceived(KILL_THIEVE_MESSAGE_ID))     //Kill thieves
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70117))
+		.Execute(Conditionally(DistanceBetween(0, 50), Attack()))
+	.When(SeePlayerAttacking())     //Attack attackers 
+		.Execute(Attack())
+	.When(PlayerShown1())     //Offender warning
+		.Execute(Conditionally(CAnd(TargetIsOffender(), IsSeenByTarget()), LookAt()))
+		.Execute(Conditionally(CAnd(TargetIsOffender(), IsSeenByTarget()), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70114)))
+	.When(SeePlayerUsingProtectedSkill())     //Skill protection
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70118))
+	.When(PlayerShown1())     //Sneaking
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), LookAt()))
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70112)))
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), CancelSneaking()))
+	.When(AttackedByPlayer())     //Call for reinforcements
+		.Execute(Attack())
+		.Execute(Conditionally(HasChance(40), Say(SAY_NORM_ON_HEAD, TEXTMSG_COMBAT, 700002)))
+		.Execute(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.When(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.Execute(Conditionally(DistanceBetween(0, 50), Attack()))
+	.When(InitializeCritter(true))     //Patrol
+		.Execute(InitializePatrol(DEFAULT_CAR_PARK_ENTIRE))
+	.When(CritterIdle())
+		.Execute(Conditionally(HasChance(10), Patrol(DEFAULT_CAR_PARK_ENTIRE)))
+	.When(PlaneFinished(ATTACK_PLANE_IDENTIFIER, true))     //Insulting killed offender
+		.Execute(Conditionally(HasChance(20), Say(SAY_NORM_ON_HEAD, TEXTMSG_COMBAT, 700003)));
+		
+
+CritterEventsManager guard = CritterEventsManager(ROLE_GUARD)
+	.When(CritterMessageReceived(KILL_THIEVE_MESSAGE_ID))     //Kill thieves
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70117))
+		.Execute(Conditionally(DistanceBetween(0, 50), Attack()))
+	.When(SeePlayerAttacking())     //Attack attackers 
+		.Execute(Attack())
+	.When(PlayerShown1())     //Offender warning
+		.Execute(Conditionally(CAnd(TargetIsOffender(), IsSeenByTarget()), LookAt()))
+		.Execute(Conditionally(CAnd(TargetIsOffender(), IsSeenByTarget()), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70114)))
+	.When(SeePlayerUsingProtectedSkill())     //Skill protection
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70120))
+	.When(PlayerShown1())     //Sneaking
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), LookAt()))
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70112)))
+		.Execute(Conditionally(CAnd(IsSneaking(), IsSeenByTarget()), CancelSneaking()))
+	.When(AttackedByPlayer())     //Call for reinforcements
+		.Execute(Attack())
+		.Execute(Conditionally(HasChance(40), Say(SAY_NORM_ON_HEAD, TEXTMSG_COMBAT, 700002)))
+		.Execute(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.When(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.Execute(Conditionally(DistanceBetween(0, 50), Attack()))
+	.When(CritterMessageReceived(WARN_EVIL_MESSAGE_ID))     //Warn evil
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70115))
+	.When(CritterMessageReceived(KILL_EVIL_MESSAGE_ID))	     //Kill evil
+		.Execute(Attack())
+	.When(SeePlayerDead())     //Looting
+		.Execute(Conditionally(NoCritterHavePlane(LOOT_PLANE_IDENTIFIER), MoveToTarget(false, LOOT_PLANE_IDENTIFIER)))
+	.When(PlaneFinished(LOOT_PLANE_IDENTIFIER, true))
+		.Execute(Conditionally(TargetIsOffender(), Loot(LOOT_TYPE_DELETE)))
+		.Execute(ConditionallyNot(TargetIsOffender(), Loot(LOOT_TYPE_REMEMBER)))
+	.When(PlaneFinished(ATTACK_PLANE_IDENTIFIER, true))     //Insulting killed offender
+		.Execute(Conditionally(HasChance(20), Say(SAY_NORM_ON_HEAD, TEXTMSG_COMBAT, 700003)));
+
+		
+CritterEventsManager scarTina = CritterEventsManager(ROLE_SCAR_TINA)
+	.When(PlayerShown1())     //Insult players
+		.Execute(MoveToTarget(true))
+	.When(PlaneFinished(MOVE_TO_PLANE_IDENTIFIER, true))	
+		.Execute(Conditionally(DistanceBetween(0, 3), LookAt()))
+		.Execute(Conditionally(DistanceBetween(0, 3), Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70136)))
+		.Execute(Conditionally(DistanceBetween(0, 3), Wait(5, TIME_UNIT_REAL_SECOND)))
+		.Execute(Conditionally(DistanceBetween(4, 20), MoveToTarget(true)))
+	.When(CritterMessageReceived(WARN_EVIL_MESSAGE_ID))     //Warn evil
+		.Execute(LookAt())
+		.Execute(Say(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70137))
+	.When(InitializeCritter(true))     //Patrol
+		.Execute(InitializePatrol(DEFAULT_PATROL_ENTIRE))
+	.When(CritterIdle())
+		.Execute(Conditionally(HasChance(50), Patrol(DEFAULT_PATROL_ENTIRE, true)));
+		
+
+CritterEventsManager eventGuard = CritterEventsManager(ROLE_EVENT_GUARD)
+	.When(SeePlayerAttacking())     //Attack attackers 
+		.Execute(Conditionally(HasChance(90), Attack()))
+	.When(AttackedByPlayer())     //Call for reinforcements
+		.Execute(Attack())
+		.Execute(Conditionally(HasChance(40), Say(SAY_NORM_ON_HEAD, TEXTMSG_COMBAT, 700002)))
+		.Execute(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.When(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.Execute(Conditionally(DistanceBetween(0, 50), Attack()))
+	.When(SeePlayerStealingSuccessful())      //Stealing
+		.Execute(Conditionally(HasChance(50), Attack()))
+	.When(SeePlayerStealingUnuccessful())
+		.Execute(Attack());
+		
+		
+void _InitHelplessCitizen(Critter& critter, bool firstTime)
+{
+	if (firstTime)
+	{
+		critter.StatBase[ST_AI_ID] = AIPACKET_FO1_RUNAWAY;
+	}
+
+	helplessCitizen.AttachCritter(critter, firstTime);
+}
+
+
+void _InitBrahmin(Critter& critter, bool firstTime)
+{
+	if (firstTime)
+	{
+		critter.StatBase[ST_DIALOG_ID] = DIALOG_all_brahmin;
+	}
+}
+
+
+void _InitInvisibleLaw(Critter& critter, bool firstTime)
+{
+	if(firstTime)
+	{
+		critter.ParamBase[INVIS_LEVEL] = 100;
+		critter.StatBase[ST_BONUS_LOOK] = 1000;
+	}
+	
+	invisibleLaw.AttachCritter(critter, firstTime);
+}
+
+void _InitJailWarden(Critter& critter, int team, bool firstTime)
+{
+	if(firstTime)
+	{
+		InitGuardParams(critter, team);
+	}
+	
+	jailWarden.AttachCritter(critter, firstTime);
+}
+
+void _InitGuardsDog(Critter& critter, int team, bool firstTime)
+{
+	if(firstTime)
+	{
+		critter.StatBase[ST_TEAM_ID] = team;
+		critter.StatBase[ST_AI_ID] = AIPACKET_GENERAL_TOWN_GUARDS;
+		critter.StatBase[ST_MELEE_DAMAGE_EXT] = 100;
+		critter.ModeBase[MODE_NO_KNOCK] = 1;
+		critter.ModeBase[MODE_NO_ENEMY_STACK] = 1;	
+	}
+	
+	guardsDog.AttachCritter(critter, firstTime);
+}
+
+void _InitGuardPatrol(Critter& critter, int team, bool firstTime)
+{
+	if(firstTime)
+	{
+		InitGuardParams(critter, team);
+	}
+	
+	critter.ShowCritterDist1 = 20;
+	guardPatrol.AttachCritter(critter, firstTime);
+}
+
+void _InitGuard(Critter& critter, int team, bool firstTime)
+{
+	if(firstTime)
+	{
+		InitGuardParams(critter, team);
+	}
+	
+	critter.ShowCritterDist1 = 20;
+	guard.AttachCritter(critter, firstTime);
+}
+
+void _InitCarParkGuard(Critter& critter, int team, bool firstTime)
+{
+	if(firstTime)
+	{
+		InitGuardParams(critter, team);
+	}
+	
+	critter.ShowCritterDist1 = 20;
+	carParkGuard.AttachCritter(critter, firstTime);
+}
+
+void _InitJailWardenAndNoobLaw(Critter& critter, int team, bool firstTime)
+{
+	if(firstTime)
+	{
+		critter.StatBase[ST_TEAM_ID] = team;
+		critter.StatBase[ST_MAX_LIFE] = 200;
+		critter.StatBase[ST_CURRENT_HP] = critter.Stat[ST_MAX_LIFE];
+		critter.ModeBase[MODE_BARTER_ONLY_CASH] = 1;
+		critter.ModeBase[MODE_NO_LOOT] = 1;
+		critter.ModeBase[MODE_NO_STEAL] = 1;
+		critter.ModeBase[MODE_INVULNERABLE] = 1;
+		critter.ModeBase[MODE_NO_DROP] = 1;
+		critter.ModeBase[MODE_NO_LOOSE_LIMBS] = 1;
+		critter.StatBase[ST_CARRY_WEIGHT] = 1000;
+		critter.StatBase[ST_BONUS_LOOK] = 1000;
+		critter.ModeBase[MODE_NO_PUSH] = 1;
+		
+		Item@ item = critter.AddItem(PID_JAIL_KEY, 1);
+		critter.SetFavoriteItem(SLOT_HAND1, PID_JAIL_KEY);
+	}
+	
+	jailWardenAndNoobLaw.AttachCritter(critter, firstTime);
+}
+
+void _InitScarTina(Critter& critter, bool firstTime)
+{
+	if(firstTime)
+	{
+		critter.StatBase[ST_MELEE_DAMAGE_EXT] = 100;
+		critter.ModeBase[MODE_NO_KNOCK] = 1;
+		critter.ModeBase[MODE_NO_ENEMY_STACK] = 1;
+		critter.StatBase[ST_KILL_EXPERIENCE] = 0;
+		critter.ModeBase[MODE_NO_LOOT] = 1;
+		critter.ModeBase[MODE_NO_STEAL] = 1;
+		critter.ModeBase[MODE_NO_HOME] = 1;
+	}
+	
+	critter.ShowCritterDist1 = 20;
+	scarTina.AttachCritter(critter, firstTime);
+}
+
+void _InitEventGuardEvents(Critter& critter, bool firstTime)
+{
+	eventGuard.AttachCritter(critter, firstTime);
+}
+
+void InitGuardParams(Critter& critter, int team)
+{
+	uint16[] weaponPids = {PID_GUARD_RIFLE , PID_GUARD_PISTOL};
+	
+	critter.StatBase[ST_TEAM_ID] = team;
+	critter.StatBase[ST_AI_ID] = AIPACKET_GENERAL_TOWN_GUARDS;
+	critter.ModeBase[MODE_NO_KNOCK] = 1;
+	critter.ModeBase[MODE_NO_DROP] = 1;
+	critter.ModeBase[MODE_NO_ENEMY_STACK] = 1;
+	critter.StatBase[ST_KILL_EXPERIENCE] = 0;
+	critter.ModeBase[MODE_NO_LOOT] = 1;
+	critter.ModeBase[MODE_NO_STEAL] = 1;
+	critter.ModeBase[MODE_UNLIMITED_AMMO] = 1;
+		
+	Item@ item = critter.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+	if(valid(item))
+	{
+		critter.SetFavoriteItem(SLOT_HAND1, item.GetProtoId());
+		critter.MoveItem(item.Id, 1, SLOT_HAND1);
+	}
+}
+

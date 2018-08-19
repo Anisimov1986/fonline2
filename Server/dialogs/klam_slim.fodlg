@@ -1,0 +1,238 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+3 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+5 2010 #
+5 2020 #
+0 2030 @
+3 3000 None 0 #
+6 3010 #
+0 3020 @
+5 4000 None 0 #
+6 4010 #
+0 4020 @
+6 5000 None 0 #
+7 5010 #
+8 5020 #
+12 5030 #
+13 5040 #
+0 5050 @
+7 6000 None 0 #
+6 6010 #
+0 6020 @
+8 7000 None 0 #
+6 7010 #
+9 7020 #
+0 7030 @
+9 8000 None 0 #
+10 8010 #
+6 8020 #
+0 8030 @
+10 9000 None 0 #
+11 9010 @
+11 10000 None 0 #
+6 10010 @
+12 11000 None 0 #
+6 11010 #
+0 11020 @
+13 12000 None 0 #
+14 12010 @
+14 13000 None 0 #
+6 13010 #
+0 13020 &
+
+[engl]
+{100}{}{Slim Picket}
+{200}{}{You see a very tall and lanky trapper.}
+{210}{}{You see Slim Picket, the head of Trapper Town.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, friend. Nice of you to visit all of us here. My name's Slim Picket. I talk for Trapper Town.}
+{2010}{}{Hello there Slim. My name's @pname@. What did you want to know about?}
+{2020}{}{@pname@. Why do you call this Trapper Town?}
+{2030}{}{Nice to meet you, Mr. Picket. I'm just looking around for now, though. Goodbye.}
+{3000}{}{What the heck do you want this time?}
+{3010}{}{I've got some questions that I wanted to ask you.}
+{3020}{}{I guess I don't need anything. Goodbye.}
+{4000}{}{Well, this here part of town is where all of us trappers live when we're not out trapping geckos. Only problem about the free digs are the rats on the north side. But we have most of the entrances to that part of the mall barricaded pretty good.}
+{4010}{}{Interesting, well I've got a few questions.}
+{4020}{}{North side, huh? Maybe I'll go check it out. Bye, Slim.}
+{5000}{}{What did you want to know about?}
+{5010}{}{Do you ever go to the north side?}
+{5020}{}{Tell me about geckos.}
+{5030}{}{You sure have a lot of cars here.}
+{5040}{}{Tell me more about rats.}
+{5050}{}{Thanks for the info. I don't think I need to know about anything else. Goodbye.}
+{6000}{}{Sure, a tribal from way back done cleared out the place. Came out, chest all puffed up, saying he killed some big ol' Rat God. Civilised folk don't believe in crap like that, but he sure as hell took the fight outta them rats.}
+{6010}{}{I guess tribals are good for something. For now, I got some questions.}
+{6020}{}{Hah, Rat God? Like anyone would believe that. See you around, Slim.}
+{7000}{}{You're interested in trapping, huh? (He looks you up and down) I don't think I'd try it if I were you. You might get your hands all dirty and callused. [He snickers.] Anything else you want to know about?}
+{7010}{}{Well, I sure wouldn't want to get my hands dirty. Tell me something else.}
+{7020}{}{I sure wish I was as skilful a trapper as you are. I bet you could teach me a lot.}
+{7030}{}{That's all I need to know for now. Goodbye.}
+{8000}{}{Well, now you look like you could handle yourself. Geckos come in two types — regular or golden. The regular ones are easy to trap and hunt, but the golden ones are worth more money.}
+{8010}{}{Tell me more about the golden geckos.}
+{8020}{}{Interesting. Tell me something else.}
+{8030}{}{That's all I need to know for now. Goodbye.}
+{9000}{}{The golden ones are sneaky and twice as vicious as the regular ones. Plus, once they bite you they'll hold on and gnaw through to the bone. And that's not even counting their poison. But their hides look real nice, and so they're worth a lot more. Plus, you can make some more robust armour out of it, if you're so inclined.}
+{9010}{}{Tell me more.}
+{10000}{}{Well, if you get yourself enough regular gecko pelts, you can whip yourself up a pretty mean leather jacket. Get yourself enough golden ones, you can make a pretty durable set of leather armour.}
+{10010}{}{Maybe I'll look into that, but now I got some more questions.}
+{11000}{}{We have a whole lot full of cars. All ready for their owners to come back from shopping. Thing is, they never did. Not a dang one of ‘em runs, though. There's a real beauty of a Chrysalis Motors Highwayman just east of here, but some fucking tribal already raided it for parts.}
+{11010}{}{A Highwayman? Interesting. Tell me about something else.}
+{11020}{}{That's all I need to know for now. Goodbye.}
+{12000}{}{Well, they taste pretty good if you spit-roast ‘em with just a titch of herbs. But most of the time they can be a real nuisance, but they ain't as bad as they used to be. We once had to barricade the north part of the mall -- well, Trapper Town, that is.}
+{12010}{}{At home, Mom just used to pan-fry them with a little butter. But, tell me more about the rats.}
+{13000}{}{They used to kill people, y'know? People used to disappear. Just them slow and sickly trappers, though. 'Course, rats don't stop to cook their food like us. They just gnaw it into a few bloody clumps of hair and rags. Least that's all we used to find in the morning. We figure that's what happened to Phil.}
+{13010}{}{Interesting. Tell me about something else.}
+{13020}{}{That's all I need to know for now. Goodbye.}
+
+[russ]
+{100}{}{Слим}
+{200}{}{Вы видите высокого, долговязого охотника.}
+{210}{}{Вы видите Слима Пикета, главу Города Охотников.}
+{210}{}{Это Слим Пикет, глава Города Охотников.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Привет, мое имя Слим Пикет. Я говорю от имени этой части города.}
+{2010}{}{Привет, Слим. Мое имя @pname@.}
+{2020}{}{Меня @pname@. Почему вы называете это Городом Охотников?}
+{2030}{}{Приятно вас встретить, мистер Пикет. Я просто осматриваюсь. До свидания.}
+{3000}{}{Чем могу помочь?}
+{3010}{}{У меня есть несколько вопросов, которые я хотел@sex@|||а| бы вам задать.}
+{3020}{}{Думаю, мне ничего не нужно. До свидания.}
+{4000}{}{В этой части города живут все охотники, когда не заняты охотой на гекко. Единственная проблема - это крысы в северной части города, хоть их и не столько, сколько было раньше. Большинство входов в подземелья северной части нами забаррикадированы очень хорошо.}
+{4010}{}{Интересно, а у меня есть несколько вопросов.}
+{4020}{}{Северная сторона, да? Может быть, я пойду проверю. Пока, Слим.}
+{5000}{}{О чем-то хотели спросить?}
+{5010}{}{Когда-нибудь ходили в северную часть?}
+{5020}{}{Расскажите о ловле гекко.}
+{5030}{}{У вас тут должно быть много машин.}
+{5040}{}{Крысы? Расскажите подробнее о крысах.}
+{5050}{}{Спасибо за информацию. Я не думаю, что мне нужно знать еще о чем-либо. До свидания.}
+{6000}{}{Конечно, аборигены очистили это место, они сказали что убили крысиного бога. Цивилизованный человек не поверит в эту чушь.}
+{6010}{}{У меня еще вопрос.}
+{6020}{}{Ха, Крысиный Бог? Ну и кто поверит в эту чушь? Увидимся позже Слим.}
+{7000}{}{Xочешь заняться охотой? [Смеривая вас взглядом].Я бы на твоем месте не стал. Можешь ручки запачкать и поранить. Хе-хе-хе. Что-нибудь еще хочешь спросить?}
+{7010}{}{Конечно, я бы не хотел@sex@|||а| запачкать свои руки. Расскажи мне еще об одной вещи.}
+{7020}{}{Я бы хотел@sex@|||а| бы быть таким же умелым охотником.  Ты бы мог меня многому научить.}
+{7030}{}{Это то, что мне пока надо. До свидания.}
+{8000}{}{Теперь ты выглядишь, как будто мог@sex@|||ла| бы постоять за себя. Вкратце, гекко бывают двух видов - обычные и золотые. Обычных легко ловить, но за золотыми стоит побегать.}
+{8010}{}{Расскажи мне еще о золотых гекко.}
+{8020}{}{Интересно, расскажи мне еще что-нибудь.}
+{8030}{}{Спасибо, это все, что я хотел@sex@|||а| знать.}
+{9000}{}{Золотые гекко в два раза более осторожны и злобны, чем обычные. К тому же, если они укусят тебя, то будут вгрызаться до кости. И это если не принимать в расчет их яд. Но их шкурки выглядят очень красиво. И стоят очень дорого.}
+{9010}{}{Расскажи мне еще.}
+{10000}{}{Из шкуры обычного геккона можно сделать на скорую руку довольно хорошую кожаную куртку. Если достать достаточно золотых шкур, можно сделать отличную кожаную броню.}
+{10010}{}{Может я и займусь этим, а пока у меня еще вопрос.}
+{11000}{}{У нас тут много автомобилей. Все ждут своих владельцев возвращающихся из магазина. Но уже не дождутся. Они уже все не на ходу. Хотя я тут видел отличный Хайвеймэн, восточнее этого места, но какой-то абориген уже оторвал несколько важных деталей.}
+{11010}{}{Хайвеймэн? Интересно. Расскажите мне о чем-то другом.}
+{11020}{}{Это все, что мне нужно знать, на данный момент. До свидания.}
+{12000}{}{Они очень вкусны, если поджаривать их на вертеле с пучком травы. Но обычно это просто досадная помеха, и со временем становится все хуже. Мы забаррикадировали северную часть Города Охотников, но они как-то просачиваются. Только одна дверь существует в ту часть города, но она закрыта.}
+{12010}{}{Дома мама готовила их на сковородке с кусочком масла. Но расскажите мне еще о набегах крыс.}
+{13000}{}{Раньше это было действительно проблемой, но в последнее время количество их уменьшилось. Похоже они все отсюда слиняли.}
+{13010}{}{Интересно. Расскажите мне еще кое-что.}
+{13020}{}{Это то, что мне пока надо. До свидания.}
+
+[pols]
+{100}{}{Slim Picket}
+{200}{}{Widzisz wysokiego, szczupłego trapera.}
+{210}{}{Widzisz Slima Picketa, szefa Osady Traperów.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Witaj, nazywam się Slim Picket. Odpowiadam za tą osadę traperów. Czego chcesz?}
+{2010}{}{Witaj Slim, nazywam się @pname@. Mogę zadać parę pytań?}
+{2020}{}{@pname@. Osadę traperów?}
+{2030}{}{Miło pana poznać, Picket. Tylko się rozglądam, do widzenia.}
+{3000}{}{Czego znowu chcesz?}
+{3010}{}{@sex@|Chciałem||Chciałam| jedynie zadać kilka pytań.}
+{3020}{}{Chyba jednak niczego. Na razie.}
+{4000}{}{To nasza część Klamath. Tutaj obozujemy, kiedy wracamy z wypraw na gekony. Jedyny problem to te cholerne szczury. Latają po tych budynkach, o tam. [Pokazuje palcem na północ.] Większość przejść zdołaliśmy jednak zabarykadować, więc tutaj jest spokojnie.}
+{4010}{}{Ciekawe. Mam kilka pytań.}
+{4020}{}{Tam na północ, tak? No, to chyba pójdę pozwiedzać... Dzięki, Slim.}
+{5000}{}{Co chcesz wiedzieć?}
+{5010}{}{Wchodzicie czasem do tamtych zabudowań na północy?}
+{5020}{}{Opowiedz mi coś o gekonach.}
+{5030}{}{Macie tu sporo samochodów...}
+{5040}{}{O co chodzi z tymi szczurami?}
+{5050}{}{Dzięki Slim, na razie chyba wystarczy. Do widzenia.}
+{6000}{}{Taa, jakiś dzikus tak kiedyś był... Gadał coś, że ubił jakiegoś wielkiego szczurzego boga, czy podobne bzdury. No, jak to dzikus, kto by tam wierzył w te ich bajeczki. Ale trzeba mu oddać, że tak czy inaczej zrobił z tymi szczurami porządek. Na jakiś czas...}
+{6010}{}{Hm, widzę że dzikusi jednak czasem się do czegoś przydają. Mam inne pytania.}
+{6020}{}{Szczurzego boga? Faktycznie, niezła bujda. Na razie, Slim.}
+{7000}{}{@sex@|Chciałbyś||Chciałabyś| być traperem, co? [Mierzy cię wzrokiem od stóp do głów.] Nieee, daj sobie spokój, tylko się zmęczysz i pobrudzisz, hehehehe. Coś jeszcze?}
+{7010}{}{Faktycznie, nie mam ochoty się ufajdać. Na razie.}
+{7020}{}{@sex@|Chciałbym||Chciałabym| być w tym tak @sex@|dobry||dobra| jak ty, Slim. Na pewno taki specjalista jak ty mógłby mnie dużo nauczyć...}
+{7030}{}{To wszystko. Do widzenia.}
+{8000}{}{Może i byś sobie @sex@|poradził||poradziła|... Różne są gekony, ja widziałem srebrne i złote. Srebrne łatwo się zabija i obdziera, ale to za skóry złotych dostaniesz konkretne kapsle.}
+{8010}{}{Opowiedz mi o tych złotych gekonach.}
+{8020}{}{Rozumiem. Mam kilka innych pytań...}
+{8030}{}{Dzięki, Slim. Chyba już pójdę.}
+{9000}{}{Te złote bydlaki są cholernie przebiegłe i ze dwa razy bardziej zajadłe niż te srebrne. Jak już cię ugryzą to do kości, dodaj jeszcze że w ich kłach jest trucizna. No, ale za to ich skóry są warte o wiele więcej, a do tego można nawet z nich zrobić jakiś pancerz, o ile masz smykałkę w tym kierunku.}
+{9010}{}{Powiedz coś więcej.}
+{10000}{}{Skóry srebrnych nadają się co najwyżej na jakąś kurtałkę, ale ze złotych można już zrobić solidny skórzany pancerz. Trzeba tylko ubić odpowiednią ilość gekonów...}
+{10010}{}{Może zajmę się tym kiedy indziej, mam jeszcze kilka pytań.}
+{11000}{}{No, pełno ich tutaj, czekają aż ich właściciele wrócą z zakupów, hehehe. Możesz próbować, ale nie odpalisz już żadnego z tych wraków. Był tam śliczniutki Krążownik Szos, ale jakiś pierdolony dzikus rozbebeszył go na części.}
+{11010}{}{Krążownik Szos? Ciekawe. Mogę spytać o coś innego?}
+{11020}{}{To wszystko. Na razie.}
+{12000}{}{Co z nimi? Upierdliwe są, skurczybyki, ale nie jest już tak źle jak dawniej. Jak masz trochę ziół i ogień można z nich zrobić całkiem niezłe szaszłyki.}
+{12010}{}{Mama podawała je z masłem... Ale nie mam teraz ochoty na jedzenie. Powiesz mi o nich coś więcej?}
+{13000}{}{Kiedyś zdarzało się, że jak człowiek polazł tam to już nie wracał. Zjadały tych co wolniejszych i słabszych, tak że w sumie... niewielkia strata. [Chichocze.] Widzisz, szczury nie zrobią z ciebie szaszłyka, tylko zeżrą aż zostaną same kości. No i my czasami nad ranem znajdowaliśmy jakieś świeżo obgryzione szkielety. To pewnie musiało się też zdarzyć Philowi, innego wyjścia nie ma.}
+{13010}{}{Ciekawe, Slim, ciekawe. Jeszcze jedna sprawa...}
+{13020}{}{Wystarczy mi na razie tych kulinarnych historii. Na razie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, friend. Nice of you to visit all of us here. My name's Slim Picket. I talk for Trapper Town.}
+{2010}{}{Hello there Slim. My name's @pname@. What did you want to know about?}
+{2020}{}{@pname@. Why do you call this Trapper Town?}
+{2030}{}{Nice to meet you, Mr. Picket. I'm just looking around for now, though. Goodbye.}
+{3000}{}{What the heck do you want this time?}
+{3010}{}{I've got some questions that I wanted to ask you.}
+{3020}{}{I guess I don't need anything. Goodbye.}
+{4000}{}{Well, this here part of town is where all of us trappers live when we're not out trapping geckos. Only problem about the free digs are the rats on the north side. But we have most of the entrances to that part of the mall barricaded pretty good.}
+{4010}{}{Interesting, well I've got a few questions.}
+{4020}{}{North side, huh? Maybe I'll go check it out. Bye, Slim.}
+{5000}{}{What did you want to know about?}
+{5010}{}{Do you ever go to the north side?}
+{5020}{}{Tell me about geckos.}
+{5030}{}{You sure have a lot of cars here.}
+{5040}{}{Tell me more about rats.}
+{5050}{}{Thanks for the info. I don't think I need to know about anything else. Goodbye.}
+{6000}{}{Sure, a tribal from way back done cleared out the place. Came out, chest all puffed up, saying he killed some big ol' Rat God. Civilised folk don't believe in crap like that, but he sure as hell took the fight outta them rats.}
+{6010}{}{I guess tribals are good for something. For now, I got some questions.}
+{6020}{}{Hah, Rat God? Like anyone would believe that. See you around, Slim.}
+{7000}{}{You're interested in trapping, huh? (He looks you up and down) I don't think I'd try it if I were you. You might get your hands all dirty and callused. [He snickers.] Anything else you want to know about?}
+{7010}{}{Well, I sure wouldn't want to get my hands dirty. Tell me something else.}
+{7020}{}{I sure wish I was as skilful a trapper as you are. I bet you could teach me a lot.}
+{7030}{}{That's all I need to know for now. Goodbye.}
+{8000}{}{Well, now you look like you could handle yourself. Geckos come in two types — regular or golden. The regular ones are easy to trap and hunt, but the golden ones are worth more money.}
+{8010}{}{Tell me more about the golden geckos.}
+{8020}{}{Interesting. Tell me something else.}
+{8030}{}{That's all I need to know for now. Goodbye.}
+{9000}{}{The golden ones are sneaky and twice as vicious as the regular ones. Plus, once they bite you they'll hold on and gnaw through to the bone. And that's not even counting their poison. But their hides look real nice, and so they're worth a lot more. Plus, you can make some more robust armour out of it, if you're so inclined.}
+{9010}{}{Tell me more.}
+{10000}{}{Well, if you get yourself enough regular gecko pelts, you can whip yourself up a pretty mean leather jacket. Get yourself enough golden ones, you can make a pretty durable set of leather armour.}
+{10010}{}{Maybe I'll look into that, but now I got some more questions.}
+{11000}{}{We have a whole lot full of cars. All ready for their owners to come back from shopping. Thing is, they never did. Not a dang one of ‘em runs, though. There's a real beauty of a Chrysalis Motors Highwayman just east of here, but some fucking tribal already raided it for parts.}
+{11010}{}{A Highwayman? Interesting. Tell me about something else.}
+{11020}{}{That's all I need to know for now. Goodbye.}
+{12000}{}{Well, they taste pretty good if you spit-roast ‘em with just a titch of herbs. But most of the time they can be a real nuisance, but they ain't as bad as they used to be. We once had to barricade the north part of the mall -- well, Trapper Town, that is.}
+{12010}{}{At home, Mom just used to pan-fry them with a little butter. But, tell me more about the rats.}
+{13000}{}{They used to kill people, y'know? People used to disappear. Just them slow and sickly trappers, though. 'Course, rats don't stop to cook their food like us. They just gnaw it into a few bloody clumps of hair and rags. Least that's all we used to find in the morning. We figure that's what happened to Phil.}
+{13010}{}{Interesting. Tell me about something else.}
+{13020}{}{That's all I need to know for now. Goodbye.}
+

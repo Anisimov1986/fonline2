@@ -1,0 +1,68 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _param p ST_PERCEPTION > 8 #
+3 1020 D _param p ST_PERCEPTION > 6 #
+2 1030 @
+2 2000 None 0 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Bess}
+{200}{}{Her name is Bess, if the writing on the collar is right.}
+{210}{}{You see Bess.}
+{210}{}{This is a good brahmin, everybody would be happy to own it.}
+{1000}{}{Predialogue installations}
+{1010}{}{Moo, I'm a cow.}
+{1020}{}{Ioaao}
+{1030}{}{Ioaao}
+{2000}{}{Moo!}
+{3000}{}{Moo-oo!}
+{4000}{}{Moo, I'm a cow.}
+
+[russ]
+{100}{}{Бесс}
+{200}{}{Судя по жетону на ошейнике, ее имя Бесс.}
+{210}{}{Вы видите Бесс.}
+{210}{}{Это хороший брамин, каждый был бы горд владеть ей.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{наблюдательный}
+{1020}{}{зоркий}
+{1030}{}{ответ}
+{2000}{}{Му-у.}
+{3000}{}{Му-у-у!}
+{4000}{}{Му-у-у-у-у.[Бесс издает тихое, страдальческое мычание]}
+
+[pols]
+{100}{}{Bess}
+{200}{}{Według napisu na obroży, zwierzę nazywa się Bess.}
+{210}{}{Widzisz Bess.}
+{210}{}{To wspaniały okaz bramina.}
+{1000}{}{Predialogue installations}
+{1010}{}{Muuu, jestem krową.}
+{1020}{}{зоркий}
+{1030}{}{ответ}
+{2000}{}{Muu!}
+{3000}{}{Muu-uuu!}
+{4000}{}{Muuu, jestem krową.}
+
+[ptbr]
+{100}{}{Bess}
+{200}{}{O nome dela é Bess, isso se a inscrição do colar estiver correta.}
+{210}{}{Você vê Bess.}
+{210}{}{Este é um bom brahmin, todos seriam felizes em ter um brahmin destes.}
+{1000}{}{Predialogue installations}
+{1010}{}{Muu, Eu sou uma vaca.}
+{1020}{}{Ioaao}
+{1030}{}{Ioaao}
+{2000}{}{Muu!}
+{3000}{}{Muu-uu!}
+{4000}{}{Muu... eu sou uma vaaaaca.}
+

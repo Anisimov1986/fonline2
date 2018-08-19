@@ -1,0 +1,71 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script personal_tent@d_IsTentOwner 0  #
+0 2020 D _script personal_tent@d_IsTentMember 0  R _script personal_tent@r_UnSeeTent 0  #
+0 2030 @
+3 3000 None 0 #
+0 3010 D _script personal_tent@d_IsTentOwner 0  R _script personal_tent@r_DeleteTent 0  #
+2 3020 #
+0 3030 &
+
+[engl]
+{100}{}{Terminal}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Menu}
+{2010}{}{I want to remove this tent.}
+{2020}{}{I dont want to see this tent anymore.}
+{2030}{}{[Exit]}
+{3000}{}{Warning! Tent will be deleted immediately, all items and cars on this location will be lost, agree?}
+{3010}{}{[Agree]}
+{3020}{}{[Back]}
+{3030}{}{[Exit]}
+
+[russ]
+{100}{}{Terminal}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Меню}
+{2010}{}{[Уничтожить палатку]}
+{2020}{}{[Удалить информацию об этой палатке из пип-боя]}
+{2030}{}{[Выход]}
+{3000}{}{Внимание! Палатка будет удалена немедлено, все вещи и машины будут утеряны, вы уверены?}
+{3010}{}{[Подтверждаю]}
+{3020}{}{[Назад]}
+{3030}{}{[Выход]}
+
+[pols]
+{100}{}{Terminal}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{2}
+{2010}{}{I want to remove this tent.}
+{2020}{}{I dont want to see this tent anymore.}
+{2030}{}{[Exit]}
+{3000}{}{Warning! Tent will be deleted immediately, all items and cars on this location will be lost, agree?}
+{3010}{}{[Agree]}
+{3020}{}{[Back]}
+{3030}{}{[Exit]}
+
+[ptbr]
+{100}{}{Terminal}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Menu}
+{2010}{}{Eu quero remover esta tenda.}
+{2020}{}{Eu não quero mais ver esta tenda.}
+{2030}{}{[Sair]}
+{3000}{}{Aviso! A tenda será deletada imediatamente. Todos os itens e veículos neste local serão perdidos. Confirma?}
+{3010}{}{[Confirma]}
+{3020}{}{[Volta]}
+{3030}{}{[Sair]}
+

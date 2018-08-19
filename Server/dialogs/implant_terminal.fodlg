@@ -1,0 +1,352 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script dialog@d_NotImplantsInstalled 0  R _script dialog@Type 0  #
+18 2020 D _script dialog@d_IsImplantsInstalled 0  R _script dialog@Type 0  #
+0 2030 @
+3 3000 economy_dialogs@dlg_PrepareImplantPrice 0 #
+4 3010 D _item p PID_IMPLANT_ENVIRONMENTAL } 1 R _script dialog@Type 0  #
+5 3020 D _item p PID_IMPLANT_ACCURACY } 1 R _script dialog@Type 0  #
+6 3030 D _item p PID_IMPLANT_DEFENCE } 1 R _script dialog@Type 0  #
+7 3040 D _item p PID_IMPLANT_MEDIC } 1 R _script dialog@Type 0  #
+8 3050 D _item p PID_IMPLANT_ENGINEER } 1 R _script dialog@Type 0  #
+9 3060 D _item p PID_IMPLANT_SPEED } 1 R _script dialog@Type 0  #
+10 3070 D _item p PID_IMPLANT_SURVIVOR } 1 R _script dialog@Type 0  #
+11 3080 D _item p PID_IMPLANT_MARKSMAN } 1 R _script dialog@Type 0  #
+12 3090 D _item p PID_IMPLANT_SCOUT } 1 R _script dialog@Type 0  #
+13 3100 D _item p PID_IMPLANT_ENCHACEMENT } 1 R _script dialog@Type 0  #
+14 3110 D _item p PID_IMPLANT_CHEMCONTROL } 1 R _script dialog@Type 0  #
+0 3120 @
+4 4000 None 0 #
+15 4010 D _item p PID_IMPLANT_ENVIRONMENTAL } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_ENVIRONMENTAL - 1 R _param p PE_IMPLANT_ENVIRONMENTAL = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 4020 @
+5 5000 None 0 #
+15 5010 D _item p PID_IMPLANT_ACCURACY } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_ACCURACY - 1 R _param p PE_IMPLANT_ACCURACY = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 5020 @
+6 6000 None 0 #
+15 6010 D _item p PID_IMPLANT_DEFENCE } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_DEFENCE - 1 R _param p PE_IMPLANT_DEFENCE = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 6020 @
+7 7000 None 0 #
+15 7010 D _item p PID_IMPLANT_MEDIC } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_MEDIC - 1 R _param p PE_IMPLANT_MEDIC = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 7020 @
+8 8000 None 0 #
+15 8010 D _item p PID_IMPLANT_ENGINEER } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_ENGINEER - 1 R _param p PE_IMPLANT_ENGINEER = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 8020 @
+9 9000 None 0 #
+15 9010 D _item p PID_IMPLANT_SPEED } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_SPEED - 1 R _param p PE_IMPLANT_SPEED = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 9020 @
+10 10000 None 0 #
+15 10010 D _item p PID_IMPLANT_SURVIVOR } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_SURVIVOR - 1 R _param p PE_IMPLANT_SURVIVOR = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 10020 @
+11 11000 None 0 #
+15 11010 D _item p PID_IMPLANT_MARKSMAN } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_MARKSMAN - 1 R _param p PE_IMPLANT_MARKSMAN = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 11020 @
+12 12000 None 0 #
+15 12010 D _item p PID_IMPLANT_SCOUT } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_SCOUT - 1 R _param p PE_IMPLANT_SCOUT = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 12020 @
+13 13000 None 0 #
+15 13010 D _item p PID_IMPLANT_ENCHACEMENT } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_ENCHACEMENT - 1 R _param p PE_IMPLANT_ENCHACEMENT = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 13020 @
+14 14000 None 0 #
+15 14010 D _item p PID_IMPLANT_CHEMCONTROL } 1 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _item p PID_IMPLANT_CHEMCONTROL - 1 R _param p PE_IMPLANT_CHEMCONTROL = 1 R _script dialog@r_FadeInOut 0  R _script economy_dialogs@r_TakeCaps 1 50000 R _script dialog@Type 0  #
+0 14020 @
+15 15000 None 0 #
+16 15010 @
+16 16000 None 0 #
+0 16010 @
+17 17000 None 0 #
+0 17010 @
+18 18000 None 0 #
+0 18010 @
+19 19000 None 0 #
+0 19010 @
+20 20000 economy_dialogs@dlg_PrepareImplantPrice 0 #
+15 20010 D _script economy_dialogs@d_IsEnoughCaps 1 20000 R _script economy_dialogs@r_TakeCaps 1 20000 R _param p PE_IMPLANT_ENVIRONMENTAL = 0 R _param p PE_IMPLANT_ACCURACY = 0 R _param p PE_IMPLANT_DEFENCE = 0 R _param p PE_IMPLANT_MEDIC = 0 R _param p PE_IMPLANT_ENGINEER = 0 R _param p PE_IMPLANT_SPEED = 0 R _param p PE_IMPLANT_SURVIVOR = 0 R _param p PE_IMPLANT_MARKSMAN = 0 R _param p PE_IMPLANT_SCOUT = 0 R _param p PE_IMPLANT_CHEMCONTROL = 0 R _script dialog@r_FadeInOut 0  R _script dialog@Type 0  #
+0 20020 &
+
+[engl]
+{100}{}{Terminal}
+{200}{}{Some kind of a medical terminal.}
+{210}{}{Terminal's screen is pitch black.}
+{1000}{}{Predialogue installations}
+{1010}{}{permission granted}
+{2000}{}{Welcome to Med-Tek automated bio-insertion bay. Please input your desired procedure.}
+{2010}{}{Here goes nothing... [Run implant bio-insertion procedure.]}
+{2020}{}{I wonder if it'll work... [Run implant bio-insertion procedure.]}
+{2030}{}{[Leave.]}
+{3000}{}{[Choose the desired implant. The cost of operation is @lex implant_price@ caps. ]}
+{3010}{}{[Environmental Implant.]}
+{3020}{}{[Accuracy Implant.]}
+{3030}{}{[Defence Implant.]}
+{3040}{}{[Medic Implant.]}
+{3050}{}{[Engineer Implant.]}
+{3060}{}{[Speed Implant.]}
+{3070}{}{[Survivor Implant.]}
+{3080}{}{[Marksman Implant.]}
+{3090}{}{[Scout Implant.]}
+{3100}{}{[Enhancement Implant.]}
+{3110}{}{[ChemControl Implant.]}
+{3120}{}{[Leave.]}
+{4000}{}{[Chosen: Environmental Implant. Effects: +10 Healing Rate; +40% Poison Resistance; + 50% Radiation Resistance. Do you want to perform surgery? Warning: you can have only one implant.]}
+{4010}{}{[Perform surgery.]}
+{4020}{}{[Leave.]}
+{5000}{}{[Chosen: Accuracy Implant. Effects: +40% to Big Guns, Small Guns and Energy Weapons skills; +2 Field of View. Do you want to perform surgery? Warning: you can have only one implant.]}
+{5010}{}{[Perform surgery.]}
+{5020}{}{[Leave.]}
+{6000}{}{[Chosen: Defence Implant. Effects: +5 Damage Treshold and +8% Damage Resistance for all types of damage. Do you want to perform surgery? Warning: you can have only one implant.]}
+{6010}{}{[Perform surgery.]}
+{6020}{}{[Leave.]}
+{7000}{}{[Chosen: Medic Implant. Effects: +100% to First Aid and Doctor skills; Living Anatomy perk. Do you want to perform surgery? Warning: you can have only one implant.]}
+{7010}{}{[Perform surgery.]}
+{7020}{}{[Leave.]}
+{8000}{}{[Chosen: Engineer Implant. Effects: +100% to Repair, Science and Energy Weapons skills. Do you want to perform surgery? Warning: you can have only one implant.]}
+{8010}{}{[Perform surgery.]}
+{8020}{}{[Leave.]}
+{9000}{}{[Chosen: Speed Implant. Effects: 10% faster running speed; +1 Action Point; +6 Sequence. Do you want to perform surgery? Warning: you can have only one implant.]}
+{9010}{}{[Perform surgery.]}
+{9020}{}{[Leave.]}
+{10000}{}{[Chosen: Survivor Implant. Effects: +100% to Outdoorsman skill; +30% experience gain rate; +30 Health Points. Do you want to perform surgery? Warning: you can have only one implant.]}
+{10010}{}{[Perform surgery.]}
+{10020}{}{[Leave.]}
+{11000}{}{[Chosen: Marksman Implant. Effects: +8 Critical Roll; +8 Critical Chance; +2 Field of View. Warning: you can have only one implant.]}
+{11010}{}{[Perform surgery.]}
+{11020}{}{[Leave.]}
+{12000}{}{[Chosen: Scout Implant. Effects: +50% to Sneak skill; +40 Armor Class. Do you want to perform surgery? Warning: you can have only one implant.]}
+{12010}{}{[Perform surgery.]}
+{12020}{}{[Leave.]}
+{13000}{}{[Chosen: Enhancement Implant. Effects: one additional Perk. Do you want to perform surgery? Warning: you can have only one implant and this implant integrates with brain which makes impossible to remove it.]}
+{13010}{}{[Perform surgery.]}
+{13020}{}{[Leave.]}
+{14000}{}{[Chosen: ChemControl Implant. Effects: drugs duration time doubled; +50% to Health Points healed by Super Stimpak. Do you want to perform surgery? Warning: you can have only one implant.]}
+{14010}{}{[Perform surgery.]}
+{14020}{}{[Leave.]}
+{15000}{}{[As a small mechanical arm with the needle at the end reaches from the terminal and stings you in the wrist, you rapidly lose consciousness.]}
+{15010}{}{[Slowly wake up.]}
+{16000}{}{[Surgery successful.]}
+{16010}{}{[Leave.]}
+{17000}{}{[You do not have the necessary permissions to use this terminal. Please contact with the administrator.]}
+{17010}{}{Damn! [Leave.]}
+{18000}{}{[Medical implant already present. Prepare for system shutdown.]}
+{18010}{}{[Leave.]}
+{19000}{}{[Implants are impossible to remove, aborting...] }
+{19010}{}{[Leave.]}
+{20000}{}{[The implant Will be removed and destroyed, this leaves possibility to inject another implant to your brain. The cost of operation is @lex rimplant_price@ caps. ]}
+{20010}{}{[Perform surgery.]}
+{20020}{}{[Leave.]}
+
+[russ]
+{100}{}{Terminal}
+{200}{}{Some kind of a medical terminal.}
+{210}{}{Terminal's screen is pitch black.}
+{1000}{}{Predialogue installations}
+{1010}{}{permission granted}
+{2000}{}{[You look at the shiny screen of the terminal.] Welcome to Med-Tek automated bio-insertion bay. Please input your desired procedure...}
+{2010}{}{Here goes nothing... [Run implant bio-insertion procedure.]}
+{2020}{}{I wonder if it'll work... [Run implant bio-insertion procedure.]}
+{2030}{}{[Leave.]}
+{3000}{}{[Choose the desired implant. The cost of operation is @lex implant_price@ caps. ]}
+{3010}{}{[Environmental Implant.]}
+{3020}{}{[Accuracy Implant.]}
+{3030}{}{[Defence Implant.]}
+{3040}{}{[Medic Implant.]}
+{3050}{}{[Engineer Implant.]}
+{3060}{}{[Speed Implant.]}
+{3070}{}{[Survivor Implant.]}
+{3080}{}{[Marksman Implant.]}
+{3090}{}{[Scout Implant.]}
+{3100}{}{[Enhancement Implant.]}
+{3110}{}{[ChemControl Implant.]}
+{3120}{}{[Leave.]}
+{4000}{}{[Chosen: Environmental Implant. Effects: +10 Healing Rate; +40% Poison Resistance; + 50% Radiation Resistance. Do you want to perform surgery? Warning: you can have only one implant.]}
+{4010}{}{[Perform surgery.]}
+{4020}{}{[Leave.]}
+{5000}{}{[Chosen: Accuracy Implant. Effects: +40% to Big Guns, Small Guns and Energy Weapons skills; +2 Field of View. Do you want to perform surgery? Warning: you can have only one implant.]}
+{5010}{}{[Perform surgery.]}
+{5020}{}{[Leave.]}
+{6000}{}{[Chosen: Defence Implant. Effects: +5 Damage Treshold and +8% Damage Resistance for all types of damage. Do you want to perform surgery? Warning: you can have only one implant.]}
+{6010}{}{[Perform surgery.]}
+{6020}{}{[Leave.]}
+{7000}{}{[Chosen: Medic Implant. Effects: +100% to First Aid and Doctor skills; Living Anatomy perk. Do you want to perform surgery? Warning: you can have only one implant.]}
+{7010}{}{[Perform surgery.]}
+{7020}{}{[Leave.]}
+{8000}{}{[Chosen: Engineer Implant. Effects: +100% to Repair, Science and Energy Weapons skills. Do you want to perform surgery? Warning: you can have only one implant.]}
+{8010}{}{[Perform surgery.]}
+{8020}{}{[Leave.]}
+{9000}{}{[Chosen: Speed Implant. Effects: 10% faster running speed; +1 Action Point; +6 Sequence. Do you want to perform surgery? Warning: you can have only one implant.]}
+{9010}{}{[Perform surgery.]}
+{9020}{}{[Leave.]}
+{10000}{}{[Chosen: Survivor Implant. Effects: +100% to Outdoorsman skill; +30% experience gain rate; +30 Health Points. Do you want to perform surgery? Warning: you can have only one implant.]}
+{10010}{}{[Perform surgery.]}
+{10020}{}{[Leave.]}
+{11000}{}{[Chosen: Marksman Implant. Effects: +8 Critical Roll; +8 Critical Chance; +2 Field of View. Warning: you can have only one implant.]}
+{11010}{}{[Perform surgery.]}
+{11020}{}{[Leave.]}
+{12000}{}{[Chosen: Scout Implant. Effects: +50% to Sneak skill; +40 Armor Class. Do you want to perform surgery? Warning: you can have only one implant.]}
+{12010}{}{[Perform surgery.]}
+{12020}{}{[Leave.]}
+{13000}{}{[Chosen: Enhancement Implant. Effects: one additional Perk. Do you want to perform surgery? Warning: you can have only one implant and this implant integrates with brain which makes impossible to remove it.]}
+{13010}{}{[Perform surgery.]}
+{13020}{}{[Leave.]}
+{14000}{}{[Chosen: ChemControl Implant. Effects: drugs duration time doubled; +50% to Health Points healed by Super Stimpak. Do you want to perform surgery? Warning: you can have only one implant.]}
+{14010}{}{[Perform surgery.]}
+{14020}{}{[Leave.]}
+{15000}{}{[As a small mechanical arm with the needle at the end reaches from the terminal and stings you in the wrist, you rapidly lose consciousness.]}
+{15010}{}{[Slowly wake up.]}
+{16000}{}{[Surgery successful.]}
+{16010}{}{[Leave.]}
+{17000}{}{[You do not have the necessary permissions to use this terminal. Please contact with the administrator.]}
+{17010}{}{Damn! [Leave.]}
+{18000}{}{[Medical implant already present. Prepare for system shutdown.]}
+{18010}{}{[Leave.]}
+{19000}{}{[Implants are impossible to remove, aborting...] }
+{19010}{}{[Leave.]}
+{20000}{}{[The implant Will be removed and destroyed, this leaves possibility to inject another implant to your brain. The cost of operation is @lex rimplant_price@ caps. ]}
+{20010}{}{[Perform surgery.]}
+{20020}{}{[Leave.]}
+
+[pols]
+{100}{}{Terminal}
+{200}{}{Some kind of a medical terminal.}
+{210}{}{Terminal's screen is pitch black.}
+{1000}{}{Predialogue installations}
+{1010}{}{permission granted}
+{2000}{}{[You look at the shiny screen of the terminal.] Welcome to Med-Tek automated bio-insertion bay. Please input your desired procedure...}
+{2010}{}{Here goes nothing... [Run implant bio-insertion procedure.]}
+{2020}{}{I wonder if it'll work... [Run implant bio-insertion procedure.]}
+{2030}{}{[Leave.]}
+{3000}{}{[Choose the desired implant. The cost of operation is @lex implant_price@ caps. ]}
+{3010}{}{[Environmental Implant.]}
+{3020}{}{[Accuracy Implant.]}
+{3030}{}{[Defence Implant.]}
+{3040}{}{[Medic Implant.]}
+{3050}{}{[Engineer Implant.]}
+{3060}{}{[Speed Implant.]}
+{3070}{}{[Survivor Implant.]}
+{3080}{}{[Marksman Implant.]}
+{3090}{}{[Scout Implant.]}
+{3100}{}{[Enhancement Implant.]}
+{3110}{}{[ChemControl Implant.]}
+{3120}{}{[Leave.]}
+{4000}{}{[Chosen: Environmental Implant. Effects: +10 Healing Rate; +40% Poison Resistance; + 50% Radiation Resistance. Do you want to perform surgery? Warning: you can have only one implant.]}
+{4010}{}{[Perform surgery.]}
+{4020}{}{[Leave.]}
+{5000}{}{[Chosen: Accuracy Implant. Effects: +40% to Big Guns, Small Guns and Energy Weapons skills; +2 Field of View. Do you want to perform surgery? Warning: you can have only one implant.]}
+{5010}{}{[Perform surgery.]}
+{5020}{}{[Leave.]}
+{6000}{}{[Chosen: Defence Implant. Effects: +5 Damage Treshold and +8% Damage Resistance for all types of damage. Do you want to perform surgery? Warning: you can have only one implant.]}
+{6010}{}{[Perform surgery.]}
+{6020}{}{[Leave.]}
+{7000}{}{[Chosen: Medic Implant. Effects: +100% to First Aid and Doctor skills; Living Anatomy perk. Do you want to perform surgery? Warning: you can have only one implant.]}
+{7010}{}{[Perform surgery.]}
+{7020}{}{[Leave.]}
+{8000}{}{[Chosen: Engineer Implant. Effects: +100% to Repair, Science and Energy Weapons skills. Do you want to perform surgery? Warning: you can have only one implant.]}
+{8010}{}{[Perform surgery.]}
+{8020}{}{[Leave.]}
+{9000}{}{[Chosen: Speed Implant. Effects: 10% faster running speed; +1 Action Point; +6 Sequence. Do you want to perform surgery? Warning: you can have only one implant.]}
+{9010}{}{[Perform surgery.]}
+{9020}{}{[Leave.]}
+{10000}{}{[Chosen: Survivor Implant. Effects: +100% to Outdoorsman skill; +30% experience gain rate; +30 Health Points. Do you want to perform surgery? Warning: you can have only one implant.]}
+{10010}{}{[Perform surgery.]}
+{10020}{}{[Leave.]}
+{11000}{}{[Chosen: Marksman Implant. Effects: +8 Critical Roll; +8 Critical Chance; +2 Field of View. Warning: you can have only one implant.]}
+{11010}{}{[Perform surgery.]}
+{11020}{}{[Leave.]}
+{12000}{}{[Chosen: Scout Implant. Effects: +50% to Sneak skill; +40 Armor Class. Do you want to perform surgery? Warning: you can have only one implant.]}
+{12010}{}{[Perform surgery.]}
+{12020}{}{[Leave.]}
+{13000}{}{[Chosen: Enhancement Implant. Effects: one additional Perk. Do you want to perform surgery? Warning: you can have only one implant and this implant integrates with brain which makes impossible to remove it.]}
+{13010}{}{[Perform surgery.]}
+{13020}{}{[Leave.]}
+{14000}{}{[Chosen: ChemControl Implant. Effects: drugs duration time doubled; +50% to Health Points healed by Super Stimpak. Do you want to perform surgery? Warning: you can have only one implant.]}
+{14010}{}{[Perform surgery.]}
+{14020}{}{[Leave.]}
+{15000}{}{[As a small mechanical arm with the needle at the end reaches from the terminal and stings you in the wrist, you rapidly lose consciousness.]}
+{15010}{}{[Slowly wake up.]}
+{16000}{}{[Surgery successful.]}
+{16010}{}{[Leave.]}
+{17000}{}{[You do not have the necessary permissions to use this terminal. Please contact with the administrator.]}
+{17010}{}{Damn! [Leave.]}
+{18000}{}{[Medical implant already present. Prepare for system shutdown.]}
+{18010}{}{[Leave.]}
+{19000}{}{[Implants are impossible to remove, aborting...] }
+{19010}{}{[Leave.]}
+{20000}{}{[The implant Will be removed and destroyed, this leaves possibility to inject another implant to your brain. The cost of operation is @lex rimplant_price@ caps. ]}
+{20010}{}{[Perform surgery.]}
+{20020}{}{[Leave.]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{permission granted}
+{2000}{}{Welcome to Med-Tek automated bio-insertion bay. Please input your desired procedure.}
+{2010}{}{Here goes nothing... [Run implant bio-insertion procedure.]}
+{2020}{}{I wonder if it'll work... [Run implant bio-insertion procedure.]}
+{2030}{}{[Leave.]}
+{3000}{}{[Choose the desired implant. The cost of operation is @lex implant_price@ caps. ]}
+{3010}{}{[Environmental Implant.]}
+{3020}{}{[Accuracy Implant.]}
+{3030}{}{[Defence Implant.]}
+{3040}{}{[Medic Implant.]}
+{3050}{}{[Engineer Implant.]}
+{3060}{}{[Speed Implant.]}
+{3070}{}{[Survivor Implant.]}
+{3080}{}{[Marksman Implant.]}
+{3090}{}{[Scout Implant.]}
+{3100}{}{[Enhancement Implant.]}
+{3110}{}{[ChemControl Implant.]}
+{3120}{}{[Leave.]}
+{4000}{}{[Chosen: Environmental Implant. Effects: +10 Healing Rate; +40% Poison Resistance; + 50% Radiation Resistance. Do you want to perform surgery? Warning: you can have only one implant.]}
+{4010}{}{[Perform surgery.]}
+{4020}{}{[Leave.]}
+{5000}{}{[Chosen: Accuracy Implant. Effects: +40% to Big Guns, Small Guns and Energy Weapons skills; +2 Field of View. Do you want to perform surgery? Warning: you can have only one implant.]}
+{5010}{}{[Perform surgery.]}
+{5020}{}{[Leave.]}
+{6000}{}{[Chosen: Defence Implant. Effects: +5 Damage Treshold and +8% Damage Resistance for all types of damage. Do you want to perform surgery? Warning: you can have only one implant.]}
+{6010}{}{[Perform surgery.]}
+{6020}{}{[Leave.]}
+{7000}{}{[Chosen: Medic Implant. Effects: +100% to First Aid and Doctor skills; Living Anatomy perk. Do you want to perform surgery? Warning: you can have only one implant.]}
+{7010}{}{[Perform surgery.]}
+{7020}{}{[Leave.]}
+{8000}{}{[Chosen: Engineer Implant. Effects: +100% to Repair, Science and Energy Weapons skills. Do you want to perform surgery? Warning: you can have only one implant.]}
+{8010}{}{[Perform surgery.]}
+{8020}{}{[Leave.]}
+{9000}{}{[Chosen: Speed Implant. Effects: 10% faster running speed; +1 Action Point; +6 Sequence. Do you want to perform surgery? Warning: you can have only one implant.]}
+{9010}{}{[Perform surgery.]}
+{9020}{}{[Leave.]}
+{10000}{}{[Chosen: Survivor Implant. Effects: +100% to Outdoorsman skill; +30% experience gain rate; +30 Health Points. Do you want to perform surgery? Warning: you can have only one implant.]}
+{10010}{}{[Perform surgery.]}
+{10020}{}{[Leave.]}
+{11000}{}{[Chosen: Marksman Implant. Effects: +8 Critical Roll; +8 Critical Chance; +2 Field of View. Warning: you can have only one implant.]}
+{11010}{}{[Perform surgery.]}
+{11020}{}{[Leave.]}
+{12000}{}{[Chosen: Scout Implant. Effects: +50% to Sneak skill; +40 Armor Class. Do you want to perform surgery? Warning: you can have only one implant.]}
+{12010}{}{[Perform surgery.]}
+{12020}{}{[Leave.]}
+{13000}{}{[Chosen: Enhancement Implant. Effects: one additional Perk. Do you want to perform surgery? Warning: you can have only one implant and this implant integrates with brain which makes impossible to remove it.]}
+{13010}{}{[Perform surgery.]}
+{13020}{}{[Leave.]}
+{14000}{}{[Chosen: ChemControl Implant. Effects: drugs duration time doubled; +50% to Health Points healed by Super Stimpak. Do you want to perform surgery? Warning: you can have only one implant.]}
+{14010}{}{[Perform surgery.]}
+{14020}{}{[Leave.]}
+{15000}{}{[As a small mechanical arm with the needle at the end reaches from the terminal and stings you in the wrist, you rapidly lose consciousness.]}
+{15010}{}{[Slowly wake up.]}
+{16000}{}{[Surgery successful.]}
+{16010}{}{[Leave.]}
+{17000}{}{[You do not have the necessary permissions to use this terminal. Please contact with the administrator.]}
+{17010}{}{Damn! [Leave.]}
+{18000}{}{[Medical implant already present. Prepare for system shutdown.]}
+{18010}{}{[Leave.]}
+{19000}{}{[Implants are impossible to remove, aborting...] }
+{19010}{}{[Leave.]}
+{20000}{}{[The implant Will be removed and destroyed, this leaves possibility to inject another implant to your brain. The cost of operation is @lex rimplant_price@ caps. ]}
+{20010}{}{[Perform surgery.]}
+{20020}{}{[Leave.]}
+

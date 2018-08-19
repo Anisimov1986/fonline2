@@ -1,0 +1,323 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+10 2020 R _script car_sellers@r_CheckCar 1 0 #
+30 2030 #
+41 2040 #
+40 2050 R _script car_sellers@r_CopyKey 1 0 #
+0 2060 @
+3 3000 car_sellers@dlg_PrepareBuy 0 #
+3 3010 R _script car_sellers@r_BuyHummer 1 0 #
+3 3020 R _script car_sellers@r_BuyBuggy 1 0 #
+3 3030 R _script car_sellers@r_BuyScout 1 0 #
+3 3040 R _script car_sellers@r_BuyHighwayman 1 0 #
+3 3050 R _script car_sellers@r_BuyCockRoach 1 0 #
+0 3060 @
+5 4000 None 0 @
+6 5000 None 0 @
+7 6000 None 0 #
+0 6010 @
+8 7000 None 0 #
+0 7010 @
+10 8000 car_sellers@dlg_SellCar 0 #
+11 8010 R _script car_sellers@r_SellCar 1 0 #
+0 8020 @
+11 9000 None 0 @
+30 10000 None 0 #
+31 10010 R _script car_sellers@r_CheckCar 1 0 #
+32 10020 R _script car_sellers@r_CheckCar 1 0 #
+33 10030 R _script car_sellers@r_CheckCar 1 0 #
+65505 10040 @
+31 11000 car_sellers@dlg_Fuel 0 #
+39 11010 R _script car_sellers@r_DoFuel 1 0 #
+37 11020 #
+0 11030 @
+32 12000 car_sellers@dlg_Wear 0 #
+39 12010 R _script car_sellers@r_DoWear 1 0 #
+37 12020 #
+65505 12030 @
+33 13000 car_sellers@dlg_Bio 0 #
+39 13010 R _script car_sellers@r_DoBio 1 0 #
+37 13020 #
+65505 13030 @
+37 14000 None 0 @
+38 15000 None 0 @
+39 16000 None 0 @
+40 17000 None 0 @
+41 18000 economy_dialogs@dlg_PreparePrice 0 #
+42 18010 D _script economy_dialogs@d_IsEnoughCaps 1 400 R _script economy_dialogs@r_TakeCaps 1 400 R _item p PID_KEY + 1 #
+0 18020 #
+0 18030 @
+42 19000 None 0 #
+42 19010 D _script economy_dialogs@d_IsEnoughCaps 1 400 R _script economy_dialogs@r_TakeCaps 1 400 R _item p PID_KEY + 1 #
+0 19020 @
+100 20000 None 0 @
+101 21000 None 0 @
+102 22000 None 0 @
+103 23000 None 0 &
+
+[engl]
+{100}{}{T-Ray}
+{200}{}{You see: a nice-looking black man... Oh no, wait. You see T-Ray.}
+{210}{}{You see a muscular black man, wearing thick glasses and a sparse beard. He's standing, assuming a dignified air.}
+{210}{}{You see T-Ray. He looks good in those jeans.}
+{210}{}{You see T-Ray. He's flexing his muscles from time to time, humming something.}
+{1000}{}{Initial preferences}
+{1010}{}{2}
+{2000}{}{Yeah? Need anything?@@Need anything?@@What do you want?}
+{2010}{}{What units do you have in stock?@@Okay, so what do you have?@@All right, what vehicles do you have now?}
+{2020}{}{I'd like to sell my car.@@I want to sell my car.@@I need to sell my car.}
+{2030}{}{What else can you offer me?}
+{2040}{}{Hey T-Ray, do you have any blank keys for sale?}
+{2050}{}{Make a copy of this key.@@Make me a copy of this key.@@I need this key copied.}
+{2060}{}{Sorry, I'll visit you later.@@Nevermind, later.@@I've gotta go.@@I need to go now.}
+{3000}{}{I can offer You: Hummer for @lex hummer@, Buggy for @lex buggy@, Scout for @lex scout@, Highwayman for @lex highwayman@, and Cockroach for @lex cockroach@.}
+{3010}{}{I'll buy a Hummer.@@I'll take the Hummer.@@The Hummer it is then.}
+{3020}{}{I'll buy a Buggy.@@I think I'll go for a Buggy.@@I'll buy that Buggy.}
+{3030}{}{I'll buy a Scout.@@A Scout is all I need now.@@I'll buy the Scout.}
+{3040}{}{I'll buy a Highwayman.@@I'll take the Highwayman.}
+{3050}{}{I'll buy a CockRoach@@I'll take the Cockroach.}
+{3060}{}{No, maybe next time.@@Nevermind.@@Maybe some other time.}
+{4000}{}{Don't waste my fuckin' time then.@@Go bother someone else then, I ain't got time for this shit.}
+{5000}{}{I've got my garage fuckin' filled with junk, come back when there is some free space.}
+{6000}{}{Here's the key, your car is waiting for you in the garage. Come back if you need any repairs or refuelin' done.}
+{6010}{}{That's it! Bye.@@Okay, bye.@@Right... Bye.}
+{7000}{}{Here's the key, your car is waiting for you in the garage. If you'd like to repair or modify it, you're welcome to return.}
+{7010}{}{That's it. Bye.@@Okay, goodbye.@@All right, I will get going now.}
+{8000}{}{For that piece of junk? I'll give you no more than @lex sell_cost@ caps.}
+{8010}{}{Deal.@@You've got yourself a deal.@@Okay.}
+{8020}{}{Are you nuts? I'm not selling it.@@No way.@@No deal then.}
+{9000}{}{Excellent. Hey guys, make this beauty feel good! [Throws keys to the garage.]}
+{10000}{}{Refuel, repair, modify engine. After modification this engine will run on alcohol.}
+{10010}{}{I'd like to fuel up my vehicle.@@I need some fuel.@@Refuel my vehicle.}
+{10020}{}{Repair my car.@@I need some repairs done. }
+{10030}{}{A spirit-friendly engine is exactly what I need.}
+{10040}{}{Ok, I'll keep that in my mind.@@All right@@Okay.@@Right...}
+{11000}{}{A refuel will cost you @lex fuel_cost@ caps.}
+{11010}{}{Okay.@@Okay, do it.@@Do it.}
+{11020}{}{I don't have enough money.}
+{11030}{}{I'll come back next time.@@I'll be back.}
+{12000}{}{A full repair will cost you @lex wear_cost@ caps.}
+{12010}{}{Deal! Fix it.@@Okay, fix it.@@Right, fix it then.}
+{12020}{}{Nope. Too expensive.@@To steep for my pockets.}
+{12030}{}{Next time, I think.@@Maybe later.}
+{13000}{}{Engine modification will cost you @lex bio_cost@ caps.}
+{13010}{}{No problem, do it.@@Okay, do it.}
+{13020}{}{I don't have any money.}
+{13030}{}{No, not today.}
+{14000}{}{What? No money? It's not my problem, we're fuckin' Followers Of The Apocalypse.@@Don't bother me if you don't have money.@@No money, no deal.}
+{15000}{}{There's no need for that.}
+{16000}{}{Done.}
+{17000}{}{One moment... Let's see... And now... Let's try this... Done! here, take it.}
+{18000}{}{Sure, for @lex key_price@ caps I will give you a key. Fine metal, won't break.}
+{18010}{}{I will take one in that case.}
+{18020}{}{For that kind of money? Keep dreaming.}
+{18030}{}{I'm out of here. See you later maybe.}
+{19000}{}{Here you go. Anything else?}
+{19010}{}{Give me another one.}
+{19020}{}{That will be enough, thanks.}
+{20000}{}{Sorry, I have important work to do now, come back later.}
+{21000}{}{Hold the key in your hand, I can't understand what car are you talking about.}
+{22000}{}{I can't see your car, park it here.}
+{23000}{}{Hold the key in your hand.}
+
+[russ]
+{100}{}{Т-рей}
+{200}{}{Вы видите приятно выглядящего негра... ер, нет, подождите. Вы видите Т-Рея.}
+{210}{}{Вы видите мускулистого негра в толстых очках, жидкой бородкой и он стоит приосанившись.}
+{210}{}{Вы видите Т-Рея. Он хорошо выглядит в джинсах.}
+{210}{}{Вы видите Т-Рея. Он изредка поигрывает мускулами, бормоча себе что-то под нос.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{2}
+{2000}{}{Привет. Меня зовут Ти Рей, я хозяин этой мастерской. Занимаюсь куплей, продажей, ремонтом и модификацией авто. Если есть деньги, то я к твоим услугам. Так же могу сделать копию ключа за 1000 монет.}
+{2010}{}{Какие агрегаты есть в наличии?}
+{2020}{}{Я хотел бы продать автомобиль.}
+{2030}{}{Какие еще услуги вы оказываете?}
+{2040}{}{Т-рей, мне бы пустой ключ.}
+{2050}{}{Сделай ка мне копию ключика.}
+{2060}{}{Извини, зайду в другой раз.}
+{3000}{}{Могу предложить: Хаммер за @lex hummer@, Багги за @lex buggy@, Скаут за @lex scout@, Хайвемен за @lex highwayman@, Таракан за @lex cockroach@.}
+{3010}{}{Покупаю Хаммер.}
+{3020}{}{Покупаю Багги.}
+{3030}{}{Покупаю Скаут.}
+{3040}{}{Покупаю Хайвеймен.}
+{3050}{}{Покупаю Таракан}
+{3060}{}{error}
+{4000}{}{Нет денег - нет машины. Приходи как найдешь нужную сумму.}
+{5000}{}{Сейчас вся мастерская и стоянка забита машинами, некуда подогнать, подойди когда будут свободные места.}
+{6000}{}{Держи ключ, машина ждет тебя в мастерской. Если потребуется ремонт или модификация, то обращайся.}
+{6010}{}{То, что надо. Пока.}
+{7000}{}{Держи ключ, машина ждет тебя снаружи, на стоянке. Если потребуется ремонт или модификация, то обращайся.}
+{7010}{}{То, что надо. Пока.}
+{8000}{}{За твою клячу я дам @lex sell_cost@ монет.}
+{8010}{}{По рукам.}
+{8020}{}{Не, так дело не пойдет, пойду поищу покупателя по сговорчивее.}
+{9000}{}{Отлично. Эй, ребята, оприходуйте этого коня! [Кидает ключи в мастерскую]}
+{10000}{}{Заправка, ремонт, так же можем сделать модификацию движка, что бы он мог работать не только на микрореакторах, но и на спиртном.}
+{10010}{}{Я хотел бы заправиться.}
+{10020}{}{Почините мою машину.}
+{10030}{}{Био-двигатель именно то, что мне надо.}
+{10040}{}{Понятно, буду иметь ввиду.}
+{11000}{}{Заправка обойдется тебе в @lex fuel_cost@ монет.}
+{11010}{}{Ну давай, заряди уже мою машинку.}
+{11020}{}{У меня нет столько денег.}
+{11030}{}{Зайду в другой раз.}
+{12000}{}{Починка обойдется тебе в @lex wear_cost@ монет.}
+{12010}{}{Меня устраивает, чини.}
+{12020}{}{Это мне не по карману.}
+{12030}{}{Нет, пожалуй в другой раз.}
+{13000}{}{Модернизация тебе обойдется в @lex bio_cost@ монет.}
+{13010}{}{Без проблем, начинайте.}
+{13020}{}{Кажется деньги забыл в машине.}
+{13030}{}{Нет, не сегодня.}
+{14000}{}{Что? Нет денег? Ну это не мои проблемы, мы тут не благотворительностью занимаемся.@@Раз нет денег, то нечего меня отвлекать.@@Деньги сначала найди.}
+{15000}{}{Твоя машина не нуждается в этом.}
+{16000}{}{Готово.}
+{17000}{}{Одну минуту... Так... Теперь так... А теперь вот так... Все, готово, держи.}
+{18000}{}{Конечно есть, за @lex key_price@ крышек ты его получишь.}
+{18010}{}{Давай, я согласен.}
+{18020}{}{За такие деньги? Мечтай.}
+{18030}{}{Я ухожу. Увидимся позже может быть.}
+{19000}{}{Вот, держи. Что-нибудь еще?}
+{19010}{}{Дай мне еще один.}
+{19020}{}{Этого будет достаточно, спасибо.}
+{20000}{}{Извини, у меня срочные дела, подойди позже.}
+{21000}{}{Возьми ключ в руку, а то я не понимаю о какой машине идет речь.}
+{22000}{}{Что-то не видно твоей машинки, подгони ее на стоянку.}
+{23000}{}{Возьми ключ в руку.}
+
+[pols]
+{100}{}{T-Ray}
+{200}{}{Widzisz przystojnego, dorodnego Murzyna... Och nie, czekaj. Widzisz T-Ray'a.}
+{210}{}{Widzisz umięśnionego Murzyna, noszącego grube okulary oraz krótką, rzadką brodę.}
+{210}{}{Widzisz T-Ray'a. Wygląda kozacko w tych dżinsach.}
+{210}{}{Widzisz T-Ray'a. Co jakiś czas, nuci coś pod nosem.}
+{1000}{}{Initial preferences}
+{1010}{}{2}
+{2000}{}{Cześć! Jestem T-Ray, a to mój warsztat. Kupuję, sprzedaję, naprawiam i modyfikuję auta w tym miejscu. Mogę pomóc, jeśli masz odpowiednią ilość hajsu, oczywiście. Za tysiąc kapsli, mogę też dorobić dodadkową parę kluczyków.}
+{2010}{}{Jakie pojazdy masz w ofercie?}
+{2020}{}{@sex@|Chciałbym||Chciałabym| sprzedać swoje auto.}
+{2030}{}{Co jeszcze możesz mi zaoferować?}
+{2040}{}{Hej, T-Ray, masz może na sprzedaż jakieś klucze?}
+{2050}{}{Zrób dla mnie kopię tego klucza.}
+{2060}{}{Przepraszam, wpadnę później.}
+{3000}{}{Mogę ci zaoferować Hummera za @lex hummer@, Buggy'ego za @lex buggy@, Scouta za @lex scout@ albo Krążownika Szos za @lex highwayman@. No, i Cockroacha za @lex cockroach@.}
+{3010}{}{Kupuję Hummera.}
+{3020}{}{Kupuję Buggy'ego.}
+{3030}{}{Kupuję Scouta.}
+{3040}{}{Kupuję Krążownika Szos.}
+{3050}{}{Kupuję Cockroacha.}
+{3060}{}{Nie, dzięki, może następnym razem.}
+{4000}{}{Nie ma pieniędzy - nie ma auta. Przyjdź, kiedy będziesz @sex@|miał||miała| trochę więcej gotówki.}
+{5000}{}{W tej chwili garaż jest cały zapchany samochodami, wróć kiedy będzie jakieś wolne miejsce.}
+{6000}{}{Oto kluczyk, auto czeka na ciebie w garażu. Jeśli @sex@|chciałbyś||chciałabyś| je naprawić albo zmodyfikować, serdecznie zapraszam.}
+{6010}{}{To jest to! Do widzenia, dzięki!}
+{7000}{}{Oto kluczyk, auto czeka na ciebie w garażu. Jeśli @sex@|chciałbyś||chciałabyś| je naprawić albo zmodyfikować, serdecznie zapraszam.}
+{7010}{}{To jest to! Do widzenia, dzięki!}
+{8000}{}{Za tą kupę złomu mogę dać ci @lex sell_cost@ kapsli.}
+{8010}{}{OK, stoi.}
+{8020}{}{Odbiło ci? W takim razie dzięki, ale nie sprzedaję!}
+{9000}{}{Doskonale. Chłopaki, zajmijcie się tą ślicznotką! [Rzuca kluczyki do garażu.]}
+{10000}{}{Tankowanie, naprawa, modyfikacja silnika. Mogę sprawić, że będzie jeździć na samym alkoholu.}
+{10010}{}{@sex@|Chciałbym||Chciałabym| zatankować mój wóz.}
+{10020}{}{Napraw moje auto.}
+{10030}{}{Silnik na biopaliwo, łał! Chcę taki.}
+{10040}{}{Dobra, zapamiętam to.}
+{11000}{}{Tankowanie będzie cię kosztować @lex fuel_cost@ kapsli.}
+{11010}{}{Okej.}
+{11020}{}{Nie mam tyle pieniędzy.}
+{11030}{}{Wrócę kiedy indziej.}
+{12000}{}{Naprawa będzie cię kosztować @lex wear_cost@ kapsli.}
+{12010}{}{Stoi! Naprawiaj ten złom.}
+{12020}{}{Nie. Za drogo.}
+{12030}{}{Kiedy indziej, może.}
+{13000}{}{Taka modyfikacja będzie cię kosztować @lex bio_cost@ kapsli.}
+{13010}{}{W porządku, zabierajcie się do roboty.}
+{13020}{}{Ups... @sex@|Zostawiłem||Zostawiłam| pieniądze w aucie.}
+{13030}{}{Nie, nie dzisiaj.}
+{14000}{}{Co? Nie masz pieniędzy? To nie mój problem, nie jesteśmy jakimś jebanym Caritasem.@@Jeśli nie masz szmalu, to nie zawracaj mi gitary.@@To znajdź forsę i wtedy do mnie wróć.}
+{15000}{}{Nie ma takiej potrzeby.}
+{16000}{}{Zrobione.}
+{17000}{}{Chwileczkę... Spójrzmy... I teraz... Spróbujmy tak... Zrobione! Proszę, weź to.}
+{18000}{}{Pewnie, za @lex key_price@ kapsli dam ci klucz. Z porządnego metalu, nie pęknie.}
+{18010}{}{W takim razie, wezmę jeden.}
+{18020}{}{Za taką forsę? Śnij dalej.}
+{18030}{}{Wychodzę stąd. Do zobaczenia później, może.}
+{19000}{}{Proszę bardzo. Coś jeszcze?}
+{19010}{}{Daj mi jeszcze jeden.}
+{19020}{}{To wszystko, dzięki.}
+{20000}{}{Przepraszam, mam ważną sprawę do zrobienia, wrócę potem.}
+{21000}{}{Weź do ręki kluczyk, nie wiem o którym aucie mówisz.}
+{22000}{}{Nie widzę twojego auta, zaparkuj je tutaj.}
+{23000}{}{Weź kluczyk do ręki.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{2}
+{2000}{}{Yeah? Need anything?@@Need anything?@@What do you want?}
+{2010}{}{What units do you have in stock?@@Okay, so what do you have?@@All right, what vehicles do you have now?}
+{2020}{}{I'd like to sell my car.@@I want to sell my car.@@I need to sell my car.}
+{2030}{}{What else can you offer me?}
+{2040}{}{Hey T-Ray, do you have any blank keys for sale?}
+{2050}{}{Make a copy of this key.@@Make me a copy of this key.@@I need this key copied.}
+{2060}{}{Sorry, I'll visit you later.@@Nevermind, later.@@I've gotta go.@@I need to go now.}
+{3000}{}{I can offer You: Hummer for @lex hummer@, Buggy for @lex buggy@, Scout for @lex scout@, Highwayman for @lex highwayman@, and Cockroach for @lex cockroach@.}
+{3010}{}{I'll buy a Hummer.@@I'll take the Hummer.@@The Hummer it is then.}
+{3020}{}{I'll buy a Buggy.@@I think I'll go for a Buggy.@@I'll buy that Buggy.}
+{3030}{}{I'll buy a Scout.@@A Scout is all I need now.@@I'll buy the Scout.}
+{3040}{}{I'll buy a Highwayman.@@I'll take the Highwayman.}
+{3050}{}{I'll buy a CockRoach@@I'll take the Cockroach.}
+{3060}{}{No, maybe next time.@@Nevermind.@@Maybe some other time.}
+{4000}{}{Don't waste my fuckin' time then.@@Go bother someone else then, I ain't got time for this shit.}
+{5000}{}{I've got my garage fuckin' filled with junk, come back when there is some free space.}
+{6000}{}{Here's the key, your car is waiting for you in the garage. Come back if you need any repairs or refuelin' done.}
+{6010}{}{That's it! Bye.@@Okay, bye.@@Right... Bye.}
+{7000}{}{Here's the key, your car is waiting for you in the garage. If you'd like to repair or modify it, you're welcome to return.}
+{7010}{}{That's it. Bye.@@Okay, goodbye.@@All right, I will get going now.}
+{8000}{}{For that piece of junk? I'll give you no more than @lex sell_cost@ caps.}
+{8010}{}{Deal.@@You've got yourself a deal.@@Okay.}
+{8020}{}{Are you nuts? I'm not selling it.@@No way.@@No deal then.}
+{9000}{}{Excellent. Hey guys, make this beauty feel good! [Throws keys to the garage.]}
+{10000}{}{Refuel, repair, modify engine. After modification this engine will run on alcohol.}
+{10010}{}{I'd like to fuel up my vehicle.@@I need some fuel.@@Refuel my vehicle.}
+{10020}{}{Repair my car.@@I need some repairs done. }
+{10030}{}{A spirit-friendly engine is exactly what I need.}
+{10040}{}{Ok, I'll keep that in my mind.@@All right@@Okay.@@Right...}
+{11000}{}{A refuel will cost you @lex fuel_cost@ caps.}
+{11010}{}{Okay.@@Okay, do it.@@Do it.}
+{11020}{}{I don't have enough money.}
+{11030}{}{I'll come back next time.@@I'll be back.}
+{12000}{}{A full repair will cost you @lex wear_cost@ caps.}
+{12010}{}{Deal! Fix it.@@Okay, fix it.@@Right, fix it then.}
+{12020}{}{Nope. Too expensive.@@To steep for my pockets.}
+{12030}{}{Next time, I think.@@Maybe later.}
+{13000}{}{Engine modification will cost you @lex bio_cost@ caps.}
+{13010}{}{No problem, do it.@@Okay, do it.}
+{13020}{}{I don't have any money.}
+{13030}{}{No, not today.}
+{14000}{}{What? No money? It's not my problem, we're fuckin' Followers Of The Apocalypse.@@Don't bother me if you don't have money.@@No money, no deal.}
+{15000}{}{There's no need for that.}
+{16000}{}{Done.}
+{17000}{}{One moment... Let's see... And now... Let's try this... Done! here, take it.}
+{18000}{}{Sure, for @lex key_price@ caps I will give you a key. Fine metal, won't break.}
+{18010}{}{I will take one in that case.}
+{18020}{}{For that kind of money? Keep dreaming.}
+{18030}{}{I'm out of here. See you later maybe.}
+{19000}{}{Here you go. Anything else?}
+{19010}{}{Give me another one.}
+{19020}{}{That will be enough, thanks.}
+{20000}{}{Sorry, I have important work to do now, come back later.}
+{21000}{}{Hold the key in your hand, I can't understand what car are you talking about.}
+{22000}{}{I can't see your car, park it here.}
+{23000}{}{Hold the key in your hand.}
+

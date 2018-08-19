@@ -1,0 +1,97 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+5 2020 #
+0 2030 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+3 3010 D _script economy_dialogs@d_IsEnoughCaps 1 1500 R _script economy_dialogs@r_TakeCaps 1 1500 R _item p PID_HIGH_GRADE_STEEL + 1 #
+3 3020 D _script economy_dialogs@d_IsEnoughCaps 1 7500 R _script economy_dialogs@r_TakeCaps 1 7500 R _item p PID_HIGH_GRADE_STEEL + 5 #
+3 3030 D _script economy_dialogs@d_IsEnoughCaps 1 15000 R _script economy_dialogs@r_TakeCaps 1 15000 R _item p PID_HIGH_GRADE_STEEL + 10 #
+0 3040 @
+5 4000 economy_dialogs@dlg_PreparePrice 0 #
+0 4010 D _script economy_dialogs@d_IsEnoughCaps 1 4000 R _script economy_dialogs@r_TakeCaps 1 4000 R _item p PID_SUPER_TOOL_KIT + 1 #
+0 4020 &
+
+[engl]
+{100}{}{Gun Runners Technician}
+{200}{}{You see: Gun Runners Technician.}
+{210}{}{This woman seems to be very preoccupied with something.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Need something? I'm kinda busy.@@What do you want?@@Need something?@@Be quick about it.@@I've got things to do, so state your business quickly.}
+{2010}{}{I came to buy High Grade Steel.@@I want to buy High Grade Steel.@@I need High Grade Steel.}
+{2020}{}{Got any Super Tool Kits?@@I need to buy a Super Tool Kit.@@I need a Super Tool Kit.}
+{2030}{}{Nevermind.@@Later.@@See you round.}
+{3000}{}{Very well, @lex hgsteel_price@ caps per one. How many do you need?@@All right, @lex hgsteel_price@ caps for a piece. How many do you want?@@ @lex hgsteel_price@ caps for one. How many do you need?}
+{3010}{}{Just one.@@One.@@I want one.@@I need one.}
+{3020}{}{Five is enough.@@Five should be okay.@@I need five pieces.}
+{3030}{}{Give me ten, I've got the money.@@Ten.@@I want ten.@@I need ten.}
+{3040}{}{Nevermind.@@Maybe later.}
+{4000}{}{Sure, I'll sell it for @lex stool_price@ caps. Interested?@@Yeah, @lex stool_price@ caps for one set.@@ @lex stool_price@ caps for one.}
+{4010}{}{Sure, I'll take it.@@Yeah, I'll take it.@@All right, I'll take it.@@Here's the money, I'll take it.}
+{4020}{}{Naah, not now.}
+
+[russ]
+{100}{}{Оружейник}
+{200}{}{Вы видите: одного из оружейников "gunrunners".}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Что вам нужно?}
+{2010}{}{Я пришел купить высококачественную сталь.}
+{2020}{}{Может быть у вас есть Суперремнабор на продажу?}
+{2030}{}{Спасибо за информацию. Пока.}
+{3000}{}{Хорошо, @lex hgsteel_price@ крышек за одну единицу. Сколько вам нужно?}
+{3010}{}{Онду и нужно.}
+{3020}{}{Пять будет в самы раз.}
+{3030}{}{Давай десять сразу.}
+{3040}{}{Ну, может быть, позже. До свидания.}
+{4000}{}{Конечно, отдам за @lex stool_price@ крыжек, будешь брать?}
+{4010}{}{Да, пожалуй возьму.}
+{4020}{}{Нее, может позже.}
+
+[pols]
+{100}{}{Zbrojeniowiec}
+{200}{}{Widzisz jedną ze Zbrojeniowców.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Czego?}
+{2010}{}{@sex@|Chciałbym||Chciałabym| kupić stal wysokiej jakości.}
+{2020}{}{Masz może na sprzedaż duży zestaw narzędziowy?}
+{2030}{}{Nieważne, do widzenia.}
+{3000}{}{Świetnie, @lex hgsteel_price@ kapsli za sztukę. Ile potrzebujesz?}
+{3010}{}{Tylko jeden.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Daj mi dziesięć, mam pieniądze.}
+{3040}{}{Cóż, może potem. Na razie.}
+{4000}{}{Jasne, @lex stool_price@ kapsli za sztukę, chcesz?}
+{4010}{}{Pewnie, wezmę.}
+{4020}{}{Nie, nie teraz.}
+
+[ptbr]
+{100}{}{Técnico da Gun Runners}
+{200}{}{Você vê o técnico da Gun Runners.}
+{210}{}{Este homem parece estar preocupado com algo.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Precisa de algo? Tou ocupado.@@Quer algo?@@Precisa de algo?@@Fala.@@Eu tenho mais o que fazer, diz logo o que vai querer.}
+{2010}{}{Vim comprar aço de alta qualidade.@@Quero comprar aço de alta qualidade.@@Preciso de aço de alta qualidade.}
+{2020}{}{Tem algum jogo grande de ferramentas?@@Eu quero um jogo grande de ferramentas.@@Preciso de um jogo grande de ferramentas.}
+{2030}{}{Deixa para lá.@@Até mais.@@Te vejo por aí.}
+{3000}{}{Certo, @lex hgsteel_price@ tampinhas por bloco em bruto. Vai levar quantos?@@Tudo bem, @lex hgsteel_price@ tampinhas por peça da liga em bruto. Quantos vai querer?@@ @lex hgsteel_price@ tampinhas por bloco da liga em bruto. Quantos vai levar?}
+{3010}{}{Apenas um.@@Um.@@Quero um.@@Preciso de um.}
+{3020}{}{Bastam cinco.@@Cinco devem ser o suficiente.@@Eu preciso de cinco peças.}
+{3030}{}{Me dá dez.@@Dez.@@Quero dez.@@Preciso de dez.}
+{3040}{}{Deixa para depois.@@Quem sabe depois.}
+{4000}{}{Tá, @lex stool_price@ tampinhas. Vai querer?@@É @lex stool_price@ tampinhas por um jogo.@@ @lex stool_price@ tampinhas por um.}
+{4010}{}{Tá, vou levar.@@É, vou querer.@@Tudo bem, vou levar.@@Aqui está o dinheiro, vou levar.}
+{4020}{}{Naah, agora não.}
+

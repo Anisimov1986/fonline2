@@ -1,0 +1,368 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_npc_player = 0 #
+5 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 R _var p name_mem_npc_player = 1 #
+0 2020 @
+3 3000 None 0 #
+5 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 #
+9 5020 D _var p q_jt_mike_marry = 0 #
+13 5030 D _var p q_jt_mike_marry = 2 D or D _var p q_jt_mike_marry = 3 D or D _var p q_jt_mike_marry = 4 #
+15 5040 #
+16 5050 D _var p jt_benjamikyleeq = 5 R _var p jt_benjamikyleeq = 6 #
+24 5060 D _var p q_jt_mike_marry = 6 #
+0 5070 @
+6 6000 None 0 #
+7 6010 #
+5 6020 @
+7 7000 None 0 #
+5 7010 #
+8 7020 @
+8 8000 None 0 #
+5 8010 #
+0 8020 @
+9 9000 None 0 #
+10 9010 #
+0 9020 @
+10 10000 None 0 #
+11 10010 #
+0 10020 @
+11 11000 None 0 #
+12 11010 R _var p q_jt_mike_marry = 1 #
+0 11020 @
+12 12000 None 0 #
+0 12010 R _script dialog@r_ShowQuestMessage 1 9007 @
+13 13000 None 0 #
+14 13010 D _var p q_jt_mike_marry = 2 R _param p ST_EXPERIENCE + 500 R _var p q_jt_mike_marry = 5 #
+19 13020 D _var p q_jt_mike_marry = 3 D or D _var p q_jt_mike_marry = 4 R _var p q_jt_mike_marry = 6 R _param p ST_EXPERIENCE + 1000 #
+18 13030 D _var p q_jt_mike_marry = 4 @
+14 14000 None 0 #
+0 14010 R _script dialog@r_ShowQuestMessage 1 9007 @
+15 15000 None 0 #
+5 15010 @
+16 16000 None 0 #
+17 16010 R _script dialog@r_ShowQuestMessage 1 9010 #
+0 16020 R _script dialog@r_ShowQuestMessage 1 9010 @
+17 17000 None 0 #
+0 17010 R _script dialog@r_ShowQuestMessage 1 9010 @
+18 18000 None 0 #
+19 18010 R _param p ST_EXPERIENCE + 1000 R _var p q_jt_mike_marry = 6 #
+23 18020 R _param p ST_EXPERIENCE + 1100 R _var p q_jt_mike_marry = 7 @
+19 19000 None 0 #
+20 19010 @
+20 20000 None 0 #
+21 20010 R _script dialog@r_FadeOut 1 0 @
+21 21000 None 0 #
+22 21010 R _item p PID_LEATHER_JACKET + 1 R _script economy_dialogs@r_GiveCaps 1 75 @
+22 22000 None 0 #
+0 22010 R _script dialog@r_ShowQuestMessage 1 9007 @
+23 23000 None 0 #
+0 23010 R _script dialog@r_ShowQuestMessage 1 9007 @
+24 24000 None 0 #
+0 24010 &
+
+[engl]
+{100}{}{Mike}
+{200}{}{You see: Bald-headed man in metal armor.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{1020}{}{---}
+{2000}{}{Howdy stranger, have we met?@@Hello there stranger. Haven't I seen you here before?}
+{2010}{}{I guess not.@@I don't think so.}
+{2020}{}{Nope, and I think we shouldn't.@@No. Goodbye.@@Not really. Gotta go.}
+{3000}{}{Now I'll be damned, a new face. So, here's the deal. I'm Mike, the sheriff. I hope you aren't some kind of troublemaker, are you? Don't misunderstand me, a lot of travelers these days, and you never know who might be... you know, mentally incapable of normal behaviour.}
+{3010}{}{I'm here just to talk, not to cause trouble.@@I just want to talk.}
+{3020}{}{What do you mean by that?}
+{3030}{}{Bye, thanks for conversation.}
+{4000}{}{[He looks almost proud as he starts to speak.] Few days ago, or was it a week... Anyway, I shot a thief on the run. What a fool! He didn't even reach the gates, where he'd be shot by the guards. Never had a chance. That's what you get for stealing - a bullet in the head. Keep your hands to yourself, same thing goes for weapons.}
+{4010}{}{I see. I wanted to ask you something.}
+{4020}{}{I will be on my way.}
+{5000}{}{So, what do you want? I have some things to do, make it snappy.}
+{5010}{}{Why are you standing here in the casino?}
+{5020}{}{Is there any work or something with what I could fill my time?}
+{5030}{}{I talked with Mary.}
+{5040}{}{What can you tell me about this place?}
+{5050}{}{Do you know there is a girl called Kylee here in Junktown, well she seems to be scamming people for caps somehow. It would be nice if you helped me sort out my issue with her.}
+{5060}{}{Have you finally decided to settle a date for a meeting with Mary Ann?}
+{5070}{}{Bye sheriff, thanks for conversation.}
+{6000}{}{Well that's the thing... It's not Gizmos casino anymore, need to change that sign somehow. I think to just "Casino", "G" can be changed to "C", "z" to "s", "i" and "o" can stay, "m" to "n" doesn't look difficult, "a" is the only problem.}
+{6010}{}{Can I help you with that?}
+{6020}{}{I wanted to ask something else.}
+{7000}{}{No, you can't. I need Mary's help for that, she needs to tinker with that crap.}
+{7010}{}{Okay, something else.}
+{7020}{}{Who is Mary?}
+{8000}{}{Mary Ann... She is at the power house, working as a Junktown's technician. She does a fine job, I can't imagine anyone else in her place right now.}
+{8010}{}{Can I ask you something?}
+{8020}{}{I will be leaving.@@Bye, see you later.}
+{9000}{}{[He frowns nervously.] I don't know, maybe. There's something I just can't man up to do, but... ehh, forget about it, it's stupid. I shouldn't have even mentioned anything.}
+{9010}{}{No, please go on. I'm listening.}
+{9020}{}{I think I'd better leave now.}
+{10000}{}{There is something, personal. Can I rely on you not to tell the whole world about it?}
+{10010}{}{Sure, I can keep a secret.}
+{10020}{}{I don't know, maybe I'd better go.}
+{11000}{}{Here's the thing. I want you to go ask Mary if she's open. [He is chewing on his upper lip with an akward look.] I know, I know... It's childish but I can't, I'm... just shy, allright? If she would agree, it would mean a lot for me. Do you follow me? Also, you don't have to mention that I've send you, just get some answer out of her. Understood?}
+{11010}{}{I do understand. No problem, I'll do this for you.}
+{11020}{}{I'm not interested in your love affairs, bye.}
+{12000}{}{[He takes a chair, sits down and lights a ciggarete.] Thanks, I will be waiting. Come back as soon as you've talked with her.}
+{12010}{}{I'll be going then.}
+{13000}{}{[He stands up from the chair. The cigarette slips from between his fingers and lands down on the ground, but he doesn't care.] What was her response?}
+{13010}{}{She said no. I tried the best approach I could, but she simply didn't budge.}
+{13020}{}{She would like to go on a date with you. You should go and ask her out, really.}
+{13030}{}{She's a hot babe, you were right, and desperately looking for love. [You smile and wink.]}
+{14000}{}{Well, at least we've tried. Thanks, mate.}
+{14010}{}{Heh, that's the spirit.@@Tough luck.}
+{15000}{}{Junktown, well... Nothing much to it, except a lot of travelers passing by these days. For once, I'm surprised some of them linger around a bit and leave some caps at our traders, we need to make a living somehow. Other than that, like I said nothing much to it. Bunch of people surviving behind pre-war junk.}
+{15010}{}{I see, more questions.}
+{16000}{}{Kylee? You trusted that hooker and gave her caps? I won't solve your naive head, besides Kylee... Well she, is quite important to our community. [He grasps his belt to get it in order and puts on a big, fat smile.] If you know what I mean. Now, just go, you won't get any help here.}
+{16010}{}{Interesting, so she fucks you and you cover for her? Pathetic.}
+{16020}{}{That's it, I'm gone and leave me out of this.}
+{17000}{}{Shut your mouth, remember to whom your talking with. Slide away wastelander, just like everyone else who passes by Junktown. [He takes a hold of his sidearm, but doesn't pull it out.]}
+{17010}{}{[Leave.]}
+{18000}{}{[He looks a bit confused.] What do you mean by that? What did she say?}
+{18010}{}{She would like to go on a date with you. You should go and ask her out, really.}
+{18020}{}{She didn't really say much... She was mostly moanin' while I was @sex@|banging her like crazy||licking her pussy|.}
+{19000}{}{[He sighs with relief, sits down for a while and stands up again.] Really? I... I don't know how to thank you.}
+{19010}{}{Go and ask her for a date, you'll thank me later. Go!}
+{20000}{}{[He looks a bit scared.] You mean, right now?}
+{20010}{}{Yes, go. I'll wait here.}
+{21000}{}{[He comes back, beaming with joy.] She agreed to go on a date with me! I don't know to thank you, really, I've been dreaming about it for years! Here, have one of my old jackets and a few caps. Sheriff's wage isn't too high, you know.,,}
+{21010}{}{Thanks, I'm happy I could help. When are you meeting her again?}
+{22000}{}{Well, I haven't decided yet... I don't know... [He seems really confused.]}
+{22010}{}{Mike, I think it's time you make some decision by yourself. Good luck, and goodbye.}
+{23000}{}{[He explodes with anger.] I don't believe you. you're a fucking liar! She's not that type of the girl, she would never let someone like you to even touch her, not talking about... [He calms down a bit.] No, my little angel is a good girl, isn't she?}
+{23010}{}{Angel? Well, it felt like in heaven indeed. Goodbye, loser. }
+{24000}{}{No, I just... [He gets very nervous.] I just can't decide, I don't want to make a bad impression somehow... What if she'll refuse for some reason?}
+{24010}{}{Mike, I think it's time you make some decision by yourself. Good luck, and goodbye.}
+
+[russ]
+{100}{}{Mike}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{1020}{}{---}
+{2000}{}{Howdy stranger, have we met?}
+{2010}{}{I guess not.}
+{2020}{}{Nope, and i think we shouldn't.}
+{3000}{}{Now I'll be damned, a new face. So, here's the deal. I'm Mike, the sheriff. I hope you aren't some kind of troublemaker, are you? Don't misunderstand me, a lot of travelers these days, and you never know who might be... you know, mentally incapable of normal behaviour.}
+{3010}{}{I'm here just to talk, not to cause trouble.}
+{3020}{}{What do you mean by that?}
+{3030}{}{Bye, thanks for conversation.}
+{4000}{}{[He looks almost proud as he starts to speak.] Few days ago, or was it a week... Anyway, I shot a thief on the run. What a fool! He didn't even reach the gates, where he'd be shot by the guards. Never had a chance. That's what you get for stealing - a bullet in the forehead. Keep your hands to yourself, same thing goes for weapons.}
+{4010}{}{I see. I wanted to ask you something.}
+{4020}{}{I will be on my way.}
+{5000}{}{So, what do you want? I have some things to do, make it snappy.}
+{5010}{}{Why are you standing here in the casino?}
+{5020}{}{Is there any work or something with what I could fill my time?}
+{5030}{}{I talked with Mary.}
+{5040}{}{What can you tell me about this place?}
+{5050}{}{Do you know there is a girl called Kylee here in Junktown, well she seems to be scamming people for caps somehow. It would be nice if you helped me sort out my issue with her.}
+{5060}{}{Have you finally decided to settle a date for a meeting with Mary Ann?}
+{5070}{}{Bye sheriff, thanks for conversation.}
+{6000}{}{Well that's the thing... It's not Gizmos casino anymore, need to change that sign somehow. I think to just "Casino", "G" can be changed to "C", "z" to "s", "i" and "o" can stay, "m" to "n" doesn't look difficult, "a" is the only problem.}
+{6010}{}{Can I help you with that?}
+{6020}{}{I wanted to ask something else.}
+{7000}{}{No, you can't. I need Mary's help for that, she needs to remake these neon lamps for letters.}
+{7010}{}{Okay, something else.}
+{7020}{}{Who is Mary?}
+{8000}{}{Mary Ann... She is at the power house, working as a Junktown's technician. She does a fine job, I can't imagine anyone else in her place right now.}
+{8010}{}{Can I ask you something?}
+{8020}{}{I will be leaving.@@Bye, see you later.}
+{9000}{}{[He frowns nervously.] I don't know, maybe. There's something I just can't man up to do, but... ehh, forget about it, it's stupid. I shouldn't have even mentioned anything.}
+{9010}{}{No, please go on. I'm listening.}
+{9020}{}{I think I'd better leave now.}
+{10000}{}{There is something, personal. Can I rely on you not to tell the whole world about it?}
+{10010}{}{Sure, I can keep a secret.}
+{10020}{}{I don't know, maybe I'd better go.}
+{11000}{}{Here's the thing. I want you to go ask Mary if she's open. [He is chewing on his upper lip with an akward look.] I know, I know... It's childish but I can't, I'm... just shy, alright? If she would agree, it would mean a lot for me. Do you follow me? Also, you don't have to mention that I've send you, just get some answer out of her. Understood?}
+{11010}{}{I do understand. No problem, I'll do this for you.}
+{11020}{}{I'm not interested in your love affairs, bye.}
+{12000}{}{[He takes a chair, sits down and lights a ciggarete.] Thanks, I will be waiting. Come back as soon as you've talked with her.}
+{12010}{}{I'll be going then.}
+{13000}{}{[He stands up from the chair. The cigarette slips from between his fingers and lands down on the ground, but he doesn't care.] What was her response?}
+{13010}{}{She said no. I tried the best approach I could, but she simply didn't budge.}
+{13020}{}{She would like to go on a date with you. You should go and ask her out, really.}
+{13030}{}{She's a hot babe, you were right, and desperately looking for love. [You smile and wink.]}
+{14000}{}{Well, at least we've tried. Thanks, mate.}
+{14010}{}{Heh, that's the spirit.}
+{15000}{}{Junktown, well... Nothing much to it, except a lot of travelers passing by these days. For once, I'm surprised some of them linger around a bit and leave some caps at our traders, we need to make a living somehow. Other than that, like I said nothing much to it. Bunch of people surviving behind pre-war junk.}
+{15010}{}{I see, more questions.}
+{16000}{}{Kylee? You trusted that hooker and gave her caps? I won't solve your naive head, besides Kylee... Well she, is quite important to our community. [He grasps his belt to get it in order and puts on a big, fat smile.] If you know what I mean. Now, just go, you won't get any help here.}
+{16010}{}{Interesting, so she fucks you and you cover for her? Pathetic.}
+{16020}{}{That's it, I'm gone and leave me out of this.}
+{17000}{}{Shut your mouth, remember to whom your talking with. Slide away wastelander, just like everyone else who passes by Junktown. [He takes a hold of his sidearm, but doesn't pull it out.]}
+{17010}{}{[Leave.]}
+{18000}{}{[He looks a bit confused.] What do you mean by that? What did she say?}
+{18010}{}{She would like to go on a date with you. You should go and ask her out, really.}
+{18020}{}{She didn't really say much, as she was mostly just moanin' while @sex@|I was screwing her over and over||we were having passionate sex|.}
+{19000}{}{[He sighs with relief, sits down for a while and stands up again.] Really? I... I don't know how to thank you.}
+{19010}{}{Go and ask her for a date, you'll thank me later. Go!}
+{20000}{}{[He looks a bit scared.] You mean, right now?}
+{20010}{}{Yes, go. I'll wait here.}
+{21000}{}{[He comes back, beaming with joy.] She agreed to go on a date with me! I don't know to thank you, really, I've been dreaming about it for years! Here, have one of my old jackets and a few caps. Sheriff's wage isn't too high, you know.,,}
+{21010}{}{Thanks, I'm happy I could help. When are you meeting her again?}
+{22000}{}{Well, I haven't decided yet... I don't know... [He seems really confused.]}
+{22010}{}{Mike, I think it's time you make some decision by yourself. Good luck, and goodbye.}
+{23000}{}{[He explodes with anger.] I don't believe you, dirty liar! She's not that type of the girl, she would never let someone like you to even touch her, not talking about... [He calms down a bit.] No, my little angel is a good girl, isn't she?}
+{23010}{}{Angel? Well, it felt like in heaven indeed. Goodbye, loser. }
+{24000}{}{No, I just... [He get very nervous.] I just can't decide, I don't want to make a bad impression somehow... What if she'll refuse for some reason?}
+{24010}{}{Mike, I think it's time you make some decision by yourself. Good luck, and goodbye.}
+
+[pols]
+{100}{}{Mike}
+{200}{}{Widzisz łysego mężczyznę w pancerzu metalowym. Wygląda na bardzo pewnego siebie.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{1020}{}{---}
+{2000}{}{Witaj, @sex@|nieznajomy||nieznajoma|. Nie widziałem cię tu wcześniej.}
+{2010}{}{Prawdopodobnie nie.}
+{2020}{}{No i więcej nie zobaczysz.}
+{3000}{}{Patrzcie, patrzcie... Nowa twarz. Nazywam się Mike, jestem tutejszym szeryfem. Nie kombinujesz niczego głupiego, co?}
+{3010}{}{@sex@|Przyszedłem||Przyszłam| pogadać, a nie kombinować.}
+{3020}{}{Nie rozumiem, do czego zmierzasz?}
+{3030}{}{I tak bym ci nie @sex@|powiedział||powiedziała|. Na razie.}
+{4000}{}{Wybacz, różni ludzie się tu kręcą, Złomowo leży na przecięciu szlaków handlowych - nigdy nie wiadomo na kogo trafisz... ot, choćby... [Mike niby od niechcenia, ale jednak z wyraźną dumą opowiada.] Parę dni temu zastrzeliłem złodzieja, prawie że na gorącym uczynku. Kretyn... Nawet jakbym go nie trafił, to chłopcy przy bramie by go załatwili. Nie tolerujemy tu złodziejstwa, ani własnoręcznego wymierzania sprawiedliwości. Jak coś przeskrobiesz, to kula w łeb, zapamiętaj to sobie.}
+{4010}{}{Rozumiem. @sex@|Chciałbym||Chciałabym| cię o coś zapytać.}
+{4020}{}{Jasne. Dzięki za pasjonujący wykład, szeryfie.}
+{5000}{}{Dobra, tylko szybko, mam tu sporo spraw na głowie. Czego chcesz?}
+{5010}{}{Nie wydaje ci się trochę dziwne, że siedzisz w kasynie?}
+{5020}{}{Znalazłaby się jakaś praca dla @sex@|ubogiego wędrowca||ubogiej dziewczyny|?}
+{5030}{}{@sex@|Rozmawiałem||Rozmawiałam| z Mary.}
+{5040}{}{Może opowiesz mi trochę o Złomowie?}
+{5050}{}{Na pewno znasz tą dziwkę, Kylee? Pracuje w hotelu. Nie przeszkadza mi to specjalnie, ale to, że robi mnie w konia na setki kapsli już tak. @sex@|Mógłbyś||Mogłabyś| coś z tym zrobić? Nie chce mi ich oddać.}
+{5060}{}{Zdecydowałeś się w końcu udać na randkę z Mary Ann?}
+{5070}{}{Na razie szeryfie, muszę już spadać.}
+{6000}{}{Czemu dziwne? Nie ma innego wolnego lokalu, a ten akurat nadaje się w sam raz na biuro szeryfa. To było kiedyś kasyno gościa imieniem Gizmo. Dostał kulkę od jakiegoś przybłędy, zresztą nieważne. Pozostały mi tylko te cholerne neony, zmieniłbym nazwę na coś innego, skoro Gizmo od dawna gryzie piach.}
+{6010}{}{Może @sex@|mógłbym||mogłabym| ci jakoś w tym pomóc?}
+{6020}{}{Mogę spytać o coś innego?}
+{7000}{}{Nie, nie możesz, zresztą pewnie nie znasz się na tym. Mary ma się tym zająć, ale na razie nie ma czasu.}
+{7010}{}{Dobra, mam jeszcze jedną sprawę...}
+{7020}{}{Mary? A kto to?}
+{8000}{}{Mary Ann, jest tutejszym ele... elektro... kurde, zajmuje się zasilaniem, tego typu sprawy. Bez niej siedzielibyśmy tu przy świecach... [Mike zamyśla się.] Może to i dobre na kolację dla dwojga, ale mało praktyczne. Nie wyobrażam sobie, żeby ktoś mógł ją zastąpić.}
+{8010}{}{Ciekawe. Jeszcze parę pytań, jeśli pozwolisz?}
+{8020}{}{Nie ma ludzi niezastąpionych. Na razie.@@To wszystko, do zobaczenia.}
+{9000}{}{[Pewność siebie momentalnie go opuszcza.] Wiesz co, jest jedna taka sprawa. W sumie to sam powinienem to załatwić, ale jakoś nie mogę się zebrać... albo nie, zapomnij o tym, to bez sensu.}
+{9010}{}{Jak już zacząłeś to dokończ...}
+{9020}{}{Chyba już sobie pójdę.}
+{10000}{}{Jakby to powiedzieć... to sprawa... osobista. Mogę na tobie polegać? Nie rozpowiesz tego na mieście?}
+{10010}{}{Ale mi miasto, mało co się tu nie @sex@|zgubiłem||zgubiłam|. No ale dobra, możesz na mnie liczyć, umiem trzymać język za zębami.}
+{10020}{}{@sex@|Widzę dokąd to zmierza, wybacz, ale preferuję płeć przeciwną... Czas na mnie||Jesteś żałosny|.}
+{11000}{}{Tylko bez takich! [Mike odpala papierosa.] Dobra, skoro chcesz mi pomóc... Chodzi o to, że chcę umówić z Mary, ale jakoś nie mogę się zebrać się w sobie żeby do niej pójść i ją zapytać. Nie musisz mówić że to ja, po prostu zapytaj ją czy jest wolna, czy coś takiego... Wiem że to trochę szczylowate, ale co ja poradzę...}
+{11010}{}{Rozumiem. Nie ma problemu, mogę z nią pogadać.}
+{11020}{}{Nie mam ochoty mieszać się w twoje romanse, Mike.}
+{12000}{}{[Mike zaciąga się po raz kolejny.] Dzięki! Będę czekał, daj mi znać jak tylko się czegoś dowiesz!}
+{12010}{}{W porządku, czas na mnie.}
+{13000}{}{[Mike wstaje z krzesła. Wygląda, jakby wypalił wagon papierosów.] No i jak? Jak poszło? Co powiedziała?}
+{13010}{}{Nie zgodziła się. @sex@|Starałem się najlepiej jak potrafiłem||Starałam się najlepiej jak potrafiłam|, ale to uparta baba, po prostu się nie dało.}
+{13020}{}{Mary chciałaby się umówić z tobą.}
+{13030}{}{Niezła z niej sztunia, dupa że hej, do tego bardzo chętna... [Uśmiechasz się i puszczasz oko.]}
+{14000}{}{Ech... Cóż, przynajmniej próbowaliśmy. Dzięki za pomoc.}
+{14010}{}{Heh, trzymaj się.}
+{15000}{}{Złomowo? Nic specjalnego... kupa złomu! [Śmieje się, wyraźnie zadowolony ze swojego poczucia humoru.] Sporo ludzi się tu ostatnio kręci, większość to kupcy albo zbieracze. Część zostaje tu na dłużej, ale prawie nigdy na stałe. Większość zmierza albo do RNK, albo do Hub.}
+{15010}{}{Dzięki. Mam jeszcze parę pytań.}
+{16000}{}{@sex@|Patrzcie go, dał dziwce parę stów i się dziwi że go orżnęła. Może i Kylee jest kurwą, ale ty... jesteś skończonym kretynem i naiwnakiem. A ja nie mam zwyczaju pomagać kretynom i naiwniakom.||Patrzcie ją, solidarność jajników, hahaha! Dała dziwce parę śtów i się dziwi, że ją orżnęła. Może i Kylee jest kurwą, ale ty jesteś skończoną kretynką i naiwniaczką. A ja nie mam zwyczaju takowym paniom pomagać.| [Mike poprawia swój pas i niby od niechcenia kładzie palce na rękojeści rewolweru.] Poza tym, Kylee jest tu ważną i cenioną osobą. Nie patrz się tak, dobrze wiesz o co mi chodzi. Zmiataj stąd, dopóki jestem miły, nic tu nie wskórasz.}
+{16010}{}{Pięknie kurwa, pięknie. Ona ci daje dupy, a ty ją kryjesz?}
+{16020}{}{Jasne, już wychodzę. Stróż prawa, kurwa jego mać.}
+{17000}{}{Stul mordę, pamiętaj z kim gadasz. [Mike ściska swój rewolwer, ale go nie wyciąga. Przynajmniej na razie.] Jeszcze jedno słowo, a dorobisz się paru dodatkowych dziur do srania...}
+{17010}{}{[Wyjdź.]}
+{18000}{}{[Mike wygląda na zdezorientowanego.] Nie rozumiem. Co dokładnie powiedziała?}
+{18010}{}{Chce iść na randkę. Powinieneś się do niej pójść, naprawdę.}
+{18020}{}{Niezbyt dużo mówiła, ale za to sporo jęczała gdy @sex@|ją posuwałem||gdy lizałam jej cipkę|.}
+{19000}{}{[Mike wzdycha pełen ulgi] Naprawdę? Ja... nie wiem jak mogę ci odwdzięczyć.}
+{19010}{}{Idź i się z nią umów, podziękujesz mi później. Idź!}
+{20000}{}{[Wygląda na przestraszonego.] To znaczy, teraz?}
+{20010}{}{Tak. No idź.}
+{21000}{}{[Mike wraca cały rozpromieniony.] Zgodziła się! Zgodziła się! Nie masz pojęcia, jakie to dla mnie ważne! Tyle lat czekałem... Trzymaj, masz tu moją starą kurtkę i trochę kapsli. Nie zarabiam zbyt dużo...}
+{21010}{}{Dzięki, cieszę się że @sex@|mogłem||mogłam| pomóc. Kiedy się z nią spotykasz?}
+{22000}{}{No... jeszcze nie zdecydowałem.}
+{22010}{}{Mike, tą decyzję musisz podjąć sam. Powodzenia, i do zobaczenia.}
+{23000}{}{[Mike wygląda jakby zaraz miał eksplodować.] Nie wierzę ci, @sex@|pierdolony łgarzu||pierdolona dziwko|! Mary nigdy nie zrobiła by tego z kimś takim jak ty! [Uspokaja się.] Nie, mój aniołek nie jest taką dziewczyną, prawda?}
+{23010}{}{Aniołek? Po prawdzie to było jak w niebie... heheh. Na razie, frajerze.}
+{24000}{}{Nie, ja tylko... Nie mogę się zdecydować, co jeśli zrobię na niej złe wrażenie? Co jeśli mi odmówi?}
+{24010}{}{Musisz się zdecydować. Na razie, i powodzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{1020}{}{---}
+{2000}{}{Howdy stranger, have we met?@@Hello there stranger. Haven't I seen you here before?}
+{2010}{}{I guess not.@@I don't think so.}
+{2020}{}{Nope, and I think we shouldn't.@@No. Goodbye.@@Not really. Gotta go.}
+{3000}{}{Now I'll be damned, a new face. So, here's the deal. I'm Mike, the sheriff. I hope you aren't some kind of troublemaker, are you? Don't misunderstand me, a lot of travelers these days, and you never know who might be... you know, mentally incapable of normal behaviour.}
+{3010}{}{I'm here just to talk, not to cause trouble.@@I just want to talk.}
+{3020}{}{What do you mean by that?}
+{3030}{}{Bye, thanks for conversation.}
+{4000}{}{[He looks almost proud as he starts to speak.] Few days ago, or was it a week... Anyway, I shot a thief on the run. What a fool! He didn't even reach the gates, where he'd be shot by the guards. Never had a chance. That's what you get for stealing - a bullet in the head. Keep your hands to yourself, same thing goes for weapons.}
+{4010}{}{I see. I wanted to ask you something.}
+{4020}{}{I will be on my way.}
+{5000}{}{So, what do you want? I have some things to do, make it snappy.}
+{5010}{}{Why are you standing here in the casino?}
+{5020}{}{Is there any work or something with what I could fill my time?}
+{5030}{}{I talked with Mary.}
+{5040}{}{What can you tell me about this place?}
+{5050}{}{Do you know there is a girl called Kylee here in Junktown, well she seems to be scamming people for caps somehow. It would be nice if you helped me sort out my issue with her.}
+{5060}{}{Have you finally decided to settle a date for a meeting with Mary Ann?}
+{5070}{}{Bye sheriff, thanks for conversation.}
+{6000}{}{Well that's the thing... It's not Gizmos casino anymore, need to change that sign somehow. I think to just "Casino", "G" can be changed to "C", "z" to "s", "i" and "o" can stay, "m" to "n" doesn't look difficult, "a" is the only problem.}
+{6010}{}{Can I help you with that?}
+{6020}{}{I wanted to ask something else.}
+{7000}{}{No, you can't. I need Mary's help for that, she needs to tinker with that crap.}
+{7010}{}{Okay, something else.}
+{7020}{}{Who is Mary?}
+{8000}{}{Mary Ann... She is at the power house, working as a Junktown's technician. She does a fine job, I can't imagine anyone else in her place right now.}
+{8010}{}{Can I ask you something?}
+{8020}{}{I will be leaving.@@Bye, see you later.}
+{9000}{}{[He frowns nervously.] I don't know, maybe. There's something I just can't man up to do, but... ehh, forget about it, it's stupid. I shouldn't have even mentioned anything.}
+{9010}{}{No, please go on. I'm listening.}
+{9020}{}{I think I'd better leave now.}
+{10000}{}{There is something, personal. Can I rely on you not to tell the whole world about it?}
+{10010}{}{Sure, I can keep a secret.}
+{10020}{}{I don't know, maybe I'd better go.}
+{11000}{}{Here's the thing. I want you to go ask Mary if she's open. [He is chewing on his upper lip with an akward look.] I know, I know... It's childish but I can't, I'm... just shy, allright? If she would agree, it would mean a lot for me. Do you follow me? Also, you don't have to mention that I've send you, just get some answer out of her. Understood?}
+{11010}{}{I do understand. No problem, I'll do this for you.}
+{11020}{}{I'm not interested in your love affairs, bye.}
+{12000}{}{[He takes a chair, sits down and lights a ciggarete.] Thanks, I will be waiting. Come back as soon as you've talked with her.}
+{12010}{}{I'll be going then.}
+{13000}{}{[He stands up from the chair. The cigarette slips from between his fingers and lands down on the ground, but he doesn't care.] What was her response?}
+{13010}{}{She said no. I tried the best approach I could, but she simply didn't budge.}
+{13020}{}{She would like to go on a date with you. You should go and ask her out, really.}
+{13030}{}{She's a hot babe, you were right, and desperately looking for love. [You smile and wink.]}
+{14000}{}{Well, at least we've tried. Thanks, mate.}
+{14010}{}{Heh, that's the spirit.@@Tough luck.}
+{15000}{}{Junktown, well... Nothing much to it, except a lot of travelers passing by these days. For once, I'm surprised some of them linger around a bit and leave some caps at our traders, we need to make a living somehow. Other than that, like I said nothing much to it. Bunch of people surviving behind pre-war junk.}
+{15010}{}{I see, more questions.}
+{16000}{}{Kylee? You trusted that hooker and gave her caps? I won't solve your naive head, besides Kylee... Well she, is quite important to our community. [He grasps his belt to get it in order and puts on a big, fat smile.] If you know what I mean. Now, just go, you won't get any help here.}
+{16010}{}{Interesting, so she fucks you and you cover for her? Pathetic.}
+{16020}{}{That's it, I'm gone and leave me out of this.}
+{17000}{}{Shut your mouth, remember to whom your talking with. Slide away wastelander, just like everyone else who passes by Junktown. [He takes a hold of his sidearm, but doesn't pull it out.]}
+{17010}{}{[Leave.]}
+{18000}{}{[He looks a bit confused.] What do you mean by that? What did she say?}
+{18010}{}{She would like to go on a date with you. You should go and ask her out, really.}
+{18020}{}{She didn't really say much... She was mostly moanin' while I was @sex@|banging her like crazy||licking her pussy|.}
+{19000}{}{[He sighs with relief, sits down for a while and stands up again.] Really? I... I don't know how to thank you.}
+{19010}{}{Go and ask her for a date, you'll thank me later. Go!}
+{20000}{}{[He looks a bit scared.] You mean, right now?}
+{20010}{}{Yes, go. I'll wait here.}
+{21000}{}{[He comes back, beaming with joy.] She agreed to go on a date with me! I don't know to thank you, really, I've been dreaming about it for years! Here, have one of my old jackets and a few caps. Sheriff's wage isn't too high, you know.,,}
+{21010}{}{Thanks, I'm happy I could help. When are you meeting her again?}
+{22000}{}{Well, I haven't decided yet... I don't know... [He seems really confused.]}
+{22010}{}{Mike, I think it's time you make some decision by yourself. Good luck, and goodbye.}
+{23000}{}{[He explodes with anger.] I don't believe you. you're a fucking liar! She's not that type of the girl, she would never let someone like you to even touch her, not talking about... [He calms down a bit.] No, my little angel is a good girl, isn't she?}
+{23010}{}{Angel? Well, it felt like in heaven indeed. Goodbye, loser. }
+{24000}{}{No, I just... [He gets very nervous.] I just can't decide, I don't want to make a bad impression somehow... What if she'll refuse for some reason?}
+{24010}{}{Mike, I think it's time you make some decision by yourself. Good luck, and goodbye.}
+

@@ -1,0 +1,71 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+5 2010 #
+0 2020 @
+5 3000 economy_dialogs@dlg_PreparePrice 0 #
+6 3010 D _script economy_dialogs@d_IsEnoughCaps 1 2000 R _item p PID_SUPER_TOOL_KIT + 1 R _script economy_dialogs@r_TakeCaps 1 2000 R _script tc@r_AddFeeToLocker 1 100 #
+0 3020 @
+6 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Mechanic}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Yes? What do you need?@@Need anything?@@Yeah?@@What's up?}
+{2010}{}{Got any super tool kits?@@I heard you're selling super tool kits.}
+{2020}{}{Uh, wrong person. Bye.@@Nevermind.@@Whatever.@@Later.}
+{3000}{}{Sure, @lex stool2_price@ caps per one, want it?@@Yep, @lex stool2_price@ each. Interested?}
+{3010}{}{Yes.@@Yeah.@@Sure.@@You bet.}
+{3020}{}{Nah.@@Nope.@@Not really.@@Too expensive.}
+{4000}{}{Nice trading with you.@@Pleasure doing business.}
+{4010}{}{Sure, Bye.@@Goodbye.@@Later then.@@See you later.}
+
+[russ]
+{100}{}{Механик}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Да? Что вам нужно?}
+{2010}{}{Есть суперремнабор?}
+{2020}{}{Ух, обознался. До свидания.}
+{3000}{}{Да, @lex stool2_price@ крышек за штука, берешь?}
+{3010}{}{Да, давай.}
+{3020}{}{Неее.}
+{4000}{}{Вот держи.}
+{4010}{}{Отлично, спасибо.}
+
+[pols]
+{100}{}{Mechanik}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Tak? Czego potrzebujesz?}
+{2010}{}{Masz może duży zestaw narzędzi?}
+{2020}{}{Uch, nie ta osoba. Do widzenia.}
+{3000}{}{Jasne, @lex stool2_price@ kapsli za jeden. Bierzesz?}
+{3010}{}{Tak, poproszę.}
+{3020}{}{Nieee.}
+{4000}{}{Miło się z tobą handlowało.}
+{4010}{}{Pewnie, na razie.}
+
+[ptbr]
+{100}{}{Mecânico}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Sim, o que tu quer?}
+{2010}{}{Tem algum jogo grande de ferramentas?}
+{2020}{}{Um, pessoa errada. Até mais.}
+{3000}{}{Claro @lex stool2_price@ tampas por um, quer?}
+{3010}{}{Quero sim.}
+{3020}{}{Naah, deixa pra lá.}
+{4000}{}{Foi bom ter feito negócio contigo.}
+{4010}{}{Claro, valeu.}
+

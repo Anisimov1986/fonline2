@@ -1,0 +1,153 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _param p ST_INTELLECT > 3 #
+4 1020 D _param p ST_INTELLECT < 4 @
+2 2000 None 0 #
+3 2010 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+5 4010 #
+6 4020 @
+5 5000 None 0 #
+6 5010 #
+7 5020 #
+8 5030 #
+0 5040 @
+6 6000 None 0 #
+5 6010 #
+0 6020 @
+7 7000 None 0 #
+0 7010 #
+5 7020 #
+0 7030 @
+8 8000 None 0 #
+5 8010 #
+0 8020 &
+
+[engl]
+{100}{}{Torr}
+{200}{}{You see a very large man covered in dust with a small smile and a blank look on his face.}
+{210}{}{You see Torr Buckner, the town simpleton.}
+{1000}{}{Predialogue installations}
+{1010}{}{Smart}
+{1020}{}{Dumb}
+{2000}{}{Me Torr}
+{2010}{}{Nice to meet you, Torr. Anything interesting happening here lately?}
+{3000}{}{Me guard moo-moos from bugmen.}
+{3010}{}{Bugmen? Fascinating. Well, good luck with that.}
+{4000}{}{Me Torr [I'm Torr. Can I help you with anything?]}
+{4010}{}{You Torr [Hello, Torr. I do have a few questions for you.]}
+{4020}{}{Wuh happ. [I'm curious about what's been taking place in the town, recently.]}
+{5000}{}{Torr tell? [What would you like to know, my friend?]}
+{5010}{}{@pname@ here! [Tell me what's going on around here.]}
+{5020}{}{@pname@ Zzzzzzz. Ook? [I need a place to stay, please.]}
+{5030}{}{Want! [Where can I barter?]}
+{5040}{}{Go Torr. [That's all I need to know for now. Goodbye, Torr.]}
+{6000}{}{Ook! Ugmen, Ulik ribal, Smiley mook. [Well, I'm guarding the brahmin, as per usual. Mom's boyfriend, a nice fellow named Smiley, has encountered a few abandoned homes and camps he's trying to sell the location of. Quite exciting here, lately.)}
+{6010}{}{Torr? [There is a lot going on here. Let me ask you something else.]}
+{6020}{}{Ook! [That's enough information for now. Goodbye.]}
+{7000}{}{Zzzzz? Torr Zzzzz. [Well, you're welcome to sleep in my room - no charge.]}
+{7010}{}{Torr Zzzzzz? [You'll let me stay with you? That's very generous of you; I think I'll take you up on that. Thanks.]}
+{7020}{}{Zzzzz? [I don't think I need to sleep right now. Maybe another time. I do have some other questions for you, though.]}
+{7030}{}{Zzzzz No Torr. [I don't really want to sleep now. Thanks for your generous offer, though. Goodbye for now, my friend.]}
+{8000}{}{Uckner! Zoogy [I think you'll get the best prices right here at my family's place. You'll only get laughed at in the Golden Gecko.]}
+{8010}{}{Uckner Zoogy? [Thanks. I'll do my shopping here. Let me ask you something else.]}
+{8020}{}{Zoogy no. [Good advice. I don't think I need anything else right now, though. Goodbye.]}
+
+[russ]
+{100}{}{Торр}
+{200}{}{Вы видите очень большого человека, покрытого грязью, с маленькой улыбкой и пустым взглядом.}
+{210}{}{Вы видите Торра Бакнера, городского дурачка.}
+{210}{}{Вы видите большого, мускулистого человека в грязной одежде, покрытого грязью и пылью, с забитой улыбкой на лице.}
+{1000}{}{Predialogue installations}
+{1010}{}{Smart}
+{1020}{}{Dumb}
+{2000}{}{Я Торр.}
+{2010}{}{Привет, Торр. Что ты тут делаешь?}
+{3000}{}{Торр охранять му-му от злых тварей.}
+{3010}{}{Злые твари? Увлекательно. Что ж, удачи с этим.}
+{4000}{}{Я Торр (Я Торр. Могу ли я помочь вам с чем-либо?)}
+{4010}{}{Вы Торр (привет, Тор. У меня есть несколько вопросов к вам.)}
+{4020}{}{Ваза?. (Мне любопытно, что происходило в городе, в последнее время.)}
+{5000}{}{Я Торр.}
+{5010}{}{Я @pname@ ! (Скажи мне, что здесь происходит.)}
+{5020}{}{@pname@ Ы, а? (Мне нужно место для отдыха.)}
+{5030}{}{Хочу! (Вы указываете на вещи) (Где я могу пополнить запасы?)}
+{5040}{}{Ыыыы. (Это все, что мне нужно знать, на данный момент. Прощай, Тор.)}
+{6000}{}{Ууууу}
+{6010}{}{Ыыыы?}
+{6020}{}{Ага.}
+{7000}{}{Зззззз?}
+{7010}{}{Ыыыы.}
+{7020}{}{Зззззз?}
+{7030}{}{Ыыыы.}
+{8000}{}{Угауга.}
+{8010}{}{уга?}
+{8020}{}{Уга уга ыыыы.}
+
+[pols]
+{100}{}{Torr}
+{200}{}{Widzisz wielkiego, zakurzonego mężczyznę o pustym wyrazie twarzy.}
+{210}{}{Widzisz Torra Bucknera, miejscowego głupka.}
+{1000}{}{Predialogue installations}
+{1010}{}{Smart}
+{1020}{}{Dumb}
+{2000}{}{Ja Torr.}
+{2010}{}{Miło cię poznać, Torr. Dzieje się tu coś ciekawego?}
+{3000}{}{Ja bronić muciek przed robaloludami.}
+{3010}{}{Robaloludami? Fascynujące, powodzenia.}
+{4000}{}{Ja Torr. (Jestem Torr. W czym mogę ci pomóc?)}
+{4010}{}{Ej, Torr... (Cześć, Torr. @sex@|Chciałbym||Chciałabym| zadać kilka pytań.)}
+{4020}{}{Co jest? (Ciekawi mnie, czy w niedalekiej przeszłości miały tu miejsce jakieś interesujące wydarzenia.)}
+{5000}{}{Torr mówić. (Co chcesz wiedzieć?)}
+{5010}{}{@pname@ tutaj! (Opowiedz mi o okolicy.)}
+{5020}{}{@pname@ Zzz. Spać. Rozumie? (Szukam miejsca, w którym @sex@|mógłbym||mogłabym| odpocząć.)}
+{5030}{}{Chce! [Wskazujesz na różne rzeczy.] (Gdzie mogę pohandlować?)}
+{5040}{}{Ja iść, Torr. (To wszystko, czego @sex@|chciałem||chciałam|. Do widzenia, Torr.)}
+{6000}{}{Ook! Ja bronić muciek, Smiley sprzedać domy. Dużo dziać. (Cóż, zajmuję się pilnowaniem braminów, jak zwykle. Chłopak mamy, Smiley, znalazł kilka opuszczonych domów i obozów, szuka na nie kupców. Ogólnie, wszystko jest w porządku.)}
+{6010}{}{Torr? (W rzeczy samej. Pozwól, że spytam o coś innego.)}
+{6020}{}{Ook! (To chyba wszystko. Do widzenia, Torr.)}
+{7000}{}{Zzz? Torr zzz. (Jeśli chcesz, możesz przenocować w moim pokoju, za darmo.)}
+{7010}{}{Torr zzz? (Naprawdę, pozwalasz mi spać w swoim pokoju? Niezwykle miło z twojej strony. Dzięki.)}
+{7020}{}{Zzz? (Dzięki, może skorzystam. Mam kilka innych pytań.)}
+{7030}{}{Zzz nie, Torr. (Nie chce mi się teraz spać, niemniej szczerze dziękuję. Do widzenia, przyjacielu.)}
+{8000}{}{U Uknerów! (Sądzę, że najlepsze ceny oraz najszerszy asortyment oferujemy tutaj, w sklepie prowadzonym przez moją rodzinę.)}
+{8010}{}{Uknerowie? Ook. (Dziękuję. Jeśli będę się zaopatrywać, uczynię to w waszym sklepie. Pozwól, że spytam o coś innego.)}
+{8020}{}{Ja Uknerów tera nie. (Dziękuję za dobrą radę. W tym momencie jednak niczego nie potrzebuję. Do zobaczenia.)}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Smart}
+{1020}{}{Dumb}
+{2000}{}{Me Torr}
+{2010}{}{Nice to meet you, Torr. Anything interesting happening here lately?}
+{3000}{}{Me guard moo-moos from bugmen.}
+{3010}{}{Bugmen? Fascinating. Well, good luck with that.}
+{4000}{}{Me Torr [I'm Torr. Can I help you with anything?]}
+{4010}{}{You Torr [Hello, Torr. I do have a few questions for you.]}
+{4020}{}{Wuh happ. [I'm curious about what's been taking place in the town, recently.]}
+{5000}{}{Torr tell? [What would you like to know, my friend?]}
+{5010}{}{@pname@ here! [Tell me what's going on around here.]}
+{5020}{}{@pname@ Zzzzzzz. Ook? [I need a place to stay, please.]}
+{5030}{}{Want! [Where can I barter?]}
+{5040}{}{Go Torr. [That's all I need to know for now. Goodbye, Torr.]}
+{6000}{}{Ook! Ugmen, Ulik ribal, Smiley mook. [Well, I'm guarding the brahmin, as per usual. Mom's boyfriend, a nice fellow named Smiley, has encountered a few abandoned homes and camps he's trying to sell the location of. Quite exciting here, lately.)}
+{6010}{}{Torr? [There is a lot going on here. Let me ask you something else.]}
+{6020}{}{Ook! [That's enough information for now. Goodbye.]}
+{7000}{}{Zzzzz? Torr Zzzzz. [Well, you're welcome to sleep in my room - no charge.]}
+{7010}{}{Torr Zzzzzz? [You'll let me stay with you? That's very generous of you; I think I'll take you up on that. Thanks.]}
+{7020}{}{Zzzzz? [I don't think I need to sleep right now. Maybe another time. I do have some other questions for you, though.]}
+{7030}{}{Zzzzz No Torr. [I don't really want to sleep now. Thanks for your generous offer, though. Goodbye for now, my friend.]}
+{8000}{}{Uckner! Zoogy [I think you'll get the best prices right here at my family's place. You'll only get laughed at in the Golden Gecko.]}
+{8010}{}{Uckner Zoogy? [Thanks. I'll do my shopping here. Let me ask you something else.]}
+{8020}{}{Zoogy no. [Good advice. I don't think I need anything else right now, though. Goodbye.]}
+

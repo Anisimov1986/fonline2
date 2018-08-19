@@ -1,0 +1,470 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_storage_unit_jet = 1 #
+11 1020 D _var p q_storage_unit_jet = 2 #
+21 1030 D _var p q_storage_unit_jet = 4 #
+35 1040 D _var p q_storage_unit_jet = 6 #
+43 1050 D _var p q_storage_unit_jet = 8 #
+60 1060 D _var p q_storage_unit_jet } 9 #
+20 1070 D _var p q_storage_unit_jet = 3 #
+30 1080 D _var p q_storage_unit_jet = 5 #
+40 1090 D _var p q_storage_unit_jet = 7 @
+2 2000 None 0 #
+3 2010 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+8 7010 #
+9 7020 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+10 9010 #
+10 9020 @
+10 10000 None 0 #
+11 10010 R _var p q_storage_unit_jet = 2 @
+11 11000 None 0 #
+0 11010 #
+20 11020 D _item p PID_MEAT } 1 R _var p q_storage_unit_jet = 3 R _item p PID_MEAT - 1 R _param p ST_EXPERIENCE + 200 @
+20 12000 None 0 #
+21 12010 R _var p q_storage_unit_jet = 4 @
+21 13000 None 0 #
+0 13010 #
+30 13020 D _item p PID_BOTTLE_FULL } 1 R _var p q_storage_unit_jet = 5 R _param p ST_EXPERIENCE + 200 R _item p PID_BOTTLE_FULL - 1 #
+30 13030 D _item p PID_FULL_WATER_BAG } 1 R _var p q_storage_unit_jet = 5 R _param p ST_EXPERIENCE + 200 R _item p PID_FULL_WATER_BAG - 1 @
+30 14000 None 0 #
+31 14010 @
+31 15000 None 0 #
+32 15010 #
+32 15020 @
+32 16000 None 0 #
+33 16010 @
+33 17000 None 0 #
+34 17010 @
+34 18000 None 0 #
+35 18010 R _var p q_storage_unit_jet = 6 @
+35 19000 None 0 #
+0 19010 #
+40 19020 D _item p PID_CATS_PAW } 1 R _var p q_storage_unit_jet = 7 R _item p PID_CATS_PAW - 1 R _param p ST_EXPERIENCE + 250 @
+40 20000 None 0 #
+41 20010 #
+41 20020 @
+41 21000 None 0 #
+42 21010 @
+42 22000 None 0 #
+43 22010 R _var p q_storage_unit_jet = 8 @
+43 23000 None 0 #
+50 23010 #
+0 23020 @
+50 24000 None 0 #
+51 24010 #
+51 24020 #
+52 24030 R _var p q_storage_unit_jet = 9 R _param p ST_EXPERIENCE + 400 #
+51 24040 #
+51 24050 #
+51 24060 #
+51 24070 #
+51 24080 #
+51 24090 #
+51 24100 #
+51 24110 #
+51 24120 #
+51 24130 @
+51 25000 None 0 #
+0 25010 @
+52 26000 None 0 #
+0 26010 R _script dialog@r_OpenDoor 3 49 55 4763 #
+0 26020 R _script dialog@r_OpenDoor 3 49 55 4763 #
+0 26030 R _script dialog@r_OpenDoor 3 49 55 4763 @
+60 27000 None 0 &
+
+[engl]
+{100}{}{Vayne}
+{200}{}{You see: a happy plant}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{1040}{}{ }
+{1050}{}{ }
+{1060}{}{ }
+{1070}{}{ }
+{1080}{}{ }
+{1090}{}{ }
+{2000}{}{[The plant stares blankly at you.]}
+{2010}{}{Uhh... excuse me? I must be crazy... I'm talking to a plant-}
+{3000}{}{GLORIOUS to see you man! My name is Vayne. Guardian of Storage.}
+{3010}{}{Geez, you scared me. I didn't know you could talk...}
+{4000}{}{Apologies. Isn't this day just so... beautiful? Maybe just a little... GLORIOUS!}
+{4010}{}{Alright, that's enough, yapping plant. Do you know where the jet is? Some guy from Junktown told me it would be here.}
+{5000}{}{What do you mean- Ohhh! I know exactly what you want dude, you just want to get high don't ya? }
+{5010}{}{Wait what!? No I never said that. Look just tell me where it is!}
+{6000}{}{Ha ha. There's no need for hiding it, dude. It's all good, I love jet too.}
+{6010}{}{*sigh* Whatever. So is there jet here or not?}
+{7000}{}{Yeah... behind these doors you'll find some sweet jet down there. But you'll have to be approved by me. Sorry dude, but it's the rules of Storage. }
+{7010}{}{Storage? What's that?}
+{7020}{}{I don't care, just get me down there!}
+{8000}{}{Oh, it's just GLORIOUS! It's a neat little town down there, but the big dude told me I can't go down there because... well you know I'm a plant and all...like yeah.}
+{8010}{}{That's cute, now get me down there.}
+{9000}{}{Look bro, if you want to get some of that... GLORIOUS jet, you'll have to do some stuff for me.}
+{9010}{}{Oh my- ugh, fine. What do you want me to do?}
+{9020}{}{Sure, I'll help you.}
+{10000}{}{Now we're talking. Say, I get pretty hungry around here you know man. I've been eating some bogus rat carcasses, and lemme tell ya bro... it's only good when you get to the core.}
+{10010}{}{Well what do you want me to do about it?}
+{11000}{}{I dunno man, could you maybe go find me some meat? I've been itching for some of that thing called "steak." That would be... GLORIOUS!}
+{11010}{}{Fine. Be right back.}
+{11020}{}{I got you some steak. [Hold the steak out]}
+{12000}{}{Ahhh.... GLORIOUS! [Vayne snatches the meat from your hands. As he swallows, you can see a bulge slide down his stem.] My compliments to the chief! [He burps, in a manner only a plant could, and laughs heartily.]}
+{12010}{}{Okay, now that you stuffed your face, maybe you can get me down there, mister plant?}
+{13000}{}{Woah woah, sloooow it down man. Maybe you haven't met me. My name is Carnivorus Plant Vayne, Guardian of Storage. Bro, I'm just a plant, so maybe you could find some water? Just any kind of water would be GLORIOUS!}
+{13010}{}{Just any kind of water? Fine!}
+{13020}{}{I got a water bottle. Will this do?}
+{13030}{}{I have some water in this pouch.}
+{14000}{}{Alright dude! So fucking GLORIOUS! Okay okay, just pour it around me man. [You drizzle some water around the plant. Puddles sink into the ground and are absorbed by Vayne's roots.] Ohhhh yes! I can feel the growth happening. I can just feel it man!}
+{14010}{}{Ugh, this is taking way too long... You better let me in before I rip you out of the ground.}
+{15000}{}{No need to get violent dude, you know that I am giving you a chance to get in. Others... well nobody else came here, except a little wandering girl. Aww man, she just kept crying and crying about finding shelter. So I ate her and threw up her bones. }
+{15010}{}{You killed an innocent little girl!?}
+{15020}{}{Good, she deserved it.}
+{16000}{}{I wouldn't say she deserved it, but I had to do my job. You know what I'm saying man?}
+{16010}{}{Fine, sorry for snapping at you. So how many more jobs do I have to do for you?}
+{17000}{}{Two more things my friend, and I'll let you in for some... oh so GLORIOUS jet! You know, I've been pretty bored around here, all I've done for years on end is just sit here and guard.}
+{17010}{}{What do you consider fun?}
+{18000}{}{Know any good porn magazines? Aww don't give me that face bro, even GLORIOUS plants like me get pretty bored easily. Trust me, I'll even make the last thing easier for you.}
+{18010}{}{Uh... okay then.}
+{19000}{}{Just find me a porn magazine you would commonly find in the wasteland dude. Once I have it... oh.... it'd be so GLORIOUS!!}
+{19010}{}{I think I have an idea of one. Be right back.}
+{19020}{}{So I have this magazine, how's this?}
+{20000}{}{Cat's Paw? Duuuuuuude it sounds so hot! Drop that next to me man. [You toss the grossly imaged magazine next to the plant's roots.] Can't wait man, tonight's gonna be so fucking GLORIOUS!}
+{20010}{}{Ugh...}
+{20020}{}{Enjoy, I think it's pretty hot.}
+{21000}{}{Alright, alright. I'm starting to like you man. Guess what my last thing was? Find a friend for me. You know, because I get lonely here. Without a doubt, it's been a blast knowing you man.}
+{21010}{}{Great... we're friends now. So is that it?}
+{22000}{}{Dude, I guess that leaves me with the riddle you have to answer.}
+{22010}{}{I have to answer a riddle!? Damn it!!}
+{23000}{}{It's not my call man, it's just the rules. You have to give the right answer to the riddle. If you do, then I'll let you in, okay?}
+{23010}{}{Okay, I'm ready. Hit me with it!}
+{23020}{}{Not ready yet, give me some time.}
+{24000}{}{I trot into the cold bar without caring...
+People are staring, but you look at the ground...
+Terminals are my favorite thing around...
+Downloading information that I needed...
+My indicators have great senses...
+I can love someone easily...
+
+... What am I?}
+{24010}{}{A Brahmin?}
+{24020}{}{Fire Gecko?}
+{24030}{}{Cybernetic Dog?}
+{24040}{}{Robotic Horse?}
+{24050}{}{Robot Scout?}
+{24060}{}{Super Dog?}
+{24070}{}{Brotherhood of Steel?}
+{24080}{}{NCR Ranger?}
+{24090}{}{Frank Horrigan?}
+{24100}{}{Vault Terminal?}
+{24110}{}{Pig Rat?}
+{24120}{}{Deathclaw?}
+{24130}{}{Robot Deathclaw?}
+{25000}{}{Duuude I'm so sorry, but you're wrong.}
+{25010}{}{This riddle sucks...}
+{26000}{}{Ding ding ding, and we have a GLORIOUS correct answer. Congrats man, you can go into Storage. Where you can have all the GLORIOUS jet... Have fun man, and have a.... oh... yes.... GLORIOUS day.}
+{26010}{}{Awesome, thanks for the card. Bye now.}
+{26020}{}{Goodbye Vayne, it's been... GLORIOUS. Hahaha.}
+{26030}{}{Finally, see you around.}
+{27000}{}{Sup bro. Having a... GLORIOUS one?@@Cat's Paw....Awwwww yeah.@@Need more GLORIOUS steak.@@I AM GLORIOUS 5-00, PLEASE INSERT VIRGINS HERE.@@Happy to help such a GLORIOUS friend.@@I dunno man, maybe one day I'll grow.}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{1040}{}{ }
+{1050}{}{ }
+{1060}{}{ }
+{1070}{}{ }
+{1080}{}{ }
+{1090}{}{ }
+{2000}{}{[Растение в смятении смотрит на вас.]}
+{2010}{}{Эмм... извините? Должно быть у меня крыша поехала... Я разговариваю с ...растением.}
+{3000}{}{СЛАВНО видеть человека! Меня зовут Вэйн. Страж запасов.}
+{3010}{}{Ааа! Ты испугал меня блин! Не могу говорить...}
+{4000}{}{Хе-хе, извини. Ахх, что за денёк...прекрасный. Может даже немного...СЛАВНЫЙ!}
+{4010}{}{Ладно, завязывай трепаться лопух-переросток. Ты знаешь, где тут джет спрятан? Один мужик из Джанктауна послал меня сюда.}
+{5000}{}{Что вы имеете ввиду! Я знаю что вы хотите, вы хотите быть выше меня? }
+{5010}{}{Чего!? Я не это сказал. Просто скажи мне где джет!}
+{6000}{}{Ха-ха-ха. Нет нужны ничего прятать чувак, я тоже люблю джет.}
+{6010}{}{*вздох*. Итак, есть тут джет или нет?}
+{7000}{}{О, да... прямо за этими дверьми мы можете найти много сладкого удовольствия. Но вам нужно моё разрешение. Таковы правила. }
+{7010}{}{Хранилище? Что за?}
+{7020}{}{Да мне насрать, просто дайте мне войти туда!}
+{8000}{}{О, это СЛАВНЕНЬКО! Это славный маленький городок, но большой человек сказал мне, что я не могу туда войти, потому что... Потому что я растение...}
+{8010}{}{Вот и хорошо, тогда дай мне войти.}
+{9000}{}{Учти дружок, если ты хочешь получить... этого СЛАВНОГО джета, ты должен сделать кое-что для меня.}
+{9010}{}{О блядь, Замечательно. И что же тебе нужно?}
+{9020}{}{Конечно, я помогу.}
+{10000}{}{Теперь поговорим. Тут маловато еды вокруг, ты знаешь человек. Я ем эти фальшивые тушки крыс, и скажу тебе честно @sex@|братишка||сестричка|... вкусно, только если добраться до нутра.}
+{10010}{}{И чего ты тогда хочешь?}
+{11000}{}{Даже не знаю, может можешь найти мне немного мяса, человек? Если бы ты достал мне кое-что под названием "стейк", было бы СЛАВНО!}
+{11010}{}{Окей, я мигом.}
+{11020}{}{У меня есть стейк. [Достаёте сочный стейк]}
+{12000}{}{Аххх.... СЛАВНО! [Вэйн выхватывает у вас мясо. Он глотает, и комок еды скатывается внутри стебля сверху вниз.] Благодарю повара, *рыгает*, заебись.}
+{12010}{}{Хорошо, раз вы нажрались, мистер Растительность, могу я пойти за своим джетом?}
+{13000}{}{Ваа...помедленнее человек. Меня зовут Плотоядный Вэйн, страж хранилища. Бро, я просто растение, если бы вы могли найти немного воды..? Любая вода... это было бы СЛАВНЕНЬКО!}
+{13010}{}{Любая? Договорились!}
+{13020}{}{У меня есть одна, норм?}
+{13030}{}{У меня есть запасы в кармане.}
+{14000}{}{Правильно бро! Это, блядь, СЛАВНЕНЬКО! Полей вокруг. [Вы поливаете вокруг растения. Образовавшиеся лужи уходят в почву и впитываются корнями.] Ооо да...! Я чувствую рост. Я чувствую это, человек!}
+{14010}{}{Ухх... слишком долго. Давай живее, пока я не выдрал тебя с корнем.}
+{15000}{}{Нет повода нервничать, ты же знаешь, я дам тебе шанс получить, то что ты хочешь. Другие... другие ещё не приходили сюда, кроме одной маленькой девочки. Эхх Человек, она плакала и плакала, хотела найти приют. Я съел её и выплюнул кости. }
+{15010}{}{Ты убил невинное дитя!?}
+{15020}{}{Похоже она это заслужила.}
+{16000}{}{Не думаю, что она это заслуживала, но это моя работа. Вы понимаете меня человек?}
+{16010}{}{Хоршо, извините, то прервал. Что я там должен ещё сделать?}
+{17000}{}{Ещё две вещи, мой друг... Ох, СЛАВНЫЙ джет! Вы понимаете, мне очень скучно здесь, всё что я делаю долгие годы - сижу и охраняю.}
+{17010}{}{Что вас развеселит?}
+{18000}{}{Есть хорошая глянцевая клубничка? Не делай такое лицо чувак, даже такие СЛАВНЫЕ растения как я иногда впадаю в скуку. Поверь мне, ты мне - я тебе.}
+{18010}{}{Эмм... ок.}
+{19000}{}{Просто найди мне порно журнал, они встречаются на пустоши. У меня раньше был один...эххх...это было СЛАВНЕНЬКО!!}
+{19010}{}{Скоро вернусь.}
+{19020}{}{У меня есть журнал, что теперь?}
+{20000}{}{Кошачья лапка? Брооо...звучит жарко. Положи рядом со мной, человек. [Вы бросаете журнал рядом с корнями, развернутым на самом интересном месте.] Не могу ждать человек, сегодняшняя ночь будет адски СЛАВНЕНЬКОЙ!}
+{20010}{}{Ооо...}
+{20020}{}{Наслаждайся, я думаю это будет достаточно горячо.}
+{21000}{}{Да, да. Ты начинаешь мне нравится, человек. Думаешь какое было последнее задание? Найти мне друга. Я был очень одинок, пока не встретил вас.}
+{21010}{}{Великолепно... теперь мы друзья. И так?}
+{22000}{}{Друг, я думаю вам надо разгадать последнюю загадку.}
+{22010}{}{Я должен ответить? Вот дерьмо!}
+{23000}{}{Это не моё желание человек, это правила. Если вы ответите, то войдёте, согласны?}
+{23010}{}{Ну ладно. Давай!}
+{23020}{}{Дай мне немного времени.}
+{24000}{}{Я рысью в холодный бар без заботы ... 
+Люди смотрят вокруг, но вы посмотрите на землю ... 
+Терминалы моя любимая вещь ... 
+Загрузка информации это все что мне нужно ... 
+Мои индикаторы имеют чувства ... 
+Я могу любить кого-то легко ...
+
+... кто Я?}
+{24010}{}{Брамин?}
+{24020}{}{Огненный гекко?}
+{24030}{}{Киберпёс?}
+{24040}{}{Робо-лошадь?}
+{24050}{}{Робот разведчик?}
+{24060}{}{Суперпёс?}
+{24070}{}{Братство Стали?}
+{24080}{}{Рэйнджер НКР?}
+{24090}{}{Фрэнк Хорриган?}
+{24100}{}{Терминал Убежища?}
+{24110}{}{Свинокрыс?}
+{24120}{}{Коготь Смерти?}
+{24130}{}{Коготь Смерти Робот?}
+{25000}{}{Чувак, извини, но ты ошибся.}
+{25010}{}{Хуёвая загадка...}
+{26000}{}{Бам бам бам, и у нас есть СЛАВНЫЙ ответ. Поздравляю человек, ты можешь войти в хранилище, где много славного джета... Наслаждайся и.... и... о да.... СЛАВНОГО дня.}
+{26010}{}{Шикарно, спасибо. Прощай.}
+{26020}{}{До свидания, Вэйн. Это было... СЛАВНО..}
+{26030}{}{Ещё увидимся.}
+{27000}{}{СЛАВНО друг.@@Кошачья лапка...О да...@@Хочу больше СЛАВНЫХ стейков.@@Рад помочь такому СЛАВНОМУ другу.@@Не знаю человек, может однажды я вырасту ещё.}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{1040}{}{ }
+{1050}{}{ }
+{1060}{}{ }
+{1070}{}{ }
+{1080}{}{ }
+{1090}{}{ }
+{2000}{}{[The plant stares blankly at you.]}
+{2010}{}{Uhh... excuse me? I must be crazy... I'm talking to a plant-}
+{3000}{}{GLORIOUS to see you man! My name is Vayne. Guardian of Storage.}
+{3010}{}{AHH! Geez, you scared me. I didn't you could talk...}
+{4000}{}{Hehehe, my bad. Ahhh isn't this day just so... beautiful? Maybe just a little... GLORIOUS!}
+{4010}{}{Alright, that's enough yapping plant. Do you know where the jet is? Some guy from Junktown told me it would be here.}
+{5000}{}{What do you mean- Ohhh! I know exactly what you want dude, you just want to get high don't ya? }
+{5010}{}{Wait what!? No I never said that. Look just tell me where it is!}
+{6000}{}{Hahaha. There's no need for hiding it dude, It's all good, I love jet too.}
+{6010}{}{*sigh* Whatever. So is there jet here or not?}
+{7000}{}{Yeah... behind these doors you'll find some sweet jet down there. But you'll have to be approved by me. Sorry dude, but it's the rules of Storage. }
+{7010}{}{Storage? What's that?}
+{7020}{}{I don't care, just get me down there!}
+{8000}{}{Oh, it's just GLORIOUS! It's a neat little town down there, but the big dude told me I can't go down there because... well you know I'm a plant and all...like yeah.}
+{8010}{}{That's cute, now get me down there.}
+{9000}{}{Look bro, if you want to get some of that... GLORIOUS jet, you'll have to do some stuff for me.}
+{9010}{}{Oh my- ugh, fine. What do you want me to do?}
+{9020}{}{Sure, I'll help you.}
+{10000}{}{Now we're talking. Say, I get pretty hungry around here you know man. I've been eating some bogus rat carcuss, and lemme tell ya bro... it's only good when you get to the core.}
+{10010}{}{Well what do you want me to do about it?}
+{11000}{}{I dunno man, could you maybe go find me some meat? I've been itching for some of that thing called "steak." That would be... GLORIOUS!}
+{11010}{}{Fine. Be right back.}
+{11020}{}{I got you some steak. [Hold the steak out]}
+{12000}{}{Ahhh.... GLORIOUS! [Vayne snatches the meat from your hands. As he swallows, you can see a buldge slide down his stem.] Compliments to the chief *burp* hahaha.}
+{12010}{}{Okay, now that you stuffed your face, maybe you can get me down there mister plant?}
+{13000}{}{Woah woah, sloooow it down man. Maybe you haven't met me. My name is Carnivorus Plant Vayne, Guardian of Storage. Bro, I'm just a plant, so maybe if you could find some water? Just any kind of water would be GLORIOUS!}
+{13010}{}{Just any kind of water? Fine!}
+{13020}{}{I got a water bottle; will this do?}
+{13030}{}{I have some water in this pouch.}
+{14000}{}{Alright duuude! So fucking GLORIOUS! Okay okay, just pour it around me man. [You drizzle some water around the plant. Puddles decay into the ground and were absorbed into the roots.] Ohhhh yes! I can feel the growth happening. I can just feel it man!}
+{14010}{}{Ugh, this is taking way too long, you better let me in before I rip you from the ground.}
+{15000}{}{No need to get violent dude, you know that I am giving you a chance to get in. Others... well nobody else came here, except a little wandering girl. Awww man, she just kept crying and crying about finding shelter. So I ate her and threw up her bones. }
+{15010}{}{You killed an innocent little girl!?}
+{15020}{}{Good, she deserved it.}
+{16000}{}{I wouldn't say she deserved it, but I had to do my job. You know what I'm saying man?}
+{16010}{}{Fine, sorry for snapping at you. So how many more jobs do I have to do for you?}
+{17000}{}{Two more things my friend, and I'll let you in for some... oh so GLORIOUS jet! you know, I've been pretty bored around here, all I do for years on end is just sit here and guard.}
+{17010}{}{What do you consider fun?}
+{18000}{}{Know any good porn magazines? Aww don't give me that face bro, even GLORIOUS plants like me get pretty bored easily. Trust me, I'll even make the last thing easier for you.}
+{18010}{}{Uh... okay then.}
+{19000}{}{Just find me a porn magazine you would commonly find in the wasteland dude. Once I have it... oh.... it'd be so GLORIOUS!!}
+{19010}{}{I think I have an idea of one. Be right back.}
+{19020}{}{So I have this magazine, how's this?}
+{20000}{}{Cat's Paw? Duuuuuuude it sound so hot. Drop that next to me man. [You toss the gross imaged magazine next to the plant's roots.] Can't wait man, tonight's gonna be so fucking GLORIOUS!}
+{20010}{}{Ugh...}
+{20020}{}{Enjoy, I think it's pretty hot.}
+{21000}{}{Alright, alright. I'm starting to like you man. Guess what my last thing was? Find a friend for me. You know, because I get lonely here. Without a doubt, it's been a blast knowing you man.}
+{21010}{}{Great... we're friends now. So is that it?}
+{22000}{}{Dude, I guess that leaves me with the riddle you have to answer.}
+{22010}{}{I have to answer a riddle!? Damn it!!}
+{23000}{}{It's not my call man, it's just the rules. You have to give the right answer to the riddle. If you do, then I'll let you in, okay?}
+{23010}{}{Okay, I'm ready. Hit me with it!}
+{23020}{}{Not ready yet, give me some time.}
+{24000}{}{I trot into the cold bar without caring...
+People are staring, but you look at the ground...
+Terminals are my favorite thing around...
+Downloading information that I needed...
+My indicators have great senses...
+I can love someone easily...
+
+... What am I?}
+{24010}{}{A Brahmin?}
+{24020}{}{Fire Gecko?}
+{24030}{}{Cybernetic Dog?}
+{24040}{}{Robotic Horse?}
+{24050}{}{Robot Scout?}
+{24060}{}{Super Dog?}
+{24070}{}{Brotherhood of Steel?}
+{24080}{}{NCR Ranger?}
+{24090}{}{Frank Horrigan?}
+{24100}{}{Vault Terminal?}
+{24110}{}{Pig Rat?}
+{24120}{}{Deathclaw?}
+{24130}{}{Robot Deathclaw?}
+{25000}{}{Duuude I'm so sorry, but you're wrong.}
+{25010}{}{This riddle sucks...}
+{26000}{}{Ding ding ding, and we have a GLORIOUS correct answer. Congrats man, you can go into Storage. Where you can have all the GLORIOUS jet... Have fun man, and have a.... oh... yes.... GLORIOUS day.}
+{26010}{}{Awesome, thanks for the card. Bye now.}
+{26020}{}{Goodbye Vayne, it's been... GLORIOUS. Hahaha.}
+{26030}{}{Finally, see you around.}
+{27000}{}{Sup bro. Having a... GLORIOUS one?@@Cat's Paw....Awwwww yes.@@Need more GLORIOUS steak.@@I AM GLORIOUS 5-00, PLEASE INSERT VIRGINS HERE.@@Happy to help such a GLORIOUS friend.@@I dunno man, maybe one day I'll grow.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{1040}{}{ }
+{1050}{}{ }
+{1060}{}{ }
+{1070}{}{ }
+{1080}{}{ }
+{1090}{}{ }
+{2000}{}{[The plant stares blankly at you.]}
+{2010}{}{Uhh... excuse me? I must be crazy... I'm talking to a plant-}
+{3000}{}{GLORIOUS to see you man! My name is Vayne. Guardian of Storage.}
+{3010}{}{Geez, you scared me. I didn't know you could talk...}
+{4000}{}{Apologies. Isn't this day just so... beautiful? Maybe just a little... GLORIOUS!}
+{4010}{}{Alright, that's enough, yapping plant. Do you know where the jet is? Some guy from Junktown told me it would be here.}
+{5000}{}{What do you mean- Ohhh! I know exactly what you want dude, you just want to get high don't ya? }
+{5010}{}{Wait what!? No I never said that. Look just tell me where it is!}
+{6000}{}{Ha ha. There's no need for hiding it, dude. It's all good, I love jet too.}
+{6010}{}{*sigh* Whatever. So is there jet here or not?}
+{7000}{}{Yeah... behind these doors you'll find some sweet jet down there. But you'll have to be approved by me. Sorry dude, but it's the rules of Storage. }
+{7010}{}{Storage? What's that?}
+{7020}{}{I don't care, just get me down there!}
+{8000}{}{Oh, it's just GLORIOUS! It's a neat little town down there, but the big dude told me I can't go down there because... well you know I'm a plant and all...like yeah.}
+{8010}{}{That's cute, now get me down there.}
+{9000}{}{Look bro, if you want to get some of that... GLORIOUS jet, you'll have to do some stuff for me.}
+{9010}{}{Oh my- ugh, fine. What do you want me to do?}
+{9020}{}{Sure, I'll help you.}
+{10000}{}{Now we're talking. Say, I get pretty hungry around here you know man. I've been eating some bogus rat carcasses, and lemme tell ya bro... it's only good when you get to the core.}
+{10010}{}{Well what do you want me to do about it?}
+{11000}{}{I dunno man, could you maybe go find me some meat? I've been itching for some of that thing called "steak." That would be... GLORIOUS!}
+{11010}{}{Fine. Be right back.}
+{11020}{}{I got you some steak. [Hold the steak out]}
+{12000}{}{Ahhh.... GLORIOUS! [Vayne snatches the meat from your hands. As he swallows, you can see a bulge slide down his stem.] My compliments to the chief! [He burps, in a manner only a plant could, and laughs heartily.]}
+{12010}{}{Okay, now that you stuffed your face, maybe you can get me down there, mister plant?}
+{13000}{}{Woah woah, sloooow it down man. Maybe you haven't met me. My name is Carnivorus Plant Vayne, Guardian of Storage. Bro, I'm just a plant, so maybe you could find some water? Just any kind of water would be GLORIOUS!}
+{13010}{}{Just any kind of water? Fine!}
+{13020}{}{I got a water bottle. Will this do?}
+{13030}{}{I have some water in this pouch.}
+{14000}{}{Alright dude! So fucking GLORIOUS! Okay okay, just pour it around me man. [You drizzle some water around the plant. Puddles sink into the ground and are absorbed by Vayne's roots.] Ohhhh yes! I can feel the growth happening. I can just feel it man!}
+{14010}{}{Ugh, this is taking way too long... You better let me in before I rip you out of the ground.}
+{15000}{}{No need to get violent dude, you know that I am giving you a chance to get in. Others... well nobody else came here, except a little wandering girl. Aww man, she just kept crying and crying about finding shelter. So I ate her and threw up her bones. }
+{15010}{}{You killed an innocent little girl!?}
+{15020}{}{Good, she deserved it.}
+{16000}{}{I wouldn't say she deserved it, but I had to do my job. You know what I'm saying man?}
+{16010}{}{Fine, sorry for snapping at you. So how many more jobs do I have to do for you?}
+{17000}{}{Two more things my friend, and I'll let you in for some... oh so GLORIOUS jet! You know, I've been pretty bored around here, all I've done for years on end is just sit here and guard.}
+{17010}{}{What do you consider fun?}
+{18000}{}{Know any good porn magazines? Aww don't give me that face bro, even GLORIOUS plants like me get pretty bored easily. Trust me, I'll even make the last thing easier for you.}
+{18010}{}{Uh... okay then.}
+{19000}{}{Just find me a porn magazine you would commonly find in the wasteland dude. Once I have it... oh.... it'd be so GLORIOUS!!}
+{19010}{}{I think I have an idea of one. Be right back.}
+{19020}{}{So I have this magazine, how's this?}
+{20000}{}{Cat's Paw? Duuuuuuude it sounds so hot! Drop that next to me man. [You toss the grossly imaged magazine next to the plant's roots.] Can't wait man, tonight's gonna be so fucking GLORIOUS!}
+{20010}{}{Ugh...}
+{20020}{}{Enjoy, I think it's pretty hot.}
+{21000}{}{Alright, alright. I'm starting to like you man. Guess what my last thing was? Find a friend for me. You know, because I get lonely here. Without a doubt, it's been a blast knowing you man.}
+{21010}{}{Great... we're friends now. So is that it?}
+{22000}{}{Dude, I guess that leaves me with the riddle you have to answer.}
+{22010}{}{I have to answer a riddle!? Damn it!!}
+{23000}{}{It's not my call man, it's just the rules. You have to give the right answer to the riddle. If you do, then I'll let you in, okay?}
+{23010}{}{Okay, I'm ready. Hit me with it!}
+{23020}{}{Not ready yet, give me some time.}
+{24000}{}{I trot into the cold bar without caring...
+People are staring, but you look at the ground...
+Terminals are my favorite thing around...
+Downloading information that I needed...
+My indicators have great senses...
+I can love someone easily...
+
+... What am I?}
+{24010}{}{A Brahmin?}
+{24020}{}{Fire Gecko?}
+{24030}{}{Cybernetic Dog?}
+{24040}{}{Robotic Horse?}
+{24050}{}{Robot Scout?}
+{24060}{}{Super Dog?}
+{24070}{}{Brotherhood of Steel?}
+{24080}{}{NCR Ranger?}
+{24090}{}{Frank Horrigan?}
+{24100}{}{Vault Terminal?}
+{24110}{}{Pig Rat?}
+{24120}{}{Deathclaw?}
+{24130}{}{Robot Deathclaw?}
+{25000}{}{Duuude I'm so sorry, but you're wrong.}
+{25010}{}{This riddle sucks...}
+{26000}{}{Ding ding ding, and we have a GLORIOUS correct answer. Congrats man, you can go into Storage. Where you can have all the GLORIOUS jet... Have fun man, and have a.... oh... yes.... GLORIOUS day.}
+{26010}{}{Awesome, thanks for the card. Bye now.}
+{26020}{}{Goodbye Vayne, it's been... GLORIOUS. Hahaha.}
+{26030}{}{Finally, see you around.}
+{27000}{}{Sup bro. Having a... GLORIOUS one?@@Cat's Paw....Awwwww yeah.@@Need more GLORIOUS steak.@@I AM GLORIOUS 5-00, PLEASE INSERT VIRGINS HERE.@@Happy to help such a GLORIOUS friend.@@I dunno man, maybe one day I'll grow.}
+

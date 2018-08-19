@@ -1,0 +1,93 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+4 1020 R _var n name_mem_npc_player = 1 @
+3 2000 None 0 #
+5 2010 #
+0 2020 @
+4 3000 None 0 #
+5 3010 #
+0 3020 @
+5 4000 None 0 #
+4 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Skeeter}
+{200}{}{You see a ghoul wearing old, grease-stained clothing.}
+{210}{}{You see Skeeter, the Ghoul Gadgeteer.}
+{210}{}{You see a grubby but intelligent-looking ghoul, wearing greasy overalls with a micrometer sticking out of his pocket.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, I'm Skeeter.}
+{2010}{}{What do you do here?}
+{2020}{}{Uh, I was just looking around. Goodbye.}
+{3000}{}{Whatcha lookin' fer?}
+{3010}{}{What do you do here?}
+{3020}{}{Uh, I was just looking around. Goodbye.}
+{4000}{}{Mostly I jist sorta tinker with things. Take ‘em apart an try to put ‘em all back t'gether… mostly. Make ‘em work better… sometimes. Keepin' myself outta trouble. Know what I mean?}
+{4010}{}{I guess. Let me ask you something else.}
+{4020}{}{Well, I think I better go do something myself. Goodbye.}
+
+[russ]
+{100}{}{Скитер}
+{200}{}{Вы видите мертвяка в грязной засаленной одежде.}
+{210}{}{Вы видите Скитера, мертвячьего самоделкина.}
+{210}{}{Вы видите угловатого, но интеллигентно выглядящего мертвяка в засаленном плаще с торчащим из кармана микрометром.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Не знает имени}
+{1020}{}{Обычное начало}
+{2000}{}{Привет, я Скитер.}
+{2010}{}{Чем ты тут занимаешься?}
+{2020}{}{Я просто осматриваюсь. До свидания.}
+{3000}{}{Что?}
+{3010}{}{Что вы делаете здесь?}
+{3020}{}{Я просто осматриваюсь. До свидания.}
+{4000}{}{Я просто хорошо разбираюсь в таких вещах. Чаще всего стоит вешь разобрать и собрать заново - и все работает! Этим и живу.}
+{4010}{}{Позвольте мне задать вам еще вопрос.}
+{4020}{}{Ладно, пора мне идти, делом заняться.}
+
+[pols]
+{100}{}{Skeeter}
+{200}{}{Widzisz ghula ubranego w stary strój upaprany smarami.}
+{210}{}{Widzisz Skeetera, ghula - złotą rączkę.}
+{210}{}{Widzisz niechlujnego, ale wyglądającego na inteligentnego ghula, noszącego usmarowany strój ze śrubą mikrometryczną w kieszeni.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{No cześć, nazywam się Skeeter.}
+{2010}{}{Czym się zajmujesz?}
+{2020}{}{Tak tylko się rozglądam. Do widzenia.}
+{3000}{}{Czego szukasz?}
+{3010}{}{Co tutaj robisz?}
+{3020}{}{Tak tylko się rozglądam. Do widzenia.}
+{4000}{}{Jestem tutaj niby mechanikiem. Zazwyczaj po prostu grzebię przy różnych rzeczach. Rozbieram je, a potem próbuję je złożyć. Czasem przez to działają lepiej, czasem. Unikam kłopotów, rozumiesz?}
+{4010}{}{Chyba tak. Pozwól, że spytam o coś innego.}
+{4020}{}{Cóż, lepiej też pójdę się czymś zająć. Do widzenia.}
+
+[ptbr]
+{100}{}{Skeeter}
+{200}{}{Você vê um carniçal vestido de roupas velhas e manchadas de graxa.}
+{210}{}{Você vê o Skeeter, o Carniçal Bugiganga.}
+{210}{}{Você vê um caniçal sujo que parece ser inteligente com as vestes manchadas de graxa e com um micrómetro visível em seu bolso.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Diz aê, sou o Skeeter.}
+{2010}{}{O que faz aqui?}
+{2020}{}{Um, só estou dando uma olhada. Tchau.}
+{3000}{}{Procura alguma coisa?}
+{3010}{}{O que tu faz aqui?}
+{3020}{}{Um, só tou dando uma olhada. Valeu!}
+{4000}{}{Mó parte do tempo fico mexendo em equipamentos. Monto... desmonto... faço funcionarem melhor… as vezes. Me ocupo para tentar me manter fora de problemas. Sabe do que eu tou falando?}
+{4010}{}{Acho que sim. Queria te perguntar outra coisa.}
+{4020}{}{Ah, acho melhor eu ir. Até mais.}
+

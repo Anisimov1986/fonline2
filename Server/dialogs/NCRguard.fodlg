@@ -1,0 +1,69 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _param p MAIN_FACTION = 5 D or D _param p MAIN_FACTION = 6 #
+2 1020 @
+2 2000 None 0 @
+3 3000 None 0 #
+4 3010 R _script map_ncr@r_GiveWeapon 0  #
+0 3020 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Shady Sands Guard}
+{200}{}{You see: Shady Sands Guard.}
+{210}{}{This person seems to be a professional. It would be very unwise to cause any trouble while he's around.}
+{1000}{}{Initial preferences}
+{1010}{}{isncr}
+{1020}{}{-}
+{2000}{}{Don't do anything stupid.@@I'm watching you... scum.@@Obey the rules.@@Don't even think about stealing.@@Don't even try to set a finger on anybody!@@Don't think of doing anything smart.@@Keep moving, nothing to see here.@@I'm too old for this shit.@@I didin't sign up for this shit.@@I wish I had more bubble gum.@@This war is just making everyone paranoid, you never know when bullets start singin'.@@Are you going to stare at me for a whole year?@@What?@@The fuck you want?@@Yeah?@@Obey the rules and you'll be fine.@@Get moving.@@Get outta my sight.@@Get lost.@@Don't you have better things to do?@@They don't pay us shit.@@This job gets worse by every day.@@I need a drink.@@Got a smoke?@@I don't have time for this.@@I'm watching you.@@Keep moving.@@ I don't get paid enough for this.@@Oh look, another hotshot.@@Wonder if this fucking war will ever end.@@ Once I'm off duty, I'm heading to the saloon for a cold one.@@I wish I could sleep but I can't.@@Kilroy was here yesterday.@@NCR is a much better place to live than that Hub swamp.}
+{3000}{}{@sex@|Sir||Ma'm|?@Yes, @sex@|Sir||Ma'm|?}
+{3010}{}{Soldier, take this weapon.@@Take this weapon now.}
+{3020}{}{Keep on watch.@@Keep your post.@@Stand your ground.}
+{4000}{}{I will do my best.@@As you command.@@I will not fail.}
+
+[russ]
+{100}{}{Охранник}
+{200}{}{Вы видите охранника.}
+{210}{}{Вы видите профессионального охранника. Довольно крепкий парень. В любом случае не стоит попадаться ему под горячую руку.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{isncr}
+{1020}{}{-}
+{2000}{}{Смотри тут особо не возникай, и все будут здоровы.@@Я смотрю за тобой.@@Не нарушай.@@Будешь воровать - убью на месте.@@Попробуй только пальцем тронь кого-нибудь!}
+{3000}{}{Sir?}
+{3010}{}{Soldier, take this weapon [From your main hand slot] and use it.}
+{3020}{}{Keep on watch.}
+{4000}{}{Very well, Sir.}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz profesjonalnego strażnika. Wydaje się być doskonale wyszkolony, lepiej nie robić żadnych problemów w jego okolicy.}
+{1000}{}{Initial preferences}
+{1010}{}{isncr}
+{1020}{}{-}
+{2000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.@@}
+{3000}{}{Sir?}
+{3010}{}{Soldier, take this weapon [From your main hand slot] and use it.}
+{3020}{}{Keep on watch.}
+{4000}{}{Very well, Sir.}
+
+[ptbr]
+{100}{}{Guarda}
+{200}{}{Você vê um guarda.}
+{210}{}{Esta pessoa parece ser um profissional. Talvez não seja sábio causar qualquer problema enquanto ele estiver por perto.}
+{1000}{}{Initial preferences}
+{1010}{}{isncr}
+{1020}{}{-}
+{2000}{}{Cuidado com o que faz aqui.@@Tô de olho...@@Siga as leis.@@Nem pense em roubar.@@Não encoste um triz em ninguém aqui!@@Nem pense em fazer algo de esperto.@@Continua andando, não tem nada para ver aqui.@@Tô velho demais para essa merda.@@Eu não me candidatei para isto.@@Queria ter mais chiclete.@@Esta guerra tá fazendo todo mundo ficar paranóico. Nunca se sabe quando balas vão começar a voar por aí.@@Vai ficar aí me encarando pelo ano inteiro mesmo?@@O que é?@@Quê?@@Sim?@@Só seguir as regras e tudo vai ficar bem.@@Anda.@@Sai do meu caminho.@@Some daqui.@@Não tem nada de melhor a fazer?@@O salário é uma merda.@@Esse trabalho fica pior a cada dia.@@Preciso beber.@@Tem cigarro?@@Não tenho tempo para isso.@@Tou de olho.@@Continua andando.}
+{3000}{}{Senhor?}
+{3010}{}{Soldado, pega essa arma [do slot da sua mão principal] e use.}
+{3020}{}{Fica de olho.}
+{4000}{}{Tudo bem, Senhor.}
+

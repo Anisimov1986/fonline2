@@ -1,0 +1,327 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_npc_player = 0 #
+6 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 R _var p name_mem_npc_player = 1 @
+5 5000 None 0 #
+9 5010 #
+10 5020 #
+8 5030 #
+7 5040 #
+17 5050 D _var p jt_margaretfridge = 1 R _var p jt_margaretfridge = 2 #
+0 5060 @
+6 6000 None 0 #
+11 6010 D _var p q_jt_pete_toolkit = 1 D _item p PID_SUPER_TOOL_KIT } 1 R _var p q_jt_pete_toolkit = 2 R _item p PID_SUPER_TOOL_KIT - 1 R _param p ST_EXPERIENCE + 1000 #
+9 6020 #
+10 6030 D _var p q_jt_pete_toolkit = 0 #
+14 6040 D _var p jt_petejunkrepeatable = 0 #
+16 6050 D _script quest@quest_checkcd 1 9014 D _item p PID_JUNK } 5 D _var p jt_petejunkrepeatable > 0 R _script economy_dialogs@r_GiveCaps 1 100 R _item p PID_JUNK - 5 R _param p ST_EXPERIENCE + 750 R _script quest@quest_setcd 2 9014 122 R _var p jt_petejunkrepeatable = 2 R _script karma@r_AddKarma 1 10 #
+8 6060 #
+7 6070 #
+17 6080 D _var p jt_margaretfridge = 1 R _var p jt_margaretfridge = 2 #
+0 6090 @
+7 7000 None 0 #
+8 7010 #
+6 7020 #
+0 7030 @
+8 8000 None 0 #
+6 8010 #
+0 8020 @
+9 9000 None 0 #
+6 9010 #
+0 9020 @
+10 10000 None 0 #
+0 10010 R _var p q_jt_pete_toolkit = 1 R _script dialog@r_ShowQuestMessage 1 9004 #
+0 10020 @
+11 11000 None 0 #
+12 11010 D _param p SK_REPAIR { 80 R _param p SK_REPAIR + 20 R _var p q_jt_pete_toolkit = 2 #
+13 11020 D _param p SK_REPAIR > 80 R _var p q_jt_pete_toolkit = 3 @
+12 12000 None 0 #
+0 12010 R _script dialog@r_ShowQuestMessage 1 9004 @
+13 13000 None 0 #
+0 13010 R _script dialog@r_ShowQuestMessage 1 9004 @
+14 14000 None 0 #
+15 14010 R _var p jt_petejunkrepeatable = 1 #
+6 14020 #
+0 14030 @
+15 15000 None 0 #
+0 15010 #
+0 15020 @
+16 16000 None 0 #
+0 16010 #
+0 16020 @
+17 17000 None 0 #
+0 17010 R _script dialog@r_ShowQuestMessage 1 9015 &
+
+[engl]
+{100}{}{Pete}
+{200}{}{You see: a dirty old man, covered by stains of oil all over.}
+{210}{}{You see an old man, probably the towns's mechanic.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar.}
+{1020}{}{Player familiar.}
+{2000}{}{Hello there, why do visit old man Pete? Kids these days, so curious about everything... Shit, again... Just don't feel offended if I call you a kid, I'm old and tend to forget myself. [He gives a smile for a short moment, very warm and welcoming.]}
+{2010}{}{I just have some questions.@@I've got some questions.}
+{2020}{}{Nevermind.@@Whatever.@@I've gotta go.@@Later, gramps.}
+{3000}{}{Say what? [He turns the other side of his head,] I'm kinda deaf on one ear, speak up @sex@|boy||doll|.}
+{3010}{}{I have some questions, you deaf or something?}
+{3020}{}{Whatever.@@Nevermind.@@Stupid old fart...}
+{4000}{}{Questions? Well, just what do you want from me?}
+{4010}{}{Just want to talk to you.@@I just want to talk to you.}
+{5000}{}{Why didn't you say that already! Shoot.}
+{5010}{}{What do you think of Junktown?}
+{5020}{}{Have anything I could help with?}
+{5030}{}{I'm sorry, who are you again?}
+{5040}{}{What are you doing?}
+{5050}{}{Margaret is asking when will you fix her fridge.}
+{5060}{}{See you, take care.}
+{6000}{}{Want to bother the old man again, ehh?}
+{6010}{}{I brought the tool kit.}
+{6020}{}{What do you think of Junktown?}
+{6030}{}{Have anything I could help with?}
+{6040}{}{Say, you are doing a lot of maintance in your workshop or something like that... Don't you need some spare parts?}
+{6050}{}{I've found enough junk.@@ I've found more junk.@@Junk, more junk for you, Pete.}
+{6060}{}{I'm sorry, who are you again?}
+{6070}{}{What are you doing?}
+{6080}{}{Margaret sent me to ask you when will you fix her fridge.}
+{6090}{}{Bye, I'll go.}
+{7000}{}{Ehh, the old man is just kept here to fix this ol' water pump, and make it sure it's pumping.}
+{7010}{}{I'm sorry, who are you again?}
+{7020}{}{I see... Well, there's something else.}
+{7030}{}{I have to leave now. Bye, Pete.}
+{8000}{}{I'm Pete, some sort of mechanic you could say. I'm put at this water pump, because they think I'm too old to do anything. Fair share of truth that holds, yes indeed.}
+{8010}{}{I have more questions.}
+{8020}{}{Fine, I'm leaving.}
+{9000}{}{Nice place. Maybe I'm old, but I wasn't always like that! And when I was young, I didn't live here. Bunch of friendly people, that's all I will say.}
+{9010}{}{I see. There are more questions.}
+{9020}{}{Thanks for the info, see you.}
+{10000}{}{Huh? What you talking about? Do you think I'm that incapable? [He is clearly confused by what he just said.] Ehh, sorry. Listen, bring me a new set of tools. Those better ones, not the ordinary ones. I might teach you a thing or two about maintenance.}
+{10010}{}{I guess I can do that, sure.}
+{10020}{}{Doesn't ring a bell, go find them yourself.}
+{11000}{}{[He takes a good look at the tools you brought him.] Yes... Hmm... These will do. Thanks for helping me out, maybe now I'll be able to something more than just tinker around this ol' water pump.}
+{11010}{}{Good to hear that. Is there anything you can teach me about repairing things?}
+{11020}{}{Good to hear that. Is there anything you can teach me about repairing things?}
+{12000}{}{[He shows you a few tricks how tools can be used more efficiently.] That's all I can teach you. (Repair Skill: +20%.)}
+{12010}{}{Thanks, I'm gonna go now.@@Great, thanks.@@Yeah, thanks Pete.@@Thanks Pete, I gotta go now.}
+{13000}{}{I'm sorry, but your knowledge already exceeds mine. Good to know there are still some skillful mechanics out there.}
+{13010}{}{I was glad to you help you anyway, bye.@@Right.@@Yeah, right.@@I see. See you later, Pete.}
+{14000}{}{Work? Huh, this pump right here needs some part or two from time to time to keep him working. Good ol' pump, never fails me if I never fail it. [Sighs.] You could bring me junk, there's plenty of it out there in the Wasteland and I'd need it periodically, that is, of course if you find any.}
+{14010}{}{That sounds like just the job for me! Sure, I'll come back when I have some junk.}
+{14020}{}{I'd rather ask something else.}
+{14030}{}{That's not something I was thinking 'bout. Maybe I'll come back if I change my mind, thanks for the offer.}
+{15000}{}{Five pieces of junk would be a okay. Now git that junk, someone said pump has a leak... [Scratches his head.] Ol' pump can't fail us now, not on my watch!}
+{15010}{}{Hehe, sure it can't.}
+{15020}{}{Whatever.}
+{16000}{}{[The old man puts on glasses and takes a look at the junk piles in front of him.] Seems sufficient indeed, thanks. Keep 'em coming, for now it'll be enough - but come back after some time, as I might need more.}
+{16010}{}{Good, I'll come back later to check if you need more.}
+{16020}{}{Sure, no problem.}
+{17000}{}{Soon, believe me, soon. I have much work with this pump right here, oh yes.}
+{17010}{}{That's short, alright then. I will be heading back to Margaret.}
+
+[russ]
+{100}{}{Pete}
+{200}{}{You see: a dirty old man, covered by stains of oil all over.}
+{210}{}{You see: a dirty old man, covered by stains of oil all over.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar.}
+{1020}{}{Player familiar.}
+{2000}{}{Hello there, why do visit old man Pete? Kids these days, so curious about everything... Holy brahmin shit, I did it again! Just don't feel offended if I call you a kid, I'm very old and tend to forget my manners. [He gives a smile for a short moment, yet very warm and welcoming.]}
+{2010}{}{I just have some questions.}
+{2020}{}{I think I will leave you, "old man Pete".}
+{3000}{}{Say what? [He turns the other side of his head,] I'm deaf with one ear, please speak up @sex@|boy||doll|.}
+{3010}{}{I said I HAVE SOME QUESTIONS.}
+{3020}{}{Whatever... I'm leaving,}
+{4000}{}{Questions? [He seems to not comprehend what he just heard, repeating ''questions " to himself in a quite rambling while thinking.] ...well, just what do you want from me?}
+{4010}{}{Uhh, just talk to you.}
+{5000}{}{Why didn't you say that already! Shoot.}
+{5010}{}{What do you think of Junktown?}
+{5020}{}{Have anything I could help with?}
+{5030}{}{I'm sorry, who are you again?}
+{5040}{}{What are you doing?}
+{5050}{}{Margaret is asking when will you fix her fridge.}
+{5060}{}{See you, take care.}
+{6000}{}{Want to bother the old man again, ehh?}
+{6010}{}{I brought the tool kit.}
+{6020}{}{What do you think of Junktown?}
+{6030}{}{Have anything I could help with?}
+{6040}{}{Say, you are doing a lot of maintance in your workshop or something like that... Don't you need some spare parts?}
+{6050}{}{I've found enough junk.@@ I've found more junk.@@Junk, more junk for you, Pete.}
+{6060}{}{I'm sorry, who are you again?}
+{6070}{}{What are you doing?}
+{6080}{}{Margaret is asking when will you fix her fridge.}
+{6090}{}{Bye, I'll go.}
+{7000}{}{Ehh, the old man is just kept here to fix this ol' water pump, and make it sure it's pumping.}
+{7010}{}{I'm sorry, who are you again?}
+{7020}{}{I see... Well, there's something else.}
+{7030}{}{I have to leave now. Bye, Pete.}
+{8000}{}{I'm Pete, some sort of mechanic you could say. I'm put at this water pump, because they think I'm too old to do anything. Fair share of truth that holds, yes indeed.}
+{8010}{}{I have more questions.}
+{8020}{}{Fine, I'm leaving.}
+{9000}{}{Nice place. Maybe I'm old, but I wasn't always like that! And when I was young, I didn't live here. Bunch of friendly people, that's all I will say.}
+{9010}{}{I see. There are more questions.}
+{9020}{}{Thanks for the info, see you.}
+{10000}{}{Huh? What you talking about? Do you think I'm that incapable? [He is clearly confused by what he just said.] ...ehh, sorry. Listen, bring me a new set of tools. Those better ones, not the ordinary ones. I might teach you a thing or two about maintenance.}
+{10010}{}{I guess I can do that, sure.}
+{10020}{}{Doesn't ring a bell, I'll go away.}
+{11000}{}{[He takes a good look at the tools you brought him.] Yes... Hmm... These will do. Thanks for helping me out, maybe now I'll be able to something more than just tinker around this ol' water pump.}
+{11010}{}{Good to hear that. Is there anything you can teach me about repairing things?}
+{11020}{}{Good to hear that. Is there anything you can teach me about repairing things?}
+{12000}{}{[He shows you a few tricks how tools can be used more efficiently.] That's all I can teach you.}
+{12010}{}{Thanks, I'm gonna go now.}
+{13000}{}{I'm sorry, but your knowledge already exceeds mine. Good to know there are still some skillful mechanics out there.}
+{13010}{}{I was glad to you help you anyway, bye.}
+{14000}{}{Work? Huh, this pump right here needs some part or two from time to time to keep him working, good ol' pump, never fails me if I never fail it. [Sighs.] You could bring me junk, there's plenty of it out there in wasteland and I'd need it periodically, that is, of course if you find any.}
+{14010}{}{That sounds like just the job for me! Sure, I'll come back when I have some junk.}
+{14020}{}{I'd rather ask something else.}
+{14030}{}{That's not something I was thinking 'bout. Maybe I'll come back if I change my mind, thanks for the offer.}
+{15000}{}{Five pieces of junk would be a okay. Now git that junk, someone said pump has a leak... [Scratches his head.] Ol' pump can't fail us now, not on my watch!}
+{15010}{}{Hehe, sure it can't.}
+{15020}{}{Whatever.}
+{16000}{}{[The old man puts on glasses and takes a look at the junk piles in front of him.] Seems sufficient indeed, thanks. Keep 'em coming, for now it'll be enough - but come back after some time, as I might need more.}
+{16010}{}{Good, I'll come back later to check if you need more.}
+{16020}{}{Sure, no problem.}
+{17000}{}{Soon, believe me, soon. I have much work with this pump right here, oh yes.}
+{17010}{}{That's short, alright then. I will be heading back to Margaret.}
+
+[pols]
+{100}{}{Pete}
+{200}{}{Widzisz starszego mężczyznę ubranego w roboczy kombinezon upstrzony plamami po oleju i smarze.}
+{210}{}{Widzisz starego mężczyznę, wygląda na tutejszego mechanika.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar.}
+{1020}{}{Player familiar.}
+{2000}{}{Witaj @sex@|kolego, wpadłeś||laluniu, wpadłaś| w odwiedziny do starego Pete? Ach, ta dzisiejsza młodzież, wściubiają wszędzie nosa i węszą... Cholera, znowu... [Uśmiecha się ciepło.] Nie obraź się, jestem już stary, każdy jest dla mnie młodzikiem.}
+{2010}{}{@sex@|Chciałem||Chciałam| cię o coś spytać.}
+{2020}{}{Muszę już iść.}
+{3000}{}{@sex@|Mówiłeś||Mówiłaś| coś, @sex@|chłopcze||laleczko|? [Przekręca głowę w drugą stronę.] Mów głośniej, jestem głuchy na jedno ucho.}
+{3010}{}{@sex@|CHCIAŁEM||CHCIAŁAM| CIĘ O COŚ SPYTAĆ.}
+{3020}{}{Idę.}
+{4000}{}{Spytać? [Pete wydaje się nie rozumieć, co do niego mówisz.] Spytać, spytać... [Pogrąża się w myślach.] To co @sex@|chciałeś||chciałaś|?}
+{4010}{}{Eee... pogadać.}
+{5000}{}{No to czemu nie mówisz od razu?! Dawaj.}
+{5010}{}{Co sądzisz o Złomowie?}
+{5020}{}{Mogę ci w czymś pomóc?}
+{5030}{}{Kim jesteś?}
+{5040}{}{Czym się zajmujesz?}
+{5050}{}{Margaret chciała wiedzieć, kiedy naprawisz jej lodówkę.}
+{5060}{}{Muszę już iść.}
+{6000}{}{Czego chcesz, @sex@|chłopcze||mała|?}
+{6010}{}{@sex@|Przyniosłem||Przyniosłam| zestaw narzędzi.}
+{6020}{}{Co myślisz o Złomowie?}
+{6030}{}{@sex@|Mógłbym||Mogłabym| ci w czymś pomóc?}
+{6040}{}{Widzę, że spędzasz w tym warsztacie dużo czasu... Nie potrzeba ci może jakichś części zamiennych?}
+{6050}{}{Mam dla ciebie złom.@@Hej, @sex@|przyniosłem||przyniosłam| jeszcze trochę złomu.@@Złom, złom, jeszcze więcej złomu...}
+{6060}{}{Przepraszam, a kim ty właściwie jesteś?}
+{6070}{}{Co tutaj robisz?}
+{6080}{}{Margaret pyta, kiedy naprawisz lodówkę?}
+{6090}{}{Na razie.}
+{7000}{}{Nic ciekawego, siedzę tu i naprawiam tą starą pompę wodną, ciągle się psuje.}
+{7010}{}{Kim jesteś?}
+{7020}{}{Rozumiem, @sex@|chciałem||chciałam| spytać o coś innego.}
+{7030}{}{Muszę już iść.}
+{8000}{}{Jestem Pete, tutejszy mechanik. Może nie do końca, bo zajmuję się tylko tą starą pompą. Jestem już za stary, żeby robić cokolwiek innego...}
+{8010}{}{@sex@|Chciałbym||Chciałabym| cię jeszcze o coś spytać.}
+{8020}{}{Muszę spadać.}
+{9000}{}{Jest w porządku. Może jestem stary, ale nie zawsze tak było, widziałem dużo innych miejsc, i to jest najlepsze. Przyjaźni ludzie, w miarę bezpiecznie...}
+{9010}{}{Rozumiem, @sex@|chciałbym||chciałabym| spytać o jeszcze coś innego.}
+{9020}{}{Dzięki, czas na mnie.}
+{10000}{}{Że co, że nie daję sobie rady? Może i jestem stary, ale radzę sobie świetnie! Ale wiesz co... przydałby mi zestaw narzędzi, tylko nie jakieś dziadostwo, chcę porządne. Jak mi je skombinujesz, może nauczę Cię paru rzeczy...}
+{10010}{}{Jasne, mogę ich poszukać.}
+{10020}{}{To nie dla mnie. Do widzenia.}
+{11000}{}{No? I co tam @sex@|przyniosłeś||przyniosłaś|? Dawaj! [Ogląda dokładnie narzędzia, sprawdzając powoli każde z osobna.] Myślałem że znajdziesz coś lepszego... a, pal licho, niech będą. Dzięki za fatygę, może teraz uda mi się dojść do ładu z tą pompą.}
+{11010}{}{Dobra, a co z twoją obietnicą? Miałeś mnie nauczyć paru rzeczy...}
+{11020}{}{Świetnie, ale obiecałeś mi, że mnie podszkolisz w twoim fachu, pamiętasz?}
+{12000}{}{[W krótkim czasie Pete przekazuje ci część swojej wiedzy.] To wszystko, co mogę cię nauczyć. A teraz zmykaj, muszę odpocząć. (Umiejętność Naprawa: +20%)}
+{12010}{}{Dzięki, już mnie nie ma.}
+{13000}{}{No co ty, żarty sobie ze mnie stroisz? I to ja mam cię uczyć? Słuchaj, jestem zmęczony i nie mam ochoty na takie dowcipy... Mimo wszystko, dobrze wiedzieć że są jeszcze ludzie, którzy się znają na tym fachu.}
+{13010}{}{@sex@|Chciałem||Chciałam| tylko pomóc. Na razie.}
+{14000}{}{Szukasz roboty? Widzisz ten szmelc? Tak, o tej pompie mówię. To stare cholerstwo dawno by już się rozpadło, gdybym nad nią nie siedział dzień i noc. A i tak ciągle potrzebuję coś w niej wymienić... Zbierasz może złom? Pełno tego cholerstwa na Pustkowiach. Można  w nim znaleźć sporo przydatnych części, jeśli tylko masz o tym jako takie pojęcie. Jak przytaszczysz go trochę raz na jakiś czas, to może znajdzie się dla ciebie mała zapłata.}
+{14010}{}{W porządku, pobawię się w złomiarza.}
+{14020}{}{Może innym razem. Jeszcze jedno...}
+{14030}{}{To chyba nie dla mnie, ale dzięki za propozycję.}
+{15000}{}{Świetnie... Przynieś jakieś pięć kawałków, wszystko jedno, co będzie za złom. Nie pozwolę, żeby ta stara menda zdechła, dopóki ja tu siedzę.}
+{15010}{}{Taa... No to zabieram się do roboty.}
+{15020}{}{Jak sobie chcesz.}
+{16000}{}{[Pete zakłąda okulary i skrupulatnie wertuje złom, który @sex@|przyniosłeś||przyniosłaś|.] Hmmm, wygląda w porządku, coś z tego na pewno się przyda. Przynieś mi więcej za jakiś czas, pewnie nie minie długo zanim znowu coś się w tej pompie spieprzy.}
+{16010}{}{Świetnie. Wpadnę za jakiś czas.}
+{16020}{}{Mhm, jasne.}
+{17000}{}{Niedługo, niedługo... Na razie mam dużo roboty z tą cholerną pompą, siedzę tu praktycznie bez przerwy, tak, tak...}
+{17010}{}{Niedługo? No dobra, powiem to Margaret.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar.}
+{1020}{}{Player familiar.}
+{2000}{}{Hello there, why do visit old man Pete? Kids these days, so curious about everything... Shit, again... Just don't feel offended if I call you a kid, I'm old and tend to forget myself. [He gives a smile for a short moment, very warm and welcoming.]}
+{2010}{}{I just have some questions.@@I've got some questions.}
+{2020}{}{Nevermind.@@Whatever.@@I've gotta go.@@Later, gramps.}
+{3000}{}{Say what? [He turns the other side of his head,] I'm kinda deaf on one ear, speak up @sex@|boy||doll|.}
+{3010}{}{I have some questions, you deaf or something?}
+{3020}{}{Whatever.@@Nevermind.@@Stupid old fart...}
+{4000}{}{Questions? Well, just what do you want from me?}
+{4010}{}{Just want to talk to you.@@I just want to talk to you.}
+{5000}{}{Why didn't you say that already! Shoot.}
+{5010}{}{What do you think of Junktown?}
+{5020}{}{Have anything I could help with?}
+{5030}{}{I'm sorry, who are you again?}
+{5040}{}{What are you doing?}
+{5050}{}{Margaret is asking when will you fix her fridge.}
+{5060}{}{See you, take care.}
+{6000}{}{Want to bother the old man again, ehh?}
+{6010}{}{I brought the tool kit.}
+{6020}{}{What do you think of Junktown?}
+{6030}{}{Have anything I could help with?}
+{6040}{}{Say, you are doing a lot of maintance in your workshop or something like that... Don't you need some spare parts?}
+{6050}{}{I've found enough junk.@@ I've found more junk.@@Junk, more junk for you, Pete.}
+{6060}{}{I'm sorry, who are you again?}
+{6070}{}{What are you doing?}
+{6080}{}{Margaret sent me to ask you when will you fix her fridge.}
+{6090}{}{Bye, I'll go.}
+{7000}{}{Ehh, the old man is just kept here to fix this ol' water pump, and make it sure it's pumping.}
+{7010}{}{I'm sorry, who are you again?}
+{7020}{}{I see... Well, there's something else.}
+{7030}{}{I have to leave now. Bye, Pete.}
+{8000}{}{I'm Pete, some sort of mechanic you could say. I'm put at this water pump, because they think I'm too old to do anything. Fair share of truth that holds, yes indeed.}
+{8010}{}{I have more questions.}
+{8020}{}{Fine, I'm leaving.}
+{9000}{}{Nice place. Maybe I'm old, but I wasn't always like that! And when I was young, I didn't live here. Bunch of friendly people, that's all I will say.}
+{9010}{}{I see. There are more questions.}
+{9020}{}{Thanks for the info, see you.}
+{10000}{}{Huh? What you talking about? Do you think I'm that incapable? [He is clearly confused by what he just said.] Ehh, sorry. Listen, bring me a new set of tools. Those better ones, not the ordinary ones. I might teach you a thing or two about maintenance.}
+{10010}{}{I guess I can do that, sure.}
+{10020}{}{Doesn't ring a bell, go find them yourself.}
+{11000}{}{[He takes a good look at the tools you brought him.] Yes... Hmm... These will do. Thanks for helping me out, maybe now I'll be able to something more than just tinker around this ol' water pump.}
+{11010}{}{Good to hear that. Is there anything you can teach me about repairing things?}
+{11020}{}{Good to hear that. Is there anything you can teach me about repairing things?}
+{12000}{}{[He shows you a few tricks how tools can be used more efficiently.] That's all I can teach you. (Repair Skill: +20%.)}
+{12010}{}{Thanks, I'm gonna go now.@@Great, thanks.@@Yeah, thanks Pete.@@Thanks Pete, I gotta go now.}
+{13000}{}{I'm sorry, but your knowledge already exceeds mine. Good to know there are still some skillful mechanics out there.}
+{13010}{}{I was glad to you help you anyway, bye.@@Right.@@Yeah, right.@@I see. See you later, Pete.}
+{14000}{}{Work? Huh, this pump right here needs some part or two from time to time to keep him working. Good ol' pump, never fails me if I never fail it. [Sighs.] You could bring me junk, there's plenty of it out there in the Wasteland and I'd need it periodically, that is, of course if you find any.}
+{14010}{}{That sounds like just the job for me! Sure, I'll come back when I have some junk.}
+{14020}{}{I'd rather ask something else.}
+{14030}{}{That's not something I was thinking 'bout. Maybe I'll come back if I change my mind, thanks for the offer.}
+{15000}{}{Five pieces of junk would be a okay. Now git that junk, someone said pump has a leak... [Scratches his head.] Ol' pump can't fail us now, not on my watch!}
+{15010}{}{Hehe, sure it can't.}
+{15020}{}{Whatever.}
+{16000}{}{[The old man puts on glasses and takes a look at the junk piles in front of him.] Seems sufficient indeed, thanks. Keep 'em coming, for now it'll be enough - but come back after some time, as I might need more.}
+{16010}{}{Good, I'll come back later to check if you need more.}
+{16020}{}{Sure, no problem.}
+{17000}{}{Soon, believe me, soon. I have much work with this pump right here, oh yes.}
+{17010}{}{That's short, alright then. I will be heading back to Margaret.}
+

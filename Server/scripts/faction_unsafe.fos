@@ -1,0 +1,427 @@
+#include "_macros.fos"
+
+#include "stdlib_h.fos"
+#include "serializator.fos"
+#include "utils_h.fos"
+#define _FactionName            # (i)		("FACTION" +i+ "INFO")
+
+//Informs
+#define SAY_INFORM              #(cr, str_num)  cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, str_num );
+#define SAY_INFORM_LEX          #(cr, str_num, str)  cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, str_num, "$str" + str );
+
+//Checks
+#define CHECK_IF_PL_EXITS       # (id)          {if (id==0)                         {SAY_INFORM_LEX(cr,STR_PL_NOT_EXIST,player_name);return;}}
+#define CHECK_IF_SELF           # (id,id2)      {if (id==id2)                       {SAY_INFORM_LEX(cr,STR_PL_IS_YOU,player_name);return;}}
+#define CHECK_IF_ONLINE         # (player)      {if (!valid(player))                {SAY_INFORM_LEX(cr,STR_PL_MUST_ONLINE,player_name);return;}}
+#define CHECK_IF_ALREADY_MEMBER # (player)      {if (!FACTION_NONE(player))         {SAY_INFORM_LEX(cr,STR_PL_ALREADY_MEMBER,player_name);return;}}
+#define CHECK_IF_F_EXISTS       # (faction_name){if (faction_name=="")              {SAY_INFORM(cr,STR_CRITICAL);Log("Fail to get name by id"+cr.Param[MAIN_FACTION]);return;}}
+#define CHECK_IF_BUSY           # (faction,id)  {if (!InviteToFaction(faction,id))  {SAY_INFORM(cr,STR_PL_BUSY);return;}}
+#define CHECK_IF_PL_IN_YOUR_F   # (id)          {if (GetLvar(id,MAIN_FACTION)!=cr.Param[MAIN_FACTION])  {SAY_INFORM_LEX(cr,STR_PL_NOT_MEMBER,player_name);return;}}
+
+//Text
+#define STR_CRITICAL            (70800)
+#define STR_PL_NOT_EXIST        (70801)
+#define STR_PL_IS_YOU           (70802)
+#define STR_PL_MUST_ONLINE      (70803)
+#define STR_PL_ALREADY_MEMBER   (70804)
+#define STR_PL_BUSY             (70805)
+#define STR_PL_CANT_KICK        (70806)
+#define STR_PL_EXPELLED         (70807)
+#define STR_YOU_EXPELLED        (70808)
+#define STR_PL_NOT_MEMBER       (70809)
+#define STR_CANT_CH_OWN_R       (70810)
+#define STR_OP_NOT_ALLOWED      (70811)
+#define STR_YOU_LEADER          (70812)
+#define STR_FACTION_COST        (70813)
+#define STR_YOU_JOIN            (70814)
+#define STR_LATE                (70815)
+#define STR_INVALID_SYMBOLS     (70816)
+#define STR_SPACE_FL            (70817)
+#define STR_2SPACE              (70818)
+#define STR_F_ALREADY_EXISTS    (70819)
+#define STR_MIN_MAX_NAME        (70820)
+#define STR_YES                 (510)
+#define STR_NO                  (511)
+#define STR_INVITED             (70821)
+#define STR_DELETE              (70822)
+#define STR_INVITED_ALLY        (70823)
+
+import void ChangeFactionRank(uint id,uint newrank, bool update) from "faction_core";
+import void JoinFaction(uint id,uint faction,uint rank, bool update) from "faction_core";
+import bool QuitFaction(uint id) from "faction_core";
+import string GetFactionNameById (int id) from "faction_core";
+import int GetFactionCount()  from "faction_core";
+import void AddNewMessage( string text,int time, int showtimer, uint color , int factionmessage) from "stocmessages";
+import void SendFactionMessage(Critter@ FromCr, uint faction, string message) from "stocmessages";
+import uint RegisterNewFaction(string name)  from "faction_core";
+import void DeleteFactionByMember(uint crId) from "faction_core";
+import void AddFactionTo(uint faction, uint faction2, int relation, bool send) from "faction_cache";
+import bool IsRelation(uint faction, uint faction2, int relation) from "faction_cache";
+import Critter@ GetFactionLeader(uint faction) from "faction_cache";
+
+void unsafe_change_faction_relation(Critter& cr, int faction2, int relation, int, string@ , int[]@)
+{
+    if( !valid( cr ) || !FACTION_LEADER(cr) || faction2<=0 || relation>1 || relation<-1)
+		return;
+    int faction = cr.Param[MAIN_FACTION];
+    if (faction==faction2)
+        return;
+    if (faction2>GetFactionCount())
+        return;
+    if (IsRelation(faction,faction2,relation))
+        return;
+    if (relation==1)
+    {
+        Offer_Ally(cr, faction2, faction);
+        return;
+    }
+    else if (relation==-1)
+        AddFactionTo(faction2, faction, relation,false);
+    else if(relation==0 && IsRelation(faction2,faction,1))
+        AddFactionTo(faction2, faction, relation,false);
+
+    AddFactionTo(faction, faction2, relation,true);
+}
+
+bool InviteToAlly(int faction, int fromfaction) //Invite new player to faction
+{
+	if (faction==0 || fromfaction==0 )
+		return false;
+	int []INVITED;
+	if(!IsAnyData("FACTION" +faction+ "INVITATION"))
+	{
+		INVITED.insertLast(fromfaction);
+		SetAnyData("FACTION" +faction+ "INVITATION", INVITED);
+		INVITED.resize(0);
+		return true;
+	}
+	INVITED.resize(0);
+	return false;
+}
+
+void Offer_Ally(Critter& player, int faction, int fromfaction)
+{
+    Critter@ cr = GetFactionLeader(faction);
+    if (!valid(cr))
+    {
+        player.Say(SAY_NETMSG, "Leader of faction you want to ally, must be online");
+        return;
+    }
+    if (!InviteToAlly(faction, fromfaction))
+        return;
+        
+    string faction_name=GetFactionNameById(fromfaction);
+   
+    CreateTimeEvent(__FullSecond+REAL_SECOND(30), "e_ally", faction, true);
+	cr.ShowScreen(SCREEN_DIALOGBOX, 1, "answer_ALLY");
+	cr.SayMsg(SAY_DIALOGBOX_TEXT, TEXTMSG_TEXT, STR_INVITED_ALLY, "$str" + faction_name);
+	cr.SayMsg(SAY_DIALOGBOX_BUTTON(0), TEXTMSG_TEXT, STR_YES);
+	cr.SayMsg(SAY_DIALOGBOX_BUTTON(1), TEXTMSG_TEXT, STR_NO);
+}
+
+void answer_ALLY(Critter& cr, uint answerI, string& answerS)
+{
+	if( !valid( cr ) || !FACTION_LEADER(cr) || answerI != 0)
+		return;
+    
+    int faction = cr.Param[MAIN_FACTION];
+    int []INVITED(1);
+	if(IsAnyData("FACTION"+faction+"INVITATION"))
+	{
+		GetAnyData("FACTION"+faction+"INVITATION", INVITED);
+        uint faction2=INVITED[0];
+        if (faction2==0 || faction2>uint(GetFactionCount()))
+            return;
+        AddFactionTo(faction, faction2, 1,false);
+        AddFactionTo(faction2, faction, 1,true);
+		EraseAnyData("PLAYER"+cr.Id+"INVITATION"); 
+	}
+}
+
+uint e_ally(uint[]@ values)
+{
+	if (!valid(values) || values.length()==0)
+        return 0;
+    if(IsAnyData("FACTION"+values[0]+"INVITATION"))
+	{
+		EraseAnyData("FACTION"+values[0]+"INVITATION"); 
+	}
+	return 0;
+}
+
+void unsafe_delete_faction(Critter& cr, int  , int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) || !FACTION_LEADER(cr))
+		return;
+    string faction_name=GetFactionNameById(cr.Param[MAIN_FACTION]);
+	CHECK_IF_F_EXISTS(faction_name);
+ 
+    cr.ShowScreen(SCREEN_DIALOGBOX, 1, "answer_DELETE");
+    cr.SayMsg(SAY_DIALOGBOX_TEXT,TEXTMSG_TEXT, STR_DELETE, "$str"+faction_name);
+    cr.SayMsg(SAY_DIALOGBOX_BUTTON(0),TEXTMSG_TEXT,STR_YES);
+	cr.SayMsg(SAY_DIALOGBOX_BUTTON(1),TEXTMSG_TEXT,STR_NO);
+}
+    
+void answer_DELETE(Critter& cr, uint answerI, string& answerS)
+{
+	if( !valid( cr ) || !FACTION_LEADER(cr) || answerI != 0)
+		return;
+    DeleteFactionByMember(cr.Id);
+}   
+
+bool InviteToFaction(int faction, int id) //Invite new player to faction
+{
+	if (faction==0 || id==0 )
+		return false;
+	int []INVITED;
+	if(!IsAnyData("PLAYER"+id+"INVITATION"))
+	{
+		INVITED.insertLast(faction);
+		SetAnyData("PLAYER"+id+"INVITATION", INVITED);
+		INVITED.resize(0);
+		return true;
+	}
+	INVITED.resize(0);
+	return false;
+}
+void unsafe_SendFactionMessage(Critter& cr, int , int, int, string@ message, int[]@ values)
+{
+    if (FACTION_NONE(cr))
+        return;
+    SendFactionMessage(cr,cr.Param[MAIN_FACTION],message);
+}
+
+void unsafe_SendFactionMessageSimple(Critter& cr, int actionType, int, int, string@, int[]@ values)
+{
+    if (FACTION_NONE(cr))
+        return;
+
+    ShowSayScreen(cr, false, false, "Message", "", "faction_unsafe@unsafe_FactionMessageSimple", values);
+}
+
+void unsafe_FactionMessageSimple(Critter& cr, int actionType, int, int, string@ message, int[]@ values)
+{
+	if (!FACTION_MANAGER(cr))
+		return;
+	AddNewMessage( message,REAL_SECOND(30), 0, COLOR_FACTION_OWN, cr.ParamBase[MAIN_FACTION]);
+}
+
+void unsafe_create_faction(Critter& cr, int  , int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) || !FACTION_NONE(cr))
+		return;
+	if (cr.CountItem(41)<500000)
+	{
+        SAY_INFORM(cr,STR_FACTION_COST);
+		return;
+	}
+	ShowSayScreen(cr, false, true, "Faction name", "", "faction_unsafe@unsafe_create_faction_answer", null);
+}
+
+void unsafe_resign_from_faction(Critter& cr, int  , int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) || FACTION_NONE(cr))
+		return;
+	QuitFaction(cr.Id);
+}
+
+
+void unsafe_create_faction_answer(Critter& cr, int, int, int, string@ faction_name, int[]@ values)
+{
+    if (!FACTION_NONE(cr))
+        return;
+    
+    CreateNewFaction(cr,faction_name);
+}
+
+void unsafe_invite_to_faction(Critter& cr, int  , int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) || !FACTION_MANAGER(cr))
+		return;
+	ShowSayScreen(cr, false, true, "Player name", "", "faction_unsafe@unsafe_invite_to_faction_answer", null);
+}
+
+void unsafe_invite_to_faction_answer(Critter& cr, int, int, int, string@ player_name, int[]@ values)
+{
+	if( !valid( cr ) || !FACTION_MANAGER(cr))
+		return;
+	uint playerId = GetPlayerId(player_name);
+    CHECK_IF_PL_EXITS(playerId);
+    CHECK_IF_SELF(cr.Id,playerId);
+
+	Critter@ player = GetCritter(playerId);
+    CHECK_IF_ONLINE(player);
+    CHECK_IF_ALREADY_MEMBER(player);
+
+	string faction_name=GetFactionNameById(cr.Param[MAIN_FACTION]);
+    CHECK_IF_F_EXISTS(faction_name);
+	CHECK_IF_BUSY(cr.Param[MAIN_FACTION],playerId);
+
+	CreateTimeEvent(__FullSecond+REAL_SECOND(30), "e_invitation", playerId, true);
+	player.ShowScreen(SCREEN_DIALOGBOX, 1, "answer_INVITE");
+	player.SayMsg(SAY_DIALOGBOX_TEXT, TEXTMSG_TEXT, STR_INVITED, "$str" + faction_name);
+	player.SayMsg(SAY_DIALOGBOX_BUTTON(0), TEXTMSG_TEXT, STR_YES);
+	player.SayMsg(SAY_DIALOGBOX_BUTTON(1), TEXTMSG_TEXT, STR_NO);
+}
+
+uint e_invitation(uint[]@ values)
+{
+	if(IsAnyData("PLAYER"+values[0]+"INVITATION"))
+	{
+		EraseAnyData("PLAYER"+values[0]+"INVITATION"); 
+	}
+	return 0;
+}
+
+void answer_INVITE(Critter& cr, uint answerI, string& answerS)
+{
+	if(answerI != 0)
+		return;
+	int []INVITED(1);
+	if(IsAnyData("PLAYER"+cr.Id+"INVITATION"))
+	{
+		GetAnyData("PLAYER"+cr.Id+"INVITATION", INVITED);
+		string faction_name=GetFactionNameById(INVITED[0]);
+		if (faction_name!="")
+		{
+			SAY_INFORM_LEX(cr,STR_YOU_JOIN,faction_name);
+			JoinFaction(cr.Id,INVITED[0],FACTION_RANK_MEMBER, true);
+		}
+		EraseAnyData("PLAYER"+cr.Id+"INVITATION"); 
+	}
+	else
+        SAY_INFORM(cr,STR_LATE);
+}
+
+void unsafe_kick_from_faction(Critter& cr, int, int, int, string@ player_name, int[]@)
+{
+	if( !valid( cr ) || !FACTION_MANAGER(cr))
+		return;
+	uint playerId = GetPlayerId(player_name);
+    CHECK_IF_PL_EXITS(playerId);
+    CHECK_IF_SELF(cr.Id,playerId);
+    
+	if (GetLvar(playerId, MAIN_FACTION_RANK) >= FACTION_RANK(cr))
+	{
+        SAY_INFORM_LEX(cr,STR_PL_CANT_KICK,player_name);
+		return;
+	}
+	if (GetLvar(playerId,MAIN_FACTION)==cr.Param[MAIN_FACTION])
+	{
+		QuitFaction(playerId);
+        SAY_INFORM_LEX(cr,STR_PL_EXPELLED,player_name);
+		Critter@ player = GetCritter(playerId);
+		if (valid(player))
+            SAY_INFORM(player,STR_PL_EXPELLED);
+		return;
+	}
+    
+    SAY_INFORM_LEX(cr,STR_PL_NOT_MEMBER,player_name);
+}
+
+void unsafe_change_faction_rank(Critter& cr, int change, int, int, string@ player_name, int[]@)
+{
+	if( !valid( cr ) || !FACTION_LEADER(cr))
+		return;
+	uint playerId = GetPlayerId(player_name);
+    CHECK_IF_PL_EXITS(playerId);
+    CHECK_IF_SELF(cr.Id,playerId);
+    CHECK_IF_PL_IN_YOUR_F(playerId);
+
+    int newrank = GetLvar(playerId, MAIN_FACTION_RANK)+change;
+    if  ( newrank > FACTION_RANK_OFFICER || newrank < FACTION_RANK_MEMBER)
+	{
+        SAY_INFORM(cr,STR_OP_NOT_ALLOWED);
+		return;
+	}
+    ChangeFactionRank(playerId,newrank,true);
+}
+
+void unsafe_claim_faction(Critter& cr, int , int, int, string@ player_name, int[]@)
+{
+    if( !valid( cr ) || !FACTION_LEADER(cr))
+		return;
+    uint playerId = GetPlayerId(player_name);
+    CHECK_IF_PL_EXITS(playerId);
+    CHECK_IF_SELF(cr.Id,playerId);
+    
+    if (GetLvar(playerId,MAIN_FACTION)!=cr.Param[MAIN_FACTION])
+	{
+		SAY_INFORM_LEX(cr,STR_PL_NOT_MEMBER,player_name);
+		return;
+	}
+    ChangeFactionRank(cr.Id,FACTION_RANK_OFFICER,false);
+    ChangeFactionRank(playerId,FACTION_RANK_LEADER,true);
+}
+
+void CreateNewFaction( Critter& cr, string@ faction_name)
+{
+	if( !valid( cr ) || !FACTION_NONE(cr))
+		return;
+	if (!CheckNewFactionName(cr,faction_name))
+		return;
+	if (cr.CountItem(41)<500000)
+		return;
+	_CritDeleteItem( cr, PID_BOTTLE_CAPS, 500000 );
+    uint id = RegisterNewFaction(faction_name);
+    JoinFaction(cr.Id,id,FACTION_RANK_LEADER,false);
+}
+
+bool CheckNewFactionName( Critter& cr, string@ faction_name)
+{
+	if( faction_name.length() < FACTION_MIN_NAME_LENGTH || faction_name.length() > FACTION_MAX_NAME_LENGTH )
+	{
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_MIN_MAX_NAME, "$min" + FACTION_MIN_NAME_LENGTH + "$max" +FACTION_MAX_NAME_LENGTH);
+		return false;
+	}
+		
+	// Valid letters
+    string allLetters = __ValidNameLettersCommon + __ValidNameLettersCulture1;
+    for( uint i = 0, j = faction_name.length(); i < j; i++ )
+        if( findFirst( allLetters, faction_name[ i ] ) == -1 )
+		{
+            SAY_INFORM(cr,STR_INVALID_SYMBOLS);
+			return false;
+		}
+	
+	// Spaces
+    if( faction_name[ 0 ] == " " || faction_name[ -1 ] == " " )
+	{
+        SAY_INFORM(cr,STR_SPACE_FL);
+		return false;
+	}
+    for( int i = 0, j = faction_name.length() - 1; i < j; i++ )
+        if( faction_name[ i ] == " " && faction_name[ i + 1 ] == " " )
+		{
+            SAY_INFORM(cr,STR_2SPACE);
+			return false;
+		}
+	if (IfAlreadyExists(faction_name))
+	{
+        SAY_INFORM(cr,STR_F_ALREADY_EXISTS);
+		return false;
+	}
+	return true;
+}
+
+bool IfAlreadyExists(string nameofnewfaction)
+{
+	if(!IsAnyData("FACTIONS_COUNT"))
+		return false;
+	Serializator factioninfo;
+	int count = GetFactionCount();
+	string Name;
+	for (int i = 0; i <= count; i++)
+	{
+		if(factioninfo.Load(_FactionName(i)))
+		{
+			factioninfo.Get(Name);	
+			if (strlwr(Name)==strlwr(nameofnewfaction))
+			{
+				return true;				
+			}
+		}
+
+	}
+	return false;
+}

@@ -1,0 +1,149 @@
+// Author: skycast
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+import bool HasItemInHands(Critter@ cr, uint pid) from "utils";
+
+
+bool TryRepairItem( Critter& cr, Item& item ) // Export
+{
+    if( not item.IsDeteriorable() )
+        return true;
+
+    if( cr.Timeout[ TO_BATTLE ] > 0 )
+    {
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        return true;
+    }
+
+	if( item.Deterioration < 100 || item.Val4 >= MAXDURABILITY(item) || FLAG( item.BrokenFlags, BI_NOTRESC ))
+    {
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_DETERIORATION_NO_RESC );
+		return true;
+    }
+    // Repair
+    int    repair = cr.Skill[ SK_REPAIR ];
+    if( HasItemInHands (cr, PID_MULTI_TOOL) )
+    {
+        repair += 25;
+        if( Random( 0, 30 ) == 0 )
+            cr.DeleteItem( PID_MULTI_TOOL, 1 );
+    }
+    else if( HasItemInHands (cr, PID_SUPER_TOOL_KIT ))
+    {
+        repair += 50;
+        if( Random( 0, 30 ) == 0 )
+            cr.DeleteItem( PID_SUPER_TOOL_KIT, 1 );
+    }
+
+    // Repair
+    repair *=0.6;
+    repair = CLAMP( repair, 6, 95 );
+	int deteriorationProcent = item.Deterioration * 100 / MAX_DETERIORATION;
+
+        if( repair >= Random( 1, 100 ) )
+        {
+            if ( deteriorationProcent <= (MAXDURABILITY(item) - item.Val4))
+			{
+				item.Val4 += deteriorationProcent;
+				item.Deterioration = 0;
+			}
+			else if (deteriorationProcent > (MAXDURABILITY(item) - item.Val4))
+			{
+				item.Deterioration = (deteriorationProcent - (MAXDURABILITY(item) - item.Val4)) * 100;
+				item.Val4 = MAXDURABILITY(item);
+			}
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_DETERIORATION_REPAIR_SUCC );
+            cr.StatBase[ ST_EXPERIENCE ] += (deteriorationProcent-item.Deterioration/100)*5;
+			cr.PlaySound( "FIXSTILL.ACM", true );
+
+        }
+        else
+        {
+            if (item.Deterioration == MAX_DETERIORATION) 
+			{
+				item.Val4 += 10;
+				if (item.Val4 > MAXDURABILITY(item) ) item.Val4 = MAXDURABILITY(item);
+			}
+			DeteriorateItem( cr, item, MAX_DETERIORATION / 10 );
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_DETERIORATION_SERVICE_FAIL );
+        }
+    item.Update();
+    return true;
+}
+
+void DeteriorateItem( Critter& cr, Item& item, int deteriorationCount ) // Export
+{
+    if( deteriorationCount <= 0 || not item.IsDeteriorable() || FLAG( item.BrokenFlags, BI_ETERNAL ) || FLAG( item.BrokenFlags, BI_NOTRESC ))
+        return;
+    
+    item.Deterioration += deteriorationCount;
+    if( item.Deterioration >= MAX_DETERIORATION )
+    {
+        item.Deterioration = MAX_DETERIORATION;
+		if( item.Val4 == MAXDURABILITY(item))
+			SETFLAG( item.BrokenFlags, BI_NOTRESC );
+		if (valid(cr))
+		{
+			if(item.GetType() == ITEM_TYPE_WEAPON)
+				cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_DETERIORATION_WEAPON_BROKEN );
+			else if(item.GetType() == ITEM_TYPE_ARMOR)
+				cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_DETERIORATION_ARMOR_BROKEN );
+		}
+    }
+    item.Update();
+}
+
+void DeteriorateItem( Item& item, int deteriorationCount ) // Export
+{
+    if( deteriorationCount <= 0 || not item.IsDeteriorable() || FLAG( item.BrokenFlags, BI_ETERNAL ) || FLAG( item.BrokenFlags, BI_NOTRESC ))
+        return;
+    
+    item.Deterioration += deteriorationCount;
+    if( item.Deterioration >= MAX_DETERIORATION )
+    {
+        item.Deterioration = MAX_DETERIORATION;
+		if( item.Val4 == MAXDURABILITY(item))
+			SETFLAG( item.BrokenFlags, BI_NOTRESC );
+    }
+    item.Update();
+}
+
+void SetDeterioration( Item& item, int deteriorationProcent , int repairPool) // Export
+{
+    if( not item.IsDeteriorable() )
+        return;
+    UNSETFLAG( item.BrokenFlags, BI_NOTRESC );
+    deteriorationProcent = CLAMP( deteriorationProcent, 0, 100 );
+    item.Deterioration = MAX_DETERIORATION * deteriorationProcent / 100;
+	item.Val4 = MAXDURABILITY(item) - ( MAXDURABILITY(item) * CLAMP(repairPool, 0, 100)) / float(100);
+    if( deteriorationProcent >= 100 && item.Val4 >= MAXDURABILITY(item))
+        SETFLAG( item.BrokenFlags, BI_NOTRESC );
+    item.Update();
+}
+
+int GetDeteriorationProcent( Item& item ) // Export
+{
+    if( not item.IsDeteriorable() )
+        return 0;
+    if( FLAG( item.BrokenFlags, BI_NOTRESC ) )
+        return 100;
+    int value = item.Deterioration * 100 / MAX_DETERIORATION;
+    return CLAMP( value, 0, 100 );
+}
+
+void SetItemCost( Item& item )
+{
+    item.Cost = item.Proto.Cost * CLAMP(200 - GetDeteriorationProcent(item) - item.Val4, 1, 200)/ 200;
+}
+
+
+bool DeleteIfBroken( Item& item )
+{
+	if (FLAG( item.BrokenFlags, BI_NOTRESC ))
+	{
+		DeleteItem(item);
+		return true;
+	}
+	return false;
+}

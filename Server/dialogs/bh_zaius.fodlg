@@ -1,0 +1,245 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+7 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 #
+3 2020 #
+8 2030 #
+6 2040 #
+0 2050 @
+3 3000 None 0 #
+4 3010 #
+5 3020 #
+6 3030 #
+11 3040 #
+0 3050 @
+4 4000 None 0 #
+7 4010 #
+0 4020 @
+5 5000 None 0 #
+7 5010 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+0 6020 @
+7 7000 None 0 #
+4 7010 #
+5 7020 #
+6 7030 #
+11 7040 #
+0 7050 @
+8 8000 None 0 #
+7 8010 #
+9 8020 #
+0 8030 @
+9 9000 None 0 #
+0 9010 @
+11 10000 None 0 #
+12 10010 #
+7 10020 #
+0 10030 @
+12 11000 None 0 #
+7 11010 #
+0 11020 &
+
+[engl]
+{100}{}{Zaius}
+{200}{}{You see: Zaius.}
+{210}{}{You see Zaius, the mine foreman.}
+{210}{}{He seems to be preoccupied with something.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{You new in town?}
+{2010}{}{That's right.}
+{2020}{}{Yeah, rolled in a little while back.}
+{2030}{}{No, genius, I've been living here all along and you never noticed me.}
+{2040}{}{What can you tell me about this place?}
+{2050}{}{Yeah, gotta run though. Bye.}
+{3000}{}{Right. Well, I'm Zaius. Now that we're introduced... what can I do for you?}
+{3010}{}{How are things?}
+{3020}{}{You get along all right with the humans?}
+{3030}{}{Can you tell me about the town?}
+{3040}{}{What is this place, anyway?}
+{3050}{}{Nothing, I was just leaving.}
+{4000}{}{I'd have to say they're all right. Still... they could always be better.}
+{4010}{}{Uh, okay, I had some more questions.}
+{4020}{}{Maybe things will look up. See ya.}
+{5000}{}{Well, as the mutants are not only getting old and senile -- the gas keeps them young, or something -- I'd have to say things are pretty good. I mean, we don't want to kill everyone, and as far as I can tell, the humans don't think too poorly of us. ‘Course, that's not including the humans from the other places around here... now those are some bastards.}
+{5010}{}{Interesting. Let me ask you something else.}
+{5020}{}{Gotta go, bye.}
+{6000}{}{Well, the best person to talk to about that would be the Sheriff, over at the bank, or Steve, the greeter for the town.}
+{6010}{}{Heh. Thanks for all the information. Few more thanks I wanna ask, though.}
+{6020}{}{Hmm. All right, thanks.}
+{7000}{}{What can I do you for?}
+{7010}{}{How're things?}
+{7020}{}{You get along all right with the humans?}
+{7030}{}{Can you tell me about the town?}
+{7040}{}{What is this place, anyway?}
+{7050}{}{Nothing for me, see you around.}
+{8000}{}{Ha. Ha. Funny. Nothing better than having a smartass around.}
+{8010}{}{I had a couple questions.}
+{8020}{}{The main problem here is that you're an idiot.}
+{8030}{}{Right. Bye Zaius.}
+{9000}{}{The main problem is that I'm an idiot. I'm repeating this because I don't believe that your asshole just spouted something that sounded like words. Get out of my sight, maggot.}
+{9010}{}{Fuck you, then.}
+{10000}{}{This place is the Mining Foreman's Office, I manage the activities of our mine from here. Also, this is the only known place where one can buy Uranium ore. If there is another one, we never heard of it.}
+{10010}{}{Sounds like an important place.}
+{10020}{}{Right. One more question, please.}
+{10030}{}{That's all for now, bye!}
+{11000}{}{If it wasn't for that mine out there, there would be no Broken Hills now. Or ever. It keeps the town alive, not sure for how long though.}
+{11010}{}{Right. One more question, please.}
+{11020}{}{That's all for now, bye!}
+
+[russ]
+{100}{}{Зайус}
+{200}{}{Вы видите крепкого старого мутанта.}
+{210}{}{Вы видите Зайуса, бригадира шахты.}
+{210}{}{Приглядевшись, вы видите крепкого старого мутанта с киркой и в шахтерской каске.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Тупой}
+{1020}{}{Не знаком}
+{2000}{}{Ты @sex@|новичок||новенькая| в городе?}
+{2010}{}{Именно так.}
+{2020}{}{Да, так, @sex@|заглянул||заглянула| на обратном пути.}
+{2030}{}{Умный, да? Нет, я здесь всю жизнь живу, и ты меня ни разу не замечал.}
+{2040}{}{Что вы можете мне рассказать об этом месте?}
+{2050}{}{Да, уже надо бежать. Пока.}
+{3000}{}{Я Зайус. Теперь, когда мы представились... что я могу для вас сделать?}
+{3010}{}{Как дела?}
+{3020}{}{Вы нормально с людьми ладите?}
+{3030}{}{Ты можешь рассказать мне о городе?}
+{3040}{}{Что это за место?}
+{3050}{}{Ничего, я уже ухожу.}
+{4000}{}{Я должен был бы сказать, что они все в порядке. И все же ... они всегда могли бы быть лучше.}
+{4010}{}{Ну, ладно ,у меня было еще несколько вопросов.}
+{4020}{}{Maybe things will look up. See ya.}
+{5000}{}{Ну, поскольку мутанты не стареют и не дряхлеют - газ сохраняет их молодость или что-то вроде того - то скажу, что все чертовски хорошо. Я имею в виду, что мы не хотим никого убивать, и, в общем, люди не слишком плохо к нам относятся. Конечно, я не имею в виду людей из других городов... некоторые из них - редкостные ублюдки.}
+{5010}{}{Интересно. Позвольте мне спросить еще кое-что.}
+{5020}{}{Пора уходить. Пока.}
+{6000}{}{Почему бы тебе не прогуляться... м-ммм... скажем, в банк? Уверен, там найдется немало людей, который с радостью захотят с тобой поговорить.}
+{6010}{}{Спасибо за всю информацию. Все же я хочу сросить кое-что еще.}
+{6020}{}{Хорошо, спасибо. Пока.}
+{7000}{}{Чем могу быть полезен?}
+{7010}{}{Как дела?}
+{7020}{}{Вы нормально с людьми ладите?}
+{7030}{}{Ты можешь рассказать мне о городе?}
+{7040}{}{Что это за место?}
+{7050}{}{Пока, увидимся позже.}
+{8000}{}{Ха. Ха. Смешно. Ну ты и умник.}
+{8010}{}{У меня есть несколько вопросов .}
+{8020}{}{Основная проблема здесь в том, что ты идиот.}
+{8030}{}{Действительно. Пока.}
+{9000}{}{Основная проблема в том, что я идиот . Я повторяю это, потому что я не верю, что ты дебил можешь выдавить из себя хоть что-то, похожее на умные слова. Убирайся с глаз моих , опарыш.}
+{9010}{}{Пошел ты сам на хер.}
+{10000}{}{Это место офис Шахты, я руковожу деятельностью нашей шахты отсюда. Кроме того, это единственное известное место, где можно купить урановой руды . Если где-то есть ещё одно, мы никогда не слышали о нем.}
+{10010}{}{Похоже,важное место.}
+{10020}{}{Еще один вопрос, пожалуйста.}
+{10030}{}{Это все, до свидания!}
+{11000}{}{Если бы не было этой шахты, не было бы Брокен Хиллс . Она поддерживает город, не уверен как долго все ещё продлится.}
+{11010}{}{Еще один вопрос, пожалуйста.}
+{11020}{}{Это все, до свидания!}
+
+[pols]
+{100}{}{Zaius}
+{200}{}{Widzisz starego mutanta wyglądającego na twardziela.}
+{210}{}{Widzisz Zaiusa, sztygara kopalni.}
+{210}{}{Widzisz twardego, starego mutanta z kilofem i kaskiem górniczym.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{@sex@|Nowy||Nowa| w mieście, ta?}
+{2010}{}{Tak, zgadza się.}
+{2020}{}{Tak, @sex@|wpadłem||wpadłam| tu na jakiś czas.}
+{2030}{}{Nie, geniuszu. Żyję tu od lat, a ty mnie po prostu nie zauważyłeś.}
+{2040}{}{Co możesz mi powiedzieć o tym miejscu?}
+{2050}{}{Tak, ale muszę już lecieć. Do widzenia.}
+{3000}{}{Dobrze. Cóż, jestem Zaius. Skoro się już przedstawiliśmy... Co mogę dla ciebie zrobić?}
+{3010}{}{Jak leci?}
+{3020}{}{Jak wam idzie z ludźmi?}
+{3030}{}{Możesz opowiedzieć mi o mieście?}
+{3040}{}{Co to za miejsce?}
+{3050}{}{Nieważne, idę już.}
+{4000}{}{Jest w porządku. Ale... mogłoby być lepiej.}
+{4010}{}{Hm. Mam jeszcze kilka pytań.}
+{4020}{}{Może kiedyś będzie lepiej. Na razie.}
+{5000}{}{Cóż, mutanci powoli się starzeją - choć podobno gaz ma odmładzające właściwości - ale ogólnie, wszystko jest w porządku. To znaczy, nie chcemy wszystkich pozabijać i, o ile się nie mylę, ludzie też nie myślą o nas zbyt źle. No, oczywiście poza ludźmi skądinąd... Tamci to dopiero wredni skurwiele.}
+{5010}{}{Ciekawe. Pozwól, że spytam o coś innego.}
+{5020}{}{Muszę iść, na razie.}
+{6000}{}{Cóż, najlepiej pogadaj o tym z szeryfem, znajdziesz go koło banku, albo ze Stevem przy wejściu do miasta.}
+{6010}{}{Hm, dzięki za informacje. Chcę spytać o parę innych rzeczy.}
+{6020}{}{Hmm. W porządku, dzięki.}
+{7000}{}{Co mogę dla ciebie zrobić?}
+{7010}{}{Jak leci?}
+{7020}{}{Jak wam idzie z ludźmi?}
+{7030}{}{Możesz opowiedzieć mi o mieście?}
+{7040}{}{Co to za miejsce?}
+{7050}{}{Nieważne, idę już.}
+{8000}{}{Hahaha. Zabawne. Brakowało tu tylko takiego cwaniaka.}
+{8010}{}{Mam parę pytań.}
+{8020}{}{Głównym problemem tutaj jest fakt, że jesteś totalnym kretynem.}
+{8030}{}{Racja. Trzymaj się, Zaius.}
+{9000}{}{Głównym problemem tutaj jest fakt, że jestem totalnym kretynem. Powtarzam to głośno, bo po prostu kurwa nie wierzę że @sex@|taki jebany frajer||taka tępa cipa| powiedziała coś, co brzmiało jak te słowa. Zejdź mi z oczu.}
+{9010}{}{W takim razie, pierdol się.}
+{10000}{}{To biuro sztygara, kieruję stąd całą naszą kopalnią. To również jedyne znane miejsce, gdzie możesz zakupić rudę uranu. Jeśli istnieje jeszcze jakieś, w co wątpię, nigdy o nim nie słyszeliśmy.}
+{10010}{}{Brzmi na ważne miejsce.}
+{10020}{}{W porządku. Jeszcze jedno pytanie.}
+{10030}{}{That's all for now, bye!}
+{11000}{}{Gdyby nie ta kopalnie, nie byłoby Broken Hills. Ani teraz, ani nigdy. Trzyma to miejsce przy życiu, choć nie wiem, na jak długo.}
+{11010}{}{W porządku. Jeszcze jedno pytanie.}
+{11020}{}{To wszystko, co @sex@|chciałem||chciałam| wiedzieć. Do zobaczenia!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{You new in town?}
+{2010}{}{That's right.}
+{2020}{}{Yeah, rolled in a little while back.}
+{2030}{}{No, genius, I've been living here all along and you never noticed me.}
+{2040}{}{What can you tell me about this place?}
+{2050}{}{Yeah, gotta run though. Bye.}
+{3000}{}{Right. Well, I'm Zaius. Now that we're introduced... what can I do for you?}
+{3010}{}{How are things?}
+{3020}{}{You get along all right with the humans?}
+{3030}{}{Can you tell me about the town?}
+{3040}{}{What is this place, anyway?}
+{3050}{}{Nothing, I was just leaving.}
+{4000}{}{I'd have to say they're all right. Still... they could always be better.}
+{4010}{}{Uh, okay, I had some more questions.}
+{4020}{}{Maybe things will look up. See ya.}
+{5000}{}{Well, as the mutants are not only getting old and senile -- the gas keeps them young, or something -- I'd have to say things are pretty good. I mean, we don't want to kill everyone, and as far as I can tell, the humans don't think too poorly of us. ‘Course, that's not including the humans from the other places around here... now those are some bastards.}
+{5010}{}{Interesting. Let me ask you something else.}
+{5020}{}{Gotta go, bye.}
+{6000}{}{Well, the best person to talk to about that would be the Sheriff, over at the bank, or Steve, the greeter for the town.}
+{6010}{}{Heh. Thanks for all the information. Few more thanks I wanna ask, though.}
+{6020}{}{Hmm. All right, thanks.}
+{7000}{}{What can I do you for?}
+{7010}{}{How're things?}
+{7020}{}{You get along all right with the humans?}
+{7030}{}{Can you tell me about the town?}
+{7040}{}{What is this place, anyway?}
+{7050}{}{Nothing for me, see you around.}
+{8000}{}{Ha. Ha. Funny. Nothing better than having a smartass around.}
+{8010}{}{I had a couple questions.}
+{8020}{}{The main problem here is that you're an idiot.}
+{8030}{}{Right. Bye Zaius.}
+{9000}{}{The main problem is that I'm an idiot. I'm repeating this because I don't believe that your asshole just spouted something that sounded like words. Get out of my sight, maggot.}
+{9010}{}{Fuck you, then.}
+{10000}{}{This place is the Mining Foreman's Office, I manage the activities of our mine from here. Also, this is the only known place where one can buy Uranium ore. If there is another one, we never heard of it.}
+{10010}{}{Sounds like an important place.}
+{10020}{}{Right. One more question, please.}
+{10030}{}{That's all for now, bye!}
+{11000}{}{If it wasn't for that mine out there, there would be no Broken Hills now. Or ever. It keeps the town alive, not sure for how long though.}
+{11010}{}{Right. One more question, please.}
+{11020}{}{That's all for now, bye!}
+

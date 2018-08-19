@@ -1,0 +1,587 @@
+//
+// FOnline: 2238
+// Rotators
+//
+// follower.fos
+//
+
+#ifndef __FOLLOWER__
+#define __FOLLOWER__
+
+
+#include "_macros.fos"
+#include "follower_h.fos"
+#include "utils_h.fos"
+#include "mapdata_h.fos"
+#include "npc_common_h.fos"
+#include "_npc_pids.fos"
+#include "npc_planes_h.fos"
+
+void SetMode(Critter& master, Critter& follower, uint mode)
+{
+    follower.FollowerVarBase[FV_MODE] = mode;
+    follower.SetEvent(CRITTER_EVENT_IDLE, "_Idle");
+    follower.ModeBase[MODE_NO_HOME] = 0;
+	/*
+    if(mode == FOLLOWMODE_MINE)
+    {
+        follower.SkillBase[SK_SCIENCE] = 40;
+        follower.SetEvent(CRITTER_EVENT_IDLE, "prospect_miner@_Idle");
+        return;
+    }
+	*/
+    // This code prevents critters from being able to "hog" encounter locations
+    // when set in guard mode.
+    if(mode == FOLLOWMODE_FOLLOW)
+        _CritSetMode(follower, MODE_GECK);
+    else
+        _CritUnsetMode(follower, MODE_GECK);   // Only use GECK (don't delete map NPC is on) if actively following.
+
+    if(mode == FOLLOWMODE_GUARD)
+        follower.SetHomePos(follower.HexX, follower.HexY, follower.Dir);
+}
+
+// Events for NPC followers
+void SetEvents(Critter& critter)
+{
+    critter.SetEvent(CRITTER_EVENT_SMTH_ATTACK, "_SomeoneAttacked");
+    critter.SetEvent(CRITTER_EVENT_ATTACK, "_Attack");
+    critter.SetEvent(CRITTER_EVENT_ATTACKED, "_Attacked");
+    critter.SetEvent(CRITTER_EVENT_IDLE, "_Idle");
+    critter.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_ShowCritter");
+    critter.SetEvent(CRITTER_EVENT_DEAD, "_Dead");
+//    critter.SetEvent(CRITTER_EVENT_PLANE_RUN, "_PlaneRun");
+    critter.SetEvent(CRITTER_EVENT_PLANE_END, "_PlaneEnd");
+}
+
+void FollowerBaseInit(Critter& follower, bool firstTime)
+{
+
+	SetEvents(follower);
+
+    // Default values
+    if(firstTime)
+    {
+        follower.FollowerVarBase[FV_ATTACK_POLICY] = ATTACKPOLICY_NOONE;
+        follower.FollowerVarBase[FV_MODE] = FOLLOWMODE_FOLLOW;
+        follower.FollowerVarBase[FV_DISTANCE] = DISTANCE_MEDIUM;
+        follower.FollowerVarBase[FV_SPAWNMAP] = follower.GetMapId();
+        follower.FollowerVarBase[FV_LOYALITY] = 100;
+        _CritSetMode(follower, MODE_GECK);
+        //follower.AddTimeEvent("cte_UpdateLoyality", FOLLOWER_LOYALITY_INTERVAL, CTE_FOLLOWER_LOYALITY);
+    }
+	
+    Critter@ master = GetCritter(follower.FollowerVar[FV_MASTER]);
+    if(valid(master))
+        follower.FollowerVarBase[FV_FACTION] = GetGroupIndex(master);
+
+    _CritUnsetMode(follower, MODE_NO_BARTER);
+    _CritUnsetMode(follower, MODE_NO_DROP);
+    _CritUnsetExtMode(follower, MODE_EXT_NO_DETERIORATION);
+    _CritSetMode(follower, MODE_NO_ENEMY_STACK);
+    _CritSetExtMode(follower, MODE_EXT_FOLLOWER);
+    _CritSetMode(follower, MODE_DLG_SCRIPT_BARTER);
+
+    // No replication
+    follower.StatBase[ST_REPLICATION_TIME] = REPLICATION_DELETE;
+    // No faction
+    //SetGroupInfo(follower, FACTION_NONE, 1, FACTION_MODE_ALWAYS);
+	/*
+    if(follower.FollowerVar[FV_MODE] == FOLLOWMODE_MINE)
+    {
+        follower.SkillBase[SK_SCIENCE] = 40;
+        follower.SetEvent(CRITTER_EVENT_IDLE, "prospect_miner@_Idle");
+    }
+
+    if(follower.FollowerVar[FV_TYPE] == FOLLOWER_TYPE_COMPANION)
+    {
+        follower.StatBase[ST_REPLICATION_TIME] = FOLLOWER_RESPAWN_TIME;
+        _CritSetMode(follower, MODE_GECK);
+    }
+	*/
+}
+
+void critter_init(Critter& follower, bool firstTime)
+{
+    FollowerBaseInit(follower, firstTime);
+}
+/*
+int _PlaneRun(Critter& follower, NpcPlane& plane, int reason, uint& result0, uint& result1, uint& result2)
+{
+    if(plane.Type == AI_PLANE_ATTACK && reason == REASON_ATTACK_WEAPON)
+    {
+        uint percentage = 100 - follower.FollowerVar[FV_LOYALITY];
+        if(percentage == 100)
+        {
+            if(!Flee(follower))
+                return PLANE_RUN_GLOBAL;
+            return PLANE_DISCARD;
+        }
+        int thresholdhp = (follower.Stat[ST_MAX_LIFE] * percentage) / 100;
+        if(follower.Stat[ST_CURRENT_HP] >= thresholdhp)
+        {
+            DSay(follower, "HP: " + follower.Stat[ST_CURRENT_HP] + "/" + follower.Stat[ST_MAX_LIFE] + ", loyal:" + percentage + ", hp loyal: " + thresholdhp);
+            return PLANE_RUN_GLOBAL;
+        }
+        else
+        {
+            if(!Flee(follower))
+                return PLANE_RUN_GLOBAL;
+            return PLANE_DISCARD;
+        }
+    }
+    return PLANE_RUN_GLOBAL;
+}
+*/
+
+int _PlaneEnd(Critter& follower, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+{
+    if(plane.Identifier == PLANE_GOTO_EXIT)
+    {
+        follower.TransitToGlobal(false);
+        SETFLAG(follower.FollowerVarBase[FV_FLAGS], FV_FLAG_FLED_BATTLE);
+        return PLANE_DISCARD;
+    }
+    else if(plane.Type == AI_PLANE_WALK && plane.Identifier == PLANE_FOLLOWER_GOTO_MASTER)
+    {
+        Critter@ master = GetCritter(follower.FollowerVar[FV_MASTER]);
+        if(valid(master) && IsOnSameMap(master, follower) && (GetCrittersDistantion(master, follower) > GetDistance(follower)))
+        {
+            GoToMaster(master, follower);
+            return PLANE_DISCARD;
+        }
+    }
+    return PLANE_RUN_GLOBAL;
+}
+
+
+// Remove GECK mode to enable deletion of map
+void _Dead(Critter& cr, Critter@ killer)
+{
+    if(cr.FollowerVar[FV_TYPE] != FOLLOWER_TYPE_COMPANION)
+        _CritUnsetMode(cr, MODE_GECK);
+}
+
+void _ShowCritter(Critter& follower, Critter& critter)
+{
+	//if(IsOnBufferMap(follower))
+    //    return;
+
+    int  attack = follower.FollowerVar[FV_ATTACK_POLICY];
+    int  faction = follower.FollowerVar[FV_FACTION];
+
+    Map@ map = follower.GetMap();
+
+    // It's a friend, don't attack
+    if(IsFriend(follower, critter))
+        return;
+
+    if(attack == ATTACKPOLICY_NOONE)
+        return;
+
+    else if(attack == ATTACKPOLICY_FLEE && !IsTownMap(map) && GetGroupIndex(critter) == 0)
+    {
+        Flee(follower);
+        return;
+    }
+
+    else if(attack == ATTACKPOLICY_TRESSPASERS)
+    {
+        if(valid(map))
+        {
+            /*
+			if(IsTentMap(map) && (map.GetData(MAP_DATA_TENT_OWNER) == follower.FollowerVar[FV_MASTER]))
+            {
+                // Don't attack people who can see the tent even if they aren't friends
+                if(critter.IsPlayer())
+                    if(critter.IsKnownLoc(true, map.GetLocation().Id))
+                        return;
+
+                AttackCritter(follower, critter, __DeadHitPoints);
+            }
+            else if(IsBaseMap(map) && (map.GetData(MAP_DATA_FACTION) == faction))
+            {
+                AttackCritter(follower, critter, __DeadHitPoints);
+            }
+			*/
+        }
+    }
+
+    // Disabled policies - can't be set by players anymore (left for GMs)
+    else if(attack == ATTACKPOLICY_ANY_NPC)
+    {
+        if(critter.IsPlayer())
+            return;
+
+        AttackCritter(follower, critter, __DeadHitPoints);
+    }
+    else if(attack == ATTACKPOLICY_ANY_PLAYER)
+    {
+        if(!critter.IsPlayer())
+            return;
+
+        AttackCritter(follower, critter, __DeadHitPoints);
+    }
+    else if(attack == ATTACKPOLICY_ANYONE)
+    {
+        AttackCritter(follower, critter, __DeadHitPoints);
+    }
+    else if(attack == ATTACKPOLICY_FACTION_ENEMIES)
+    {
+        /*
+		if(!critter.IsPlayer())
+        {
+            if(!_IsFollower(critter))
+                return;
+            int status = GetStatus(faction, critter.FollowerVar[FV_MASTER]);
+
+            if(status == STATUS_ENEMY)
+                AttackCritter(follower, critter, __DeadHitPoints);
+            return;
+        }
+
+        int status = GetStatus(faction, critter.Id);
+
+        if(status == STATUS_ENEMY)
+            AttackCritter(follower, critter, __DeadHitPoints);
+		*/
+    }
+    else if(attack == ATTACKPOLICY_FACTION_NONMEMBERS)
+    {
+        /*
+		if(!critter.IsPlayer())
+        {
+            if(!_IsFollower(critter))
+                return;
+            int status = GetStatus(faction, critter.FollowerVar[FV_MASTER]);
+
+            if((uint(faction) != GetGroupIndex(critter)) && (status != STATUS_INVITED) && (status != STATUS_FRIEND))
+                AttackCritter(follower, critter, __DeadHitPoints);
+            return;
+        }
+
+        int status = GetStatus(faction, critter.Id);
+
+        if((uint(faction) != GetGroupIndex(critter)) && (status != STATUS_INVITED) && (status != STATUS_FRIEND))
+            AttackCritter(follower, critter, __DeadHitPoints);
+		*/
+    }
+}
+
+Critter@ GetMaster(Critter& follower)
+{
+    return GetCritter(follower.FollowerVar[FV_MASTER]);
+}
+
+bool IsAwayFromMaster(Critter& master, Critter& follower)
+{
+    if(!valid(master) || !valid(follower))
+        return true;
+    return(GetCrittersDistantion(master, follower) > GetDistance(follower));
+}
+
+void GoToMaster(Critter& master, Critter& follower)
+{
+    if(!valid(master) || !valid(follower))
+        return;
+
+    uint distance = GetDistance(follower);
+    bool run = false;
+    if(GetCrittersDistantion(master, follower) > (distance + 3))
+        run = true;
+
+    uint16 hx = master.HexX - 1 + 2 * Random(0, 1);
+    uint16 hy = master.HexY - 1 + 2 * Random(0, 1);
+    Map@   map = master.GetMap();
+    if(!valid(map))
+        return;
+    if(!FindNearestFreeHex(map, hx, hy, hx, hy))
+        return;
+
+    int cut = GetDistantion(follower.HexX, follower.HexY, hx, hy) - 1;
+    if(cut < 0)
+        cut = 0;
+
+    AddWalkPlane(follower, 0, PLANE_FOLLOWER_GOTO_MASTER, 0, hx, hy, master.Dir, run, cut);
+    follower.SetHomePos(hx, hy, master.Dir);
+}
+
+void _Idle(Critter& follower)
+{
+    if(Random(0, (5000 / FOLLOWER_WAIT_NORMAL)) == 0)    // Make action seem a bit less "mechanical"
+        ReloadWeapon(follower);
+
+    Critter@ master = GetMaster(follower);
+    if(!valid(master))
+    {
+        follower.Wait(FOLLOWER_WAIT_MASTER_OFFLINE);
+        return;
+    }
+
+    Map@ map = follower.GetMap();
+    if(valid(map) && map.GetLocation().IsEncounter() && !IsOnSameMap(master, follower))        // Follower was left behind fighting, so rejoin master on worldmap after it.
+    {
+        Flee(follower, false);
+    }
+
+    // If the critter is not following, no need to go further.
+    if(follower.FollowerVar[FV_MODE] != FOLLOWMODE_FOLLOW)
+    {
+        follower.Wait(FOLLOWER_WAIT_MANUAL_MODE);
+        return;
+    }
+
+    if(IsOnSameMap(master, follower) && IsAwayFromMaster(master, follower))
+    {
+        GoToMaster(master, follower);
+        return;
+    }
+
+    follower.Wait(FOLLOWER_WAIT_NORMAL);
+}
+
+bool _Attacked(Critter& follower, Critter& attacker)
+{
+    // A friend attacked (maybe an accident?). Don't fire back
+    if(IsFriend(follower, attacker))
+    {
+        if(IsMaster(follower, attacker) && _IsSlave(follower))
+        {
+            //DLog("Slave attacked, increasing loyality 0-1%");
+            //ModifyLoyality(follower, 0, 1);
+        }
+        return true;
+    }
+
+    if(follower.FollowerVar[FV_ATTACK_POLICY] == ATTACKPOLICY_FLEE)
+    {
+        Flee(follower);
+        return false;
+    }
+    return false;
+}
+
+bool _Attack(Critter& follower, Critter& target)
+{
+    if(follower.FollowerVar[FV_ATTACK_POLICY] == ATTACKPOLICY_FLEE)
+    {
+        Flee(follower);
+        return true;
+    }
+
+    //if(IsTownMap(follower.GetMap()) && !IsFlaggedAsIllegal(target))
+	if(IsTownMap(follower.GetMap()))
+    {
+        Critter@ owner = GetCritter(follower.FollowerVar[FV_MASTER]);
+        if(!valid(owner))
+            return false;
+		/*
+        array<Critter@> guards;
+        uint            n = follower.GetMap().GetCritters(0, FIND_ALL | FIND_ONLY_NPC, guards);
+        for(uint i = 0; i < n; i++)
+        {
+            if(_CritHasExtMode(guards[i], MODE_EXT_GUARD) && owner.IsSeenBy(guards[i]))
+                AttackCritter(guards[i], owner);
+        }
+		*/
+    }
+
+    return false;
+}
+
+void _SomeoneAttacked(Critter& follower, Critter& fromCrit, Critter& target)
+{
+    if(IsNonAggressive(follower) || follower.FollowerVar[FV_ATTACK_POLICY] == ATTACKPOLICY_FLEE)       // The critter is not aggressive so it shouldn't care.
+    {
+        follower.ErasePlane(AI_PLANE_ATTACK, true);
+
+        if(follower.FollowerVar[FV_ATTACK_POLICY] == ATTACKPOLICY_FLEE)
+            Flee(follower);
+        return;
+    }
+
+    // A squad member attacked someone who's not a friend. He must suffer.
+    if(IsSquadMember(follower, fromCrit) && !(IsFriend(follower, target)))
+    {
+        AttackCritter(follower, target, __DeadHitPoints);
+    }
+
+    // If the target is the followers master or another follower of the master, attack the purpetrator if he's not a friend
+    if(IsSquadMember(follower, target) && !IsFriend(follower, fromCrit))
+    {
+        AttackCritter(follower, fromCrit, __DeadHitPoints);
+    }
+}
+
+// Retrieve how many hexes away the follower should be from the master
+uint GetDistance(Critter& follower)
+{
+    uint dist = follower.FollowerVar[FV_DISTANCE];
+
+    if(dist == DISTANCE_SHORT)
+        return 3;
+    else if(dist == DISTANCE_MEDIUM)
+        return 7;
+    else if(dist == DISTANCE_LONG)
+        return 15;
+    else
+        return DISTANCE_SHORT;
+}
+
+
+bool IsMaster(Critter& follower, Critter& critter)
+{
+    if(!critter.IsPlayer())
+        return false;
+
+    return(critter.Id == uint(follower.FollowerVar[FV_MASTER]));
+}
+
+bool IsOnBufferMap(Critter& follower)
+{
+    return(follower.GetMap().GetProtoId() == 228);
+}
+
+bool IsOnSameMap(Critter& critter1, Critter& critter2)
+{
+    return(critter1.GetMapId() == critter2.GetMapId());
+}
+
+bool IsOnWorldmap(Critter& critter)
+{
+    return(critter.GetMapId() == 0);
+}
+
+// Checks if a critter is considered friendly
+bool IsFriend(Critter& follower, Critter& critter)
+{
+    // No master, don't consider anyone enemy
+    if(follower.FollowerVar[FV_MASTER] == 0)
+        return true;
+
+    //uint myMasterFaction = GetPlayerFaction(follower.FollowerVar[FV_MASTER]);
+	uint myMasterFaction = 0;
+    if(critter.IsPlayer())
+    {
+        if(IsMaster(follower, critter))
+            return true;
+		/*
+        if(myMasterFaction > 1)
+        {
+            if(int(myMasterFaction) == _GroupIndex(critter))
+                return true;
+            uint status = GetStatus(myMasterFaction, critter.Id);
+            if(status == STATUS_FRIEND || status == STATUS_INVITED)
+                return true;
+        }
+		*/
+    }
+    else
+    {
+        if(follower.FollowerVar[FV_MASTER] == critter.FollowerVar[FV_MASTER])
+            return true;
+        if(myMasterFaction > 1)
+        {
+            if(int(myMasterFaction) == _GroupIndex(critter))
+                return true;
+
+            if(critter.FollowerVar[FV_MASTER] > 0)     // the critter has a master
+            {
+                //uint hisMasterFaction = GetPlayerFaction(critter.FollowerVar[FV_MASTER]);
+				uint hisMasterFaction = 0;
+				/*
+                if(hisMasterFaction > 1)
+                {
+                    if(myMasterFaction == hisMasterFaction)
+                        return true;
+                    uint status = GetStatus(myMasterFaction, critter.FollowerVar[FV_MASTER]);
+                    if(status == STATUS_FRIEND || status == STATUS_INVITED)
+                        return true;
+                }
+				*/
+            }
+        }
+    }
+    return false;
+}
+
+void r_FollowMode(Critter& player, Critter@ follower, int value)
+{
+    SetMode(player, follower, value);
+}
+
+// Set follow distance
+void r_Distance(Critter& player, Critter@ follower, int value)
+{
+    follower.FollowerVarBase[FV_DISTANCE] = value;
+}
+
+// Takeover follower from another owner.
+void r_ClaimFollower(Critter& player, Critter@ follower, int value)
+{
+    follower.FollowerVarBase[FV_MASTER] = player.Id;
+    follower.FollowerVarBase[FV_CLAIMABLE] = 0;
+}
+
+// Set attack policy and apply it to nearby critters immediately
+void r_AttackPolicy(Critter& player, Critter@ follower, int value)
+{
+    follower.FollowerVarBase[FV_ATTACK_POLICY] = value;
+    follower.FollowerVarBase[FV_FACTION] = GetGroupIndex(player);
+
+    // Here we check if there's any critters nearby that live
+    // and if attack policy applies to them
+    array<Critter@> crits;
+    uint            num = player.GetCritters(false, FIND_LIFE_AND_KO, crits);
+    for(uint i = 0; i < num; i++)
+        _ShowCritter(follower, crits[i]);
+}
+
+// Followers that follow
+bool d_CanLeadMoreFollowers(Critter& player, Critter@ npc)
+{
+    return true;
+}
+
+void r_SetFaction(Critter& player, Critter@ follower)
+{
+    follower.FollowerVarBase[FV_FACTION] = GetGroupIndex(player);
+}
+
+bool d_IsOwner(Critter& player, Critter@ follower, int val)
+{
+    return(player.Id == uint(follower.FollowerVar[FV_MASTER]));
+}
+
+bool d_IsClaimable(Critter& player, Critter@ follower, int val)
+{
+    return(follower.FollowerVar[FV_CLAIMABLE] == 1);
+}
+
+bool d_IsNotMode(Critter& player, Critter@ follower, int val)
+{
+    return(follower.FollowerVar[FV_MODE] != val);
+}
+
+bool d_CanStay(Critter& player, Critter@ follower)
+{
+    Map@ map = player.GetMap();
+    return(IsTentMap(map) || IsBaseMap(map));
+}
+
+// Checks if critter is in the same squad (it's owner or has the same owner)
+bool IsSquadMember(Critter& follower, Critter& critter)
+{
+    return(IsMaster(follower, critter) || critter.FollowerVar[FV_MASTER] == follower.FollowerVar[FV_MASTER]);
+}
+
+bool IsNonAggressive(Critter& follower)
+{
+    return(follower.CrType == CRTYPE_BRAHMIN);
+}
+
+
+
+#endif
+
+/*@}*/

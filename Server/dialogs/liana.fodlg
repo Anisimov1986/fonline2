@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Liana}
+{200}{}{Liana, the tribal woman I've been looking for.}
+{210}{}{She might be able to help me find The Slayer.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Help Liana.@@Liana not like it here.@@Will yoo help Liana?}
+
+[russ]
+{100}{}{Лиана}
+{200}{}{Лиана, она та аборигенка которую я ищу.}
+{210}{}{Она могла бы помочь мне найти Убийцу.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Помощь Лиана.@@Лиана не нравится тут.@@Ты мне помогать?}
+
+[pols]
+{100}{}{Liana}
+{200}{}{To ta dzikuska, której szukam.}
+{210}{}{Mogłaby pomóc mi w odnalezieniu Zabójcy.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Ty pomóc Liana.@@Tu się nie podoba Liana.@@Ty mnie pomóc?}
+
+[ptbr]
+{100}{}{Liana}
+{200}{}{Liana, a índia que eu tava procurando.}
+{210}{}{Ela pode ser capaz de ajudar a encontrar o Matador.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Mim ajude.@@Eu não gosta daqui não.@@Tu mim ajuda?}
+

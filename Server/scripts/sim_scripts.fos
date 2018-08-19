@@ -1,0 +1,797 @@
+// Author: Wesan
+
+#include "_macros.fos"
+#include "utils_h.fos"
+#include "pdata_h.fos"
+
+import Location@ CreateLocationForCritter( Critter& player, int locPid, int worldX, int worldY, int delta, int varNum, bool visible ) from "location";
+import void      AddNewMapMessage( string text, int time, int showtimer, uint color, uint mapId ) from "stocmessages";
+import void      DropDrugEffects( Critter& cr ) from "drugs";
+
+#define SIM_PVPLOBBY     ( 7997 )
+#define SIM_LOBBY        ( 7998 )
+#define SIM_ROOM         ( 7999 )
+#define MAX_PVP_TIER     ( 7 )
+#define BASE_PVP_COST    ( 500 )
+// Adding pvp location is as easy as just writing here it's proto location number and name for it to show.
+uint16[] pvplocations = { 7950, 7951, 7952, 7953, 7954, 7955, 7956, 7957, 7958, 7959, 7960, 7961 };
+array< string > pvplocationnames = { "Grave Yard", "Water Works", "High Rise", "Check Point", "Fortressed Factory", "Toxic Cave", "Train Yard", "Dense Ruins", "Abandoned Facility", "Cross Roads", "Mining Village", "Farm Town" };
+
+
+// Init stuff
+void _PvPLobbyCrIn( Map& map, Critter& cr ) // should be just safety measurements
+{
+    cr.ModeBase[ MODE_NO_PVP ] = 1;
+}
+
+void _BaseLobbyCrIn( Map& map, Critter& cr ) // should be just safety measurements
+{
+    cr.ModeBase[ MODE_NO_PVP ] = 1;
+}
+
+
+void _PvPLobbyCrOut( Map& map, Critter& cr )
+{
+    if( cr.Mode[ MODE_NO_PVP ] != 0 )
+        cr.ModeBase[ MODE_NO_PVP ] = 0;
+}
+
+void _PvPMatchKilled( Map& map, Critter& cr, Critter@ killer ) // Maybe I should make it count once not array them up every time, will be more optimized that way.
+{
+    if( !cr.IsPlayer() )
+        return;
+
+    GameVar@ KillCount = GetLocalVar( LVAR_Sim_Kills, killer.Id );
+
+    if( valid( cr ) )     // Don't ress but if it will take so long then ress.
+    {
+        Location @ loc = GetLocationOf( cr );
+        GameVar@ Vision = GetLocalVar( LLVAR_Value5, loc.Id );
+        if( Vision.GetValue() != 0 )
+            cr.ParamBase[ VISION_LEVEL ] = 3;
+        cr.RefreshVisible();
+        cr.StatBase[ ST_REPLICATION_TIME ] = 30;
+    }
+
+    if( valid( killer ) )
+    {
+        KillCount += 1;
+    }
+    Location@ loc = map.GetLocation();
+    GameVar@  Owner = GetLocalVar( LLVAR_Value0, loc.Id );
+    GameVar@  Finished = GetLocalVar( LLVAR_Value6, loc.Id );
+    if( Finished.GetValue() != 0 )
+        return;
+    Critter @ lobbyowner = GetCritter( Owner.GetValue() );
+    Critter@[] critters;
+    uint team1 = 0;
+    uint team2 = 0;
+    uint playernum = map.GetCritters( 0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO, critters );
+    for( uint c = 0; c < playernum; c++ )
+    {
+        if( critters[ c ].Param[ PVPTEAM ] == 1 )
+            team1++;
+        else if( critters[ c ].Param[ PVPTEAM ] == 2 )
+            team2++;
+    }
+    Log( "Team1: " + team1 + " Team2: " + team2 );
+    if( team2 == 0 && team1 == 0 )
+    {
+        LetTeamWin( map, Random( 1, 2 ), lobbyowner );
+        Log( "Everyone died?!" );
+        Finished = 1;
+
+    }
+    else if( team1 == 0 )
+    {
+        LetTeamWin( map, 2, lobbyowner );
+        Finished = 1;
+    }
+    else if( team2 == 0 )
+    {
+        LetTeamWin( map, 1, lobbyowner );
+        Finished = 1;
+    }
+
+}
+
+void LetTeamWin( Map& map, int winteam, Critter& owner )
+{
+    AddNewMapMessage( ( winteam == 1 ? "Left" : "Right" ) + " side team won!", REAL_SECOND( 5 ), 0, COLOR_SIM_STUFF, map.Id );
+    uint[] values = { owner.Id };
+    CreateTimeEvent( __FullSecond + REAL_SECOND( 5 ), "e_movebacktolobby", values, true );
+    return;
+}
+
+uint e_movebacktolobby( array< uint >@ values )
+{
+
+    Critter@  owner = GetCritter( values[ 0 ] );
+    Location@ loc = GetLocation( CreateLocation( SIM_LOBBY, owner.WorldX, owner.WorldY, null ) );
+
+    Map@      map;
+    @map = loc.GetMapByIndex( 0 );
+    if( not valid( map ) )
+        return 0;
+    MakeOwner( loc, owner );
+    loc.AutoGarbage = true;
+
+
+    Map@              thismap = owner.GetMap();
+    array< Critter@ > critters;
+    uint              size = thismap.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < size; i++ )
+    {
+        RemoveCombatStuff( critters[ i ] );
+        critters[ i ].TransitToMap( map.Id, 0 );
+        if( owner.Id != critters[ i ].Id )
+            AddToPersonalDataList( loc, "PlayerList", critters[ i ].Id );
+    }
+    return 0;
+}
+
+void RemoveCombatStuff( Critter& cr )
+{
+    cr.ParamBase[ PVPTEAM ] = 0;
+    RemoveItems( cr );
+    Ress( cr );
+    cr.ParamBase[ VISION_LEVEL ] = 0;
+    cr.ModeBase[ MODE_NO_PVP ] = 1;
+    DropDrugEffects(  cr );
+}
+
+
+void PassValues( Location& newloc, Location& oldloc )
+{
+    // Pass values.
+    GameVar@ ChosenMap = GetLocalVar( LLVAR_Value1, oldloc.Id );
+    GameVar@ Tier = GetLocalVar( LLVAR_Value2, oldloc.Id );
+    GameVar@ Bet = GetLocalVar( LLVAR_Value3, oldloc.Id );
+    GameVar@ Teambalance = GetLocalVar( LLVAR_Value4, oldloc.Id );
+    GameVar@ DeathVision = GetLocalVar( LLVAR_Value5, oldloc.Id );
+
+    GameVar@ ChosenMap2 = GetLocalVar( LLVAR_Value1, newloc.Id );
+    GameVar@ Tier2 = GetLocalVar( LLVAR_Value2, newloc.Id );
+    GameVar@ Bet2 = GetLocalVar( LLVAR_Value3, newloc.Id );
+    GameVar@ Teambalance2 = GetLocalVar( LLVAR_Value4, newloc.Id );
+    GameVar@ DeathVision2 = GetLocalVar( LLVAR_Value5, newloc.Id );
+
+    ChosenMap2 = ChosenMap;
+    Tier2 = Tier;
+    Bet2 = Bet;
+    Teambalance2 = Teambalance;
+    DeathVision2 = DeathVision;
+}
+// Essentials
+bool dialog( Critter& player, Scenery& scenery, int skill, Item@ item, int dialog ) // connecting dialog to scenery
+{
+    Map@      map = player.GetMap();
+    Location@ location = map.GetLocation();
+
+    if( skill == -1 && !valid( item ) )
+    {
+        int dialognumber = location.GetProtoId() + dialog;
+        RunDialog( player, dialognumber, scenery.HexX, scenery.HexY, false );
+        return true;
+    }
+    return false;
+}
+
+void leavelobby( Critter& cr )
+{
+
+    GameVar@ LocationVar = GetLocalVar( LVAR_simulation_room, cr.Id );
+    if( LocationVar != 0 )
+    {
+        Location@ loc = GetLocation( LocationVar.GetValue() );
+        Map@      map;
+        @map = loc.GetMapByIndex( 0 );
+        if( not valid( map ) )
+            return;
+
+        Location @ currloc = GetLocationOf( cr );
+        if( currloc.GetProtoId() == SIM_LOBBY )
+        {
+            Item@[] storages;
+            map.GetItems( 11414, storages );
+
+            for( uint i = 0, l = storages.length(); i < l; i++ )
+            {
+
+                int OwnerId = storages[ i ].Val4;
+                int OwnerId2 = cr.Id;
+                if(  OwnerId == OwnerId2 )
+                {
+                    Item@[] items;
+                    if(  cr.GetItems( -1, items ) > 0 )
+                    {
+                        MoveItems( items, storages[ i ], 0 );
+                    }
+                }
+            }
+        }
+        else
+        {
+            RemoveItems( cr );
+        }
+        cr.TransitToMap( map.Id, 0 );
+        return;
+    }
+    else     // Somehow location doesn't exist, creating new one and dropping playeritems to ground.
+    {
+        int       delta = __GlobalMapZoneLength;
+        Location@ loc = CreateLocationForCritter( cr, SIM_ROOM, cr.WorldX, cr.WorldY, delta, LVAR_simulation_room, false );
+
+        Map@      map;
+        @map = loc.GetMapByIndex( 0 );
+        if( not valid( map ) )
+            return;
+
+        Location @ currloc = GetLocationOf( cr );
+        if( currloc.GetProtoId() == SIM_LOBBY )
+        {
+            Map@ dropMap = cr.GetMap();
+            if( valid( dropMap ) )
+            {
+                Item@[] items;
+                cr.GetItems( -1, items );
+                MoveItems( items, dropMap, cr.HexX, cr.HexY );
+            }
+        }
+        else
+        {
+            RemoveItems( cr );
+        }
+        cr.TransitToMap( map.Id, 0 );
+        loc.AutoGarbage = false;
+    }
+}
+
+void SimCheck( Critter& cr )     // Safety measures if player is in simulation or not. Will defend from mistakes of items flooding out from simulation.
+{
+    if( cr.GetMapId() != 0 )
+    {
+        Location@ loc = GetLocationOf( cr );
+        if( !loc.IsSimulation() && cr.ParamBase[ SIMULATION ] != 0 )
+        {
+            SimCleanup( cr );
+        }
+        else if( loc.IsSimulation() )
+            cr.ParamBase[ SIMULATION ] = 1;
+    }
+    else if(  cr.ParamBase[ SIMULATION ] != 0 )     // He's on worldmap.
+    {
+        SimCleanup( cr );
+        Log( "Somehow Simulation player was on worldmap. His Id: " + cr.Id );
+    }
+}
+
+
+void SimCleanup( Critter& cr )
+{
+    cr.ParamBase[ SIMULATION ] = 0;
+    cr.ParamBase[ PVPTEAM ] = 0;
+    cr.ModeBase[ MODE_NO_PVP ] = 0;
+    cr.ParamBase[ VISION_LEVEL ] = 0;
+    DropDrugEffects( cr );
+    RemoveItems( cr );
+}
+
+// Dialog Demands
+bool d_IsLobbyHost( Critter& player, Critter@ npc )
+{
+    Location@ loc = GetLocationOf( player );
+    GameVar@  Owner = GetLocalVar( LLVAR_Value0, loc.Id );
+    return ( Owner == player.Id );
+}
+
+
+
+bool d_IsLobbyClean( Critter& player, Critter@ npc )
+{
+    Map@              thismap = player.GetMap();
+    array< Critter@ > critters;
+    uint              size = thismap.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < size; i++ )
+    {
+        if( critters[ i ].ItemsCount() != 0 )
+            return false;
+    }
+
+    Item@[] items;
+    thismap.GetItemsByType( ITEM_TYPE_ARMOR, items );
+    thismap.GetItemsByType( ITEM_TYPE_DRUG, items );
+    thismap.GetItemsByType( ITEM_TYPE_WEAPON, items );
+    thismap.GetItemsByType( ITEM_TYPE_AMMO, items );
+    thismap.GetItemsByType( ITEM_TYPE_CONTAINER, items );
+    thismap.GetItemsByType( ITEM_TYPE_MISC, items );
+    if( items.length() > 0 )
+        return false;
+
+    return true;
+}
+
+
+bool d_IsPVPReady( Critter& player, Critter@ npc )
+{
+    Map@              thismap = player.GetMap();
+    array< Critter@ > critters;
+    uint              size = thismap.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < size; i++ )
+    {
+        if( critters[ i ].ParamBase[ PVPTEAM ] == 0 || ( critters.length() - 1 ) <= 1 )
+            return false;
+    }
+    return true;
+}
+
+bool d_IsNotLobbyHost( Critter& player, Critter@ npc )
+{
+    return !d_IsLobbyHost( player, npc );
+}
+
+bool d_IsTierAllowed( Critter& player, Critter@ npc, int weapontier )
+{
+    Location@ loc = GetLocationOf( player );
+    GameVar@  Tier = GetLocalVar( LLVAR_Value2, loc.Id );
+    return ( Tier >= weapontier );
+}
+
+bool d_IsLockedLobby( Critter& player, Critter@ npc )
+{
+    Location@ loc = GetLocationOf( player );
+    GameVar@  LobbyLock = GetLocalVar( LLVAR_Value6, loc.Id );
+    return ( LobbyLock.GetValue() != 0 );
+}
+
+bool d_IsNotLockedLobby( Critter& player, Critter@ npc )
+{
+    return !d_IsLockedLobby( player, npc );
+}
+
+
+// Dlg's
+void dlg_PvPSetup( Critter& player, Critter@ npc, string@ lexems )
+{
+    if( not IS_DIALOG_GENERATED( lexems ) )
+        return;
+
+    Location @ loc = GetLocationOf( player );
+    if( !valid( loc ) )
+        return;
+
+    GameVar@ ChosenMap = GetLocalVar( LLVAR_Value1, loc.Id );
+    GameVar@ Tier = GetLocalVar( LLVAR_Value2, loc.Id );
+    GameVar@ Bet = GetLocalVar( LLVAR_Value3, loc.Id );
+    GameVar@ Teambalance = GetLocalVar( LLVAR_Value4, loc.Id );
+    GameVar@ PvPCost = GetGlobalVar( GVAR_PVP_PRICE );
+    GameVar@ DeathVision = GetLocalVar( LLVAR_Value5, loc.Id );
+
+    if( PvPCost.GetValue() == 0 )
+        PvPCost = BASE_PVP_COST;
+
+    if( Tier.GetValue() == 0 )
+        Tier = 1;
+
+    lexems += "$map" + pvplocationnames[ ChosenMap.GetValue() ];
+    lexems += "$tier" + Tier.GetValue();
+    lexems += "$bet" + Bet.GetValue();
+    lexems += "$teambalance" + "Not Implemented";
+    lexems += "$hostpricepvp" + PvPCost.GetValue();
+    lexems += "$vision" + ( DeathVision.GetValue() == 1 ? "Yes" : "No" );
+}
+
+uint dlg_joinlobby( Critter& player, Critter@ terminal, string@ playerName )
+{
+    if( not IS_DIALOG_SAY_MODE( playerName ) )
+        return 10;
+
+    uint playerId = GetPlayerId( playerName );
+    if( playerId == 0 )
+        return 10;
+    Critter@ cr = GetCritter( playerId );
+    if( not valid( cr ) )
+        return 10;
+    Location@ loc = GetLocationOf( cr );
+    GameVar@  Owner = GetLocalVar( LLVAR_Value0, loc.Id );
+    if( Owner != cr.Id )
+        return 12;
+    if( loc.GetProtoId() == SIM_PVPLOBBY || loc.GetProtoId() == SIM_LOBBY )
+    {
+        GameVar@ LobbyLock = GetLocalVar( LLVAR_Value6, loc.Id );
+        if( LobbyLock.GetValue() != 0 )
+            return 13;
+        TryJoin( cr, player );
+        return 0;
+    }
+    else
+        return 10;
+}
+
+void TryJoin( Critter& host, Critter& asker )
+{
+    Map@ map = host.GetMap();
+    if( not valid( map ) )
+        return;
+    asker.TransitToMap( map.Id, 0 );
+    Location@ loc = map.GetLocation();
+    AddToPersonalDataList( loc, "PlayerList", asker.Id );
+}
+
+void JoinRequest( Critter& host, Critter& asker )
+{
+    Location@ loc = GetLocationOf( host );
+    if( loc.GetProtoId() == SIM_PVPLOBBY || loc.GetProtoId() == SIM_LOBBY )
+    {
+        host.ShowScreen( SCREEN_DIALOGBOX, 2, "answer_Join" );
+        host.Say( SAY_DIALOGBOX_TEXT, "wants to join." );
+        host.Say( SAY_DIALOGBOX_BUTTON( 0 ), "Accept" );
+        host.Say( SAY_DIALOGBOX_BUTTON( 1 ), "Deny" );
+    }
+}
+
+void answer_Join( Critter& critter, uint answerI, string& )
+{
+    if( answerI != 0 )
+        return;
+
+    Map@ map = critter.GetMap();
+    if( !valid( map ) )
+        return;
+
+    Location@ location = map.GetLocation();
+    if( !valid( location ) )
+        return;
+
+    Log( "IT WORKED!" );
+}
+
+
+// Dialog Resulsts
+
+void r_scrollpvplocations( Critter& cr, Critter @ npc )
+{
+    Location @ loc = GetLocationOf( cr );
+    GameVar@ ChosenMap = GetLocalVar( LLVAR_Value1, loc.Id );
+    ChosenMap += 1;
+    int      FinalMap = pvplocations.length() - 1;
+    if( ChosenMap.GetValue() > FinalMap )
+        ChosenMap = 0;
+}
+
+void r_scrollpvptier( Critter& cr, Critter @ npc )
+{
+    Location @ loc = GetLocationOf( cr );
+    GameVar@ ChosenTier = GetLocalVar( LLVAR_Value2, loc.Id );
+    ChosenTier += 1;
+    if( MAX_PVP_TIER < ChosenTier )
+        ChosenTier = 1;
+}
+
+void r_ToggleVision( Critter& cr, Critter @ npc )
+{
+    Location @ loc = GetLocationOf( cr );
+    GameVar@ Vision = GetLocalVar( LLVAR_Value5, loc.Id );
+    if( Vision.GetValue() != 0 )
+        Vision = 0;
+    else
+        Vision = 1;
+}
+
+void r_ToggleLobbyLock( Critter& cr, Critter @ npc )
+{
+    Location @ loc = GetLocationOf( cr );
+    GameVar@ LobbyLock = GetLocalVar( LLVAR_Value6, loc.Id );
+    if( LobbyLock.GetValue() != 0 )
+        LobbyLock = 0;
+    else
+        LobbyLock = 1;
+}
+
+
+void r_startlobby( Critter& cr, Critter @ npc )
+{
+    if( cr.IsPlayer() )
+    {
+        Location@ loc = GetLocation( CreateLocation( SIM_LOBBY, cr.WorldX, cr.WorldY, null ) );
+
+        Map@      map;
+        @map = loc.GetMapByIndex( 0 );
+        if( not valid( map ) )
+            return;
+        map.SetEvent( MAP_EVENT_IN_CRITTER, "_PvPLobbyCrIn" );
+        cr.TransitToMap( map.Id, 0 );
+        MakeOwner( loc, cr );
+        loc.AutoGarbage = true;
+    }
+    return;
+}
+
+void r_leavelobby( Critter& cr, Critter @ npc )
+{
+    leavelobby( cr );
+}
+
+void r_LaunchPvpLobby( Critter& cr, Critter @ npc )
+{
+
+
+    Location@ loc = GetLocation( CreateLocation( SIM_PVPLOBBY, cr.WorldX, cr.WorldY, null ) );
+
+    Map@      map;
+    @map = loc.GetMapByIndex( 0 );
+    if( not valid( map ) )
+        return;
+
+    MakeOwner( loc, cr );
+    loc.AutoGarbage = true;
+
+    Location @ oldloc = GetLocationOf( cr );
+    // Pass values.
+    GameVar@ ChosenMap = GetLocalVar( LLVAR_Value1, oldloc.Id );
+    GameVar@ Tier = GetLocalVar( LLVAR_Value2, oldloc.Id );
+    GameVar@ Bet = GetLocalVar( LLVAR_Value3, oldloc.Id );
+    PassValues( loc, oldloc );
+    map.SetEvent( MAP_EVENT_IN_CRITTER, "_PvPLobbyCrIn" );
+    map.SetEvent( MAP_EVENT_OUT_CRITTER, "_PvPLobbyCrOut" );
+    Map@              thismap = cr.GetMap();
+    array< Critter@ > critters;
+    uint              size = thismap.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < size; i++ )
+    {
+        critters[ i ].TransitToMap( map.Id, 0 );
+        critters[ i ].Say( SAY_NETMSG, "|" + COLOR_WHITE + " Map: " + pvplocationnames[ ChosenMap.GetValue() ] + "\n Tier: " + Tier.GetValue() + "\n Bet: " + Bet.GetValue() + "\n Teambalance " + "Disabled" );
+        if( cr.Id != critters[ i ].Id )
+            AddToPersonalDataList( loc, "PlayerList", critters[ i ].Id );
+    }
+}
+
+void r_LaunchPvPMatch( Critter& cr, Critter @ npc )
+{
+
+    Map@              pvpteamcheck = cr.GetMap();
+    array< Critter@ > pvpcritters;
+    uint              size = pvpteamcheck.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, pvpcritters );
+
+    for( uint i = 0; i < size; i++ )
+    {
+        if( pvpcritters[ i ].ParamBase[ PVPTEAM ] == 0 || ( pvpcritters.length() - 1 ) <= 1 )
+        {
+            cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Not everyone is in pvp team or not enough players. Canceling." );
+            return;
+        }
+    }
+
+    Location @ oldloc = GetLocationOf( cr );
+    GameVar@ ChosenMap = GetLocalVar( LLVAR_Value1, oldloc.Id );
+    GameVar@ Bet = GetLocalVar( LLVAR_Value3, oldloc.Id );
+    GameVar@ Teambalance = GetLocalVar( LLVAR_Value4, oldloc.Id );
+    GameVar@ DeathVision = GetLocalVar( LLVAR_Value5, oldloc.Id );
+
+
+
+    Location@ loc = GetLocation( CreateLocation( pvplocations[ ChosenMap.GetValue() ], cr.WorldX, cr.WorldY, null ) );
+    GameVar@  DeathVision2 = GetLocalVar( LLVAR_Value5, loc.Id );
+    DeathVision2 = DeathVision;
+    Map@      map;
+    @map = loc.GetMapByIndex( 0 );
+    if( not valid( map ) )
+        return;
+
+    MakeOwner( loc, cr );
+    loc.AutoGarbage = true;
+    map.SetEvent( MAP_EVENT_CRITTER_DEAD, "_PvPMatchKilled" );
+    Map@              thismap = cr.GetMap();
+    array< Critter@ > critters;
+    uint              size2 = thismap.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < size2; i++ )
+    {
+        GameVar@ KillCount = GetLocalVar( LVAR_Sim_Kills, critters[ i ].Id );
+        KillCount = 0;
+        critters[ i ].ModeBase[ MODE_NO_PVP ] = 0;
+        critters[ i ].TransitToMap( map.Id,  critters[ i ].ParamBase[ PVPTEAM ] );
+    }
+
+    return;
+}
+
+void r_deletelobby( Critter& cr, Critter @ npc )
+{
+    Map@              map = cr.GetMap();
+    array< Critter@ > critters;
+    uint              size = map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < size; i++ )
+    {
+        leavelobby( critters[ i ] );
+    }
+}
+
+void r_AccessInventory( Critter& cr, Critter @ npc )
+{
+    GameVar@ LocationVar = GetLocalVar( LVAR_simulation_room, cr.Id );
+    if( LocationVar != 0 )
+    {
+        Location@ loc = GetLocation( LocationVar.GetValue() );
+        Map@      map;
+        @map = loc.GetMapByIndex( 0 );
+        if( not valid( map ) )
+            return;
+
+        Item@[] storages;
+        map.GetItems( 11414, storages );
+
+        for( uint i = 0, l = storages.length(); i < l; i++ )
+        {
+
+            int OwnerId = storages[ i ].Val4;
+            int OwnerId2 = cr.Id;
+            if(  OwnerId == OwnerId2 )
+            {
+                cr.ShowContainer( null, storages[ i ], TRANSFER_FAR_CONT );
+            }
+        }
+
+
+    }
+}
+
+
+// triggers
+void t_PvPSwitch( Critter& player, Scenery& trigger, bool entered, uint8 dir, int team )
+{
+    if( entered )
+        player.ParamBase[ PVPTEAM ] = team;
+}
+
+void r_TakeCapsPVP( Critter& cr, Critter @ npc )
+{
+
+    GameVar@ LocationVar = GetLocalVar( LVAR_simulation_room, cr.Id );
+    if( LocationVar != 0 )
+    {
+        Location@ loc = GetLocation( LocationVar.GetValue() );
+        Map@      map;
+        @map = loc.GetMapByIndex( 0 );
+        if( not valid( map ) )
+            return;
+
+        Item@[] storages;
+        map.GetItems( 11414, storages );
+
+        for( uint i = 0, l = storages.length(); i < l; i++ )
+        {
+
+            int OwnerId = storages[ i ].Val4;
+            int OwnerId2 = cr.Id;
+            if(  OwnerId == OwnerId2 )
+            {
+                GameVar@ PvPCost = GetGlobalVar( GVAR_PVP_PRICE );
+                Item@    item;
+                @item = storages[ i ].GetItem( PID_BOTTLE_CAPS, 0 );
+                // Item@    caps = storages[ i ].GetItem( PID_BOTTLE_CAPS, 0 );
+                if( !valid( item ) )
+                {
+                    return;
+                }
+
+                int count = item.GetCount();
+                item.SetCount( count - PvPCost.GetValue() );
+            }
+        }
+
+
+    }
+    return;
+}
+
+bool d_CheckCapsPVP( Critter& cr, Critter @ npc )
+{
+    GameVar@ LocationVar = GetLocalVar( LVAR_simulation_room, cr.Id );
+    if( LocationVar != 0 )
+    {
+        Location@ loc = GetLocation( LocationVar.GetValue() );
+        Map@      map;
+        @map = loc.GetMapByIndex( 0 );
+        if( not valid( map ) )
+            return false;
+
+        Item@[] storages;
+        map.GetItems( 11414, storages );
+
+        for( uint i = 0, l = storages.length(); i < l; i++ )
+        {
+
+            int OwnerId = storages[ i ].Val4;
+            int OwnerId2 = cr.Id;
+            if(  OwnerId == OwnerId2 )
+            {
+                GameVar@ PvPCost = GetGlobalVar( GVAR_PVP_PRICE );
+                Item@    item;
+                @item = storages[ i ].GetItem( PID_BOTTLE_CAPS, 0 );
+                // Item@    caps = storages[ i ].GetItem( PID_BOTTLE_CAPS, 0 );
+                if( !valid( item ) )
+                {
+                    return false;
+                }
+                int count = item.GetCount();
+                if( count >= PvPCost.GetValue() )
+                    return true;
+            }
+        }
+
+
+    }
+    return false;
+}
+
+void dlg_LoadAvailablePlayers( Critter& player, Critter@ master, string@ lexems )
+{
+    if( IS_DIALOG_END( lexems ) || IS_DIALOG_SAY_MODE( lexems ) )
+        return;
+
+    array< uint > critters;
+    Location @ loc = GetLocationOf( player );
+    uint          size = GetPersonalDataList( loc, "PlayerList", critters );
+    for( uint i = 0; i < size; i++ )
+    {
+        string@ name = GetPlayerName( critters[ i ] );
+        lexems += "$follower" + i + "" + name;
+    }
+}
+
+
+bool d_IsAvailableSpot( Critter& player, Critter@ master, int count )
+{
+    Location @ loc = GetLocationOf( player );
+    uint ucount = count;
+    return ( GetPersonalDataListSize( loc, "PlayerList" ) >= ucount );
+}
+
+void r_KickPlayer2( Critter& player, Critter@ master, int followerIndex )
+{
+    array< uint > critters;
+    Location @ loc = GetLocationOf( player );
+    uint          size = GetPersonalDataList( loc, "PlayerList", critters );
+    uint          followerdex = followerIndex;
+    if( followerdex >= size )
+        return;
+    Critter@ cr = GetCritter( critters[ followerIndex ] );
+    leavelobby( cr );
+    cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You were kicked out from the lobby." );
+    RemoveFromPersonalDataList( loc, "PlayerList", cr.Id );
+}
+
+
+uint dlg_kickperson( Critter& player, Critter@ terminal, string@ playerName )
+{
+    if( not IS_DIALOG_SAY_MODE( playerName ) )
+        return 20;
+
+    uint playerId = GetPlayerId( playerName );
+    if( playerId == 0 )
+        return 20;
+    Critter@ cr = GetCritter( playerId );
+    if( not valid( cr ) )
+        return 20;
+    Location@ loc = GetLocationOf( cr );
+    Location@ loc2 = GetLocationOf( player );
+    GameVar@  Owner = GetLocalVar( LLVAR_Value0, loc.Id );
+    if( Owner != player.Id )
+        return 22;
+    if( cr.Id == player.Id )
+        return 20;
+    if( loc.GetProtoId() == loc2.GetProtoId() )
+    {
+        leavelobby( cr );
+        cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You were kicked out from the lobby." );
+        return 0;
+    }
+    else
+        return 20;
+}

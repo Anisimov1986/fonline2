@@ -1,0 +1,109 @@
+#include "_macros.fos"
+#include "_teams.fos"
+#include "npc_common_h.fos"
+
+#define TeamId               StatBase[ ST_TEAM_ID ]
+#define SAME_TEAM # (cr,attacker) (cr.TeamId==attacker.TeamId)
+#define AI_PLANE_ATTACK_PRIORITY_MARK    ( AI_PLANE_ATTACK_PRIORITY + 1 )
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+
+void GuardInit(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		uint16[] weaponPids = {PID_LASER_RIFLE, PID_SNIPER_RIFLE, PID_AVENGER_MINIGUN, PID_ROCKET_LAUNCHER};
+		InitGuard(npc,weaponPids);
+	}
+	AttackAttacker(npc);
+}
+
+void AttackAttacker(Critter& npc)
+{
+	npc.SetEvent(CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked");
+}
+
+void _SomeoneAttacked(Critter& cr, Critter& attacked, Critter& attacker)
+{
+	// Zombie swarm.
+	if (attacker.Stat[ST_TEAM_ID] == TEAM_ZombieSwarm && cr.IsSee(attacker))
+	{
+		Attack(cr,attacker);
+		return;
+	}
+	if (attacked.Stat[ST_TEAM_ID] == TEAM_ZombieSwarm && cr.IsSee(attacked))
+	{
+		Attack(cr,attacked);
+		return;
+	}
+
+	if(attacker.Id == cr.Id)
+        return;
+	if (SAME_TEAM(cr,attacker))
+		return;
+	if (!attacked.IsNpc())
+		{
+		if (attacker.Param[MAIN_FACTION]== 2)
+			return;
+		}
+	if (attacker.IsNpc())
+		return;
+
+	Attack(cr,attacker);
+}
+
+
+void Attack(Critter& cr, Critter& attacker)
+{
+	NpcPlane@ plane = cr.GetCurPlane();
+    if(valid(plane) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id)
+		return;
+	AttackCritter( cr, attacker ); 
+}
+
+void InitGuard(Critter& npc,uint16[] weaponPids)
+{	
+	npc.StatBase[ST_TEAM_ID] = TEAM_Respawn;
+	npc.StatBase[ST_BONUS_LOOK] = 300;
+	npc.StatBase[ST_REPLICATION_TIME] = 10;
+	npc.StatBase[ST_NPC_ROLE] = 200;	
+	_CritSetMode(npc, MODE_NO_DROP);
+	_CritSetMode(npc, MODE_NO_KNOCK);
+	_CritSetMode(npc, MODE_NO_LOOSE_LIMBS);
+	_CritSetMode(npc, MODE_NO_ENEMY_STACK);	
+	_CritSetMode(npc, MODE_NO_LOOT);
+	_CritSetMode(npc, MODE_NO_STEAL);
+	_CritSetMode(npc, MODE_UNLIMITED_AMMO);
+	
+	
+	Item@ item = npc.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+	if(valid(item))
+	{
+		npc.SetFavoriteItem(SLOT_HAND1, item.GetProtoId());
+		npc.MoveItem(item.Id, 1, SLOT_HAND1);
+	}
+}
+
+bool entrance_bos( Location& loc, Critter@[]& critters, uint8 entrance )
+{
+	if( entrance >= 1 && entrance <=4)
+	{
+		for (uint i = 0; i < critters.length(); i++)
+			if (!valid(critters[i]) || critters[i].FACTION != 2)
+				return false;
+	}
+    return true;
+}
+
+void t_trespass( Critter& player, Scenery& trigger, bool entered, uint8 dir, int npcRole )
+{
+    if( not player.IsPlayer() )
+        return;
+	if (player.Param[MAIN_FACTION]== 2)
+		return;
+    Map@ map = player.GetMap();
+    uint count = map.GetNpcCount( npcRole, FIND_LIFE_AND_KO | FIND_ONLY_NPC );
+    for( uint i = 0; i < count; i++ )
+        AddAttackPlane( map.GetNpc( npcRole, FIND_LIFE_AND_KO | FIND_ONLY_NPC, i ), AI_PLANE_ATTACK_PRIORITY_MARK, player );
+}

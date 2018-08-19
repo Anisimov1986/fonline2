@@ -1,0 +1,204 @@
+#include "_defines.fos"
+#include "_macros.fos"
+#include "_itempid.fos"
+#include "entire_h.fos"
+
+import void FillBagAllowRare( Item@ locker, uint16[]& pids,double chance, uint min, uint max  ) from "utils";
+import void FillBagAllowRare( Item@ locker, uint16 pid,double chance, uint min, uint max  ) from "utils";
+
+#define CRITTER_TYPE_RAT                  (0)
+#define CRITTER_TYPE_RADSCORPION          (1)
+#define CRITTER_TYPE_ANT                  (2)
+#define CRITTER_TYPE_GECKO                (3)
+#define CRITTER_TYPE_WANAMINGO            (4)
+#define CRITTER_TYPE_CENTAURS_FLOATER     (5)
+#define CRITTER_TYPE_DEATHCLAW            (6)
+
+#define CRITTER_TYPE_HIGHWAYMEN           (7)
+#define CRITTER_TYPE_GANG                 (8)
+#define CRITTER_TYPE_RAIDER               (9)
+#define CRITTER_TYPE_PUNKER               (10)
+#define CRITTER_TYPE_ROGUE                (11)
+#define CRITTER_TYPE_KHAN                 (12)
+#define CRITTER_TYPE_REGULATOR            (13)
+
+#define LOOT_TYPE_REGULAR                 (0)
+#define LOOT_TYPE_STORAGE                 (1)
+
+dictionary randomMapDefinitions;
+
+#include "random_map_critters.fos"
+#include "random_map_items.fos"
+#include "random_map_definitions.fos"
+
+//--------------------------------------------------
+
+class RandomMapDefinition
+{
+	private uint protoId, index;
+	private RandomMapFeatureWrapper@[] randomMapFeaturesWrappers;
+	private RandomMapContextFactory@ randomMapContextFactory;
+	private float[] randomMapFeatureProbabilities;
+
+	RandomMapDefinition(uint protoId, uint index)
+	{
+		this.protoId = protoId;
+		this.index = index;
+		randomMapDefinitions.set("" + protoId + "_" + index, @this);
+	}
+	
+	RandomMapDefinition@ SetRandomMapContextFactory(RandomMapContextFactory@ randomMapContextFactory)
+	{
+		@this.randomMapContextFactory = randomMapContextFactory;
+		return @this;
+	}
+	
+	RandomMapDefinition@ AddFeature(uint id, RandomMapFeature& randomMapFeature, float probability)
+	{
+		randomMapFeaturesWrappers.insertLast(RandomMapFeatureWrapper(id, randomMapFeature, probability));
+		randomMapFeatureProbabilities.insertLast(probability);
+		return @this;
+	}
+	
+	RandomMapDefinition@ AddExcludingRule(uint id1, uint id2)
+	{
+		uint idx1 = 0, idx2 = 0;
+	
+		for (uint i = 0; i < randomMapFeaturesWrappers.length(); i++)
+		{
+			if(randomMapFeaturesWrappers[i].GetId() == id1)
+			{
+				idx1 = i;
+			}
+			
+			if(randomMapFeaturesWrappers[i].GetId() == id2)
+			{
+				idx2 = i;
+			}
+		}
+		
+		if (idx1 < idx2)
+		{
+			randomMapFeaturesWrappers[idx1].AddExcludedId(idx2);
+		}
+		else if (idx1 > idx2)
+		{
+			randomMapFeaturesWrappers[idx2].AddExcludedId(idx1);
+		}
+		
+		return @this;
+	}
+	
+	void RandomizeMap(Map@ map)
+	{
+		RandomMapContext@ context = randomMapContextFactory.CreateRandomMapContext();
+		bool[] excludedFeatures(randomMapFeaturesWrappers.length());
+	
+		for (uint i = 0; i < randomMapFeaturesWrappers.length(); i++)
+		{
+			excludedFeatures[i] = false;
+		}
+	
+		for (uint i = 0; i < randomMapFeaturesWrappers.length(); i++)
+		{
+			if (excludedFeatures[i])
+			{
+				continue;
+			}
+		
+			if (HAS_CHANCE(randomMapFeaturesWrappers[i].GetProbability()))
+			{
+				randomMapFeaturesWrappers[i].GetRandomMapFeature().Render(map, context);
+				uint[] excludedIds = randomMapFeaturesWrappers[i].GetExcludedIds();
+				for (uint j = 0; j < excludedIds.length(); j++)
+				{
+					excludedFeatures[excludedIds[j]] = true;
+				}
+			}
+		}
+	}
+}
+
+
+class RandomMapFeatureWrapper
+{
+	private uint id;
+	private RandomMapFeature@ randomMapFeature;
+	private float probability;
+	private uint[] excludedIds;
+	
+	RandomMapFeatureWrapper(uint id, RandomMapFeature@ randomMapFeature, float probability)
+	{
+		this.id = id;
+		@this.randomMapFeature = randomMapFeature;
+		this.probability = probability;
+	}
+	
+	RandomMapFeature@ GetRandomMapFeature()
+	{
+		return randomMapFeature;
+	}
+	
+	float GetProbability()
+	{
+		return probability;
+	}
+	
+	uint GetId()
+	{
+		return id;
+	}
+	
+	uint[]& GetExcludedIds()
+	{
+		return excludedIds;
+	}
+	
+	void AddExcludedId(uint id)
+	{
+		excludedIds.insertLast(id);
+	}
+}
+
+
+interface RandomMapFeature
+{
+	void Render(Map@ map, RandomMapContext@ context);
+}
+
+
+interface RandomMapContext
+{	
+	int GetCritterType();
+	int GetCritterSpawnRate();
+	int GetTrapPid();
+	void AddLoot(Item& container, int lootType, int rollMin, int rollMax);
+}
+
+
+interface RandomMapContextFactory
+{	
+	RandomMapContext@ CreateRandomMapContext();
+}
+
+bool IsOviparousCritterType(int critterType)
+{
+	return IsAnimalCritterType(critterType) && critterType != CRITTER_TYPE_RAT && critterType != CRITTER_TYPE_CENTAURS_FLOATER;
+}
+
+bool IsAnimalCritterType(int critterType)
+{
+	return critterType >= CRITTER_TYPE_RAT && critterType <= CRITTER_TYPE_DEATHCLAW;
+}
+
+bool IsHumanCritterType(int critterType)
+{
+	return critterType >= CRITTER_TYPE_HIGHWAYMEN && critterType <= CRITTER_TYPE_REGULATOR;
+}
+
+void RandomizeMap(Map@ map, uint index)
+{
+	RandomMapDefinition@ randomMapDefinition;
+	randomMapDefinitions.get("" + map.GetProtoId() + "_" + index, @randomMapDefinition);
+	randomMapDefinition.RandomizeMap(map);
+}

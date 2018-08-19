@@ -1,0 +1,545 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "buffer_h.fos"
+#include "auction_h.fos"
+
+#define STATE_DEFAULT  		        ( 0 )
+#define STATE_SHOW_ITEMS_BY_TYPE    ( 1 )
+#define STATE_SHOW_ITEMS_BY_PROTO   ( 2 )
+
+
+#define B_ACT_SELECT_TYPE           ( 0 )
+#define B_ACT_SELECT_PROTO          ( 1 )
+#define B_ACT_SELECT_ITEM           ( 2 )
+#define B_ACT_LISTING               ( 3 )
+#define B_ACT_BUY                   ( 4 )
+#define B_ACT_SELL                  ( 5 )
+#define B_ACT_EXIT                  ( 6 )
+
+#define LISTING_LEFT                ( 0 )
+#define LISTING_RIGHT               ( 1 )
+#define LISTING_LEFT_FAST           ( 2 )
+#define LISTING_RIGHT_FAST          ( 3 )
+
+#pragma bindfunc "void SortArray(array<uint>&,array<uint>&) -> fonline_tla_client.dll SortArray"
+import void OpenAuctionSellScreen() from "client_screen_auction_sell";
+import bool IsDefaultIface() from "client_screen_fake";
+
+array<uint> AuctionIndex; //send
+array<uint> ItemProtoId;//send
+array<uint> Count; //send
+array<uint> Cost;  //send
+array<uint> Val4; //send
+array<uint> Val5; //send
+array<uint> Val6; //send
+array<uint> Val7; //send
+array<uint> Val8; //send
+array<uint> Val9; //send
+array<uint> ItemColor;
+array<uint> OwnerId;
+
+uint PageItemType = 0;
+uint PageItemProto = 0;
+uint PageNumber = 0;
+uint PagesTotal = 0;
+uint SelectedPid = 0;
+uint SelectedCost = 0;
+uint State=STATE_DEFAULT;
+uint TotalMoney = 0;
+
+
+IGUIElementTextOpt@ itemInfo;
+IGUIElementTextOpt@ balanceInfo;
+IGUIElementTextOpt@ pageInfo;
+IGUIElementTextOpt@ currentPrice;
+IGUIElementTextOpt@ buyLabel;
+
+IGUIElementImageOpt@[] ItemsUIs;
+IGUIElementCheckBoxOpt@[] CheckBoxState;
+AuctionItemInfo@[] AuctionItemInfos;
+
+void ReceiveAuctionData( int, int, int, string@, int[]@ data )
+{
+    AuctionItemInfos.resize(0);
+    ItemTypeHelper.resize(0);
+    AuctionIndex.resize(0); 
+    ItemProtoId.resize(0); 
+    Count.resize(0); 
+    Cost.resize(0); 
+    Val4.resize(0); 
+    Val5.resize(0); 
+    Val6.resize(0); 
+    Val7.resize(0); 
+    Val8.resize(0); 
+    Val9.resize(0); 
+    ItemColor.resize(0);
+    OwnerId.resize(0);
+    Buffer@ buff = NewBuffer( data );
+    buff >> AuctionIndex >> ItemProtoId >> Count >> Cost >> Val4 >> Val5 >> Val6 >> Val7 >> Val8 >> Val9 >> ItemColor >> OwnerId;
+    testinput();
+    
+    PageItemType = 0;
+    PageItemProto = 0;
+    PageNumber = 0;
+    PagesTotal = 0; 
+    
+    OpenAuctionScreen();
+}
+
+
+
+
+
+void AddItemInfo(uint itemtype,uint protoId, uint id)
+{
+    int i = ItemTypeHelper.find(itemtype);
+    if (i>=0 && valid(AuctionItemInfos))
+    {
+        AuctionItemInfos[i].AddItemDefinition(protoId, id);
+        return;
+    }
+    ItemTypeHelper.insertLast(itemtype);
+    
+    AuctionItemInfo info;
+    info.ItemType=itemtype;
+    info.AddItemDefinition(protoId, id);
+    AuctionItemInfos.insertLast(info);    
+}
+
+array<uint> ItemTypeHelper;
+class AuctionItemInfo
+{
+    uint ItemType;
+    ItemDefinition@[] ItemDefinitions;
+    array<uint> ItemProtoIdHelper;
+    
+    void AddItemDefinition(uint protoId, uint id)
+	{
+        int i = ItemProtoIdHelper.find(protoId);
+        if (i>=0 && valid(ItemDefinitions))
+        {
+            ItemDefinitions[i].ids.insertLast(id);
+            return;
+        }
+        ItemProtoIdHelper.insertLast(protoId);
+        
+        ItemDefinition definition;
+		definition.ItemProtoId = protoId;
+        definition.ids.insertLast(id);
+		ItemDefinitions.insertLast(definition);
+	}
+}
+
+class ItemDefinition
+{
+	uint ItemProtoId;
+    array<uint> ids;
+}
+
+class ItemTypeButtons : IGUIElementCallbackMouseClick
+{
+	uint id;
+    uint action;
+    uint buttonIndex;
+	ItemTypeButtons(uint action, uint id, uint buttonIndex)
+	{
+		this.action=action;
+        this.id=id;
+        this.buttonIndex=buttonIndex;
+	}
+    void OnMouseClick(int mm, int click)
+    {
+        //if (click != MOUSE_CLICK_LEFT)
+        //    return;
+        if (click == MOUSE_CLICK_WHEEL_DOWN || click == MOUSE_CLICK_WHEEL_UP)
+        {
+            if (PagesTotal > 0 && (State==STATE_SHOW_ITEMS_BY_PROTO || State==STATE_SHOW_ITEMS_BY_TYPE))
+            {
+                action = B_ACT_LISTING;
+                id = click-3;
+            }
+            else
+                return;
+        }
+        switch( action )
+		{
+            case B_ACT_SELECT_TYPE:
+            {
+                PageItemType=id;
+                State=STATE_SHOW_ITEMS_BY_TYPE;
+                PageNumber = 0;
+                PagesTotal = 0;
+                RefreshAuctionScreen();
+                break;
+            }
+            case B_ACT_SELECT_PROTO:
+            {
+                PageItemProto=id;
+                State=STATE_SHOW_ITEMS_BY_PROTO;
+                PageNumber = 0;
+                PagesTotal = 0;
+                RefreshAuctionScreen();    
+                break;
+            }
+            case B_ACT_SELECT_ITEM:
+            {
+                if (!CheckBoxState[buttonIndex].IsChecked())
+                {
+                    CheckBoxState[buttonIndex].setState(true);
+                    //return;
+                }
+                   
+                for (uint i = 0; i < CheckBoxState.length();i++)
+                    if (i!=buttonIndex)
+                            CheckBoxState[i].setState(false);
+
+                //CheckBoxState[buttonIndex].setState(true);
+                
+                ProtoItem@ proto =  GetProtoItem( ItemProtoId[id] );
+                if(valid(proto))
+                {
+                    SelectedPid = AuctionIndex[id];
+                    SelectedCost = Cost[id] * Count[id];
+                    CritterCl@ chosen = GetChosen();
+                    if (valid(chosen) && OwnerId[id]==chosen.Id)
+                    {
+                        SelectedCost = 0;
+                        buyLabel.setText("TAKE ITEM");
+                    }
+                    else
+                        buyLabel.setText("BUY ITEM");
+
+                    currentPrice.setText(""+SelectedCost);
+                    currentPrice.TextColor(SelectedCost>TotalMoney ? COLOR_RED : COLOR_GREEN);
+                    
+                    string itemString = "";
+                    
+                    if (ItemColor[id]>0)
+                        itemString += "|"+ItemColor[id]+" "+GetMsgStr( TEXTMSG_ITEM, STR_ITEM_NAME(proto.ProtoId))+"|"+COLOR_TEXT+" \n";
+                    else
+                        itemString += GetMsgStr( TEXTMSG_ITEM, STR_ITEM_NAME(proto.ProtoId))+"\n";
+                    //itemString += GetMsgStr( TEXTMSG_ITEM, 1+STR_ITEM_NAME(proto.ProtoId))+"\n";
+                    if (proto.Deteriorable)
+                    {
+                        itemString += ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_DETERIORATION_PROCENT ), "VALUE", 0 )+"\n";
+                        itemString += ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_DETERIORATION_BROKEN_COUNT ), "VALUE", ((proto.Durability == 0 ? int(100) : proto.Durability) - Val4[id]) ) +"\n";
+                    }
+                    
+                    if( proto.Type == ITEM_TYPE_ARMOR || proto.Type == ITEM_TYPE_WEAPON)
+                    {
+                        array<int> itemvalsnum ={Val5[id],Val6[id],Val7[id],Val8[id],Val9[id]};
+                        uint num = proto.Type == ITEM_TYPE_ARMOR ? 10700 : 10800;
+                        array<int> itemvals = GetItem_Values_Virtual(itemvalsnum);
+                        for( uint i = 0; i < itemvals.length(); i++ )
+                        {
+                            if( itemvals[i] > 0 )
+                                itemString += "\n" + GetMsgStr( TEXTMSG_GAME, ( num + i ) ) + " +" + itemvals[i];
+                        }
+                    }
+                    
+                    // HintBook
+                    if( proto.ProtoId == PID_FALLOUT_2_HINTBOOK )
+                        itemString += "\nExperience: " + Val5[id];
+                    
+                    itemInfo.setText(itemString);
+                }
+                break;
+            }
+            case B_ACT_LISTING:
+            {
+                if (PagesTotal > 0 && (State==STATE_SHOW_ITEMS_BY_PROTO || State==STATE_SHOW_ITEMS_BY_TYPE) )
+                {
+                    if (id == LISTING_LEFT && PageNumber > 0)
+                        PageNumber--;
+                    else if (id == LISTING_RIGHT && PageNumber<PagesTotal)
+                        PageNumber++;
+                    else if (id == LISTING_LEFT_FAST && PageNumber > 0)
+                    {
+                        if (PageNumber>=5)
+                            PageNumber=PageNumber-5;
+                        else
+                            PageNumber=0;
+                    }
+                    else if (id == LISTING_RIGHT_FAST && PagesTotal > 0)
+                    {
+                        if (PageNumber+5<=PagesTotal)
+                            PageNumber=PageNumber+5;
+                        else
+                            PageNumber=PagesTotal;
+                    }
+                    //else
+                    //    return;
+                    RefreshAuctionScreen();
+                }
+                break;
+            }
+            case B_ACT_BUY:
+                if (SelectedPid>0)
+                {
+                    if (TotalMoney>=SelectedCost)
+                    {
+                        RunServerScriptUnsafe( "auction@unsafe_BuyItem", SelectedPid, 0, 0, null, null );
+                        HideScreen(CLIENT_SCREEN_AUCTION_MAIN,0,0,0);
+                        return;
+                    }
+                    Message(GetMsgStr( TEXTMSG_TEXT, 70431 ));
+                }
+                break;
+            case B_ACT_SELL:
+                HideScreen(CLIENT_SCREEN_AUCTION_MAIN,0,0,0);
+                OpenAuctionSellScreen();
+                break;
+            case B_ACT_EXIT:
+                HideScreen(CLIENT_SCREEN_AUCTION_MAIN,0,0,0);
+                break;
+        }
+    }
+}
+
+int[] GetItem_Values_Virtual(int[] ValuesNum)
+{
+	int[] ItemValues;
+    if (ValuesNum.length()!=5)
+        return ItemValues;    
+	ItemValues.resize(25);
+	for (uint i=0; i<ValuesNum.length() ; i++)
+	{
+		ItemValues[i*5] = ValuesNum[i] % 100;
+		ItemValues[1+(i*5)] = (ValuesNum[i] / 100) % 100;
+		ItemValues[2+(i*5)] = (ValuesNum[i] / 10000) % 100;
+		ItemValues[3+(i*5)] = (ValuesNum[i] / 1000000) % 100;
+		ItemValues[4+(i*5)] = (ValuesNum[i] / 100000000) % 100;
+	}
+	return ItemValues;
+}
+
+
+void testinput()
+{
+    for (uint i = 0; i < ItemProtoId.length(); i++)
+	{
+        ProtoItem@ proto =  GetProtoItem( ItemProtoId[i] );
+		if(valid(proto))
+        {
+            AddItemInfo(proto.Type, ItemProtoId[i], i);
+            AuctionIndex.insertLast(i);
+        }
+    }
+}
+
+void InitAuctionScreen()
+{
+    GUI_CreateScreen(CLIENT_SCREEN_AUCTION_MAIN, GetIfaceIniStr("AuctionMainPic")).AutoCursor(true,CURSOR_DEFAULT);
+    
+    GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionBalancePos").Text("Money Balance", FONT_FAT, COLOR_SAND, FT_CENTERXY);
+    GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionItemInfoPos").Text("Item Info", FONT_FAT, COLOR_SAND, FT_CENTERXY);
+    @buyLabel = GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionBuyTextPos").Text("Buy Item", FONT_FAT, COLOR_SAND, FT_CENTERXY);
+    GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionSellTextPos").Text("Sell", FONT_FAT, COLOR_SAND, FT_CENTERY);
+    GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionCancelTextPos").Text("Cancel", FONT_FAT, COLOR_SAND, FT_CENTERY);
+    @itemInfo = GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionItemTextBox").Text("", FONT_FALLOUT, COLOR_TEXT);
+    @balanceInfo = GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionBalanceTextBox").Text("", FONT_FALLOUT, COLOR_TEXT, FT_CENTERY);
+    @pageInfo = GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionPagePos").Text("", FONT_FALLOUT, COLOR_SAND, FT_CENTERXY);
+    @currentPrice = GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionCurrentPricePos").Text("", FONT_FALLOUT, COLOR_TEXT, FT_CENTERXY);
+    
+    const array<string@> names = {"Armor","Weapon","Ammo","Drugs","Blueprints","Misc"};
+    
+    ItemTypeButtons typeButton1(B_ACT_BUY,0,0);
+    GUI_AddButton( CLIENT_SCREEN_AUCTION_MAIN ).CallbackMouseClick(typeButton1).Position(647,434).DownPic("MENUDOWN.FRM");
+    ItemTypeButtons typeButton2(B_ACT_SELL,0,0);
+    GUI_AddButton( CLIENT_SCREEN_AUCTION_MAIN ).CallbackMouseClick(typeButton2).Position(679,528).DownPic("LILREDDN.FRM");
+    ItemTypeButtons typeButton3(B_ACT_EXIT,0,0);
+    GUI_AddButton( CLIENT_SCREEN_AUCTION_MAIN ).CallbackMouseClick(typeButton3).Position(679,564).DownPic("LILREDDN.FRM");
+    
+    
+    for (uint i = 0; i < 6; i++)
+    {
+        ItemTypeButtons typeButton(B_ACT_SELECT_TYPE, auction_itemtypes[i],0);
+        GUI_AddButton( CLIENT_SCREEN_AUCTION_MAIN )
+		.CallbackMouseClick(typeButton)
+		.Position("AuctionItemTypeImgPos"+i )
+        .Text(names[i], FONT_FALLOUT, COLOR_BLACK, COLOR_BLACK, FT_CENTERXY)
+        .DownPic("Auction_up_menu_button.png");
+    }
+    
+    for (uint i = 0; i < 4; i++)
+    {
+        ItemTypeButtons typeButton(B_ACT_LISTING, i,0);
+        GUI_AddButton( CLIENT_SCREEN_AUCTION_MAIN )
+        .CallbackMouseClick(typeButton)
+        .Position("AuctionListingPos"+i)
+        .DownPic(GetIfaceIniStr("AuctionListingImg"+i));
+    }
+}
+
+void ShowItemsByType()
+{
+    uint type = PageItemType; 
+    if (auction_itemtypes.find(type)<0)
+        return;
+        
+    int i = ItemTypeHelper.find(type);
+    if (i<0 || !valid(AuctionItemInfos) || !valid(AuctionItemInfos[i].ItemDefinitions))
+        return;
+
+    ItemsUIs.resize(0);
+    PagesTotal = AuctionItemInfos[i].ItemDefinitions.length() / 15;
+    pageInfo.setText("PAGE "+(PageNumber+1)+" OF "+(PagesTotal+1));
+    uint index = 0;
+    for (uint j = 0 + PageNumber*15; j < AuctionItemInfos[i].ItemDefinitions.length() && (j < 15 + PageNumber*15); j++)
+    {
+        IGUIElementImageOpt@ item = GUI_AddImage(CLIENT_SCREEN_AUCTION_MAIN)
+			.Stretch(true)
+			.Position("AuctionItemImgPos"+index);
+		ItemsUIs.insertLast(item);
+        
+        ProtoItem@ proto =  GetProtoItem( AuctionItemInfos[i].ItemDefinitions[j].ItemProtoId );
+        ItemsUIs[ItemsUIs.length()-1].loadImage(proto.PicInv, 0);
+            
+        ItemTypeButtons typeButton(B_ACT_SELECT_PROTO, proto.ProtoId,0);
+        GUI_AddButton( CLIENT_SCREEN_AUCTION_MAIN )
+        .CallbackMouseClick(typeButton)
+        .Position("AuctionItemImgPos"+index);
+
+        GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionItemImgPos"+index).Text("\n"+GetMsgStr( TEXTMSG_ITEM, STR_ITEM_NAME(proto.ProtoId)), FONT_FALLOUT, COLOR_TEXT, FT_CENTERX);
+        GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionItemCountPos"+index).Text("Count: "+AuctionItemInfos[i].ItemDefinitions[j].ids.length(), FONT_FALLOUT, COLOR_TEXT, FT_CENTERXY);
+        index++;
+    }
+}
+
+void ShowItemsByProto()
+{
+    uint itemType = PageItemType; 
+    uint itemProto = PageItemProto;
+    ProtoItem@ proto =  GetProtoItem( itemProto );
+    if (!valid(proto))
+        return;
+    
+    if (auction_itemtypes.find(itemType)<0)
+        return;
+        
+    int i = ItemTypeHelper.find(itemType);
+    if (i<0 || !valid(AuctionItemInfos) || !valid(AuctionItemInfos[i].ItemDefinitions))
+        return;
+        
+    int j = AuctionItemInfos[i].ItemProtoIdHelper.find(itemProto);
+    if (j<0 || !valid(AuctionItemInfos) || !valid(AuctionItemInfos[i].ItemDefinitions[j].ids))
+        return;
+    array<uint> ids = AuctionItemInfos[i].ItemDefinitions[j].ids;    
+    ItemsUIs.resize(0);
+    CheckBoxState.resize(0);  
+    PagesTotal = ids.length() / 15;
+    pageInfo.setText("PAGE "+(PageNumber+1)+" OF "+(PagesTotal+1));
+    uint index = 0;
+    
+    array<uint> tmpcost;
+    
+    for (uint x = 0 ; x < ids.length(); x++)
+    {
+        tmpcost.insertLast(Cost[ids[x]]);
+    }
+   
+    SortArray(tmpcost,ids);
+
+    for (uint x = 0 + PageNumber*15; x < ids.length() && x < (15 + PageNumber*15); x++)
+    {
+        ItemTypeButtons typeButton(B_ACT_SELECT_ITEM, ids[x], index);//
+        IGUIElementCheckBoxOpt@ element;
+        @element = GUI_AddCheckBox( CLIENT_SCREEN_AUCTION_MAIN )
+        .CallbackMouseClick(typeButton)
+        .CheckedPic("Auc_selected_item.png")
+        .AutoStateChange(false)
+        .Position("AuctionItemImgPos"+index);
+        CheckBoxState.insertLast(element);
+        
+        IGUIElementImageOpt@ item = GUI_AddImage(CLIENT_SCREEN_AUCTION_MAIN)
+			.Stretch(true)
+			.Position("AuctionItemImgPos"+index);
+		ItemsUIs.insertLast(item);
+        ItemsUIs[ItemsUIs.length()-1].loadImage(proto.PicInv, 0);
+        string itemString = "";
+        ProtoItem@ proto =  GetProtoItem( ItemProtoId[ids[x]] );
+        if (valid(proto))
+        {
+            if (proto.Stackable)
+                itemString += "Count: "+Count[ids[x]]+"\n";
+            if (proto.Deteriorable)
+                itemString += "0/"+ ((proto.Durability == 0 ? int(100) : proto.Durability) - Val4[ids[x]])+"\n";
+        }
+        GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionItemImgPos"+index).Text("\n"+GetMsgStr( TEXTMSG_ITEM, STR_ITEM_NAME(proto.ProtoId)), FONT_FALLOUT, (ItemColor[ids[x]]>0 ? ItemColor[ids[x]] : COLOR_TEXT), FT_CENTERX);
+        GUI_AddText(CLIENT_SCREEN_AUCTION_MAIN).Position("AuctionItemCountPos"+index).Text(/*"Id: "+AuctionIndex[ids[x]]+*/ itemString +"Cost: "+Cost[ids[x]], FONT_FALLOUT, (TotalMoney >=Cost[ids[x]]*Count[ids[x]]) ? COLOR_TEXT : COLOR_RED, FT_CENTERXY);
+        index++;
+    }
+}
+
+void RefreshBalance()
+{
+    CritterCl@ chosen = GetChosen();
+	if( !valid( chosen ) || !valid(balanceInfo))
+		return;
+        
+    TotalMoney = chosen.Param[ST_REPLICATION_MONEY]+chosen.CountItem(PID_BOTTLE_CAPS);
+    string@ balance = "Bank: "+chosen.Param[ST_REPLICATION_MONEY]+" Caps\nInventory: "+chosen.CountItem(PID_BOTTLE_CAPS)+" Caps\n\nTotal: "+(chosen.Param[ST_REPLICATION_MONEY]+chosen.CountItem(PID_BOTTLE_CAPS))+" Caps";
+    balanceInfo.setText(balance);
+}
+
+void OpenAuctionScreen()
+{
+    int ver = 0;
+    StrToInt(GetIfaceIniStr("AuctionVersion"),ver);
+    if (ver<1 && IsDefaultIface())
+    {
+        Message( GetMsgStr( TEXTMSG_TEXT, 70432 ) );
+        return;
+    }
+    if (ver<2 && !IsDefaultIface())
+    {
+        Message( GetMsgStr( TEXTMSG_TEXT, 70437 ) );
+    }
+    if (GUI_GetActiveScreen()==CLIENT_SCREEN_FACTION)
+	{
+		RefreshAuctionScreen();
+	}
+	else
+    {
+		ChangeCursor( CURSOR_DEFAULT );
+        CleanScreen();
+		RenderScreen();
+		ShowScreen(CLIENT_SCREEN_AUCTION_MAIN,0,0,0);
+    }
+}
+
+void RefreshAuctionScreen()
+{
+	HideScreen(CLIENT_SCREEN_AUCTION_MAIN,0,0,0);
+	CleanScreen();
+	RenderScreen();
+	ShowScreen(CLIENT_SCREEN_AUCTION_MAIN,0,0,0);
+}
+
+void CleanScreen()
+{
+	CleanScreen(CLIENT_SCREEN_AUCTION_MAIN,22);
+}
+
+void RenderScreen()
+{
+    SelectedPid=0;
+    TotalMoney=0;
+    SelectedCost=0;
+    
+    itemInfo.setText("");
+    pageInfo.setText("");
+    currentPrice.setText("");
+    buyLabel.setText("BUY ITEM");
+    RefreshBalance(); 
+    if (State==STATE_SHOW_ITEMS_BY_TYPE)
+    {
+        ShowItemsByType();
+    }
+    if (State==STATE_SHOW_ITEMS_BY_PROTO)
+    {
+        ShowItemsByProto();
+    }
+}

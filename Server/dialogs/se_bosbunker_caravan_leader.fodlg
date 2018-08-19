@@ -1,0 +1,137 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+11 1010 D _var p q_finders_check = 2 #
+5 1020 D _var p name_mem_player_npc = 1 #
+2 1030 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 1 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 D _param p MAIN_FACTION ! 2 #
+10 3020 D _param p MAIN_FACTION = 2 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_AttackGroup 1 208 R _script dialog@r_AttackGroup 1 209 R _script dialog@r_AttackGroup 1 210 R _script dialog@r_AttackGroup 1 211 R _script dialog@r_AttackGroup 1 212 #
+0 3030 @
+4 4000 None 0 #
+65506 4010 D _param p MAIN_FACTION ! 2 #
+10 4020 D _param p MAIN_FACTION = 2 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_AttackGroup 1 208 R _script dialog@r_AttackGroup 1 209 R _script dialog@r_AttackGroup 1 210 R _script dialog@r_AttackGroup 1 211 R _script dialog@r_AttackGroup 1 212 #
+0 4030 @
+5 5000 None 0 #
+65506 5010 D _param p MAIN_FACTION ! 2 #
+10 5020 D _param p MAIN_FACTION = 2 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_AttackGroup 1 208 R _script dialog@r_AttackGroup 1 209 R _script dialog@r_AttackGroup 1 210 R _script dialog@r_AttackGroup 1 211 R _script dialog@r_AttackGroup 1 212 #
+0 5030 @
+10 6000 Attack 0 @
+11 7000 None 0 &
+
+[engl]
+{100}{}{Caravan Leader}
+{200}{}{You see: Caravan Leader.}
+{210}{}{This aging bald man in metal armor seems to be the man in charge of this caravan.}
+{1000}{}{Initial preferences}
+{1010}{}{gave up armor}
+{1020}{}{known}
+{1030}{}{-}
+{2000}{}{I'm Nate, the leader of this caravan. You wanna do business?@@Hello there I'm Nate. In for some business? We've just cracked this bunker recently, got plenty of good stuff for sale.@@Hello there stranger, my name's Nate. You willing to do some trade? @@Hi there, I'm Nate, and I lead this humble caravan. Wanna trade?}
+{2010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{2020}{}{What is this place?@@So, what is this place?}
+{2030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time, sorry.}
+{3000}{}{This? It's probably some old Brotherhood cache, it looks like it's been long deserted. We had some explosives, so we cracked this baby open, and hit the jackpot.@@It's probably a cache of the Brotherhood, but it looks like it hasn't been used for a long time, a couple of years or so. Fortunately we had some explosives, so we were able to blow the doors open.}
+{3010}{}{You're goddamn lucky then. Found anything interesting?@@No shit. Found anything interesting?@@You're one lucky bunch then. Found anything interesting?}
+{3020}{}{That's funny. It so happens I'm a member of the Brotherhood myself, and you're looting our property. Hand over all the goods you stole, and walk away, now!@@No shit. You know, the funny thing is, I'm a Brotherhood member myself, and you're stealing our stuff. Give it back now and get lost, before I give you a taste of lead.}
+{3030}{}{I see. I've got to get going.@@Uhum. I've gotta go now.@@Right... I need to get going.}
+{4000}{}{Yeah, you bet! Some weapons, parts, medicine... We weren't able to open one crate, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to pick the lock. Anyway, if you're interested, we could make some business with the things we already got...@@Yeah, this bunker is a fucking goldmine. Weapons, parts, medicine, drugs... We weren't able to open one crate though, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to crack that shit. Anyhow, as I said before, I could sell you some things we've found already.}
+{4010}{}{Okay, let's do business.@@Okay, got anything interesting?@@All right, let's trade.@@So, what do you have?@@Show me what you've got then.}
+{4020}{}{You're stealing Brotherhood property. Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{4030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.}
+{5000}{}{Yeah? Want to do business?@@Hey, back already? Wanna trade?@@You wanna barter or what?}
+{5010}{}{Yes.@@Yeah.@@Sure.@@Sure, why not.@@You bet.}
+{5020}{}{You're stealing Brotherhood property. Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{5030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.}
+{6000}{}{No fucking way. Hey, people! We've got some unwanted customer here!@@Over my dead body...@@Fuck you, you won't get outta this alive!}
+{7000}{}{You spared us a lot of trouble, hehe.@@Thanks for sparing us the trouble, pussy!@@You're such a wuss..@@You just spared us a lot of trouble. Thanks, and get lost, hehe.@@Pleasure doin' business with you, jerk.}
+
+[russ]
+{100}{}{Охранник}
+{200}{}{Вы видите охранника.}
+{210}{}{Вы видите профессионального охранника. Довольно крепкий парень. В любом случае не стоит попадаться ему под горячую руку.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Answer text}
+{1020}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{1030}{}{-}
+{2000}{}{Смотри тут особо не возникай, и все будут здоровы.@@Я смотрю за тобой.@@Не нарушай.@@Будешь воровать - убью на месте.@@Попробуй только пальцем тронь кого-нибудь!}
+{2010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{2020}{}{What is this place?@@What are you doing here?@@So, what is this place?}
+{2030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{3000}{}{This? It's probably some old Brotherhood cache, it looks like it's been long deserted. We had some explosives, so we cracked this baby open, and hit the jackpot.@@It's probably a cache of the Brotherhood, but it looks like it hasn't been used for a long time, a couple of years or so. Fortunately we had some explosives, so we were able to blow the doors open.}
+{3010}{}{You're goddamn lucky then. Found anything interesting?@@No shit. Found anything interesting?@@You're one lucky bunch then. Found anything interesting?}
+{3020}{}{That's funny. It so happens I'm a member of the Brotherhood myself, and you're looting our property. Hand over all the goods you stole, and walk away, now!@@No shit. You know, the funny thing is, I'm a Brotherhood member myself, and you're stealing our stuff. Give it back now and get lost, before I give you a taste of lead.}
+{3030}{}{I see. I've got to get going.@@Uhum. I've gotta go now.@@Right.. I need to get going.}
+{4000}{}{Yeah, you bet! Some weapons, parts, medicine... We weren't able to open one crate, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to pick the lock. Anyway, if you're interested, we could make some business with the things we already got...@@Yeah, this bunker is a fucking goldmine. Weapons, parts, medicine, drugs... We weren't able to open one crate though, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to crack that shit. Anyhow, as I said before, I could sell you some things we've found already.}
+{4010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{4020}{}{You're stealing Brotherhood property. Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{4030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{5000}{}{Yeah? Want to do business?@@Hey, back already? Wanna trade?@@You wanna barter or what?}
+{5010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{5020}{}{Are you aware you're stealing Brotherhood property? Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{5030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{6000}{}{No fucking way. Hey, people! We've got some unwanted customer here!@@Over my dead body...@@Fuck you, you won't get outta this alive!}
+{7000}{}{Get lost, wimp.@@Hahah, what a pussy!@@Heheheh, get lost.@@Walk away now, you wuss.@@Get lost, wuss.@@What an idiot.@@Get lost.@@Thanks for the armor, pussy!@@You spared us a lot of trouble, hehe.@@Thanks for sparing us the trouble, pussy!}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz profesjonalnego strażnika. Wydaje się być doskonale wyszkolony, lepiej nie robić żadnych problemów w jego okolicy.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer text}
+{1020}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{1030}{}{-}
+{2000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.@@Prawo to ja.}
+{2010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{2020}{}{What is this place?@@What are you doing here?@@So, what is this place?}
+{2030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{3000}{}{This? It's probably some old Brotherhood cache, it looks like it's been long deserted. We had some explosives, so we cracked this baby open, and hit the jackpot.@@It's probably a cache of the Brotherhood, but it looks like it hasn't been used for a long time, a couple of years or so. Fortunately we had some explosives, so we were able to blow the doors open.}
+{3010}{}{You're goddamn lucky then. Found anything interesting?@@No shit. Found anything interesting?@@You're one lucky bunch then. Found anything interesting?}
+{3020}{}{That's funny. It so happens I'm a member of the Brotherhood myself, and you're looting our property. Hand over all the goods you stole, and walk away, now!@@No shit. You know, the funny thing is, I'm a Brotherhood member myself, and you're stealing our stuff. Give it back now and get lost, before I give you a taste of lead.}
+{3030}{}{I see. I've got to get going.@@Uhum. I've gotta go now.@@Right.. I need to get going.}
+{4000}{}{Yeah, you bet! Some weapons, parts, medicine... We weren't able to open one crate, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to pick the lock. Anyway, if you're interested, we could make some business with the things we already got...@@Yeah, this bunker is a fucking goldmine. Weapons, parts, medicine, drugs... We weren't able to open one crate though, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to crack that shit. Anyhow, as I said before, I could sell you some things we've found already.}
+{4010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{4020}{}{You're stealing Brotherhood property. Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{4030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{5000}{}{Yeah? Want to do business?@@Hey, back already? Wanna trade?@@You wanna barter or what?}
+{5010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{5020}{}{Are you aware you're stealing Brotherhood property? Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{5030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+{6000}{}{No fucking way. Hey, people! We've got some unwanted customer here!@@Over my dead body...@@Fuck you, you won't get outta this alive!}
+{7000}{}{Get lost, wimp.@@Hahah, what a pussy!@@Heheheh, get lost.@@Walk away now, you wuss.@@Get lost, wuss.@@What an idiot.@@Get lost.@@Thanks for the armor, pussy!@@You spared us a lot of trouble, hehe.@@Thanks for sparing us the trouble, pussy!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{gave up armor}
+{1020}{}{known}
+{1030}{}{-}
+{2000}{}{I'm Nate, the leader of this caravan. You wanna do business?@@Hello there I'm Nate. In for some business? We've just cracked this bunker recently, got plenty of good stuff for sale.@@Hello there stranger, my name's Nate. You willing to do some trade? @@Hi there, I'm Nate, and I lead this humble caravan. Wanna trade?}
+{2010}{}{Okay, let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.}
+{2020}{}{What is this place?@@So, what is this place?}
+{2030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time, sorry.}
+{3000}{}{This? It's probably some old Brotherhood cache, it looks like it's been long deserted. We had some explosives, so we cracked this baby open, and hit the jackpot.@@It's probably a cache of the Brotherhood, but it looks like it hasn't been used for a long time, a couple of years or so. Fortunately we had some explosives, so we were able to blow the doors open.}
+{3010}{}{You're goddamn lucky then. Found anything interesting?@@No shit. Found anything interesting?@@You're one lucky bunch then. Found anything interesting?}
+{3020}{}{That's funny. It so happens I'm a member of the Brotherhood myself, and you're looting our property. Hand over all the goods you stole, and walk away, now!@@No shit. You know, the funny thing is, I'm a Brotherhood member myself, and you're stealing our stuff. Give it back now and get lost, before I give you a taste of lead.}
+{3030}{}{I see. I've got to get going.@@Uhum. I've gotta go now.@@Right... I need to get going.}
+{4000}{}{Yeah, you bet! Some weapons, parts, medicine... We weren't able to open one crate, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to pick the lock. Anyway, if you're interested, we could make some business with the things we already got...@@Yeah, this bunker is a fucking goldmine. Weapons, parts, medicine, drugs... We weren't able to open one crate though, and I'm afraid blowing it up would damage the contents, so we decided to stay for a while and try to crack that shit. Anyhow, as I said before, I could sell you some things we've found already.}
+{4010}{}{Okay, let's do business.@@Okay, got anything interesting?@@All right, let's trade.@@So, what do you have?@@Show me what you've got then.}
+{4020}{}{You're stealing Brotherhood property. Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{4030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.}
+{5000}{}{Yeah? Want to do business?@@Hey, back already? Wanna trade?@@You wanna barter or what?}
+{5010}{}{Yes.@@Yeah.@@Sure.@@Sure, why not.@@You bet.}
+{5020}{}{You're stealing Brotherhood property. Hand it over, and no one will get hurt.@@I'm a member of the Brotherhood, and you're stealing our property. Hand it over now, and get lost.}
+{5030}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.}
+{6000}{}{No fucking way. Hey, people! We've got some unwanted customer here!@@Over my dead body...@@Fuck you, you won't get outta this alive!}
+{7000}{}{You spared us a lot of trouble, hehe.@@Thanks for sparing us the trouble, pussy!@@You're such a wuss..@@You just spared us a lot of trouble. Thanks, and get lost, hehe.@@Pleasure doin' business with you, jerk.}
+

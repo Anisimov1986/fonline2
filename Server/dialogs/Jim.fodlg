@@ -1,0 +1,174 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+7 1020 D _var p name_mem_player_npc = 1 D _param p PE_PROF_ARMORER = 0 #
+2 1030 D _var p name_mem_player_npc = 1 D _param p PE_PROF_ARMORER } 1 @
+2 2000 None 0 #
+3 2010 D _param p PE_PROF_ARMORER = 0 D _param p SK_REPAIR } 60 #
+9 2020 D _param p PE_PROF_ARMORER = 1 #
+0 2030 #
+10 2040 D _param p SK_REPAIR < 60 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 R _var p prof_armorer = 1 @
+6 6000 economy_dialogs@dlg_PreparePrice 0 #
+0 6010 R _var p name_mem_player_npc = 1 #
+0 6020 @
+7 7000 None 0 #
+8 7010 D _script economy_dialogs@d_IsEnoughCaps 1 2000 D _item p PID_LEATHER_JACKET } 1 D _item p PID_BEER } 6 D _item p PID_CATS_PAW } 1 R _script economy_dialogs@r_TakeCaps 1 2000 R _item p PID_LEATHER_JACKET - 1 R _item p PID_BEER - 6 R _item p PID_CATS_PAW - 1 R _param p PE_PROF_ARMORER = 1 R _var p prof_armorer = 2 R _param p ST_EXPERIENCE + 500 #
+6 7020 #
+0 7030 @
+8 8000 None 0 #
+9 8010 R _var p prof_armorer = 3 #
+0 8020 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 &
+
+[engl]
+{100}{}{Jim}
+{200}{}{You see: Jim}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{1030}{}{derp2}
+{2000}{}{Hello there, youngster. What do you need?}
+{2010}{}{I'm looking for someone with decent knowledge about manufacturing protective apparel.}
+{2020}{}{Hey Jimmy. Do you know anyone else able to teach me something more?}
+{2030}{}{Oh, wrong door, goodbye.@@Nevermind.@@Got to go.}
+{2040}{}{I want to learn your profession.}
+{3000}{}{Say what?@@What?}
+{3010}{}{Do you know how to make armors?@@You know anything about making armors?}
+{3020}{}{Nevermind.@@Whatever.}
+{4000}{}{Damn right I do. You need to know, young man, I was an owner of the whole manufacture. We've been doing brilliant things there, all hand mande with the finest leather. Yes, we were famous back then, in good ol' days. It was none of those modern hi-tech places with shiny and noisy machines, no way sir. But then ...}
+{4010}{}{Yes?}
+{4020}{}{Oh cut the crap, I have no time to listen this. Bye.}
+{5000}{}{Then people realised these machines are more efficient than hands and allow to make things faster, better and easier. I've tried to learn how to use them, but couldn't. You can't teach an old dog new tricks that easily. Hell, let me show you what I still remember.}
+{5010}{}{Finally, what's the price?}
+{6000}{}{Well, we need something to practice on. So bring a leather jacket, a regular one. This will take time, so fetch me also some beers, a six-pack should do it. When I talk a lot my throat gets dry easily. I would also like to relax after work, so I'm gonna need a Cats Paw magazine. Oh, and @lex prof1_price@ caps, an old man like me needs to think about his retirement.}
+{6010}{}{I'll be back with all the... ingredients. }
+{6020}{}{Screw you, you greedy bastard! I won't bring you anything.}
+{7000}{}{So, you're back. Do you have all I need?}
+{7010}{}{Yes, here it is.}
+{7020}{}{Can you repeat what I need to bring?}
+{7030}{}{No, not yet.}
+{8000}{}{Good, good. Okay, so here's the deal ... [He shows you how to craft basic armor.] Yeah, so this is it. I've taught you all I know.}
+{8010}{}{Thank you, Jim. Do you know anyone else who can teach me even more?}
+{8020}{}{Thank you, Jim. Bye.}
+{9000}{}{Well, the best place for that is Modoc. They've got a tannery, so you might try there.}
+{9010}{}{Thanks again, goodbye.}
+{10000}{}{You do not know all that you need. Come back when you're more skilled.}
+
+[russ]
+{100}{}{Джим}
+{200}{}{Вы видите: Джима}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{1030}{}{derp2}
+{2000}{}{Привет, малыш. Чего тебе?}
+{2010}{}{Я ищу кого-то с приличными знаниями о производстве защитной одежды.}
+{2020}{}{Эй Джимми. Может ты знаешь кого-то кто может продолжить мое обучение?}
+{2030}{}{Ой, ошибся дверью, до свидания.}
+{2040}{}{Я хочу выучить твою профессию...}
+{3000}{}{Какой одежды?}
+{3010}{}{Ну, ты умеешь делать броню?}
+{3020}{}{Не важно. Пока.}
+{4000}{}{Да, черт возьми я делаю броню. Вы должны знать, молодой человек, я был владелец целого производства. Да, мы были известны тогда, в старые добрые времена. А потом...}
+{4010}{}{Что потом?}
+{4020}{}{Ох дерьмо, у меня нет времени, чтобы слушать это. Пока.}
+{5000}{}{Потом люди поняли, что машины более эффективны, чем руки и позволяют делать вещи быстрее, лучше и легче. Я пытался выучить, как использовать их, но не смог. Вы не можете обучить старую собаку новым трюкам. Черт, позвольте мне показать вам, что я до сих пор помню.}
+{5010}{}{Наконец-то. Какова цена?}
+{6000}{}{Ну, нам нужно что-то, чтобы практиковаться. Так что принеси обычную кожаную куртку. Это займет время, так что принеси еще пива, шесть бутылок будет в самый раз. После такого дела нужно будет расслабится, принеси еще журнал Кошачья Лапка. Ну и @lex prof1_price@ крышек, старику пора подумать о пенсии.}
+{6010}{}{Я вернусь со всеми ... ингредиентами.}
+{6020}{}{Ах ты жадный ублюдок, пошел ты!}
+{7000}{}{Итак, ты вернулся. Принес все, что мне нужно?}
+{7010}{}{Да, вот оно.}
+{7020}{}{Можете ли вы повторить то, что мне нужно взять с собой?}
+{7030}{}{Нет, пока нет.}
+{8000}{}{Отлично. Итак, вот в чем дело ... [Он показывает вам, основные методы ручной работы с броней] Да, так. Я научил вас всему, что знаю.}
+{8010}{}{Спасибо Джим. У кого я могу еще поучиться?}
+{8020}{}{Спасибо Джим. Пока.}
+{9000}{}{Лучшее место для этого это Модок, там есть кожевенный завод, поищи там.}
+{9010}{}{Еще раз спасибо, до свидания.}
+{10000}{}{Мда, ты слишком глуп для этого. Возвращайся когда поумнеешь. [Требуется ремонт 60]}
+
+[pols]
+{100}{}{Jim}
+{200}{}{Widzisz Jima.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{1030}{}{derp2}
+{2000}{}{Cześć, @sex@|dzieciaku||dziewczynko|. Słucham, czego ode mnie chcesz?}
+{2010}{}{Szukam kogoś z solidną wiedzą na temat wytwarzania pancerzy.}
+{2020}{}{Cześć, Jimmy. Znasz kogoś, kto mógłby nauczyć mnie więcej?}
+{2030}{}{Nice meeting you Jack, but I've got to be somewhere else.}
+{2040}{}{@sex@|Chciałbym||Chciałabym| nauczyć się twojej profesji...}
+{3000}{}{Że co, proszę?}
+{3010}{}{Czy wiesz, jak robić pancerze?}
+{3020}{}{Nieważne.}
+{4000}{}{Cholera, jasne, że wiem! Musisz wiedzieć, @sex@|młodzieniaszku||ślicznotko|, że niegdyś byłem właścicielem całej manufaktury. Wytwarzaliśmy wspaniałe rzeczy, wszystko robione ręcznie z najwyższej jakości skóry. Tak, kiedyś byliśmy sławni. Dawno temu, w starych, dobrych czasach. To nie było żadne z tych nowoczesnych miejsc z błyszczącymi, hałasującymi maszynami, o nie, @sex@|kawalerze||panienko|. Ale wtedy...}
+{4010}{}{Tak?}
+{4020}{}{Och daruj sobie, nie mam czasu na słuchanie tych bzdur. Do widzenia.}
+{5000}{}{Wtedy ludzie zaczęli uważać, że te maszyny są bardziej wydajne od ludzkich rąk, pozwalają robić rzeczy szybciej, łatwiej, lepiej. Próbowałem się nauczyć ich obsługi, ale nie dałem rady. Nie nauczysz starego psa nowych sztuczek, o nie... Cholera, pozwól, że pokażę ci wszystko, czego jeszcze nie zdążyłem zapomnieć.}
+{5010}{}{Świetnie, jaka jest cena?}
+{6000}{}{Cóż, potrzebujemy nieco materiałów do ćwiczeń. Przynieś mi skórzaną kurtkę, zwyczajną. To zajmie nieco czasu, więc weź dla mnie trochę piwa, sześciopak wystarczy. Gdy dużo gadam, łatwo wysycha mi w gardle... Po robocie będę musiał się odprężyć, poproszę więc też o magazyn "Kocia Łapka". Och, i @lex prof1_price@ kapsli, człowiek w moim wieku musi już powoli myśleć o emeryturze.}
+{6010}{}{Wrócę niedługo ze wszystkimi... składnikami.}
+{6020}{}{Pierdol się, chciwy łajdaku, nic ci nie przyniosę.}
+{7000}{}{No, jesteś z powrotem. To wszystko?}
+{7010}{}{(Profesja: Zbrojmistrz, poziom 1.) Tak, to wszystko.}
+{7020}{}{Możesz przypomnieć, co @sex@|powinienem||powinnam| przynieść?}
+{7030}{}{Nie, jeszcze nie.}
+{8000}{}{Dooobrze, dooobrze. W porządku, o to chodzi... [Pokazuje ci, jak ręcznie wytwarzać proste pancerze.] No, skończone. Nauczyłem cię wszystkiego, co wiem.}
+{8010}{}{Dzięki, Jim. Czy znasz kogoś, kto mógłby nauczyć mnie więcej?}
+{8020}{}{Dzięki, Jim. Do widzenia.}
+{9000}{}{Cóż, najlepszym miejscem będzie Modoc. Znajduje się tam garbarnia, spróbuj tam.}
+{9010}{}{Jeszcze raz dzięki. Do widzenia, Jim.}
+{10000}{}{Nie wiesz jeszcze wszystkiego, co @sex@|powinieneś||powinnaś|. Wróć, kiedy nieco się podszkolisz. (Wymagana umiejętność: Naprawa 70%.)}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{1030}{}{derp2}
+{2000}{}{Hello there, youngster. What do you need?}
+{2010}{}{I'm looking for someone with decent knowledge about manufacturing protective apparel.}
+{2020}{}{Hey Jimmy. Do you know anyone else able to teach me something more?}
+{2030}{}{Oh, wrong door, goodbye.@@Nevermind.@@Got to go.}
+{2040}{}{I want to learn your profession.}
+{3000}{}{Say what?@@What?}
+{3010}{}{Do you know how to make armors?@@You know anything about making armors?}
+{3020}{}{Nevermind.@@Whatever.}
+{4000}{}{Damn right I do. You need to know, young man, I was an owner of the whole manufacture. We've been doing brilliant things there, all hand mande with the finest leather. Yes, we were famous back then, in good ol' days. It was none of those modern hi-tech places with shiny and noisy machines, no way sir. But then ...}
+{4010}{}{Yes?}
+{4020}{}{Oh cut the crap, I have no time to listen this. Bye.}
+{5000}{}{Then people realised these machines are more efficient than hands and allow to make things faster, better and easier. I've tried to learn how to use them, but couldn't. You can't teach an old dog new tricks that easily. Hell, let me show you what I still remember.}
+{5010}{}{Finally, what's the price?}
+{6000}{}{Well, we need something to practice on. So bring a leather jacket, a regular one. This will take time, so fetch me also some beers, a six-pack should do it. When I talk a lot my throat gets dry easily. I would also like to relax after work, so I'm gonna need a Cats Paw magazine. Oh, and @lex prof1_price@ caps, an old man like me needs to think about his retirement.}
+{6010}{}{I'll be back with all the... ingredients. }
+{6020}{}{Screw you, you greedy bastard! I won't bring you anything.}
+{7000}{}{So, you're back. Do you have all I need?}
+{7010}{}{Yes, here it is.}
+{7020}{}{Can you repeat what I need to bring?}
+{7030}{}{No, not yet.}
+{8000}{}{Good, good. Okay, so here's the deal ... [He shows you how to craft basic armor.] Yeah, so this is it. I've taught you all I know.}
+{8010}{}{Thank you, Jim. Do you know anyone else who can teach me even more?}
+{8020}{}{Thank you, Jim. Bye.}
+{9000}{}{Well, the best place for that is Modoc. They've got a tannery, so you might try there.}
+{9010}{}{Thanks again, goodbye.}
+{10000}{}{You do not know all that you need. Come back when you're more skilled.}
+

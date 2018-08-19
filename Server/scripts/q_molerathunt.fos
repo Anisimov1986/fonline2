@@ -1,0 +1,69 @@
+#include "_macros.fos"
+#include "_defines.fos"
+#include "_itempid.fos"
+#include "_vars.fos"
+#include "_ai.fos"
+ 
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+
+void _MoleInit(Critter& npc, bool)
+{
+npc.SetEvent(CRITTER_EVENT_DEAD,"_deathEvent");
+npc.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,"_ropeEvent");
+npc.SetEvent(CRITTER_EVENT_SHOW_CRITTER,"_crOnWatch");
+
+}
+ 
+ 
+void _deathEvent(Critter& cr, Critter@ killer)
+{
+        GameVar@ cought = GetLocalVar(LVAR_MB_AmountCaught,killer.Id);
+        if(cr.ParamBase[MODE_NO_WALK] == 1)
+                        cought -=1;
+                       
+        cr.ParamBase[MODE_NO_WALK]=0;
+        cr.ParamBase[MODE_NO_RUN]=0;
+        cr.ParamBase[MODE_NO_UNARMED]=0;
+       
+}
+
+void _ropeEvent(Critter& cr, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+        if(item.GetProtoId() != PID_ROPE)
+        {
+                cr.Say(SAY_NETMSG,"You need to use rope to catch him.");
+                return;
+        }
+       
+        if(cr.Param[ST_CURRENT_HP] <= 0)
+        {
+                fromCr.Say(SAY_NETMSG,"It won't move anymore even without rope.");
+                return;
+        }
+		
+		
+        if(Random(0,100) > cr.Param[ST_CURRENT_HP] / cr.Param[ST_MAX_LIFE] * 100)
+        {
+				fromCr.DeleteItem( PID_ROPE, 1 );
+                cr.ParamBase[MODE_NO_WALK]=1;
+                cr.ParamBase[MODE_NO_RUN]=1;
+                cr.ParamBase[MODE_NO_UNARMED]=1;
+                fromCr.Say(SAY_NETMSG,"You got it! It wont move anymore.");
+                GameVar@ cought = GetLocalVar(LVAR_MB_AmountCaught,fromCr.Id);
+                cought +=1;
+        }
+        else
+        {
+                fromCr.Say(SAY_NETMSG,"He is still too strong to tie him down.");
+                fromCr.DeleteItem( PID_ROPE, Random(0,1) );     
+        }
+		
+}
+ 
+void _crOnWatch(Critter& cr, Critter& showCr)
+{
+        if(!showCr.IsPlayer())
+                return;
+				
+        AddAttackPlane(cr,1,showCr,__RunOnCombat);
+}

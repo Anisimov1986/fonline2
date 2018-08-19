@@ -1,0 +1,174 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+3 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+6 2010 #
+8 2020 #
+65506 2030 #
+0 2040 @
+11 3000 None 0 @
+3 4000 None 0 #
+6 4010 #
+8 4020 #
+65506 4030 #
+0 4040 @
+6 5000 None 0 #
+3 5010 #
+7 5020 @
+7 6000 None 0 #
+3 6010 #
+0 6020 @
+8 7000 None 0 #
+9 7010 #
+0 7020 @
+9 8000 None 0 #
+10 8010 #
+0 8020 @
+10 9000 None 0 #
+3 9010 #
+0 9020 &
+
+[engl]
+{100}{}{Ascorti}
+{200}{}{You see a well-dressed man with a greasy look to him.}
+{210}{}{You see Ascorti, Redding's Mayor.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Hello there; welcome to the fine city of Redding...and welcome to my casino. Everyone's an Ace here at Ascorti's. I'm Ascorti, proprietor and mayor of this fine town.}
+{2010}{}{What do you do here?}
+{2020}{}{Is there any work here in town?}
+{2030}{}{I was looking to buy some things.}
+{2040}{}{Nice to meet you, mayor. Goodbye.}
+{3000}{}{Keep on movin', pal.@@If you're here to try your luck, you're welcome.@@Play or get out.@@You better not make a mess in my place.@@You should try the tables, retard.@@You should try the slots, idiot. Lots of shiny things, see?}
+{4000}{}{What can Mayor Ascorti do for you?}
+{4010}{}{What do you do here?}
+{4020}{}{Is there any work here in town?}
+{4030}{}{I was looking to buy some things.}
+{4040}{}{I'd better hit the road.}
+{5000}{}{I run this here casino, and I help run the town, too. I also keep track of things like deeds
+ and such.}
+{5010}{}{I see, let me ask you something else, Mayor.}
+{5020}{}{Deeds? Deeds to what?}
+{6000}{}{Deeds like the one to that Great Wanamingo Mine. Get this, I hawked it to some stupid tribal for twice what it was worth, and got him to clear out the place. Then, I bought it back for practically nothing. Sweet deal, huh?}
+{6010}{}{Interesting story, I've got a few other questions.}
+{6020}{}{Good for you. I'm leaving.}
+{7000}{}{Well, there's always huntin' down bounties.}
+{7010}{}{Bounties? What are they?}
+{7020}{}{Not interested. Bye.}
+{8000}{}{Well, let's say one fella wants another dead, and he don't want to be the one to do it himself. He puts out a bounty on that fella, and other folks, such as yourself, kill that fella for him.}
+{8010}{}{What about money? Do you get paid?}
+{8020}{}{Not really my style. I oughta get going.}
+{9000}{}{You bet. Way we do things around here is, the guy placing the bounty has to pay the cash up front, so that when the bounty hunter gets his kill and tries to collect, the cash is already waiting for him.}
+{9010}{}{Not a bad system. I've got a few other questions.}
+{9020}{}{Maybe I'll go do some hunting. Goodbye, Mayor.}
+
+[russ]
+{100}{}{Аскорти}
+{200}{}{Вы видите невысокого человека с черными волосами и приятной улыбкой.}
+{210}{}{Вы видите Аскорти, Мэра Рэддинга.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Привет! Добро пожаловать в прекрасный город Рэддинг... и добро пожаловать в мое казино. У Аскорти всякий - Туз. Ах да, Я - Аскорти, мэр города и владелец этого прекрасного казино! Могу ли я что-нибудь сделать для тебя @sex@|незнакомец||незнакомка|?}
+{2010}{}{Что вы здесь делаете?}
+{2020}{}{Есть ли тут работенка?}
+{2030}{}{Мне нужно кое-что прикупить.}
+{2040}{}{Да я просто осмотрелся, Мэр. Увидимся после. Пока.}
+{3000}{}{Давай, двигай, приятель.@@Полегче с огненной водой, дикарь.}
+{4000}{}{Чем мэр Аскорти может быть вам полезен?}
+{4010}{}{Что вы здесь делаете?}
+{4020}{}{Есть ли тут работенка?}
+{4030}{}{Мне нужно кое-что прикупить.}
+{4040}{}{Да я просто осмотрелся, Мэр. Увидимся после. Пока.}
+{5000}{}{Я держу здесь казино и помогаю управлять городом. Ну и занимаюсь разными другими делами.}
+{5010}{}{Понятно, у меня еще вопросы.}
+{5020}{}{Делами, какими делами?}
+{6000}{}{Ну например я занимаюсь шахтой Великий Ванаминго это самая преуспевающая шахта. В ней полно золота. И она вся моя. Дааа.}
+{6010}{}{Интересная история, у меня есть несколько вопросов.}
+{6020}{}{Ясно. Пойду осмотрюсь. До свидания.}
+{7000}{}{Ну, всегда можно податся к "охотник за вознаграждением".}
+{7010}{}{Охотники за головами, кто это?}
+{7020}{}{Не интересует. Пока.}
+{8000}{}{Ну, скажем, один парень хочет чтобы другой умер, и он не хочет дулать это самом. Он обьявляет награду за этого парня, и другие люди, убивают этого парня за него.}
+{8010}{}{Что с деньгами?}
+{8020}{}{Не совсем мой стиль. Я ухожу.}
+{9000}{}{Парень который размещает награду, платит вперед. И когда кто-нибудь сдеает дело, награда уже будет его ждать.}
+{9010}{}{Не плохая система. У меня есть несколько других вопросов.}
+{9020}{}{Может быть пойду поохочусь на кого-нибуть. Пока.}
+
+[pols]
+{100}{}{Ascorti}
+{200}{}{Widzisz nieco tłustawego, dobrze ubranego mężczyznę.}
+{210}{}{Widzisz Acortiego, burmistrza Redding.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Witaj, witaj w naszym pięknym Redding... i w moim kasynie. Rozgość się u Ascortiego, a zobaczysz że szczęście zacznie ci sprzyjać jak nigdzie indziej na Pustkowiach! Nazywam się Ascorti i, jak już się pewnie @sex@|zdążyłeś||zdążyłaś| domyślić, jestem właścicielem tego skromnego przybytku, a zarazem burmistrzem tego wspaniałego miasteczka.}
+{2010}{}{Czym się zajmujesz?}
+{2020}{}{Czy mogę tu znaleźć jakieś zajęcie?}
+{2030}{}{@sex@|Chciałbym||Chciałabym| coś kupić.}
+{2040}{}{Miło było cię poznać, burmistrzu. Bywaj.}
+{3000}{}{Ruchy, @sex@|kolego||koleżanko|. Czas to pieniądz.@@Jeśli chcesz spróbować szczęścia, proszę bardzo.@@Graj albo spadaj.@@Tylko nie narób mi tu bałaganu.@@Spróbuj przy stolikach, @sex@|pacanie||tępa dzido|.@@Spróbuj automatów, @sex@|idioto||idiotko|. Dużo świecidełek, widzisz?}
+{4000}{}{W czym może ci pomóc Ascorti?}
+{4010}{}{Co tutaj porabiasz?}
+{4020}{}{Jest tu jakaś robota?}
+{4030}{}{@sex@|Chciałbym||Chciałabym| coś kupić.}
+{4040}{}{Na mnie już czas.}
+{5000}{}{Zarządzam kasynem, no i miasteczkiem też. Sprawdzam akty własności, tego typu sprawy.}
+{5010}{}{Rozumiem, mogę spytać o coś innego?.}
+{5020}{}{Akty własności? Jakie akty własności?}
+{6000}{}{Takie jak ten, akt własności kopalni Wanamingo. Wyobraź sobie, opchnąłem to jakiemuś przygłupowi za podwójną cenę, a do tego "przekonałem" go żeby oczyścił tamto miejsce. A potem odkupiłem praktycznie za bezcen. Niezły interes, co?}
+{6010}{}{Niezła historia, mam więcej pytań.}
+{6020}{}{Gratulacje. Na mnie już czas.}
+{7000}{}{Cóż, zawsze możesz spróbować zostać łowcą nagród.}
+{7010}{}{Łowcą nagród? To znaczy?}
+{7020}{}{Nie jestem @sex@|zainteresowany||zainteresowana|. Na razie, burmistrzu.}
+{8000}{}{Hmmm, powiedzmy że jeden facet ma potrzebę wysłać drugiego faceta na tamten świat, ale nie chce lub nie może załatwić sprawy samemu. Daje wtedy nagrodę za głowę tego drugiego gościa, i wtedy już inni dobrzy ludzie, tacy jak ty, zajmują się sprzątnięciem delikwenta.}
+{8010}{}{A co z forsą? Dostaję zapłatę?}
+{8020}{}{To niezbyt w moim stylu. Do widzenia.}
+{9000}{}{No ba! U nas wygląda to w ten sposób, że zleceniodawca wpłaca nagrodę z góry, tak więc wynajęty jegomość ma pewność, że po wykonanej robocie pieniądze będą na niego czekać.}
+{9010}{}{Całkiem nieźle to macie przemyślane. Mam jeszcze kilka pytań.}
+{9020}{}{Hm, może się tym zajmę. Do zobaczenia, burmistrzu.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Hello there; welcome to the fine city of Redding...and welcome to my casino. Everyone's an Ace here at Ascorti's. I'm Ascorti, proprietor and mayor of this fine town.}
+{2010}{}{What do you do here?}
+{2020}{}{Is there any work here in town?}
+{2030}{}{I was looking to buy some things.}
+{2040}{}{Nice to meet you, mayor. Goodbye.}
+{3000}{}{Keep on movin', pal.@@If you're here to try your luck, you're welcome.@@Play or get out.@@You better not make a mess in my place.@@You should try the tables, retard.@@You should try the slots, idiot. Lots of shiny things, see?}
+{4000}{}{What can Mayor Ascorti do for you?}
+{4010}{}{What do you do here?}
+{4020}{}{Is there any work here in town?}
+{4030}{}{I was looking to buy some things.}
+{4040}{}{I'd better hit the road.}
+{5000}{}{I run this here casino, and I help run the town, too. I also keep track of things like deeds
+ and such.}
+{5010}{}{I see, let me ask you something else, Mayor.}
+{5020}{}{Deeds? Deeds to what?}
+{6000}{}{Deeds like the one to that Great Wanamingo Mine. Get this, I hawked it to some stupid tribal for twice what it was worth, and got him to clear out the place. Then, I bought it back for practically nothing. Sweet deal, huh?}
+{6010}{}{Interesting story, I've got a few other questions.}
+{6020}{}{Good for you. I'm leaving.}
+{7000}{}{Well, there's always huntin' down bounties.}
+{7010}{}{Bounties? What are they?}
+{7020}{}{Not interested. Bye.}
+{8000}{}{Well, let's say one fella wants another dead, and he don't want to be the one to do it himself. He puts out a bounty on that fella, and other folks, such as yourself, kill that fella for him.}
+{8010}{}{What about money? Do you get paid?}
+{8020}{}{Not really my style. I oughta get going.}
+{9000}{}{You bet. Way we do things around here is, the guy placing the bounty has to pay the cash up front, so that when the bounty hunter gets his kill and tries to collect, the cash is already waiting for him.}
+{9010}{}{Not a bad system. I've got a few other questions.}
+{9020}{}{Maybe I'll go do some hunting. Goodbye, Mayor.}
+

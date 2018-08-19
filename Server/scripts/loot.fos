@@ -1,0 +1,886 @@
+#include "_macros.fos"
+#include "_itempid.fos"
+#include "utils_h.fos"
+
+import void GenerateStats(Item& item) from "custom_items";
+
+//SIMPLE ONE TIME SPAWN CONTAINER SYSTEM
+
+uint16[] Pids_All_Blueprints = {BLUEPRINT_LEVEL1, BLUEPRINT_LEVEL2, BLUEPRINT_LEVEL3};
+
+uint16[] Pids_SG_Blueprints = {BLUEPRINT_SG1, BLUEPRINT_SG2, BLUEPRINT_SG3};
+
+uint16[] Pids_BG_Blueprints = {BLUEPRINT_BG2, BLUEPRINT_BG3};
+
+uint16[] Pids_EW_Blueprints = {BLUEPRINT_EW1, BLUEPRINT_EW2, BLUEPRINT_EW3};
+
+uint16[] Pids_Armor_Blueprints = {BLUEPRINT_ARMOR1,BLUEPRINT_ARMOR2, BLUEPRINT_ARMOR3};
+
+uint16[] Pids_Books = {PID_GUNS_AND_BULLETS, PID_BIG_BOOK_OF_SCIENCE, PID_DEANS_ELECTRONICS, PID_FIRST_AID_BOOK};
+
+uint16[] Pids_Medical_Blueprints = {BLUEPRINT_DRUGS1, BLUEPRINT_DRUGS2};
+
+const array<uint16> RECIPES_T3 = {PID_PLASMA_GRENADE_RECIPE,PID_AVENGER_MINIGUN_RECIPE,PID_SNIPER_RIFLE_RECIPE,PID_XL70E3_RECIPE,PID_HK_P90C_RECIPE,
+PID_COMBAT_ARMOR_MARK_II_RECIPE,PID_HUBOLOGIST_ROBE_RECIPE,PID_LASER_RIFLE_EXT_CAP_RECIPE,PID_LIGHT_SUPPORT_WEAPON_RECIPE,PID_COMBAT_ARMOR_RECIPE,PID_PLASMA_RIFLE_RECIPE};
+
+void spawn(Item& container, bool firstTime )
+{
+	if( !valid( container ) )
+		return;
+	
+	if( !firstTime )
+		return;
+	
+	int Value = container.Val0;
+		
+	if(Value == 0)
+	{
+		Log("Warning: Please specify Value1 for random item spawning as ID of defined spawning info.");
+		return;
+	}
+	if(Value == 1)
+	{
+	container.LockerId = 1000;
+	container.LockerComplexity = 50; // LOCK POWER
+	//SETFLAG(container.LockerCondition, LOCKER_ELECTRO ); //Use when electronic locpick needed to open.
+	
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+	FillBag( container, PID_LEATHER_JACKET, 12,  1,  1);
+	}
+	
+	
+	
+	if(Value == 2) //Some example container
+	{
+		FillBag( container, PID_BOTTLE_CAPS,   		   100, 3000, 12000 );
+		FillBag( container, PID_5MM_AP,   				   100, 400, 1000 );
+		FillBag( container, PID_7_62MM_AMMO,   		   100,  200, 400 );
+		FillBag( container, PID_223_FMJ,   			   100,  200, 400 );
+		FillBag( container, PID_ROCKET_AP,   			   100,   8, 20 );
+		FillBag( container, PID_BUFFOUT, 					90,    10, 25 );
+		FillBag( container, PID_PSYCHO, 					90,    10, 25 );
+		FillBag( container, PID_JET, 				    	90,    10, 25 );
+		FillBag( container, PID_HYPO, 				   		90,    1, 6 );
+		FillBag( container, PID_NUKA_COLA, 				90,    10, 30 );
+		FillBag( container, PID_CIGARETTES, 				90,    10, 30 );	
+	}
+	
+	
+	
+    if(Value == 3) // ToxicCave Shit container 10 of them
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_RUBBER_BOOTS, 12,  1,  1);
+		FillBag( container, PID_BOTTLE_CAPS, 40,  20,  200);	
+		FillBag( container, PID_DEANS_ELECTRONICS, 1, 1, 1);
+		FillBag( container, PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1);
+		FillBag( container, PID_FIRST_AID_BOOK, 1, 1, 1);
+		FillBag( container, PID_SCOUT_HANDBOOK, 1, 1, 1);
+		FillBag( container, PID_GUNS_AND_BULLETS, 1, 1, 1);
+		FillBag( container, PID_STIMPAK, 1, 3, 6);
+		FillBag( container, PID_FLARE, 1, 1, 1);
+		FillBag( container, PID_NUKA_COLA, 20, 1, 3);
+ 		FillBag( container, PID_CIGARETTES, 20, 1, 3);
+	  	FillBag( container, PID_FLARE_YELLOW, 1, 1, 1);
+		FillBag( container, PID_FLARE_WHITE, 1, 1, 1);
+		FillBag( container, PID_FLARE_ORANGE, 1, 1, 1);
+		FillBag( container, PID_FLARE_GREEN, 1, 1, 1);
+		FillBag( container, PID_FLARE_RED, 1, 1, 1);
+		FillBag( container, PID_FLARE_BLUE, 1, 1, 1);
+		
+	}
+	
+	
+	
+    if(Value == 4) // ToxicCave Most often container 15 of them
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_RUBBER_BOOTS, 6,  1,  1);
+		FillBag( container, PID_BOTTLE_CAPS, 40,  20,  200);
+		FillBag( container, PID_STIMPAK, 10, 1, 3);
+		FillBag( container, PID_MENTATS, 5, 1, 1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 1, 1, 3);
+		FillBag( container, PID_ANTIDOTE, 10, 1, 2);
+		FillBag( container, PID_DOCTORS_BAG, 1, 1, 1);
+		FillBag( container, PID_FIRST_AID_KIT, 1, 1, 1);
+		FillBag( container, PID_LEATHER_JACKET, 1, 1, 1);
+		FillBag( container, PID_LEATHER_ARMOR, 1, 1, 1);
+		FillBag( container, PID_METAL_ARMOR, 1, 1, 1);
+		FillBag( container, PID_METAL_ARMOR_MK_II, 1, 1, 1);
+		FillBag( container, PID_PURPLE_ROBE, 1, 1, 1);
+		FillBag( container, PID_SAND_ROBE, 1, 1, 1);
+		FillBag( container, PID_10MM_PISTOL, 1, 1, 1);
+		FillBag( container, PID_DESERT_EAGLE, 1, 1, 1);
+		FillBag( container, PID_223_PISTOL, 1, 1, 1);
+		FillBag( container, PID_44_MAGNUM_REVOLVER, 1, 1, 1);
+		FillBag( container, PID_HUNTING_RIFLE, 1, 1, 1);
+		FillBag( container, PID_ASSAULT_RIFLE, 1, 1, 1);
+		FillBag( container, PID_SHOTGUN, 1, 1, 1);
+		FillBag( container, PID_10MM_SMG, 1, 1, 1);
+		FillBag( container, PID_LASER_PISTOL, 1, 1, 1);
+		FillBag( container, PID_MOLOTOV_COCKTAIL, 1, 1, 3);
+		FillBag( container, PID_FRAG_GRENADE, 1, 1, 4);
+		FillBag( container, PID_FLARE, 1, 1, 1);
+		FillBag( container, PID_COMBAT_KNIFE, 1, 1, 1);
+		FillBag( container, PID_10MM_AP, 5, 13, 43);
+		FillBag( container, PID_223_FMJ, 5, 16, 34);
+		FillBag( container, PID_44_FMJ_MAGNUM, 5, 14, 38);
+		FillBag( container, PID_5MM_AP, 5, 62, 101);
+		FillBag( container, PID_FLAMETHROWER_FUEL, 5, 13, 28);
+		FillBag( container, PID_SMALL_ENERGY_CELL, 5, 13, 47);
+		FillBag( container, PID_HEALING_POWDER, 5, 3, 5);
+		FillBag( container, PID_SUPER_STIMPAK, 1, 1, 1);
+		FillBag( container, PID_IGUANA_ON_A_STICK, 1, 1, 1);
+		FillBag( container, PID_MEAT_ON_A_STICK, 1, 1, 1);
+		FillBag( container, PID_NUKA_COLA, 1, 1, 1);
+		FillBag( container, PID_ROPE, 1, 1, 1);
+		FillBag( container, PID_PREWAR_1, 1, 0, 1);
+		FillBag( container, PID_PREWAR_2, 1, 0, 1);
+		FillBag( container, PID_PREWAR_3, 1, 0, 1);
+		FillBag( container, PID_MPART_1, 1, 0, 1);
+		FillBag( container, PID_MPART_2, 1, 0, 1);
+		FillBag( container, PID_MPART_3, 1, 0, 1);
+		FillBag( container, PID_MPART_4, 1, 0, 1);
+		FillBag( container, PID_SCOUT_HANDBOOK, 1, 1, 1);
+		FillBag( container, PID_GUNS_AND_BULLETS, 1, 1, 1);
+		FillBag( container, PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1);
+		FillBag( container, PID_DEANS_ELECTRONICS, 1, 1, 1);
+		FillBag( container, PID_FIRST_AID_BOOK, 1, 1, 1);
+		FillBag( container, PID_BECKY_BOOK, 1, 1, 1);
+		
+	}
+	
+	
+	
+    if(Value == 5) // ToxicCave Better 3 of them
+	{
+	container.LockerId = 1000;
+	container.LockerComplexity = 50;
+
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_BOTTLE_CAPS, 60,  100,  400);
+		FillBag( container, PID_STIMPAK, 10, 1, 3);
+		FillBag( container, PID_MENTATS, 4, 1, 1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 4, 1, 3);
+		FillBag( container, PID_ANTIDOTE, 20, 1, 4);
+		FillBag( container, PID_DOCTORS_BAG, 2, 1, 1);
+		FillBag( container, PID_FIRST_AID_KIT, 2, 1, 1);
+		FillBag( container, PID_BUFFOUT, 12, 2, 3);
+		FillBag( container, PID_LEATHER_JACKET, 9, 1, 1);
+		FillBag( container, PID_LEATHER_ARMOR, 9, 1, 1);
+		FillBag( container, PID_NUKA_COLA, 10, 4, 6);
+		FillBag( container, PID_METAL_ARMOR, 4, 1, 1);
+		FillBag( container, PID_METAL_ARMOR_MK_II, 1, 1, 1);
+		FillBag( container, PID_PURPLE_ROBE, 4, 1, 1);
+		FillBag( container, PID_CIGARETTES, 10, 2, 4);
+		FillBag( container, PID_BLACK_ROBE, 1, 1, 1);
+		FillBag( container, PID_JET, 12, 2, 3);
+		FillBag( container, PID_JET_ANTIDOTE, 12, 2, 3);
+		FillBag( container, PID_10MM_PISTOL, 7, 1, 1);
+		FillBag( container, PID_SUPER_STIMPAK, 10, 4, 6);
+		FillBag( container, PID_PSYCHO, 12, 2, 3);
+		FillBag( container, PID_DESERT_EAGLE, 7, 1, 1);
+		FillBag( container, PID_223_PISTOL, 7, 1, 1);
+		FillBag( container, PID_44_MAGNUM_REVOLVER, 7, 1, 1);
+		FillBag( container, PID_HUNTING_RIFLE, 7, 1, 1);
+		FillBag( container, PID_ASSAULT_RIFLE, 7, 1, 1);
+		FillBag( container, PID_SHOTGUN, 7, 1, 1);
+		FillBag( container, PID_10MM_SMG, 7, 1, 1);
+		FillBag( container, PID_LASER_PISTOL, 7, 1, 1);
+		FillBag( container, PID_MOLOTOV_COCKTAIL, 7, 1, 3);
+		FillBag( container, PID_FRAG_GRENADE, 7, 1, 4);
+		FillBag( container, PID_FLARE, 7, 1, 1);
+		FillBag( container, PID_COMBAT_KNIFE, 7, 1, 1);
+		FillBag( container, PID_10MM_AP, 5, 13, 43);
+		FillBag( container, PID_223_FMJ, 5, 16, 34);
+		FillBag( container, PID_44_FMJ_MAGNUM, 5, 14, 38);
+		FillBag( container, PID_5MM_AP, 5, 62, 101);
+		FillBag( container, PID_FLAMETHROWER_FUEL, 5, 13, 28);
+		FillBag( container, PID_SMALL_ENERGY_CELL, 5, 13, 47);
+		FillBag( container, PID_HEALING_POWDER, 5, 3, 5);
+		FillBag( container, PID_SUPER_STIMPAK, 4, 1, 1);
+		FillBag( container, PID_IGUANA_ON_A_STICK, 8, 1, 1);
+		FillBag( container, PID_MEAT_ON_A_STICK, 8, 1, 1);
+		FillBag( container, PID_ROPE, 5, 1, 1);
+		FillBag( container, PID_PREWAR_1, 1, 0, 1);
+		FillBag( container, PID_PREWAR_2, 1, 0, 1);
+		FillBag( container, PID_PREWAR_3, 1, 0, 1);
+		FillBag( container, PID_MPART_1, 1, 0, 1);
+		FillBag( container, PID_MPART_2, 1, 0, 1);
+		FillBag( container, PID_MPART_3, 1, 0, 1);
+		FillBag( container, PID_MPART_4, 1, 0, 1);
+		FillBag( container, PID_DYNAMITE, 1, 1, 1);
+		FillBag( container, PID_PLASTIC_EXPLOSIVES, 1, 1, 1);
+		FillBag( container, PID_MINE, 1, 1, 1);
+		FillBag( container, PID_SCOUT_HANDBOOK, 1, 1, 1);
+		FillBag( container, PID_GUNS_AND_BULLETS, 1, 1, 1);
+		FillBag( container, PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1);
+		FillBag( container, PID_DEANS_ELECTRONICS, 1, 1, 1);
+		FillBag( container, PID_FIRST_AID_BOOK, 1, 1, 1);
+		FillBag( container, PID_BECKY_BOOK, 1, 1, 1);
+		FillBag( container, PID_ELECTRONIC_LOCKPICKS, 1, 1, 1);
+		FillBag( container, PID_ELEC_LOCKPICK_MKII, 1, 0, 1);
+		FillBag( container, PID_BLACK_ROBE, 1, 1, 1);
+		FillBag( container, PID_RED_ROBE, 1, 1, 1);
+		FillBag( container, PID_BLUE_ROBE, 1, 1, 1);
+		FillBag( container, PID_VAULT_JUMPSUIT, 1, 1, 1);
+		
+	}
+	
+	if(Value == 6) // ToxicCave Armory5 of them
+	{
+        FillBag( container, PID_METAL_ARMOR_MK_II, 15, 1, 1);
+		FillBag( container, PID_COMBAT_ARMOR, 10, 1, 1);
+		FillBag( container, PID_COMBAT_ARMOR_MK_II, 10, 1, 1);
+		FillBag( container, PID_TESLA_ARMOR, 13, 1, 1);
+		FillBag( container, PID_YK32_PULSE_PISTOL, 10, 0, 1);
+		FillBag( container, PID_XL70E3, 20, 1, 1);
+		FillBag( container, PID_HK_P90C, 20, 1, 1);
+		FillBag( container, PID_LIGHT_SUPPORT_WEAPON, 20, 1, 1);
+		FillBag( container, PID_ROCKET_LAUNCHER, 10, 1, 1);
+		FillBag( container, PID_AVENGER_MINIGUN, 20, 1, 1);
+		FillBag( container, PID_M60, 10, 1, 1);
+		FillBag( container, PID_LASER_RIFLE_EXT_CAP, 20, 1, 1);
+		FillBag( container, PID_PLASMA_RIFLE, 20, 1, 1);
+		FillBag( container, PID_FLAMETHROWER_FUEL_MK_II, 20, 20, 40);
+		FillBag( container, PID_ROCKET_AP, 20, 6, 12);
+		FillBag( container, PID_10MM_AP, 20, 200, 300);
+		FillBag( container, PID_223_FMJ, 20, 200, 300);
+		FillBag( container, PID_7_62MM_AMMO, 20, 200, 300);
+		FillBag( container, PID_5MM_AP, 20, 320, 800);
+		FillBag( container, PID_ENERGY_TRANSFORMER, 10, 1, 6);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 10, 1, 6);
+		FillBag( container, PID_KEVLAR_POLYMER, 10, 1, 6);
+		FillBag( container, PID_HN_AP_NEEDLER_CARTRIDGE, 5, 16, 28);
+        FillBag( container, RECIPES_T3, 20, 1, 1);
+    }
+		
+	if(Value == 7) // ToxicCave IMBA LOCKER
+	{
+			FillBag( container, PID_PLASMA_GRENADE_RECIPE, 10, 1, 5);			
+		    FillBag( container, PID_AVENGER_MINIGUN_RECIPE, 10, 1, 1);
+			FillBag( container, PID_XL70E3_RECIPE, 10, 1, 1);
+			FillBag( container, PID_HK_P90C_RECIPE, 10, 1, 1);
+			FillBag( container, PID_PLASMA_RIFLE_RECIPE, 10, 1, 1);
+			FillBag( container, PID_SNIPER_RIFLE_RECIPE, 10, 1, 1);
+			FillBag( container, PID_LASER_RIFLE_EXT_CAP_RECIPE, 10, 1, 1);
+			FillBag( container, PID_LIGHT_SUPPORT_WEAPON_RECIPE, 10, 1, 1);
+		    FillBag( container, PID_COMBAT_ARMOR_RECIPE, 10, 1, 1);
+			FillBag( container, PID_COMBAT_ARMOR_MARK_II_RECIPE, 10, 1, 1);
+			//T4 Parts
+			FillBag( container, PID_GATLING_LASER_RECIPE, 0.3, 1, 1);
+		    FillBag( container, PID_BOZAR_RECIPE, 0.3, 1, 1);
+			FillBag( container, PID_VINDICATOR_MINIGUN_RECIPE, 0.3, 1, 1);
+			FillBag( container, PID_HK_G11_RECIPE, 0.3, 1, 1);
+		    FillBag( container, PID_HK_G11E_RECIPE, 0.3, 1, 1);
+		    FillBag( container, PID_PPK12_GAUSS_PISTOL_RECIPE, 0.3, 1, 1);
+		    FillBag( container, PID_M72_GAUSS_RIFLE_RECIPE, 0.3, 1, 1);
+			FillBag( container, PID_HIFLO_HYDRAULIC, 0.3, 1, 1);
+			FillBag( container, PID_EMISSION_CONCENTRATOR, 0.3, 1, 1);
+			//Implants
+			FillBag( container, PID_IMPLANT_ACCURACY, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_DEFENCE, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_MEDIC, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_SPEED, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_SURVIVOR, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_MARKSMAN, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_SCOUT, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_ENCHACEMENT, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_ENVIRONMENTAL, 0.1, 1, 1);
+		    FillBag( container, PID_IMPLANT_CHEMCONTROL, 0.1, 1, 1);
+    }	
+		
+    if(Value == 10) // SE/E low value pre-war misc items container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_NUKA_COLA, 2, 1, 3);
+ 		FillBag( container, PID_CIGARETTES, 5, 1, 3);
+		FillBag( container, PID_STIMPAK, 3,  1,  3);
+		FillBag( container, PID_GREEN_CONDOM, 1,  1,  1);
+		FillBag( container, PID_BLUE_CONDOM, 1,  1,  1);
+		FillBag( container, PID_RED_CONDOM, 1,  1,  1);
+		FillBag( container, PID_CHEEZY_POOFS, 10,  1,  1);
+		FillBag( container, PID_BOX_OF_NOODLES, 10,  1,  1);
+		FillBag( container, PID_FROZEN_DINNER, 10,  1,  1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 10,  1,  3);
+		FillBag( container, PID_MULTI_TOOL, 3,  1,  1);
+		FillBag( container, PID_RUBBER_BOOTS, 5,  1,  1);
+		FillBag( container, PID_HOLODISK, 3,  1,  1);
+		FillBag( container, PID_ROPE, 5,  1,  1);
+		FillBag( container, PID_BOTTLE_GLASS, 10,  1,  5);
+		FillBag( container, PID_WATER_FLASK, 10,  1,  1);
+		FillBag( container, PID_RADIO, 5,  1,  1);
+		FillBag( container, PID_CATS_PAW, 5,  1,  1);
+		FillBag( container, PID_LIGHTER, 5,  1,  1);
+		FillBag( container, PID_LEATHER_JACKET, 5,  1,  1);
+		FillBag( container, PID_FLARE, 5, 1, 1);
+	  	FillBag( container, PID_FLARE_YELLOW, 1, 1, 1);
+		FillBag( container, PID_FLARE_WHITE, 1, 1, 1);
+		FillBag( container, PID_FLARE_ORANGE, 1, 1, 1);
+		FillBag( container, PID_FLARE_GREEN, 1, 1, 1);
+		FillBag( container, PID_FLARE_RED, 1, 1, 1);
+		FillBag( container, PID_FLARE_BLUE, 1, 1, 1);
+		FillBag( container, PID_CROWBAR, 5,  1,  1);
+		FillBag( container, PID_JUNK, 15,  1,  3);
+		FillBag( container, PID_CORD, 10,  1,  2);
+		FillBag( container, PID_TORN_PAPER, 10,  1,  2);
+		FillBag( container, PID_BECKY_BOOK, 10,  1,  1);
+		FillBag( container, PID_OIL_CAN, 8,  1,  1);
+	}
+	
+	
+if(Value == 11) // SE/E med value pre-war misc items container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_NUKA_COLA, 5, 1, 3);
+ 		FillBag( container, PID_CIGARETTES, 8, 1, 3);
+		FillBag( container, PID_STIMPAK, 5,  1,  5);
+		FillBag( container, PID_MENTATS, 3,  1,  1);
+		FillBag( container, PID_RAD_X, 1,  1,  1);
+		FillBag( container, PID_RADAWAY, 1,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 3,  1,  1);
+		FillBag( container, PID_GREEN_CONDOM, 5,  1,  1);
+		FillBag( container, PID_BLUE_CONDOM, 5,  1,  1);
+		FillBag( container, PID_RED_CONDOM, 5,  1,  1);
+		FillBag( container, PID_CHEEZY_POOFS, 15,  1,  3);
+		FillBag( container, PID_BOX_OF_NOODLES, 5,  1,  1);
+		FillBag( container, PID_FROZEN_DINNER, 5,  1,  1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 15,  1,  5);
+		FillBag( container, PID_MULTI_TOOL, 5,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 3,  1,  1);
+		FillBag( container, PID_BPACK_TENT, 5,  1,  1);
+		FillBag( container, PID_RUBBER_BOOTS, 5,  1,  1);
+		FillBag( container, PID_HOLODISK, 10,  1,  1);
+		FillBag( container, PID_ROPE, 8,  1,  1);
+		FillBag( container, PID_BOTTLE_GLASS, 5,  1,  5);
+		FillBag( container, PID_WATER_FLASK, 15,  1,  1);
+		FillBag( container, PID_NECKLACE, 5,  1,  1);
+		FillBag( container, PID_CORNELIUS_GOLD_WATCH, 5,  1,  1);
+		FillBag( container, PID_VIC_WATER_FLASK, 5,  1,  1);
+		FillBag( container, PID_GOLD_LOCKET, 5,  1,  1);
+		FillBag( container, PID_ANNA_GOLD_LOCKET, 8,  1,  1);
+		FillBag( container, PID_COSMETIC_CASE, 8,  1,  1);
+		FillBag( container, PID_RADIO, 10,  1,  1);
+		FillBag( container, PID_CATS_PAW, 10,  1,  2);
+		FillBag( container, PID_LIGHTER, 8,  1,  1);
+		FillBag( container, PID_LEATHER_JACKET, 10,  1,  1);
+		FillBag( container, PID_FLARE, 10, 1, 1);
+	  	FillBag( container, PID_FLARE_YELLOW, 3, 1, 1);
+		FillBag( container, PID_FLARE_WHITE, 3, 1, 1);
+		FillBag( container, PID_FLARE_ORANGE, 3, 1, 1);
+		FillBag( container, PID_FLARE_GREEN, 3, 1, 1);
+		FillBag( container, PID_FLARE_RED, 3, 1, 1);
+		FillBag( container, PID_FLARE_BLUE, 3, 1, 1);
+		FillBag( container, PID_CROWBAR, 5,  1,  1);
+		FillBag( container, PID_JUNK, 15,  1,  1);
+		FillBag( container, PID_CORD, 10,  1,  5);
+		FillBag( container, PID_TORN_PAPER, 15,  1,  5);
+		FillBag( container, PID_BECKY_BOOK, 15,  1,  1);
+		FillBag( container, PID_OIL_CAN, 5,  1,  1);
+		
+		}
+	
+				if(Value == 12) // SE/E high value pre-war misc items container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_NUKA_COLA, 10, 1, 5);
+ 		FillBag( container, PID_CIGARETTES, 15, 1, 3);
+		FillBag( container, PID_STIMPAK, 13,  1,  5);
+		FillBag( container, PID_MENTATS, 5,  1,  1);
+		FillBag( container, PID_RAD_X, 5,  1,  1);
+		FillBag( container, PID_RADAWAY, 5,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 8,  1,  2);
+		FillBag( container, PID_PSYCHO, 2,  1,  1);
+		FillBag( container, PID_BUFFOUT, 2,  1,  1);
+		FillBag( container, PID_JET_ANTIDOTE, 2,  1,  1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 10,  1,  5);
+		FillBag( container, PID_MULTI_TOOL, 8,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 5,  1,  1);
+		FillBag( container, PID_BPACK_TENT, 10,  1,  1);
+		FillBag( container, PID_STEALTH_BOY, 5,  1,  1);
+		FillBag( container, PID_MOTION_SENSOR, 5,  1,  1);
+		FillBag( container, PID_HOLODISK, 13,  1,  1);
+		FillBag( container, PID_ROPE, 10,  1,  1);
+		FillBag( container, PID_BOTTLE_GLASS, 3,  1,  5);
+		FillBag( container, PID_WATER_FLASK, 10,  1,  1);
+		FillBag( container, PID_NECKLACE, 8,  1,  1);
+		FillBag( container, PID_CORNELIUS_GOLD_WATCH, 8,  1,  1);
+		FillBag( container, PID_VIC_WATER_FLASK, 8,  1,  1);
+		FillBag( container, PID_GOLD_LOCKET, 8,  1,  1);
+		FillBag( container, PID_ANNA_GOLD_LOCKET, 12,  1,  1);
+		FillBag( container, PID_COSMETIC_CASE, 12,  1,  1);
+		FillBag( container, PID_COMBAT_ARMOR, 5,  1,  1);
+		FillBag( container, PID_RADIO, 15,  1,  1);
+		FillBag( container, PID_CATS_PAW, 15,  1,  1);
+		FillBag( container, PID_FLARE, 15, 1, 1);
+	  	FillBag( container, PID_FLARE_YELLOW, 5, 1, 1);
+		FillBag( container, PID_FLARE_WHITE, 5, 1, 1);
+		FillBag( container, PID_FLARE_ORANGE, 5, 1, 1);
+		FillBag( container, PID_FLARE_GREEN, 5, 1, 1);
+		FillBag( container, PID_FLARE_RED, 5, 1, 1);
+		FillBag( container, PID_FLARE_BLUE, 5, 1, 1);
+		FillBag( container, PID_CROWBAR, 3,  1,  1);
+		FillBag( container, PID_JUNK, 3,  1,  1);
+		FillBag( container, PID_CORD, 3,  1,  5);
+		FillBag( container, PID_TORN_PAPER, 3,  1,  5);
+		FillBag( container, PID_BECKY_BOOK, 5,  1,  1);
+
+	}
+	
+				if(Value == 13) // SE/E highest value pre-war misc items container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_NUKA_COLA, 15, 1, 5);
+ 		FillBag( container, PID_CIGARETTES, 20, 1, 3);
+		FillBag( container, PID_STIMPAK, 15,  1,  5);
+		FillBag( container, PID_MENTATS, 8,  1,  1);
+		FillBag( container, PID_RAD_X, 8,  1,  1);
+		FillBag( container, PID_RADAWAY, 8,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 10,  1,  3);
+		FillBag( container, PID_PSYCHO, 3,  1,  1);
+		FillBag( container, PID_BUFFOUT, 3,  1,  1);
+		FillBag( container, PID_JET_ANTIDOTE, 3,  1,  1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 5,  1,  5);
+		FillBag( container, PID_BPACK_TENT, 5,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 10,  1,  1);
+		FillBag( container, PID_STEALTH_BOY, 15,  1,  1);
+		FillBag( container, PID_MOTION_SENSOR, 10,  1,  1);	
+		FillBag( container, PID_HOLODISK, 15,  1,  1);
+		FillBag( container, PID_NECKLACE, 12,  1,  1);
+		FillBag( container, PID_CORNELIUS_GOLD_WATCH, 12,  1,  1);
+		FillBag( container, PID_VIC_WATER_FLASK, 12,  1,  1);
+		FillBag( container, PID_GOLD_LOCKET, 12,  1,  1);
+		FillBag( container, PID_ANNA_GOLD_LOCKET, 15,  1,  1);
+		FillBag( container, PID_COSMETIC_CASE, 12,  1,  1);
+		FillBag( container, PID_TESLA_ARMOR, 5,  1,  1);
+		FillBag( container, PID_COMBAT_ARMOR, 10,  1,  1);
+		FillBag( container, PID_FIRST_AID_BOOK, 5,  1,  1);
+		FillBag( container, PID_SCOUT_HANDBOOK, 5,  1,  1);
+		FillBag( container, PID_GUNS_AND_BULLETS, 5,  1,  1);
+		FillBag( container, PID_DEANS_ELECTRONICS, 5,  1,  1);
+		FillBag( container, PID_BIG_BOOK_OF_SCIENCE, 5,  1,  1);
+
+	}
+	
+				if(Value == 14) // SE/E highest value pre-war misc items container with blueprints
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, Pids_All_Blueprints, 80, 1, 1);
+		FillBag( container, PID_NUKA_COLA, 15, 1, 5);
+ 		FillBag( container, PID_CIGARETTES, 20, 1, 3);
+		FillBag( container, PID_STIMPAK, 15,  1,  5);
+		FillBag( container, PID_MENTATS, 8,  1,  1);
+		FillBag( container, PID_RAD_X, 8,  1,  1);
+		FillBag( container, PID_RADAWAY, 8,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 10,  1,  3);
+		FillBag( container, PID_PSYCHO, 3,  1,  1);
+		FillBag( container, PID_BUFFOUT, 3,  1,  1);
+		FillBag( container, PID_JET_ANTIDOTE, 3,  1,  1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 5,  1,  5);
+		FillBag( container, PID_BPACK_TENT, 5,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 10,  1,  1);
+		FillBag( container, PID_STEALTH_BOY, 15,  1,  1);
+		FillBag( container, PID_MOTION_SENSOR, 10,  1,  1);	
+		FillBag( container, PID_HOLODISK, 15,  1,  1);
+		FillBag( container, PID_NECKLACE, 12,  1,  1);
+		FillBag( container, PID_CORNELIUS_GOLD_WATCH, 12,  1,  1);
+		FillBag( container, PID_VIC_WATER_FLASK, 12,  1,  1);
+		FillBag( container, PID_GOLD_LOCKET, 12,  1,  1);
+		FillBag( container, PID_ANNA_GOLD_LOCKET, 15,  1,  1);
+		FillBag( container, PID_COSMETIC_CASE, 12,  1,  1);
+		FillBag( container, PID_TESLA_ARMOR, 5,  1,  1);
+		FillBag( container, PID_COMBAT_ARMOR, 10,  1,  1);
+		FillBag( container, Pids_Books, 5,  1,  1);
+
+	}
+	
+	
+		if(Value == 15) // SE/E low value pre-war medical supplies container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_STIMPAK, 10,  1,  10);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 15,  1,  5);
+		FillBag( container, PID_ANTIDOTE, 15,  1,  3);
+		FillBag( container, PID_FIRST_AID_KIT, 10,  1,  1);
+		FillBag( container, PID_RADAWAY, 5,  1,  2);
+		FillBag( container, PID_RAD_X, 5,  1,  1);
+		FillBag( container, PID_JET_ANTIDOTE, 5,  1,  1);
+		FillBag( container, PID_DOCTORS_BAG, 3,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 3,  1,  3);
+	
+	}
+		if(Value == 16) // SE/E med value pre-war medical supplies container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 20,  1,  10);
+		FillBag( container, PID_STIMPAK, 15,  5,  10);
+		FillBag( container, PID_ANTIDOTE, 20,  2,  5);
+		FillBag( container, PID_FIRST_AID_KIT, 15,  1,  1);
+		FillBag( container, PID_RADAWAY, 10,  1,  5);
+		FillBag( container, PID_RAD_X, 10,  1,  3);
+		FillBag( container, PID_JET_ANTIDOTE, 10,  1,  3);
+		FillBag( container, PID_DOCTORS_BAG, 10,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 10,  1,  5);
+		FillBag( container, PID_BUFFOUT, 5,  1,  5);
+		FillBag( container, PID_PSYCHO, 5,  1,  5);
+		FillBag( container, PID_FIRST_AID_BOOK, 1,  1,  1);
+		FillBag( container, PID_HEART_PILLS, 5,  1,  1);	
+	}
+		if(Value == 17) // SE/E high value pre-war medical supplies container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 25,  5,  5);
+		FillBag( container, PID_STIMPAK, 20,  10,  15);
+		FillBag( container, PID_ANTIDOTE, 25,  3,  5);
+		FillBag( container, PID_FIRST_AID_KIT, 20,  1,  1);
+		FillBag( container, PID_RADAWAY, 15,  1,  10);
+		FillBag( container, PID_RAD_X, 15,  1,  10);
+		FillBag( container, PID_JET_ANTIDOTE, 15,  1,  5);
+		FillBag( container, PID_DOCTORS_BAG, 15,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 15,  1,  10);
+		FillBag( container, PID_BUFFOUT, 10,  1,  5);
+		FillBag( container, PID_PSYCHO, 10,  1,  5);
+		FillBag( container, PID_HEART_PILLS, 10,  1,  1);
+		FillBag( container, PID_FIRST_AID_BOOK, 5,  1,  1);
+		FillBag( container, PID_HYPO, 1,  1,  1);
+	
+	}
+
+		if(Value == 18) // SE/E highest value pre-war medical supplies container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 30,  5,  10);
+		FillBag( container, PID_STIMPAK, 25,  10,  20);
+		FillBag( container, PID_ANTIDOTE, 30,  3,  5);
+		FillBag( container, PID_FIRST_AID_KIT, 25,  1,  1);
+		FillBag( container, PID_RADAWAY, 20,  1,  10);
+		FillBag( container, PID_RAD_X, 20,  1,  10);
+		FillBag( container, PID_JET_ANTIDOTE, 20,  1,  5);
+		FillBag( container, PID_DOCTORS_BAG, 20,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 20,  1,  10);
+		FillBag( container, PID_BUFFOUT, 15,  1,  5);
+		FillBag( container, PID_PSYCHO, 15,  1,  5);
+		FillBag( container, PID_HEART_PILLS, 15,  1,  1);
+		FillBag( container, PID_FIRST_AID_BOOK, 5,  1,  1);
+		FillBag( container, PID_HYPO, 5,  1,  3);
+	
+	}
+	
+		if(Value == 19) // SE/E highest value pre-war medical supplies container with blueprints
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, Pids_Medical_Blueprints, 80,  1,  1);
+		FillBag( container, PID_HYPODERMIC_NEEDLE, 30,  5,  10);
+		FillBag( container, PID_STIMPAK, 25,  10,  20);
+		FillBag( container, PID_ANTIDOTE, 30,  3,  5);
+		FillBag( container, PID_FIRST_AID_KIT, 25,  1,  1);
+		FillBag( container, PID_RADAWAY, 20,  1,  10);
+		FillBag( container, PID_RAD_X, 20,  1,  10);
+		FillBag( container, PID_JET_ANTIDOTE, 20,  1,  5);
+		FillBag( container, PID_DOCTORS_BAG, 20,  1,  1);
+		FillBag( container, PID_SUPER_STIMPAK, 20,  1,  10);
+		FillBag( container, PID_BUFFOUT, 15,  1,  5);
+		FillBag( container, PID_PSYCHO, 15,  1,  5);
+		FillBag( container, PID_HEART_PILLS, 15,  1,  1);
+		FillBag( container, PID_FIRST_AID_BOOK, 5,  1,  1);
+		FillBag( container, PID_HYPO, 5,  1,  3);
+	
+	}
+
+			if(Value == 20) // SE/E low value guns&ammo container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_10MM_PISTOL, 15,  1,  1);
+		FillBag( container, PID_10MM_JHP, 20,  30,  45);
+		FillBag( container, PID_10MM_AP, 15,  5,  20);
+		FillBag( container, PID_9MM_MAUSER, 20,  1,  1);
+		FillBag( container, PID_9MM_BALL, 25,  25,  50);
+		FillBag( container, PID_10MM_SMG, 5,  1,  1);
+		FillBag( container, PID_DESERT_EAGLE, 8,  1,  1);
+		FillBag( container, PID_44_MAGNUM_JHP, 15,  20,  35);
+		FillBag( container, PID_44_FMJ_MAGNUM, 10,  15,  30);
+		FillBag( container, PID_44_MAGNUM_REVOLVER, 5,  1,  1);
+		FillBag( container, PID_HUNTING_RIFLE, 15,  1,  1);
+		FillBag( container, PID_223_FMJ, 15,  25,  50);
+		FillBag( container, PID_SHOTGUN, 15,  1,  1);
+		FillBag( container, PID_SHOTGUN_SHELLS, 25,  15,  30);
+		FillBag( container, PID_SAWED_OFF_SHOTGUN, 13,  1,  1);
+		FillBag( container, PID_TOMMY_GUN, 8,  1,  1);
+		FillBag( container, PID_GREASE_GUN, 5,  1,  1);
+		FillBag( container, PID_45_CALIBER_AMMO, 10,  25,  50);
+
+	}
+
+			if(Value == 21) // SE/E med value guns&ammo container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, PID_10MM_PISTOL, 25,  1,  1);
+		FillBag( container, PID_10MM_JHP, 20,  45,  60);
+		FillBag( container, PID_10MM_AP, 15,  15,  30);
+		FillBag( container, PID_9MM_MAUSER, 15,  1,  1);
+		FillBag( container, PID_9MM_BALL, 15,  25,  50);
+		FillBag( container, PID_10MM_SMG, 15,  1,  1);
+		FillBag( container, PID_DESERT_EAGLE, 15,  1,  1);
+		FillBag( container, PID_DESERT_EAGLE_EXT_MAG, 8,  1,  1);
+		FillBag( container, PID_44_MAGNUM_JHP, 15,  35,  60);
+		FillBag( container, PID_44_FMJ_MAGNUM, 10,  25,  45);
+		FillBag( container, PID_44_MAGNUM_REVOLVER, 10,  1,  1);
+		FillBag( container, PID_44_MAGNUM_SPEEDLOADER, 8,  1,  1);
+		FillBag( container, PID_HUNTING_RIFLE, 10,  1,  1);
+		FillBag( container, PID_SCOPED_HUNTING_RIFLE, 9,  1,  1);
+		FillBag( container, PID_223_PISTOL, 5,  1,  1);
+		FillBag( container, PID_223_FMJ, 10,  35,  60);
+		FillBag( container, PID_SHOTGUN, 10,  1,  1);
+		FillBag( container, PID_COMBAT_SHOTGUN, 5,  1,  1);
+		FillBag( container, PID_HK_CAWS, 3,  1,  1);
+		FillBag( container, PID_SHOTGUN_SHELLS, 25,  25,  50);
+		FillBag( container, PID_SLUG_SHELLS, 10,  10,  20);
+		FillBag( container, PID_SAWED_OFF_SHOTGUN, 5,  1,  1);
+		FillBag( container, PID_TOMMY_GUN, 15,  1,  1);
+		FillBag( container, PID_GREASE_GUN, 10,  1,  1);
+		FillBag( container, PID_45_CALIBER_AMMO, 15,  50,  100);
+		FillBag( container, PID_ASSAULT_RIFLE, 8,  1,  1);
+		FillBag( container, PID_ASSAULT_RIFLE_EXT_MAG, 5,  1,  1);
+		FillBag( container, PID_5MM_JHP, 15,  50,  75);
+		FillBag( container, PID_5MM_AP, 10,  25,  50);
+		FillBag( container, PID_FN_FAL, 5,  1,  1);
+		FillBag( container, PID_7_62MM_AMMO, 10,  10,  20);
+		FillBag( container, PID_SNIPER_RIFLE, 5,  1,  1);
+		FillBag( container, PID_FRAG_GRENADE, 5,  1,  3);
+	
+	}
+	
+			if(Value == 22) // SE/E high value guns&ammo container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_10MM_JHP, 20,  45,  60);
+		FillBag( container, PID_10MM_AP, 15,  15,  30);
+		FillBag( container, PID_10MM_SMG, 20,  1,  1);
+		FillBag( container, PID_223_PISTOL, 15,  1,  1);
+		FillBag( container, PID_223_FMJ, 10,  35,  60);
+		FillBag( container, PID_COMBAT_SHOTGUN, 15,  1,  1);
+		FillBag( container, PID_HK_CAWS, 10,  1,  1);
+		FillBag( container, PID_SHOTGUN_SHELLS, 25,  50,  75);
+		FillBag( container, PID_SLUG_SHELLS, 10,  25,  40);
+		FillBag( container, PID_GREASE_GUN, 15,  1,  1);
+		FillBag( container, PID_45_CALIBER_AMMO, 15,  100,  150);
+		FillBag( container, PID_ASSAULT_RIFLE, 15,  1,  1);
+		FillBag( container, PID_ASSAULT_RIFLE_EXT_MAG, 10,  1,  1);
+		FillBag( container, PID_5MM_JHP, 15,  75,  100);
+		FillBag( container, PID_5MM_AP, 10,  50,  75);
+		FillBag( container, PID_FN_FAL, 10,  1,  1);
+		FillBag( container, PID_7_62MM_AMMO, 10,  25,  50);
+		FillBag( container, PID_14MM_PISTOL, 5,  1,  1);
+		FillBag( container, PID_14MM_AP, 10,  15,  30);
+		FillBag( container, PID_SNIPER_RIFLE, 10,  1,  1);
+		FillBag( container, PID_FRAG_GRENADE, 10,  1,  5);
+		
+		}
+	
+		if(Value == 23) // SE/E high value guns&ammo container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_10MM_JHP, 20,  60,  80);
+		FillBag( container, PID_10MM_AP, 15,  30,  60);
+		FillBag( container, PID_10MM_SMG, 10,  1,  1);
+		FillBag( container, PID_223_PISTOL, 20,  1,  1);
+		FillBag( container, PID_223_FMJ, 10,  60,  80);
+		FillBag( container, PID_HK_CAWS, 15,  1,  1);
+		FillBag( container, PID_SHOTGUN_SHELLS, 25,  50,  75);
+		FillBag( container, PID_SLUG_SHELLS, 10,  30,  60);
+		FillBag( container, PID_ASSAULT_RIFLE, 20,  1,  1);
+		FillBag( container, PID_ASSAULT_RIFLE_EXT_MAG, 15,  1,  1);
+		FillBag( container, PID_5MM_JHP, 15,  25,  50);
+		FillBag( container, PID_5MM_AP, 10,  75,  100);
+		FillBag( container, PID_FN_FAL, 15,  1,  1);
+		FillBag( container, PID_7_62MM_AMMO, 10,  50,  75);
+		FillBag( container, PID_14MM_PISTOL, 10,  1,  1);
+		FillBag( container, PID_14MM_AP, 10,  25,  50);
+		FillBag( container, PID_SNIPER_RIFLE, 15,  1,  1);
+		FillBag( container, PID_FRAG_GRENADE, 10,  1,  10);
+		
+		}
+		
+		if(Value == 24) // SE/E high value guns&ammo container with blueprints
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, Pids_SG_Blueprints, 80,  1,  1);
+		FillBag( container, PID_10MM_JHP, 20,  60,  80);
+		FillBag( container, PID_10MM_AP, 15,  30,  60);
+		FillBag( container, PID_10MM_SMG, 10,  1,  1);
+		FillBag( container, PID_223_PISTOL, 20,  1,  1);
+		FillBag( container, PID_223_FMJ, 10,  60,  80);
+		FillBag( container, PID_HK_CAWS, 15,  1,  1);
+		FillBag( container, PID_SHOTGUN_SHELLS, 25,  50,  75);
+		FillBag( container, PID_SLUG_SHELLS, 10,  30,  60);
+		FillBag( container, PID_ASSAULT_RIFLE, 20,  1,  1);
+		FillBag( container, PID_ASSAULT_RIFLE_EXT_MAG, 15,  1,  1);
+		FillBag( container, PID_5MM_JHP, 15,  25,  50);
+		FillBag( container, PID_5MM_AP, 10,  75,  100);
+		FillBag( container, PID_FN_FAL, 15,  1,  1);
+		FillBag( container, PID_7_62MM_AMMO, 10,  50,  75);
+		FillBag( container, PID_14MM_PISTOL, 10,  1,  1);
+		FillBag( container, PID_14MM_AP, 10,  25,  50);
+		FillBag( container, PID_SNIPER_RIFLE, 15,  1,  1);
+		FillBag( container, PID_FRAG_GRENADE, 10,  1,  10);
+		
+		}
+		
+		if(Value == 25) // SE/E low value resource container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_JUNK, 15,  1,  5);
+		FillBag( container, PID_METAL_TRASH, 10,  1,  3);
+		FillBag( container, PID_TUBE, 15,  1,  5);
+		FillBag( container, PID_GUNPOWDER, 5,  1,  3);
+		FillBag( container, PID_CORD, 10,  1,  5);
+		FillBag( container, PID_MULTI_TOOL, 5,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 1,  1,  1);
+		FillBag( container, PID_OIL_CAN, 15,  1,  1);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 3,  1,  2);
+		FillBag( container, PID_KEVLAR_POLYMER, 3,  1,  1);
+		
+		}
+
+					if(Value == 26) // SE/E med value resource container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_JUNK, 10,  1,  5);
+		FillBag( container, PID_METAL_TRASH, 15,  1,  5);
+		FillBag( container, PID_TUBE, 10,  1,  5);
+		FillBag( container, PID_GUNPOWDER, 10,  1,  5);
+		FillBag( container, PID_CORD, 10,  1,  8);
+		FillBag( container, PID_MULTI_TOOL, 8,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 5,  1,  1);
+		FillBag( container, PID_OIL_CAN, 15,  1,  1);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 8,  1,  5);
+		FillBag( container, PID_KEVLAR_POLYMER, 8,  1,  3);
+		
+		}
+		
+					if(Value == 27) // SE/E high value resource container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_JUNK, 5,  1,  5);
+		FillBag( container, PID_METAL_TRASH, 20,  1,  10);
+		FillBag( container, PID_TUBE, 5,  1,  5);
+		FillBag( container, PID_GUNPOWDER, 10,  1,  10);
+		FillBag( container, PID_CORD, 10,  1,  10);
+		FillBag( container, PID_MULTI_TOOL, 15,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 8,  1,  1);
+		FillBag( container, PID_OIL_CAN, 10,  1,  1);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 13,  1,  8);
+		FillBag( container, PID_KEVLAR_POLYMER, 13,  1,  5);
+		
+		}
+		
+					if(Value == 28) // SE/E highest value resource container 
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_JUNK, 3,  1,  5);
+		FillBag( container, PID_METAL_TRASH, 25,  1,  20);
+		FillBag( container, PID_TUBE, 3,  1,  5);
+		FillBag( container, PID_GUNPOWDER, 15,  1,  15);
+		FillBag( container, PID_CORD, 10,  1,  10);
+		FillBag( container, PID_MULTI_TOOL, 10,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 10,  1,  1);
+		FillBag( container, PID_OIL_CAN, 5,  1,  1);
+		FillBag( container, PID_MPART_1, 5,  1,  1);
+		FillBag( container, PID_MPART_2, 5,  1,  1);
+		FillBag( container, PID_MPART_3, 5,  1,  1);
+		FillBag( container, PID_MPART_4, 5,  1,  1);
+		FillBag( container, PID_DEANS_ELECTRONICS, 1,  1,  1);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 18,  1,  10);
+		FillBag( container, PID_KEVLAR_POLYMER, 15,  1,  8);
+		
+		}
+		
+					if(Value == 40) // Enclave Armory low/mid
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_LASER_RIFLE, 15,  1,  1);
+		FillBag( container, PID_PLASMA_RIFLE, 10,  1,  1);
+		FillBag( container, PID_ENERGY_TRANSFORMER, 10,  1,  5);
+		FillBag( container, PID_AVENGER_MINIGUN, 5,  1,  1);
+		FillBag( container, PID_ROCKET_LAUNCHER, 10,  1,  1);
+		FillBag( container, PID_MULTI_TOOL, 15,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 10,  1,  1);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 10,  1,  6);
+		FillBag( container, PID_KEVLAR_POLYMER, 10,  1,  4);
+		FillBag( container, PID_5MM_JHP, 25,  25,  100);
+		FillBag( container, PID_5MM_AP, 20,  75,  250);
+		FillBag( container, PID_ROCKET_AP, 15,  1,  5);
+		FillBag( container, PID_MICRO_FUSION_CELL, 15,  25,  75);
+		FillBag( container, PID_PLASMA_GRENADE, 10,  1,  10);
+		FillBag( container, PID_PULSE_GRENADE, 5,  1,  50);
+		FillBag( container, PID_SUPER_STIMPAK, 10,  1,  10);
+		FillBag( container, PID_BUFFOUT, 6,  1,  3);
+		FillBag( container, PID_PSYCHO, 6,  1,  3);
+		
+		}
+		
+					if(Value == 50) // Bos Armory low/mid
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		
+		FillBag( container, PID_LASER_RIFLE, 10,  1,  1);
+		FillBag( container, PID_LASER_PISTOL, 15,  1,  1);
+		FillBag( container, PID_ENERGY_TRANSFORMER, 10,  1,  5);
+		FillBag( container, PID_MINIGUN, 15,  1,  1);
+		FillBag( container, PID_ROCKET_LAUNCHER, 15,  1,  1);
+		FillBag( container, PID_MULTI_TOOL, 15,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 15,  1,  1);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 10,  1,  6);
+		FillBag( container, PID_KEVLAR_POLYMER, 10,  1,  4);
+		FillBag( container, PID_5MM_JHP, 25,  25,  100);
+		FillBag( container, PID_5MM_AP, 20,  75,  250);
+		FillBag( container, PID_ROCKET_AP, 15,  1,  5);
+		FillBag( container, PID_MICRO_FUSION_CELL, 15,  25,  75);
+		FillBag( container, PID_FRAG_GRENADE, 10,  1,  10);
+		FillBag( container, PID_SUPER_STIMPAK, 10,  1,  10);
+		
+		}
+		
+					if(Value == 54) // Bos Armory highest with blueprints
+	{
+	//LOOT                    ITEM, CHANCE%, MIN, MAX
+		FillBag( container, Pids_BG_Blueprints, 80,  1,  1);
+		FillBag( container, PID_LASER_RIFLE, 10,  1,  1);
+		FillBag( container, PID_LASER_PISTOL, 15,  1,  1);
+		FillBag( container, PID_ENERGY_TRANSFORMER, 10,  1,  5);
+		FillBag( container, PID_MINIGUN, 15,  1,  1);
+		FillBag( container, PID_ROCKET_LAUNCHER, 15,  1,  1);
+		FillBag( container, PID_MULTI_TOOL, 15,  1,  1);
+		FillBag( container, PID_SUPER_TOOL_KIT, 15,  1,  1);
+		FillBag( container, PID_HIGH_GRADE_STEEL, 10,  1,  6);
+		FillBag( container, PID_KEVLAR_POLYMER, 10,  1,  4);
+		FillBag( container, PID_5MM_JHP, 25,  25,  100);
+		FillBag( container, PID_5MM_AP, 20,  75,  250);
+		FillBag( container, PID_ROCKET_AP, 15,  1,  5);
+		FillBag( container, PID_MICRO_FUSION_CELL, 15,  25,  75);
+		FillBag( container, PID_FRAG_GRENADE, 10,  1,  10);
+		FillBag( container, PID_SUPER_STIMPAK, 10,  1,  10);
+		
+		}
+
+	return;
+}
+void _Unlootable(Critter& critter, bool firstTime)
+{
+
+	
+	if(firstTime)
+    {
+		critter.ModeBase[MODE_NO_LOOT] = 1;
+        critter.ModeBase[MODE_NO_DROP] = 1;
+	}	
+
+}

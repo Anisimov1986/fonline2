@@ -1,0 +1,896 @@
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "critter_template.fos"
+
+import int GetAndBlockRandomFreeExit(uint locationId) from "random_dungeon";
+import bool HasUnblockedExit(uint locationId) from "random_dungeon";
+import int GetExitsCount(uint locationId) from "random_dungeon";
+import bool IsLocked(uint locationId) from "random_dungeon";
+
+//--------------------------------------------------
+// Critter templates
+
+#define ROLE_MONSTER                       (288099)
+#define ROLE_EVENT_MONSTER                 (288098)
+#define	NEED_REINFORCEMENTS_MESSAGE_ID     (1999)
+
+CritterEventsTemplate animalStaticCritterTemplate = CritterEventsTemplate()
+	.WhenT(PlayerShown1())
+		.ExecuteT(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 24))
+	.WhenT(CritterShown1())
+		.ExecuteT(Conditionally(TargetHasRole(ROLE_MONSTER), Attack(AI_PLANE_ATTACK_PRIORITY + 15, AI_PLANE_ATTACK_PRIORITY + 19)))
+	.WhenT(CritterAttacked())
+		.ExecuteT(Conditionally(CritterHPAboveTresholdPercent(20), Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 34)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+		.ExecuteT(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.WhenT(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.WhenT(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.ExecuteT(Conditionally(DistanceBetween(0, 50), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.WhenT(CritterIdle())
+		.ExecuteT(LookAround());	
+
+CritterEventsTemplate animalPatrolCritterTemplate = CritterEventsTemplate()
+	.WhenT(PlayerShown1())
+		.ExecuteT(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 24))
+	.WhenT(CritterShown1())
+		.ExecuteT(Conditionally(TargetHasRole(ROLE_MONSTER), Attack(AI_PLANE_ATTACK_PRIORITY + 15, AI_PLANE_ATTACK_PRIORITY + 19)))
+	.WhenT(CritterAttacked())
+		.ExecuteT(Conditionally(CritterHPAboveTresholdPercent(20), Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 34)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+		.ExecuteT(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.WhenT(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.WhenT(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.ExecuteT(Conditionally(DistanceBetween(0, 50), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.WhenT(InitializeCritter(true))
+		.ExecuteT(InitializePatrol(RANDOM_DUNGEON_CRITTER_PATROL))
+	.WhenT(CritterIdle())
+		.ExecuteT(Conditionally(HasChance(25), Patrol(RANDOM_DUNGEON_CRITTER_PATROL)));
+		
+CritterEventsTemplate humanStaticCritterTemplate = CritterEventsTemplate()
+	.WhenT(PlayerShown1())
+		.ExecuteT(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 24))
+	.WhenT(CritterShown1())
+		.ExecuteT(Conditionally(TargetHasRole(ROLE_MONSTER), Attack(AI_PLANE_ATTACK_PRIORITY + 15, AI_PLANE_ATTACK_PRIORITY + 19)))
+	.WhenT(CritterAttacked())
+		.ExecuteT(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.ExecuteT(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.ExecuteT(Conditionally(CritterHPAboveTresholdPercent(20), Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 34)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+		.ExecuteT(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.WhenT(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.ExecuteT(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.ExecuteT(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.WhenT(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.ExecuteT(Conditionally(DistanceBetween(0, 50), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.WhenT(CritterTimerTimeout(CTE_EVENT_MANAGER_1))
+		.ExecuteT(Heal())
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(75), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+	.WhenT(CritterIdle())
+		.ExecuteT(LookAround());
+		
+CritterEventsTemplate humanPatrolCritterTemplate = CritterEventsTemplate()
+	.WhenT(PlayerShown1())
+		.ExecuteT(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 24))
+	.WhenT(CritterShown1())
+		.ExecuteT(Conditionally(TargetHasRole(ROLE_MONSTER), Attack(AI_PLANE_ATTACK_PRIORITY + 15, AI_PLANE_ATTACK_PRIORITY + 19)))
+	.WhenT(CritterAttacked())
+		.ExecuteT(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.ExecuteT(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.ExecuteT(Conditionally(CritterHPAboveTresholdPercent(20), Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 34)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+		.ExecuteT(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.WhenT(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.ExecuteT(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.ExecuteT(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.WhenT(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.ExecuteT(Conditionally(DistanceBetween(0, 50), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.WhenT(CritterTimerTimeout(CTE_EVENT_MANAGER_1))
+		.ExecuteT(Heal())
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(75), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+	.WhenT(InitializeCritter(true))
+		.ExecuteT(InitializePatrol(RANDOM_DUNGEON_CRITTER_PATROL))
+	.WhenT(CritterIdle())
+		.ExecuteT(Conditionally(HasChance(25), Patrol(RANDOM_DUNGEON_CRITTER_PATROL)));
+		
+CritterEventsManager monsterCritterEvents = CritterEventsManager(ROLE_MONSTER)
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29))
+	.When(CritterShown1())
+		.Execute(Conditionally(CNot(TargetHasRole(ROLE_MONSTER)), Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 24)))
+	.When(CritterAttacked())
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.Execute(Conditionally(CritterHPAboveTresholdPercent(20), Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 34)))
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.When(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.When(CritterTimerTimeout(CTE_EVENT_MANAGER_1))
+		.Execute(Heal())
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(75), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+	.When(InitializeCritter(true))
+		.Execute(InitializePatrol(RANDOM_DUNGEON_CRITTER_PATROL))
+	.When(CritterIdle())
+		.Execute(Patrol(RANDOM_DUNGEON_CRITTER_PATROL));
+
+CritterEventsManager eventMonsterCritterEvents = CritterEventsManager(ROLE_EVENT_MONSTER)
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29))
+	.When(CritterShown1())
+		.Execute(Conditionally(CNot(TargetHasRole(ROLE_EVENT_MONSTER)), Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 24)))
+	.When(CritterAttacked())
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.Execute(Conditionally(CritterHPAboveTresholdPercent(20), Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 34)))
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.When(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.When(CritterTimerTimeout(CTE_EVENT_MANAGER_1))
+		.Execute(Heal())
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(75), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+	.When(InitializeCritter(true))
+		.Execute(InitializePatrol(RANDOM_DUNGEON_CRITTER_PATROL))
+	.When(CritterIdle())
+		.Execute(Patrol(RANDOM_DUNGEON_CRITTER_PATROL));
+
+const int[] animalParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Mob0};
+const int[] monsterParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Mob1};
+//const int[] eventMonsterParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Mob1, ST_MELEE_DAMAGE, 60}; 
+const int[] humanParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit}; 			
+
+
+////Rat////	
+#define ROLE_RAT_STATIC                    (288000)
+#define ROLE_RAT_PATROL                    (288100)
+const int[] ratPids = {NPC_PID_MutatedRat, NPC_PID_MutatedRat, NPC_PID_MutatedRat, NPC_PID_RegularPigRat, NPC_PID_RegularPigRat,
+			NPC_PID_GreaterMolerat, NPC_PID_GreaterMolerat, NPC_PID_MutatedMolerat, NPC_PID_MutatedPigrat};
+
+CritterTemplate ratStaticCritterTemplate = CritterTemplate(ratPids, ROLE_RAT_STATIC)
+		.SetCritterParams(animalParams)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(15)
+		.SetAttachEventManager(true);
+CritterEventsManager ratStaticCritterEvents = CritterEventsManager(ROLE_RAT_STATIC)
+		.Add(animalStaticCritterTemplate);
+
+CritterTemplate ratPatrolCritterTemplate = CritterTemplate(ratStaticCritterTemplate, ROLE_RAT_PATROL);
+CritterEventsManager ratPatrolCritterEvents = CritterEventsManager(ROLE_RAT_PATROL)
+		.Add(animalPatrolCritterTemplate);
+		
+
+////Radscorpion////	
+#define ROLE_RADSCORPION_STATIC            (288001)
+#define ROLE_RADSCORPION_PATROL            (288101)
+#define ROLE_RADSCORPION_EGG               (288201)
+const int[] radscorpionPids = {NPC_PID_SmallRadscorpion, NPC_PID_SmallRadscorpion, NPC_PID_LargeRadscorpion, NPC_PID_LargeRadscorpion, 
+			NPC_PID_MutatedRadscorpion, NPC_PID_LargeRadscorpion2};
+			
+CritterTemplate radscorpionStaticCritterTemplate = CritterTemplate(radscorpionPids, ROLE_RADSCORPION_STATIC)
+		.SetCritterParams(animalParams)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(15)
+		.SetAttachEventManager(true);
+CritterEventsManager radscorpionStaticCritterEvents = CritterEventsManager(ROLE_RADSCORPION_STATIC)
+		.Add(animalStaticCritterTemplate);
+
+CritterTemplate radscorpionPatrolCritterTemplate = CritterTemplate(radscorpionStaticCritterTemplate, ROLE_RADSCORPION_PATROL);
+CritterEventsManager radscorpionPatrolCritterEvents = CritterEventsManager(ROLE_RADSCORPION_PATROL)
+		.Add(animalPatrolCritterTemplate);
+
+CritterTemplate radscorpionEggCritterTemplate = CritterTemplate(NPC_PID_RADSCORPION_EGG, ROLE_RADSCORPION_EGG)
+		.SetCritterParams(animalParams);
+		
+
+////Ant////	
+#define ROLE_ANTS_STATIC                   (288002)
+#define ROLE_ANTS_PATROL                   (288102)
+#define ROLE_ANTS_EGG                      (288202)
+int[] antPids = {NPC_PID_Ant};
+
+CritterTemplate antStaticCritterTemplate = CritterTemplate(antPids, ROLE_ANTS_STATIC)
+		.SetCritterParams(animalParams)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(15)
+		.SetAttachEventManager(true);
+CritterEventsManager antStaticCritterEvents = CritterEventsManager(ROLE_ANTS_STATIC)
+		.Add(animalStaticCritterTemplate);
+
+CritterTemplate antPatrolCritterTemplate = CritterTemplate(antStaticCritterTemplate, ROLE_ANTS_PATROL);
+CritterEventsManager antPatrolCritterEvents = CritterEventsManager(ROLE_ANTS_PATROL)
+		.Add(animalPatrolCritterTemplate);			
+
+CritterTemplate antEggCritterTemplate = CritterTemplate(NPC_PID_ANT_EGG, ROLE_ANTS_EGG)
+	.SetCritterParams(animalParams);
+		
+
+////Gecko////	
+#define ROLE_GECKO_STATIC                  (288003)
+#define ROLE_GECKO_PATROL                  (288103)
+#define ROLE_GECKO_EGG                     (288203)
+int[] geckoPids = {NPC_PID_SmallSilverGecko, NPC_PID_SmallSilverGecko, NPC_PID_SmallGoldenGecko, NPC_PID_SmallGoldenGecko, 
+			NPC_PID_GoldenGecko, NPC_PID_ToughGoldenGecko, NPC_PID_FireGecko, NPC_PID_ToughFireGecko};
+
+CritterTemplate geckoStaticCritterTemplate = CritterTemplate(geckoPids, ROLE_GECKO_STATIC)
+		.SetCritterParams(animalParams)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(15)
+		.SetAttachEventManager(true);
+CritterEventsManager geckoStaticCritterEvents = CritterEventsManager(ROLE_GECKO_STATIC)
+		.Add(animalStaticCritterTemplate);
+
+CritterTemplate geckoPatrolCritterTemplate = CritterTemplate(geckoStaticCritterTemplate, ROLE_GECKO_PATROL);
+CritterEventsManager geckoPatrolCritterEvents = CritterEventsManager(ROLE_GECKO_PATROL)
+		.Add(animalPatrolCritterTemplate);
+		
+CritterTemplate geckoEggCritterTemplate = CritterTemplate(NPC_PID_GECKO_EGG, ROLE_GECKO_EGG)
+		.SetCritterParams(animalParams);
+		
+
+////Deathclaw////	
+#define ROLE_DEATHCLAW_STATIC              (288004)
+#define ROLE_DEATHCLAW_PATROL              (288104)
+#define ROLE_DEATHCLAW_EGG                 (288204)
+int[] deathclawPids = {NPC_PID_SmDeathclaw, NPC_PID_SmDeathclaw, NPC_PID_SmDeathclaw, NPC_PID_SmDeathclaw, NPC_PID_SmToughDeathclaw, NPC_PID_ToughDeathclaw};
+
+CritterTemplate deathclawStaticCritterTemplate = CritterTemplate(deathclawPids, ROLE_DEATHCLAW_STATIC)
+		.SetCritterParams(animalParams)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(20)
+		.SetAttachEventManager(true);
+CritterEventsManager deathclawStaticCritterEvents = CritterEventsManager(ROLE_DEATHCLAW_STATIC)
+		.Add(animalStaticCritterTemplate);
+
+CritterTemplate deathclawPatrolCritterTemplate = CritterTemplate(deathclawStaticCritterTemplate, ROLE_DEATHCLAW_PATROL);
+CritterEventsManager deathclawPatrolCritterEvents = CritterEventsManager(ROLE_DEATHCLAW_PATROL)
+		.Add(animalPatrolCritterTemplate);			
+
+CritterTemplate deathclawEggCritterTemplate = CritterTemplate(NPC_PID_DEATHCLAW_EGG, ROLE_DEATHCLAW_EGG)
+		.SetCritterParams(animalParams);
+
+
+////Wanamingo////	
+#define ROLE_WANAMINGO_STATIC              (288005)
+#define ROLE_WANAMINGO_PATROL              (288105)
+#define ROLE_WANAMINGO_EGG                 (288205)
+int[] wanamingoPids = {NPC_PID_Alien, NPC_PID_Alien, NPC_PID_ToughAlien};
+
+CritterTemplate wanamingoStaticCritterTemplate = CritterTemplate(wanamingoPids, ROLE_WANAMINGO_STATIC)
+		.SetCritterParams(animalParams)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(20)
+		.SetAttachEventManager(true);
+CritterEventsManager wanamingoStaticCritterEvents = CritterEventsManager(ROLE_WANAMINGO_STATIC)
+		.Add(animalStaticCritterTemplate);
+
+CritterTemplate wanamingoPatrolCritterTemplate = CritterTemplate(wanamingoStaticCritterTemplate, ROLE_WANAMINGO_PATROL);
+CritterEventsManager wanamingoPatrolCritterEvents = CritterEventsManager(ROLE_WANAMINGO_PATROL)
+		.Add(animalPatrolCritterTemplate);
+
+CritterTemplate wanamingoEggCritterTemplate = CritterTemplate(NPC_PID_WANAMINGO_EGG, ROLE_WANAMINGO_EGG)
+		.SetCritterParams(animalParams);
+		
+
+////Floaters Centaurs////	
+#define ROLE_FLOATERS_CENTAURS_STATIC      (288006)
+#define ROLE_FLOATERS_CENTAURS_PATROL      (288106)
+int[] floatersCentaursPids = {NPC_PID_Floater, NPC_PID_Floater, NPC_PID_Centaur, NPC_PID_Centaur, NPC_PID_NastyFloater, NPC_PID_MeanCentaur};
+
+CritterTemplate floatersCentaursStaticCritterTemplate = CritterTemplate(floatersCentaursPids, ROLE_FLOATERS_CENTAURS_STATIC)
+		.SetCritterParams(animalParams)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(20)
+		.SetAttachEventManager(true);
+CritterEventsManager floatersCentaursStaticCritterEvents = CritterEventsManager(ROLE_FLOATERS_CENTAURS_STATIC)
+		.Add(animalStaticCritterTemplate);
+
+CritterTemplate floatersCentaursPatrolCritterTemplate = CritterTemplate(floatersCentaursStaticCritterTemplate, ROLE_FLOATERS_CENTAURS_PATROL);
+CritterEventsManager floatersCentaursPatrolCritterEvents = CritterEventsManager(ROLE_FLOATERS_CENTAURS_PATROL)
+		.Add(animalPatrolCritterTemplate);			
+		
+
+////Highwayman////	
+#define ROLE_HIGHWAYMEN_STATIC             (288007)
+#define ROLE_HIGHWAYMEN_PATROL             (288107)
+int[] highwaymenPids = {NPC_PID_HIGHWAYMEN1, NPC_PID_HIGHWAYMEN2, NPC_PID_HIGHWAYMEN3, NPC_PID_HIGHWAYMEN4, NPC_PID_HIGHWAYMEN5};
+int[] highwaymenBags = {BAG_GANG45, BAG_GANG44, BAG_GANG, BAG_GANG, BAG_GANG};
+
+CritterTemplate highwaymenStaticCritterTemplate = CritterTemplate(highwaymenPids, ROLE_HIGHWAYMEN_STATIC)
+		.SetCritterParams(humanParams)
+		.SetCritterBags(highwaymenBags)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(25)
+		.SetAttachEventManager(true);
+CritterEventsManager highwaymenStaticCritterEvents = CritterEventsManager(ROLE_HIGHWAYMEN_STATIC)
+		.Add(humanStaticCritterTemplate);
+
+CritterTemplate highwaymenPatrolCritterTemplate = CritterTemplate(highwaymenStaticCritterTemplate, ROLE_HIGHWAYMEN_PATROL);
+CritterEventsManager highwaymenPatrolCritterEvents = CritterEventsManager(ROLE_HIGHWAYMEN_PATROL)
+		.Add(humanPatrolCritterTemplate);
+		
+		
+////Gang////	
+#define ROLE_GANG_STATIC                   (288007)
+#define ROLE_GANG_PATROL                   (288107)
+int[] gangPids = {NPC_PID_GANG1, NPC_PID_GANG2, NPC_PID_GANG3, NPC_PID_GANG4, NPC_PID_GANG5};
+int[] gangBags = {BAG_GANG, BAG_GANG, BAG_GANG, BAG_GANG, BAG_GANG};
+
+CritterTemplate gangStaticCritterTemplate = CritterTemplate(gangPids, ROLE_GANG_STATIC)
+		.SetCritterParams(humanParams)
+		.SetCritterBags(gangBags)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(25)
+		.SetAttachEventManager(true);
+CritterEventsManager gangStaticCritterEvents = CritterEventsManager(ROLE_GANG_STATIC)
+		.Add(humanStaticCritterTemplate);
+
+CritterTemplate gangPatrolCritterTemplate = CritterTemplate(highwaymenStaticCritterTemplate, ROLE_GANG_PATROL);
+CritterEventsManager gangPatrolCritterEvents = CritterEventsManager(ROLE_GANG_PATROL)
+		.Add(humanPatrolCritterTemplate);
+		
+		
+////Raider////	
+#define ROLE_RAIDER_STATIC                 (288009)
+#define ROLE_RAIDER_PATROL                 (288109)
+int[] raiderPids = {NPC_PID_RAIDER1, NPC_PID_RAIDER2, NPC_PID_RAIDER3, NPC_PID_RAIDER4, NPC_PID_RAIDER5, NPC_PID_RAIDER6, NPC_PID_RAIDER11, NPC_PID_RAIDER22, NPC_PID_RAIDER33, NPC_PID_RAIDER44, NPC_PID_RAIDER55};
+int[] raiderBags = {BAG_Raider, BAG_Raider, BAG_Raider0, BAG_Raider0, BAG_Raider, BAG_Raider, BAG_GANG, BAG_GANG, BAG_GANG, BAG_GANG105, BAG_GANG};
+
+CritterTemplate raiderStaticCritterTemplate = CritterTemplate(raiderPids, ROLE_RAIDER_STATIC)
+		.SetCritterParams(humanParams)
+		.SetCritterBags(raiderBags)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(25)
+		.SetAttachEventManager(true);
+CritterEventsManager raiderStaticCritterEvents = CritterEventsManager(ROLE_RAIDER_STATIC)
+		.Add(humanStaticCritterTemplate);
+
+CritterTemplate raiderPatrolCritterTemplate = CritterTemplate(raiderStaticCritterTemplate, ROLE_RAIDER_PATROL);
+CritterEventsManager raiderPatrolCritterEvents = CritterEventsManager(ROLE_RAIDER_PATROL)
+		.Add(humanPatrolCritterTemplate);
+		
+		
+////Punker////	
+#define ROLE_PUNKER_STATIC                 (288010)
+#define ROLE_PUNKER_PATROL                 (288110)
+int[] punkerPids = {NPC_PID_PUNKER1, NPC_PID_PUNKER2, NPC_PID_PUNKER3, NPC_PID_PUNKER4, NPC_PID_PUNKER5};
+int[] punkerBags = {BAG_PUNKER141, BAG_PUNKER149, BAG_PUNKER, BAG_PUNKER136, BAG_PUNKER105};
+
+CritterTemplate punkerStaticCritterTemplate = CritterTemplate(punkerPids, ROLE_PUNKER_STATIC)
+		.SetCritterParams(humanParams)
+		.SetCritterBags(punkerBags)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(25)
+		.SetAttachEventManager(true);
+CritterEventsManager punkerStaticCritterEvents = CritterEventsManager(ROLE_PUNKER_STATIC)
+		.Add(humanStaticCritterTemplate);
+
+CritterTemplate punkerPatrolCritterTemplate = CritterTemplate(punkerStaticCritterTemplate, ROLE_PUNKER_PATROL);
+CritterEventsManager punkerPatrolCritterEvents = CritterEventsManager(ROLE_PUNKER_PATROL)
+		.Add(humanPatrolCritterTemplate);
+		
+		
+////Rogue////	
+#define ROLE_ROGUE_STATIC                  (288011)
+#define ROLE_ROGUE_PATROL                  (288111)
+int[] roguePids = {NPC_PID_ROGUES1, NPC_PID_ROGUES2, NPC_PID_ROGUES3, NPC_PID_ROGUES4, NPC_PID_ROGUES5};
+int[] rogueBags = {BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC};
+
+CritterTemplate rogueStaticCritterTemplate = CritterTemplate(roguePids, ROLE_ROGUE_STATIC)
+		.SetCritterParams(humanParams)
+		.SetCritterBags(rogueBags)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(25)
+		.SetAttachEventManager(true);
+CritterEventsManager rogueStaticCritterEvents = CritterEventsManager(ROLE_ROGUE_STATIC)
+		.Add(humanStaticCritterTemplate);
+
+CritterTemplate roguePatrolCritterTemplate = CritterTemplate(rogueStaticCritterTemplate, ROLE_ROGUE_PATROL);
+CritterEventsManager roguePatrolCritterEvents = CritterEventsManager(ROLE_ROGUE_PATROL)
+		.Add(humanPatrolCritterTemplate);
+		
+		
+////Khan////	
+#define ROLE_KHAN_STATIC                   (288012)
+#define ROLE_KHAN_PATROL                   (288112)
+int[] khanPids = {NPC_PID_KHAN1, NPC_PID_KHAN2, NPC_PID_KHAN3, NPC_PID_KHAN4, NPC_PID_KHAN5};
+int[] khanBags = {BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC};
+
+CritterTemplate khanStaticCritterTemplate = CritterTemplate(khanPids, ROLE_KHAN_STATIC)
+		.SetCritterParams(humanParams)
+		.SetCritterBags(khanBags)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(25)
+		.SetAttachEventManager(true);
+CritterEventsManager khanStaticCritterEvents = CritterEventsManager(ROLE_KHAN_STATIC)
+		.Add(humanStaticCritterTemplate);
+
+CritterTemplate khanPatrolCritterTemplate = CritterTemplate(khanStaticCritterTemplate, ROLE_KHAN_PATROL);
+CritterEventsManager khanPatrolCritterEvents = CritterEventsManager(ROLE_KHAN_PATROL)
+		.Add(humanPatrolCritterTemplate);
+		
+		
+////Regulator////	
+#define ROLE_REGULATOR_STATIC              (288013)
+#define ROLE_REGULATOR_PATROL              (288113)
+int[] regulatorPids = {NPC_PID_REGULATOR2, NPC_PID_REGULATOR3, NPC_PID_REGULATOR4, NPC_PID_REGULATOR5};
+int[] regulatorBags = {BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC, BAG_HIGHNPC};
+
+CritterTemplate regulatorStaticCritterTemplate = CritterTemplate(regulatorPids, ROLE_REGULATOR_STATIC)
+		.SetCritterParams(humanParams)
+		.SetCritterBags(regulatorBags)
+		.SetRandomStartDir(true)
+		.SetShowCritterDist1(25)
+		.SetAttachEventManager(true);
+CritterEventsManager regulatorStaticCritterEvents = CritterEventsManager(ROLE_REGULATOR_STATIC)
+		.Add(humanStaticCritterTemplate);
+
+CritterTemplate regulatorPatrolCritterTemplate = CritterTemplate(regulatorStaticCritterTemplate, ROLE_REGULATOR_PATROL);
+CritterEventsManager regulatorPatrolCritterEvents = CritterEventsManager(ROLE_REGULATOR_PATROL)
+		.Add(humanPatrolCritterTemplate);
+		
+		
+////Monster////	
+int[] monsterPids = {NPC_PID_ABOMINATION, NPC_PID_MONSTROSITY, NPC_PID_Deathclaw};
+
+CritterTemplate monsterPatrolCritterTemplate = CritterTemplate(monsterPids, ROLE_MONSTER)
+		.SetCritterParams(monsterParams)
+		.SetShowCritterDist1(35)
+		.SetAttachEventManager(true);
+		
+int[] eventMonsterPids = {NPC_PID_Deathclaw};
+
+CritterTemplate eventMonsterCritterTemplate = CritterTemplate(eventMonsterPids, ROLE_EVENT_MONSTER)
+		.SetCritterParams(monsterParams)
+		.SetShowCritterDist1(50)
+		.SetAttachEventManager(true);
+		
+//--------------------------------------------------		
+// Mappings
+
+int[] staticRoleForCritterType = {ROLE_RAT_STATIC, ROLE_RADSCORPION_STATIC, ROLE_ANTS_STATIC, ROLE_GECKO_STATIC, 
+			ROLE_WANAMINGO_STATIC, ROLE_FLOATERS_CENTAURS_STATIC, ROLE_DEATHCLAW_STATIC, ROLE_HIGHWAYMEN_STATIC, ROLE_GANG_STATIC, ROLE_RAIDER_STATIC, 
+			ROLE_PUNKER_STATIC, ROLE_ROGUE_STATIC, ROLE_KHAN_STATIC, ROLE_REGULATOR_STATIC};
+int[] patrolRoleForCritterType = {ROLE_RAT_PATROL, ROLE_RADSCORPION_PATROL, ROLE_ANTS_PATROL, ROLE_GECKO_PATROL, 
+			ROLE_WANAMINGO_PATROL, ROLE_FLOATERS_CENTAURS_PATROL, ROLE_DEATHCLAW_PATROL, ROLE_HIGHWAYMEN_PATROL, ROLE_GANG_PATROL, ROLE_RAIDER_PATROL, 	
+			ROLE_PUNKER_PATROL, ROLE_ROGUE_PATROL, ROLE_KHAN_PATROL, ROLE_REGULATOR_PATROL};
+int[] eggRoleForCritterType = {0, ROLE_RADSCORPION_EGG, ROLE_ANTS_EGG, ROLE_GECKO_EGG, 
+			ROLE_WANAMINGO_EGG, 0, ROLE_DEATHCLAW_EGG, 0, 0, 0, 0, 0, 0, 0};
+
+//--------------------------------------------------
+		
+
+class StaticCritters : RandomMapFeature
+{
+	private int entire;
+	
+	StaticCritters(int entire)
+	{
+		this.entire = entire;
+	}
+
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		int role = staticRoleForCritterType[context.GetCritterType()];
+		
+		if (role > 0)
+		{
+			CritterTemplate@ critterTemplate = GetCritterTemplate(role);
+			
+			int crittersCount = map.CountEntire(entire) * context.GetCritterSpawnRate();	
+			crittersCount = crittersCount / 100 + (HAS_CHANCE(crittersCount % 100) ? 1 : 0);
+			
+			for (int i = 0; i < crittersCount; i++)
+			{
+				critterTemplate.Spawn(map, entire);
+			}
+		}
+	}
+}
+
+
+class PatrolCritters : RandomMapFeature
+{
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		int role = patrolRoleForCritterType[context.GetCritterType()];
+		
+		if (role > 0)
+		{
+			CritterTemplate@ critterTemplate = GetCritterTemplate(role);
+			
+			int crittersCount = map.CountEntire(RANDOM_DUNGEON_CRITTER_PATROL) * context.GetCritterSpawnRate();	
+			crittersCount = crittersCount / 100 + (HAS_CHANCE(crittersCount % 100) ? 1 : 0);
+			
+			for (int i = 0; i < crittersCount; i++)
+			{
+				critterTemplate.Spawn(map, RANDOM_DUNGEON_CRITTER_PATROL);
+			}
+		}
+	}
+}
+
+
+const uint[] bodyContainerPids = {PID_HUMAN_BONES, PID_BODY_CONTAINER_1, PID_BODY_CONTAINER_2};
+const uint[] shitBloodPids = {PID_ANIMAL_SHIT_1, PID_ANIMAL_SHIT_2, PID_ANIMAL_SHIT_3, PID_ANIMAL_SHIT_4, PID_BLOOD_1, PID_BLOOD_2,
+			PID_BLOOD_3, PID_BLOOD_4, PID_BLOOD_5};
+const uint[] bedPids = {PID_BED_1, PID_BED_2};
+const uint[] trashPids = {PID_TRASH_1, PID_TRASH_2};
+
+class GroupCritters : RandomMapFeature
+{
+	private int entire;
+	
+	GroupCritters(int entire)
+	{
+		this.entire = entire;
+	}
+
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		if (staticRoleForCritterType[context.GetCritterType()] > 0)
+		{
+			SpawnCritters(map, context);
+			
+			if (IsAnimalCritterType(context.GetCritterType()))
+			{
+				SpawnBodyContainer(map, context);
+				SpawnBloodAndShit(map, context);
+			}
+			else if (IsHumanCritterType(context.GetCritterType()))
+			{
+				SpawnCampfire(map, context);
+				SpawnBeds(map, context);
+				SpawnBackpackAndTrash(map, context);	
+			}
+		}
+	}
+	
+	void SpawnBodyContainer(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		map.GetEntireCoords(entire, 0, entireX, entireY);
+		Item@ container = map.AddItem(entireX, entireY, bodyContainerPids[Random(0, bodyContainerPids.length() - 1)], 1);
+		context.AddLoot(container, LOOT_TYPE_REGULAR, 50, 100);
+	}
+	
+	void SpawnCritters(Map@ map, RandomMapContext& context)
+	{
+		CritterTemplate@ critterTemplate = GetCritterTemplate(staticRoleForCritterType[context.GetCritterType()]);
+		
+		int crittersCount = map.CountEntire(entire + 1);
+		
+		for (int i = 0; i < crittersCount; i++)
+		{
+			if (HAS_CHANCE(95)) {
+				critterTemplate.Spawn(map, entire + 1);
+			}
+		}
+	}
+	
+	void SpawnBloodAndShit(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		int shitCount = map.CountEntire(entire + 2);
+		for (int i = 0 ; i < shitCount ; i++)
+		{
+			if (HAS_CHANCE(95))
+			{
+				map.GetEntireCoords(entire + 2, i, entireX, entireY);
+				Item @shit = map.AddItem(entireX, entireY, shitBloodPids[Random(0, shitBloodPids.length() - 1)], 1);
+				UNSETFLAG(shit.Flags, ITEM_CAN_PICKUP);
+				UNSETFLAG(shit.Flags, ITEM_CAN_USE);
+			}
+		}
+	}
+	
+	void SpawnCampfire(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		map.GetEntireCoords(entire, 0, entireX, entireY);
+		map.AddItem(entireX, entireY, PID_CAMPFIRE, 1);	
+	}
+	
+	void SpawnBeds(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		int bedCount = map.CountEntire(entire + 1);
+		for (int i = 0 ; i < bedCount ; i++)
+		{
+			if (HAS_CHANCE(50))
+			{
+				map.GetEntireCoords(entire + 1, i, entireX, entireY);
+				Item @bed = map.AddItem(entireX, entireY, bedPids[Random(0, bedPids.length() - 1)], 1);
+			}
+		}	
+	}
+	
+	void SpawnBackpackAndTrash(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		int trashCount = map.CountEntire(entire + 2);
+		int backpackIdx = Random(0, trashCount - 1);
+		
+		for (int i = 0 ; i < trashCount ; i++)
+		{
+			if (i == backpackIdx)
+			{
+				map.GetEntireCoords(entire + 2, i, entireX, entireY);
+				Item@ container = map.AddItem(entireX, entireY, PID_BACKPACK_CONTAINER, 1);
+				context.AddLoot(container, LOOT_TYPE_REGULAR, 50, 100);
+			}
+			else if (HAS_CHANCE(75))
+			{
+				map.GetEntireCoords(entire + 2, i, entireX, entireY);
+				Item @bed = map.AddItem(entireX, entireY, trashPids[Random(0, trashPids.length() - 1)], 1);
+			}
+		}		
+	}
+}
+
+
+const uint[] hayPids = {PID_HAY_1, PID_HAY_2, PID_HAY_3, PID_HAY_4, PID_HAY_5, PID_HAY_6};
+const uint[] eggShellPids = {PID_EGG_SHELL_1, PID_EGG_SHELL_2, PID_EGG_SHELL_3, PID_EGG_SHELL_4, PID_EGG_SHELL_5, PID_EGG_SHELL_6, PID_EGG_SHELL_7, PID_EGG_SHELL_8};
+const uint[] bonesPids = {PID_BONES_1, PID_BONES_2, PID_BONES_3, PID_BONES_4, PID_BONES_5, PID_BONES_6, PID_BONES_7, PID_BONES_8, PID_BONES_9};
+
+class CrittersNest : RandomMapFeature
+{
+	private int entire;
+	
+	CrittersNest(int entire)
+	{
+		this.entire = entire;
+	}
+
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		if (IsAnimalCritterType(context.GetCritterType()))
+		{
+			SpawnHay(map, context);
+			SpawnBones(map, context);
+			SpawnBodyContainers(map, context);
+			
+			if (IsOviparousCritterType(context.GetCritterType()))
+			{
+				SpawnEggShells(map, context);
+				SpawnEggs(map, context);
+			}
+			
+			SpawnCritters(map, context);
+		}
+	}
+	
+	void SpawnBodyContainers(Map@ map, RandomMapContext& context)
+	{
+		int bodiesCount = Random(1, 3);
+		int entireCount = map.CountEntire(entire);
+		
+		if (bodiesCount > entireCount)
+		{
+			bodiesCount = entireCount;
+		}
+		
+		for (int i = 0; i < bodiesCount; i++)
+		{
+			uint16 entireX = 0, entireY = 0;
+			map.GetEntireCoords(entire, Random(0, entireCount - 1), entireX, entireY);
+			Item@ container = map.AddItem(entireX, entireY, bodyContainerPids[Random(0, bodyContainerPids.length() - 1)], 1);
+			context.AddLoot(container, LOOT_TYPE_REGULAR, 50, 100);
+		}
+	}
+	
+	void SpawnEggs(Map@ map, RandomMapContext& context)
+	{
+		CritterTemplate@ critterTemplate = GetCritterTemplate(eggRoleForCritterType[context.GetCritterType()]);
+		
+		int eggsCount = Random(2, 4);
+		
+		if (uint(eggsCount) > map.CountEntire(entire))
+		{
+			eggsCount = map.CountEntire(entire);
+		}
+		
+		for (int i = 0; i < eggsCount; i++)
+		{
+			if (HAS_CHANCE(95)) {
+				critterTemplate.Spawn(map, entire);
+			}
+		}
+	}
+	
+	void SpawnCritters(Map@ map, RandomMapContext& context)
+	{
+		CritterTemplate@ critterTemplate = GetCritterTemplate(staticRoleForCritterType[context.GetCritterType()]);
+		
+		int crittersCount = map.CountEntire(entire);
+		
+		for (int i = 0; i < crittersCount; i++)
+		{
+			if (HAS_CHANCE(80)) {
+				critterTemplate.Spawn(map, entire);
+			}
+		}
+	}
+	
+	void SpawnHay(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		int hayCount = map.CountEntire(entire);
+		
+		for (int i = 0 ; i < hayCount ; i++)
+		{
+			if (HAS_CHANCE(75))
+			{
+				map.GetEntireCoords(entire, i, entireX, entireY);
+				Item @hay = map.AddItem(entireX, entireY, hayPids[Random(0, hayPids.length() - 1)], 1);
+			}
+		}	
+	}
+	
+	void SpawnBones(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		int bonesCount = map.CountEntire(entire);
+		for (int i = 0 ; i < bonesCount ; i++)
+		{
+			if (HAS_CHANCE(20))
+			{
+				map.GetEntireCoords(entire, i, entireX, entireY);
+				Item @bones = map.AddItem(entireX, entireY, bonesPids[Random(0, bonesPids.length() - 1)], 1);
+			}
+		}	
+	}
+	
+	void SpawnEggShells(Map@ map, RandomMapContext& context)
+	{
+		uint16 entireX = 0, entireY = 0;
+		int eggShellsCount = map.CountEntire(entire);
+		for (int i = 0 ; i < eggShellsCount ; i++)
+		{
+			if (HAS_CHANCE(10))
+			{
+				map.GetEntireCoords(entire, i, entireX, entireY);
+				Item @eggShell = map.AddItem(entireX, entireY, eggShellPids[Random(0, eggShellPids.length() - 1)], 1);
+			}
+		}	
+	}
+}
+
+
+class Monster : RandomMapFeature
+{
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		if (HAS_CHANCE(90))
+		{
+			CreateTimeEvent(__FullSecond + Random(REAL_SECOND(30), REAL_SECOND(120)), "e_SpawnMonster", map.Id, true);
+		}
+		else
+		{
+			CreateTimeEvent(__FullSecond + Random(REAL_SECOND(120), REAL_SECOND(240)), "e_SpawnMonster", map.Id, true);
+		}
+	}
+}
+
+uint e_SpawnMonster(array<uint>@ values)
+{
+	Map@ map = GetMap(values[0]);
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return 0;
+	}
+	
+	int exitId = GetAndBlockRandomFreeExit(location.Id);
+	
+	if (exitId >= 0)
+	{
+		monsterPatrolCritterTemplate.Spawn(map, RANDOM_DUNGEON_SPAWN_EXIT_0 + exitId);
+	}
+	
+	return 0;
+}
+
+class EventMonsters : RandomMapFeature
+{
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		uint[] values = {map.Id, 0, 0};
+		CreateTimeEvent(__FullSecond + Random(REAL_SECOND(15), REAL_SECOND(45)), "e_SpawnEventMonsters", values, true);
+	}
+}
+
+uint e_SpawnEventMonsters(array<uint>@ values)
+{
+	if (values.length() != 3)
+	{
+		return 0;
+	}
+
+	Map@ map = GetMap(values[0]);
+	int stepTime = values[1];
+	int stepClose = values[2];
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return 0;
+	}
+	
+	bool hasUnblockedExitAndIsUnLocked = HasUnblockedExit(location.Id) && !IsLocked(location.Id);
+	bool isTurnBased = map.IsTurnBasedAvailability();
+	int exitCount = GetExitsCount(location.Id);
+	int minCount = 1;
+	int maxCount = 1;
+	int chance = 0;
+	
+	if (exitCount < 0)
+	{
+		return 0;
+	}
+	
+	if (stepTime >= 8)
+	{
+		chance += (stepTime - 8) * 1 / 2;
+		if (!isTurnBased)
+		{
+		    maxCount += 1;
+		}
+	}
+	
+	if (stepClose >= 8)
+	{
+		chance += (stepClose - 8) * 7 / 2;
+		if (!isTurnBased)
+		{
+			minCount += 1;
+			maxCount += 1;
+		}
+	}
+	
+	if (chance > 95)
+	{
+		chance = 95;
+	}
+	
+	//Log("e_SpawnEventMonsters " + chance + " " + minCount + " " + maxCount);
+	
+	if (HAS_CHANCE(chance))
+	{
+		if (map.GetNpcCount(ROLE_EVENT_MONSTER, FIND_LIFE_AND_KO) < 12)
+		{
+			int count = Random(minCount, maxCount);
+			for (int i = 0; i < count; i++)
+			{
+				Critter@ critter = eventMonsterCritterTemplate.Spawn(map, RANDOM_DUNGEON_SPAWN_EXIT_0 + Random(0, exitCount - 1));
+				critter.StatBase[ST_WALK_TIME] = 140; 
+				critter.StatBase[ST_ACTION_POINTS] = 22; 
+			}
+		}
+	}
+	
+	uint[] nextValues = {map.Id, stepTime + 1, hasUnblockedExitAndIsUnLocked ? 0 : stepClose + 1};
+	CreateTimeEvent(__FullSecond + (isTurnBased ? Random(REAL_SECOND(48), REAL_SECOND(144)): Random(REAL_SECOND(12), REAL_SECOND(36))), "e_SpawnEventMonsters", nextValues, true);
+		
+	return 0;
+}
+

@@ -1,0 +1,127 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 @
+4 2000 None 0 #
+5 2010 #
+0 2020 @
+5 3000 None 0 #
+7 3010 #
+8 3020 #
+9 3030 #
+0 3040 @
+7 4000 None 0 #
+5 4010 #
+0 4020 @
+8 5000 None 0 #
+5 5010 #
+0 5020 #
+0 5030 @
+9 6000 None 0 #
+5 6010 #
+0 6020 &
+
+[engl]
+{100}{}{Ardin Buckner}
+{200}{}{You see a sturdy, old woman with tired smile.}
+{210}{}{You see Ardin Buckner, the owner of Buckner house.}
+{1000}{}{Predialogue installations}
+{1010}{}{Regular}
+{2000}{}{Hello there. My name's Ardin Buckner and this is my place.}
+{2010}{}{I need something right now.}
+{2020}{}{Hello, Ardin. I think I'll be moving along now. Goodbye.}
+{3000}{}{You better not be planning any mischief here. What do you want?}
+{3010}{}{I was wondering if you're the person to talk to about local news and events?}
+{3020}{}{I need a room, please.}
+{3030}{}{I want to buy something.}
+{3040}{}{I guess I don't need anything right now. Goodbye.}
+{4000}{}{You'd be better off asking Whiskey Bob, he knows a lot more about what's going on than I do.}
+{4010}{}{Maybe I'll ask him, but I've got a couple questions now.}
+{4020}{}{Thanks, I'll go speak to him right now.}
+{5000}{}{A room? That'll cost you $25, I... oh, sorry. We're full up.}
+{5010}{}{I didn't really want one anyway. Let me ask you something else.}
+{5020}{}{I don't think I need the room after all. Goodbye.}
+{5030}{}{Sure, whatever, you just don't like me. Bye.}
+{6000}{}{I just handle the rooms here. If you want to buy or trade something, talk to my daughter, Maida.}
+{6010}{}{Oh, I see. Tell me something else then.}
+{6020}{}{Thanks. Goodbye.}
+
+[russ]
+{100}{}{Ардин Бакнер}
+{200}{}{Вы видите крепкую пожилую женщину с усталой улыбкой.}
+{210}{}{Вы видите Ардин Бакнер, владелицу Дома Бакнера.}
+{1000}{}{Predialogue installations}
+{1010}{}{Regular}
+{2000}{}{Привет. Мое имя Ардин Бакнер и это Дом Бакнера.}
+{2010}{}{Мне кое-что нужно прямо сейчас.}
+{2020}{}{Привет, Ардин. Я, наверное, пойду. До свидания.}
+{3000}{}{Вам лучше не планировать никаких темных делишек здесь. Что вам нужно?}
+{3010}{}{Могу я поговорить с вами о местных новостях?}
+{3020}{}{Мне нужна комната.}
+{3030}{}{Я хочу купить кое-что.}
+{3040}{}{Я думаю, мне ничего не нужно сейчас. До свидания.}
+{4000}{}{Вам лучше поговорить об этом с Виски Бобом, он знает гораздо больше, о том что происходит в округе.}
+{4010}{}{А, окей, я так и сделаю. Прямо сейчас, хотя мне нужна также информация о кое-чем еще.}
+{4020}{}{Xорошо, я пойду и поговорю с ним. До свидания.}
+{5000}{}{Окей, давайте посмотрим. У нас должна быть свободная комната. За 25 баксов. Ой извините, все комнаты заняты.}
+{5010}{}{Не думаю, что мне это нужно прямо сейчас. Позвольте спросить вас кое-что еще.}
+{5020}{}{Не думаю, что теперь мне нужна комната. До свидания. }
+{5030}{}{Ну конечно, я просто вам не понравился. Пока.}
+{6000}{}{Я просто содержу здесь комнаты. Есди вам нужно что-либо купить или продать, обратитесь к моей дочери Майде.}
+{6010}{}{А, понятно. Расскажите еще что-нибудь.}
+{6020}{}{Спасибо. До свидания.}
+
+[pols]
+{100}{}{Ardin Buckner}
+{200}{}{Widzisz dobrze zbudowaną, starszą kobietę o zmęczonym uśmiechu.}
+{210}{}{Widzisz Ardin Buckner, właścicielkę tego lokalu.}
+{1000}{}{Predialogue installations}
+{1010}{}{Regular}
+{2000}{}{Witaj, nazywam się Ardin Buckner, a to mój lokal.}
+{2010}{}{Mam sprawę.}
+{2020}{}{Witaj, Ardin. Tylko się rozglądam.}
+{3000}{}{Mam nadzieję, że nic poważnego. Co chcesz?}
+{3010}{}{Orientujesz się co się tutaj dzieje? Jakieś wieści, plotki...}
+{3020}{}{Potrzebuję noclegu.}
+{3030}{}{@sex@|Chciałbym||Chciałabym| coś kupić.}
+{3040}{}{Chyba jednak nic. Do widzenia, pani Buckner.}
+{4000}{}{Jak chcesz plotek, to pogadaj z Bobem Flaszką, on się orientuje w tych sprawach.}
+{4010}{}{Dobrze, porozmawiam z nim. Ale miałbym jeszcze kilka pytań.}
+{4020}{}{Dzięki, pogadam z nim teraz.}
+{5000}{}{Nocleg? To będzie dwadzieścia pięć... A nie, wybacz, nie mamy już wolnych miejsc.}
+{5010}{}{Rozumiem. Mogę spytać o coś jeszcze?}
+{5020}{}{Dzięki za nic. Czas na mnie.}
+{5030}{}{Aha, jasne, już ci wierzę. Na razie.}
+{6000}{}{Ja zajmuję się noclegiem, jak chcesz coś kupić to porozmawiaj z moją córką, Maidą.}
+{6010}{}{Rozumiem. A mogę spytać jeszcze o coś?}
+{6020}{}{Dzięki. Do zobaczenia.}
+
+[ptbr]
+{100}{}{Ardin Buckner}
+{1000}{}{Predialogue installations}
+{1010}{}{Regular}
+{2000}{}{Hello there. My name's Ardin Buckner and this is my place.}
+{2010}{}{I need something right now.}
+{2020}{}{Hello, Ardin. I think I'll be moving along now. Goodbye.}
+{3000}{}{You better not be planning any mischief here. What do you want?}
+{3010}{}{I was wondering if you're the person to talk to about local news and events?}
+{3020}{}{I need a room, please.}
+{3030}{}{I want to buy something.}
+{3040}{}{I guess I don't need anything right now. Goodbye.}
+{4000}{}{You'd be better off asking Whiskey Bob, he knows a lot more about what's going on than I do.}
+{4010}{}{Maybe I'll ask him, but I've got a couple questions now.}
+{4020}{}{Thanks, I'll go speak to him right now.}
+{5000}{}{A room? That'll cost you $25, I... oh, sorry. We're full up.}
+{5010}{}{I didn't really want one anyway. Let me ask you something else.}
+{5020}{}{I don't think I need the room after all. Goodbye.}
+{5030}{}{Sure, whatever, you just don't like me. Bye.}
+{6000}{}{I just handle the rooms here. If you want to buy or trade something, talk to my daughter, Maida.}
+{6010}{}{Oh, I see. Tell me something else then.}
+{6020}{}{Thanks. Goodbye.}
+

@@ -1,0 +1,523 @@
+#include "_defines.fos"
+#include "_itempid.fos"
+#include "_macros.fos"
+#include "serializator.fos"
+
+#define ARENA_W4_TEAM1                   (0)
+#define ARENA_W4_TEAM2                   (1)
+#define ARENA_ACTIVE                     (2)
+
+#define ARENA_NEW_RENO_ID                (1)
+
+
+//TeamArena definitions
+dictionary @arenas;
+void initArenas()
+{	
+	arenas.set("" + ARENA_NEW_RENO_ID, TeamArena(ARENA_NEW_RENO_ID)
+		.SetCoordinates(840, 600, 960, 720)
+		.AddLocation(LOCATION_Golgotha, true)
+		.AddLocation(LOCATION_Highrise, false)
+		.AddLocation(LOCATION_Trainyard, false)
+		//.AddLocation(LOCATION_Waterworks, false)
+		.SetVictoryCallback("quest_5vs5@VictoryCallback")
+	);
+}
+
+//TeamArena API
+bool TeamArenaTeam1Join(int arenaId, Critter@[]& critters, bool turnBased)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.Team1Join(critters, turnBased);
+}
+
+bool TeamArenaTeam2Join(int arenaId, Critter@[]& critters)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.Team2Join(critters);
+}
+
+bool TeamArenaIsReadyForTeam1(int arenaId)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.IsReadyForTeam1();
+}
+
+bool TeamArenaIsReadyForTeam2(int arenaId)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.IsReadyForTeam2();
+}
+
+bool TeamArenaIsActive(int arenaId)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.IsActive();
+}
+
+bool TeamArenaIsValidTeam1(int arenaId, Critter@[]& critters)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.IsValidTeam1(critters);
+}
+
+bool TeamArenaIsValidTeam2(int arenaId, Critter@[]& critters)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.IsValidTeam2(critters);
+}
+
+uint TeamArenaGetSize(int arenaId)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return 0;
+	}
+	
+	return teamArena.GetSize();
+}
+
+void TeamArenaReset(int arenaId)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return;
+	}
+	
+	teamArena.Reset();
+}
+
+bool TeamArenaIsMember(int arenaId, Critter& critter)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return false;
+	}
+	
+	return teamArena.IsArenaMember(critter);
+}
+
+uint TeamArenaGetLocationId(int arenaId)
+{
+	TeamArena@ teamArena = GetArena(arenaId);
+
+	if (!valid(teamArena))
+	{
+		return 0;
+	}
+	
+	return teamArena.GetLocationId();
+}
+
+//Internals
+class TeamArena
+{	
+	#define _GetKey ("TeamArena" + arenaId)
+	
+	private int arenaId, status = ARENA_W4_TEAM1;
+	private uint locationId;
+	private uint[] team1 = {}, team2 = {};
+	
+	private uint[] locationPids = {};
+	private bool[] locationAllowTB = {};
+	private uint locationMinX, locationMaxX, locationMinY, locationMaxY;
+	
+	private string victoryCallback = "";
+	
+	TeamArena(int arenaId)
+	{
+		this.arenaId = arenaId;
+		Load();
+	}
+	
+	TeamArena@ AddLocation(uint locationPid, bool allowTB)
+	{
+		locationPids.insertLast(locationPid);
+		locationAllowTB.insertLast(allowTB);
+		return @this;
+	}
+	
+	uint GetLocationId()
+	{
+		return locationId;
+	}
+	
+	uint GetSize()
+	{
+		return team1.length();
+	}
+	
+	TeamArena@ SetCoordinates(uint locationMinX, uint locationMinY, uint locationMaxX, uint locationMaxY)
+	{
+		this.locationMinX = locationMinX;
+		this.locationMaxX = locationMaxX;
+		this.locationMinY = locationMinY;
+		this.locationMaxY = locationMaxY;
+		return @this;
+	}
+	
+	TeamArena@ SetVictoryCallback(string victoryCallback)
+	{
+		this.victoryCallback = victoryCallback;
+		return @this;
+	}
+	
+	bool IsReadyForTeam1()
+	{
+		return status == ARENA_W4_TEAM1;
+	}
+	
+	bool IsReadyForTeam2()
+	{
+		return status == ARENA_W4_TEAM2;
+	}
+	
+	bool IsActive()
+	{
+		return status == ARENA_ACTIVE;
+	}
+	
+	bool IsValidTeam1(Critter@[]& critters)
+	{
+		for (uint j = 0; j < critters.length(); j++)
+		{
+			if (!valid(critters[j]))
+			{
+				return false;
+			}
+		}	
+		
+		return true;
+	}
+	
+	bool IsValidTeam2(Critter@[]& critters)
+	{	
+		for (uint i = 0; i < team1.length(); i++)
+		{
+			for (uint j = 0; j < critters.length(); j++)
+			{
+				if (!valid(critters[j]) || critters[j].Id == team1[i])
+				{
+					return false;
+				}
+			}
+		}		
+		
+		return true;
+	}
+	
+	bool Team1Join(Critter@[]& critters, bool turnBased)
+	{
+		if (!IsReadyForTeam1() || !IsValidTeam1(critters))
+		{
+			return false;
+		}	
+
+		//Create location
+		locationId = CreateLocation(RandomLocation(turnBased), Random(locationMinX, locationMaxX), Random(locationMinY, locationMaxY), null);
+		
+		Location @location = GetLocation(locationId);
+		if (!valid(location)) 
+		{
+			return false;
+		}
+		
+		Map@ map = location.GetMapByIndex(0);
+		if (!valid(map)) 
+		{
+			return false;
+		}
+		
+		map.SetTurnBasedAvailability(turnBased);
+		map.SetEvent(MAP_EVENT_OUT_CRITTER, "_TeamArenaCritterOut");
+		
+		//Add team members to arena	
+		for (uint j = 0; j < critters.length(); j++)
+		{
+			team1.insertLast(critters[j].Id);
+			critters[j].SetKnownLoc(true, locationId);
+		}
+		
+		status = ARENA_W4_TEAM2;
+		
+		Save();
+		return true;
+	}
+	
+	private uint RandomLocation(bool turnBased)
+	{
+		uint[] pids = {};
+		
+		for (uint i = 0; i < locationPids.length(); i++)
+		{
+			if (turnBased && locationAllowTB[i] || !turnBased)
+			{
+				pids.insertLast(locationPids[i]);
+			}
+		}
+		
+		return pids[Random(0, pids.length() - 1)];
+	}
+	
+	bool Team2Join(Critter@[]& critters)
+	{
+		if (!IsReadyForTeam2() || !IsValidTeam2(critters))
+		{
+			return false;
+		}	
+		
+		//Add team members to arena	
+		for (uint j = 0; j < critters.length(); j++)
+		{
+			team2.insertLast(critters[j].Id);
+			critters[j].SetKnownLoc(true, locationId);
+		}
+		
+		status = ARENA_ACTIVE;
+		CheckVictory();
+		
+		Save();
+		return true;
+	}
+	
+	bool IsArenaMember(Critter& critter)
+	{
+		for (uint j = 0; j < team1.length(); j++)
+		{
+			if (team1[j] == critter.Id)
+			{
+				return true;
+			}
+		}
+		
+		for (uint j = 0; j < team2.length(); j++)
+		{
+			if (team2[j] == critter.Id)
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	void CritterKilled(Critter& critter)
+	{
+		for (uint j = 0; j < team1.length(); j++)
+		{
+			if (team1[j] == critter.Id)
+			{
+				team1[j] = 0;
+				critter.UnsetKnownLoc(true, locationId);
+				CheckVictory();
+				return;
+			}
+		}
+		
+		for (uint j = 0; j < team2.length(); j++)
+		{
+			if (team2[j] == critter.Id)
+			{
+				team2[j] = 0;
+				critter.UnsetKnownLoc(true, locationId);
+				CheckVictory();
+				return;
+			}
+		}
+	}
+	
+	void Reset()
+	{
+		Location @location = GetLocation(locationId);
+		if (!valid(location)) 
+		{
+			return;
+		}
+		
+		location.AutoGarbage = true;
+		status = ARENA_W4_TEAM1;
+		locationId = 0;
+		team1.resize(0);
+		team2.resize(0);
+		
+		Save();
+	}
+	 
+	private void CheckVictory()
+	{
+		if (status == ARENA_ACTIVE && victoryCallback != "")
+		{
+			bool found1 = false, found2 = false;
+			for (uint j = 0; j < team1.length(); j++)
+			{
+				if (team1[j] > 0)
+				{
+					found1 = true;
+					break;
+				}
+			}
+			
+			for (uint j = 0; j < team2.length(); j++)
+			{
+				if (team2[j] > 0)
+				{
+					found2 = true;
+					break;
+				}
+			}
+		
+			if (found1 && !found2)
+			{
+				uint[] values = {arenaId, 1};
+				CreateTimeEvent(0, victoryCallback, values, true);
+			}
+			
+			if (found2 && !found1)
+			{
+				uint[] values = {arenaId, 2};
+				CreateTimeEvent(0, victoryCallback, values, true);
+			}
+		}
+	}
+	
+	private void Load()
+	{
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(status);
+		serializator.Get(team1);
+		serializator.Get(team2);
+		serializator.Get(locationId);
+		serializator.Get(victoryCallback);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		serializator.Set(status);
+		serializator.Set(team1);
+		serializator.Set(team2);
+		serializator.Set(locationId);
+		serializator.Set(victoryCallback);
+		serializator.Save(_GetKey);
+	}
+}
+
+TeamArena@ GetArena(int arenaId)
+{
+	if (!valid(arenas))
+	{
+		@arenas = dictionary();
+		initArenas();
+	}
+	
+	TeamArena@ result;
+	arenas.get("" + arenaId, @result);
+	return result;
+}
+
+
+bool _TeamArenaCritterIn(Location& location, Critter@[]& critters, uint8 entrance)
+{
+	for (uint i = 0; i < critters.length(); i++)
+	{
+		if (!critters[i].IsPlayer())
+		{
+			continue;
+		}
+
+		if (critters[i].GetAccess() == ACCESS_ADMIN)
+		{	
+			continue;
+		}
+			
+		if (!critters[i].IsKnownLoc(true, location.Id))
+		{
+			return false;
+		}
+	}
+	
+    return true;
+}
+
+void _TeamArenaCritterOut(Map& map, Critter& critter)
+{	
+	if (critter.IsLife())
+	{
+		return;
+	}
+
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		critter.UnsetKnownLoc(true, location.Id);
+		return;
+	}
+	
+	string@[] keys;
+	arenas.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		TeamArena @teamArena;
+
+		if (arenas.get(keys[i], @teamArena) && teamArena.GetLocationId() == location.Id)
+		{
+			teamArena.CritterKilled(critter);
+			return;
+		}
+	}
+}

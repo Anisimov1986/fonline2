@@ -1,0 +1,163 @@
+[comment]
+- The sheets need to be made for Christopher
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 D _var p q_necro_water = 0 #
+12 2030 D _var p q_necro_water = 0 D _item p PID_NECRO_CARD } 1 #
+8 2040 D _var p q_christopher_meds = 2 D _item p PID_HEART_PILLS } 1 R _item p PID_HEART_PILLS - 1 R _script economy_dialogs@r_GiveCaps 1 50 R _item p PID_LEATHER_JACKET + 1 R _param p ST_EXPERIENCE + 700 R _var p q_christopher_meds = 3 R _script karma@r_AddKarma 1 20 #
+13 2050 D _var p q_necro_water = 2 R _var p q_necro_water = 0 R _script economy_dialogs@r_GiveCaps 1 15000 R _script karma@r_AddKarma 1 50 #
+6 2060 D _var p q_christopher_meds = 0 #
+0 2070 @
+3 3000 None 0 #
+2 3010 @
+4 4000 None 0 #
+11 4010 #
+0 4020 @
+6 5000 None 0 #
+0 5010 R _var p q_christopher_meds = 1 #
+0 5020 @
+8 6000 None 0 #
+0 6010 @
+11 7000 None 0 #
+0 7010 @
+12 8000 economy_dialogs@dlg_PreparePrice 0 #
+0 8010 D _item p PID_NECRO_CARD } 1 R _var p q_necro_water = 1 R _item p PID_NECRO_CARD_ANTIEXPLOIT + 1 R _item p PID_NECRO_CARD - 1 R _item p PID_WM_HOLODISK + 1 #
+0 8020 @
+13 9000 None 0 #
+0 9010 R _param p ST_EXPERIENCE + 5000 &
+
+[engl]
+{100}{}{Christopher}
+{200}{}{You see: Christopher}
+{210}{}{He seems like a happy owner of a bazaar.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Good day, stranger. I'm Christopher, I run the bazaar in this part of town. What do you want?}
+{2010}{}{I'd like to trade.}
+{2020}{}{I am interested from where you guys have that much water.}
+{2030}{}{Hey, Look what i have here... [You show him Keycard found in Necropolis.]}
+{2040}{}{I've got medicines from Annie. She said you shouldn't eat all those unhealthy things, because...}
+{2050}{}{Water pumps from Necropolis are up and running. Challenge Complete.}
+{2060}{}{Are you all right? You look a bit pale.}
+{2070}{}{Nothing, just looking around. Bye.}
+{3000}{}{Look stranger, I know it's a bazaar, but I don't have time to do any trading myself. You may have a look at plentiful selection of goods all over the stalls, your welcome, but I'm not the right person to trade with.}
+{3010}{}{Fine, got it. Let me ask something else.}
+{4000}{}{Well, from here and there, though that's not "MUCH" water... We need some more, ever heard about Necropolis?}
+{4010}{}{Yeah, Why?}
+{4020}{}{Nope. Bye.}
+{5000}{}{Well, it's a bit personal, so I'll keep details for myself. Since you've asked, maybe you can do me a favor and bring certain ... medicines from city's doctor, Annie? She's gonna know what I need, just tell her Christopher sent you.}
+{5010}{}{Sure, be right back.}
+{5020}{}{Find youself a servant, dude. I'm too busy, bye.}
+{6000}{}{Women! They always talk too much! I know better what should I eat, I'm an adult man! Good, I've got what I wanted, here's something for your time.}
+{6010}{}{Thanks, I'm glad I could help. Bye.}
+{7000}{}{They have almost undepletable amounts of water now, and we really need it, I've sent groups and groups of mercenaries but they only found out locked vault. We've even tried hacking the vault door terminal, but with no success. Some ghouls on the surface must have something which will let us inside, something that will lift the lockdown... A keycard maybe? You must find out. Listen, when you will somehow find out, don't open it! Come to me first, I'll give you a task and pay nicely for it.}
+{7010}{}{If you say so. When i get anything that would help, i'll come back.}
+{8000}{}{Perfect! That's the thing i need! Here, i'll copy our info onto Holodisk, [He gives you Holodisk] Please get in that vault and use their main computer to transfer water to us. I'll pay you @lex q_necro_water_reward@ caps for the job! And i'll throw something special...}
+{8010}{}{Okay, I'll come back after transfering the water to You.}
+{8020}{}{What? No! That's dangerous!}
+{9000}{}{Let me check... Yes yes! You did it! Their water is flowing into our supplies. Here's the Pay for the job. But, what about their leader? Zed?}
+{9010}{}{Zed's dead baby, Zed's dead.}
+
+[russ]
+{100}{}{Кристофер}
+{200}{}{Вы видите: Кристофера}
+{210}{}{Счастливый владелец базара.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Добрый день, незнакомец. Я Кристофер, я начальник базара в этой части города. Что вы хотите?}
+{2010}{}{Я хотел бы, поторговать.}
+{2020}{}{Меня интересует, откуда вы, ребята, берете так много воды.}
+{2030}{}{Эй, посмотри, что у меня здесь... [вы показываете ему ключ-карту найденную в Некрополисе.]}
+{2040}{}{У меня есть лекарства от Энни. Она сказала, что вы не должны есть все эти нездоровые вещи, потому что ...}
+{2050}{}{Водяные насосы Некрополиса заработали. Приключение окончено.}
+{2060}{}{Вы в порядке? Вы выглядите немного бледным.}
+{2070}{}{Ничего, просто смотрю. Пока.}
+{3000}{}{Я знаю, что это базар, но у меня нет времени торговать самому. Вы можете взглянуть на большой выбор товаров во всех киосках.}
+{3010}{}{Хорошо, понял. Позвольте мне спросить кое-что еще.}
+{4000}{}{Ну, тут и там, хотя я бы не сказал "много" воды... Нам бы не помешало больше, когда-нибудь слышал о Некрополисе?}
+{4010}{}{Да, а что?}
+{4020}{}{Не-а. Пока.}
+{5000}{}{Ну, это немного личное. Раз уж вы спросили, может быть, вы можете сделать мне одолжение и принести определенные ... лекарства из города от доктора Энни? Она знает что нужно, просто скажите что вас послал Кристофер.}
+{5010}{}{Конечно, сейчас вернусь.}
+{5020}{}{Найти себе раба, чувак. Я слишком занят, до свидания.}
+{6000}{}{Женщины! Они всегда говорят слишком много!Я знаю лучше, что я должен есть, я взрослый человек! Хорошо, я получил, что хотел, вот награда, за то что уделили время.}
+{6010}{}{Спасибо, я рад, что смог помочь. Пока.}
+{7000}{}{У них есть почти безграничный запас воды в Хранилище, и мы действительно в ней нуждается, Я посылал несколько групп наемников, но они так и не смогли проникнуть внутрь. Мы даже пытались взломать дверь и хакнуть терминал, но не удачно. Может быть мертвяки которые снаружи знаю путь, может у них есть какая-то вещь... Ключ-карта например? Ты должен выяснить, но не открывай дверь если найдешь ключ, сначала принеси его мне.}
+{7010}{}{Если ты так говоришь. Когда найду то, что может помочь, я вернусь.}
+{8000}{}{Отлично! Это то, что нужно! Вот тебе голодиск с данными, [дает вам голодиск] Найди главный компьютер хранилища и используй этот голодиск для того чтобы направить нам партию воды. Если справишься я заплачу тебе @lex q_necro_water_reward@ крышек и дам кое-что особенное.}
+{8010}{}{Хорошо, я вернусь когда разберусь с этим компьютером и водой..}
+{8020}{}{Что? Нет! Это опасно!}
+{9000}{}{Позвольте мне проверить... Да да! Ты сделал это! Их вода течет в наши склады. Вот плата за работу. Что по поводу их лидера Зеда?}
+{9010}{}{Зед зажмурился.}
+
+[pols]
+{100}{}{Christopher}
+{200}{}{Widzisz Christophera.}
+{210}{}{Widzisz szczęśliwego właściciela tego bazaru.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Miłego dnia, @sex@|nieznajomy||nieznajoma|. Jestem Christopher, kieruję bazarem w tej części miasta. Czego chcesz?}
+{2010}{}{@sex@|Chciałem||Chciałabym| pohandlować.}
+{2020}{}{Ciekawi mnie, skąd macie aż tyle wody.}
+{2030}{}{Hej, spójrz co @sex@|znalazłem||znalazłam|... [Pokazujesz mu kartę dostępu Nekropolis.]}
+{2040}{}{Mam lekarstwa od Annie. Mówi, że nie powinieneś jeść tych wszystkich niezdrowych rzeczy ze względu na...}
+{2050}{}{Wodociągi z Nekropolis pracują na pełnych obrotach. Zadanie wykonane.}
+{2060}{}{Wszystko w porządku? Niewyraźnie dziś wyglądasz.}
+{2070}{}{Nieważne, tylko się rozglądam. Do widzenia.}
+{3000}{}{Słuchaj, wiem że to bazar, ale ja sam nie mam czasu na handlowanie. Możesz się rozejrzeć po wszystkich stoiskach, ale to nie ze mną ubijasz targu.}
+{3010}{}{Dobra, rozumiem. Pozwól mi spytać o coś jeszcze.}
+{4000}{}{Cóż, stąd i owąd, ale nie jest to "aż" tyle... Potrzebujemy więcej, @sex@|słyszałeś||słyszałaś| kiedykolwiek o Nekropolis?}
+{4010}{}{Tak, a co?}
+{4020}{}{Nie. Do widzenia.}
+{5000}{}{Hm, to nieco osobista sprawa, więc szczegóły pozostawię dla siebie. Ale skoro pytasz, @sex@|mógłbyś||mogłabyś| zrobić mi przysługę i przynieść mi pewne... lekarstwa od miejskiego lekarza, Annie? Będzie wiedzieć, o co chodzi, po prostu powiedz jej że ja cię przysłałem.}
+{5010}{}{Jasne, zaraz wracam.}
+{5020}{}{Zatrudnij sobie jakiegoś służącego, koleś. Ja jestem zbyt @sex@|zajęty||zajęta|, do widzenia.}
+{6000}{}{Kobiety! Zawsze gadają za dużo! Chyba lepiej wiem, co powinienem jeść - jestem dorosłym mężczyzną! Dobrze, mam czego mi trzeba. Proszę, oto coś w zamian za twój poświęcony czas.}
+{6010}{}{Dzięki, cieszę się że @sex@|mogłem||mogłam| pomóc. Do widzenia.}
+{7000}{}{Posiadają praktycznie niewyczerpane ilości wody, a my pilnie jej potrzebujemy. Wysyłałem najemników, grupę za grupą, ale znaleźli jedynie zamkniętą Kryptę. Próbowaliśmy zhackować terminal, ale bez powodzenia. Niektóre ghule na powierzchni muszą posiadać cokolwiek, co pozwala im na wejście do środka, coś co otworzy zamek... Może jakaś karta dostępu? Musisz się tego dowiedzieć. Słuchaj, jeśli znajdziesz coś takiego, nie otwieraj Krypty! Najpierw przyjdź do mnie, dam ci pewne zadanie i zapłacę ładnie za jego wykonanie.}
+{7010}{}{Jeśli tak mówisz, dobrze. Kiedy znajdę cokolwiek takiego, wrócę.}
+{8000}{}{Doskonale! To jest rzecz, której potrzebujemy! Czekaj, skopiuję nasze informacje na Holodysk. [Wręcza ci Holodysk.] Proszę, wejdź do tej Krypty i użyj jej głównego komputera, aby uruchomić wodociągi pompujące wodę z Nekropolis do naszych zbiorników. Jeśli się uda, zapłacę ci @lex q_necro_water_reward@ kapsli! I dorzucę jeszcze coś specjalnego...}
+{8010}{}{Dobra, wrócę tutaj kiedy uda mi się uruchomić pompy.}
+{8020}{}{Co? Nie! To niebezpieczne!}
+{9000}{}{Czekaj chwilkę, sprawdzę to... Tak, tak! @sex@|Zrobiłeś||Zrobiłaś| to! Ich woda przepływa do naszych zbiorników. Oto zapłata za wykonaną robotę. Ale, co stało się z ich przywódcą, Zedem?
+{9010}
+{9010}{}{error}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Good day, stranger. I'm Christopher, I run the bazaar in this part of town. What do you want?}
+{2010}{}{I'd like to trade.}
+{2020}{}{I am interested from where you guys have that much water.}
+{2030}{}{Hey, Look what i have here... [You show him Keycard found in Necropolis.]}
+{2040}{}{I've got medicines from Annie. She said you shouldn't eat all those unhealthy things, because...}
+{2050}{}{Water pumps from Necropolis are up and running. Challenge Complete.}
+{2060}{}{Are you all right? You look a bit pale.}
+{2070}{}{Nothing, just looking around. Bye.}
+{3000}{}{Look stranger, I know it's a bazaar, but I don't have time to do any trading myself. You may have a look at plentiful selection of goods all over the stalls, your welcome, but I'm not the right person to trade with.}
+{3010}{}{Fine, got it. Let me ask something else.}
+{4000}{}{Well, from here and there, though that's not "MUCH" water... We need some more, ever heard about Necropolis?}
+{4010}{}{Yeah, Why?}
+{4020}{}{Nope. Bye.}
+{5000}{}{Well, it's a bit personal, so I'll keep details for myself. Since you've asked, maybe you can do me a favor and bring certain ... medicines from city's doctor, Annie? She's gonna know what I need, just tell her Christopher sent you.}
+{5010}{}{Sure, be right back.}
+{5020}{}{Find youself a servant, dude. I'm too busy, bye.}
+{6000}{}{Women! They always talk too much! I know better what should I eat, I'm an adult man! Good, I've got what I wanted, here's something for your time.}
+{6010}{}{Thanks, I'm glad I could help. Bye.}
+{7000}{}{They have almost undepletable amounts of water now, and we really need it, I've sent groups and groups of mercenaries but they only found out locked vault. We've even tried hacking the vault door terminal, but with no success. Some ghouls on the surface must have something which will let us inside, something that will lift the lockdown... A keycard maybe? You must find out. Listen, when you will somehow find out, don't open it! Come to me first, I'll give you a task and pay nicely for it.}
+{7010}{}{If you say so. When i get anything that would help, i'll come back.}
+{8000}{}{Perfect! That's the thing i need! Here, i'll copy our info onto Holodisk, [He gives you Holodisk] Please get in that vault and use their main computer to transfer water to us. I'll pay you @lex q_necro_water_reward@ caps for the job! And i'll throw something special...}
+{8010}{}{Okay, I'll come back after transfering the water to You.}
+{8020}{}{What? No! That's dangerous!}
+{9000}{}{Let me check... Yes yes! You did it! Their water is flowing into our supplies. Here's the Pay for the job. But, what about their leader? Zed?}
+{9010}{}{Zed's dead baby, Zed's dead.}
+

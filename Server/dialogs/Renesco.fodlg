@@ -1,0 +1,197 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+20 2020 #
+11 2030 D _param p SK_SCIENCE < 130 #
+10 2040 D _var p name_mem_player_npc = 1 D _param p PE_PROF_CHEMIST = 2 D _item p PID_JET } 6 D _script economy_dialogs@d_IsEnoughCaps 1 6000 R _param p PE_PROF_CHEMIST = 3 R _script economy_dialogs@r_TakeCaps 1 6000 R _item p PID_JET - 6 R _var p prof_chemist = 8 R _param p ST_EXPERIENCE + 2000 #
+4 2050 D _var p name_mem_player_npc = 0 D _param p PE_PROF_CHEMIST ! 3 D _param p SK_SCIENCE } 130 #
+9 2060 #
+3 2070 #
+0 2080 @
+3 3000 None 0 #
+0 3010 @
+9 4000 None 0 #
+0 4010 @
+4 5000 None 0 #
+5 5010 @
+5 6000 None 0 #
+6 6010 D _param p PE_PROF_CHEMIST { 1 #
+7 6020 D _param p PE_PROF_CHEMIST = 2 @
+6 7000 None 0 #
+0 7010 @
+7 8000 None 0 #
+8 8010 R _var p prof_chemist = 7 @
+8 9000 economy_dialogs@dlg_PreparePrice 0 #
+0 9010 R _var p name_mem_player_npc = 1 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 @
+20 12000 economy_dialogs@dlg_PreparePrice 0 #
+3 12010 D _script economy_dialogs@d_IsEnoughCaps 1 600 R _script economy_dialogs@r_TakeCaps 1 600 R _item p PID_JET_ANTIDOTE + 1 #
+3 12020 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_JET_ANTIDOTE + 5 #
+3 12030 D _script economy_dialogs@d_IsEnoughCaps 1 6000 R _script economy_dialogs@r_TakeCaps 1 6000 R _item p PID_JET_ANTIDOTE + 10 #
+0 12040 &
+
+[engl]
+{100}{}{Renesco}
+{200}{}{You see: Renesco, New Reno Commercial street doctor.}
+{210}{}{You see: Renesco, New Reno Commercial street doctor.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Yeah? What do you want?}
+{2010}{}{[Barter.] Some medical supplies.}
+{2020}{}{Maaaan, stock me up with some antitoxins...}
+{2030}{}{I want to learn your proffession...}
+{2040}{}{[CHEMIST LEVEL 3] I'm prepared and focused, here.}
+{2050}{}{Are you a doctor?}
+{2060}{}{Heeey man, do you have some free jet to spare?}
+{2070}{}{What's that sign "Rapesco" over there?}
+{2080}{}{Oh, not here. Bye.}
+{3000}{}{It's not "Rapesco", you sexual maniac. It's "Renesco", that's my name. Sometimes I really hate this town.}
+{3010}{}{OK, let me ask something else then.}
+{4000}{}{Fucking junkies! No! I don't give away free drugs! Fuck off! Shoo!}
+{4010}{}{All right, all right, I'm leaving.}
+{5000}{}{I sell medicines as well, if you ask that. When I'm not being bothered by idiots like you, I'm trying to teach myself more about new substances and chemicals I can find.}
+{5010}{}{Substances and chemicals?}
+{6000}{}{Yeah, why? Do you know something about them?}
+{6010}{}{Of course I do, what kind of question is that?}
+{6020}{}{Of course I do, what kind of question is that?}
+{7000}{}{Nice try, butthead. I can't believe I just wasted my time on this conversation. Go away.}
+{7010}{}{If you say so ...}
+{8000}{}{Now you're talking. So how's doctor Fung-us? Is he still mad about that cruel joke we made of him so long ago? Nevermind, I guess you're not here to chit-chat with some grandpa...}
+{8010}{}{Right, I want to participate in your learning process.}
+{9000}{}{Fair enough. To show you what I already know, I'll need six jet, for training ofcourse... And @lex prof3_price@ caps for my time wasted on you. }
+{9010}{}{I'll be back when I get all of this, see you.}
+{10000}{}{Well done, son. Great, what's first ... Ah, yes, here, have a look ... [He teaches you how to handle human-consumable substances that make the world full of colors again. And some useful things too.] ... Get it? Fine, that's all I can share for now. }
+{10010}{}{Many thanks, Rape- uh sorry, Renesco. Have a nice day!}
+{11000}{}{You do not know all you need. Come back with when you're more skilled.}
+{12000}{}{You damn junkies... @lex ajet_price@ caps per one.}
+{12010}{}{Then I'll take one.}
+{12020}{}{Okay, throw me five.}
+{12030}{}{10, I take too much drugs I think...}
+{12040}{}{Junkie? Me? Bye.}
+
+[russ]
+{100}{}{Ренеско}
+{200}{}{Вы видите: Ренеско, врач коммерческой улицы Нью-Рено.}
+{210}{}{Вы видите: Ренеско, врач коммерческой улицы Нью-Рено.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Да? Что вы хотите?}
+{2010}{}{[Бартер] Мне нужны медикаменты.}
+{2020}{}{Чуваааак, мне бы антитоксин...}
+{2030}{}{Я хочу изучить твою профессию...}
+{2040}{}{[Профессия: Химик уровень 3] Я все приготовил, давайте приступать.}
+{2050}{}{Вы врач?}
+{2060}{}{Ээээй чувак, подогрей джетом.}
+{2070}{}{Что за вывеска "Rapesco" там?}
+{2080}{}{О, нет, ничего. Пока.}
+{3000}{}{Это не "Rapesco", сексуальный ты маньяк. Это "Renesco", так меня зовут. Ненавижу этот сраный город.}
+{3010}{}{Понятно, ну мне уже пора.}
+{4000}{}{Поганые нарики, нет у меня халявной наркоты! Проваливай! Кыш!}
+{4010}{}{Ладно, все в порядке, я ухожу.}
+{5000}{}{Еще я продаю лекарства. Когда меня не беспокоят такие идиоты как ты, я пытаюсь совершенствовать мои знания в области химии.}
+{5010}{}{В области химии?}
+{6000}{}{Да, а что? Что ты знаешь об этом?}
+{6010}{}{Я все знаю, в чем вопрос?}
+{6020}{}{Я все знаю, в чем вопрос?}
+{7000}{}{Хорошая попытка, тупоголовый. Я просто впустую трачу время на болвана вроде тебя. Пошел прочь. [Требуется Профессия: Химик уровень 2] }
+{7010}{}{Если ты так говоришь ...}
+{8000}{}{Ну теперь все понятно. Как там доктор Фанг? Он все еще злится на меня за ту шутку? Неважно, я думаю, вы здесь не для того чтобы трепать языком, да?}
+{8010}{}{Да, я хочу улучшить свои знания в области химии.}
+{9000}{}{Ладно. Для этого нам потребуется шесть Джета, и @lex prof3_price@ крышек за потраченное время.}
+{9010}{}{Хорошо, я скоро вернусь.}
+{10000}{}{Молодец, сынок. Приступим... [Он обучает вас вершинам химического искусства.] ... Ладно, это все, чему я могу тебя научить.}
+{10010}{}{Большое спасибо. Пока.}
+{11000}{}{Ты не достаточно образован для этого. [Требуется наука 130]}
+{12000}{}{Чертовы наркоманы... @lex ajet_price@ крышек за штуку.}
+{12010}{}{Тогда я возьму одну.}
+{12020}{}{Ладно, гони пять.}
+{12030}{}{10, возьму с запасом...}
+{12040}{}{Наркоман? Я ? Нееее.}
+
+[pols]
+{100}{}{Renesco}
+{200}{}{Widzisz Renesco, doktora z Dzielnicy Handlowej New Reno.}
+{210}{}{Widzisz Renesco, doktora z Dzielnicy Handlowej New Reno.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Ta? Czego chcesz?}
+{2010}{}{[Handel.] Nieco środków medycznych.}
+{2020}{}{Staaary, musisz mi sprzedać trochę antytoksyn...}
+{2030}{}{Chcę nauczyć się twojej profesji...}
+{2040}{}{(Profesja: Chemik, poziom 3.) Jestem @sex@|gotowy i skoncentrowany||gotowa i skoncentrowana|.}
+{2050}{}{Jesteś lekarzem?}
+{2060}{}{Hej stary, masz może odstąpić trochę Jetu za darmo?}
+{2070}{}{Co niby ma oznaczać ten znak "Rapesco", o tam?}
+{2080}{}{Och, nie to miejsce. Do widzenia.}
+{3000}{}{To nie "Rapesco", @sex@|zboczeńcu||zboczona wariatko|. Jest wyraźnie napisane "Renesco", to kurwa moje imię. Czasem nienawidzę tego miasta.}
+{3010}{}{W porądku, pozwól że spytam o coś innego.}
+{4000}{}{Pierdolone ćpuny! Nie! Nie rozdaję darmowych narkotyków! Spierdalaj! Sio!}
+{4010}{}{Dobra, dobra, wychodzę.}
+{5000}{}{Sprzedaję medykamenty, jeśli cię to interesuje. A kiedy nie zawracają mi dupy idioci twojego pokroju, staram się nauczyć czegoś o nowych substancjach i chemikaliach, które znajduję.}
+{5010}{}{Substancjach i chemikaliach?}
+{6000}{}{Ta, a co? Wiesz coś o nich?}
+{6010}{}{Jasne że wiem, co to niby za pytanie?}
+{6020}{}{Jasne że wiem, co to niby za pytanie?}
+{7000}{}{Niezła próba, @sex@|frajerze||cipo|. Nie wierzę, że straciłem tyle czasu na tej dennej rozmowie. Odejdź stąd.}
+{7010}{}{Jeśli tak mówisz...}
+{8000}{}{Teraz mi to mówisz!? No więc, co tam słychać u doktora Fen... Fun... no, tego Fagasa z San Francisco? Ciągle się gniewa za ten okropny żart, który mu spłataliśmy lata temu? Ach, nieważne, domyślam się że nie jesteś tutaj dla pogawędki ze starym dziadkiem?}
+{8010}{}{Racja, zamiast tego @sex@|chciałbym||chciałabym| wziąć udział w twoich badaniach naukowych.}
+{9000}{}{Brzmi nieźle. Zanim pokażę ci, czego się dowiedziałem, potrzebuję 6 Jetu i @lex prof3_price@ kapsli za stracony na ciebie czas.}
+{9010}{}{Wrócę, kiedy to wszystko zbiorę. Do zobaczenia.}
+{10000}{}{Dobra robota, @sex@|dzieciaku||panienko|. Wspaniale, od czego tu zacząć... Ach, tak, tutaj, spójrz... [Uczy cię, jak obchodzić się z substancjami, które wypełniają świat kolorami na nowo. I kilku użytecznych rzeczy również.] ...łapiesz? W porządku, to wszystko, czego mogę cię w tej chwili nauczyć.}
+{10010}{}{Wielkie dzięki, Rape... Och, przepraszam, Renesco. Miłego dnia!}
+{11000}{}{Może się jeszcze, kurwa, zajmiesz hodowlą jedwabników? Przecież ty się nie znasz na nauce... Wróć, kiedy nieco się podszkolisz. (Wymagana umiejętność: Nauka 130%.)}
+{12000}{}{Cholerne ćpuny... @lex ajet_price@ kapsli za sztukę.}
+{12010}{}{W takim razie, wezmę jedną.}
+{12020}{}{W porządku, daj mi pięć.}
+{12030}{}{Dziesięć, chyba ostatnio ćpam za dużo...}
+{12040}{}{@sex@|Ćpun||Ćpunka|? Ja? Wypraszam sobie. Żegnam.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Yeah? What do you want?}
+{2010}{}{[Barter.] Some medical supplies.}
+{2020}{}{Maaaan, stock me up with some antitoxins...}
+{2030}{}{I want to learn your proffession...}
+{2040}{}{[CHEMIST LEVEL 3] I'm prepared and focused, here.}
+{2050}{}{Are you a doctor?}
+{2060}{}{Heeey man, do you have some free jet to spare?}
+{2070}{}{What's that sign "Rapesco" over there?}
+{2080}{}{Oh, not here. Bye.}
+{3000}{}{It's not "Rapesco", you sexual maniac. It's "Renesco", that's my name. Sometimes I really hate this town.}
+{3010}{}{OK, let me ask something else then.}
+{4000}{}{Fucking junkies! No! I don't give away free drugs! Fuck off! Shoo!}
+{4010}{}{All right, all right, I'm leaving.}
+{5000}{}{I sell medicines as well, if you ask that. When I'm not being bothered by idiots like you, I'm trying to teach myself more about new substances and chemicals I can find.}
+{5010}{}{Substances and chemicals?}
+{6000}{}{Yeah, why? Do you know something about them?}
+{6010}{}{Of course I do, what kind of question is that?}
+{6020}{}{Of course I do, what kind of question is that?}
+{7000}{}{Nice try, butthead. I can't believe I just wasted my time on this conversation. Go away.}
+{7010}{}{If you say so ...}
+{8000}{}{Now you're talking. So how's doctor Fung-us? Is he still mad about that cruel joke we made of him so long ago? Nevermind, I guess you're not here to chit-chat with some grandpa...}
+{8010}{}{Right, I want to participate in your learning process.}
+{9000}{}{Fair enough. To show you what I already know, I'll need six jet, for training ofcourse... And @lex prof3_price@ caps for my time wasted on you. }
+{9010}{}{I'll be back when I get all of this, see you.}
+{10000}{}{Well done, son. Great, what's first ... Ah, yes, here, have a look ... [He teaches you how to handle human-consumable substances that make the world full of colors again. And some useful things too.] ... Get it? Fine, that's all I can share for now. }
+{10010}{}{Many thanks, Rape- uh sorry, Renesco. Have a nice day!}
+{11000}{}{You do not know all you need. Come back with when you're more skilled.}
+{12000}{}{You damn junkies... @lex ajet_price@ caps per one.}
+{12010}{}{Then I'll take one.}
+{12020}{}{Okay, throw me five.}
+{12030}{}{10, I take too much drugs I think...}
+{12040}{}{Junkie? Me? Bye.}
+

@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Guard Dog}
+{200}{}{You see: Guard Dog.}
+{210}{}{This dog seems to be keeping a watchful eye over this area.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Sniff sniff...@@Woof!@@Woof woof!@@Grrr...}
+
+[russ]
+{100}{}{Сторожевая собака}
+{200}{}{Вы видите сторожевого пса.}
+{210}{}{Вы видите сторожевого пса, он внимательно принюхивается к прохожим.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{[Принюхивается]@@Гав!@@Ваф! Ваф!}
+
+[pols]
+{100}{}{Pies strażniczy}
+{200}{}{Widzisz psa strażniczego.}
+{210}{}{Widzisz psa strażniczego, który dokładnie pilnuje tego miejsca.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{[Węszy.]@@Hau!@@Hau hau!}
+
+[ptbr]
+{100}{}{Cão de guarda}
+{200}{}{Você vê um cão de guarda.}
+{210}{}{Esse cachorro tá de olho atento com o que acontece por aqui.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Snif snif...@@Au!@@Au au!@@Grrr...}
+

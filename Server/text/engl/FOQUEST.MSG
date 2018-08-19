@@ -1,0 +1,398 @@
+# 22.06.2013 Fonline2 Team
+
+#
+#
+#
+
+{4}{}{%d. }
+{5}{}{Current progress: }
+{6}{}{@lex questName@^@lex questTask@}
+{7}{}{@lex Title@^@lex Message@^@lex File@^@lex TitleColor@^@lex MessageColor@}
+
+#
+# ID
+# Quest name
+#
+
+#
+# Formulas are:
+#	ID * 1000 + %exp%. (1-100) - Text player sees with quest var equal to %exp%.
+#	ID * 1000 + 101 - Quest tab name.
+#	ID * 1000 + 102 - Overall quest description.
+
+# 7000
+# Caravan from Hub to VC
+{7000001}{}{I have taken caravan guard job. Leader told me to be here ready at 10:00.}
+{7000002}{}{The caravan is moving. The task is clear - protect the caravan at all cost.}
+{7000003}{}{Failed: I guess, stealing was not the best idea.}
+{7000004}{}{Failed: I left caravan behind.}
+{7000005}{}{Failed: You died.}
+{7000006}{}{Failed: Our caravan leader is dead.}
+{7000007}{}{Failed: I killed caravan leader. I guess, caravan company won't give me the job again.}
+{7000008}{}{Success: Our caravan has reached its destination. I should ask for my payment now.}
+{7000009}{}{The caravan is moving. The task is clear as usually - protect the caravan at all cost.}
+{7000010}{}{Success: Our caravan has reached its destination. I should ask for my payment now.}
+{7000011}{}{Caravan is safely at its destination.}
+
+
+# 9001 - My first tent
+{9001001}{}{Talk to Melsak, the local brahmin herdsman.}
+{9001002}{}{Melsak could have some brahmin hides for your tent.}
+{9001003}{}{In order to get the hides, you were asked by Melsak to bring him 10 water bags from Frankie.}
+{9001004}{}{Frankie gave you only 4 water bags. Go back to Melsak.}
+{9001005}{}{You killed Frankie's brahmin. I think Frankie will tell that to Melsak.}
+{9001006}{}{You saw some movement in the trees just when Frankie had drawn his last breath. Hope that no one had seen you.}
+{9001007}{}{Melsak asked you to bring him a Shiv, so he can make the water bags himself. Check local traders.}
+{9001008}{}{Completed: Melsak gave me 10 brahmin hides. I can now create my first tent.}
+{9001009}{}{Failed: Due to your actions, Melsak refuses to give you the hides for the tent.}
+{9001101}{}{Junktown}
+{9001102}{}{My first tent}
+
+# 9002 - Melsak's revenge
+{9002001}{}{Melsak told you about his village and a slaver called The Slayer. Talk to him later about the matter.}
+{9002002}{}{Find Liana in Klamath, who could know where The Slayer is located.}
+{9002005}{}{One of the local tribals have seen slavers from the Den taking Liana a few days ago.}
+{9002006}{}{According to what Metzger said, Liana is not in the Den. Find out where she is.}
+{9002007}{}{Metzger will tell you the location for 5000 caps. Pay him or find some other way.}
+{9002008}{}{Metzger has shown you the location of a slaver camp where Liana is held.}
+{9002009}{}{One of the guards has shown you the location of a slaver camp where Liana is held.}
+{9002010}{}{One of the tribals has shown you the location of a slaver camp where Liana is probably held.}
+{9002011}{}{Liana has been rescued from the hands of slavers.}
+{9002012}{}{The Slayer should be located somewhere on the northern west coast. Explore that area and find him.}
+{9002013}{}{I found some place with tough looking men. This must be place of The Slayer.}
+{9002014}{}{The Slayer is dead. Go back to Melsak.}
+{9002015}{}{Failed: It took too long. Liana is probably dead by now.}
+{9002016}{}{Failed: It took too long. The Slayer has left his camp.}
+{9002017}{}{Completed: Finally, Melsak got his revenge.}
+{9002101}{}{Junktown}
+{9002102}{}{Melsak's revenge}
+
+# 9004 - You're such a tool...
+{9004001}{}{Pete asked you to bring him a new set of tools, the "better ones". You're not really clear on what he meant by that.}
+{9004002}{}{The Super Tool Kit you brought to Pete seemed to be good enough for him, and he taught you some basics of repair in return.}
+{9004003}{}{The Super Tool Kit you brought to Pete seemed to be good enough for him, but unfortunately you already knew much about repairing things, so he could not teach you anything new.}
+{9004101}{}{Junktown}
+{9004102}{}{You're such a tool...}
+
+# 9005 - Broken delivery
+{9005001}{}{Maryann wants you to deliver the Record-o-matic to Benjami, the bartender at the Skum Pitt.}
+{9005002}{}{You delivered the Record-o-matic to Benjami and received a couple of beers on the house as a reward.}
+{9005101}{}{Junktown}
+{9005102}{}{Broken delivery}
+
+# 9007 - It's complicated
+{9007001}{}{Mike, the Junktown's sheriff wants you to ask Mary Ann if she is open for a date.}
+{9007002}{}{Your approach to sway out some positive response from Mary Ann failed. Go back to Mike and tell about her refusal.}
+{9007003}{}{Mary Ann agreed for a date with Mike. Go back and tell him the news.}
+{9007004}{}{You had a good time with Mary Ann, but she'd like Mike to date her anyway. Go back and talk to him.}
+{9007005}{}{Mike took Mary's refusal surprisingly calm. One attempt was good enough for him.}
+{9007006}{}{You've succesfully arranged a date for Mike and Mary Ann. Now it's time for him to get things in his own hands.}
+{9007007}{}{Mike couldn't believe that you had a quickie with Mary Ann. Let him live in his world.}
+{9007101}{}{Junktown}
+{9007102}{}{It's complicated}
+
+# 9008 - Electronic revolution
+{9008001}{}{Mary Ann needs Electronic Parts. Bring her at least five.}
+{9008002}{}{The electronic pieces you brought to her seemed to be sufficient enough. Remember to come back later if you find more.}
+{9008101}{}{Junktown}
+{9008102}{}{Electronic revolution}
+
+# 9010 - Redemption song
+{9010001}{}{Benjami asked you to go and convince Kylee, to work for him at the bar.}
+{9010002}{}{You went and talked to Kylee, who agreed to work for Benjami under condition that you will lend her 400 caps.}
+{9010003}{}{Benjami gave you something for the trouble, and some drinks on the house too. You should check on Kylee later to get your caps back.}
+{9010004}{}{Kylee was very happy with the loan you gave her. She will some time to work out the details with Benjami. She told you to tell him the news straight away.}
+{9010005}{}{When you pressured Kylee about the money she owes you, she shut you out and didin't want to talk to you. Talking to the sheriff or Benjami might resolve the situation.}
+{9010006}{}{Mike revealed that he is covering for Kylee. Try to put pressure on Kylee again.}
+{9010007}{}{Kylee flinched, when you revealed that you know she is working with Mike. Then she suddenly changed her attitude and asked you to tell Benjami that it is over.}
+{9010008}{}{Benjami admitted that he tried to scam you and and gave back your money.}
+{9010101}{}{Junktown}
+{9010102}{}{Redemption song}
+
+# 9013 - King of the junk
+{9013001}{}{Pete needs junk in order to keep his pump from breaking down. Bring him five pieces.}
+{9013002}{}{Pete was happy with the junk you brought him. You can come back later and bring him more.}
+{9013101}{}{Junktown}
+{9013102}{}{King of junk!}
+
+# 9015 - Stay frosty
+{9015001}{}{Margaret is dissatisfied with Pete's unwillingness to fix her Fridge. She asked you to go and remind him about the matter.}
+{9015002}{}{Pete told you that he will fix Margaret's fridge. Soon. You should go back to Margaret and tell her good news.}
+{9015003}{}{Although Margaret was left only with more promises, she appreciated your help, and gave you a hotel room for three days free of charge.}
+{9015101}{}{Junktown}
+{9015102}{}{Stay frosty}
+
+# 9017 - Zach's scorpion tails
+{9017001}{}{Zach offered you a small job. Bring him five scorpion tails, he will reward you with something for your trouble.}
+{9017002}{}{The scorpion tails you brought back to Zach seem to be of good quality, he wants you to come back with more after a while.}
+{9017101}{}{Junktown}
+{9017102}{}{Zach's scorpion tails}
+
+# 9019 - A broken heart
+{9019001}{}{Doctor Zacharius asked you to find some Heart Pills for Kylee.}
+{9019002}{}{Looks like the Heart Pills you found are the ones Kylee needs.}
+{9019101}{}{Junktown}
+{9019102}{}{A broken heart}
+
+# 9020 - Thirst of the west
+{9020001}{}{Joe is thirsty as one can get. Bring him a filled waterbag.}
+{9020002}{}{Joe drank the water in one gulp. You should come back later, he will surely want another fill.}
+{9020003}{}{Joe is thirsty again. Bring him a filled waterbag.}
+{9020101}{}{Junktown}
+{9020102}{}{Thirst of the west}
+
+# 9021 - Aldo's medicine
+{9021001}{}{Aldo has a very rare condition. Bring him some "medicine" to ease his suffering.}
+{9021002}{}{Aldo gulps your medicine in a matter of minutes. There is no doubt he will need more.}
+{9021101}{}{Klamath}
+{9021102}{}{Time is never wasted when you're wasted all the time}
+
+# 9023 - Bob's booze run
+{9023001}{}{Whiskey Bob asked you to make a run to the Den and find a guy called Frankie, the owner of the "Hole". Tell him about the latest batch of booze and remind him that he must pay double.}
+{9023002}{}{Frankie didn't take the message too well, he's refusing to pay double. You should get back to Bob.}
+{9023003}{}{Bob wasn't surprised with Frankie's response. He also mentioned that you could come back after a while to make another run.}
+{9023101}{}{Klamath}
+{9023102}{}{Bob's booze run}
+
+# 9025 - Maida's gecko skins
+{9025001}{}{Maida wants you to bring her four Golden Gecko pelts.}
+{9025002}{}{You brought the gecko skins to Maida. She wants you to keep bringing her more later.}
+{9025101}{}{Klamath}
+{9025102}{}{Maida's gecko skins}
+
+# 9027 - Brahmin shortage
+{9027001}{}{Modoc's tannery needs a steady supply of brahmin hides. The tanner, Lee Balton asked you to bring him at least ten hides.}
+{9027002}{}{For bringing the hides to Lee, he made a neat Leather Armor for you. In order for the tannery to continue to function, you should bring more hides later.}
+{9027003}{}{For bringing hides to Lee, he made a neat Leather Armor for you. In order for the tannery to continue to function, you should bring more hides later.}
+{9027101}{}{Modoc}
+{9027102}{}{Brahmin shortage}
+
+# 9031 - Gunsmith profession
+{9031001}{}{Edward from the Hub agreed to share his expertise in crafting basic weaponry.}
+{9031002}{}{You have learned Gunsmith profession level one.}
+{9031003}{}{Edward told you that in order to advance your skills, you should search somewhere in Broken Hills.}
+{9031004}{}{Neil, the main trader of Broken Hills seems to be the person Edward was talking about. You will need to pay him in order to learn what he knows.}
+{9031005}{}{You have learned Gunsmith profession level two.}
+{9031006}{}{Neil pointed you to New Reno, where an old man called Algernon lives. Seek him if you wish to advance your skills.}
+{9031007}{}{Algernon promised to show you everything he knows about manufacturing high-tech weaponry, on the condition that you will bring him an experimental weapon called XL70E3 and some caps.}
+{9031008}{}{You have learned Gunsmith profession level three, you've gathered knowledge just about everything there is to know about crafting conventional arms.}
+{9031101}{}{Hub}
+{9031102}{}{Profession: Gunsmith}
+
+# 9032 - Armorer profession
+{9032001}{}{Jim from Junktown can teach you how to craft basic armors for a small errand.}
+{9032002}{}{You have learned Armorer profession level one.}
+{9032003}{}{Jim told you that you could furthermore improve your skills in Modoc's tannery.}
+{9032004}{}{Lee Balton from Modoc can teach you to craft advanced protective armors. To make him share his knowledge you need to bring him a Combat Armor, four pieces of Kevlar Polymer and a few thousand caps.}
+{9032005}{}{You have learned Armorer profession level two.}
+{9032006}{}{Lee gave a hint for you to look in San Francisco in order to learn the know-how of producing more advanced armors.}
+{9032007}{}{Buck, a former engineer living in San Francisco can help you advance your knowledge in making high-tech armors.}
+{9032008}{}{You learned Armorer profession level three, there is nothing further you can learn.}
+{9032101}{}{Junktown}
+{9032102}{}{Profession: Armorer}
+
+# 9033 - Chemist profession
+{9033001}{}{Doctor Oetker in Vault City can teach you basics of chemistry.}
+{9033002}{}{You have learned Chemist profession level one.}
+{9033003}{}{Oetker told you that Doctor Fung is an experienced chemist that could teach you a lot more than he did.}
+{9033004}{}{Doctor Fung from San Francisco agreed to advance you in the arts of chemistry.}
+{9033005}{}{You have learned Chemist profession level two.}
+{9033006}{}{You should head to New Reno, where a man named Renesco could help you learn more about making drugs.}
+{9033008}{}{You have learned Chemist profession level three, you can make just about any common drug in the wasteland.}
+{9033101}{}{Vault City}
+{9033102}{}{Profession: Chemist}
+
+# 9034 - Scientist profession
+{9034001}{}{Ambrose, the librarian from Boneyard can teach you how to produce energy weapons.}
+{9034002}{}{You have learned Scientist profession level one.}
+{9034003}{}{Ambrose directs you to Redding in search for someone named Lucas.}
+{9034004}{}{Lucas in Redding has vast knowledge about manufacturing advanced energy based weaponry.}
+{9034005}{}{You have learned Scientist profession level two.}
+{9034006}{}{Lucas suggests that there is someone who's knowledge surpasses his own. Search for Alberto Unpiedra in San Francisco.}
+{9034007}{}{Alberto Unpiedra from San Francisco will teach you to craft the most advanced energy-based weapons..}
+{9034008}{}{You have learned Scientist profession level three.}
+{9034101}{}{Boneyard}
+{9034102}{}{Profession: Scientist}
+
+# 9102 - Dan's delivery
+{9102001}{}{You took a delivery job from Dan, "the man" in the Hub. You must deliver a package to Adam, vice sheriff, and under no circumstances you are to open it.}
+{9102002}{}{Package wasn't opened and Adam took it. You need to get back to Dan and tell him that you delivered the package.}
+{9102003}{}{Completed: The package was delivered without any issues.}
+{9102101}{}{Hub}
+{9102102}{}{Dan's delivery}
+
+# 9104 - Get some beer for Adam!
+{9104001}{}{Adam is suffering under the hot, post-apocaliptic sun. He needs a beer or two to cool off.}
+{9104002}{}{Completed: Adam took the beer and provided some gossip and rumors in return.}
+{9104101}{}{Hub}
+{9104102}{}{Get some beer for Adam!}
+
+# 9105 - Is there a doctor in the house?
+{9105001}{}{Christopher's pale face gives away his dire condition. He requires certain medicine from Annie, the city doctor. Find her.}
+{9105002}{}{You have obtained heart pills from Annie. Take them back to Christopher.}
+{9105003}{}{You have succesfully acquired and brought Christopher the heart pills.}
+{9105101}{}{Hub}
+{9105102}{}{Is there a doctor in the house?}
+
+# 9116 - Iguana treat
+{9116001}{}{Iguana Bob asked you to deliver a package to Charles, the sheriff.}
+{9116002}{}{Charles was very happy about the free iguana on a stick from Iguana Bob. Go back and tell him that Charles appreciated his gift.}
+{9116003}{}{You did what Iguana Bob asked you, he rewareded you with some neat amount of caps and a treat. Though it seems he has something more for you to do.}
+{9116004}{}{Iguana Bob revealed this new thing their doing - producing Nuka-Cola's. Due to late shipment of required resources to produce this drink, Bob wants you to bring him ten fruits, in exchange for a good reward.}
+{9116005}{}{You have delivered ten fruits to Bob. Now he is going to be able to produce his soda.}
+{9116101}{}{Hub}
+{9116102}{}{Iguana treat}
+
+# 9300 - Waterpump
+{9300001}{}{You have filled the water bag.}
+{9300002}{}{You have no water bag to fill.}
+
+# 9301 - Fridge
+{9301001}{}{You managed to repair the fridge.}
+{9301002}{}{You have no tools or skill to repair the fridge.}
+
+# 9311 - Caravaneer's secret
+{9311001}{}{Kenny asked you to check what's happening with caravan he's waiting for. Search for it west from the Hub.}
+{9311002}{}{You have found out that caravan was attacked. One of attackers had holodisk, you need Kenny to see it.}
+{9311003}{}{Kenny left you his tent and departed. He mentioned that there is a person in Vault City who could decode the message.}
+{9311004}{}{Bill, Vault City computer expert, said that he will decode the message for you if you bring him a radio.}
+{9311005}{}{Bill decoded the data, but it still needs to be deciphered. Bill suggested using the vault's main computer, but you need to get Councillor McClure's permission to enter the vault itself.}
+{9311006}{}{You have deciphered the data. Explore the location which was mentioned in the message.}
+{9311007}{}{You've taken the Oil Rig's plans from dying Raiders' leader. You should deliver them to their destination spot and claim your reward.}
+{9311008}{}{Completed: You've delivered the Oil Rig plans to the Enclave and claimed your reward.}
+{9311009}{}{Completed: You've delivered the Oil Rig plans to the Enclave and claimed your reward.}
+{9311010}{}{Completed: You've delivered the Oil Rig plans to Kenny and claimed your reward.}
+{9311101}{}{Kenny the trader}
+{9311102}{}{Caravaneer's secret}
+
+# 9312 - Radscorpion cave
+{9312001}{}{Kenny saved your life, so you offered to repay him by killing radscorpions in the nearby cave. Bring him the claw of the biggest one as a proof.}
+{9312002}{}{Completed: You've cleaned the cave and gave claw to Kenny.}
+{9312101}{}{Kenny the trader}
+{9312102}{}{Radscorpion Cave}
+
+# 9313 - That's all for your health
+{9313001}{}{If you happen to find some cheezy poofs, give them to Bill. He's gonna pay you well for every pack of his beloved snacks.}
+{9313101}{}{Vault City}
+{9313102}{}{Say Cheese!}
+
+# 9314 - Artifacts of the Ancient Order
+{9314001}{}{If you ever visit the Glow and find any access cards, give them to Joshua. He sees them as precious relics and will reward you handsomely.}
+{9314101}{}{Den}
+{9314102}{}{Artifacts of the Ancient Order}
+
+# 9316 - A Subversive Citizen
+{9316001}{}{One of the Citizens, Nigel, is openly criticising the Council's politics. You were asked to persuade him to stop his rants. He can be found somewhere in the Vault City park.}
+{9316002}{}{You've tried to talk with Nigel, but he didn't want to. Try some different approach.}
+{9316003}{}{You've managed to hear some of Nigel's accusations addressed to the Council, but after a while he got angry and didin't want to talk with you anymore. Get back to McClure.}
+{9316004}{}{You've managed to hear some of Nigel's accusations addressed to the Council, but after a while he got angry and didin't want to talk with you anymore. Return to McClure.}
+{9316005}{}{You've managed to hear some of Nigel's accusations addressed to the Council, but after a while he got angry and didin't want to talk with you anymore. Head back to McClure.}
+{9316006}{}{You've managed to hear some of Nigel's accusations addressed to the Council, but after a while he got angry and didin't want to talk with you anymore. Go back to McClure.}
+{9316007}{}{You've managed to convince Nigel to stop his subversive activities. Go back and tell McClure about your success.}
+{9316008}{}{You've decided that what Nigel says is right. Go to McClure and try to persuade him to share Nigel's views.}
+{9316009}{}{Completed: Though you didn't manage to convince Nigel to stop his activities, you've found out why is he so upset and passed the news to McClure.}
+{9316010}{}{Completed: You've managed to convince Nigel to stop his subversive activities. Councillor McClure is very pleased.}
+{9316011}{}{Completed: You've managed to convince Councillor McClure that many of Nigel's accusations are correct. He will consider implementing some reforms.}
+{9316101}{}{Vault City}
+{9316102}{}{Making plans for Nigel}
+
+# 9317 - Well, well, well...
+{9317001}{}{Adytum's well is broken. Pestis wants you to repair it.}
+{9317002}{}{The well has been repaired. Go back to Pestis.}
+{9317003}{}{Explore the well to check why it is dry.}
+{9317004}{}{You've attached a rope to the well. It's time to go down.}
+{9317005}{}{It looks like someone is pumping the water away. Talk to Pestis.}
+{9317006}{}{It looks like the people from the farm near Adytum are responsible. Go there and resolve the situation.}
+{9317007}{}{Go back to the waterpump and decide how to solve the problem.}
+{9317010}{}{You broke the panel so the flow would remain as it is, supplying the farm only. Go back to Jeremy.}
+{9317011}{}{You've decided that only the farm would be supplied with water, and disabled the possibility to change that by breaking the panel.}
+{9317020}{}{You turned the off the pump so the flow would stop, and Adytum would be the only location supplied by water. You should talk to Pestis.}
+{9317021}{}{You've decided to turn the pump off, making Adytum the only location supplied by water.}
+{9317030}{}{You set the pump flow to half. Talk to Pestis now.}
+{9317031}{}{Pestis agreed to make a deal with the people from the farm. Talk to Jeremy.}
+{9317032}{}{You've forced the two opposite sides to make a deal. Both sides are now supplied with water.}
+{9317101}{}{Adytum}
+{9317102}{}{Sharing problem}
+
+# 9318 QUESTNOTICES
+{9318001}{}{You have fixed Adytum's well, talk to Pestis.}
+{9318002}{}{You have no tools or required skill to repair the well.}
+{9318003}{}{You have added the rope, well can now be entered.}
+{9318004}{}{You have no rope to attach to well.}
+{9318005}{}{He is dead.}
+
+# 9319 - Deathclaws group quest
+{9319001}{}{A bunch of young deathclaws have taken refuge in the ruins near Adytum. Pestis wants you to hunt them all down.}
+{9319002}{}{The deathclaws are no more. Return to Pestis and tell him about your success.}
+{9319101}{}{Adytum}
+{9319102}{}{Kill them while they're small}
+
+# 9321 - Raiders group quest
+{9321001}{}{Sheriff Charles from the Hub wants you to deal with the raiders preying on the nearby caravans.}
+{9321002}{}{You succedeed and disposed of the raider presence in the area. Return and report to the sheriff.}
+{9321101}{}{The Hub}
+{9321102}{}{Strong arm of the law}
+
+# 9323 - Molerats group quest
+{9323001}{}{Warren has a molerat problem. You promised him to take care of it.}
+{9323002}{}{All the molerats have been exterminated. Return to Warren.}
+{9323101}{}{Junktown}
+{9323102}{}{I smell a rat!}
+
+# 9325 - Drifters quest
+{9325003}{}{Jack, the merchant from the Hub Oldtown wants you to solve his problem with the drifters that have taken up residence in his warehouse.}
+{9325004}{}{You've managed to convince the drifters to leave the warehouse without using force. Head back to Jack.}
+{9325005}{}{Using your supreme negotiation skills, you have managed to convince every drifter to leave the warehouse, straight to the afterlife. Return to Jack.}
+{9325006}{}{With the drifters gone, Jack can freely use his warehouse now. He even paid you extra for dealing with them peacufully.}
+{9325007}{}{You have "evicted" every drifter from Jack's warehouse, and your inclination to use violence without hesitation impressed him. Good job, childkiller.} 
+{9325101}{}{The Hub}
+{9325102}{}{I won't give you squat!}
+
+# 9334 - BoS
+{9334001}{}{You have become an Initiate of the Brotherhood of Steel. Head to Scribe Kendrick to receive your orders.}
+{9334002}{}{Your first orders are to travel to Vault City and find someone from the authorities. Your task is to get some insight on the city's attitude towards the Brotherhood, and to convince them to establish official relations with Lost Hills.}
+{9334003}{}{Councillor McClure rejected the Brotherhood's offer and that's all you've managed to get out of him. Head back to Lost Hills and report to Scribe Kendrick.}
+{9334004}{}{Councillor McClure rejected the offer, and all that you managed to squeeze from him was his assurance that Vault City is, and for the time being will stay neutral. Get back to Lost Hills and report to Scribe Kendrick.}
+{9334005}{}{Though Councillor McClure rejected the offer, you managed to get some insight on the Vault City inner politics. Report your findings to Scribe Kendrick.}
+{9334006}{}{Your efforts didin't impress Scribe Kendrick at all. It would be wise not to repeat that mistake again. Report to her later.}
+{9334007}{}{Scribe Kendrick wasn't very happy with your findings, but at least you managed to get some reassurance that Vault City is not leaning towards the Enclave. Report to her later to receive new orders.}
+{9334008}{}{Scribe Kendrick wasn't particularly happy with your findings, but your information on the city's politics could provide crucial in the future. Report to her later to receive new orders.}
+{9334009}{}{You have received your new orders. Your new task is to salvage engine parts from an Enclave Vertibird that crashed in the Boneyard near Adytum.}
+{9334010}{}{You have managed to dispatch the Enclave rescue team and salvaged the Vertibird engine parts. Get back to Lost Hills and report to Scribe Kendrick.}
+{9334011}{}{You have managed to dispatch the Enclave rescue team and salvaged the Vertibird engine parts. Get back to Lost Hills and report to Scribe Kendrick.}
+{9334012}{}{The parts you delivered were badly damaged. You're not sure if it was because of the crash, or because of you lacked the skill to extract them properly. Report to Scribe Kendrick later to receive new orders.}
+{9334013}{}{The parts you delivered were mostly intact, Scribe Kendrick seemed satisfied. Report to her later to receive new orders.}
+{9334014}{}{You have received another task from Scribe Kendrick. You are to infiltrate the Enclave facility somewhere south of San Francisco. Find a radio-detonated explosives in the supply crates, arm them, set the timer, and leave the area as quickly as you can. It is very probable that the outpost will be heavily guarded, so it would be wise to avoid open confrontation.}
+{9334015}{}{You have found the explosives and armed them. Now and find the radio detonator.}
+{9334016}{}{You have found the radio detonator and set the timer. Get out of here fast, and get back to Lost Hills.}
+{9334017}{}{You have succeded in your mission, and you are now considered a sworn member of the Brotherhood. Report to Scribe Kendrick some time later to receive new orders.}
+{9334021}{}{It seems that you have tarried too long, and you can't find the Vertibird crash site now. Go back to Lost Hills and talk to Scribe Kendrick.}
+{9334022}{}{It seems that the coordinates to the Enclave outpost have been autodeleted by your Pip-Boy. Obviously, you should have gone there straight after your briefing. Go back to Scribe Kendrick. It is highly probable she won't be very happy about this.}
+{9334101}{}{Lost Hills}
+{9334102}{}{Brothers in arms}
+
+# 9335 - Enclave
+{9335001}{}{}
+{9335002}{}{Your first mission is to visit a place called the Glow. You need to connect your Pip-Boy to a Supercomputer and establish connection with the Enclave network.}
+{9335003}{}{You downloaded the data succesfully, get back to the gas station and report to Chris.}
+{9335004}{}{You were tasked with securing the body of a Brotherhood Scribe from a tribal village. Should the tribals be unfriendly, you are free to use force to secure your target.}
+{9335005}{}{The tribals attacked you on sight, so you were forced to pacificate the whole village. The area is now safe for the clean-up team to pick up the Scribe's body. Head back to the gas station.}
+{9335006}{}{Your next task is to download Brotherhood outpost data from the recently abandoned installation. The defense turrets are still online, so proceed with caution.}
+{9335007}{}{You have succesfully downloaded the data. Go back to the gas station and talk to Chris.}
+{9335008}{}{You have succeded in your missions, and are now considered a member of the Enclave.}
+{9335021}{}{While being preoccupied with other issues, you have neglected your mission for the Enclave. No matter how hard you try, you can't recall the village's exact location. Go back to Chris and ask him for coordinates again.}
+{9335022}{}{While you were kept busy by other matters, the coordinates of the Brotherhood outpost have been autodeleted by your Pip-Boy. Go back to the gas station and ask Chris to reupload them for you.}
+{9335101}{}{Gas station}
+{9335102}{}{America the Beautiful}
+
+# 9630 - Finders Keepers
+{9630001}{}{Knight Matthews did not acknowledge that the holodisk you found is Brotherhood's property, and dismissed your claims entirely. You will have to find some proof to make him talk.}
+{9630002}{}{Bill wasn't able to help you much, but he pointed you the the Vault City's Mainframe. You will need a permission to access the Vault which it is located in.}
+{9630003}{}{{You have managed to read just a small portion of the holodisk's data. It is probably some kind of Brotherhood's communications archive. Head to Lost Hills.}
+{9630004}{}{Knight Matthews took the holodisk, but gave you no explanation or reward.}
+{9630005}{}{Knight Matthews took the holodisk, and pointed you to Scribe Kendrick.}
+{9630006}{}{Scribe Kendrick listened to your report, but was reluctant to divulge any information. You should wait for new orders.}
+{9630007}{}{Scribe Kendrick listened to your report, but was reluctant to divulge any information. You should wait for new orders.}
+{9630008}{}{Scribe Kendrick listened to your report, and confirmed your assumptions. Wait for new orders.}
+{9630101}{}{Lost Hills}
+{9630102}{}{Finders Keepers}

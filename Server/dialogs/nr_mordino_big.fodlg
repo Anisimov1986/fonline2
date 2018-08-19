@@ -1,0 +1,120 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script quest_5vs5@d_IsReadyForTeam2 1 1 #
+7 2020 D _script quest_5vs5@d_PlayerHaveBriefcase 0  R _script quest_5vs5@r_GiveBriefcaseToNpc 0  #
+0 2030 @
+3 3000 None 0 #
+4 3010 D _script quest_5vs5@d_IsReadyForTeam2 1 1 D _script quest_5vs5@d_IsValidTeam2 1 1 R _script quest_5vs5@r_Team2Join 2 1 0 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _script quest_5vs5@d_IsMember 1 1 #
+6 4020 D _script quest_5vs5@d_IsNotMember 1 1 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 &
+
+[engl]
+{100}{}{Jesus Mordino}
+{200}{}{You see Big Jesus Mordino.}
+{210}{}{You see a fat man with beady black eyes. He is covered in sweat and breathing heavily.}
+{210}{}{You see Big Jesus Mordino. He is covered in sweat and is breathing heavily.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[The man turns to face you. He looks sick with fever: Sweat trickles down his face and stains his clothes. He's staring at you.]}
+{2010}{}{Uhm... I've heard you might have job for me and my men.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I… am Jesus Mordino. You…will address me as SENOR Mordino. And about the job... I... Need you to head and do some errand for me... in nearby location. Those salvatores are in some dodgy transaction buisness there... Head out and take it over. I'll... await your comeback. Oh. One thing. I... need 1000 bottle caps to make sure you'll come back.}
+{3010}{}{I see Senor Mordino. I do agree.}
+{3020}{}{Maybe not today.}
+{4000}{}{Good... Good...}
+{4010}{}{So... Can i go?}
+{4020}{}{So... Can i go?}
+{5000}{}{[Nods and gives you location coords.] Here... I... will await your comeback.}
+{5010}{}{Ok.}
+{6000}{}{Sighs... No... Go away...}
+{6010}{}{Shit happens.}
+{7000}{}{(Nods.) That is good. Now please... Leave me, You're stealing my air...}
+{7010}{}{I'm sorry. I shall take my leave.}
+
+[russ]
+{100}{}{Jesus Mordino}
+{200}{}{You see Big Jesus Mordino.}
+{210}{}{You see a fat man with beady black eyes. He is covered in sweat and breathing heavily.}
+{210}{}{You see Big Jesus Mordino. He is covered in sweat and is breathing heavily.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[The man turns to face you. He looks sick with fever: Sweat trickles down his face and stains his clothes. He's staring at you.]}
+{2010}{}{Uhm... I've heard you might have job for me and my men.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I… am Jesus Mordino. You…will address me as SENOR Mordino. And about the job... I... Need you to head and do some errand for me... in nearby location. Those salvatores are in some dodgy transaction buisness there... Head out and take it over. I'll... await your comeback. Oh. One thing. I... need 1000 bottle caps to make sure you'll come back.}
+{3010}{}{I see Senor Mordino. I do agree.}
+{3020}{}{Maybe not today.}
+{4000}{}{Good... Good...}
+{4010}{}{So... Can i go?}
+{4020}{}{So... Can i go?}
+{5000}{}{[Nods and gives you location coords.] Here... I... will await your comeback.}
+{5010}{}{Ok.}
+{6000}{}{Sighs... No... Go away...}
+{6010}{}{Shit happens.}
+{7000}{}{(Nods.) That is good. Now please... Leave me, You're stealing my air...}
+{7010}{}{I'm sorry. I shall take my leave.}
+
+[pols]
+{100}{}{Jesus Mordino}
+{200}{}{You see Big Jesus Mordino.}
+{210}{}{You see a fat man with beady black eyes. He is covered in sweat and breathing heavily.}
+{210}{}{You see Big Jesus Mordino. He is covered in sweat and is breathing heavily.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[The man turns to face you. He looks sick with fever: Sweat trickles down his face and stains his clothes. He's staring at you.]}
+{2010}{}{Uhm... I've heard you might have job for me and my men.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I… am Jesus Mordino. You…will address me as SENOR Mordino. And about the job... I... Need you to head and do some errand for me... in nearby location. Those salvatores are in some dodgy transaction buisness there... Head out and take it over. I'll... await your comeback. Oh. One thing. I... need 1000 bottle caps to make sure you'll come back.}
+{3010}{}{I see Senor Mordino. I do agree.}
+{3020}{}{Maybe not today.}
+{4000}{}{Good... Good...}
+{4010}{}{So... Can i go?}
+{4020}{}{So... Can i go?}
+{5000}{}{[Nods and gives you location coords.] Here... I... will await your comeback.}
+{5010}{}{Ok.}
+{6000}{}{Sighs... No... Go away...}
+{6010}{}{Shit happens.}
+{7000}{}{(Nods.) That is good. Now please... Leave me, You're stealing my air...}
+{7010}{}{I'm sorry. I shall take my leave.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[The man turns to face you. He looks sick with fever: Sweat trickles down his face and stains his clothes. He's staring at you.]}
+{2010}{}{Uhm... I've heard you might have job for me and my men.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I… am Jesus Mordino. You…will address me as SENOR Mordino. And about the job... I... Need you to head and do some errand for me... in nearby location. Those salvatores are in some dodgy transaction buisness there... Head out and take it over. I'll... await your comeback. Oh. One thing. I... need 1000 bottle caps to make sure you'll come back.}
+{3010}{}{I see Senor Mordino. I do agree.}
+{3020}{}{Maybe not today.}
+{4000}{}{Good... Good...}
+{4010}{}{So... Can i go?}
+{4020}{}{So... Can i go?}
+{5000}{}{[Nods and gives you location coords.] Here... I... will await your comeback.}
+{5010}{}{Ok.}
+{6000}{}{Sighs... No... Go away...}
+{6010}{}{Shit happens.}
+{7000}{}{(Nods.) That is good. Now please... Leave me, You're stealing my air...}
+{7010}{}{I'm sorry. I shall take my leave.}
+

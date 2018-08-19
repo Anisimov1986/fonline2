@@ -1,0 +1,325 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_npc_player = 0 #
+10 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 #
+19 2020 D _script item_brahmin_dung@d_CleanedSomeDung 0  #
+17 2030 #
+3 2040 @
+3 3000 None 0 #
+5 3010 R _var p name_mem_npc_player = 1 #
+0 3020 @
+4 4000 None 0 #
+5 4010 R _var p name_mem_npc_player = 1 #
+0 4020 @
+5 5000 None 0 #
+6 5010 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+17 6020 #
+13 6030 D _var p jt_joestinkerwaterbag = 0 #
+0 6040 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+6 9010 #
+0 9020 @
+10 10000 None 0 #
+7 10010 #
+19 10020 D _script item_brahmin_dung@d_CleanedSomeDung 0  #
+17 10030 #
+13 10040 D _var p jt_joestinkerwaterbag = 0 #
+15 10050 D _var p jt_joestinkerwaterbag = 3 D _item p PID_FULL_WATER_BAG } 1 R _var p jt_joestinkerwaterbag = 2 R _script economy_dialogs@r_GiveCaps 1 60 R _item p PID_FULL_WATER_BAG - 1 R _script quest@quest_setcd 2 9030 244 R _param p ST_EXPERIENCE + 800 R _script karma@r_AddKarma 1 20 #
+15 10060 D _var p jt_joestinkerwaterbag = 1 D _item p PID_FULL_WATER_BAG } 1 R _item p PID_FULL_WATER_BAG - 1 R _script economy_dialogs@r_GiveCaps 1 60 R _var p jt_joestinkerwaterbag = 2 R _script quest@quest_setcd 2 9030 244 R _param p ST_EXPERIENCE + 800 R _script karma@r_AddKarma 1 20 #
+16 10070 D _var p jt_joestinkerwaterbag = 2 D _script quest@quest_checkcd 1 9030 R _item p PID_EMPTY_WATER_BAG + 1 R _var p jt_joestinkerwaterbag = 3 #
+0 10080 @
+11 11000 None 0 #
+12 11010 @
+12 12000 None 0 #
+6 12010 #
+0 12020 @
+13 13000 None 0 #
+14 13010 R _var p jt_joestinkerwaterbag = 1 R _item p PID_EMPTY_WATER_BAG + 1 #
+0 13020 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 #
+0 15010 @
+16 16000 None 0 #
+0 16010 @
+17 17000 None 0 #
+0 17010 #
+18 17020 D _item p PID_SHOVEL { 0 R _item p PID_SHOVEL + 1 #
+0 17030 @
+18 18000 None 0 #
+0 18010 @
+19 19000 None 0 #
+0 19010 R _script item_brahmin_dung@r_CleaningPayment 1 5 &
+
+[engl]
+{100}{}{Stinky Joe}
+{200}{}{You see: a man covered in brahmin excrements.}
+{210}{}{You're pretty sure that you could smell him from a mile away.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not met.}
+{1020}{}{Player met.}
+{2000}{}{[The stench coming from this man makes you sick.] Howdy, that shines all fine!}
+{2010}{}{Shines all... what?@@What?@@Shine... what?}
+{2020}{}{I've shovelled some of your shit. Pay up.@@The pen is clean now. Time to pay, Joe.@@I've dug that shit.}
+{2030}{}{Want some help with that dung in the pens?@@Those pens sure could use some cleaning. I could help you, if you got the caps.@@Need any help with all that crap in the pens?}
+{2040}{}{Man, you stink!@@Do you ever wash yourself?@@You stink worse than that pen over there.@@Man, get some water and clean yourself...}
+{3000}{}{Don't like it? Then slide, mister.@@Fuck you, that's the smell of real hard work!}
+{3010}{}{Yeah, yeah. So, who am I speaking with?@@Whatever. Who are you?@@Right... Who am I talking with?}
+{3020}{}{I think I'm gonna puke.@@Screw you.@@Bleh, I will go before I puke my guts out.}
+{4000}{}{Ye'r dressing real neat, all clean and sweet! You not from around here, are ya?}
+{4010}{}{Yeah... so... who am I talking to?@@Right. Who are you?}
+{4020}{}{I don't think it is healthy for me to be talking with you.}
+{5000}{}{Just before introducing himself he steps in a pile of dung.] The last real cowboy of southern Cali. Stinky Joe's the name, and brahmins are my game! [He starts scratching off the poo from his boots.] }
+{5010}{}{Well, that explains a lot... I wanted to ask you something.@@Great. Can I ask you something?}
+{5020}{}{This is ridiculous. I'm going.@@I've had enough of this crap. Literally.}
+{6000}{}{Spill it out then! Mah brahmins are gettin' restless, wouldn't want to piss em off, cuz they pack quite a punch when they're nervous.}
+{6010}{}{What exactly are you doing here?@@So, care to tell me about your job?@@What are doing now?}
+{6020}{}{Want some help with that dung in the pens?@@Those pens sure could use some cleaning. I could help you, if you got the caps.@@Need any help with all that crap in the pens?}
+{6030}{}{Have anything I could help you with? Besides shovelling shit?@@Got any small work?}
+{6040}{}{Nevermind. I'll leave you to your brahmins.@@Nevermind.@@Gotta go, before I die.}
+{7000}{}{I'm takin' care of my darlings of course. Why you ask?}
+{7010}{}{Just curious, getting to know people around here.@@I'm just curious.}
+{8000}{}{Well, you know what they say? Curiosity killed the brahmin... Speakin' 'bout brahmins, you know that long time ago they had only one head? And the were called... "caws" or something. Can you believe that?}
+{8010}{}{You sure know a lot about brahmins.}
+{9000}{}{Oh boy, oh boy a lotta! You see each brahmin is differen' and you must treat'em like people. [He looks to the brahmin pen and points with finger.] There, old Betty, Buttercup, Lacey...and there's the little Tuesday.}
+{9010}{}{Fascinating. Can we talk about something else?@@Great. Can we change the subject?@@I'm not that much of a brahmin lover. Can I ask you something else?}
+{9020}{}{That's enough brahmin lore for me.@@Enough brahmin lore for today.@@I've got to go.}
+{10000}{}{Howdy! What brings you around these parts?}
+{10010}{}{What exactly are you doing here?@@So, care to tell me about your job?@@What are doing now?}
+{10020}{}{I've shovelled some of your shit. Pay up.@@The pen is clean now. Time to pay, Joe.@@I've dug that shit.@@The pen is clean. Where's my pay?}
+{10030}{}{Want some help with that dung in the pens?@@Those pens sure could use some cleaning. I could help you, if you got the caps.@@Need any help with all that crap in the pens?}
+{10040}{}{Anything besides shovelling that I could help you with?@@Got any small job I could do?@@Need any errand done?}
+{10050}{}{I've got the waterbag filled.@@I've got the waterbag.@@I've got the waterbag filled for you.@@I've got the waterbag filled for you, Joe.}
+{10060}{}{I've got the waterbag filled.@@I've got the waterbag.@@I've got the waterbag filled for you.@@I've got the waterbag filled for you, Joe.}
+{10070}{}{Hey Joe, feeling thirsty again?@@Hey, feeling thirsty again?}
+{10080}{}{Nothing actually.@@Just passing by.@@Just passing through.@@I just came to watch the bramin.}
+{11000}{}{Someone's tried to shovel sum shit down here, but my oh my he failed alotta. Don'cha ever try to swing'em shovel, it gets my brahmins mad.}
+{11010}{}{So, that's a no?}
+{12000}{}{Yeh, only I know how to treat mah girls just right.}
+{12010}{}{... I have questions.}
+{12020}{}{Pimp of the brahmins, I must leave you now.}
+{13000}{}{Yeah, you could help me out. All this work makes my thirsty as hell, and I can't just leave mah brahmin to themselves... Could ya fetch me some water from the pipe over there? I've got a waterbag right here.}
+{13010}{}{Yeah, sure.@@No problem.@@Yep, I can do that.@@Sure, I can do that.}
+{13020}{}{Nah, I don't think so.@@Maybe later.@@Nevermind.}
+{14000}{}{Sweet, get back here when you do, I'm getting thirsty.@@Good, and be quick about it!}
+{14010}{}{All right, all right, I'm going.@@Don't sweat it, I'm going.}
+{15000}{}{Oh sweet, thanks a lot. [He quaffs the water in a few gulps.] Come back later maybe, if you got time.}
+{15010}{}{Yeah, sure thing Joe.@@Yeah, maybe I will.@@Maybe I will.@@Okay Joe.}
+{16000}{}{I be damned, how did you know? Yeah, fetch me another one.@@No way, how did you know? Hell, fetch me another one.@@Yeah, I'm pretty thirsty. Get me another bag full of that sweet, cold water.}
+{16010}{}{Sure thing.@@Don't sweat it, I'm going.@@Okay Joe.@@No problem.}
+{17000}{}{Shovel my shit? I, uh... I guess you could. Don't know why you'd want to, though. I s'pose I could make it worth your while.@@You want to? Well... okay, if ye wish.}
+{17010}{}{Let's get this shit started then.@@Right, I'll get to work.@@Time to shovel some shit...@@It's time to take care of some shit, heh.}
+{17020}{}{If you think I'm gonna go into that pen and grab fistfuls of brahmin shit, you have another thing coming.@@I will need a shovel, Joe.@@I'm not cleaning that pen with my bare hands!@@I will need a shovel.}
+{17030}{}{Nevermind.@@Screw this shit.@@I changed my mind, gotta go.@@Later, Joe.}
+{18000}{}{Oh! A shovel. Right. Okay, here you go. Come back to me when you're done.@@Oh yeah, right. Here you go. Come back when yer done.}
+{18010}{}{Swell.@@Great.@@I'm just dying to start working.@@Can't wait to shovel that shit.@@Great, I'll start right away.}
+{19000}{}{Well, you made that damn pen sparkle. Here's your dough.@@I'll be damned, that pen looks so nice and clean now! Here are the caps, you earned them.@@Good job! The brahmins seem to like it too.. Here's your pay.}
+{19010}{}{Thanks. See you later. I love my life.@@Thanks. I love this job.@@Right, thanks.@@Okay, thanks.@@Thanks.}
+
+[russ]
+{100}{}{Джо Стинкер}
+{200}{}{Вы видите: ковбоя покрытого дерьмом брамина.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not met.}
+{1020}{}{Player met.}
+{2000}{}{Здорово!}
+{2010}{}{Привет.}
+{2020}{}{I've shovelled some of your shit. Break out the caps.}
+{2030}{}{I've noticed that there's a lot of, uh, shit around. Do you want me to help you out with that?}
+{2040}{}{Чувак, от тебя воняет!}
+{3000}{}{Это запах настоящего запада! Ты всегда можешь свалить, мистер, если что-то не нравится.}
+{3010}{}{А ты вообще кто такой?}
+{3020}{}{... теперь буду отмываться неделю. Пока вонючка.}
+{4000}{}{Ты одет так чисто и аккуратно! Ты не из этих мест, да?}
+{4010}{}{Да ... хм так с кем я говорю?}
+{4020}{}{Мне уже пора. Пока.}
+{5000}{}{Настоящий и последний ковбой Западной Калифорнии, Джо Стинкер. Люди из этих мест зовут меня просто Джо.}
+{5010}{}{Ну это многое объясняет, рад встрече с вами. Я хотел у вас кое-что спросить.}
+{5020}{}{С меня достаточно этого дерьма, это просто смешно.}
+{6000}{}{Тогда давай уже! У меня еще много дел с браминами, не хочу их нервировать.}
+{6010}{}{Что именно ты здесь делаешь?}
+{6020}{}{Тебе нужна помощь с браминами?}
+{6030}{}{Есть что-нибудь, в чем я могу помочь?}
+{6040}{}{Пока.}
+{7000}{}{Я забочусь о моих любимцах конечно. Почему ты спрашиваешь?}
+{7010}{}{Просто любопытно.}
+{8000}{}{Я слышал что раньше были брамина с одной головой и их называли коровы. Бред правда?}
+{8010}{}{Это все замечательно, я уверен ты много знаешь о браминах.}
+{9000}{}{Да, очень много! Каждый брамин имеет свои отличия и к ним нужно относится как к личностям. Вот, старая Бетти, Лютик, Леси.}
+{9010}{}{Это прекрасно, расскажи что-нибудь еще.}
+{9020}{}{Право ... слишком много информации. Мне пора бежать.}
+{10000}{}{Привет! Что привело тебя в эти края?}
+{10010}{}{Мне интересно, что ты здесь делаешь?}
+{10020}{}{I've shovelled some of your shit. Break out the caps.}
+{10030}{}{I've noticed that there's a lot of, uh, shit around. Do you want me to help you out with that?}
+{10040}{}{Есть что-то в чем я могу помочь?}
+{10050}{}{Я наполнил бурдюк.}
+{10060}{}{Я наполнил бурдюк.}
+{10070}{}{Эй, Джо, ты чувствуешь жажду снова?}
+{10080}{}{Да так, ничего.}
+{11000}{}{Кто-то уже пробовал брать все это дерьмо из загона, у него не получилось, Даже не думай махать лопатой на виду у браминов, это их раздражает.}
+{11010}{}{Так, что нет?}
+{12000}{}{Типа того.}
+{12010}{}{... У меня есть вопрос.}
+{12020}{}{Мне уже пора. Пока.}
+{13000}{}{О да, у меня очень болит спина последнее время, было бы отлично если бы вы взяли этот бурдюк и наполнили его водой.}
+{13010}{}{Да, конечно.}
+{13020}{}{Нет, сам занимайся. Пока.}
+{14000}{}{Отлично, возвращайся скорее, эта жажда скоро прикончит меня.}
+{14010}{}{Будет сделано, ничего сложного.}
+{15000}{}{Спасибо большое. Через некоторое время мне может опять понадобится помощь. Так что заходи еще.}
+{15010}{}{Принял к сведению.}
+{16000}{}{Будь я проклят, как ты узнал? Да принеси мне еще бурдюк воды.}
+{16010}{}{Нет проблем Джо.}
+{17000}{}{Shovel my shit? I, uh... I guess you could. Don't know why you'd want to, though. I s'pose I could make it worth your while.}
+{17010}{}{Sure thing, let's get started.}
+{17020}{}{If you think I'm going into that field and grabbing fistfuls of brahmin shit, you have another thing coming.}
+{17030}{}{I think I'll pass...}
+{18000}{}{Oh! A shovel. Right. Okay, here you go. Come back to me when you're done, and I'll sort out your payment.}
+{18010}{}{Great. Time to turn my life around.}
+{19000}{}{Well, you made that damn pen sparkle. Here's your caps, stranger.}
+{19010}{}{Thanks. See you later. I love my life.}
+
+[pols]
+{100}{}{Joe Śmierdziel}
+{200}{}{Widzisz mężczyznę, którego wygląd prawie idealnie wpasowywałby się w klasyczny archetyp kowboja. Niestety, wrażenie psuje gruba warstwa krowiego łajna, którym pokryte jest jego ubranie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not met.}
+{1020}{}{Player met.}
+{2000}{}{Siema! [Odór krowich odchodów uderza Cię niczym fala tsunami.] Jok tom wom leci?}
+{2010}{}{Jok tom... co?}
+{2020}{}{@sex@|Posprzątałem||Posprzątałam| nieco tego gówna. Wyskakuj z kapsli.}
+{2030}{}{I've noticed that there's a lot of, uh, shit around. Do you want me to help you out with that?}
+{2040}{}{Człowieku, ale od ciebie wali!}
+{3000}{}{Ano i dopsz, tokże łanie pachnie, prowowity zopoch obory! Jak wom @sex@|panie||pani| nie pasuje, to możeta siem zawijoć.}
+{3010}{}{Czym się zajmujesz?}
+{3020}{}{... weź się po prostu umyj, człowieku, zaraz się porzygam...}
+{4000}{}{Potrzcie @sex@|go, jaki, ino, miastowy||jom, jaka, ino, miastowa|! Klamoty czyścienkie, @sex@|wypucowony||wypucowona| jok na obiod w niedziele! Nie jesteście stąd, co?}
+{4010}{}{Można tak powiedzieć. A z kim mam... erm... przyjemność?}
+{4020}{}{Gadanie z tobą dłużej może się niekorzystnie odbić na moim zdrowiu. Na razie.}
+{5000}{}{[Podchodząc do ciebie Joe wchodzi w wielką kupę krowich odchodów, nie robi to na nim jednak najmniejszego wrażenia.] Ostotni prowowity kołboj w Koliforni, ta je, to jo, Joe Śmierdziel. To drugie... [Joe zaczyna zeskrobywać łajno ze swojego buta, nie przerywając konwersacji.] to ino moje przezwisko, rozumisz.}
+{5010}{}{Aha... Miło cię poznać, Joe. @sex@|Miałbym||Miałabym| kilka pytań.}
+{5020}{}{Wystarczy już tej gównianej rozmowy.}
+{6000}{}{No to nawijojcie, ino roz! Mućki mi siem tu stresujo, a jak sie zystresujo to pierdylnonć solidno mogom. Czygo chcecie?}
+{6010}{}{Co tu porabiasz?}
+{6020}{}{Nie potrzeba ci może pomocy przy braminach?}
+{6030}{}{Miałbyś może dla mnie jakąś robotę?}
+{6040}{}{Na razie.}
+{7000}{}{Jo siem zajmuje mućkami, mocie coś ze oczomi, @sex@|panie||kobito|, że siem pytocie?}
+{7010}{}{Nie, z moim wzrokiem jest wszystko w porządku, ale dzięki za troskę. Po prostu się rozglądam i poznaję ludzi.}
+{8000}{}{Ano. A wicie, jeden toki z daleko godoł że pono downo tymi mućki mioły jednom głowe? Ale Joe jest za mundry żeby w tokie gupoty wirzyć.}
+{8010}{}{Naprawdę, fascynujące. Widzę, że w temacie braminów nie ma równego tobie znawcy.}
+{9000}{}{A żebyśta wiedzieli! Nikt nie zna się na mućkoch jak Joe! A wicie, każdo mućka jest inno? Patrzcie tom... [Joe wskazuje palcem na zagrodę.] Chłodnico, Opono, Kierownico... o, i moja moło Wycieroczko. Pikne som po prostu, a kożdo inno!}
+{9010}{}{Niesamowite. Mogę cię jeszcze o coś spytać?}
+{9020}{}{Za dużo tego. Muszę już iść.}
+{10000}{}{Siema! Co tom chceta?}
+{10010}{}{Tak z ciekawości, czym się tutaj zajmujesz?}
+{10020}{}{@sex@|Posprzątałem||Posprzątałam| nieco tego gówna. Wyskakuj z kapsli.}
+{10030}{}{I've noticed that there's a lot of, uh, shit around. Do you want me to help you out with that?}
+{10040}{}{Nie ma tu jakiejś roboty dla mnie?}
+{10050}{}{@sex@|Przyniosłem||Przyniosłam| ci wodę.}
+{10060}{}{Mam wodę dla Ciebie.}
+{10070}{}{Cześć Joe, nie chciałbyś może żebym ci @sex@|przyniósł||przyniosła| więcej wody?}
+{10080}{}{Niczego.}
+{11000}{}{Kidyś jeden przylozł i zaczął zamiatać łopatom, ale mućki siem zestrysowoły, cinko na tym wyszedł. A muciek lepij ni strysować.}
+{11010}{}{Czyli nie?}
+{12000}{}{Ano nie. Tylko Joe wie, jak siem zajmowoć mućkami.}
+{12010}{}{Ekhem... Mam pytania.}
+{12020}{}{No to zajmuj się dalej. Muszę już iść.}
+{13000}{}{A wicie, plecy mnie bolo, no i muszem być przy mućkach. Przynieśli byśta mi wody? Mam tu worek skórzony w som roz.}
+{13010}{}{Jasne.}
+{13020}{}{Nie, jeszcze się pobrudzę.}
+{14000}{}{Cudno! Ino roz, bo pić mi siem strosznie kce!}
+{14010}{}{W porządku, to nie powinno być zbyt trudne.}
+{15000}{}{Dzienki! Przyjdźta późnij, to możem wyślem ciem po jeszcze jedno.}
+{15010}{}{@sex@|Zrozumiałem||Zrozumiałam|.}
+{16000}{}{Niech mie mućka piedylnie, skond widzieliście? Pewno, przynieśta mi jeszcze trochem wody.}
+{16010}{}{Jasne.}
+{17000}{}{Och! Łopata. W porządku. Dobra, trzymaj. Wróć do mnie, kiedy skończysz, żeby odebrać zapłatę.}
+{17010}{}{Sure thing, let's get started.}
+{17020}{}{If you think I'm going into that field and grabbing fistfuls of brahmin shit, you have another thing coming.}
+{17030}{}{I think I'll pass...}
+{18000}{}{Oh! A shovel. Right. Okay, here you go. Come back to me when you're done, and I'll sort out your payment.}
+{18010}{}{Świetnie. Czas odmienić moje życie.}
+{19000}{}{Cóż, dzięki tobie ta zagroda błyszczy jak braminie jajca. Oto twoje kapsle.}
+{19010}{}{Dzięki. Do zobaczenia. Kocham cię, życie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not met.}
+{1020}{}{Player met.}
+{2000}{}{[The stench coming from this man makes you sick.] Howdy, that shines all fine!}
+{2010}{}{Shines all... what?@@What?@@Shine... what?}
+{2020}{}{I've shovelled some of your shit. Pay up.@@The pen is clean now. Time to pay, Joe.@@I've dug that shit.}
+{2030}{}{Want some help with that dung in the pens?@@Those pens sure could use some cleaning. I could help you, if you got the caps.@@Need any help with all that crap in the pens?}
+{2040}{}{Man, you stink!@@Do you ever wash yourself?@@You stink worse than that pen over there.@@Man, get some water and clean yourself...}
+{3000}{}{Don't like it? Then slide, mister.@@Fuck you, that's the smell of real hard work!}
+{3010}{}{Yeah, yeah. So, who am I speaking with?@@Whatever. Who are you?@@Right... Who am I talking with?}
+{3020}{}{I think I'm gonna puke.@@Screw you.@@Bleh, I will go before I puke my guts out.}
+{4000}{}{Ye'r dressing real neat, all clean and sweet! You not from around here, are ya?}
+{4010}{}{Yeah... so... who am I talking to?@@Right. Who are you?}
+{4020}{}{I don't think it is healthy for me to be talking with you.}
+{5000}{}{Just before introducing himself he steps in a pile of dung.] The last real cowboy of southern Cali. Stinky Joe's the name, and brahmins are my game! [He starts scratching off the poo from his boots.] }
+{5010}{}{Well, that explains a lot... I wanted to ask you something.@@Great. Can I ask you something?}
+{5020}{}{This is ridiculous. I'm going.@@I've had enough of this crap. Literally.}
+{6000}{}{Spill it out then! Mah brahmins are gettin' restless, wouldn't want to piss em off, cuz they pack quite a punch when they're nervous.}
+{6010}{}{What exactly are you doing here?@@So, care to tell me about your job?@@What are doing now?}
+{6020}{}{Want some help with that dung in the pens?@@Those pens sure could use some cleaning. I could help you, if you got the caps.@@Need any help with all that crap in the pens?}
+{6030}{}{Have anything I could help you with? Besides shovelling shit?@@Got any small work?}
+{6040}{}{Nevermind. I'll leave you to your brahmins.@@Nevermind.@@Gotta go, before I die.}
+{7000}{}{I'm takin' care of my darlings of course. Why you ask?}
+{7010}{}{Just curious, getting to know people around here.@@I'm just curious.}
+{8000}{}{Well, you know what they say? Curiosity killed the brahmin... Speakin' 'bout brahmins, you know that long time ago they had only one head? And the were called... "caws" or something. Can you believe that?}
+{8010}{}{You sure know a lot about brahmins.}
+{9000}{}{Oh boy, oh boy a lotta! You see each brahmin is differen' and you must treat'em like people. [He looks to the brahmin pen and points with finger.] There, old Betty, Buttercup, Lacey...and there's the little Tuesday.}
+{9010}{}{Fascinating. Can we talk about something else?@@Great. Can we change the subject?@@I'm not that much of a brahmin lover. Can I ask you something else?}
+{9020}{}{That's enough brahmin lore for me.@@Enough brahmin lore for today.@@I've got to go.}
+{10000}{}{Howdy! What brings you around these parts?}
+{10010}{}{What exactly are you doing here?@@So, care to tell me about your job?@@What are doing now?}
+{10020}{}{I've shovelled some of your shit. Pay up.@@The pen is clean now. Time to pay, Joe.@@I've dug that shit.@@The pen is clean. Where's my pay?}
+{10030}{}{Want some help with that dung in the pens?@@Those pens sure could use some cleaning. I could help you, if you got the caps.@@Need any help with all that crap in the pens?}
+{10040}{}{Anything besides shovelling that I could help you with?@@Got any small job I could do?@@Need any errand done?}
+{10050}{}{I've got the waterbag filled.@@I've got the waterbag.@@I've got the waterbag filled for you.@@I've got the waterbag filled for you, Joe.}
+{10060}{}{I've got the waterbag filled.@@I've got the waterbag.@@I've got the waterbag filled for you.@@I've got the waterbag filled for you, Joe.}
+{10070}{}{Hey Joe, feeling thirsty again?@@Hey, feeling thirsty again?}
+{10080}{}{Nothing actually.@@Just passing by.@@Just passing through.@@I just came to watch the bramin.}
+{11000}{}{Someone's tried to shovel sum shit down here, but my oh my he failed alotta. Don'cha ever try to swing'em shovel, it gets my brahmins mad.}
+{11010}{}{So, that's a no?}
+{12000}{}{Yeh, only I know how to treat mah girls just right.}
+{12010}{}{... I have questions.}
+{12020}{}{Pimp of the brahmins, I must leave you now.}
+{13000}{}{Yeah, you could help me out. All this work makes my thirsty as hell, and I can't just leave mah brahmin to themselves... Could ya fetch me some water from the pipe over there? I've got a waterbag right here.}
+{13010}{}{Yeah, sure.@@No problem.@@Yep, I can do that.@@Sure, I can do that.}
+{13020}{}{Nah, I don't think so.@@Maybe later.@@Nevermind.}
+{14000}{}{Sweet, get back here when you do, I'm getting thirsty.@@Good, and be quick about it!}
+{14010}{}{All right, all right, I'm going.@@Don't sweat it, I'm going.}
+{15000}{}{Oh sweet, thanks a lot. [He quaffs the water in a few gulps.] Come back later maybe, if you got time.}
+{15010}{}{Yeah, sure thing Joe.@@Yeah, maybe I will.@@Maybe I will.@@Okay Joe.}
+{16000}{}{I be damned, how did you know? Yeah, fetch me another one.@@No way, how did you know? Hell, fetch me another one.@@Yeah, I'm pretty thirsty. Get me another bag full of that sweet, cold water.}
+{16010}{}{Sure thing.@@Don't sweat it, I'm going.@@Okay Joe.@@No problem.}
+{17000}{}{Shovel my shit? I, uh... I guess you could. Don't know why you'd want to, though. I s'pose I could make it worth your while.@@You want to? Well... okay, if ye wish.}
+{17010}{}{Let's get this shit started then.@@Right, I'll get to work.@@Time to shovel some shit...@@It's time to take care of some shit, heh.}
+{17020}{}{If you think I'm gonna go into that pen and grab fistfuls of brahmin shit, you have another thing coming.@@I will need a shovel, Joe.@@I'm not cleaning that pen with my bare hands!@@I will need a shovel.}
+{17030}{}{Nevermind.@@Screw this shit.@@I changed my mind, gotta go.@@Later, Joe.}
+{18000}{}{Oh! A shovel. Right. Okay, here you go. Come back to me when you're done.@@Oh yeah, right. Here you go. Come back when yer done.}
+{18010}{}{Swell.@@Great.@@I'm just dying to start working.@@Can't wait to shovel that shit.@@Great, I'll start right away.}
+{19000}{}{Well, you made that damn pen sparkle. Here's your dough.@@I'll be damned, that pen looks so nice and clean now! Here are the caps, you earned them.@@Good job! The brahmins seem to like it too.. Here's your pay.}
+{19010}{}{Thanks. See you later. I love my life.@@Thanks. I love this job.@@Right, thanks.@@Okay, thanks.@@Thanks.}
+

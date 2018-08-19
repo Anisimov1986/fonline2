@@ -1,0 +1,1104 @@
+#ifndef __QUEST__
+#define __QUEST__
+
+#include "_defines.fos"
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "_teams.fos"
+
+#include "mob.fos"
+#include "utils_h.fos"
+
+#include "mapdata_h.fos"
+#include "pdata_h.fos"
+#include "time.fos"
+
+#define __TimeMultiplier ( 20 )
+
+
+//import void SendQuestMessage(Critter& critter, uint questNameMsgNum, uint questTaskMsgNum) from "quest";
+import uint GetGlobalMapRelief( uint x, uint y ) from "worldmap";
+import void AddAchievement(Critter& cr, uint achievement) from "achievements";
+import void ChangeFactionScore(uint faction, int score) from "faction_core";
+
+void SendQuestMessage(Critter& cr, uint questNameMsgNum, uint questTaskMsgNum)
+{
+	SpecialMessage(cr, questNameMsgNum, questTaskMsgNum, TEXTMSG_QUEST, COLOR_SAND, COLOR_LGRAY);
+}
+
+void quest_setcd(Critter& player, Critter@ npc, int v0, int time)
+{
+GameVar@ quest_cooldown = GetLocalVar( v0, player.Id );
+		if( not valid( quest_cooldown ) )
+        return;  //something wrong
+		quest_cooldown = __FullSecond + REAL_MINUTE( time );
+}
+
+
+void quest_setcdgroup(Critter& player, Critter@ npc, int v0, int time)
+{
+		array<Critter@> crGroup = { player };
+	    uint cLen = 1;
+
+		cLen += player.GetFollowGroup( FIND_ALL, crGroup );
+		
+	    for( uint c=0; c<cLen; c++ )
+	    {
+		GameVar@ quest_cooldown = GetLocalVar( v0, crGroup[c].Id );
+		if( not valid( quest_cooldown ) )
+        return;  //something wrong
+		quest_cooldown = __FullSecond + REAL_MINUTE( time );
+	    }
+}
+
+bool quest_checkcd(Critter& player, Critter@ npc, int v0)
+{
+
+	GameVar @ t = GetLocalVar( v0, player.Id );
+    if( not valid( t ) )
+        return true;        //cooldown never set before it is ok 
+    if( __FullSecond >= uint( t.GetValue() ) )
+        return true;         //cooldown gone already
+    else
+        return false;       //cd still active
+	
+}
+
+bool quest_checkcdopp(Critter& player, Critter@ npc, int v0) // opposite
+{
+
+	GameVar @ t = GetLocalVar( v0, player.Id );
+    if( not valid( t ) )
+        return true;        //cooldown never set before it is ok 
+    if( __FullSecond >= uint( t.GetValue() ) )
+        return false;         //cooldown gone already
+    else
+        return true;       //cd still active
+	
+}
+
+void global_setcd(Critter& player, Critter@ npc, int v0, int time)
+{
+GameVar@ quest_cooldown = GetGlobalVar( v0 );
+		if( not valid( quest_cooldown ) )
+        return;  //something wrong
+		quest_cooldown = __FullSecond + REAL_MINUTE( time );
+}
+
+bool global_checkcd(Critter& player, Critter@ npc, int v0)
+{
+
+	GameVar @ t = GetGlobalVar( v0 );
+    if( not valid( t ) )
+        return true;        //cooldown never set before it is ok 
+    if( __FullSecond >= uint( t.GetValue() ) )
+        return true;         //cooldown gone already
+    else
+        return false;       //cd still active
+	
+}
+
+bool global_checkcdopp(Critter& player, Critter@ npc, int v0)
+{
+
+	GameVar @ t = GetGlobalVar( v0 );
+    if( not valid( t ) )
+        return true;        //cooldown never set before it is ok 
+    if( __FullSecond >= uint( t.GetValue() ) )
+        return false;         //cooldown gone already
+    else
+        return true;       //cd still active
+	
+}
+///////////////////////////////////////////////// QUEST LOCATION ///////////////////////////////////////////////////////////
+
+/*
+
+Adding QuestLocation to poll:
+
+    AddQuestLocation( locationPid, questType );
+
+    - questType: defines what kind of triggers will be applied to maps, see QuestLocationType below
+
+---
+
+Adding QuestLocation to poll, with config:
+
+    AddQuestLocation( locationPid, questType )
+	.Option1()
+	.Option2()
+	.OptionN()
+    ;
+
+Possible options:
+- Whenever argument is closed in [square brackets], it is optional and can be skipped
+
+GENERAL (can be used with any QuestLocation type):
+
+*	SetFlags( flags )
+	Default: none
+	Example:
+		SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+	    To combine two or more flags, you use " | " between then, for example:
+		SetFlags( QLOC_FLAG_VISIBLE_OWNER | QLOC_FLAG_VISIBLE_PARTY )
+
+*	SetDisposeMethod( method )
+	Defines how location should be removed, see: QuestLocationDispose
+
+	Default: QLOC_DISPOSE_DELETE
+	Example:
+		SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+
+*	SetAutoTeleport( mapIndex, entireNumber, [withGroup] )
+	After creating Location, automagically teleports quest owner (optionally with group) to it
+	mapIndex is 0-based, so for first map in Location you use 0, for second 1, and so on
+
+	Default: none
+	Example:
+		Teleport quest owner entire 10 at first map
+		SetAutoTeleport( 0, 10 )
+		Teleport quest owner and his/her group to entire 100 at first map
+		SetAutoTeleport( 0, 100, true)
+
+*	SetSuccessLvar( lvarId, value )
+	Quest owner's LVAR is changed to specified value after all demands are met.
+	LVAR is set even if owner is *not* online.
+
+	Default: none
+	Example:
+		SetSuccessLvar( LVAR_killed_all_mobs, 1 )
+
+*	SetFailLvar( lvarId, value )
+	Quest owner's LVAR is changed to specified value when player run out of time
+	to finish the quest. Does nothing if SetLocDelete() (see below) wasn't used.
+	LVAR is set even if owner is *not* online.
+
+	Default: none
+	Example:
+		SetFailLvar( LVAR_fame_and_glory, 0 )
+
+*	SetLocDelete( time )
+	Sets the time available to finish the quest. It's strongly recommended to use
+	macros in _time.fos
+
+	Default: none
+	Example:
+		SetLocDelete( REAL_DAY(7) );
+
+QLOC_TYPE_KILL_MOBS only:
+
+*	SetKillMobs_AddPid( pid )
+*	SetKillMobs_AddPid( pidsArray )
+	REQUIRED
+	Defines which mobs needs to be dead/removed to mark location as finished.
+
+	Default: none
+	Example:
+		SetKillMobs_AddPid( NPC_PID_BANDIT1 )
+
+QLOC_TYPE_OWNER_LVAR only:
+
+*	SetOwnerLvar( lvar, value )
+	REQUIRED
+	Defines LVAR which needs to have specified value to mark location as finished.
+
+	Default: none
+	Example:
+		SetOwnerLvar( LVAR_q_fixed_something, 1 )
+*/
+
+#define QLOCS_PDATA "quests"
+
+enum QuestLocationType
+{
+    QLOC_TYPE_UNKNOWN = 0,
+    QLOC_TYPE_KILL_MOBS,		// mobs with given pid(s) needs to be dead or removed, in all maps
+    QLOC_TYPE_KILL_ALL_MOBS,		// all mobs needs to be dead or removed, in all maps
+    QLOC_TYPE_OWNER_LVAR		// owner's LVAR needs to have specific value
+};
+
+enum QuestLocationFlags
+{
+    QLOC_FLAG_NONE = 0,			// no flags set
+    QLOC_FLAG_VISIBLE_OWNER  = 0x01,	// after creating Location, it becomes visible for quest owner
+    QLOC_FLAG_VISIBLE_PARTY  = 0x02,	// after creating Location, it becomes visible for quest owner and his/her followers
+	QLOC_FLAG_FAIL_ON_DEATH  = 0x04		// if owner dies inside location, quest is marked as failed
+};
+
+enum QuestLocationDispose
+{
+    QLOC_DISPOSE_UNKNOWN = 0,
+    QLOC_DISPOSE_DELETE,	// Location is deleted immediately
+    QLOC_DISPOSE_GARBAGE	// Location is deleted after last player leave the map (by exiting to WM or logging out)
+};
+
+class QuestLocation
+{
+    // General
+
+    uint Pid;
+    QuestLocationType Type;
+
+    QuestLocationFlags Flags;
+    QuestLocationDispose Dispose;
+    array<uint> AutoTeleport;
+    array<uint> SuccessLvar;
+	array<uint> FailLvar;
+    uint DeleteTime;
+
+    // QLOC_TYPE_KILL_MOBS
+
+    array<uint> KillMobs_Pids;
+
+    // QLOC_TYPE_OWNER_LVAR
+
+    array<uint> OwnerLvar;
+
+    QuestLocation( uint pid, QuestLocationType type )
+    {
+		this.Pid = pid;
+		this.Type = type;
+		this.Flags = QLOC_FLAG_NONE;
+		this.Dispose = QLOC_DISPOSE_DELETE;
+		this.AutoTeleport.resize(0);
+		this.SuccessLvar.resize(0);
+		this.FailLvar.resize(0);
+		this.DeleteTime = 0;
+
+		this.KillMobs_Pids.resize(0);
+		this.OwnerLvar.resize(0);
+    }
+
+    void QuestStart( Location& loc, Critter@ owner )
+    {
+		loc.AutoGarbage = false;
+		loc.Color = COLOR_QUEST;
+		if( this.DeleteTime > 0 )
+		{
+			uint locDeleter = CreateTimeEvent( AFTER(this.DeleteTime), "e_DeleteLocation", loc.Id, true );
+			SetRootMapData( loc, MAP_DATA_QUEST_LOCDELETER, int(locDeleter) );
+		}
+		SetRootMapData(loc,MAP_DATA_QUEST_OWNER,owner.Id);
+		uint mapLen = loc.GetMapCount();
+
+		for( uint m=0; m<mapLen; m++ )
+		{
+			Map@ map = loc.GetMapByIndex( m );
+			if( !valid(map) )
+				return;
+
+			// critical section
+			map.SetScript( "quest@map_init" );
+			
+			if( owner.ModeBase[MODE_DEFAULT_COMBAT] == COMBAT_MODE_TURN_BASED ) //Turn based addon
+				map.SetTurnBasedAvailability( true );
+		}
+
+		// setup owner and friends
+		if( valid(owner) && owner.IsPlayer() )
+		{
+			// prepare followers list
+			array<Critter@> followers;
+			uint fLen = owner.GetFollowGroup( FIND_LIFE_AND_KO, followers );
+
+			if( FLAG( this.Flags, QLOC_FLAG_VISIBLE_OWNER ) || FLAG( this.Flags, QLOC_FLAG_VISIBLE_PARTY ))
+				owner.SetKnownLoc( true, loc.Id );
+
+			if( FLAG( this.Flags, QLOC_FLAG_VISIBLE_PARTY ))
+			{
+				for( uint f=0; f<fLen; f++ )
+				{
+					followers[f].SetKnownLoc( true, loc.Id );
+				}
+			}
+
+			if( this.AutoTeleport.length() == 2 )
+			{
+				if( mapLen >= this.AutoTeleport[0] )
+					Log( "QuestLocation AutoTeleport mapIndex<"+this.AutoTeleport[0]+"> out of range" );
+				else
+				{
+					Map@ map = loc.GetMapByIndex( this.AutoTeleport[0] );
+					if( valid(map) )
+					{
+						// owner always first
+						owner.TransitToMap( map.Id, this.AutoTeleport[1], true );
+
+						if( this.AutoTeleport[2] > 0 )
+						{
+							for( uint f=0; f<fLen; f++ )
+							{
+								followers[f].TransitToMap( map.Id, this.AutoTeleport[1], true );
+							}
+						}
+					}
+					else
+						Log( "QuestLocation AutoTeleport mapIndex<"+this.AutoTeleport[0]+"> is null" );
+				}
+			}
+		}
+	}
+
+	void QuestSuccess( Map& map )
+	{
+		Location@ loc = map.GetLocation();
+		if( valid(loc) )
+			this.QuestSuccess( loc );
+	}
+
+    void QuestSuccess( Location& loc )
+    {
+		uint ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+		uint mapLen = loc.GetMapCount();
+
+		// TODO :)
+
+		if( this.Type == QLOC_TYPE_OWNER_LVAR )
+		{
+			Map@ map = loc.GetMapByIndex( 0 );
+			if( valid(map) )
+			{
+				map.SetScript( "quest@_DummyLoop4Script" );
+				//map.SetLoopTime( 4, uint(-1) );
+				//map.SetEvent( MAP_EVENT_LOOP_4, "quest@_DummyLoop4" ); // !
+			}
+		}
+
+		if( ownerId > 0 && this.SuccessLvar.length() == 2 && this.SuccessLvar[0] > 0 )
+		{
+			this.QuestMessage( ownerId, this.SuccessLvar[0], this.SuccessLvar[1] );
+		}
+
+		// must be last
+		this.DisposeLocation( loc );
+    }
+
+	void QuestFail( Map& map, bool eraseTimeEvent = true )
+	{
+		Location@ loc = map.GetLocation();
+		if( valid(loc) )
+			this.QuestFail( loc, eraseTimeEvent );
+	}
+
+	void QuestFail( Location& loc, bool eraseTimeEvent = true )
+	{
+		int ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+
+		if( ownerId > 0 && this.FailLvar.length() == 2 && this.FailLvar[0] > 0 )
+			this.QuestMessage( ownerId, this.FailLvar[0], this.FailLvar[1] );
+
+		this.DisposeLocation( loc, eraseTimeEvent );
+	}
+
+	// Utils
+
+	void QuestMessage( uint ownerId, uint lvar, uint value )
+	{
+		if( ownerId > 0 && lvar > 0 )
+		{
+			GameVar@ var = GetLocalVar( lvar, ownerId );
+			if( valid(var) )
+			{
+				var = value;
+				Critter@ owner = GetCritter( ownerId );
+				if (valid(owner))
+					SendQuestMessage( owner, lvar * 1000 + 102, var.GetQuestStr() );
+			}
+		}
+	}
+
+	void DisposeLocation( Location& loc, bool eraseTimeEvent = true )
+	{
+		if( eraseTimeEvent && this.Dispose != QLOC_DISPOSE_UNKNOWN )
+		{
+			int locDeleter = GetRootMapData( loc, MAP_DATA_QUEST_LOCDELETER );
+			if( locDeleter != 0 )
+				EraseTimeEvent( uint(locDeleter) );
+		}
+
+		int owner = -1;
+		if( (owner = GetRootMapData( loc, MAP_DATA_QUEST_OWNER )) > 0 )
+		{
+			RemoveFromPersonalDataList( uint(owner), QLOCS_PDATA, loc.Id );
+		}
+
+		switch( this.Dispose )
+		{
+			case QLOC_DISPOSE_DELETE:
+				DeleteLocation( loc.Id );
+				break;
+			case QLOC_DISPOSE_GARBAGE:
+				loc.AutoGarbage = true;
+				loc.Update();
+				break;
+			default:
+				Log( "Unknown disposal method<"+this.Dispose+"> for QuestLocation with pid<"+this.Pid+">" );
+				break;
+		}
+	}
+
+    // General
+
+    QuestLocation@ SetFlags( QuestLocationFlags flags )
+    {
+		this.Flags = flags;
+
+		return( this );
+    }
+
+    QuestLocation@ SetDisposeMethod( QuestLocationDispose dispose )
+    {
+		this.Dispose = dispose;
+
+		return( this );
+    }
+
+    QuestLocation@ SetAutoTeleport( uint mapIndex, uint entire, bool withGroup = false )
+    {
+		this.AutoTeleport.resize(3);
+		this.AutoTeleport[0] = mapIndex;
+		this.AutoTeleport[1] = entire;
+		this.AutoTeleport[2] = (withGroup ? 1 : 0);
+
+		return( this );
+    }
+
+    QuestLocation@ SetSuccessLvar( uint lvar, uint value )
+    {
+		this.SuccessLvar.resize(2);
+		this.SuccessLvar[0] = lvar;
+		this.SuccessLvar[1] = value;
+
+		return( this );
+    }
+
+    QuestLocation@ SetFailLvar( uint lvar, uint value )
+    {
+		this.FailLvar.resize(2);
+		this.FailLvar[0] = lvar;
+		this.FailLvar[1] = value;
+
+		return( this );
+    }
+
+    QuestLocation@ SetLocDelete( uint deleteTime )
+    {
+		this.DeleteTime = deleteTime;
+
+		return( this );
+    }
+
+    // QLOC_TYPE_KILL_MOBS
+
+    QuestLocation@ SetKillMobs_AddPid( uint pid )
+    {
+	if( this.KillMobs_Pids.find(pid) < 0 )
+	    this.KillMobs_Pids.insertLast( pid );
+
+	return( this );
+    }
+
+    QuestLocation@ SetKillMobs_AddPids( array<uint> pids )
+    {
+	for( uint p=0, pLen=pids.length(); p<pLen; p++ )\
+	{
+	    this.SetKillMobs_AddPid( pids[p] );
+	}
+
+	return( this );
+    }
+
+    // QLOC_TYPE_OWNER_LVAR
+
+    QuestLocation@ SetOwnerLvar( uint lvar, uint value )
+    {
+	this.OwnerLvar.resize(2);
+	this.OwnerLvar[0] = lvar;
+	this.OwnerLvar[1] = value;
+
+	return( this );
+    }
+	
+};
+
+array<QuestLocation@> QuestLocations;
+//QUEST LOCATIONS QLINIT
+void InitQuestLocations()
+{
+	Log( "Initializing quest locations..." );
+
+	AddQuestLocation( LOCATION_q_adytum_farm, QLOC_TYPE_OWNER_LVAR )
+		.SetOwnerLvar( 9309, 1 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(2) )
+	;
+
+	AddQuestLocation( LOCATION_q_caravan_ambush, QLOC_TYPE_OWNER_LVAR )
+		.SetOwnerLvar( 9310, 1 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(7) )
+	;
+
+	AddQuestLocation( LOCATION_q_caravan_raiders, QLOC_TYPE_OWNER_LVAR )
+		.SetOwnerLvar( 9311, 7 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(7) )
+	;
+
+	AddQuestLocation( LOCATION_q_caravan_end, QLOC_TYPE_OWNER_LVAR )
+		.SetOwnerLvar( 9311, 8 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(7) )
+	;
+
+	AddQuestLocation( LOCATION_q_deathclaws, QLOC_TYPE_KILL_ALL_MOBS )
+		.SetSuccessLvar( LVAR_q_deathclaws, 2 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_PARTY )
+		.SetLocDelete ( REAL_HOUR(5) )
+	;
+
+	AddQuestLocation( LOCATION_q_raiders, QLOC_TYPE_KILL_ALL_MOBS )
+		.SetSuccessLvar( LVAR_q_raiders, 2 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_PARTY )
+		.SetLocDelete ( REAL_HOUR(5) )
+	;
+	
+	AddQuestLocation( LOCATION_q_molerats, QLOC_TYPE_KILL_ALL_MOBS )
+		.SetSuccessLvar( LVAR_q_molerats, 2 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_PARTY )
+		.SetLocDelete ( REAL_HOUR(5) )
+	;
+
+	AddQuestLocation( LOCATION_q_drifters, QLOC_TYPE_KILL_ALL_MOBS )
+		.SetSuccessLvar( LVAR_q_hub_drifters, 5 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(2) )
+	;
+
+	AddQuestLocation( LOCATION_q_enc_village, QLOC_TYPE_KILL_ALL_MOBS )
+		.SetSuccessLvar( 9335, 5 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(2) )
+		.SetFailLvar( 9335, 21 )
+	;
+
+	AddQuestLocation( 9312, QLOC_TYPE_OWNER_LVAR )
+		.SetOwnerLvar( 9335, 8 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(2) )
+		.SetFailLvar( 9335, 22 )
+	;
+
+	AddQuestLocation( 9314, QLOC_TYPE_OWNER_LVAR )
+		.SetOwnerLvar( 9334, 14 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(2) )
+		.SetFailLvar( 9334, 21 )
+	;
+
+	AddQuestLocation( 9311, QLOC_TYPE_OWNER_LVAR )
+		.SetOwnerLvar( 9334, 16 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(2) )
+		.SetFailLvar( 9334, 22 )
+	;
+	
+	AddQuestLocation( 18, QLOC_TYPE_KILL_MOBS )
+		.SetKillMobs_AddPid( 763 )
+		.SetSuccessLvar( 9500, 3 )
+		.SetDisposeMethod( QLOC_DISPOSE_GARBAGE )
+		.SetFlags( QLOC_FLAG_VISIBLE_OWNER )
+		.SetLocDelete ( REAL_DAY(2) )
+	;
+};
+
+QuestLocation@ AddQuestLocation( uint locPid, QuestLocationType type )
+{
+    QuestLocation@ qloc = GetQuestLocation( locPid );
+
+    if( valid(qloc) )
+    {
+		Log( "QuestLocation with pid<"+locPid+"> already added" );
+		return( qloc );
+    }
+
+    @qloc = QuestLocation( locPid, type );
+    QuestLocations.insertLast( qloc );
+    return( qloc );
+};
+
+QuestLocation@ GetQuestLocation( Map& map )
+{
+	Location@ loc = map.GetLocation();
+
+	if( !valid(loc) )
+		return( null );
+
+	return( GetQuestLocation( loc ));
+}
+
+QuestLocation@ GetQuestLocation( Location& loc )
+{
+	return( GetQuestLocation( loc.GetProtoId() ));
+}
+
+QuestLocation@ GetQuestLocation( uint locPid )
+{
+    for( uint q=0, qLen=QuestLocations.length(); q<qLen; q++ )
+    {
+		QuestLocation@ qloc = QuestLocations[q];
+		if( qloc.Pid == locPid )
+			return( qloc );
+    }
+
+    return( null );
+};
+
+void map_init( Map& map, bool firstTime )
+{
+	QuestLocation@ qloc = GetQuestLocation( map );
+	if( !valid(qloc) )
+		return;
+
+	// QuestLocation using MAP_EVENT_CRITTER_DEAD should check
+	// QLOC_FLAG_FAIL_ON_DEATH on their own, and set ownerDeathCheck to false
+	bool ownerDeathCheck = true;
+
+	// setup events
+	if( qloc.Type == QLOC_TYPE_OWNER_LVAR )
+	{
+		// lvar checking should be added to root map only
+
+		Location@ loc = map.GetLocation();
+		if( valid(loc) )
+		{
+			Map@ root = loc.GetMapByIndex( 0 );
+			if( root.Id == map.Id )
+			{
+				map.SetLoopTime( 4, 1500 );
+				map.SetEvent( MAP_EVENT_LOOP_4, "quest@_OwnerLvar_Loop4" );
+			}
+		}
+	}
+	else if( qloc.Type == QLOC_TYPE_KILL_MOBS )
+	{
+		map.SetEvent( MAP_EVENT_CRITTER_DEAD, "quest@_KillMobs_MapCritterDead" );
+		ownerDeathCheck = false;
+	}
+	else if( qloc.Type == QLOC_TYPE_KILL_ALL_MOBS )
+	{
+		map.SetEvent( MAP_EVENT_CRITTER_DEAD, "quest@_KillAllMobs_MapCritterDead" );
+		ownerDeathCheck = false;
+	}
+
+	if( FLAG( qloc.Flags, QLOC_FLAG_FAIL_ON_DEATH ) && ownerDeathCheck )
+	{
+		map.SetEvent( MAP_EVENT_CRITTER_DEAD, "quest@_Generic_CritterDead" );
+	}
+}
+
+void _KillMobs_MapCritterDeadScript( Map& map, bool firstTime ) // TODO: deprecate
+{
+	map.SetEvent( MAP_EVENT_CRITTER_DEAD, "quest@_KillMobs_MapCritterDead" );
+}
+
+void _KillAllMobs_MapCritterDeadScript( Map& map, bool firstTime ) // TODO: deprecate
+{
+	map.SetEvent( MAP_EVENT_CRITTER_DEAD, "quest@_KillAllMobs_MapCritterDead" );
+}
+
+void _OwnerLvar_Loop4Script( Map& map, bool firstTime ) // TODO: deprecate
+{
+	map.SetLoopTime( 4, 1500 );
+	map.SetEvent( MAP_EVENT_LOOP_4, "quest@_OwnerLvar_Loop4" );
+}
+
+void _DummyLoop4Script( Map& map, bool firstTime )
+{
+	map.SetLoopTime( 4, uint(-1) );
+	map.SetEvent( MAP_EVENT_LOOP_4, "quest@_DummyLoop4" ); // !
+}
+
+
+// Map events
+
+void _KillMobs_MapCritterDead( Map& _map, Critter& cr, Critter@ )
+{
+    Location@ loc = _map.GetLocation();
+    if( !valid(loc) )
+		return;
+
+    QuestLocation@ qloc = GetQuestLocation( loc );
+    if( !valid(qloc) )
+		return;
+
+	if( FLAG( qloc.Flags, QLOC_FLAG_FAIL_ON_DEATH ))
+	{
+		int ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+
+		if( ownerId > 0 && uint(ownerId) == cr.Id )
+		{
+			qloc.QuestFail( loc );
+			return;
+		}
+	}
+
+	for( uint m=0, mLen=loc.GetMapCount(); m<mLen; m++ )
+    {
+		Map@ map = loc.GetMapByIndex( m );
+		if( !valid(map) )
+			continue;
+
+		for( uint p=0, pLen=qloc.KillMobs_Pids.length(); p<pLen; p++ )
+		{
+			if( map.GetCritters( qloc.KillMobs_Pids[p], FIND_LIFE_AND_KO | FIND_ONLY_NPC, null ) > 0 )
+				return;
+		}
+    }
+
+    // all mobs ded, prepare the gold
+
+    qloc.QuestSuccess( loc );
+};
+
+void _KillAllMobs_MapCritterDead( Map& _map, Critter& cr, Critter@ )
+{
+    Location@ loc = _map.GetLocation();
+    if( !valid(loc) )
+		return;
+
+    QuestLocation@ qloc = GetQuestLocation( loc );
+    if( !valid(qloc) )
+		return;
+
+	if( FLAG( qloc.Flags, QLOC_FLAG_FAIL_ON_DEATH ))
+	{
+		int ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+
+		if( ownerId > 0 && uint(ownerId) == cr.Id )
+		{
+			qloc.QuestFail( loc );
+			return;
+		}
+	}
+
+    for( uint m=0, mLen=loc.GetMapCount(); m<mLen; m++ )
+    {
+		Map@ map = loc.GetMapByIndex( m );
+		if( !valid(map) )
+			continue;
+
+		if( map.GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_NPC, null ) > 0 )
+			return;
+    }
+
+    // all mobs ded, prepare the gold
+
+    qloc.QuestSuccess( loc );
+};
+
+void _OwnerLvar_Loop4( Map& map )
+{
+    QuestLocation@ qloc = GetQuestLocation( map );
+    if( !valid(qloc) )
+		return;
+
+    if( qloc.OwnerLvar.length() != 2 )
+		return;
+
+    uint ownerId = GetRootMapData( map, MAP_DATA_QUEST_OWNER );
+    if( ownerId == 0 )
+		return;
+
+    Critter@ owner = GetCritter( ownerId );
+    if( !valid(owner) )
+		return;
+
+    GameVar@ var = GetLocalVar( qloc.OwnerLvar[0], ownerId );
+    if( !valid(var) )
+		return;
+
+    if( uint(var.GetValue()) != qloc.OwnerLvar[1] )
+		return;
+
+    // var have correct value, prepare the gold
+
+    qloc.QuestSuccess( map );
+}
+
+void _Generic_CritterDead( Map& _map, Critter& cr, Critter@ )
+{
+	QuestLocation@ qloc = GetQuestLocation( _map );
+	if( !valid(qloc) )
+		return;
+
+	if( FLAG( qloc.Flags, QLOC_FLAG_FAIL_ON_DEATH ))
+	{
+		int ownerId = GetRootMapData( _map, MAP_DATA_QUEST_OWNER );
+
+		if( ownerId > 0 && uint(ownerId) == cr.Id )
+		{
+			Location@ loc = _map.GetLocation();
+			if( valid(loc) )
+				qloc.QuestFail( loc );
+		}
+	}
+}
+
+void _DummyLoop4( Map& map )
+{
+}
+
+// Dialog
+
+void r_CreateLocationZone( Critter& player, Critter@ npc, int locPid, int zoneX, int zoneY )
+{
+    // TODO?: add collision checking
+    uint wx = 0;
+    uint wy = 0;
+
+    uint trynum = 0;
+    while( GetGlobalMapRelief( wx, wy ) == 0 )
+    {
+	if( ++trynum == 1500 ) // needs to be tuned
+	{
+	    // failsafe position
+	    wx = __GlobalMapWidth  * __GlobalMapZoneLength;
+	    wy = __GlobalMapHeight * __GlobalMapZoneLength;
+	    break;
+	}
+	wx = Random(zoneX*__GlobalMapZoneLength,(zoneX+1)*__GlobalMapZoneLength);
+	wy = Random(zoneY*__GlobalMapZoneLength,(zoneY+1)*__GlobalMapZoneLength);
+    }
+
+    r_CreateLocationCoord( player, npc, locPid, wx, wy );
+}
+
+void r_CreateLocationCoord( Critter& player, Critter@ npc, int locPid, int wx, int wy )
+{
+    QuestLocation@ qloc = GetQuestLocation( locPid );
+    if( !valid(qloc) )
+    {
+	Log( "Attempt to create not added QuestLocation for location pid<"+locPid+">" );
+	return;
+    }
+
+    uint locId = CreateLocation( locPid, wx, wy, null );
+
+    if( locId == 0 )
+    {
+	Log( "Error#1 creating Location with pid<"+locPid+">" );
+	return;
+    }
+
+    Location@ loc = GetLocation( locId );
+    if( !valid(loc) )
+    {
+	Log( "Error#2 creating Location with pid<"+locPid+">" );
+	return;
+    }
+
+    AddToPersonalDataList( player, QLOCS_PDATA, loc.Id );
+    qloc.QuestStart( loc, player );
+}
+
+void Mob( Critter& npc, bool firstTime )
+{
+    Location@ loc = GetLocationOf(npc);
+    if (!valid(loc) || (!loc.IsTown() && !loc.IsDungeon()))
+        npc.StatBase[ ST_REPLICATION_TIME ] = -1;      // Newer
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob0;
+
+    npc.ShowCritterDist1 = 8;
+	
+	LoadMobAi(npc);
+}
+
+void Mob2( Critter& npc, bool firstTime )
+{
+
+    Location@ loc = GetLocationOf(npc);
+    if (!valid(loc) || (!loc.IsTown() && !loc.IsDungeon()))
+        npc.StatBase[ ST_REPLICATION_TIME ] = -1;      // Newer
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob2;
+    npc.ShowCritterDist1 = 30;
+	
+	LoadMobAi(npc);
+}
+
+void Mut1( Critter& npc, bool firstTime )
+{
+    npc.StatBase[ ST_REPLICATION_TIME ] = 10;
+    Location@ loc = GetLocationOf(npc);
+    if (!valid(loc) || (!loc.IsTown() && !loc.IsDungeon()))
+        npc.StatBase[ ST_REPLICATION_TIME ] = -1;      // Newer
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+    npc.ModeBase[ MODE_NO_LOOT ] = 1;
+    npc.ModeBase[ MODE_NO_DROP ] = 1;
+    npc.ModeBase[ MODE_NO_STEAL ] = 1;
+    npc.ModeBase[ MODE_NO_LOOSE_LIMBS ] = 1;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob2;
+    npc.ShowCritterDist1 = 30;
+	
+	LoadMobAi(npc);
+}
+
+void Tanker( Critter& npc, bool firstTime )
+{
+    npc.StatBase[ ST_REPLICATION_TIME ] =15;
+	npc.StatBase[ ST_WALK_TIME ] =190;
+	npc.StatBase[ ST_CRITICAL_CHANCE ] =30;
+	npc.StatBase[ ST_MELEE_DAMAGE ] =15;
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob2;
+    npc.ShowCritterDist1 = 60;
+	
+	LoadMobAi(npc);
+}
+
+void Aber( Critter& npc, bool firstTime )
+{
+    npc.StatBase[ ST_REPLICATION_TIME ] =15;
+	npc.StatBase[ ST_WALK_TIME ] =140; 
+	npc.StatBase[ ST_CRITICAL_CHANCE ] =50;
+	npc.StatBase[ ST_MELEE_DAMAGE ] =45;
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob2;
+    npc.ShowCritterDist1 = 20;
+	
+	LoadMobAi(npc);
+    npc.SetEvent( CRITTER_EVENT_DEAD,        "_AberDeath" );
+
+}
+
+// CRITTER_EVENT_DEAD
+void _AberDeath( Critter& npc, Critter@ killer )
+{
+	if (!valid(killer))
+		return;
+	AddAchievement(killer,PE_ACHIEV_ABER_KILLED);
+    if (killer.Param[MAIN_FACTION]!=0)
+        ChangeFactionScore(killer.Param[MAIN_FACTION], 100);
+}
+
+void Mob3( Critter& npc, bool firstTime )
+{
+
+    Location@ loc = GetLocationOf(npc);
+    if (!valid(loc) || (!loc.IsTown() && !loc.IsDungeon()))
+        npc.StatBase[ ST_REPLICATION_TIME ] = -1;      // Newer
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob3;
+    npc.ShowCritterDist1 = 18;
+	
+	LoadMobAi(npc);
+}
+
+void MobChupacabra( Critter& npc, bool firstTime )
+{
+    npc.StatBase[ ST_REPLICATION_TIME ] = 60;
+    Location@ loc = GetLocationOf(npc);
+    if (!valid(loc) || (!loc.IsTown() && !loc.IsDungeon()))
+        npc.StatBase[ ST_REPLICATION_TIME ] = -1;      // Newer
+        
+	npc.StatBase[ ST_WALK_TIME ] =125;
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+    npc.ShowCritterDist1 = 18;
+	
+	LoadMobAi(npc);
+	npc.SetEvent( CRITTER_EVENT_DEAD,        "_ChupacabraDeath" );
+}
+
+// BOSS DEATH
+void _ChupacabraDeath( Critter& npc, Critter@ killer )
+{
+	if (!valid(killer))
+		return;
+	AddAchievement(killer,PE_ACHIEV_VORPAL_KILLED);
+    if (killer.Param[MAIN_FACTION]!=0)
+        ChangeFactionScore(killer.Param[MAIN_FACTION], 50);
+}
+
+void MobSLoc( Critter& npc, bool firstTime )
+{
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob0;
+	npc.StatBase[ ST_REPLICATION_TIME ] = REPLICATION_DELETE;
+    npc.ShowCritterDist1 = 8;
+	
+	LoadMobAi(npc);
+}
+
+void MobSLocBoss( Critter& npc, bool firstTime )
+{
+	npc.ModeBase[ MODE_NO_HOME ] = 0;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob0;
+	npc.StatBase[ ST_REPLICATION_TIME ] = REPLICATION_DELETE;
+    npc.ShowCritterDist1 = 8;
+	
+	LoadMobAi(npc);
+}
+
+// event is called only if autodeletion time is set, and
+uint e_DeleteLocation(uint[]@ values)
+{
+	if( !valid(values) )
+	{
+		Log( "QuestLocation delete: values not valid" );
+		return( 0 );
+	}
+	else if( values.length() < 1 || values[0] == 0 )
+	{
+		Log( "QuestLocation delete: incorrect values" );
+		return( 0 );
+	}
+
+	Location@ loc = GetLocation(values[0]);
+	if (valid(loc))
+	{
+		QuestLocation@ qloc = GetQuestLocation( loc );
+		if( valid(qloc) )
+			qloc.QuestFail( loc, false );
+		else
+		{
+			// failsafe
+
+			int ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+			if( ownerId > 0 )
+				RemoveFromPersonalDataList( uint(ownerId), QLOCS_PDATA, loc.Id );
+
+			DeleteLocation( loc.Id );
+		}
+
+		return( 0 );
+	}
+
+	Log( "WARNING: Attempt to delete non-existing location<"+values[0]+">" );
+	return( 0 );
+}
+
+bool d_IsLocOwner(Critter& player, Critter@ npc)
+{
+    Map@ map = player.GetMap();
+    if (!valid(map))
+        return false;
+    if (uint(GetRootMapData( map, MAP_DATA_QUEST_OWNER ))==player.Id)
+        return true;
+    return false;
+}
+
+#endif // __QUEST__ //

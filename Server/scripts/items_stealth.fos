@@ -1,0 +1,149 @@
+// Misc Utils
+
+#include "_defines.fos"
+#include "_macros.fos"
+import void DeteriorateItem( Item& item, int deteriorationCount ) from "repair";
+import int GetDeteriorationProcent( Item& item ) from "repair";
+import bool DeleteIfBroken( Item& item )  from "repair";
+
+bool UseStealthBoy( Critter& cr, Item& item ) // Export
+{
+    if ( item.GetProtoId() == PID_STEALTH_BOY )
+	{
+		if (GetDeteriorationProcent(item)==100)
+		{
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70323);
+			DeleteIfBroken(item);
+			return true;
+		}
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70410);
+			OnStealthBoy(item);
+	}
+	else if ( item.GetProtoId() == PID_ACTIVE_STEALTH_BOY )
+	{
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70411);
+			EraseTimeEvent(item.Val2);
+			OffStealthBoy(item);
+	}
+	return true;
+}
+
+
+uint e_StealthBoy(array<uint>@ values)
+{
+    if(!valid(values))
+        return(0);
+    Item@ item = GetItem(values[0]);
+    if(!valid(item))
+        return 0;
+	if (item.GetProtoId() != PID_ACTIVE_STEALTH_BOY)
+		return 0;
+	if (item.Accessory != ACCESSORY_CRITTER)
+	{	
+		OffStealthBoy(item);
+		return 0;
+	}
+	Critter@ cr = GetCritter(item.CritId);
+	if(!valid(cr) || cr.IsDead())
+	{	
+		OffStealthBoy(item);
+		return 0;
+	}
+	if (GetDeteriorationProcent(item)==100)
+	{
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70323);
+		OffStealthBoy(item);
+		return 0;
+	}
+	DeteriorateItem(item,20);
+    return REAL_SECOND(1);
+}
+
+void OnStealthBoy(Item& item)
+{
+	item.Val2 = CreateTimeEvent(__FullSecond+REAL_SECOND(1), "e_StealthBoy", item.Id, true);
+	item.ChangeProto(PID_ACTIVE_STEALTH_BOY);
+	item.Update();
+}
+
+
+void OffStealthBoy(Item& item)
+{
+	if (DeleteIfBroken(item))
+		return;
+	item.ChangeProto(PID_STEALTH_BOY);
+	item.Update();
+}
+
+bool UseMotionSensor( Critter& cr, Item& item ) // Export
+{
+    if ( item.GetProtoId() == PID_MOTION_SENSOR )
+	{
+		if (GetDeteriorationProcent(item)==100)
+		{
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70414);
+			DeleteIfBroken(item);
+			return true;
+		}
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70412);
+			OnMotionSensor(item);
+			cr.RefreshVisible();
+	}
+	else if ( item.GetProtoId() == PID_ACTIVE_MOTION_SENSOR )
+	{
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70413);
+			EraseTimeEvent(item.Val2);
+			OffMotionSensor(item);
+			cr.RefreshVisible();
+	}
+	return true;
+}
+
+uint e_MotionSensor(array<uint>@ values)
+{
+    if(!valid(values))
+        return(0);
+    Item@ item = GetItem(values[0]);
+    if(!valid(item))
+        return 0;
+	if (item.GetProtoId() != PID_ACTIVE_MOTION_SENSOR)
+		return 0;
+	if (item.Accessory != ACCESSORY_CRITTER)
+	{	
+		OffMotionSensor(item);
+		return 0;
+	}
+	Critter@ cr = GetCritter(item.CritId);
+	if(!valid(cr) || cr.IsDead())
+	{	
+		OffMotionSensor(item);
+		return 0;
+	}
+	if (GetDeteriorationProcent(item)==100)
+	{
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , 70414);
+		OffMotionSensor(item);
+		cr.RefreshVisible();
+		return 0;
+	}
+	Critter@[] critters;
+	uint num = cr.GetCritters(true,FIND_LIFE | FIND_ONLY_PLAYERS,critters);
+	critters.resize(0);
+	DeteriorateItem(item,(50));
+    return REAL_SECOND(1);
+}
+
+void OnMotionSensor(Item& item)
+{
+	item.Val2 = CreateTimeEvent(__FullSecond+REAL_SECOND(1), "e_MotionSensor", item.Id, true);
+	item.ChangeProto(PID_ACTIVE_MOTION_SENSOR);
+	item.Update();
+}
+
+
+void OffMotionSensor(Item& item)
+{
+	item.ChangeProto(PID_MOTION_SENSOR);
+	item.Update();
+	DeleteIfBroken(item);
+}

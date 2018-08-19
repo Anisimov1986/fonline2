@@ -1,0 +1,123 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script quest_5vs5@d_IsReadyForTeam2 1 1 #
+7 2020 D _script quest_5vs5@d_PlayerHaveBriefcase 0  R _script quest_5vs5@r_GiveBriefcaseToNpc 0  #
+0 2030 @
+3 3000 None 0 #
+4 3010 D _script quest_5vs5@d_IsReadyForTeam2 1 1 D _script quest_5vs5@d_IsValidTeam2 1 1 R _script quest_5vs5@r_Team2Join 2 1 1 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _script quest_5vs5@d_IsMember 1 1 #
+6 4020 D _script quest_5vs5@d_IsNotMember 1 1 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 &
+
+[engl]
+{100}{}{Orville Wright}
+{200}{}{You see Orville Wright.}
+{210}{}{You see a well-dressed gentleman. He looks perpetually pissed off. That's probably why his brown hair is graying around the edges.}
+{210}{}{You see a grumbling Orville Wright. He looks like he is about to pull out what remains of his hair.}
+{210}{}{You see a grumbling Orville Wright. He looks upset and is sighing a lot.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[You see a well-dressed gentleman. He looks perpetually pissed off. That's probably why his brown hair is graying around the edges.]  Start talking. Who are you and what do you want?}
+{2010}{}{I've heard you might have task for me and my people.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I see. My boys have told me they saw mercenaries leaving salvatore people. They're planning something. And I know it will be worth your time. What i want is you and your... people head out and intercept the place. I'll await your comeback. Oh. There is one thing. I need you to pay me 1000 caps first, So I can be sure that you'll come back to me with stuff you will find.}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{[A boy runs in.] Wait a moment.}
+{4010}{}{Yes?}
+{4020}{}{Yes?}
+{5000}{}{[After small talk he gives you coordinates.] Don't screw it up.}
+{5010}{}{I won't.}
+{6000}{}{[After small talk he gives you coordinates.] They're already gone. Don't bother.}
+{6010}{}{Shit happens.}
+{7000}{}{Thank you, good work. You and your people did well.}
+{7010}{}{We did. Thank you for the trust.}
+
+[russ]
+{100}{}{Orville Wright}
+{200}{}{You see Orville Wright.}
+{210}{}{You see a well-dressed gentleman. He looks perpetually pissed off. That's probably why his brown hair is graying around the edges.}
+{210}{}{You see a grumbling Orville Wright. He looks like he is about to pull out what remains of his hair.}
+{210}{}{You see a grumbling Orville Wright. He looks upset and is sighing a lot.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[You see a well-dressed gentleman. He looks perpetually pissed off. That's probably why his brown hair is graying around the edges.]  Start talking. Who are you and what do you want?}
+{2010}{}{I've heard you might have task for me and my people.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I see. My boys have told me they saw mercenaries leaving salvatore people. They're planning something. And I know it will be worth your time. What i want is you and your... people head out and intercept the place. I'll await your comeback. Oh. There is one thing. I need you to pay me 1000 caps first, So I can be sure that you'll come back to me with stuff you will find.}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{[A boy runs in.] Wait a moment.}
+{4010}{}{Yes?}
+{4020}{}{Yes?}
+{5000}{}{[After small talk he gives you coordinates.] Don't screw it up.}
+{5010}{}{I won't.}
+{6000}{}{[After small talk he gives you coordinates.] They're already gone. Don't bother.}
+{6010}{}{Shit happens.}
+{7000}{}{Thank you, good work. You and your people did well.}
+{7010}{}{We did. Thank you for the trust.}
+
+[pols]
+{100}{}{Orville Wright}
+{200}{}{You see Orville Wright.}
+{210}{}{You see a well-dressed gentleman. He looks perpetually pissed off. That's probably why his brown hair is graying around the edges.}
+{210}{}{You see a grumbling Orville Wright. He looks like he is about to pull out what remains of his hair.}
+{210}{}{You see a grumbling Orville Wright. He looks upset and is sighing a lot.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[You see a well-dressed gentleman. He looks perpetually pissed off. That's probably why his brown hair is graying around the edges.]  Start talking. Who are you and what do you want?}
+{2010}{}{I've heard you might have task for me and my people.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I see. My boys have told me they saw mercenaries leaving salvatore people. They're planning something. And I know it will be worth your time. What i want is you and your... people head out and intercept the place. I'll await your comeback. Oh. There is one thing. I need you to pay me 1000 caps first, So I can be sure that you'll come back to me with stuff you will find.}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{[A boy runs in.] Wait a moment.}
+{4010}{}{Yes?}
+{4020}{}{Yes?}
+{5000}{}{[After small talk he gives you coordinates.] Don't screw it up.}
+{5010}{}{I won't.}
+{6000}{}{[After small talk he gives you coordinates.] They're already gone. Don't bother.}
+{6010}{}{Shit happens.}
+{7000}{}{Thank you, good work. You and your people did well.}
+{7010}{}{We did. Thank you for the trust.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{[You see a well-dressed gentleman. He looks perpetually pissed off. That's probably why his brown hair is graying around the edges.]  Start talking. Who are you and what do you want?}
+{2010}{}{I've heard you might have task for me and my people.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I see. My boys have told me they saw mercenaries leaving salvatore people. They're planning something. And I know it will be worth your time. What i want is you and your... people head out and intercept the place. I'll await your comeback. Oh. There is one thing. I need you to pay me 1000 caps first, So I can be sure that you'll come back to me with stuff you will find.}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{[A boy runs in.] Wait a moment.}
+{4010}{}{Yes?}
+{4020}{}{Yes?}
+{5000}{}{[After small talk he gives you coordinates.] Don't screw it up.}
+{5010}{}{I won't.}
+{6000}{}{[After small talk he gives you coordinates.] They're already gone. Don't bother.}
+{6010}{}{Shit happens.}
+{7000}{}{Thank you, good work. You and your people did well.}
+{7010}{}{We did. Thank you for the trust.}
+

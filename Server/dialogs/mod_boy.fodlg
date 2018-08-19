@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Boy}
+{200}{}{You see: a boy.}
+{210}{}{A little boy. He seems to be pretty happy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Good}
+{2000}{}{Mommy says not to talk to strangers.@@You're nice.@@Whatcha wearing?@@Are you from far away?@@Weeee! Ha, ha, ha!@@Am I bothering you?@@Can I come with you?@@Where you going?@@Do you like kids?@@Whatcha doing?@@Where did you get that?@@I want to be just like you when I grow up.@@Hello.@@How come you're so funny looking?@@I'll bet you're nicer than you look!@@I've got a shiny pebble!@@Have you seen my invisible friend?@@I bet you don't bathe.}
+
+[russ]
+{100}{}{Мальчик}
+{200}{}{Маленький мальчик.}
+{210}{}{Маленький мальчик. Он выглядит счастливым.}
+{1000}{}{Predialogue installations}
+{1010}{}{Good}
+{2000}{}{Ты хороший.@@Ты из далека?@@Иииии! Ха-ха-ха!@@Я вам мешаю?@@Можно я пойду с вами?@@Вы любите детей?@@Я хочу стать таким же как вы когда вырасту.@@Привет.}
+
+[pols]
+{100}{}{Chłopiec}
+{200}{}{Mały chłopiec.}
+{210}{}{Mały chłopiec. Wygląda na szczęśliwego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Good}
+{2000}{}{Jesteś w porządku.?@@Z daleka przyjeżdżasz?@@Nie przeszkadzam ci?@@Mogę iść z tobą?@@Dokąd idziesz?@@Lubisz dzieci?@@Co robisz?@@Skąd to masz?@@Jak dorosnę, chcę być taki jak ty.@@Cześć.@@Dlaczego wyglądasz tak śmiesznie?@@Na pewno jesteś @sex@|milszy||milsza|, niż wyglądasz!@@Patrz, jaki świecący kamyk!@@Nie @sex@|widziałeś||widziałaś| może mojego niewidzialnego przyjaciela?}
+
+[ptbr]
+{100}{}{Menino}
+{200}{}{Você vê um menininho.}
+{210}{}{Você vê um pequeno menino. Ele está bastante feliz.}
+{1000}{}{Predialogue installations}
+{1010}{}{Good}
+{2000}{}{Mamãe disse para eu não falar com estranhos.@@Você é tão legal.@@O que é isso que tá vestindo?@@O @sex@|senhor||senhora| é de um lugar longe?@@Weeee! Ha, ha, ha!@@Eu tou te incomodando?@@Posso ir contigo?@@Tá indo pra onde?@@Tem filhos?@@Tá fazendo?@@Onde você achou isso?@@Quando eu crescer quero ser igual @sex@|ao senhor||a sennhora|.@@Oi.@@ @sex@|O senhor||A sennhora| é tão engraçada?@@Eu vou ser mais legal que tu!@@ @sex@|O senhor||A senhora| viu meu amigo invisível?@@Eu aposto que você toma banho.}
+

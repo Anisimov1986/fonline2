@@ -1,0 +1,82 @@
+//
+// FOnline: 2238
+// Rotators
+//
+// client_container_volume.fos
+//
+
+#include "_client_defines.fos"
+#include "_macros.fos"
+
+#include "client_gui_h.fos"
+
+IGUIElementTextOpt@ CVolume;
+int          itemsVolume = 0;
+int          containerVolume = 0;
+string       indicatorLabel;
+
+bool IsContainer()
+{
+	return CVolume.isVisible();
+}
+
+int GetFreeVolume()
+{
+	return (containerVolume - itemsVolume);
+}
+
+void UpdateCaption()
+{
+	indicatorLabel = GetMsgStr( TEXTMSG_TEXT, 70356 )+"\n" + (itemsVolume * 100 / (containerVolume == 0 ? 1 : containerVolume)) + "%";
+    if(valid(CVolume))
+        CVolume.setText(indicatorLabel);
+}
+
+void HideVolumeIndicator()
+{
+    indicatorLabel = "";
+    if(valid(CVolume))
+    {
+        CVolume.setVisible(false);
+        CVolume.setText(indicatorLabel);
+    }
+}
+
+void ZeroVolumeFillIndicator()
+{
+    itemsVolume = 0;
+    UpdateCaption();
+}
+
+void SetVolumeFillIndicator(array<ItemCl@> items)
+{
+    itemsVolume = 0;
+    for(uint i = 0, j = items.length(); i < j; i++)
+        itemsVolume += items[i].Proto.Volume * items[i].GetCount();
+    UpdateCaption();
+}
+
+void SetVolumeIndicator(uint pid)
+{
+    ProtoItem@ container = GetProtoItem(pid);
+    if(valid(container) && container.Type == ITEM_TYPE_CONTAINER)
+    {
+        itemsVolume = 0;
+		containerVolume = container.Container_Volume;
+        UpdateCaption();
+        CVolume.setVisible(true);
+    }
+    else
+        HideVolumeIndicator();
+}
+
+void InitContainerVolume()
+{
+	@CVolume = GUI_AddText(CLIENT_SCREEN_PICKUP)
+	.TextOptions(FONT_FALLOUT, COLOR_GREEN, FT_CENTERY | FT_CENTERX)
+	//.TextBoxSize(85, 20)
+	.Position("PupInfo");
+	
+
+	CVolume.Position(CVolume.GetPosX(),CVolume.GetPosY()+20,CVolume.GetWidth(), CVolume.GetHeight()+20);
+}

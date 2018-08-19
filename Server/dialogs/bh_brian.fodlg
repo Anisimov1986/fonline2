@@ -1,0 +1,150 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 #
+7 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 R _var n name_mem_npc_player = 1 #
+5 2020 R _var n name_mem_npc_player = 1 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+7 3020 @
+4 4000 None 0 #
+7 4010 #
+0 4020 @
+5 5000 None 0 #
+7 5010 #
+6 5020 #
+0 5030 @
+6 6000 None 0 #
+7 6010 #
+0 6020 @
+7 7000 None 0 #
+5 7010 #
+3 7020 #
+0 7030 &
+
+[engl]
+{100}{}{Brian}
+{200}{}{You see a squat man wearing squalid clothing.}
+{210}{}{You see Brian.}
+{210}{}{You see a squat man wearing squalid clothing. He has a toothpick in his mouth and is covered in grease. His fingernails are dirty.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Whaddya want?}
+{2010}{}{Who are you?}
+{2020}{}{What is this place?}
+{2030}{}{Nothing. Bye.}
+{3000}{}{Me? I'm Brian. I work the generator that powers this place.}
+{3010}{}{I see. That's very interesting. Must be rewarding work.}
+{3020}{}{Great. I have more questions.}
+{4000}{}{Well, no, it's not. Not really. I mostly just sit here and make sure none of the dials flip out.  I make some minor adjustments. I flip some switches. That's about it -- anyone could do it.}
+{4010}{}{Anyone, eh? I have other questions.}
+{4020}{}{Thanks. Bye.}
+{5000}{}{This place is the power station for Broken Hills. What I do is essentially a maintenance job on the place... make sure it keeps running. It's pretty damn functional, though... powered by uranium slugs.}
+{5010}{}{That must be great. Say, I have more questions.}
+{5020}{}{Uranium slugs?}
+{5030}{}{Interesting. Bye.}
+{6000}{}{Well, with the uranium mine right there, and with atomic power being the power of the future, it seems only right that we keep up with the times. We might be small, but we're progressive.}
+{6010}{}{Hmm. Right. I have other questions.}
+{6020}{}{Right. Bye.}
+{7000}{}{Whaddya want now?}
+{7010}{}{What is this place?}
+{7020}{}{Who are you?}
+{7030}{}{Bye.}
+
+[russ]
+{100}{}{Брайан}
+{200}{}{Вы видите приземистого человека, в убогой одежде.}
+{210}{}{Вы видите Брайана.}
+{210}{}{Вы видите приземистого человека, в убогой одежде. Во рту у него забочистка.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Чегооо тебе?}
+{2010}{}{Ты кто?}
+{2020}{}{Что это за место?}
+{2030}{}{Ничего. Пока.}
+{3000}{}{Я? Я Брайан. Я обслуживаю генератор, который обспечивает это место электричеством.}
+{3010}{}{Понимаю. Это очень интересно. Должно быть благодарная работа.}
+{3020}{}{Отлично. У меня есть еще вопросы.}
+{4000}{}{Ну, нет, это не так. Не совсем так. В основном я просте сижу тут и смотрю за показанием приборов. Щелкаю переключателями, кручу вариаторы, каждый может это делать.}
+{4010}{}{Любой, да? У меня есть и другие вопросы.}
+{4020}{}{Спасибо. Пока.}
+{5000}{}{Это электростанция Брокен Хиллс. Я обслуживаю эту электростанцию... поддерживаю это оборудование в рабочем состоянии. Довольно мощная штука, работает на уране.}
+{5010}{}{Это замечательно. У меня есть еще вопросы.}
+{5020}{}{Уране?}
+{5030}{}{Интересно. Пока.}
+{6000}{}{Да, у нас тут есть урановая шахта, атомная энергия - энергия будущего.}
+{6010}{}{Хм. Правда. У меня есть другие вопросы.}
+{6020}{}{Пока.}
+{7000}{}{Чего тебе еще?}
+{7010}{}{Что это за место?}
+{7020}{}{Ты кто?}
+{7030}{}{Пока.}
+
+[pols]
+{100}{}{Brian}
+{200}{}{Widzisz osiedleńca w nędznym odzieniu.}
+{210}{}{Widzisz Briana.}
+{210}{}{Widzisz osiedleńca w nędznym odzieniu. W ustach trzyma wykałaczkę, zaś całe ubranie jest zatłuszczone. Ma też brudne paznokcie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Czego?}
+{2010}{}{Kim jesteś}
+{2020}{}{Co to za miejsce?}
+{2030}{}{Nic, nieważne. Do widzenia.}
+{3000}{}{Ja? Jestem Brian. Obsługuję generator, który zasila to miejsce.}
+{3010}{}{Rozumiem. To bardzo interesujące. Musi ci przynosić olbrzymią satysfakcję.}
+{3020}{}{Wspaniale. Mam inne pytania.}
+{4000}{}{Cóż, nie jest tak. Niezupełnie. Najczęściej siedzę tu i upewniam się, że żaden wskaźnik nie zacznie wariować. Robię tylko drobne poprawki. Przestawiam kilka pstryczków. To w sumie wszystko. Każdy mógłby to robić.}
+{4010}{}{Każdy, co? Mam inne pytania.}
+{4020}{}{Dzięki. Na razie.}
+{5000}{}{To miejsce to elektrownia Broken Hills. Zajmuję się utrzymaniem tego miejsca w sprawności... Upewniam się, że nagle nie stanie w miejscu, mimo że całkiem dobrze działa... Elektrownia zasilana jest przez pręty uranowe.}
+{5010}{}{To musi być wspaniałe. Słuchaj, mam więcej pytań.}
+{5020}{}{Pręty uranowe?}
+{5030}{}{Interesujące. Na razie.}
+{6000}{}{Cóż, z tą kopalnią uranową tuż obok i z energią atomową będącą naszą przyszłością logiczne jest, że staramy się nadążyć za nowymi czasami. Może i jesteśmy mali, ale jesteśmy postępowi.}
+{6010}{}{Hmm. Tak. Mam inne pytania.}
+{6020}{}{Jasne. Na razie.}
+{7000}{}{Czego znowu chcesz?}
+{7010}{}{Co to za miejsce?}
+{7020}{}{Kim jesteś?}
+{7030}{}{Na razie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Whaddya want?}
+{2010}{}{Who are you?}
+{2020}{}{What is this place?}
+{2030}{}{Nothing. Bye.}
+{3000}{}{Me? I'm Brian. I work the generator that powers this place.}
+{3010}{}{I see. That's very interesting. Must be rewarding work.}
+{3020}{}{Great. I have more questions.}
+{4000}{}{Well, no, it's not. Not really. I mostly just sit here and make sure none of the dials flip out.  I make some minor adjustments. I flip some switches. That's about it -- anyone could do it.}
+{4010}{}{Anyone, eh? I have other questions.}
+{4020}{}{Thanks. Bye.}
+{5000}{}{This place is the power station for Broken Hills. What I do is essentially a maintenance job on the place... make sure it keeps running. It's pretty damn functional, though... powered by uranium slugs.}
+{5010}{}{That must be great. Say, I have more questions.}
+{5020}{}{Uranium slugs?}
+{5030}{}{Interesting. Bye.}
+{6000}{}{Well, with the uranium mine right there, and with atomic power being the power of the future, it seems only right that we keep up with the times. We might be small, but we're progressive.}
+{6010}{}{Hmm. Right. I have other questions.}
+{6020}{}{Right. Bye.}
+{7000}{}{Whaddya want now?}
+{7010}{}{What is this place?}
+{7020}{}{Who are you?}
+{7030}{}{Bye.}
+

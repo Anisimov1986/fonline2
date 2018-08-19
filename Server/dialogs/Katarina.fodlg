@@ -1,0 +1,115 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc = 0 #
+6 2020 #
+0 2030 #
+5 2040 D _script economy_dialogs@d_IsEnoughCaps 1 40000 D _var p name_mem_player_npc } 1 R _script economy_dialogs@r_TakeCaps 1 40000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_DESERTHOUSE + 1 R _script map_ncr@r_BaseProfit 0  @
+3 3000 None 0 #
+4 3010 R _var p name_mem_player_npc + 1 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+0 4010 #
+0 4020 #
+5 4030 D _script economy_dialogs@d_IsEnoughCaps 1 40000 R _script economy_dialogs@r_TakeCaps 1 40000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_DESERTHOUSE + 1 R _script map_ncr@r_BaseProfit 0  @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+2 6010 #
+0 6020 &
+
+[engl]
+{100}{}{Katarina}
+{200}{}{You see: Katarina}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Why hello there. I'm sorry, but I can't talk right now, I just moved out of my old house.}
+{2010}{}{How fun, where is your new house located?}
+{2020}{}{Oh, okay! You must be the biggest bitch here because you're moving, huh?}
+{2030}{}{Sorry to be a bother, I'll go now.}
+{2040}{}{Hey Katarina! About that business of yours. Guess who has the caps...}
+{3000}{}{What...? Oh, please excuse my bad manners, my name is Katarina and I am a throwing knife expert. Don't let the title scare you too much, hehe. I can't really tell you where I'm going to live, that would be premature don't you think? You're still only a stranger.}
+{3010}{}{I didn't mean to sound like I am intruding in your privacy. What about your old home?}
+{4000}{}{I still have the map to my old house actually. Maybe I can give you the map to my old house for just @lex base2_price@ caps. Are you interested? I'd really like to open my stainless steel throwing knife shop.}
+{4010}{}{Looks like your "business" is screwed. Nice scam, bye!}
+{4020}{}{Wowzers! I chose a bad time to go house shopping. I'll be right back Katarina.}
+{4030}{}{Looks like you're going to have a fine business up and running soon. I'll take that map.}
+{5000}{}{Well shucks, that's great stranger. Here you go, take this here map. When you get there you will find some of my things there. It's alright, you can keep 'em, I couldn't move everything out. Be safe out there stranger.}
+{5010}{}{No problem Katarina. Thank you.}
+{6000}{}{Say that again, and we're going to have a real problem, you got that?}
+{6010}{}{I'm sorry, that's not like me at all. I don't know what came over me. Can I just ask something else? I promise not to be hostile.}
+{6020}{}{Pfft, whatever! Later.}
+
+[russ]
+{100}{}{Катарина}
+{200}{}{Вы видите: Катарина}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Привет. Мне очень жаль, но я не могу сейчас с вами поговорить, я занята перездом из моего старого дома.}
+{2010}{}{Как весело, где же ваш новый дом находится?}
+{2020}{}{О, хорошо! Вы должны быть самая большая сука здесь, потому что переезжаете?}
+{2030}{}{Прости за беспокойство, я ухожу.}
+{2040}{}{Эй Катарина! Помнишь, мы кое о чем договаривались, угадай кто принес деньги?}
+{3000}{}{Что ...? О, пожалуйста, простите мою невоспитанность, меня зовут Катарина.Я не могу сказать вам, где я буду жить, было бы опрометчиво рассказывать это первому встречному.}
+{3010}{}{Я не хочу чтобы это звучало, как будто я  вторгаюсь в вашу личную жизнь. Но как насчет вашего старого дома?}
+{4000}{}{У меня досих пор есть карта расположения моего старого дома, но мне бы не помешали деньги. Как насчет того чтобы купить мой старый дом за @lex base2_price@ крышек. Эти деньги мне бы очень помогли, я хочу начать свой бизнес.}
+{4010}{}{Похоже твой "бизнес" накрылся. Я не буду участвовать в этой афере, пока.}
+{4020}{}{Похоже я забыл свой грузовик с деньгами дома. Я скоро вернусь.}
+{4030}{}{Тебе повезло. Я куплю карту.}
+{5000}{}{Это здорово незнакомец. Вот, возьми эту карту. Береги себя.}
+{5010}{}{Нет проблем Катарина. Спасибо.}
+{6000}{}{Повтори это еще раз и я выбью тебе все зубы.}
+{6010}{}{Да я же просто пошутил, могу я кое-что спросить? Я обещаю вести себя смирно.}
+{6020}{}{Да пошла ты.}
+
+[pols]
+{100}{}{Katarina}
+{200}{}{Widzisz Katarinę.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Cześć. Przykro mi, ale nie mogę teraz rozmawiać. Właśnie wyprowadziłam się ze swojego starego domu.}
+{2010}{}{O, miło. Gdzie znajduje się twój nowy dom?}
+{2020}{}{Och, w porządku! Musisz być największą suką w mieście, bo właśnie się przeprowadzasz, co?
+{2030}
+{2030}{}{error}
+{2040}{}{Hej, Katarina! W sprawie twojego biznesu. Zgadnij, kto przyniósł kapsle...}
+{3000}{}{Co...? Och, przepraszam, wybacz. Nazywam się Katarina, jestem mistrzynią rzucania nożem. Tylko niech cię to zbytnio nie przerazi, hehehe. [Śmieje się.] Nie mogę ci powiedzieć, gdzie będę mieszkać, to chyba nieco przedwczesne, nie sądzisz? Nie znamy się prawie wcale.}
+{3010}{}{Przepraszam, nie @sex@|miałem||miałam| zamiaru wkraczać w twoje prywatne sprawy. A co z twoim starym domem?}
+{4000}{}{Stoi dalej tam, gdzie stał... Hm, potrzebuję kapsli na swój nowy interes, brakuje mi nieco gotówki. Mogę sprzedać ci mapę do niego za, powiedzmy, @lex base2_price@ kapsli. @sex@|Byłbyś||Byłabyś| @sex@|zainteresowany||zainteresowana|? Naprawdę chciałabym założyć ten sklep z nożami z nierdzewnej stali.}
+{4010}{}{Naprawdę, niewiele mnie to obchodzi. Do widzenia!}
+{4020}{}{Rewelacja! Zaraz wracam, Katarino.}
+{4030}{}{Wygląda na to, że już niedługo Pustkowia wzbogacą się o śliczny sklepik. Kupuję tą mapę!}
+{5000}{}{Świetnie. Proszę, oto i ona. [Wręcza ci mapę.] Znajdziesz tam jeszcze trochę moich rzeczy, możesz je zatrzymać, nie dałam rady przenieść wszystkiego.}
+{5010}{}{Nie ma problemu. Dzięki.}
+{6000}{}{Zwróć się do mnie w ten sposób jeszcze raz, a będziemy @sex@|mieli||miały| poważny problem, łapiesz?}
+{6010}{}{Przepraszam, nie wiem co we mnie wstąpiło. Mogę spytać o coś jeszcze? Obiecuję, będę @sex@|uprzejmy||uprzejma|.}
+{6020}{}{Pff, też mnie to obchodzi! Na razie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Why hello there. I'm sorry, but I can't talk right now, I just moved out of my old house.}
+{2010}{}{How fun, where is your new house located?}
+{2020}{}{Oh, okay! You must be the biggest bitch here because you're moving, huh?}
+{2030}{}{Sorry to be a bother, I'll go now.}
+{2040}{}{Hey Katarina! About that business of yours. Guess who has the caps...}
+{3000}{}{What...? Oh, please excuse my bad manners, my name is Katarina and I am a throwing knife expert. Don't let the title scare you too much, hehe. I can't really tell you where I'm going to live, that would be premature don't you think? You're still only a stranger.}
+{3010}{}{I didn't mean to sound like I am intruding in your privacy. What about your old home?}
+{4000}{}{I still have the map to my old house actually. Maybe I can give you the map to my old house for just @lex base2_price@ caps. Are you interested? I'd really like to open my stainless steel throwing knife shop.}
+{4010}{}{Looks like your "business" is screwed. Nice scam, bye!}
+{4020}{}{Wowzers! I chose a bad time to go house shopping. I'll be right back Katarina.}
+{4030}{}{Looks like you're going to have a fine business up and running soon. I'll take that map.}
+{5000}{}{Well shucks, that's great stranger. Here you go, take this here map. When you get there you will find some of my things there. It's alright, you can keep 'em, I couldn't move everything out. Be safe out there stranger.}
+{5010}{}{No problem Katarina. Thank you.}
+{6000}{}{Say that again, and we're going to have a real problem, you got that?}
+{6010}{}{I'm sorry, that's not like me at all. I don't know what came over me. Can I just ask something else? I promise not to be hostile.}
+{6020}{}{Pfft, whatever! Later.}
+

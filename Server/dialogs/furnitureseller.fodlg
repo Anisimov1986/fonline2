@@ -1,0 +1,97 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var p name_mem_player_npc = 1 #
+2 1020 D _var p name_mem_player_npc = 0 @
+2 2000 None 0 #
+65506 2010 R _var p name_mem_player_npc = 1 #
+4 2020 R _var p name_mem_player_npc = 1 #
+0 2030 R _var p name_mem_player_npc = 1 @
+3 3000 None 0 #
+65506 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+65506 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Vince}
+{200}{}{You see: Vince.}
+{210}{}{This hunched ghoul is murmuring some numbers while looking around his messy surroundings.}
+{1000}{}{Initial preferences}
+{1010}{}{meet again}
+{1020}{}{meet for the first time}
+{2000}{}{[As you enter the building, he quickly looks at you and moves forward to shake your hand.] Hi there, stranger! My name's Vince, and I welcome to Vince's Almost-New Furniture! As you can see, I've got loads of fine, quality wares that will satisfy even the most demanding wastelander! What'll it be? An almost working Nuka Cola machine? An almost comfortable office chair? Or maybe, my newest acquisition, an almost new Vault-Tec bed? With almost clean sheets included!@@[The ghoul moves surprisingly fast towards you.] Hello there, Wastelander! Welcome to my humble establishment, Vince's Almost-New Furniture! Can I offer you anything? An almost-working Nuka Cola machine? An almost-comfortable office chair? Or maybe, my newest acquisition, an-almost new Vault-Tec bed? Almost-clean sheets included!}
+{2010}{}{Erm... Hi Vince. Nice place you've got in here. I'm just looking around, can I see what you have for sale?@@Uh... Hi. No, thanks for the offer, but I'd like to see some other stuff you may have for sale.@@No, thanks, I'd like to take a look at some other things. Care to show me around?@@Interesting stuff you have in here, Vince. Can I see what other things you have in stock?@@Bed? No, thanks, but I'm interested in some other things.@@Almost new you say? Well, let me take a look then.@@It can't hurt to take a look I guess...}
+{2020}{}{I'm just curious, where do you get all that stuff? And how did you manage to haul all this junk all by yourself?@@Vince, where do you get all this stuff? And how on earth did you manage to haul it here all by yourself?@@How did you come by all those things? And how did you manage to get it here all by yourself?}
+{2030}{}{No, thanks, only almost interested in this.@@No, thanks Vince.@@I've gotta go.@@I need to go, Vince.@@No time for shopping now, sorry.@@I think I need to be elsewhere.@@I don't even wanna know where did you get all of this junk from... Have a nice day.@@This place almost made me puke. I'm outta here.@@Sorry, I'm almost outta time. Some other time, Vince.}
+{3000}{}{Hello again! Came back for some more almost-new furniture? I have all that you need to make your place nice and stylish!@@Back so soon? You're lucky! I've got some new stuff right from the nearest ruins!@@I knew you'd come back! I have some nice chairs, they were just taken from the office building in the city limits...@@I see you can never get enough of almost-new furniture! What'll it be this time?}
+{3010}{}{Yeah, can I take a look?@@Sure thing Vince, show me what you've got this time.@@Okay, show me your wares, Vince.@@Yeah, show me your stuff, Vince.@@All right, let me see what you have.@@Right... show me what you've got.}
+{3020}{}{I'm just curious, where do you get all that stuff? And how did you manage to haul all this junk all by yourself?@@Vince, where do you get all this stuff? And how on earth did you manage to haul it here all by yourself?@@How did you come by all those things? And how did you manage to get it here all by yourself?}
+{3030}{}{No, thanks, only almost interested in this.@@No, thanks Vince.@@I've gotta go.@@I need to go, Vince.@@No time for shopping now, sorry.@@I think I need to be elsewhere.@@I don't even wanna know where did you get all of this junk from... Have a nice day.@@This place almost made me puke. I'm outta here.@@Sorry, I'm almost outta time. Some other time, Vince.@@I almost puked on my feet, Vince. Goodbye.}
+{4000}{}{Ain't you a curius one? Well, I can't really reveal my sources can I? All I can say, all that you see was acquired legally, I don't condone in shady business. About the second question, I have some associates working for me... Nothing special about it really.}
+{4010}{}{Okay, thanks. Can I take a look at your wares then?@@I see. Can I look at your furniture then, Vince?@@I get it. Care to show me what you've got, Vince?}
+{4020}{}{Okay, I see. I need to go now, Vince. @@I get it, thanks. Until another time, Vince.@@Okay, thanks. That's all I needed to know, see you round, Vince.}
+
+[russ]
+{100}{}{Винс}
+{200}{}{Вы видите Винса.}
+{210}{}{Он сгорбившись бормочет какие то номера, вглядываясь в свою беспорядочную обстановку.}
+{1000}{}{Initial preferences}
+{1010}{}{meet again}
+{1020}{}{meet for the first time}
+{2000}{}{[Когда Вы входите в здание он быстро смотрит на Вас и протягивает руку в знак приветствия.] Привет, странник! Меня зовут Винс, и добро пожаловать в магазин Почти-Новой-Мебели Винса! Как можно видеть, у меня огромное количество самого качественного товара, который удовлетворит даже самого взыскательного покупателя! Что будем выбирать? Почти работающий автомат с Нюка-Колой? Почти комфортный офисный стул? Или моё новое поступление, почти новую кровать от Волт-тек? Почти чистое белье в комплекте!@@[Он удивительно быстро к Вам подходит.] Привет, странник! Добро пожаловать в мой скромный магазин Почти-Новой-Мебели Винса! Я могу что-нибудь предложить? Почти работающий автомат с Нюка-Колой? Почти комфортный офисный стул? Или моё новое поступление, почти новую кровать от Волт-тек? Почти чистое белье в комплекте!}
+{2010}{}{Эмм.. привет, Винс. Здорово тут у тебя, я так, мимо прохожу.. Можно посмотреть что у тебя есть?@@Эээ... нет, спасибо за предложение, но я хочу посмотреть что ещё у тебя есть.@@Нет, спасибо, мне кое-что другое нужно. Покажешь что есть?@@Интересные вещи тут у тебя, Винс. Могу я взглянуть что ещё у тебя есть?@@Кровать? Нет, пожалуй. Покажи что ещё у тебя есть.@@Почти новые? Ну давай посмотрим...@@Не могу удержаться и не посмотреть...}
+{2020}{}{Мне просто интересно откуда у тебя всё это? И как ты всё это сюда притащить сумел?@@Винс, где ты всё это взял? И как ты всё это транспортировал сюда?@@Как ты нашёл все эти вещи? И как ты их сюда доставил?}
+{2030}{}{Нет, спасибо. Мне Почти-Было-Интересно.@@Нет, спасибо, Винс.@@Мне пора.@@Мне пора, Винс.@@Мне сейчас не до шоппинга. Извини.@@Кажется мне надо быть в где то в другом месте сейчас.@@Даже не хочу знать где ты взял всю эту рухлядь. Удачного дня.@@От этого места меня почти не вырвало. До свидания.@@Извини, у меня почти нет времени. До встречи, Винс.}
+{3000}{}{И снова здравствуйте! Пришли за Почти-Новой мебелью? у меня есть всё, чтобы сделать Ваш дом комфортным и стильным!@@Уже вернулись? У меня как раз есть новые поступления из ближайших руин!@@Я знал что Вы вернётесь! У меня есть классные стулья, из местных руин города...@@Я вижу что не бывает много Почти-Новой мебели! Что вас интересует?}
+{3010}{}{Да, можно посмотреть товары?@@Конечно, Винс, покажи мне что у тебя сейчас есть.@@Окей, покажи мне свои товары, Винс.@@Да, покажи что есть, Винс.@@Ага, давай посмотрим что у тебя.@@Верно.. показывай что есть у тебя.}
+{3020}{}{Мне просто интересно откуда у тебя всё это? И как ты всё это сюда притащить сумел?@@Винс, где ты всё это взял? И как ты всё это транспортировал сюда?@@Как ты нашёл все эти вещи? И как ты их сюда доставил?}
+{3030}{}{Нет, спасибо. Мне Почти-Было-Интересно.@@Нет, спасибо, Винс.@@Мне пора.@@Мне пора, Винс.@@Мне сейчас не до шоппинга. Извини.@@Кажется мне надо быть в где то в другом месте сейчас.@@Даже не хочу знать где ты взял всю эту рухлядь. Удачного дня.@@От этого места меня почти вырвало. До свидания.@@Извини, у меня почти нет времени. До встречи, Винс..@@Меня почти вырвало на мои ботинки. Пока, Винс.}
+{4000}{}{Ты любопытный человек, я смотрю. Ну, я не могу раскрыть свои источники, верно? Всё что я могу сказать - всё что здесь есть, добыто законным путём и я не веду тёмный бизнес. Насчёт второго вопроса могу сказать что со мной работают компаньоны, но ничего особенного по этому поводу.}
+{4010}{}{Хорошо, спасибо. Могу я тогда взглянуть на товары?@@Понятно. Давай тогда посмотрим на твою мебель?@@Ясно. Покажешь что у тебя есть, Винс?}
+{4020}{}{Понятно. Мне пора уже, Винс. @@Ясно, спасибо. До новых встреч, Винс.@@Понятно, это всё что я хочу знать, увидимся, Винс.}
+
+[pols]
+{100}{}{Vince}
+{200}{}{You see: Vince.}
+{210}{}{This hunched ghoul is murmuring some numbers while looking around his messy surroundings.}
+{1000}{}{Initial preferences}
+{1010}{}{again}
+{1020}{}{Reply.}
+{2000}{}{[As you enter the building, he quickly looks at you and moves forward to shake your hand.] Hi there, stranger! My name's Vince, and I welcome to Vince's Almost-New Furniture! As you can see, I've got loads of fine, quality wares that will satisfy even the most demanding wastelander! What'll it be? An almost working Nuka Cola machine? An almost comfortable office chair? Or maybe, my newest acquisition, an almost new Vault-Tec bed? With almost clean sheets included!@@[The ghoul moves surprisingly fast towards you.] Hello there, Wastelander! Welcome to my humble establishment, Vince's Almost-New Furniture! Can I offer you anything? An almost-working Nuka Cola machine? An almost-comfortable office chair? Or maybe, my newest acquisition, an-almost new Vault-Tec bed? Almost-clean sheets included!}
+{2010}{}{Erm... Hi Vince. Nice place you've got in here. I'm just looking around, can I see what you have for sale?@@Uh... Hi. No, thanks for the offer, but I'd like to see some other stuff you may have for sale.@@No, thanks, I'd like to take a look at some other things. Care to show me around?@@Interesting stuff you have in here, Vince. Can I see what other things you have in stock?@@Bed? No, thanks, but I'm interested in some other things.@@Almost new you say? Well, let me take a look then.@@It can't hurt to take a look I guess...}
+{2020}{}{I'm just curious, where do you get all that stuff? And how did you manage to haul all this junk all by yourself?@@Vince, where do you get all this stuff? And how on earth did you manage to haul it here all by yourself?@@How did you come by all those things? And how did you manage to get it here all by yourself?}
+{2030}{}{No, thanks, only almost interested in this.@@No, thanks Vince.@@I've gotta go.@@I need to go, Vince.@@No time for shopping now, sorry.@@I think I need to be elsewhere.@@I don't even wanna know where did you get all of this junk from... Have a nice day.@@This place almost made me puke. I'm outta here.@@Sorry, I'm almost outta time. Some other time, Vince.}
+{3000}{}{Hello again! Came back for some more almost-new furniture? I have all that you need to make your place nice and stylish!@@Back so soon? You're lucky! I've got some new stuff right from the nearest ruins!@@I knew you'd come back! I have some nice chairs, they were just taken from the office building in the city limits...@@I see you can never get enough of almost-new furniture! What'll it be this time?}
+{3010}{}{Yeah, can I take a look?@@Sure thing Vince, show me what you've got this time.@@Okay, show me your wares, Vince.@@Yeah, show me your stuff, Vince.@@All right, let me see what you have.@@Right... show me what you've got.}
+{3020}{}{I'm just curious, where do you get all that stuff? And how did you manage to haul all this junk all by yourself?@@Vince, where do you get all this stuff? And how on earth did you manage to haul it here all by yourself?@@How did you come by all those things? And how did you manage to get it here all by yourself?}
+{3030}{}{No, thanks, only almost interested in this.@@No, thanks Vince.@@I've gotta go.@@I need to go, Vince.@@No time for shopping now, sorry.@@I think I need to be elsewhere.@@I don't even wanna know where did you get all of this junk from... Have a nice day.@@This place almost made me puke. I'm outta here.@@Sorry, I'm almost outta time. Some other time, Vince.@@I almost puked on my feet, Vince. Goodbye.}
+{4000}{}{Ain't you a curius one? Well, I can't really reveal my sources can I? All I can say, all that you see was acquired legally, I don't condone in shady business. About the second question, I have some associates working for me... Nothing special about it really.}
+{4010}{}{Okay, thanks. Can I take a look at your wares then?@@I see. Can I look at your furniture then, Vince?@@I get it. Care to show me what you've got, Vince?}
+{4020}{}{Okay, I see. I need to go now, Vince. @@I get it, thanks. Until another time, Vince.@@Okay, thanks. That's all I needed to know, see you round, Vince.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{meet again}
+{1020}{}{meet for the first time}
+{2000}{}{[As you enter the building, he quickly looks at you and moves forward to shake your hand.] Hi there, stranger! My name's Vince, and I welcome to Vince's Almost-New Furniture! As you can see, I've got loads of fine, quality wares that will satisfy even the most demanding wastelander! What'll it be? An almost working Nuka Cola machine? An almost comfortable office chair? Or maybe, my newest acquisition, an almost new Vault-Tec bed? With almost clean sheets included!@@[The ghoul moves surprisingly fast towards you.] Hello there, Wastelander! Welcome to my humble establishment, Vince's Almost-New Furniture! Can I offer you anything? An almost-working Nuka Cola machine? An almost-comfortable office chair? Or maybe, my newest acquisition, an-almost new Vault-Tec bed? Almost-clean sheets included!}
+{2010}{}{Erm... Hi Vince. Nice place you've got in here. I'm just looking around, can I see what you have for sale?@@Uh... Hi. No, thanks for the offer, but I'd like to see some other stuff you may have for sale.@@No, thanks, I'd like to take a look at some other things. Care to show me around?@@Interesting stuff you have in here, Vince. Can I see what other things you have in stock?@@Bed? No, thanks, but I'm interested in some other things.@@Almost new you say? Well, let me take a look then.@@It can't hurt to take a look I guess...}
+{2020}{}{I'm just curious, where do you get all that stuff? And how did you manage to haul all this junk all by yourself?@@Vince, where do you get all this stuff? And how on earth did you manage to haul it here all by yourself?@@How did you come by all those things? And how did you manage to get it here all by yourself?}
+{2030}{}{No, thanks, only almost interested in this.@@No, thanks Vince.@@I've gotta go.@@I need to go, Vince.@@No time for shopping now, sorry.@@I think I need to be elsewhere.@@I don't even wanna know where did you get all of this junk from... Have a nice day.@@This place almost made me puke. I'm outta here.@@Sorry, I'm almost outta time. Some other time, Vince.}
+{3000}{}{Hello again! Came back for some more almost-new furniture? I have all that you need to make your place nice and stylish!@@Back so soon? You're lucky! I've got some new stuff right from the nearest ruins!@@I knew you'd come back! I have some nice chairs, they were just taken from the office building in the city limits...@@I see you can never get enough of almost-new furniture! What'll it be this time?}
+{3010}{}{Yeah, can I take a look?@@Sure thing Vince, show me what you've got this time.@@Okay, show me your wares, Vince.@@Yeah, show me your stuff, Vince.@@All right, let me see what you have.@@Right... show me what you've got.}
+{3020}{}{I'm just curious, where do you get all that stuff? And how did you manage to haul all this junk all by yourself?@@Vince, where do you get all this stuff? And how on earth did you manage to haul it here all by yourself?@@How did you come by all those things? And how did you manage to get it here all by yourself?}
+{3030}{}{No, thanks, only almost interested in this.@@No, thanks Vince.@@I've gotta go.@@I need to go, Vince.@@No time for shopping now, sorry.@@I think I need to be elsewhere.@@I don't even wanna know where did you get all of this junk from... Have a nice day.@@This place almost made me puke. I'm outta here.@@Sorry, I'm almost outta time. Some other time, Vince.@@I almost puked on my feet, Vince. Goodbye.}
+{4000}{}{Ain't you a curius one? Well, I can't really reveal my sources can I? All I can say, all that you see was acquired legally, I don't condone in shady business. About the second question, I have some associates working for me... Nothing special about it really.}
+{4010}{}{Okay, thanks. Can I take a look at your wares then?@@I see. Can I look at your furniture then, Vince?@@I get it. Care to show me what you've got, Vince?}
+{4020}{}{Okay, I see. I need to go now, Vince. @@I get it, thanks. Until another time, Vince.@@Okay, thanks. That's all I needed to know, see you round, Vince.}
+

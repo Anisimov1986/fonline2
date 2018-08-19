@@ -1,0 +1,152 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+5 1010 D _var p name_mem_player_npc } 1 #
+2 1020 D _var p name_mem_player_npc = 0 @
+2 2000 None 0 #
+3 2010 R _var p name_mem_player_npc = 1 #
+12 2020 @
+3 3000 None 0 #
+5 3010 #
+12 3020 @
+5 4000 robo_cleaner@dlg_GetCleanSet 0 #
+5 4010 D _script robo_cleaner@d_CleanArmor 0  R _script robo_cleaner@r_CleanArmor 0  #
+5 4020 D _script robo_cleaner@d_DontCleanArmor 0  R _script robo_cleaner@r_DontCleanArmor 0  #
+5 4030 D _script robo_cleaner@d_CleanWeapon 0  R _script robo_cleaner@r_CleanWeapon 0  #
+5 4040 D _script robo_cleaner@d_DontCleanWeapon 0  R _script robo_cleaner@r_DontCleanWeapon 0  #
+5 4050 D _script robo_cleaner@d_CleanAmmo 0  R _script robo_cleaner@r_CleanAmmo 0  #
+5 4060 D _script robo_cleaner@d_DontCleanAmmo 0  R _script robo_cleaner@r_DontCleanAmmo 0  #
+5 4070 D _script robo_cleaner@d_CleanExplosive 0  R _script robo_cleaner@r_CleanExplosive 0  #
+5 4080 D _script robo_cleaner@d_DontCleanExplosive 0  R _script robo_cleaner@r_DontCleanExplosive 0  #
+5 4090 D _script robo_cleaner@d_CleanDrugs 0  R _script robo_cleaner@r_CleanDrugs 0  #
+5 4100 D _script robo_cleaner@d_DontCleanDrugs 0  R _script robo_cleaner@r_DontCleanDrugs 0  #
+5 4110 D _script robo_cleaner@d_CleanMisc 0  R _script robo_cleaner@r_CleanMisc 0  #
+5 4120 D _script robo_cleaner@d_DontCleanMisc 0  R _script robo_cleaner@r_DontCleanMisc 0  #
+12 4130 #
+0 4140 R _script robo_cleaner@r_GatherItems 0  @
+12 5000 None 0 &
+
+[engl]
+{100}{}{Robobrain}
+{200}{}{You see: Robobrain.}
+{210}{}{The Robobrains were originally designed by General Atomics International before the war.  This unit however, was seemingly assembled recently.}
+{1000}{}{Predialogue installations}
+{1010}{}{known}
+{1020}{}{-}
+{2000}{}{[The robot speaks in a dignified and yet comical manner.] Good day to you @sex@|sir||madame|! How very nice to make your acquaintance. Can I be of any assistance?@@[The robot speaks in a dignified and yet comical manner.]  Good day to you, @sex@|sir||madame|. Can I help you with anything?}
+{2010}{}{Erm.. okay. What can you help me with?@@What can you do?}
+{2020}{}{Nevermind.@@I need to go.@@Later...@@I don't have the time right now.@@I will get back to you later.}
+{3000}{}{The RB-3928 series, which I am proud to be a part of, was designed for various tasks requiring manual labour. My servomotors are able to carry over 330lbs at any time. The series was also programmed for combat usage, but my databanks seem to be incomplete as of now.}
+{3010}{}{I see. You could be useful in hauling stuff...@@I could use your help with hauling stuff then...@@Hmm, at least you could be useful for gathering stuff.}
+{3020}{}{I understand. I will leave you for now.@@Okay. I gotta go now.@@I see. I need to get going.@@Right. I will get back to you later.}
+{4000}{}{How can I be of service?@@How can I be of service, @sex@|sir||madame|?@@How can I help you today, @sex@|sir||madame|?@@A fine day, isn't it, @sex@|sir||madame|? How can I help you?@@Can I be of service, @sex@|sir||madame|?@@You have need of me, @sex@|sir||madame|?@@Good to see you alive and well today, @sex@|sir||madame|. What do you need?@@Can I be of assistance, @sex@|sir||madame|?}
+{4010}{}{I need you to gather armors for me.@@I want you to gather all the armors.@@I need you to gather the armors that are on the ground.@@I want you to clear the armors from the ground.@@I need the ground cleared of those armors.@@Could you gather the armors for me?}
+{4020}{}{I want you to stop gathering armors for now.@@I need you to stop clearing the ground of armors for now.@@Please stop gathering the armors.@@Stop gathering the armors for now.@@Stop gathering armors please.@@Please stop gathering the armors.}
+{4030}{}{I need you to gather the weapons for me.@@I want you to gather all the weapons.@@I need you to gather the weapons that are on the ground.@@I want you to clear the weapons from the ground.@@I need the ground cleared of those weapons.@@Could you gather the weapons for me?@@This place is a mess. Could you gather all the weapons for me?@@I need those weapons gathered.@@I need you to gather the weapons for me.}
+{4040}{}{I want you to stop gathering weapons for now.@@I need you to stop gathering weapons.@@Please stop gathering my weaponry.@@Stop gathering weapons for now.@@Stop gathering weapons please.@@Please stop gathering weapons.}
+{4050}{}{Gather the ammo please.@@I want you to gather the ammunition.@@I need you to gather the ammo on the ground.@@I want you to take all the ammo from the ground.@@I need the ground cleared of the ammunition.@@Could you gather ammunition for me?@@I need the ammo cleared from the ground.}
+{4060}{}{I want you to stop gathering ammunition for now.@@I need you to stop gathering ammo.@@Please stop gathering my ammo.@@Stop gathering ammunition for now.@@Stop gathering ammo please.@@Please stop gathering ammo.@@I need you to stop gathering ammo.}
+{4070}{}{I need you to gather explosives for me.@@I want you to gather all the explosives.@@I need you to gather the explosives that are on the ground.@@I want you to clear the explosives from the ground.@@I need the ground cleared of explosives.@@Could you gather the explosives?}
+{4080}{}{I want you to stop gathering explosives for now.@@I need you to gathering explosives.@@Please stop gathering the explosives.@@Stop gathering the explosives, you might get damaged or something.@@Stop gathering the explosives please.@@Stop gathering the explosives, I will do this myself.}
+{4090}{}{I need you to gather drugs and medicine for me.@@I want you to gather all the drugs nad medicine.@@I need you to gather the drugs that are on the ground.@@I want you to clear the drugs and medicine from the ground.@@I need the ground cleared of those drugs.@@Could you gather the drugs for me?@@This place is messy, I need those drugs gathered.@@Could you gather the drugs for me?}
+{4100}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4110}{}{I need you to gather miscellaneous stuff for me.@@I want you to gather all the other miscellaneous items.@@I need you to gather all the other stuff on the ground.@@Could you gather miscellaneous items for me?@@Gather miscellaneous stuff.@@Clean miscellaneous items from the ground please.}
+{4120}{}{I want you to stop gathering miscellaneous stuff for now.@@I need you to stop clearing the ground of miscellaneous items for now.@@Please stop gathering miscellaneous stuff now.@@Stop gathering miscellaneous items for now.}
+{4130}{}{Nevermind.@@I've got to go.@@I don't need your help right now.@@I need to go now.@@I've got to get going.}
+{4140}{}{Start working, you lazy bastard.}
+{5000}{}{Have yourself a fine day.@@If there's anything you require further feel free to ask.@@Of course, of course! Don't let me keep you!@@Have a nice day!@@Goodbye.}
+
+[russ]
+{100}{}{Пес}
+{200}{}{Обычная собака.}
+{210}{}{Я бы не трогал эту собаку, может укусить.}
+{1000}{}{Predialogue installations}
+{1010}{}{known}
+{1020}{}{-}
+{2000}{}{How very nice to make your acquaintance. Can I be of any assistance?@@Good day to you, @sex@|sir||madame|. Can I help you with anything?}
+{2010}{}{Erm.. okay. What can you help me with?@@What can you do?}
+{2020}{}{Nevermind.@@I need to go.@@Later...@@I don't have the time right now.@@I will get back to you later.}
+{3000}{}{The RB-3928 series, which I am proud to be a part of, was designed for various tasks requiring manual labour. My servomotors are able to carry over 330lbs at any time. The series was programmed for combat usage, but my databanks seem to be incomplete as of now.}
+{3010}{}{I see. You could be useful in hauling stuff...@@I could use your help with hauling stuff then...@@Hmm, at least you could be useful for gathering stuff.}
+{3020}{}{I understand. I will leave you for now.@@Okay. I gotta go now.@@I see. I need to get going.@@Right. I will get back to you later.}
+{4000}{}{[Воет]@@Гав!@@Ваф! Ваф!}
+{4010}{}{Armor}
+{4020}{}{I want you to stop gathering armors for now.@@I need you to stop clearing the ground of armors for now.@@Please stop gathering the armors.@@Stop gathering the armors for now.@@Stop gathering armors please.@@Please stop gathering the armors}
+{4030}{}{Weapon}
+{4040}{}{I want you to stop gathering weapons for now.@@I need you to stop gathering weapons.@@Please stop gathering my weaponry.@@Stop gathering weapons for now.@@Stop gathering weapons please.@@Please stop gathering weapons.}
+{4050}{}{Gather the ammo please.@@I want you to gather the ammunition.@@I need you to gather the ammo on the ground.@@I want you to take all the ammo from the ground.@@I need the ground cleared of the ammunition.@@Could you gather ammunition for me?@@I need the ammo cleared from the ground.}
+{4060}{}{I want you to stop gathering ammunition for now.@@I need you to stop gathering ammo.@@Please stop gathering my ammo.@@Stop gathering ammunition for now.@@Stop gathering ammo please.@@Please stop gathering ammo.@@I need you to stop gathering ammo.}
+{4070}{}{I need you to gather explosives for me.@@I want you to gather all the explosives.@@I need you to gather the explosives that are on the ground.@@I want you to clear the explosives from the ground.@@I need the ground cleared of explosives.@@Could you gather the explosives?}
+{4080}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4090}{}{Drugs}
+{4100}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4110}{}{I need you to gather miscellaneous stuff for me.@@I want you to gather all the other miscellaneous items.@@I need you to gather all the other stuff on the ground.@@Could you gather miscellaneous items for me?@@Gather miscellaneous stuff.@@Clean miscellaneous items from the ground please.}
+{4120}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4130}{}{Nevermind.@@I've got to go.@@I don't need your help right now.@@I need to go now.@@I've got to get going.}
+{4140}{}{Start working, you lazy bastard.}
+{5000}{}{Have yourself a fine day.@@If there's anything you require further feel free to ask.@@Of course, of course! Don't let me keep you!@@Have a nice day then!}
+
+[pols]
+{100}{}{Pies}
+{200}{}{Pies. Wygląda nieco groźnie.}
+{210}{}{Lepiej nie głaskać tego psa, chyba że chcę zaryzykować odgryzienie ręki.}
+{1000}{}{Predialogue installations}
+{1010}{}{known}
+{1020}{}{-}
+{2000}{}{How very nice to make your acquaintance. Can I be of any assistance?@@Good day to you, @sex@|sir||madame|. Can I help you with anything?}
+{2010}{}{Erm.. okay. What can you help me with?@@What can you do?}
+{2020}{}{Nevermind.@@I need to go.@@Later...@@I don't have the time right now.@@I will get back to you later.}
+{3000}{}{The RB-3928 series, which I am proud to be a part of, was designed for various tasks requiring manual labour. My servomotors are able to carry over 330lbs at any time. The series was programmed for combat usage, but my databanks seem to be incomplete as of now.}
+{3010}{}{I see. You could be useful in hauling stuff...@@I could use your help with hauling stuff then...@@Hmm, at least you could be useful for gathering stuff.}
+{3020}{}{I understand. I will leave you for now.@@Okay. I gotta go now.@@I see. I need to get going.@@Right. I will get back to you later.}
+{4000}{}{Hau.@@Hau hau!@@Grrr!@@[Groźnie szczeka.]}
+{4010}{}{Armor}
+{4020}{}{I want you to stop gathering armors for now.@@I need you to stop clearing the ground of armors for now.@@Please stop gathering the armors.@@Stop gathering the armors for now.@@Stop gathering armors please.@@Please stop gathering the armors}
+{4030}{}{Weapon}
+{4040}{}{I want you to stop gathering weapons for now.@@I need you to stop gathering weapons.@@Please stop gathering my weaponry.@@Stop gathering weapons for now.@@Stop gathering weapons please.@@Please stop gathering weapons.}
+{4050}{}{Gather the ammo please.@@I want you to gather the ammunition.@@I need you to gather the ammo on the ground.@@I want you to take all the ammo from the ground.@@I need the ground cleared of the ammunition.@@Could you gather ammunition for me?@@I need the ammo cleared from the ground.}
+{4060}{}{I want you to stop gathering ammunition for now.@@I need you to stop gathering ammo.@@Please stop gathering my ammo.@@Stop gathering ammunition for now.@@Stop gathering ammo please.@@Please stop gathering ammo.@@I need you to stop gathering ammo.}
+{4070}{}{I need you to gather explosives for me.@@I want you to gather all the explosives.@@I need you to gather the explosives that are on the ground.@@I want you to clear the explosives from the ground.@@I need the ground cleared of explosives.@@Could you gather the explosives?}
+{4080}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4090}{}{Drugs}
+{4100}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4110}{}{I need you to gather miscellaneous stuff for me.@@I want you to gather all the other miscellaneous items.@@I need you to gather all the other stuff on the ground.@@Could you gather miscellaneous items for me?@@Gather miscellaneous stuff.@@Clean miscellaneous items from the ground please.}
+{4120}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4130}{}{Nevermind.@@I've got to go.@@I don't need your help right now.@@I need to go now.@@I've got to get going.}
+{4140}{}{Start working, you lazy bastard.}
+{5000}{}{Have yourself a fine day.@@If there's anything you require further feel free to ask.@@Of course, of course! Don't let me keep you!@@Have a nice day then!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{known}
+{1020}{}{-}
+{2000}{}{[The robot speaks in a dignified and yet comical manner.] Good day to you @sex@|sir||madame|! How very nice to make your acquaintance. Can I be of any assistance?@@[The robot speaks in a dignified and yet comical manner.]  Good day to you, @sex@|sir||madame|. Can I help you with anything?}
+{2010}{}{Erm.. okay. What can you help me with?@@What can you do?}
+{2020}{}{Nevermind.@@I need to go.@@Later...@@I don't have the time right now.@@I will get back to you later.}
+{3000}{}{The RB-3928 series, which I am proud to be a part of, was designed for various tasks requiring manual labour. My servomotors are able to carry over 330lbs at any time. The series was also programmed for combat usage, but my databanks seem to be incomplete as of now.}
+{3010}{}{I see. You could be useful in hauling stuff...@@I could use your help with hauling stuff then...@@Hmm, at least you could be useful for gathering stuff.}
+{3020}{}{I understand. I will leave you for now.@@Okay. I gotta go now.@@I see. I need to get going.@@Right. I will get back to you later.}
+{4000}{}{How can I be of service?@@How can I be of service, @sex@|sir||madame|?@@How can I help you today, @sex@|sir||madame|?@@A fine day, isn't it, @sex@|sir||madame|? How can I help you?@@Can I be of service, @sex@|sir||madame|?@@You have need of me, @sex@|sir||madame|?@@Good to see you alive and well today, @sex@|sir||madame|. What do you need?@@Can I be of assistance, @sex@|sir||madame|?}
+{4010}{}{I need you to gather armors for me.@@I want you to gather all the armors.@@I need you to gather the armors that are on the ground.@@I want you to clear the armors from the ground.@@I need the ground cleared of those armors.@@Could you gather the armors for me?}
+{4020}{}{I want you to stop gathering armors for now.@@I need you to stop clearing the ground of armors for now.@@Please stop gathering the armors.@@Stop gathering the armors for now.@@Stop gathering armors please.@@Please stop gathering the armors.}
+{4030}{}{I need you to gather the weapons for me.@@I want you to gather all the weapons.@@I need you to gather the weapons that are on the ground.@@I want you to clear the weapons from the ground.@@I need the ground cleared of those weapons.@@Could you gather the weapons for me?@@This place is a mess. Could you gather all the weapons for me?@@I need those weapons gathered.@@I need you to gather the weapons for me.}
+{4040}{}{I want you to stop gathering weapons for now.@@I need you to stop gathering weapons.@@Please stop gathering my weaponry.@@Stop gathering weapons for now.@@Stop gathering weapons please.@@Please stop gathering weapons.}
+{4050}{}{Gather the ammo please.@@I want you to gather the ammunition.@@I need you to gather the ammo on the ground.@@I want you to take all the ammo from the ground.@@I need the ground cleared of the ammunition.@@Could you gather ammunition for me?@@I need the ammo cleared from the ground.}
+{4060}{}{I want you to stop gathering ammunition for now.@@I need you to stop gathering ammo.@@Please stop gathering my ammo.@@Stop gathering ammunition for now.@@Stop gathering ammo please.@@Please stop gathering ammo.@@I need you to stop gathering ammo.}
+{4070}{}{I need you to gather explosives for me.@@I want you to gather all the explosives.@@I need you to gather the explosives that are on the ground.@@I want you to clear the explosives from the ground.@@I need the ground cleared of explosives.@@Could you gather the explosives?}
+{4080}{}{I want you to stop gathering explosives for now.@@I need you to gathering explosives.@@Please stop gathering the explosives.@@Stop gathering the explosives, you might get damaged or something.@@Stop gathering the explosives please.@@Stop gathering the explosives, I will do this myself.}
+{4090}{}{I need you to gather drugs and medicine for me.@@I want you to gather all the drugs nad medicine.@@I need you to gather the drugs that are on the ground.@@I want you to clear the drugs and medicine from the ground.@@I need the ground cleared of those drugs.@@Could you gather the drugs for me?@@This place is messy, I need those drugs gathered.@@Could you gather the drugs for me?}
+{4100}{}{I want you to stop gathering drugs and medicine for now.@@I need you to stop clearing the ground of drugs for now.@@Please stop gathering the drugs.@@Stop gathering drugs for now.@@Stop gathering drugs please.@@Please stop gathering drugs.}
+{4110}{}{I need you to gather miscellaneous stuff for me.@@I want you to gather all the other miscellaneous items.@@I need you to gather all the other stuff on the ground.@@Could you gather miscellaneous items for me?@@Gather miscellaneous stuff.@@Clean miscellaneous items from the ground please.}
+{4120}{}{I want you to stop gathering miscellaneous stuff for now.@@I need you to stop clearing the ground of miscellaneous items for now.@@Please stop gathering miscellaneous stuff now.@@Stop gathering miscellaneous items for now.}
+{4130}{}{Nevermind.@@I've got to go.@@I don't need your help right now.@@I need to go now.@@I've got to get going.}
+{4140}{}{Start working, you lazy bastard.}
+{5000}{}{Have yourself a fine day.@@If there's anything you require further feel free to ask.@@Of course, of course! Don't let me keep you!@@Have a nice day!@@Goodbye.}
+

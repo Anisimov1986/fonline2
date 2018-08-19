@@ -1,0 +1,41 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+0 2010 R _script dialog@r_TransitToMap 2 91 0 R _script dialog@r_ClearInventory 0  R _script dialog@r_RemoveNpc 0  R _script dialog@r_additem 1 9510 R _script dialog@r_giverandomrobe 0  R _script dialog@r_hgwinner 0  &
+
+[engl]
+{100}{}{Event Manager}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Congratulations on finishing the event! As a winner of this clusterfuck you will receive a prize. [He hands you the item] I hope we'll see each other again!}
+{2010}{}{I hope so. Thank you. [Finish]}
+
+[russ]
+{100}{}{Организатор}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Congratulations on finishing the event! Choose your prize, champion! These blueprints are very important tech. You will get random blueprint from the tech tree you desire, And top item from the same tree!}
+{2010}{}{I'll take Small Guns blueprint.}
+
+[pols]
+{100}{}{Event Manager}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Congratulations on finishing the event! Choose your prize, champion! These blueprints are very important tech. You will get random blueprint from the tech tree you desire, And top item from the same tree!}
+{2010}{}{I'll take Small Guns blueprint.}
+
+[ptbr]
+{100}{}{Gerente do Evento}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Parabéns por ganhar o evento! Escolha o seu prêmio! Estes diagramas são de tecnologia de ponta. Você irá pegar um diagrama aleatório da árvore de tecnologia que desejar, e um item top da mesma árvore!}
+{2010}{}{Eu quero diagramas de Armas leves.}
+

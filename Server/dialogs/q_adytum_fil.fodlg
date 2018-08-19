@@ -1,0 +1,80 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_npc_player = 0 #
+4 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 R _var p name_mem_npc_player = 1 #
+65507 2020 #
+0 2030 @
+3 3000 None 0 #
+0 3010 #
+0 3020 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Farmer Fil}
+{200}{}{You see: Fil}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{4}
+{2000}{}{What d'ya want scavenger? This farm's private property. Shoo before I begin pumping these bullets up yo' ass.}
+{2010}{}{I came from Adytum, I'm trying to solve a strange problem of the theft of the town's water supply.}
+{2020}{}{Sure, I give you a head start [Attack]}
+{2030}{}{No problem pal, I'm leaving already.}
+{3000}{}{Adytum ye says... Come inside, talk to Jeremy, He's the leader of our group, just don't try any funny stuff, aight?}
+{3010}{}{Thank you kindly. Mister.}
+{3020}{}{You mean like this funny stuff? [Attack]}
+{4000}{}{You'll find Jeremy inside.}
+
+[russ]
+{100}{}{Farmer Fil}
+{200}{}{You see: Fil}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{4}
+{2000}{}{What d'ya want scavenger? This farm's private possesion. Shoo before i'll begin pumping those bullets up yo ass.}
+{2010}{}{I came from adytum, I am trying to solve strange problem of town's water source theft.}
+{2020}{}{Sure, I give you a head start [Attack]}
+{2030}{}{No problem pal, I'm leaving already.}
+{3000}{}{Adytum ye says... Come inside, talk to Jeremy, He's leader of our group, just don't try funny stuff, aight?}
+{3010}{}{Thank you kindly. Mister.}
+{3020}{}{You're talking about THAT funny stuff? [Attack]}
+{4000}{}{You'll find Jeremy inside.}
+
+[pols]
+{100}{}{Farmer Fil}
+{200}{}{Widzisz Fila.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{4}
+{2000}{}{Czego chceta, @sex@|zbieraczu||zbieraczko|? Ta farma to prywatna własność, wynocha stąd! Szybko, zanim zacznę ci pakować ołów w @sex@||dupsko|ten krągły tyłeczek|.}
+{2010}{}{Przychodzę z Adytum. Staram się dociec, gdzie znajduje się źródło kradzieży miejskich zasobów wody.}
+{2020}{}{Jasne, możesz zaczynać, frajerze. [Zaatakuj.]}
+{2030}{}{Spokojnie koleżko, już sobie idę.}
+{3000}{}{Adytum, mówisz... Właź, Jeremy siedzi w środku. Tylko bez żadnych wygłupów, zrozumiano?}
+{3010}{}{Serdecznie dziękuję, szanowny panie.}
+{3020}{}{Masz na myśli *takie* wygłupy, leszczu? [Zaatakuj.]}
+{4000}{}{Jeremy czeka w środku.}
+
+[ptbr]
+{100}{}{Zé}
+{200}{}{Você vê o Zé, um fazendeiro.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{4}
+{2000}{}{O que tu quer, catador? Essa fazenda é propriedade privada. Vá embora antes que eu atire.}
+{2010}{}{Eu vim de Adytum. Tou tentando resolver o problema de roubo do reservatório de água de lá.}
+{2020}{}{Claro, eu dou uma ajudinha inicial [Ataca]}
+{2030}{}{Sem problemas chapa, já tou indo.}
+{3000}{}{Adytum cê disse? Entre ali e fale com o Jeremias, ele é o chefe do nosso grupo. Só não tente nada de engraçado.}
+{3010}{}{Muito obrigado, senhor}
+{3020}{}{Você está falando para não fazer ISSO de engraçado? [Ataca]}
+{4000}{}{Fala com o Jeremias ali dentro.}
+

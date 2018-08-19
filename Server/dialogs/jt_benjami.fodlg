@@ -1,0 +1,432 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+10 2010 D _var p q_marry_benjami = 1 D _item p PID_TAPE_RECORDER = 1 R _var p q_marry_benjami = 2 R _item p PID_TAPE_RECORDER - 1 R _item p PID_BEER + 3 R _param p ST_EXPERIENCE + 600 #
+21 2020 D _var p jt_benjamikyleeq = 4 R _param p ST_EXPERIENCE + 1000 R _script economy_dialogs@r_GiveCaps 1 120 R _item p PID_BOOZE + 1 R _var p jt_benjamikyleeq = 3 R _script quest@quest_setcd 2 9011 122 #
+22 2030 D _var p jt_benjamikyleeq = 5 D or D _var p jt_benjamikyleeq = 6 #
+23 2040 D _var p jt_benjamikyleeq = 7 #
+3 2050 #
+4 2060 #
+5 2070 #
+6 2080 #
+7 2090 #
+9 2100 #
+0 2110 @
+3 3000 None 0 #
+4 3010 #
+5 3020 #
+6 3030 #
+2 3040 #
+0 3050 @
+4 4000 None 0 #
+2 4010 D _item p PID_BOTTLE_CAPS } 10 R _item p PID_BEER + 1 R _item p PID_BOTTLE_CAPS - 10 #
+2 4020 @
+5 5000 None 0 #
+2 5010 D _item p PID_BOTTLE_CAPS } 50 R _item p PID_BOTTLE_CAPS - 50 R _item p PID_BOOZE + 1 #
+2 5020 @
+6 6000 None 0 #
+6 6010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_NUKA_COLA + 1 R _item p PID_BOTTLE_CAPS - 100 #
+2 6020 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+11 8010 #
+2 8020 #
+0 8030 @
+9 9000 None 0 #
+2 9010 #
+0 9020 @
+10 10000 None 0 #
+0 10010 R _script dialog@r_ShowQuestMessage 1 9005 #
+2 10020 R _script dialog@r_ShowQuestMessage 1 9005 @
+11 11000 None 0 #
+12 11010 #
+2 11020 #
+0 11030 @
+12 12000 None 0 #
+13 12010 @
+13 13000 None 0 #
+14 13010 @
+14 14000 None 0 #
+15 14010 @
+15 15000 None 0 #
+16 15010 @
+16 16000 None 0 #
+17 16010 D _var p jt_benjamikyleeq = 0 #
+2 16020 #
+0 16030 @
+17 17000 None 0 #
+18 17010 #
+0 17020 @
+18 18000 None 0 #
+19 18010 @
+19 19000 None 0 #
+20 19010 R _var p jt_benjamikyleeq = 1 #
+0 19020 @
+20 20000 None 0 #
+0 20010 R _script dialog@r_ShowQuestMessage 1 9010 @
+21 21000 None 0 #
+0 21010 R _script dialog@r_ShowQuestMessage 1 9010 @
+22 22000 None 0 #
+0 22010 R _script dialog@r_ShowQuestMessage 1 9010 #
+0 22020 R _script dialog@r_ShowQuestMessage 1 9010 #
+2 22030 R _script dialog@r_ShowQuestMessage 1 9010 @
+23 23000 None 0 #
+24 23010 R _var p jt_benjamikyleeq = 8 R _script economy_dialogs@r_GiveCaps 1 280 R _param p ST_EXPERIENCE + 1000 @
+24 24000 None 0 #
+25 24010 #
+0 24020 R _script dialog@r_ShowQuestMessage 1 9010 @
+25 25000 None 0 #
+0 25010 R _script dialog@r_ShowQuestMessage 1 9010 #
+0 25020 R _script dialog@r_ShowQuestMessage 1 9010 &
+
+[engl]
+{100}{}{Benjami}
+{200}{}{You see: Benjami, the bartender of  Skum Pitt.}
+{210}{}{You see: an old man wearing a dirty apron. A clumsily sewn name "Benjami" is hardly visible because of the various stains.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello there. What'll it be?@@Welcome, need something from me?@@What can I get you?@@Need anything, stranger?}
+{2010}{}{I've got the Record-O-Matic from Mary.}
+{2020}{}{Kylee agreed, she will come and work for you. As a waitress, of course.}
+{2030}{}{Kylee took the caps and won't give them back. I don't see her working here too, so it is time you tell me what the fuck is going on here!}
+{2040}{}{Kylee sent me to tell you it's all over. You better start talking now... or you'll be really fucking sorry.}
+{2050}{}{What do you have?@@What can I get then?}
+{2060}{}{Gimme a beer.@@A beer sounds fine.@@I'll take a beer.@@Get me a nice, cold beer.}
+{2070}{}{Give me a bottle of booze.@@I need something to cheer me up. A bottle of booze seems just right.@@Booze, now.@@I need booze.}
+{2080}{}{I quit drinking not so long ago. Give me a Nuka-Cola.@@Give me a Nuka.@@One Nuka please.}
+{2090}{}{How did you become a bartender?@@So... Benjami, is that right? How did you become a bartender?@@Care to tell me about your job?}
+{2100}{}{What can you tell me about this place?}
+{2110}{}{Just looking around.@@Nice bar. Maybe I'll drop later for a beer or two.@@Just passing by.@@Nothing, just looking around.@@Nothing, thanks, I'm looking for someone.}
+{3000}{}{Nothing special, the usual beer, booze... Or a Nuka, if you're not into alcohol. So... what can I get you?}
+{3010}{}{Gimme a beer.@@A beer sounds fine.@@I'll take a beer.@@Get me a nice, cold beer.}
+{3020}{}{Give me a bottle of booze.@@I need something to cheer me up. A bottle of booze seems just right.@@Booze, now.@@I need booze.@@I need to get wasted. Give me booze, now.}
+{3030}{}{Nuka-Cola it is then.@@Give me a Nuka.@@One Nuka please.@@Nuka-Cola please.}
+{3040}{}{Nothing right now, I just want to talk.@@Maybe later, I wanted to ask you something.}
+{3050}{}{Hmm, I'm not really in the mood to sit in the bar today. Goodbye.@@Maybe later. Bye.@@Another time. Gotta go.}
+{4000}{}{No problem, ten caps for a beer.@@Okay, ten caps.@@No problem, 10 caps.@@As you wish, 10 caps for a beer.}
+{4010}{}{Thanks, I've got some questions too.@@Nice. I've got questions though.@@Okay, thanks. Can I ask you something.@@Right. Spare a few moments for a couple of questions?}
+{4020}{}{On the other hand... I want something else.@@Maybe something else then.@@Too steep for my pockets, maybe something else...}
+{5000}{}{All right, 50 caps for a booze.@@Sure, fifty caps for a bottle.@@Okay, 50 caps.@@No problem, fifty caps.}
+{5010}{}{Thanks, I've got some questions too.@@Nice. I've got questions though.@@Okay, thanks. Can I ask you something.@@Right. Spare a few moments for a couple of questions?}
+{5020}{}{On the other hand... I want something else.@@Maybe something else then.@@Too steep for my pockets, maybe something else...}
+{6000}{}{Good choice! Hundred caps for a Nuka.@@You sure know what's best. 100 caps please.@@Okay, Nuka's for a hundred caps. Interested?}
+{6010}{}{Thanks, I've got some questions too.@@Nice. I've got questions though.@@Okay, thanks. Can I ask you something.@@Right. Spare a few moments for a couple of questions?}
+{6020}{}{On the other hand... I want something else.@@Maybe something else then.@@Too steep for my pockets, maybe something else...@@I think I'll pass. Maybe something else.}
+{7000}{}{It's not that I like it. There's nothing entertaining in watching people getting wasted all the time. I work to sustain myself, but I to be quite frank, this job is kinda disgusting.}
+{7010}{}{Really?@@No kiddinng.@@Interesting...}
+{8000}{}{Yeah, you bet. But, this ain't going to last forever. Once I get on my feet and get some funds, I'm going to leave this stinky bar. You may laugh but... I want to build a church.}
+{8010}{}{What?@@A church, you're joking?@@No way, a church?}
+{8020}{}{Good luck then. Can we talk about something else?@@Right. I think I need a drink.}
+{8030}{}{Good luck with that. I've gotta go.@@I've heard enough. See you later.@@Got to go, sorry.}
+{9000}{}{Junktown? A good place. Safe, good people too. I've been living here for a long time, and it is the best place to live, I tell you. }
+{9010}{}{Okay, thanks. There was something else...@@I see. Can I ask you something else?}
+{9020}{}{Okay, thanks for the info. Gotta go.@@Thanks. I'll look around a bit.@@I see. See you later.}
+{10000}{}{How nice of her, I didn't expect her to fix it so soon. I guess she is busy, I wanted to thank her myself, but since your here I'll give you few beers on the house for your troubles, take it as a good gesture.}
+{10010}{}{Oh, you welcome.@@Thanks!@@Okay, thanks.@@Thanks, I need to go.}
+{10020}{}{Can I ask you something?@@Spare a moment?@@Got a minute?@@There was something else.}
+{11000}{}{Why not? You may not see it, but Junktown is a perfect place for it. It's pretty safe and secure, good trading opportunities, good people... or at least, most of them. All this place needs is a beacon of hope. And that would be the church.}
+{11010}{}{Perhaps.@@If you say so...@@I guess, maybe.}
+{11020}{}{All right, let's talk about something else.@@I've heard enough, I need a drink.@@Can we change the subject?}
+{11030}{}{You bet I don't, farewell.}
+{12000}{}{Yeah... [He starts cleaning a shot glass, and seems fixated on it as if he was looking into a deep well.]}
+{12010}{}{So... how did you become a religious man?@@How did you become the man you are now?}
+{13000}{}{A long story, friend... So I'll cut it short. I was a carvie. A caravan guard. You know how it is, you are young, you think you're immortal, and everything bad can happen to others, but not you.}
+{13010}{}{Yeah, I get what you mean. So, what happened?@@Yeah, I know the drill. So, what happened?@@Right, go on.}
+{14000}{}{Wasteland happened. I got wounded, and was taken prisoner. The things I did, the things I've seen people do to stay alive... I they just killed me instead. Anyway, I managed to get away... after a couple of years. Found my way here, started to work myself up in this place... and here I am.}
+{14010}{}{And so, you changed?@@I see.}
+{15000}{}{Yeah... I thought myself built of a better material. And so, I never came back to caravan business again. This may be an ugly job, but it's honest and safe. I just wish everyone wouldn't drink so much. The people here are really decent, they just seem so fixated with everyday troubles that they don't even notice all the good that's around them.}
+{15010}{}{So, what's your point?}
+{16000}{}{As I said before. Junktown needs a beacon of hope. A church. A place where people could go, leave all their troubles behind, and share their inner goodnes. Some say I'm naive and stupid, but they even don't bother to try... Take for example this working girl, Kylee...}
+{16010}{}{Who?@@A working girl?}
+{16020}{}{{All right, I heard enough of your sermons, bartender. I need to drink.@@Eh, a preaching bartender. Just what a bar needs. I need to drink.}
+{16030}{}{I've got to go.@@Maybe we'll talk later, Benjami.@@I need to go, sorry.}
+{17000}{}{Yeah. Kylee's a prostitute. It's a shame a young girl sells herself like that. She comes to my bar every now or then with her... clients. She pretends to be liking her job, but then she comes back later, and drinks into late night...}
+{17010}{}{Where does the faith issue come?@@So...?@@And?}
+{17020}{}{I've had enough of this.@@That's enough for me.@@I've heard enough.}
+{18000}{}{Well, if people are to take my message seriously, and for that church to be something more than an empty building, I need to show them a sign. A sign of goodness. And what better sign, than a bad girl gone good? Someone said, that a small spark of light can light a very dark room, and these are the words I believe in.}
+{18010}{}{And how exactly do you want to accomplish that?@@You want to... save her? How?}
+{19000}{}{Not exactly me... You see, people need to see it as if Kylee herself made the decision. Hmmm, since we're talking about this already... You might be just the person to accomplish the task. I could give her a job here, at the Pitt. I bet she would prefer it over her present... work. So, will you be willing to help, stranger?}
+{19010}{}{Sure, why not.@@I may try.@@Okay, I will do this.@@This might be interesting. I'll do it.@@Sure, I'll do it.}
+{19020}{}{No way.@@No, I've got better things to do.@@Go find someone else, I've got things to take care of.@@Not interested, sorry. Goodbye.}
+{20000}{}{You will? Great! Go to the Crash House, she usually spends her time there. Tell her that you heard that I need a waitress or something.}
+{20010}{}{Okay, consider it done.@@Right, I'll go now.@@Okay, I'm going.}
+{21000}{}{She did? Great! I never thought it would be so easy, I mean... that she'd agree. I'm not a rich man, but I can give you a small amount of cash for your effort. And some drink on the house, of course! [He leans to make a handshake.]}
+{21010}{}{[Shake hands.] No problem, glad I could help you out.}
+{22000}{}{No way, I didin't have anything to do with this! I hardly ever talk to her, that's why I sent you...}
+{22010}{}{I don't believe you. Something's not right. And I intend to find out what is going on.}
+{22020}{}{Never trust a hooker, they say. I guess we both made the same mistake.}
+{22030}{}{Whatever. I need a drink.@@Right, yeah... I need a drink after all this.@@Whatever, Benjami. Gimme something to drink.}
+{23000}{}{All right, all right! Calm down. I'll tell you everything. And I'll give you back the money...}
+{23010}{}{You better not bullshit me this time. This whole church thingy was a scam, right?}
+{24000}{}{No! I really want to build it. But it would cost a lot of money, and it will take forever to gather it. I don't have anything against Kylee's job, as long as she is happy with it. And she is. She even thought that the idea was great, and volunteered to help me out... All those caps would have been spent for a great purpose, but now... }
+{24010}{}{Why don't you just ask people to donate, instead of lying to them?}
+{24020}{}{I see. But the end doesn't justify the means, Benjami. I hope you learned your lesson, cos I sure did learn mine. Goodbye.}
+{25000}{}{Donate? I... I never thought about that. That's a great idea! I'll set up a box in my bar! Thank you very much! You've helped the good cause today! You know, you could donate too!}
+{25010}{}{Maybe I will. Goodbye, Benjami.}
+{25020}{}{You're hopeless. I'll see you later... maybe.}
+
+[russ]
+{100}{}{Бенджеми}
+{200}{}{Вы видете старого человека, он носит фартук.}
+{210}{}{Вы видете старого человека, он носит фартук. Он неочень высокого роста, с седеющими волосами и честным взглядом.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{[Он протирает стакан и смотрит на вас так, как будто вы всю жизнь знакомы] неправда ли отличный день?}
+{2010}{}{Мэри прислала меня, что-то там с магнитофоном.}
+{2020}{}{Кайли согласна, она будет работать у тебя официанткой.}
+{2030}{}{Что тут черт возьми на самом деле происходит? Кайли забрала мои деньги и несобирается отдавать, работать в баре похоже тоже не торопится, это что за дела}
+{2040}{}{Кайли прислала меня передать, что все кончено, самое время объясниться помоему. Давай-ка выкладывай всю правду и за тобой должок кстати.}
+{2050}{}{Что у вас есть?}
+{2060}{}{Дай-ка пивка.}
+{2070}{}{Бутылку самогона.}
+{2080}{}{Одну ньюка-колу.}
+{2090}{}{Как тебя в бармены то занесло?}
+{2100}{}{Можешь что-нибудь рассказать об этом месте?}
+{2110}{}{Мне пора.@@Увидимся.}
+{3000}{}{Нитак много, обычное пиво, из чего-нибудь покрепче - самогон, и еще ньюка-кола. Выбирай, пиво у нас кстати неплохое, и советую не налегать на самогон, срубает на раз-два.}
+{3010}{}{Дай-ка пивка.}
+{3020}{}{Бутылку самогона.}
+{3030}{}{Одну ньюка-колу.}
+{3040}{}{Хочу еще кое-что спросить.}
+{3050}{}{Мне пора.@@Увидимся.}
+{4000}{}{Держи, приятель, 10 капсов за бутылку.}
+{4010}{}{Спасибо, у меня есть пара вопросов.}
+{4020}{}{Хотя, дай-ка мне кое-что другое.}
+{5000}{}{Ни вопрос, 50 капсов за бутылку первоклассного самогона.}
+{5010}{}{Держи.[Передаете деньги]}
+{5020}{}{Нее я пасс, хотел кое-что спросить...}
+{6000}{}{Отличный выбор, [Досает из-под стойки бутылку ньюки] 100 капсов с тебя.}
+{6010}{}{Спасибо, вот держи.}
+{6020}{}{Дай-ка мне кое-что еще.}
+{7000}{}{Обстоятельства меня вынудили. Сказать по правде мне уже осторечтела эта работа. Я конечно люблю поболтать, но ежедневное общение с алкашами напрягает, да и не разбогатеешь особо. Думаешь я люблю свою работу..да тут по другому не заработать, кроме как спаивать заезжих алкашей.}
+{7010}{}{Как так?}
+{8000}{}{Единственная причина, по которой я начал этот бизнес это деньги, хочу открыть в Джанктауне церковь, и я намерен ечту свою осуществить. }
+{8010}{}{Так значит ты верующий?}
+{8020}{}{Еще пару вопросов.}
+{8030}{}{Ладно, успехов тебе в этом.}
+{9000}{}{Джанктаун, да меня все здесь устраивает. Кроме моей работы конечно. Люблю эту огороженную помойку, открыть бы здесь церквушку. Дружелюбный народ, дешевая еда, безмятежный сон, что еще можно желать?}
+{9010}{}{Да, похоже, что нечего. Пока.}
+{9020}{}{Ладно я пошел, было познавательно.}
+{10000}{}{Как мило с ее стороны, уже не надеялся, что она так быстро решится. Похоже она занята, хотел с ней сам поговорить, но раз ты подвернулся, вот держи несколько бутылочек пивка за суету в знак признательности.}
+{10010}{}{Спасибо, премного благодарен.}
+{10020}{}{Есть еще кое-что.}
+{11000}{}{[Он смотрит под ноги и кажется готов провалиться под землю, видно, что он очень расстроен и слегка смущен] Я ... не хочется об этом говорить, вряд ли незнакомец захочет слушать нытье такого старика как я в этом богом забытом городишке.}
+{11010}{}{Нет, нет, давай продолжай.}
+{11020}{}{Тогда подскажи-ка мне еще кое-что.}
+{11030}{}{Ты прав, давай удачи.}
+{12000}{}{Эх ... [Делает глубой вдох перед тем как начать говорить, на секунду показалось, что он пытается найти ответы на ваши вопросы на дне очередного протираемого стакана] Хочешь узнать что-то конкретное?}
+{12010}{}{Чем ты занимался до того как стал священником?}
+{13000}{}{Я работал в охране караванов давным давно, в то время было полно молодых отчаянных ребят готовых пойти куда угодно в погоне за легкими деньгами. Я был молод и наивен, и совершил большую ошибку, надо было найти какой-нибудь более мирный способ зарабатывать на жизнь.}
+{13010}{}{Что случилось?}
+{14000}{}{Суровая пустошь. Я не был к этому готов, все то дерьмо в котором я участвовал и которое видел своими глазами ... достаточно сказать, что меня до сих пор мучают кошмары. вряд ли ты поймешь.}
+{14010}{}{И какая тут связь с религией, зачем ты хочешь построить церковь? Это ни такое уж и простое дело.}
+{15000}{}{Моя вера в высшие силы это единственная причина, по которой я ношу сан и хочу построить церковь, что станет приютом для таких людей как я. Знаешь, ни все войны можно выиграть с помощью оружия, особенно те, что полыхают в твоей душе.}
+{15010}{}{Понятно, но ты показался мне уж сильно печальным, когда я спросил об этом в первый раз.}
+{16000}{}{Потом я думал, что вера оставила меня бесцельно гнить тут. Я намеревался сделать что-то хорошее... но взгляни на меня ... Я подаю выпивку всяким жлобам и порой кажется это будет длиться вечно. Не принимай на свой счет.}
+{16010}{}{Жаль это слышать, могу я чем-то тебе помочь?}
+{16020}{}{Так, кажется я уже услышал достаточно, спасибо за содержательную беседу, хочу еще кое-что спросить.}
+{16030}{}{Жлобы? А не пошел бы ты, надеюсь тут ты и сгниешь потихоньку.}
+{17000}{}{Хм. [Смотрит на вас и о чем то думает] Возможно ты один из тех, кто смог бы понять, честно говоря, я уже потерял надежду на существование чего-то хорошего в этом мире и возможно ты сможешь это исправить.}
+{17010}{}{Я попробую, так что случилось?}
+{17020}{}{Так, все, с меня хватит этого бреда.}
+{18000}{}{Есть одна девушка по имени Кайли, зарабатывающая своим телом. Она очень милая и просто разбивает мне сердце тем, что тратит свою жизнь на такую мерзость, Если бы ты смог с ней поговорить и сделать ей одно предложение, я был бы очень признателен. Скажи ей, что она в любой момент может все бросить и устроиться на работу в моем баре официанткой. Сам я скорее всего не справлюсь и сорвусь.}
+{18010}{}{Почему она? Она ж просто шлюха, одной больше одной меньше.}
+{19000}{}{Есть одна старинная довоенная книга, в которой я прочел одну поговорку. к сожалению оригинал книги давно утерян, но сама идея поистине бессмертна. Даже маленький огонек может осветить целую комнату, пусть и на одно мгновение, аидишь ли, эта девочка и есть огонек, а комната - мой мир. Так что, незнакомец, ты поможешь мне обрести надежду?}
+{19010}{}{Хорошо, я сделаю это.}
+{19020}{}{Не сейчас, совсем нет времени.}
+{20000}{}{Спасибо, спасибо большое. Я обязательно тебе отплачу.}
+{20010}{}{Считай, все готово.}
+{21000}{}{[Его лицо внезапно начинает сиять] Хорошие новости, хотя я и небогатый человек и мне особо нечего предложить, вот тебе моя благодарность и немного монет, и бутылочка отличного пойла в дорогу. [Наклоняется к вам, чтобы пожать вам руку]}
+{21010}{}{[Жмете его руку] Спасибо, рад помочь.}
+{22000}{}{[холодный взгляд напавлен на вас, а комната наполняется его страхом] Погоди, что? Что я могу поделать, Кайли казалась мне хорошей девочкой, но я практически с ней не общался, даже представить себе не мог, что она на такое способна.}
+{22010}{}{что-то ты темнишь, старик, и поверь мне, я с этим разберусь.}
+{22020}{}{Что правда, то правда..довериться шлюхе - плохая идея, пока.}
+{22030}{}{Как бы то не было, хочу спросить еще кое-что}
+{23000}{}{Эх ... так ты все-таки догадался, да?}
+{23010}{}{Догадался, ты все это сдеал ради горстки капсов или как?}
+{24000}{}{В какой то мере да, но я рассказал не всю правду о себе. Я хотел построить церковь и все еще очень хочу ее построить, я все это заварил, чтоб раздобыть денег, а ты просто попался, как и многие другие. Сказать по правде, Майк ничего не может с этим поделать, Кайли ходит под ним. Тебе вернули деньги, Я искренне прошу у тебя прощения, как человек веры, сможешь простить нас?}
+{24010}{}{Я прощаю тебя и могу понять, но почему просто не попросить людей о пожертвовании на строительство церкви. Твой нынешний способ сбора "пожертваний" не приведет ни к чему хорошему по моему.}
+{24020}{}{Сомневаюсь, что я должен, но раз уж вы вернули мне деньги, этого вполне достаточно, и нам больше неочем разговаривать.}
+{25000}{}{[Воодушевленно улыбается] Дельная мысль ... никогда об этом не задумывался, хотя это же так просто [подбрасывает монетку] это убережет меня от греха, да и смысла нет строить церковь в городе, жителям которого она не нужна. Спасибо тебе, ты сыграл важную роль в моей жизни, думаю открою сбор пожертвований как можно быстрее и построю церковь, ты первым об этом узнаешь, еще раз спасибо.}
+{25010}{}{Отлично, рад это слышать, я тоже сделаю пожертвование. Мы еще поговорим об этом, сейчас мне пора идти.}
+{25020}{}{Возможно я тоже сделаю пожертвование, но ничего не обещаю, прощай.}
+
+[pols]
+{100}{}{Benjami}
+{200}{}{Widzisz starego mężczyznę ubranego w fartuch.}
+{210}{}{Widzisz starszego człowieka o szczerej twarzy.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{[Patrzy na ciebie jak na @sex@|starego znajomego||starą znajomą|.] Witaj, piękny dzień dzisiaj mamy. Coś podać?}
+{2010}{}{Mary mnie przysłała, mam magnetofon.}
+{2020}{}{Kylee zgodziła się pracować u ciebie.}
+{2030}{}{Benjami! Kylee wzięła kapsle, ale ani tu nie pracuje, ani tym bardziej nie chce mi ich oddać! Gadaj, co się tu kurwa dzieje!}
+{2040}{}{Kylee przysłała mnie by powiedzieć ci, że już po wszystkim. Lepiej wyśpiewaj o co w tym wszystkim chodzi, bo nie ręczę za siebie! I oddawaj moją forsę!}
+{2050}{}{A co masz?}
+{2060}{}{Piwo.}
+{2070}{}{@sex@|Napiłbym||Napiłabym| się wódki.}
+{2080}{}{Nuka Cola.}
+{2090}{}{Jak zostałeś barmanem?}
+{2100}{}{Co możesz mi powiedzieć o tym miejscu?}
+{2110}{}{Chyba już pójdę.@@Na razie.}
+{3000}{}{Nie za wiele, zwykłe piwo, wódkę, ewentualnie Nuka Colę jeśli jesteś @sex@|abstynentem||abstynentką|. Ja bym polecił piwo, jest nienajgorsze, wóda ma takiego kopa że aż zatyka.}
+{3010}{}{No to daj to piwo.}
+{3020}{}{Lubię mocne wrażenia. Dawaj wódę.}
+{3030}{}{Colę poproszę.}
+{3040}{}{@sex@|Chciałbym||Chciałabym| spytać o coś innego.}
+{3050}{}{Czas już na mnie.@@Do zobaczenia.}
+{4000}{}{Nie ma sprawy, dycha za piwo.}
+{4010}{}{Dzięki. Mam parę pytań.}
+{4020}{}{Albo wiesz co, wezmę coś innego.}
+{5000}{}{50 kapsli. tylko nie mów że cię nie ostrzegałem.}
+{5010}{}{Spokojnie, nie takie rzeczy pijałem.}
+{5020}{}{Hm, może faktycznie sobie daruję. Jeszcze jedno...}
+{6000}{}{Dobry wybór. [Wyciąga spod lady butelkę coli.] Stówa za Nuka Colę.}
+{6010}{}{W porządku, dzięki.}
+{6020}{}{Stówa? Może wezmę coś innego.}
+{7000}{}{Jakby to powiedzieć, okoliczności mnie zmusiły. Tak po prawdzie, to nienawidzę bycia barmanem. Lubię przebywać wśród ludzi i z nimi rozmawiać, ale gadanie z tymi pijakami nie jest ani ciekawe, ani odprężające. Pracuję bo potrzebuję pieniędzy, nie dlatego, że to lubię. Większość z tych, którzy się tu pojawiają, to typowe ochlejmordy.}
+{7010}{}{Okoliczności, to znaczy...?}
+{8000}{}{Jedyny powód dla którego pracuję w tej norze to pieniądze. A konkretnie to pieniądze na kościół. Chcę postawić go tutaj, w Złomowie. Taki mam cel i zamierzam dopiąć swego.}
+{8010}{}{Nie @sex@|wiedziałem||wiedziałam|, że jesteś człowiekiem wiary.}
+{8020}{}{Rozumiem. Mam inne pytania.}
+{8030}{}{Aha... No to powodzenia.}
+{9000}{}{Pozory mylą. [Uśmiecha się.] Złomowo to idealne miejsce na założenie kościoła, kocham tą kupę żelastwa i nie zamieniłbym jej na nic innego. Dobrzy ludzie, tanie jedzenie, bezpieczny dach nad głową, czego chcieć więcej?}
+{9010}{}{Chyba niczego. Na razie.}
+{9020}{}{Czas już na mnie, dzięki za rozmowę.}
+{10000}{}{O, jak miło z jej strony! Nie spodziewałem się, że tak szybko go naprawi. Chciałem jej podziękować osobiście, ale skoro już się @sex@|pofatygowałeś||pofatygowałaś|, to masz tu parę piw, tak ramach zapłaty za twój czas.}
+{10010}{}{Dzięki!}
+{10020}{}{Mam jeszcze inną sprawę.}
+{11000}{}{[Opuszcza wzrok, zupełnie jakby chciał zapaść się pod ziemię, na jego twarzy zarysowuje się wyraz wstydu i rozczarowania.] Ja... nie chcę o tym rozmawiać, zresztą kogo obchodzi jęczenie o problemach starego dziada?}
+{11010}{}{Mnie obchodzi. Opowiedz, proszę.}
+{11020}{}{W takim razie, porozmawiamy o czymś innym?}
+{11030}{}{Faktycznie. Na razie.}
+{12000}{}{Ech... [Bierze głęboki wdech, po czym wydaje się być skoncentrowany na czyszczeniu szklanki, tak jakby odpowiedź miała znajdować się na jej dnie.] No dobrze... to co chcesz wiedzieć?}
+{12010}{}{Co robiłeś zanim zacząłeś wierzyć?}
+{13000}{}{Dawno temu byłem strażnikiem karawan, zawsze jest zapotrzebowanie na młodych i silnych do ich ochrony. Za, jak mówili, łatwe i duże pieniędze. Byłem młody, głupi i naiwny. Tamto życie było błędem, powinienem był wybrać spokojniejszy sposób na utrzymanie się.}
+{13010}{}{I co wtedy się wydarzyło, że tak się zmieniłeś?}
+{14000}{}{Co się wydarzyło? Pustkowia mi się wydarzyły. Nie byłem przygotowany na rzeczy które tam czyhają, na to wszystko co widziałem i przeszedłem... Do tej pory budzą mnie koszmary z tamtych lat, i naprawdę nie mam ochoty się w to zagłębiać. Zresztą, pewnie i tak byś nie @sex@|zrozumiał||zrozumiała|.}
+{14010}{}{No ale co ma do tego twoja wiara? I dlaczego chcesz zbudować kościół? To nie jest ani proste, ani łatwe zadanie, zwłaszcza dla jednego człowieka.}
+{15000}{}{Gdyby nie moja wiara w to, że ktoś tam na górze czuwa nad nami, to bym już dawno zwariował. Wiara to jedyna rzecz, która trzyma mnie przy życiu. Kościół pomógłby takim jak ja, ludziom na rozdrożu. Nie wszystkie bitwy da się wygrać przy użyciu spluw, zwłaszcza te bitwy, które toczysz sam ze sobą.}
+{15010}{}{No dobrze. Ale wydawałeś się mocno przybity kiedy cię o to @sex@|zapytałem||zapytałam|...}
+{16000}{}{Widzisz, ostatnio wiara trochę mnie opuszcza. Spójrz na mnie, siedzę tu i serwuję drinki jakimś moczymordom. Bez urazy. Czasami, gdy mam zły dzień, myślę że nigdy nie uda mi się osiągnąć tego co sobie zamierzyłem.}
+{16010}{}{Nie ma sprawy, Benjami. Może mogę ci jakoś pomóc?}
+{16020}{}{Dobra, już wiem wszystko. Może pogadamy o czymś innym?}
+{16030}{}{Opojom? Sam jesteś opój. Mam nadzieję że tu zgnijesz, żegnam.}
+{17000}{}{Hmmm... [Obserwuje cię przez chwilę.] Może i jesteś osobą, której mi potrzeba... Zacząłem już tracić wiarę, że jest jeszcze dobro na tym świecie, ale ty możesz pomóc mi udowodnić, że jest inaczej!}
+{17010}{}{Mogę spróbować. Co mam zrobić?}
+{17020}{}{Mam już dość tych pierdoł.}
+{18000}{}{Jest tu taka jedna dziewczyna, Kylee, zarabia na życie prostytuując się w hotelu. Jest bardzo dobrą osobą, serce mi pęka gdy patrzę jak marnuje sobie życie. Gdybyś ją @sex@|przekonał||przekonała|, żeby to rzuciła, mógłbym dać jej pracę u mnie, mogłaby być kelnerką... Nie sądzę że powinienem sam do niej iść, ta sprawa za bardzo leży mi na sercu, nie chciałbym tego schrzanić.}
+{18010}{}{Ale czemu akurat ona? To tylko zwykła dziwka, takich jak ona są setki.}
+{19000}{}{Kiedyś przeczytałem coś w starej książce jeszcze sprzed wojny. Nie pamiętam już dokładnie jak to brzmiało, ale sens był taki: jedna, mała iskra może rozproszyć ciemność. Ona jest tą iskrą, iskrą nadziei. I ja potrzebują tej iskry, żeby dalej żyć i wierzyć. Pomożesz mi, @sex@|przybyszu||nieznajoma|? Pomożesz mi odzyskać wiarę?}
+{19010}{}{Dobrze, zrobię to.}
+{19020}{}{Nie teraz, nie za bardzo mam czas.}
+{20000}{}{Dzięki, dzięki! Obiecuję ci że jakoś się odwdzięczę!}
+{20010}{}{Nie ma sprawy. Masz to jak w banku.}
+{21000}{}{[To świetnie! [Jego twarz rozjaśnia szeroki uśmiech.] Jak wiesz, nie jestem bogaty i nie mogę ci za wiele ofiarować jeśli idzie o pieniądze, ale masz moją dozgonną wdzięczność! Aha, i do tego butelka dobrego trunku, za twoją fatygę. [Podaje ci rękę.]}
+{21010}{}{[Ściskasz jego dłoń.] Dzięki, Benjami, cieszę się że @sex@|mogłem||mogłam| pomóc.}
+{22000}{}{[Jego twarz ciemnieje, oczy napełniają się strachem.] Co? Nie miałem z tym nic wspólnego! Ja z nią prawie w ogóle nie rozmawiałem! Kylee jest taką miłą dziewczyną, nie wierzę że mogła zrobić coś takiego!}
+{22010}{}{Nie wierzę ci, coś kręcisz...}
+{22020}{}{Dawno temu ja też @sex@|zaufałem||zaufałam| pewnej kobiecie, wtedy @sex@|dałbym||dałabym| sobie za nią rękę uciąć. I wiesz, co? I bym teraz, kurwa, nie @sex@|miał||miała| ręki. Na razie, Benjami.}
+{22030}{}{Dobra, jasne. Mam jeszcze inną sprawę.}
+{23000}{}{[Benjami spuszcza wzrok, wyraźnie zrezygnowany.] Dobrze, przyznaję się. Już @sex@|rozgryzłeś||rozgryzłaś|, o co chodzi?}
+{23010}{}{Ta. Malutki przekręt na @sex@|naiwnym frajerze||naiwnej frajerce|. Tylko po co cała ta zmyślona historia z kościołem, wiarą i nawróceniem dziwki, skoro i tak macie szeryfa w swojej kieszeni?}
+{24000}{}{To nie do końca tak... Widzisz, tylko część z tej historii jest zmyślona... Ja ze swojej strony powiedziałem prawdę, naprawdę chcę, żeby tutaj stanął kościół. Być może używam złych metod, ale cel jest szczytny... Aha, Mike nie ma z tym wspólnego i o niczym nie wie, po prostu *lubi* Kylee... Proszę, to twoje kapsle i... Przepraszam, że tak cię potraktowaliśmy. Wybaczysz nam?}
+{24010}{}{Rozumiem, wybaczam wam. Słuchaj, nie byłoby prościej po prostu prosić ludzi o datki na budowę? W ten sposób każdy, kto chce, mógłby cię wspomóc. Robienie ludzi w konia to chyba jednak nienajlepszy pomysł na zbieranie forsy na taki cel...}
+{24020}{}{Nie wydaje mi się żebym @sex@|musiał||musiała|. Co prawda oddałeś moją forsę... ale i tak nie mamy o czym rozmawiać.}
+{25000}{}{[Uśmiecha się, wyraźnie podbudowany.] Tak, to jest myśl! Czemu wcześniej o tym nie pomyślałem? Genialne w swojej prostocie! Nie będę musiał już grzeszyć i oszukiwać ludzi, zresztą, jaki jest sens budowania kościoła na siłę, jeśli ludzie o nim nie wiedzą? Jeszcze raz dzięki, bardzo mi @sex@|pomogłeś||pomogłaś|, gdyby nie ty, błądziłbym dalej... Kiedy tylko uzbieram wystarczająco dużo pieniędzy, zacznie się budowa, przysięgam. Odwiedź mnie wtedy koniecznie!}
+{25010}{}{Miło mi to słyszeć. Kiedy zaczniesz zbierać datki, na pewno coś dorzucę. Tymczasem, muszę już iść.}
+{25020}{}{Dzięki. Może ja też cię wspomogę, o ile będę @sex@|miał||miała| czym. Na razie, Benjami.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello there. What'll it be?@@Welcome, need something from me?@@What can I get you?@@Need anything, stranger?}
+{2010}{}{I've got the Record-O-Matic from Mary.}
+{2020}{}{Kylee agreed, she will come and work for you. As a waitress, of course.}
+{2030}{}{Kylee took the caps and won't give them back. I don't see her working here too, so it is time you tell me what the fuck is going on here!}
+{2040}{}{Kylee sent me to tell you it's all over. You better start talking now... or you'll be really fucking sorry.}
+{2050}{}{What do you have?@@What can I get then?}
+{2060}{}{Gimme a beer.@@A beer sounds fine.@@I'll take a beer.@@Get me a nice, cold beer.}
+{2070}{}{Give me a bottle of booze.@@I need something to cheer me up. A bottle of booze seems just right.@@Booze, now.@@I need booze.}
+{2080}{}{I quit drinking not so long ago. Give me a Nuka-Cola.@@Give me a Nuka.@@One Nuka please.}
+{2090}{}{How did you become a bartender?@@So... Benjami, is that right? How did you become a bartender?@@Care to tell me about your job?}
+{2100}{}{What can you tell me about this place?}
+{2110}{}{Just looking around.@@Nice bar. Maybe I'll drop later for a beer or two.@@Just passing by.@@Nothing, just looking around.@@Nothing, thanks, I'm looking for someone.}
+{3000}{}{Nothing special, the usual beer, booze... Or a Nuka, if you're not into alcohol. So... what can I get you?}
+{3010}{}{Gimme a beer.@@A beer sounds fine.@@I'll take a beer.@@Get me a nice, cold beer.}
+{3020}{}{Give me a bottle of booze.@@I need something to cheer me up. A bottle of booze seems just right.@@Booze, now.@@I need booze.@@I need to get wasted. Give me booze, now.}
+{3030}{}{Nuka-Cola it is then.@@Give me a Nuka.@@One Nuka please.@@Nuka-Cola please.}
+{3040}{}{Nothing right now, I just want to talk.@@Maybe later, I wanted to ask you something.}
+{3050}{}{Hmm, I'm not really in the mood to sit in the bar today. Goodbye.@@Maybe later. Bye.@@Another time. Gotta go.}
+{4000}{}{No problem, ten caps for a beer.@@Okay, ten caps.@@No problem, 10 caps.@@As you wish, 10 caps for a beer.}
+{4010}{}{Thanks, I've got some questions too.@@Nice. I've got questions though.@@Okay, thanks. Can I ask you something.@@Right. Spare a few moments for a couple of questions?}
+{4020}{}{On the other hand... I want something else.@@Maybe something else then.@@Too steep for my pockets, maybe something else...}
+{5000}{}{All right, 50 caps for a booze.@@Sure, fifty caps for a bottle.@@Okay, 50 caps.@@No problem, fifty caps.}
+{5010}{}{Thanks, I've got some questions too.@@Nice. I've got questions though.@@Okay, thanks. Can I ask you something.@@Right. Spare a few moments for a couple of questions?}
+{5020}{}{On the other hand... I want something else.@@Maybe something else then.@@Too steep for my pockets, maybe something else...}
+{6000}{}{Good choice! Hundred caps for a Nuka.@@You sure know what's best. 100 caps please.@@Okay, Nuka's for a hundred caps. Interested?}
+{6010}{}{Thanks, I've got some questions too.@@Nice. I've got questions though.@@Okay, thanks. Can I ask you something.@@Right. Spare a few moments for a couple of questions?}
+{6020}{}{On the other hand... I want something else.@@Maybe something else then.@@Too steep for my pockets, maybe something else...@@I think I'll pass. Maybe something else.}
+{7000}{}{It's not that I like it. There's nothing entertaining in watching people getting wasted all the time. I work to sustain myself, but I to be quite frank, this job is kinda disgusting.}
+{7010}{}{Really?@@No kiddinng.@@Interesting...}
+{8000}{}{Yeah, you bet. But, this ain't going to last forever. Once I get on my feet and get some funds, I'm going to leave this stinky bar. You may laugh but... I want to build a church.}
+{8010}{}{What?@@A church, you're joking?@@No way, a church?}
+{8020}{}{Good luck then. Can we talk about something else?@@Right. I think I need a drink.}
+{8030}{}{Good luck with that. I've gotta go.@@I've heard enough. See you later.@@Got to go, sorry.}
+{9000}{}{Junktown? A good place. Safe, good people too. I've been living here for a long time, and it is the best place to live, I tell you. }
+{9010}{}{Okay, thanks. There was something else...@@I see. Can I ask you something else?}
+{9020}{}{Okay, thanks for the info. Gotta go.@@Thanks. I'll look around a bit.@@I see. See you later.}
+{10000}{}{How nice of her, I didn't expect her to fix it so soon. I guess she is busy, I wanted to thank her myself, but since your here I'll give you few beers on the house for your troubles, take it as a good gesture.}
+{10010}{}{Oh, you welcome.@@Thanks!@@Okay, thanks.@@Thanks, I need to go.}
+{10020}{}{Can I ask you something?@@Spare a moment?@@Got a minute?@@There was something else.}
+{11000}{}{Why not? You may not see it, but Junktown is a perfect place for it. It's pretty safe and secure, good trading opportunities, good people... or at least, most of them. All this place needs is a beacon of hope. And that would be the church.}
+{11010}{}{Perhaps.@@If you say so...@@I guess, maybe.}
+{11020}{}{All right, let's talk about something else.@@I've heard enough, I need a drink.@@Can we change the subject?}
+{11030}{}{You bet I don't, farewell.}
+{12000}{}{Yeah... [He starts cleaning a shot glass, and seems fixated on it as if he was looking into a deep well.]}
+{12010}{}{So... how did you become a religious man?@@How did you become the man you are now?}
+{13000}{}{A long story, friend... So I'll cut it short. I was a carvie. A caravan guard. You know how it is, you are young, you think you're immortal, and everything bad can happen to others, but not you.}
+{13010}{}{Yeah, I get what you mean. So, what happened?@@Yeah, I know the drill. So, what happened?@@Right, go on.}
+{14000}{}{Wasteland happened. I got wounded, and was taken prisoner. The things I did, the things I've seen people do to stay alive... I they just killed me instead. Anyway, I managed to get away... after a couple of years. Found my way here, started to work myself up in this place... and here I am.}
+{14010}{}{And so, you changed?@@I see.}
+{15000}{}{Yeah... I thought myself built of a better material. And so, I never came back to caravan business again. This may be an ugly job, but it's honest and safe. I just wish everyone wouldn't drink so much. The people here are really decent, they just seem so fixated with everyday troubles that they don't even notice all the good that's around them.}
+{15010}{}{So, what's your point?}
+{16000}{}{As I said before. Junktown needs a beacon of hope. A church. A place where people could go, leave all their troubles behind, and share their inner goodnes. Some say I'm naive and stupid, but they even don't bother to try... Take for example this working girl, Kylee...}
+{16010}{}{Who?@@A working girl?}
+{16020}{}{{All right, I heard enough of your sermons, bartender. I need to drink.@@Eh, a preaching bartender. Just what a bar needs. I need to drink.}
+{16030}{}{I've got to go.@@Maybe we'll talk later, Benjami.@@I need to go, sorry.}
+{17000}{}{Yeah. Kylee's a prostitute. It's a shame a young girl sells herself like that. She comes to my bar every now or then with her... clients. She pretends to be liking her job, but then she comes back later, and drinks into late night...}
+{17010}{}{Where does the faith issue come?@@So...?@@And?}
+{17020}{}{I've had enough of this.@@That's enough for me.@@I've heard enough.}
+{18000}{}{Well, if people are to take my message seriously, and for that church to be something more than an empty building, I need to show them a sign. A sign of goodness. And what better sign, than a bad girl gone good? Someone said, that a small spark of light can light a very dark room, and these are the words I believe in.}
+{18010}{}{And how exactly do you want to accomplish that?@@You want to... save her? How?}
+{19000}{}{Not exactly me... You see, people need to see it as if Kylee herself made the decision. Hmmm, since we're talking about this already... You might be just the person to accomplish the task. I could give her a job here, at the Pitt. I bet she would prefer it over her present... work. So, will you be willing to help, stranger?}
+{19010}{}{Sure, why not.@@I may try.@@Okay, I will do this.@@This might be interesting. I'll do it.@@Sure, I'll do it.}
+{19020}{}{No way.@@No, I've got better things to do.@@Go find someone else, I've got things to take care of.@@Not interested, sorry. Goodbye.}
+{20000}{}{You will? Great! Go to the Crash House, she usually spends her time there. Tell her that you heard that I need a waitress or something.}
+{20010}{}{Okay, consider it done.@@Right, I'll go now.@@Okay, I'm going.}
+{21000}{}{She did? Great! I never thought it would be so easy, I mean... that she'd agree. I'm not a rich man, but I can give you a small amount of cash for your effort. And some drink on the house, of course! [He leans to make a handshake.]}
+{21010}{}{[Shake hands.] No problem, glad I could help you out.}
+{22000}{}{No way, I didin't have anything to do with this! I hardly ever talk to her, that's why I sent you...}
+{22010}{}{I don't believe you. Something's not right. And I intend to find out what is going on.}
+{22020}{}{Never trust a hooker, they say. I guess we both made the same mistake.}
+{22030}{}{Whatever. I need a drink.@@Right, yeah... I need a drink after all this.@@Whatever, Benjami. Gimme something to drink.}
+{23000}{}{All right, all right! Calm down. I'll tell you everything. And I'll give you back the money...}
+{23010}{}{You better not bullshit me this time. This whole church thingy was a scam, right?}
+{24000}{}{No! I really want to build it. But it would cost a lot of money, and it will take forever to gather it. I don't have anything against Kylee's job, as long as she is happy with it. And she is. She even thought that the idea was great, and volunteered to help me out... All those caps would have been spent for a great purpose, but now... }
+{24010}{}{Why don't you just ask people to donate, instead of lying to them?}
+{24020}{}{I see. But the end doesn't justify the means, Benjami. I hope you learned your lesson, cos I sure did learn mine. Goodbye.}
+{25000}{}{Donate? I... I never thought about that. That's a great idea! I'll set up a box in my bar! Thank you very much! You've helped the good cause today! You know, you could donate too!}
+{25010}{}{Maybe I will. Goodbye, Benjami.}
+{25020}{}{You're hopeless. I'll see you later... maybe.}
+

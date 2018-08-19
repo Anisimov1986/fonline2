@@ -1,0 +1,612 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+35 1010 D _param p TRAIT_SKILLED = 1 #
+18 1020 D _var p bosside = 20 #
+15 1030 D _var p bosside = 2 D or D _var p bosside = 3 D or D _var p bosside = 4 D or D _var p bosside = 5 D or D _var p bosside = 6 D or D _var p bosside = 7 D or D _var p bosside = 8 D or D _var p bosside = 9 D or D _var p bosside = 10 D or D _var p bosside = 11 D or D _var p bosside = 12 D or D _var p bosside = 13 D or D _var p bosside = 14 D or D _var p bosside = 15 D or D _var p bosside = 16 D or D _var p bosside = 17 D or D _var p bosside = 18 #
+16 1040 D _var p bosside = 1 #
+5 1050 D _var p name_mem_player_npc = 1 R _var p name_mem_npc_player = 0 #
+2 1060 D _var p name_mem_player_npc = 0 R _var p name_mem_npc_player = 0 @
+2 2000 None 0 #
+17 2010 R _var p name_mem_player_npc = 1 #
+50 2020 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 D _var p se_village_check < 5 #
+40 2030 D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers < 4 #
+19 2040 D _param p ST_LEVEL < 15 D _var p TEMP_LOCK = 1 R _var p name_mem_player_npc = 1 #
+20 2050 D _param p ST_LEVEL } 15 D _var p TEMP_LOCK = 1 R _var p name_mem_player_npc = 1 #
+0 2060 R _var p name_mem_player_npc = 1 @
+5 3000 None 0 #
+50 3010 D _var p se_village_check < 5 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 #
+40 3020 D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers < 4 #
+6 3030 #
+0 3040 @
+6 4000 None 0 #
+17 4010 #
+19 4020 D _param p ST_LEVEL < 15 D _var p TEMP_LOCK = 1 #
+20 4030 D _param p ST_LEVEL } 15 D _var p TEMP_LOCK = 1 #
+0 4040 @
+15 5000 None 0 #
+40 5010 D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers < 4 @
+16 6000 None 0 #
+50 6010 D _var p se_village_check < 5 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 #
+40 6020 D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers < 4 #
+0 6030 @
+17 7000 None 0 #
+6 7010 #
+0 7020 @
+18 8000 None 0 #
+0 8010 @
+19 9000 None 0 #
+0 9010 @
+20 10000 None 0 #
+21 10010 #
+0 10020 @
+21 11000 None 0 #
+22 11010 #
+0 11020 @
+22 12000 None 0 #
+23 12010 #
+0 12020 @
+23 13000 None 0 #
+26 13010 @
+24 14000 None 0 #
+25 14010 #
+0 14020 R _script dialog@r_ShowQuestMessage 1 9334 @
+25 15000 None 0 #
+0 15010 R _script dialog@r_ShowQuestMessage 1 9334 @
+26 16000 None 0 #
+27 16010 D _param p MAIN_FACTION = 0 #
+27 16020 R _var p name_mem_npc_player + 1 #
+33 16030 D _param p MAIN_FACTION = 4 D or D _param p MAIN_FACTION > 5 @
+27 17000 None 0 #
+28 17010 D _param p MAIN_FACTION = 0 #
+28 17020 R _var p name_mem_npc_player + 1 #
+33 17030 D _param p MAIN_FACTION = 5 D or D _param p MAIN_FACTION = 1 @
+28 18000 None 0 #
+29 18010 D _param p MAIN_FACTION = 0 #
+29 18020 R _var p name_mem_npc_player + 1 #
+65507 18030 D _param p MAIN_FACTION = 3 @
+29 19000 None 0 #
+30 19010 D _param p MAIN_FACTION = 0 #
+30 19020 R _var p name_mem_npc_player + 1 #
+33 19030 D _param p MAIN_FACTION ! 0 @
+30 20000 None 0 #
+31 20010 D _var p name_mem_npc_player = 0 #
+32 20020 D _var p name_mem_npc_player } 1 @
+31 21000 None 0 #
+24 21010 R _var p bosside = 1 R _var p encside = 20 #
+0 21020 @
+32 22000 None 0 #
+0 22010 R _var p name_mem_npc_player = 0 @
+33 23000 None 0 #
+0 23010 R _var p name_mem_npc_player + 1 @
+34 24000 None 0 @
+35 25000 None 0 @
+40 26000 None 0 #
+46 26010 D _param p MAIN_FACTION = 2 R _item p PID_SE_BOS_HOLODISK - 1 R _var p q_finderskeepers = 5 #
+41 26020 D _param p MAIN_FACTION ! 2 D _var p q_finderskeepers < 3 R _item p PID_SE_BOS_HOLODISK - 1 R _var p q_finderskeepers = 1 R _param p ST_EXPERIENCE + 1000 #
+43 26030 D _param p MAIN_FACTION ! 2 D _var p q_finderskeepers = 3 R _var p q_finderskeepers = 4 R _param p ST_EXPERIENCE + 3000 R _item p PID_SE_BOS_HOLODISK - 1 #
+0 26040 @
+41 27000 None 0 #
+42 27010 R _script dialog@r_ShowQuestMessage 1 9630 @
+42 28000 None 0 @
+43 29000 None 0 #
+44 29010 @
+44 30000 None 0 #
+45 30010 #
+0 30020 @
+45 31000 None 0 #
+42 31010 R _script dialog@r_ShowQuestMessage 1 9630 @
+46 32000 None 0 #
+0 32010 R _script dialog@r_ShowQuestMessage 1 9630 @
+50 33000 None 0 #
+51 33010 D _param p MAIN_FACTION ! 2 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 D _var p se_village_check = 3 R _param p ST_EXPERIENCE + 2000 R _item p PID_SE_VILLAGE_BROTHERHOOD_TAG - 1 R _var p se_village_check = 5 #
+52 33020 D _param p MAIN_FACTION ! 2 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 D _var p se_village_check = 0 D or D _param p MAIN_FACTION ! 2 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 D _var p se_village_check = 1 R _param p ST_EXPERIENCE + 500 R _item p PID_SE_VILLAGE_BROTHERHOOD_TAG - 1 R _var p se_village_check = 5 #
+53 33030 D _param p MAIN_FACTION = 2 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 D _var p se_village_check = 2 R _param p ST_EXPERIENCE + 2000 R _item p PID_SE_VILLAGE_BROTHERHOOD_TAG - 1 R _var p se_village_check = 5 #
+55 33040 D _param p MAIN_FACTION = 2 D _var p se_village_check = 0 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 D or D _param p MAIN_FACTION = 2 D _var p se_village_check = 1 D _item p PID_SE_VILLAGE_BROTHERHOOD_TAG } 1 R _var p se_village_check = 5 R _item p PID_SE_VILLAGE_BROTHERHOOD_TAG - 1 R _param p ST_EXPERIENCE + 500 #
+0 33050 @
+51 34000 None 0 #
+0 34010 @
+52 35000 None 0 #
+0 35010 @
+53 36000 None 0 #
+54 36010 D _item p PID_SE_VILLAGE_BARETT_ARMOR } 1 R _script dialog@r_NodeChancePercent 3 50 54 55 R _param p ST_EXPERIENCE + 3000 R _param p ST_KARMA + 50 #
+0 36020 @
+54 37000 None 0 #
+0 37010 @
+55 38000 None 0 #
+0 38010 @
+56 39000 None 0 #
+0 39010 &
+
+[engl]
+{100}{}{Knight Matthews}
+{200}{}{You see: Knight Matthews.}
+{210}{}{You see a man clad in Power Armor. A patch on his armor's shoulderpad reads: "Matthews".}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{in enclave}
+{1030}{}{started bos quests}
+{1040}{}{after joining}
+{1050}{}{met again}
+{1060}{}{answer}
+{2000}{}{Hello there stranger, I am knight Matthews. Welcome to the Brotherhood of Steel. How can I help you?@@Welcome to the Brotherhood of Steel, stranger. I am knight Matthews. How can I help you?@@Welcome to the Brotherhood of Steel. I am knight Matthews. What do you need, stranger?}
+{2010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{2020}{}{I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{2030}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{2040}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{2050}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{2060}{}{Goodbye.@@I need to go.@@Sorry, wrong room.@@I need to be somewhere else.@@I've got to go.@@I should be leaving.}
+{3000}{}{Hello again. What do you need this time, Wastelander?@@Hello again, Wastelander, what do you need?@@Welcome back, how can I help you?@@You're back. How can I help you?}
+{3010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{3020}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters, and found it in their stolen goods.}
+{3030}{}{I've got some questions.@@I want to ask you something.@@I've got questions.}
+{3040}{}{Just passing by.@@I was just leaving.@@I've got to go.}
+{4000}{}{Go ahead.@@Sure.@@No problem.@@Yes?@@Ask ahead.@@Shoot.@@Go ahead.@@Yes?}
+{4010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{4020}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{4030}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{4040}{}{On second thought, I've got to go.@@Nevermind, I need to get going.@@Um, I need to go now.@@I've got to go. Goodbye.}
+{5000}{}{Yes?@@Good day.@@I'm busy now, come back later.@@I don't have time right now, come back later.}
+{5010}{}{I found this holodisk in what appeared to be one of the Brotherhood bunkers. It has been ransacked, but I've dealt with the looters.}
+{6000}{}{Shouldn't you report to Scribe Kendrick now?@@Go and report to Scribe Kendrick, Initiate.}
+{6010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{6020}{}{I found this holodisk in what appeared to be one of the Brotherhood bunkers. It has been ransacked, but I've dealt with the looters.}
+{6030}{}{Okay.@@All right.@@Fine.@@Yeah.}
+{7000}{}{Our Brotherhood? All I can say to you is that we are an ancient order, dedicated to preservation and reclaimation of lost technology. We are fighting to preserve the balance in the Wasteland, keeping the old tech from falling into the wrong hands. That's about all I can tell you. To be honest, I'm not much into history, and not really the one you want to be asking. Should you ever become an Initiate, talk to some of the Scribes.}
+{7010}{}{Okay. One more thing...@@I get it. Can we change the subject?@@Right, can I ask you about something else?}
+{7020}{}{Hmm, thanks. I must depart.@@Okay, thanks. I need to go.@@Hmm, maybe I will someday. Goodbye.@@Thanks, but I need to be somewhere else.@@Right. I must go now. See you later.}
+{8000}{}{[Just when you're about to start talking to the man, you remember about the certain "upgrade" the mysterious Enclave agent made to your Pip-Boy. You're not sure if talking to this Brotherhood member might be considered treason, but it's better to stay on the safe side.]}
+{8010}{}{[Walk away.]@@[Quickly turn around and walk away.]@@[Leave immediately.]}
+{9000}{}{I am sorry, but we need skilled men and women, not amateurs. (Required Level: 15.)@@You're not ready to become an Initiate... yet. (Required Level: 15.)@@You're not ready join yet. (Required Level: 15.)@@I don't think you're ready. (Required Level: 15.)}
+{9010}{}{Oh, okay.@@Crap.@@I'll be back.@@Damn, I'll be back later then.@@Right. Goodbye.}
+{10000}{}{Really? You do seem capable enough... But we're not recruiting any new Initiates right now. At least not the regular ones.}
+{10010}{}{No?@@Why not?@@Really?@@Regular ones?@@No way, really?}
+{10020}{}{Ah, fuck this.@@I'll be going then.@@I see. I think I should be going.}
+{11000}{}{Well, to be honest, we've got more people that we are able to train effectively. So things are a little slow now. But... We still need people for special tasks, not necesserily involving combat.}
+{11010}{}{What do you mean?@@What do you mean by that?@@Not involving combat?@@Tell me more.}
+{11020}{}{Sounds boring. I think I'll take my leave.@@This doesn't sound very exciting. I'll go now.@@Not my style really. Goodbye.}
+{12000}{}{Well, I said not *necessarily* involving combat. Most of the time, that is. We've got shortage of men in the special operations area, that would be espionage, sabotage, influencing foreign powers, bribing politicians, technology extraction, occasional assasination and so on.}
+{12010}{}{This sounds pretty interesting. Count me in!@@Hmm, this will do. I want to join now!@@Sounds like excitiment is on the way! I'm in. }
+{12020}{}{On second thought... I think I'll pass.@@Nevermind.@@I don't think I'm ready to join yet.@@Sorry, I think I need to consider this. Goodbye.}
+{13000}{}{Good! But first, I'm going to need you to sign these papers, @sex@|Mr||Ms|...}
+{13010}{}{@pname@. [Sign the papers.] What now?}
+{14000}{}{You will be receiving instructions from Scribe Kendrick. Go to the building on the left from the courtyard. Ah, and from now on you will also address your superiors properly, is that clear?}
+{14010}{}{Knight Matthews, what's is Vulture Squad?@@Vulture Squad? What's that, Knight Matthews?}
+{14020}{}{Yes, Knight Matthews.@@Initiate @pname@ ready for duty, Knight Matthews.@@As you command, Knight Matthews.}
+{15000}{}{Vulture Squad is... well, it's just a moniker for our special operations division. Couple of years ago, Knight Jacobs was coming back from such a special mission. When he entered the mess hall, some Paladins started to laugh when it turned out he had a dead vulture hatchling splattered on his... bottom. He must have sat on some nest, or something like that. And so, the name stuck too. [He laughs.]}
+{15010}{}{I see. I'll be going, Knight Matthews.@@Uhuh. I'll go now, Knight Matthews.}
+{16000}{}{I'm gonna need to run a quick background check. Nothing serious, besides, you will be throughly checked during your service. Now, I'm gonna ask you a series of questions. Question one: Are you, or were in any way connected to the following groups: Khans, Rippers, Regulators, Blades or any other such group?}
+{16010}{}{No.@@Nope.@@I don't even know who those are.@@Nay.@@If I were, I wouldn't tell you that, right?}
+{16020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{16030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?}
+{17000}{}{Question two: Are you a citizen of any following entities: The Hub, Junktown, New California Republic or Vault City?}
+{17010}{}{No.@@I am just a wandererer.@@Nope.@@I move from place to place.@@I am only a citizen of the republic that consists of my tent and its surroundings.@@Not really.}
+{17020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{17030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?@@I am.@@Yes, I am.}
+{18000}{}{Question three: Are you in any way connected, or affiliated with the organisation called The Enclave?}
+{18010}{}{No.@@I am not.@@What is that?@@Not really.@@No.@@Nope.}
+{18020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{18030}{}{Yes.@@I am.@@Yes, I am.@@I am.}
+{19000}{}{Fourth and final question: Are you affiliated with any political, religious, merchant or other group that was not mentioned before, be it formal or informal?}
+{19010}{}{No.@@Nope.@@No.@@Not really.}
+{19020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{19030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?@@I am.@@Yes, I am.}
+{20000}{}{Allright, we're done. Now, the results... [He turns back and seems to look at some graphs on the monitor behind him.] Hmm...}
+{20010}{}{Yes?@@So...?@@Is this gonna take long?@@Yes?@@Hmmm?@@Yeah?}
+{20020}{}{Yes?@@So...?@@Is this gonna take long?@@Yes?@@Hmmm?@@This gonna take long or what?}
+{21000}{}{[He turns back to you.] Everything seems okay. You're probably wondering why should I believe your words? Well, see that camera over there? It recorded your face expressions throughout the questioning. And then the recording was analysed on the spot some smart programme our tech boys came up with. And, as I hear, it is nearly impossible to cheat it. Okay, so are you sure that you want to join? This a imporant decision, don't take it lightly.}
+{21010}{}{Yes. I am sure I want to join. What should I do now? (Join Brotherhood of Steel, remove possibility of joining the Enclave.)@@Yes, yes, I am one hundred percent sure! (Join Brotherhood of Steel, remove possibility of joining the Enclave.)@@Yeah, that's my decision. I want to join. (Join Brotherhood of Steel, remove possibility of joining the Enclave.)}
+{21020}{}{I need to think about this...@@I need some time, yeah. Later.@@I will think about this.}
+{22000}{}{[He turns back to you.] You've lied during your questioning. And, as far as I'm concerned, we don't want liars in our ranks. Get out now!}
+{22010}{}{Shit, how did you know?Ah, nevermind. @@Damn. How did you know? Ah, I don't care anyway. @@I thought that was gonna be easier.@@Damn it, how did you know I... whatever. Goodbye. @@Yeah, screw you.}
+{23000}{}{I'm sorry, but we only recruit people not affiliated with any outside organisations. Thank you for you time, and goodbye.}
+{23010}{}{Shit.@@Damn.@@I thought that was gonna be easier.@@Damn it.@@Crap.@@Oh well...}
+{24000}{}{You're not eligible for becoming an Initiate. Leave now, and don't waste my time.@@You're not suited to become an Initiate. Goodbye.}
+{25000}{}{You're a bold one! We won't shoot you only because the NCR and Hub accept mutants as their citizens, and we don't want our relations to get strained. But we haven't forgotten the atrocities your kind has committed, and we never will. Now, get lost!}
+{26000}{}{Is that so?@@Really?@@Curious...}
+{26010}{}{It's true.@@It's the truth.@@That's the truth.@@I'm telling the truth.}
+{26020}{}{It's true.@@It's the truth.@@That's the truth.@@I'm telling the truth.}
+{26030}{}{I managed to read some of the holodisk's data, so don't bullshit me.@@Don't fuck around with me, the holodisk's data obviously points to the Brotherhood.}
+{26040}{}{Nevermind.@@Ah, fuck this. I'm not gonna beg.}
+{27000}{}{I think you are mistaken. Please don't waste my time.@@You are mistaken. Plase don't bother me again.}
+{27010}{}{But...@@But!@@Wait!}
+{28000}{}{We're done talking about this.@@That's all I have to say.@@We're done talking.}
+{29000}{}{Okay, okay. Give me that holodisk.@@Allright, allright, keep it quiet. Give me that holodisk now.}
+{29010}{}{Okay.@@All right.@@Okay, take it.@@Fine, take it.}
+{30000}{}{All right. Now keep quiet about this and leave. And don't tell anyone about that holodisk, or you'll be sorry.}
+{30010}{}{What will I get out of this then?@@Hey, any reward for returning your property?@@Whoa, how very kind of you. Shouldn't we talk about a reward?}
+{30020}{}{Fine.@@Right.@@Yeah, right.@@Whatever.}
+{31000}{}{There is no reward. Just keep your mouth shut.}
+{31010}{}{But...@@But!@@Wait...@@What?}
+{32000}{}{All right, just keep your mouth shut about this. I'll take the holodisk, report this to Scribe Kendrick.}
+{32010}{}{All right.@@Okay.@@Right.@@Fine.}
+{33000}{}{Where did you find this?}
+{33010}{}{I found this guy in a village in the mountains and... [Tell him about your encounter with the renegade paladin.]}
+{33020}{}{I just found it... somewhere.}
+{33030}{}{I have met a deserter from our Brotherhood. He wasn't willing to come back to face justice, and attacked me.}
+{33040}{}{I just found it... somewhere.}
+{33050}{}{Nevermind.@@Forget it.}
+{34000}{}{I see. From what you tell, the man  might have gone insane. Since you're not a Brotherhood member, I cannot give you any reward, but you have our most sincere thanks. }
+{34010}{}{Whatever.@@Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{35000}{}{Interesting... I'll take this, thanks for your efforts. Since you're not a Brotherhood member, I cannot give you any reward, but you have our sincere thanks.}
+{35010}{}{Whatever.@@Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{36000}{}{This is very sad news. But it's a good thing that you ended that man's suffering. He clearly went insane.... The Elders will need to hear about this, all those years they were wondering what happened to him. Thank you for your assistance, it will not go unnoticed.}
+{36010}{}{Another thing. I also found the man's armor. I thought it needed to be returned too.@@I have also found the man's armor.}
+{36020}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{37000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it seems it's damaged beyond repair. It won't be of any use for our Paladins. If you wish, you can keep it.}
+{37010}{}{Sure! thanks.@@Sure, thank you.@@Sure, thanks!}
+{38000}{}{I see. Thanks for your efforts, they will not go unnoticed.}
+{38010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{39000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it looks pretty beat up, but will do. Thank you once again.}
+{39010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.@@Just doing my job.@@Just doin' what I'm supposed to.}
+
+[russ]
+{100}{}{Knight Matthews}
+{200}{}{Knight Matthews}
+{210}{}{You see a man clad in Power Armor. A patch on his armors' shoulderpad reads: "Matthews".}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{in enclave}
+{1030}{}{started bos quests}
+{1040}{}{after joining}
+{1050}{}{met again}
+{1060}{}{answer}
+{2000}{}{Hello there stranger, I am knight Matthews.Welcome to the Brotherhood of Steel. How can I help you?@@Welcome to the Brotherhood of Steel, stranger. I am knight Matthews. How can I help you?@@Welcome to the Brotherhood of Steel. I am knight Matthews. What do you need, stranger?}
+{2010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{2020}{}{I found this dog tag, thought you might want to take a look. [Show him the dog tag.]}
+{2030}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{2040}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{2050}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{2060}{}{Goodbye.@@I need to go.@@Sorry, wrong room.@@I need to be somewhere else.@@I've got to go.@@I should be leaving.}
+{3000}{}{Hello again. What do you need this time, Wastelander?@@Hello again, Wastelander, what do you need?@@Welcome back, how can I help you?@@You're back. How can I help you?}
+{3010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{3020}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{3030}{}{I've got some questions.@@I want to ask you something.@@I've got questions.}
+{3040}{}{Just passing by.@@I was just leaving.@@I've got to go.}
+{4000}{}{Go ahead.@@Sure.@@No problem.@@Yes?@@Ask ahead.@@Shoot.@@Go ahead.@@Yes?}
+{4010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{4020}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{4030}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{4040}{}{On second thought, I've got to go.@@Nevermind, I need to get going.@@Um, I need to go now.@@I've got to go. Goodbye.}
+{5000}{}{Yes?@@Good day.@@I'm busy now, come back later.@@I don't have time right now, come back later.}
+{5010}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{6000}{}{Report to Scribe Kendrick.@@Report to Scribe Kendrick, now.@@Go and report to Scribe Kendrick, Initiate.}
+{6010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{6020}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{6030}{}{Okay.@@All right.@@Fine.@@Yeah.}
+{7000}{}{Our Brotherhood? All I can say to you is that we are an ancient order, dedicated to preservation and reclaimation of lost technology. We are fighting to preserve the balance in the Wasteland, keeping the old tech from falling into the wrong hands. That's about all I can tell you. To be honest, I'm not much into history, and not really the one you want to be asking. Should you ever become an Initiate, talk to some of the Scribes.}
+{7010}{}{Okay. One more thing...@@I get it. Can we change the subject?@@Right, can I ask you about something else?}
+{7020}{}{Hmm, thanks. I must depart.@@Okay, thanks. I need to go.@@Hmm, maybe I will someday. Goodbye.@@Thanks, but I need to be somewhere else.@@Right. I must go now. See you later.}
+{8000}{}{[Just when you're about to start talking to the man, you remember about the certain "upgrade" the mysterious Enclave agent made to your Pip-Boy. You're not sure if talking to this Brotherhood member might be considered treason, but it's better to stay on the safe side.]}
+{8010}{}{[Walk away.]@@[Quickly turn around and walk away.]@@[Leave immediately.]}
+{9000}{}{I am sorry, but we need skilled men and women, not amateurs. (Required Level: 15.)@@You're not ready to become an Initiate... yet. (Required Level: 15.)@@You're not ready join yet. (Required Level: 15.)@@I don't think you're ready. (Required Level: 15.)}
+{9010}{}{Oh, okay.@@Crap.@@I'll be back.@@Damn, I'll be back later then.@@Right. Goodbye.}
+{10000}{}{Really? You do seem capable enough... But we're not recruiting any new Initiates right now. At least not the regular ones.}
+{10010}{}{No?@@Why not?@@Really?@@Regular ones?@@No way, really?}
+{10020}{}{Ah, fuck this.@@I'll be going then.@@I see. I think I should be going.}
+{11000}{}{Well, to be honest, we've got more people that we are able to train effectively. So things are a little slow now. But... We still need people for special tasks, not necesserily involving combat.}
+{11010}{}{What do you mean?@@What do you mean by that?@@Not involving combat?@@Tell me more.}
+{11020}{}{Sounds boring. I think I'll take my leave.@@This doesn't sound very exciting. I'll go now.@@Not my style really. Goodbye.}
+{12000}{}{Well, I said not *necessarily* involving combat. Most of the time, that is. We've got shortage of men in the special operations area, that would be espionage, sabotage, influencing foreign powers, bribing politicians, technology extraction, occasional assasination and so on.}
+{12010}{}{This sounds pretty interesting. Count me in! (Join the Brotherhood, remove possibility to join the Enclave.)@@Hmm, this will do. I want to join now! (Join Brotherhood, remove possibility to join the Enclave.)@@Sounds like excitiment is on the way! I'm in. (Join Brotherhood, remove possibility to join the Enclave.)}
+{12020}{}{On second thought... I think I'll pass.@@Nevermind.@@I don't think I'm ready to join yet.@@Sorry, I think I need to consider this. Goodbye.}
+{13000}{}{Good! Now, I need you to sign these papers, @sex@|Mr||Ms|...}
+{13010}{}{@pname@. [Sign the papers.] What now?}
+{14000}{}{Now? Now I can welcome you in our ranks on behalf of the whole Brotherhood, Initiate. You're not set for the regular training, and since you're assigned to the Vulture Squad, you will be receiving instructions from Scribe Kendrick. You will also address your superiors properly from now on, is that clear?}
+{14010}{}{Knight Matthews, what's is Vulture Squad?@@Vulture Squad? What's that, Knight Matthews?}
+{14020}{}{Yes, Knight Matthews.@@Initiate @pname@ ready for duty, Knight Matthews.@@As you command, Knight Matthews.}
+{15000}{}{Vulture Squad is... well, it's just a moniker for our special operations division. Couple of years ago, Knight Jacobs was coming back from such a special mission. When he entered the mess hall, some Paladins started to laugh when it turned out he had a dead vulture hatchling splattered on his... bottom. He must have sat on some nest, or something like that. And so, the name stuck too. [He laughs.]}
+{15010}{}{I see. I'll be going, Knight Matthews.@@Uhuh. I'll go now, Knight Matthews.}
+{16000}{}{I'm gonna need to run a quick background check. Nothing serious, besides, you will be throughly checked during your service. Now, I'm gonna ask you a series of questions. Question one: Are you, or were in any way connected to the following groups: Khans, Rippers, Regulators, Blades or any other such group?}
+{16010}{}{No.@@Nope.@@I don't even know who those are.@@Nay.@@If I were, I wouldn't tell you that, right?}
+{16020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{16030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?}
+{17000}{}{Are you a citizen of any following entities: The Hub, New California Republic or Vault City?}
+{17010}{}{No.@@I am just a wanderere.@@Nope.@@I move from place to place.@@I am the citizen of republic that consists of my tent and its surroundings.@@Not really.}
+{17020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{17030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?}
+{18000}{}{Are you a member or a family member with Enclave affiliation?}
+{18010}{}{No.@@I am not.@@What is that?@@Not really.@@No.@@Nope.}
+{18020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{18030}{}{Yes.@@I am.@@Yes, I am.@@I am.}
+{19000}{}{Are affiliated with any other group that was not mentioned before, be it formal or informal?}
+{19010}{}{No.@@Nope.@@No.@@Not really.}
+{19020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{19030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?@@I am.@@Yes, I am.}
+{20000}{}{We're done with the questioning. Now, the results... [He turns back and seems to look at some graphs on the monitor behind him.]}
+{20010}{}{Yes?@@So...?@@Is this gonna take long?@@Yes@@Hmmm?}
+{20020}{}{Yes?@@So...?@@Is this gonna take long?@@Yes@@Hmmm?}
+{21000}{}{Good. We're done with your backroung check. Everything seems okay... [He looks upon you.] You're probably wondering why should I believe your words? Well, see that camera over there? It recorded your face expression throughout the questioning. And then the recording is analysed on the spot some smart programme our tech boys came up with. And, as I hear it is nearly impossible to cheat it. So, now that we've got that behind us, I welcome you in the ranks of Initiates of the Brotherhood of Steel.}
+{21010}{}{So... What now?@@What should I do now?@@So, what should I do now?}
+{21020}{}{I need to think about this...@@I need some time, yeah. Later.@@I will think about this.}
+{22000}{}{All right... Let's see. [He looks upon the monitor behind him, and then looks at you.] You lied during your questioning. The Brotherhood doesn't need liars. Get out.}
+{22010}{}{Shit.@@Damn.@@I thought that was gonna be easier.@@Damn it.@@Yeah, screw you.}
+{23000}{}{I'm sorry, but we only recruit people not affiliated with any outside organisations. Thank you for you time, and goodbye.}
+{23010}{}{Shit.@@Damn.@@I thought that was gonna be easier.@@Damn it.@@Yeah, screw you.}
+{24000}{}{You're not eligible for becoming an Initiate. Leave now, and don't waste my time.}
+{25000}{}{We are not accepting mutants into our ranks.}
+{26000}{}{Is that so?@@Really?@@Curious...}
+{26010}{}{It's true.@@It's the truth.@@That's the truth.@@I'm telling the truth.}
+{26020}{}{It's true.@@It's the truth.@@That's the truth.}
+{26030}{}{It's true.@@It's the truth.@@That's the truth.}
+{26040}{}{Nevermind.@@Ah, fuck this. I'm going.}
+{27000}{}{I think you are mistaken. Please don't waste my time.@@You are mistaken. Plase don't bother me again.}
+{27010}{}{But...@@But!@But wait...}
+{28000}{}{We're done talking about this.@@That's all I have to say.}
+{29000}{}{All right Initiate, just be quiet about this. Take that holodisk and talk Scribe Kendrick. @@I see. Bring that holodisk to Scribe Kendrick. I'm not authorised to talk about this any further.}
+{29010}{}{All right.@@At once, Knight Matthews.@@Yes sir.@@At once.}
+{30000}{}{Allright. Now keep quiet about this and leave. And don't tell anyone about that holodisk, or you'll be sorry, @pname@.}
+{30010}{}{What will I get for this then?@@Hey, any reward for returning your property?@@Whoa, how very kind of you. Shouldn't we talk about the reward?}
+{30020}{}{Fine.@@Right.@@Yeah, right.@@Whatever}
+{31000}{}{There is no reward. Just keep your mouth shut.}
+{31010}{}{But...@@But!@Wait...}
+{32000}{}{All right, just keep your mouth shut about this. I'll take the holodisk, report this to Scribe Kendrick.}
+{32010}{}{All right.@@Okay.@@Right.@@Fine.}
+{33000}{}{Where did you find this?}
+{33010}{}{I found this guy in a village in the mountains and... [Tell him about your encounter with the renegade paladin.]}
+{33020}{}{I just found it... somewhere.}
+{33030}{}{I have met a deserter from our Brotherhood. He wasn't willing to come back with me, and attacked me.}
+{33040}{}{I just found it... somewhere.}
+{33050}{}{Nevermind.@@Forget it.}
+{34000}{}{Yeah, I heard the story about that guy. All those years the Elders wondered what happened to him. The man clearly went insane. I cannot give you anything, since you're not a Brotherhood member, sorry.}
+{34010}{}{Whatever.@2Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{35000}{}{Interesting... I'll take this. Thanks for your efforts... Since you're not a Brotherhood member I cannot give you any reward, but you have our sincere thanks.}
+{35010}{}{Whatever.@@Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{36000}{}{This is very sad news. But it's a good thing that you ended that man's suffering. He clearly went insane.... The Elders will need to hear about this. Thanks you for your assistance, it will not go unnoticed. }
+{36010}{}{There was something else. I also found the man's armor. I thought it needs to be returned too.}
+{36020}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{37000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it seems it's damaged beyond repair. Keep it, you earned it.}
+{37010}{}{Thanks.@@Thank you.@@Thanks!}
+{38000}{}{I see. Thanks for your efforts, they will not go unnoticed.}
+{38010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{39000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it looks pretty beat up, but will do. Thank you once again.}
+{39010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+
+[pols]
+{100}{}{Rycerz Matthews}
+{200}{}{Widzisz: Rycerz Matthews.}
+{210}{}{Widzisz mê¿czyznê w pancerzu wspomaganym. Na naramienniku ma p³ytkê z napisem: "Matthews".}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{in enclave}
+{1030}{}{started bos quests}
+{1040}{}{after joining}
+{1050}{}{met again}
+{1060}{}{answer}
+{2000}{}{Witaj, jestem rycerz Matthews. Witamy w Bractwie Stali. Jak mog ci pomc?}
+{2010}{}{Co moesz powiedzie mi o Bractwie Stali?}
+{2020}{}{I found this dog tag, thought you might want to take a look. [Show him the dog tag.]}
+{2030}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{2040}{}{Chc doczy do Bractwa.}
+{2050}{}{Chc doczy do Bractwa.}
+{2060}{}{Chyba pomyliem pokoje. Ju sobie pjd.}
+{3000}{}{Witaj ponownie, podrniku z pustkowii. Czego potrzeba ci tym razem?}
+{3010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{3020}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{3030}{}{@sex@|Chciabym||Chciaabym| zada ci kilka pyta.}
+{3040}{}{Nic. Wanie wychodz.}
+{4000}{}{Pewnie. Wal miao.}
+{4010}{}{Co moesz powiedzie mi o Bractwie Stali?}
+{4020}{}{Chc doczy do Bractwa.}
+{4030}{}{Chc doczy do Bractwa.}
+{4040}{}{W sumie to jednak nie mam pyta. Przyjd kiedy indziej.}
+{5000}{}{Wybacz, jestem zajty. Przyjd pniej.}
+{5010}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{6000}{}{Idz i zamelduj si do skryby Kendrick, kadecie.}
+{6010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{6020}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{6030}{}{Okay.@@All right.@@Fine.@@Yeah.}
+{7000}{}{Nasze Bractwo? Jedyne co ci mog powiedzie to to, e jestemy antycznym zakonem, dedykowanym odzyskiwaniu i konserwacji utraconej technologii. Walczymy by utrzyma rwnowag na Pustkowiu, pilnujc by dawna technologia nie wpada w niepowoane rce. To waciwie wszystko co mog ci powiedzie. Szczerze powiedziawszy nie znam si zbytnio na historii, i nie mnie @sex@|powiniene||powinna| o to pyta. Jeli kiedykolwiek zostaniesz rekrutem to wtedy porozmawiaj z ktrym ze skryb.}
+{7010}{}{Rozumiem. Czy mog zapyta o co innego?}
+{7020}{}{Dziki, ale musz ju i.}
+{8000}{}{[Tu przed rozpoczciem rozmowy z tym rycerzem przypominasz sobie o pewnym "ulepszeniu" ktry tajemniczy agent Enklawy wprowadzi do twojego Pip-Boya. Nie jeste @sex@|pewien||pewna| czy rozmowa z tym czowiekiem jest uwaana za zdrad, ale lepiej by przezornym.]}
+{8010}{}{[Szybko odwracasz si i odchodzisz.]}
+{9000}{}{Musisz mi wybaczy, ale potrzebujemy uzdolnionych i dowiadczonych ludzi, nie amatorw. Nie jeste jeszcze gotw by zosta kadetem. (Wymagany poziom: 15.)}
+{9010}{}{Cholera. Dobra, przyjd kiedy indziej.}
+{10000}{}{Naprawd? Faktycznie, wygldasz na @sex@|zdolnego||zdoln| do suby, ale my aktualnie nie poszukujemy adnych nowych rekrutw. A przynajmniej nie takich zwyczajnych.}
+{10010}{}{Zwyczajnych? Dlaczego?}
+{10020}{}{Pierdol to. (wyjd)}
+{11000}{}{Cz, szczerze mwic mamy wicej ludzi ni jestemy w stanie efektywnie wyszkoli. Wic idzie to nieco powoli. Ale..wciz poszukujemy rekrutw do zada specjalnych, niekoniecznie zwizanych z walk.}
+{11010}{}{Co masz przez to na myli?}
+{11020}{}{Brzmi nudno. To nie w moim stylu. [Wyjd.])}
+{12000}{}{Oczywicie powiedziaem "niekoniecznie" zwizanych z walk. Przez wikszo czasu, znaczy. Brakuje nam ludzi do zada specjalnych, czyli szpiegostwa, sabotau, wpywania na zewntrzne siy, przekupstwo politykw, odzyskiwanie technologii, zabjstwa i tak dalej.}
+{12010}{}{Brzmi interesujco. Moesz na mnie liczy. [Doczajc do Bractwa rezygnujesz z moliwoci doaczenia do Enklawy.]}
+{12020}{}{Nie, wydaje mi si, e jednak zrezygnuj. [Wyjd]}
+{13000}{}{wietnie! W takim razie potrzebuj twojego podpisu tego dokumentu, @sex@|Panie||Pani|...}
+{13010}{}{@pname@. [Podpisz papiery.] Co teraz?}
+{14000}{}{Teraz? Teraz witam ci w naszych szeregach w imieniu caego Bractwa, kadecie. Nie masz obowizku uczestniczy w standardowym szkoleniu, a poniewa naleysz do oddziau Sp, bdziesz otrzymywa rozkazy od skryby Kendricka. No i oczywicie bdziesz si odnosi do swoich przeoonych z szacunkiem, czy to jasne?}
+{14010}{}{Rycerzu Matthews, czym jest 'oddzia Sp'?}
+{14020}{}{Kadet @pname@ @sex@|gotw||gotowa| do suby, rycerzu Matthews.}
+{15000}{}{Oddzia Sp to po prostu pseudonim naszej dywizji do zada specjalnych. Par lat temu rycerz Jacobs wraca wanie z jednej z takich misji. Kiedy wkroczy do kantyny, kilku Paladynw zaczo si mia, gdy okazao si, e mia martwe piskl spa rozgniecione na swoim tyku. Najwyraniej usiad na jakim gniedzie, czy co w tym stylu. No i w ten sposb nazwa rwnie si utrwalia. [mieje si.]}
+{15010}{}{Rozumiem. Pjd ju, rycerzu Matthews.}
+{16000}{}{Teraz bd potrzebowa dowiedzie si troch o twojej przeszoci. Nic powanego, poza tym, bdziesz dokadnie @sex@|sprawdzony||sprawdzona| podczas swojej suby. A teraz kilka pyta. Pierwsze pytanie: Czy naleysz, bd @sex@|bye||bya| w jakikolwiek sposb @sex@|powizany||powizana| z: Khanami, Rozpruwaczami, Regulatorami, Ostrzami, bd jakkolwiek inn tego typu grup?}
+{16010}{}{Nie.}
+{16020}{}{Nie. [Skam.]}
+{16030}{}{Tak. I co w zwizku z tym?}
+{17000}{}{Czy jeste penoprawnym obywatelem Hubu, Kryptopolis, bd Republiki Nowej Kalifornii?}
+{17010}{}{Jestem obywatelem republiki ktra skada si z mojego namiotu i terenu wok.}
+{17020}{}{Nie. [Skam.]}
+{17030}{}{Tak. I co w zwizku z tym?}
+{18000}{}{Czy jeste osob majca jakiekolwiek powizania z organizacj znan jako Enklawa?}
+{18010}{}{Nie, nie mam adnych powiza z nimi.}
+{18020}{}{Nie, wcale. [Skam.]}
+{18030}{}{Tak si skada, e to prawda.}
+{19000}{}{Przynaley do jakiejkolwiek innej frakcji handlowej, religijnej, itd. ktra nie zostaa wspomniana wczeniej, formalnie bd nieoficjalnie?}
+{19010}{}{C, raczej nie.}
+{19020}{}{Nie. [Skam.]}
+{19030}{}{Powiedzmy, e tak. Co z tego?}
+{20000}{}{To by byo na tyle. Teraz rezultaty...[Matthews odwraca si i najwyraniej patrzy na jakie wykresy na monitorze za nim.]}
+{20010}{}{A wic?}
+{20020}{}{A wic?}
+{21000}{}{[Odwraca si do ciebie.] Wszystko wyglda w porzdku. Prawdopodobnie zastanawiasz si, dlaczego powinienem ci wierzy? Widzisz tamt kamer? Nagrywaa wszystkie zmiany w ekspresji na twojej twarzy podczas caego przesuchania, a potem to nagranie byo analizowane przez inteligentny program ktry nasi technicy opracowali. Wedle tego co mwi wrcz niemoliwe jest jego oszukanie. No dobra, jeste absolutnie @sex@|pewny||pewna|, e chcesz doczy? To niezwykle wana decyzja, przemyl j dobrze.}
+{21010}{}{Tak, jestem @sex@|pewien||pewna|. Co teraz? (Doczenie do Bractwa Stali wyklucza moliwo doczenia do Enklawy)}
+{21020}{}{Masz racj, musz to bardziej przemyle.}
+{22000}{}{[Odwraca si do ciebie] Skamae podczas przesuchania. Bractwo nie potrzebuje kamcw, szpiegw, bd podejrzanych typw, przynajmniej o ile mi wiadomo. Wyno si std.}
+{22010}{}{A to spierdalaj. [Wyjd.]}
+{23000}{}{Przepraszam, ale rekrutujemy tylko ludzi nie powizanych z adn zewntrzn organizacj. Dzikuj za twj czas, i egnam.}
+{23010}{}{A to spierdalaj. [Wyjd.]}
+{24000}{}{Nie nadajesz si na kadeta. Wyjd std i nie marnuj wicej mojego czasu.}
+{25000}{}{Nie tolerujemy mutantw w naszych szeregach.}
+{26000}{}{Is that so?@@Really?@@Curious...}
+{26010}{}{It's true.@@It's the truth.@@That's the truth.@@I'm telling the truth.}
+{26020}{}{It's true.@@It's the truth.@@That's the truth.}
+{26030}{}{It's true.@@It's the truth.@@That's the truth.}
+{26040}{}{Nevermind.@@Ah, fuck this. I'm going.}
+{27000}{}{I think you are mistaken. Please don't waste my time.@@You are mistaken. Plase don't bother me again.}
+{27010}{}{But...@@But!@But wait...}
+{28000}{}{We're done talking about this.@@That's all I have to say.}
+{29000}{}{All right Initiate, just be quiet about this. Take that holodisk and talk Scribe Kendrick. @@I see. Bring that holodisk to Scribe Kendrick. I'm not authorised to talk about this any further.}
+{29010}{}{All right.@@At once, Knight Matthews.@@Yes sir.@@At once.}
+{30000}{}{Allright. Now keep quiet about this and leave. And don't tell anyone about that holodisk, or you'll be sorry, @pname@.}
+{30010}{}{What will I get for this then?@@Hey, any reward for returning your property?@@Whoa, how very kind of you. Shouldn't we talk about the reward?}
+{30020}{}{Fine.@@Right.@@Yeah, right.@@Whatever}
+{31000}{}{There is no reward. Just keep your mouth shut.}
+{31010}{}{But...@@But!@Wait...}
+{32000}{}{All right, just keep your mouth shut about this. I'll take the holodisk, report this to Scribe Kendrick.}
+{32010}{}{All right.@@Okay.@@Right.@@Fine.}
+{33000}{}{Where did you find this?}
+{33010}{}{I found this guy in a village in the mountains and... [Tell him about your encounter with the renegade paladin.]}
+{33020}{}{I just found it... somewhere.}
+{33030}{}{I have met a deserter from our Brotherhood. He wasn't willing to come back with me, and attacked me.}
+{33040}{}{I just found it... somewhere.}
+{33050}{}{Nevermind.@@Forget it.}
+{34000}{}{Yeah, I heard the story about that guy. All those years the Elders wondered what happened to him. The man clearly went insane. I cannot give you anything, since you're not a Brotherhood member, sorry.}
+{34010}{}{Whatever.@2Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{35000}{}{Interesting... I'll take this. Thanks for your efforts... Since you're not a Brotherhood member I cannot give you any reward, but you have our sincere thanks.}
+{35010}{}{Whatever.@@Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{36000}{}{This is very sad news. But it's a good thing that you ended that man's suffering. He clearly went insane.... The Elders will need to hear about this. Thanks you for your assistance, it will not go unnoticed. }
+{36010}{}{There was something else. I also found the man's armor. I thought it needs to be returned too.}
+{36020}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{37000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it seems it's damaged beyond repair. Keep it, you earned it.}
+{37010}{}{Thanks.@@Thank you.@@Thanks!}
+{38000}{}{I see. Thanks for your efforts, they will not go unnoticed.}
+{38010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{39000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it looks pretty beat up, but will do. Thank you once again.}
+{39010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{in enclave}
+{1030}{}{started bos quests}
+{1040}{}{after joining}
+{1050}{}{met again}
+{1060}{}{answer}
+{2000}{}{Hello there stranger, I am knight Matthews. Welcome to the Brotherhood of Steel. How can I help you?@@Welcome to the Brotherhood of Steel, stranger. I am knight Matthews. How can I help you?@@Welcome to the Brotherhood of Steel. I am knight Matthews. What do you need, stranger?}
+{2010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{2020}{}{I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{2030}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters.}
+{2040}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{2050}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{2060}{}{Goodbye.@@I need to go.@@Sorry, wrong room.@@I need to be somewhere else.@@I've got to go.@@I should be leaving.}
+{3000}{}{Hello again. What do you need this time, Wastelander?@@Hello again, Wastelander, what do you need?@@Welcome back, how can I help you?@@You're back. How can I help you?}
+{3010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{3020}{}{I found this holodisk in one of your bunkers. It has been ransacked, but I've dealt with the looters, and found it in their stolen goods.}
+{3030}{}{I've got some questions.@@I want to ask you something.@@I've got questions.}
+{3040}{}{Just passing by.@@I was just leaving.@@I've got to go.}
+{4000}{}{Go ahead.@@Sure.@@No problem.@@Yes?@@Ask ahead.@@Shoot.@@Go ahead.@@Yes?}
+{4010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{4020}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{4030}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{4040}{}{On second thought, I've got to go.@@Nevermind, I need to get going.@@Um, I need to go now.@@I've got to go. Goodbye.}
+{5000}{}{Yes?@@Good day.@@I'm busy now, come back later.@@I don't have time right now, come back later.}
+{5010}{}{I found this holodisk in what appeared to be one of the Brotherhood bunkers. It has been ransacked, but I've dealt with the looters.}
+{6000}{}{Shouldn't you report to Scribe Kendrick now?@@Go and report to Scribe Kendrick, Initiate.}
+{6010}{}{Knight Matthews, I found this dog tag, thought you might want to take a look. [Show him the dog tag you found.]}
+{6020}{}{I found this holodisk in what appeared to be one of the Brotherhood bunkers. It has been ransacked, but I've dealt with the looters.}
+{6030}{}{Okay.@@All right.@@Fine.@@Yeah.}
+{7000}{}{Our Brotherhood? All I can say to you is that we are an ancient order, dedicated to preservation and reclaimation of lost technology. We are fighting to preserve the balance in the Wasteland, keeping the old tech from falling into the wrong hands. That's about all I can tell you. To be honest, I'm not much into history, and not really the one you want to be asking. Should you ever become an Initiate, talk to some of the Scribes.}
+{7010}{}{Okay. One more thing...@@I get it. Can we change the subject?@@Right, can I ask you about something else?}
+{7020}{}{Hmm, thanks. I must depart.@@Okay, thanks. I need to go.@@Hmm, maybe I will someday. Goodbye.@@Thanks, but I need to be somewhere else.@@Right. I must go now. See you later.}
+{8000}{}{[Just when you're about to start talking to the man, you remember about the certain "upgrade" the mysterious Enclave agent made to your Pip-Boy. You're not sure if talking to this Brotherhood member might be considered treason, but it's better to stay on the safe side.]}
+{8010}{}{[Walk away.]@@[Quickly turn around and walk away.]@@[Leave immediately.]}
+{9000}{}{I am sorry, but we need skilled men and women, not amateurs. (Required Level: 15.)@@You're not ready to become an Initiate... yet. (Required Level: 15.)@@You're not ready join yet. (Required Level: 15.)@@I don't think you're ready. (Required Level: 15.)}
+{9010}{}{Oh, okay.@@Crap.@@I'll be back.@@Damn, I'll be back later then.@@Right. Goodbye.}
+{10000}{}{Really? You do seem capable enough... But we're not recruiting any new Initiates right now. At least not the regular ones.}
+{10010}{}{No?@@Why not?@@Really?@@Regular ones?@@No way, really?}
+{10020}{}{Ah, fuck this.@@I'll be going then.@@I see. I think I should be going.}
+{11000}{}{Well, to be honest, we've got more people that we are able to train effectively. So things are a little slow now. But... We still need people for special tasks, not necesserily involving combat.}
+{11010}{}{What do you mean?@@What do you mean by that?@@Not involving combat?@@Tell me more.}
+{11020}{}{Sounds boring. I think I'll take my leave.@@This doesn't sound very exciting. I'll go now.@@Not my style really. Goodbye.}
+{12000}{}{Well, I said not *necessarily* involving combat. Most of the time, that is. We've got shortage of men in the special operations area, that would be espionage, sabotage, influencing foreign powers, bribing politicians, technology extraction, occasional assasination and so on.}
+{12010}{}{This sounds pretty interesting. Count me in!@@Hmm, this will do. I want to join now!@@Sounds like excitiment is on the way! I'm in. }
+{12020}{}{On second thought... I think I'll pass.@@Nevermind.@@I don't think I'm ready to join yet.@@Sorry, I think I need to consider this. Goodbye.}
+{13000}{}{Good! But first, I'm going to need you to sign these papers, @sex@|Mr||Ms|...}
+{13010}{}{@pname@. [Sign the papers.] What now?}
+{14000}{}{You will be receiving instructions from Scribe Kendrick. Go to the building on the left from the courtyard. Ah, and from now on you will also address your superiors properly, is that clear?}
+{14010}{}{Knight Matthews, what's is Vulture Squad?@@Vulture Squad? What's that, Knight Matthews?}
+{14020}{}{Yes, Knight Matthews.@@Initiate @pname@ ready for duty, Knight Matthews.@@As you command, Knight Matthews.}
+{15000}{}{Vulture Squad is... well, it's just a moniker for our special operations division. Couple of years ago, Knight Jacobs was coming back from such a special mission. When he entered the mess hall, some Paladins started to laugh when it turned out he had a dead vulture hatchling splattered on his... bottom. He must have sat on some nest, or something like that. And so, the name stuck too. [He laughs.]}
+{15010}{}{I see. I'll be going, Knight Matthews.@@Uhuh. I'll go now, Knight Matthews.}
+{16000}{}{I'm gonna need to run a quick background check. Nothing serious, besides, you will be throughly checked during your service. Now, I'm gonna ask you a series of questions. Question one: Are you, or were in any way connected to the following groups: Khans, Rippers, Regulators, Blades or any other such group?}
+{16010}{}{No.@@Nope.@@I don't even know who those are.@@Nay.@@If I were, I wouldn't tell you that, right?}
+{16020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{16030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?}
+{17000}{}{Question two: Are you a citizen of any following entities: The Hub, Junktown, New California Republic or Vault City?}
+{17010}{}{No.@@I am just a wandererer.@@Nope.@@I move from place to place.@@I am only a citizen of the republic that consists of my tent and its surroundings.@@Not really.}
+{17020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{17030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?@@I am.@@Yes, I am.}
+{18000}{}{Question three: Are you in any way connected, or affiliated with the organisation called The Enclave?}
+{18010}{}{No.@@I am not.@@What is that?@@Not really.@@No.@@Nope.}
+{18020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{18030}{}{Yes.@@I am.@@Yes, I am.@@I am.}
+{19000}{}{Fourth and final question: Are you affiliated with any political, religious, merchant or other group that was not mentioned before, be it formal or informal?}
+{19010}{}{No.@@Nope.@@No.@@Not really.}
+{19020}{}{No. [Lie.]@@Nope. [Lie.]@@Not really. [Lie.]@@No, I am not. [Lie.]@@No, I'm not. [Lie.]}
+{19030}{}{Yes.@@I am.@@What of it?@@Yeah, I am.@@Yeah, so?@@I am.@@Yes, I am.}
+{20000}{}{Allright, we're done. Now, the results... [He turns back and seems to look at some graphs on the monitor behind him.] Hmm...}
+{20010}{}{Yes?@@So...?@@Is this gonna take long?@@Yes?@@Hmmm?@@Yeah?}
+{20020}{}{Yes?@@So...?@@Is this gonna take long?@@Yes?@@Hmmm?@@This gonna take long or what?}
+{21000}{}{[He turns back to you.] Everything seems okay. You're probably wondering why should I believe your words? Well, see that camera over there? It recorded your face expressions throughout the questioning. And then the recording was analysed on the spot some smart programme our tech boys came up with. And, as I hear, it is nearly impossible to cheat it. Okay, so are you sure that you want to join? This a imporant decision, don't take it lightly.}
+{21010}{}{Yes. I am sure I want to join. What should I do now? (Join Brotherhood of Steel, remove possibility of joining the Enclave.)@@Yes, yes, I am one hundred percent sure! (Join Brotherhood of Steel, remove possibility of joining the Enclave.)@@Yeah, that's my decision. I want to join. (Join Brotherhood of Steel, remove possibility of joining the Enclave.)}
+{21020}{}{I need to think about this...@@I need some time, yeah. Later.@@I will think about this.}
+{22000}{}{[He turns back to you.] You've lied during your questioning. And, as far as I'm concerned, we don't want liars in our ranks. Get out now!}
+{22010}{}{Shit, how did you know?Ah, nevermind. @@Damn. How did you know? Ah, I don't care anyway. @@I thought that was gonna be easier.@@Damn it, how did you know I... whatever. Goodbye. @@Yeah, screw you.}
+{23000}{}{I'm sorry, but we only recruit people not affiliated with any outside organisations. Thank you for you time, and goodbye.}
+{23010}{}{Shit.@@Damn.@@I thought that was gonna be easier.@@Damn it.@@Crap.@@Oh well...}
+{24000}{}{You're not eligible for becoming an Initiate. Leave now, and don't waste my time.@@You're not suited to become an Initiate. Goodbye.}
+{25000}{}{You're a bold one! We won't shoot you only because the NCR and Hub accept mutants as their citizens, and we don't want our relations to get strained. But we haven't forgotten the atrocities your kind has committed, and we never will. Now, get lost!}
+{26000}{}{Is that so?@@Really?@@Curious...}
+{26010}{}{It's true.@@It's the truth.@@That's the truth.@@I'm telling the truth.}
+{26020}{}{It's true.@@It's the truth.@@That's the truth.@@I'm telling the truth.}
+{26030}{}{I managed to read some of the holodisk's data, so don't bullshit me.@@Don't fuck around with me, the holodisk's data obviously points to the Brotherhood.}
+{26040}{}{Nevermind.@@Ah, fuck this. I'm not gonna beg.}
+{27000}{}{I think you are mistaken. Please don't waste my time.@@You are mistaken. Plase don't bother me again.}
+{27010}{}{But...@@But!@@Wait!}
+{28000}{}{We're done talking about this.@@That's all I have to say.@@We're done talking.}
+{29000}{}{Okay, okay. Give me that holodisk.@@Allright, allright, keep it quiet. Give me that holodisk now.}
+{29010}{}{Okay.@@All right.@@Okay, take it.@@Fine, take it.}
+{30000}{}{All right. Now keep quiet about this and leave. And don't tell anyone about that holodisk, or you'll be sorry.}
+{30010}{}{What will I get out of this then?@@Hey, any reward for returning your property?@@Whoa, how very kind of you. Shouldn't we talk about a reward?}
+{30020}{}{Fine.@@Right.@@Yeah, right.@@Whatever.}
+{31000}{}{There is no reward. Just keep your mouth shut.}
+{31010}{}{But...@@But!@@Wait...@@What?}
+{32000}{}{All right, just keep your mouth shut about this. I'll take the holodisk, report this to Scribe Kendrick.}
+{32010}{}{All right.@@Okay.@@Right.@@Fine.}
+{33000}{}{Where did you find this?}
+{33010}{}{I found this guy in a village in the mountains and... [Tell him about your encounter with the renegade paladin.]}
+{33020}{}{I just found it... somewhere.}
+{33030}{}{I have met a deserter from our Brotherhood. He wasn't willing to come back to face justice, and attacked me.}
+{33040}{}{I just found it... somewhere.}
+{33050}{}{Nevermind.@@Forget it.}
+{34000}{}{I see. From what you tell, the man  might have gone insane. Since you're not a Brotherhood member, I cannot give you any reward, but you have our most sincere thanks. }
+{34010}{}{Whatever.@@Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{35000}{}{Interesting... I'll take this, thanks for your efforts. Since you're not a Brotherhood member, I cannot give you any reward, but you have our sincere thanks.}
+{35010}{}{Whatever.@@Yeah, don't mention it.@@Yeah, thanks for nothing.}
+{36000}{}{This is very sad news. But it's a good thing that you ended that man's suffering. He clearly went insane.... The Elders will need to hear about this, all those years they were wondering what happened to him. Thank you for your assistance, it will not go unnoticed.}
+{36010}{}{Another thing. I also found the man's armor. I thought it needed to be returned too.@@I have also found the man's armor.}
+{36020}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{37000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it seems it's damaged beyond repair. It won't be of any use for our Paladins. If you wish, you can keep it.}
+{37010}{}{Sure! thanks.@@Sure, thank you.@@Sure, thanks!}
+{38000}{}{I see. Thanks for your efforts, they will not go unnoticed.}
+{38010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.}
+{39000}{}{That is unexpected. Your sincerity is a shining example for us all. Let me look at it... [You pass him the armor.] Hmm, it looks pretty beat up, but will do. Thank you once again.}
+{39010}{}{No problem, I was merely doing my duty.@@I was just doing my duty.@@Just doing my job.@@Just doin' what I'm supposed to.}
+

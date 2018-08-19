@@ -1,0 +1,46 @@
+#ifndef __MAPDATA_H__
+#define __MAPDATA_H__
+
+#define MAP_DATA_MAX	(100) // hardcoded limit
+
+// 0-???
+// used in various places for ???
+
+// 20-59
+// used in resources2
+
+// glow, time for elevator work
+#define MAP_DATA_ELEVATOR_TIME		(59)
+// Dungeons
+#define MAP_DATA_PLAYERS_INSIDE		(70)
+// 60
+// Encounter creation time (root map)
+#define MAP_DATA_ENCOUNTER_CREATION	(60)
+// TC
+#define MAP_DATA_FACTION			(60)
+#define MAP_DATA_ACTIVE_COUNTDOWN	(61)
+
+// Bases
+#define MAP_DATA_BASE_OWNER			(61)
+#define MAP_DATA_BASE_TYPE_FACTION	(65)
+
+// Tents
+#define MAP_DATA_TENT_KENNY_QUEST	(60)
+#define MAP_DATA_TENT_OWNER			(61)
+#define MAP_DATA_START_LOC_CHILD	(62)
+#define MAP_DATA_LASTENTERED		(63)
+// 62-63
+// used in map_radiation, MIN and MAX dose
+
+// Quests
+#define MAP_DATA_QUEST_OWNER		(80)
+#define MAP_DATA_QUEST_LOCDELETER	(81) // id of time event supposed to autodelete location
+
+#ifndef __MAPDATA__
+import int GetRootMapData(Map& map, uint index) from "mapdata";
+import void SetRootMapData(Map& map, uint index, int val) from "mapdata";
+import int GetRootMapData(Location& loc, uint index) from "mapdata";
+import void SetRootMapData(Location& loc, uint index, int val) from "mapdata";
+#endif
+
+#endif // __MAPDATA_H__ //

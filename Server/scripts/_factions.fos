@@ -1,0 +1,38 @@
+#ifndef __FACTIONS__
+#define __FACTIONS__
+
+#define FACTION_None				( 0 )
+#define FACTION_Junktown			( 1 )
+#define FACTION_BrotherhoodOfSteel	( 2 )
+#define FACTION_Enclave				( 3 )
+#define FACTION_Raiders				( 4 )
+#define FACTION_NcrArmy				( 5 )
+#define FACTION_NcrRangers			( 6 )
+
+#define FACTION_RANK_None			( 0 )
+#define FACTION_RANK_MEMBER			( 1 )
+#define FACTION_RANK_OFFICER		( 2 )
+#define FACTION_RANK_LEADER			( 3 )
+#define FACTION_MIN_MANAGE_RANK		( FACTION_RANK_OFFICER )
+
+#define FACTION_MIN_NAME_LENGTH     ( 3 )
+#define FACTION_MAX_NAME_LENGTH     ( 35 )
+
+#define FACTION_SQUAD_START			( 20 ) //Players squads dataspace start
+#define FACTION_SQUAD_END			( 20 ) //Players squads dataspace end
+
+#define FACTIONS_START				( 1 )
+#define FACTIONS_END				( 4 )
+
+#define FACTION_NAMES               # (num)              ( 1010000 + ( num ) )
+
+#define FACTION_NONE 			# (cr)	(cr.Param[MAIN_FACTION]==0)
+#define FACTION_LEADER			# (cr)	(cr.Param[MAIN_FACTION_RANK]==FACTION_RANK_LEADER)
+#define FACTION_MANAGER			# (cr)	(cr.Param[MAIN_FACTION_RANK]>=FACTION_MIN_MANAGE_RANK)
+#define FACTION_RANK			# (cr)	(cr.Param[MAIN_FACTION_RANK])
+
+#define FACTION            Param[ MAIN_FACTION ]
+#define SAME_FACTION # (cr,attacker) (cr.FACTION != 0 && cr.FACTION==attacker.FACTION)
+#define SAME_FACTION2 # (cr_faction,attacker) (cr_faction != 0 && cr_faction==attacker.FACTION)
+#define SAME_FACTION3 # (cr,faction) (cr.FACTION != 0 && cr.FACTION==faction)
+#endif // __FACTIONS__

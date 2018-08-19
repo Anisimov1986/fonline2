@@ -1,0 +1,92 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+65506 4010 #
+0 4020 #
+0 4030 &
+
+[engl]
+{100}{}{Darrow}
+{200}{}{You see: Sub-Amenities Officer Darrow.}
+{210}{}{You see a citizen in blue jumpsuit without any number on the back.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{I'm sorry, can I help you with something?@@Yes?@@Can I help you?@@What do you want, outworlder?}
+{2010}{}{What is this place?@@Where am I?@@What do you do here?}
+{2020}{}{Can I see what you have in stock?@@Can I see your wares?@@Can I see what you've got?}
+{2030}{}{Nothing today, thanks.@@Nevermind.@@I need to go.}
+{3000}{}{This is Sub-Amenities Office A... we handle tools and repair equipment for the city. You sure this is the place you're looking for?}
+{3010}{}{Yes, this is the place. Can I see what you have in stock?@@Can I see what you have?}
+{3020}{}{Nothing today, thanks.@@Nevermind.@@I've gotta go.}
+{4000}{}{Say, just so you know, there's a general store in the Courtyard outside. You might want to try shopping there... I hear his selection is almost as good as ours.}
+{4010}{}{Uh, thanks. Now, let us do some business.@@Yeah, thanks. Can we get to business?@@Yeah, yeah. Can we get down to business?}
+{4020}{}{I'll shop where I want to, got it?@@Whatever.@@Yeah, whatever.}
+{4030}{}{Thanks for the information. Goodbye.@@Right, I've gotta go.@@Thanks for the info. Gotta go now.}
+
+[russ]
+{100}{}{Дэрроу}
+{200}{}{Вы видите: гражданин в голубом трико. }
+{210}{}{Вы видите офицера Дэрроу. Она одета в голубое трико, похожее на одежду обитателей Убежищ, только без цифры на спине.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{Прошу прощения, чем могу служить?}
+{2010}{}{Что это за место?}
+{2020}{}{Можно поглядеть, что у тебя есть?}
+{2030}{}{Ничем, спасибо.}
+{3000}{}{Служба Обустройства A... мы поставляем в город инструменты и оборудование для ремонта. Вы уверены, что попали по адресу?}
+{3010}{}{Да, абсолютно. Могу я посмотреть, что у вас есть?}
+{3020}{}{Вряд ли. До свидания.}
+{4000}{}{Вдолжны пойти в магазин во дворе за городом. У них есть все, что вам... внешним нужно.}
+{4010}{}{Ну,спасибо. Теперь, давайте займемся делами.}
+{4020}{}{Я закупаюсь где захочу, понял?}
+{4030}{}{Спасибо за информацию. До свидания.}
+
+[pols]
+{100}{}{Darrow}
+{200}{}{Widzisz obywatela w niebieskim kombinezonie bez żadnego numeru na plecach.}
+{210}{}{Widzisz oficera Sekcji Udogodnień, Darrowa.}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{Przepraszam, mogę w czymś pomóc?}
+{2010}{}{Co to za miejsce?}
+{2020}{}{Mogę zobaczyć, co masz na sprzedaż?}
+{2030}{}{W niczym, do widzenia.}
+{3000}{}{Oto Biuro A Sekcji Udogodnień... Zajmujemy się narzędziami i sprzętem naprawczym dla miasta. Na pewno tego miejsca @sex@|szukałeś||szukałaś|?}
+{3010}{}{Tak, to jest to miejsce. Mogę zobaczyć, co masz na sprzedaż?}
+{3020}{}{Już pójdę, dzięki.}
+{4000}{}{Wiesz, tak dla twojej wiadomości, na Podmurzu znajduje się zwykły sklep wielobranżowy. Może tam @sex@|chciałbyś||chciałabyś| zrobić zakupy? Słyszałem, że ich asortyment jest prawie tak dobry jak nasz.}
+{4010}{}{Och, dzięki. Teraz, przejdźmy do interesów.}
+{4020}{}{Będę @sex@|robił||robiła| zakupy tam, gdzie mi się podoba, zrozumiano?}
+{4030}{}{Dzięki za informacje. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Non-citizen}
+{2000}{}{I'm sorry, can I help you with something?@@Yes?@@Can I help you?@@What do you want, outworlder?}
+{2010}{}{What is this place?@@Where am I?@@What do you do here?}
+{2020}{}{Can I see what you have in stock?@@Can I see your wares?@@Can I see what you've got?}
+{2030}{}{Nothing today, thanks.@@Nevermind.@@I need to go.}
+{3000}{}{This is Sub-Amenities Office A... we handle tools and repair equipment for the city. You sure this is the place you're looking for?}
+{3010}{}{Yes, this is the place. Can I see what you have in stock?@@Can I see what you have?}
+{3020}{}{Nothing today, thanks.@@Nevermind.@@I've gotta go.}
+{4000}{}{Say, just so you know, there's a general store in the Courtyard outside. You might want to try shopping there... I hear his selection is almost as good as ours.}
+{4010}{}{Uh, thanks. Now, let us do some business.@@Yeah, thanks. Can we get to business?@@Yeah, yeah. Can we get down to business?}
+{4020}{}{I'll shop where I want to, got it?@@Whatever.@@Yeah, whatever.}
+{4030}{}{Thanks for the information. Goodbye.@@Right, I've gotta go.@@Thanks for the info. Gotta go now.}
+

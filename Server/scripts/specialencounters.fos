@@ -1,0 +1,196 @@
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "utils_h.fos"
+
+// GUARDIAN OF FOREVER START
+void t_GuardianIn(Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+    if( !player.IsPlayer() )
+        return;
+
+    if( player.Timeout[ TO_BATTLE ] > 0 )
+    {
+        player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        return;
+    }
+        
+    Map@ map = player.GetMap();
+	if (!valid(map))
+		return;
+		
+	Location@ loc = GetLocationOf( player );
+
+		Map@ tpmap = loc.GetMapByIndex(1);
+        
+		if (!valid(tpmap))
+			return;
+           
+	GameVar@ PASSAGE = GetLocalVar( LLVAR_Value0, loc.Id );
+
+	if( PASSAGE == 0 )
+	{
+        PASSAGE = 1;
+		player.TransitToMap(tpmap.Id, 10);
+	}
+}
+
+void t_GuardianOut(Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+    if( !player.IsPlayer() )
+        return;
+
+    if( player.Timeout[ TO_BATTLE ] > 0 )
+    {
+        player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        return;
+    }
+
+    Map@ map = player.GetMap();
+	if (!valid(map))
+		return;
+		
+	Location@ loc = GetLocationOf( player );
+	Map@ tpmap = loc.GetMapByIndex(0);
+	if (!valid(tpmap))
+		return;
+
+	player.TransitToMap(tpmap.Id, 10);
+	return;
+
+}
+
+void GuardianInit(Critter& npc, bool firstTime)
+{
+	if (firstTime)
+	{
+		npc.StatBase[ST_CURRENT_HP] = Random(50, 100);
+		npc.DamageBase[ DAMAGE_RIGHT_LEG ] = 1;
+	}
+}
+
+// GUARDIAN OF FOREVER END
+
+
+
+// TARDIS START
+#define TARDIS_ENTIRE ( 501 )
+#define PID_TARDIS ( 10018 )
+
+void t_TardisAway(Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+    Map@ map = player.GetMap();
+	Location@ loc = GetLocationOf( player );
+    GameVar@ TARDIS = GetLocalVar( LLVAR_Value0, loc.Id );
+
+    if( TARDIS == 0 )
+	{
+        TARDIS = 1;
+
+    array<Item@> tardis;
+	map.GetItems(PID_TARDIS, tardis);
+	for (uint i=0 ; i<tardis.length() ; i++)
+	{
+        if (!valid(tardis[i]))
+            return;
+		tardis[i].Animate( 0, 47 );
+		map.PlaySound("STARDIS1.ACM");
+	}
+        
+        
+        uint[] values = {map.Id};
+
+        CreateTimeEvent(__FullSecond + REAL_SECOND(5), "e_tardis_delete", values, true);
+    }
+
+}
+
+uint e_tardis_delete(uint[]@ values)
+{
+	Map@ map = GetMap(values[0]);
+    if (!valid(map))
+        return 0;
+	Location@ location = map.GetLocation();
+
+    array<Item@> tardis;
+	map.GetItems(PID_TARDIS, tardis);
+	for (uint i=0 ; i<tardis.length() ; i++)
+	{
+        if (!valid(tardis[i]))
+        return 0;
+        SETFLAG( tardis[i].Flags, ITEM_HIDDEN );
+		DeleteItem(tardis[i]);
+	}
+
+    
+    return 0;
+}
+// TARDIS END
+
+// MAD MAX START
+void MusicBox(Item& item, bool firstTime)
+{
+    item.SetEvent(ITEM_EVENT_USE, "MusicBoxUse");
+}
+
+bool MusicBoxUse(Item& item, Critter& player, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+	if( player.Timeout[ TO_MEDICATION ] > 0 ) // Medication timeout will make one huge what the fuck and conspiracy theories :D Also spam coldown.
+	{
+	return false;
+	}
+	else
+	{
+	player.TimeoutBase[ TO_MEDICATION ] = __FullSecond + REAL_SECOND( 15 );
+	player.PlaySound( "musicbox.ogg", true );
+	}
+	return true;
+}
+// MAD MAX END
+
+
+// FIRE STATION START
+#define PID_FIRETRUCK ( 501 )
+#define CAR_X ( 501 )
+#define CAR_Y ( 501 )
+#define LOCKER_X ( 501 )
+#define LOCKER_Y ( 501 )
+#define LOCKER_PID ( 501 )
+
+void _FireTruckMapInit(Map& map, bool firstTime)
+{
+
+	if(firstTime)
+		SpawnFireTruck(map);
+
+}
+
+void SpawnFireTruck(Map& map)
+{
+	uint  keyId = Random( 10000, 50000 );
+
+    Item@ car = map.AddItem( CAR_X, CAR_Y, PID_FIRETRUCK, 1 );
+    if( not valid( car ) || car.GetType() != ITEM_TYPE_CAR )
+        return;
+		
+    car.LockerId = keyId;
+    car.Charge = car.Proto.Car_TankVolume;
+    car.Deterioration = 0;
+    car.Update();
+
+    Item@ bag = car.GetChild( 0 );
+    if( valid( bag ) )
+    {
+        bag.LockerId = keyId;
+        bag.LockerComplexity = Random( 50, 100 );
+        bag.Update();
+    }
+	Item@ keylocker = map.GetItem( LOCKER_X, LOCKER_Y, LOCKER_PID);
+	
+    Item@ key = keylocker.AddItem( PID_KEY, 1 , 0);
+    if( valid( key ) )
+    {
+        key.LockerId = keyId;
+        key.Update();
+    }
+}
+// FIRE STATION END

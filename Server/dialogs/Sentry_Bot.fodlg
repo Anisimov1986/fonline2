@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Sentry Bot}
+{200}{}{You see: Sentry Bot}
+{210}{}{An advanced robot developed for security and defence purposes, equipped with the latest in killing technology.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Combat sequence initiated@@}
+
+[russ]
+{100}{}{Робот-страж}
+{200}{}{ }
+{210}{}{ }
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Инициализация@@}
+
+[pols]
+{100}{}{Robot Wartowniczy}
+{200}{}{ }
+{210}{}{ }
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Tryb bojowy uruchomiony@@}
+
+[ptbr]
+{100}{}{Robô de vigilância}
+{200}{}{Você: Robô de vigilância}
+{210}{}{Um robô avançado desenvolvido para propósitos de segurança e defesa, equipadas com que há de melhor em tecnologias de aniquilação.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Sequência de combate iniciada@@}
+

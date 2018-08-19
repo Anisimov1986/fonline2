@@ -1,0 +1,179 @@
+// Experimental evil npc random patrol script 
+
+#include "_macros.fos"
+#include "_npc_pids.fos"
+#include "map_radiation.fos"
+#include "mapdata_h.fos"
+#include "_msgstr.fos"
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import void ShowElevator( Critter& player, uint8 elevatorType, uint[] mapPids, uint entireNum ) from "elevator";
+
+const uint16[] NpcForInit = {NPC_GLOWeyebot,NPC_GLOWrobobrain };
+
+void _GlowInit( Map& map, bool firstTime )
+{
+    InitGlow(map,firstTime);
+	if( firstTime )
+    {
+		for (uint i=0; i<NpcForInit.length();i++)
+		{
+			Critter@[] critters;
+			if (map.GetCritters( NpcForInit[i], FIND_LIFE_AND_KO | FIND_ONLY_NPC, critters ) > 0 )
+			{
+				for (uint j=0; j<critters.length();j++)
+				{
+					critters[j].SetScript( "_GlowNpcInit" );
+				}
+			}
+		}
+	}
+}
+
+void InitGlow( Map& map, bool firstTime )
+{
+	uint16 mappid = map.GetProtoId();
+	switch(mappid)
+	{
+    case MAP_glow_ent:
+		_HighRadiation( map,  firstTime );
+        break;
+	case MAP_glow1:
+		_HighRadiation( map,  firstTime );
+        break;
+	case MAP_glow2:
+		_HighRadiation( map,  firstTime );
+        break;
+	case MAP_glow3:
+		_HighRadiation( map,  firstTime );
+        break;
+	case MAP_glow4:
+		_HighRadiation( map,  firstTime );
+        break;
+	case MAP_glow5:
+		_HighRadiation( map,  firstTime );
+        break;
+	case MAP_glow6:
+		_HighRadiation( map,  firstTime );
+        break;
+	default:
+        break;
+	}
+}
+
+void _GlowNpcInit( Critter& cr, bool firstTime )
+{
+	cr.StatBase[ ST_REPLICATION_TIME ]=20;
+	cr.SetBagRefreshTime(10);
+	cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_GlowShowCritter" );
+}
+
+void _GlowShowCritter( Critter& npc, Critter& cr )
+{
+	if( cr.IsPlayer() )
+    {
+		if(!npc.CheckEnemyInStack(cr.Id))
+		{
+			uint pr = AI_PLANE_ATTACK_PRIORITY;
+			npc.AddEnemyInStack( cr.Id );
+			AddAttackPlane( npc, Random(pr, pr + 20), cr );
+		}
+    }
+}
+void t_Jeronimo( Critter& player, Scenery& trigger, bool entered, uint8 dir )
+{
+	if (player.IsNpc())
+        return;
+    
+    Map@ map = GetMapByPid (MAP_glow3,0);
+	if (!valid(map))
+		return;
+	uint entiresnum = map.CountEntire(10);
+	if (entiresnum<1)
+		return;
+	uint16 hexX=0;
+	uint16 hexY=0;
+	map.GetEntireCoords (10, Random(0,entiresnum-1), hexX, hexY);
+	if (player.TransitToMap (map.Id, hexX, hexY, Random(0,5)))
+	{
+		player.StatBase[ ST_CURRENT_HP ] -= 100;
+		if( player.Stat[ ST_CURRENT_HP ] > __DeadHitPoints )
+		{
+			if (!player.IsKnockout())
+			{
+				player.ToKnockout( KNOCKOUT_ANIM2_DEFAULT( true ), 0, player.HexX, player.HexY );
+				player.StatBase[ ST_CURRENT_AP ] = -2000;
+			}
+		}
+		else
+		{
+			player.ToDead( ANIM2_DEAD_BACK, null );
+			player.RefreshVisible();
+		}
+	}
+}
+
+bool s_RepairGenerator(Critter& player, Scenery& terminal, int skill, Item@ item)
+{
+    int value = 0;
+    if(valid(item))
+    {
+        if(item.GetProtoId() == PID_MULTI_TOOL)
+            value = 25;
+        else if(item.GetProtoId() == PID_SUPER_TOOL_KIT)
+            value = 50;
+        else
+            return false;
+    }
+    else if(skill != SK_REPAIR)
+        return false;
+
+    value += player.Skill[SK_REPAIR];
+    int testvalue = CLAMP(value, 5, 95);
+    if(testvalue < Random(1, 100))
+    {
+        player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70327);
+        return true;
+    }
+	SetRootMapData(player.GetMap(), MAP_DATA_ELEVATOR_TIME, __FullSecond + (REAL_SECOND(Random(2 * value, 3 * value))));
+    player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70328);
+    return true;
+}
+void _InitKey(Item& item, bool firstTime)
+{
+	if (firstTime)
+	{
+		item.Val9 = __FullSecond+REAL_DAY(1);
+	}
+}
+
+void r_EnableBPower(Critter& cr, Critter@ npc)
+{
+	SetRootMapData(cr.GetMap(), MAP_DATA_ELEVATOR_TIME, __FullSecond + (REAL_MINUTE(15)));
+}
+
+void t_Elevator( Critter& player, Scenery& trigger, bool entered, uint8 dir, int entireExit, int elevatorType, int map1Pid, int map2Pid, int map3Pid )
+{
+    if( entered )
+    {
+		uint time = GetRootMapData(player.GetMap(), MAP_DATA_ELEVATOR_TIME);
+        if(time == 0 || time < __FullSecond)
+        {
+            player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70329);
+            return;
+        }
+		if( player.Timeout[ TO_TRANSFER ] > 0 )
+            player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_TRANSFER_WAIT );
+        else if( player.Timeout[ TO_BATTLE ] > 0 )
+            player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        else
+        {
+            uint[] pids = { uint( map1Pid ) };
+            if( map2Pid > 0 )
+                pids.insertLast( uint( map2Pid ) );
+            if( map3Pid > 0 )
+                pids.insertLast( uint( map3Pid ) );
+            ShowElevator( player, elevatorType, pids, entireExit );
+        }
+    }
+}

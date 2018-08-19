@@ -1,0 +1,53 @@
+#include "_defines.fos"
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "_itempid.fos"
+#include "_vars.fos"
+#include "utils_h.fos"
+#include "utils_for_array.fos"
+
+import bool IsInPersonalDataList( Location& loc, string& pdata, uint value ) from "pdata";
+import bool IsInsideOwnHouse( Critter& cr ) from "house";
+
+//Furniture stuff.
+
+bool IsFurniture(Item& item)
+{
+    return ( item.GetProtoId() >= 9900 && item.GetProtoId() <= 10006 ); 
+}
+
+bool PickupFurniture(Critter& cr, Item& furniture, int skill)
+{
+    if (!IsFurniture(furniture) || furniture.Accessory == ACCESSORY_CRITTER)
+		return false;
+	
+	Location@ loc = GetLocationOf(cr);
+	
+    if(!valid(loc) || (!loc.IsBase() && !loc.IsTent() && !IsInsideOwnHouse(cr)))
+		return false;
+
+	if(loc.IsBase() && !IsInPersonalDataList(loc, "basemanagers", cr.Id )) //If the person is manager he can take furniture, if not, then no.
+	{
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70367 );
+		return false;
+	}
+	if(loc.IsTent() && !cr.IsKnownLoc(true, loc.Id)) //If tent isn't known by person, then the person isn't member of it, simple.
+	{
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70368 );
+		return false;
+	}
+		
+    if((skill == -1) || (skill == SK_STEAL))
+    {   
+		{
+            int freeWeight = cr.Stat[ST_CARRY_WEIGHT] - cr.ItemsWeight();
+            if(freeWeight >= int(furniture.Proto.Weight) || cr.ItemsWeight() == 0)
+            {
+                MoveItem(furniture, 1, cr);
+            }
+            else
+                cr.SayMsg(SAY_NETMSG, TEXTMSG_GAME, STR_OVERWEIGHT);
+        }
+    }
+    return true;
+}

@@ -1,0 +1,485 @@
+#include "_macros.fos"
+#include "_teams.fos"
+#include "mapdata_h.fos"
+#include "_msgstr.fos"
+#include "npc_planes_h.fos"
+#include "stdlib_h.fos"
+#include "polygon_h.fos"
+
+#define MSG_GROUP_ATTACK         ( 16001 )
+import void _NpcToHome( Map& map, bool firstTime ) from "utils";
+import void ShowElevator( Critter& player, uint8 elevatorType, uint[] mapPids, uint entireNum ) from "elevator";
+import bool IsRelation(uint faction, uint faction2, int relation) from "faction_cache";
+
+array<uint16> SierraDungeonMaps = {MAP_sad_level1, MAP_sad_level2, MAP_sad_level3, MAP_sad_level4};
+
+array<uint16> suffocate_area_v =
+{
+    112, 99,
+    84,  99,
+    84, 125,
+    112, 125
+};
+IPolygon@     suffocate_area;
+
+void _MapInit( Map& map, bool firstTime )
+{
+	for (uint i = 0; i < SierraDungeonMaps.length(); i++)
+	{
+		Map@ map = GetMapByPid(SierraDungeonMaps[i], 0);
+		if (valid(map))
+			_NpcToHome(map,firstTime);
+		if (SierraDungeonMaps[i]==MAP_sad_level2)
+		{
+			@suffocate_area = NewPolygon();
+			suffocate_area.AddVertices(suffocate_area_v);
+		}
+			
+	}
+}
+
+void t_NpcHelper( Critter& cr, Scenery& trigger, bool entered, uint8 dir)
+{
+	if (!cr.IsNpc())
+		return;
+
+	if ( entered )
+		SETFLAG(cr.ParamBase[TEST_FLAGS],F_DOOR_BLOCK);
+	else
+		UNSETFLAG(cr.ParamBase[TEST_FLAGS],F_DOOR_BLOCK);
+}
+
+void t_robotwire( Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+	GameVar@ roboenabled = GetGlobalVar(GVAR_sierra_robots);
+
+	if ( entered  && roboenabled == 0 )
+	{
+		roboenabled = 1;
+		EnabledRobots(null);
+		CreateTimeEvent(__FullSecond+REAL_MINUTE(20), "EnabledRobotsCD", 0, true);
+	}
+}
+
+void r_EnableRobots(Critter& player, Critter@ npc)
+{
+	GameVar@ roboenabled = GetGlobalVar(GVAR_sierra_robots);
+	roboenabled = 1;
+	EnabledRobots(null);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(20), "EnabledRobotsCD", 0, true);
+}
+
+uint r_EnableRobots(array<uint>@ values)
+{
+	GameVar@ roboenabled = GetGlobalVar(GVAR_sierra_robots);
+	roboenabled = 1;
+	EnabledRobots(null);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(20), "EnabledRobotsCD", 0, true);
+		return 0;
+}
+void r_DisableRobots(Critter& player, Critter@ npc)
+{
+	GameVar@ roboenabled = GetGlobalVar(GVAR_sierra_robots);
+	roboenabled = 0;
+	EnabledRobotsCD(null);
+}
+
+uint EnabledRobots(array<uint>@ values)
+{
+	for (uint i = 0; i < SierraDungeonMaps.length(); i++)
+	{
+		Map@ map = GetMapByPid(SierraDungeonMaps[i], 0);
+		if(!valid(map))
+			return 0;
+		
+		map.PlaySound( "alarm.ogg" );
+		
+		array<Critter@> npcs;
+		map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+		for (uint j = 0; j < npcs.length(); j++)
+		{
+			if(npcs[j].Stat[ST_NPC_ROLE] == 355)
+			{
+				npcs[j].SetScript("_MobSierra");
+				npcs[j].ToLife();
+				npcs[j].StatBase[ ST_CURRENT_HP ] = npcs[j].Stat[ ST_MAX_LIFE ];
+			}
+		}
+	}
+	return 0;
+}
+
+uint EnabledRobotsCD(array<uint>@ values)
+{
+	for (uint i = 0; i < SierraDungeonMaps.length(); i++)
+	{
+		Map@ map = GetMapByPid(SierraDungeonMaps[i], 0);
+		if(!valid(map))
+			return 0;
+			
+		GameVar@ roboenabled = GetGlobalVar(GVAR_sierra_robots);
+		roboenabled = 0;
+		array<Critter@> npcs;
+		map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+		for (uint j = 0; j < npcs.length(); j++)
+		{
+			if(npcs[j].Stat[ST_NPC_ROLE] == 355)
+			{
+				npcs[j].SetScript("_MobSierraOff");
+				npcs[j].ToLife();
+				npcs[j].StatBase[ ST_CURRENT_HP ] = npcs[j].Stat[ ST_MAX_LIFE ];
+			}
+		}
+	}
+	return 0;
+}
+
+bool _AttackAndAlarm( Critter& npc, Critter& attacker )
+{
+    GameVar@ roboenabled = GetGlobalVar(GVAR_sierra_robots);
+	
+	if ( roboenabled == 0 )
+	{
+		roboenabled = 1;
+		EnabledRobots(null);
+		CreateTimeEvent(__FullSecond+REAL_MINUTE(20), "EnabledRobotsCD", 0, true);
+	}
+    return false;
+}
+
+bool _AlarmAndAttack( Critter& npc, Critter& attacker )
+{
+    GameVar@ roboenabled = GetGlobalVar(GVAR_sierra_robots);
+
+	if ( roboenabled == 0 )
+	{
+		roboenabled = 1;
+		EnabledRobots(null);
+		CreateTimeEvent(__FullSecond+REAL_MINUTE(20), "EnabledRobotsCD", 0, true);
+	}
+	npc.SendMessage( MSG_GROUP_ATTACK, attacker.Id, MESSAGE_TO_ALL_ON_MAP );
+	npc.AddEnemyInStack( attacker.Id );
+	AddAttackPlane( npc, 0, attacker ); 
+    return true;     // Handle attacked processing
+}
+
+void _OnMessage( Critter& npc, Critter& fromCrit, int message, int value )
+{
+    if( npc.IsPlayer() )
+        return;
+    if( not npc.IsLife() )
+        return;
+    if( npc.Stat[ ST_TEAM_ID ] == 0 )
+        return;                               // 0 группа не групируеться
+    if( npc.Stat[ ST_TEAM_ID ] == 33 )
+        return;                               // 33 группа не групируеться
+    if( npc.Stat[ ST_TEAM_ID ] != fromCrit.Stat[ ST_TEAM_ID ] )
+        return;                               // ктото не из нашей группы
+
+    if( message == MSG_GROUP_ATTACK )
+    {
+        Critter@ target = ::GetCritter( value );
+        if( not valid( target ) )
+            return;
+        AddAttackPlane( npc, 0, target );
+    }
+}
+
+
+void MobSierraDefault( Critter& npc, bool firstTime )
+{
+	npc.SkillBase[ SK_BIG_GUNS ] = 300;
+	npc.StatBase[ ST_REPLICATION_TIME ] = 10;
+	npc.StatBase[ ST_TEAM_ID ] = TEAM_Mob2;
+    npc.ParamBase[VISION_LEVEL]=1;
+	npc.SetEvent( CRITTER_EVENT_PLANE_BEGIN, "mob@_PlaneBegin" );
+	npc.SetEvent( CRITTER_EVENT_DEAD,        "mob@_MyDeath" );
+    
+}
+
+void _TurretSierra( Critter& npc, bool firstTime )
+{
+	MobSierraDefault(npc, firstTime);
+	//npc.ShowCritterDist2 = 2;
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, 	"mob@_ShowPlayer" );
+    //npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_2, "mob@_ShowPlayerFastAttack");
+}
+
+void _TurretSierraHacked( Critter& npc, bool firstTime )
+{
+    MobSierraDefault(npc, firstTime);
+	//npc.ShowCritterDist2 = 2;
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER,	"_ShowPlayerHacked" );
+	//npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_2, "_ShowPlayerFastAttackHacked");
+    npc.SetEvent( CRITTER_EVENT_ATTACKED,    	"_AttackedHacked" );
+}
+
+void _MobSierraStatic( Critter& npc, bool firstTime )
+{
+	npc.SkillBase[SK_BIG_GUNS] = 300;
+	npc.ModeBase[MODE_NO_FLATTEN] = 1;
+	npc.ModeBase[MODE_NO_KNOCK] = 1;
+	npc.ModeBase[MODE_NO_PUSH] = 1;
+	npc.ModeBase[MODE_NO_WALK] = 1;
+	npc.ModeBase[MODE_NO_RUN] = 1;
+	npc.ModeBase[MODE_NO_LOOSE_LIMBS] = 1;
+	npc.StatBase[ST_REPLICATION_TIME ] = 10;
+	//npc.ShowCritterDist2 = 2;
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "mob@_ShowPlayer" );
+	//npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_2, "mob@_ShowPlayerFastAttack");
+}
+
+void _MobSierraPassive( Critter& npc, bool firstTime )
+{
+    npc.ModeBase[MODE_NO_KNOCK] = 1;
+	npc.ModeBase[MODE_NO_LOOSE_LIMBS] = 1;
+	MobSierraDefault(npc, firstTime);
+	npc.SetEvent( CRITTER_EVENT_MESSAGE,     	"_OnMessage" );
+    npc.SetEvent( CRITTER_EVENT_ATTACKED,    	"_AlarmAndAttack" );
+}
+
+void _MobSierra( Critter& npc, bool firstTime )
+{
+	npc.ModeBase[MODE_NO_KNOCK] = 1;
+	npc.ModeBase[MODE_NO_LOOSE_LIMBS] = 1;
+	MobSierraDefault(npc, firstTime);
+	//npc.ShowCritterDist2 = 2;
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "mob@_ShowPlayer" );
+	npc.SetEvent( CRITTER_EVENT_ATTACK , "_AttackAndAlarm" );
+	//npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_2, "mob@_ShowPlayerFastAttack");
+    npc.SetEvent( CRITTER_EVENT_MESSAGE,     	"_OnMessage" );
+    npc.SetEvent( CRITTER_EVENT_ATTACKED,    	"_AlarmAndAttack" );
+}
+
+void _MobSierraOff( Critter& npc, bool firstTime )
+{
+	npc.ShowCritterDist1 = 0;
+	//npc.ShowCritterDist2 = 0;
+	npc.DropPlanes();
+	npc.ClearEnemyStack();
+	npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "" );
+	npc.SetEvent( CRITTER_EVENT_MESSAGE,     "_OnMessage" );
+	npc.SetEvent( CRITTER_EVENT_ATTACKED,    "_AlarmAndAttack" );
+}
+
+void r_HackTower(Critter& player, Critter@ npc)
+{
+	GameVar@ hackfaction = GetGlobalVar(GVAR_sierra_turrets_hackerfaction);
+	hackfaction = player.Param[MAIN_FACTION];
+	HackedTowers(null);
+	GameVar@ sierra_turrets_hackcd = GetGlobalVar(GVAR_sierra_turrets_hackcd);
+	if(sierra_turrets_hackcd != 0)
+		EraseTimeEvent(sierra_turrets_hackcd.GetValue());
+	sierra_turrets_hackcd = CreateTimeEvent(__FullSecond+REAL_MINUTE(60), "HackedTowersCD", 0, true);
+}
+
+void r_KillTower(Critter& player, Critter@ npc)
+{
+	KillTowers(null);
+}
+
+uint HackedTowersCD(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_sad_enter,0);
+	if (!valid(map))
+		return 0;
+	GameVar@ var = GetGlobalVar(GVAR_sierra_turrets);
+	var = 0;
+	GameVar@ hackfaction = GetGlobalVar(GVAR_sierra_turrets_hackerfaction);
+	hackfaction = 0;
+	GameVar@ sierra_turrets_hackcd = GetGlobalVar(GVAR_sierra_turrets_hackcd);
+	sierra_turrets_hackcd = 0;
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+		if(npcs[i].Stat[ST_NPC_ROLE] == 354)
+			npcs[i].SetScript("_TurretSierra");
+
+	return 0;
+}
+
+uint HackedTowers(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_sad_enter,0);
+	if (!valid(map))
+		return 0;
+	GameVar@ var = GetGlobalVar(GVAR_sierra_turrets);
+	var = 1;
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == 354)
+		{
+			npcs[i].SetScript("_TurretSierraHacked");
+			npcs[i].ClearEnemyStack();
+			npcs[i].DropPlanes();
+		}
+	}
+	return 0;
+}
+
+void _ShowPlayerHacked( Critter& npc, Critter& player )
+{
+	GameVar@ hackfaction = GetGlobalVar(GVAR_sierra_turrets_hackerfaction);
+	
+	if ( hackfaction != 0 && ( hackfaction == player.Param[MAIN_FACTION] || IsRelation(hackfaction.GetValue(),player.Param[MAIN_FACTION],1)))
+		return;
+	if( player.IsPlayer() )
+    {
+		if(!npc.CheckEnemyInStack(player.Id))
+		{
+			uint pr = AI_PLANE_ATTACK_PRIORITY;
+			npc.AddEnemyInStack( player.Id );
+			AddAttackPlane( npc, Random(pr, pr + 20), player );
+		}
+    }
+}
+
+void _ShowPlayerFastAttackHacked( Critter& npc, Critter& player )
+{
+	GameVar@ hackfaction = GetGlobalVar(GVAR_sierra_turrets_hackerfaction);
+	
+	if ( hackfaction != 0 && ( hackfaction == player.Param[MAIN_FACTION] || IsRelation(hackfaction.GetValue(),player.Param[MAIN_FACTION],1)))
+		return;
+    if( not player.IsPlayer() )
+        return;
+    AddAttackPlane( npc, AI_PLANE_ATTACK_PRIORITY + 21, player );
+}
+
+bool _AttackedHacked( Critter& npc, Critter& attacker )
+{
+	GameVar@ hackfaction = GetGlobalVar(GVAR_sierra_turrets_hackerfaction);
+	
+	if( hackfaction != 0 && ( hackfaction == attacker.Param[MAIN_FACTION] || IsRelation(hackfaction.GetValue(),attacker.Param[MAIN_FACTION],1)))
+		return true;  // Handle attacked processing
+	AddAttackPlane( npc, 0, attacker ); 
+    return false;    
+}
+
+
+void t_Elevator( Critter& player, Scenery& trigger, bool entered, uint8 dir, int entireExit, int elevatorType, int map1Pid, int map2Pid, int map3Pid )
+{
+    if( entered )
+    {
+		uint time = GetRootMapData(player.GetMap(), MAP_DATA_ELEVATOR_TIME);
+        if(time == 0 || time < __FullSecond)
+        {
+            player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70329);
+            return;
+        }
+		if( player.Timeout[ TO_TRANSFER ] > 0 )
+            player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_TRANSFER_WAIT );
+        else if( player.Timeout[ TO_BATTLE ] > 0 )
+            player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        else
+        {
+            uint[] pids = { uint( map1Pid ) };
+            if( map2Pid > 0 )
+                pids.insertLast( uint( map2Pid ) );
+            if( map3Pid > 0 )
+                pids.insertLast( uint( map3Pid ) );
+            ShowElevator( player, elevatorType, pids, entireExit );
+        }
+    }
+}
+
+void r_EnableBPower(Critter& cr, Critter@ npc)
+{
+	Map@ map = cr.GetMap();
+	if (!valid(map))
+		return;
+
+	SetRootMapData(map, MAP_DATA_ELEVATOR_TIME, __FullSecond + (REAL_MINUTE(10)));
+}
+
+int Alarmcountdown=0;
+
+void r_TimedAlarm(Critter& player, Critter@ npc)
+{
+	Alarmcountdown = CreateTimeEvent(__FullSecond+REAL_SECOND(10), "r_EnableRobots", 0, false);
+}
+
+void r_DisableAlarm(Critter& player, Critter@ npc)
+{
+	if (Alarmcountdown!=0)
+		EraseTimeEvent(Alarmcountdown);
+}
+
+
+//tools
+
+void hacktower( Critter& player, int faction, int , int)
+{
+	GameVar@ hackfaction = GetGlobalVar(9332);
+	hackfaction = faction;
+	HackedTowers(null);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(60), "HackedTowersCD", 0, true);
+}
+
+void killtower( Critter& cr, int, int , int)
+{
+	KillTowers(null);
+}
+
+uint KillTowers(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_sad_enter,0);
+	if (!valid(map))
+		return 0;
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == 354)
+			npcs[i].ToDead(0, null);
+	}
+	return 0;
+}
+
+void SadSuffocate(uint mappid,uint x,uint y,uint id)
+{
+	uint[] values = { mappid, x, y, id };
+	CreateTimeEvent(__FullSecond+REAL_SECOND(1), "e_suffocate", values, true);
+}
+
+uint e_suffocate( uint[] @ values )
+{
+	Map@ map = GetMapByPid(values[0],0); 
+	if (!valid(map))
+		return 0;
+	array<Critter@> players;	
+	bool crin=false;
+	uint crnum = map.GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, players );
+	
+	if (crnum == 0)
+		return 0;
+	Item@ door = map.GetItem( values[1], values[2], values[3] );
+	
+	if( !valid(door) )
+		return 0;
+	
+	if(_LockerIsOpen(door))
+        return 0;
+	
+	for(uint i = 0; i < crnum; i++)
+	{
+		Critter@ cr=players[i];
+		if (!valid(cr))
+			continue;
+		if (suffocate_area.IsWithin(cr))
+		{
+			crin=true;
+			cr.StatBase[ ST_CURRENT_HP ] -= 50;
+			cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70384);
+			if( cr.Stat[ ST_CURRENT_HP ] < __DeadHitPoints )
+			{
+				cr.ToDead( ANIM2_DEAD_BACK, null );
+				cr.RefreshVisible();
+			}
+		}
+	}
+	if (crin)
+		return REAL_SECOND(1);
+	return 0;
+}

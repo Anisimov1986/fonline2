@@ -1,0 +1,684 @@
+#include "_itempid.fos"
+#include "_msgstr.fos"
+#include "_npc_pids.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_common_loot.fos" 
+#include "game_event_gossip_h.fos"
+#include "utils_h.fos"
+
+#define STEPS                             (10)
+#define STEP_DURATION                     (REAL_SECOND(120))
+#define TRADER_BARTER                     (300)
+#define MINIQUEST_FIRST_ID                (50)
+#define CITIZEN_MINISALE_EVENT_ID         (50)
+#define DRUG_DEALER_MINISALE_EVENT_ID     (51)
+#define SF_CH_SUPPLIES_MINISALE_EVENT_ID  (52)
+#define SF_ET_SUPPLIES_MINISALE_EVENT_ID  (53)
+#define REDD_SUPPLIES_MINISALE_EVENT_ID   (54)
+#define GECKO_SUPPLIES_MINISALE_EVENT_ID  (55)
+#define BH_SUPPLIES_MINISALE_EVENT_ID     (56)
+#define MINIQUEST_LAST_ID                 (56)
+
+import int GetNextTime(uint Id) from "game_events";
+
+AutoLootGenerator rareLoot = AutoLootGenerator()
+	.AddLoot(PID_MPART_1, 1, 1)
+	.AddLoot(PID_MPART_2, 1, 1)
+	.AddLoot(PID_MPART_3, 1, 1)
+	.AddLoot(PID_MPART_4, 1, 1)
+	.AddLoot(PID_EPART_1, 1, 1)
+	.AddLoot(PID_EPART_2, 1, 1)
+	.AddLoot(PID_EPART_3, 1, 1)
+	.AddLoot(PID_EPART_4, 1, 1)
+	.AddLoot(PID_EPART_5, 1, 1)
+	.AddLoot(PID_PREWAR_1, 1, 1)
+	.AddLoot(PID_PREWAR_2, 1, 1)		
+	.AddLoot(PID_PREWAR_3, 1, 1)
+	.AddLoot(PID_ELECTRONIC_LOCKPICKS, 1, 1)
+	.AddLoot(PID_SUPER_TOOL_KIT, 1, 1);
+
+		
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + CITIZEN_MINISALE_EVENT_ID, MiniSaleEvent(CITIZEN_MINISALE_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_citizen)
+		.AddCritterDialogIds(DIALOG_sf_citizen)
+		.AddCritterDialogIds(DIALOG_mod_citizen)
+		.AddCritterDialogIds(DIALOG_redd_citizen)
+		.AddCritterDialogIds(DIALOG_vc_citizen_floater)
+		.AddCritterDialogIds(DIALOG_vc_citizen)
+		.AddCritterDialogIds(DIALOG_bh_male)
+		.AddCritterDialogIds(DIALOG_bh_female)
+		.AddCritterDialogIds(DIALOG_adyt_resident)
+		.SetQuestDialogId(DIALOG_event_minisale_citizen)
+		.AddLoot(PID_BIG_BOOK_OF_SCIENCE, 100)
+		.AddLoot(PID_DEANS_ELECTRONICS, 100)
+		.AddLoot(PID_FIRST_AID_BOOK, 100)
+		.AddLoot(PID_SCOUT_HANDBOOK, 100)
+		.AddLoot(PID_GUNS_AND_BULLETS, 100)
+		.AddLoot(PID_REFINED_ORE, 10)
+		.AddLoot(PID_KEVLAR_POLYMER, 10)
+		.AddLoot(PID_HIGH_GRADE_STEEL, 10)
+		.AddLoot(PID_ENERGY_TRANSFORMER, 10)
+		.AddLoot(PID_CHEMICAL_COMPONENTS, 10)
+		.AddLoot(rareLoot)
+		.SetGossipMsgId(STR_CITIZEN_MINISALE_GOSSIP_LOC, STR_CITIZEN_MINISALE_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + DRUG_DEALER_MINISALE_EVENT_ID, MiniSaleEvent(DRUG_DEALER_MINISALE_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_narcodealer)
+		.AddCritterDialogIds(DIALOG_all_narcoman)
+		.SetQuestDialogId(DIALOG_event_minisale_narcodealer)
+		.AddLoot(PID_MENTATS, 100)
+		.AddLoot(PID_BUFFOUT, 100)
+		.AddLoot(PID_JET, 100)
+		.AddLoot(PID_RAD_X, 100)
+		.AddLoot(PID_RADAWAY, 100)
+		.AddLoot(rareLoot)
+		.SetGossipMsgId(STR_DRUG_DEALER_MINISALE_GOSSIP_LOC, STR_DRUG_DEALER_MINISALE_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + SF_CH_SUPPLIES_MINISALE_EVENT_ID, MiniSaleEvent(SF_CH_SUPPLIES_MINISALE_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_sf_citizen)
+		.SetQuestDialogId(DIALOG_event_minisale_supplies)
+		.AddLoot(PID_CHEMICAL_COMPONENTS, 100)
+		.AddLoot(rareLoot)
+		.SetGossipMsgId(STR_CH_SUPPLIES_MINISALE_GOSSIP_LOC, STR_CH_SUPPLIES_MINISALE_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + SF_ET_SUPPLIES_MINISALE_EVENT_ID, MiniSaleEvent(SF_ET_SUPPLIES_MINISALE_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_sf_citizen)
+		.SetQuestDialogId(DIALOG_event_minisale_supplies)
+		.AddLoot(PID_ENERGY_TRANSFORMER, 100)
+		.AddLoot(rareLoot)
+		.SetGossipMsgId(STR_ET_SUPPLIES_MINISALE_GOSSIP_LOC, STR_ET_SUPPLIES_MINISALE_GOSSIP_NO_LOC)
+	);	
+	
+	events.set("" + REDD_SUPPLIES_MINISALE_EVENT_ID, MiniSaleEvent(REDD_SUPPLIES_MINISALE_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_redd_miner)
+		.SetQuestDialogId(DIALOG_event_minisale_supplies)
+		.AddLoot(PID_HIGH_GRADE_STEEL, 100)
+		.AddLoot(rareLoot)
+		.SetGossipMsgId(STR_REDD_SUPPLIES_MINISALE_GOSSIP_LOC, STR_REDD_SUPPLIES_MINISALE_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + GECKO_SUPPLIES_MINISALE_EVENT_ID, MiniSaleEvent(GECKO_SUPPLIES_MINISALE_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_geck_citizen)
+		.SetQuestDialogId(DIALOG_event_minisale_supplies)
+		.AddLoot(PID_KEVLAR_POLYMER, 100)
+		.AddLoot(rareLoot)
+		.SetGossipMsgId(STR_GECKO_SUPPLIES_MINISALE_GOSSIP_LOC, STR_GECKO_SUPPLIES_MINISALE_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + BH_SUPPLIES_MINISALE_EVENT_ID, MiniSaleEvent(BH_SUPPLIES_MINISALE_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_bh_male)
+		.AddCritterDialogIds(DIALOG_bh_female)
+		.AddCritterDialogIds(DIALOG_bh_ghoul)
+		.AddCritterDialogIds(DIALOG_bh_mutant)
+		.SetQuestDialogId(DIALOG_event_minisale_supplies)
+		.AddLoot(PID_REFINED_ORE, 100)
+		.AddLoot(rareLoot)
+		.SetGossipMsgId(STR_BH_SUPPLIES_MINISALE_GOSSIP_LOC, STR_BH_SUPPLIES_MINISALE_GOSSIP_NO_LOC)
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	MiniSaleEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+	}
+}
+
+uint e_event_init(array<uint>@ values) 
+{
+	MiniSaleEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.InitEvent();
+	}
+	
+	return 0;
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	MiniSaleEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start(Critter& player, int id, int moveTester, int)
+{
+	event_start(id);
+		
+	MiniSaleEvent @event;
+	if (moveTester > 0 && events.get("" + id, @event))
+	{
+		//Move tester near event critter if moveTester > 0
+		uint16 x = 0, y = 0;
+		
+		Critter@ questCritter = GetCritter(event.GetCritterId());
+		if(!valid(questCritter))
+		{
+			return;
+		}
+		
+		x = questCritter.HexX;
+		y = questCritter.HexY;
+		
+		Map@ map = questCritter.GetMap();
+		if(!valid(map))
+		{
+			return;
+		}
+		
+		if (GetFreeHex(map, 2, x, y))
+		{
+			player.TransitToMap(map.Id, x, y, 0, true);
+		}
+	}
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class MiniSaleEvent
+{	
+	#define _GetKey ("MiniSaleEvent" + eventId)
+	private int eventId, questDialogId;
+	private int tempReplicationTime, tempTalkDistance, tempMaxTalkers, tempBarter, tempNoBarter, tempNoDrop, tempNoSteal, tempNoLoot, tempNoEnemyStack;
+	private uint critterId, step, gossipLocMsgId = 0, gossipNoLocMsgId = 0; 	
+	private AutoLootGenerator autoLootGenerator;
+	private uint[] critterDialogIds;
+	
+	bool started = false, loaded = false;
+
+	
+	MiniSaleEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	private void Load()
+	{
+		if (loaded)
+		{
+			return;
+		}
+	
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(eventId);
+		serializator.Get(critterId);
+		serializator.Get(step);
+		serializator.Get(started);
+		serializator.Get(tempReplicationTime);
+		serializator.Get(tempTalkDistance);
+		serializator.Get(tempMaxTalkers);
+		serializator.Get(tempBarter);
+		serializator.Get(tempNoBarter);
+		serializator.Get(tempNoDrop);
+		serializator.Get(tempNoSteal);
+		serializator.Get(tempNoLoot);
+		serializator.Get(tempNoEnemyStack);
+		
+		loaded = true;
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(eventId);
+		serializator.Set(critterId);
+		serializator.Set(step);
+		serializator.Set(started);
+		serializator.Set(tempReplicationTime);
+		serializator.Set(tempTalkDistance);
+		serializator.Set(tempMaxTalkers);
+		serializator.Set(tempBarter);
+		serializator.Set(tempNoBarter);
+		serializator.Set(tempNoDrop);
+		serializator.Set(tempNoSteal);
+		serializator.Set(tempNoLoot);
+		serializator.Set(tempNoEnemyStack);
+		
+		serializator.Save(_GetKey);
+	}
+		
+	MiniSaleEvent@ SetQuestDialogId(uint dialogId)
+	{
+		this.questDialogId = dialogId;
+		return @this;
+	}
+	
+	MiniSaleEvent@ AddCritterDialogIds(uint dialogId)
+	{
+		critterDialogIds.insertLast(dialogId);
+		return @this;
+	}
+	
+	uint GetCritterId()
+	{
+		Load();
+		return critterId;
+	}
+	
+	int GetQuestDialogId()
+	{
+		return questDialogId;
+	}
+	
+	bool IsStarted()
+	{
+		return started;
+	}
+		
+	MiniSaleEvent@ AddLoot(int lootPid, int quantity)
+	{
+		autoLootGenerator.AddLoot(lootPid, quantity, quantity);
+		return @this;
+	}
+	
+	MiniSaleEvent@ AddLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	MiniSaleEvent@ SetGossipMsgId(uint gossipLocMsgId, uint gossipNoLocMsgId)
+	{
+		this.gossipLocMsgId = gossipLocMsgId;
+		this.gossipNoLocMsgId = gossipNoLocMsgId;
+		return @this;
+	}
+	
+	void InitEvent()
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		Critter@ critter = GetCritter(critterId);	
+		
+		if(!valid(critter))
+		{
+			return;
+		}
+	
+		critter.SetEvent(CRITTER_EVENT_TALK , "_Talk");
+	}
+	
+	void StartEvent()
+	{	
+		Load();
+		
+		if (started)
+		{
+			return;
+		}
+		
+		step = 0;
+	
+		critterId = FindCritterId();
+
+		InitializeCritter();
+		
+		InitializeGossip();
+		
+		started = true;
+			
+		Save();
+		
+		CreateTimeEvent(__FullSecond, "e_EventStep", eventId, true);
+	}
+
+	void InitializeGossip()
+	{
+		if (gossipLocMsgId > 0)
+		{
+			Critter@ critter = GetCritter(critterId);
+			if (!valid(critter)) 
+			{
+				return;
+			}
+		
+			Map@ map = critter.GetMap();
+			if (!valid(map)) 
+			{
+				return;
+			}
+
+			Location@ location = map.GetLocation();
+			if (!valid(location)) 
+			{
+				return;
+			}
+			
+			GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, STEP_DURATION * STEPS);
+			gossipDefinition.SetGossipId(eventId);
+			gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+			gossipDefinition.SetSourceLocationId(location.Id);
+			gossipDefinition.SetMsgId(gossipLocMsgId);
+			gossipDefinition.SetSourceMsgId(gossipNoLocMsgId);
+			gossipDefinition.SetLexems("$locationname" + "@msg GM " + STR_LOC_NAME(location.GetProtoId()) + "@");
+			StartGossip(gossipDefinition);
+		}
+	}	
+	
+	void StopEvent()
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		ClearCritter();
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+		
+		started = false;
+		
+		EraseAnyData(_GetKey);
+	}
+	
+	bool Step()
+	{
+		Load();
+	
+		if (!started)
+		{
+			return false;
+		}
+	
+		Critter@ critter = GetCritter(critterId);	
+		
+		if(valid(critter))
+		{
+			autoLootGenerator.GenerateOneItem(critter);
+			
+			if (Random(1, 10) == 1)
+			{
+				autoLootGenerator.GenerateOneItem(critter);
+			}
+			
+			if (Random(1, 100) == 1)
+			{
+				autoLootGenerator.GenerateOneItem(critter);
+			}
+		}
+		
+		step++;
+		
+		if (step > STEPS)
+		{
+			StopEvent();
+			return false;
+		}
+		
+		Save();
+		
+		return true;
+	}
+	
+	private uint FindCritterId()
+	{
+		Critter@[] allCritters;
+		Critter@[] questCritters;
+		
+		GetAllNpc(0, allCritters);
+		
+		for(uint i = 0; i < allCritters.length(); i++)
+		{
+			if (!Present(allCritters[i].Param[ST_DIALOG_ID], critterDialogIds))
+			{
+				continue;
+			}
+			
+			if (allCritters[i].IsDead())
+			{
+				continue;
+			}
+			
+			if (FLAG(allCritters[i].ParamBase[CR_FLAGS1], NPC_GIVING_QUEST))
+			{
+				continue;
+			}
+			
+			if (FLAG(allCritters[i].ParamBase[CR_FLAGS1], NPC_GIVING_QUEST_INVISIBLE))
+			{
+				continue;
+			}
+		
+			Map@ map = allCritters[i].GetMap();
+			if (!valid(map)) 
+			{
+				continue;
+			}
+
+			Location@ location = map.GetLocation();
+			if (!valid(location)) 
+			{
+				continue;
+			}
+			
+			if (location.GetProtoId() == LOCATION_Island_Prison)
+			{
+				continue;
+			}
+			
+			if (!location.Visible)
+			{
+				continue;
+			}
+				
+			questCritters.insertLast(allCritters[i]);			
+		}
+		
+		uint randomIdx = Random(0, questCritters.length() - 1);
+		
+		if (valid (questCritters[randomIdx]))
+		{
+			return questCritters[randomIdx].Id;
+		}
+		
+		return 0;			
+	}
+	
+	private void InitializeCritter()
+	{
+		Critter@ critter = GetCritter(critterId);
+		if (!valid(critter)) 
+		{
+			return;
+		}
+		
+		SETFLAG(critter.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST);
+		
+		tempReplicationTime = critter.ParamBase[ST_REPLICATION_TIME];
+		critter.ParamBase[ST_REPLICATION_TIME] = 0;
+		
+		tempTalkDistance = critter.StatBase[ST_TALK_DISTANCE];
+		critter.StatBase[ST_TALK_DISTANCE] = 5;
+		
+		tempMaxTalkers = critter.StatBase[ST_MAX_TALKERS];
+		critter.StatBase[ST_MAX_TALKERS] = 3;
+	
+		tempBarter = critter.StatBase[ST_MAX_TALKERS];
+		critter.SkillBase[SK_BARTER] = TRADER_BARTER;
+		
+		tempNoBarter = critter.ModeBase[MODE_NO_BARTER];
+		critter.ModeBase[MODE_NO_BARTER] = 0;
+	
+		tempNoDrop = critter.ModeBase[MODE_NO_DROP];
+		critter.ModeBase[MODE_NO_DROP] = 1;
+	
+		tempNoSteal = critter.ModeBase[MODE_NO_STEAL];
+		critter.ModeBase[MODE_NO_STEAL] = 1;
+		
+		tempNoLoot = critter.ModeBase[MODE_NO_LOOT];
+		critter.ModeBase[MODE_NO_LOOT] = 1;
+		
+		tempNoEnemyStack = critter.ModeBase[MODE_NO_ENEMY_STACK];
+		critter.ModeBase[MODE_NO_ENEMY_STACK] = 1;
+		
+		critter.SetEvent(CRITTER_EVENT_TALK , "_Talk");
+	}
+	
+	private void ClearCritter()
+	{
+		Critter@ critter = GetCritter(critterId);	
+		if(!valid(critter))
+		{
+			return;
+		}
+		
+		UNSETFLAG(critter.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST);
+		critter.ParamBase[ST_REPLICATION_TIME] = tempReplicationTime;
+		critter.StatBase[ST_TALK_DISTANCE] = tempTalkDistance;
+		critter.StatBase[ST_MAX_TALKERS] = tempMaxTalkers;
+		critter.SkillBase[SK_BARTER] = tempBarter;
+		critter.ModeBase[MODE_NO_BARTER] = tempNoBarter;
+		critter.ModeBase[MODE_NO_DROP] = tempNoDrop;
+		critter.ModeBase[MODE_NO_STEAL] = tempNoSteal;
+		critter.ModeBase[MODE_NO_LOOT] = tempNoLoot;
+		critter.ModeBase[MODE_NO_ENEMY_STACK] = tempNoEnemyStack;
+		
+		critter.SetEvent(CRITTER_EVENT_TALK , "");
+		
+		Item@[] items;
+		critter.GetItems(SLOT_INV, items);
+		DeleteItems(items);
+	}
+}
+
+MiniSaleEvent@ findEvent(uint critterId)
+{
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	for (uint i = MINIQUEST_FIRST_ID; i <= MINIQUEST_LAST_ID; i++)
+	{
+		MiniSaleEvent @event;
+		
+		if (events.get("" + i, @event) && event.GetCritterId() == critterId)
+		{
+			return event;
+		}
+	}
+	
+	return null;
+}
+
+uint e_EventStep(array<uint>@ values)
+{
+	MiniSaleEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		if (event.Step() && event.IsStarted())
+		{
+			return STEP_DURATION;
+		}
+	}
+	
+	return 0;
+}
+
+bool _Talk(Critter& critter, Critter& player, bool attach, uint talkCount)
+{
+    if(attach)
+    {
+		MiniSaleEvent @event = findEvent(critter.Id);
+		if (valid(event))
+		{
+			//Nasty hook, but it solves many issues and allows to create generic dialog functions.
+			//Function bool RunDialog(Critter&, uint16, uint16, uint16, bool) will not work perfectly.
+			if (critter.ParamBase[ST_DIALOG_ID] != event.GetQuestDialogId())
+			{
+				uint tempDialogId = critter.ParamBase[ST_DIALOG_ID];
+				critter.ParamBase[ST_DIALOG_ID] = event.GetQuestDialogId();
+				RunDialog(player, critter, false);
+				critter.ParamBase[ST_DIALOG_ID] = tempDialogId;
+				return false;
+			}
+		}
+    }
+    return true;
+}

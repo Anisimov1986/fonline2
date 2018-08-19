@@ -1,0 +1,434 @@
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "utils_h.fos"
+#include "utils_for_array.fos"
+#include "logging_h.fos"
+
+import void DecraftItems(Critter& cr, Item@[] item) from "disassemble";
+
+void unsafe_bottlecapflip(Critter& player, int , int , int , string@ message , int[]@ )
+{
+	if( HasItem( player, PID_BOTTLE_CAPS) )
+	{
+		string action = "";
+		
+		int cointoss = Random( 1, 2 );
+	if( cointoss == 1 )
+			action = "tosses the cap up and it lands top side facing up";
+	if( cointoss == 2 )
+			action = "tosses the cap up and it lands bottom side facing up";	
+
+		VerboseAction( player, action );
+	}
+	else
+		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70360);
+}
+
+void unsafe_RequestHelp(Critter& critter, int, int, int, string@ message, int[]@)
+{
+	if(!CanRequestHelp(critter))
+    {
+        critter.Say(SAY_NETMSG, "You need to wait a little bit until you can request help again.");
+        return;
+    }
+	SetRequestedHelp(critter);
+	Critter@[] players;
+	Critter@[] admins;
+	GetAllPlayers(players);
+	for (uint i = 0; i < players.length(); i++)
+		if(_CritIsOnline(players[i]) && players[i].GetAccess() > 0)
+			admins.insertLast(players[i]);
+			
+	critter.Say(SAY_NETMSG, "Message delivered to online admins.");
+		
+	for (uint i = 0; i < admins.length(); i++)
+	{
+		admins[i].Say(SAY_NETMSG, "|" + COLOR_RED + " Player '" + critter.Name + "' requested help with message: '" + message + "'");
+		admins[i].Say(SAY_NETMSG, "|" + COLOR_WHITE + "Player Id: " + critter.Id +", Map: " + (valid(critter.GetMap()) ? "" + critter.GetMap().Id : "World map"));
+	}
+}
+
+/* Deprecated *(((((((
+void unsafe_MoveItem(Critter& cr, int itemId  , int , int , string@  , int[]@ )
+{
+	if(!valid(cr) || cr.Param[LAST_CONTAINER]==0)
+		return;
+
+	Item@ item = GetItem(itemId);
+	if(!valid(item) || ForbiddenItem(item))
+		return;
+	Item@ container;
+	Critter@ targetCr;
+	uint16 targetX = 0, targetY = 0;
+	bool toContainer=false, toCr=false, toChosen=false, owerweight=false;
+	if (item.ContainerId!=0)
+	{
+		@container = GetItem(cr.Param[LAST_CONTAINER]);
+		if(valid(container))
+		{
+			if (container.Proto.Container_Changeble && !FLAG( container.LockerCondition, LOCKER_ISOPEN))
+			{
+				cr.ShowContainer( null, null, TRANSFER_CLOSE );
+				return;
+			}
+			targetX=container.HexX;
+			targetY=container.HexY;
+		}
+		else 
+		{
+			@targetCr = GetCritter(cr.Param[LAST_CONTAINER]);
+			if(valid(targetCr))
+			{
+				if (targetCr.Param[MODE_NO_LOOT]==0 && targetCr.Param[MODE_NO_STEAL]==0 &&( targetCr.IsDead() || targetCr.IsKnockout()))
+				{
+					targetX=targetCr.HexX;
+					targetY=targetCr.HexY;
+				}
+				else
+				{
+					cr.ShowContainer( null, null, TRANSFER_CLOSE );
+					return;
+				}
+				
+			}
+			else 
+				return;
+		}
+		
+		
+	}
+	else 
+		return;
+		
+	if (valid(container))
+	{
+		if (item.ContainerId == container.Id)	
+			toChosen=true;
+		else if (item.CritId == cr.Id)
+			toContainer=true;
+		else 
+			return;
+			
+	}
+	else if (valid(targetCr))
+	{
+		if (item.CritId == targetCr.Id)	
+		{
+			toChosen=true;
+		}
+		else if (item.CritId == cr.Id)
+			toCr=true;
+		else
+			return;
+	}
+	
+	if( GetDistantion(cr.HexX,cr.HexY,targetX,targetY)>1)
+	{
+		cr.ShowContainer( null, null, TRANSFER_CLOSE );
+		return;
+	}
+	
+	if(toContainer && item.CritId == cr.Id )
+	{
+		Item@[] items;
+		container.GetItems(0, items);
+		uint itemsVolume = 0;
+		for(uint i = 0, j = items.length(); i < j; i++)
+			itemsVolume += items[i].Proto.Volume * items[i].GetCount();
+		int freeVolume = container.Proto.Container_Volume - itemsVolume;
+		if( freeVolume < int( item.Proto.Volume * item.GetCount() ) )
+		{
+			if( item.IsStackable() && freeVolume >= int(item.Proto.Volume) )
+			{
+				owerweight=true;
+			}
+			else
+			{
+				cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_OVERVOLUME );
+				return;
+			}
+		}
+		MoveItem(item, owerweight ? freeVolume / item.Proto.Volume : 0, container, 0);
+		cr.ShowContainer( null, container, TRANSFER_HEX_CONT_DOWN );
+	}
+	else
+	{
+		
+		int freeWeight = toChosen? (cr.Stat[ ST_CARRY_WEIGHT ] - cr.ItemsWeight()) : (targetCr.Stat[ ST_CARRY_WEIGHT ] - targetCr.ItemsWeight());
+		if( freeWeight < int( item.Proto.Weight * item.GetCount() ) )
+		{
+			// Pick half
+			if( item.IsStackable() && freeWeight >= int(item.Proto.Weight) )
+				owerweight=true;
+			else
+			{
+				cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_OVERWEIGHT );
+				return;
+			}
+		}
+		
+		if (toChosen)
+			MoveItem( item, owerweight ? freeWeight / item.Proto.Weight : 0, cr );
+		else
+			MoveItem( item, owerweight ? freeWeight / item.Proto.Weight : 0, targetCr );
+		if (toChosen && valid(container))
+			cr.ShowContainer( null, container, TRANSFER_HEX_CONT_DOWN );	
+		else 
+			cr.ShowContainer( targetCr, null, TRANSFER_CRIT_LOOT );
+	}
+}
+*/
+const uint16[] NoLootAll={PID_ACTIVE_FLARE,PID_ACTIVE_DYNAMITE, PID_ACTIVE_PLASTIC_EXPLOSIVE, PID_ACTIVE_MINE};
+
+void unsafe_LootAll(Critter& cr, int  , int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) || !cr.IsLife() )
+		return;
+
+	Map@ map = cr.GetMap();
+	if( !valid( map ) )
+		return;
+	if(cr.Stat[ST_CURRENT_AP] < 4)
+		return;
+
+	Item@[] items;	
+	uint count  = map.GetItems(cr.HexX, cr.HexY, items);
+	if (count == 0)
+		return;
+	if (count > 100)
+		items.resize(100);
+	int cw = 2 * cr.Stat[ ST_CARRY_WEIGHT ] - cr.ItemsWeight() - 1000;
+	bool pickup = false;
+	CheckForbiddenItems(items,false);
+	for( uint i = 0, j = items.length(); i < j; i++ )
+    {
+		if( valid(items[ i ]))
+		{
+			ProtoItem@ proto = GetProtoItem(items[ i ].GetProtoId());
+            if (NoLootAll.find(proto.ProtoId)>=0)
+            {
+                @items[ i ] = null;
+                continue;
+            }
+			cw-=proto.Weight * items[ i ].GetCount();
+			if (cw<=0)
+				@items[ i ] = null;
+			else 
+				pickup = true;
+		}
+    }
+	if (!pickup)
+		return;
+
+	if( cr.Mode[ MODE_HIDE ] != 0 )
+        cr.ModeBase[ MODE_HIDE ] = 0;
+
+	MoveItems(items, cr);
+	cr.Wait( __Breaktime );
+	_CritAnimatePickup( cr );
+	cr.StatBase[ST_CURRENT_AP]-=400;
+}
+
+
+void unsafe_DropAll(Critter& cr, int dropwm, int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) || !cr.IsLife() )
+		return;
+	Map@ map = cr.GetMap();
+	if( !valid( map ) && dropwm==0)
+		return;
+	if(cr.Stat[ST_CURRENT_AP] < 4)
+		return;
+    Item@[] items;
+    cr.GetItems( SLOT_INV, items );
+	CheckForbiddenItems(items,false);
+	if( !valid( map ) )
+	{
+		DeleteItems(items);
+		return;
+	}
+	
+    MoveItems( items, map, cr.HexX, cr.HexY );
+	cr.Wait( __Breaktime );
+	_CritAnimatePickup( cr );
+	cr.StatBase[ST_CURRENT_AP]-=400;
+}
+
+void unsafe_Suicide(Critter& player, int, int, int, string@, array<int>@)     // ~cuttheveins
+{
+	bool insideBaseOrTent = false;
+	
+	Map@ map = player.GetMap();
+	if (valid(map))
+	{
+		Location@ location = map.GetLocation();
+		if (valid(location))
+			insideBaseOrTent = location.IsBase() || location.IsTent();
+	}
+
+    if(player.Stat[ST_CURRENT_HP] < 1 || insideBaseOrTent)
+    {
+        if(player.IsDead())
+            player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70398);
+        else
+            player.ToDead((player.IsKnockout() && player.Anim2Knockout == ANIM2_KNOCK_FRONT) ? ANIM2_DEAD_FRONT : ANIM2_DEAD_BACK, null);
+    }
+    else
+        player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70399);
+}
+
+const int[] AllowParams = {SHOW_FOLLOW,KARMA_COLORS,TRAVEL_MODE};
+const int[] AllowMode = {0,1};
+
+void unsafe_WeaponMode(Critter& player, int mode, int, int, string@, array<int>@)
+{
+    player.ModeBase[MODE_LAST_WPN_MODE] = mode;
+}
+
+void unsafe_ChangeParam(Critter& player, int param, int mode, int, string@, array<int>@)
+{
+	if (!Present(param, AllowParams))
+		return;
+	if (!Present(mode, AllowMode))
+		return;
+    FLog( LOG_SUSPECT, player.Name + " (" + player.Id + ") with access level " + player.GetAccess() + " run unsafe change param: "+param+" and mode "+mode+" from ip: " + GetIP( player.GetIp() ));
+	player.ParamBase[param] = mode;
+}
+
+void unsafe_TryLootBody(Critter& cr, int  , int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) )
+		return;
+
+	Map@ map = cr.GetMap();
+	if( !valid( map ) )
+		return;
+	if(cr.Stat[ST_CURRENT_AP] < 2)
+		return;
+
+    Item@[] item; //Something is lying on the hex, ignore the body pickup.
+    if( map.GetItems( cr.HexX, cr.HexY, item ) != 0 )
+        return;
+		
+	Critter@[] critters;
+    map.GetCrittersHex( cr.HexX, cr.HexY, 0, FIND_KO_AND_DEAD,  critters );
+
+    for( uint i = 0, j = critters.length(); i < j; i++ )
+        {
+				
+                Critter@ targetCr = critters[ i ];
+				if (targetCr.Param[MODE_NO_LOOT]==0 )
+				{
+				cr.Action( ACTION_PICK_CRITTER, 0, null );
+				cr.ShowContainer( targetCr, null, TRANSFER_CRIT_LOOT );
+				}
+				break;
+        }
+	
+}
+
+void unsafe_LocalizationInfo(Critter& cr, int  , int , int , string@  , int[]@ )
+{
+	if( !valid( cr ) )
+		return;
+
+	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70400, "$x" + cr.WorldX + "$y" + cr.WorldY );
+	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70401, "$x" + (cr.WorldX / 60) + "$y" + (cr.WorldY / 60));
+}
+
+bool logenabled=true;
+
+void logenable(Critter& cr, int mod , int , int)
+{
+    if (mod==1)
+        logenabled=true;
+    else if (mod==0)
+        logenabled=false;
+}
+
+void unsafe_Connection(Critter& cr, int  , int , int , string@ message , int[]@ )
+{
+    if( valid(message) && message.length() > 0 )
+    {
+	array<string> fuck =
+	{
+	    "~~34", "~deleteself",
+	    "~~35", "~changepass"
+	};
+
+	for( uint wtf=0, wth=fuck.length(); wtf<wth; wtf++ )
+	{
+	    uint bullshit = fuck[wtf].length();
+	    if( message.length() >= bullshit && substring( message, 0, bullshit ) == fuck[wtf] )
+		return;
+	}
+    }
+
+    if (logenabled)
+        FLog( LOG_LISTEN, cr.Name + " (" + cr.Id + ") sendmessage: "+message );
+}
+
+void unsafe_Connect(Critter& cr, int  , int , int , string@ proxy , int[]@ )
+{
+    if (valid(proxy))
+        FLog( LOG_CLIENT_LOGIN, "Logged in player: " + cr.Name + " (" + cr.Id + ") access level " + cr.GetAccess()+ " from ip: " + GetIP( cr.GetIp() ) + " using proxy: "+proxy );
+    else 
+        FLog( LOG_CLIENT_LOGIN, "Logged in player: " + cr.Name + " (" + cr.Id + ") access level " + cr.GetAccess()+ " from ip: " + GetIP( cr.GetIp() ));
+}
+
+void unsafe_SetFlag(Critter& player, int value, int , int, string@, array<int>@)
+{
+    FLog( LOG_SUSPECT, player.Name + " (" + player.Id + ") acc lvl " + player.GetAccess() + " run change CR_CONFIG_FLAGS: "+value+" from ip: " + GetIP( player.GetIp() ));
+    player.ParamBase[CR_CONFIG_FLAGS] = value;
+}
+
+void unsafe_resetsg (Critter& cr, int , int , int, string@, array<int>@)
+{
+    if (cr.Param[SK_SMALL_GUNS] > 110)
+    {
+        Log("Player "+cr.Name+" (" + cr.Id + ") reset sg skill from "+cr.Param[SK_SMALL_GUNS]);
+        cr.ParamBase[SK_SMALL_GUNS] = 110;  
+    }
+}
+
+void unsafe_DisassembleAll(Critter& cr, int type, int , int , string@  , array<int>@ ) 
+{
+    if (type != DISASSEMBLE_HEX && type != DISASSEMBLE_INVENTORY)
+        return;   
+
+	if( !cr.IsLife() )
+		return;
+
+	Map@ map = cr.GetMap();
+	if( !valid( map ) )
+		return;
+    Location@ loc = map.GetLocation();
+        
+    if (!cr.IsKnownLoc(true, loc.Id) || not (loc.IsBase() || loc.IsTent()))
+        return;
+    
+	if(cr.Stat[ST_CURRENT_AP] < 4)
+		return;
+
+	Item@[] items;	
+    uint count = 0;
+    if (type == DISASSEMBLE_INVENTORY) 
+	    count += cr.GetItems(0, items);
+    else if (type == DISASSEMBLE_HEX)
+	    count += map.GetItems(cr.HexX, cr.HexY, items);
+
+	if (count == 0)
+		return;
+	if (count > 100)
+		items.resize(100);
+
+    DecraftItems(cr, items);
+
+	if( cr.Mode[ MODE_HIDE ] != 0 )
+        cr.ModeBase[ MODE_HIDE ] = 0;
+
+	cr.Wait( __Breaktime );
+	_CritAnimateUse( cr );
+	cr.StatBase[ST_CURRENT_AP]-=400;
+}
+

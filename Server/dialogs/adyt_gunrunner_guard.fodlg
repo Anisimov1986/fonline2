@@ -1,0 +1,52 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _param p TRAIT_SKILLED = 0 #
+3 1020 D _param p TRAIT_SKILLED = 1 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Gun Runner}
+{200}{}{You see: a member of the Gun Runners. }
+{210}{}{A Gun Runner. This one is armed to the teeth with the latest in modern killing technology, as usual.}
+{1000}{}{Initial preferences}
+{1010}{}{normal}
+{1020}{}{mutant}
+{2000}{}{Welcome.@@You're free to visit here, as long as you don't cause trouble.@@Got a problem with me?@@We need more goo for the moat.@@Looking for high grade steel?@@Fuck with us and you'll regret it.@@Be careful in the ruins around here.@@We've got the best guns - if you've got the caps.@@Got caps? We've got everything you need here.@@I don't like the looks of you.@@I don't trust you.@@Do your business and get out of here.@@Need some military hardware? You've come to the right place.@@Hi there.@@Watch yourself.@@No funny stuff.@@Need a gun?@@You here to buy, or to sell?@@Go ahead, try it. I've been waiting for an excuse to shoot something.@@You think you could take me?@@I've been around guns my whole life.@@Gonna need more bullets soon.@@Fuck around and get blasted.@@I was born to guard.@@You wanna mess with the best? Get ready to die like the rest.@@Sup?@@You see lots of action out in the wastes?@@We've got enough guards here, but thanks anyway.@@Life is short. Remember that.@@How you doin'?@@You here on business?@@I don't have the time for your bullshit.@@You lost?@@Need something?@@Buy something or fuck off.@@You better not be here to start shit.@@Hiya.@@I don't think I like you.@@I wish we moved somewhere north, Boneyard gives me the creeps.}
+{3000}{}{What are you doing here, mutant?@@You've got some nerve, mutie... get lost.@@Get the hell outta my face, mutie.@@You ain't welcome here.@@I'm keepin' an eye on you, mutie.@@Get lost.@@Get the fuck outta here, mutie!@@I don't like your ugly face, mutant!@@We don't want your kind here, mutant.}
+
+[russ]
+{100}{}{Оружейник}
+{200}{}{Вы видите члена организации Оружейники. }
+{210}{}{Оружейник. Этот вооружен до зубов по последнему слову техники для убийства, как обычно.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{1020}{}{Answer text}
+{2000}{}{Добро пожаловать.@@Оставайся здесь сколько хочешь, если не будешь приносить неприятности.@@У тебя проблемы?@@Нам нужно больше глины для рва.@@Ищешь сталь высокого качества?@@Станешь нашим врагом - пожалеешь...@@Будь осторожнее в местных руинах.@@У нас есть лучшие пушки, если у тебя есть крышки.@@Есть крышки? У нас есть всё, что тебе нужно.@@Не нравишься ты мне...@@Ты не вызываешь у меня доверия.@@Делай свои дела и проваливай отсюда.@@Нужно военное "железо"? Ты по адресу.@@Привет.@@Аккуратней.@@Давай без шуток.@@Нужен ствол?@@Покупаешь или продаёшь?@@Давай, рискни. Я ждал повода кого-нибудь пристрелить.@@Думаешь справишься со мной?@@Я провёл среди пушек всю свою жизнь.@@Скоро нужны будут ещё патроны.@@Сваляй тут херню и получи свинца.@@Я был рождён чтобы охранять!@@Хочешь тягаться с лучшими? Будь готов умереть как худшие.@@Чего?@@Видел много действа в пустоши?@@У нас тут достаточно охраны, но всё равно спасибо.@@Жизнь коротка. Помни.@@Как дела?@@Ты тут по делу?@@У меня нет времени на твою хрень.@@Ты заблудился?@@Что нибудь нужно?@@Покупай что то или отвали.@@Лучше тебе тут не начинать куралесить.@@Здарова!@@Думаю, ты мне не нравишься.@@Переехать бы нам куда-нибудь на север. От Бониярда меня передёргивает.}
+{3000}{}{Что ты здесь делаешь, мутант?@@У тебя крепкие нервишки, мутант.. вали отсюда.@@Сгинь с глаз моих, мути.@@Тебе тут делать нечего.@@Я за тобой слежу, мутант!@@Потеряйся.@@Иди отсюда нахрен, мути!@@Мне не нравится твоё уродливое лицо, мутант.@@Такие как ты тут не нужны... мутант.}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz profesjonalnego strażnika. Wydaje się być doskonale wyszkolony, lepiej nie robić żadnych problemów w jego okolicy.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{1020}{}{Answer text}
+{2000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.}
+{3000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{normal}
+{1020}{}{mutant}
+{2000}{}{Welcome.@@You're free to visit here, as long as you don't cause trouble.@@Got a problem with me?@@We need more goo for the moat.@@Looking for high grade steel?@@Fuck with us and you'll regret it.@@Be careful in the ruins around here.@@We've got the best guns - if you've got the caps.@@Got caps? We've got everything you need here.@@I don't like the looks of you.@@I don't trust you.@@Do your business and get out of here.@@Need some military hardware? You've come to the right place.@@Hi there.@@Watch yourself.@@No funny stuff.@@Need a gun?@@You here to buy, or to sell?@@Go ahead, try it. I've been waiting for an excuse to shoot something.@@You think you could take me?@@I've been around guns my whole life.@@Gonna need more bullets soon.@@Fuck around and get blasted.@@I was born to guard.@@You wanna mess with the best? Get ready to die like the rest.@@Sup?@@You see lots of action out in the wastes?@@We've got enough guards here, but thanks anyway.@@Life is short. Remember that.@@How you doin'?@@You here on business?@@I don't have the time for your bullshit.@@You lost?@@Need something?@@Buy something or fuck off.@@You better not be here to start shit.@@Hiya.@@I don't think I like you.@@I wish we moved somewhere north, Boneyard gives me the creeps.}
+{3000}{}{What are you doing here, mutant?@@You've got some nerve, mutie... get lost.@@Get the hell outta my face, mutie.@@You ain't welcome here.@@I'm keepin' an eye on you, mutie.@@Get lost.@@Get the fuck outta here, mutie!@@I don't like your ugly face, mutant!@@We don't want your kind here, mutant.}
+

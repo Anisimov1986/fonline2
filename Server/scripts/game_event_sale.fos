@@ -1,0 +1,399 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos" 
+
+#define STEPS                       ( 10 )
+#define STEP_DURATION               ( REAL_SECOND(60) )
+
+#define NR_RENESCO_SALE_EVENT_ID    ( 6 )
+#define NR_ARMS_SALE_EVENT_ID       ( 19 )
+#define SF_BOOK_SALE_EVENT_ID       ( 20 )
+#define SF_FUNG_SALE_EVENT_ID       ( 21 )
+
+#define NR_RENESCO_ROLE             ( 288004 )
+#define NR_ARMS_ROLE                ( 288005 )
+#define SF_BOOK_ROLE                ( 288006 )
+#define SF_FUNG_ROLE                ( 288007 )
+
+import int GetNextTime(uint Id) from "game_events";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import bool IsItemAviable(uint16 pid) from "blueprints";
+import void RemoveDeadBlocker(Critter& cr) from "main";
+
+dictionary @saleEvents;
+void initSaleEvents()
+{
+	@saleEvents = dictionary();
+
+	saleEvents.set("" + NR_RENESCO_SALE_EVENT_ID, SaleEvent(NR_RENESCO_SALE_EVENT_ID, MAP_newr3, NR_RENESCO_ROLE)
+			.SetWelcomeMessage("Big drug delivery arrived to Renesco's drug store. Stay tuned.")
+			.SetEventMessage("Drug sale in New Reno. Renesco is selling big quantities of drugs.")
+			.AddLoot(PID_MENTATS, 50, 70)
+			.AddLoot(PID_BUFFOUT, 50, 70)
+			.AddLoot(PID_PSYCHO, 25, 35)
+			.AddLoot(PID_JET, 50, 70)
+			.AddLoot(PID_RAD_X, 50, 70)
+			.AddLoot(PID_RADAWAY, 50, 70)
+			.AddLoot(PID_SUPER_STIMPAK, 70, 100)
+            .AddLoot(PID_HYPO, 8, 8, 25)
+			.SetGossipMsgId(STR_RENESCO_SALE_EVENT_GOSSIP_LOC, STR_RENESCO_SALE_EVENT_GOSSIP_NO_LOC)
+	);
+			
+			
+	saleEvents.set("" + NR_ARMS_SALE_EVENT_ID, SaleEvent(NR_ARMS_SALE_EVENT_ID, MAP_newr3, NR_ARMS_ROLE)
+			.SetWelcomeMessage("Big ammo delivery arrived to New Reno Arms. Stay tuned.")
+			.SetEventMessage("Ammo sale in New Reno. New Reno Arms is selling big quantities of ammo.")
+			.AddLoot(PID_5MM_AP, 9000, 11000)
+			.AddLoot(PID_10MM_AP, 9000, 11000)
+			.AddLoot(PID_223_FMJ, 4500, 5500)
+			.AddLoot(PID_ROCKET_AP, 60, 120)
+			.AddLoot(PID_MICRO_FUSION_CELL, 900, 1100)
+			.AddLoot(PID_FLAMETHROWER_FUEL_MK_II, 450, 550)
+            .AddLoot(PID_4_7MM_CASELESS, 40, 80, 20)
+            .AddLoot(PID_50CAL, 40, 80, 10)
+            .AddLoot(PID_2MM_EC_AMMO, 40, 80, 10)
+			.SetGossipMsgId(STR_NR_ARMS_SALE_EVENT_GOSSIP_LOC, STR_NR_ARMS_SALE_EVENT_GOSSIP_NO_LOC)
+	);
+
+	saleEvents.set("" + SF_BOOK_SALE_EVENT_ID, SaleEvent(SF_BOOK_SALE_EVENT_ID, MAP_sf_tanker, SF_BOOK_ROLE)
+			.SetWelcomeMessage("Big book delivery arrived to San Francisco. Stay tuned.")
+			.SetEventMessage("Book sale in San Francisco. Book merchant is selling big quantities of books.")
+			.AddLoot(PID_BIG_BOOK_OF_SCIENCE, 14, 18)
+			.AddLoot(PID_DEANS_ELECTRONICS, 14, 18)
+			.AddLoot(PID_FIRST_AID_BOOK, 14, 18)
+			.AddLoot(PID_SCOUT_HANDBOOK, 14, 18)
+			.AddLoot(PID_GUNS_AND_BULLETS, 14, 18)
+            .AddLoot(PID_PLASMA_RIFLE_RECIPE, 8, 8, 5)
+            .AddLoot(PID_PLASMA_GRENADE_RECIPE, 40, 40, 5)
+            .AddLoot(PID_AVENGER_MINIGUN_RECIPE, 8, 8, 5)
+            .AddLoot(PID_SNIPER_RIFLE_RECIPE, 8, 8, 5)
+            .AddLoot(PID_XL70E3_RECIPE, 8, 8, 5)
+            .AddLoot(PID_HK_P90C_RECIPE, 8, 8, 5)
+            .AddLoot(PID_COMBAT_ARMOR_MARK_II_RECIPE, 8, 8, 5)
+            .AddLoot(PID_HUBOLOGIST_ROBE_RECIPE, 8, 8, 5)
+            .AddLoot(PID_LASER_RIFLE_EXT_CAP_RECIPE, 8, 8, 5)
+            .AddLoot(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 8, 8, 5)
+            .AddLoot(PID_COMBAT_ARMOR_RECIPE, 8, 8, 5)
+			.SetGossipMsgId(STR_BOOK_SALE_EVENT_GOSSIP_LOC, STR_BOOK_SALE_EVENT_GOSSIP_NO_LOC)
+	);
+			
+	saleEvents.set("" + SF_FUNG_SALE_EVENT_ID, SaleEvent(SF_FUNG_SALE_EVENT_ID, MAP_sf_china, SF_FUNG_ROLE)
+			.SetWelcomeMessage("Big drug delivery arrived to San Francisco. Stay tuned.")
+			.SetEventMessage("Drug sale in San Francisco. Dr. Fung is selling big quantities of drugs.")
+			.AddLoot(PID_MENTATS, 50, 70)
+			.AddLoot(PID_BUFFOUT, 50, 70)
+			.AddLoot(PID_PSYCHO, 35, 35)
+			.AddLoot(PID_JET, 50, 70)
+			.AddLoot(PID_RAD_X, 50, 70)
+			.AddLoot(PID_RADAWAY, 50, 70)
+			.AddLoot(PID_SUPER_STIMPAK, 70, 100)
+            .AddLoot(PID_HYPO, 8, 8, 25)
+			.SetGossipMsgId(STR_FUNG_SALE_EVENT_GOSSIP_LOC, STR_FUNG_SALE_EVENT_GOSSIP_NO_LOC)
+	);		
+}
+
+		
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);
+	return GetNextTime(values[0]);
+}
+
+void event_start(uint id) 
+{
+	SaleEvent @saleEvent;
+		
+	if (!valid(saleEvents))
+	{
+		initSaleEvents();
+	}
+	
+	if (saleEvents.get("" + id, @saleEvent))
+	{
+		saleEvent.StartEvent();
+	}
+}
+
+uint e_event(array<uint>@ values)
+{
+	SaleEvent @saleEvent;
+		
+	if (!valid(saleEvents))
+	{
+		initSaleEvents();
+	}
+	
+	if (saleEvents.get("" + values[0], @saleEvent))
+	{
+		saleEvent.EventTimer(values[1]);
+	}
+	
+	return 0;
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	SaleEvent @saleEvent;
+		
+	if (!valid(saleEvents))
+	{
+		initSaleEvents();
+	}
+	
+	if (saleEvents.get("" + values[0], @saleEvent))
+	{
+		saleEvent.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start( Critter& cr, int eventId, int , int)
+{
+	event_start(eventId);
+}
+
+void event_stop( Critter& cr, int eventId, int , int)
+{
+	uint[] values = {eventId};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+void _SaleInit(Critter& trader, bool firstTime)
+{
+	trader.StatBase[ST_TALK_DISTANCE] = 5;
+	trader.StatBase[ST_MAX_TALKERS] = 3;
+	trader.StatBase[ST_REPLICATION_TIME] = 0;
+	trader.SkillBase[SK_BARTER] = 200;
+	trader.ModeBase[MODE_NO_BARTER] = 0;
+	trader.ModeBase[MODE_NO_DROP] = 1;
+	trader.ModeBase[MODE_NO_STEAL] = 1;
+	trader.ModeBase[MODE_NO_LOOT] = 1;
+	trader.ModeBase[MODE_NO_ENEMY_STACK] = 1;
+}
+
+class SaleEvent
+{	
+	#define _GetKey ("SaleEvent" + eventId)
+	private int eventId, traderRole;
+	private int[] lootPids, lootMinQuantities, lootMaxQuantities;
+    private float[] lootChances;
+	private uint mapPid, gossipLocMsgId = 0, gossipNoLocMsgId = 0;
+	private string welcomeMessage, eventMessage;
+	private int tempReplicationTime = -1;
+	
+
+	SaleEvent(int eventId, uint mapPid, int traderRole)
+	{
+		this.eventId = eventId;
+		this.mapPid = mapPid;
+		this.traderRole = traderRole;
+	}
+	
+	SaleEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		return AddLoot(lootPid,lootMinQuantity, lootMaxQuantity, 100);
+	}
+    
+    SaleEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, float lootChance)
+	{
+		lootPids.insertLast(lootPid);
+		lootMinQuantities.insertLast(lootMinQuantity);
+		lootMaxQuantities.insertLast(lootMaxQuantity);
+        lootChances.insertLast(lootChance);
+		return @this;
+	}
+	
+	SaleEvent@ SetWelcomeMessage(string welcomeMessage)
+	{
+		this.welcomeMessage = welcomeMessage;	
+		return @this;
+	}
+	
+	SaleEvent@ SetEventMessage(string eventMessage)
+	{
+		this.eventMessage = eventMessage;	
+		return @this;
+	}
+	
+	SaleEvent@ SetGossipMsgId(uint gossipLocMsgId, uint gossipNoLocMsgId)
+	{
+		this.gossipLocMsgId = gossipLocMsgId;
+		this.gossipNoLocMsgId = gossipNoLocMsgId;
+		return @this;
+	}
+	
+	void StartEvent()
+	{
+		uint[] values = {eventId, STEPS - 1};
+		AddNewMessage(welcomeMessage, STEP_DURATION * STEPS, 1, COLOR_GREEN, true, eventId);
+		CreateTimeEvent(__FullSecond + STEP_DURATION, "e_event", values, true);
+		
+		//Set replication to 0 and revive
+		Map@ map = GetMapByPid(mapPid, 0);
+		if (!valid(map)) 
+		{
+			return;
+		}
+			
+		Critter@ critter = map.GetNpc(traderRole, FIND_ALL | FIND_ONLY_NPC, 0);			
+		if (valid(critter))
+		{
+			tempReplicationTime = critter.ParamBase[ST_REPLICATION_TIME];
+			critter.ParamBase[ST_REPLICATION_TIME] = 0;
+			
+			if (critter.IsDead())
+			{
+				RemoveDeadBlocker(critter);
+				critter.ToLife();
+				critter.StatBase[ST_CURRENT_HP] = critter.Stat[ST_MAX_LIFE];
+			}
+		}
+		
+		Save();
+	}
+	
+	void InitializeGossip()
+	{
+		if (gossipLocMsgId > 0)
+		{
+			Map@ map = GetMapByPid(mapPid, 0);
+			if (!valid(map)) 
+			{
+				return;
+			}
+			
+			Location@ location = map.GetLocation();
+			if (!valid(location)) 
+			{
+				return;
+			}
+			
+			GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, STEP_DURATION * (STEPS - 1));
+			gossipDefinition.SetGossipId(eventId);
+			gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+			gossipDefinition.SetSourceLocationId(location.Id);
+			gossipDefinition.SetMsgId(gossipLocMsgId);
+			gossipDefinition.SetSourceMsgId(gossipNoLocMsgId);
+			StartGossip(gossipDefinition);
+		}
+	}
+	
+	void EventTimer(uint step)
+	{		
+		if (step == STEPS - 1)
+		{
+			RemoveMessageByEvent(eventId);
+			AddNewMessage(eventMessage, STEP_DURATION * (STEPS - 1), 1, COLOR_GREEN, true, eventId);
+			InitializeGossip();
+		}
+		
+		Map@ map = GetMapByPid(mapPid, 0);
+		if (!valid(map)) 
+		{
+			return;
+		}
+		
+		if (step > 0)
+		{
+			uint[] newValues = {eventId, step - 1};
+			CreateTimeEvent(__FullSecond + STEP_DURATION, "e_event", newValues, true);
+			
+			Critter@ critter = map.GetNpc(traderRole, FIND_ALL | FIND_ONLY_NPC, 0);
+			
+			if (valid(critter))
+			{
+				for (uint j = 0; j < lootPids.length(); j++)
+				{
+					if (IsItemAviable(lootPids[j]) && HAS_CHANCE(lootChances[j]))
+					{
+						critter.AddItem(lootPids[j], Random(lootMinQuantities[j], lootMaxQuantities[j]) / (STEPS - 2));
+					}
+				}
+			}
+		}
+		else
+		{
+			StopEvent();
+		}
+	}
+	
+	void StopEvent()
+	{
+		Load();
+	
+		Map@ map = GetMapByPid(mapPid, 0);
+		if (!valid(map)) 
+		{
+			return;
+		}
+
+		Critter@ critter = map.GetNpc(traderRole, FIND_ALL | FIND_ONLY_NPC, 0);
+		
+		if (valid(critter))
+		{
+			for (uint j = 0; j < lootPids.length(); j++)
+			{
+				uint count = critter.CountItem(lootPids[j]);
+				critter.DeleteItem(lootPids[j], count);
+			}
+			
+			//Restore replication time
+			if (tempReplicationTime > 0)
+			{
+				critter.ParamBase[ST_REPLICATION_TIME] = tempReplicationTime;
+				tempReplicationTime = -1;
+			}
+		}
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+		
+		Save();
+	}
+	
+	private void Load()
+	{
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(tempReplicationTime);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		serializator.Set(tempReplicationTime);		
+		serializator.Save(_GetKey);
+	}
+}

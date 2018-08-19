@@ -1,0 +1,511 @@
+#include "critter_wave.fos"
+#include "entire_h.fos"
+#include "_defines.fos"
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "logging_h.fos"
+
+#include "mapdata_h.fos"
+#include "_ai.fos"
+// METPO!
+
+#define ROLE_ATTACKER                   (288000)
+#define ROLE_DEFENDER                   (288001)
+#define START_DELAY                     (REAL_SECOND(60))
+#define WAVE_TIME                       (REAL_SECOND(80))
+#define ATTACKER_PER_PLAYER_TOTAL       (24)
+#define DEFENDER_PER_PLAYER             (3)
+#define WAVE_PER_PLAYER_MIN             (2)
+#define WAVE_PER_PLAYER_MAX             (4)
+#define EXP_REWARD_BASE                 (40000)
+#define EXP_REWARD_PER_PLAYER           (1000)
+#define CAPS_REWARD                     (4000)
+
+import void AddNewMapMessage( string text, int time, int showtimer, uint color, uint mapId ) from "stocmessages";
+
+// Monsters initialization
+int[] monsterParams = { ST_REPLICATION_TIME, REPLICATION_DELETE_FAST, ST_TEAM_ID, TEAM_Bandit, MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_STEAL, 1, ST_BAG_ID, 348 };
+int[] monsterPids = { NPC_PID_METRO_FLOATER, NPC_PID_METRO_BEAST };
+CritterTemplate gangCritterTemplate = CritterTemplate(monsterPids, ROLE_ATTACKER)
+	.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+	.SetHomeEntire(ENTIRE_EVENT_MOB_HOME)
+	.SetCritterParams(monsterParams)
+	.SetShowCritterDist1(120)
+	.SetAttachEventManager(true);
+CritterEventsManager MetroMonsterCritterEvents = CritterEventsManager(ROLE_DEFENDER)
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26))
+	.When(CritterShown1())
+		.Execute(Conditionally(TargetHasRole(ROLE_DEFENDER), Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26)))
+	.When(CritterAttacked())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 35));
+
+
+// defenders initialization
+int[] defendersParams = {ST_REPLICATION_TIME, REPLICATION_DELETE_FAST, MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_STEAL, 1, MODE_NO_RUN, 1, ST_TEAM_ID, 4, ST_BAG_ID, BAG_GECKOGUARD, 522, 1};           
+int[] defendersPids = {NPC_PID_BLADE1, NPC_PID_BLADE2, NPC_PID_BLADE3, NPC_PID_BLADE4, NPC_PID_BLADE5};
+CritterTemplate defenderCritterTemplate = CritterTemplate(defendersPids, ROLE_DEFENDER)
+	.SetStartEntire(ENTIRE_EVENT_DEFENDER_SPAWN)
+	.SetCritterParams(defendersParams)
+	.SetShowCritterDist1(25)
+	.SetAttachEventManager(true);
+CritterEventsManager defendersCritterEvents = CritterEventsManager(ROLE_DEFENDER)
+	.When(CritterShown1())
+		.Execute(Conditionally(TargetHasRole(ROLE_ATTACKER), Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26)))
+	.When(CritterAttacked())
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(75), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+	.When(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(75), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+	.When(CritterTimerTimeout(CTE_EVENT_MANAGER_1))
+		.Execute(Heal())
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(75), StartCritterTimer(CTE_EVENT_MANAGER_1, 7, TIME_UNIT_REAL_SECOND)));
+
+void _MapInit(Map& map, bool firstTime)
+{	
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "Death");
+	
+	//Reset counters
+	Location@ location = map.GetLocation();
+	SetPlayersCount(location.Id, 0);
+	SetRewardCount(location.Id, 0);
+	SetLastWaveSize(location.Id, 0);
+	SetWaveFinished(location.Id, 0);
+	
+	//Setup map
+	CreateTimeEvent(__FullSecond + REAL_SECOND(5), "e_SetupMap", map.Id, true);
+}
+
+uint e_SetupMap(uint[]@ values)
+{
+	int mapId = values[0];
+	Map@ map = GetMap(mapId);
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	Location@ location = map.GetLocation();
+
+	//Count players
+	int playersCount = map.GetCritters(0, FIND_ALL | FIND_ONLY_PLAYERS, null);
+	SetPlayersCount(location.Id, playersCount);
+
+	//Spawn peansants
+	int defenderCount = ComputeDefenderCount(playersCount);
+	for (int i = 0; i < defenderCount; i++)
+	{
+		defenderCritterTemplate.Spawn(map);
+	}
+	
+	//Show message and start waves
+	AddNewMapMessage("Metro defence: Terrifying shrieks can be heard in the metro vents. The creatures are coming:", START_DELAY, 1, COLOR_ORANGE, map.Id);
+	CreateTimeEvent(__FullSecond + START_DELAY, "e_StartWave", mapId, true);
+	
+	return 0;
+}
+
+uint e_StartWave(uint[]@ values)
+{
+	int mapId = values[0];
+	Map@ map = GetMap(mapId);
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	Location@ location = map.GetLocation();
+
+	//Start wave
+	int playersCount = GetPlayersCount(location.Id);
+	CritterWave(mapId, ROLE_ATTACKER)
+		.SetCrittersCountDown(playersCount * ATTACKER_PER_PLAYER_TOTAL)
+		.SetCrittersPerWave(playersCount * WAVE_PER_PLAYER_MIN, playersCount * WAVE_PER_PLAYER_MAX)
+		.SetMaxAliveCritters(playersCount * WAVE_PER_PLAYER_MAX)
+		.SetWaveTimeout(WAVE_TIME)
+		.SetWaveSpawnedCallback("e_WaveSpawned")
+		.Start();
+	
+	return 0;
+}
+
+uint e_WaveSpawned(array<uint>@ values)
+{
+	//uint[] values = {mapId, role, wavesSpawnedTotal, crittersSpawnedTotal, crittersSpawnedInWave};
+	int mapId = values[0];
+	int wavesSpawnedTotal = values[2];
+	int crittersSpawnedTotal = values[3];
+	int waveSize = values[4];
+	Map@ map = GetMap(mapId);
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	Location@ location = map.GetLocation();
+	int playersCount = GetPlayersCount(location.Id);
+	
+	//Bug fix 
+	if (playersCount == 0)
+	{
+		DeleteLocation(location.Id);
+		return 0;
+	}
+	
+	//Count reward
+	if (wavesSpawnedTotal > 1 && GetWaveFinished(location.Id) == 0)
+	{
+		int lifeDefenderCount = map.GetNpcCount( ROLE_DEFENDER, FIND_LIFE_AND_KO | FIND_ONLY_NPC);
+		int rewardCount = GetRewardCount(location.Id) + lifeDefenderCount * GetLastWaveSize(location.Id);
+		SetRewardCount(location.Id, rewardCount);
+		AddNewMapMessage("Metro defence: " + lifeDefenderCount + " blades alive. [reward: " + ComputeRewardExp(location.Id) + " exp, " + ComputeRewardCaps(location.Id) + " caps]", REAL_SECOND(5), 0, COLOR_ORANGE, map.Id);
+	}
+	
+	//Set wave size and wave finished flag
+	if (GetWaveFinished(location.Id) == 0)
+	{
+		SetLastWaveSize(location.Id, waveSize);
+	}
+	
+	if (crittersSpawnedTotal == ATTACKER_PER_PLAYER_TOTAL * playersCount && GetWaveFinished(location.Id) == 0)
+	{
+		SetWaveFinished(location.Id, 1);
+	}
+
+	return 0;
+}
+
+void Death(Map& map, Critter& cr, Critter@ killer)
+{	
+	Location@ location = map.GetLocation();
+	
+	if (cr.IsPlayer())
+	{
+		return;
+	}
+	
+	//Defender killed message
+	if (cr.Stat[ST_NPC_ROLE] == ROLE_DEFENDER)
+	{
+		AddNewMapMessage("Metro defence: Blade has been killed!", REAL_SECOND(5), 0, COLOR_RED, map.Id);
+	}
+	
+	//Check quest end
+	if (GetWaveFinished(location.Id) == 1)
+	{
+		int lifeAttackerCount = map.GetNpcCount(ROLE_ATTACKER, FIND_LIFE_AND_KO | FIND_ONLY_NPC);
+		int playersCount = GetPlayersCount(location.Id);
+	
+		if (lifeAttackerCount == 0)
+		{
+			//Compute final reward
+			int lifeDefenderCount = map.GetNpcCount(ROLE_DEFENDER, FIND_LIFE_AND_KO | FIND_ONLY_NPC);
+			int rewardCount = GetRewardCount(location.Id) + lifeDefenderCount * GetLastWaveSize(location.Id);
+			SetRewardCount(location.Id, rewardCount);
+			
+			int rewardExp = ComputeRewardExp(location.Id);
+			int rewardCaps = ComputeRewardCaps(location.Id);
+			
+			//Reward message
+			AddNewMapMessage("Metro defence: You have survived... The metro is silent for now. You get " + rewardCaps + " caps and " + rewardExp + " exp.", REAL_SECOND(10), 0, COLOR_ORANGE, map.Id);	
+		
+			//Add reward
+			string playerIds = "", playerNames = "";
+			Critter@[] players;
+			map.GetCritters(0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, players);
+			for (uint i = 0; i < players.length(); i++)
+			{
+				if (i != 0)
+				{
+					playerIds += ", ";
+					playerNames += ", ";
+				}
+				
+				playerNames += GetPlayerName(players[i].Id);
+				playerIds += players[i].Id;
+				
+				players[i].AddItem(PID_BOTTLE_CAPS, rewardCaps);
+				players[i].StatBase[ST_EXPERIENCE] += rewardExp;
+			}
+			
+			SetWaveFinished(location.Id, 2);
+			FLog(LOG_QUEST, "Metro defence completed, playersCount: " + playersCount + "; rewardExp: " + rewardExp + "; rewardCaps: " + rewardCaps
+				+ "; playerNames: " + playerNames + "; playerIds: " + playerIds);
+		}
+	}
+}
+
+void exit(Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+    if (!player.IsPlayer() || player.Timeout[TO_BATTLE] != 0)
+	{
+        return;
+	}
+		
+	Map@ map = player.GetMap();	
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	Location@ location =  map.GetLocation();
+	
+	//Check quest end
+	if (GetWaveFinished(location.Id) != 2)
+	{
+		player.Say(SAY_NETMSG, "You can't go back to the surface with the creatures following you.");	
+		return;
+	}
+
+	//Teleport to Hub
+	Map@ boneBladesMap = GetMapByPid(MAP_bone_blades, 0);
+	player.TransitToMap(boneBladesMap.Id, 0);
+}
+
+int ComputeRewardExp(int locationId)
+{
+	int playersCount = GetPlayersCount(locationId);
+	return (EXP_REWARD_BASE + EXP_REWARD_PER_PLAYER * playersCount) * GetRewardCount(locationId) / (playersCount * ATTACKER_PER_PLAYER_TOTAL * ComputeDefenderCount(playersCount));
+}
+
+int ComputeRewardCaps(int locationId)
+{
+	int playersCount = GetPlayersCount(locationId);
+	return CAPS_REWARD * GetRewardCount(locationId) / (playersCount * ATTACKER_PER_PLAYER_TOTAL * ComputeDefenderCount(playersCount));
+}
+
+int ComputeDefenderCount(int playersCount)
+{
+	return playersCount * DEFENDER_PER_PLAYER;
+}
+
+int GetPlayersCount(int locationId)
+{
+	GameVar@ playersCount = GetLocalVar(LLVAR_Value1, locationId);
+	return playersCount.GetValue();
+}
+
+void SetPlayersCount(int locationId, int value)
+{
+	GameVar@ var = GetLocalVar(LLVAR_Value1, locationId);
+	var = value;
+}
+
+int GetRewardCount(int locationId)
+{
+	GameVar@ var = GetLocalVar(LLVAR_Value2, locationId);
+	return var.GetValue();
+}
+
+void SetRewardCount(int locationId, int value)
+{
+	GameVar@ var = GetLocalVar(LLVAR_Value2, locationId);
+	var = value;
+}
+
+int GetWaveFinished(int locationId)
+{
+	GameVar@ var = GetLocalVar(LLVAR_Value3, locationId);
+	return var.GetValue();
+}
+
+void SetWaveFinished(int locationId, int value)
+{
+	GameVar@ var = GetLocalVar(LLVAR_Value3, locationId);
+	var = value;
+}
+
+int GetLastWaveSize(int locationId)
+{
+	GameVar@ var = GetLocalVar(LLVAR_Value4, locationId);
+	return var.GetValue();
+}
+
+void SetLastWaveSize(int locationId, int value)
+{
+	GameVar@ var = GetLocalVar(LLVAR_Value4, locationId);
+	var = value;
+}
+
+bool s_Easter(Critter& player, Scenery& scenery, int skill, Item@ item)
+{
+    Map@ map = player.GetMap();
+    Location@ location = map.GetLocation();
+    GameVar@ eggVar = GetLocalVar(LLVAR_Value5, location.Id);
+
+    if (skill == -1 && !valid(item) && eggVar == 0)
+    {
+        eggVar = 1;
+        LaunchEgg(map);
+        return true;
+    }
+    return false;
+}
+
+void LaunchEgg(Map& map)
+{
+    map.RunFlyEffect(11257, null, null, 110, 90, 300, 90);
+}
+
+/*
+void _MapInit( Map& map, bool firstTime )
+{
+    map.SetEvent( MAP_EVENT_CRITTER_DEAD, "Death" );
+    map.SetEvent( MAP_EVENT_IN_CRITTER, "Enter" );
+}
+
+uint e_StartWave( uint[] @ values2 )
+{
+    CritterWave( values2[ 0 ], ROLE_MONSTERS )
+    .SetCrittersPerWave( values2[ 1 ], values2[ 1 ] )
+    .SetWaveCountDown( values2[ 2 ] )
+    .SetWaveTimeout( WAVE_TIME )
+    .Start();
+
+    return 0;
+}
+
+void Death( Map& map, Critter& cr, Critter@ killer )
+{
+    Location@ location = map.GetLocation();
+    GameVar@  WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+    CheckQuestState( map );
+}
+
+void Enter( Map& map, Critter& cr )
+{
+    Location@ location = map.GetLocation();
+    GameVar@  WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+    if( !cr.IsPlayer() )
+        return;
+
+    if( WAVE_STATE != 0 )
+        return;
+
+    WAVE_STATE = 1;
+    uint[] values = { map.Id };
+    CreateTimeEvent( __FullSecond + REAL_SECOND( 5 ), "Start", values, true );
+}
+
+uint Start( uint[] @ values )
+{
+    Map@      map = GetMap( values[ 0 ] );
+    Location@ location = map.GetLocation();
+
+    location.AutoGarbage = true;
+    GameVar@ WAVE_SIZEMULT = GetLocalVar( LLVAR_Value0, location.Id );
+    GameVar@ WAVE_COUNTMULT = GetLocalVar( LLVAR_Value1, location.Id );
+    GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+    // Wave amount multiplier
+	int playersamount = map.GetCritters(0, FIND_LIFE | FIND_ONLY_PLAYERS , null);
+
+    WAVE_SIZEMULT = WAVE_SIZE + ( playersamount * 1 );
+    WAVE_COUNTMULT = WAVE_COUNT + ( playersamount * 1 );
+    // End of Wave amount multiplier
+
+    for( int i = 0; i < DEFENDERS_COUNT; i++ )
+    {
+        defendersCritterTemplate.Spawn( map );
+    }
+    AddNewMapMessage( "Terrifying shrieks can be heard in the metro vents. The creatures are coming.", REAL_SECOND( 7 ), 0, COLOR_RED, map.Id );
+
+    uint[] values2 = { map.Id, WAVE_SIZEMULT.GetValue(), WAVE_COUNTMULT.GetValue() };
+    CreateTimeEvent( __FullSecond + START_DELAY, "e_StartWave", values2, true );
+
+    return 0;
+}
+
+void CheckQuestState( Map& map )
+{
+    Location@ location = map.GetLocation();
+
+    GameVar@  WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+    
+    if( WAVE_STATE == 3 )
+        return;
+        
+    GameVar@  WAVE_SIZEMULT = GetLocalVar( LLVAR_Value0, location.Id );
+    GameVar@  WAVE_COUNTMULT = GetLocalVar( LLVAR_Value1, location.Id );    
+
+    int deadmonstCount = map.GetNpcCount( ROLE_MONSTERS, FIND_DEAD | FIND_ONLY_NPC);
+
+    if( WAVE_COUNTMULT * WAVE_SIZEMULT == deadmonstCount )
+    {
+        Log( " DEFENSE DONE" );
+        WAVE_STATE = 3;
+        Critter@[] players;
+        map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, players );
+        for( uint i = 0, j = players.length(); i < j; i++ )
+        {
+            players[ i ].StatBase[ ST_EXPERIENCE ] += 3000;
+        }
+        int      ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+        Critter@ LocOwner = GetCritter( ownerId );
+        if (!valid(LocOwner))
+            return;
+        int      QuestPay = 5000 //( BASE_PAY * WAVE_COUNTMULT.GetValue() );
+        AddNewMapMessage( "We have survived... The metro is silent for now. Take those " + QuestPay + " caps and go...", REAL_SECOND( 10 ), 0, COLOR_WHITE, map.Id );
+        LocOwner.AddItem( PID_BOTTLE_CAPS, QuestPay );
+        LocOwner.Say( SAY_NETMSG, "|" + COLOR_WHITE + " It is over. You have gained " + QuestPay + " caps for succesful defense as the leader of the group." );
+    }
+}
+
+
+void exit( Critter& player, Scenery& trigger, bool entered, uint8 dir )
+{
+    if( !player.IsPlayer() )
+        return;
+        
+    Map@ map = player.GetMap();
+    if (!valid(map))
+        return;
+
+	Location@ location =  map.GetLocation();    
+    GameVar@  WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+    if( WAVE_STATE != 3 )
+    {
+        player.Say( SAY_NETMSG, "You can't go back to the surface with the creatures following you." );
+        return;
+    }
+    
+    Map@ tpmap = GetMapByPid( MAP_bone_blades, 0 );
+	if( valid(tpmap) )
+	{
+        array<Critter@> crits;
+        uint n = player.GetMap().GetCritters(0, FIND_LIFE | FIND_ONLY_PLAYERS, crits);
+        for(uint i = 0; i < n; i++)
+            if(crits[i].Timeout[TO_BATTLE] == 0 )
+                crits[i].TransitToMap(tpmap.Id, 0);
+	}	
+}
+
+bool s_Easter( Critter& player, Scenery& scenery, int skill, Item@ item )
+{
+    Map@      map = player.GetMap();
+    Location@ location = map.GetLocation();
+    GameVar@  EGG = GetLocalVar( LLVAR_Value4, location.Id );
+
+    if( skill == -1 && not valid( item ) && EGG == 0 )
+    {
+        EGG = 1;
+        LaunchEgg( map );
+        return true;
+
+    }
+    return false;
+}
+
+void LaunchEgg( Map& map )
+{
+    map.RunFlyEffect( 11257, null, null, 110, 90, 300, 90 );
+}
+*/

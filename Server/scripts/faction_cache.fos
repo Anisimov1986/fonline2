@@ -1,0 +1,230 @@
+#include "_macros.fos"
+#include "utils_h.fos"
+
+#define _ADK_FactionAlly	# (i)		("FACTION" +i+ "ALLY")
+#define _ADK_FactionEnemy	# (i)		("FACTION" +i+ "ENEMY")
+
+import int GetFactionCount() from "faction_core";
+import uint[] GetFactionRelations(uint faction, bool ally) from "faction_core";
+import void SaveAnyData(uint[]@ values, string key) from "faction_core";
+import void SendRelationsData(Critter@ cr) from "faction_core";
+
+uint[][] FactionPlayers;
+uint[][] OnlineFactionPlayers;
+uint[][] FactionAlly;
+uint[][] FactionEnemy;
+
+void BuildFactionCache()
+{
+	FactionPlayers.resize(GetFactionCount()+1);
+	OnlineFactionPlayers.resize(GetFactionCount()+1);
+    FactionAlly.resize(GetFactionCount()+1);
+    FactionEnemy.resize(GetFactionCount()+1);
+	array<uint> ids;
+	array<string@> names;
+	uint count = GetRegisteredPlayers( ids,names );
+	for (uint i=0, k=count; i<k ; i++)
+	{
+		uint faction = GetLvar(ids[i],MAIN_FACTION);
+		if (faction!=0 && faction<FactionPlayers.length())
+			FactionPlayers[faction].insertLast(ids[i]);
+	}
+    for (uint i=1, k=FactionAlly.length(); i<k ; i++)
+	{
+        FactionAlly[i]=GetFactionRelations(i, true);
+        FactionEnemy[i]=GetFactionRelations(i, false);
+    }
+}
+
+uint[] GetFactionRelationsCache(uint faction, bool ally)
+{
+    uint[] values;
+    if (faction==0 || faction>=FactionAlly.length() || faction>=FactionEnemy.length())
+        return values;
+    if (ally)
+        return FactionAlly[faction];
+
+    return FactionEnemy[faction];
+}
+
+void AddFactionTo(uint faction, uint faction2, int relation, bool send)
+{
+    if (faction==0 || faction>=FactionAlly.length() || faction>=FactionEnemy.length())
+        return;
+    if (relation==0)
+    {
+        if (FactionAlly[faction].find(faction2) >= 0)
+        {
+            FactionAlly[faction].removeAt(FactionAlly[faction].find(faction2));
+            SaveAnyData(FactionAlly[faction], _ADK_FactionAlly(faction));
+        }
+        if (FactionEnemy[faction].find(faction2) >= 0)
+        {
+            FactionEnemy[faction].removeAt(FactionEnemy[faction].find(faction2));
+            SaveAnyData(FactionEnemy[faction], _ADK_FactionEnemy(faction));
+        } 
+    }
+    else if (relation==1)
+    {
+        if (FactionEnemy[faction].find(faction2) >= 0)
+        {
+            FactionEnemy[faction].removeAt(FactionEnemy[faction].find(faction2));
+            SaveAnyData(FactionEnemy[faction], _ADK_FactionEnemy(faction));
+        }
+        if (FactionAlly[faction].find(faction2) < 0)
+        {
+            FactionAlly[faction].insertLast(faction2);
+            SaveAnyData(FactionAlly[faction], _ADK_FactionAlly(faction));
+        }
+        else
+            return;
+    }
+    else if (relation==-1)
+    {
+        if (FactionAlly[faction].find(faction2) >= 0)
+        {
+            FactionAlly[faction].removeAt(FactionAlly[faction].find(faction2));
+            SaveAnyData(FactionAlly[faction], _ADK_FactionAlly(faction));
+        }
+        if (FactionEnemy[faction].find(faction2) < 0)
+        {
+            FactionEnemy[faction].insertLast(faction2);
+            SaveAnyData(FactionEnemy[faction], _ADK_FactionEnemy(faction));
+        }
+        else
+            return;
+    }
+    if (send)
+        SendRelationsData(null);
+}
+
+void RebuldFactionCache(uint id, bool add)
+{
+	Critter@ cr = GetCritter(id);
+	uint faction = GetLvar(id,MAIN_FACTION);
+    if (faction>=FactionPlayers.length() || faction>=OnlineFactionPlayers.length())
+    {
+        Log("faction cache error for faction "+faction);
+        return;
+    }
+
+	if (add)
+	{
+		if (FactionPlayers[faction].find(id) < 0)
+			FactionPlayers[faction].insertLast(id);
+		if (valid(cr) && OnlineFactionPlayers[faction].find(id) < 0)
+			OnlineFactionPlayers[faction].insertLast(id);
+	}
+	else
+	{
+		int index;
+        while((index=FactionPlayers[faction].find(id))>=0)
+            FactionPlayers[faction].removeAt(index);
+		
+		if (valid(cr))
+		{
+			while((index=OnlineFactionPlayers[faction].find(id))>=0)
+                OnlineFactionPlayers[faction].removeAt(index);
+		}
+		
+	}
+}
+
+bool IsRelation(uint faction, uint faction2, int relation)
+{
+    if (faction==0 || faction2==0 || faction>=FactionAlly.length())
+        return false;
+    if (relation==0)
+    {
+        if (FactionAlly[faction].find(faction2) >= 0)
+            return false;
+            
+        if (FactionEnemy[faction].find(faction2) >= 0)
+            return false;
+        return true;
+    }
+    else if (relation==1)
+    {
+        if (FactionAlly[faction].find(faction2) >= 0)
+            return true;
+        return false;
+    }
+    else if (relation==-1)
+    {
+        if (FactionEnemy[faction].find(faction2) >= 0)
+            return true;
+        return false;
+    }
+    return false;
+}
+
+Critter@ GetFactionLeader(uint faction)
+{
+    uint[] players = GetOnlinePlayers(faction);
+    for (uint i=0; i<players.length(); i++ )
+	{
+		Critter@ cr = GetCritter(players[i]);
+		if (valid(cr) && _CritIsOnline(cr) && FACTION_LEADER(cr))
+			return cr;
+	}
+    return null;
+}
+
+void AddNewCacheFaction()
+{
+	Log("faction cache resized");
+    FactionPlayers.resize(GetFactionCount()+1);
+	OnlineFactionPlayers.resize(GetFactionCount()+1);
+    FactionAlly.resize(GetFactionCount()+1);
+    FactionEnemy.resize(GetFactionCount()+1);
+}
+
+void DeleteCacheFaction(uint faction)
+{
+    Log("faction "+faction+" removed from cache");
+    FactionPlayers[faction].resize(0);
+    OnlineFactionPlayers[faction].resize(0);
+    FactionAlly[faction].resize(0);
+    FactionEnemy[faction].resize(0);
+}
+
+uint[] GetFactionPlayers(uint faction)
+{
+	array<uint> empty;
+	if (faction>0 && FactionPlayers.length()>faction)
+		return FactionPlayers[faction];
+	return empty;
+}
+
+uint[] GetOnlinePlayers(uint faction)
+{
+	array<uint> empty;
+	if (faction>0 && OnlineFactionPlayers.length()>faction)
+		return OnlineFactionPlayers[faction];
+	return empty;
+}
+
+void AddOnlinePlayer(Critter& cr)
+{
+	if(cr.IsPlayer())
+	{	
+		uint faction = cr.Param[MAIN_FACTION];	
+		if (faction!=0)
+			OnlineFactionPlayers[faction].insertLast(cr.Id);
+	}
+}
+
+void DelOnlinePlayer(Critter& cr)
+{
+	if(cr.IsPlayer())
+	{
+		uint faction = GetLvar(cr.Id, MAIN_FACTION);
+		if (faction!=0 && faction < OnlineFactionPlayers.length())
+		{
+            int index;        
+            while((index=OnlineFactionPlayers[faction].find(cr.Id))>=0)
+                OnlineFactionPlayers[faction].removeAt(index);        
+                    
+		}
+	}
+}

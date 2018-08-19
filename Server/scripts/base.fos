@@ -1,0 +1,528 @@
+#include "_macros.fos"
+#include "base_npc_wave_init.fos"
+#include "base_item_info_init.fos"
+#include "base_defines.fos"
+#include "_msgstr.fos"
+
+#define SPAWN_WAVE_EVENTS			("SpawnWaveEventsKey")
+#define _RegisterSpawnWaveEvents	# (base, events)(SetAnyData("SpawnWaveEventsKey_"+base, events))
+#define _ExistsSpawnWaveEvents		# (base)(IsAnyData("SpawnWaveEventsKey_"+base))
+#define _GetSpawnWaveEvents			# (base, events)(GetAnyData("SpawnWaveEventsKey_"+base, events))
+#define Turret			(2)
+#define AI_PLANE_ATTACK_PRIORITY_MARK    ( AI_PLANE_ATTACK_PRIORITY + 1 )
+
+import bool AddWalkPlane(Critter& npc, uint entire, uint cut, bool run) from "npc_planes";
+import bool AddMiscPlane(Critter& npc, uint priority, uint waitSecond, string@ funcName) from "npc_planes";
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import void ChangeFactionScore(uint faction, int score) from "faction_core";
+
+uint e_BaseRefresh( uint[] @ values )
+{
+    RefreshBase( values[0], values[1] );
+    return 0;
+}
+
+void RefreshBase( uint base, uint cycle )
+{
+    if( base >= MAX_BASES )
+        return;
+
+    GameVar@ varTE = GetGlobalVar( GvarTimeEvent[ base ] );
+    varTE = 0;
+
+    GameVar@ varRule = GetGlobalVar( GvarRule[ base ] );
+    if( varRule == 0 )
+        return;
+
+    GameVar@ varOrg = GetGlobalVar( GvarOrg[ base ] );
+    if( varOrg == 0 )
+        return;
+
+    Map@ map = GetMapByPid( BaseMaps[ base ], 0 );
+    if( not valid( map ) )
+        return;
+
+    CreateSupplyCar( map, base, varRule.GetValue(), varOrg.GetValue(), cycle );
+
+    Critter@ player = GetCritter( varRule.GetValue() );
+    if( valid( player ) && player.IsPlayer() )
+    {
+        player.AddScore( ScoreBest[ base ], 1 );
+        if (player.Param[MAIN_FACTION]>0)
+            ChangeFactionScore(player.Param[MAIN_FACTION], 100);
+    }
+
+    GameVar@ varEnclaveScore = GetGlobalVar( GVAR_base_enclave_score );
+    GameVar@ varBosScore = GetGlobalVar( GVAR_base_bos_score );
+    if( varOrg == ORG_ENCLAVE )
+        varEnclaveScore += 1;
+    else if( varOrg == ORG_BOS )
+        varBosScore += 1;
+    if( varEnclaveScore > varBosScore )
+        SetBestScore( SCORE_BASE_BEST_ORG, null, "Enclave" );
+    else if( varEnclaveScore < varBosScore )
+        SetBestScore( SCORE_BASE_BEST_ORG, null, "Brotherhood of Steel" );
+    else
+        SetBestScore( SCORE_BASE_BEST_ORG, null, "<draw>" );
+        
+    uint[] values = { base, varOrg.GetValue(), varRule.GetValue(), cycle + 1 };
+    uint event = CreateTimeEvent( __FullSecond + CAR_WAIT_TIME, "e_StartNextCycle", values, true );
+	uint[] events = {event};
+	_RegisterSpawnWaveEvents(base, events);
+}
+
+void CreateSupplyCar( Map@ map, uint base, uint playerId, uint org, uint cycle )
+{
+    Entire[] entires;
+    ParseEntires( map, entires, ENTIRE_SUPPLY_CAR );
+
+    uint16 carPid = ( org == ORG_BOS ? PID_HUMMER : PID_SCOUT );
+
+    uint16 hx, hy;
+    for( int i = 0, j = entires.length(); i <= j; i++ )
+    {
+        if( i == j )
+            return;
+
+        Entire@ ent = entires[ i ];
+        if( map.CheckPlaceForItem( ent.HexX, ent.HexY, carPid ) )
+        {
+            hx = ent.HexX;
+            hy = ent.HexY;
+            break;
+        }
+    }
+
+    Item@ car = map.AddItem( hx, hy, carPid, 1 );
+    if( not valid( car ) )
+        return;
+	map.PlaySound ("carstart.acm",   car.HexX,   car.HexY,  40); 
+    car.LockerId = 1;
+    car.Charge = Random( 0, car.Proto.Car_TankVolume );
+    car.Deterioration = Random( 0, car.Proto.Car_MaxDeterioration );
+
+    Item@ bag = car.GetChild( 0 );
+    if( valid( bag ) )
+    {
+        //bag.LockerId = ( org == ORG_ENCLAVE ? _CritFingersDoorId( playerId ) : _CritEyesDoorId( playerId ) );
+        //bag.LockerComplexity = Random( 100, 200 );
+
+        BaseItemInfo@ baseItemInfo = GetBaseItemInfo(base, org);
+        if(valid(baseItemInfo))
+			baseItemInfo.AddItemsToContainer(cycle, bag);
+
+        // Activate militia on Cathedral
+        if( base == CATHEDRAL_BASE )
+        {
+            Critter@[] npcs, players;
+            if( map.GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, players ) > 0 && map.GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_NPC, npcs ) > 0 )
+            {
+                for( uint i = 0, ii = npcs.length(); i < ii; i++ )
+                {
+                    Critter@ npc = npcs[ i ];
+                    for( uint j = 0, jj = players.length(); j < jj; j++ )
+                        AddAttackPlane( npc, 0, players[ j ], true );
+                }
+            }
+        }
+    }
+
+    CreateTimeEvent( __FullSecond + CAR_WAIT_TIME, "e_DeleteCar", car.Id, true );
+}
+
+uint e_DeleteCar( uint[] @ values )
+{
+    Item@ car = GetItem( values[ 0 ] );
+    if( valid( car ) )
+        DeleteItem( car );
+    return 0;
+}
+
+uint e_StartNextCycle( uint[] @ values )
+{
+	uint base = values[0];
+	uint org = values[1];
+    Critter@ target = GetCritter(values[2]);
+    uint cycle = values[3];
+    
+    if(!valid(target) || !IsOnBaseMap(base, target))
+    {
+		EndBaseControl(base);
+		return 0;
+	}
+
+	StartSpawnWaveCycle(base, org, target, cycle, 0);
+	
+    return 0;
+}
+
+void EndBaseControl(Map@ map)
+{
+	int base = GetBaseByEntranceMap(map);
+    if(base == -1)
+    {
+		Info("Ending base control failed: Could not find base.");
+		return;
+	}
+	EndBaseControl(base);
+}
+
+void EndBaseControl(uint base)
+{
+	GameVar@ varRule = GetGlobalVar( GvarRule[ base ] );
+    varRule = 0;
+
+    GameVar@ varOrg = GetGlobalVar( GvarOrg[ base ] );
+    varOrg = 0;
+    
+    GameVar@ varTE = GetGlobalVar( GvarTimeEvent[ base ] );
+    if( varTE != 0 )
+    {
+        EraseTimeEvent( varTE.GetValue() );
+        varTE = 0;
+    }
+    
+    SetBestScore( ScoreCur[ base ], null, "-" );
+    SetBestScore( ScoreOrg[ base ], null, "-" );
+    
+    CancelScheduledSpawnWaveEvents(base);
+    ClearAttackers(base);
+    
+    Info("Base control ended.");
+}
+
+void ClearAttackers(uint base)
+{
+	Map@ map = GetMapByPid(BaseMaps[base], 0);
+    if(!valid(map))
+        return;
+	
+	Critter@[] deadAttackers;
+	map.GetCritters(0, FIND_KO_AND_DEAD | FIND_ONLY_NPC, deadAttackers);
+	for (uint i = 0; i < deadAttackers.length(); i++)
+		if(deadAttackers[i].Stat[ST_NPC_ROLE] == ROLE_BASE_ATTACKER)
+			DeleteNpc(deadAttackers[i]);
+			
+	Critter@[] aliveAttackers;
+	map.GetCritters(0, FIND_LIFE | FIND_ONLY_NPC, aliveAttackers);
+	for (uint i = 0; i < aliveAttackers.length(); i++)
+		if(aliveAttackers[i].Stat[ST_NPC_ROLE] == ROLE_BASE_ATTACKER)
+			aliveAttackers[i].SetEvent(CRITTER_EVENT_IDLE, "_LeaveMap");
+}
+
+void _LeaveMap(Critter& critter)
+{
+	if(critter.IsPlayer())
+		return;
+		
+	DeleteNpc(critter);
+}
+
+bool s_Terminal( Critter& player, Scenery& terminal, int skill, Item@ item )
+{
+    if( player.IsPlayer() && skill == -1 && not valid( item ) )
+        RunDialog( player, DIALOG_base_terminal, terminal.HexX, terminal.HexY, false );
+    return true;
+}
+
+void r_BaseToEnclave( Critter& player, Critter@ terminal, int val )
+{
+    BaseTo( player, ORG_ENCLAVE );
+}
+
+void r_BaseToBos( Critter& player, Critter@ terminal, int val )
+{
+    BaseTo( player, ORG_BOS );
+}
+
+void BaseTo( Critter@ player, int org )
+{
+    int base = GetBaseByTerminalMap( player.GetMap() );
+    if(base == -1)
+    {
+		//for test purposes
+		base = GetBaseByEntranceMap(player.GetMap());
+		if(base == -1)
+			return;
+	}
+	
+	if(IsBaseControlRunning(base))
+		return;
+
+    GameVar@ varRule = GetGlobalVar( GvarRule[ base ] );
+    varRule = player.Id;
+
+    GameVar@ varOrg = GetGlobalVar( GvarOrg[ base ] );
+    varOrg = org;
+    
+    GameVar@ varTE = GetGlobalVar( GvarTimeEvent[ base ] );
+    if( varTE != 0 )
+    {
+        EraseTimeEvent( varTE.GetValue() );
+        varTE = 0;
+    }
+    
+	CancelScheduledSpawnWaveEvents(base);
+
+    SetBestScore( ScoreCur[ base ], player, "" );
+    SetBestScore( ScoreOrg[ base ], null, org == ORG_ENCLAVE ? "Enclave" : "Brotherhood of Steel" );
+    
+    SetPlayerEvents(player);
+    SetMapEvents(base);
+    
+    StartSpawnWaveCycle(base, org, player, 0, CYCLE_START_DELAY);
+}
+
+void CancelScheduledSpawnWaveEvents(uint base)
+{
+	if(_ExistsSpawnWaveEvents(base))
+	{
+		uint[] spawnWaveEvents;
+		_GetSpawnWaveEvents(base, spawnWaveEvents);
+		Info("Found "+spawnWaveEvents.length()+" registered NPC wave events...erasing.");
+		for (uint i = 0; i < spawnWaveEvents.length(); i++)
+		{
+			EraseTimeEvent(spawnWaveEvents[i]);
+		}
+	}
+}
+
+void SetPlayerEvents(Critter@ target)
+{
+}
+
+void SetMapEvents(int base)
+{
+	Map@ map = GetMapByPid(BaseMaps[base], 0);
+	if(!valid(map))
+	{
+		Info("Cannot set events for map: No map found!");
+		return;
+	}
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_CritterOut");
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_CritterIn");
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "_CritterDied");
+}
+
+void _CritterIn(Map& map, Critter& critter)
+{
+	if(!IsBaseControlRunning(GetBaseByEntranceMap(map)))
+		return;
+	
+	if (critter.IsPlayer()) //attack player that entered map
+	{
+		Critter@[] attackers;
+		map.GetCritters(0, FIND_ONLY_NPC | FIND_LIFE_AND_KO, attackers);
+		for (uint i = 0; i < attackers.length(); i++)
+			if(attackers[i].Stat[ST_NPC_ROLE] == ROLE_BASE_ATTACKER)
+				attackers[i].AddEnemyInStack(critter.Id);
+	}
+}
+
+bool IsBaseControlRunning(int base)
+{
+	if(base == -1)
+		return false;
+	GameVar@ varRule = GetGlobalVar( GvarRule[ base ] );
+    return varRule != 0;
+}
+
+void _CritterOut(Map& map, Critter& critter)
+{
+	if(!IsBaseControlRunning(GetBaseByEntranceMap(map)))
+		return;
+		
+	if (IsTarget(map, critter))
+	{
+		Info("Target left base.");
+		EndBaseControl(map);
+	}
+}
+
+bool IsTarget(Map@ map, Critter@ critter)
+{
+	int base = GetBaseByEntranceMap(map);
+    if(base == -1)
+    {
+		Info("Could not find base by map.");
+		return false;
+	}
+	GameVar@ varRule = GetGlobalVar(GvarRule[base]);
+	return varRule == critter.Id;
+}
+
+bool IsOnBaseMap(int base, Critter@ critter)
+{
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return false;
+
+	int mapBase = GetBaseByEntranceMap(map);
+	return base == mapBase;
+}
+
+void _CritterDied(Map& map, Critter& critter, Critter@ killer)
+{
+	if(!IsBaseControlRunning(GetBaseByEntranceMap(map)))
+		return;
+	
+	if (critter.IsPlayer() && IsTarget(map, critter))
+		EndBaseControl(map);
+}
+
+void StartSpawnWaveCycle(uint base, uint org, Critter@ target, uint cycle, uint cycleStartDelay)
+{
+	uint[] values = { base, org, target.Id, cycle };
+    uint eventId = CreateTimeEvent( __FullSecond + cycleStartDelay, "e_CreateWaveEvents", values, true );
+    uint[] events = {eventId};
+    _RegisterSpawnWaveEvents(base, events);
+}
+
+uint e_CreateWaveEvents( uint[] @ values )
+{
+	uint base = values[0];
+	uint org = values[1];
+	Critter@ player = GetCritter(values[2]);
+	uint cycle = values[3];
+	
+	if(!valid(player) || !IsOnBaseMap(base, player)) 
+	{ 
+		Info("Player not found...ending base control.");
+		EndBaseControl(base);
+		return 0;
+	}
+	
+	CreateWaveEvents(base, org, player, cycle);
+
+	uint[] baseRefreshValues = {base, cycle};
+	GameVar@ varTE = GetGlobalVar( GvarTimeEvent[ base ] );
+	uint cycle_duration=CYCLE_DURATION;
+	if (cycle<4)
+		cycle_duration=REAL_MINUTE(4);
+    varTE = CreateTimeEvent( __FullSecond + cycle_duration, "e_BaseRefresh", baseRefreshValues, true );
+    
+    return 0;
+}
+
+void CreateWaveEvents(uint base, uint org, Critter@ target, uint cycleNumber)
+{
+	BaseWaveDefinition@ baseWaveDefinition = GetBaseWaveDefinition(base, org);
+	
+	if(!valid(baseWaveDefinition))
+	{
+		Info("No definition was found for base " + base +" and org " + org);
+		return;
+	}
+	else
+	{
+		Info("Found base definition with " + baseWaveDefinition.Cycles.length() + " cycles.");
+	}
+	Cycle@ cycle = baseWaveDefinition.GetCycle(cycleNumber);
+	
+	if(!valid(cycle) || cycle.Waves.length() == 0)
+	{
+		Info("Could not find cycle for " + cycleNumber);
+		return;
+	}
+
+	Map@ map = GetMapByPid(BaseMaps[baseWaveDefinition.Base], 0);
+	if(valid(map))
+		map.PlaySound("AIRSIREN.OGG");
+		
+	if(cycleNumber == 0)
+		target.SayMsg(SAY_NETMSG, TEXTMSG_TEXT , 70311);
+	else
+		target.SayMsg(SAY_NETMSG, TEXTMSG_TEXT , 70312);
+
+	uint[] spawnWaveEvents = cycle.CreateSpawnWavesEvents(target, "e_SpawnWave");
+	_RegisterSpawnWaveEvents(base, spawnWaveEvents);
+}
+
+uint e_SpawnWave(uint[]@ values)
+{
+	if(values.length() != 5)
+	{
+		Info("Invalid value count when spawning wave.");
+		return 0;
+	}
+	BaseWaveDefinition@ baseWaveDefinition = GetBaseWaveDefinition(values[0], values[1]);
+	Critter@ target = GetCritter(values[2]);
+	uint cycleNumber = values[3];
+	uint waveNumber = values[4];
+	
+	if(!valid(baseWaveDefinition) || !valid(target))
+	{
+		Info("Invalid target or wave definition not found when spawning wave.");
+		EndBaseControl(baseWaveDefinition.Base);
+		return 0;
+	}
+	
+	Map@ map = GetMapByPid(BaseMaps[baseWaveDefinition.Base], 0);
+	if(!IsTarget(map, target))
+		return 0;
+	if(!valid(map))
+	{
+		Info("Could not find map with id:"+BaseMaps[baseWaveDefinition.Base]+" for base:"+baseWaveDefinition.Base);
+		return 0;
+	}
+	
+	Wave@ wave = baseWaveDefinition.GetWave(cycleNumber, waveNumber);
+	if(!valid(wave))
+	{
+		Info("Could not find wave definition for base:"+baseWaveDefinition.Base+", cycle:"+cycleNumber+", wave:"+waveNumber);
+		return 0;
+	}
+	
+	if(!valid(target) || !IsOnBaseMap(baseWaveDefinition.Base, target))
+	{
+		Info("Target not found");
+		EndBaseControl(baseWaveDefinition.Base);
+		return 0;
+	}
+	
+	Info("Starting spawn wave event for cycle: "+cycleNumber+" and wave: " + waveNumber);		
+	wave.SpawnWave(map, target);
+	
+	return 0;
+}
+
+int GetBaseByEntranceMap( Map@ map )
+{
+	if( not valid( map ) )
+        return -1;
+    uint16 mapPid = map.GetProtoId();
+	for( int base = 0, length = BaseMaps.length(); base < length; base++ )
+    {
+		if( BaseMaps[base] == mapPid )
+            return base;
+	}
+        
+    return -1;
+}
+
+int GetBaseByTerminalMap( Map@ map )
+{
+    if( not valid( map ) )
+        return -1;
+    uint16 mapPid = map.GetProtoId();
+    for( int base = 0, length = TerminalMaps.length(); base < length; base++ )
+    {
+		if( TerminalMaps[base] == mapPid )
+            return base;
+	}
+        
+    return -1;
+}
+
+bool d_CheckTerminalLock( Critter& player, Critter@ terminal, int val )
+{
+    return true;
+}
+
+void TestBaseControl(Critter& cr, int org, int, int )
+{
+    BaseTo(cr, org);
+}
+
+
+

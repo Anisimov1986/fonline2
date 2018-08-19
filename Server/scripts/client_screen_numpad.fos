@@ -1,0 +1,153 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+#include "_macros.fos"
+import bool GUI_IsKeyPressed( uint8 key ) from "client_gui";
+import bool isNumberKey(uint8 key) from "client_gui";
+
+#define ShiftPressed        ( GUI_IsKeyPressed( DIK_LSHIFT ) || GUI_IsKeyPressed( DIK_RSHIFT ) )
+IGUIElementTextOpt@ Numpad;
+
+class TextBox : IGUIScreenCallbackKeyPress
+{
+    bool OnKeyPress(uint8 key, string& keyText) override
+	{
+        string@ text=Numpad.getText();
+        if (key==DIK_NUMPADENTER || key==DIK_RETURN)
+        {
+            if (text.length()==4)
+                EnterElock();
+            else
+                Message( GetMsgStr( TEXTMSG_TEXT, 704 ));
+            return true;
+        }
+
+        if(!isNumberKey(key) && key!=DIK_BACK || ShiftPressed)
+            return true;
+        if (key==DIK_NUMPAD0 || key==DIK_0 && text.length()==0)
+            return true;
+ 
+        if (key==DIK_BACK)
+        {
+            if (text.length()>0)
+                text = substring (text, 0, text.length()-1);
+            else
+                return true;
+        }
+        else if (text.length()<4)
+        {
+            text+=keyText;
+            TypeSound();
+        }
+        else
+            return true;
+        Numpad.setText(""+text);
+        return true;
+    }
+}
+
+class Button : IGUIElementCallbackMouseClick 
+{
+	int id;
+	Button(uint id)
+	{
+		this.id=id;
+	}
+    void OnMouseClick(int mm, int click)
+    {
+        string@ text=Numpad.getText();
+        if (id==10)
+        {
+            if (text.length()==4)
+                EnterElock();
+            else
+                Message( GetMsgStr( TEXTMSG_TEXT, 704 ));
+            return;
+        }
+        if (text.length()>=4)
+            return;
+        if (id==0 && text.length()==0)
+            return;
+        text+=id;
+        TypeSound();
+        Numpad.setText(""+text);
+    }
+}
+
+void InitNumPadScreen()
+{
+    if (GetIfaceIniStr("NumpadMainPic")=="")
+    {
+        Message( GetMsgStr( TEXTMSG_TEXT, 70424 ) );
+        return;
+    }
+    
+    GUI_CreateScreen(CLIENT_SCREEN_NUMPAD,GetIfaceIniStr("NumpadMainPic"))
+    .AutoCursor(true,CURSOR_DEFAULT)
+    .CallbackKeyPress(TextBox())
+    .CloseOnMiss(true);
+
+    for (uint i=0; i<11;i++)
+    {
+        string str = i;
+        if (i == 10)
+            str="ENTER";
+        Button b(i);    
+        GUI_AddButton(CLIENT_SCREEN_NUMPAD)
+        .CallbackMouseClick( b )
+        .Position("NumpadDnPos"+i)
+        .DownPic(GetIfaceIniStr("NumpadDnPic"+i))
+        .Text(""+str, FONT_FAT, COLOR_YELLOW, COLOR_RGB( 80, 59, 22), FT_CENTERXY);
+    }
+
+    @Numpad = GUI_AddText(CLIENT_SCREEN_NUMPAD)
+        .Text("",FONT_FALLOUT, COLOR_TEXT, FT_CENTERXY)
+        .Position("NumpadTextPos");
+}
+
+void ReceiveElockData( int state, int, int, string@, int[]@ data )
+{
+    Numpad.setText("");
+    if (state==1)
+        ShowScreen(CLIENT_SCREEN_NUMPAD,0,0,0);
+    else if (state==2)
+        HideScreen(CLIENT_SCREEN_NUMPAD,0,0,0);
+}
+
+void EnterElock()
+{
+    int password=0;
+    string@ text=Numpad.getText();
+
+    if (text.length()!=4 || !StrToInt(text,password))
+    {
+        Numpad.setText("");
+        HideScreen(CLIENT_SCREEN_NUMPAD,0,0,0);
+        return;
+    }
+
+    RunServerScriptUnsafe( "elock@unsafe_Elock", password, 0, 0, null, null );
+}
+
+void TypeSound()
+{
+    int    roll = Random( 1, 8 );
+    string action = "typing";
+    if( roll == 1 )
+        action = "typing-01";
+    else if( roll == 2 )
+        action = "typing-02";
+    else if( roll == 3 )
+        action = "typing-03";
+    else if( roll == 4 )
+        action = "typing-04";
+    else if( roll == 5 )
+        action = "typing-05";
+    else if( roll == 6 )
+        action = "typing-06";
+    else if( roll == 7 )
+        action = "typing-07";
+    else if( roll == 8 )
+        action = "typing-08";
+
+    PlaySound( action + ".ogg" );
+}

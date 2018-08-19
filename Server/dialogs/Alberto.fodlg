@@ -1,0 +1,169 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+11 2020 D _param p PE_PROF_SCIENTIST ! 3 D _param p SK_SCIENCE < 130 #
+4 2030 D _var p name_mem_player_npc = 0 D _param p PE_PROF_SCIENTIST ! 0 D _param p SK_SCIENCE } 130 #
+8 2040 D _var p name_mem_player_npc = 1 D _script economy_dialogs@d_IsEnoughCaps 1 6000 D _param p PE_PROF_SCIENTIST ! 3 #
+0 2050 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 R _var p prof_energy = 7 @
+6 6000 economy_dialogs@dlg_PreparePrice 0 #
+7 6010 #
+0 6020 R _var p name_mem_player_npc = 1 @
+7 7000 None 0 #
+0 7010 R _var p name_mem_player_npc = 1 @
+8 8000 None 0 #
+10 8010 D _script economy_dialogs@d_IsEnoughCaps 1 6000 D _param p PE_PROF_SCIENTIST = 2 D _param p SK_SCIENCE } 130 R _script economy_dialogs@r_TakeCaps 1 6000 R _param p PE_PROF_SCIENTIST = 3 R _var p prof_energy = 8 R _param p ST_EXPERIENCE + 2000 #
+9 8020 D _script economy_dialogs@d_IsEnoughCaps 1 6000 D _param p PE_PROF_SCIENTIST ! 2 D or D _param p SK_SCIENCE < 130 #
+0 8030 D _script economy_dialogs@d_IsNotEnoughCaps 1 6000 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 &
+
+[engl]
+{100}{}{Alberto Unpiedra}
+{200}{}{You see a middle aged man dressed in a brand new labcoat. A small plaque on his chest reads: "Alberto Unpiedra".}
+{210}{}{You see: Alberto Unpiedra, Hubologists' Scientist.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Buenos dias, senior! What can Alberto do for you, ay?}
+{2010}{}{I'm an immigration officer. Boo!}
+{2020}{}{I want to learn your proffession...}
+{2030}{}{Say, you've got a lot of technical stuff around here.}
+{2040}{}{I'm back with all you need. }
+{2050}{}{Wrong door, sorry. Bye.}
+{3000}{}{Hijo de puta, vete a la mierda!}
+{3010}{}{Duh, whatever.}
+{4000}{}{Si. I've spent many years in this place, trying to discover, understand and reveal to the world something that will make my name famous.}
+{4010}{}{And how is it going so far?}
+{5000}{}{Quite well, hermano. Hubologistos let me live here, they give me shelter and a lab of sorts, so I'm quite good. I probably wouldn't survive for long outside, I don't even know how to shoot a pistol. But I know what makes it tick, ay?}
+{5010}{}{Yeah, so? Would you be willing to share this knowledge with me?}
+{6000}{}{Por que no? Get @lex prof3_price@ caps for poor Alberto. Then I can explain you how things work. Hubologistos are fine, but so tacano. }
+{6010}{}{Tacano?}
+{6020}{}{I'll be back. Bye.}
+{7000}{}{They think that since they provide me with all this stuff, they don't have to pay me shit. Not that I have any place to spend cash in, but still ...}
+{7010}{}{I see. Bye then.}
+{8000}{}{Bien. Shall we begin then? Oh, I need to ask you before we start - what's your background, hermano?}
+{8010}{}{(Profession: Scientist level 3.) Well, I've talked to Lucas from Redding and... }
+{8020}{}{Well, I know this and that... }
+{8030}{}{Uhm, Where is my stuff?!}
+{9000}{}{No no no, not bien. Please come back when you are really ready, ay?}
+{9010}{}{All right, all right.}
+{10000}{}{Lucas! Muy bien! Now I'm sure you are the right man here. Bien, let's not waste any more time... Have a seat and listen carefully ... [Alerto teaches you things that may seem to be science-fiction at first, but then...] ... Ay?}
+{10010}{}{Ay, ay. Thanks a lot, Alberto.}
+{11000}{}{You do not know all you need. Come back with when you're more skilled. (Required skill: Science 130%.)}
+
+[russ]
+{100}{}{Альберто Унпедро}
+{200}{}{Вы видите: Альберто Унпедро, ученый Хабологов.}
+{210}{}{Вы видите: Альберто Унпедро, ученый Хабологов.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Буэнос диас, сеньер! Что может сделать для вас Альберто?}
+{2010}{}{Я сотрудник иммиграционной службы. Бу!}
+{2020}{}{Я хочу изучить твою профессию...}
+{2030}{}{Скажите, у вас тут много всякой техники...}
+{2040}{}{Я вернулся и принес, все что нужно. }
+{2050}{}{Ошибся дверью, пока.}
+{3000}{}{Хуйо де пута, вете ля мерда!}
+{3010}{}{Сам козел.}
+{4000}{}{Си. Я провел много лет в этом месте, пытаясь выяснить, понять и открыть миру то, что сделает мое имя известным.}
+{4010}{}{И как идут дела?}
+{5000}{}{Довольно хорошо. Хабологи позволяют мне жить здесь, дают мне убежище и лабораторию, и я им благодарен за это. Я бы наверно не выжил один снаружи, я даже не знаю, как стрелять из лазерного пистолета. Зато я знаю как он работает!}
+{5010}{}{Да? Хотите поделиться этими знаниями со мной?}
+{6000}{}{Почему бы и нет? принеси @lex prof3_price@ крышек бедному Альберто. Я обьясню тебе как работают все эти штуки. Хабологи такие скупые.}
+{6010}{}{Скупые?}
+{6020}{}{Я вернусь. Пока.}
+{7000}{}{Они думают что дали мне все это и мне теперь не нужны деньги. Не то чтобы мне есть на что их потратить, но все же.}
+{7010}{}{Понимаю. Тогда пока.}
+{8000}{}{Начнем тогда? Но я должен все же узнать, каковы ваши знания в данной области?}
+{8010}{}{Ну я учился у Лукаса в Реддинге и ...}
+{8020}{}{Ну, я знаю то и это и эээ....}
+{8030}{}{Ой я забыл нужные вещи дома!}
+{9000}{}{Нет, нет, нет, так не пойдет. Вернитесь когда будете действительно готовы.}
+{9010}{}{Эээ. хорошо.}
+{10000}{}{Лукас! Хорошо! Теперь я уверен, что вы попали туда куда нужно. Хватит тратить время на болтовню. [он учит вас вещам которые кажутся научной фантастикой, но только на первый взгляд]}
+{10010}{}{Большое спасибо, Альберто.}
+{11000}{}{Вы не знаете, все, что нужно. Возвращайтесь когда будете более подкованы в научных вопросах.}
+
+[pols]
+{100}{}{Alberto Unpiedra}
+{200}{}{Widzisz Alberto Unpiedrę, naukowca Centrologów.}
+{210}{}{Widzisz Alberto Unpiedrę, naukowca Centrologów.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Buenos dias, @sex@|senior||seniorita|! Co można dla ciebie zrobić?}
+{2010}{}{Dzień dobry, Urząd Imigracyjny. Czy mogę zobaczyć pańską wizę?}
+{2020}{}{@sex@|Chciałbym||Chciałabym| nauczyć się twojego fachu...}
+{2030}{}{Widzę że sporo tu macie gadżetów. Uuu, co się stanie jak wcisnę ten czerwony przycisk?}
+{2040}{}{Mam to, co chciałeś.}
+{2050}{}{Pomyliłem pokoje.}
+{3000}{}{Hijo de puta, vete a la mierda!}
+{3010}{}{Jebany kaktus.}
+{4000}{}{Zostaw to! Ja wiele lat pracował nad czymś, co mnie zrobi sławnym. Nie psuj mi tu niczego.}
+{4010}{}{I jak ci idzie?}
+{5000}{}{Całkiem dobrze, @sex@|hermano||hermana|. Centrolodzy dają mi tu mieszkać, i dają laboratorio do pracy. Ja nie poradziłby na zewnątrz, z laspistoletu strzelać nie umiem. Ale ja za to wiem, jak zrobić żeby on strzelał. I inne większe też.}
+{5010}{}{Tak? No patrzcie, a mówią że emigranci nadają że tylko do przerzucania braminiego gnoju. Alberto, nie podzieliłbyś się może ze mną swoją wiedzą?}
+{6000}{}{Por que? Chociaż w sumie mało kapsli mam... Centrolodzy tacano. Ty przynieść @lex prof3_price@. Comprende?}
+{6010}{}{Tacano?}
+{6020}{}{Jeszcze tu wrócę, na razie.}
+{7000}{}{Oni myśleć że jak dać mi spać i laboratorio, to ja nie potrzebuję pieniędzy. A ja potrzebuję pieniędzy, @sex@|amigo||amiga|, mało tu entretenimiento, ale coś by znalazł, jakby miał z czym wyjść.}
+{7010}{}{Rozumiem... chyba. Na razie.}
+{8000}{}{Bien. Zaczynamy, tak? Ale zanim zaczynamy, trzeba sprawdzić parę rzeczy. Masz doświadczenie jakieś?}
+{8010}{}{(Profesja: Naukowiec, poziom 3.) Ehem, @sex@|rozmawiałem||rozmawiałam| z Lucasem w Redding i...}
+{8020}{}{No więc, ten tego...}
+{8030}{}{Ej, gdzie moje rzeczy?!}
+{9000}{}{Nie, nie, nie bien. Wróć jak @sex@|gotowy||gotowa| będziesz naprawdę, ay?}
+{9010}{}{No dobra.}
+{10000}{}{Lucas! Muy bien! No to ja wiem, że ty jesteś @sex@|właściwy gość||właściwa dziewczyna|. Nie tracimy czasu, ty siadać i słuchać... [Alberto opowiada ci o wielu rzeczach. Na początku wydaje się to brzmieć jak jakieś niskobudżetowe science fiction, ale z czasem...] Ay?}
+{10010}{}{Aj waj. Dzięki, Alberto.}
+{11000}{}{Ty jeszcze za mało wiedzieć. Wrócić jak będziesz wiedzieć więcej. (Wymagana umiejętność: Nauka 130%.)}
+
+[ptbr]
+{100}{}{Alberto Unpiedra}
+{200}{}{Voce vê um homem de meia-idade vestido um jaleco novíssimo. Uma plaquinha no seu jaleco diz: "Alberto Unpiedra".}
+{210}{}{Você vê Alberto Unpiedra, cientista Centrologista.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Buenos dias, senior! Precisa de alguma coisa?}
+{2010}{}{Sou oficial de imigração. Surpresa!}
+{2020}{}{Eu quero aprender tua profissão...}
+{2030}{}{Tava vendo que você tem vários equipamentos técnicos aqui.}
+{2040}{}{Volto depois com o que tu quer.}
+{2050}{}{Opa, porta errada. Desculpa. Tchau.}
+{3000}{}{Hijo de puta, vete a la mierda!}
+{3010}{}{Ahm, tanto faz.}
+{4000}{}{Si. Eu moro aqui já fazem uns anos, tentando descobrir, entender e revelar ao mundo algo que vai me fazer ficar bastante famoso.}
+{4010}{}{E como vão as coisas até então?}
+{5000}{}{Muito bem, @sex@|meu||minha| chapa. Os Centrologistas me deixam viver aqui, me dão abrigo e aparatos; não tenho nada para reclamar. Provavelmente eu não sobreviveria por tanto tempo lá fora. Eu nem sei usar uma pistola! Mas ao menos eu sei de outras coisas que podem fazer um grande estrago.}
+{5010}{}{Legal. Pode compartilhar esse conhecimento comigo?}
+{6000}{}{Por que no? Traz @lex prof3_price@ tampinhas e um rifle laser, daí eu explico como as coisas funcionam. Centrologistas são legais, pero tacanos. }
+{6010}{}{Tacano?}
+{6020}{}{Eu volto em breve. Tchau.}
+{7000}{}{Na cabeça deles só porque me dão tudo, casa, comida e equipamentos para trabalhar, eles acham que não devem me pagar porra nenhuma.}
+{7010}{}{Ah, saquei. Até depois.}
+{8000}{}{Bien. A gente pode começar? Opa, preciso te perguntar algo antes da gente começar... que tipo de conhecimento tu tem?}
+{8010}{}{(Profissão: Cientista nível 3.) Ah, falei com o Lucas em Vermelheiro e... }
+{8020}{}{Ah, eu sei um pouco daqui e dali... }
+{8030}{}{Uhm, cadê as minhas coisas?!}
+{9000}{}{Arr! Nada bueno. Volta só quando tiver cem porcento pronto, tá?}
+{9010}{}{Tá, tá certo.}
+{10000}{}{Lucas! Muy bien! Bien, bora começar logo... senta ali e presta atenção ... [Alberto lhe ensina coisas que de início parecem ser ficção-científica, mas daí as coisas começam a fazer sentido...] ... entendeu?}
+{10010}{}{Tá, entendi. Valeu Alberto.}
+{11000}{}{Tu não sabe o suficiente para entender. Volta quando tiver souber mais. (Requer habilidade: Ciência 130%.)}
+

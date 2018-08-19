@@ -1,0 +1,229 @@
+[comment]
+
+Most of it is from F2
+#2(100) and #100+ are mine
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 #
+10 1020 D _var n name_mem_npc_player > 0 @
+2 2000 None 0 #
+3 2010 R _var n name_mem_npc_player = 1 #
+20 2020 #
+0 2030 @
+3 3000 None 0 #
+65506 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+0 5010 @
+10 6000 None 0 #
+3 6010 #
+20 6020 #
+4 6030 #
+0 6040 @
+20 7000 None 0 #
+21 7010 #
+0 7020 @
+21 8000 None 0 #
+22 8010 #
+0 8020 @
+22 9000 None 0 #
+23 9010 #
+0 9020 @
+23 10000 None 0 #
+24 10010 #
+0 10020 @
+24 11000 None 0 #
+25 11010 #
+0 11020 @
+25 12000 None 0 #
+26 12010 D _item p PID_BOTTLE_CAPS } 10000 R _item p PID_BOTTLE_CAPS - 10000 R _script dialog@r_additem 1 10023 #
+0 12020 @
+26 13000 None 0 #
+0 13010 &
+
+[engl]
+{100}{}{Randal}
+{200}{}{You see Randal, the Chief Amenities Officer.}
+{210}{}{You see a middle-aged man with thinning black hair.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, stranger. Always a pleasure to see a new face. Name's Randal... I'm the Chief Amenities Officer. Need something?}
+{2010}{}{Well, it depends. What is this place?}
+{2020}{}{What is that thing in front of the building? Is it for sale?}
+{2030}{}{Nothing today, actually.}
+{3000}{}{This is the Amenities Office. Got your typical stock... basic living necessities, some books, "how to" manuals, some tools, stimpacks, medical supplies. You know, this and that.}
+{3010}{}{Sounds great. Can I see what you have in stock?}
+{3020}{}{Mind if I ask you some other questions?}
+{3030}{}{I may be back some other time.}
+{4000}{}{Not at all. What's on your mind?}
+{4010}{}{Do you know where I could find any other Vaults?}
+{5000}{}{You could go scan the Vault Central Computer, see if it has any coordinates for any other Vaults. I doubt it, but no harm in checking.}
+{5010}{}{Thanks for the information.}
+{6000}{}{Hey there, welcome back. Anything I can do for you?}
+{6010}{}{What is this place again?}
+{6020}{}{What is that thing in front of the building? Is it for sale?}
+{6030}{}{Mind if I ask you some other questions?}
+{6040}{}{Nothing today, actually.}
+{7000}{}{Yes. I'm selling cleaning bots.}
+{7010}{}{Cleaning bot? Like, vacuuming and cleaning windows?}
+{7020}{}{I'm a fucking warrior not a maid. See you.}
+{8000}{}{Windows? In a vault? You're out of your mind friend?}
+{8010}{}{...So what type of cleaning?}
+{8020}{}{Yeaaah... Know what? I'll come back to you later. Bye.}
+{9000}{}{[ Smiles. ] There was a guy from times where vault kept closed. His name was Dr. Musashi. A scientist of some sort. Madman and kleptomaniac.}
+{9010}{}{A-and? What it has to do with him?}
+{9020}{}{Doesn't sound like a type of person I'm interested in hearing about. No thanks.}
+{10000}{}{You see... He was building things. Most of it were a complete failure. One time he made a combat bot. Thanks god it wasn't equiped or we would be dead. It just kept saying E-exterminate-e E-extermi-... You know what? Nevermind. The thing is that his creations were a complete failure... That time he made super stimpak spotting bot... Or bot that kept turning around in circles...}
+{10010}{}{I see... Interesting...}
+{10020}{}{That's interesting. But I'm out of time. I need to go.}
+{11000}{}{So listen. There was one exception from complete failure. Bot called Ultra looter Mark XII. [ He bursts in laugh. ] Okay... Maybe not that but still, his job is to pick up randomly lying loose items and pile it up with same type of items. He will sort stuff for you. And since we need to get rid of them, manufactory was left online by Dr. itself faceplanting dead on the button and now we have so much of that junk that's it's just taking space.}
+{11010}{}{So you're selling it?}
+{11020}{}{A-ah... It's not a thing I'm interested in... I'll pass.}
+{12000}{}{Yes I do. I'll take 10 thousands caps for it. No more no less. What do you think?}
+{12010}{}{Sounds like a good deal. I'll take it.}
+{12020}{}{I'll come back with money if I'll decide.}
+{13000}{}{Smiles. Good! Here take it. No instruction needed. Just put it down and turn it on with some science. If he breaks down he's easy to repair. Everything is commented inside his chassis.}
+{13010}{}{Thanks for the deal. I'll go test it out in my base. See ya.}
+
+[russ]
+{100}{}{Рэндал}
+{200}{}{Вы видите Рэндала, Старшего Офицера Главного Управления.}
+{210}{}{Вы видите черноволосого человека средних лет.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Здравствуй! Всегда приятно увидеть новое лицо. Меня зовут Рэндал... я руководитель Службы Обустройства. Вам что-нибудь нужно?}
+{2010}{}{Ну, возможно. Что это за место?}
+{2020}{}{What is that thing in front of the building? Is it for sale?}
+{2030}{}{Сегодня ничего, на самом деле.}
+{3000}{}{Это Служба Обустройства. Обычный ассортимент... товары повседневного спроса, немного книг, руководства из цикла "как сделать", кое-какие инструменты, стимуляторы, медикаменты, ну и всякое такое.}
+{3010}{}{Звучит прекрасно. Могу я посмотреть, что у вас есть?}
+{3020}{}{Не возражаете, если я задам вам еще несколько вопросов?}
+{3030}{}{Я зайду в другой раз.}
+{4000}{}{Конечно. Что именно?}
+{4010}{}{Не знаете, где я могу найти другие Убежища?}
+{5000}{}{Можно поискать в центральном компьютере Убежища, может там есть какая-то информация. Я конечно сомневаюсь, по попытка не пытка.}
+{5010}{}{Спасибо за информацию.}
+{6000}{}{Привет, добро пожаловать. Что я могу для вас сделать?}
+{6010}{}{Что это за место?}
+{6020}{}{What is that thing in front of the building? Is it for sale?}
+{6030}{}{Не возражаете, если я задам вам еще несколько вопросов?}
+{6040}{}{Сегодня ничего, на самом деле.}
+{7000}{}{Yes. You thought right. I'm selling cleaning bots.}
+{7010}{}{Cleaning bot? Like, vacuuming and cleaning windows?}
+{7020}{}{I'm a fucking warrior not a maid. See you.}
+{8000}{}{Windows? In a vault? You're out of your mind friend?}
+{8010}{}{...So what type of cleaning?}
+{8020}{}{Yeaaah... Know what? I'll come back to you later. Bye.}
+{9000}{}{[ Smiles. ] There was a guy from times where vault kept closed. His name was Dr. Musashi. A scientist of some sort. Madman and kleptomaniac.}
+{9010}{}{A-and? What it has to do with him?}
+{9020}{}{Doesn't sound like a type of person I'm interested in hearing about. No thanks.}
+{10000}{}{You see... He was building things. Most of it were a complete failure. One time he made a combat bot. Thanks god it wasn't equiped or we would be dead. It just kept saying E-exterminate-e E-extermi-... You know what? Nevermind. The thing is that his creations were a complete failure... That time he made super stimpak spotting bot... Or bot that kept turning around in circles...}
+{10010}{}{I see... Interesting...}
+{10020}{}{That's interesting. But I'm out of time. I need to go.}
+{11000}{}{[sighs] Impatient little wastelander are we? So listen. There was one exception from complete failure. Bot called Ultra looter Mark XII. [ He bursts in laugh. ] Okay... Maybe not that but still, his job is to pick up randomly lying loose items and pile it up with same type of items. He will sort stuff for you. And since we need to get rid of them, manufactory was left online by Dr. itself faceplanting dead on the button and now we have so much of that junk that's it's just taking space.}
+{11010}{}{So you're selling it?}
+{11020}{}{A-ah... It's not a thing I'm interested in... I'll pass.}
+{12000}{}{Yes I do. I'll take 10 thousands caps for it. No more no less. What do you think?}
+{12010}{}{Sounds like a good deal. I'll take it.}
+{12020}{}{I'll come back with money if I'll decide.}
+{13000}{}{Smiles. Good! Here take it. No instruction needed. Just put it down and turn it on with some science. If he breaks down he's easy to repair. Everything is commented inside his chassis.}
+{13010}{}{Thanks for the deal. I'll go test it out in my base. See ya.}
+
+[pols]
+{100}{}{Randal}
+{200}{}{Widzisz Randala, Głównego Oficera Sekcji Udogodnień.}
+{210}{}{Widzisz mężczyznę w średnim wieku, z przerzedzonymi, czarnymi włosami.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Witaj, @sex@|nieznajomy||nieznajoma|. Zawsze miło zobaczyć nową twarz. Jestem Randal... Główny Oficer Sekcji Udogodnień. Potrzebujesz czegoś?}
+{2010}{}{Cóż, zależy. Co to za miejsce?}
+{2020}{}{What is that thing in front of the building? Is it for sale?}
+{2030}{}{Właściwie, niczego.}
+{3000}{}{Oto Biuro Sekcji Udogodnień. Znajdziesz tutaj typowy asortyment... podstawowe środki przetrwania, różne książki, poradniki, kilka narzędzi, stimpaki, medykamenty. Wiesz, to i owo.}
+{3010}{}{Brzmi świetnie. Mogę zobaczyć, co masz w ofercie?}
+{3020}{}{Nie masz nic przeciwko, żebym @sex@|zadał||zadała| jeszcze kilka innych pytań?}
+{3030}{}{Wrócę kiedy indziej.}
+{4000}{}{Nie, skądże. O co chodzi?}
+{4010}{}{Czy wiesz, gdzie mogę znaleźć inne krypty?}
+{5000}{}{@sex@|Mógłbyś||Mogłabyś| przeskanować Centralny Komputer Krypty i sprawdzić, czy zawiera jakieś koordynaty pozostałych Krypt. Wątpię, ale nie zaszkodzi sprawdzić.}
+{5010}{}{Dzięki za informacje.}
+{6000}{}{Hej, witam z powrotem. Co mogę dla ciebie zrobić?}
+{6010}{}{Powtórzysz, co to za miejsce?}
+{6020}{}{What is that thing in front of the building? Is it for sale?}
+{6030}{}{Nie masz nic przeciwko, żebym @sex@|zadał||zadała| jeszcze kilka innych pytań?}
+{6040}{}{Właściwie nic, dzięki.}
+{7000}{}{Yes. You thought right. I'm selling cleaning bots.}
+{7010}{}{Cleaning bot? Like, vacuuming and cleaning windows?}
+{7020}{}{I'm a fucking warrior not a maid. See you.}
+{8000}{}{Windows? In a vault? You're out of your mind friend?}
+{8010}{}{...So what type of cleaning?}
+{8020}{}{Yeaaah... Know what? I'll come back to you later. Bye.}
+{9000}{}{[ Smiles. ] There was a guy from times where vault kept closed. His name was Dr. Musashi. A scientist of some sort. Madman and kleptomaniac.}
+{9010}{}{A-and? What it has to do with him?}
+{9020}{}{Doesn't sound like a type of person I'm interested in hearing about. No thanks.}
+{10000}{}{You see... He was building things. Most of it were a complete failure. One time he made a combat bot. Thanks god it wasn't equiped or we would be dead. It just kept saying E-exterminate-e E-extermi-... You know what? Nevermind. The thing is that his creations were a complete failure... That time he made super stimpak spotting bot... Or bot that kept turning around in circles...}
+{10010}{}{I see... Interesting...}
+{10020}{}{That's interesting. But I'm out of time. I need to go.}
+{11000}{}{[sighs] Impatient little wastelander are we? So listen. There was one exception from complete failure. Bot called Ultra looter Mark XII. [ He bursts in laugh. ] Okay... Maybe not that but still, his job is to pick up randomly lying loose items and pile it up with same type of items. He will sort stuff for you. And since we need to get rid of them, manufactory was left online by Dr. itself faceplanting dead on the button and now we have so much of that junk that's it's just taking space.}
+{11010}{}{So you're selling it?}
+{11020}{}{A-ah... It's not a thing I'm interested in... I'll pass.}
+{12000}{}{Yes I do. I'll take 10 thousands caps for it. No more no less. What do you think?}
+{12010}{}{Sounds like a good deal. I'll take it.}
+{12020}{}{I'll come back with money if I'll decide.}
+{13000}{}{Smiles. Good! Here take it. No instruction needed. Just put it down and turn it on with some science. If he breaks down he's easy to repair. Everything is commented inside his chassis.}
+{13010}{}{Thanks for the deal. I'll go test it out in my base. See ya.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, stranger. Always a pleasure to see a new face. Name's Randal... I'm the Chief Amenities Officer. Need something?}
+{2010}{}{Well, it depends. What is this place?}
+{2020}{}{What is that thing in front of the building? Is it for sale?}
+{2030}{}{Nothing today, actually.}
+{3000}{}{This is the Amenities Office. Got your typical stock... basic living necessities, some books, "how to" manuals, some tools, stimpacks, medical supplies. You know, this and that.}
+{3010}{}{Sounds great. Can I see what you have in stock?}
+{3020}{}{Mind if I ask you some other questions?}
+{3030}{}{I may be back some other time.}
+{4000}{}{Not at all. What's on your mind?}
+{4010}{}{Do you know where I could find any other Vaults?}
+{5000}{}{You could go scan the Vault Central Computer, see if it has any coordinates for any other Vaults. I doubt it, but no harm in checking.}
+{5010}{}{Thanks for the information.}
+{6000}{}{Hey there, welcome back. Anything I can do for you?}
+{6010}{}{What is this place again?}
+{6020}{}{What is that thing in front of the building? Is it for sale?}
+{6030}{}{Mind if I ask you some other questions?}
+{6040}{}{Nothing today, actually.}
+{7000}{}{Yes. You thought right. I'm selling cleaning bots.}
+{7010}{}{Cleaning bot? Like, vacuuming and cleaning windows?}
+{7020}{}{I'm a fucking warrior not a maid. See you.}
+{8000}{}{Windows? In a vault? You're out of your mind friend?}
+{8010}{}{...So what type of cleaning?}
+{8020}{}{Yeaaah... Know what? I'll come back to you later. Bye.}
+{9000}{}{[ Smiles. ] There was a guy from times where vault kept closed. His name was Dr. Musashi. A scientist of some sort. Madman and kleptomaniac.}
+{9010}{}{A-and? What it has to do with him?}
+{9020}{}{Doesn't sound like a type of person I'm interested in hearing about. No thanks.}
+{10000}{}{You see... He was building things. Most of it were a complete failure. One time he made a combat bot. Thanks god it wasn't equiped or we would be dead. It just kept saying E-exterminate-e E-extermi-... You know what? Nevermind. The thing is that his creations were a complete failure... That time he made super stimpak spotting bot... Or bot that kept turning around in circles...}
+{10010}{}{I see... Interesting...}
+{10020}{}{That's interesting. But I'm out of time. I need to go.}
+{11000}{}{[sighs] Impatient little wastelander are we? So listen. There was one exception from complete failure. Bot called Ultra looter Mark XII. [ He bursts in laugh. ] Okay... Maybe not that but still, his job is to pick up randomly lying loose items and pile it up with same type of items. He will sort stuff for you. And since we need to get rid of them, manufactory was left online by Dr. itself faceplanting dead on the button and now we have so much of that junk that's it's just taking space.}
+{11010}{}{So you're selling it?}
+{11020}{}{A-ah... It's not a thing I'm interested in... I'll pass.}
+{12000}{}{Yes I do. I'll take 10 thousands caps for it. No more no less. What do you think?}
+{12010}{}{Sounds like a good deal. I'll take it.}
+{12020}{}{I'll come back with money if I'll decide.}
+{13000}{}{Smiles. Good! Here take it. No instruction needed. Just put it down and turn it on with some science. If he breaks down he's easy to repair. Everything is commented inside his chassis.}
+{13010}{}{Thanks for the deal. I'll go test it out in my base. See ya.}
+

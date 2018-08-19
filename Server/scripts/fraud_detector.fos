@@ -1,0 +1,218 @@
+#include "_time.fos"
+#include "_macros.fos"
+#include "logging_h.fos"
+#include "utils_h.fos"
+
+#define FAST_RELOG_CLEAN_COUNTDOWN        (100)
+
+dictionary fastRelogs;
+int cleanCountdown = FAST_RELOG_CLEAN_COUNTDOWN;
+
+class FastRelogData
+{	
+	private uint locationId;
+	private uint[] playerIds = {}, deathTimes = {};
+
+	FastRelogData(uint locationId)
+	{
+		this.locationId = locationId;
+	}
+	
+	uint GetLocationId()
+	{
+		return locationId;
+	}
+	
+	void AddPlayer(uint playerId)
+	{
+		for (uint i = 0; i < playerIds.length(); i++)
+		{
+			if (playerId == playerIds[i])
+			{
+				deathTimes[i] == __FullSecond;
+				return;
+			}
+		}
+		
+		playerIds.insertLast(playerId);
+		deathTimes.insertLast(__FullSecond);
+	}
+	
+	void Clean()
+	{
+		for (uint i = 0; i < playerIds.length(); i++)
+		{
+			if (deathTimes[i] + REAL_MS(__MinimumOfflineTime) < __FullSecond)
+			{
+				playerIds.removeAt(i);
+				deathTimes.removeAt(i);
+				i--;
+			}
+		}
+	}
+	
+	void LogFastRelogTest(Map& map, Critter& newPlayer)
+	{
+		uint mapId = map.Id;
+		uint mapProtoId = map.GetProtoId();
+	
+		for (uint i = 0; i < playerIds.length(); i++)
+		{		
+			if (deathTimes[i] + REAL_MS(__MinimumOfflineTime) < __FullSecond)
+			{
+				continue;
+			}
+			
+			Critter@ deadPlayer = GetCritter(playerIds[i]);
+			if (!valid(deadPlayer))
+			{
+				continue;
+			}
+			
+			if (newPlayer.Id == deadPlayer.Id)
+			{
+				continue;
+			}
+			
+			bool ipMatch = newPlayer.GetIp() == deadPlayer.GetIp();
+			bool uidMatch = newPlayer.GetUID(0) == deadPlayer.GetUID(0)
+					&& newPlayer.GetUID(1) == deadPlayer.GetUID(1)
+					&& newPlayer.GetUID(2) == deadPlayer.GetUID(2)
+					&& newPlayer.GetUID(3) == deadPlayer.GetUID(3)
+					&& newPlayer.GetUID(4) == deadPlayer.GetUID(4);
+			
+			if (ipMatch && !uidMatch)
+			{
+				FLog(LOG_FAST_RELOG, "MapId: " + mapId + ", MapProtoId: " + mapProtoId + ", IP match detected: "
+					+ "deadplayer - " + GetPlayerInfo(deadPlayer)
+					+ "new player - " + GetPlayerInfo(newPlayer)
+				);
+			}
+			
+			if (!ipMatch && uidMatch)
+			{
+				FLog(LOG_FAST_RELOG, "MapId: " + mapId + ", MapProtoId: " + mapProtoId + ", UID match detected: "
+					+ "deadplayer - " + GetPlayerInfo(deadPlayer)
+					+ "new player - " + GetPlayerInfo(newPlayer)
+				);			
+			}
+			
+			if (ipMatch && uidMatch)
+			{
+				FLog(LOG_FAST_RELOG, "MapId: " + mapId + ", MapProtoId: " + mapProtoId + ", IP and UID match detected: "
+					+ "deadplayer - " + GetPlayerInfo(deadPlayer)
+					+ "new player - " + GetPlayerInfo(newPlayer)
+				);				
+			}
+		}
+	}
+	
+	private string GetPlayerInfo(Critter& player)
+	{
+		return "name:" + GetPlayerName(player.Id) + ", id:" + player.Id + ", IP:" + GetIP(player.GetIp()) + ", UIDs:(" +  player.GetUID(0) + " " + player.GetUID(1) + " " + player.GetUID(2) + " " + player.GetUID(3) + " " + player.GetUID(4) + ")";
+	}	
+	
+	bool IsEmpty()
+	{
+		return playerIds.length() == 0;
+	}
+}
+
+void ProcessFastRelogDeadEvent(Critter& critter)
+{
+	if (!critter.IsPlayer())
+	{
+		return;
+	}
+	
+	Map@ map = critter.GetMap();
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	Location@ location = map.GetLocation();
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	if (location.IsGuarded() || location.IsBase() || location.IsTent() || location.IsRespawn())
+	{
+		return;
+	}
+	
+	FastRelogData @fastRelogData;
+	if (!fastRelogs.get("" + location.Id, @fastRelogData))
+	{
+		@fastRelogData = FastRelogData(location.Id);
+	}
+	
+	fastRelogData.AddPlayer(critter.Id);
+	fastRelogs.set("" + location.Id, fastRelogData);
+}
+
+void ProcessFastRelogMapInEvent(Map& map, Critter& critter)
+{
+	if (!critter.IsPlayer())
+	{
+		return;
+	}
+	
+	Location@ location = map.GetLocation();
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	FastRelogData @fastRelogData;
+	if (!fastRelogs.get("" + location.Id, @fastRelogData))
+	{
+		return;
+	}
+	
+	fastRelogData.LogFastRelogTest(map, critter);
+
+	cleanCountdown--;
+	if (cleanCountdown <= 0)
+	{
+		cleanCountdown = FAST_RELOG_CLEAN_COUNTDOWN;
+		CleanOldFastRelogData();
+	}
+}
+
+void CleanOldFastRelogData()
+{
+	string@[] keys;
+	fastRelogs.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		FastRelogData @fastRelogData;
+		
+		if (fastRelogs.get(keys[i], @fastRelogData))
+		{
+			fastRelogData.Clean();
+			if (fastRelogData.IsEmpty())
+			{
+				fastRelogs.delete(keys[i]);
+			}
+			else 
+			{
+				fastRelogs.set("" + fastRelogData.GetLocationId(), fastRelogData);
+			}
+		}
+	}
+}
+
+//------------------------------------------------------------------
+
+void fd_process_critter_dead(Critter& critter)
+{
+	ProcessFastRelogDeadEvent(critter);
+}
+
+void fd_process_map_critter_in(Map& map, Critter& critter)
+{
+	ProcessFastRelogMapInEvent(map, critter);
+}

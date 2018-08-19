@@ -1,0 +1,185 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc } 1 #
+3 2020 #
+0 2030 @
+3 3000 None 0 #
+5 3010 D _var p name_mem_player_npc } 1 #
+4 3020 R _var p name_mem_player_npc = 1 #
+0 3030 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 #
+7 5020 #
+8 5030 D _var p name_mem_player_npc } 2 D _script quest@quest_checkcd 1 9612 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+10 7010 D _script quest@quest_checkcdopp 1 9612 #
+8 7020 D _script quest@quest_checkcd 1 9612 R _var p name_mem_player_npc = 2 #
+0 7030 @
+8 8000 None 0 #
+9 8010 #
+0 8020 @
+9 9000 None 0 #
+11 9010 #
+0 9020 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 #
+0 11010 R _script dialog@r_CreateHiddenLocation 5 9322 1412 1229 1 9609 R _script dialog@r_TeleportToCreatedLocation 4 9609 0 0 1 R _script quest@quest_setcdgroup 2 9612 360 &
+
+[engl]
+{100}{}{Bubba}
+{200}{}{You see: Bubba}
+{210}{}{The man is looking around and gazing at all the wondrous sights the Junktown has to offer.}
+{1000}{}{Predialogue installations}
+{1010}{}{Typical}
+{2000}{}{[You hear a whistle and notice a drunk waving at you.] Hey, hey, man! Hav' I see ya before?}
+{2010}{}{Yes, you did. We had spent some 'mighty' quality time...}
+{2020}{}{No, my good sir. I don't believe we'd met.}
+{2030}{}{Fuck off, shithead.@@Get lost.@@Screw you.@@I don't have time for this.}
+{3000}{}{[You see the man blinking heavily with a dumbfounded expression. You doubt his intelligence allows to understand all that you're saying.] Wanna drink?}
+{3010}{}{[You remember how it was last time.] Err...no.}
+{3020}{}{Sure, if it's on you then pour me one.}
+{3030}{}{I don't like hanging around folks with red necks.}
+{4000}{}{[You taste the drink he gave you. It's so disgusting your tongue tries to jump out of your mouth. You realize no matter how desperate you might get you're not going to force yourself to drink the foul liquid]}
+{4010}{}{[You spit whatever you'd just tasted on the ground]}
+{5000}{}{Ha-ha! [He laughs, making pigrat-like sounds.] Can't handle dem strong stuff, huh?}
+{5010}{}{Who are you?}
+{5020}{}{What do you do?@@So, what's your trade?}
+{5030}{}{Are you still "fucking up" ants?@@Still in the ant business?}
+{6000}{}{Name's Bubba! I was fixin' to come 'ere, I went out my front door to come 'ere, and I came 'ere, and I got 'ere, and 'ere I aaaam!}
+{6010}{}{Umm...okay. So, what do you do?}
+{7000}{}{[He pushes out his fat chest proudly.] I am dem hunter, I fuck shit up that's whats goes on! I fuckin' piss on dem anthills and fuck dem ants up and shit!}
+{7010}{}{Well, I also fucked up one anthill. The one you pointed me to before.}
+{7020}{}{You "fuck up" ants? What for?}
+{7030}{}{Piss on anthills? Well, good luck with that.}
+{8000}{}{Yea, dem fuckin' ants and shit piss my cousin off. They fuckin' crawl into his distillery, fo' teh sugar and shit, and dat fucks up dem moonshine, y'know?}
+{8010}{}{You need some help with that?}
+{8020}{}{Tough love. I got to go now, see ya.}
+{9000}{}{Hell yeah I do! If you got 'em balls then get yo' guys an' I show ya dem fuckin' big anthill I foun'! If you fuck 'em up badly I can get ya some caps for a job well-fuckin'-done.}
+{9010}{}{All right. Where's the anthill?}
+{9020}{}{Maybe some other time. [You turn around and walk away.]}
+{10000}{}{Fuckin' nailed it! Dem fuckin' ants deserved that shit!}
+{10010}{}{Sure they did. I'll see you soon, when you'll find another anthill to take care of.}
+{11000}{}{[He describes the location and directions to get there. He surely gives you a hard time in understanding his rural accent.]}
+{11010}{}{All right, let's roll.}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{2000}{}{Hey dude, first time in town eh?}
+{2010}{}{Yes, you did. We had spent some 'mighty' quality time...}
+{2020}{}{Yeah, kinda.}
+{2030}{}{Hands off me, you pathetic shitbag!}
+{3000}{}{Let's have a drink then!}
+{3010}{}{*You remember how it was last time* Err...no.}
+{3020}{}{Sure, if it's on you then pour me one.}
+{3030}{}{I don't like hanging around folks with red necks.}
+{4000}{}{Main menu}
+{4010}{}{*You spit whatever you'd just tasted on the ground*}
+{5000}{}{Main menu}
+{5010}{}{Who are you?}
+{5020}{}{What do you do?}
+{5030}{}{Are you still "fucking up" ants?}
+{6000}{}{Name's Bubba! I was fixin' to come 'ere, I went out my front door to come 'ere, and I came 'ere, and I got 'ere, and 'ere I aaaam!}
+{6010}{}{Umm...okay.}
+{7000}{}{I am dem hunter, I fuck shit up that's whats goes on! I fuckin' piss on dem anthills and fuck dem ants and shit!}
+{7010}{}{Well, I also fucked up one anthill. The one you pointed me to before.}
+{7020}{}{You "fuck up" ants? What for?}
+{7030}{}{Piss on anthills? Well, good luck with that. *You walk away, deciding you had seen too much 'red' for now*}
+{8000}{}{Yeah, fuck ants up.}
+{8010}{}{You need some help with that?}
+{8020}{}{Tough love. I got to go now, see ya.}
+{9000}{}{Hell yeah I do! If you got 'em balls then get yo' guys an' I show ya dem fuckin' big anthill I foun'! If you fuck 'em up badly I can get ya some caps for a job well-fuckin'-done.}
+{9010}{}{All right. Where's the anthill?}
+{9020}{}{Maybe some other time. *You turn around and walk away.*}
+{10000}{}{Fuckin' nailed it! Dem fuckin' ants deserve that shit!}
+{10010}{}{Sure they did. See ya later.}
+{11000}{}{*He describes the location and directions to get there. He surely gives you a hard time in understanding his bottomclass redneck accent*}
+{11010}{}{All right, let's roll.}
+
+[pols]
+{100}{}{Bubba}
+{200}{}{Widzisz: Bubba}
+{210}{}{Wygl�da jak burak i zachowuje si� jak burak. Tak! To burak-cebulak!}
+{1000}{}{Predialogue installations}
+{1010}{}{Typical}
+{2000}{}{[S�yszysz gwizd i zauwa�asz jakiego� pijaka machaj�cego r�k� jak idiota] Ej, ej, @sex@|facet||laska|! Czy ja ci� widzio� wcze�niej?}
+{2010}{}{Tak, "widzio�e�". Sp�dzili�my razem 'bardzo' jako�ciowo czas...}
+{2020}{}{Nie, m�j drogi panie. Nie s�dz�, �eby�my mieli okazj� si� pozna�.}
+{2030}{}{Odpierdol si�, czubie.}
+{3000}{}{[Widzisz jak facet mruga ci�ko z g�upawym wyrazem twarzy. W�tpisz, �e jest wystarczaj�co bogaty, by zrozumie� wszystko co do niego m�wisz] Te, chcesz �yka?}
+{3010}{}{[Przypominasz sobie jak by�o ostatnim razem] Yyy...nie.}
+{3020}{}{Jasne, jak stawiasz to czemu nie.}
+{3030}{}{Nie lubi� zadawa� si� z wie�niakami.}
+{4000}{}{[Pr�bujesz napoju kt�ry ci da�. Jest tak obrzydliwy, �e tw�j j�zyk pr�buje wyskoczy� z twoich ust. Zdajesz sobie spraw�, �e nie wa�ne jak bardzo zdesperowany b�dziesz, nie zmusisz si� do wypicia paskudnego p�ynu.]}
+{4010}{}{[Wypluwasz to 'co�' co w�a�nie spr�bowa�e� na ziemi�]}
+{5000}{}{Ha-ha! [�mieje si�. Zdajesz sobie spraw�, �e ma �miech jak �winia kaszel] Zbyt mientkie gard�o, co?}
+{5010}{}{Kim jeste�?}
+{5020}{}{Czym si� zajmujesz?}
+{5030}{}{Wci�� "udupiasz" mr�wki?}
+{6000}{}{Jestem Bubba! Chcia�em tu przyyj��, wysz�em przez frontowe drzwi, i przysz�em tu, i by�em tu, i teraz tu jesteeem!}
+{6010}{}{Yyy... okej. A wi�c, czym si� zajmujesz?}
+{7000}{}{[Widzisz jak z dum� wypycha swoj� spasion� klat�] Jestem tym, no, poluj�cym. Rozpierdalam rzeczy, tak robi�. Szczam na te, no, mrowiska i udupiam te mr�wki i inne!}
+{7010}{}{C�, ja te� "udupi�em" jedno mrowisko. To, kt�re mi wskaza�e� ostatnio.}
+{7020}{}{"Udupiasz" mr�wki? Po co?}
+{7030}{}{Szczasz na mrowiska? C�, powodzenia ci �ycz�. [Odchodzisz, poniewa� masz dosy� zapachu cebuli i buraka.]}
+{8000}{}{Taa, te pieprzone mr�wki i inne wkurzaj� mojego kuzyna. One si�, no, w�a�� do aparatury, po ten cukier i tamte, i to psuje zacier i, wiesz no, bimber, nie?}
+{8010}{}{Potrzebujesz z tym pomocy?}
+{8020}{}{Ci�ka sprawa. Musz� ju� i��, trzymaj si�.}
+{9000}{}{A �eby� kurwa wiedzia�! Je�li masz, te, jaja, to bierz kumpli czy co� i ja wam poka�� takie jedno jebitnie du�e mrowisko. Jak �adnie je, te mr�wy, rozdupczysz to dam ci troche kapsli za robocizn�.}
+{9010}{}{W porz�dku. Gdzie to mrowisko?}
+{9020}{}{Mo�e kiedy indziej. [Odwracasz si� i odchodzisz]}
+{10000}{}{Zajebiiii�cie! Te pieprzone zygi dosta�y to co, no, chcia�y!}
+{10010}{}{Конечно, просто дайте мне немного времени, и я вернусь.}
+{11000}{}{[Bubba opisuje ci lokacj� i wskaz�wki jak tam dotrze�. Sprawia ci mn�stwo trudno�ci zrozumienie jego cebulowego, wie�niackiego akcentu.]}
+{11010}{}{No dobra, jedziemy.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Typical}
+{2000}{}{[You hear a whistle and notice a drunk waving at you.] Hey, hey, man! Hav' I see ya before?}
+{2010}{}{Yes, you did. We had spent some 'mighty' quality time...}
+{2020}{}{No, my good sir. I don't believe we'd met.}
+{2030}{}{Fuck off, shithead.@@Get lost.@@Screw you.@@I don't have time for this.}
+{3000}{}{[You see the man blinking heavily with a dumbfounded expression. You doubt his intelligence allows to understand all that you're saying.] Wanna drink?}
+{3010}{}{[You remember how it was last time.] Err...no.}
+{3020}{}{Sure, if it's on you then pour me one.}
+{3030}{}{I don't like hanging around folks with red necks.}
+{4000}{}{[You taste the drink he gave you. It's so disgusting your tongue tries to jump out of your mouth. You realize no matter how desperate you might get you're not going to force yourself to drink the foul liquid]}
+{4010}{}{[You spit whatever you'd just tasted on the ground]}
+{5000}{}{Ha-ha! [He laughs, making pigrat-like sounds.] Can't handle dem strong stuff, huh?}
+{5010}{}{Who are you?}
+{5020}{}{What do you do?@@So, what's your trade?}
+{5030}{}{Are you still "fucking up" ants?@@Still in the ant business?}
+{6000}{}{Name's Bubba! I was fixin' to come 'ere, I went out my front door to come 'ere, and I came 'ere, and I got 'ere, and 'ere I aaaam!}
+{6010}{}{Umm...okay. So, what do you do?}
+{7000}{}{[He pushes out his fat chest proudly.] I am dem hunter, I fuck shit up that's whats goes on! I fuckin' piss on dem anthills and fuck dem ants up and shit!}
+{7010}{}{Well, I also fucked up one anthill. The one you pointed me to before.}
+{7020}{}{You "fuck up" ants? What for?}
+{7030}{}{Piss on anthills? Well, good luck with that.}
+{8000}{}{Yea, dem fuckin' ants and shit piss my cousin off. They fuckin' crawl into his distillery, fo' teh sugar and shit, and dat fucks up dem moonshine, y'know?}
+{8010}{}{You need some help with that?}
+{8020}{}{Tough love. I got to go now, see ya.}
+{9000}{}{Hell yeah I do! If you got 'em balls then get yo' guys an' I show ya dem fuckin' big anthill I foun'! If you fuck 'em up badly I can get ya some caps for a job well-fuckin'-done.}
+{9010}{}{All right. Where's the anthill?}
+{9020}{}{Maybe some other time. [You turn around and walk away.]}
+{10000}{}{Fuckin' nailed it! Dem fuckin' ants deserved that shit!}
+{10010}{}{Sure they did. I'll see you soon, when you'll find another anthill to take care of.}
+{11000}{}{[He describes the location and directions to get there. He surely gives you a hard time in understanding his rural accent.]}
+{11010}{}{All right, let's roll.}
+

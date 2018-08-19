@@ -1,0 +1,40 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 R _script dialog@r_teleport 1 455 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see: Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+
+[russ]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+
+[pols]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+
+[ptbr]
+{100}{}{Terminal de acesso}
+{200}{}{Você vê: Terminal de acesso.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{ }
+

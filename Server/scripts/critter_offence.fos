@@ -1,0 +1,78 @@
+#include "_time.fos"
+#include "_vars.fos"
+
+#define OFFENCE_DECREASE_INTERVAL          REAL_DAY(3)
+
+import void AddKarma( Critter& cr, int Value ) from "karma";
+
+void ProcessOffence(Critter& critter, int severity)
+{
+	GameVar @offenceLevel = GetLocalVar(LVAR_offence_level, critter.Id);
+	
+	if (offenceLevel == 0 && severity > 0)
+	{
+		uint[] values = {critter.Id};
+		CreateTimeEvent(__FullSecond + OFFENCE_DECREASE_INTERVAL, "DecreaseOffenceLevel", values, true);
+	}
+	
+	offenceLevel += severity;
+	
+	int karmaDrop;
+	
+	if (offenceLevel <= 1)
+	{
+		karmaDrop = 100;
+	}
+	else if (offenceLevel == 2)
+	{
+		karmaDrop = 1000;
+	}
+	else
+	{
+		karmaDrop = 3000;
+	}
+	
+	AddKarma(critter, -karmaDrop);
+}
+
+
+int GetOffenceLevel(Critter& critter)
+{
+	GameVar @offenceLevel = GetLocalVar(LVAR_offence_level, critter.Id);
+	return offenceLevel.GetValue();
+}
+
+
+void SetOffenceLevel(Critter& critter, int level)
+{
+	GameVar @offenceLevel = GetLocalVar(LVAR_offence_level, critter.Id);
+	
+	if (offenceLevel == 0 && level > 0)
+	{
+		uint[] values = {critter.Id};
+		CreateTimeEvent(__FullSecond + OFFENCE_DECREASE_INTERVAL, "DecreaseOffenceLevel", values, true);
+	}
+	
+	offenceLevel = level;
+}
+
+
+void ClearOffenceLevel(Critter& critter)
+{
+	GameVar @offenceLevel = GetLocalVar(LVAR_offence_level, critter.Id);
+	offenceLevel = 0;
+}
+
+
+uint DecreaseOffenceLevel(array<uint>@ values)
+{
+	GameVar @offenceLevel = GetLocalVar(LVAR_offence_level, values[0]);
+		
+	if (offenceLevel > 0)
+	{
+		offenceLevel -= 1;
+		return OFFENCE_DECREASE_INTERVAL;
+	}
+	
+	return 0;
+}

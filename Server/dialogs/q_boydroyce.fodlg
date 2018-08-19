@@ -1,0 +1,598 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+99 1010 D _var p TEMP_LOCK = 0 #
+31 1020 D _var p q_aviator_main = 12 D or D _var p q_aviator_main = 13 D or D _var p q_aviator_main = 14 D or D _var p q_aviator_main = 15 #
+25 1030 D _var p q_aviator_main = 10 #
+24 1040 D _var p q_aviator_main = 9 #
+20 1050 D _var p q_aviator_main = 8 #
+53 1060 D _var p q_aviator_main = 30 #
+52 1070 D _var p q_aviator_main = 5 #
+52 1080 D _var p q_aviator_main = 4 #
+14 1090 D _var p q_aviator_main = 7 #
+18 1100 D _var p q_aviator_main = 3 #
+90 1110 D _var p q_hub_drifters < 6 #
+16 1120 D _var p q_aviator_main = 2 #
+15 1130 D _var p q_hub_drifters } 6 D _var p q_aviator_main = 1 #
+16 1140 D _var p q_hub_drifters } 6 D _param p TRAIT_SKILLED = 1 #
+2 1150 D _var p q_hub_drifters } 6 D _var p q_aviator_main = 0 #
+91 1160 @
+2 2000 None 0 #
+4 2010 R _var p q_aviator_main = 1 #
+3 2020 R _var p q_aviator_main = 1 #
+0 2030 R _var p q_aviator_main = 1 @
+3 3000 None 0 #
+6 3010 D _item p PID_ROT_GUT = 1 #
+7 3020 D _item p PID_ROT_GUT } 2 R _item p PID_ROT_GUT - 1 #
+50 3030 R _var p q_aviator_main = 4 #
+0 3040 @
+4 4000 None 0 #
+6 4010 D _item p PID_ROT_GUT = 1 #
+7 4020 D _item p PID_ROT_GUT } 2 R _item p PID_ROT_GUT - 1 #
+50 4030 R _var p q_aviator_main = 4 #
+0 4040 @
+6 5000 None 0 #
+0 5010 #
+50 5020 R _var p q_aviator_main = 4 @
+7 6000 None 0 #
+8 6010 R _script dialog@r_Consume 1 469 R _script dialog@r_FadeOut 1 0 R _var p q_aviator_main = 2 #
+0 6020 R _var p q_aviator_main = 2 @
+8 7000 None 0 #
+9 7010 #
+51 7020 R _var p q_aviator_main = 5 @
+9 8000 None 0 #
+10 8010 #
+0 8020 R _var p q_aviator_main = 5 @
+10 9000 None 0 #
+11 9010 #
+0 9020 R _var p q_aviator_main = 5 @
+11 10000 None 0 #
+12 10010 R _var p q_aviator_main = 3 #
+0 10020 R _var p q_aviator_main = 5 @
+12 11000 None 0 #
+13 11010 R _var p q_aviator_main = 7 #
+0 11020 R _var p q_aviator_main = 3 #
+0 11030 R _var p q_aviator_main = 5 @
+13 12000 None 0 #
+0 12010 R _script dialog@r_CreateHiddenLocation 5 9326 1370 1360 1 9607 R _script dialog@r_TeleportToCreatedLocation 4 9607 0 0 1 R _var p q_aviator_main = 8 #
+0 12020 R _var p q_aviator_main = 7 @
+14 13000 None 0 #
+0 13010 R _script dialog@r_CreateHiddenLocation 5 9326 1370 1360 1 9607 R _script dialog@r_TeleportToCreatedLocation 4 9607 0 0 1 R _var p q_aviator_main = 8 #
+0 13020 @
+15 14000 None 0 #
+3 14010 #
+0 14020 @
+16 15000 None 0 #
+3 15010 R _var p q_aviator_main = 1 #
+0 15020 R _var p q_aviator_main = 1 @
+17 16000 None 0 #
+7 16010 D _item p PID_ROT_GUT } 2 #
+50 16020 R _var p q_aviator_main = 5 #
+0 16030 @
+18 17000 None 0 #
+13 17010 #
+0 17020 R _var p q_aviator_main = 3 #
+0 17030 R _var p q_aviator_main = 5 @
+50 18000 None 0 #
+0 18010 @
+51 19000 None 0 #
+0 19010 @
+52 20000 None 0 #
+0 20010 R _var p q_aviator_main = 30 @
+53 21000 None 0 @
+20 22000 None 0 #
+22 22010 #
+21 22020 @
+21 23000 None 0 #
+23 23010 #
+51 23020 R _var p q_aviator_main = 5 @
+22 24000 None 0 #
+23 24010 #
+51 24020 R _var p q_aviator_main = 5 @
+23 25000 None 0 #
+0 25010 R _var p q_aviator_main = 9 R _script dialog@r_FadeOut 1 0 @
+24 26000 None 0 #
+0 26010 R _script dialog@r_TeleportToCreatedLocation 4 9607 1 0 1 R _var p q_aviator_main = 12 #
+0 26020 R _var p q_aviator_main = 10 @
+25 27000 None 0 #
+0 27010 R _script dialog@r_TeleportToCreatedLocation 4 9607 1 0 1 R _var p q_aviator_main = 12 #
+0 27020 @
+30 28000 None 0 @
+31 29000 None 0 #
+35 29010 D _var p q_aviator_step = 5 #
+34 29020 D _var p q_aviator_main < 13 D _item p PID_FLUX_CAPACITOR = 0 D _var p q_aviator_step { 4 #
+33 29030 D _item p PID_FLUX_CAPACITOR } 1 D _var p q_aviator_main < 13 #
+32 29040 D _var p q_aviator_main = 13 #
+0 29050 @
+32 30000 None 0 #
+0 30010 @
+33 31000 None 0 #
+0 31010 @
+34 32000 None 0 #
+0 32010 @
+35 33000 None 0 #
+0 33010 @
+90 34000 None 0 @
+91 35000 None 0 @
+99 36000 None 0 &
+
+[engl]
+{100}{}{Boyd}
+{200}{}{You see: Boyd Royce.}
+{210}{}{This man seems to be in his late forties. The smell of digested alcohol is all around him.}
+{1000}{}{Predialogue installations}
+{1010}{}{temp lock check}
+{1020}{}{combat dialog}
+{1030}{}{first location/going}
+{1040}{}{first location/talked}
+{1050}{}{first location}
+{1060}{}{pissed off permamently, floater}
+{1070}{}{pissed off permamently}
+{1080}{}{pissed off permamently}
+{1090}{}{going}
+{1100}{}{Heard the story}
+{1110}{}{drifters quest not done}
+{1120}{}{not enuff rotgut}
+{1130}{}{second time}
+{1140}{}{mutant dialog variant}
+{1150}{}{first time}
+{1160}{}{other/error}
+{2000}{}{[The man is obviously drunk, and his greeting seems overly enthusiastic] Hey! Mukker! Guid day for a drink, eh @sex@|mate||lassie|? Care t'join auld Boyd Royce for a round? Jack told me some good things about ya...}
+{2010}{}{I'm sure he did. What's a Mukker?@@I'm sure he did. Muk... what?@@I'm sure he did. What is a Muk..ker?@@Mukker what?}
+{2020}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Alright, why not.}
+{2030}{}{Nope, ain't got no time.@@Maybe later.@@Not now.@@Later, gramps.@@I ain't in the mood right now.@@Not now, got things to do.@@Not today, I've got some things to do.}
+{3000}{}{Goody! Ye got som Rutgut?@@Guid! Ye don't hae any Rutgut with ye mayhaps?@@Good! Hae Rutgut?}
+{3010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm getting really thirsty.@@I have it, let's drink.@@I guess it's your lucky day, gramps. Let's drink.@@Hell, why not. Let's drink.}
+{3020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm getting really thirsty.@@I have it, let's drink.}
+{3030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in the mood for a drink, but not in the mood to give one away for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{3040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.@@Oh snap, I don't have it. I guess until next time then, Boyd.}
+{4000}{}{[He ignores your question.] Ye got som Rutgut?@@[The man seemingly ignores you.] Guid! Ye don't hae any Rutgut with ye mayhaps?@@[He ignores your inquiry.] Hae Rutgut?}
+{4010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm really thirsty.@@I have it, let's drink.}
+{4020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm really thirsty.@@I have it, let's drink.}
+{4030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in the mood for a drink, but not in the mood to give one away for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{4040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.@@Oh snap, I don't have it. I guess until next time then, Boyd.}
+{5000}{}{Rite... [He looks at you with disappointment as you take the bottle in your hand.] Say, only ae? Wat aer ye, faggy? Two, at least two, one fer meh, one fer ye.}
+{5010}{}{Ugh... All right, all right, I'm gonna get another one.@@You're one greedy bastard... Okay, I'll go get another one.@@I guess you're right, one ain't enough. Be right back.@@I guess I'll get going for another one then.@@You've got some nerve, man... alright, I'll get the second one.}
+{5020}{}{That does it. Go look for some other fool, fucktard.@@You know what? Go fuck yourself, I ain't gonna drink with you.@@Let's see... fuck you, you greedy old fart!@@Get lost, I don't like where this is going.}
+{6000}{}{Aw yea, Rutgut... [He takes the bottle from you and quaffs it in a matter of seconds.]  Cheerz! Drink yer bottle, @sex@|matey||lassie|!}
+{6010}{}{Yeah, cheers!@@Right.@@Fuck yeah, Rotgut is the best shit.@@I love this part...@@Man, you're one walking tankard...}
+{6020}{}{On second thought, I don't think I can keep up with you. Enjoy your free Rotgut.@@I think I know where this is going. Find someone else to drink with.@@Oh fuck. Go drink with someone else, man.}
+{7000}{}{Say... wif a gud frean like ye, mayhap ye can help meh?@@You're a good sport @sex@|mate||lassie|, not very good on drinkin' tho. Maybeh ye want to halp auld Boyd wif a wee problim?}
+{7010}{}{Depends what you want me to help with, Boyd.@@Sure, shoot.@@Sure, friend, tell me what you need.@@No problem, shoot.@@To the point, friend.}
+{7020}{}{I've had enough of this. Go find someone else to pester.@@I've heard enough of your drunken babblin'. Get lost.@@I ain't got time for this, go screw with somebody else.@@Yeah, I know what's your problem, you need another bottle right? Fuck you, Boyd.}
+{8000}{}{Alrighty, listen up, and listen up good cos I really hate repeatin' meself. Ye see... I've got dis... flyin' thingy. A fren' of mine from San Fran set me up, weird fella, but he sure likes to drink... Anyways, I wanted to take people to San Fran an' bak, earn for me livin.}
+{8010}{}{Yeah, go on.@@Continue.@@I'm listening.@@I'm listening, Boyd.}
+{8020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else to fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{9000}{}{Well, this flyin' thingy worked liked a charm! I tell ya, you ain' neva seen shit like dat... I flew all the way from San Fran to here in no time... I landed in the Hub, wanted to celebrate my new business... And then I fucked up.}
+{9010}{}{What happened?@@Yeah? What happened?@@Yeah?@@No shit.}
+{9020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else to fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{10000}{}{Got drunk as fuck, and flew up all the way to Necropolis, landed on some roof... Got tired, went to sleep. Those friggin ghouls ambushed me, barely got away with me guts inside. Lost all my cash, and my lil' flyin' thingy.}
+{10010}{}{Tough luck.@@Shit...@@Oh hell.@@Dayum.@@Darn...}
+{10020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{11000}{}{Ye... But maybe, just maybe... Dem ghouls are fockin' stupid, they mite not even touched it. I could get my thingy back, wif yer help of course. What do ya say, @sex@|laddie||lassie|?}
+{11010}{}{Yeah, sure. Remember where did you land?@@Sure, always happy to help a drinkin' buddy. Remember where did you land this thingy of yours?@@No problem Boyd, I'll help you. Remember where did you land?@@Allright Boyd, I'll help you. Where did you land this thingy?}
+{11020}{}{I've gotta think about this.@@I need to think about this. Sober...@@I need to think this over, Necropolis ain't no funpark.}
+{11030}{}{No way. I ain't going anywhere near that shithole. Find some other guy to clean up your mess.@@No fucking way, find some other idiot.@@Necropolis? You've gotta be fucking jocking. Get lost.@@There's no fucking way I'm going near that place. Go find some other idiot to do your dirty work.}
+{12000}{}{Sure thing, @sex@|mate||lassie|, Boyd maybe auld, but not dumb. Ye ready to go now?@@Sure as hell I remember! I could go there wif me eyes closed. Ye ready to go now?}
+{12010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{12020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{13000}{}{Ready to go?@@We goin' or what?@@Ready?@@We goin'?}
+{13010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{13020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{14000}{}{[Boyd still seems to be drunk. His state is even worse than when you've seen him last time.] Hello again, @sex@|matey||lassie|, I think I knows you from somewheres... No mattah. Wanna drink with Boyd?}
+{14010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Alright, why not.@@Sure.@@Okay.}
+{14020}{}{You ever do anything else besides drinking? I've gotta go.@@Don't you ever get sober? Anyway, I need to go.@@You're still drunk... We'll talk later.@@Still drunk as fuck. I guess we'll talk later.}
+{15000}{}{Whoa, you're one big mothafucka. Small wonder Jack hired your green ass... Anyway, care for a drink wif auld Boyd?}
+{15010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Alright, why not.@@Sure, let's drink, human.@@Okay human, let's drink.}
+{15020}{}{I ain't got time now, human.@@Not now, human.@@I don't have the time now, human.@@I need to go.@@I've gotta go.}
+{16000}{}{You sure took yer time...Got two Rutguts?@@Where the hell have you gone? Got two Rutgut bottles?@@You sure can keep a man waiting... Got two Rutguts?}
+{16010}{}{Don't sweat it, Boyd. I've got it right here, one for me, and one for you.}
+{16020}{}{No, and I ain't gonna get you any. Find some other idiot.@@No fucking way, you drunk.@@Fuck off, Boyd.@@Fuck off.@@Get lost, drunk.@@Find some other jerk to play with.}
+{16030}{}{Nope. I'll catch you later.@@Still looking.@@Maybe later, Boyd.@@Not now, really.}
+{17000}{}{Made up yer mind?@@So, ye made up yer mind?}
+{17010}{}{Yeah, sure. Remember where you landed?@@Yeah, I'll help your sorry ass. Remember where you landed this thingy of yours?@@@@Okay, I'll help you. Remember where you landed?@@Fine, I'll help you. Where did you land this thingy?}
+{17020}{}{Give me some more time.@@Not so fast, this ain't so easy.@@We'll talk later, Boyd.@@Not now, maybe later.}
+{17030}{}{Fuck no, I ain't gonna do this.@@Yeah. And I'm not going anywhere near that place. Don't bother me again, you stinky drunk.}
+{18000}{}{Well, fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.@@Screw ye, snugger!@@Yea, fuck ye, fanny.@@Fuck ye, faggit!}
+{18010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking beggars...@@Idiot.@@Moron.@@Fuckin' drunk.}
+{19000}{}{Fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.@@Screw ye, snugger!@@Yea, fuck ye, fanny.@@Fuck ye, faggit!@@Bite me, faggit.@@Fuck ye, snugger!@@Screw ye.@@Fuck off.}
+{19010}{}{Cretin.@@Nice talking to you, moron.@@Screw you.@@Fucking idiot.@@Jerk.@@Fuckin' retard.@@Moron.@@Stinkin' drunk.}
+{20000}{}{I ain' talkin' to ye, bampot.@@Fuck ye, bawbag, I ain't gonna talk to ya.@@Get lost, I ain't talkin' to ye.@@Get it up ye, faggit, I ain't gonna talk to ya.}
+{20010}{}{Whatever.@@Yeah, fuck you too.@@Right, go fuck yourself.}
+{21000}{}{Get lost.@@You still standin' ere? Piss off.@@Get lost.@@Fuck off.@@Leave me alone, fanny.@@Get the fuck outta me way, faggit.}
+{22000}{}{Err, sumfin' not rite @sex@|mate||lassie|. I don't remember that buildin' bein here.@@There's sumfin' fishy goin' on 'ere. I swear we crossed that road hours ago.@@Hmm, I don' remember this road bein' here before...}
+{22010}{}{That's not funny. You said you knew exactly where that place was, Boyd.@@The hell... I thought you knew where you left that machine, Boyd!@@You said you knew where that place was!}
+{22020}{}{I've had enough of your antics. If you think you're going to lead me to some sort of ambush you've got another thing coming. I'm going back to the Hub. You can stay here. Or look for stupid flying thingy alone, for all I care.}
+{23000}{}{No, fren' listen to me! We're really close! You can't turn yer back on aulde Boyde now!}
+{23010}{}{All right, all right. Just try to remember where is that damn machine of yours.@@Yeah, whatever. Just try to remember where you left that friggin' machine of yours.}
+{23020}{}{Yes, I can.@@Watch me.@@Fuck you Boyd, I've had enough.@@Just watch me.@@Get lost, you drunk.}
+{24000}{}{I know, I know, I just... had somethin' else on my mind. Say, you don't have any more Rut Gut wif ye, fren'?@@Ye... I was just thinkin'... Don' ye have any more Rut Gut on ye, fren'?}
+{24010}{}{Boyd...@@Don't even start it, Boyd.@@You are starting to piss me off, Boyd.@@Don't even start.@@Now is not the time, for fuck's sake!}
+{24020}{}{Sure I have it, here. In my fuck-off pocket.@@Get the fuck outta my face, you drunk.@@Fuck off, Boyd, just fuck off.@@Just get the fuck out of my sight you drunk.}
+{25000}{}{All right, all right, don't get all jumpy. Let me think for a secon'...@@Easy, don't sweat it. Just lemme think for a momen'...}
+{25010}{}{Right...@@All right, just be quick about it. There might be ghouls nearby.@@Okay, okay, just be quick about it.@@This is going to be a very long trip...}
+{26000}{}{[A few hours later.] I've got it, I've got it!@@[Time passes slowly...] Yea, I got it, I got it! Let's get a move on, @sex@|laddie||lassie|.}
+{26010}{}{About time... Lead the way.@@Yeah, fast as fuck with a deathclaw. Let's go.@@This is going to be a long trip...@@Right, lead the way.@@Uh. Okay, let's go.}
+{26020}{}{Just let me take a piss and we'll get going.@@All right, just let my get my things.@@Be right back, gotta take a dump.}
+{27000}{}{We goin' or what?@@What took you so long? We goin'?@@Are we goin'?@@We movin'?@@We movin' or what?}
+{27010}{}{Look who's talking. Let's go.@@Let's go.@@Yeah, let's go.}
+{27020}{}{Not yet.@@Soon.@@Not now, Boyd.@@Nope, not yet.@@Nope.}
+{28000}{}{Alrght, we're here. The entrance is on the left behind the fence, we'll hafta circle 'round to get inside and to da roof. Watch out for stinkers. @@Okay fren', that's da place. We'll havta go around the blockade to get inside and up to da roof. Watch out for dem ghouls.}
+{29000}{}{Yeah?@@Whatcha need, fren'?@@What do ya need, @sex@|mate||lgirl|?@@Wut?@@What?@@Better make it snappy.@@Make it quick, we ain't got time for chat now.@@Yeah, what?}
+{29010}{}{So, what now?@@So, now what?@@What should we do now, Boyd?}
+{29020}{}{Okay, so what should we do now?@@What should we do now?@@What should we do now, Boyd?}
+{29030}{}{[Show him the part you found.] Any idea what this is?@@[Show him the part you found in the basement.] You think this could be useful?@@[Show him the part you found.] What do you think this is?}
+{29040}{}{Boyd, do you have any idea how to fix that goddamn generator?@@Any ideas how to fix that fuckin' generator?@@Any ideas how we're gonna fix that broken generator?}
+{29050}{}{Nevermind, let's get going.@@Just checking if you're okay.@@Actually, nothing right now.@@Nevermind.@@It's nothing, let's get moving.}
+{30000}{}{Not really, fren'. I don' know crap 'bout dem generators. But... There should be another one somewhere though, maybe we could get it up an' runnin, and see if the elevator works.@@Nope, @sex@|lad||lassie|, I don' know shite 'bout those. Maybe there is another one nearby, we could try to get it runnin' or sumfin'.}
+{30010}{}{Yeah, thanks.@@That helped a lot.@@Thanks for sharing your extensive knowledge with me, Boyd.@@Why am I not surprised?@@Okay...@@Right, let's get moving.}
+{31000}{}{No idea, just throw it away.@@I have no fuckin' idea. Throw this piece of junk away, fren'.@@No idea, probably just some aulde rusty pissacrap.}
+{31010}{}{I don't know Boyd, it might worth something... Let's get going.@@I think I'll hold on to it for a while.@@Nevermind, I'll think about it later.}
+{32000}{}{As I said, we needa get to da roof. One way or 'nother. So stop yappin' yer mouth and get goin'.@@We've gots to get all the way up to the roof. Stop talkin', start movin'.@@We need to get to tha roof, fast. Dem ghouls will probably follow us, so shut yer mouth and keep movin'.@@We needa move fast up to da roof, before those ghouls surround our arses. Let's get goin'... It's gonna be dark soon.}
+{32010}{}{Yeah, right.@@Whatever.@@Right.@@Okay, Boyd.@@Okay.}
+{33000}{}{Didin't ya hear what Boyd said, dummy? You're deaf or somethin'? Let's move, the thingy is just around the corner!@@Shut yer mouth and get movin', the thingy is just around the corner!}
+{33010}{}{Yeah, yeah...@@Right...@@Whatever...@@Whatever, Boyd.}
+{34000}{}{I ain't got time for ya.@@Go bother someone else.@@I ain't got time for ya.@@Go bother someone else.@@Leave me alone.}
+{35000}{}{Yeah?@@What?}
+{36000}{}{Leave me alone, Mukker.@@Scram.@@Get lost.@@I ain't got time for ya.@@Go bother someone else.@@I ain't got time for ya.@@Go bother someone else.@@Leave me alone.}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{temp lock check}
+{1020}{}{combat dialog}
+{1030}{}{first location/going}
+{1040}{}{first location/talked}
+{1050}{}{first location}
+{1060}{}{pissed off permamently, floater}
+{1070}{}{pissed off permamently}
+{1080}{}{pissed off}
+{1090}{}{going}
+{1100}{}{Heard the story}
+{1110}{}{drifters quest not done}
+{1120}{}{party postponed/dialog interrupted}
+{1130}{}{second time}
+{1140}{}{mutant dialog variant}
+{1150}{}{first time}
+{1160}{}{other/error}
+{2000}{}{[This man waves as you pass by:] Hey! Mukker!}
+{2010}{}{What's a Mukker?}
+{2020}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.}
+{2030}{}{Nope, ain't got no time.@@Maybe later.@@Not now.@@Later, gramps.@@I ain't in the mood right now.@@Not now, got things to do.@@Not today, I've got some things to do.}
+{3000}{}{Goody! Ye got som Rutgut?@@Guid! Ye don't hae any Rutgut with ye mayhaps?@@Good! Hae Rutgut?}
+{3010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{3020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{3030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in a mood for a drink, but not in a mood to give it for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{3040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.}
+{4000}{}{Mukker? Mate, friend, call it wa' yer will. }
+{4010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{4020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{4030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in a mood for a drink, but not in a mood to give it for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{4040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.@@Oh snap, I don't have it. I guess until next time then, Boyd.}
+{5000}{}{Rite... Say, only ae? Wat ye, faggy? Two, at least two, one fer meh, one fer ye.}
+{5010}{}{Ugh... All right, all right, I'm gonna get another one.@@You're one greedy bastard... Okay, I'll go get another one.@@I guess you're right, one ain't enough. Be right back.@@I guess I'll get going for another one then.}
+{5020}{}{That does it. Go look for some other fool, fucktard.@@You know what? Go fuck yourself, I ain't gonna drink with you.@@Let's see... fuck you, greedy old fart!@@Get lost, I don't like where this is going.}
+{6000}{}{Aw yea, Rutgut... [He takes the bottle from you and quaffs it in a matter of seconds.]  Cheerz! Drink yer bottle, @sex@|matey||lassie|!}
+{6010}{}{Yeah, cheers!@@Right.@@Fuck yeah, Rotgut is the best shit.@@I love this part...@@Man, you're one walking tankard...}
+{6020}{}{On second thought, I don't think I can keep up with you. Enjoy your free Rotgut.@@I think I know where this is going. Find someone else to drink with.@@Oh fuck. Go drink with someone else, man.}
+{7000}{}{Say... wif a gud frean like ye, mayhap ye can help meh?@@You're a good sport @sex@|mate||lassie|, not very good on drinkin' tho. Maybeh ye want to halp auld Boyd wif a wee problim?}
+{7010}{}{Depends what you want me to help with, Boyd.@@Sure, shoot.@@Sure, friend, tell me what you need.@@No problem, shoot.@@To the point, friend.}
+{7020}{}{I had enough of this. Go find someone else to pester.@@I've heard enough of your drunken babblin'. Get lost.@@I ain't got time for this, go screw with somebody else.@@Yeah, I know what's your problem, you need another bottle right? Fuck you, Boyd.}
+{8000}{}{x}
+{8010}{}{Yeah, go on.}
+{8020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{9000}{}{Well, this flyin' thingy worked liked a charm! I tell ya, you ain' neva seen shit like dat... I flew all the way from San Fran to here in no time... I landed in the Hub, wanted to celebrate my new business... And then I fucked up.}
+{9010}{}{What happened?@@Yeah? What happened?@@Yeah?@@No shit.}
+{9020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{10000}{}{Got drunk as fuck, and flew up all the way to Necropolis, landed on some roof... Got tired, went to sleep. Those friggin ghouls ambushed my, barely got away with me guts inside. Lost all my cash, and my lil' flyin' thingy.}
+{10010}{}{Tough luck.@@Shit...@@Oh hell.@@Dayum.@@Darn...}
+{10020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{11000}{}{xx}
+{11010}{}{Yeah, sure. Remember where did you land?@@Sure, always happy to help a drinkin' buddy. Remember where did you land this thingy of yours?@@@@No problem Boyd, I'll help you. Remember where did you land?@@Sure thing Boyd, I'll help you. Where did you land this thingy?}
+{11020}{}{I've gotta think about this.@@I need to think about this. Sober...@@I need to think this over, Necropolis ain't no funpark.}
+{11030}{}{No way. I ain't going anywhere near that shithole. Find some other guy to clean up your mess.@@No fucking way, find some other idiot.@@Necropolis? You've gotta be fucking jocking. Get lost.@@There's no fucking way I'm going near that place. Go find some other idiot to do your dirty work.}
+{12000}{}{Sure thing, @sex@|mate||lassie|, Boyd maybe auld, but not dumb. Ye ready to go now?}
+{12010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{12020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{13000}{}{Ready to go?@@We goin' or what?@@Ready?@@We goin'?}
+{13010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{13020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{14000}{}{Hello again, @sex@|matey||lassie|, I think I know you from somewhere... No mattah. Wanna drink with Boyd?}
+{14010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.@@Sure.@@Okay.}
+{14020}{}{Nope, ain't got no time.@@Maybe later.@@Not now.@@Later, gramps.@@I ain't in the mood right now.@@Not now, got things to do.@@Not today, I've got some things to do.}
+{15000}{}{Whoa... a mutie... I don't see yer kind often here. Mutant or not, betcha thirsty for a mitey drinky?@@A mutie, here? And not shottin' shit? No mattah, care for a drink wif auld Boyd?}
+{15010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.@@Sure, let's drink, human.@@Okay human, let's drink.}
+{15020}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.@@Sure, let's drink, human.@@Okay human, let's drink.}
+{16000}{}{You sure took yer time...@@Where the hell have you gone?}
+{16010}{}{Don't sweat it, Boyd. I've got it right here, one for me, and one for you.}
+{16020}{}{No, and I ain't gonna get you any. Find some other idiot.@@No fucking way, you drunk.@@Fuck off, Boyd.@@Fuck off.@@Get lost, drunk.}
+{16030}{}{Nope. I'll catch you later.@@Still looking.@@Maybe later, Boyd.@@Not now, really.}
+{17000}{}{Made up your mind?@@So, ye made up yer mind?}
+{17010}{}{Yeah, sure. Remember where did you land?@@Yeah, I'll help your sorry ass. Remember where did you land this thingy of yours?@@@@Okay, I'll help you. Remember where did you land?@@Fine, I'll help you. Where did you land this thingy?}
+{17020}{}{Give me some more time.@@Not so fast, this ain't so easy.@@We'll talk later, Boyd.@@Not now, maybe later.}
+{17030}{}{Fuck no,I ain't gonna do this.@@Yeah. And I'm not going anywhere near that place. Don't bother me again, you stinky drunk.}
+{18000}{}{Well, fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.}
+{18010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking beggars...}
+{19000}{}{Well, fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.@@Screw ye, snugger!@@Yea, fuck ye, fanny.@@Fuck ye, faggit!}
+{19010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking idiot.@@Jerk.}
+{20000}{}{I ain' talkin' to ye, bampot.@@Fuck ye, bawbag, I ain't gonna talk to ya.@@Get lost, I ain't talkin' to ye.@@Get it up ye, faggit, I ain't gonna talk to ya.}
+{20010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking idiot.@@Jerk.}
+{21000}{}{I said, go fuck yourself.@@You still standin' ere? Piss off.@@Get lost.}
+{22000}{}{Err, sumfin' not rite mate. I don't remeber that buildin' bein here.}
+{22010}{}{That's not funny. You said you knew exactly where that place was, Boyd. }
+{22020}{}{I've had enough of your antics. If you think you're going to lead me to some sort of ambush you've got another thing coming. I'm going back to the Hub. You can stay here. Or look for stupid flying thingy, for all I care.}
+{23000}{}{No, fren' listen to me! We're really close! You can't turn yer back on aulde Boyde now!}
+{23010}{}{All right, all right. Just try to remember where is that damn machine of yours.}
+{23020}{}{Yes, I can.@@Watch me.@@Fuck you Boyd, I've had enough.@@Just watch me.@@Get lost, you drunk.}
+{24000}{}{I know, I know, I just... had somethin' else on my mind. Say, you don't have any more Rut Gut wif ye, fren?}
+{24010}{}{Boyd...@@Don't even start it, Boyd.}
+{24020}{}{Sure I have it, here. In my fuck-off pocket.@@Get the fuck outta my face, you drunk.@@Fuck off, Boyd, just fuck off.@@Just get the fuck out of my sight you drunk.}
+{25000}{}{All right, all right, don't get all jumpy. Let me think...}
+{25010}{}{Right...@@All right, just be quick about it. There might be ghouls nearby.@@Okay, okay, just be quick about it.}
+{26000}{}{[A few hours later.] I've got it, I've got it! }
+{26010}{}{About time... Lead the way.@@Yeah, fast as fuck with a running Verti rotor blade. Let's go.@@This is going to be a long trip...@@Right, lead the way.}
+{26020}{}{Just let me take a piss and we're going.@@All right, just let my get my things.@@Be right back, gotta take a dump.}
+{27000}{}{We goin' or what?@@What took you so long?}
+{27010}{}{Look who's talking. Let's go.@@Let's go.@@Yeah, let's go.}
+{27020}{}{Not yet.@@Soon.@@Not now, Boyd.}
+{28000}{}{Allrite, we're here. The entrance is behind the fence, we'll havta  circle 'round to get inside and to da roof.Watch out for stinkers. @@Okay fren' that's da place. We'll havta go around the blockade to get inside and up to da roof. Watch out for dem ghouls.}
+{29000}{}{Yeah?@@Whatcha need, fren'?@@What do ya need, @sex@|mate||lgirl|?@@Wut?@@What?@@Better make it snappy.}
+{29010}{}{So, what now?@@So, now what?@@What should we do now, Boyd?}
+{29020}{}{Okay, so what should we do now?@@What should we do now?@@What should we do now, Boyd?}
+{29030}{}{[Show him the part you found.] Any idea what this is?@@[Show him the part you found in the basement.] You think this could be useful?@@[Show him the part you found.] What do you think this is?}
+{29040}{}{Boyd, do you have any idea how to fix that goddamn generator?@@Any ideas how to fix that fuckin' piece'o'crap generator?@@Any hints on how we're gonna fix the generator?}
+{29050}{}{Nevermind, let's get going.@@Just checking if you're okay.@@Actually, nothing right now.@@Nevermind.@@It's nothing, let's get moving.}
+{30000}{}{Not really, fren'. Boyd ain' don't know shit about generators. There should be another one somewhere though, maybe we coulda get one up an' runnin, and see if the elevator works.}
+{30010}{}{Yeah, thanks.@@That helped a lot.@@Thanks for sharing your extensive knowledge with me, Boyd.@@Why am I not surprised?@@Okay...@@Right, let's get moving.}
+{31000}{}{No idea, just throw it away.@@I have no fuckin' idea. Throw this piece of junk away, fren'.@@No idea, probably just some aulde rusty pissacrap.}
+{31010}{}{I don't know Boyd. Let's get going.@@I think I'll hold on to it for a while.@@Nevermind, I'll think about it later.}
+{32000}{}{As I said, we need to get to da roof. One way or another. So stop yappin' yer mouth and get goin'.@@We've gots to get all the way up to the roof. Stop talkin', start movin'.@@We need to get to tha roof, fast. Those ghouls will probably follow us, so shut yer mouth and keep movin'.@@We needa move fast up to da roof, before those ghouls surround our arses. Let's get goin' it's gonna be dark soon.}
+{32010}{}{Yeah, right.@@Whatever.@@Right.@@Okay, Boyd.@@Okay.}
+{33000}{}{Didin't ya hear what Boyd said, dummy? You're deaf or somethin'? Let's move, the thingy is just around the corner!@@Shut yer mouth and get movin', the thingy is just around the corner!}
+{33010}{}{Yeah, yeah...@@Right...@@Whatever...@@Whatever, Boyd.}
+{34000}{}{I ain't got time for ya.@@Go bother someone else.@@I don't know ya, get lost.}
+{35000}{}{Yeah?@@What?}
+{36000}{}{Leave me alone, Mukker.@@Scram.@@Get lost.}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{temp lock check}
+{1020}{}{combat dialog}
+{1030}{}{first location/going}
+{1040}{}{first location/talked}
+{1050}{}{first location}
+{1060}{}{pissed off permamently, floater}
+{1070}{}{pissed off permamently}
+{1080}{}{pissed off}
+{1090}{}{going}
+{1100}{}{Heard the story}
+{1110}{}{drifters quest not done}
+{1120}{}{party postponed/dialog interrupted}
+{1130}{}{second time}
+{1140}{}{mutant dialog variant}
+{1150}{}{first time}
+{1160}{}{other/error}
+{2000}{}{[This man waves as you pass by:] Hey! Mukker!}
+{2010}{}{What's a Mukker?}
+{2020}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.}
+{2030}{}{Nope, ain't got no time.@@Maybe later.@@Not now.@@Later, gramps.@@I ain't in the mood right now.@@Not now, got things to do.@@Not today, I've got some things to do.}
+{3000}{}{Goody! Ye got som Rutgut?@@Guid! Ye don't hae any Rutgut with ye mayhaps?@@Good! Hae Rutgut?}
+{3010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{3020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{3030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in a mood for a drink, but not in a mood to give it for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{3040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.}
+{4000}{}{Mukker? Mate, friend, call it wa' yer will. }
+{4010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{4020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm going really thirsty.@@I have it, let's drink.}
+{4030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in a mood for a drink, but not in a mood to give it for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{4040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.@@Oh snap, I don't have it. I guess until next time then, Boyd.}
+{5000}{}{Rite... Say, only ae? Wat ye, faggy? Two, at least two, one fer meh, one fer ye.}
+{5010}{}{Ugh... All right, all right, I'm gonna get another one.@@You're one greedy bastard... Okay, I'll go get another one.@@I guess you're right, one ain't enough. Be right back.@@I guess I'll get going for another one then.}
+{5020}{}{That does it. Go look for some other fool, fucktard.@@You know what? Go fuck yourself, I ain't gonna drink with you.@@Let's see... fuck you, greedy old fart!@@Get lost, I don't like where this is going.}
+{6000}{}{Aw yea, Rutgut... [He takes the bottle from you and quaffs it in a matter of seconds.]  Cheerz! Drink yer bottle, @sex@|matey||lassie|!}
+{6010}{}{Yeah, cheers!@@Right.@@Fuck yeah, Rotgut is the best shit.@@I love this part...@@Man, you're one walking tankard...}
+{6020}{}{On second thought, I don't think I can keep up with you. Enjoy your free Rotgut.@@I think I know where this is going. Find someone else to drink with.@@Oh fuck. Go drink with someone else, man.}
+{7000}{}{Say... wif a gud frean like ye, mayhap ye can help meh?@@You're a good sport @sex@|mate||lassie|, not very good on drinkin' tho. Maybeh ye want to halp auld Boyd wif a wee problim?}
+{7010}{}{Depends what you want me to help with, Boyd.@@Sure, shoot.@@Sure, friend, tell me what you need.@@No problem, shoot.@@To the point, friend.}
+{7020}{}{I had enough of this. Go find someone else to pester.@@I've heard enough of your drunken babblin'. Get lost.@@I ain't got time for this, go screw with somebody else.@@Yeah, I know what's your problem, you need another bottle right? Fuck you, Boyd.}
+{8000}{}{x}
+{8010}{}{Yeah, go on.}
+{8020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{9000}{}{Well, this flyin' thingy worked liked a charm! I tell ya, you ain' neva seen shit like dat... I flew all the way from San Fran to here in no time... I landed in the Hub, wanted to celebrate my new business... And then I fucked up.}
+{9010}{}{What happened?@@Yeah? What happened?@@Yeah?@@No shit.}
+{9020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{10000}{}{Got drunk as fuck, and flew up all the way to Necropolis, landed on some roof... Got tired, went to sleep. Those friggin ghouls ambushed my, barely got away with me guts inside. Lost all my cash, and my lil' flyin' thingy.}
+{10010}{}{Tough luck.@@Shit...@@Oh hell.@@Dayum.@@Darn...}
+{10020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{11000}{}{xx}
+{11010}{}{Yeah, sure. Remember where did you land?@@Sure, always happy to help a drinkin' buddy. Remember where did you land this thingy of yours?@@@@No problem Boyd, I'll help you. Remember where did you land?@@Sure thing Boyd, I'll help you. Where did you land this thingy?}
+{11020}{}{I've gotta think about this.@@I need to think about this. Sober...@@I need to think this over, Necropolis ain't no funpark.}
+{11030}{}{No way. I ain't going anywhere near that shithole. Find some other guy to clean up your mess.@@No fucking way, find some other idiot.@@Necropolis? You've gotta be fucking jocking. Get lost.@@There's no fucking way I'm going near that place. Go find some other idiot to do your dirty work.}
+{12000}{}{Sure thing, @sex@|mate||lassie|, Boyd maybe auld, but not dumb. Ye ready to go now?}
+{12010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{12020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{13000}{}{Ready to go?@@We goin' or what?@@Ready?@@We goin'?}
+{13010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{13020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{14000}{}{Hello again, @sex@|matey||lassie|, I think I know you from somewhere... No mattah. Wanna drink with Boyd?}
+{14010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.@@Sure.@@Okay.}
+{14020}{}{Nope, ain't got no time.@@Maybe later.@@Not now.@@Later, gramps.@@I ain't in the mood right now.@@Not now, got things to do.@@Not today, I've got some things to do.}
+{15000}{}{Whoa... a mutie... I don't see yer kind often here. Mutant or not, betcha thirsty for a mitey drinky?@@A mutie, here? And not shottin' shit? No mattah, care for a drink wif auld Boyd?}
+{15010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.@@Sure, let's drink, human.@@Okay human, let's drink.}
+{15020}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Allright, why not.@@Sure, let's drink, human.@@Okay human, let's drink.}
+{16000}{}{You sure took yer time...@@Where the hell have you gone?}
+{16010}{}{Don't sweat it, Boyd. I've got it right here, one for me, and one for you.}
+{16020}{}{No, and I ain't gonna get you any. Find some other idiot.@@No fucking way, you drunk.@@Fuck off, Boyd.@@Fuck off.@@Get lost, drunk.}
+{16030}{}{Nope. I'll catch you later.@@Still looking.@@Maybe later, Boyd.@@Not now, really.}
+{17000}{}{Made up your mind?@@So, ye made up yer mind?}
+{17010}{}{Yeah, sure. Remember where did you land?@@Yeah, I'll help your sorry ass. Remember where did you land this thingy of yours?@@@@Okay, I'll help you. Remember where did you land?@@Fine, I'll help you. Where did you land this thingy?}
+{17020}{}{Give me some more time.@@Not so fast, this ain't so easy.@@We'll talk later, Boyd.@@Not now, maybe later.}
+{17030}{}{Fuck no,I ain't gonna do this.@@Yeah. And I'm not going anywhere near that place. Don't bother me again, you stinky drunk.}
+{18000}{}{Well, fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.}
+{18010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking beggars...}
+{19000}{}{Well, fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.@@Screw ye, snugger!@@Yea, fuck ye, fanny.@@Fuck ye, faggit!}
+{19010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking idiot.@@Jerk.}
+{20000}{}{I ain' talkin' to ye, bampot.@@Fuck ye, bawbag, I ain't gonna talk to ya.@@Get lost, I ain't talkin' to ye.@@Get it up ye, faggit, I ain't gonna talk to ya.}
+{20010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking idiot.@@Jerk.}
+{21000}{}{I said, go fuck yourself.@@You still standin' ere? Piss off.@@Get lost.}
+{22000}{}{Err, sumfin' not rite mate. I don't remeber that buildin' bein here.}
+{22010}{}{That's not funny. You said you knew exactly where that place was, Boyd. }
+{22020}{}{I've had enough of your antics. If you think you're going to lead me to some sort of ambush you've got another thing coming. I'm going back to the Hub. You can stay here. Or look for stupid flying thingy, for all I care.}
+{23000}{}{No, fren' listen to me! We're really close! You can't turn yer back on aulde Boyde now!}
+{23010}{}{All right, all right. Just try to remember where is that damn machine of yours.}
+{23020}{}{Yes, I can.@@Watch me.@@Fuck you Boyd, I've had enough.@@Just watch me.@@Get lost, you drunk.}
+{24000}{}{I know, I know, I just... had somethin' else on my mind. Say, you don't have any more Rut Gut wif ye, fren?}
+{24010}{}{Boyd...@@Don't even start it, Boyd.}
+{24020}{}{Sure I have it, here. In my fuck-off pocket.@@Get the fuck outta my face, you drunk.@@Fuck off, Boyd, just fuck off.@@Just get the fuck out of my sight you drunk.}
+{25000}{}{All right, all right, don't get all jumpy. Let me think...}
+{25010}{}{Right...@@All right, just be quick about it. There might be ghouls nearby.@@Okay, okay, just be quick about it.}
+{26000}{}{[A few hours later.] I've got it, I've got it! }
+{26010}{}{About time... Lead the way.@@Yeah, fast as fuck with a running Verti rotor blade. Let's go.@@This is going to be a long trip...@@Right, lead the way.}
+{26020}{}{Just let me take a piss and we're going.@@All right, just let my get my things.@@Be right back, gotta take a dump.}
+{27000}{}{We goin' or what?@@What took you so long?}
+{27010}{}{Look who's talking. Let's go.@@Let's go.@@Yeah, let's go.}
+{27020}{}{Not yet.@@Soon.@@Not now, Boyd.}
+{28000}{}{Allrite, we're here. The entrance is behind the fence, we'll havta  circle 'round to get inside and to da roof.Watch out for stinkers. @@Okay fren' that's da place. We'll havta go around the blockade to get inside and up to da roof. Watch out for dem ghouls.}
+{29000}{}{Yeah?@@Whatcha need, fren'?@@What do ya need, @sex@|mate||lgirl|?@@Wut?@@What?@@Better make it snappy.}
+{29010}{}{So, what now?@@So, now what?@@What should we do now, Boyd?}
+{29020}{}{Okay, so what should we do now?@@What should we do now?@@What should we do now, Boyd?}
+{29030}{}{[Show him the part you found.] Any idea what this is?@@[Show him the part you found in the basement.] You think this could be useful?@@[Show him the part you found.] What do you think this is?}
+{29040}{}{Boyd, do you have any idea how to fix that goddamn generator?@@Any ideas how to fix that fuckin' piece'o'crap generator?@@Any hints on how we're gonna fix the generator?}
+{29050}{}{Nevermind, let's get going.@@Just checking if you're okay.@@Actually, nothing right now.@@Nevermind.@@It's nothing, let's get moving.}
+{30000}{}{Not really, fren'. Boyd ain' don't know shit about generators. There should be another one somewhere though, maybe we coulda get one up an' runnin, and see if the elevator works.}
+{30010}{}{Yeah, thanks.@@That helped a lot.@@Thanks for sharing your extensive knowledge with me, Boyd.@@Why am I not surprised?@@Okay...@@Right, let's get moving.}
+{31000}{}{No idea, just throw it away.@@I have no fuckin' idea. Throw this piece of junk away, fren'.@@No idea, probably just some aulde rusty pissacrap.}
+{31010}{}{I don't know Boyd. Let's get going.@@I think I'll hold on to it for a while.@@Nevermind, I'll think about it later.}
+{32000}{}{As I said, we need to get to da roof. One way or another. So stop yappin' yer mouth and get goin'.@@We've gots to get all the way up to the roof. Stop talkin', start movin'.@@We need to get to tha roof, fast. Those ghouls will probably follow us, so shut yer mouth and keep movin'.@@We needa move fast up to da roof, before those ghouls surround our arses. Let's get goin' it's gonna be dark soon.}
+{32010}{}{Yeah, right.@@Whatever.@@Right.@@Okay, Boyd.@@Okay.}
+{33000}{}{Didin't ya hear what Boyd said, dummy? You're deaf or somethin'? Let's move, the thingy is just around the corner!@@Shut yer mouth and get movin', the thingy is just around the corner!}
+{33010}{}{Yeah, yeah...@@Right...@@Whatever...@@Whatever, Boyd.}
+{34000}{}{I ain't got time for ya.@@Go bother someone else.@@I don't know ya, get lost.}
+{35000}{}{Yeah?@@What?}
+{36000}{}{Leave me alone, Mukker.@@Scram.@@Get lost.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{temp lock check}
+{1020}{}{combat dialog}
+{1030}{}{first location/going}
+{1040}{}{first location/talked}
+{1050}{}{first location}
+{1060}{}{pissed off permamently, floater}
+{1070}{}{pissed off permamently}
+{1080}{}{pissed off permamently}
+{1090}{}{going}
+{1100}{}{Heard the story}
+{1110}{}{drifters quest not done}
+{1120}{}{not enuff rotgut}
+{1130}{}{second time}
+{1140}{}{mutant dialog variant}
+{1150}{}{first time}
+{1160}{}{other/error}
+{2000}{}{[The man is obviously drunk, and his greeting seems overly enthusiastic] Hey! Mukker! Guid day for a drink, eh @sex@|mate||lassie|? Care t'join auld Boyd Royce for a round? Jack told me some good things about ya...}
+{2010}{}{I'm sure he did. What's a Mukker?@@I'm sure he did. Muk... what?@@I'm sure he did. What is a Muk..ker?@@Mukker what?}
+{2020}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Alright, why not.}
+{2030}{}{Nope, ain't got no time.@@Maybe later.@@Not now.@@Later, gramps.@@I ain't in the mood right now.@@Not now, got things to do.@@Not today, I've got some things to do.}
+{3000}{}{Goody! Ye got som Rutgut?@@Guid! Ye don't hae any Rutgut with ye mayhaps?@@Good! Hae Rutgut?}
+{3010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm getting really thirsty.@@I have it, let's drink.@@I guess it's your lucky day, gramps. Let's drink.@@Hell, why not. Let's drink.}
+{3020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm getting really thirsty.@@I have it, let's drink.}
+{3030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in the mood for a drink, but not in the mood to give one away for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{3040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.@@Oh snap, I don't have it. I guess until next time then, Boyd.}
+{4000}{}{[He ignores your question.] Ye got som Rutgut?@@[The man seemingly ignores you.] Guid! Ye don't hae any Rutgut with ye mayhaps?@@[He ignores your inquiry.] Hae Rutgut?}
+{4010}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm really thirsty.@@I have it, let's drink.}
+{4020}{}{Yeah, sure, I have it. Let's drink.@@You lucky bastard... I have it. Let's party!@@You're one lucky guy... I have it, and I'm really thirsty.@@I have it, let's drink.}
+{4030}{}{Rotgut? Nope. You want me to drink with you and don't have anything? Fuck off.@@I'm in the mood for a drink, but not in the mood to give one away for nothing. Get lost, you idiot.@@Fuck off, I ain't buying you anything.@@Oh, so that's it? Down on your luck eh? Look for some other idiot, gramps.@@You don't have anything on you then? Get lost.@@I see. Fuck off then.}
+{4040}{}{Oh, crap. I don't have it on me right now. I'll catch you later.@@I don't have it. I guess until next time, then.@@Nope, I ain't got no Rotgut... if that's what you mean. Catch you later, Boyd.@@Oh snap, I don't have it. I guess until next time then, Boyd.}
+{5000}{}{Rite... [He looks at you with disappointment as you take the bottle in your hand.] Say, only ae? Wat aer ye, faggy? Two, at least two, one fer meh, one fer ye.}
+{5010}{}{Ugh... All right, all right, I'm gonna get another one.@@You're one greedy bastard... Okay, I'll go get another one.@@I guess you're right, one ain't enough. Be right back.@@I guess I'll get going for another one then.@@You've got some nerve, man... alright, I'll get the second one.}
+{5020}{}{That does it. Go look for some other fool, fucktard.@@You know what? Go fuck yourself, I ain't gonna drink with you.@@Let's see... fuck you, you greedy old fart!@@Get lost, I don't like where this is going.}
+{6000}{}{Aw yea, Rutgut... [He takes the bottle from you and quaffs it in a matter of seconds.]  Cheerz! Drink yer bottle, @sex@|matey||lassie|!}
+{6010}{}{Yeah, cheers!@@Right.@@Fuck yeah, Rotgut is the best shit.@@I love this part...@@Man, you're one walking tankard...}
+{6020}{}{On second thought, I don't think I can keep up with you. Enjoy your free Rotgut.@@I think I know where this is going. Find someone else to drink with.@@Oh fuck. Go drink with someone else, man.}
+{7000}{}{Say... wif a gud frean like ye, mayhap ye can help meh?@@You're a good sport @sex@|mate||lassie|, not very good on drinkin' tho. Maybeh ye want to halp auld Boyd wif a wee problim?}
+{7010}{}{Depends what you want me to help with, Boyd.@@Sure, shoot.@@Sure, friend, tell me what you need.@@No problem, shoot.@@To the point, friend.}
+{7020}{}{I've had enough of this. Go find someone else to pester.@@I've heard enough of your drunken babblin'. Get lost.@@I ain't got time for this, go screw with somebody else.@@Yeah, I know what's your problem, you need another bottle right? Fuck you, Boyd.}
+{8000}{}{Alrighty, listen up, and listen up good cos I really hate repeatin' meself. Ye see... I've got dis... flyin' thingy. A fren' of mine from San Fran set me up, weird fella, but he sure likes to drink... Anyways, I wanted to take people to San Fran an' bak, earn for me livin.}
+{8010}{}{Yeah, go on.@@Continue.@@I'm listening.@@I'm listening, Boyd.}
+{8020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else to fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{9000}{}{Well, this flyin' thingy worked liked a charm! I tell ya, you ain' neva seen shit like dat... I flew all the way from San Fran to here in no time... I landed in the Hub, wanted to celebrate my new business... And then I fucked up.}
+{9010}{}{What happened?@@Yeah? What happened?@@Yeah?@@No shit.}
+{9020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else to fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{10000}{}{Got drunk as fuck, and flew up all the way to Necropolis, landed on some roof... Got tired, went to sleep. Those friggin ghouls ambushed me, barely got away with me guts inside. Lost all my cash, and my lil' flyin' thingy.}
+{10010}{}{Tough luck.@@Shit...@@Oh hell.@@Dayum.@@Darn...}
+{10020}{}{I've heard enough. @@Go bother someone else.@@Booring, I ain't got time for this.@@Yeah, sure, go find someone else fuck around with.@@I ain't got time for this shit.@@You're wasting my time.}
+{11000}{}{Ye... But maybe, just maybe... Dem ghouls are fockin' stupid, they mite not even touched it. I could get my thingy back, wif yer help of course. What do ya say, @sex@|laddie||lassie|?}
+{11010}{}{Yeah, sure. Remember where did you land?@@Sure, always happy to help a drinkin' buddy. Remember where did you land this thingy of yours?@@No problem Boyd, I'll help you. Remember where did you land?@@Allright Boyd, I'll help you. Where did you land this thingy?}
+{11020}{}{I've gotta think about this.@@I need to think about this. Sober...@@I need to think this over, Necropolis ain't no funpark.}
+{11030}{}{No way. I ain't going anywhere near that shithole. Find some other guy to clean up your mess.@@No fucking way, find some other idiot.@@Necropolis? You've gotta be fucking jocking. Get lost.@@There's no fucking way I'm going near that place. Go find some other idiot to do your dirty work.}
+{12000}{}{Sure thing, @sex@|mate||lassie|, Boyd maybe auld, but not dumb. Ye ready to go now?@@Sure as hell I remember! I could go there wif me eyes closed. Ye ready to go now?}
+{12010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{12020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{13000}{}{Ready to go?@@We goin' or what?@@Ready?@@We goin'?}
+{13010}{}{Yeah, sure, let's go.@@All right, let's go.@@Hell yeah, let's kick some ass!@@Right, lead the way.}
+{13020}{}{Wait a sec, I've got to take some things with me first.@@I need to take care of some things, be right back.@@Just a sec, Boyd, be right back.}
+{14000}{}{[Boyd still seems to be drunk. His state is even worse than when you've seen him last time.] Hello again, @sex@|matey||lassie|, I think I knows you from somewheres... No mattah. Wanna drink with Boyd?}
+{14010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Alright, why not.@@Sure.@@Okay.}
+{14020}{}{You ever do anything else besides drinking? I've gotta go.@@Don't you ever get sober? Anyway, I need to go.@@You're still drunk... We'll talk later.@@Still drunk as fuck. I guess we'll talk later.}
+{15000}{}{Whoa, you're one big mothafucka. Small wonder Jack hired your green ass... Anyway, care for a drink wif auld Boyd?}
+{15010}{}{Yeah, sure.@@Hell, why not?@@I ain't got nothing to do right now anyway...@@Yeah, why not.@@Alright, why not.@@Sure, let's drink, human.@@Okay human, let's drink.}
+{15020}{}{I ain't got time now, human.@@Not now, human.@@I don't have the time now, human.@@I need to go.@@I've gotta go.}
+{16000}{}{You sure took yer time...Got two Rutguts?@@Where the hell have you gone? Got two Rutgut bottles?@@You sure can keep a man waiting... Got two Rutguts?}
+{16010}{}{Don't sweat it, Boyd. I've got it right here, one for me, and one for you.}
+{16020}{}{No, and I ain't gonna get you any. Find some other idiot.@@No fucking way, you drunk.@@Fuck off, Boyd.@@Fuck off.@@Get lost, drunk.@@Find some other jerk to play with.}
+{16030}{}{Nope. I'll catch you later.@@Still looking.@@Maybe later, Boyd.@@Not now, really.}
+{17000}{}{Made up yer mind?@@So, ye made up yer mind?}
+{17010}{}{Yeah, sure. Remember where you landed?@@Yeah, I'll help your sorry ass. Remember where you landed this thingy of yours?@@@@Okay, I'll help you. Remember where you landed?@@Fine, I'll help you. Where did you land this thingy?}
+{17020}{}{Give me some more time.@@Not so fast, this ain't so easy.@@We'll talk later, Boyd.@@Not now, maybe later.}
+{17030}{}{Fuck no, I ain't gonna do this.@@Yeah. And I'm not going anywhere near that place. Don't bother me again, you stinky drunk.}
+{18000}{}{Well, fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.@@Screw ye, snugger!@@Yea, fuck ye, fanny.@@Fuck ye, faggit!}
+{18010}{}{What a jerk.@@Nice talking to you, moron.@@Screw you.@@Fucking beggars...@@Idiot.@@Moron.@@Fuckin' drunk.}
+{19000}{}{Fuck ye, bampot.@@Up yer erse wi' it.@@Yer maw.@@Get lost, bawbag.@@Screw ye, snugger!@@Yea, fuck ye, fanny.@@Fuck ye, faggit!@@Bite me, faggit.@@Fuck ye, snugger!@@Screw ye.@@Fuck off.}
+{19010}{}{Cretin.@@Nice talking to you, moron.@@Screw you.@@Fucking idiot.@@Jerk.@@Fuckin' retard.@@Moron.@@Stinkin' drunk.}
+{20000}{}{I ain' talkin' to ye, bampot.@@Fuck ye, bawbag, I ain't gonna talk to ya.@@Get lost, I ain't talkin' to ye.@@Get it up ye, faggit, I ain't gonna talk to ya.}
+{20010}{}{Whatever.@@Yeah, fuck you too.@@Right, go fuck yourself.}
+{21000}{}{Get lost.@@You still standin' ere? Piss off.@@Get lost.@@Fuck off.@@Leave me alone, fanny.@@Get the fuck outta me way, faggit.}
+{22000}{}{Err, sumfin' not rite @sex@|mate||lassie|. I don't remember that buildin' bein here.@@There's sumfin' fishy goin' on 'ere. I swear we crossed that road hours ago.@@Hmm, I don' remember this road bein' here before...}
+{22010}{}{That's not funny. You said you knew exactly where that place was, Boyd.@@The hell... I thought you knew where you left that machine, Boyd!@@You said you knew where that place was!}
+{22020}{}{I've had enough of your antics. If you think you're going to lead me to some sort of ambush you've got another thing coming. I'm going back to the Hub. You can stay here. Or look for stupid flying thingy alone, for all I care.}
+{23000}{}{No, fren' listen to me! We're really close! You can't turn yer back on aulde Boyde now!}
+{23010}{}{All right, all right. Just try to remember where is that damn machine of yours.@@Yeah, whatever. Just try to remember where you left that friggin' machine of yours.}
+{23020}{}{Yes, I can.@@Watch me.@@Fuck you Boyd, I've had enough.@@Just watch me.@@Get lost, you drunk.}
+{24000}{}{I know, I know, I just... had somethin' else on my mind. Say, you don't have any more Rut Gut wif ye, fren'?@@Ye... I was just thinkin'... Don' ye have any more Rut Gut on ye, fren'?}
+{24010}{}{Boyd...@@Don't even start it, Boyd.@@You are starting to piss me off, Boyd.@@Don't even start.@@Now is not the time, for fuck's sake!}
+{24020}{}{Sure I have it, here. In my fuck-off pocket.@@Get the fuck outta my face, you drunk.@@Fuck off, Boyd, just fuck off.@@Just get the fuck out of my sight you drunk.}
+{25000}{}{All right, all right, don't get all jumpy. Let me think for a secon'...@@Easy, don't sweat it. Just lemme think for a momen'...}
+{25010}{}{Right...@@All right, just be quick about it. There might be ghouls nearby.@@Okay, okay, just be quick about it.@@This is going to be a very long trip...}
+{26000}{}{[A few hours later.] I've got it, I've got it!@@[Time passes slowly...] Yea, I got it, I got it! Let's get a move on, @sex@|laddie||lassie|.}
+{26010}{}{About time... Lead the way.@@Yeah, fast as fuck with a deathclaw. Let's go.@@This is going to be a long trip...@@Right, lead the way.@@Uh. Okay, let's go.}
+{26020}{}{Just let me take a piss and we'll get going.@@All right, just let my get my things.@@Be right back, gotta take a dump.}
+{27000}{}{We goin' or what?@@What took you so long? We goin'?@@Are we goin'?@@We movin'?@@We movin' or what?}
+{27010}{}{Look who's talking. Let's go.@@Let's go.@@Yeah, let's go.}
+{27020}{}{Not yet.@@Soon.@@Not now, Boyd.@@Nope, not yet.@@Nope.}
+{28000}{}{Alrght, we're here. The entrance is on the left behind the fence, we'll hafta circle 'round to get inside and to da roof. Watch out for stinkers. @@Okay fren', that's da place. We'll havta go around the blockade to get inside and up to da roof. Watch out for dem ghouls.}
+{29000}{}{Yeah?@@Whatcha need, fren'?@@What do ya need, @sex@|mate||lgirl|?@@Wut?@@What?@@Better make it snappy.@@Make it quick, we ain't got time for chat now.@@Yeah, what?}
+{29010}{}{So, what now?@@So, now what?@@What should we do now, Boyd?}
+{29020}{}{Okay, so what should we do now?@@What should we do now?@@What should we do now, Boyd?}
+{29030}{}{[Show him the part you found.] Any idea what this is?@@[Show him the part you found in the basement.] You think this could be useful?@@[Show him the part you found.] What do you think this is?}
+{29040}{}{Boyd, do you have any idea how to fix that goddamn generator?@@Any ideas how to fix that fuckin' generator?@@Any ideas how we're gonna fix that broken generator?}
+{29050}{}{Nevermind, let's get going.@@Just checking if you're okay.@@Actually, nothing right now.@@Nevermind.@@It's nothing, let's get moving.}
+{30000}{}{Not really, fren'. I don' know crap 'bout dem generators. But... There should be another one somewhere though, maybe we could get it up an' runnin, and see if the elevator works.@@Nope, @sex@|lad||lassie|, I don' know shite 'bout those. Maybe there is another one nearby, we could try to get it runnin' or sumfin'.}
+{30010}{}{Yeah, thanks.@@That helped a lot.@@Thanks for sharing your extensive knowledge with me, Boyd.@@Why am I not surprised?@@Okay...@@Right, let's get moving.}
+{31000}{}{No idea, just throw it away.@@I have no fuckin' idea. Throw this piece of junk away, fren'.@@No idea, probably just some aulde rusty pissacrap.}
+{31010}{}{I don't know Boyd, it might worth something... Let's get going.@@I think I'll hold on to it for a while.@@Nevermind, I'll think about it later.}
+{32000}{}{As I said, we needa get to da roof. One way or 'nother. So stop yappin' yer mouth and get goin'.@@We've gots to get all the way up to the roof. Stop talkin', start movin'.@@We need to get to tha roof, fast. Dem ghouls will probably follow us, so shut yer mouth and keep movin'.@@We needa move fast up to da roof, before those ghouls surround our arses. Let's get goin'... It's gonna be dark soon.}
+{32010}{}{Yeah, right.@@Whatever.@@Right.@@Okay, Boyd.@@Okay.}
+{33000}{}{Didin't ya hear what Boyd said, dummy? You're deaf or somethin'? Let's move, the thingy is just around the corner!@@Shut yer mouth and get movin', the thingy is just around the corner!}
+{33010}{}{Yeah, yeah...@@Right...@@Whatever...@@Whatever, Boyd.}
+{34000}{}{I ain't got time for ya.@@Go bother someone else.@@I ain't got time for ya.@@Go bother someone else.@@Leave me alone.}
+{35000}{}{Yeah?@@What?}
+{36000}{}{Leave me alone, Mukker.@@Scram.@@Get lost.@@I ain't got time for ya.@@Go bother someone else.@@I ain't got time for ya.@@Go bother someone else.@@Leave me alone.}
+

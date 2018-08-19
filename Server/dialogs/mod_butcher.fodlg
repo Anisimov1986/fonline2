@@ -1,0 +1,52 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 None 0 &
+
+[engl]
+{100}{}{Butcher}
+{200}{}{This is the "slaughterhouse technician."}
+{210}{}{This is a butcher from the butchery. His clothes are covered with the brahmin's blood. At least you assume it's from brahmin...}
+{210}{}{You can smell his stench even from a distance.}
+{210}{}{To imagine him screaming "Ahhh...fresh meat!" doesn't require much of an imagination.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{I'm busy, could you come back another time?@@I'm rather busy right now, please go away.@@I've got a lot of butchering to do, please go bother someone else.}
+
+[russ]
+{100}{}{Мясник}
+{200}{}{Вы видите мясника.}
+{210}{}{Это "профессионал из бойни".}
+{210}{}{Это мясник из бойни. Его одежды испачканы кровью браминов.}
+{210}{}{Вы можете чувствовать этот запах прямо со своего места.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{не знаком}
+{2000}{}{@sex@|Пошевеливайся, мистер.||Эй, дамочка, посторонись!| Меня ждут незабитые брамины.@@С дороги!@@Слушай, подвинься, а? Меня ждет работа.}
+
+[pols]
+{100}{}{Rzeźnik}
+{200}{}{To prawdziwy "magister rzeźnictwa".}
+{210}{}{Widzisz rzeźnika. Jego ubranie jest przesiąknięte wonią braminiej śmierci.}
+{210}{}{Tego biednego gościa czuć aż stąd.}
+{210}{}{Aby wyobrazić sobie, jak krzyczy "Ach, świeże mięso!" nie trzeba mieć bujnej fantazji.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{Jestem zajęty, możesz przyjść kiedy indziej?@@Proszę, odejdź. Jestem zajęty.}
+
+[ptbr]
+{100}{}{Açougueiro}
+{200}{}{Este é o "técnico do açougue".}
+{210}{}{Este é o açougueiro do açougue. Suas vestes estão cobertas com sangue de brahmin.}
+{210}{}{Você pode sentir seu cheiro a distância.}
+{210}{}{Imaginar ele a dizer "Ahhh...fresh meat!" não requer muita criatividade.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{Tou ocupado agora, pode vir aqui depois?@@Eu tou meio ocupado agora, volta depois.}
+

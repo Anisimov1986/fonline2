@@ -1,0 +1,138 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+6 1010 D _var p q_aviator_main } 15 #
+5 1020 D _var p q_aviator_main = 13 #
+2 1030 D _var p q_aviator_main = 12 R _var p q_aviator_main = 13 @
+2 2000 None 0 #
+4 2010 D _item p PID_FLUX_CAPACITOR } 1 R _item p PID_FLUX_CAPACITOR - 1 R _script dialog@r_OpenDoor_MapIndex 4 103 50 2470 4 R _script dialog@r_OpenDoor_MapIndex 4 103 50 2470 4 R _var p q_aviator_main = 15 #
+3 2020 D _param p SK_SCIENCE } 100 D _item p PID_FLUX_CAPACITOR < 1 D or D _param p SK_REPAIR } 100 D _item p PID_FLUX_CAPACITOR < 1 R _var p q_aviator_main = 13 #
+0 2030 D _param p SK_REPAIR < 100 D _param p SK_REPAIR < 1 D or D _param p SK_SCIENCE < 100 D _item p PID_FLUX_CAPACITOR < 1 R _var p q_aviator_main = 13 #
+0 2040 D _param p SK_REPAIR } 100 D _item p PID_FLUX_CAPACITOR < 1 D or D _param p SK_SCIENCE } 100 D _item p PID_FLUX_CAPACITOR < 1 R _var p q_aviator_main = 13 #
+0 2050 D _item p PID_FLUX_CAPACITOR } 1 @
+3 3000 None 0 #
+4 3010 D _param p SK_REPAIR } 130 R _var p q_aviator_main = 15 R _script dialog@r_OpenDoor_MapIndex 4 103 50 2470 4 R _script dialog@r_OpenDoor_MapIndex 4 103 50 2470 4 #
+0 3020 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+4 5010 D _param p SK_SCIENCE } 100 D _item p PID_FLUX_CAPACITOR } 1 D or D _param p SK_REPAIR } 100 D _item p PID_FLUX_CAPACITOR } 1 R _var p q_aviator_main = 15 R _item p PID_FLUX_CAPACITOR - 1 R _script dialog@r_OpenDoor_MapIndex 4 103 50 2470 4 #
+4 5020 D _param p SK_SCIENCE < 100 D _item p PID_FLUX_CAPACITOR } 1 D or D _param p SK_REPAIR } 100 D _item p PID_FLUX_CAPACITOR } 1 R _var p q_aviator_main = 15 R _item p PID_FLUX_CAPACITOR - 1 R _script dialog@r_OpenDoor_MapIndex 4 103 50 2470 4 #
+3 5030 D _param p SK_SCIENCE } 100 D _item p PID_FLUX_CAPACITOR < 1 D or D _param p SK_REPAIR } 100 D _item p PID_FLUX_CAPACITOR < 1 #
+0 5040 D _param p SK_REPAIR < 100 D _param p SK_SCIENCE < 100 D _item p PID_FLUX_CAPACITOR < 1 #
+0 5050 D _param p SK_REPAIR } 100 D _param p SK_SCIENCE } 100 D _item p PID_FLUX_CAPACITOR < 1 @
+6 6000 None 0 #
+0 6010 &
+
+[engl]
+{100}{}{Power Generator}
+{200}{}{You see: Power Generator.}
+{210}{}{The generator seems to be a backup source of power for the elevator. It is not functioning right now, though.}
+{1000}{}{Predialogue installations}
+{1010}{}{Already fixed}
+{1020}{}{Second time}
+{1030}{}{First time }
+{2000}{}{[The generator that powers the elevator seems to be offline. You notice that someone or something has removed a part from it. It seems you won't be able to get to the roof unless you find a way to fix it.]}
+{2010}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{2020}{}{[Examine the generator.]@@[Try to assess the exact cause of the failure.]@@[Look for the cause of the generator's inoperability.]}
+{2030}{}{Crap.@@Oh fuck...@@Shit.@@That's just my luck...@@Why does this always have to happen to me?@@Fuck...}
+{2040}{}{Hopefully there is a primary generator somewhere...@@Crap. Now we'll have to find the main generator.@@Shit. There has to be a primary generator somewhere...@@That's just my luck... Now we'll have to find the primary power grid.@@Why does this always have to happen to me? We'll have to look for main power source.}
+{2050}{}{[Leave the generator alone.]@@[Step back from the generator.]}
+{3000}{}{[This seems to be a fairly standard Wattz ElectroBox generator used as a backup source of power, which would work if not for the missing flux capacitor. The primary power source is probably located somewhere else.]}
+{3010}{}{[Attempt to bypass the flux capacitor and hotwire the remaining circuits.]}
+{3020}{}{[Leave the generator alone.]@@Step away from the generator.]}
+{4000}{}{[Your attempt is successful. You power up the generator and it seems to be working... for now.]@@[You successfully repair the generator. It seems to work fine, at least for now.]@@[You manage to repair the generator, it seems to be functional... at least for now.]}
+{4010}{}{Good.@@Yeah!@@Fuck yeah science!@@Go baby, go!@@Science, fuck yeah!}
+{5000}{}{[Unsurprisingly, the generator is still not working.]@@[Unsurprisingly, the generator is still inoperable.]@@[The generator still doesn't work.]}
+{5010}{}{[Install the flux capacitor.] This should do the trick.@@[Install the flux capacitor.] I hope this works...@@[Install the flux capacitor.] Let's try putting you right here...}
+{5020}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{5030}{}{[Examine the generator.]@@[Try to assess the exact cause of the failure.]@@[Look for the cause of the generator's inoperability.]}
+{5040}{}{Gotta think fast...@@Darn.@@Damn.@@Start working you piece of crap! [Kick the generator.]@@Piece of crap.}
+{5050}{}{Hopefully there is a primary generator somewhere...@@Gotta find the main generator.@@Shit. There has to be a primary generator somewhere...}
+{6000}{}{The generator is already fixed.@@The generator is working.@@You have already fixed the generator.@@The generator is working already.}
+{6010}{}{Just checking...@@Just making sure...@@Just to be sure.@@I Hope that piece of crap won't give up the ghost too soon...}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Already fixed}
+{1020}{}{Second time}
+{1030}{}{First time}
+{2000}{}{[The generator seems to be damaged. It seems you won't be able to get to the roof unless you find a way to fix it.]}
+{2010}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{2020}{}{[Examine the generator.]@@[Try to assess the exact failure cause.]@@[Look for the cause of the generator's inoperability.]}
+{2030}{}{Crap.@@Oh fuck...@@Shit.@@That's just my luck...@@Why does this always have to happen to me?@@Fuck...}
+{2040}{}{Crap. @@Oh fuck...@@Shit.@@That's just my luck...@@Why does this always have to happen to me?@@Fuck...}
+{2050}{}{[Leave the generator alone.]@@[Step back from the generator.]}
+{3000}{}{[The damage seems to be recently done. Something or someone has taken out the flux capacitor.]}
+{3010}{}{[Attempt to bypass the flux capacitor and hotwire the remaining circuits.]}
+{3020}{}{[Leave the generator alone.]@@[Leave the generator.]}
+{4000}{}{[Your attempt is succesful. You power up the generator and it seems to work... for now.]}
+{4010}{}{Good.@@Yeah!@@Fuck yeah science!}
+{5000}{}{[Unsurprisingly, the generator is still not working.]@@[Unsurprisingly, the generator is still inoperable.]}
+{5010}{}{This should do the trick.@@I hope this works...@@Let's try putting you right here...}
+{5020}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{5030}{}{[Examine the generator.]@@[Try to assess the exact cause of the failure.]@@[Look for the cause of the generator's inoperability.]}
+{5040}{}{Gotta think fast...@@Darn.@@Damn.@Start working you piece of crap! [Kick the generator.]@@Piece of crap.}
+{5050}{}{Hopefully there is a primary generator somewhere...@@Gotta find the main generator.@@Shit. There has to be a primary generator somewhere...}
+{6000}{}{fix}
+{6010}{}{Just checking...}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Already fixed}
+{1020}{}{Second time}
+{1030}{}{First time}
+{2000}{}{[The generator seems to be damaged. It seems you won't be able to get to the roof unless you find a way to fix it.]}
+{2010}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{2020}{}{[Examine the generator.]@@[Try to assess the exact failure cause.]@@[Look for the cause of the generator's inoperability.]}
+{2030}{}{Crap.@@Oh fuck...@@Shit.@@That's just my luck...@@Why does this always have to happen to me?@@Fuck...}
+{2040}{}{Crap. @@Oh fuck...@@Shit.@@That's just my luck...@@Why does this always have to happen to me?@@Fuck...}
+{2050}{}{[Leave the generator alone.]@@[Step back from the generator.]}
+{3000}{}{[The damage seems to be recently done. Something or someone has taken out the flux capacitor.]}
+{3010}{}{[Attempt to bypass the flux capacitor and hotwire the remaining circuits.]}
+{3020}{}{[Leave the generator alone.]@@[Leave the generator.]}
+{4000}{}{[Your attempt is succesful. You power up the generator and it seems to work... for now.]}
+{4010}{}{Good.@@Yeah!@@Fuck yeah science!}
+{5000}{}{[Unsurprisingly, the generator is still not working.]@@[Unsurprisingly, the generator is still inoperable.]}
+{5010}{}{This should do the trick.@@I hope this works...@@Let's try putting you right here...}
+{5020}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{5030}{}{[Examine the generator.]@@[Try to assess the exact cause of the failure.]@@[Look for the cause of the generator's inoperability.]}
+{5040}{}{Gotta think fast...@@Darn.@@Damn.@Start working you piece of crap! [Kick the generator.]@@Piece of crap.}
+{5050}{}{Hopefully there is a primary generator somewhere...@@Gotta find the main generator.@@Shit. There has to be a primary generator somewhere...}
+{6000}{}{fix}
+{6010}{}{Just checking...}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Already fixed}
+{1020}{}{Second time}
+{1030}{}{First time }
+{2000}{}{[The generator that powers the elevator seems to be offline. You notice that someone or something has removed a part from it. It seems you won't be able to get to the roof unless you find a way to fix it.]}
+{2010}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{2020}{}{[Examine the generator.]@@[Try to assess the exact cause of the failure.]@@[Look for the cause of the generator's inoperability.]}
+{2030}{}{Crap.@@Oh fuck...@@Shit.@@That's just my luck...@@Why does this always have to happen to me?@@Fuck...}
+{2040}{}{Hopefully there is a primary generator somewhere...@@Crap. Now we'll have to find the main generator.@@Shit. There has to be a primary generator somewhere...@@That's just my luck... Now we'll have to find the primary power grid.@@Why does this always have to happen to me? We'll have to look for main power source.}
+{2050}{}{[Leave the generator alone.]@@[Step back from the generator.]}
+{3000}{}{[This seems to be a fairly standard Wattz ElectroBox generator used as a backup source of power, which would work if not for the missing flux capacitor. The primary power source is probably located somewhere else.]}
+{3010}{}{[Attempt to bypass the flux capacitor and hotwire the remaining circuits.]}
+{3020}{}{[Leave the generator alone.]@@Step away from the generator.]}
+{4000}{}{[Your attempt is successful. You power up the generator and it seems to be working... for now.]@@[You successfully repair the generator. It seems to work fine, at least for now.]@@[You manage to repair the generator, it seems to be functional... at least for now.]}
+{4010}{}{Good.@@Yeah!@@Fuck yeah science!@@Go baby, go!@@Science, fuck yeah!}
+{5000}{}{[Unsurprisingly, the generator is still not working.]@@[Unsurprisingly, the generator is still inoperable.]@@[The generator still doesn't work.]}
+{5010}{}{[Install the flux capacitor.] This should do the trick.@@[Install the flux capacitor.] I hope this works...@@[Install the flux capacitor.] Let's try putting you right here...}
+{5020}{}{[Install the generator part you found in the basement.] This should do the trick.@@[Install the generator part you found in the basement.] I hope this works...@@[Install the generator part you found in the basement.]  Let's try putting you right here...}
+{5030}{}{[Examine the generator.]@@[Try to assess the exact cause of the failure.]@@[Look for the cause of the generator's inoperability.]}
+{5040}{}{Gotta think fast...@@Darn.@@Damn.@@Start working you piece of crap! [Kick the generator.]@@Piece of crap.}
+{5050}{}{Hopefully there is a primary generator somewhere...@@Gotta find the main generator.@@Shit. There has to be a primary generator somewhere...}
+{6000}{}{The generator is already fixed.@@The generator is working.@@You have already fixed the generator.@@The generator is working already.}
+{6010}{}{Just checking...@@Just making sure...@@Just to be sure.@@I Hope that piece of crap won't give up the ghost too soon...}
+

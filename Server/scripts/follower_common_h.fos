@@ -1,0 +1,16 @@
+//
+// FOnline: 2238
+// Rotators
+//
+// follower_common_h.fos
+//
+
+#ifndef __FOLLOWER_COMMON_H__
+#define __FOLLOWER_COMMON_H__
+import void     ClearFollowersEnemy(Critter& player, Critter& target) from "follower_common";
+import bool     MakeFollower(Critter& critter, uint type, string& script, uint dialogid, Critter& owner, bool FreeBarter) from "follower_common";
+import bool 	CanHaveMoreFollowers(Critter& player, uint FollowerType) from "follower_common";
+import int      GetFollowers(Critter& player, Map@ map, array<Critter@>& followers, bool OnlyIsSeen) from "follower_common";
+import int      GetFollowers(Critter& player, Map@ map, array<Critter@>& followers) from "follower_common";
+import int      GetFollowers(Critter& player, bool all, array<Critter@>& followers) from "follower_common";
+#endif

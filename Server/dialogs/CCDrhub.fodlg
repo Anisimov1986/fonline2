@@ -1,0 +1,252 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+3 1020 D _var p name_mem_player_npc = 1 @
+2 2000 None 0 #
+3 2010 R _var p name_mem_npc_player = 1 #
+0 2020 R _var p name_mem_npc_player = 1 @
+3 3000 None 0 #
+4 3010 #
+20 3020 #
+9 3030 #
+65506 3040 #
+11 3050 D _param p ADDICTION_BUFFOUT ! 0 D or D _param p ADDICTION_PSYCHO ! 0 D or D _param p ADDICTION_JET ! 0 #
+0 3060 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+5 4010 D _script economy_dialogs@d_IsEnoughCaps 1 500 R _script economy_dialogs@r_TakeCaps 1 500 R _script dialog@r_DropPoison 0  R _script dialog@r_DropRadiation 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p ST_CURRENT_HP + 500 #
+7 4020 D _script economy_dialogs@d_IsNotEnoughCaps 1 500 D _param p ST_CHARISMA } 5 #
+6 4030 D _script economy_dialogs@d_IsNotEnoughCaps 1 500 D _param p ST_CHARISMA < 4 #
+0 4040 #
+0 4050 @
+5 5000 None 0 #
+65506 5010 #
+0 5020 @
+6 6000 None 0 #
+0 6010 #
+0 6020 @
+7 7000 economy_dialogs@dlg_PreparePrice 0 #
+8 7010 D _script economy_dialogs@d_IsEnoughCaps 1 300 R _script economy_dialogs@r_TakeCaps 1 300 R _script dialog@r_DropPoison 0  R _script dialog@r_DropRadiation 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p ST_CURRENT_HP + 500 #
+0 7020 @
+8 8000 None 0 #
+0 8010 #
+0 8020 @
+9 9000 economy_dialogs@dlg_PreparePrice 0 #
+9 9010 D _script economy_dialogs@d_IsEnoughCaps 1 300 R _script economy_dialogs@r_TakeCaps 1 300 R _item p PID_CHEMICAL_COMPONENTS + 1 #
+9 9020 D _script economy_dialogs@d_IsEnoughCaps 1 1500 R _script economy_dialogs@r_TakeCaps 1 1500 R _item p PID_CHEMICAL_COMPONENTS + 5 #
+9 9030 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_CHEMICAL_COMPONENTS + 10 #
+0 9040 @
+11 10000 economy_dialogs@dlg_PreparePrice 0 #
+12 10010 D _script economy_dialogs@d_IsEnoughCaps 1 450 R _script economy_dialogs@r_TakeCaps 1 450 R _script dialog@r_DropDrugs 0  #
+0 10020 @
+12 11000 None 0 @
+20 12000 economy_dialogs@dlg_PreparePrice 0 #
+3 12010 D _script economy_dialogs@d_IsEnoughCaps 1 600 R _script economy_dialogs@r_TakeCaps 1 600 R _item p PID_JET_ANTIDOTE + 1 #
+3 12020 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_JET_ANTIDOTE + 5 #
+3 12030 D _script economy_dialogs@d_IsEnoughCaps 1 6000 R _script economy_dialogs@r_TakeCaps 1 6000 R _item p PID_JET_ANTIDOTE + 10 #
+0 12040 &
+
+[engl]
+{100}{}{Doctor Hub}
+{200}{}{You see: Doctor Hub.}
+{210}{}{Your superb deduction skills reveal that the probability of this man being skilled in the field of medicine is very high.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{Heh, a new face. State your business and be quick about it, I'm a very busy man.}
+{2010}{}{Yeah, I'll try.@@Okay.@@Sure.@@Will do.}
+{2020}{}{Time to go.@@I need to be somewhere else.@@Bye.}
+{3000}{}{So what's wrong with you? Since you came here by yourself, I presume your not dead yet. What do you need me for?}
+{3010}{}{I need some your medical expertise.@@Could you take a look at me? I think I'm hurt.@@Could you patch me up, Doc?@@}
+{3020}{}{I heard you sell antitoxins.}
+{3030}{}{You're selling chemical components, right?}
+{3040}{}{Let's do some business.@@Got stims for sale?@@I wanna take a look at your wares.@@Let's trade, Doc.}
+{3050}{}{I'm jacked up. Can you help me out?}
+{3060}{}{I've gotta go.@@See you later, Doc.@@Bye.@@I think I'm going to go, see you later.}
+{4000}{}{Yes, I can do that. I'll just set up my toys. And you should prepare @lex heal_price@ caps.}
+{4010}{}{Sounds fair. [Give him the caps.]@@Here's the money.@@Okay, I'll pay.@@All right, just help me.]}
+{4020}{}{Shit, I'm kinda broke. Maybe we could settle for a lower price?}
+{4030}{}{I'm out of caps. A small discount, maybe?}
+{4040}{}{Five hundred? Well, I think I feel better already. [Leave.]@@Too steep. Maybe later.@@That's too much. Later.}
+{4050}{}{I'll come back later.@@Actually I think I don't need your help after all.}
+{5000}{}{Let's see... A little tinkering here... a litlle tinkering there... Here you are. Good as new.}
+{5010}{}{Thanks. Before I go, can I take a look at your medical supplies?}
+{5020}{}{Thank you very much. I'll be going now.}
+{6000}{}{You're wasting my time. Go bother someone else, beggar.}
+{6010}{}{Okay, I'm leaving.}
+{6020}{}{Fuck you.}
+{7000}{}{Well, maybe... I'm in a good mood today. @lex heal2_price@ caps.}
+{7010}{}{You've got yourself a deal!}
+{7020}{}{That's still too much.}
+{8000}{}{Right, just keep your mouth shut.}
+{8010}{}{Sure, I will.}
+{8020}{}{You got it, Doc. Goodbye.@@Yeah, sure. Bye.@@Don't worry, I won't spill a word.}
+{9000}{}{Who told you that? Ah, nevermind, yes, I am indeed selling those. @lex chems2_price@ caps per one. So, how many do you need?}
+{9010}{}{Okay, I'll take one. then.@@Give me one.@@I'll take one.@@I'll buy one.}
+{9020}{}{I need five.@@Give me five, Doc.@@I'll take five.}
+{9030}{}{Ten should be enough for now.@@Give me ten, I need to stock up.@@Er, ten?}
+{9040}{}{Hmm, on second thought...@@I think I'll pass.@@Well, maybe later.}
+{10000}{}{That's nasty. But I can help you, if you have @lex heal_drugs_price@ caps of course.}
+{10010}{}{Of course. Here's the money.@@Okay, I'll pay.@@It's a deal then.}
+{10020}{}{Crap, I'm outta caps.@@Damn, I don't have enough cash.}
+{11000}{}{Looks like I got you off from that shit. You still might be a bit shaky for a while... Do yourself a favor and stay away from that crap.}
+{12000}{}{You goddamn junkie trash... @lex ajet_price@ caps. So, how many?}
+{12010}{}{Then I'll take one.@@I just need one.@@Give me one.@@I'll buy one.}
+{12020}{}{I need five.@@I'll buy five.@@Throw me five.}
+{12030}{}{Ten?@@I need ten.@@Ten. Don't look at me like that.}
+{12040}{}{Screw you.}
+
+[russ]
+{100}{}{Доктор Хаб}
+{200}{}{Вы видите: старика в белом халате, без сомнения он врач.}
+{210}{}{Вы видите: старика в белом халате, в руках у него непонятный медицинский инструмент.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{Хех, новое лицо. Так слушайте внимательно, Я врач и у меня нет времени для глупой болтовни. Так что давайте сразу к делу!}
+{2010}{}{Конечно, я буду иметь это в виду.}
+{2020}{}{Хорошо, я пожалуй пойду.@@Мне пора.@@Пока.}
+{3000}{}{Ну и что же с вами случилось? Так как вы пришли сюда сами, полагаю, что вы ещё не умерли. И что вы от меня хотите?}
+{3010}{}{Мне нужна срочная медицинская помощь !@@Док, мне нужно чтобы вы меня осмотрели, мне больно .@@Просто залатайте меня.}
+{3020}{}{У вас есть атнитоксин?}
+{3030}{}{Я слышал у вас можно купить разные химические компоненты.}
+{3040}{}{Давайте перейдем к делу.@@У вас есть стимуляторы на продажу?@@Мне бы медикаментов.}
+{3050}{}{Я тут баловался разными препаратами... ну вы понимаете. Вы можете мне помочь?}
+{3060}{}{Пока.@@Я зайду позже.@@Пожалуй я пойду.}
+{4000}{}{Хорошо, давайте начнем лечение, я могу вылечить радиацию, яд, переломы. Это обойдется вам в @lex heal_price@ монет.}
+{4010}{}{Меня устраивает.[Передать деньги]@@Вот деньги , лечите меня уже скорее.@@ Хорошо. [Заплатить]}
+{4020}{}{Эээ доктор я сейчас не при деньгах, как насчет скидки?}
+{4030}{}{Эээ доктор я сейчас не при деньгах, как насчет скидки?}
+{4040}{}{[Уйти] @lex heal_price@ монет? Нееет я не настолько болен.@@[Уйти] Дороговато, вернусь когда будут деньги.}
+{4050}{}{Вернусь позже.@@Я передумал, сам справлюсь.}
+{5000}{}{[У него есть очень мрачное выражение лица] Похоже вы умираете... ахаха я пошутил. Все в порядке, можете идти. Приятного дня.}
+{5010}{}{Спасибо. Я хочу взглянуть на то, что у вас есть на продажу.}
+{5020}{}{Большое спасибо, я пожалуй пойду .}
+{6000}{}{Пошел вон отсюда, не трать мое время.}
+{6010}{}{Ладно, я ухожу.}
+{6020}{}{Да пошел ты сам!}
+{7000}{}{Ну, я могу сделать одно исключение ... @lex heal2_price@ монет.}
+{7010}{}{Договорились! Вот @lex heal2_price@ монет!}
+{7020}{}{Все равно мне не хватает.}
+{8000}{}{Хорошо парень , но не говори никому, что я сделал исключение для тебя.}
+{8010}{}{Спасибо большое , это будет нашим маленьким секретом.}
+{8020}{}{Да док, увидимся.}
+{9000}{}{Да я их продаю, вам они обойдутся в @lex chems2_price@ крышек за штуку.}
+{9010}{}{Хорошо, дайте одну штуку.}
+{9020}{}{Мне нужно пять.}
+{9030}{}{Возьму десяток.}
+{9040}{}{Хм, может быть я вернусь позже.}
+{10000}{}{Попробую. Это обойдется вам в @lex heal_drugs_price@ крышек.}
+{10010}{}{Давайте уже скорее доктор меня всего колбасит.}
+{10020}{}{Пожалуй я лучше потрачу эти деньги на дозу!}
+{11000}{}{Похоже я смог вывести это дерьмо из вашего организма, держитесь подальше от этой синтетической смерти.}
+{12000}{}{Чертовы наркоманы... @lex ajet_price@ монет за штуку.}
+{12010}{}{Тогда я возьму одну.}
+{12020}{}{Давай сразу пять.}
+{12030}{}{10, возьму с запасом...}
+{12040}{}{Я наркоман? Да пошёл ты.}
+
+[pols]
+{100}{}{Dr Hub}
+{200}{}{Widzisz starego mężczyznę w kitlu. Prawdobodobieństwo, że jest doktorem wynosi około 99,998%.}
+{210}{}{Widzisz starego mężczyznę w kitlu pokrytym krwią, trzymającego jakieś lekarskie przyrządy. Prawdobodobieństwo, że jest doktorem wynosi około 99,998%.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{No proszę, nowa twarz. Żeby było jasne - jestem tutaj lekarzem i nie mam czasu na pogawędki. Jeśli czegoś potrzebujesz - mów. Jeśli nie - wyjdź.}
+{2010}{}{OK, zapamiętam to.}
+{2020}{}{Już wychodzę.@@Idę stąd.@@Do widzenia.}
+{3000}{}{No więc, co z tobą? Udało ci się tu dojść, więc wygląda na to że jeszcze żyjesz. Czego ode mnie chcesz?}
+{3010}{}{Pilnie potrzebuję fachowej opieki medycznej!@@No spójrz, jestem @sex@|ranny||ranna|.@@Musisz mnie pozszywać.}
+{3020}{}{Szefie, masz może antytoksyny?}
+{3030}{}{@sex@|Słyszałem||Słyszałam|, że sprzedajesz komponenty chemiczne.}
+{3040}{}{Przejdźmy do interesów.@@Masz jakieś stimpaki na zbyciu?@@Potrzebuję lekarstw.@@Pohandlujmy, myślę że możesz mieć pewne interesujące mnie przedmioty.}
+{3050}{}{Chyba jestem od czegoś @sex@|uzależniony||uzależniona|. Pomożesz mi?}
+{3060}{}{To ja już pójdę.@@Do zobaczenia.}
+{4000}{}{W porządku, włączę sprzęt który cię zbada i wyleczy wszystkie złamania, radiację, trucizny i wszystkie inne przykrości, które cię spotkały. Będzie to kosztowało @lex heal_price@ kapsli.}
+{4010}{}{Brzmi rozsądnie. [Wręczasz mu pieniądze.] @@Oto kasa, zabieraj się do roboty.@@OK, dobrze. [Wręczasz mu pieniądze.]}
+{4020}{}{Nie mam tyle pieniędzy. Możesz dać mi jakąś zniżkę?}
+{4030}{}{Nie mam tyle pieniędzy. Możesz dać mi jakąś zniżkę?}
+{4040}{}{[Odejdź.] @lex heal_price@ kapsli? W takim razie, nic mi nie jest.@@[Odejdź.] To za dużo, wrócę kiedy indziej.}
+{4050}{}{Wrócę potem.@@Właściwie, to nie potrzebuję twojej pomocy.}
+{5000}{}{[Jest bardzo poważny, marszczy czoło i nerwowo drapie się po brodzie.] Możliwe, że przez to nie przejdziesz... żartowałem. [Śmieje się.] Wszystko w porządku. Miłego dnia.}
+{5010}{}{Dzięki. @sex@|Chciałbym||Chciałabym| zobaczyć, co masz na sprzedaż.}
+{5020}{}{Wielkie dzięki. Będę już @sex@|szedł||szła|.}
+{6000}{}{Nie. Zabieraj stąd swoje biedne dupsko i wypad stąd, ale już!}
+{6010}{}{Dobra, wychodzę.}
+{6020}{}{Też się pierdol!}
+{7000}{}{Dobra, mogę zrobić wyjątek. @lex heal2_price@ kapsli.}
+{7010}{}{Świetnie! Oto @lex heal2_price@ kapsli.}
+{7020}{}{Dalej nie mam tylu pieniędzy, przykro mi.}
+{8000}{}{OK @sex@|bracie||kotku|, tylko nie mów nikomu że to dla ciebie zrobiłem. Możesz już iść.}
+{8010}{}{Wielkie dzięki. Nikomu nie powiem.}
+{8020}{}{Na razie, doktorku.}
+{9000}{}{Tak, sprzedaję chemiczne komponenty. Kosztują @lex chems2_price@ kapsli za sztukę.}
+{9010}{}{Dobrze, wezmę jeden.}
+{9020}{}{Potrzebuję pięciu.}
+{9030}{}{Dziesięć na razie wystarczy.}
+{9040}{}{Cóż, może później.}
+{10000}{}{Paskudnie. Za @lex heal_drugs_price@ kapsli zrobię co w mojej mocy, ale nic nie obiecuję.}
+{10010}{}{[Wzdychasz.] Co za ulga. Proszę, oto pieniądze.}
+{10020}{}{Ała, człowieku - nie mam tyle szmalu.}
+{11000}{}{Wygląda na to, że wyciągnąłem cię z tego gówna. Możesz przez chwilę cierpieć na zawroty głowy... tylko proszę, trzymaj się z dala od tej syntetycznej śmierci.}
+{12000}{}{Cholerne ćpuny... @lex ajet_price@ kapsli za jedną. Ile potrzebujesz?}
+{12010}{}{W takim razie wezmę jedną sztukę.}
+{12020}{}{OK, daj mi pięć.}
+{12030}{}{10, chyba ostatnio ćpam trochę za dużo...}
+{12040}{}{Ja, @sex@|ćpun||ćpunka|? Pff, żegnam.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{Heh, a new face. State your business and be quick about it, I'm a very busy man.}
+{2010}{}{Yeah, I'll try.@@Okay.@@Sure.@@Will do.}
+{2020}{}{Time to go.@@I need to be somewhere else.@@Bye.}
+{3000}{}{So what's wrong with you? Since you came here by yourself, I presume your not dead yet. What do you need me for?}
+{3010}{}{I need some your medical expertise.@@Could you take a look at me? I think I'm hurt.@@Could you patch me up, Doc?@@}
+{3020}{}{I heard you sell antitoxins.}
+{3030}{}{You're selling chemical components, right?}
+{3040}{}{Let's do some business.@@Got stims for sale?@@I wanna take a look at your wares.@@Let's trade, Doc.}
+{3050}{}{I'm jacked up. Can you help me out?}
+{3060}{}{I've gotta go.@@See you later, Doc.@@Bye.@@I think I'm going to go, see you later.}
+{4000}{}{Yes, I can do that. I'll just set up my toys. And you should prepare @lex heal_price@ caps.}
+{4010}{}{Sounds fair. [Give him the caps.]@@Here's the money.@@Okay, I'll pay.@@All right, just help me.]}
+{4020}{}{Shit, I'm kinda broke. Maybe we could settle for a lower price?}
+{4030}{}{I'm out of caps. A small discount, maybe?}
+{4040}{}{Five hundred? Well, I think I feel better already. [Leave.]@@Too steep. Maybe later.@@That's too much. Later.}
+{4050}{}{I'll come back later.@@Actually I think I don't need your help after all.}
+{5000}{}{Let's see... A little tinkering here... a litlle tinkering there... Here you are. Good as new.}
+{5010}{}{Thanks. Before I go, can I take a look at your medical supplies?}
+{5020}{}{Thank you very much. I'll be going now.}
+{6000}{}{You're wasting my time. Go bother someone else, beggar.}
+{6010}{}{Okay, I'm leaving.}
+{6020}{}{Fuck you.}
+{7000}{}{Well, maybe... I'm in a good mood today. @lex heal2_price@ caps.}
+{7010}{}{You've got yourself a deal!}
+{7020}{}{That's still too much.}
+{8000}{}{Right, just keep your mouth shut.}
+{8010}{}{Sure, I will.}
+{8020}{}{You got it, Doc. Goodbye.@@Yeah, sure. Bye.@@Don't worry, I won't spill a word.}
+{9000}{}{Who told you that? Ah, nevermind, yes, I am indeed selling those. @lex chems2_price@ caps per one. So, how many do you need?}
+{9010}{}{Okay, I'll take one. then.@@Give me one.@@I'll take one.@@I'll buy one.}
+{9020}{}{I need five.@@Give me five, Doc.@@I'll take five.}
+{9030}{}{Ten should be enough for now.@@Give me ten, I need to stock up.@@Er, ten?}
+{9040}{}{Hmm, on second thought...@@I think I'll pass.@@Well, maybe later.}
+{10000}{}{That's nasty. But I can help you, if you have @lex heal_drugs_price@ caps of course.}
+{10010}{}{Of course. Here's the money.@@Okay, I'll pay.@@It's a deal then.}
+{10020}{}{Crap, I'm outta caps.@@Damn, I don't have enough cash.}
+{11000}{}{Looks like I got you off from that shit. You still might be a bit shaky for a while... Do yourself a favor and stay away from that crap.}
+{12000}{}{You goddamn junkie trash... @lex ajet_price@ caps. So, how many?}
+{12010}{}{Then I'll take one.@@I just need one.@@Give me one.@@I'll buy one.}
+{12020}{}{I need five.@@I'll buy five.@@Throw me five.}
+{12030}{}{Ten?@@I need ten.@@Ten. Don't look at me like that.}
+{12040}{}{Screw you.}
+

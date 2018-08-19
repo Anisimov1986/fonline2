@@ -1,0 +1,187 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+10 1010 D _var p TempleKeys = 83 #
+2 1020 D _var p TempleKeys = 0 #
+5 1030 D _var p TempleKeys } 1 @
+2 2000 None 0 #
+3 2010 #
+3 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+9 4010 R _var p TempleKeys = 1 #
+9 4020 R _var p TempleKeys = 1 #
+0 4030 @
+5 5000 None 0 #
+6 5010 D _item p PID_TEMPLE_KEY } 1 D _var p TempleKeys { 81 R _var p TempleKeys + 1 R _item p PID_TEMPLE_KEY - 1 R _param p ST_EXPERIENCE + 600 #
+7 5020 D _var p TempleKeys = 82 R _item p PID_TEMPLE_KEY - 1 R _param p ST_EXPERIENCE + 1000 R _var p TempleKeys = 83 #
+9 5030 #
+0 5040 @
+6 6000 None 0 #
+5 6010 #
+0 6020 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+5 9010 #
+0 9020 @
+10 10000 None 0 &
+
+[engl]
+{100}{}{Madman}
+{200}{}{You see: Madman.}
+{210}{}{You see a drunkard. He is very dirty, it seems he had fallen into to some sort of mud puddle, but he doesn't appear to be upset at all.}
+{1000}{}{Initial preferences}
+{1010}{}{go away kurwa}
+{1020}{}{First}
+{1030}{}{Known}
+{2000}{}{[A man is sweating and sniffing. He's staring at his pipboy with deadly glare. He notices you and before you even say a word he jumps up and screams.] You have seen it! I know! You have seen the key!}
+{2010}{}{The key? Key to what?}
+{2020}{}{Yeah... I'm kinda sure I've seen a key in my whole life...}
+{2030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{3000}{}{[He raises his hands up and whimpers.] The temple of thousand keys... You have seen one of them. A key... }
+{3010}{}{Care to elaborate...?}
+{3020}{}{Oh now we have a temple?}
+{3030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{4000}{}{[ Whines loudly catching eyes of everyone around. ] I need your help... Bring me the keys... And I'll pay you well.}
+{4010}{}{Now we're talking! Sure. How do they look?}
+{4020}{}{I don't know uncle. You want every possible key I'll find?}
+{4030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{5000}{}{[ Glares at you. ] Keeeeys...?}
+{5010}{}{Yes. I've got some. Here. Take this.}
+{5020}{}{Yeah... Though I need to say I'm losing interest in this...}
+{5030}{}{Still searching... Can you remind me how do they look?}
+{5040}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{6000}{}{[ Whimpers and grabs it from your hands. ] More... I need more... [ He pets it and throws into a bag. Key hits other keys making a clinging noise. ]}
+{6010}{}{Allright. Sure...}
+{6020}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@I need to go.@@See you.@@Maybe later.}
+{7000}{}{[ Smiles to you. ] I have enough... Now it is your turn to open your temple... Come back to me after few weeks...}
+{7010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@I need to go.@@See you.@@Maybe later.}
+{8000}{}{[ Chuckles as he notices you. He looks ages younger. ] Hey @sex@|Brother||Sister| I've see the temple was success for you too? Well my friend. We're not the first neither the last. But next stage requires sacrifice... Come in after few weeks and I'll tell you everything. Though... If you have some keys. You can drop them off here. [He gives you warm smile.]}
+{8010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{9000}{}{[ Looks serious. ] Temple keys... They look ancient but can be found almost everywhere. People wear them as good token...}
+{9010}{}{I see...}
+{9020}{}{Allright. I'll come to you when I find any.}
+{10000}{}{[ Whines loudly. ] GO!}
+
+[russ]
+{100}{}{Madman}
+{200}{}{You see: Madman.}
+{210}{}{Вы видите алкаша. Он весьма грязен - кажется, он повалялся в луже, но не особо этим расстроен.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{go away kurwa}
+{1020}{}{First}
+{1030}{}{Known}
+{2000}{}{[A man is sweating and sniffing. He's staring at his pipboy with deadly glare. He notices you and before you even say a word he jumps up and screams.] You have seen it! I know! You have seen the key!}
+{2010}{}{The key? Key to what?}
+{2020}{}{Yeah... I'm kinda sure I've seen a key in my whole life...}
+{2030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{3000}{}{[He raises his hands up and whimpers.] The temple of thousand keys... You have seen one of them A key... }
+{3010}{}{Care to elaborate...?}
+{3020}{}{Oh now we have a temple?}
+{3030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{4000}{}{[ Whines loudly catching eyes of everyone around. ] I need your help... Bring me the keys... And I'll pay you well.}
+{4010}{}{Now we're talking! Sure. How do they look?}
+{4020}{}{I don't know uncle. You want every possible key I'll find?}
+{4030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{5000}{}{[ Glares at you. ] Keeeeys...?}
+{5010}{}{Yes. I've got some. Here. Take this.}
+{5020}{}{Yeah... Though I need to say I'm losing interest in this...}
+{5030}{}{Still searching... Can you remind me how do they look?}
+{5040}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{6000}{}{[ Whimpers and grabs it from your hands. ] More... I need more... [ He pets it and throws into a bag. Key hits other keys making clingin noise. ]}
+{6010}{}{Allright. Sure...}
+{6020}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{7000}{}{[ Smiles to you. ] I have enough... Now it is your turn to open your temple... [ He grabs your pipboy and flags location in the middle of the desert before you can do anything. ] This is your Temple. Goodluck child.}
+{7010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{8000}{}{[ Chuckles as he notices you. He looks ages younger. ] Hey @sex@|Brother||Sister| I've see the temple was success for you too? Well my friend. We're not the first neither the last. But next stage requires sacrifice... Come in after few weeks and I'll tell you everything.}
+{8010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{9000}{}{[ Looks serious. ] Temple keys... They look ancient but can be found almost everywhere. People wear them as good token...}
+{9010}{}{I see...}
+{9020}{}{Allright. I'll come to you when I find any.}
+{10000}{}{[ Whines loudly. ] GO!}
+
+[pols]
+{100}{}{Madman}
+{200}{}{You see: Madman.}
+{210}{}{Widzisz pijaka. Jest bardzo brudny, najwidoczniej wpadł do jakiegoś szamba - ale nie zdaje się, żeby zbytnio się tym przejmował.}
+{1000}{}{Initial preferences}
+{1010}{}{go away kurwa}
+{1020}{}{First}
+{1030}{}{Known}
+{2000}{}{[A man is sweating and sniffing. He's staring at his pipboy with deadly glare. He notices you and before you even say a word he jumps up and screams.] You have seen it! I know! You have seen the key!}
+{2010}{}{The key? Key to what?}
+{2020}{}{Yeah... I'm kinda sure I've seen a key in my whole life...}
+{2030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{3000}{}{[He raises his hands up and whimpers.] The temple of thousand keys... You have seen one of them A key... }
+{3010}{}{Care to elaborate...?}
+{3020}{}{Oh now we have a temple?}
+{3030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{4000}{}{[ Whines loudly catching eyes of everyone around. ] I need your help... Bring me the keys... And I'll pay you well.}
+{4010}{}{Now we're talking! Sure. How do they look?}
+{4020}{}{I don't know uncle. You want every possible key I'll find?}
+{4030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{5000}{}{[ Glares at you. ] Keeeeys...?}
+{5010}{}{Yes. I've got some. Here. Take this.}
+{5020}{}{Yeah... Though I need to say I'm losing interest in this...}
+{5030}{}{Still searching... Can you remind me how do they look?}
+{5040}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{6000}{}{[ Whimpers and grabs it from your hands. ] More... I need more... [ He pets it and throws into a bag. Key hits other keys making clingin noise. ]}
+{6010}{}{Allright. Sure...}
+{6020}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{7000}{}{[ Smiles to you. ] I have enough... Now it is your turn to open your temple... [ He grabs your pipboy and flags location in the middle of the desert before you can do anything. ] This is your Temple. Goodluck child.}
+{7010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{8000}{}{[ Chuckles as he notices you. He looks ages younger. ] Hey @sex@|Brother||Sister| I've see the temple was success for you too? Well my friend. We're not the first neither the last. But next stage requires sacrifice... Come in after few weeks and I'll tell you everything.}
+{8010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{9000}{}{[ Looks serious. ] Temple keys... They look ancient but can be found almost everywhere. People wear them as good token...}
+{9010}{}{I see...}
+{9020}{}{Allright. I'll come to you when I find any.}
+{10000}{}{[ Whines loudly. ] GO!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{go away kurwa}
+{1020}{}{First}
+{1030}{}{Known}
+{2000}{}{[A man is sweating and sniffing. He's staring at his pipboy with deadly glare. He notices you and before you even say a word he jumps up and screams.] You have seen it! I know! You have seen the key!}
+{2010}{}{The key? Key to what?}
+{2020}{}{Yeah... I'm kinda sure I've seen a key in my whole life...}
+{2030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{3000}{}{[He raises his hands up and whimpers.] The temple of thousand keys... You have seen one of them. A key... }
+{3010}{}{Care to elaborate...?}
+{3020}{}{Oh now we have a temple?}
+{3030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{4000}{}{[ Whines loudly catching eyes of everyone around. ] I need your help... Bring me the keys... And I'll pay you well.}
+{4010}{}{Now we're talking! Sure. How do they look?}
+{4020}{}{I don't know uncle. You want every possible key I'll find?}
+{4030}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{5000}{}{[ Glares at you. ] Keeeeys...?}
+{5010}{}{Yes. I've got some. Here. Take this.}
+{5020}{}{Yeah... Though I need to say I'm losing interest in this...}
+{5030}{}{Still searching... Can you remind me how do they look?}
+{5040}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{6000}{}{[ Whimpers and grabs it from your hands. ] More... I need more... [ He pets it and throws into a bag. Key hits other keys making a clinging noise. ]}
+{6010}{}{Allright. Sure...}
+{6020}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@I need to go.@@See you.@@Maybe later.}
+{7000}{}{[ Smiles to you. ] I have enough... Now it is your turn to open your temple... Come back to me after few weeks...}
+{7010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@I need to go.@@See you.@@Maybe later.}
+{8000}{}{[ Chuckles as he notices you. He looks ages younger. ] Hey @sex@|Brother||Sister| I've see the temple was success for you too? Well my friend. We're not the first neither the last. But next stage requires sacrifice... Come in after few weeks and I'll tell you everything. Though... If you have some keys. You can drop them off here. [He gives you warm smile.]}
+{8010}{}{Allright... I'm outa here.@@Another madmam...@@Y-yeah... Bye.@@Fuck off!@@I need to go.@@See you.@@Maybe later.}
+{9000}{}{[ Looks serious. ] Temple keys... They look ancient but can be found almost everywhere. People wear them as good token...}
+{9010}{}{I see...}
+{9020}{}{Allright. I'll come to you when I find any.}
+{10000}{}{[ Whines loudly. ] GO!}
+

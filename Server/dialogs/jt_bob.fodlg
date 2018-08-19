@@ -1,0 +1,41 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Bob}
+{200}{}{You see: a tough looking man.}
+{210}{}{The name "Bob" is carved on his forehead. The scars look disgusting.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Keep the turf strong!@@Mess with Huberto, and he'll rip your fucking arms off.@@Were the real deal around here!@@Get lost, you worm.@@Get off our turf!@@Get the fuck outta here.@@Get lost, wimp.@@This is our turf, get lost!}
+
+[russ]
+{100}{}{Боб}
+{200}{}{Вы видите: крутого мускуличтого парня в кожаной куртке.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Не связывайся с Хуберто.@@Были тут серьезные люди, не такие черви как ты.}
+
+[pols]
+{100}{}{Bob}
+{200}{}{Widzisz silnego, muskularnego człowieka. Jego twarz nie zdradza przejawów inteligencji większej od przeciętnego kretoszczura. Na jego czole widnieje napis "Bob". Istnieją poważne przesłanki, pozwalające przypuszczać że to właśnie jest jego imię.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Rządzimy na dzielni!@@Nie zaczynaj z Huberto, Huberto spuszcza wpierdol.@@Wypad stąd, śmieciu!@@Mógłbym być twoim ojcem, ale pies mnie na schodach wyprzedził.}
+
+[ptbr]
+{100}{}{Bob}
+{200}{}{Você vê um homem com uma tatuagem "BOB" escrita na testa. Ele está vestindo umas roupas de couro de aparência musculosa.}
+{210}{}{O nome "Bob" está cravado na sua testa. As cicatrizes são nojentas.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Tem que manter a gangue forte!@@ Não se mete com o Humberto, ele é foda.@@A gente é os fodões daqui. Não tamos nem aí pra merdinha que nem tu.@@Estamos acima e além de ti! Aceite essa merda!}

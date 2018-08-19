@@ -1,0 +1,326 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+3 1010 @
+2 2000 None 0 @
+3 3000 None 0 #
+4 3010 #
+9 3020 #
+20 3030 #
+15 3040 D _param p SK_SCIENCE < 100 D _var p name_mem_player_npc = 1 #
+11 3050 D _param p PE_PROF_CHEMIST { 1 D _param p SK_SCIENCE } 100 D _var p name_mem_player_npc = 0 #
+13 3060 D _var p name_mem_player_npc = 1 D _param p PE_PROF_CHEMIST = 1 D _item p PID_SUPER_STIMPAK } 4 D _script economy_dialogs@d_IsEnoughCaps 1 4000 R _item p PID_SUPER_STIMPAK - 4 R _script economy_dialogs@r_TakeCaps 1 4000 R _param p PE_PROF_CHEMIST = 2 R _var p prof_chemist = 5 R _param p ST_EXPERIENCE + 1200 #
+12 3070 D _var p name_mem_player_npc = 1 D _param p PE_PROF_CHEMIST = 1 R _var p prof_chemist = 4 #
+2 3080 #
+14 3090 D _param p PE_PROF_CHEMIST = 2 R _var p prof_chemist = 6 #
+16 3100 D _param p ADDICTION_BUFFOUT ! 0 D or D _param p ADDICTION_PSYCHO ! 0 D or D _param p ADDICTION_JET ! 0 #
+65506 3110 #
+0 3120 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+5 4010 D _script economy_dialogs@d_IsEnoughCaps 1 500 R _script economy_dialogs@r_TakeCaps 1 500 R _script dialog@r_DropPoison 0  R _script dialog@r_DropRadiation 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p ST_CURRENT_HP + 500 #
+7 4020 D _script economy_dialogs@d_IsNotEnoughCaps 1 500 D _param p ST_CHARISMA } 5 #
+6 4030 D _script economy_dialogs@d_IsNotEnoughCaps 1 500 D _param p ST_CHARISMA < 4 #
+0 4040 #
+0 4050 @
+5 5000 None 0 #
+65506 5010 #
+0 5020 @
+6 6000 None 0 #
+0 6010 #
+0 6020 @
+7 7000 economy_dialogs@dlg_PreparePrice 0 #
+8 7010 D _script economy_dialogs@d_IsEnoughCaps 1 300 R _script economy_dialogs@r_TakeCaps 1 300 R _script dialog@r_DropPoison 0  R _script dialog@r_DropRadiation 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p ST_CURRENT_HP + 500 #
+0 7020 @
+8 8000 None 0 #
+0 8010 #
+0 8020 @
+9 9000 economy_dialogs@dlg_PreparePrice 0 #
+10 9010 D _script economy_dialogs@d_IsEnoughCaps 1 200 R _script economy_dialogs@r_TakeCaps 1 200 R _item p PID_CHEMICAL_COMPONENTS + 1 #
+10 9020 D _script economy_dialogs@d_IsEnoughCaps 1 1000 R _script economy_dialogs@r_TakeCaps 1 1000 R _item p PID_CHEMICAL_COMPONENTS + 5 #
+10 9030 D _script economy_dialogs@d_IsEnoughCaps 1 2000 R _script economy_dialogs@r_TakeCaps 1 2000 R _item p PID_CHEMICAL_COMPONENTS + 10 #
+0 9040 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 #
+12 11010 D _param p PE_PROF_CHEMIST = 1 R _var p prof_chemist = 4 #
+0 11020 @
+12 12000 economy_dialogs@dlg_PreparePrice 0 #
+0 12010 R _var p name_mem_player_npc = 1 @
+13 13000 None 0 #
+0 13010 #
+14 13020 R _var p prof_chemist = 6 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 @
+16 16000 economy_dialogs@dlg_PreparePrice 0 #
+17 16010 D _script economy_dialogs@d_IsEnoughCaps 1 450 R _script dialog@r_DropDrugs 0  R _script economy_dialogs@r_TakeCaps 1 450 #
+0 16020 @
+17 17000 None 0 @
+20 18000 economy_dialogs@dlg_PreparePrice 0 #
+3 18010 D _script economy_dialogs@d_IsEnoughCaps 1 600 R _script economy_dialogs@r_TakeCaps 1 600 R _item p PID_JET_ANTIDOTE + 1 #
+3 18020 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_JET_ANTIDOTE + 5 #
+3 18030 D _script economy_dialogs@d_IsEnoughCaps 1 6000 R _script economy_dialogs@r_TakeCaps 1 6000 R _item p PID_JET_ANTIDOTE + 10 #
+0 18040 &
+
+[engl]
+{100}{}{Doctor Fung}
+{1000}{}{Predialogue installations}
+{1010}{}{fuktis}
+{2000}{}{Fungus?! How dare you?! Get out, now!}
+{3000}{}{Good day! [He wipes his hands with his apron.] I'm doctor Fung, I take care of the people of this fine city. Now, how can I help you?}
+{3010}{}{I need medical attention!@@Doc, I need you to look at me, I'm hurt.@@Patch me up.@@Help me, Doc.}
+{3020}{}{Someone told me you sell chemical components.}
+{3030}{}{I am gonna be in wrong mood soon, got antitoxins?}
+{3040}{}{I want to learn your trade, Doc.}
+{3050}{}{You seem to know a lot about chemistry.}
+{3060}{}{(Chemist profession level 2.) I have all the ingredients needed for a chemistry lesson. }
+{3070}{}{Hey doc, can you tell me again what I needed to bring?}
+{3080}{}{Fungus? What kind of a name is that?}
+{3090}{}{Hey Doc. Do you know other chemistry... "artists" around?}
+{3100}{}{I want you to get rid of my addictions, I can't stand it anymore!}
+{3110}{}{Let's do some business.@@Do you have any stimpaks for sale?@@I need to take a look at your stock.@@Let's trade, Doc.}
+{3120}{}{Bye.@@I'm going, see you later.@@Goodbye, Doc.@@Goodbye.}
+{4000}{}{Alright, I will set up equipment to examine you and heal any crippled limbs, radiation, poison or any other crap that might have hurt you. But that will cost you @lex heal_price@ caps.}
+{4010}{}{Sounds fair. [Hand over the money.]@@Here is the money, do what you have to.@@ Okay. [Hand him the money.]}
+{4020}{}{Shit, I don't have enough money. Can you give me a discount?}
+{4030}{}{Damn, I don't have enough caps. A little discount, maybe?}
+{4040}{}{@lex heal_price@? I'm already feel better.@@Too steep for my pockets.@@I don't have that much.}
+{4050}{}{I will come back.@@I don't think I need your help actually.@@I'll be back, Doc.}
+{5000}{}{[He has a very serious and look on his face.] It's possible that you might not make it... just kidding. Everything is fine, you're good to go.}
+{5010}{}{Haha, that was funny. Not. I want to take a look at your medicines before I leave.}
+{5020}{}{Thanks. I'm gone.}
+{6000}{}{No. Get your sorry ass out of here, you're wasting my time.}
+{6010}{}{Okay, I'm leaving.}
+{6020}{}{Fuck you.}
+{7000}{}{Well, I guess I can make that one little exception... @lex heal2_price@ caps.}
+{7010}{}{Yeah! Here's @lex heal2_price@ caps!}
+{7020}{}{I still have not enough money.}
+{8000}{}{Okay, but don't tell anyone that I did this. Now go.}
+{8010}{}{Thank you, thank you very much! I won't tell anyone, I swear.}
+{8020}{}{You got it Doc. See you later.}
+{9000}{}{Yes, I'm trying to keep my stash well supplied all the time. How many of these components you need? @lex chems_price@ caps per one.}
+{9010}{}{Good, Ill take one.}
+{9020}{}{I need five of them.}
+{9030}{}{Ten should be enough for now.}
+{9040}{}{Well, maybe later.}
+{10000}{}{Okay, nice doing business with you.}
+{10010}{}{I think the same, Bye.}
+{11000}{}{Chemistry is an art, my friend. Few people can tell the difference between hydrogen sulphide from a simple fart. How about you?}
+{11010}{}{Sure. Farts smell worse, but are less toxic. So... do I qualify?}
+{11020}{}{Fart? Ha ha ha, so funny. Erm, no, I don't. Bye.}
+{12000}{}{Yes. Well... to do this I'll need... let's say... four superstimpaks. Oh, right, and @lex prof2_price@ caps. It's not that I'm greedy, but...}
+{12010}{}{I'm sure you're not. I'll be back with all the ingredients. Goodbye.}
+{13000}{}{Good. Come closer. Have you ever seen a chemical compound like this one? So, these are basically... [He teaches you a lot about chemistry, or, as he calls it, "The Art". Never forget that.]... Well? Do you understand everything I told you?}
+{13010}{}{Yes, I do. Thanks, Doc.}
+{13020}{}{Yeah. By the way, do you know anyone else who's skilled in "The Art"?}
+{14000}{}{Luckily I do. One of my colleagues in New Reno, runs... let's say sort of pharmacy store. He's a good chap and, I have to admit, he knows much more than I do.}
+{14010}{}{Thanks! I'll go and see him then. Bye.}
+{15000}{}{You're not ready to learn yet. (Required skill: Science 100%.)}
+{16000}{}{You're lucky, Dr.Fung can help you. @lex heal_drugs_price@ caps and you're fixed.}
+{16010}{}{Do your magic, Doc. [Hand over the money.]}
+{16020}{}{Hell no, for that kind of money I could go to New Reno and... do stuff.}
+{17000}{}{Then get out of my clinic, junkie.}
+{18000}{}{You damn junkies... @lex ajet_price@ caps for one.}
+{18010}{}{Then I'll take one.@@I'll take one then.}
+{18020}{}{Okay, give me me five.@@Throw me five, Doc.@@I need five.}
+{18030}{}{I want ten. Don't stare at me like that.@@Ten. Got a problem with that?@@I need ten.}
+{18040}{}{Junkie? Me? Fuck you.}
+
+[russ]
+{100}{}{Доктор Фунг}
+{1000}{}{Predialogue installations}
+{1010}{}{fuktis}
+{2000}{}{Грибок?! Как вы смеете?! Такое отношение не поможет вам здесь. Пожалуйста, уходите.}
+{3000}{}{Добрый день! [вытирает руки о грязный фартук, который когда-то был белым] Я доктор Фунг, чем я могу вам помочь?}
+{3010}{}{Мне нужна срочная медицинская помощь !@@Док, мне нужно чтобы вы меня осмотрели, мне больно .@@Просто залатайте меня.}
+{3020}{}{Я слышал у вас можно купить разные химические компоненты.}
+{3030}{}{Что-то меня плющит, есть антитоксин?}
+{3040}{}{Я бы хотел тоже изучить профессию химика...}
+{3050}{}{Вы, кажется, много знаете о химии, не правда ли?}
+{3060}{}{[Профессия: Химик (2)] У меня все готово чтобы приступить к занятиям.}
+{3070}{}{Эй Док, вы можете сказать мне снова, что мне нужно принести для обучения?}
+{3080}{}{Грибок? Что это ещё за имя?}
+{3090}{}{Эй Док. Может вы знаете ещё кого-то у кого я могу узнать больше о химии?}
+{3100}{}{Я хочу избавится от моих вредных привычек, это становится невыносимо.}
+{3110}{}{Давайте перейдем к делу.@@У вас есть стимуляторы на продажу?@@Мне бы медикаментов.}
+{3120}{}{Пока.@@Я зайду позже.@@Пожалуй я пойду.}
+{4000}{}{Хорошо, давайте начнем лечение, я могу вылечить радиацию, яд, переломы. Это обойдется вам в @lex heal_price@ монет.}
+{4010}{}{Меня устраивает.[Передать деньги]@@Вот деньги , лечите меня уже скорее.@@ Хорошо. [Заплатить]}
+{4020}{}{Эээ доктор я сейчас не при деньгах, как насчет скидки?}
+{4030}{}{Эээ доктор я сейчас не при деньгах, как насчет скидки?}
+{4040}{}{[Уйти] @lex heal_price@ монет? Нееет я не настолько болен.@@[Уйти] Дороговато, вернусь когда будут деньги.}
+{4050}{}{Вернусь позже.@@Я передумал, сам справлюсь.}
+{5000}{}{[У него есть очень мрачное выражение лица] Похоже вы умираете... ахаха я пошутил. Все в порядке, можете идти. Приятного дня.}
+{5010}{}{Спасибо. Я хочу взглянуть на то, что у вас есть на продажу.}
+{5020}{}{Большое спасибо, я пожалуй пойду .}
+{6000}{}{Пошел вон отсюда, не трать мое время.}
+{6010}{}{Ладно, я ухожу.}
+{6020}{}{Да пошел ты сам!}
+{7000}{}{Ну, я могу сделать одно исключение ... @lex heal2_price@ монет.}
+{7010}{}{Договорились! Вот @lex heal2_price@ монет!}
+{7020}{}{Все равно мне не хватает.}
+{8000}{}{Хорошо парень , но не говори никому, что я сделал исключение для тебя.}
+{8010}{}{Спасибо большое , это будет нашим маленьким секретом.}
+{8020}{}{Да док, увидимся.}
+{9000}{}{Да я их продаю, вам они обойдутся по @lex chems_price@ крышек за штуку.}
+{9010}{}{Хорошо, дайте одну штуку.}
+{9020}{}{Мне нужно пять.}
+{9030}{}{Возьму десяток.}
+{9040}{}{Хм, может быть я вернусь позже.}
+{10000}{}{Хорошо, приятно иметь с вами дело.}
+{10010}{}{С вами тоже, до свидания.}
+{11000}{}{Химия-это искусство, мой друг. Многие люди не могут отличить метан или сероводород от простого пердежа. Как насчет тебя?}
+{11010}{}{Конечно, я знаю. Пердеж пахнет хуже, но менее токсичен. Так вы можете научить меня искусству которое вы упомянули?}
+{11020}{}{Пердеж? Ха-ха-ха, очень смешно. Хм, нет, я не знаю. Пока.}
+{12000}{}{Конечно, могу . Для этого мне понадобится 4 Суперстимулятора. Ах, да, и @lex prof2_price@ крышек. Нельзя сказать, что я жадный старый ублюдок, но ...}
+{12010}{}{Я уверен, что вы не жадный ублюдок и это лишь слухи. Я вернусь со всеми ингредиентами. Пока.}
+{13000}{}{Хорошо . Подойдите ближе к этому столу, ты когда-нибудь видел такое химическое соединение? Так что это в основном ... [он рассказывает вам много нового о химических процессах и соединениях] ... разве это сложно? }
+{13010}{}{Ничего сложного, спасибо.}
+{13020}{}{Ничего сложного, спасибо. Может вы знаете ещё химиков у которых я бы мог учиться?}
+{14000}{}{К счастью, знаю. Один из моих коллег живет в Нью-Рено, он держит ... своего рода аптеку. Он хороший учитель, и, я должен признать, что он знает больше моего.}
+{14010}{}{Спасибо док. Пока!}
+{15000}{}{Ваших научных знаний не достаточно, возвращайтесь когда узнаете больше.}
+{16000}{}{Вам повезло, доктор Фунг поможет вам, @lex heal_drugs_price@ крышек и будешь как новый.}
+{16010}{}{Скорее уже приступайте. [протягиваете деньги дрожащей рукой]}
+{16020}{}{Да я лучше шлюху сниму за такие деньги!}
+{17000}{}{Похоже я смог вывести это дерьмо из вашего организма, а теперь проваливай.}
+{18000}{}{Чертовы наркоманы... @lex ajet_price@ монет за штуку.}
+{18010}{}{Тогда я возьму одну.}
+{18020}{}{Давай сразу пять.}
+{18030}{}{10, возьму с запасом...}
+{18040}{}{Я наркоман? Да пошёл ты.}
+
+[pols]
+{100}{}{Doktor Fung}
+{1000}{}{Predialogue installations}
+{1010}{}{fuktis}
+{2000}{}{Hmph. Nie mam w zwyczaju pomagać @sex@|kretynom||idiotkom|. Zjeżdzaj stąd.}
+{3000}{}{Witaj! Jestem doktor Fung, lekarz pierwszego kontaktu w San Francisco. W czym mogę ci pomóc?}
+{3010}{}{Potrzebuję pomocy, doktorze!@@Potrzebuję medyka!@@Mógłbyś zerknąć na to? Boli jak cholera...}
+{3020}{}{Podobno sprzedajesz komponenty chemiczne?}
+{3030}{}{Telepie mnie strasznie, nie masz może antytoksyn?}
+{3040}{}{Chciałbym nauczyć się tego, co wiesz.}
+{3050}{}{Jesteś specjalistą w dziedzinie chemii, prawda?}
+{3060}{}{(Profesja: Chemik, poziom 2.) Mam wszystkie składniki potrzebne do nauki.}
+{3070}{}{Doktorze, mógłbyś mi przypomnieć co miałem przynieść?}
+{3080}{}{Pierwszego kontaktu? A kto jest tym pierwszym kontaktem? Kontaktujesz?}
+{3090}{}{Nie znasz kogoś kto mógłby mnie nauczyć więcej?}
+{3100}{}{Mógłbyś mi pomóc? Chyba się @sex@|uzależniłem||uzależniłam|.}
+{3110}{}{Masz może jakieś medykamenty na sprzedaż?@@Masz coś na sprzedaż?@@Potrzebuję paru lekarstw, doktorze.@@Mogę zerknąć na twoje zapasy?}
+{3120}{}{Na razie.@@Muszę już iść, do widzenia.}
+{4000}{}{Już, chwila. Zaraz cię pozkładamy do kupy. Ale najpierw musisz zapłacić, nie robię tu za darmo. @lex heal_price@ kapsli z góry.}
+{4010}{}{W porządku.@@Trzymaj, zdrowie jest najważniejsze.@@Dobrze, masz te kapsle, tylko mi pomóż!}
+{4020}{}{Nie mam tyle pieniędzy. Może jakiś upust?}
+{4030}{}{Nie stać mnie... Nie możesz trochę zejść z ceny?}
+{4040}{}{@lex heal_price@ kapsli? Chyba już mnie tak bardzo nie boli.@@Ale z ciebie zdzierca.@@Nie stać mnie na taki wydatek, przyjdę kiedy indziej.}
+{4050}{}{@sex@|Rozmyśliłem||Rozmyśliłam| się.@@Jednak zrezygnuję.}
+{5000}{}{[Twarz doktora Funga nabiera ponurego wyrazu.] Twój stan jest bardzo poważny, możesz tego nie przeżyć... [Śmieje się.] Żartowałem. Wszystko będzie w porządku. Miłego dnia.}
+{5010}{}{Dzięki. A mogę jeszcze zerknąć na twoje zapasy lekarstw?}
+{5020}{}{Wzajemnie.}
+{6000}{}{Nie ma mowy. Nie zawracaj mi głowy.}
+{6010}{}{Dobra, już idę.}
+{6020}{}{Dzięki za nic, kurwa.}
+{7000}{}{Mam dzisiaj dobry humor, niech ci będzie... @lex heal2_price@ kapsli.}
+{7010}{}{Dzięki! Trzymaj.}
+{7020}{}{To wciąż za dużo...}
+{8000}{}{Dobra, tylko nie mów nikomu, bo wszyscy mi się tu zlecą. Trzymaj się.}
+{8010}{}{Jasne, nikomu nie powiem. Na razie.}
+{8020}{}{Masz to jak w banku. Do widzenia.}
+{9000}{}{Tak, mam jeszcze dość spory zapas. Ile chcesz? @lex chems_price@ kapsli za sztukę.}
+{9010}{}{Wezmę jeden.}
+{9020}{}{Potrzebuję pięć.}
+{9030}{}{Dziesięć powinno wystarczyć.}
+{9040}{}{Może innym razem.}
+{10000}{}{Dzięki.}
+{10010}{}{To ja dziękuję. Na razie!}
+{11000}{}{Chemia to sztuka, nie każdy się nadaje żeby się tym zajmować. Pierwszy z brzegu przykład, większość ludzi nie jest w stanie odróżnić metanu czy siarkowodoru od zwykłego pierda. A ty?}
+{11010}{}{Pewnie że odróżniam. Pierdy gorzej śmierdzą, ale są mniej toksyczne. A teraz, możemy przejść do meritum?}
+{11020}{}{Pierdy? Ha ha ha... Ha. Nie rozumiem. Na razie.}
+{12000}{}{Możemy. Ale będziesz @sex@|potrzebował||potrzebowała| po jednym 4 Super Stimpaku. Do tego, powiedzmy... @lex prof2_price@ kapsli. Trzeba z czegoś żyć, a ja jestem już stary i mam duże potrzeby.}
+{12010}{}{Świetnie. Podejdź no tu bliżej, widzisz te składniki? Na początek, podstawowe reakcje... [Doktor Fung z pewnością zna się na rzeczy. Po relatywnie krótkim czasie twoja wiedza na temat chemii staje się znacznie większa.] Widzisz? A nie mówiłem? To prawdziwa sztuka!}
+{13000}{}{Dobrze więc, podejdź bliżej. Widziałeś kiedyś podobny związek chemiczny do tego? Więc to, co tutaj widzisz, to są po prostu...[Uczy cię mnóstwo o chemii, czy jak to ujmuje o "Sztuce". Nie zapomnij tego.] No i jak? Wszystko jasne?}
+{13010}{}{Oczywiście. Dziękuję, doktorze.}
+{13020}{}{Z pewnością. Nie znasz może innych ludzi biegłych w... w "sztuce"?}
+{14000}{}{Ano, tak się szczęśliwie dla ciebie składa że znam. Mam znajomego w Reno, prowadzi tam... aptekę. To bardzo przyzwoity człowiek, do tego, muszę przyznać, zna się na sztuce jeszcze lepiej niż ja. Jeśli chcesz się jeszcze czegoś nauczyć, idź do niego.}
+{14010}{}{Dzięki, doktorze Fung. Do zobaczenia.}
+{15000}{}{Masz jeszcze braki w wiedzy. Wróć, jak nadrobisz zaległości. (Wymagana umiejętność: Nauka 100%.)}
+{16000}{}{Masz szczęście, mogę ci pomóc. @lex heal_drugs_price@ kapsli i będziesz jak nowo @sex@|narodzony||narodzona|.}
+{16010}{}{W porządku, trzymaj te kapsle.}
+{16020}{}{Za tyle kasy mogę sobie kupić gadającego gekona. Na razie.}
+{17000}{}{Zabieraj się z mojej kliniki, @sex@|ćpunie||ćpunko|.}
+{18000}{}{Ech, wy ćpuńy... @lex ajet_price@ kapsli za jedną.}
+{18010}{}{No to wezmę jedną.}
+{18020}{}{Potrzebuję pięć.}
+{18030}{}{Szykuję dużą imprezę, daj mi dziesięć.}
+{18040}{}{Że co, ja, @sex@|ćpun||ćpunka|? Pff, na razie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{fuktis}
+{2000}{}{Fungus?! How dare you?! Get out, now!}
+{3000}{}{Good day! [He wipes his hands with his apron.] I'm doctor Fung, I take care of the people of this fine city. Now, how can I help you?}
+{3010}{}{I need medical attention!@@Doc, I need you to look at me, I'm hurt.@@Patch me up.@@Help me, Doc.}
+{3020}{}{Someone told me you sell chemical components.}
+{3030}{}{I am gonna be in wrong mood soon, got antitoxins?}
+{3040}{}{I want to learn your trade, Doc.}
+{3050}{}{You seem to know a lot about chemistry.}
+{3060}{}{(Chemist profession level 2.) I have all the ingredients needed for a chemistry lesson. }
+{3070}{}{Hey doc, can you tell me again what I needed to bring?}
+{3080}{}{Fungus? What kind of a name is that?}
+{3090}{}{Hey Doc. Do you know other chemistry... "artists" around?}
+{3100}{}{I want you to get rid of my addictions, I can't stand it anymore!}
+{3110}{}{Let's do some business.@@Do you have any stimpaks for sale?@@I need to take a look at your stock.@@Let's trade, Doc.}
+{3120}{}{Bye.@@I'm going, see you later.@@Goodbye, Doc.@@Goodbye.}
+{4000}{}{Alright, I will set up equipment to examine you and heal any crippled limbs, radiation, poison or any other crap that might have hurt you. But that will cost you @lex heal_price@ caps.}
+{4010}{}{Sounds fair. [Hand over the money.]@@Here is the money, do what you have to.@@ Okay. [Hand him the money.]}
+{4020}{}{Shit, I don't have enough money. Can you give me a discount?}
+{4030}{}{Damn, I don't have enough caps. A little discount, maybe?}
+{4040}{}{@lex heal_price@? I'm already feel better.@@Too steep for my pockets.@@I don't have that much.}
+{4050}{}{I will come back.@@I don't think I need your help actually.@@I'll be back, Doc.}
+{5000}{}{[He has a very serious and look on his face.] It's possible that you might not make it... just kidding. Everything is fine, you're good to go.}
+{5010}{}{Haha, that was funny. Not. I want to take a look at your medicines before I leave.}
+{5020}{}{Thanks. I'm gone.}
+{6000}{}{No. Get your sorry ass out of here, you're wasting my time.}
+{6010}{}{Okay, I'm leaving.}
+{6020}{}{Fuck you.}
+{7000}{}{Well, I guess I can make that one little exception... @lex heal2_price@ caps.}
+{7010}{}{Yeah! Here's @lex heal2_price@ caps!}
+{7020}{}{I still have not enough money.}
+{8000}{}{Okay, but don't tell anyone that I did this. Now go.}
+{8010}{}{Thank you, thank you very much! I won't tell anyone, I swear.}
+{8020}{}{You got it Doc. See you later.}
+{9000}{}{Yes, I'm trying to keep my stash well supplied all the time. How many of these components you need? @lex chems_price@ caps per one.}
+{9010}{}{Good, Ill take one.}
+{9020}{}{I need five of them.}
+{9030}{}{Ten should be enough for now.}
+{9040}{}{Well, maybe later.}
+{10000}{}{Okay, nice doing business with you.}
+{10010}{}{I think the same, Bye.}
+{11000}{}{Chemistry is an art, my friend. Few people can tell the difference between hydrogen sulphide from a simple fart. How about you?}
+{11010}{}{Sure. Farts smell worse, but are less toxic. So... do I qualify?}
+{11020}{}{Fart? Ha ha ha, so funny. Erm, no, I don't. Bye.}
+{12000}{}{Yes. Well... to do this I'll need... let's say... four superstimpaks. Oh, right, and @lex prof2_price@ caps. It's not that I'm greedy, but...}
+{12010}{}{I'm sure you're not. I'll be back with all the ingredients. Goodbye.}
+{13000}{}{Good. Come closer. Have you ever seen a chemical compound like this one? So, these are basically... [He teaches you a lot about chemistry, or, as he calls it, "The Art". Never forget that.]... Well? Do you understand everything I told you?}
+{13010}{}{Yes, I do. Thanks, Doc.}
+{13020}{}{Yeah. By the way, do you know anyone else who's skilled in "The Art"?}
+{14000}{}{Luckily I do. One of my colleagues in New Reno, runs... let's say sort of pharmacy store. He's a good chap and, I have to admit, he knows much more than I do.}
+{14010}{}{Thanks! I'll go and see him then. Bye.}
+{15000}{}{You're not ready to learn yet. (Required skill: Science 100%.)}
+{16000}{}{You're lucky, Dr.Fung can help you. @lex heal_drugs_price@ caps and you're fixed.}
+{16010}{}{Do your magic, Doc. [Hand over the money.]}
+{16020}{}{Hell no, for that kind of money I could go to New Reno and... do stuff.}
+{17000}{}{Then get out of my clinic, junkie.}
+{18000}{}{You damn junkies... @lex ajet_price@ caps for one.}
+{18010}{}{Then I'll take one.@@I'll take one then.}
+{18020}{}{Okay, give me me five.@@Throw me five, Doc.@@I need five.}
+{18030}{}{I want ten. Don't stare at me like that.@@Ten. Got a problem with that?@@I need ten.}
+{18040}{}{Junkie? Me? Fuck you.}
+

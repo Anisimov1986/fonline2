@@ -1,0 +1,70 @@
+#include "_dialogs.fos"
+#include "_defines.fos"
+#include "_macros.fos"
+
+import bool Present(uint what, uint[]& where) from "utils_for_array";
+
+uint[] gossipCritterDialogIds = {DIALOG_mod_farmer, DIALOG_all_hub_policeman, DIALOG_all_junktown_guard, DIALOG_ncr_guard,
+	DIALOG_all_guard, DIALOG_all_poorman, DIALOG_all_alco, DIALOG_redd_alco, DIALOG_all_child, DIALOG_klam_child, DIALOG_redd_child,
+	DIALOG_all_prostitute, DIALOG_sf_guard, DIALOG_Askorti_guard, DIALOG_klam_trapper, DIALOG_all_citizen, DIALOG_sf_citizen, DIALOG_mod_citizen,
+	DIALOG_redd_citizen, DIALOG_vc_citizen_floater, DIALOG_vc_citizen, DIALOG_bh_male, DIALOG_bh_female, DIALOG_all_narcodealer, DIALOG_all_narcoman,
+	DIALOG_bh_ghoul, DIALOG_bh_mutant, DIALOG_geck_bar_visitor, DIALOG_geck_citizen, DIALOG_adyt_gunrunner_guard, DIALOG_adyt_blades_guard,
+	DIALOG_adyt_resident, DIALOG_enclave_veterantrooper, DIALOG_enclave_trooper, DIALOG_enclave_recruit, DIALOG_enclave_scientist,
+	DIALOG_bos_paladin, DIALOG_bos_knight, DIALOG_bos_initiate, DIALOG_bos_scribe, DIALOG_vc_bar_visitor, DIALOG_vc_prizoner, DIALOG_vc_guard,
+	DIALOG_geck_guard, DIALOG_all_caravaneer, DIALOG_all_gambler, DIALOG_redd_guard, DIALOG_redd_fight_fanatic, DIALOG_redd_farmer};
+uint[] gossipCritterIdsCache;
+
+void InitializeGossip()
+{
+	InitializeCache();
+}
+
+void InitializeCache()
+{
+	Critter@[] allCritters;
+	
+	GetAllNpc(0, allCritters);
+	
+	for(uint i = 0; i < allCritters.length(); i++)
+	{
+		if (!Present(allCritters[i].Param[ST_DIALOG_ID], gossipCritterDialogIds))
+		{
+			continue;
+		}
+	
+		Map@ map = allCritters[i].GetMap();
+		if (!valid(map)) 
+		{
+			continue;
+		}
+
+		Location@ location = map.GetLocation();
+		if (!valid(location)) 
+		{
+			continue;
+		}
+		
+		if (location.GetProtoId() == LOCATION_Island_Prison)
+		{
+			continue;
+		}
+		
+		if (!location.Visible)
+		{
+			continue;
+		}
+			
+		gossipCritterIdsCache.insertLast(allCritters[i].Id);
+	}
+}
+
+uint[]@+ GetGossipCritterIdsCache()
+{
+	return @gossipCritterIdsCache;
+}
+
+void refresh_cache(Critter& critter, int, int, int)
+{
+	gossipCritterIdsCache.resize(0);
+	InitializeCache();
+}

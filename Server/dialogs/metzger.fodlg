@@ -1,0 +1,54 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+0 2010 D _script tc_dialogs@d_CanTakeOver 0  R _script tc@r_StartTc 0  #
+0 2020 &
+
+[engl]
+{100}{}{Metzger}
+{200}{}{Metzger, leader of the slavers in Den.}
+{210}{}{A tough-looking bald guy. You look at him and just know that he's the boss here.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{What do you want?@@Yeah?@@Need something?@@Be quick!}
+{2010}{}{You must die! I alone am best! Just joking, we're taking this town.@@Get ready, we're taking this town for ourselves.}
+{2020}{}{Wrong door, I guess.@@Nevermind.@@Whatever}
+
+[russ]
+{100}{}{Мецгер}
+{200}{}{Мецгер, главарь работорговцев Дена.}
+{210}{}{Крутой лысый парень. По одиному взляду понятно что он тут босс.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Чего тебе?@@Да?}
+{2010}{}{Ты умрешь, должен остаться только один! Просто шучу, теперь я главный в этом городе.}
+{2020}{}{Ошибся дверью, уже ухожу.}
+
+[pols]
+{100}{}{Metzger}
+{200}{}{Metzger, przywódca łowców niewolników w Norze.}
+{210}{}{Twardo wyglądający, łysy gość. Wystarczy jedno spojrzenie by wiedzieć, że to on jest tu szefem.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Czego chcesz?@@Ta?@@Chcesz czegoś?@@Mów, tylko szybko!}
+{2010}{}{Musisz zginąć! [Roześmiej się.] Tylko żartuję, wybacz Metzger, ale przejmujemy to miasto.}
+{2020}{}{Och, chyba @sex@|pomyliłem||pomyliłam| drzwi. Do widzenia!}
+
+[ptbr]
+{100}{}{Magarefe}
+{200}{}{Magarefe, líder dos traficante de escravos do Favelão.}
+{210}{}{Cara forte e careca, parece durão. Você olha para ele e percebe que ele é o chefe aqui.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{O quê que tu quer?@@Fala.@@Tá precisando de alguma coisa?@@Fala logo!}
+{2010}{}{Tu vai morrer! Tô brincando, a cidade agora é nossa.}
+{2020}{}{Opa, entrei no canto errado. Valeu.}
+

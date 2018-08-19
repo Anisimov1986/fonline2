@@ -1,0 +1,127 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p ron_winkley = 0 #
+5 1020 D _var p ron_winkley > 0 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 R _var p ron_winkley = 1 #
+0 3020 R _var p ron_winkley = 1 @
+4 4000 None 0 #
+65506 4010 @
+5 5000 None 0 #
+65506 5010 #
+7 5020 D _param p MAIN_FACTION = 1 D _param p MAIN_FACTION_RANK } 2 R _script dialog@r_TransferCaps 0  #
+6 5030 D _var p ron_winkley < 2 D _param p SK_SMALL_GUNS } 180 R _var p ron_winkley = 2 #
+0 5040 @
+6 6000 None 0 #
+5 6010 #
+0 6020 @
+7 7000 None 0 &
+
+[engl]
+{100}{}{Ron Winkley}
+{200}{}{You see: Ron Winkley, the jail warden.}
+{210}{}{This man puts offenders in jail and releases them pending their good beahvior.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Don't cause any trouble and you will be just fine!}
+{2010}{}{Well, that's one way to say hello to strangers...}
+{2020}{}{Okay, I won't.}
+{3000}{}{Oh, yeah, sorry. I'm Ron Winkley, the local jail warden. Taking care of prisoners and stuff like that, heh. Can I be of any assistance?}
+{3010}{}{I noticed you get lots of stuff off people taken to jail. Maybe you'd like to get rid of some of it?}
+{3020}{}{Well, no, thanks. I don't think you can help me with anything.}
+{4000}{}{That's true. Maybe we can make some deal, but I will accept only caps. I don't want any more heavy rubbish here.}
+{4010}{}{Fair enough. Let me see what have you got?}
+{5000}{}{Keep your weapon down and there will be no problem!@@Don't steal and everyone will be happy.@@Please, just don't make any mess here.@@No shooting in here, okay?}
+{5010}{}{Can I see what you have for sale?}
+{5020}{}{Give me all the caps you've earned.}
+{5030}{}{I'm pretty good with guns myself, and I'd like to join your guards. Do you have any vacancies?}
+{5040}{}{Uh, okay.}
+{6000}{}{Not at the moment, no. But I am sure I will need some manpower later, so if you prove yourself worthy, I will let you help then.}
+{6010}{}{Okay, then. Let me ask you something else.}
+{6020}{}{Okay, then, I will be back later.}
+{7000}{}{Allright. Here you go boss.}
+
+[russ]
+{100}{}{Рон Винкли}
+{200}{}{Ron Винкли, начальник тюрьмы.}
+{210}{}{Начальник тюрьмы, который сажает правонарушителей в тюрьму и освобождает их за хорошее поведение.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Не создавайте нам проблем, и все будете просто отлично!}
+{2010}{}{Хороший способ поздороваться с незнакомыми людьми.}
+{2020}{}{Окей, я не буду.}
+{3000}{}{Ах, да, извините.Я Рон Винкли, местный начальник тюрьмы. Забочусь о заключенных и все в таком духе, хе-хе. Могу ли я чем-нибудь помочь?}
+{3010}{}{Я заметил, что вы изымаете вещи людей которых сажаете в тюрьму. Может быть, вы хотели бы избавиться от этих вещей?}
+{3020}{}{Ну, нет , спасибо. Я не думаю, что вы можете помочь мне чем-либо.}
+{4000}{}{Это правда. Ну мы можем договорится, но я беру только наличные. Всякого мусора у меня итак полно.}
+{4010}{}{Справедливо. Я посмотрю, что у вас есть?}
+{5000}{}{Не доставайте орижия и не будет никаких проблем !@@Не воруй и все будут счастливы.@@Пожалуйста, только не сздавайте беспорядок здесь.@@Никакой стрельбы здесь, хорошо?}
+{5010}{}{Могу ли я посмотреть, что у вас есть на продажу ?}
+{5020}{}{Give me all the caps you've earned.}
+{5030}{}{Я хорошо обращаюсь с оружием, и я хотел бы наняться к вам в охранники. У вас есть свободные места?}
+{5040}{}{Хорошо.}
+{6000}{}{В данный момент нет. Но я уверен, что будут нужны новые люди позже.}
+{6010}{}{Окей, Позвольте мне задать вам еще вопрос.}
+{6020}{}{Окей, тогда я вернусь позже.}
+{7000}{}{Allright. Here you go boss.}
+
+[pols]
+{100}{}{Ron Winkley}
+{200}{}{Ron Winkley, klawisz.}
+{210}{}{Więzienny klawisz, wsadza przestępców za kratki i wypuszcza ich za dobre sprawowanie.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Nie sprawiaj kłopotów, a wszystko będzie w porządku!}
+{2010}{}{Cóż, to ciekawy sposób na przywitanie nieznajomej osoby.}
+{2020}{}{Dobra, nie będę.}
+{3000}{}{Och, ta, przepraszam. Jestem Ron Winkley, miejscowy kla... ekhem, strażnik więzienny. Zajmuję się więźniami i tego typu rzeczy, hehe. W czym mogę pomóc?}
+{3010}{}{@sex@|Zauważyłem||Zauważyłam|, że zabierasz rzeczy osób wtrącanych do więzienia. Może chciałbyś się ich w jakiś sposób pozbyć?}
+{3020}{}{Cóż, nie, dzięki. Nie sądze, że możesz pomóc mi w czymkolwiek.}
+{4000}{}{To prawda. Cóż, możemy ubić interes, ale przyjmuję tylko kapsle. Nie chcę więcej żadnego żelastwa ani śmieci.}
+{4010}{}{Brzmi rozsądnie. Mogę rzucić okiem, co tam masz?}
+{5000}{}{Schowaj broń i nie będzie żadnych problemów.@@Nie kradnij, a wszyscy będą szczęśliwi.@@Proszę, tylko nie rób tutaj żadnego zamieszania.@@W tym miejscu nie strzelamy, zrozumiano?}
+{5010}{}{Mogę zobaczyć, co masz na sprzedaż?}
+{5020}{}{Give me all the caps you've earned.}
+{5030}{}{Jestem @sex@|niezły||niezła| w strzelaniu, @sex@|chciałbym||chciałabym| dołączyć do twoich strażników. Macie jakieś wolne etaty?}
+{5040}{}{Uch, w porządku.}
+{6000}{}{Nie w tej chwili, nie. Ale w przyszłości na pewno będę potrzebował więcej ludzi, więc jeśli udowodnisz swoją wartość, będziesz @sex@|mógł||mogła| dołączyć.}
+{6010}{}{Dobra. Pozwól, że spytam o coś innego.}
+{6020}{}{Dobra. Do widzenia.}
+{7000}{}{Allright. Here you go boss.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Don't cause any trouble and you will be just fine!}
+{2010}{}{Well, that's one way to say hello to strangers...}
+{2020}{}{Okay, I won't.}
+{3000}{}{Oh, yeah, sorry. I'm Ron Winkley, the local jail warden. Taking care of prisoners and stuff like that, heh. Can I be of any assistance?}
+{3010}{}{I noticed you get lots of stuff off people taken to jail. Maybe you'd like to get rid of some of it?}
+{3020}{}{Well, no, thanks. I don't think you can help me with anything.}
+{4000}{}{That's true. Maybe we can make some deal, but I will accept only caps. I don't want any more heavy rubbish here.}
+{4010}{}{Fair enough. Let me see what have you got?}
+{5000}{}{Keep your weapon down and there will be no problem!@@Don't steal and everyone will be happy.@@Please, just don't make any mess here.@@No shooting in here, okay?}
+{5010}{}{Can I see what you have for sale?}
+{5020}{}{Give me all the caps you've earned.}
+{5030}{}{I'm pretty good with guns myself, and I'd like to join your guards. Do you have any vacancies?}
+{5040}{}{Uh, okay.}
+{6000}{}{Not at the moment, no. But I am sure I will need some manpower later, so if you prove yourself worthy, I will let you help then.}
+{6010}{}{Okay, then. Let me ask you something else.}
+{6020}{}{Okay, then, I will be back later.}
+{7000}{}{Allright. Here you go boss.}
+

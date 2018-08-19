@@ -1,0 +1,159 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+4 2030 D _var p q_dan_bag = 0 #
+0 2040 #
+5 2050 D _var p q_dan_bag = 2 R _var p q_dan_bag = 3 R _script economy_dialogs@r_GiveCaps 1 300 R _param p ST_EXPERIENCE + 450 #
+8 2060 @
+3 3000 None 0 #
+0 3010 #
+0 3020 @
+4 4000 None 0 #
+0 4010 #
+0 4020 R _item p PID_BAG + 1 R _var p q_dan_bag = 1 @
+5 5000 None 0 #
+6 5010 #
+0 5020 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+0 8010 #
+0 8020 @
+9 9000 None 0 #
+0 9010 &
+
+[engl]
+{100}{}{Dan "The Man"}
+{200}{}{You see: Dan}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hello there, dear customer. How may I serve you?}
+{2010}{}{I'd like to trade.}
+{2020}{}{I'd like to ask you something...}
+{2030}{}{I'm looking for a job.}
+{2040}{}{Nevermind.}
+{2050}{}{I delivered the bag to Adam as you've asked for.}
+{2060}{}{I've got what mister Brick asked me.}
+{3000}{}{Questions? Curious fella we have here? "I'm just a traveller", huh? Go away, you think this is a motherfucking game?}
+{3010}{}{As you wish.}
+{3020}{}{Woah, woah! All I wanted to do was ask you some questions. I guess not. See you later.}
+{4000}{}{Job? Well ... you are new in town, aren't you? Have you already met Adam, the vice sheriff? Nevermind, he's patrolling the streets of Hub, find him and deliver this bag to him. Then come back, we'll see what else you can do. Do not try to open the bag, unless you want to spend the rest of your days begging for quick death. Get it?}
+{4010}{}{Screw you and your bag, dude. I'm leaving.}
+{4020}{}{Got it, just give me the bag and I'm out.}
+{5000}{}{Excellent, I know when I see a reliable person. So, you're up for another job?}
+{5010}{}{Any time.}
+{5020}{}{Not really, bye.}
+{6000}{}{Good! You're pretty trustworthy. Here take these caps, you've earned it friend. Now get out.}
+{6010}{}{Will do.}
+{7000}{}{And you couldn't stop your fucking curiosity, could you? You better stay out of here, sticky-hand asshole. You had one job ... Get the fuck out. }
+{7010}{}{Whatever, big deal because of bag with few caps inside. Bye, moron.}
+{8000}{}{Fine, come with me.}
+{8010}{}{Sure.}
+{8020}{}{Well, on the other side I have other shit to do. Bye.}
+{9000}{}{What did I just tell you? You are bigger moron than I thought you are. Get the fuck out and never come back!}
+{9010}{}{What a bunch of weirdos. Screw both of you!}
+
+[russ]
+{100}{}{Дэн}
+{200}{}{Вы видите: Дэна}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Привет, дорогой клиент. Чем я могу служить вам?}
+{2010}{}{Покажите что у вас есть на обмен.}
+{2020}{}{Я хотел бы спросить у вас кое-что ...}
+{2030}{}{Я ищу работу.}
+{2040}{}{Ничем.}
+{2050}{}{Я доставил сумку Адаму, как вы просили.}
+{2060}{}{Я принес, то что просил мистер Брик.}
+{3000}{}{Вопросы? Любопытный парень тут у нас? "Я просто путешественник", да? Пошел вон, ты думешь я тут буду с тобой в игрушки играть ублюдок?}
+{3010}{}{Как вам будет угодно.}
+{3020}{}{Вау, Вау! Я только хотел задать вам несколько вопросов. Уже ухожу.}
+{4000}{}{Работу? Ну ... Ты новичок в городе, не так ли? Вы уже встречали Адама, вице-шерифа? Неважно, он патрулирует улицы Хаба, найди его и передай сумку. Потом возвращайся и посмотрим на что еще сгодишься. Не пытайся открыть сумку, если только не хочешь провести остаток своих жалких дней, прячась от меня в какой-нибудь дыре. Понял?}
+{4010}{}{Пошел ты и твоя сумка, чувак. Я ухожу.}
+{4020}{}{Понял, просто давай мне сумку и я пошел.}
+{5000}{}{Отлично, теперь я знаю, ты надежный человек. Итак, готов к другой работе?}
+{5010}{}{В любое время.}
+{5020}{}{Не совсем, до свидания.}
+{6000}{}{Хорошо! Возьми эти деньги, ты это заслужил. А теперь убирайся.}
+{6010}{}{Будет сделано.}
+{7000}{}{Не можешь умерить свое гребанное любопытство? Держись от сюда подальше ублюдок.}
+{7010}{}{Большое дело, мешочек с несколькими крышками. Пока, идиот.}
+{8000}{}{Хорошо, пойдем со мной.}
+{8010}{}{Конечно.}
+{8020}{}{Ну, с другой стороны у меня есть другие дела. Пока.}
+{9000}{}{Что я только что сказал? Я даже не думал что ты такой дебил. Убирайся и не возвращайся!}
+{9010}{}{Пошли вы!}
+
+[pols]
+{100}{}{Dan}
+{200}{}{Widzisz Dana.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Witam szanownego klienta. Czym mogę służyć?}
+{2010}{}{@sex@|Chciałbym||Chciałabym| pohandlować.}
+{2020}{}{@sex@|Chciałbym||Chciałabym| się o coś spytać...}
+{2030}{}{Szukam roboty.}
+{2040}{}{Nieważne.}
+{2050}{}{@sex@|Dostarczyłem||Dostarczyłam| torbę do Adama, tak jak mnie o to prosiłeś.}
+{2060}{}{Mam to, o co prosił mnie pan Brick.}
+{3000}{}{Pytania? @sex@|Ciekawski kolega||Ciekawska koleżanka|, taaak? "Jestem tu tylko przejazdem", hm? Wynocha stąd, co ty kurwa myślisz, że to jakaś jebana zabawa?}
+{3010}{}{Jak sobie życzysz.}
+{3020}{}{Hola, hola! @sex@|Chciałem||Chciałam| tylko zadać parę pytań. Nie to nie, OK. Do zobaczenia.}
+{4000}{}{Robota? Dobra... jesteś @sex@|nowy||nowa| w mieście, co nie? @sex@|Spotkałeś||Spotkałaś| już Adama, zastępcę szeryfa? Nieważne, patroluje ulice Hubu - znajdź go i wręcz mu tą torbę. Potem wróć, zobaczymy do czego dalej możesz się przydać. Nie próbuj otwierać torby, chyba że chcesz spędzić resztę swoich dni błagając o szybką śmierć. Łapiesz?}
+{4010}{}{Pierdolę ciebie i twoją torbę, koleś. Wychodzę.}
+{4020}{}{Łapię. Daj mi tę torbę i już mnie tu nie ma.}
+{5000}{}{Doskonale, wiem kiedy trafiam na porządną osobę. A więc jak, chcesz usłyszeć o kolejnej robocie?}
+{5010}{}{W każdej chwili.}
+{5020}{}{Niespecjalnie, do widzenia.}
+{6000}{}{Dobrze! Można ci ufać. Weź te kapsle, dobrze sobie na nie @sex@|zarobiłeś||zarobiłaś|. Teraz wyjdź.}
+{6010}{}{Tak zrobię.}
+{7000}{}{I nie @sex@|mogłeś||mogłaś| powstrzymać pierdolonej ciekawości, co nie? Lepiej trzymaj się stąd z daleka. To była jedna, banalnie prosta robota... Wypierdalaj, ale już.}
+{7010}{}{Pff, wielkie halo przez jedną torbę z kilkoma kapslami w środku. Nara, frajerze.}
+{8000}{}{Dobrze, chodź ze mną.}
+{8010}{}{Jasne.}
+{8020}{}{Dobrze, z drugiej strony - mam zapierdol przy innych sprawach. Do widzenia.}
+{9000}{}{Co ja ci właśnie powiedziałem? Jesteś @sex@|większym idiotą||większą idiotką| niż myślałem. Wypierdalaj stąd w podskokach i nigdy nie wracaj!}
+{9010}{}{Co za banda pojebańców. Pierdolę was obydwu!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hello there, dear customer. How may I serve you?}
+{2010}{}{I'd like to trade.}
+{2020}{}{I'd like to ask you something...}
+{2030}{}{I'm looking for a job.}
+{2040}{}{Nevermind.}
+{2050}{}{I delivered the bag to Adam as you've asked for.}
+{2060}{}{I've got what mister Brick asked me.}
+{3000}{}{Questions? Curious fella we have here? "I'm just a traveller", huh? Go away, you think this is a motherfucking game?}
+{3010}{}{As you wish.}
+{3020}{}{Woah, woah! All I wanted to do was ask you some questions. I guess not. See you later.}
+{4000}{}{Job? Well ... you are new in town, aren't you? Have you already met Adam, the vice sheriff? Nevermind, he's patrolling the streets of Hub, find him and deliver this bag to him. Then come back, we'll see what else you can do. Do not try to open the bag, unless you want to spend the rest of your days begging for quick death. Get it?}
+{4010}{}{Screw you and your bag, dude. I'm leaving.}
+{4020}{}{Got it, just give me the bag and I'm out.}
+{5000}{}{Excellent, I know when I see a reliable person. So, you're up for another job?}
+{5010}{}{Any time.}
+{5020}{}{Not really, bye.}
+{6000}{}{Good! You're pretty trustworthy. Here take these caps, you've earned it friend. Now get out.}
+{6010}{}{Will do.}
+{7000}{}{And you couldn't stop your fucking curiosity, could you? You better stay out of here, sticky-hand asshole. You had one job ... Get the fuck out. }
+{7010}{}{Whatever, big deal because of bag with few caps inside. Bye, moron.}
+{8000}{}{Fine, come with me.}
+{8010}{}{Sure.}
+{8020}{}{Well, on the other side I have other shit to do. Bye.}
+{9000}{}{What did I just tell you? You are bigger moron than I thought you are. Get the fuck out and never come back!}
+{9010}{}{What a bunch of weirdos. Screw both of you!}
+

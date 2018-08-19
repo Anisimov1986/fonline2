@@ -1,0 +1,43 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Farmer}
+{200}{}{A simple farmer.}
+{210}{}{A farmer in some dirty clothes.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Hello.@@How are you?@@It's always so quiet around here.@@Nothing to do... Nothing to do...@@Hmm...}
+
+[russ]
+{100}{}{Фермер}
+{200}{}{Вы видите фермера.}
+{210}{}{Судя по одежде это обычный фермер.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{ответ}
+{2000}{}{Добрый день.@@Как дела?@@Добро пожаловать.@@Ох-хо-хо.@@Тяжелые нынче времена.@@Нам тут проблемы не нужны.}
+
+[pols]
+{100}{}{Farmer}
+{200}{}{Prosty farmer.}
+{210}{}{Farmer w brudnym ubraniu.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Cześć.@@Jak się masz?@@Zawsze jest tu tak cicho.@@Nic do roboty... Nic do roboty...@@Hmm...}
+
+[ptbr]
+{100}{}{Fazendeiro}
+{200}{}{Um simples fazendeiro.}
+{210}{}{Um fazendeiro em roupas sujas.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Oi.@@Como vai?@@Aqui é quieto demais.@@Tenho nada pra fazer...@@Hum...}

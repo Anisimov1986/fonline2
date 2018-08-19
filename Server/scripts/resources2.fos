@@ -1,0 +1,254 @@
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "resource_table.fos"
+#include "utils_for_array.fos"
+
+#define MAX_RESOURCES_COUNT_PER_SCENERY    		( 1 )
+#define TIME_FOR_RESOURCES_COUNT_RESP_TOWN      ( REAL_MINUTE(15) )
+#define TIME_FOR_RESOURCES_COUNT_RESP_ENCOUNTER ( REAL_MINUTE(10) )
+#define RESOURCES_COUNT_RESP_COUNT         		( 1 )
+
+
+#define STR_NO_RESOURCE                    ( 3700 )
+#define STR_WEIGHT_TOO_HEAVY               ( 3701 )
+#define STR_ITEMS_ADDED                    ( 3702 )
+#define STR_ITEM_ADDED                     ( 3703 )
+#define STR_FIND_NOTHING                   ( 3707 )
+
+import uint GetNearFullSecond( uint16 year, uint16 month, uint16 day, uint16 hour, uint16 minute, uint16 second ) from "time";
+import void RiseScavenging(Critter& cr, int chance) from "stdlib";
+
+bool RescourceGather( Critter& cr, Scenery@ onScenery )
+{
+    uint16 onObj;
+    uint   resourceCount=0;
+	if( valid( onScenery ) )
+    {
+        onObj = onScenery.ProtoId;
+    }
+    else
+        return false;
+	Map @ map = cr.GetMap();   
+	Location @ location = map.GetLocation();
+	uint locPid = location.GetProtoId();
+	bool encounter;
+	bool town;
+	if ((locPid>=LOCATION_TOWNS_START) && (locPid<=LOCATION_TOWNS_END))
+		town=true;
+	if ((locPid>=LOCATION_ENCOUNTERS_START) && (locPid<=LOCATION_ENCOUNTERS_END))
+		encounter=true;
+	if (!town && !encounter)
+		return false;
+	int massivenum = -1;
+	for( uint i = 0; i < resource_scenery.length(); i++ )
+        {
+		if (Present(onObj,resource_scenery[i][0]))
+			{
+			massivenum=i;
+			break;
+			}
+        }
+	if (massivenum == -1)
+		return false;
+    if( not CritterCanGetMoreItems( cr ) )
+    {
+        return true;
+    }
+	if (town)
+		resourceCount = GetSceneryResourcesCount( map.Id, onScenery );
+    else if (encounter)
+	{
+		for( uint i = 20; i < 59; i=i+2 )
+		{
+			if (map.GetData(i)==onScenery.HexX && map.GetData(i+1)==onScenery.HexY)
+			{
+				resourceCount = 0;
+				break;
+			}
+			else if (map.GetData(i)==0)
+			{
+				resourceCount = 1;
+				break;
+			}
+		}
+	}
+	if( resourceCount == 0 )
+    {
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_NO_RESOURCE );
+        return true;
+    }
+	if( resourceCount > 0 )
+	{
+		if (town)
+		{
+			uint itemCount = 1;
+			if( resourceCount < itemCount )
+			{
+				itemCount = resourceCount;
+			}
+			resourceCount -= itemCount;
+			SetSceneryResourcesCount( resourceCount, map.Id, onScenery );
+		}
+		else
+		{
+			for( uint i = 20; i < 60; i=i+2 )
+			{
+				if (map.GetData(i)==0)
+				{
+					map.SetData(i,onScenery.HexX);
+					map.SetData(i+1,onScenery.HexY); 
+					break;
+				}
+			}
+		
+		}
+		if (!Gather_Resources(cr , massivenum))
+		{
+			if (cr.Skill[SK_SCAVENGING]/3>=Random(1,100) && Gather_Resources(cr , massivenum))
+			{
+				return true;
+			}
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_FIND_NOTHING );
+		}
+			
+		return true;
+	}
+	return false;
+
+}
+bool CritterCanGetMoreItems( Critter& player )
+{
+    if( ( player.Stat[ ST_CARRY_WEIGHT ] - player.ItemsWeight() ) < 0 )
+    {
+        player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_WEIGHT_TOO_HEAVY );
+        return false;
+    }
+    return true;
+}
+
+uint GetSceneryResourcesCount( uint mapId, Scenery& scenery )
+{
+    uint[] adResourceCount;
+    uint resourceCount = 0;
+    if( IsAnyData( "Resources_" + mapId + "_" + scenery.HexX + "_" + scenery.HexY + "_" + scenery.ProtoId ) )
+    {
+        if( GetAnyData( "Resources_" + mapId + "_" + scenery.HexX + "_" + scenery.HexY + "_" + scenery.ProtoId, adResourceCount ) )
+        {
+            resourceCount = adResourceCount[ 0 ];
+        }
+    }
+    else
+    {
+        uint[] anyData;
+        uint maxResCount = GetMaxResourceCount( scenery.ProtoId );
+        anyData.insertLast( maxResCount );
+        if( not SetAnyData( "Resources_" + mapId + "_" + scenery.HexX + "_" + scenery.HexY + "_" + scenery.ProtoId, anyData ) )
+        {
+            Log( "AnyData not created" );
+        }
+        uint[] forTE;
+        forTE.insertLast( mapId );
+        forTE.insertLast( scenery.HexX );
+        forTE.insertLast( scenery.HexY );
+        forTE.insertLast( scenery.ProtoId );
+		Map @ map = GetMap  ( mapId );   
+		Location @ location = map.GetLocation();
+		uint locPid = location.GetProtoId();
+		CreateTimeEvent( __FullSecond + TIME_FOR_RESOURCES_COUNT_RESP_TOWN, "_AddResourcesCount", forTE, true );
+        resourceCount = maxResCount;
+    }
+    return resourceCount;
+}
+
+void SetSceneryResourcesCount( uint resourceCount, uint mapId, Scenery& scenery )
+{
+    uint[] anyData;
+    anyData.insertLast( resourceCount );
+    if( not SetAnyData( "Resources_" + mapId + "_" + scenery.HexX + "_" + scenery.HexY + "_" + scenery.ProtoId, anyData ) )
+    {
+        Log( "AnyData not created" );
+    }
+}
+
+uint _AddResourcesCount( uint[] @ values )
+{
+    uint[] adResourceCount;
+    if( IsAnyData( "Resources_" + values[ 0 ] + "_" + values[ 1 ] + "_" + values[ 2 ] + "_" + values[ 3 ] ) )
+    {
+		Map @ map = GetMap  ( values[ 0 ] );  
+		if(!valid(map)) 
+		{
+			EraseAnyData( "Resources_" + values[ 0 ] + "_" + values[ 1 ] + "_" + values[ 2 ] + "_" + values[ 3 ] );
+			return 0;
+		}
+		Location @ location = map.GetLocation();
+		if (!valid(location))
+			return 0;
+		uint locPid = location.GetProtoId();
+        if( GetAnyData( "Resources_" + values[ 0 ] + "_" + values[ 1 ] + "_" + values[ 2 ] + "_" + values[ 3 ], adResourceCount ) )
+        {
+			
+            adResourceCount[ 0 ] += RESOURCES_COUNT_RESP_COUNT;
+            if( adResourceCount[ 0 ] < GetMaxResourceCount( values[ 3 ] ) )
+            {
+                if( not SetAnyData( "Resources_" + values[ 0 ] + "_" + values[ 1 ] + "_" + values[ 2 ] + "_" + values[ 3 ], adResourceCount ) )
+                {
+                    Log( "AnyData not created" );
+                }
+            }
+            else
+            {
+                EraseAnyData( "Resources_" + values[ 0 ] + "_" + values[ 1 ] + "_" + values[ 2 ] + "_" + values[ 3 ] );
+                return 0;
+            }
+        }
+		if(valid(location) && (locPid>=LOCATION_ENCOUNTERS_START) && (locPid<=LOCATION_ENCOUNTERS_END))
+		{
+			return TIME_FOR_RESOURCES_COUNT_RESP_ENCOUNTER;
+		}
+        return TIME_FOR_RESOURCES_COUNT_RESP_TOWN;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+uint GetMaxResourceCount( uint scProto )
+{
+    return MAX_RESOURCES_COUNT_PER_SCENERY;
+}
+
+bool Gather_Resources(Critter& cr , int massivenum)
+{
+	int chance = Random(1,100);
+	for( uint i = 0; i < resource_scenery[massivenum][2].length(); i++ )
+	{
+		if ( resource_scenery[massivenum][2][i] >= chance)
+		{
+			if (resource_scenery[massivenum][1][i]==0)
+			{
+				return false;
+			}
+			else
+			{
+				int rescount=Random( 1,resource_scenery[massivenum][3][i]);
+				cr.AddItem( resource_scenery[massivenum][1][i] , rescount);
+				string lexem = "$itemname" + "@msg ITEM " + STR_ITEM_NAME( resource_scenery[massivenum][1][i]) + "@";
+				if (rescount>1)
+				{
+					lexem += "$count" + rescount;
+					cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_ITEMS_ADDED, lexem );
+				}
+				else 
+				{
+					cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, STR_ITEM_ADDED, lexem );
+				}
+				cr.StatBase[ ST_EXPERIENCE ] += resource_scenery[massivenum][4][i];
+				RiseScavenging(cr,20);
+				return true;
+			}
+		}
+	}
+	return false;
+}

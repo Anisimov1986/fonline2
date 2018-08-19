@@ -1,0 +1,49 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 R _script dialog@r_CreateHiddenLocation 5 9321 500 500 1 9606 @
+2 2000 None 0 #
+0 2010 R _script dialog@r_TeleportToCreatedLocation 4 9606 0 0 1 &
+
+[engl]
+{100}{}{Scared Farmer}
+{210}{}{You see a filthy drunkard. It appears he recently fell into some sort of mud puddle, but he doesn't seem bothered by it.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Ready to go?@@Ready?@@You ready?}
+{2010}{}{Yeah, just keep your distance.@@Yep.@@Yes. Don't touch me.}
+
+[russ]
+{100}{}{Алкоголик}
+{200}{}{Вы видите пьяницу.}
+{210}{}{Вы видите шатающегося из стороны в сторону пьяного человека в лохмотьях. Лицо его распухло, нос синющий как слива. А аромат рядом с ним такой, что свалит брамина насмерть. Он что-то бормочет про себя и иногда громко поет песни.}
+{210}{}{Вы видите алкаша. Он весьма грязен - кажется, он повалялся в луже, но не особо этим расстроен.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Ready to go?}
+{2010}{}{Yea kurwa}
+
+[pols]
+{100}{}{Pijak}
+{200}{}{Widzisz pijaka.}
+{210}{}{Widzisz obleczonego w szmaty pijaka. Jego twarz jest obrzmiała, nos wygląda jak śliwka. Śmierdzi gorzej niż braminie gówno, zatacza się na boki i co jakiś czas krzyczy ledwo zrozumiałe bzdury.}
+{210}{}{Widzisz pijaka. Jest bardzo brudny, najwidoczniej wpadł do jakiegoś szamba - ale nie zdaje się, żeby zbytnio się tym przejmował.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Ready to go?}
+{2010}{}{Yea kurwa}
+
+[ptbr]
+{100}{}{Fazendeiro medroso}
+{210}{}{Você vê um bêbado. Ele está bastante sujo, parece que ele caiu em uma poça de lama mas ele parece não se importar com isto.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Pronto para ir?}
+{2010}{}{Sim... cú-de-cana.}
+

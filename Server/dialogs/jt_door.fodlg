@@ -1,0 +1,141 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+5 1010 D _var p JunktownDoor2 = 0 D _param p MAIN_FACTION = 1 D _param p MAIN_FACTION_RANK } 2 D _var p JunktownDoor = 0 #
+4 1020 D _var p JunktownDoor2 = 1 D _param p MAIN_FACTION = 1 D _param p MAIN_FACTION_RANK } 2 D _var p JunktownDoor = 0 #
+8 1030 D _var p JunktownDoor2 = 0 D _param p MAIN_FACTION = 1 D _param p MAIN_FACTION_RANK } 2 D _var p JunktownDoor = 1 #
+9 1040 D _var p JunktownDoor2 = 1 D _param p MAIN_FACTION = 1 D _param p MAIN_FACTION_RANK } 2 D _var p JunktownDoor = 1 #
+2 1050 D _var p JunktownDoor2 = 1 D _var p JunktownDoor = 0 R _script dialog@r_teleport 1 932 R _var p JunktownDoor = 1 #
+2 1060 D _var p JunktownDoor2 = 1 D _var p JunktownDoor = 1 R _script dialog@r_teleport 1 931 R _var p JunktownDoor = 0 #
+3 1070 D _var p JunktownDoor2 = 0 @
+2 2000 None 0 @
+3 3000 None 0 @
+4 4000 None 0 #
+2 4010 R _var p JunktownDoor = 1 R _script dialog@r_teleport 1 932 #
+7 4020 R _var p JunktownDoor2 = 0 @
+5 5000 None 0 #
+2 5010 R _var p JunktownDoor = 1 R _script dialog@r_teleport 1 932 #
+6 5020 R _var p JunktownDoor2 = 1 @
+6 6000 None 0 @
+7 7000 None 0 @
+8 8000 None 0 #
+2 8010 R _var p JunktownDoor = 0 R _script dialog@r_teleport 1 931 #
+6 8020 R _var p JunktownDoor2 = 1 @
+9 9000 None 0 #
+2 9010 R _var p JunktownDoor = 0 R _script dialog@r_teleport 1 931 #
+7 9020 R _var p JunktownDoor2 = 0 &
+
+[engl]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ENTER leader, locked}
+{1020}{}{ENTER leader, unlocked}
+{1030}{}{EXIT leader, locked}
+{1040}{}{EXIT leader, unlocked}
+{1050}{}{ENTER Unlocked.}
+{1060}{}{EXIT UNLOCKED}
+{1070}{}{locked, no access}
+{2000}{}{ }
+{3000}{}{It appears to be locked.}
+{4000}{}{What do you want to do?}
+{4010}{}{Enter}
+{4020}{}{Lock Door}
+{5000}{}{What do you want to do?}
+{5010}{}{Enter}
+{5020}{}{Unlock Door}
+{6000}{}{Door becomes unlocked.}
+{7000}{}{Door becomes locked.}
+{8000}{}{What do you want to do?}
+{8010}{}{Exit}
+{8020}{}{Unlock Door}
+{9000}{}{What do you want to do?}
+{9010}{}{Exit}
+{9020}{}{Lock Door}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ENTER leader, locked}
+{1020}{}{ENTER leader, unlocked}
+{1030}{}{EXIT leader, locked}
+{1040}{}{EXIT leader, unlocked}
+{1050}{}{ENTER Unlocked.}
+{1060}{}{EXIT UNLOCKED}
+{1070}{}{locked, no access}
+{2000}{}{ }
+{3000}{}{It appears to be locked.}
+{4000}{}{What do you want to do?}
+{4010}{}{Enter}
+{4020}{}{Lock Door}
+{5000}{}{What do you want to do?}
+{5010}{}{Enter}
+{5020}{}{Unlock Door}
+{6000}{}{Door becomes unlocked.}
+{7000}{}{Door becomes locked.}
+{8000}{}{What do you want to do?}
+{8010}{}{Exit}
+{8020}{}{Unlock Door}
+{9000}{}{What do you want to do?}
+{9010}{}{Exit}
+{9020}{}{Lock Door}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ENTER leader, locked}
+{1020}{}{ENTER leader, unlocked}
+{1030}{}{EXIT leader, locked}
+{1040}{}{EXIT leader, unlocked}
+{1050}{}{ENTER Unlocked.}
+{1060}{}{EXIT UNLOCKED}
+{1070}{}{locked, no access}
+{2000}{}{ }
+{3000}{}{It appears to be locked.}
+{4000}{}{What do you want to do?}
+{4010}{}{Enter}
+{4020}{}{Lock Door}
+{5000}{}{What do you want to do?}
+{5010}{}{Enter}
+{5020}{}{Unlock Door}
+{6000}{}{Door becomes unlocked.}
+{7000}{}{Door becomes locked.}
+{8000}{}{What do you want to do?}
+{8010}{}{Exit}
+{8020}{}{Unlock Door}
+{9000}{}{What do you want to do?}
+{9010}{}{Exit}
+{9020}{}{Lock Door}
+
+[ptbr]
+{100}{}{Portão}
+{1000}{}{Predialogue installations}
+{1010}{}{ENTER leader, locked}
+{1020}{}{ENTER leader, unlocked}
+{1030}{}{EXIT leader, locked}
+{1040}{}{EXIT leader, unlocked}
+{1050}{}{ENTER Unlocked.}
+{1060}{}{EXIT UNLOCKED}
+{1070}{}{locked, no access}
+{2000}{}{ }
+{3000}{}{Parece estar trancada.}
+{4000}{}{O que você quer fazer?}
+{4010}{}{Entrar}
+{4020}{}{Trancar porta}
+{5000}{}{O que você quer fazer?}
+{5010}{}{Entrar}
+{5020}{}{Destrancar porta}
+{6000}{}{A porta foi destrancada.}
+{7000}{}{A porta foi trancada.}
+{8000}{}{O que você quer fazer?}
+{8010}{}{Sair}
+{8020}{}{Destrancar porta}
+{9000}{}{O que você quer fazer?}
+{9010}{}{Sair}
+{9020}{}{Trancar porta}
+

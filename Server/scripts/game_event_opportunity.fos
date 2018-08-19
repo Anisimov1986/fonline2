@@ -1,0 +1,462 @@
+#include "_itempid.fos"
+#include "_msgstr.fos"
+#include "_npc_pids.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_common_loot.fos"
+#include "game_event_gossip_h.fos"
+#include "utils_h.fos"
+
+
+#define EVENT_DURATION                  (REAL_MINUTE(20))
+#define OPPORTUNITY_FIRST_ID            (57)
+#define GAMBLER_OPPORTUNITY_EVENT_ID    (57)
+#define PROSTITUTE_OPPORTUNITY_EVENT_ID (58)
+#define OPPORTUNITY_LAST_ID             (58)
+
+
+import int GetNextTime(uint Id) from "game_events";
+import void AddKarma( Critter& cr, int Value ) from "karma";
+
+
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + GAMBLER_OPPORTUNITY_EVENT_ID, OpportunityEvent(GAMBLER_OPPORTUNITY_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_gambler)
+		.AddLoot(PID_BOTTLE_CAPS, 500, 1000)
+		.SetGossipMsgId(STR_GAMBLER_OPP_EVENT_GOSSIP_LOC, STR_GAMBLER_OPP_EVENT_GOSSIP_NO_LOC)
+	);
+	
+	events.set("" + PROSTITUTE_OPPORTUNITY_EVENT_ID, OpportunityEvent(PROSTITUTE_OPPORTUNITY_EVENT_ID)
+		.AddCritterDialogIds(DIALOG_all_prostitute)
+		.AddLoot(PID_BOTTLE_CAPS, 500, 1000)
+		.SetGossipMsgId(STR_PROSTITUTE_OPP_EVENT_GOSSIP_LOC, STR_PROSTITUTE_OPP_EVENT_GOSSIP_NO_LOC)
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	OpportunityEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+		
+		uint[] values = {id};
+		CreateTimeEvent(__FullSecond + EVENT_DURATION, "e_event_stop", values, true);
+	}
+}
+
+uint e_event_init(array<uint>@ values) 
+{
+	OpportunityEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.InitEvent();
+	}
+	
+	return 0;
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	OpportunityEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent(true);
+	}
+	
+	return 0;
+}
+
+void event_start(Critter& player, int id, int moveTester, int)
+{
+	event_start(id);
+		
+	OpportunityEvent @event;
+	if (moveTester > 0 && events.get("" + id, @event))
+	{
+		//Move tester near event critter if moveTester > 0
+		uint16 x = 0, y = 0;
+		
+		Critter@ questCritter = GetCritter(event.GetCritterId());
+		if(!valid(questCritter))
+		{
+			return;
+		}
+		
+		x = questCritter.HexX;
+		y = questCritter.HexY;
+		
+		Map@ map = questCritter.GetMap();
+		if(!valid(map))
+		{
+			return;
+		}
+		
+		if (GetFreeHex(map, 2, x, y))
+		{
+			player.TransitToMap(map.Id, x, y, 0, true);
+		}
+	}
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class OpportunityEvent
+{	
+	#define _GetKey ("OpportunityEvent" + eventId)
+	private int eventId;
+	private uint critterId, gossipLocMsgId = 0, gossipNoLocMsgId = 0;
+	private AutoLootGenerator autoLootGenerator;
+	private uint[] critterDialogIds;
+	
+	bool started = false, loaded = false;
+
+	
+	OpportunityEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	private void Load()
+	{
+		if (loaded)
+		{
+			return;
+		}
+	
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(critterId);
+		serializator.Get(started);
+		
+		loaded = true;
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(critterId);
+		serializator.Set(started);
+		
+		serializator.Save(_GetKey);
+	}
+	
+	OpportunityEvent@ AddCritterDialogIds(uint dialogId)
+	{
+		critterDialogIds.insertLast(dialogId);
+		return @this;
+	}
+
+	OpportunityEvent@ SetGossipMsgId(uint gossipLocMsgId, uint gossipNoLocMsgId)
+	{
+		this.gossipLocMsgId = gossipLocMsgId;
+		this.gossipNoLocMsgId = gossipNoLocMsgId;
+		return @this;
+	}
+	
+	OpportunityEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	OpportunityEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+	
+	uint GetCritterId()
+	{
+		Load();
+		return critterId;
+	}
+	
+	bool IsStarted()
+	{
+		return started;
+	}
+	
+	void InitEvent()
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		Critter@ critter = GetCritter(critterId);	
+		
+		if(!valid(critter))
+		{
+			return;
+		}
+	
+		critter.SetEvent(CRITTER_EVENT_USE_SKILL_ON_ME, "_CritterSkill");
+	}
+	
+	void StartEvent()
+	{	
+		Load();
+		
+		if (started)
+		{
+			return;
+		}
+	
+		critterId = FindCritterId();
+
+		InitializeCritter();
+		
+		InitializeGossip();
+		
+		started = true;
+			
+		Save();
+	}
+	
+	void InitializeGossip()
+	{
+		if (gossipLocMsgId > 0)
+		{
+			Critter@ critter = GetCritter(critterId);
+			if (!valid(critter)) 
+			{
+				return;
+			}
+		
+			Map@ map = critter.GetMap();
+			if (!valid(map)) 
+			{
+				return;
+			}
+
+			Location@ location = map.GetLocation();
+			if (!valid(location)) 
+			{
+				return;
+			}
+			
+			GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, EVENT_DURATION);
+			gossipDefinition.SetGossipId(eventId);
+			gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+			gossipDefinition.SetSourceLocationId(location.Id);
+			gossipDefinition.SetMsgId(gossipLocMsgId);
+			gossipDefinition.SetSourceMsgId(gossipNoLocMsgId);
+			gossipDefinition.SetLexems("$locationname" + "@msg GM " + STR_LOC_NAME(location.GetProtoId()) + "@");
+			StartGossip(gossipDefinition);
+		}
+	}
+	
+	void StopEvent(bool removeLoot)
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		ClearCritter(removeLoot);
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+		
+		started = false;
+		
+		EraseAnyData(_GetKey);
+	}
+	
+	private uint FindCritterId()
+	{
+		Critter@[] allCritters;
+		Critter@[] questCritters;
+		
+		GetAllNpc(0, allCritters);
+		
+		for(uint i = 0; i < allCritters.length(); i++)
+		{
+			if (!Present(allCritters[i].Param[ST_DIALOG_ID], critterDialogIds))
+			{
+				continue;
+			}
+			
+			if (allCritters[i].IsDead())
+			{
+				continue;
+			}
+			
+			if (FLAG(allCritters[i].ParamBase[CR_FLAGS1], NPC_GIVING_QUEST))
+			{
+				continue;
+			}
+			
+			if (FLAG(allCritters[i].ParamBase[CR_FLAGS1], NPC_GIVING_QUEST_INVISIBLE))
+			{
+				continue;
+			}
+		
+			Map@ map = allCritters[i].GetMap();
+			if (!valid(map)) 
+			{
+				continue;
+			}
+
+			Location@ location = map.GetLocation();
+			if (!valid(location)) 
+			{
+				continue;
+			}
+			
+			if (location.GetProtoId() == LOCATION_Island_Prison)
+			{
+				continue;
+			}
+			
+			if (!location.Visible)
+			{
+				continue;
+			}
+				
+			questCritters.insertLast(allCritters[i]);			
+		}
+		
+		uint randomIdx = Random(0, questCritters.length() - 1);
+		
+		if (valid (questCritters[randomIdx]))
+		{
+			return questCritters[randomIdx].Id;
+		}
+		
+		return 0;			
+	}
+	
+	private void InitializeCritter()
+	{
+		Critter@ critter = GetCritter(critterId);
+		if (!valid(critter)) 
+		{
+			return;
+		}
+		
+		SETFLAG(critter.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST_INVISIBLE);
+		
+		autoLootGenerator.GenerateLoot(critter);
+		
+		critter.SetEvent(CRITTER_EVENT_USE_SKILL_ON_ME, "_CritterSkill");
+	}
+	
+	private void ClearCritter(bool removeLoot)
+	{
+		Critter@ critter = GetCritter(critterId);	
+		if(!valid(critter))
+		{
+			return;
+		}
+		
+		UNSETFLAG(critter.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST_INVISIBLE);
+		
+		if (removeLoot)
+		{
+			Item@[] items;
+			critter.GetItems(SLOT_INV, items);
+			DeleteItems(items);
+		}
+		
+		critter.SetEvent(CRITTER_EVENT_USE_SKILL_ON_ME, "");
+	}
+}
+
+OpportunityEvent@ findEvent(uint critterId)
+{
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	for (uint i = OPPORTUNITY_FIRST_ID; i <= OPPORTUNITY_LAST_ID; i++)
+	{
+		OpportunityEvent @event;
+		
+		if (events.get("" + i, @event) && event.GetCritterId() == critterId)
+		{
+			return event;
+		}
+	}
+	
+	return null;
+}
+
+bool _CritterSkill(Critter& critter, Critter& whoUse, int skill)
+{
+    if (skill == SKILL_LOOT_CRITTER || skill == SK_STEAL)
+    {
+		OpportunityEvent @event = findEvent(critter.Id);
+		if (valid(event))
+		{
+			event.StopEvent(false);
+		}
+    }
+	
+	return false;
+}

@@ -1,0 +1,109 @@
+#include "_macros.fos"
+
+#include "event_hungergames.fos"
+
+
+
+void _MapInit(Map& map, bool)
+{
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "PlayerKilled");
+    map.SetEvent(MAP_EVENT_OUT_CRITTER, "CheckPlayers");
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_CrIn");
+}
+
+void PlayerKilled(Map& map, Critter& cr, Critter@ killer)
+{
+	if( !cr.IsPlayer() )
+	return;
+	
+    map.PlaySound( "HOWITZER.ACM" );
+    GameVar@ KillCount = GetGlobalVar(GVAR_HG_Killcount); //Auto Container spawn per 15 kills.
+    
+	if (valid(killer))
+    {
+		killer.StatBase[ ST_EXPERIENCE ]+=2000;
+        KillCount += 1;
+    }
+	Critter@[] critters;
+	uint players= 0;
+	uint playernum = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO, critters);
+	for( uint c=0; c<playernum; c++ )
+	{
+		if( critters[c].GetAccess() == ACCESS_CLIENT )
+			players++;
+	}
+    if (KillCount == 15 && players != 1 )
+    {
+        event_RespawnLockers();
+        KillCount = 0;
+    }
+	if( players == 1 )
+	{
+		AddNewMapMessage( "Only one survivor remaining! The event is finished. Winner should head to the middle of arena." ,REAL_SECOND(10), 0 , COLOR_ORANGE, map.Id);
+        KillCount = 0;
+		event_completed();
+	}
+}
+
+void _CrIn(Map& map,Critter& cr)
+{
+	if( !cr.IsPlayer() )
+		return;
+	//if (!FLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME))
+	//	SETFLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME); //Nobody cares, just creates problems for real solo players.
+	if( cr.GetAccess() == ACCESS_CLIENT )
+	{
+	cr.ModeBase[MODE_NO_WALK]=1;
+	cr.ModeBase[MODE_NO_RUN]=1;
+	}
+	
+	Critter@[] critters;
+	uint players= 0;
+	uint playernum = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO, critters);
+	for( uint c=0; c<playernum; c++ )
+	{
+		if( critters[c].GetAccess() == ACCESS_CLIENT )
+			players++;
+	}
+	if( players == 100 )
+	{
+	AddNewMessage( "All Slots are Taken! Event will start faster!",REAL_SECOND(12), 1, COLOR_RED, true, 1);
+	RemoveMessageByEvent(9321);
+	EraseTimeEvent(HGEventTimer);
+	CreateTimeEvent(__FullSecond+REAL_SECOND(15), "e_event_gathering", 0, true);
+	}
+}
+
+void CheckPlayers(Map& map,Critter& cr)
+{
+	if( !cr.IsPlayer() )
+		return;
+	//if (FLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME))
+	//	UNSETFLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME);
+
+	cr.ModeBase[MODE_NO_WALK]=0;
+	cr.ModeBase[MODE_NO_RUN]=0;
+	
+	if(map.GetNpcCount(ROLE_FINISHER, FIND_ONLY_NPC | FIND_ALL) != 0)
+		return;
+	
+	Critter@[] critters;
+	uint players= 0;
+	uint playernum = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO, critters);
+	for( uint c=0; c<playernum; c++ )
+	{
+		if( critters[c].GetAccess() == ACCESS_CLIENT )
+			players++;
+	}
+	if( players == 1 )
+	{
+		AddNewMapMessage( "Only one survivor remaining! The event is finished. Winner should head to the middle of arena." ,REAL_SECOND(10), 0 , COLOR_ORANGE, map.Id);
+        
+        GameVar@ KillCount = GetGlobalVar(GVAR_HG_Killcount); //Auto Container spawn per 15 kills.
+        KillCount = 0;
+		event_completed();
+	}
+	return;
+}
+
+

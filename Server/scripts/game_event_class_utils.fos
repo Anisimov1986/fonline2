@@ -1,0 +1,669 @@
+#ifndef __GAME_EVENT_CLASS_UTILS__
+#define __GAME_EVENT_CLASS_UTILS__
+
+#include "_defines.fos"
+#include "_itempid.fos"
+#include "_macros.fos"
+#include "serializator.fos"
+#include "worldmap_h.fos"
+#include "economy_h.fos"
+#include "rare_loot_queue_h.fos"
+
+
+import int ProcessRareLootRules(uint16 protoId, uint mapId, int count) from "rare_loot_queue";
+import uint16 GetRandomBlueprintPid() from "blueprints";
+import void FindEventCoordinates(uint[]& encounterGroupIds, uint[]& allowedTerrainTypes, uint[]& forbiddenTerrainTypes, uint& x, uint& y, uint& terrainType, uint& area) from "worldmap";
+import uint16 GetAviableItem(uint16 pid, bool allowRare) from "blueprints";
+import bool IsItemAviable(uint16 pid) from "blueprints";
+
+
+class AutoLocation
+{
+	#define _GetKeyAL ("AutoLocation" + id)
+	
+	private uint id;
+	private bool created = false;
+	private uint locationId;
+	
+	
+	AutoLocation(uint id)
+	{
+		this.id = id;
+		Load();
+	}
+	
+	private void Load()
+	{
+		Serializator serializator;
+		if(!serializator.Load(_GetKeyAL))
+		{
+			return;
+		}
+		
+		serializator.Get(id);
+		serializator.Get(created);
+		serializator.Get(locationId);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(id);
+		serializator.Set(created);
+		serializator.Set(locationId);
+		
+		serializator.Save(_GetKeyAL);
+	}
+	
+	bool IsCreated()
+	{
+		return created;
+	}
+	
+	bool IsLocationMap(Map& map)
+	{
+		Location@ location = map.GetLocation();
+	
+		if (!valid(location))
+		{
+			return false;
+		}
+	
+		return location.Id == locationId; 
+	}
+	
+	Location@ Create(uint locationProtoId, WorldMapArea& worldMapArea)
+	{
+		uint x = 0, y = 0;
+		worldMapArea.ComputeRandomCoorinates(x, y);
+		return Create(locationProtoId, x, y);
+	}
+	
+	Location@ Create(WorldMapLocationGenerator& worldMapLocationGenerator)
+	{
+		uint x = 0, y = 0, locationProtoId = 0;
+		worldMapLocationGenerator.ComputeRandomCoorinates(x, y, locationProtoId);
+		return Create(locationProtoId, x, y);
+	}
+	
+	Location@ Create(HybridLocationGenerator& hybridLocationGenerator)
+	{
+		uint x = 0, y = 0, locationProtoId = 0;
+		hybridLocationGenerator.ComputeRandomCoorinates(x, y, locationProtoId);
+		return Create(locationProtoId, x, y);
+	}
+	
+	Location@ Create(uint locationProtoId, uint x, uint y)
+	{
+		if (created)
+		{
+			return null;
+		}
+	
+		locationId = CreateLocation(locationProtoId, x, y, null);
+		 
+		if (locationId == 0)
+		{
+			return null;
+		}
+		
+		Location @location = GetLoc(locationId);
+		if (!valid(location)) 
+		{
+			return null;
+		}
+		
+		created = true;
+		Save();
+		
+		Log("Event location created: x = " + x + ", y = " + y + ", locationPid = " + locationProtoId);
+		return location;
+	}
+	
+	Location@ GetLocation()
+	{
+		return GetLoc(locationId);
+	}
+	
+	void Delete()
+	{
+		if (!created)
+		{
+			return;
+		}
+		
+		Location @location = GetLoc(locationId);
+		if (!valid(location)) 
+		{
+			return;
+		}
+		
+		location.Visible = false;
+		location.AutoGarbage = true;
+		location.Update();
+		
+		EraseAnyData(_GetKeyAL);
+		
+		created = false;
+	}
+}
+
+Location@ GetLoc(uint locId)
+{
+	return GetLocation(locId);
+}
+
+
+class AutoCarTemplate
+{
+	private int carPid, entire;
+	private int guardRole = 0;
+	private AutoLootGenerator autoLootGenerator;
+
+	AutoCarTemplate(int carPid, int entire)
+	{
+		this.carPid = carPid;
+		this.entire = entire;
+	}
+	
+	AutoCarTemplate@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+	
+	AutoCarTemplate@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	AutoCarTemplate@ AddLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	AutoCarTemplate@ AddLoot(AutoLootGenerator& autoLootGenerator, double quantityRatio)
+	{
+		this.autoLootGenerator.AddLoot(autoLootGenerator, quantityRatio);
+		return @this;	
+	}
+	
+	AutoCarTemplate@ SetGuardRole(int guardRole)
+	{
+		this.guardRole = guardRole;
+		return @this;
+	}
+	
+	Item@ Spawn(Map& map, int index)
+	{
+		uint16 hexX = 0;
+		uint16 hexY = 0;
+		uint8 dir = 0;
+	
+		if (!valid(map))
+		{
+			return null;
+		}
+			
+		if (!map.GetEntireCoords(entire, index % map.CountEntire(entire), hexX, hexY, dir))
+		{
+			return null;
+		}
+		
+		Item @car = map.AddItem(hexX, hexY, carPid, 1);
+		if (!valid(car))
+		{
+			return null;
+		}
+		
+		UNSETFLAG(car.Flags, ITEM_GECK);
+		car.LockerId = 1;
+		Item@ bag = car.GetChild(0);
+		
+		if (guardRole > 0 ) {
+			SETFLAG(bag.LockerCondition, LOCKER_GUARDED);
+			bag.LockerId = guardRole;
+		}
+		else 
+		{
+			bag.LockerComplexity = Random(10, 20);
+			bag.LockerId = Random(10000, 50000);
+		}
+
+		autoLootGenerator.GenerateLoot(bag);
+		
+		return car;
+	}
+	
+	bool CarWithLootExists(Map &map)
+	{
+		if (!valid(map)) 
+		{
+			return false;
+		}
+		
+		array<Item@> cars;
+		map.GetItems(carPid, cars);
+		for (uint i = 0; i < cars.length(); i++)
+		{
+			if (cars[i].LockerId == 1) 
+			{
+				Item@ bag = cars[i].GetChild(0);
+				array<Item@> loot;
+				
+				if (!valid(bag))
+				{
+					return false;
+				}
+				
+				bag.GetItems(0, loot);
+				
+				if (loot.length() > 0)
+				{
+					return true;
+				}
+			}
+		}
+			
+		return false;
+	}
+}
+
+void CleanAutoCars(Map& map, int carPid)
+{
+	array<Item@> cars;
+	map.GetItems(carPid, cars);
+	for (uint i = 0; i < cars.length(); i++)
+	{
+		if (cars[i].LockerId == 1)
+		{
+			DeleteItem(cars[i]);
+		}
+	}
+}
+
+
+class AutoLootGenerator
+{
+	private int[] lootPids = {}, lootMinQuantities = {}, lootMaxQuantities = {};
+	private double[] probabilities = {};
+	
+	AutoLootGenerator@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		return AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, 1);
+	}
+	
+	AutoLootGenerator@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		lootPids.insertLast(lootPid);
+		lootMinQuantities.insertLast(lootMinQuantity);
+		lootMaxQuantities.insertLast(lootMaxQuantity);
+		probabilities.insertLast(probability);
+		return @this;
+	}
+	
+	AutoLootGenerator@ AddLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		return AddLoot(autoLootGenerator, 1.0);
+	}
+	
+	AutoLootGenerator@ AddLoot(AutoLootGenerator& autoLootGenerator, double quantityRatio)
+	{
+		for (uint i = 0; i < autoLootGenerator.lootPids.length(); i++)
+		{
+			lootPids.insertLast(autoLootGenerator.lootPids[i]);
+			lootMinQuantities.insertLast(quantityRatio * autoLootGenerator.lootMinQuantities[i]);
+			lootMaxQuantities.insertLast(quantityRatio * autoLootGenerator.lootMaxQuantities[i]);
+			probabilities.insertLast(autoLootGenerator.probabilities[i]);
+		}
+		
+		return @this;
+	}
+	
+	AutoLootGenerator@ GenerateLoot(Item& bag)
+	{
+		return GenerateLoot(bag, 1.0);
+	}
+	
+	AutoLootGenerator@ GenerateLoot(Item& bag, double quantityRatio)
+	{
+		for (uint i = 0; i < lootPids.length(); i++)
+		{
+			int itemPid = lootPids[i];
+		
+			if (!IsItemAviable(itemPid))
+			{
+                itemPid = GetAviableItem(itemPid, true);
+			}
+			
+			if (itemPid == 0)
+			{
+				continue;
+			}
+			
+			int count = Random(lootMinQuantities[i], lootMaxQuantities[i]) * quantityRatio;
+			count = ProcessRareLootRules(itemPid, bag.MapId, count);
+			
+			if (count > 0)
+			{			
+				if (Random(1, 100000) <= probabilities[i] * 100000)
+				{
+					if (itemPid == PID_BOTTLE_CAPS)
+					{
+						count = RewardMod(count);
+					}
+					
+					bag.AddItem(itemPid, count, 0);
+				}	
+			}
+		}
+		return @this;
+	}
+
+	AutoLootGenerator@ GenerateLoot(Critter& critter)
+	{
+		return GenerateLoot(critter, 1.0);
+	}
+	
+	AutoLootGenerator@ GenerateLoot(Critter& critter, double quantityRatio)
+	{
+		for (uint i = 0; i < lootPids.length(); i++)
+		{
+			int itemPid = lootPids[i];
+		
+			if (!IsItemAviable(itemPid))
+			{
+                itemPid = GetAviableItem(itemPid, true);
+			}
+			
+			if (itemPid == 0)
+			{
+				continue;
+			}
+		
+			int count = Random(lootMinQuantities[i], lootMaxQuantities[i]) * quantityRatio;
+			count = ProcessRareLootRules(itemPid, critter.GetMapId(), count);
+			
+			if (count > 0)
+			{
+				if (Random(1, 100000) <= probabilities[i] * 100000)
+				{
+					if (itemPid == PID_BOTTLE_CAPS)
+					{
+						count = RewardMod(count);
+					}
+				
+					critter.AddItem(itemPid, count);
+				}
+			}
+		}
+		return @this;
+	}	
+	
+	AutoLootGenerator@ GenerateOneItem(Critter& critter)
+	{
+		double sum = 0;
+		
+		for (uint i = 0; i < lootPids.length(); i++)
+		{
+			sum += 0.5 * probabilities[i] * (lootMinQuantities[i] + lootMaxQuantities[i]);
+		}
+		
+		int random = Random(1, 10000 * sum);
+		
+		for (uint i = 0; i < lootPids.length(); i++)
+		{
+			int itemPid = lootPids[i];
+			int count = 1;
+		
+			if (!IsItemAviable(itemPid))
+			{
+                itemPid = GetAviableItem(itemPid, true);
+			}
+			
+			if (itemPid == 0)
+			{
+				return @this;
+			}
+			
+			count = ProcessRareLootRules(itemPid, critter.GetMapId(), count);
+			if (count == 0)
+			{
+				continue;
+			}
+		
+			int weight = 5000 * probabilities[i] * (lootMinQuantities[i] + lootMaxQuantities[i]);
+		
+			if (weight >= random)
+			{
+				critter.AddItem(itemPid, 1);
+				return @this;
+			}
+			else
+			{
+				random -= weight;
+			}
+		}
+		
+		return @this;
+	}
+	
+	AutoLootGenerator@ SpawnLootToContainers(Map& map, int val0Id, bool splitLoot, bool lock)
+	{
+		array<Item@> containers;		
+		double containersCount = 0;
+		
+		map.GetItemsByType(ITEM_TYPE_CONTAINER, containers);
+		
+		if (splitLoot)
+		{
+			for (uint i = 0; i < containers.length(); i++)
+			{
+				if (containers[i].Val0 == val0Id)
+				{
+					containersCount += 1.0;
+				}
+			}
+		}
+		else
+		{
+			containersCount = 1;
+		}
+		
+		for (uint i = 0; i < containers.length(); i++)
+		{
+			if (containers[i].Val0 == val0Id)
+			{
+				GenerateLoot(containers[i], 1.0 / containersCount);
+				
+				if (lock)
+				{
+					containers[i].LockerComplexity = Random(10, 20);
+					containers[i].LockerId = Random(10000, 50000);
+				}
+			}
+		}
+		
+		return @this;
+	}
+}
+
+class WorldMapLocationGenerator
+{
+	uint[] groupIds = {}, terrainTypes = {}, locationPids = {}, forbiddenTerrainTypes = {TERRAIN_Coast, TERRAIN_Water};
+
+	WorldMapLocationGenerator@ AddGroupId(uint groupId)
+	{
+		groupIds.insertLast(groupId);		
+		return @this;
+	}
+	
+	WorldMapLocationGenerator@ AddLocationPid(uint terrainType, uint locationPid)
+	{
+		terrainTypes.insertLast(terrainType);		
+		locationPids.insertLast(locationPid);	
+		return @this;
+	}
+	
+	WorldMapLocationGenerator@ ComputeRandomCoorinates(uint& x, uint& y, uint& locationPid)
+	{
+		uint area = 0;
+		return ComputeRandomCoorinates(x, y, locationPid, area);
+	}
+	
+	WorldMapLocationGenerator@ ComputeRandomCoorinates(uint& x, uint& y, uint& locationPid, uint& area)
+	{
+		uint terrainType = 100, terrainTypeCount = 0;
+		
+		FindEventCoordinates(groupIds, terrainTypes, forbiddenTerrainTypes, x, y, terrainType, area);
+		
+		for (uint i = 0; i < terrainTypes.length(); i++)
+		{
+			if (terrainTypes[i] == terrainType)
+			{
+				terrainTypeCount++;
+			}
+		}
+		
+		uint randomLocation = Random(0, terrainTypeCount - 1);
+		for (uint i = 0; i < terrainTypes.length(); i++)
+		{
+			if (terrainTypes[i] == terrainType)
+			{
+				if (randomLocation == 0)
+				{
+					locationPid = locationPids[i];
+					return @this;
+				}
+				else 
+				{
+					randomLocation--;
+				}
+			}
+		}
+		
+		return @this;
+	}
+}
+
+
+class WorldMapArea
+{
+	private uint[] worldMinX = {}, worldMinY = {}, worldMaxX = {}, worldMaxY = {};
+	
+	WorldMapArea@ AddRectangle(uint worldMinX, uint worldMinY, uint worldMaxX, uint worldMaxY)
+	{
+		this.worldMinX.insertLast(worldMinX);
+		this.worldMinY.insertLast(worldMinY);
+		this.worldMaxX.insertLast(worldMaxX);
+		this.worldMaxY.insertLast(worldMaxY);
+		
+		return @this;
+	}
+	
+	WorldMapArea@ AddWorldMapArea(WorldMapArea& worldMapArea)
+	{
+		for (uint i = 0; i < worldMapArea.worldMinX.length(); i++)
+		{		
+			this.worldMinX.insertLast(worldMapArea.worldMinX[i]);
+			this.worldMinY.insertLast(worldMapArea.worldMinY[i]);
+			this.worldMaxX.insertLast(worldMapArea.worldMaxX[i]);
+			this.worldMaxY.insertLast(worldMapArea.worldMaxY[i]);
+		}
+		
+		return @this;
+	}
+	
+	WorldMapArea@ ComputeRandomCoorinates(uint& x, uint& y)
+	{
+		uint area = 0;
+		return ComputeRandomCoorinates(x, y, area);
+	}
+	
+	WorldMapArea@ ComputeRandomCoorinates(uint& x, uint& y, uint& area)
+	{
+		uint field = 0;
+		
+		for (uint i = 0; i < worldMinX.length(); i++)
+		{
+			field += (worldMaxX[i] - worldMinX[i]) * (worldMaxY[i] - worldMinY[i]);
+		}
+		
+		uint coordinates = Random(0, field - 1);
+		
+		for (uint i = 0; i < worldMinX.length(); i++)
+		{
+			uint recField = (worldMaxX[i] - worldMinX[i]) * (worldMaxY[i] - worldMinY[i]);
+			
+			if (coordinates >= recField)
+			{
+				coordinates -= recField;
+			}
+			else
+			{
+				x = worldMinX[i] + coordinates % (worldMaxX[i] - worldMinX[i]);
+				y = worldMinY[i] + coordinates / (worldMaxX[i] - worldMinX[i]);
+				area = field;
+				return @this;
+			}
+		}
+		
+		return @this;
+	}
+}
+
+class HybridLocationGenerator
+{
+	private WorldMapArea worldMapArea;
+	private WorldMapLocationGenerator worldMapLocationGenerator;
+	
+	HybridLocationGenerator@ AddRectangle(uint worldMinX, uint worldMinY, uint worldMaxX, uint worldMaxY)
+	{
+		worldMapArea.AddRectangle(worldMinX, worldMinY, worldMaxX, worldMaxY);
+		return @this;
+	}
+	
+	HybridLocationGenerator@ AddWorldMapArea(WorldMapArea& worldMapArea)
+	{
+		this.worldMapArea.AddWorldMapArea(worldMapArea);
+		return @this;
+	}
+	
+	HybridLocationGenerator@ AddGroupId(uint groupId)
+	{
+		worldMapLocationGenerator.AddGroupId(groupId);		
+		return @this;
+	}
+	
+	HybridLocationGenerator@ AddLocationPid(uint terrainType, uint locationPid)
+	{
+		worldMapLocationGenerator.AddLocationPid(terrainType, locationPid);			
+		return @this;
+	}
+	
+	HybridLocationGenerator@ ComputeRandomCoorinates(uint& x, uint& y, uint& locationPid)
+	{
+		uint x1 = 0, y1 = 0, x2 = 0, y2 = 0, area1 = 0, area2 = 0;
+		
+		worldMapArea.ComputeRandomCoorinates(x1, y1, area1);
+		worldMapLocationGenerator.ComputeRandomCoorinates(x2, y2, locationPid, area2);
+		
+		if (Random(1, area1 + area2) <= int(area1))
+		{
+			x = x1;
+			y = y1;
+		}
+		else
+		{
+			x = x2;
+			y = y2;
+		}
+		
+		return @this;
+	}
+}
+
+#endif

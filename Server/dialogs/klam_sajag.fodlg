@@ -1,0 +1,302 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+4 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+8 2010 #
+9 2020 #
+6 2030 #
+25 2040 @
+4 3000 None 0 #
+8 3010 #
+9 3020 #
+6 3030 #
+25 3040 #
+0 3050 @
+6 4000 None 0 #
+65506 4010 #
+7 4020 @
+7 5000 None 0 #
+21 5010 #
+22 5020 #
+20 5030 #
+6 5040 #
+4 5050 #
+0 5060 @
+8 6000 None 0 #
+10 6010 #
+11 6020 D _item p PID_BOTTLE_CAPS < 10 #
+7 6030 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BEER + 1 R _item p PID_BOTTLE_CAPS - 10 #
+0 6040 @
+9 7000 None 0 #
+11 7010 D _item p PID_BOTTLE_CAPS < 30 #
+7 7020 D _item p PID_BOTTLE_CAPS > 29 R _item p PID_BOOZE + 1 R _item p PID_BOTTLE_CAPS - 30 #
+0 7030 @
+10 8000 None 0 #
+12 8010 #
+0 8020 @
+11 9000 None 0 #
+0 9010 @
+12 10000 None 0 #
+8 10010 #
+9 10020 #
+7 10030 #
+0 10040 @
+20 11000 None 0 #
+7 11010 #
+0 11020 @
+21 12000 None 0 #
+7 12010 #
+0 12020 @
+22 13000 None 0 #
+7 13010 #
+0 13020 @
+25 14000 None 0 #
+4 14010 #
+0 14020 &
+
+[engl]
+{100}{}{Sajag}
+{200}{}{You see a short, swarthy man. He is smiling at you.}
+{210}{}{You see Sajag, the Golden Gecko's barman and owner.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Familiar}
+{2000}{}{Hello there, stranger. Welcome to the Golden Gecko Tavern, Hotel, and Trading Post. I'm Sajag. I run the place. What can I get for you?}
+{2010}{}{Just get me a beer.}
+{2020}{}{I don't know, I feel like something a little out of the ordinary.}
+{2030}{}{Trading post, huh? You ready to do some trading now?}
+{2040}{}{Could I get a room here?}
+{3000}{}{What can I getcha?}
+{3010}{}{Just give me a beer.}
+{3020}{}{Give me something a little... exotic. What do you got?}
+{3030}{}{Just looking to do some trading.}
+{3040}{}{Can I get a room?}
+{3050}{}{Nothing, thanks. I'm out of here.}
+{4000}{}{I've got all kinds of things right here, buddy: healing supplies, booze, all kinds of stuff. I've got special sources, ya' might say. Always willing to look at a good gecko pelt, too.}
+{4010}{}{Alright, let me take a look.}
+{4020}{}{I'm actually looking for some information.}
+{5000}{}{Well information's what it's all about, pal. What do you want to know about?}
+{5010}{}{Are there any other settlements nearby?}
+{5020}{}{Are there any traders here in Klamath?}
+{5030}{}{I'm looking for a job. Any leads?}
+{5040}{}{Where can I get healing supplies?}
+{5050}{}{That's all I need to know for now. But there's something else I need.}
+{5060}{}{Alright, I gotta get going.}
+{6000}{}{One tall mug of Golden Gecko Piss coming up. Only 10 caps for the best beer north of Redding.}
+{6010}{}{You're... you're drinking piss? What the hell is wrong with you?}
+{6020}{}{It seems I'm a little short on cash...}
+{6030}{}{Thanks, Sajag. I got a couple questions for ya.}
+{6040}{}{Thanks. That's all I need for now. Goodbye.}
+{7000}{}{I think I've got just what you're looking for. We call it our Premium Filtered Gecko Piss. Cost you $30, pal.}
+{7010}{}{Ah, I think I might've misplaced my wallet...}
+{7020}{}{$30? This better be the best piss I've ever tasted. Say, you got time for a couple questions?}
+{7030}{}{Piss? Uh, no thanks. Excuse me, I've got to go.}
+{8000}{}{Relax, pal; it's just what we call the beer here. (chuckles) This is the Golden Gecko, remember?}
+{8010}{}{Oh. Right. Heh-heh. Yeah. Piss. I get it.}
+{8020}{}{I'm not drinking piss! I don't care where it's being served or what you call it!}
+{9000}{}{Typical of you scumbags to try and get somethin' for nothin'. Get the hell out.}
+{9010}{}{Alright, I'm leaving.}
+{10000}{}{Well, now that we've got first things first out of the way... how can I help you? (smiles)}
+{10010}{}{A beer would be nice.}
+{10020}{}{Give me something with a little kick.}
+{10030}{}{Well, I'm looking for some information.}
+{10040}{}{Nothing, I've got to go. Bye.}
+{11000}{}{Well, the Dunton brothers are always looking for someone to do their dirty work for them. You could try them.}
+{11010}{}{Alright, I'll go try them.}
+{11020}{}{Thanks for the info, but I've got to get going.}
+{12000}{}{There are a couple of settlements nearby. There are some tribals northwest of us, then there's the Den a few days south of here -- that's the closest -- and there's a mining town called Redding quite a ways to the southeast.}
+{12010}{}{Thanks for the info, I've got a few other questions.}
+{12020}{}{That's all for me, I'm outta here.}
+{13000}{}{Not too many traders in town. Just Vic, that I can think of. He's got a house in the east part of town. Stupid bastard went travelling with a tribal a couple years back. Amazed he survived, those guys are nothing but trouble.}
+{13010}{}{Yeah, so I hear. I got a couple more questions.}
+{13020}{}{Well, I got get going.}
+{14000}{}{Hmm, sorry - no free rooms here, pal.}
+{14010}{}{Oh well...}
+{14020}{}{[Leave] Damn!}
+
+[russ]
+{100}{}{Саджаг}
+{200}{}{Вы видите короткого, смуглого мужчину. Он вам улыбается.}
+{210}{}{Вы видите Саджага, владельца и бармена в Золотом Гекко.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Familiar}
+{2000}{}{Приветствую тебя, незнакомец. Добро пожаловать в таверну Золотой Гекко, в наш отель и рынок. Я Саджаг, содержу это место. Чем могу служить?}
+{2010}{}{Дайте немного пива.}
+{2020}{}{Налей мне чего-нибудь особенного.}
+{2030}{}{Как насчет торговли?}
+{2040}{}{Мне нужна комната.}
+{3000}{}{Что я могу для тебя сделать?}
+{3010}{}{Дай мне пива.}
+{3020}{}{Налей мне чего-нибудь особенного.}
+{3030}{}{Как насчет торговли?}
+{3040}{}{Мне нужна комната.}
+{3050}{}{Ничего, спасибо. Я пожалуй пойду.}
+{4000}{}{У меня тут все есть, парень: медицинские принадлежности, выпивка, все что вообще нужно. У меня особые поставщики, должен сказать. Всегда рад взглянуть на хорошую шкурку гекко.}
+{4010}{}{Давай посмотрим, что у тебя есть.}
+{4020}{}{Думаю, мне ничего не нужно прямо сейчас. Но у меня несколько вопросов к вам.}
+{5000}{}{Информация единственная бесплатная вещь, друг. Что ты хочешь узнать?@@Что ты хочешь узнать?}
+{5010}{}{Поблизости нет никаких поселений?}
+{5020}{}{В Кламате есть торговцы?}
+{5030}{}{Мне нужна работа. Есть вакансии?}
+{5040}{}{Где бы мне достать лекарство или получить медицинскую помощь?}
+{5050}{}{Это пока все, что я хочу знать. Но мне нужно еще кое-что.}
+{5060}{}{Думаю, достаточно информации пока.}
+{6000}{}{Одна большая крушка Мочи Золотого Гекко. Только 5 баксов за лучшее пиво к северу от Реддинга.}
+{6010}{}{Ты налил мне кружку мочи!?!}
+{6020}{}{Эмм... кажется у меня недостаточно денег.}
+{6030}{}{Спасибо за пиво. А теперь мне хотелось бы кое-что узнать.}
+{6040}{}{Спасибо, это все, что я хотел знать.}
+{7000}{}{Конечно, у меня кое-что. Называется Золотое Гекко, забавно не так ли? Эта детка уделает тебя только так. Всего 30 баксов.}
+{7010}{}{Нет, спасибо я на мели.}
+{7020}{}{Золотое Гекко? Ух, конечно беру! Как насчет моих вопросов?}
+{7030}{}{Нет, спасибо. Извините, мне надо идти.}
+{8000}{}{Расслабься, парень, это то, что здесь называется пиво. Ты в Золотом Гекко, не забывай.}
+{8010}{}{Ух! Ну как бы там ни было...}
+{8020}{}{Я мочу не пью! Меня не касается, где ее подают...}
+{9000}{}{Похоже у тебя нет таких денег прямо сейчас. Извини, друг. Здесь нет кредитов. [улыбаясь]}
+{9010}{}{Хорошо, я ухожу.}
+{10000}{}{Теперь у нас самые основные понятия совпадают... Чем все-таки я могу вам помочь? [улыбаясь]}
+{10010}{}{Думаю, что еще выпить.}
+{10020}{}{Налей мне чего-нибудь особенного.}
+{10030}{}{У меня есть несколько вопросов для вас.}
+{10040}{}{Думаю, это все, что хотел узнать.}
+{11000}{}{Не знаю, что насчет работы, у меня никаких вакансий. Я бы спросил у Виски Боба или Вика.}
+{11010}{}{Отлично. Но у  меня еще остались вопросы.}
+{11020}{}{Это все, что мне нужно было узнать. До свидания.}
+{12000}{}{Поблизости есть пара поселений. Несколько диких племен на северо-западе от нас и на юго-западе. Затем Дэн в нескольких днях к югу от нас - он наиболее близок - и город шахтеров под названием Реддинг довольно далеко на юго-запад.}
+{12010}{}{У меня еще вопросы.}
+{12020}{}{Спасибо за информацию.}
+{13000}{}{В городе не так уж много торговцев. Один Вик, если говорить не задумываясь. У него дом в восточной части города. Он продает довоенные вещи в Дэне и дикарям.}
+{13010}{}{Загляну обязательно. У меня все еще остались вопросы.}
+{13020}{}{Спасибо за информацию.}
+{14000}{}{Хм, извини - нет свободных номеров, приятель.}
+{14010}{}{О, хорошо ...}
+{14020}{}{Черт!}
+
+[pols]
+{100}{}{Sajag}
+{200}{}{Widzisz niskiego, krępego człowieka.}
+{210}{}{Widzisz Sajaga, barmana i właściciela Złotego Gekona.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Familiar}
+{2000}{}{Witaj, @sex@|nieznajomy||nieznajoma|, znajdujesz się w Złotym Gekonie - bar, hotel i sklep w jednym. Nazywam się Sajag, jestem właścicielem. Potrzebujesz czegoś?}
+{2010}{}{Jasne że potrzebuję. Dawaj piwo.}
+{2020}{}{Mam ochotę na coś bardziej niezwykłego.}
+{2030}{}{Sklep, mówisz? Pohandlujemy?}
+{2040}{}{Masz jakieś wolne pokoje?}
+{3000}{}{Czego chcesz?}
+{3010}{}{Piwo.}
+{3020}{}{Potrzebuję czegoś bardziej... egzotycznego. Łapiesz?}
+{3030}{}{Masz ochotę na mały handel?}
+{3040}{}{Mogę wynająć pokój?}
+{3050}{}{Nic, dzięki. Idę stąd.}
+{4000}{}{Mam tu dużo różnych rzeczy, @sex@|kolego||koleżanko|. Medykamenty, wóda, piwo, wszystko co chcesz. Mam swoje źródła, nie znajdziesz lepszych cen w Klamath niż u mnie. A, i jak masz jakieś skóry z gekonów to chętnie je odkupię.}
+{4010}{}{Dobra. Pokaż, co tam masz.}
+{4020}{}{Tak właściwie, to mam parę pytań...}
+{5000}{}{Wal śmiało.}
+{5010}{}{Są tu w pobliżu jakieś inne osady?}
+{5020}{}{Macie tu w Klamath innych handlarzy?}
+{5030}{}{Szukam jakiejś roboty. Masz pomysł, gdzie jej szukać?}
+{5040}{}{Potrzebuję medykamentów, wiesz gdzie mogę je dostać?}
+{5050}{}{To wszystko. Ale mam inne pytania.}
+{5060}{}{Muszę się już zbierać.}
+{6000}{}{Jeden kufel Szczyn Złotego Gekona, proszę bardzo. Najlepsze piwo na północ od Redding za marną dyszkę.}
+{6010}{}{Pijesz szczyny, i to gekona? Człowieku, co jest z tobą?}
+{6020}{}{Cholera, @sex@|zapomniałem||zapomniałam| portfela...}
+{6030}{}{Dzięki, Sajag. Mam parę pytań.}
+{6040}{}{To by było na tyle, na razie.}
+{7000}{}{Dobra, mam coś, co powinno zadowolić twój wysublimowany gust. Niepasteryzowane Filtrowane Szczyny Złotego Gekona. Trzydzieści kapsli.}
+{7010}{}{Kurde, ekhem, chyba @sex@|zapomniałem||zapomniałam| forsy.}
+{7020}{}{Trzydzieści kapsli? Mam nadzieję, że to będą najlepsze siki pod słońcem. Masz czas na parę pytań?}
+{7030}{}{Szczyny? Chyba jednak już sobie pójdę.}
+{8000}{}{Spokojnie, tylko tak je nazywamy. [Chichocze.] To w końcu Złoty Gekon, nie?}
+{8010}{}{Aha, jasne. Szczyny, kapuję. Hehehe.}
+{8020}{}{Nie będę @sex@|pił||piła| żadnych szczyn! W dupie mam czy to Złoty Gekon, czy Kretoszczurza Dupa!}
+{9000}{}{Typowe, wyrwać coś za darmola. Spieprzaj mi stąd, ale już!}
+{9010}{}{Jasne, jasne, już idę.}
+{10000}{}{Skoro formalności mamy już za sobą... W czym mogę ci pomóc? [Uśmiecha się.]}
+{10010}{}{@sex@|Zamoczyłbym||Zamoczyłabym| usta w zimnym piwku.}
+{10020}{}{Potrzebuję czegoś z kopem.}
+{10030}{}{Potrzebuję informacji.}
+{10040}{}{Nie, muszę już iść.}
+{11000}{}{Hmm, Duntonowie czasami szukają kogoś, kto odwali za nich brudną robotę. Idź do nich.}
+{11010}{}{Dobra, spróbuję.}
+{11020}{}{Dzięki, Sajag. Muszę już iść.}
+{12000}{}{Jest parę osad w okolicy... Na północny zachód są jakieś wioski dzikusów, parę dni drogi na południe jest Nora... A, i jeszcze jest Redding, ale to daleko na południowy wschód.}
+{12010}{}{Rozumiem, mogę cię spytać o coś jeszcze?}
+{12020}{}{To by było na tyle, czas już na mnie.}
+{13000}{}{Nie za wielu. W sumie to tylko Vic przychodzi mi do głowy. Mieszka we wschodniej części miasta. Ten porąbaniec parę lat temu wyruszył w Pustkowia z jakimś dzikusem. Niesamowite, że grubas wyszedł z tego cało.}
+{13010}{}{Aha. Mogę zadać jescze jedno pytanie?}
+{13020}{}{Rozumiem. Muszę już iść.}
+{14000}{}{Nie ma wolnych pokojów, przykro mi.}
+{14010}{}{Ach...}
+{14020}{}{Cholera! [Odejdź.]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Familiar}
+{2000}{}{Hello there, stranger. Welcome to the Golden Gecko Tavern, Hotel, and Trading Post. I'm Sajag. I run the place. What can I get for you?}
+{2010}{}{Just get me a beer.}
+{2020}{}{I don't know, I feel like something a little out of the ordinary.}
+{2030}{}{Trading post, huh? You ready to do some trading now?}
+{2040}{}{Could I get a room here?}
+{3000}{}{What can I getcha?}
+{3010}{}{Just give me a beer.}
+{3020}{}{Give me something a little... exotic. What do you got?}
+{3030}{}{Just looking to do some trading.}
+{3040}{}{Can I get a room?}
+{3050}{}{Nothing, thanks. I'm out of here.}
+{4000}{}{I've got all kinds of things right here, buddy: healing supplies, booze, all kinds of stuff. I've got special sources, ya' might say. Always willing to look at a good gecko pelt, too.}
+{4010}{}{Alright, let me take a look.}
+{4020}{}{I'm actually looking for some information.}
+{5000}{}{Well information's what it's all about, pal. What do you want to know about?}
+{5010}{}{Are there any other settlements nearby?}
+{5020}{}{Are there any traders here in Klamath?}
+{5030}{}{I'm looking for a job. Any leads?}
+{5040}{}{Where can I get healing supplies?}
+{5050}{}{That's all I need to know for now. But there's something else I need.}
+{5060}{}{Alright, I gotta get going.}
+{6000}{}{One tall mug of Golden Gecko Piss coming up. Only 10 caps for the best beer north of Redding.}
+{6010}{}{You're... you're drinking piss? What the hell is wrong with you?}
+{6020}{}{It seems I'm a little short on cash...}
+{6030}{}{Thanks, Sajag. I got a couple questions for ya.}
+{6040}{}{Thanks. That's all I need for now. Goodbye.}
+{7000}{}{I think I've got just what you're looking for. We call it our Premium Filtered Gecko Piss. Cost you $30, pal.}
+{7010}{}{Ah, I think I might've misplaced my wallet...}
+{7020}{}{$30? This better be the best piss I've ever tasted. Say, you got time for a couple questions?}
+{7030}{}{Piss? Uh, no thanks. Excuse me, I've got to go.}
+{8000}{}{Relax, pal; it's just what we call the beer here. (chuckles) This is the Golden Gecko, remember?}
+{8010}{}{Oh. Right. Heh-heh. Yeah. Piss. I get it.}
+{8020}{}{I'm not drinking piss! I don't care where it's being served or what you call it!}
+{9000}{}{Typical of you scumbags to try and get somethin' for nothin'. Get the hell out.}
+{9010}{}{Alright, I'm leaving.}
+{10000}{}{Well, now that we've got first things first out of the way... how can I help you? (smiles)}
+{10010}{}{A beer would be nice.}
+{10020}{}{Give me something with a little kick.}
+{10030}{}{Well, I'm looking for some information.}
+{10040}{}{Nothing, I've got to go. Bye.}
+{11000}{}{Well, the Dunton brothers are always looking for someone to do their dirty work for them. You could try them.}
+{11010}{}{Alright, I'll go try them.}
+{11020}{}{Thanks for the info, but I've got to get going.}
+{12000}{}{There are a couple of settlements nearby. There are some tribals northwest of us, then there's the Den a few days south of here -- that's the closest -- and there's a mining town called Redding quite a ways to the southeast.}
+{12010}{}{Thanks for the info, I've got a few other questions.}
+{12020}{}{That's all for me, I'm outta here.}
+{13000}{}{Not too many traders in town. Just Vic, that I can think of. He's got a house in the east part of town. Stupid bastard went travelling with a tribal a couple years back. Amazed he survived, those guys are nothing but trouble.}
+{13010}{}{Yeah, so I hear. I got a couple more questions.}
+{13020}{}{Well, I got get going.}
+{14000}{}{Hmm, sorry - no free rooms here, pal.}
+{14010}{}{Oh well...}
+{14020}{}{[Leave] Damn!}
+

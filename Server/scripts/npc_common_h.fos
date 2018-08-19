@@ -1,0 +1,18 @@
+#ifndef __NPC_COMMON_H__
+#define __NPC_COMMON_H__
+#ifndef __NPC_COMMON__
+
+import bool   AttackCritter(Critter& attacker, Critter& target, uint minhp) from "npc_common";
+import bool   AttackCritter(Critter& attacker, Critter& target) from "npc_common";
+import bool   FindNearestFreeHex(Map@ map, uint16 hexX, uint16 hexY, uint16& outX, uint16& outY) from "npc_common";
+import void   FindFreeHexes(Map@ map, uint16 hexX, uint16 hexY, int& num, array<uint16>& coordsX, array<uint16>& coordsY) from "npc_common";
+import void   MoveRandom(Critter& npc, uint maxDist) from "npc_common";
+import void   MoveRandom(Critter& npc, uint maxDist, bool Run) from "npc_common";
+import void   MoveRandom(Critter& npc, uint maxDist, uint stepDist, bool Run) from "npc_common";
+import void   TransferToNPCMap(Critter& critter) from "npc_common";
+//import string GetStoredName(Critter& critter) from "npc_common";
+import bool   Flee(Critter& cr) from "npc_common";
+import bool   Flee(Critter& cr, bool Run) from "npc_common";
+
+#endif
+#endif

@@ -1,0 +1,54 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+0 2020 &
+
+[engl]
+{100}{}{Trader}
+{200}{}{You see: Trader.}
+{210}{}{You see: Trader.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, welcome to my shop. Feel free to browse, check what you like and only then bother me. Alright?@@[The trader's eyes follow you as you approach.] Don't try anything stupid. @@Yeah? Be quick about it.@@ Well well, what the desert dragged in? [He rubs his hands.] Go ahead, don't be shy. My merchandise doesn't bite.@@Great, a customer! Take a look at my wares!@@Welcome! Wanna buy anything?@@Only the finest wares here. Look around and see for yourself!@@Need something?@@Take your time, look around, I'm sure you'll find what you need!@@Wanna get down to business?@@I've got the best prices in this shithole!@@You come to buy or just watch?@@Guards are watching, so don't try anything.@@I've got the best stuff here!@@Come, come, take a look.@@No time for chit-chat, you're here to buy or what?@@Keep your weapons holstered, you don't want to get on the bad side of them guards.@@In for business?}
+{2010}{}{Let's do business.@@Got anything interesting?@@Let's trade.@@What do you have?@@Show me what you've got.@@I'll take a look at your wares.@@I want to purchase something.@@I'll take a look at your stock.@@Let's trade.@@Let's trade.@@Let's trade.@@Let's see what you have.@@Let's barter...@@Got anything interesting?@@What do you have to offer?@@Show me your wares.@@Let's do some business.}
+{2020}{}{Maybe later.@@Not now.@@Bye.@@Some other time.@@I need to be going now.@@I've got to go.@@See you later.@@Not this time.@@I've already spent too many caps.@@Thanks, maybe some other time.@@Whatever.@@I need to go now.@@I'll drop in later.}
+
+[russ]
+{100}{}{Торговец}
+{200}{}{Вы видите торговца.}
+{210}{}{Вы видите торговца.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{---}
+{2000}{}{Здравствуйте, добро пожаловать в мой магазин.@@Так-так ну и что тут к нам из пустоши выползло?@@О Клиент! У нас отличный выбор и отменное качество!@@Вы пришли сюда, чтобы купить что-то? В таком случае я думаю, что это ваш счастливый день.@@Таких товаров как у меня не найти больше нигде в пустоши.@@Добро пожаловать путник, руки держи при себе, смотреть можно, трогать нельзя.}
+{2010}{}{Давай посмотрим что у тебя есть.@@Ближе к делу.@@Давай уже торговать.@@Я здесь для того чтобы заниматся бизнесом, давай уже приступим.@@Что у тебя есть на обмен?}
+{2020}{}{Я передумал.@@Не сейчас.@@Пока.@@Как нибудь в другой раз.@@Мне уже пора.}
+
+[pols]
+{100}{}{Handlarz}
+{200}{}{Widzisz handlarza.}
+{210}{}{Widzisz handlarza.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Cześć, witam w moim sklepie. Pooglądaj towary, zobacz czego potrzebujesz i zawołaj mnie, kiedy podejmiesz decyzję.@@Zaraz napijemy się wódeczki, wpadną dupeczki - i ubijemy ten interes!@@Nonono, co tutaj przywiało z pustyni... [Zaciera ręce.] Słucham, w czym mogę pomóc?@@O, klient! Proszę, spójrz na moją ofertę.@@Masz zamiar coś kupić? W takim razie, to twój szczęśliwy dzień.@@Najlepszy towar na całym Pustkowiach! Proszę, rozejrzyj się.@@Wyglądasz na osobę, która potrafi docenić doskonałą jakość oraz okazyjne ceny.@@Witaj, nieznajomy. Możemy pohandlować bez niepotrzebnych niemiłych sytuacji - strażnicy wszystko obserwują.@@Nie jestem w nastroju na pogawędki. Kupujesz coś, czy wychodzisz?@@Witaj, wędrowcze. Staraj się nic nie uszkodzić, inaczej będziesz @sex@|musiał||musiała| za to zapłacić. To jak, pohandlujemy?}
+{2010}{}{Jasne, handlujmy.@@Pewnie, przejdźmy do interesów.@@Co ciekawego możesz mi zaoferować?@@Pokaż, co masz na sprzedaż.@@Hm, @sex@|chciałbym||chciałabym| coś kupić.@@Interesuje mnie kilka rzeczy z twojego asortymentu.@@Zobaczmy, co tam masz.@@Co masz do zaoferowania?@@Pokaż mi swoje produkty.}
+{2020}{}{Nie chcę handlować.@@Nie teraz.@@Do widzenia.@@[Wyjdź.] Może innym razem.@@To ja już sobie pójdę.@@Po tym, co tutaj @sex@|zobaczyłem||zobaczyłam|, nie wiem czy @sex@|chciałbym||chciałabym| z tobą ubić muchę w kiblu.@@Potrzebuję czegoś innego.@@[Wyjdź.] Muszę już iść.@@[Wyjdź.] Nie tego @sex@|szukałem||szukałam|.@@Dzięki - ale nie.@@Wychodzę.@@[Wyjdź.] Do zobaczenia.}
+
+[ptbr]
+{100}{}{Vendedor}
+{200}{}{Você vê um mercador.}
+{210}{}{Você vê um mercador.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Olá, bem-@sex@|vindo||vinda| à minha loja. Sinta-se a vontade para olhar, checar o que você quer e então venha me procurar. Certo?@@[Os olhos do mercador lhe seguem enquanto você se aproxima.] Não tente fazer nenhuma idiotice. @@Hein? Diga logo o que quer.@@Bem, olha só o que o deserto trouxe aqui [Ele esfrega suas mãos.] Vá em frente, não seja @sex@|tímido||tímida|. Minha mercadoria não morde.@@Ótimo, um cliente! Dê uma olhada nos meus itens!@@Bem-@sex@|vindo||vinda|! Quer comprar algo?@@Smente os melhores itens aqui. Olhe ao redor e veja você mesmo!@@Precisa de algo?@@Sem pressas, olhe ao redor, tenho certeza que irá encontrar o que procura!@@Eu tenho os melhores preços desta merda!@@Você veio comprar ou só olhar?@@Os guardas estão vigiando então não tente nada de estúpido.@@Eu tenho as melhores coisas aqui!@@Venha, venha, dê uma olhada.@@Sem tempo para conversar, você veio aqui para comprar ou o quê?@@Mantenha suas armas guardadas, você não vai querer ver os guardas em ação?}
+{2010}{}{Vamos fazer negócio.@@Algo lhe interessou?@@Vamos negociar.@@O que você tem?@@Me mostre o que tem.@@Eu vou dar uma olhada nos seus produtos.@@Eu quero comprar algo.@@Eu quero ver seu estoque.@@Vamos ver o que você tem.@@O que você tem para oferecer.}
+{2020}{}{Talvez depois.@@Agora não.@@Tchau.@@Em outro momento.@@Eu preciso ir agora.@@Eu tenho que ir.@@Te vejo depois.@@Não desta vez.@@Hoje não, gastei muitas tampinhas ultimamente.@@Obrigado, talvez em outro momento.@@Eu preciso ir agora.@@Eu apareço depois.}
+

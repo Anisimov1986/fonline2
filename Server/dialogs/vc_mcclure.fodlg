@@ -1,0 +1,453 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 1 #
+20 2020 D _var p bosside = 2 #
+4 2030 D _var p vc_vaultaccess = 0 D _var p q_vc_mcclure = 0 #
+10 2040 D _var p q_vc_mcclure = 1 #
+11 2050 D _var p q_vc_mcclure } 2 D _var p q_vc_mcclure { 8 #
+0 2060 @
+3 3000 None 0 #
+2 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+5 4020 #
+5 4030 #
+6 4040 D _var p q_start_questcaravan = 6 #
+0 4050 @
+5 5000 None 0 #
+10 5010 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+8 6020 #
+9 6030 @
+7 7000 None 0 @
+8 8000 None 0 @
+9 9000 None 0 #
+10 9010 #
+0 9020 @
+10 10000 None 0 #
+0 10010 R _var p q_vc_mcclure = 1 R _script dialog@r_ShowQuestMessage 1 9316 #
+0 10020 @
+11 11000 None 0 #
+12 11010 D _var p q_vc_mcclure = 2 #
+13 11020 D _var p q_vc_mcclure } 3 D _var p q_vc_mcclure { 6 R _var p vc_vaultaccess = 1 #
+17 11030 D _var p q_vc_mcclure = 7 R _var p vc_vaultaccess = 1 R _var p q_vc_mcclure = 10 R _param p ST_EXPERIENCE + 3000 #
+18 11040 D _var p q_vc_mcclure = 8 R _var p vc_vaultaccess = 1 R _var p q_vc_mcclure = 11 R _param p ST_EXPERIENCE + 3000 @
+12 12000 None 0 #
+0 12010 R _script dialog@r_ShowQuestMessage 1 9316 @
+13 13000 None 0 #
+14 13010 D _var p q_vc_mcclure } 4 #
+16 13020 R _var p q_vc_mcclure = 9 R _param p ST_EXPERIENCE + 500 R _var p vc_vaultaccess = 1 @
+14 14000 None 0 #
+15 14010 D _var p q_vc_mcclure } 5 #
+16 14020 R _var p q_vc_mcclure = 9 R _param p ST_EXPERIENCE + 1000 R _var p vc_vaultaccess = 1 @
+15 15000 None 0 #
+16 15010 D _var p q_vc_mcclure = 6 #
+16 15020 R _var p q_vc_mcclure = 9 R _param p ST_EXPERIENCE + 1500 R _var p vc_vaultaccess = 1 @
+16 16000 None 0 #
+0 16010 R _script dialog@r_ShowQuestMessage 1 9316 #
+0 16020 R _script dialog@r_ShowQuestMessage 1 9316 @
+17 17000 None 0 #
+0 17010 R _var p vc_vaultaccess = 1 R _var p q_vc_mcclure = 9 R _script dialog@r_ShowQuestMessage 1 9316 #
+0 17020 R _var p vc_vaultaccess = 1 R _var p q_vc_mcclure = 9 R _script dialog@r_ShowQuestMessage 1 9316 @
+18 18000 None 0 #
+19 18010 @
+19 19000 None 0 #
+0 19010 R _var p vc_vaultaccess = 1 R _var p q_vc_mcclure = 9 R _script dialog@r_ShowQuestMessage 1 9316 #
+0 19020 R _var p vc_vaultaccess = 1 R _var p q_vc_mcclure = 9 R _script dialog@r_ShowQuestMessage 1 9316 @
+20 20000 None 0 #
+21 20010 R _var p bosside = 3 #
+22 20020 D _param p ST_INTELLECT } 6 D or D _param p ST_CHARISMA } 3 R _var p bosside = 4 #
+24 20030 D _param p SK_BARTER } 75 R _var p bosside = 4 #
+28 20040 D _param p PE_PROF_GUNSMITH } 2 D or D _param p PE_PROF_SCIENTIST } 2 D or D _param p KILL_SUPER_MUTANT } 75 D or D _param p KILL_GHOUL } 150 D or D _param p KILL_FLOATER } 75 D or D _param p KILL_CENTAUR } 10 D or D _param p KILL_CENTAUR } 75 D or D _param p KILL_MEN } 200 D or D _param p KILL_WOMEN } 200 R _var p bosside = 4 #
+0 20050 @
+21 21000 None 0 #
+0 21010 R _script dialog@r_ShowQuestMessage 1 9334 @
+22 22000 None 0 #
+23 22010 D _param p ST_INTELLECT } 6 R _var p bosside = 5 #
+0 22020 R _script dialog@r_ShowQuestMessage 1 9334 @
+23 23000 None 0 #
+0 23010 R _script dialog@r_ShowQuestMessage 1 9334 @
+24 24000 None 0 #
+26 24010 D _item p PID_BOTTLE_CAPS } 1000 R _var p bosside = 5 R _item p PID_BOTTLE_CAPS - 1000 #
+25 24020 @
+25 25000 None 0 #
+0 25010 R _script dialog@r_ShowQuestMessage 1 9334 @
+26 26000 None 0 #
+27 26010 R _script dialog@r_ShowQuestMessage 1 9334 @
+27 27000 None 0 #
+0 27010 R _script dialog@r_ShowQuestMessage 1 9334 @
+28 28000 None 0 #
+0 28010 R _script dialog@r_ShowQuestMessage 1 9334 &
+
+[engl]
+{100}{}{McClure}
+{200}{}{You see an elderly Vault City official. His hair is greying around the edges.}
+{210}{}{You see Senior Council Member McClure.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{Is there anything I can help you with, Outsider?}
+{2010}{}{Who are you?}
+{2020}{}{I come here as an envoy from Brotherhood of Steel. They want to establish official relations with your City, Councillor.}
+{2030}{}{I need to get inside the Vault.}
+{2040}{}{Could you repeat what I need to do to get your permission to get inside the Vault?}
+{2050}{}{I've had a chat with Nigel.}
+{2060}{}{Just looking around, thanks. Good day.}
+{3000}{}{I am Senior Councillor McClure. And you are...?}
+{3010}{}{My name's @pname@. Pleased to meet you, Councillor.}
+{3020}{}{None of your business. Goodbye.}
+{4000}{}{What reason do you have?}
+{4010}{}{I would like to perform an autodestruction sequence of that pathetic city.}
+{4020}{}{I've heard that there are some young Tandi's dirty pictures in your archives.}
+{4030}{}{I'm an Enclave spy and I'd like to steal all your important data.}
+{4040}{}{I need a machine with high computing power, such as the Vault's main computer, to decipher an encrypted message.}
+{4050}{}{I have to think about it. I'll be back later, bye.}
+{5000}{}{[He laughs sincerely.] Great joke, my dear. I could give you the permission to enter the Vault for such a noble reason, but I need one worthy Outsider like you to perform an easy task for me first.}
+{5010}{}{What's that task?}
+{5020}{}{I was just joking, I'm not doing any tasks. Bye, Councillor.}
+{6000}{}{What kind of message is that?}
+{6010}{}{I hope that it will help me solve a mystery behind a massacred caravan.}
+{6020}{}{I suppose that it could contain some information about my life before I lost my memory.}
+{6030}{}{How could I know? I said it's encrypted.}
+{7000}{}{Even if I am personally very sorry for those poor people, some butchered caravan is not of our concern. I cannot help you, Outsider. Please, let me focus on my job.}
+{8000}{}{That is very sad to hear, Outsider, but your personal health problems are not sufficient to grant you access to our computer. Now, leave me alone.}
+{9000}{}{[He laughs cordially, scratches his head and looks at you with piercing eyes.] Well, there is one favor a clever person such as yourself could do for me, and for Vault City as a whole. If you complete that task, you will be allowed to use our main computer.}
+{9010}{}{What's the task?}
+{9020}{}{Fuck this caravan, I've already wasted enough time. Goodbye.}
+{10000}{}{I have heard that one of our Citizens, Nigel, is openly criticizing the Council and First Citizen, and even Vault City's political system as a whole. As I am unable to understand how it is even possible not to agree with the path that our ancestors paved years ago for our community, maybe an outstandingly bright Outsider like you should talk to him and try to 
+get him back on track. He's probably walking around somewhere in the city park.}
+{10010}{}{Sure, I'll go and talk with him right now.}
+{10020}{}{I'm not interested in political debates right now. Bye.}
+{11000}{}{Great. Did you manage do convince him that he shouldn't stand against the authorities of this city?}
+{11010}{}{Not really, he didn't want to talk to me.}
+{11020}{}{I was unable to convince him. But from what I understand, he's criticizing the high tax rates which make production within the city walls almost non-existent. He's predicting that the city will go bankrupt sooner or later if nothing changes.}
+{11030}{}{Yes, I did. He won't cause trouble any more.}
+{11040}{}{No, I didn't. I think that what he says is right and you should seriously consider his arguments.}
+{12000}{}{I would at least like to know what exactly is the cause of his outrageous behaviour. Try harder, you should squeeze something from him.}
+{12010}{}{Yeah, fine. I'll go talk to him again.}
+{13000}{}{[He scratches his beard.] Well... That is an interesting point of view. Did he say anything more?}
+{13010}{}{He was also very critical of the city's education system. The Citizens' knowledge about the outside world is very low, and children leave school without gaining any real-life skills.}
+{13020}{}{No, he didn't.}
+{14000}{}{[He seems to be honestly worried.] There is much truth in what he says. Did you manage to get anything more from him?}
+{14010}{}{Yes. He held up cities like Hub, Shady Sands and even Gecko as model examples of what can be achieved by entrepreneurship, hard work and freedom. He sees Vault City as wasted potential, having such a good start compared to the others and slowly declining into mediocrity.}
+{14020}{}{No, he got angry after that and didn't want to talk to me any more.}
+{15000}{}{[He gets more and more pensive with every word you say.] It is hard to deny that, sadly. Did he say anything more?}
+{15010}{}{He suggested that the role of the private sector should be greatly extended, while criticizing the embarrassingly poor quality of services provided by the city. Abolishing slavery and opening up the city to more non-Citizens would also improve the state of the economy.}
+{15020}{}{No, that's all I managed to get from him.}
+{16000}{}{[McClure is deeply lost in thought for a while.] That is very unfortunate that you did not manage to convince him to stop his subversive actions, but I see many accurate points in what he is saying. You did a good job and deserve the right to access our Vault.}
+{16010}{}{Yeah, finally. Bye.}
+{16020}{}{Thank you, I'm glad that I could help you. Goodbye, Councillor.}
+{17000}{}{[Councillor seems to be pleased.] Good job, my dear. I don't understand those rebellious types, always keep complaining. You are granted the right to enter our vault, @pname@. Thank you once again, and good luck.}
+{17010}{}{At last, yeah. Bye.}
+{17020}{}{Thank you too, Councillor McClure. Glad that I could help, goodbye.}
+{18000}{}{[He looks surprised and irritated at the same time.] I cannot believe that. What did he say, how could he convince you that there is something wrong with our glorious city?}
+{18010}{}{He's criticizing the high tax rates, which make production within the city walls almost non-existent. The city will go bankrupt sooner or later if nothing changes. The Citizens' knowledge about outside world is very low, and the children leave school without any real-life skills. Cities like Hub, Shady Sands and even Gecko are model examples of what can be achieved by entrepreneurship, hard work and freedom. He sees Vault City as wasted potential, having such a good start compared to the others, and slowly declining into mediocrity. He suggested that the role of the private sector should be greatly extended, criticizing the embarrassingly poor quality of services provided by the city. Abolishing slavery and opening up the city to more non-Citizens would also improve the state of the economy.}
+{19000}{}{[Councillor McClure is deeply shocked, getting more and more pensive with every word you say. After a while of being deeply lost in thought, he looks at you with a mix of admiration and surprise.] Even if you failed to accomplish your task, I thank you honestly. Now I see that there was someone like you needed, who could help us open our eyes. We were wrong to ignore Nigel, very wrong indeed. During the next meeting of the Council, I will raise this case. Thank you once again, you deserve the right to visit our Vault.}
+{19010}{}{Great, finally. Bye, McClure.}
+{19020}{}{I'm glad that I could help, Councillor. Thank you, goodbye.}
+{20000}{}{Oh yes, I've been told several times that they tried to establish contact. So, now they sent you as their @sex@|man||woman|. What does this Brotherhood of yours want from us?}
+{20010}{}{The Brotherhood of Steel wants you to establish diplomatic relations. We need to open official channels, a trade agreement, and most importantly, we want to build a bunker within Vault City. It's only for your protection, of course. It wouldn't be wise to reject this offer, Councillor.}
+{20020}{}{The Brotherhood wants to know about your disposition towards us. We also want to establish official diplomatic relations, open a direct trade channel and lastly, to establish an embassy within the walls Vault City. This agreement would be mutually beneficial, I assure you.}
+{20030}{}{The Brotherhood of Steel wishes to establish diplomatic relations with you. This could mean huge, and I mean *huge*, profits for this city. And for you too, if you make the right decision...}
+{20040}{}{Your walls won't protect you forever, Councillor. We shield you from mutants from the west, even if you don't realize it. And, as I've heard, you also have a problem with a town north of here... We could help you. If you decide to open relations with us, the Brotherhood could extend its protection officially, establish an outpost, and provide you with advanced weaponry...}
+{20050}{}{Oh, I'm sorry, I've just received an urgent message from my superiors at Lost Hills. If you'll excuse me, I'll be right back, Councillor.@@I've just got an urgent radio message from Lost Hills. I'll be right back, Councillor.}
+{21000}{}{Really? This offer doesn't sound very convincing. More like a threat actually. I see now that we made no mistake in ignoring your previous requests. This conversation is now over. Good day.}
+{21010}{}{You will regret this someday, Councillor. Goodbye.@@You will regret it. Good day.@@Too bad for you. Goodbye then.@@I see you're as stubborn as you are stupid. I'll take my leave then.}
+{22000}{}{Well... I'm not sure I'm the right man to answer your requests, envoy. Establishing such relations is not in my area of expertise. I would have to address the council, but such things take time. As for now, I can only tell you that we hold no grudges against the Brotherhood. I'm sorry you took such a long route just to hear this, but I can't do anything more right now. Now, if you'll excuse me...}
+{22010}{}{But why did you ignore the earlier requests through unofficial channels?}
+{22020}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{23000}{}{[He looks around as if he was checking if no one's listening.] I'll tell you a story. The Wastes are full of many animals and predators. Many are so big, they're too big for our little city. They would swallow us for certain, if not for them being harassed by other large animals. For example, there is this... bear. The bear has many powerful friends here, within Vault City. Those friends are not very fond of me, and my sympathies towards the... knights in shining armor. And they would gladly see my downfall, which would be swift, if I dared to act on my own. They are hell-bent on ensuring that we join the bear, or at least that we won't join any of its enemies, be they real or potential. That's why I, myself not being very fond of bears, couldn't make a move towards the knights. Do we understand each other? }
+{23010}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{24000}{}{I am well aware of the Brotherhood's trading potent... [He pauses instantly and changes his tone.] Wait a minute... Are you suggesting that I could take money from you in exchange for putting your cause forward in the next Council session?}
+{24010}{}{I never suggested anything, Councillor. But... it so happens that I've got some extra funds, one thousand caps, just waiting to be put to use... for the right cause of course. [Discreetly put the bag of caps on the table.]}
+{24020}{}{No, not at all, Councillor! I merely wish you to establish diplomatic ties with the Brotherhood. Of course first, we must know what your stance towards the Brotherhood is...}
+{25000}{}{It is neutral. That's all I can say right now. I'm sorry you took such a long route just to hear this, but I can't make any promises, not before the Council decides what the course should be. And that will take time. If the Council decides on anything, you will surely know. As for now, I bid you farewell, envoy.}
+{25010}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{26000}{}{I see. [He quickly snatches the bag.] I'll take those. I can't promise you anything... yet. But... [He looks around as if making sure no one's listening.]}
+{26010}{}{Yes?@@Yes, Councillor?@@This better be good, Councillor.@@I'm listening.}
+{27000}{}{I'll tell you a story. The Wastes are full of many animals and predators. Many are so big, they're too big for our little city. They would swallow us for sure, if not for them being harassed by other large animals. For example, there is this... bear. The Bear has many powerful friends here, within Vault City. Those friends are not very fond of me, and my sympathies towards the... knights in shining armor. And they would gladly see my downfall, which would be swift, If I dared to act on my own. They are bent on ensuring that we join the bear, or at least that we won't join any of its enemies, be it real or potential. That's why I, myself not being very fond of bears, couldn't make a move towards the knights. Do we understand each other?}
+{27010}{}{I see. Thank you for your time, Councillor.@@All right, I see it now. Goodbye, Councillor.}
+{28000}{}{I am well-aware of that, envoy. Though, I can't declare anything more than that we're neutral. I can't answer to any of your pleas, until the matter is decided on the Council. And that will take time. I'm sorry, but such is the way things are around here. Now, if you'll excuse me, I've got some urgent matters to attend to.
+}
+{28010}{}{You will regret this someday, Councillor. Goodbye.@@You will regret it. Good day.@@Too bad for you. Goodbye then.}
+
+[russ]
+{100}{}{МакКлюр}
+{200}{}{Вы видите пожилого чиновника Города Убежища. По краям его волос проступает седина.}
+{210}{}{Вы видите Старшего Члена Совета МакКлюра.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{Чем я могу вам помочь, @sex@|чужеземец||чужеземка|?}
+{2010}{}{Кто Вы?}
+{2020}{}{Я пришёл к вам с посланием от Братства Стали. Они хотят установить официальные отношения с вашим городом, Советник.}
+{2030}{}{Мне нужно попасть в убежище.}
+{2040}{}{Извините, но вы не могли бы повторить, что мне нужно сделать, чтобы получить разрешение на вход в Убежище?}
+{2050}{}{Я поговорил с Наджелом.}
+{2060}{}{Просто осматриваюсь. Хорошего вам дня.}
+{3000}{}{Я Старший Советник МакКлюр. А вы кто...?}
+{3010}{}{Меня зовут @pname@. Приятно познакомиться, Советник.}
+{3020}{}{Не ваше дело. До свидания.}
+{4000}{}{Почему я должен разрешить вам попасть внутрь?}
+{4010}{}{Хочу проникнуться духом вашего унылого и скучного городишки.}
+{4020}{}{Я слышал у вас в архивах есть непристойные фото Танди в молодости.}
+{4030}{}{Я шпион Анклава и хочу украсть у вас всю важную информацию.}
+{4040}{}{Мне нужна мощная вычислительная машина, такая, как ваш главный компьютер? чтобы расшифровать закодированное сообщение.}
+{4050}{}{Я должен подумать об этом. Вернусь позже, до свидания.}
+{5000}{}{[Широко улыбается.] Отличная шутка. Я мог бы дать вам разрешение на проход по такой веской причине, но сперва мне нужна помощь в небольшом деле от пришлого человека с подвешенным языком, как у вас.}
+{5010}{}{Что нужно сделать?}
+{5020}{}{Шутка, я не выполняю поручения. До свидания, Советник}
+{6000}{}{Что за сообщение?}
+{6010}{}{Надеюсь, что оно сможет пролить свет на тайну погибшего каравана.}
+{6020}{}{Я думаю здесь может содержаться информация о моей прошлой жизни, до потери памяти.}
+{6030}{}{Откуда мне знать. Я же сказал, что информация зашифрована.}
+{7000}{}{Даже если учесть, что мне лично жаль всех этих несчастных людей, то всё равно, погибший караван это не наша забота. Я не могу вам помочь, чужак. Пожалуйста, позвольте мне вернуться к моей работе.}
+{8000}{}{Печально слышать, чужак. Но ваши личные проблемы со здоровьем не повод давать вам допуск к нашему компьютеру. Теперь, пожалуйста, уходите.}
+{9000}{}{[Смеётся от души, чешет репу и смотрит на вас пронизывающим взглядом.] @sex@|Мозговитый||Мозговитая|, мать твою... @sex@|уважаемый||уважаемая|, всё правильно! Такой умный человек мог бы кое-что сделать для меня и города. Если вы выполните это задание, то получите разрешение использовать наш главный компьютером.}
+{9010}{}{Что за задание?}
+{9020}{}{Хрен с этим караваном. Я уже потерял достаточно времени. До свидания.}
+{10000}{}{До меня дошли слухи, что один из горожан открыто критикует Совет, Первую Гражданку, Демократию Города Убежища и систему соцобеспечения в целом. У меня в голове просто не укладывается даже то, как можно быть не согласным с тем путём, который выбрали для нашего сообщества предшественники много лету назад. Может быть такой неординарный человек, как вы, могли бы поговорить с ним и вернуть его на путь истинный. Я думаю вы сможете найти его в городском парке.}
+{10010}{}{Конечно, я сделаю это прямо сейчас.}
+{10020}{}{Мне не хочется вести политические дискуссии прямо сейчас. Прощайте.}
+{11000}{}{Отлично. Вам удалось убедить его перестать критиковать власти города?}
+{11010}{}{Не совсем, он не захотел со мной разговаривать.}
+{11020}{}{Мне не удалось переубедить его. Однако я узнал, что он осуждает высокие налоговые ставки, которые не позволяют развивать производство в городе. По его мнению, рано или поздно город обанкротится, если сейчас ничего не предпринять.}
+{11030}{}{Да. Больше он не доставит вам хлопот.}
+{11040}{}{Нет. Я думаю, что он говорит правильные вещи и вам стоит прислушаться к его советам.}
+{12000}{}{Я обязан хотя бы знать причины такого поведения. Постарайтесь выжать из него всё.}
+{12010}{}{Хорошо. Я пойду и поговорю с ним снова .}
+{13000}{}{[Чешет бороду.] Хм... Интересная точка зрения. Что он ещё сказал?}
+{13010}{}{Он так же очень критично высказался о городской системе образования. У граждан слишком скудное представление о внешнем мире, и дети, окончив школу, имеют лишь набор определённых, общих для всех знаний, без какого-либо желания и мотивации узнать больше.}
+{13020}{}{Это всё.}
+{14000}{}{[Выглядит по-настоящему взволнованным.] Многое из того, что он сказал - правда. Удалось узнать ещё что-нибудь?}
+{14010}{}{Да. Он привёл в пример Хаб, Шэйди Сэндс и даже Гекко, как образцовый пример того, чего можно добиться, если дать людям свободу, много трудиться и развивать предпринимательство. По его мнению, Город Убежище просрал весь потенциал, который у него было изначально и которого не было у других, и теперь медленно превращается в очередной, ничем не примечательный, городишко на пустоши.}
+{14020}{}{Нет. Он немного зол на меня и больше не хочет разговаривать.}
+{15000}{}{[Он становится всё более задумчивым с каждым вашим словом.] Трудно с вами не согласиться. Он сказал что-нибудь ещё?}
+{15010}{}{Он полагает, что необходимо дать доступ частным предпринимателям в те сектора, где сейчас всем занимаются государственные службы, обращая внимание на крайне низкие качество их услуг. Кроме того, отмена рабства и открытие города для неграждан, так же должны дать толчок экономике.}
+{15020}{}{Нет, это всё, что мне удалось узнать.}
+{16000}{}{[МакКлюр на время глубоко задумался.] Плохо, что вам не удалось убедить его прекратить свою подрывную деятельность, но я вижу много важных моментов в том, что он сказал. Вы хорошо поработали и заслужили право войти в наше Убежище.}
+{16010}{}{Наконец-то. Прощайте}
+{16020}{}{Спасибо, я рад, что смог помочь. До свидания, Советник.}
+{17000}{}{[Советник выглядит довольным.] Отличная работа, товарищ. Я не понимаю таких людей, которые вечно жалуются на жизнь. Вы заслужили право войти в наше Убежище, @pname@. Спасибо вам ещё рад, удачи.}
+{17010}{}{Ну наконец-то. Пока.}
+{17020}{}{Спасибо и вам, Советник МакКлюр. Рад, что смог помочь, до свидания.}
+{18000}{}{[Он выглядит удивленным и раздраженным одновременно.] Не могу в это поверить. Что он сказал, как он смог убедить вас, что что-то не так в нашем славном городе?}
+{18010}{}{Он осуждает высокие ставки налогов, которые не позволяют развивать производство в стенах города. Рано или поздно город обанкротится, если продолжать сидеть сложа руки. Горожане имеют слишком мало информации о внешнем мире и дети оканчивают школу с определенным набором шаблонов и схем в голове,без какого-либо желания и мотивации узнавать больше. Хаб, Шэйди Сэндс и даже Гекко это образцовый пример того, чего можно добиться, если дать людям свободу, много трудиться и развивать предпринимательство. Он считает, что Город Убежище просрал весь потенциал, который у него было изначально и которого не было у других, и теперь медленно превращается в очередной, ничем не примечательный, городишко на пустоши. Он полагает, что необходимо дать доступ частным предпринимателям в те сектора, где сейчас всем занимаются государственные службы, обращая внимание на крайне низкие качество их услуг. Кроме того, отмена рабства и открытие города для неграждан, так же должны поспособствовать росту экономики.}
+{19000}{}{[Советник МаКлюр глубоко шокирован, становится всё более и более задумчивым с каждым вашим словом. После некоторой паузы, собравшись с мыслями, он начинает смотреть на вас одновременно удивленным и восхищенным взглядом] Хотя вы и не выполнили моё задание, я всё равно вам благодарен. Теперь я вижу, что нам был нужен такой человек как вы, чтобы прозреть. Было ошибкой игнорировать Найджела, очень большой ошибкой. На следующем же собрании Совета я подниму на обсуждение все эти проблемы. Еще раз благодарю вас, вы заслужили право войти в Убежище.}
+{19010}{}{Отлично. Прощайте, МакКлюр.}
+{19020}{}{Я рад, что смог Вам помочь, Советник. Спасибо, до свидания.}
+{20000}{}{Ах да, мне уже докладывали, что они несколько раз пытались установить с нами контакт. Итак, теперь они прислали своего человека. И что же Братству стали нужно от нас?}
+{20010}{}{Братство Стали хочет наладить с вами отношения. Я имею ввиду дипломатию. Нужно создать официальные каналы, заключить торговое соглашение и, что самое главное, мы хотим построить бункер в городе Убежище. Ради вашей безопасности. Было бы не очень разумно отказаться от такого предложения, Советник.}
+{20020}{}{Братство Стали хочет знать, что вы о них думаете. Кроме того они хотят установить официальные дипломатические отношения, начать прямую торговлю и ,наконец, открыть представительство в Городе Убежище.}
+{20030}{}{Братство Стали хотело бы установить дипломатические отношения с вами. Это сулит огромную, повторяю, огромную выгоду для города. И лично для Вас, если конечно вы сделаете правильный выбор...}
+{20040}{}{Городские стены не будут оберегать вас вечно, Советник. Мы сможем защитить вас от мутантов с востока, если потребуется, даже если вы сейчас этого не осознаёте. Кроме того я слышал, что у вас некоторые проблемы с городом на севере... Мы могли бы помочь. Если вы согласитесь начать сотрудничество с нами, мы укрепим обороноспособность города, установив здесь свой аванпост и предоставив вам современное оружие...}
+{20050}{}{Одну минутку, я только что получил срочное сообщение от моего руководства в Лост Хиллз. Извините меня, я сейчас вернусь, Советник.@@Я только что получил срочную радиограмму из Лост Хиллз. Отойду на минутку, Советник.}
+{21000}{}{В самом деле? Предложение не очень убедительно. Больше похоже на угрозы. Теперь я вижу, что мы не ошиблись, проигноривав все ваши предыдущие запросы. Разговор окончен. Хорошего дня.}
+{21010}{}{Уверены? Когда-нибудь вы пожалеете об этом, Советник. До свидания.@@Вы ещё пожалете. Хорошего дня.@@Вам же хуже. Тогда прощайте.@@Вы упрямы, как осёл. Прощайте.}
+{22000}{}{Ну... я не уверен, что могу дать вам ответ, посланник. Установление таких отношений выходит за рамки моей компетенции. Мне нужно обратиться к Совету, потребуется время. Сейчас я могу лишь сказать, что у нас нет никакой неприязни к Братству Стали.}
+{22010}{}{Но почему вы прогинорировали предыдущие сообщения по неофициальным каналам?}
+{22020}{}{Хорошо. Спасибо, что уделили мне время, Советник.@@Хорошо. До свидания, Советник.@@Очень жаль. Надеюсь вы не пожалете об этом в скором будущем. До свидания.}
+{23000}{}{Я расскажу вам одну историю. Пустоши кишат различными животными и хащниками. Многие из них большие, слишком большие для этого города. Они бы наверняка сожрали вас, если бы на них не охотились более крупные звери. Ну вот к примеру... Медведь. У медведя много друзей здесь, внутри Города Убежища. И эти друзья не остановятся ни перед чем, чтобы присоединиться к медведю, или, по крайней мере, не дадут присоединиться ни к кому из врагов медведя, реальномых или потенциальных. Вот почему, даже недолюбливая медведей, нельзя обратиться к другим...животным. Мы понимаем друг друга?}
+{23010}{}{Хорошо. Спасибо, что уделили мне время, Советник.@@Тогда прощайте, Советник.@@Очень жаль. Надеюсь вы не пожалете об этом в скором будущем. До свидания.}
+{24000}{}{Я прекрасно понимаю, что торговля с Братством Стали потенц... [Делает паузу и мгновенно меняется в голосе.] Минуточку... вы действительно думаете, что я мог бы взять у вас деньги в обмен на продвижение вашего предложения в Совете?}
+{24010}{}{Я ничего не предлагал. Но у меня всегда имеются при себе некоторые дополнительные средства, которые только и ждут, когда их используют... на правое дело конечно же.}
+{24020}{}{Вовсе нет, Советник! Я лишь хочу установить контакт между Братством Стали и городом. Разумеется, сперва мы должны знать ваше отношение к Братству...}
+{25000}{}{У нас нейтральная позиция. Всё, что я пока могу сказть. Сожалею, что вам пришлось проделать такой длинный путь, чтобы услышать это, но я не могу ничего обещать до тех пор пока Совет не примет решение, как нам поступить. Потребуется время. Как только Совет примет решение, вам сразу об этом сообщат. Пока всё, прощаюсь с вами, посланник.}
+{25010}{}{Хорошо. Спасибо, что уделили мне время, Советник.@@Тогда прощайте, Советник.@@Очень жаль. Надеюсь вы не пожалете об этом в скором времени. До свидания.}
+{26000}{}{Хорошо... [Делает шаг вперёд и быстро выхватывает сумку.] Я возьму их. Но я не могу обещать ничего...пока что. И...[Оглядывается по сторонам, как будто проверяя, нет ли лишних ушей.]}
+{26010}{}{Да?@@Да, Советник?@@Всё будет хорошо, Советник.@@Слушаю.}
+{27000}{}{Я расскажу вам одну историю. Пустоши кишат различными животными и хащниками. Многие из них большие, слишком большие для этого города. Они бы наверняка сожрали вас, если бы на них не охотились более крупные звери. Ну вот к примеру... Медведь. У медведя много друзей здесь, внутри Города Убежища. И эти друзья не остановятся ни перед чем, чтобы присоединиться к медведю, или, по крайней мере, не дадут присоединиться ни к кому из врагов медведя, реальномых или потенциальных. Вот почему, даже недолюбливая медведей, нельзя обратиться к другим...животным. Мы понимаем друг друга?}
+{27010}{}{Вот и хорошо. Спасибо, что уделили мне время, Советник.@@Всё правильно. До свидания, Советник.}
+{28000}{}{Я всё прекрасно понимаю, посланник. Думаю, я не могу заявить, что у нас нейтральная позиция. Я не могу ответить на ваши запросы пока их рассмотрением занимается Совет. На это потребуется время. Сожалею, но таков порядок вещей. Теперь, если не возражаете, я хотел бы заняться другими делами.}
+{28010}{}{В самом деле? Однажды вы пожалеете об этом, Советник. До свидания.@@Вы пожалеете об этом. Хорошего дня.@@Вам же хуже. Прощайте.}
+
+[pols]
+{100}{}{McClure}
+{200}{}{Widzisz siwiejącego już urzędnika Nekropolis.}
+{210}{}{Widzisz Starszego Radnego McClure'a.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{W czym mogę ci pomóc, @sex@|Obcy||Obca|?}
+{2010}{}{Kim jesteś?}
+{2020}{}{I come here as an envoy from Brotherhood of Steel. They want to establish official relations with your City, Councillor.}
+{2030}{}{Muszę wejść do środka Krypty.}
+{2040}{}{Przepraszam, mógłby pan powtórzyć, czego ode mnie chce wzamian za przyznanie prawa wstępu do Krypty?}
+{2050}{}{@sex@|Rozmawiałem||Rozmawiałam| z Nigelem.}
+{2060}{}{Tylko się rozglądam, dzięki. Miłego dnia.}
+{3000}{}{Jestem Starszy Członek Rady, McClure.}
+{3010}{}{Nazywam się @pname@. Miło mi pana poznać, panie Starszy Członku.}
+{3020}{}{Nie twój interes, stary chuju. Do widzenia.}
+{4000}{}{Jaka jest tego przyczyna?}
+{4010}{}{@sex@|Chciałbym||Chciałabym| uruchomić sekwencję autodestrukcji i wysadzić to żałosne miasto w powietrze.}
+{4020}{}{@sex@|Słyszałem||Słyszałam|, że macie w archiwach gorące fotki młodej Tandi.}
+{4030}{}{Jestem szpiegiem Enklawy, chcę wykraść wszystkie wasze istotne dane.}
+{4040}{}{Potrzebuję maszyny o potężnej mocy obliczeniowej w celu zdeszyfrowania wiadomości.}
+{4050}{}{Hm, muszę to jeszcze przemyśleć. Zaraz wracam, do widzenia.}
+{5000}{}{[Śmieje się serdecznie.] Świetny dowcip, @sex@|mój drogi||moja droga|. Dla tak chwalebnego celu mogę przyznać ci prawo wstępu, ale najpierw musisz wykonać dla mnie drobne zadanie - idealne dla tak @sex@|wygadanego Obcego||wygadanej Obcej|.}
+{5010}{}{Co to za zadanie?}
+{5020}{}{Tylko @sex@|żartowałem||żartowałam|, nie chce mi się wykonywać żadnych zadań. Do widzenia, panie McClure.}
+{6000}{}{Co to za wiadomość?}
+{6010}{}{Mam nadzieję, że pomoże mi w rozwikłaniu tajemnicy pewnej zmasakrowanej karawany.}
+{6020}{}{Przypuszczam, że może zawierać pewne informacje o moim życiu przed utratą pamięci.}
+{6030}{}{Skąd mogę wiedzieć? @sex@|Powiedziałem||Powiedziałam|, że jest zaszyfrowana.}
+{7000}{}{Nawet jeśli osobiście szalenie współczuję ofiarom, żadna karawana nie jest obiektem zainteresowania władz Kryptopolis. Nie mogę ci pomóc. Proszę, pozwól skupić mi się na mojej pracy.}
+{8000}{}{Przykro mi to słyszeć, @sex@|Obcy||Obca|, niemniej twoje osobiste problemy zdrowotne nie są przyczyną, która mogłaby usprawiedliwić przyznanie ci prawa korzystania z naszej Krypty. Proszę, odejdź.}
+{9000}{}{[Śmieje się do rozpuku, drapie po głowie, po czym spogląda na ciebie przeszywającym wzrokiem.] Racja, ale z ciebie @sex@|spryciarz||sprytna dziewczyna|! Cóż, jest jedna przysługa, którą tak zmyślna osoba jak ty mogłaby wyświadczyć mi i całemu Kryptopolis wzamian za prawo wstępu do naszej Krypty.}
+{9010}{}{Co to za przysługa?}
+{9020}{}{Pierdolić tą karawanę, już wystarczy zmarnowanego czasu. Do widzenia.}
+{10000}{}{Słyszałem że jeden z naszych Obywateli, Nigel, otwarcie krytykuje Radę, Pierwszego Obywatela oraz cały demokratyczny system dobrobytu Kryptopolis w ogólności. Jako że ja nie jestem w stanie zrozumieć, jak można nie zgadzać się ze ścieżką wytyczoną przed wielu laty przez naszych chwalebnych przodków, być może tak @sex@|zdolny Obcy powinien||zdolna Obca powinna| z nim porozmawiać i przywrócić na dobrą drogę.}
+{10010}{}{Jasne, już idę z nim porozmawiać.}
+{10020}{}{Nie mam teraz ochoty na żadne polityczne debaty. Do widzenia.}
+{11000}{}{Świetnie. Udało ci się przekonać go, że nie powinien podburzać ludności przeciwko władzom miasta?}
+{11010}{}{Nie, w ogóle nie chciał ze mną rozmawiać.}
+{11020}{}{Nie udało mi się go przekonać, ale z tego co @sex@|zdołałem||zdołałam| usłyszeć, krytykuje bardzo wysokie podatki, które czynią produkcję w obrębie miasta zupełnie nieopłacalną. Przewiduje, że jeśli nie ulegnie to zmianie, miasto prędzej czy później zbankrutuje.}
+{11030}{}{Tak, udało mi się. Nie będzie więcej sprawiał kłopotów.}
+{11040}{}{Nie. Uważam, że ma rację, a pan powinien poważnie rozważyć jego zarzuty.}
+{12000}{}{Chciałbym przynajmniej poznać przyczyny jego zdumiewającego zachowania. Spróbuj jeszcze raz, @sex@|powinieneś||powinnaś| coś z niego wyciągnąć.}
+{12010}{}{Dobra, w porządku. Idę z nim pogadać jeszcze raz.}
+{13000}{}{[Drapie się po brodzie.] Cóż... Ciekawy punkt widzenia. Powiedział coś jeszcze?}
+{13010}{}{Bardzo krytycznie ocenia miejski system edukacji. Wiedza Obywateli o świecie zewnętrznym jest niezwykle mizerna, a dzieci opuszczają szkołę bez jakiejkolwiek motywacji do myślenia poza schematami.}
+{13020}{}{Nie, nie powiedział nic więcej.}
+{14000}{}{[Wydaje się być szczerze zatroskany.] W jego słowach jest wiele prawdy. Udało ci się wyciągnąć z niego coś jeszcze?}
+{14010}{}{Tak. Podał miasta jak Hub, Cieniste Piaski czy nawet Gecko jako modelowe przykłady tego, co można osiągnąć dzięki przedsiębiorczości, ciężkiej pracy i wolności. Kryptopolis postrzega jako zmarnowany potencjał, miasto mające tak korzystny początek w porównaniu z resztą i powoli staczające się ku przeciętności.}
+{14020}{}{Nie, potem się pogniewał i nie chciał już ze mną więcej rozmawiać.}
+{15000}{}{[Z każdym twoim słowem staje sięcoraz bardziej zamyślony.] Niestety, ciężko temu zaprzeczyć. Coś jeszcze mówił?}
+{15010}{}{Sugeruje, że rola sektora prywatnego powinna zostać znacznie zwiększona, krytykując zawstydzająco niską jakość usług oferowanych przez miasto. Zniesienie niewolnictwa oraz otwarcie miasta na większą ilość nie-Obywateli powinno polepszyć stan gospodarki.}
+{15020}{}{Nie, to wszystko co z niego @sex@|wyciągnąłem||wyciągnęłam|.}
+{16000}{}{[McClure pogrąża się w myślach na dłuższą chwilę.] To bardzo przykre, że nie udało ci się przekonać go do zaprzestania swojej wywrotowej działalności, niemniej widzę wiele celnych uwag w jego słowach. @sex@|Wykonałeś||Wykonałaś| niezłą robotę i @sex@|zasłużyłeś||zasłużyłaś| na prawo wstępu do naszej Krypty.}
+{16010}{}{No, nareszcie. Cześć.}
+{16020}{}{Dziękuję, cieszę się że @sex@|mogłem||mogłam| pomóc. Do widzenia, panie McClure.}
+{17000}{}{[Radny jest wyraźnie zadowolony.] Dobra robota, @sex@|mój drogi chłopcze||moja droga|. Nie jestem w stanie zrozumieć tych buntowników, wiecznie coś im nie pasuje. Mniejsza z tym - przyznaję ci prawo wstępu do naszej Krypty, @pname@. Jeszcze raz dziękuję, powodzenia.}
+{17010}{}{No wreszcie, masz szczęście. Cześć.}
+{17020}{}{Również dziękuję, panie McClure. Cieszę się, że @sex@|mogłem||mogłam| pomóc.}
+{18000}{}{[Wydaje się być jednocześnie zaskoczony i wzburzony.] Nie wierzę w to. Co ty pleciesz, jak mógł przekonać cię, że coś jest nie w porządku z naszym wspaniałym miastem?}
+{18010}{}{Krytykuje bardzo wysokie podatki, które czynią produkcję w obrębie miasta zupełnie nieopłacalną. Przewiduje, że jeśli nie ulegnie to zmianie, miasto prędzej czy później zbankrutuje. Wiedza Obywateli o świecie zewnętrznym jest niezwykle mizerna, a dzieci opuszczają szkołę bez jakiejkolwiek motywacji do myślenia poza schematami. Miasta jak Hub, Cieniste Piaski czy nawet Gecko to modelowe przykłady tego, co można osiągnąć dzięki przedsiębiorczości, ciężkiej pracy i wolności. Kryptopolis postrzega jako zmarnowany potencjał, miasto mające tak korzystny początek w porównaniu z resztą i powoli staczające się ku przeciętności. Sugeruje, że rola sektora prywatnego powinna zostać znacznie zwiększona, krytykując zawstydzająco niską jakość usług oferowanych przez miasto. Zniesienie niewolnictwa oraz otwarcie miasta na większą ilość nie-Obywateli powinno polepszyć stan gospodarki.}
+{19000}{}{[Radny McClure jest w ciężkim szoku, a z każdym twoim słowem jest coraz bardziej zamyślony. Po chwili głębokiego namysłu spogląda na ciebie z ukrytą we wzroku mieszanką podziwu i zdumienia.] Nawet jeśli nie @sex@|wykonałeś||wykonałaś| pierwotnego zadania, szczerze ci dziękuję. Teraz widzę, że była potrzebna nam osoba taka jak ty, która pomogłaby nam otworzyć oczy. Ignorowanie Nigela było błędem, wielkim błędem. Podczas następnego posiedzenia Rady podniosę tę kwestię. Dziękuję ci jeszcze raz, w pełnie @sex@|zasłużyłeś||zasłużyłaś| na prawo wstępu do naszej Krypty.}
+{19010}{}{Kurde, wreszcie. Trzymaj się, McClure.}
+{19020}{}{Cieszę się, że @sex@|mogłem||mogłam| pomóc, panie Radny McClure. Dziękuję serdecznie, do widzenia.}
+{20000}{}{Oh yes, I've been told several times that they tried to establish contact. So, now they sent you as their @sex@|man||woman|. What does this Brotherhood of yours want from us?}
+{20010}{}{The Brotherhood of Steel wants you to establish relations. I mean, diplomatic ones. We need to open official channels, a trade agreement, and most importantly, we want to build a bunker within Vault City. It's all for your protection of course, It wouldn't be wise to rejest this offer, Councillor.}
+{20020}{}{The Brotherhood wants to know what is your disposition towards it. They also want to establish official diplomatic relations, open a direct trade channel and lastly, to establish embassy within Vault City.}
+{20030}{}{The Brotherhood of Steel wishes to establish diplomatic relations with you. This could mean huge, and I mean, huge profits for this city. And, for you, if you make the right decision...}
+{20040}{}{Your walls won't protect you forever, Councillor. We shield you from mutants from the east, even if you don't realise it. And, as I heard, you also have a problem with a town north of here... We could help you. If you decide to open relations with us, the Brotherhood could extend its protection officially, establish an outpost, and provide you with advanced weaponry...}
+{20050}{}{Just a moment, I just recieved an urgent message from my superiors at Lost Hills. If you excuse, I'll be right back, Councillor.@@I've just got an urgent radio message from Lost Hills. I'll be right back, Councillor.}
+{21000}{}{Really? This offer doesn't sound very convincing. More like a threat actually. I see now that we did no mistake in ignoring your earlier requests. This conversation is now over. Good day.}
+{21010}{}{Really? You will regret this someday, Councillor. Goodbye.@@You will regret it. Good day.@@Too bad for you. Goodbye then.@@I see you're as stubborn as stupid. I'll take my leave then.}
+{22000}{}{Well... I'm not sure I'm the right man to answer your requests, envoy. Establishing such relations is not in my area of competence, I would have to address the council. And such things take time. As for now, I can only tell you that we hold no grudges against the Brotherhood.}
+{22010}{}{But why did you ignore the earlier responses via less official channels?  }
+{22020}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{23000}{}{I'll tell you a story. The Wastes are full of many animals and predators. Many are so big, they're too big for our little city. They would swallow us for sure, if not for them being harassed by other large animals. For example, there is this... Bear. The Bear has many friends here, within Vault City. And those friends will stop at nothing to ensure we join the Bear, or at least that we won't join any of its enemies, real or potential. That's why I, myself not being very fond of bears, couldn't make a move towards other... animal. Do we understand each other? }
+{23010}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{24000}{}{I am well aware of the Brotherhood's trading potent... [He pauses instantly and changes his tone.] Wait a minute... Are you suggesting that I could take money from you in exchange for putting your cause forward in the next Council session?}
+{24010}{}{I never suggested anything. But it so happens that I've got some extra funds, just waiting to put to use... for the right cause of course. }
+{24020}{}{No, not at all, Councillor! I merely wish to you to establish diplomatic ties with the Brotherhood. Of course first, we must know what your stance towards the Brotherhood is...}
+{25000}{}{It is neutral. That's all I can say right now. I'm sorry you took such a long route just to hear this, but I can't make any promises, not before the Council decides what the course should be. And that will take time. If the Council decides on anything, You will surely know. As for now, I bid you farewell, envoy.}
+{25010}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{26000}{}{I see. [He steps forward and quickly snatches the bag.] I'll take those. But I can't promise you anything... yet. But...[He looks around as if he was checking if no one's listening.]}
+{26010}{}{Yes?@@Yes, Councillor?@@This better be good, Councillor.@@I'm listening.}
+{27000}{}{I'll tell you a story. The Wastes are full of many animals and predators. Many are so big, they're too big for our little city. They would swallow us for sure, if not for them being harassed by other large animals. For example, there is this... Bear. The Bear has many powerful friends here, within Vault City. Those friends are mostly not my friends. And they would gladly see my downfall, which would be sure If I dared to act on my own. They are bent on ensuring that we join the Bear, or at least that we won't join any of its enemies, be it real or potential. That's why I, myself not being very fond of bears, couldn't make a move towards the other... animal. Do we understand each other? 
+}
+{27010}{}{I see. Thank you for your time, Councillor.@@All right, I see it now. Goodbye, Councillor.}
+{28000}{}{I am well aware of that, envoy. Though, I can't declare anything that we're neutral. I can't answer to any of your pleas, until the matter is decided on the Council. And that will take time. I'm sorry, but such is the way things are around here. Now, if you excuse, I've got things to attend to.
+}
+{28010}{}{Really? You will regret this someday, Councillor. Goodbye.@@You will regret it. Good day.@@Too bad for you. Goodbye then.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{Is there anything I can help you with, Outsider?}
+{2010}{}{Who are you?}
+{2020}{}{I come here as an envoy from Brotherhood of Steel. They want to establish official relations with your City, Councillor.}
+{2030}{}{I need to get inside the Vault.}
+{2040}{}{Could you repeat what I need to do to get your permission to get inside the Vault?}
+{2050}{}{I've had a chat with Nigel.}
+{2060}{}{Just looking around, thanks. Good day.}
+{3000}{}{I am Senior Councillor McClure. And you are...?}
+{3010}{}{My name's @pname@. Pleased to meet you, Councillor.}
+{3020}{}{None of your business. Goodbye.}
+{4000}{}{What reason do you have?}
+{4010}{}{I would like to perform an autodestruction sequence of that pathetic city.}
+{4020}{}{I've heard that there are some young Tandi's dirty pictures in your archives.}
+{4030}{}{I'm an Enclave spy and I'd like to steal all your important data.}
+{4040}{}{I need a machine with high computing power, such as the Vault's main computer, to decipher an encrypted message.}
+{4050}{}{I have to think about it. I'll be back later, bye.}
+{5000}{}{[He laughs sincerely.] Great joke, my dear. I could give you the permission to enter the Vault for such a noble reason, but I need one worthy Outsider like you to perform an easy task for me first.}
+{5010}{}{What's that task?}
+{5020}{}{I was just joking, I'm not doing any tasks. Bye, Councillor.}
+{6000}{}{What kind of message is that?}
+{6010}{}{I hope that it will help me solve a mystery behind a massacred caravan.}
+{6020}{}{I suppose that it could contain some information about my life before I lost my memory.}
+{6030}{}{How could I know? I said it's encrypted.}
+{7000}{}{Even if I am personally very sorry for those poor people, some butchered caravan is not of our concern. I cannot help you, Outsider. Please, let me focus on my job.}
+{8000}{}{That is very sad to hear, Outsider, but your personal health problems are not sufficient to grant you access to our computer. Now, leave me alone.}
+{9000}{}{[He laughs cordially, scratches his head and looks at you with piercing eyes.] Well, there is one favor a clever person such as yourself could do for me, and for Vault City as a whole. If you complete that task, you will be allowed to use our main computer.}
+{9010}{}{What's the task?}
+{9020}{}{Fuck this caravan, I've already wasted enough time. Goodbye.}
+{10000}{}{I have heard that one of our Citizens, Nigel, is openly criticizing the Council and First Citizen, and even Vault City's political system as a whole. As I am unable to understand how it is even possible not to agree with the path that our ancestors paved years ago for our community, maybe an outstandingly bright Outsider like you should talk to him and try to 
+get him back on track. He's probably walking around somewhere in the city park.}
+{10010}{}{Sure, I'll go and talk with him right now.}
+{10020}{}{I'm not interested in political debates right now. Bye.}
+{11000}{}{Great. Did you manage do convince him that he shouldn't stand against the authorities of this city?}
+{11010}{}{Not really, he didn't want to talk to me.}
+{11020}{}{I was unable to convince him. But from what I understand, he's criticizing the high tax rates which make production within the city walls almost non-existent. He's predicting that the city will go bankrupt sooner or later if nothing changes.}
+{11030}{}{Yes, I did. He won't cause trouble any more.}
+{11040}{}{No, I didn't. I think that what he says is right and you should seriously consider his arguments.}
+{12000}{}{I would at least like to know what exactly is the cause of his outrageous behaviour. Try harder, you should squeeze something from him.}
+{12010}{}{Yeah, fine. I'll go talk to him again.}
+{13000}{}{[He scratches his beard.] Well... That is an interesting point of view. Did he say anything more?}
+{13010}{}{He was also very critical of the city's education system. The Citizens' knowledge about the outside world is very low, and children leave school without gaining any real-life skills.}
+{13020}{}{No, he didn't.}
+{14000}{}{[He seems to be honestly worried.] There is much truth in what he says. Did you manage to get anything more from him?}
+{14010}{}{Yes. He held up cities like Hub, Shady Sands and even Gecko as model examples of what can be achieved by entrepreneurship, hard work and freedom. He sees Vault City as wasted potential, having such a good start compared to the others and slowly declining into mediocrity.}
+{14020}{}{No, he got angry after that and didn't want to talk to me any more.}
+{15000}{}{[He gets more and more pensive with every word you say.] It is hard to deny that, sadly. Did he say anything more?}
+{15010}{}{He suggested that the role of the private sector should be greatly extended, while criticizing the embarrassingly poor quality of services provided by the city. Abolishing slavery and opening up the city to more non-Citizens would also improve the state of the economy.}
+{15020}{}{No, that's all I managed to get from him.}
+{16000}{}{[McClure is deeply lost in thought for a while.] That is very unfortunate that you did not manage to convince him to stop his subversive actions, but I see many accurate points in what he is saying. You did a good job and deserve the right to access our Vault.}
+{16010}{}{Yeah, finally. Bye.}
+{16020}{}{Thank you, I'm glad that I could help you. Goodbye, Councillor.}
+{17000}{}{[Councillor seems to be pleased.] Good job, my dear. I don't understand those rebellious types, always keep complaining. You are granted the right to enter our vault, @pname@. Thank you once again, and good luck.}
+{17010}{}{At last, yeah. Bye.}
+{17020}{}{Thank you too, Councillor McClure. Glad that I could help, goodbye.}
+{18000}{}{[He looks surprised and irritated at the same time.] I cannot believe that. What did he say, how could he convince you that there is something wrong with our glorious city?}
+{18010}{}{He's criticizing the high tax rates, which make production within the city walls almost non-existent. The city will go bankrupt sooner or later if nothing changes. The Citizens' knowledge about outside world is very low, and the children leave school without any real-life skills. Cities like Hub, Shady Sands and even Gecko are model examples of what can be achieved by entrepreneurship, hard work and freedom. He sees Vault City as wasted potential, having such a good start compared to the others, and slowly declining into mediocrity. He suggested that the role of the private sector should be greatly extended, criticizing the embarrassingly poor quality of services provided by the city. Abolishing slavery and opening up the city to more non-Citizens would also improve the state of the economy.}
+{19000}{}{[Councillor McClure is deeply shocked, getting more and more pensive with every word you say. After a while of being deeply lost in thought, he looks at you with a mix of admiration and surprise.] Even if you failed to accomplish your task, I thank you honestly. Now I see that there was someone like you needed, who could help us open our eyes. We were wrong to ignore Nigel, very wrong indeed. During the next meeting of the Council, I will raise this case. Thank you once again, you deserve the right to visit our Vault.}
+{19010}{}{Great, finally. Bye, McClure.}
+{19020}{}{I'm glad that I could help, Councillor. Thank you, goodbye.}
+{20000}{}{Oh yes, I've been told several times that they tried to establish contact. So, now they sent you as their @sex@|man||woman|. What does this Brotherhood of yours want from us?}
+{20010}{}{The Brotherhood of Steel wants you to establish diplomatic relations. We need to open official channels, a trade agreement, and most importantly, we want to build a bunker within Vault City. It's only for your protection, of course. It wouldn't be wise to reject this offer, Councillor.}
+{20020}{}{The Brotherhood wants to know about your disposition towards us. We also want to establish official diplomatic relations, open a direct trade channel and lastly, to establish an embassy within the walls Vault City. This agreement would be mutually beneficial, I assure you.}
+{20030}{}{The Brotherhood of Steel wishes to establish diplomatic relations with you. This could mean huge, and I mean *huge*, profits for this city. And for you too, if you make the right decision...}
+{20040}{}{Your walls won't protect you forever, Councillor. We shield you from mutants from the west, even if you don't realize it. And, as I've heard, you also have a problem with a town north of here... We could help you. If you decide to open relations with us, the Brotherhood could extend its protection officially, establish an outpost, and provide you with advanced weaponry...}
+{20050}{}{Oh, I'm sorry, I've just received an urgent message from my superiors at Lost Hills. If you'll excuse me, I'll be right back, Councillor.@@I've just got an urgent radio message from Lost Hills. I'll be right back, Councillor.}
+{21000}{}{Really? This offer doesn't sound very convincing. More like a threat actually. I see now that we made no mistake in ignoring your previous requests. This conversation is now over. Good day.}
+{21010}{}{You will regret this someday, Councillor. Goodbye.@@You will regret it. Good day.@@Too bad for you. Goodbye then.@@I see you're as stubborn as you are stupid. I'll take my leave then.}
+{22000}{}{Well... I'm not sure I'm the right man to answer your requests, envoy. Establishing such relations is not in my area of expertise. I would have to address the council, but such things take time. As for now, I can only tell you that we hold no grudges against the Brotherhood. I'm sorry you took such a long route just to hear this, but I can't do anything more right now. Now, if you'll excuse me...}
+{22010}{}{But why did you ignore the earlier requests through unofficial channels?}
+{22020}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{23000}{}{[He looks around as if he was checking if no one's listening.] I'll tell you a story. The Wastes are full of many animals and predators. Many are so big, they're too big for our little city. They would swallow us for certain, if not for them being harassed by other large animals. For example, there is this... bear. The bear has many powerful friends here, within Vault City. Those friends are not very fond of me, and my sympathies towards the... knights in shining armor. And they would gladly see my downfall, which would be swift, if I dared to act on my own. They are hell-bent on ensuring that we join the bear, or at least that we won't join any of its enemies, be they real or potential. That's why I, myself not being very fond of bears, couldn't make a move towards the knights. Do we understand each other? }
+{23010}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{24000}{}{I am well aware of the Brotherhood's trading potent... [He pauses instantly and changes his tone.] Wait a minute... Are you suggesting that I could take money from you in exchange for putting your cause forward in the next Council session?}
+{24010}{}{I never suggested anything, Councillor. But... it so happens that I've got some extra funds, one thousand caps, just waiting to be put to use... for the right cause of course. [Discreetly put the bag of caps on the table.]}
+{24020}{}{No, not at all, Councillor! I merely wish you to establish diplomatic ties with the Brotherhood. Of course first, we must know what your stance towards the Brotherhood is...}
+{25000}{}{It is neutral. That's all I can say right now. I'm sorry you took such a long route just to hear this, but I can't make any promises, not before the Council decides what the course should be. And that will take time. If the Council decides on anything, you will surely know. As for now, I bid you farewell, envoy.}
+{25010}{}{I see. Thank you for your time, Councillor.@@All right. Goodbye, Councillor.@@That's a pity. I hope you won't regret it too soon. Goodbye.}
+{26000}{}{I see. [He quickly snatches the bag.] I'll take those. I can't promise you anything... yet. But... [He looks around as if making sure no one's listening.]}
+{26010}{}{Yes?@@Yes, Councillor?@@This better be good, Councillor.@@I'm listening.}
+{27000}{}{I'll tell you a story. The Wastes are full of many animals and predators. Many are so big, they're too big for our little city. They would swallow us for sure, if not for them being harassed by other large animals. For example, there is this... bear. The Bear has many powerful friends here, within Vault City. Those friends are not very fond of me, and my sympathies towards the... knights in shining armor. And they would gladly see my downfall, which would be swift, If I dared to act on my own. They are bent on ensuring that we join the bear, or at least that we won't join any of its enemies, be it real or potential. That's why I, myself not being very fond of bears, couldn't make a move towards the knights. Do we understand each other?}
+{27010}{}{I see. Thank you for your time, Councillor.@@All right, I see it now. Goodbye, Councillor.}
+{28000}{}{I am well-aware of that, envoy. Though, I can't declare anything more than that we're neutral. I can't answer to any of your pleas, until the matter is decided on the Council. And that will take time. I'm sorry, but such is the way things are around here. Now, if you'll excuse me, I've got some urgent matters to attend to.
+}
+{28010}{}{You will regret this someday, Councillor. Goodbye.@@You will regret it. Good day.@@Too bad for you. Goodbye then.}
+

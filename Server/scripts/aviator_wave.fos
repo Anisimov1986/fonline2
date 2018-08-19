@@ -1,0 +1,158 @@
+#include "critter_wave.fos"
+#include "entire_h.fos"
+#include "_defines.fos"
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+
+#include "mapdata_h.fos"
+#include "_ai.fos"
+
+//Aviator ghoul def
+#define ROLE_ATTACKER                       (288000)
+#define START_DELAY                     (REAL_SECOND(3))
+#define WAVE_TIME                       (REAL_SECOND(20))
+#define WAVE_COUNT                      (2)
+#define WAVE_SIZE                       (2)
+#define BASE_PAY                        (150)
+#define BOYD                   ( 900 )
+#define BOYD_WAVE_SHOUTOUTS    ( 70576 )
+#define BOYD_WAVE_FINISH    ( 70577 )
+
+import void SendQuestMessage( Critter& critter, uint questNameMsgNum, uint questTaskMsgNum ) from "quest";
+
+
+int[] params =
+{
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1,
+    ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_ATTACKER, ST_REPLICATION_TIME, -1, ST_KILL_EXPERIENCE, 80, ST_MAX_LIFE, 40, ST_MELEE_DAMAGE , 15
+};
+const int[] AttackerPids = { NPC_PID_GHOUL1, NPC_PID_GHOUL2, NPC_PID_GHOUL3, NPC_PID_GHOUL4, NPC_PID_GHOUL5 };
+const int[] WeaponPids = { PID_KNIFE, PID_SHIV, PID_SWITCHBLADE, PID_SPEAR, PID_SHARPENED_POLE, PID_CLUB, PID_CROWBAR, PID_WRENCH, PID_BRASS_KNUCKLES, PID_SPIKED_KNUCKLES, PID_ROCK };
+
+CritterTemplate antCritterTemplate = CritterTemplate(AttackerPids, ROLE_ATTACKER)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_HOME)
+		.SetCritterParams(params)
+		.SetShowCritterDist1(120)
+		.SetAttachEventManager(true);
+CritterEventsManager antCritterEvents = CritterEventsManager(ROLE_ATTACKER)
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26))
+	.When(CritterAttacked())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 35));	
+
+
+void Death(Map& map, Critter& cr, Critter@ killer)
+{	
+	Location@ location = map.GetLocation();
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+	CheckQuestState(map);	
+   
+    Critter@ boyd = map.GetNpc( BOYD, FIND_ALL | FIND_ONLY_NPC, 0 );
+    if( HAS_CHANCE( 25 ) )
+        boyd.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_WAVE_SHOUTOUTS );
+   
+    if( !cr.IsPlayer() )
+        return;
+        
+    location.AutoGarbage = true;
+
+    GameVar@ var = GetLocalVar( LVAR_q_aviator_main, cr.Id );
+    if( !valid( var ) )
+        return;
+    var = 30;
+    SendQuestMessage( cr, LVAR_q_aviator_main * 1000 + 102, var.GetQuestStr() );
+}
+   
+uint e_StartWave(uint[]@ values2)
+{
+	CritterWave(values2[0], ROLE_ATTACKER)
+		.SetCrittersPerWave(WAVE_COUNT, WAVE_COUNT)
+		.SetWaveCountDown(START_DELAY)
+		.SetWaveTimeout(WAVE_TIME)
+		.Start();
+		
+	return 0;
+}
+
+void t_wavestart(Critter& cr, Scenery& trigger, bool entered, uint8 dir)
+{
+    if( !cr.IsPlayer() )
+		return;
+    
+    Map@ map = cr.GetMap();
+	Location@ location = map.GetLocation();
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+
+
+	if( WAVE_STATE != 0 )
+		return;
+
+	WAVE_STATE = 1;
+	uint[] values = {map.Id};
+	CreateTimeEvent(__FullSecond + REAL_SECOND(5), "Start", values, true);
+}
+
+uint Start(uint[]@ values)
+{
+	Map@ map = GetMap(values[0]);
+	Location@ location = map.GetLocation();
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+	if( WAVE_STATE != 0 )
+		return 0;
+        
+    //BOYD MESSAGE SHIT IS STARTING
+    Critter@ boyd = map.GetNpc( BOYD, FIND_ALL | FIND_ONLY_NPC, 0 );
+    boyd.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_WAVE_SHOUTOUTS );
+    
+	uint[] values2 = {map.Id};
+	CreateTimeEvent(__FullSecond + START_DELAY, "e_StartWave", values2, true);
+	
+	return 0;
+}
+
+void CheckQuestState(Map& map)
+{
+	Location@ location = map.GetLocation();
+	
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+	
+	if( WAVE_STATE == 3 )
+		return;
+
+	array<Critter@> critters;
+	map.GetCritters(0, FIND_ALL, critters);
+	
+	int playersCount = 0, deadghoulsCount = 0;
+
+	for (uint i = 0; i < critters.length(); i++)
+	{
+		if (critters[i].Stat[ST_NPC_ROLE] == ROLE_ATTACKER && critters[i].IsDead()) {
+			deadghoulsCount++;
+		}
+		
+		if (critters[i].IsPlayer() && !critters[i].IsDead())
+		{
+			playersCount++;
+		}
+	}
+	
+	if (WAVE_COUNT * WAVE_SIZE == deadghoulsCount)
+	{
+		WAVE_STATE = 3;
+
+		int ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+       
+        //BOYD SAYING SHIT THAT WAS ALL OF THEM + VAR CHANGE
+        Critter@ boyd = map.GetNpc( BOYD, FIND_ALL | FIND_ONLY_NPC, 0 );
+        boyd.SayMsg( SAY_SHOUT, TEXTMSG_TEXT, BOYD_WAVE_FINISH );
+        GameVar@ var = GetLocalVar( LVAR_q_aviator_main, ownerId );
+        var = 20;
+        
+	}
+}
+

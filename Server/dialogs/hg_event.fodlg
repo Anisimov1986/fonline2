@@ -1,0 +1,56 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+0 2010 D _script dialog@d_EmptyInventory 0  R _param p ST_CURRENT_HP + 9000 R _script dialog@r_DropPoison 0  R _script dialog@r_DropRadiation 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p ADDICTION_NUKA_COLA = 0 R _param p ADDICTION_BUFFOUT = 0 R _param p ADDICTION_MENTATS = 0 R _param p ADDICTION_PSYCHO = 0 R _param p ADDICTION_RADAWAY = 0 R _param p ADDICTION_JET = 0 R _script test@d_DropDrugEffects 0  R _script dialog@r_TransitToMapAdvanced 2 9312 12 #
+3 2020 D _script dialog@d_NotEmptyInventory 0  #
+0 2030 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Event Manager}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Welcome!  To join the event you must have the an empty inventory. Please note that all effects, addictions, and taken damage will be removed. If You're not getting teleported, it means that we already have all contestant slots occupied.}
+{2010}{}{[Join Event.]}
+{2020}{}{[Join Event.]}
+{2030}{}{Nevermind.}
+{3000}{}{You do not have empty inventory. Please check again.}
+
+[russ]
+{100}{}{Организатор}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Для участия тебе нужно выложить все вещи. Все эффекты полученые во время эвента будут сняты после его окончания. Если вы не были перемещены, значит не осталось свободных мест.}
+{2010}{}{Присоединится.}
+{2020}{}{Присоединится.}
+{2030}{}{Я передумал.}
+{3000}{}{Нельзя иметь вещи при себе.}
+
+[pols]
+{100}{}{Event Manager}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{What do you want? To join the event you must have empty inventory. Note that all effects, addictions, and taken damage will be removed. If You're not getting teleported, it means that event is full.}
+{2010}{}{Join Event}
+{2020}{}{Join Event}
+{2030}{}{Nothing}
+{3000}{}{You do not have empty inventory.}
+
+[ptbr]
+{100}{}{Organizador do evento}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{@sex@|Bem-vindo||Bem-vinda|!  Para participar do evento você não deve estar carregando nenhum equipamento. Por favor atente-se que todos os efeitos, adições e injúrias serão removidas. Se você não for encaminhado ao jogo, deve-se ao fato que foi alcançado o limite de participantes.}
+{2010}{}{[Participar do evento.]}
+{2020}{}{[Entrar no evento.]}
+{2030}{}{[Sai]}
+{3000}{}{Você ainda possui coisas entre seus equipamentos. Por favor, cheque novamente.}
+

@@ -1,0 +1,134 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+4 2020 #
+0 2030 @
+3 3000 None 0 #
+65506 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+65506 4030 #
+0 4040 @
+5 5000 None 0 #
+4 5010 #
+0 5020 @
+6 6000 None 0 #
+4 6010 #
+0 6020 &
+
+[engl]
+{100}{}{Tubby}
+{200}{}{You see: Tubby, the owner of this store.}
+{210}{}{You see Tubby.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Hello, @sex@|sir||ma'am|, and welcome to Tubby's. I am the proprietor of this fine establishment. May I help you?}
+{2010}{}{Got something to trade?@@I want to trade.@@Got something interesting here?@@Yes, let's trade.}
+{2020}{}{I need information.}
+{2030}{}{Goodbye.}
+{3000}{}{Hello, what can I do for you today?}
+{3010}{}{I want to buy some things.@@Got something to trade?@@I want to trade.@@Got something interesting here?@@Let's trade.}
+{3020}{}{I need some information.}
+{3030}{}{Goodbye.@@See you later.}
+{4000}{}{I'll try to help. What would you like to know?}
+{4010}{}{Who's in charge here?}
+{4020}{}{Why is everyone selling drugs?}
+{4030}{}{On second thought, I would like to trade.}
+{4040}{}{Never mind. Bye.}
+{5000}{}{No one, I'm afraid. The Den is an anarchistic place, and it's the survival of the fittest.I hope that you will be one of those.}
+{5010}{}{Um, thanks.}
+{5020}{}{That's all for me. Bye.}
+{6000}{}{Well, Drugs are are the blood of this town, just as grain or gold in some other places. Redding is another good example of a town fueled by drugs. Them miners are too high to get any real job done. I have never been there myself, but it is a couple days south-east of here if you want to check it out.}
+{6010}{}{I see. Thanks.}
+{6020}{}{That's all I wanted to know. Bye.}
+
+[russ]
+{100}{}{Тубби}
+{200}{}{Вы видите владельца магазина.}
+{210}{}{Вы видите Тубби.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Здравствуйте, @sex@|сэр||мэм|, и добро пожаловать к Тубби. Я хозяин. Могу я вам помочь?}
+{2010}{}{Да, давайте торговать.}
+{2020}{}{Мне нужна информация.}
+{2030}{}{До свидания.}
+{3000}{}{Что я могу сделать для вас сегодня?}
+{3010}{}{Я хочу купить некоторые вещи.}
+{3020}{}{Мне нужна информация.}
+{3030}{}{До свидания.}
+{4000}{}{Что бы вы хотели узнать?}
+{4010}{}{Кто главный в этом городе?}
+{4020}{}{Почему все торгуют наркотой?}
+{4030}{}{Я хотел бы посмотреть, что у вас есть на продажу.}
+{4040}{}{Не берите в голову. Пока.}
+{5000}{}{Я боюсь, что никто. Ден анархическое место, тут сила это закон. Только самые сильные, самые быстрые или умные выживают здесь. Я уверен, что вы найдете свою нишу.}
+{5010}{}{Хм, спасибо.}
+{5020}{}{Это все. Пока.}
+{6000}{}{Наркотики являются основой экономической системы этого города, так же, как другой город может использовать зерно или золото. Реддинг другой яркий пример города подпитываемого наркотиками.}
+{6010}{}{Спасибо.}
+{6020}{}{Это все. Пока.}
+
+[pols]
+{100}{}{Tubby}
+{200}{}{Widzisz właściciela sklepu.}
+{210}{}{Widzisz Tubby'ego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Cześć, @sex@|kolego||koleżanko|, witam u Tubby'ego. Jestem właścicielem. W czym pomóc?}
+{2010}{}{Tak, pohandlujmy.}
+{2020}{}{Potrzebuję pewnych informacji.}
+{2030}{}{Do widzenia.}
+{3000}{}{Czym mogę dziś służyć?}
+{3010}{}{Chcę kupić parę rzeczy.}
+{3020}{}{Potrzebuję pewnych informacji.}
+{3030}{}{Do widzenia.}
+{4000}{}{Co chcesz wiedzieć?}
+{4010}{}{Kto kieruje tym miastem?}
+{4020}{}{Dlaczego wszyscy handlują narkotykami?}
+{4030}{}{Właściwie, to pohandlujmy.}
+{4040}{}{Nieważne. Do widzenia.}
+{5000}{}{Obawiam się, że nikt. W Norze panuje anarchia, pewnego rodzaju darwinistyczna selekcja naturalna. Tylko najsilniejsi, najszybsi i najsprytniejsi tu przeżyją. Jestem pewien, że znajdziesz swoją niszę.}
+{5010}{}{Mhm, dzięki.}
+{5020}{}{Dla mnie to wszystko. Do widzenia.}
+{6000}{}{Narkotyki to podstawa ekonomii tego miasta, tak jak w innych miastach zboża czy złoto. Redding to zresztą inny świetny przykład miasta napędzanego narkotykami. Cholerni górnicy są permanentnie zbyt naćpani, żeby zabrać się do jakiejś prawdziwej roboty. Nigdy tam nie byłem, ale wiem, że znajduje się parę dni drogi na południowy-wschód - jeśli chcesz się przekonać na własne oczy.}
+{6010}{}{Dzięki.}
+{6020}{}{Dla mnie to wszystko. Do widzenia.}
+
+[ptbr]
+{100}{}{Arlindo}
+{200}{}{Você vê: Arlindo, o dono desta loja.}
+{210}{}{Você vê o Arlindo.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{E aew, @sex@|cara||cumade|, bem vindo ao Arlindo. Eu sou o dono dessa espelunca maravilhosa. Como posso ajudar?}
+{2010}{}{Tem alguma coisa aí pra negocioar?@@To afim de negociar.@@ Tem alguma coisa que valha a pena por aqui?@@Beleza, vamos negociar.}
+{2020}{}{Eu preciso de uma inforção.}
+{2030}{}{Falou.}
+{3000}{}{E aew, o que tu tá querendo hoje?}
+{3010}{}{Eu to afim de comprar umas coisas.@@ Tem alguma coisa pra vender?@@Eu quero negociar.@@ Tem alguma porcaria boa aqui?@@Vamos negociar.}
+{3020}{}{Eu preciso de uma informação.}
+{3030}{}{Falou.@@Até mais tarde.}
+{4000}{}{Eu vou tentar te ajudar. O que tu quer saber?}
+{4010}{}{Quem é o chefão por aqui?}
+{4020}{}{Porque todo mundo ta vendendo drogas aqui?}
+{4030}{}{Pensando bem, Eu quero negociar.}
+{4040}{}{Nem fudendo. Falou.}
+{5000}{}{Ninguém, eu estou com medo. O Favelão é uma terra sem lei, é a lei do mais forte. Eu espero que tu seja um.}
+{5010}{}{Um, obrigado.}
+{5020}{}{Pra mim é o suficiente. Falou.}
+{6000}{}{Então, Drogas são o sangue dessa cidade, igual a comida ou ouro em outros locais. Redding é outro exemplo de cidade abastecida pelas drogas. O mineiros estão chapados demais para fazer algum trabalho de verdade. Eu nunca vi com meus próprios olhos, mas fica a dois dias à sudeste daqui se quiser ir la saber.}
+{6010}{}{Entendi. Obrigado.}
+{6020}{}{Isso é tudo que eu precisava saber. Até mais.}
+

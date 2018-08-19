@@ -1,0 +1,86 @@
+[comment]
+ 
+ 
+
+[data]
+lang=engl
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p Tut_Kenny = 0 R _script map_ktut@PlaySound 1 1 #
+3 1020 D _var p Tut_Kenny = 1 R _script map_ktut@PlaySound 1 2 #
+4 1030 D _var p Tut_Kenny = 2 R _script map_ktut@PlaySound 1 3 #
+5 1040 D _var p Tut_Kenny = 3 R _script map_ktut@PlaySound 1 4 #
+6 1050 D _var p Tut_Kenny = 4 R _script map_ktut@PlaySound 1 5 #
+7 1060 D _var p Tut_Kenny = 5 R _script map_ktut@PlaySound 1 6 #
+8 1070 D _var p Tut_Kenny = 6 R _script map_ktut@PlaySound 1 7 #
+9 1080 D _var p Tut_Kenny = 8 R _script map_ktut@PlaySound 1 8 #
+10 1090 D _var p Tut_Kenny = 9 R _script map_ktut@PlaySound 1 9 #
+11 1100 D _var p Tut_Kenny = 10 R _script map_ktut@PlaySound 1 10 #
+12 1110 D _var p Tut_Kenny = 11 R _script map_ktut@PlaySound 1 11 #
+20 1120 D _var p Tut_Kenny = 12 R _script map_ktut@PlaySound 1 12 @
+2 2000 None 0 #
+0 2010 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 #
+0 11010 @
+12 12000 None 0 #
+0 12010 R _var p Tut_Kenny = 12 @
+20 13000 None 0 &
+
+[engl]
+{100}{}{Paladin Muffins}
+{1000}{}{Predialogue installations}
+{1010}{}{Var}
+{1020}{}{Var}
+{1030}{}{Var}
+{1040}{}{Var}
+{1050}{}{Var}
+{1060}{}{Var}
+{1070}{}{Var}
+{1080}{}{Var}
+{1090}{}{Var}
+{1100}{}{Var}
+{1110}{}{Var}
+{1120}{}{Var}
+{2000}{}{0 - Oh look, Private Snowflake has arrived! I am Sargeant Muffins, your senior drill instructor. Let's begin with the training, move your sorry ass and grab a gun from container, and shoot the damn turret! [Pick up a gun in locker, tap 'I' button, move it to Item1 slot and make sure it's in 'single' mode. Tap 'A' button, move attack cursor to turret and left click on it]}
+{2010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{3000}{}{1 - Good enough, soldier! Switch rifle to burst mode and try again! [Move cursor to rifle image and right click on it till burst mode. Then attack turret again.]}
+{3010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{4000}{}{2 - You're goddamn gifted, Private Snowflake! Not even a scratch on this turret! Try shooting it from point blank. [Run close to the turret, make sure that rifle is in the burst mode and attack it.]}
+{4010}{}{Yes, drill sergeant!}
+{5000}{}{3 - Notice the difference? From up close you're going to deal tons of damage with burst. Now show me that you have balls to shoot two targets in one shot, princess! Grab a rocket launcher from container and shoot the ground between them! [Pick up the rocket launcher from locker, move it to item1 slot and shoot rocket between turrets by pressing 'A' and holding 'Ctrl' button, then left click on surface between turrets.]}
+{5010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{6000}{}{4 - I know you're a sad sack and can't even unhook your boyfriend's bra! Now what you need to do is lockpick that safe. [Take a lockpick set, move it to item2 slot, tap '2' button and left click on safe. Feel free to grab a lockpick set from locker, they will boost your chance. ]}
+{6010}{}{Got it sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{7000}{}{5 - Now grab the electronic lockpick from safe, It is more valueable than full squad of a meatbags like you, so better don't fuck it up! Now go open that door! [Some doors can be locked by electronic locks. Take an electronic lockpick in your hand, tap '2' button and left click on the door to open it.]}
+{7010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{8000}{}{6 - Allright, your girlfriend's waiting. She's going to play doctor with you...}
+{8010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{9000}{}{7 - Goddamn it, Private, you're bleeding all over the place! First aid yourself or you'll be mopping for hours! [To heal yourself tap '5' button and left click on yourself.]}
+{9010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{10000}{}{8 - You can't shoot the rifle with that broken arm, Initiate. That means you're useless until you fix it! [When you are injured tap '6' button and left click on yourself.]}
+{10010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{11000}{}{9 - There is quicker way to heal your wounds. Take stimpack from container and use it! [Use 'Alt' + 3 to use stimpack or superstimpack from your inventory]}
+{11010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{12000}{}{10 - Now you're ready to atleast survive for five minutes out there without shooting your own foot! Dismissed!
+}
+{12010}{}{Got it, sir.@@Yes sir.@@Of course sir.@@Sir, yes sir!@@On it sir!}
+{13000}{}{What you're still doing here you moron?! Use the elevator and get the hell out of here!}
+

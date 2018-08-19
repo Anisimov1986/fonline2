@@ -1,0 +1,672 @@
+#include "rare_loot_queue_h.fos"
+#include "_time.fos"
+#include "_itempid.fos"
+#include "_macros.fos"
+#include "serializator.fos"
+#include "logging_h.fos"
+
+import bool IsTopLootArea(Map& map) from "encounter_containers";
+
+
+const uint[] sierraCavesL1LocPids = {LOCATION_SierraCavesL1_1, LOCATION_SierraCavesL1_2, LOCATION_SierraCavesL1_3, LOCATION_SierraCavesL1_4, LOCATION_SierraCavesL1_5};
+const uint[] sierraCavesL2LocPids = {LOCATION_SierraCavesL2_1, LOCATION_SierraCavesL2_2, LOCATION_SierraCavesL2_3, LOCATION_SierraCavesL2_4, LOCATION_SierraCavesL2_5};
+const uint[] encounterCavesMapsPids = {MAP_e_cave0_in, MAP_e_cave1_in, MAP_e_cave2_in, MAP_e_cave3_in, MAP_e_cave4_in, MAP_e_cave5_in};
+
+const uint[] t3Armors1Pids = {PID_COMBAT_ARMOR_RECIPE, PID_COMBAT_ARMOR};
+const uint[] t3Armors2Pids = {PID_COMBAT_ARMOR_MARK_II_RECIPE, PID_COMBAT_ARMOR_MK_II, PID_DESERT_CAMO_ARMOR, PID_NAVY_ARMOR, 
+		PID_RANGER_ARMOR, PID_NCR_MK1, PID_NCR_MK2};
+const uint[] t3Weapons1Pids = {PID_PLASMA_RIFLE_RECIPE, PID_SNIPER_RIFLE_RECIPE, PID_HUBOLOGIST_ROBE_RECIPE, PID_LASER_RIFLE_EXT_CAP_RECIPE,
+		PID_LIGHT_SUPPORT_WEAPON_RECIPE, PID_PLASMA_RIFLE,  PID_SNIPER_RIFLE, PID_BLACK_ROBE, PID_LASER_RIFLE_EXT_CAP, PID_LIGHT_SUPPORT_WEAPON};
+const uint[] t3Weapons2Pids = {PID_PLASMA_GRENADE_RECIPE, PID_AVENGER_MINIGUN_RECIPE, PID_XL70E3_RECIPE, PID_HK_P90C_RECIPE, 
+		PID_PLASMA_GRENADE, PID_AVENGER_MINIGUN, PID_XL70E3, PID_HK_P90C};
+const uint[] t4ShitPids = {PID_M72_GAUSS_RIFLE_RECIPE, PID_PPK12_GAUSS_PISTOL_RECIPE, PID_HK_G11E_RECIPE, PID_HK_G11_RECIPE, PID_VINDICATOR_MINIGUN_RECIPE,
+		PID_BOZAR_RECIPE, PID_GATLING_LASER_RECIPE, PID_YK42B_PULSE_RIFLE_RECIPE};		
+
+const uint[] blueprintsPids = {BLUEPRINT_LEVEL1, BLUEPRINT_LEVEL2, BLUEPRINT_LEVEL3};
+
+const uint[] implantPids = {PID_IMPLANT_CHEMCONTROL, PID_IMPLANT_SCOUT, PID_IMPLANT_ENCHACEMENT, PID_IMPLANT_ENVIRONMENTAL, PID_IMPLANT_ACCURACY, PID_IMPLANT_DEFENCE, PID_IMPLANT_MEDIC, PID_IMPLANT_SPEED, PID_IMPLANT_SURVIVOR, PID_IMPLANT_MARKSMAN};
+const uint[] t4Parts = {PID_PARTICLE_ACCELERATOR, PID_EMISSION_CONCENTRATOR, PID_TITANIUM_BARRELS, PID_RECOIL_COMPENSATOR, PID_TELESCOPIC_SIGHTS, PID_ROTARY_CHAMBER, PID_BOLT_ASSIST, PID_ELECTRONIC_FIRE_MECHANISM, PID_MACHINED_HIGH_GRADE_STEEL, PID_POWER_ARMOR_SHELL, PID_MICRO_FUSION_PACK, PID_HIFLO_HYDRAULIC, PID_ADVANCED_POWER_ARMOR_SHELL,PID_IMPROVED_SERVOS};
+
+
+void DeclareAndCheckRareLootQueues()
+{
+	//----------------------------------------------------
+	//Rare Loot Queues
+	//----------------------------------------------------
+	//Blueprints
+	RareLootQueue(RLQ_ENCOUNTERS_CONTAINERS_BP_ALL).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_CAVE_BP_ALL).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(20);
+	RareLootQueue(RLQ_EVENTS_BP_ALL).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL1).SetRespawnTime(REAL_HOUR(1) / 4).SetMaxSize(20);
+	RareLootQueue(RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL2).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL3).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_SIERRA_CAVES_L1_BP_LEVEL1).SetRespawnTime(REAL_HOUR(1) / 4).SetMaxSize(20);
+	RareLootQueue(RLQ_SIERRA_CAVES_L1_BP_LEVEL2).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_SIERRA_CAVES_L1_BP_LEVEL3).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_SIERRA_CAVES_L2_BP_LEVEL2).SetRespawnTime(REAL_HOUR(1) / 4).SetMaxSize(20);
+	RareLootQueue(RLQ_SIERRA_CAVES_L2_BP_LEVEL3).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(10);
+	
+	//T3 Armors1
+	RareLootQueue(RLQ_T3_ARMORS1_SIERRA).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_NECROPOLIS).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_GLOW).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_ARES).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_MARIPOSA).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_SF_TANKER).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_WAREHOUSE).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_SIERRA_CAVES).SetRespawnTime(REAL_DAY(1) / 16).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_ENC_TOP_LOOT_AREA).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS1_SHOPS).SetRespawnTime(REAL_DAY(1) / 2).SetMaxSize(30);
+	RareLootQueue(RLQ_T3_ARMORS1_NR_SF_SHOPS).SetRespawnTime(REAL_DAY(1) / 2).SetMaxSize(30);
+	RareLootQueue(RLQ_T3_ARMORS1_EVENTS).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_ARMORS1_DEFAULT).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	
+	//T3 Armors2
+	RareLootQueue(RLQ_T3_ARMORS2_SIERRA).SetRespawnTime(REAL_DAY(1) / 4 ).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_NECROPOLIS).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_GLOW).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_ARES).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_MARIPOSA).SetRespawnTime(REAL_DAY(1 / 4)).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_SF_TANKER).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_WAREHOUSE).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_SIERRA_CAVES).SetRespawnTime(REAL_DAY(1) / 8).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_ENC_TOP_LOOT_AREA).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(40);
+	RareLootQueue(RLQ_T3_ARMORS2_SHOPS).SetRespawnTime(REAL_DAY(1)).SetMaxSize(30);
+	RareLootQueue(RLQ_T3_ARMORS2_NR_SF_SHOPS).SetRespawnTime(REAL_DAY(1)).SetMaxSize(30);
+	RareLootQueue(RLQ_T3_ARMORS2_EVENTS).SetRespawnTime(REAL_DAY(1) / 4).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_ARMORS2_DEFAULT).SetRespawnTime(REAL_DAY(1) / 2).SetMaxSize(20);
+	
+	//T3 Weapons1
+	RareLootQueue(RLQ_T3_WEAPONS1_SIERRA).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_NECROPOLIS).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_GLOW).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_ARES).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_MARIPOSA).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_SF_TANKER).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_WAREHOUSE).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_SIERRA_CAVES).SetRespawnTime(REAL_HOUR(1) / 4).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_ENC_TOP_LOOT_AREA).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_SHOPS).SetRespawnTime(REAL_HOUR(1) / 4).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_NR_SF_SHOPS).SetRespawnTime(REAL_HOUR(1) / 4).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_EVENTS).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(20);
+	RareLootQueue(RLQ_T3_WEAPONS1_DEFAULT).SetRespawnTime(REAL_HOUR(1) / 4).SetMaxSize(20);
+	
+	//T3 Weapons2
+	RareLootQueue(RLQ_T3_WEAPONS2_SIERRA).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_NECROPOLIS).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_GLOW).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_ARES).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_MARIPOSA).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_SF_TANKER).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_WAREHOUSE).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_SIERRA_CAVES).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_ENC_TOP_LOOT_AREA).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_SHOPS).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_NR_SF_SHOPS).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_EVENTS).SetRespawnTime(REAL_HOUR(1)).SetMaxSize(10);
+	RareLootQueue(RLQ_T3_WEAPONS2_DEFAULT).SetRespawnTime(REAL_HOUR(1) / 2).SetMaxSize(10);
+	
+	//Top loot
+	RareLootQueue(RLQ_SIERRA_CAVES_L2_IMPLANTS).SetRespawnTime(REAL_DAY(4) / 2).SetMaxSize(3);
+	RareLootQueue(RLQ_SIERRA_CAVES_L2_T4_PARTS).SetRespawnTime(REAL_DAY(4) / 2).SetMaxSize(6);
+	RareLootQueue(RLQ_SIERRA_CAVES_L2_CLIFTONS_HOLO).SetRespawnTime(REAL_DAY(10)).SetMaxSize(2);
+	
+	//----------------------------------------------------
+	//Rare loot rules
+	//----------------------------------------------------
+	//T3 Armors1 - dungeons
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_Sierra), RLQ_T3_ARMORS1_SIERRA);
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_Necropolis), RLQ_T3_ARMORS1_NECROPOLIS);
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_Glow), RLQ_T3_ARMORS1_GLOW);
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_Ares), RLQ_T3_ARMORS1_ARES);
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_MilitaryBase), RLQ_T3_ARMORS1_MARIPOSA);
+	AddRareLootRule(t3Armors1Pids, InMap(MAP_sf_tanker2), RLQ_T3_ARMORS1_SF_TANKER);
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_Warehouse), RLQ_T3_ARMORS1_WAREHOUSE);
+	//T3 Armors1 - sierra caves
+	AddRareLootRule(t3Armors1Pids, InLocations(sierraCavesL2LocPids), RLQ_T3_ARMORS1_SIERRA_CAVES);
+	//T3 Armors1 - encounter top loot area
+	AddRareLootRule(t3Armors1Pids, TopLootAreaEncounter(), RLQ_T3_ARMORS1_ENC_TOP_LOOT_AREA, 50);
+	//T3 Armors1 - shops
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_SanFrancisco), RLQ_T3_ARMORS1_NR_SF_SHOPS);
+	AddRareLootRule(t3Armors1Pids, InLocation(LOCATION_NewReno), RLQ_T3_ARMORS1_NR_SF_SHOPS);
+	AddRareLootRule(t3Armors1Pids, AnyTown(), RLQ_T3_ARMORS1_SHOPS);
+	//T3 Armors1 - events
+	AddRareLootRule(t3Armors1Pids, AnyEvent(), RLQ_T3_ARMORS1_EVENTS);
+	//T3 Armors1 - default
+	AddRareLootRule(t3Armors1Pids, Anywhere(), RLQ_T3_ARMORS1_DEFAULT, 10);
+	
+	//T3 Armors2 - dungeons
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_Sierra), RLQ_T3_ARMORS2_SIERRA);
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_Necropolis), RLQ_T3_ARMORS2_NECROPOLIS);
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_Glow), RLQ_T3_ARMORS2_GLOW);
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_Ares), RLQ_T3_ARMORS2_ARES);
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_MilitaryBase), RLQ_T3_ARMORS2_MARIPOSA);
+	AddRareLootRule(t3Armors2Pids, InMap(MAP_sf_tanker2), RLQ_T3_ARMORS2_SF_TANKER);
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_Warehouse), RLQ_T3_ARMORS2_WAREHOUSE);
+	//T3 Armors2 - sierra caves
+	AddRareLootRule(t3Armors2Pids, InLocations(sierraCavesL2LocPids), RLQ_T3_ARMORS2_SIERRA_CAVES);
+	//T3 Armors2 - encounter top loot area
+	AddRareLootRule(t3Armors2Pids, TopLootAreaEncounter(), RLQ_T3_ARMORS2_ENC_TOP_LOOT_AREA, 50);
+	//T3 Armors2 - shops
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_SanFrancisco), RLQ_T3_ARMORS2_NR_SF_SHOPS);
+	AddRareLootRule(t3Armors2Pids, InLocation(LOCATION_NewReno), RLQ_T3_ARMORS2_NR_SF_SHOPS);
+	AddRareLootRule(t3Armors2Pids, AnyTown(), RLQ_T3_ARMORS2_SHOPS);
+	//T3 Armors2 - events
+	AddRareLootRule(t3Armors2Pids, AnyEvent(), RLQ_T3_ARMORS2_EVENTS);
+	//T3 Armors2 - default
+	AddRareLootRule(t3Armors2Pids, Anywhere(), RLQ_T3_ARMORS2_DEFAULT, 10);
+	
+	//T3 Weapons1 - dungeons
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_Sierra), RLQ_T3_WEAPONS1_SIERRA);
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_Necropolis), RLQ_T3_WEAPONS1_NECROPOLIS);
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_Glow), RLQ_T3_WEAPONS1_GLOW);
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_Ares), RLQ_T3_WEAPONS1_ARES);
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_MilitaryBase), RLQ_T3_WEAPONS1_MARIPOSA);
+	AddRareLootRule(t3Weapons1Pids, InMap(MAP_sf_tanker2), RLQ_T3_WEAPONS1_SF_TANKER);
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_Warehouse), RLQ_T3_WEAPONS1_WAREHOUSE);
+	//T3 Weapons1 - sierra caves
+	AddRareLootRule(t3Weapons1Pids, InLocations(sierraCavesL2LocPids), RLQ_T3_WEAPONS1_SIERRA_CAVES);
+	//T3 Weapons1 - encounter top loot area
+	AddRareLootRule(t3Weapons1Pids, TopLootAreaEncounter(), RLQ_T3_WEAPONS1_ENC_TOP_LOOT_AREA, 50);
+	//T3 Weapons1 - shops
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_SanFrancisco), RLQ_T3_WEAPONS1_NR_SF_SHOPS);
+	AddRareLootRule(t3Weapons1Pids, InLocation(LOCATION_NewReno), RLQ_T3_WEAPONS1_NR_SF_SHOPS);
+	AddRareLootRule(t3Weapons1Pids, AnyTown(), RLQ_T3_WEAPONS1_SHOPS);
+	//T3 Weapons1 - events
+	AddRareLootRule(t3Weapons1Pids, AnyEvent(), RLQ_T3_WEAPONS1_EVENTS);
+	//T3 Weapons1 - default
+	AddRareLootRule(t3Weapons1Pids, Anywhere(), RLQ_T3_WEAPONS1_DEFAULT, 10);
+	
+	//T3 Weapons2 - dungeons
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_Sierra), RLQ_T3_WEAPONS2_SIERRA);
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_Necropolis), RLQ_T3_WEAPONS2_NECROPOLIS);
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_Glow), RLQ_T3_WEAPONS2_GLOW);
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_Ares), RLQ_T3_WEAPONS2_ARES);
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_MilitaryBase), RLQ_T3_WEAPONS2_MARIPOSA);
+	AddRareLootRule(t3Weapons2Pids, InMap(MAP_sf_tanker2), RLQ_T3_WEAPONS2_SF_TANKER);
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_Warehouse), RLQ_T3_WEAPONS2_WAREHOUSE);
+	//T3 Weapons2 - sierra caves
+	AddRareLootRule(t3Weapons2Pids, InLocations(sierraCavesL2LocPids), RLQ_T3_WEAPONS2_SIERRA_CAVES);
+	//T3 Weapons2 - encounter top loot area
+	AddRareLootRule(t3Weapons2Pids, TopLootAreaEncounter(), RLQ_T3_WEAPONS2_ENC_TOP_LOOT_AREA, 50);
+	//T3 Weapons2 - shops
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_SanFrancisco), RLQ_T3_WEAPONS2_NR_SF_SHOPS);
+	AddRareLootRule(t3Weapons2Pids, InLocation(LOCATION_NewReno), RLQ_T3_WEAPONS2_NR_SF_SHOPS);
+	AddRareLootRule(t3Weapons2Pids, AnyTown(), RLQ_T3_WEAPONS2_SHOPS);
+	//T3 Weapons2 - events
+	AddRareLootRule(t3Weapons2Pids, AnyEvent(), RLQ_T3_WEAPONS2_EVENTS);
+	//T3 Weapons2 - default
+	AddRareLootRule(t3Weapons2Pids, Anywhere(), RLQ_T3_WEAPONS2_DEFAULT, 10);
+
+	//Blueprints - Sierra Caves
+	AddRareLootRule(BLUEPRINT_LEVEL1, InLocations(sierraCavesL1LocPids), RLQ_SIERRA_CAVES_L1_BP_LEVEL1, 40);
+	AddRareLootRule(BLUEPRINT_LEVEL2, InLocations(sierraCavesL1LocPids), RLQ_SIERRA_CAVES_L1_BP_LEVEL2, 40);
+	AddRareLootRule(BLUEPRINT_LEVEL3, InLocations(sierraCavesL1LocPids), RLQ_SIERRA_CAVES_L1_BP_LEVEL3, 40);
+	AddRareLootRule(BLUEPRINT_LEVEL2, InLocations(sierraCavesL2LocPids), RLQ_SIERRA_CAVES_L2_BP_LEVEL2, 40);
+	AddRareLootRule(BLUEPRINT_LEVEL3, InLocations(sierraCavesL2LocPids), RLQ_SIERRA_CAVES_L2_BP_LEVEL3, 40);
+	//Blueprints - top loot area
+	AddRareLootRule(BLUEPRINT_LEVEL1, TopLootAreaEncounter(), RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL1, 50);
+	AddRareLootRule(BLUEPRINT_LEVEL2, TopLootAreaEncounter(), RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL2, 50);
+	AddRareLootRule(BLUEPRINT_LEVEL3, TopLootAreaEncounter(), RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL3, 50);
+	//Blueprints - normal encounter containers
+	AddRareLootRule(blueprintsPids, AnyEncounter(), RLQ_ENCOUNTERS_CONTAINERS_BP_ALL, 20);
+	//Blueprints - encounter caves
+	AddRareLootRule(blueprintsPids, InMaps(encounterCavesMapsPids), RLQ_CAVE_BP_ALL, 20);
+	//Blueprints - events
+	AddRareLootRule(blueprintsPids, AnyEvent(), RLQ_EVENTS_BP_ALL, 95);
+	
+	//Implants - sierra caves
+	AddRareLootRule(implantPids, InLocations(sierraCavesL2LocPids), RLQ_SIERRA_CAVES_L2_IMPLANTS, 10);
+	
+	//T4 parts - sierra caves
+	AddRareLootRule(t4Parts, InLocations(sierraCavesL2LocPids), RLQ_SIERRA_CAVES_L2_T4_PARTS, 10);
+	
+	//Cliftons holo - sierra caves
+	AddRareLootRule(PID_GENERAL_CLIFTONS_HOLODISK, InLocations(sierraCavesL2LocPids), RLQ_SIERRA_CAVES_L2_CLIFTONS_HOLO, 10);
+}
+
+int TryToTakeLootFromRareLootQueue(int queueId, int count)
+{
+	return RareLootQueue(queueId).TryToTakeLoot(count);
+}
+
+bool initialized = false;
+
+void InitializeRareLootQueues()
+{
+	if (!initialized)
+	{
+		DeclareAndCheckRareLootQueues();
+		initialized = true;
+	}
+}
+
+
+class RareLootQueue
+{
+	#define _GetKey ("RareLootQueue" + id)
+	
+	private int id; 
+	private int size = 0;
+	private int maxSize = 10;
+	private int timerId = 0;
+	private int respawnTime = 0;
+	
+	RareLootQueue(int id)
+	{
+		this.id = id;
+		Load();
+	}
+	
+	void AddLootToQueue()
+	{
+		size++;
+		
+		if (size > maxSize)
+		{
+			size = maxSize;
+		}
+		
+		//Log("RareLootQueue AddLoot id:" + id + " size:" + size);
+		Save();
+	}
+	
+	int TryToTakeLoot(int count)
+	{	
+		//Optimalization
+		if (size <= 0)
+		{
+			return 0;
+		}
+	
+		if (size > maxSize)
+		{
+			size = maxSize;
+		}
+	
+		int result = 0;
+		if (size < count)
+		{
+			size = 0;
+			result = size;
+		}
+		else
+		{
+			size -= count;
+			result = count;
+		}
+		
+		//Log("RareLootQueue TryToTakeLoot id:" + id + " size:" + size + " count:" + count);
+		Save();
+		return result;
+	}
+	
+	RareLootQueue@ SetMaxSize(int maxSize)
+	{
+		this.maxSize = maxSize;
+		return @this;
+	}
+	
+	RareLootQueue@ SetRespawnTime(int respawnTime)
+	{
+		if (respawnTime != this.respawnTime)
+		{
+			this.respawnTime = respawnTime;
+			RestartTimer();
+			Save();
+		}
+		
+		return @this;
+	}
+	
+	private void RestartTimer()
+	{
+		EraseTimeEvent(timerId);
+		timerId = CreateTimeEvent(__FullSecond + ComputeRespawnTime(), "e_AddLootToQueue", id, true);
+	}
+	
+	int ComputeRespawnTime()
+	{
+		return Random(respawnTime * 0.5, respawnTime * 1.5);
+	}
+	
+	int GetSize()
+	{
+		return size;
+	}
+	
+	private void Load()
+	{	
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(size);
+		serializator.Get(timerId);
+		serializator.Get(respawnTime);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		serializator.Set(size);
+		serializator.Set(timerId);
+		serializator.Set(respawnTime);
+		serializator.Save(_GetKey);
+	}
+}
+
+void info(Critter& critter, int fromId, int toId, int)
+{
+	for (int i = fromId; i <= toId; i++)
+	{
+		RareLootQueue rareLootQueue(i);
+		critter.Say(SAY_NETMSG, i + " " + rareLootQueue.GetSize());
+	}
+}
+
+uint e_AddLootToQueue(array<uint>@ values)
+{
+	InitializeRareLootQueues();
+	RareLootQueue rareLootQueue(values[0]);
+	rareLootQueue.AddLootToQueue();
+	return rareLootQueue.ComputeRespawnTime();
+}
+
+class RareLootRule
+{
+	private MapPredicate@ MapPredicate;
+	private int queueId;
+	private int chance;
+	
+	RareLootRule(MapPredicate@ MapPredicate, int queueId, int chance)
+	{
+		@this.MapPredicate = MapPredicate;
+		this.queueId = queueId;
+		this.chance = chance;
+	}
+	
+	int GetQueueId()
+	{
+		return queueId;
+	}
+	
+	int GetChance()
+	{
+		return chance;
+	}
+	
+	MapPredicate@ GetMapPredicate()
+	{
+		return MapPredicate;
+	}
+}
+
+interface MapPredicate
+{
+	bool test(Map@ map);
+}
+
+class Anywhere : MapPredicate
+{
+	bool test(Map@ map)
+	{
+		return true;
+	}
+}
+
+class AnyEvent : MapPredicate
+{
+	bool test(Map@ map)
+	{
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		Location@ location = map.GetLocation();
+		return valid(location) && location.IsEvent();
+	}
+}
+
+class AnyTown : MapPredicate
+{
+	bool test(Map@ map)
+	{
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		Location@ location = map.GetLocation();
+		return valid(location) && location.IsTown();
+	}
+}
+
+class AnyEncounter : MapPredicate
+{
+	bool test(Map@ map)
+	{
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		Location@ location = map.GetLocation();
+		return valid(location) && location.IsEncounter();
+	}
+}
+
+class TopLootAreaEncounter : MapPredicate
+{
+	bool test(Map@ map)
+	{
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		Location@ location = map.GetLocation();
+		return valid(location) && location.IsEncounter() && IsTopLootArea(map);
+	}
+}
+
+class InLocation : MapPredicate
+{
+	private uint locationId;
+	
+	InLocation(uint locationId)
+	{
+		this.locationId = locationId;
+	}
+
+	bool test(Map@ map)
+	{
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		Location@ location = map.GetLocation();	
+		return valid(location) && location.GetProtoId()  == locationId;
+	}
+}
+
+class InMap : MapPredicate
+{
+	private uint mapId;
+	
+	InMap(uint mapId)
+	{
+		this.mapId = mapId;
+	}
+
+	bool test(Map@ map)
+	{
+		return valid(map) && map.GetProtoId()  == mapId;
+	}
+}
+
+class InLocations : MapPredicate
+{
+	private uint[] locationPids;
+	
+	InLocations(uint[] locationPids)
+	{
+		this.locationPids = locationPids;
+	}
+
+	bool test(Map@ map)
+	{
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		Location@ location = map.GetLocation();	
+		
+		if (!valid(location))
+		{
+			return false;
+		}
+		
+		for (uint i = 0; i < locationPids.length(); i++)
+		{
+			if (location.GetProtoId() == locationPids[i])
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+}
+
+class InMaps : MapPredicate
+{
+	private uint[] mapPids;
+	
+	InMaps(uint[] mapPids)
+	{
+		this.mapPids = mapPids;
+	}
+
+	bool test(Map@ map)
+	{
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		for (uint i = 0; i < mapPids.length(); i++)
+		{
+			if (map.GetProtoId() == mapPids[i])
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+}
+
+//itempid -> RareLootRule@[]@
+dictionary rareLootRules;
+
+bool IsStackableWeapon(uint protoId)
+{
+	ProtoItem@ itemProto = GetProtoItem(protoId);
+	return itemProto.Stackable && itemProto.Type == ITEM_TYPE_WEAPON;
+}
+
+
+const uint[] MonitorPids = {PID_COMBAT_ARMOR_RECIPE, PID_COMBAT_ARMOR, PID_COMBAT_ARMOR_MARK_II_RECIPE, PID_COMBAT_ARMOR_MK_II, PID_DESERT_CAMO_ARMOR, PID_NAVY_ARMOR, 
+		PID_RANGER_ARMOR, PID_NCR_MK1, PID_NCR_MK2, PID_PLASMA_RIFLE_RECIPE, PID_SNIPER_RIFLE_RECIPE, PID_HUBOLOGIST_ROBE_RECIPE, PID_LASER_RIFLE_EXT_CAP_RECIPE,
+		PID_LIGHT_SUPPORT_WEAPON_RECIPE, PID_PLASMA_RIFLE,  PID_SNIPER_RIFLE, PID_BLACK_ROBE, PID_LASER_RIFLE_EXT_CAP, PID_LIGHT_SUPPORT_WEAPON, PID_PLASMA_GRENADE_RECIPE, 
+        PID_AVENGER_MINIGUN_RECIPE, PID_XL70E3_RECIPE, PID_HK_P90C_RECIPE, 
+		PID_PLASMA_GRENADE, PID_AVENGER_MINIGUN, PID_XL70E3, PID_HK_P90C};
+
+int ProcessRareLootRules(uint16 protoId, uint mapId, int count)
+{
+    int cnt = ProcessRareLootRulesReal(protoId, mapId, count);
+    if (cnt > 0 && MonitorPids.find(protoId)>=0)
+    {
+        FLog( LOG_RARE_LOOT, "id: "+protoId+" map: "+mapId+" count: "+count);
+    }
+    return cnt;
+}
+
+
+int ProcessRareLootRulesReal(uint16 protoId, uint mapId, int count)
+{
+	RareLootRule@[]@ pidRules;
+	
+	InitializeRareLootQueues();
+	
+	if (!rareLootRules.get("" + protoId, @pidRules))
+	{
+		return count;
+	}
+	
+	Map@ map = GetMap(mapId);
+	
+	for (uint i = 0; i < pidRules.length(); i++)
+	{
+		if (pidRules[i].GetMapPredicate().test(map))
+		{
+			if (pidRules[i].GetChance() >= 100 || HAS_CHANCE(pidRules[i].GetChance()))
+			{
+				if (IsStackableWeapon(protoId)) 
+				{
+					return TryToTakeLootFromRareLootQueue(pidRules[i].GetQueueId(), 1) == 1 ? count : 0;
+				}
+				else
+				{
+					return TryToTakeLootFromRareLootQueue(pidRules[i].GetQueueId(), count);
+				}
+			}
+			else 
+			{
+				return 0;
+			}
+		}
+	}
+	
+	return count;
+}
+
+void AddRareLootRule(uint pid, MapPredicate& mapPredicate, int queueId, int chance)
+{
+	RareLootRule@[]@ pidRules;
+	
+	if (!rareLootRules.get("" + pid, @pidRules))
+	{
+		@pidRules = array<RareLootRule@>(0);
+	}
+	
+	pidRules.insertLast(RareLootRule(mapPredicate, queueId, chance));
+	rareLootRules.set("" + pid, pidRules);
+}
+
+void AddRareLootRule(const uint[] pids, MapPredicate& mapPredicate, int queueId)
+{
+	for (uint i = 0; i < pids.length(); i++)
+	{
+		AddRareLootRule(pids[i], mapPredicate, queueId, 100);
+	}
+}
+
+void AddRareLootRule(uint pid, MapPredicate& mapPredicate, int queueId)
+{
+	AddRareLootRule(pid, mapPredicate, queueId, 100);
+}
+
+void AddRareLootRule(const uint[] pids, MapPredicate& mapPredicate, int queueId, int chance)
+{
+	for (uint i = 0; i < pids.length(); i++)
+	{
+		AddRareLootRule(pids[i], mapPredicate, queueId, chance);
+	}
+}

@@ -1,0 +1,62 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _param p TRAIT_SKILLED = 1 #
+2 1020 D _param p MAIN_FACTION ! 2 #
+3 1030 D _param p MAIN_FACTION = 2 @
+2 2000 None 0 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Brotherhood Knight}
+{200}{}{You see: Brotherhood Knight.}
+{210}{}{This person is dressed in a Brotherhood variant of Combat Armor.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{These new recruits are a joke.@@What do you want?@@What are you doing here?@@Don't mess with the Brotherhood.@@Hi.@@Hello.@@Guard, guard guard...that's all we ever seem to do.@@I'm on track to becoming a Paladin.@@My father was a legendary Brotherhood warrior.@@The enemy's too scared to attack us here.@@Cause any problems and you'll regret it.@@Got any smokes?@@Hi there.@@Are you on official business here?@@Stay out of trouble.@@The Brotherhood grows stronger each day.@@Leave me alone, I'm busy here.@@I'm trying to work, buzz off.@@Hey, can you go find me a keycard from the Glow?@@Yes?@@This is a secure area. Move along.@@Go away.@@What is it?@@Stay away from the Enclave.@@You think you have what it takes to join us?@@Don't talk to me.}
+{3000}{}{Have you seen these new initiates?@@What's up?@@Hi.@@Hello.@@I'm on track to becoming a Paladin.@@My father was a legendary Brotherhood warrior.@@The enemy's too scared to attack us here.@@Got any smokes?@@Hi there.@@Welcome, Brother.@@We grow stronger each day.@@Did you hear the one about the hubologist and the mutie?@@Yes?@@This area is secure, Brother.@@What is it?@@I killed an Enclave soldier once.@@Any news from the outside?@@Glad to have you on our side.}
+{4000}{}{Get the fuck outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!@@Get lost, or you will taste our lead, mutant!@@Get lost, FEV reject!}
+
+[russ]
+{100}{}{Brotherhood Knight}
+{200}{}{You see: Brotherhood Knight.}
+{210}{}{This person is dressed in a Brotherhood variant of Combat Armor.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{These new recruits are a joke.@@What do you want?@@What are you doing here?@@Don't mess with the Brotherhood.@@Hi.@@Hello.@@Guard, guard guard...that's all we ever seem to do.@@I'm on track to becoming a Paladin.@@My father was a legendary Brotherhood warrior.@@The enemy's too scared to attack us here.@@Cause any problems and you'll regret it.@@Got any smokes?@@Hi there.@@Are you on official business here?@@Stay out of trouble.@@The Brotherhood grows stronger each day.@@Leave me alone, I'm busy here.@@I'm trying to work, buzz off.@@Hey, can you go find me a keycard from the Glow?@@Yes?@@This is a secure area. Move along.@@Go away.@@What is it?@@Stay away from the Enclave.@@You think you have what it takes to join us?@@Don't talk to me.}
+{3000}{}{Have you seen these new initiates?@@What's up?@@Hi.@@Hello.@@I'm on track to becoming a Paladin.@@My father was a legendary Brotherhood warrior.@@The enemy's too scared to attack us here.@@Got any smokes?@@Hi there.@@Welcome, Brother.@@We grow stronger each day.@@Did you hear the one about the hubologist and the mutie?@@Yes?@@This area is secure, Brother.@@What is it?@@I killed an Enclave soldier once.@@Any news from the outside?@@Glad to have you on our side.}
+{4000}{}{Get outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!}
+
+[pols]
+{100}{}{Rycerz Bractwa}
+{200}{}{Widzisz: Rycerz Bractwa.}
+{210}{}{Ta osoba nosi pancerz bojowy Bractwa.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Ci nowi rekruci to jaki� �art.@@Czego chcesz?@@Co ty tu robisz?@@Nie zadzieraj z Bractwem.@@Cze��.@@Witaj.@@Chroni�, pilnowa�, chroni�...wydaje si�, �e to wszystko co robimy.@@Jestem na drodze do zostania Paladynem.@@M�j ojciec by� legendarnym wojownikiem Bractwa.@@Wr�g zbyt bardzo trz�sie ty�kiem, �eby nas tutaj zaatakowa�.@@Spraw jakie� k�opoty, a po�a�ujesz.@@Masz szluga?@@Jeste� tutaj w jakiej� oficjalnej sprawie?@@Trzymaj si� z dala od k�opot�w.@@Bractwo ro�nie w si�� z ka�dym dniem.@@Zostaw mnie w spokoju, jestem zaj�ty.@@Pr�buj� pracowa�, spieprzaj.@@Hej, mo�esz dla mnie skoczy� do Blasku po kart� wej�ciow�?@@Tak?@@To strze�ona strefa. Id� dalej.@@Odejd�.@@Co jest?@@Nie zadawaj si� z Enklaw�, je�li wiesz co dla ciebie dobre.@@My�lisz, �e zas�ugujesz na do��czenie do nas?@@Nie gadaj do mnie.}
+{3000}{}{Czy ty w og�le widzia�e� tych nowych rekrut�w?@@Co tam?@@Cze��.@@Witaj.@@Jestem na drodze do zostania Paladynem.@@M�j ojciec by� legendarnym wojownikiem Bractwa.@@Wr�g zbyt bardzo trz�sie ty�kiem, �eby nas tutaj zaatakowa�.@@Masz szluga?@@Witaj, @sex@|Bracie||Siostro|.@@Z ka�dym dniem ro�niemy w si��.@@A znasz ten o Hubologi�cie i supermutancie?@@Tak?@@Ta strefa jest bezpieczna, @sex@|Bracie||Siostro|.@@Co jest?@@Uda�o mi si� zestrzeli� kiedy� jednego oficera Enklawy.@@Jakie� wiadomo�ci z zewn�trz?@@Dobrze mie� ci� po naszej stronie.}
+{4000}{}{Wyno� si� st�d, mutancie!@@Wypieprzaj, zmutowana paskudo!@@Wypieprzaj st�d w tej chwili, mutancie!@@Nie tolerujemy tutaj takich jak ty, wyrzutku po kuracji FEVsem.@@Ostrzegam ci�. Wypierdalaj!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{These new recruits are a joke.@@What do you want?@@What are you doing here?@@Don't mess with the Brotherhood.@@Hi.@@Hello.@@Guard, guard guard...that's all we ever seem to do.@@I'm on track to becoming a Paladin.@@My father was a legendary Brotherhood warrior.@@The enemy's too scared to attack us here.@@Cause any problems and you'll regret it.@@Got any smokes?@@Hi there.@@Are you on official business here?@@Stay out of trouble.@@The Brotherhood grows stronger each day.@@Leave me alone, I'm busy here.@@I'm trying to work, buzz off.@@Hey, can you go find me a keycard from the Glow?@@Yes?@@This is a secure area. Move along.@@Go away.@@What is it?@@Stay away from the Enclave.@@You think you have what it takes to join us?@@Don't talk to me.}
+{3000}{}{Have you seen these new initiates?@@What's up?@@Hi.@@Hello.@@I'm on track to becoming a Paladin.@@My father was a legendary Brotherhood warrior.@@The enemy's too scared to attack us here.@@Got any smokes?@@Hi there.@@Welcome, Brother.@@We grow stronger each day.@@Did you hear the one about the hubologist and the mutie?@@Yes?@@This area is secure, Brother.@@What is it?@@I killed an Enclave soldier once.@@Any news from the outside?@@Glad to have you on our side.}
+{4000}{}{Get the fuck outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!@@Get lost, or you will taste our lead, mutant!@@Get lost, FEV reject!}
+

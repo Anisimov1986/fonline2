@@ -1,0 +1,199 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+7 2020 #
+0 2030 @
+6 3000 None 0 #
+2 3010 #
+0 3020 @
+7 4000 None 0 #
+10 4010 #
+11 4020 #
+8 4030 #
+9 4040 @
+8 5000 None 0 #
+6 5010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_GAMMA_GULP_BEER + 1 #
+6 5020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_BOTTLE_CAPS - 500 R _item p PID_GAMMA_GULP_BEER + 5 #
+6 5030 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_GAMMA_GULP_BEER + 10 #
+2 5040 @
+9 6000 None 0 #
+6 6010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_ROENTGEN_RUM + 1 #
+6 6020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_BOTTLE_CAPS - 500 R _item p PID_ROENTGEN_RUM + 5 #
+6 6030 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_ROENTGEN_RUM + 10 #
+2 6040 @
+10 7000 None 0 #
+6 7010 D _item p PID_BOTTLE_CAPS } 5 R _item p PID_BOTTLE_CAPS - 5 R _item p PID_BEER + 1 #
+6 7020 D _item p PID_BOTTLE_CAPS } 25 R _item p PID_BOTTLE_CAPS - 25 R _item p PID_BEER + 5 #
+6 7030 D _item p PID_BOTTLE_CAPS } 50 R _item p PID_BOTTLE_CAPS - 50 R _item p PID_BEER + 10 #
+2 7040 @
+11 8000 None 0 #
+6 8010 D _item p PID_BOTTLE_CAPS } 10 R _item p PID_BOTTLE_CAPS - 10 R _item p PID_BOOZE + 1 #
+6 8020 D _item p PID_BOTTLE_CAPS } 50 R _item p PID_BOTTLE_CAPS - 50 R _item p PID_BOOZE + 5 #
+6 8030 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_BOOZE + 10 #
+2 8040 &
+
+[engl]
+{100}{}{Trader}
+{200}{}{You see: Bartender.}
+{210}{}{You see the bartender.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, welcome to my bar.@@ Well well well, look what the desert dragged in...@@A customer! You wanna a drink?@@Did you came here to drink or stare?@@Only the finest beverages! You won't find better anywhere in the Wasteland!@@Hard day, eh?@@What do you want?@@Welcome wastelander, you prefer alcochol or small talk?}
+{2010}{}{What do you have?@@Show me what you've got.@@I want to purchase something.@@Let's trade.@@Let's see what you have.@@What do you have to offer?@@[Show me your wares.@@Got anything interesting for sale?}
+{2020}{}{Give me something to drink.@@I need a drink.@@Got anything to lift my spirits up?}
+{2030}{}{I will go now.@@Bye.@@See you some other time.@@See you round.@@I've gotta go now.@@I should be leaving.@@Thanks, bye.@@I'm leaving.@@Whatever.@@See you.@@I've gotta go.}
+{3000}{}{Okay, here you go.@@Right...@@Very well, here you go.@@Right, there you go.}
+{3010}{}{Thanks. I need something more.@@One more thing...}
+{3020}{}{Great, bye.@@Good, see you some other time@@Thanks, I've got to go.@@Awesome, bye.}
+{4000}{}{Yeah, well - normal beer costs five caps, the booze ten. I also have Gamma Gulp and Roentgen Rum - these shiny beverages are for one hundred caps. Which one do you want?}
+{4010}{}{Beer.}
+{4020}{}{Booze.}
+{4030}{}{Gamma Gulp Beer.}
+{4040}{}{Roentgen Rum.}
+{5000}{}{All right, how many? The price is one hundred per bottle.}
+{5010}{}{Just one.}
+{5020}{}{Five.}
+{5030}{}{Ten, I need to stock up.}
+{5040}{}{On second thought... Bye.}
+{6000}{}{Okay, how many then? One bootle - ten caps.}
+{6010}{}{Only one.}
+{6020}{}{Erm, five?}
+{6030}{}{Ten, I've got this strange habit...}
+{6040}{}{I've changed my mind. Bye.}
+{7000}{}{Sure, how many you need? One bottle costs five caps.}
+{7010}{}{One.}
+{7020}{}{Five will be good.}
+{7030}{}{Ten.}
+{7040}{}{Maybe not.@@You know, I've changed my mind. Bye.}
+{8000}{}{Sure, how many do you want? Ten caps for a bottle.}
+{8010}{}{One.}
+{8020}{}{Hm, I think I'll take five.}
+{8030}{}{Ten bottles please.}
+{8040}{}{I think I'll reconsider this later. Bye. @@Not this time, sorry. See you.}
+
+[russ]
+{100}{}{Бармен}
+{200}{}{Вы видите туповатого парня, протирающего стакан.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Привет , добро пожаловать в мой бар ..@@Ну и кого тут опять пустошь принесла?@@О клиент! как насчет выпить?@@Ты сюда пишел, чтобы напиться или смотреть?.@@Только лучшие напитки, таких вы не найдете больше нигде в пустоши!@@Тяжелый денек?@@Привет путник, выпить или поговорить?}
+{2010}{}{[Обмен] Показывай что есть.@@[Обмен] Я бы кипул что-нибудь.@@[Обмен] Давай поторгуем.@@[Barter] Что ты можешь мне предложить?@@[Barter] Башка раскалывается, надо бы поправится.}
+{2020}{}{Налей мне чего-нибудь.}
+{2030}{}{[Уйти] Пожалуй я пойду.@@[Уйти] Пока.@@[Уйти] Мне пора.@@[Уйти] Пожалуй мне уже хватит..ик.}
+{3000}{}{Хорошо, вот получите.}
+{3010}{}{Спасибо. Мне нужно кое-что еще.}
+{3020}{}{Отлично, пока.}
+{4000}{}{Да, обычное пиво по 5, самогон по 10. Есть ещё Гамма глоток и Рентген-ром за 100. что предпочитаете?}
+{4010}{}{Пиво.}
+{4020}{}{Самогон.}
+{4030}{}{Гамма глоток.}
+{4040}{}{Рентген-ром.}
+{5000}{}{Конечно, сколько вам нужно? Одна бутылка 5 крышек.}
+{5010}{}{Одну.}
+{5020}{}{Пять будет в самый раз.}
+{5030}{}{Возьму десять.}
+{5040}{}{Нее, я передумал.}
+{6000}{}{Конечно, сколько вам нужно? Одна бутылка 10 крышек.}
+{6010}{}{Одну.}
+{6020}{}{Пять будет в самый раз.}
+{6030}{}{Возьму десять.}
+{6040}{}{Нее, я передумал.}
+{7000}{}{Конечно, сколько вам нужно? Одна бутылка 5 крышек.}
+{7010}{}{Одну.}
+{7020}{}{Пять будет в самый раз.}
+{7030}{}{Возьму десять.}
+{7040}{}{Нее, я передумал.}
+{8000}{}{Конечно, сколько вам нужно? Одна бутылка 10 крышек.}
+{8010}{}{Одну.}
+{8020}{}{Пять будет в самый раз.}
+{8030}{}{Десяток дай, я шикую.}
+{8040}{}{Нее, я передумал.}
+
+[pols]
+{100}{}{Barman}
+{200}{}{Widzisz barmana.}
+{210}{}{Widzisz barmana.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Cześć, witam w mojej knajpie.@@Nonono, co tutaj przywiało z pustyni?@@O, klient! Czego się napijesz?@@Chcesz się napić, czy tylko stać i gapić się w sufit?@@Najlepsze trunki, nie do dostania nigdzie indziej!@@Ciężki dzień, co?@@A może papieroska?@@Napijesz się czegoś, czy może chcesz tylko pogadać?}
+{2010}{}{[Handel.] A co masz?@@[Handel.] Pokaż, co tam masz.@@[Handel.] Chcę coś kupić.@@[Handel.] @@[Handel.] Co możesz mi zaoferować?@@[Handel.] Masz może jakieś dobre piwko?@@[Handel.] Cholera, muszę się napić.}
+{2020}{}{Daj mi coś do picia.}
+{2030}{}{[Odejdź.] To ja już pójdę.@@Pa.@@[Odejdź.] Do zobaczenia kiedy indziej.@@[Odejdź.] Muszę już iść.@@[Odejdź.] Idę już.@@[Odejdź.] Muszę lecieć gdzie indziej.@@[Odejdź.] Dzięki, pa.@@Wychodzę.@@[Odejdź.] Idę do domu, trzymaj się.}
+{3000}{}{Doskonale, proszę bardzo.}
+{3010}{}{Dzięki. Potrzebuję jeszcze czegoś innego.}
+{3020}{}{Świetnie, trzymaj się.}
+{4000}{}{Taa, zwykłe piwo kosztuje piątaka, a wódka dychę. Gamma Gulp i Rum Roentgena chodzą po stówce. Co podać?}
+{4010}{}{Normalnego browara.}
+{4020}{}{Wódeczkę.}
+{4030}{}{Piwo, Gamma Gulp.}
+{4040}{}{Rum Roentgena.}
+{5000}{}{Świetnie, ile butelek? Jedna kosztuje 5 kapsli.}
+{5010}{}{Tylko jedną.}
+{5020}{}{Pięć wystarczy.}
+{5030}{}{Dziesięć, muszę... zrobić drobne zapasy.}
+{5040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{6000}{}{Świetnie, ile butelek? Jedna kosztuje 10 kapsli.}
+{6010}{}{Tylko jedną.}
+{6020}{}{Pięć wystarczy.}
+{6030}{}{Dziesięć, muszę... zrobić drobne zapasy.}
+{6040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{7000}{}{Świetnie, ile butelek? Jedna kosztuje 5 kapsli.}
+{7010}{}{Tylko jedną.}
+{7020}{}{Pięć wystarczy.}
+{7030}{}{Dziesięć, muszę... zrobić drobne zapasy.}
+{7040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{8000}{}{Świetnie, ile butelek? Jedna kosztuje 10 kapsli.}
+{8010}{}{Tylko jedną.}
+{8020}{}{Pięć wystarczy.}
+{8030}{}{Dziesięć, muszę... zrobić drobne zapasy.}
+{8040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+
+[ptbr]
+{100}{}{Vendedor}
+{200}{}{Você vê um atendente de bar.}
+{210}{}{Você vê uma atendente de bar.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Opa, bem vindo ao meu bar.@@Tá afim de beber alguma coisa?@@Veio pra cá para beber ou para ficar só olhando?@@Só as boas. Ninguém encontra essas coisas com esta qualidade em lugar algum do deserto!@@Dia foda, hein?@@O que você vai querer?@@Bem-vindo forasteiro, vai querer álcool ou só conversar?}
+{2010}{}{O que você tem?@@Me mostra o que tu tem aí.@@Eu quero comprar algo.@@Bora negociar.@@Deixa eu ver o que você tem no estoque.@@O que você tem para oferecer?@@Me mostre seus itens.@@Tem algo interessante a venda?}
+{2020}{}{Me dá algo pra beber.@@Eu preciso de uma bebida.@@Tem algo para alegrar a alma?}
+{2030}{}{Vou indo aqui.@@Tchau.@@Te vejo por aí.@@Até mais.@@Te vejo depois.@@Tou indo. Valeu.@@Agradeço, valeu.@@Tô indo.@@Falou. Valeu.@@Tenho que ir.}
+{3000}{}{Certo, tá aqui.@@Certo...@@Toma aqui.@@[O atendente lhe entrega em mãos].}
+{3010}{}{Valeu. Eu preciso de mais uma coisa.@@Mais uma coisa...}
+{3020}{}{Ótimo, tchau.@@bom, te vejo em outro momento.@@Valeu, tenho que ir.@@Ótimo, até.}
+{4000}{}{Ahm, bem - cerveja normal custa cinco tampinhas, destilada dez. Eu também tenho Gamma-Gute e Rum Roentgen - estas bebidas brilhantes custam cem cada. Qual você quer?}
+{4010}{}{Cerva.@@Cerveja.}
+{4020}{}{Destilada.@@Aguardente.@@Pinga.}
+{4030}{}{Cerveja Gamma-Gute.@@Gamma-Gute@@Me dá uma Gamma aí.}
+{4040}{}{Roentgen Rum.@@Rum.}
+{5000}{}{Certo, quantas. Cem tampas a garrafa.}
+{5000}{}{Quantas? O preço é cem por garrafa.}
+{5010}{}{Só uma.}
+{5020}{}{Cinco.}
+{5030}{}{Dez.}
+{5040}{}{Pensando melhor... tchau.}
+{6000}{}{Ok, quantas então? Uma garrafa - dez tampinhas.}
+{6010}{}{Uma, apenas.}
+{6020}{}{Ahm, cinco?}
+{6030}{}{Dez, eu tenho este hábito estranho...}
+{6040}{}{Mudei de ideia. Tchau.}
+{7000}{}{Claro, quantas você precisa? Uma garrafa custa cinco tampas.}
+{7010}{}{Uma.}
+{7020}{}{Cinco seria bom.}
+{7030}{}{Dez.}
+{7040}{}{Talvez não.@@Ahm, eu mudei de ideia. Tchau.}
+{8000}{}{Claro, quantas você quer? Dez tampinhas por uma garrafa.}
+{8010}{}{Uma.}
+{8020}{}{Humm, eu acho que eu vou querer cinco.}
+{8030}{}{Dez garrafas por favor.}
+{8040}{}{Eu acho que vou pensar melhor sobre isso. Tchau.@@Não desta vez, desculpa aí. Até mais.}
+

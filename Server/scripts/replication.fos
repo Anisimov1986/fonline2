@@ -1,0 +1,462 @@
+// Author: cvet
+#include "_macros.fos"
+#include "entire.fos"
+#include "_msgstr.fos"
+import bool IsEncounterMap(Map@ map) from "utils";
+import bool IsSpecialMap(Map@ map) from "utils";
+import void DropDrugEffects( Critter& cr ) from "drugs";
+import void CheckCheatEffects( Critter& cr ) from "drugs";
+import void DropPoison( Critter& cr ) from "poison";
+import void DropRadiation( Critter& cr ) from "radiation";
+import void PlayVideo( Critter& cr, string& videoName, bool canStop ) from "media";
+import void FindEncounter( Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty ) from "worldmap";
+import void InviteToEncounter( Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir ) from "worldmap";
+import void Replicate( Critter& cr, Map& map) from "start_location";
+import void CapRadiation(Critter& cr) from "radiation";
+import void CheckForbiddenItems(array<Item@>& items, bool toDelete)  from "utils";
+import void RemoveDeadBlocker( Critter& cr ) from "main";
+import void SimCheck( Critter& cr ) from "sim_scripts";
+//import bool NeedReplicateCritterToBattle( Critter& cr ) from "purgatory";
+
+//const uint16 HellMapPid = MAP_replication_hell;
+const        uint16[] ReplicatorsMapPids = { MAP_repl_bh, MAP_repl_boneyard, MAP_repl_klamath, MAP_repl_modoc, MAP_repl_ncr, MAP_repl_sf, MAP_repl_vaultcity };
+uint         ReplicatorPos = 0;
+
+// Permanent death
+bool IsPermanentDeathInit = false;
+uint[] PermanentDeath;
+
+bool IsPermanentDeath( uint id ) // Export
+{
+    if( not IsPermanentDeathInit )
+    {
+        GetAnyData( "PermanentDeath", PermanentDeath );
+        IsPermanentDeathInit = true;
+    }
+
+    for( uint i = 0, j = PermanentDeath.length(); i < j; i++ )
+        if( PermanentDeath[ i ] == id )
+            return true;
+    return false;
+}
+
+void ClearPermanentDeath() // Export
+{
+    PermanentDeath.resize( 0 );
+    SetAnyData( "PermanentDeath", PermanentDeath );
+}
+
+void AddPermanentDeath( uint id )
+{
+    if( not IsPermanentDeathInit )
+    {
+        GetAnyData( "PermanentDeath", PermanentDeath );
+        IsPermanentDeathInit = true;
+    }
+
+    if( not IsPermanentDeath( id ) )
+    {
+        PermanentDeath.insertLast( id );
+        SetAnyData( "PermanentDeath", PermanentDeath );
+    }
+}
+
+Map@ GetStartReplicatorMap()
+{
+    return GetMapByPid( ReplicatorsMapPids[ 0 ], 0 );
+}
+
+Map@ GetNearReplicatorMap( Critter& cr )
+{
+    Map@ nearMap = null;
+    int  nearDist = 0;
+    for( uint i = 0, j = ReplicatorsMapPids.length(); i < j; i++ )
+    {
+        Map@ map = GetMapByPid( ReplicatorsMapPids[ i ], 0 );
+        if( valid( map ) )
+        {
+            Location@ loc = map.GetLocation();
+            int       dx = int(cr.WorldX) - int(loc.WorldX);
+            int       dy = int(cr.WorldY) - int(loc.WorldY);
+            int       dist = int( sqrt( dx * dx + dy * dy ) );
+
+            if( not valid( nearMap ) || dist < nearDist )
+            {
+                @nearMap = map;
+                nearDist = dist;
+            }
+        }
+    }
+	if (cr.Stat[ST_LEVEL] < 9 && nearMap.GetProtoId()==MAP_repl_boneyard)
+	{
+		GameVar @ start_location = GetLocalVar(LVAR_start_location, cr.Id);
+		Location@ location = GetLocation(start_location.GetValue());
+		if (valid(location))
+			@nearMap = location.GetMapByIndex( 0 );
+	}
+    return nearMap;
+}
+
+/*void SetStartLocation( Critter& cr ) // Export
+{
+    Map@ replicator = GetStartReplicatorMap();
+    if( not valid( replicator ) )
+        return;
+
+    // Hidden fog on default player position
+    uint zoneX = cr.WorldX / __GlobalMapZoneLength;
+    uint zoneY = cr.WorldY / __GlobalMapZoneLength;
+    cr.SetFog( zoneX, zoneY, FOG_FULL );
+    cr.SetFog( zoneX - 1, zoneY - 1, FOG_FULL );
+    cr.SetFog( zoneX, zoneY - 1, FOG_FULL );
+    cr.SetFog( zoneX + 1, zoneY - 1, FOG_FULL );
+    cr.SetFog( zoneX - 1, zoneY, FOG_FULL );
+    cr.SetFog( zoneX + 1, zoneY, FOG_FULL );
+    cr.SetFog( zoneX - 1, zoneY + 1, FOG_FULL );
+    cr.SetFog( zoneX, zoneY + 1, FOG_FULL );
+    cr.SetFog( zoneX + 1, zoneY + 1, FOG_FULL );
+
+    cr.TransitToMap( replicator.Id, ENTIRE_REPLICATION );
+
+    cr.SetKnownLoc( true, replicator.GetLocation().Id );
+    //cr.SetKnownLoc( false, LOCATION_ReplicationHell );
+    uint16 replPid = replicator.GetLocation().GetProtoId();
+    if( replPid == LOCATION_Replication1 )
+    {
+        //cr.SetKnownLoc( false, LOCATION_Den );
+        //cr.SetKnownLoc( false, LOCATION_Klamath );
+    }
+    else if( replPid == LOCATION_Replication2 )
+    {
+        //cr.SetKnownLoc( false, LOCATION_Modoc );
+    }
+    else if( replPid == LOCATION_Replication3 )
+    {
+        //cr.SetKnownLoc( false, LOCATION_Redding );
+    }
+    else if( replPid == LOCATION_Replication4 )
+    {
+        //cr.SetKnownLoc( false, LOCATION_BrokenHills );
+        //cr.SetKnownLoc( false, LOCATION_NewReno );
+    }
+
+    zoneX = cr.WorldX / __GlobalMapZoneLength;
+    zoneY = cr.WorldY / __GlobalMapZoneLength;
+    cr.SetFog( zoneX, zoneY, FOG_NONE );
+    cr.SetFog( zoneX - 1, zoneY - 1, FOG_HALF );
+    cr.SetFog( zoneX, zoneY - 1, FOG_HALF );
+    cr.SetFog( zoneX + 1, zoneY - 1, FOG_HALF );
+    cr.SetFog( zoneX - 1, zoneY, FOG_HALF );
+    cr.SetFog( zoneX + 1, zoneY, FOG_HALF );
+    cr.SetFog( zoneX - 1, zoneY + 1, FOG_HALF );
+    cr.SetFog( zoneX, zoneY + 1, FOG_HALF );
+    cr.SetFog( zoneX + 1, zoneY + 1, FOG_HALF );
+}
+*/
+
+void SetReplicationTime( Critter& cr ) // Export
+{
+    Map@ map = cr.GetMap();
+	// encounter mob corpses not removed
+    if(_IsTrueNpc(cr) && (IsEncounterMap(map) || IsSpecialMap(map)))
+        cr.StatBase[ST_REPLICATION_TIME] = REPLICATION_NEVER;
+	
+	int replTime = cr.Stat[ ST_REPLICATION_TIME ];
+	
+	if(replTime == REPLICATION_NEVER)
+        return;
+
+    if( replTime < 0 )
+	{
+		if(replTime == REPLICATION_DELETE_FAST)
+            replTime = 1;
+        else
+            replTime = 10;                           // No respawn
+	}
+    if( replTime == 0 )                    // Take default values
+    {
+        if( cr.IsPlayer() )
+            replTime = 1;                  // 3 minutes
+        else
+            //replTime = Random( 90, 120 );  // 90-120 minutes
+			replTime = 1;
+    }
+    replTime *= REAL_MINUTE( 1 );
+    cr.TimeoutBase[ TO_REPLICATION ] = __FullSecond + replTime;
+}
+
+bool IsPrison( Map@ map )
+{
+    int pid = map.GetProtoId();
+	return( pid==441 || pid==442 );
+}
+
+void ReplicateCritter( Critter& cr ) // Export
+{
+	if(cr.IsNpc() && cr.Stat[ST_REPLICATION_TIME] == REPLICATION_NEVER)
+        return;
+
+    // Delete some critters instead
+    if(cr.IsNpc() &&
+       (cr.Stat[ST_REPLICATION_TIME] == REPLICATION_DELETE ||
+        cr.Stat[ST_REPLICATION_TIME] == REPLICATION_DELETE_FAST))
+    {
+        /*
+		if(_CritCanDropItemsOnDead(cr) && _IsFollower(cr) &&
+           cr.FollowerVar[FV_TYPE] == FOLLOWER_TYPE_SLAVE ||
+           cr.FollowerVar[FV_TYPE] == FOLLOWER_TYPE_COMPANION ||
+           cr.FollowerVar[FV_TYPE] == FOLLOWER_TYPE_BRAHMIN ||
+           cr.FollowerVar[FV_TYPE] == FOLLOWER_TYPE_DOG)
+        {
+            Item@ item = cr.GetItem(0, SLOT_ARMOR);
+            if(valid(item))
+                cr.MoveItem(item.Id, item.GetCount(), SLOT_INV);
+            DropItems(cr);
+        }
+		*/
+        DeleteNpc(cr);
+        return;
+    }
+	
+	
+	
+	Map@   dieMap = cr.GetMap();
+	if (cr.IsNpc() && (valid(dieMap)) && dieMap.GetLocation().IsQuest()) //Preventing any respawns of npc in spawn locs
+		return;
+    Map@   map = null;
+    uint16 hx = 0, hy = 0, mapId = 0;
+
+	//check if critter is not in jail
+	if(cr.Param[JAILED] != 0)
+	{
+		if(cr.Timeout[TO_JAIL] == 0)
+			cr.ParamBase[JAILED] = 0;
+		else
+		{
+			cr.ToLife();
+			return;
+		}
+	}
+	else if(cr.Timeout[TO_JAIL] > 0)
+	{
+		cr.TimeoutBase[TO_REPLICATION] = __FullSecond + REAL_MINUTE(cr.Stat[ST_REPLICATION_TIME]);
+		return;
+	}
+
+    // Check car
+    Item@[] cars;
+    cr.GetItemsByType( ITEM_TYPE_CAR, cars );
+    if( cars.length() > 0 )
+    {
+        // Transit to random encounter
+        bool transferred = false;
+        uint encounterDescriptor = uint( -1 );
+        bool waitForAnswer = false;
+        FindEncounter( cr.GetGlobalGroup(), cars[ 0 ], cr.WorldX, cr.WorldY, encounterDescriptor, waitForAnswer, true );
+        if( encounterDescriptor != uint( -1 ) )
+        {
+            uint   mapId = 0;
+            uint16 hexX = 0;
+            uint16 hexY = 0;
+            uint8  dir = 0;
+            InviteToEncounter( cr.GetGlobalGroup(), cars[ 0 ], encounterDescriptor, COMBAT_MODE_ANY, mapId, hexX, hexY, dir );
+            if( mapId != 0 && cr.TransitToMap( mapId, hexX, hexY, dir ) )
+                transferred = true;
+        }
+
+        // Encounter not founded or transfer fail, delete cars
+        if( !transferred )
+        {
+            for( uint i = 0; i < cars.length(); i++ )
+                DeleteItem( cars[ i ] );
+        }
+
+        // Continue dead
+        cr.TimeoutBase[ TO_REPLICATION ] = __FullSecond + REAL_MINUTE( 1 );
+        return;
+    }
+
+    if( cr.IsPlayer() )
+    {
+		Map@ deathMap = cr.GetMap();
+	    if(valid(deathMap) && IsPrison(deathMap))
+        {
+            @map = deathMap;
+            array<Entire> entires;
+            ParseEntires(map, entires, ENTIRE_REPLICATION);
+            if(entires.length() > 0)
+            {
+                int i = Random(0, entires.length() - 1);
+                hx = entires[i].HexX;
+                hy = entires[i].HexY;
+            }
+        }
+        else
+            @map = GetNearReplicatorMap( cr );
+        
+        if( not valid( map ) || not GetEntireFreeHex( map, ENTIRE_REPLICATION , hx, hy ))
+        {
+            // Continue dead
+            cr.TimeoutBase[ TO_REPLICATION ] = __FullSecond + REAL_MINUTE( 1 );
+            return;
+        }
+
+        if( _CritCanDropItemsOnDead( cr ) )
+        {
+            Map@ dropMap = cr.GetMap();
+            Item@[] items;
+            cr.GetItems( -1, items );
+
+            // Disable drop of hidden items and delete gag items (sandbags)
+            CheckForbiddenItems(items, true);
+
+            // Drop
+            if( valid( dropMap ) )
+                MoveItems( items, dropMap, cr.HexX, cr.HexY );
+            else
+                DeleteItems( items );
+        }
+        cr.StatBase[ ST_REPLICATION_COUNT ]++;
+	
+		Location@ location = map.GetLocation();
+		if(valid(location))
+		{
+			//reveal zone
+			uint zoneX = location.WorldX / __GlobalMapZoneLength;
+			uint zoneY = location.WorldY / __GlobalMapZoneLength;
+			
+			RevealZone(cr, zoneX, zoneY);
+		}
+		
+		SimCheck ( cr );
+
+    }
+    else
+    {
+        cr.DropPlanes();
+        cr.ClearEnemyStackNpc();
+        cr.StatBase[ ST_LAST_WEAPON_ID ] = 0;
+        @map = cr.GetMap();
+        if( not valid( map ) )     // On global, delete
+        {
+            DeleteNpc( cr );
+            return;
+        }
+        hx = cr.HexX;
+        hy = cr.HexY;
+
+		RemoveDeadBlocker( cr );
+
+        if( not map.IsHexPassed( hx, hy ) )
+        {
+            bool founded = false;
+            for( int x = -1; x <= 1; x++ )
+            {
+                for( int y = -1; y <= 1; y++ )
+                {
+                    if( x == 0 && y == 0 )
+                        continue;                                  // Skip direct position
+
+                    if( __MapHexagonal )
+                    {
+                        if( ( hx % 2 ) == 1 && ( ( x == -1 && y == 1 ) || ( x == 1 && y == 1 ) ) )
+                            continue;
+                        if( ( hx % 2 ) == 0 && ( ( x == -1 && y == -1 ) || ( x == 1 && y == -1 ) ) )
+                            continue;
+                    }
+
+                    if( map.IsHexPassed( hx + x, hy + y ) )
+                    {
+                        hx += x;
+                        hy += y;
+                        founded = true;
+                        break;
+                    }
+                }
+                if( founded )
+                    break;
+            }
+
+            if( not founded )
+            {
+                // Continue dead
+                cr.TimeoutBase[ TO_REPLICATION ] = __FullSecond + REAL_MINUTE( 1 );
+                return;
+            }
+        }
+    }
+	if (cr.IsPlayer() && map.GetProtoId() == MAP_Start_Location)
+		cr.TransitToMap( map.Id, 242 );
+	else
+	{
+		cr.TransitToMap( map.Id, hx, hy, Random( 0, 5 ) );
+		cr.StatBase[ ST_CURRENT_AP ] = cr.Stat[ ST_ACTION_POINTS ] * 100;
+	}
+    cr.DamageBase[ DAMAGE_EYE ] = 0;
+    cr.DamageBase[ DAMAGE_RIGHT_ARM ] = 0;
+    cr.DamageBase[ DAMAGE_LEFT_ARM ] = 0;
+    cr.DamageBase[ DAMAGE_RIGHT_LEG ] = 0;
+    cr.DamageBase[ DAMAGE_LEFT_LEG ] = 0;
+    if( cr.Stat[ ST_NEXT_CRTYPE ] > 0 )
+    {
+        cr.ChangeCrType( cr.Stat[ ST_NEXT_CRTYPE ] );
+        cr.StatBase[ ST_BASE_CRTYPE ] = cr.Stat[ ST_NEXT_CRTYPE ];
+        cr.StatBase[ ST_NEXT_CRTYPE ] = 0;
+    }
+	cr.ToLife();
+	if (cr.IsPlayer() && map.GetProtoId() == MAP_Start_Location)
+	{
+		Replicate(cr,map);
+	}
+    if(cr.IsNpc())
+		cr.StatBase[ ST_CURRENT_HP ] = cr.Stat[ ST_MAX_LIFE ];
+	else
+		cr.StatBase[ ST_CURRENT_HP ] = 20;
+    DropPoison( cr );
+	CapRadiation(cr);
+    //DropRadiation( cr );
+    //DropDrugEffects( cr );                                              // Note: This function clear effects of all active drugs/radiation/poison!
+    //cr.DropTimers();
+	CheckCheatEffects( cr );
+    for( uint i = TIMEOUT_BEGIN; i <= WORKING_TIMEOUT_END; i++ )
+		cr.TimeoutBase[ i ] = 0;
+	cr.RefreshVisible();
+}
+
+void RevealZone(Critter& cr, uint zoneX, uint zoneY)
+{
+	for (int i=-1; i<2; i++)
+	{
+		for (int j=-1; j<2; j++)
+		{
+			int TzoneX = zoneX+i;
+			int TzoneY = zoneY+j;
+			if ( TzoneX<0 || TzoneY<0 || TzoneX>=int(__GlobalMapWidth) || TzoneY>=int(__GlobalMapHeight))
+				continue;
+			if (i==0 && j==0 && cr.GetFog( TzoneX, TzoneY) != FOG_NONE)
+				cr.SetFog( TzoneX, TzoneY, FOG_NONE );
+			if( cr.GetFog( TzoneX, TzoneY) < FOG_HALF )
+				cr.SetFog( TzoneX, TzoneY, FOG_HALF );
+		}
+	}
+}
+
+//
+// Turret
+//
+void _TurretInit( Critter& turret, bool firstTime )
+{
+    turret.StatBase[ ST_PERCEPTION ] = 10;
+    turret.SkillBase[ SK_BIG_GUNS ] = 300;
+    turret.SkillBase[ SK_ENERGY_WEAPONS ] = 300;
+    turret.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
+    turret.ModeBase[ MODE_UNLIMITED_AMMO ] = 1;
+}
+
+//
+// Hubologist
+//
+void _HubologistInit( Critter& hubologist, bool firstTime )
+{
+    hubologist.ModeBase[ MODE_NO_ENEMY_STACK ] = 1;
+}

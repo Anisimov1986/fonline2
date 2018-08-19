@@ -1,0 +1,331 @@
+/**
+* Author: wladimiiir
+*/
+
+#include "worldmap_leader.fos"
+#include "_bags.fos"
+#include "economy_h.fos"
+#include "ncr_profit.fos"
+
+#define CARAVAN_HUB_TO_VAULT_CITY			(1)
+#define CARAVAN_VAULT_CITY_TO_HUB			(2)
+#define CARAVAN_HUB_TO_SF			        (3)
+#define CARAVAN_SF_TO_HUB			        (4)
+#define CARAVAN_HUB_TO_NCR			        (5)
+#define CARAVAN_NCR_TO_HUB			        (6)
+#define CARAVAN_HUB_AROUND   		        (7)
+#define PATROL_JUNKTOWN		   		        (8)
+#define CARAVAN_NCR_TO_VAULT_CITY           (9)
+#define CARAVAN_VAULT_CITY_TO_NCR		    (10)
+
+import bool IsEventTimer(uint town) from "stocmessages";
+import void NCRProfit( int amount ) from "map_ncr";
+
+dictionary@ Caravans;
+WorldmapLeader@ GetCaravanLeader(uint caravanId)	
+{
+	if(!valid(Caravans))
+	{
+		@Caravans = dictionary();
+		InitCaravans();
+	}
+	
+	WorldmapLeader@ leader;
+	Caravans.get("" + caravanId, @leader);
+	return leader;
+}
+
+void InitCaravans()
+{
+	//Hub -> VC
+	Caravans.set("" + CARAVAN_HUB_TO_VAULT_CITY, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			//.AddRoutePoint(1403, 1191) Better randomization
+			.AddRoutePoint(1350, 1291)
+			.AddRoutePoint(1443, 1033)
+			.AddRoutePoint(1380, 871) // Better randomization
+			.AddRoutePoint(1290, 600) // Better randomization
+			.AddRoutePoint(1250, 360) // Better randomization
+			//.AddRoutePoint(1333, 929)  Better randomization
+			//.AddRoutePoint(1324, 833)  Better randomization
+			//.AddRoutePoint(1250, 805)  Better randomization
+			//.AddRoutePoint(1200, 242)  Better randomization
+			.AddRoutePoint(1170, 210)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanHubToVaultCityFinished));
+	//VC -> Hub		
+	Caravans.set("" + CARAVAN_VAULT_CITY_TO_HUB, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			.AddRoutePoint(1250, 360) // Better randomization
+			.AddRoutePoint(1290, 600) // Better randomization
+			.AddRoutePoint(1380, 871) // Better randomization
+			//.AddRoutePoint(1200, 242)  Better randomization
+			//.AddRoutePoint(1250, 805)  Better randomization
+			//.AddRoutePoint(1324, 833)  Better randomization
+			//.AddRoutePoint(1333, 929)  Better randomization
+			.AddRoutePoint(1443, 1033)
+			//.AddRoutePoint(1438, 1191) Better randomization
+			.AddRoutePoint(1350, 1291)
+			.AddRoutePoint(1230, 1410)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanVaultCityToHubFinished));
+	//Hub -> SF		
+	Caravans.set("" + CARAVAN_HUB_TO_SF, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			//.AddRoutePoint(1043, 1401) Better randomization
+			//.AddRoutePoint(986, 1356) Better randomization
+			.AddRoutePoint(986, 1350) // Better randomization
+			.AddRoutePoint(861, 1104)
+			.AddRoutePoint(686, 873)
+			.AddRoutePoint(408, 859)
+			.AddRoutePoint(404, 828)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanHubToSFFinished));
+	//SF -> Hub		
+	Caravans.set("" + CARAVAN_SF_TO_HUB, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			.AddRoutePoint(404, 828)
+			.AddRoutePoint(408, 859)			
+			.AddRoutePoint(686, 873)			
+			.AddRoutePoint(861, 1104)
+			.AddRoutePoint(986, 1350) // Better randomization
+			//.AddRoutePoint(986, 1356) Better randomization
+			//.AddRoutePoint(1043, 1401) Better randomization
+			.AddRoutePoint(1230, 1413)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanSFToHubFinished));
+	//Hub -> NCR		
+	Caravans.set("" + CARAVAN_HUB_TO_NCR, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			.AddRoutePoint(1350, 1291) // Better randomization
+			.AddRoutePoint(1410, 1050) // Better randomization
+			//.AddRoutePoint(1443, 1033) Better randomization
+			//.AddRoutePoint(1403, 1191) Better randomization
+			//.AddRoutePoint(1443, 1033) Better randomization
+			//.AddRoutePoint(1333, 929) Better randomization
+			.AddRoutePoint(1290, 870)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanHubToNCRFinished));
+	//NCR -> Hub		
+	Caravans.set("" + CARAVAN_NCR_TO_HUB, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			.AddRoutePoint(1310, 1050) // Better randomization
+			.AddRoutePoint(1300, 1291) // Better randomization
+			//.AddRoutePoint(1333, 929) Better randomization
+			//.AddRoutePoint(1443, 1033) Better randomization
+			.AddRoutePoint(1230, 1413)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanNCRToHubFinished));
+	//Hub Way around
+	Caravans.set("" + CARAVAN_HUB_AROUND, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			.AddRoutePoint(1350, 1291) // Better randomization
+			.AddRoutePoint(1443, 1033) // Better randomization
+			.AddRoutePoint(1380, 871) // Better randomization
+			//.AddRoutePoint(1403, 1191) Better randomization
+			//.AddRoutePoint(1443, 1033) Better randomization
+			//.AddRoutePoint(1333, 929) Better randomization
+			//.AddRoutePoint(1324, 833) Better randomization
+			//.AddRoutePoint(1250, 805) Better randomization
+			//.AddRoutePoint(1200, 242) Better randomization
+			.AddRoutePoint(1290, 500) // Better randomization
+			.AddRoutePoint(1170, 210) //VC
+			.AddRoutePoint(1000, 165)
+			//.AddRoutePoint(1108, 137) Better randomization
+			.AddRoutePoint(810, 150) //Modoc
+			.AddRoutePoint(568, 71)
+			.AddRoutePoint(210, 30)  // Klamath
+			.AddRoutePoint(270, 90) // Better randomization
+			.AddRoutePoint(330, 155) //Den
+			.AddRoutePoint(455, 285)
+			.AddRoutePoint(570, 330) //Redding
+			.AddRoutePoint(622, 551)
+			.AddRoutePoint(809, 569) // New Reno
+			.AddRoutePoint(975, 525)
+			.AddRoutePoint(1170, 512) // Broken Hills
+			.AddRoutePoint(1191, 707)
+			.AddRoutePoint(1290, 870) // NCR
+			//.AddRoutePoint(1297, 992) Better randomization
+			.AddRoutePoint(1270, 1124)
+			//.AddRoutePoint(1270, 1208) Better randomization
+			.AddRoutePoint(1230, 1230) // JT
+			.AddRoutePoint(1230, 1320) // Better randomization
+			.AddRoutePoint(1230, 1408)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanHubAroundFinished));
+			
+				//Junktown scouts patrol.	
+	Caravans.set("" + PATROL_JUNKTOWN, 
+		WorldmapLeader(NPC_PID_PATROL_SCOUT)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			.AddNpcFollower(NPC_PID_JunktownScoutPatrol1, BAG_JTSCOUT)
+			.AddNpcFollower(NPC_PID_JunktownScoutPatrol2, BAG_JTSCOUT)
+			.AddNpcFollower(NPC_PID_JunktownScoutPatrol3, BAG_JTSCOUT)
+			.AddNpcFollower(NPC_PID_JunktownScoutPatrol4, BAG_JTSCOUT)
+			.AddNpcFollower(NPC_PID_JunktownScoutPatrol5, BAG_JTSCOUT)
+			.AddRoutePoint(1169, 1230)
+			.AddRoutePoint(1288, 1410)			
+			.AddRoutePoint(1230, 1469)
+			.AddRoutePoint(1172, 1408)
+			.AddRoutePoint(1290, 1231)
+			.AddRoutePoint(1229, 1168)
+			.AddRoutePoint(1169, 1230)
+			.AddRoutePoint(1288, 1410)			
+			.AddRoutePoint(1230, 1469)
+			.AddRoutePoint(1172, 1408)
+			.AddRoutePoint(1290, 1231)
+			.AddRoutePoint(1229, 1168)
+			.AddRoutePoint(1230, 1230)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(JunktownPatrolFinished));
+			
+				//NCR -> VC
+	Caravans.set("" + CARAVAN_NCR_TO_VAULT_CITY, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			//.AddRoutePoint(1250, 805) Better randomization
+			//.AddRoutePoint(1200, 242) Better randomization
+			.AddRoutePoint(1290, 690) // Better randomization
+			.AddRoutePoint(1290, 390) // Better randomization
+			.AddRoutePoint(1170, 210)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanNCRToVaultCityFinished));
+			
+				//VC -> NCR
+	Caravans.set("" + CARAVAN_VAULT_CITY_TO_NCR, 
+		WorldmapLeader(NPC_PID_ChuckLee)
+			.SetBag(BAG_SF_Caravan_VaultCityPatrolMale)
+			.AddRoutePoint(1290, 390) // Better randomization
+			.AddRoutePoint(1290, 690) // Better randomization
+			//.AddRoutePoint(1200, 242) Better randomization
+			//.AddRoutePoint(1250, 805) Better randomization
+			.AddRoutePoint(1290, 870)
+			.AddMapItem(PID_BRAHMIN_CART_1)
+			.AddMapItem(PID_BRAHMIN_CART_2)
+			.SetEncountingEnemyAction(EnemyFound)
+			.SetReadyToGoAction(ScheduleToGlobal)
+			.SetFinishAction(CaravanVaultCityToNCRFinished));
+}
+
+/**
+* Worldmap leader functions
+*/
+void CaravanFinished(Critter& leader, Critter@[]@ players, uint mapPid, uint entire, uint experience, uint reward, int eventId)
+{
+	Map@ map = GetMapByPid(mapPid, 0);
+	if(!valid(map))
+		return;
+	
+	uint16 hexX = 0;
+	uint16 hexY = 0;
+	uint8 dir = 0;
+	map.GetEntireCoords(entire, 0, hexX, hexY, dir);
+	
+	if (IsEventTimer(eventId)) 
+	{
+		experience *= 1.5;
+		reward *= 1.5;
+	}	
+	
+	for (uint i = 0; i < players.length(); i++)
+	{
+		if (players[i].IsNpc())
+			DeleteNpc(players[i]);	
+			
+		players[i].TransitToMap(map.Id, hexX, hexY, dir);
+		players[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT , 70316);
+		players[i].StatBase[ ST_EXPERIENCE ] += experience;
+		players[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT , 70317 , "$experience" + experience + "$reward" + RewardMod(reward));
+		players[i].AddItem(PID_BOTTLE_CAPS, RewardMod(reward));
+	}
+	if (valid(leader))
+	{
+		DeleteNpc(leader);
+	}
+}
+
+void CaravanHubToVaultCityFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_vcity,0, 3000, 2000, 13);
+}
+
+void CaravanVaultCityToHubFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_hub,0, 3000, 2000, 13);
+}
+
+void CaravanNCRToVaultCityFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_vcity,0, 1800, 1000, 67);
+    NCRProfit(VCCaravan_PROFIT);
+}
+
+void CaravanVaultCityToNCRFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_ncr_bazaar,0, 1800, 1000, 67);
+    NCRProfit(VCCaravan_PROFIT);
+}
+
+void CaravanHubToSFFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_sf_caravandepo,0, 4000, 3000, 14);
+}
+
+void CaravanSFToHubFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_hub,0, 4000, 3000, 14);
+}
+
+void CaravanNCRToHubFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_hub,0, 1000, 800, 12);
+    NCRProfit(HubCaravan_PROFIT);
+}
+
+void CaravanHubToNCRFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_ncr_bazaar,111, 1000, 800, 12);
+    NCRProfit(HubCaravan_PROFIT);
+}
+
+void CaravanHubAroundFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_hub,0, 16000, 5000, 15);
+}
+
+void JunktownPatrolFinished(Critter& leader, Critter@[]@ players)
+{
+	CaravanFinished(leader, players, MAP_junktown,0, 1000, 800, -1);
+}

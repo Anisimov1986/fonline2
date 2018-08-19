@@ -1,0 +1,297 @@
+// Author: cvet
+#include "entire_h.fos"
+#include "_macros.fos"
+#include "pids_groups.fos"
+#define FURNITURE    # (item) ( item.GetType() == ITEM_TYPE_CONTAINER || ( item.GetProtoId() >= 9900 && item.GetProtoId() <= 10006 ))
+#define CONTAINER    # (item) ( item.GetType() == ITEM_TYPE_CONTAINER )
+const int[] MutantSkins = { CRTYPE_MUTANT_REGULAR, CRTYPE_MUTANT_LEATHER, CRTYPE_MUTANT_METAL };
+import bool Present( int what, int[]& where ) from "utils_for_array";
+#ifdef __CLIENT
+# define Critter     CritterCl
+# define Item        ItemCl
+//const int[] BaseTentMaps = { 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 447, 448 };
+#endif
+
+#ifdef __SERVER
+#include "logging_h.fos"
+#include "utils_h.fos"
+import void      CrSpeedCalc( Critter& cr ) from "main";
+import uint      CountNearEntires( Map& map, Critter& cr, int number ) from "entire";
+import bool      IsInPersonalDataList( Location& loc, string& pdata, uint value ) from "pdata";
+import bool      ValidateItemForCr( Critter& cr ,Item& item) from "blueprints";
+import bool      IsInsideOwnHouse(Critter& cr) from "house";
+import bool      IsMovableContainer(Item& locker) from "movable_container";
+import bool      IsFurniture(Item& item) from "furniture";
+
+const uint16[] trunks = {
+801,
+818,
+819,
+809,
+817,
+822,
+817,
+827,
+829,
+831,
+PID_SPECIAL_WB1,
+PID_SPECIAL_WB2,
+PID_T4_WBVault,
+PID_T4_WBSierra};
+#endif
+
+
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+// Call on something critter want move item from one slot to another.
+// Return true to allow transaction, false to disallow.
+// Function must exist on server and client side.
+bool critter_check_move_item( Critter& cr, Item& item, uint8 toSlot, Item@ itemSwap )
+{
+    uint8 fromSlot = item.CritSlot;
+
+    // Drop
+    if( toSlot == SLOT_GROUND )
+    {
+        #ifdef __SERVER
+        if( FURNITURE( item ) )
+        {
+            Location@ loc = GetLocationOf( cr );
+            if( !valid(loc) )
+        	return( true ); // always allow WM dropping
+
+            if( !loc.IsBase() && !loc.IsTent() && !IsInsideOwnHouse(cr) )
+            {
+                cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70318 );
+                return false;
+            }
+
+            if( loc.IsTent() && !cr.IsKnownLoc( true, loc.Id ) )         // If tent isn't known by person, then the person isn't member of it, simple.
+            {
+                cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70368 );
+                return false;
+            }
+            
+            Map@          map = cr.GetMap();
+            if (!CONTAINER( item ))
+            {
+                if( loc.IsBase() && !IsInPersonalDataList( loc, "basemanagers", cr.Id ) )          // If the person is manager he can take furniture, if not, then no.
+                {
+                    cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70367 );
+                    return false;
+                }
+    
+                // Entire check
+                array< uint > illegalEntires = { ENTIRE_DEFAULT, ENTIRE_CAR };
+                for(  uint e = 0, eLen = illegalEntires.length(); e < eLen; e++ )
+                {
+                    if( CountNearEntires(  map, cr, illegalEntires[ e ] ) > 0 )
+                    {
+                        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70369 );                    // Message( "It's too close to Car or Player spawn. You can't drop this here." ); "HAHA! You silly player! You are near entire! GTFO few hexes away! ...damn players, always around entires... That will show you!"
+                        return false;
+                    }
+                }
+            }
+            Item@[] items;
+            map.GetItems(cr.HexX, cr.HexY, items);
+            for( uint i = 0, l = items.length(); i < l; i++ )
+            {
+                if (FURNITURE(items[i]))
+                {
+                    cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70318 );
+                    return false;
+                }
+            }
+        }
+        #endif
+        /*
+        #ifdef __CLIENT
+        if( FURNITURE( item ) )
+        {
+            int MapPid = GetCurrentMapPid();
+            if( MapPid != 0 && !Present( MapPid, BaseTentMaps ) )
+            {
+                Message( GetMsgStr( TEXTMSG_TEXT, 70318 ) );
+                return false;
+            }
+        }
+        #endif
+        */
+        return true;
+    }
+
+    if( FURNITURE( item ) && toSlot != SLOT_INV )
+    {
+        return false;
+    }
+
+    // If busy, then allow only hands item swapping
+    bool handsSwap = ( ( fromSlot == SLOT_HAND1 && toSlot == SLOT_HAND2 ) || ( fromSlot == SLOT_HAND2 && toSlot == SLOT_HAND1 ) );
+    if( valid( itemSwap ) && !handsSwap )
+        return false;
+
+    // Weapon animation
+    if( toSlot == SLOT_HAND1 )
+    {
+        if( item.GetType() == ITEM_TYPE_WEAPON && !IsCritterAnim1( cr.CrType, item.Proto.Weapon_Anim1 ) )
+            return false;
+    }
+
+    // Armor animation
+    if( toSlot == SLOT_ARMOR )
+    {
+        if( item.GetType() != ITEM_TYPE_ARMOR )
+            return false;
+        if( item.Proto.Slot != SLOT_INV )
+            return false;
+        if( !IsCritterCanArmor( cr.CrType ) )
+            return false;
+        if( cr.Stat[ ST_BASE_CRTYPE ] == CRTYPE_MUTANT_REGULAR  && !Present( item.GetProtoId(), Pids_MutantArmors ) )
+            return false;
+    }
+
+    // Custom slot checks
+    if( toSlot > SLOT_ARMOR )
+    {
+        if( toSlot != item.Proto.Slot )
+            return false;
+    }
+
+    // Allow moving
+    return true;
+}
+
+#ifdef __SERVER
+import void CheckMaleCrType( uint crBaseType, uint& crType ) from "stdlib";
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+// Call on critter item moved.
+void critter_move_item( Critter& cr, Item& item, uint8 fromSlot )
+{
+    uint8 toSlot = item.CritSlot;
+    if( cr.IsPlayer() && toSlot == SLOT_GROUND && item.GetType() != ITEM_TYPE_WB)
+        cr.Wait( 0 );
+    if (cr.IsNpc() && toSlot != SLOT_GROUND && !ItemsIsSafe(cr) && !cr.IsDead() && !ValidateItemForCr(cr,item))
+        return;
+
+    if( cr.IsPlayer() && (not FLAG( item.Flags, ITEM_CAN_PICKUP )) && !IsFurniture(item) && !IsMovableContainer(item) && item.GetType() != ITEM_TYPE_CAR && trunks.find(item.Proto.ProtoId)<0)
+        FLog( LOG_GM, cr.Name + " (" + cr.Id + ") ac lvl " + cr.GetAccess() + " moved item "+item.Id+" from "+fromSlot+" to "+toSlot+" ip: " + GetIP( cr.GetIp() ));
+
+    // Armor changing
+    if( item.GetType() == ITEM_TYPE_ARMOR && ( fromSlot == SLOT_ARMOR || toSlot == SLOT_ARMOR ) )
+    {
+        if( GetCritterAnimType( cr.CrType ) != ANIM_TYPE_3D )
+        {
+            // Default dude
+            bool isMale = ( cr.Stat[ ST_GENDER ] == GENDER_MALE );
+            uint baseCrType = cr.Stat[ ST_BASE_CRTYPE ];
+            uint crType = baseCrType;
+
+            if( crType == 0 )
+                crType = ( isMale ? CRTYPE_DEFAULT_M : CRTYPE_DEFAULT_F );
+            if( toSlot == SLOT_ARMOR )
+                crType = ( isMale ? item.Proto.Armor_CrTypeMale : item.Proto.Armor_CrTypeFemale );
+
+            // Long hair dude redirects
+            if( baseCrType == CRTYPE_LHD_LEATHER_JACKET ||
+                baseCrType == CRTYPE_LHD_SKIN1 ||
+                baseCrType == CRTYPE_LHD_SKIN2 ||
+                baseCrType == CRTYPE_LHD_SKIN3 ||
+                baseCrType == CRTYPE_LHD_SKIN4 ||
+                baseCrType == CRTYPE_LHD_SKIN5 ||
+                baseCrType == CRTYPE_LHD_SKIN6 ||
+                baseCrType == CRTYPE_LHD_SKIN7 ||
+                baseCrType == CRTYPE_LHD_SKIN8 && isMale )
+            {
+                // crType = CRTYPE_LHD_LEATHER_JACKET;
+                if( toSlot == SLOT_ARMOR )
+                {
+                    crType = item.Proto.Armor_CrTypeMale;
+                    CheckMaleCrType( baseCrType, crType );
+                }
+            }
+            else if( baseCrType == CRTYPE_BD_LEATHER_JACKET ||
+                     baseCrType == CRTYPE_BD_SKIN1 ||
+                     baseCrType == CRTYPE_BD_SKIN2 ||
+                     baseCrType == CRTYPE_BD_SKIN3 ||
+                     baseCrType == CRTYPE_BD_SKIN4 ||
+                     baseCrType == CRTYPE_BD_SKIN5 ||
+                     baseCrType == CRTYPE_BD_SKIN6 ||
+                     baseCrType == CRTYPE_BD_SKIN7 ||
+                     baseCrType == CRTYPE_BD_SKIN8 ||
+                     baseCrType == CRTYPE_BD_SKIN9 ||
+                     baseCrType == CRTYPE_BD_SKIN10 ||
+                     baseCrType == CRTYPE_BD_SKIN11 ||
+                     baseCrType == CRTYPE_BD_SKIN12 ||
+                     baseCrType == CRTYPE_BD_SKIN13 ||
+                     baseCrType == CRTYPE_BD_SKIN14 && isMale )
+            {
+                // crType = CRTYPE_BD_LEATHER_JACKET;
+                if( toSlot == SLOT_ARMOR )
+                {
+                    crType = item.Proto.Armor_CrTypeMale;
+                    CheckMaleCrType( baseCrType, crType );
+                }
+            }
+            if( baseCrType == CRTYPE_MUTANT_REGULAR )
+            {
+                crType = CRTYPE_MUTANT_REGULAR;
+                if( toSlot == SLOT_ARMOR )
+                {
+                    if( Present( item.GetProtoId(), Pids_LeatherArmors ) )
+                        crType = CRTYPE_MUTANT_LEATHER;
+                    if( Present( item.GetProtoId(), Pids_MetalArmors ) )
+                        crType = CRTYPE_MUTANT_METAL;
+                }
+            }
+
+            if( cr.CrType != crType )
+                cr.ChangeCrType( crType );
+        }
+
+        // Armor modifiers
+        // Also look Armor perk validation in critter_init
+        int sign = ( toSlot == SLOT_ARMOR ? int(1) : -1 );
+        switch( item.Proto.Armor_Perk )
+        {
+        case ARMOR_PERK_POWERED:         // +3 strength, +30 radiation resist
+            cr.StatBase[ ST_STRENGTH_EXT ] += 3 * sign;
+            cr.StatBase[ ST_RADIATION_RESISTANCE_EXT ] += 50 * sign;
+            cr.StatBase[ ST_POWER_ARMOR_PERK ] += 1 * sign;
+            break;
+        case ARMOR_PERK_ADVANCED_I:     // +4 strength, +60 radiation resist
+            cr.StatBase[ ST_STRENGTH_EXT ] += 4 * sign;
+            cr.StatBase[ ST_RADIATION_RESISTANCE_EXT ] += 85 * sign;
+            cr.StatBase[ ST_POWER_ARMOR_PERK ] += 1 * sign;
+            break;
+        case ARMOR_PERK_ADVANCED_II:         // +4 strength, +75 radiation resist
+            cr.StatBase[ ST_STRENGTH_EXT ] += 4 * sign;
+            cr.StatBase[ ST_RADIATION_RESISTANCE_EXT ] += 85 * sign;
+            cr.StatBase[ ST_POWER_ARMOR_PERK ] += 1 * sign;
+            break;
+        case ARMOR_PERK_HIDDEN:         // No player name
+            if( toSlot == SLOT_ARMOR )
+                SETFLAG( cr.ParamBase[ CR_FLAGS1 ], CR_NO_NAME );
+            else
+                UNSETFLAG( cr.ParamBase[ CR_FLAGS1 ], CR_NO_NAME );
+            break;
+        case ARMOR_PERK_CHARISMA:         // +1 charisma
+            cr.StatBase[ ST_CHARISMA_EXT ] += 1 * sign;
+            break;
+        default:
+            break;
+        }
+        cr.StatBase[ ST_CURRENT_ARMOR_PERK ] = ( toSlot == SLOT_ARMOR ? item.Proto.Armor_Perk : 0 );
+    }
+    if( cr.IsPlayer() && ( fromSlot == SLOT_HAND1 || toSlot == SLOT_HAND1 || fromSlot == SLOT_HAND2 || toSlot == SLOT_HAND2 ) )
+    {
+        CrSpeedCalc( cr );
+    }
+
+    // Slot modifiers
+    // SLOT_PERK_MIRROR_SHADES // +1 charisma
+    // SLOT_PERK_COSMETIC_CASE // +1 charisma to female
+    // SLOT_PERK_MOTION_SENSOR // +20 outdoorsman
+    // SLOT_PERK_STEALTH_BOY   // +20 sneak
+}
+#endif

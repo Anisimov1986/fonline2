@@ -1,0 +1,56 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+0 2010 D _script dialog@d_EmptyInventoryCaps 0  R _script dialog@r_TransitToMapAdvanced 2 9852 4 R _script test@d_DropDrugEffects 0  #
+3 2020 D _script dialog@d_NotEmptyInventoryCaps 0  #
+0 2030 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Event Manager}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Welcome!  To join the event you must drink antitoxin [gives you bottle] and you must have an empty inventory. Only caps are allowed.}
+{2010}{}{[ Drink antitoxin and join Event. ]}
+{2020}{}{[Join Event.]}
+{2030}{}{Nevermind.}
+{3000}{}{You cant bring anything but caps with you!}
+
+[russ]
+{100}{}{Организатор}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Добро пожаловать! Для того чтобы пройти дальше, вам нужно выпить антитоксин [ даёт бутылку ] и выложить все из инвентаря. Крышки разрешены.}
+{2010}{}{[ Выпить антитоксин и присоединится. ]}
+{2020}{}{Присоединится.}
+{2030}{}{Я передумал.}
+{3000}{}{Нельзя иметь при себе ничего кроме крышек.}
+
+[pols]
+{100}{}{Event Manager}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Welcome!  To join the event you must drink antitoxin [gives you bottle] and you must have an empty inventory. Only caps are allowed.}
+{2010}{}{[ Drink antitoxin and join Event. ]}
+{2020}{}{[Join Event.]}
+{2030}{}{Nevermind.}
+{3000}{}{You cant bring anything but caps with you!}
+
+[ptbr]
+{100}{}{Organizador do Evento}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Bem-vindo!  Para entrar no evento você deve beber antitoxinas [lhe dá a garrafa] e você deve ter o inventário vazio. Apenas tampinhas são permitidas.}
+{2010}{}{[ Bebe antitoxina e entra no evento. ]}
+{2020}{}{[Entra no evento.]}
+{2030}{}{Deixa pra lá.}
+{3000}{}{Você não pode trazer nada exceto tampinhas!}
+

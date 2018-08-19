@@ -1,0 +1,360 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+3 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+6 2010 #
+8 2020 #
+9 2030 #
+15 2040 #
+19 2050 D _var p klam_majdaskins = 0 #
+0 2060 @
+3 3000 None 0 #
+6 3010 #
+8 3020 #
+9 3030 #
+15 3040 #
+19 3050 D _var p klam_majdaskins = 0 #
+22 3060 D _script quest@quest_checkcd 1 9026 D _item p PID_GOLDEN_GECKO_PELT > 3 D _var p klam_majdaskins > 0 R _item p PID_GOLDEN_GECKO_PELT - 4 R _var p klam_majdaskins = 2 R _script economy_dialogs@r_GiveCaps 1 600 R _param p ST_EXPERIENCE + 900 R _script quest@quest_setcd 2 9026 122 #
+0 3070 @
+6 4000 None 0 #
+14 4010 #
+10 4020 #
+0 4030 @
+7 5000 None 0 #
+14 5010 #
+10 5020 #
+0 5030 @
+8 6000 None 0 #
+7 6010 #
+0 6020 @
+9 7000 None 0 #
+65506 7010 #
+3 7020 #
+0 7030 @
+10 8000 None 0 #
+11 8010 #
+7 8020 #
+0 8030 @
+11 9000 None 0 #
+7 9010 #
+12 9020 @
+12 10000 None 0 #
+13 10010 @
+13 11000 None 0 #
+7 11010 #
+0 11020 @
+14 12000 None 0 #
+0 12010 #
+7 12020 @
+15 13000 None 0 #
+0 13010 D _item p PID_BOTTLE_CAPS > 4 R _item p PID_BOTTLE_CAPS - 5 #
+16 13020 #
+6 13030 @
+16 14000 None 0 #
+6 14010 D _item p PID_BOTTLE_CAPS > 29 R _item p PID_BOTTLE_CAPS - 30 #
+17 14020 #
+15 14030 @
+17 15000 None 0 #
+6 15010 #
+0 15020 @
+19 16000 None 0 #
+0 16010 R _var p klam_majdaskins = 1 #
+0 16020 @
+22 17000 None 0 #
+23 17010 @
+23 18000 None 0 #
+0 18010 &
+
+[engl]
+{100}{}{Maida Buckner}
+{200}{}{You see a plain looking, sturdily built young woman with a scowl on her face.}
+{200}{}{You see a plain looking, sturdily built young woman. She's looking back at you with a scowl on her face.}
+{210}{}{You see Maida Buckner, Mrs. Buckner's daughter.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{My name's Maida Buckner; I take care of trading and drinks here. I don't tolerate any travellers messing our family's place up. So you just better watch your step here, what do you want?}
+{2010}{}{I have some questions for you.}
+{2020}{}{I was looking for someplace to stay.}
+{2030}{}{I need to buy some things.}
+{2040}{}{I'd like a drink.}
+{2050}{}{Got any work you need doing?}
+{2060}{}{I guess I don't need anything right now. Goodbye}
+{3000}{}{Welcome back, what can I help you with, stranger?}
+{3010}{}{I have some questions for you.}
+{3020}{}{I was looking for someplace to stay.}
+{3030}{}{I need to buy some things.}
+{3040}{}{I'd like a drink.}
+{3050}{}{Got any work for me?}
+{3060}{}{I got four golden pelts with your name on 'em.}
+{3070}{}{I guess I don't need anything right now. Goodbye}
+{4000}{}{Questions, huh? Well get on with it, then. Talking to you doesn't get my work any closer to being finished.}
+{4010}{}{Tell me about what's going on here in Klamath.}
+{4020}{}{What other towns are nearby?}
+{4030}{}{I think that's all I need to know for now. Goodbye.}
+{5000}{}{More questions? Well go on, then, and be quick about it.}
+{5010}{}{Tell me about what's going on here in Klamath.}
+{5020}{}{What other towns are nearby?}
+{5030}{}{I think that's all I need to know for now. Goodbye.}
+{6000}{}{My mother takes care of the rooms. You should talk to her about that.}
+{6010}{}{Ok, thanks. There's something else that I wanted to know, though.}
+{6020}{}{I'll talk to her about that then. Goodbye.}
+{7000}{}{You want to barter? I'm always looking for good quality gecko pelts, and I pay a fair price for them, too.}
+{7010}{}{Yes, I'd like to trade with you.}
+{7020}{}{I'm more interested in something else at the moment.}
+{7030}{}{I guess I don't need to trade right now. Goodbye.}
+{8000}{}{There are only a couple of other towns nearby. There's Redding far to the southwest, and the Den a few days south. But I wouldn't go to the Den.}
+{8010}{}{Why wouldn't you go to the Den?}
+{8020}{}{Thanks for the advice. Tell me something else though.}
+{8030}{}{That's all I need to know about for now. Goodbye.}
+{9000}{}{The Den is a bad place to go. It's a week or so south of here, but most folks that've gone there don't come back.}
+{9010}{}{Interesting. Let me ask you something else, though.}
+{9020}{}{Any tribes nearby?}
+{10000}{}{Well, I didn't count tribes when you asked about real towns. But I guess there's a group of savages somewhere to the northwest, but I don't know why you'd want to go there.}
+{10010}{}{Why not?}
+{11000}{}{Because their savages? You'll be ripped apart in pieces, unless you know what's good for you.}
+{11010}{}{Yeah. Tribals. Nothing but trouble. I've got a few other questions.}
+{11020}{}{Really? Wow, well, I gotta go.}
+{12000}{}{Well, you'd be better off asking momma about what's going on right here in town.}
+{12010}{}{Well, maybe I'll go ask her. Bye.}
+{12020}{}{I'll ask her later, for now I've got more questions.}
+{13000}{}{You want a drink? That'll be $5 for a glass of Buckner's Best Brew.}
+{13010}{}{Okay, I'll take one. Hurry up, I've got to get going.}
+{13020}{}{I'd like to buy a round of drinks for everyone here by way of introducing myself. I'm @pname@.}
+{13030}{}{I don't think I need a beer after all. Maybe just some information will do.}
+{14000}{}{A round for everyone. My, my - aren't you a generous one? That'll be $30.}
+{14010}{}{Have one on me, folks. Now, how about some information as well?}
+{14020}{}{Uh, it seems I might've misplaced my wallet.}
+{14030}{}{Maybe I'll just get myself a drink.}
+{15000}{}{Looks as though you don't have enough money for that.}
+{15010}{}{Uh, well, I guess I'll settle for some information then.}
+{15020}{}{Oh, maybe I'll come back when I have more. Goodbye.}
+{16000}{}{Yeah, we're always on the lookout for more gecko pelts. Bring us... say, four of them golden ones and we'll give you something for your effort. Sounds good?}
+{16010}{}{Four pelts, huh? I'll bring some back for ya.}
+{16020}{}{Gecko pelts? Disgusting, I can't even stand their stench! Forget it.}
+{17000}{}{Hoo-wee! Must've been tough wrasslin' up them gold ones, they sure are ornery. [She hauls an old sack over to you] Take it, thanks for the pelts. Be sure to come back after a day, I will need more.}
+{17010}{}{Now I can retire. Thank you.}
+{18000}{}{(She smiles.) Pleasure doin' business, stranger. Make sure you come back if you get another batch of 'em. Remember, I won't take less than four.}
+{18010}{}{Will do, thanks. See you around.}
+
+[russ]
+{100}{}{Maida Buckner}
+{200}{}{You see a plain looking, sturdily built young woman with a scowl on her face.}
+{200}{}{You see a plain looking, sturdily built young woman. She's looking back at you with a scowl on her face.}
+{210}{}{You see Maida Buckner, Mrs. Buckner's daughter.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{My name's Maida Buckner; I take care of trading and drinks here. I don't tolerate any travellers messing our family's place up. So you just better watch your step here, what do you want?}
+{2010}{}{I have some questions for you.}
+{2020}{}{I was looking for someplace to stay.}
+{2030}{}{I need to buy some things.}
+{2040}{}{I'd like a drink.}
+{2050}{}{Got any work you need doing?}
+{2060}{}{I guess I don't need anything right now. Goodbye}
+{3000}{}{Welcome back, what can I help you with, stranger?}
+{3010}{}{I have some questions for you.}
+{3020}{}{I was looking for someplace to stay.}
+{3030}{}{I need to buy some things.}
+{3040}{}{I'd like a drink.}
+{3050}{}{Got any work for me?}
+{3060}{}{I got four golden pelts with your name on 'em.}
+{3070}{}{I guess I don't need anything right now. Goodbye}
+{4000}{}{Questions, huh? Well get on with it, then. Talking to you doesn't get my work any closer to being finished.}
+{4010}{}{Tell me about what's going on here in Klamath.}
+{4020}{}{What other towns are nearby?}
+{4030}{}{I think that's all I need to know for now. Goodbye.}
+{5000}{}{More questions? Well go on, then, and be quick about it.}
+{5010}{}{Tell me about what's going on here in Klamath.}
+{5020}{}{What other towns are nearby?}
+{5030}{}{I think that's all I need to know for now. Goodbye.}
+{6000}{}{My mother takes care of the rooms. You should talk to her about that.}
+{6010}{}{Ok, thanks. There's something else that I wanted to know, though.}
+{6020}{}{I'll talk to her about that then. Goodbye.}
+{7000}{}{You want to barter? I'm always looking for good quality gecko pelts, and I pay a fair price for them, too.}
+{7010}{}{Yes, I'd like to trade with you.}
+{7020}{}{I'm more interested in something else at the moment.}
+{7030}{}{I guess I don't need to trade right now. Goodbye.}
+{8000}{}{There are only a couple of other towns nearby. There's Redding far to the southwest, and the Den a few days south. But I wouldn't go to the Den.}
+{8010}{}{Why wouldn't you go to the Den?}
+{8020}{}{Thanks for the advice. Tell me something else though.}
+{8030}{}{That's all I need to know about for now. Goodbye.}
+{9000}{}{The Den is a bad place to go. It's a week or so south of here, but most folks that've gone there don't come back.}
+{9010}{}{Interesting. Let me ask you something else, though.}
+{9020}{}{Any tribes nearby?}
+{10000}{}{Well, I didn't count tribes when you asked about real towns. But I guess there's a group of savages somewhere to the northwest, but I don't know why you'd want to go there.}
+{10010}{}{Why not?}
+{11000}{}{Because their savages? You'll be ripped apart in pieces, unless you know what's good for you.}
+{11010}{}{Yeah. Tribals. Nothing but trouble. I've got a few other questions.}
+{11020}{}{Really? Wow, well, I gotta go.}
+{12000}{}{Well, you'd be better off asking momma about what's going on right here in town.}
+{12010}{}{Well, maybe I'll go ask her. Bye.}
+{12020}{}{I'll ask her later, for now I've got more questions.}
+{13000}{}{You want a drink? That'll be $5 for a glass of Buckner's Best Brew.}
+{13010}{}{Okay, I'll take one. Hurry up, I've got to get going.}
+{13020}{}{I'd like to buy a round of drinks for everyone here by way of introducing myself. I'm @pname@.}
+{13030}{}{I don't think I need a beer after all. Maybe just some information will do.}
+{14000}{}{A round for everyone. My, my - aren't you a generous one? That'll be $30.}
+{14010}{}{Have one on me, folks. Now, how about some information as well?}
+{14020}{}{Uh, it seems I might've misplaced my wallet.}
+{14030}{}{Maybe I'll just get myself a drink.}
+{15000}{}{Looks as though you don't have enough money for that.}
+{15010}{}{Uh, well, I guess I'll settle for some information then.}
+{15020}{}{Oh, maybe I'll come back when I have more. Goodbye.}
+{16000}{}{Yeah, we're always on the lookout for more gecko pelts. Bring us... say, four of them golden ones and we'll give you something for your effort. Sounds good?}
+{16010}{}{Four pelts, huh? I'll bring some back for ya.}
+{16020}{}{Gecko pelts? Disgusting, I can't even stand their stench! Forget it.}
+{17000}{}{Hoo-wee! Must've been tough wrasslin' up them gold ones, they sure are ornery. [She hauls an old sack over to you] Take it, thanks for the pelts. Be sure to come back after a day, I will need more.}
+{17010}{}{Now I can retire. Thank you.}
+{18000}{}{(She smiles.) Pleasure doin' business, stranger. Make sure you come back if you get another batch of 'em. Remember, I won't take less than four.}
+{18010}{}{Will do, thanks. See you around.}
+
+[pols]
+{100}{}{Maida Buckner}
+{200}{}{Widzisz dobrze zbudowaną młodą kobietę, spoglądająca na Ciebie z ukosa.}
+{200}{}{Widzisz dobrze zbudowaną młodą kobietę, spoglądająca na Ciebie z ukosa.}
+{210}{}{Widzisz Maidę Buckner, córkę pani Buckner.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Jestem Maida. Maida Buckner, jeśli jeszcze nie @sex@|załapałeś||załapałaś|. Pilnuję naszego biznesu i naszej "klienteli", słowem, dbam o to, żeby nasz lokal nie zamienił się w chlew. Nie odpieralaj maniany, a wszystko będzie dobrze. No, to czego chcesz?}
+{2010}{}{Eeee... mogę o coś zapytać?}
+{2020}{}{Potrzebuję noclegu.}
+{2030}{}{Handel?}
+{2040}{}{@sex@|Napiłbym||Napiłabym| się czegoś.}
+{2050}{}{Nie masz może jakiejś roboty dla mnie?}
+{2060}{}{Niczego. Na razie.}
+{3000}{}{O, widziałam cię już tutaj. Potrzebujesz czegoś?}
+{3010}{}{Mam kilka pytań.}
+{3020}{}{Macie wolne pokoje?}
+{3030}{}{@sex@|Chciałbym||Chciałabym| coś kupić.}
+{3040}{}{Macie tu coś do picia?}
+{3050}{}{Znalazłaby się jakaś robota?}
+{3060}{}{Mam skóry z gekonów, zainteresowana?}
+{3070}{}{Chyba już pójdę.}
+{4000}{}{Możesz, możesz. Tylko szybko, nie mam całego dnia.}
+{4010}{}{Opowiedz mi, co się tutaj dzieje. Jeśli się cokolwiek dzieje.}
+{4020}{}{Są jakieś inne osady w pobliżu?}
+{4030}{}{Chyba już wiem wszystko, żegnaj.}
+{5000}{}{Więcej pytań? No dobra, ale sprężaj się.}
+{5010}{}{Plotki?}
+{5020}{}{Są jakieś miasta niedaleko stąd?}
+{5030}{}{To wszystko. Do widzenia.}
+{6000}{}{Moja matka zajmuje się noclegami, pogadaj z nią.}
+{6010}{}{Aha, dzięki. Mam jeszcze parę pytań, jeśli można...}
+{6020}{}{Dobrze, porozmawiam z nią. Bywaj.}
+{7000}{}{Handel? Skupuję skóry z gekonów, jeśli masz jakieś to dobrze zapłacę...}
+{7010}{}{Taa, pohandlujmy.}
+{7020}{}{Hm, @sex@|miałbym||miałabym| jednak jeszcze parę pytań.}
+{7030}{}{To chyba wszystko, muszę już iść.}
+{8000}{}{W okolicy jest tylko parę miejsc... Daleko na południowy zachód jest Redding... Nora to parę dni spaceru na południe. Ale nie polecam.}
+{8010}{}{Dlaczego?}
+{8020}{}{Chyba już wiem wszystko. Żegnaj, Maida.}
+{8030}{}{error}
+{9000}{}{Po prostu, to gówniane miejsce. Ludzie wybierali się tam i tyle  ich widziano. Daruj sobie.}
+{9010}{}{Ciekawe. Mam jeszcze parę innych pytań...}
+{9020}{}{Są jakieś osady dzikusów w pobliżu?}
+{10000}{}{No, nie zaliczałabym ich do osad, to znaczy nie do cywilizowanego ludzi... Jeśli naprawdę chcesz zostać zeżarty żywcem to jest jedna taka, gdzieś na północny zachód stąd.}
+{10010}{}{To kanibale?}
+{11000}{}{Nie wiem na pewno, wszyscy dzicy są... *dzicy*. Nie wiadomo, co może cię tam spotkać. W każdym razie, za żadne skarby nie wybrałabym się tam.}
+{11010}{}{Ta, jasne, rozumiem. Mam inne pytania.}
+{11020}{}{Naprawdę? O, cholera, muszę już iść.}
+{12000}{}{O ploty lepiej spytaj matkę.}
+{12010}{}{Może i spytam. Na razie.}
+{12020}{}{Dobrze, ale mam jeszcze parę pytań.}
+{13000}{}{Suszy? Pięć kapsli za najlepsze piwo Bucknerów.}
+{13010}{}{Dobra, dawaj, muszę się zbierać.}
+{13020}{}{Kolejka dla wszystkich! Hej ludzie, nazywam się @pname@, pijecie za moje!}
+{13030}{}{Chyba jednak nie będę pił. Ale miałbym parę pytań..}
+{14000}{}{Patrzcie @sex@|go||ją|... Trzydzieści kapsli.}
+{14010}{}{No to pijcie za moje zdrowie. Mam parę pytań...}
+{14020}{}{Cholera, nie mam tyle.}
+{14030}{}{Albo wiesz co, @sex@|sam||sama| się napiję...}
+{15000}{}{Nie rób sobie jaj, nie masz tyle.}
+{15010}{}{To może parę pytań?}
+{15020}{}{Jeszcze tu wrócę.}
+{16000}{}{Skupuję skóry ze złotych gekonów. Przynieś ze cztery, dobrze zapłacę.}
+{16010}{}{Cztery? Dobra, idę zapolować.}
+{16020}{}{Gekony śmierdzą. Ich skóry jeszcze bardziej. Mam lepsze rzeczy do roboty.}
+{17000}{}{Nieźle! @sex@|Namęczyłeś||Namęczyłaś| się pewnie, co? Jak upolujesz więcej, wróć jutro, na dzisiaj wystarczy mi roboty.}
+{17010}{}{Świetnie, dzięki.}
+{18000}{}{Dobrze się z tobą robi interesy. Wróć jutro, to kupię następne, tylko pamiętaj - nie mniej niż cztery skóry.}
+{18010}{}{Jasne, rozumiem. Do zobaczenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{My name's Maida Buckner; I take care of trading and drinks here. I don't tolerate any travellers messing our family's place up. So you just better watch your step here, what do you want?}
+{2010}{}{I have some questions for you.}
+{2020}{}{I was looking for someplace to stay.}
+{2030}{}{I need to buy some things.}
+{2040}{}{I'd like a drink.}
+{2050}{}{Got any work you need doing?}
+{2060}{}{I guess I don't need anything right now. Goodbye}
+{3000}{}{Welcome back, what can I help you with, stranger?}
+{3010}{}{I have some questions for you.}
+{3020}{}{I was looking for someplace to stay.}
+{3030}{}{I need to buy some things.}
+{3040}{}{I'd like a drink.}
+{3050}{}{Got any work for me?}
+{3060}{}{I got four golden pelts with your name on 'em.}
+{3070}{}{I guess I don't need anything right now. Goodbye}
+{4000}{}{Questions, huh? Well get on with it, then. Talking to you doesn't get my work any closer to being finished.}
+{4010}{}{Tell me about what's going on here in Klamath.}
+{4020}{}{What other towns are nearby?}
+{4030}{}{I think that's all I need to know for now. Goodbye.}
+{5000}{}{More questions? Well go on, then, and be quick about it.}
+{5010}{}{Tell me about what's going on here in Klamath.}
+{5020}{}{What other towns are nearby?}
+{5030}{}{I think that's all I need to know for now. Goodbye.}
+{6000}{}{My mother takes care of the rooms. You should talk to her about that.}
+{6010}{}{Ok, thanks. There's something else that I wanted to know, though.}
+{6020}{}{I'll talk to her about that then. Goodbye.}
+{7000}{}{You want to barter? I'm always looking for good quality gecko pelts, and I pay a fair price for them, too.}
+{7010}{}{Yes, I'd like to trade with you.}
+{7020}{}{I'm more interested in something else at the moment.}
+{7030}{}{I guess I don't need to trade right now. Goodbye.}
+{8000}{}{There are only a couple of other towns nearby. There's Redding far to the southwest, and the Den a few days south. But I wouldn't go to the Den.}
+{8010}{}{Why wouldn't you go to the Den?}
+{8020}{}{Thanks for the advice. Tell me something else though.}
+{8030}{}{That's all I need to know about for now. Goodbye.}
+{9000}{}{The Den is a bad place to go. It's a week or so south of here, but most folks that've gone there don't come back.}
+{9010}{}{Interesting. Let me ask you something else, though.}
+{9020}{}{Any tribes nearby?}
+{10000}{}{Well, I didn't count tribes when you asked about real towns. But I guess there's a group of savages somewhere to the northwest, but I don't know why you'd want to go there.}
+{10010}{}{Why not?}
+{11000}{}{Because their savages? You'll be ripped apart in pieces, unless you know what's good for you.}
+{11010}{}{Yeah. Tribals. Nothing but trouble. I've got a few other questions.}
+{11020}{}{Really? Wow, well, I gotta go.}
+{12000}{}{Well, you'd be better off asking momma about what's going on right here in town.}
+{12010}{}{Well, maybe I'll go ask her. Bye.}
+{12020}{}{I'll ask her later, for now I've got more questions.}
+{13000}{}{You want a drink? That'll be $5 for a glass of Buckner's Best Brew.}
+{13010}{}{Okay, I'll take one. Hurry up, I've got to get going.}
+{13020}{}{I'd like to buy a round of drinks for everyone here by way of introducing myself. I'm @pname@.}
+{13030}{}{I don't think I need a beer after all. Maybe just some information will do.}
+{14000}{}{A round for everyone. My, my - aren't you a generous one? That'll be $30.}
+{14010}{}{Have one on me, folks. Now, how about some information as well?}
+{14020}{}{Uh, it seems I might've misplaced my wallet.}
+{14030}{}{Maybe I'll just get myself a drink.}
+{15000}{}{Looks as though you don't have enough money for that.}
+{15010}{}{Uh, well, I guess I'll settle for some information then.}
+{15020}{}{Oh, maybe I'll come back when I have more. Goodbye.}
+{16000}{}{Yeah, we're always on the lookout for more gecko pelts. Bring us... say, four of them golden ones and we'll give you something for your effort. Sounds good?}
+{16010}{}{Four pelts, huh? I'll bring some back for ya.}
+{16020}{}{Gecko pelts? Disgusting, I can't even stand their stench! Forget it.}
+{17000}{}{Hoo-wee! Must've been tough wrasslin' up them gold ones, they sure are ornery. [She hauls an old sack over to you] Take it, thanks for the pelts. Be sure to come back after a day, I will need more.}
+{17010}{}{Now I can retire. Thank you.}
+{18000}{}{(She smiles.) Pleasure doin' business, stranger. Make sure you come back if you get another batch of 'em. Remember, I won't take less than four.}
+{18010}{}{Will do, thanks. See you around.}
+

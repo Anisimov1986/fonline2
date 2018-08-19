@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 None 0 &
+
+[engl]
+{100}{}{Child}
+{200}{}{You see a child from Klamath.}
+{210}{}{You see a child from Klamath. His clothes are ragged but his eyes are shining brightly.}
+{1000}{}{Predialog installations}
+{1010}{}{Neutral}
+{2000}{}{Hello!@@Do you wanna play?@@Why are you so funny lookin'?@@My mommy says that you're all jerks.@@Why are you dressed up so funny?@@I think you're smarter than you look!@@Let's play tag! You're it.@@Your smell's not awful at all.@@Did you see my invisible friend?@@I'd like to travel the world too, when I grow up.@@I think you even wash yourself sometimes!@@You're smarter than Torr.@@Is your knife really sharp?@@I'd like to be like you when I grow up.@@My dog loves dried meat jerky.@@I have a shiny marble.@@Did you see my invisible friend anywhere?}
+
+[russ]
+{100}{}{Ребенок}
+{200}{}{Вы видите ребенка из Кламата.}
+{210}{}{Вы видите ребенка из Кламата. Его одежда похожа на лохмотья, но глаза блестят.}
+{1000}{}{Predialog installations}
+{1010}{}{Neutral}
+{2000}{}{{Привет.@@Xочешь поиграть?@@Ты действительно протыкаешь нос костью?@@Почему ты так смешно выглядишь?@@Моя мама говорит, что вы придурки.@@Вы еще не перестали есть людей?@@Кто тебя так смешно нарядил?@@Думаю, что ты на самом деле лучше, чем выглядишь.@@Давай поиграем в пятнашки. Ты водишь.@@Ты совсем не плохо пахнешь.@@Видел@sex@|||а| моего невидимого друга?@@Я бы хотел тоже ходить по миру, когда вырасту.@@Ты @sex@|хороший дикарь||хорошая дикарка|, не так@sex@|ой||ая|, как все.@@Я думаю, ты даже моешься иногда.@@Ты умнее Тора.@@У тебя нож действительно острый?@@Xотел бы стать таким как ты, когда вырасту.@@Моя собака обожает сушеное мясо.@@У меня есть блестящий мраморный шарик.@@Не видел@sex@|||а| моего невидимого друга?}
+
+[pols]
+{100}{}{Dziecko}
+{200}{}{Widzisz dziecko z Klamath.}
+{210}{}{Widzisz dziecko. Jest ubrane w poszarpane szmaty.}
+{1000}{}{Predialog installations}
+{1010}{}{Neutral}
+{2000}{}{Cześć!@@Pobawisz się ze mną?@@Czemu tak dziwnie wyglądasz?@@Mama mówi żeby nie rozmawiać z obcymi.@@Skąd masz to ubranie?@@Pobawisz się w "złap gekona"?@@Berek!@@Dziwnie pachniesz.@@Chcesz porozmawiać z moim niewidzialnym przyjacielem?@@Jak będę duży, to też będę podróżował.@@Czemu jesteś @sex@|taki brudny||taka brudna|?@@Torr jest śmieszny.@@Nie masz może pięciu kapsli?@@Jak dorosnę, będę taki jak ty!@@Mój pies gdzieś zniknął.@@Nie @sex@|widziałeś||widziałaś| gdzieś mojego psa?@@Pokażesz mi tą broń?}
+
+[ptbr]
+{100}{}{Criança}
+{200}{}{Você vê uma criança de Klamath.}
+{210}{}{Você vê uma criança de Klamath. Suas vestes estão destruídas mas seu espírito brilha.}
+{1000}{}{Predialog installations}
+{1010}{}{Neutral}
+{2000}{}{Oi!@@Bora brincar?@@Porque @sex@|o senhor é tão engraçado||a senhora é tão engraçada|?@@Minha mãe diz que vocês são todos safados.@@Porque tá vestindo essa coisa engraçada?@@ @sex@|O senhor||A senhora| parece ser bem inteligente!@@Vamos brincar de pega-pega! Tá contigo.@@ @sex@|O senhor||A senhora| não cheira tão ruim.@@Conheceu meu amigo invisível?@@Quando eu crescer, quero ser viajante igual @sex@|ao senhor||a senhora|.@@Aposto que @sex@|o senhor||a senhora| toma banho!@@ @sex@|O senhor||A senhora| é mais inteligente que o Torr.@@Essa sua faca é amolada?@@Acho que quero ser igual a tu quando crescer.@@Meu cachorro gosta muito de carne seca.@@Viu meu amigo invisível em algum lugar?}
+

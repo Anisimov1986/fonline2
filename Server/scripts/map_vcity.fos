@@ -1,0 +1,92 @@
+#include "_defines.fos"
+#include "_teams.fos"
+#include "custom_data_h.fos"
+
+
+import void AddSkillProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+import void RemoveSkillProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+import void _InitInvisibleLaw(Critter& critter, bool firstTime) from "town_critters";
+import void _InitJailWarden(Critter& critter, int team, bool firstTime) from "town_critters";
+import void _InitGuardsDog(Critter& critter, int team, bool firstTime) from "town_critters";
+import void _InitGuardPatrol(Critter& critter, int team, bool firstTime) from "town_critters";
+import void _InitGuard(Critter& critter, int team, bool firstTime) from "town_critters";
+
+
+#define		SKILL_PROTECTION				(SKILL_PROTECTION_LOOT)
+
+
+void _MapInit(Map& map, bool firstTime)
+{
+	Critter@[] critters;
+	map.GetCritters(0, FIND_ALL, critters);
+	
+	for (uint i = 0; i < critters.length(); i++)
+	{
+		Critter@ critter = critters[i];
+		AddSkillProtection(critter, critter, SKILL_PROTECTION);
+	}
+	
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_CritterIn");
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_CritterOut");
+}
+
+void _CritterIn(Map& map, Critter& critter)
+{
+	AddSkillProtection(critter, critter, SKILL_PROTECTION);
+}
+
+void _CritterOut(Map& map, Critter& critter)
+{
+	RemoveSkillProtection(critter, critter, SKILL_PROTECTION);
+}
+
+void HubPolicePatrolInit(Critter& npc, bool firstTime)
+{
+	_InitGuardPatrol(npc, TEAM_VC, firstTime);
+}
+
+void InvisibleLawInit(Critter& npc, bool firstTime)
+{
+	_InitInvisibleLaw(npc, firstTime);
+}
+
+void JailWardenInit(Critter& npc, bool firstTime)
+{
+	_InitJailWarden(npc, TEAM_VC, firstTime);
+}
+
+void HubPoliceGuardInit(Critter& npc, bool firstTime)
+{
+	_InitGuard(npc, TEAM_VC, firstTime);
+}
+
+void GuardDogInit(Critter& npc, bool firstTime)
+{
+	_InitGuardsDog(npc, TEAM_VC, firstTime);
+}
+
+
+void roboad(Critter& npc, bool firstTime)
+{	
+	npc.SetEvent(CRITTER_EVENT_IDLE, "_Idle");
+}
+
+void _Idle(Critter& npc)
+{
+    // Callout
+	int roll = Random( 1, 3 );
+
+    if(Random(0, 2) == 2)
+	{
+		if( roll == 1 )
+        npc.Say( SAY_NORM_ON_HEAD, "Need a base clean? Buy me! Talk with Randal inside!" );
+		if( roll == 2 )
+        npc.Say( SAY_NORM_ON_HEAD, "I sort and repair. Buy me for advanced problem solving!" );
+		if( roll == 3 )
+        npc.Say( SAY_NORM_ON_HEAD, "Quartermaster left you? Cry no more! For a cheap price you can get better one! Me!" );
+	}
+    else if(Random(1, 20) == 20)
+        npc.Say( SAY_NORM_ON_HEAD, "We have existed in isolation. Pure. Disconnected. Alone. Stagnant..." );
+    npc.Wait(Random(3000, 15000));
+}
+

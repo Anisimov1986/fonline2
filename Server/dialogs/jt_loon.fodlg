@@ -1,0 +1,156 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 D _var p q_loon_jt { 1 D _param p ST_LEVEL } 5 #
+5 2030 D _item p PID_CATS_PAW } 1 R _param p ST_EXPERIENCE + 50 R _item p PID_CATS_PAW - 1 #
+0 2040 #
+11 2050 D _var p q_loon_jt = 3 R _param p ST_EXPERIENCE + 950 R _item p PID_JET + 7 R _var p q_loon_jt = 4 @
+3 3000 None 0 @
+4 4000 None 0 #
+6 4010 #
+6 4020 #
+6 4030 #
+7 4040 D _var p q_loon_jt = 1 @
+5 5000 None 0 #
+8 5010 #
+0 5020 @
+6 6000 None 0 @
+7 7000 None 0 #
+9 7010 @
+8 8000 None 0 @
+9 9000 None 0 #
+10 9010 R _var p q_loon_jt = 2 R _var p q_storage_unit_jet = 1 R _script quest@r_CreateLocationZone 3 18 22 26 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 #
+0 11010 &
+
+[engl]
+{100}{}{Loon}
+{1000}{}{Predialogue installations}
+{1010}{}{To 2}
+{2000}{}{Sup.}
+{2010}{}{Um, sup?}
+{2020}{}{You're selling Jet aren't you?}
+{2030}{}{I got this Cat Paw Magazine, want to take a look?}
+{2040}{}{You're boring. Later.}
+{2050}{}{I went to that "jet supply" you fucker. It was a trap.}
+{3000}{}{Whatever...}
+{4000}{}{I don't know what you're talking about. Go away.}
+{4010}{}{You're selling Jet, come on you look like a dealer.}
+{4020}{}{I got some caps you know, just gimmie the jet man!}
+{4030}{}{I...just thought, you um. You know....}
+{4040}{}{What if I said "Thirty-six buckets on a blue moon?"}
+{5000}{}{[He swipes the floppy book from your hands quickly.] Don't ask, but I give you my thanks.}
+{5010}{}{Hey, that was mine you know; give it back!}
+{5020}{}{I thought we can share you know. You can have it. Bye.}
+{6000}{}{You're pathetic, just leave.}
+{7000}{}{Wh-What? Excuse me, did you just say- where did you hear that from?}
+{7010}{}{So now I got your attention, so tell me about your product.}
+{8000}{}{Get out of my sight you punk.}
+{9000}{}{To tell you the truth, I don't sell Jet, but I do know where you can find a surplus of them. I don't know why you knew the secret code, but I was told to tell the person where the jet supply is at when, and ONLY when I hear the code. }
+{9010}{}{Free jet!? I'm all ears.}
+{10000}{}{[He gives a long list of directions that point to where the nifty Jet supply is.] Now you know... just get away from me now.}
+{10010}{}{This is going to be so sweet, thanks.}
+{11000}{}{I have nothing to do with that, I swear. I'll make it up to you though. I do have jet with me but it's to feed my damn addictions. Go ahead and take ten of them. Please don't tell anybody about this.}
+{11010}{}{You're strangely nice. Thanks I guess...}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{To 2}
+{2000}{}{Йоу}
+{2010}{}{Эм.. чего?}
+{2020}{}{Не у вас тут можно вымутить джета?}
+{2030}{}{У меня тут номерок "Кошачьей Лапки", не желаете взглянуть?}
+{2040}{}{Вы скучный. Пока.}
+{2050}{}{Я ходил за этими "запасами джета", мудак. Это была ловушка.}
+{3000}{}{Не важно...}
+{4000}{}{Я не понимаю о чём вы. Уходите.}
+{4010}{}{Ты продаёшь джет. У тебя на ебале написано - дилер.}
+{4020}{}{Я намутил крышек, дай мне дозу!}
+{4030}{}{Я тут это... подумал. Ну, вы поняли...}
+{4040}{}{Что если я скажу "36 ведер голубой луны?"}
+{5000}{}{[Он быстро выхватывает книгу из ваших рук.] Не спрашивайте ни о чем, но благодарю вас.}
+{5010}{}{Эй, это моё, отдайте назад!}
+{5020}{}{Я думаю мы можем договориться. Оставьте это себе. Прощайте.}
+{6000}{}{Вы ничтожество. Уйти.}
+{7000}{}{Что-оо? Извините, что вы сейчас сказали, я не ослышался?}
+{7010}{}{Итак, теперь расскажите мне о вашем продукте.}
+{8000}{}{Убирайся с глаз моих грязный панк.}
+{9000}{}{Честно говоря, я не продаю джет, но я знаю, где можно достать его много. Я понятия не имею, откуда ты знаешь секретный код, однако мне было сказано сообщить где и когда можно найти джет, ТОЛЬКО когда я услышу пароль. }
+{9010}{}{Халявный джет!? Слушаю.}
+{10000}{}{[Он даёт вам длинный перечень направлений к месту.] Итак, вы всё знаете... теперь покиньте меня.}
+{10010}{}{Это будет зашибись, спасибо.}
+{11000}{}{Я не имею ничего общего с этим, клянусь. Я сделаю это для тебя. У меня есть немного джета с собой, он позволяет мне чувствовать себя лучше. Вперед, урви свой кусок. Пожалуйста, не говорите никому об этом.}
+{11010}{}{Вы удивительно любезны. Надо полагать...}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{To 2}
+{2000}{}{Sup.}
+{2010}{}{Um, sup?}
+{2020}{}{You're selling Jet aren't you?}
+{2030}{}{I got this Cat Paw Magazine, want to take a look?}
+{2040}{}{You're boring. Later.}
+{2050}{}{I went to that "jet supply" you fucker. It was a trap.}
+{3000}{}{Whatever...}
+{4000}{}{I don't know what you're talking about. Go away.}
+{4010}{}{You're selling Jet, come on you look like a dealer.}
+{4020}{}{I got some caps you know, just gimmie the jet man!}
+{4030}{}{I...just thought, you um. You know....}
+{4040}{}{What if I said "Thirty-six buckets on a blue moon?"}
+{5000}{}{[He swipes the floppy book from your hands quickly.] Don't ask, but I give you my thanks.}
+{5010}{}{Hey, that was mine you know; give it back!}
+{5020}{}{I thought we can share you know. You can have it. Bye.}
+{6000}{}{You're pathetic, just leave.}
+{7000}{}{Wh-What? Excuse me, did you just say- where did you hear that from?}
+{7010}{}{So now I got your attention, so tell me about your product.}
+{8000}{}{Get out of my sight you punk.}
+{9000}{}{To tell you the truth, I don't sell Jet, but I do know where you can find a surplus of them. I don't know why you knew the secret code, but I was told to tell the person where the jet supply is at when, and ONLY when I hear the code. }
+{9010}{}{Free jet!? I'm all ears.}
+{10000}{}{[He gives a long list of directions that point to where the nifty Jet supply is.] Now you know... just get away from me now.}
+{10010}{}{This is going to be so sweet, thanks.}
+{11000}{}{I have nothing to do with that, I swear. I'll make it up to you though. I do have jet with me but it's to feed my damn addictions. Go ahead and take seven of them. Please don't tell anybody about this.}
+{11010}{}{You're strangely nice. Thanks I guess...}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{To 2}
+{2000}{}{Sup.}
+{2010}{}{Um, sup?}
+{2020}{}{You're selling Jet aren't you?}
+{2030}{}{I got this Cat Paw Magazine, want to take a look?}
+{2040}{}{You're boring. Later.}
+{2050}{}{I went to that "jet supply" you fucker. It was a trap.}
+{3000}{}{Whatever...}
+{4000}{}{I don't know what you're talking about. Go away.}
+{4010}{}{You're selling Jet, come on you look like a dealer.}
+{4020}{}{I got some caps you know, just gimmie the jet man!}
+{4030}{}{I...just thought, you um. You know....}
+{4040}{}{What if I said "Thirty-six buckets on a blue moon?"}
+{5000}{}{[He swipes the floppy book from your hands quickly.] Don't ask, but I give you my thanks.}
+{5010}{}{Hey, that was mine you know; give it back!}
+{5020}{}{I thought we can share you know. You can have it. Bye.}
+{6000}{}{You're pathetic, just leave.}
+{7000}{}{Wh-What? Excuse me, did you just say- where did you hear that from?}
+{7010}{}{So now I got your attention, so tell me about your product.}
+{8000}{}{Get out of my sight you punk.}
+{9000}{}{To tell you the truth, I don't sell Jet, but I do know where you can find a surplus of them. I don't know why you knew the secret code, but I was told to tell the person where the jet supply is at when, and ONLY when I hear the code. }
+{9010}{}{Free jet!? I'm all ears.}
+{10000}{}{[He gives a long list of directions that point to where the nifty Jet supply is.] Now you know... just get away from me now.}
+{10010}{}{This is going to be so sweet, thanks.}
+{11000}{}{I have nothing to do with that, I swear. I'll make it up to you though. I do have jet with me but it's to feed my damn addictions. Go ahead and take ten of them. Please don't tell anybody about this.}
+{11010}{}{You're strangely nice. Thanks I guess...}
+

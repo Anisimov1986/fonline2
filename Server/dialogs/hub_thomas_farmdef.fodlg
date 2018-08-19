@@ -1,0 +1,205 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+12 2020 #
+4 2030 D _script quest@quest_checkcd 1 9611 D _script dialog@d_GroupLevelMore 1 9 D _script dialog@d_GroupCountLess 1 11 #
+11 2040 D _script quest@quest_checkcdopp 1 9611 #
+0 2050 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+0 4030 @
+5 5000 None 0 #
+7 5010 #
+6 5020 #
+9 5030 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+8 7010 #
+0 7020 @
+8 8000 None 0 #
+0 8010 #
+0 8020 @
+9 9000 None 0 #
+10 9010 #
+7 9020 @
+10 10000 None 0 #
+0 10010 R _script quest@quest_setcdgroup 2 9611 360 R _script dialog@r_CreateHiddenLocation 5 9321 1181 1428 1 9606 R _script dialog@r_TeleportToCreatedLocation 4 9606 0 0 1 #
+0 10020 @
+11 11000 None 0 #
+0 11010 @
+12 12000 None 0 #
+0 12010 &
+
+[engl]
+{100}{}{Thomas}
+{200}{}{You see: Thomas.}
+{210}{}{You see a middle-aged man. His eyes are closed and he looks worried.}
+{1000}{}{Predialogue installations}
+{1010}{}{ Unknown}
+{2000}{}{*He opens his eyes and glances at your briefly before closing them back again* What do you want?}
+{2010}{}{Who are you?}
+{2020}{}{What do you do here?}
+{2030}{}{Is something wrong?}
+{2040}{}{Is something wrong?}
+{2050}{}{Nothing. Go fuck yourself.}
+{3000}{}{*He sighs* Name's Thomas. I'm a farmer from a nearby settlement. Now please leave me alone.}
+{3010}{}{...}
+{4000}{}{Yes, there is. Why do you care?}
+{4010}{}{Because I want to know if I can help you out somehow.}
+{4020}{}{I'm just looking to make some caps.}
+{4030}{}{You're right. I don't.}
+{5000}{}{I doubt it's kindness that makes you say that, but fine. My home is constantly threathened by raider groups, and it's too much for us to handle. You're still interested?}
+{5010}{}{Depending on how much you'll pay me.}
+{5020}{}{Umm, no, Raiders are too much for me. Maybe later.}
+{5030}{}{Sure I'm interested. It sounds like you could use some extra firepower.}
+{6000}{}{Thought so. Leave me alone.}
+{6010}{}{...}
+{7000}{}{I thought you would say that. Leave me alone.}
+{7010}{}{What's wrong? You're looking for hired guns, and I'm good and available.}
+{7020}{}{...}
+{8000}{}{I've dealt with backstabbing mercenaries before. We'd been under so many raids it's a miracle we still have enough food for everyone. Now leave me alone, you're not going to make much caps off us.}
+{8010}{}{Then have fun getting slaughtered, asshole.}
+{8020}{}{...}
+{9000}{}{Yeah, we sure could. But you have to understand it's not likely you're going to get paid much, because of how many raids we'd been under recently.}
+{9010}{}{I understand. Nevertheless, the raiders should be punished for their crimes!}
+{9020}{}{Sorry, my time isn't for free.}
+{10000}{}{Well, okay. Are you ready to watch over the settlement now? None of us will be able to help you much, as our 'armory' consists of farming tools at best.}
+{10010}{}{Yeah, let's do this.}
+{10020}{}{Now that I think of it, not really. I'll come back later.}
+{11000}{}{Yes. The last raid was painful, and we still recouperate the losses. Nothing you can help with right now, but the raiders are still a threat. They will attack us again, sooner or later.}
+{11010}{}{Okay then. See you around.}
+{12000}{}{I supply Bob with green forage for iguanas and vegetables for his meals. Can you leave me alone, now?}
+{12010}{}{...}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{*He opens his eyes and glances at your briefly before closing them back again* What do you want?}
+{2010}{}{Who are you?}
+{2020}{}{What do you do here?}
+{2030}{}{Is something wrong?}
+{2040}{}{Is something wrong?}
+{2050}{}{Nothing. Go fuck yourself.}
+{3000}{}{*He sighs* Name's Thomas. I'm the 'sheriff' of a nearby farm settlement.}
+{3010}{}{...}
+{4000}{}{Yes, there is. Why do you care?}
+{4010}{}{Because I want to know if I can help you out somehow.}
+{4020}{}{I'm just looking to make some cash.}
+{4030}{}{You're right. I don't.}
+{5000}{}{I doubt it's kindness that makes you say that, but fine. My home is constantly threathened by raider groups, and it's too much for me to handle alone. You're still interested?}
+{5010}{}{Depending on how much you'll pay me.}
+{5020}{}{Umm, no, Raiders are too much for me.}
+{5030}{}{Sure I'm interested. It sounds like you could use some extra firepower.}
+{6000}{}{Thought so. Leave me alone.}
+{6010}{}{...}
+{7000}{}{I'd thought you would say that. Leave me alone.}
+{7010}{}{What's wrong? You're looking for hired guns, and I'm good and available.}
+{7020}{}{...}
+{8000}{}{I've dealt with backstabbing mercenaries before. We'd been under so many raids it's a miracle we still have enough food for everyone. Now leave me alone, you're not going to make much caps off us.}
+{8010}{}{Then have fun getting slaughtered.}
+{8020}{}{...}
+{9000}{}{000}
+{9010}{}{I understand. Nevertheless, the raiders should be punished for their crimes!}
+{9020}{}{Oh, in this case, sorry. My time isn't free.}
+{10000}{}{Well, okay. Are you ready to watch over the settlement now?}
+{10010}{}{Yeah, let's do this.}
+{10020}{}{Now that I think of it, not really. I'll come back later.}
+{11000}{}{Yes. The last raid was painful, and we still recouperate the losses. Nothing you can help with right now, but the raiders are still a threat. They will attack us again, sooner or later.}
+{11010}{}{Okay then. See you around.}
+{12000}{}{I supply Bob with green forage for iguanas and vegetables for his meals. Can you leave me alone, now?}
+{12010}{}{...}
+
+[pols]
+{100}{}{Thomas}
+{200}{}{Widzisz: Thomas}
+{210}{}{Widzisz mê¿czyzne w œrednim wieku. Ma zamkniête oczy i wygl¹da na zmartwionego.}
+{1000}{}{Predialogue installations}
+{1010}{}{ Unknown}
+{2000}{}{[Otwiera na chwilï¿½ oczy i rzuca ci krï¿½tkie spojrzenie przed zamkniï¿½ciem ich ponownie] Czego chcesz?}
+{2010}{}{Kim jesteï¿½?}
+{2020}{}{Czym siï¿½ zajmujesz?}
+{2030}{}{Wszystko w porzï¿½dku?}
+{2040}{}{Wszystko w porzï¿½dku?}
+{2050}{}{Niczego. Odpierdol siï¿½.}
+{3000}{}{[Wzdycha] Nazywam siï¿½ Thomas. Jestem farmerem z pobliskiej osady. A teraz proszï¿½, zostaw mnie w spokoju.}
+{3010}{}{...}
+{4000}{}{Nie. Czemu ciï¿½ to interesuje?}
+{4010}{}{Poniewaï¿½ chce siï¿½ dowiedzieï¿½, czy w jakiï¿½ sposï¿½b mogï¿½ ci pomï¿½c.}
+{4020}{}{Po prostu chcï¿½ zarobiï¿½ trochï¿½ kapsli.}
+{4030}{}{Masz racje. Nie interesuje mnie to.}
+{5000}{}{Jakoï¿½ wï¿½tpie, ï¿½e mï¿½wisz to z dobroci serca, ale w porzï¿½dku. Mï¿½j dom jest ciï¿½gle zagroï¿½ony atakiem ze stron rï¿½znych grup najeï¿½dzcï¿½w, i jest ich zbyt duï¿½o byï¿½my mogli sami sobie z nimi poradziï¿½. Wciï¿½ï¿½ zainteresowany?}
+{5010}{}{To zaleï¿½y od tego ile mi zapï¿½acisz.}
+{5020}{}{Erm, nie. Walka z rabusiami to za duï¿½o dla mnie. Moï¿½e pï¿½niej.}
+{5030}{}{Pewnie, ï¿½e mnie to interesuje. Brzmi tak, jakby przydaï¿½oby siï¿½ wam trochï¿½ dodatkowej siï¿½y ognia.}
+{6000}{}{Tak myï¿½laï¿½em. Zostaw mnie w spokoju.}
+{6010}{}{...}
+{7000}{}{Miaï¿½em przeczucie, ï¿½e to powiesz. Zostaw mnie samego.}
+{7010}{}{Co jest? Szukasz najemnych strzelcï¿½w, a ja jestem dobry i dostï¿½pny.}
+{7020}{}{...}
+{8000}{}{Miaï¿½em juï¿½ do czynienia z najemnikami wbijajï¿½cymi zleceniodawcom nï¿½ w plecy. Ostatnio zostaliï¿½my najechani mnï¿½stwo razy, i jest cudem to, ï¿½e wciï¿½ï¿½ mamy wystarczajï¿½co jedzenia dla wszystkich. Wiï¿½c zostaw mnie w spokoju, nie uda ci siï¿½ na nas zarobiï¿½.}
+{8010}{}{W takim razie dobrej zabawy bï¿½dï¿½c zarzynanym, dupku.}
+{8020}{}{...}
+{9000}{}{Tak, zdecydowanie by siï¿½ nam przydaï¿½a. Ale musisz zrozumieï¿½, ï¿½e nie ma wiï¿½kszych szans na sowitï¿½ zapï¿½atï¿½. Zbyt wiele najazdï¿½w nam siï¿½ przytrafiï¿½o ostatnimi czasy.}
+{9010}{}{Rozumiem. Jednak mniejsza o to. Bandyci powinni zostaï¿½ ukarani za swoje zbrodnie!}
+{9020}{}{W takim razie wybacz, mï¿½j czas nie jest za darmo.}
+{10000}{}{No cï¿½, dobra. Czy jesteï¿½ gotï¿½w chroniï¿½ mojej osady juï¿½ teraz? Nikt z nas nie bï¿½dzie w stanie ci pomï¿½c podczas walki, gdyï¿½ nasza 'zbrojownia' skï¿½ada siï¿½ jedynie z narzï¿½dzi rolniczych.}
+{10010}{}{Jasne, zrï¿½bmy to.}
+{10020}{}{W sumie, jak teraz o tym myï¿½le, to nie. Przyjdï¿½ pï¿½niej.}
+{11000}{}{Nie. Ostatni najazd byï¿½ bardzo bolesny, i wciï¿½ï¿½ liï¿½emy rany. Pï¿½ki co nie ma niczego, z czym mï¿½gï¿½byï¿½ pomï¿½c, ale rabusie wciï¿½ï¿½ sï¿½ zagroï¿½eniem. Zaatakujï¿½ nas ponownie, prï¿½dzej czy pï¿½niej.}
+{11010}{}{Okej. Zatem do zobaczenia nastï¿½pnym razem.}
+{12000}{}{Zaopatrujï¿½ Boba w zielonï¿½ paszï¿½ dla iguan i warzywa do jego posiï¿½kï¿½w. Czy teraz moï¿½esz zostawiï¿½ mnie samego?}
+{12010}{}{...}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ Unknown}
+{2000}{}{*He opens his eyes and glances at your briefly before closing them back again* What do you want?}
+{2010}{}{Who are you?}
+{2020}{}{What do you do here?}
+{2030}{}{Is something wrong?}
+{2040}{}{Is something wrong?}
+{2050}{}{Nothing. Go fuck yourself.}
+{3000}{}{*He sighs* Name's Thomas. I'm a farmer from a nearby settlement. Now please leave me alone.}
+{3010}{}{...}
+{4000}{}{Yes, there is. Why do you care?}
+{4010}{}{Because I want to know if I can help you out somehow.}
+{4020}{}{I'm just looking to make some caps.}
+{4030}{}{You're right. I don't.}
+{5000}{}{I doubt it's kindness that makes you say that, but fine. My home is constantly threathened by raider groups, and it's too much for us to handle. You're still interested?}
+{5010}{}{Depending on how much you'll pay me.}
+{5020}{}{Umm, no, Raiders are too much for me. Maybe later.}
+{5030}{}{Sure I'm interested. It sounds like you could use some extra firepower.}
+{6000}{}{Thought so. Leave me alone.}
+{6010}{}{...}
+{7000}{}{I thought you would say that. Leave me alone.}
+{7010}{}{What's wrong? You're looking for hired guns, and I'm good and available.}
+{7020}{}{...}
+{8000}{}{I've dealt with backstabbing mercenaries before. We'd been under so many raids it's a miracle we still have enough food for everyone. Now leave me alone, you're not going to make much caps off us.}
+{8010}{}{Then have fun getting slaughtered, asshole.}
+{8020}{}{...}
+{9000}{}{Yeah, we sure could. But you have to understand it's not likely you're going to get paid much, because of how many raids we'd been under recently.}
+{9010}{}{I understand. Nevertheless, the raiders should be punished for their crimes!}
+{9020}{}{Sorry, my time isn't for free.}
+{10000}{}{Well, okay. Are you ready to watch over the settlement now? None of us will be able to help you much, as our 'armory' consists of farming tools at best.}
+{10010}{}{Yeah, let's do this.}
+{10020}{}{Now that I think of it, not really. I'll come back later.}
+{11000}{}{Yes. The last raid was painful, and we still recouperate the losses. Nothing you can help with right now, but the raiders are still a threat. They will attack us again, sooner or later.}
+{11010}{}{Okay then. See you around.}
+{12000}{}{I supply Bob with green forage for iguanas and vegetables for his meals. Can you leave me alone, now?}
+{12010}{}{...}
+

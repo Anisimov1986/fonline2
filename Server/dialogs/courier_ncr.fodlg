@@ -1,0 +1,377 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+60 1010 D _var p q_geckoex_fail = 5 #
+54 1020 D _var p q_geckoex_fail = 4 R _var p q_geckoex_fail = 5 #
+3 1030 D _var p name_mem_npc_player } 1 #
+2 1040 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 D _var p name_mem_npc_player < 2 R _var p name_mem_npc_player = 2 #
+20 2020 D _var p q_geckoex_adyt = 1 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_adyt = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 75 R _script map_ncr@r_NCRProfit 1 7 R _script dialog@r_PathFinder 0  #
+20 2030 D _var p q_geckoex_vc = 1 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_vc = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script map_ncr@r_NCRProfit 1 10 R _script economy_dialogs@r_GiveCaps 1 120 R _script map_ncr@r_NCRProfit 1 12 R _script dialog@r_PathFinder 0  #
+20 2040 D _var p q_geckoex_sf = 1 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_sf = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script map_ncr@r_NCRProfit 1 10 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+5 2050 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_ncr = 0 D _var p q_geckoex_adyt ! 1 D _var p q_geckoex_vc ! 1 D _var p q_geckoex_sf ! 1 #
+55 2060 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_ncr } 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_adyt = 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_vc = 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_sf = 1 #
+21 2070 D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_ncr = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_adyt = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_vc = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_sf = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 50 R _script map_ncr@r_NCRProfit 1 5 #
+0 2080 @
+3 3000 None 0 #
+4 3010 D _var p name_mem_npc_player ! 2 R _var p name_mem_npc_player = 2 #
+20 3020 D _var p q_geckoex_adyt = 1 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_adyt = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 75 R _script map_ncr@r_NCRProfit 1 7 R _script dialog@r_PathFinder 0  #
+20 3030 D _var p q_geckoex_vc = 1 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_vc = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 120 R _script map_ncr@r_NCRProfit 1 12 R _script dialog@r_PathFinder 0  #
+20 3040 D _var p q_geckoex_sf = 1 D _item p PID_GECKEX_PACKAGE } 1 R _var p q_geckoex_sf = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 150 R _script map_ncr@r_NCRProfit 1 15 R _script dialog@r_PathFinder 0  #
+10 3050 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_ncr = 0 D _var p q_geckoex_adyt ! 1 D _var p q_geckoex_vc ! 1 D _var p q_geckoex_sf ! 1 #
+55 3060 D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_ncr } 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_adyt = 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_vc = 1 D or D _script quest@quest_checkcd 1 9627 D _var p q_geckoex_sf = 1 #
+50 3070 D _var p q_geckoex_ncr = 2 D or D _var p q_geckoex_ncr = 3 D or D _var p q_geckoex_ncr = 4 R _var p q_geckoex_fail + 1 R _var p q_geckoex_ncr = 0 R _script quest@quest_setcd 2 9627 60 #
+21 3080 D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_ncr = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_adyt = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_vc = 0 D or D _item p PID_GECKEX_PACKAGE } 1 D _var p q_geckoex_sf = 0 R _item p PID_GECKEX_PACKAGE - 1 R _script economy_dialogs@r_GiveCaps 1 50 R _script map_ncr@r_NCRProfit 1 5 #
+0 3090 @
+4 4000 None 0 #
+5 4010 D _var p q_geckoex_ncr = 0 D _var p q_geckoex_adyt ! 1 D _var p q_geckoex_vc ! 1 D _var p q_geckoex_sf ! 1 #
+55 4020 D _var p q_geckoex_ncr } 1 D or D _var p q_geckoex_adyt = 1 D or D _var p q_geckoex_vc = 1 D or D _var p q_geckoex_sf = 1 #
+0 4030 @
+5 5000 None 0 #
+6 5010 #
+3 5020 @
+6 6000 None 0 #
+7 6010 R _var p q_geckoex_ncr = 2 R _item p PID_GECKEX_PACKAGE + 1 #
+9 6020 R _var p q_geckoex_ncr = 3 R _item p PID_GECKEX_PACKAGE + 1 #
+8 6030 R _var p q_geckoex_ncr = 4 R _item p PID_GECKEX_PACKAGE + 1 #
+56 6040 #
+3 6050 @
+7 7000 None 0 #
+0 7010 @
+9 8000 None 0 #
+0 8010 @
+8 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+7 10010 R _var p q_geckoex_ncr = 2 R _item p PID_GECKEX_PACKAGE + 1 #
+9 10020 R _var p q_geckoex_ncr = 3 R _item p PID_GECKEX_PACKAGE + 1 #
+8 10030 R _var p q_geckoex_ncr = 4 R _item p PID_GECKEX_PACKAGE + 1 #
+3 10040 @
+20 11000 None 0 #
+3 11010 #
+0 11020 @
+21 12000 None 0 #
+3 12010 #
+0 12020 @
+50 13000 None 0 #
+51 13010 D _var p q_geckoex_fail < 4 R _script dialog@r_ShowQuestMessage 1 9615 #
+54 13020 D _var p q_geckoex_fail } 4 R _var p q_geckoex_fail = 5 R _script dialog@r_ShowQuestMessage 1 9615 @
+51 14000 None 0 #
+3 14010 @
+54 15000 None 0 #
+0 15010 @
+55 16000 None 0 #
+3 16010 @
+56 17000 None 0 #
+57 17010 #
+3 17020 @
+57 18000 None 0 #
+3 18010 #
+0 18020 @
+60 19000 None 0 &
+
+[engl]
+{100}{}{Mark}
+{200}{}{You see: a man in dusty uniform of some sort.}
+{210}{}{This man wears an unobtrusive smile on his face. He seems to be busy shuffling between letters, holodisks, and small packages.}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{Welcome to the Gecko Express, you ship, we deliver it. I'm Mark, what can I do for you?@@Welcome to Gecko Express, stranger. You ship, we deliver. I'm Mark, need anything?@@Welcome to Gecko Express, wastelander. You ship, we deliver. The name's Mark, can I help you?}
+{2010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package...}
+{2040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{2050}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What's up?@@What do you want?@@What's up?@@Need anything?@@What can I help you with this time?@@Yeah?@@So, what's up?}
+{3010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?@@Care to tell me about this business?}
+{3020}{}{I've got a package from Adytum.@@I've got the package for you here. It's from Adytum.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{Mark, I've found a package one of your couriers must have lost.@@Hey Mark, I've found this in the desert.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours, Mark.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.}
+{4000}{}{We're a delivery company. We deliver stuff no one else is willing to take, and we keep a low profile. That's all.}
+{4010}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4020}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4030}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{[He looks at you for a while.] Yeah, we do. We could hire you as one of our couriers. Wanna give it a shot?@@[He looks at you for a while.] Sure. I can get you signed up as courier right away. Wanna give it a try?@@[He looks at you for a while.] Actually, yeah. We could use some extra couriers. Wanna get signed up?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, here's the deal. Your job is to take a package to one of our offices located in Adytum, San Fran or Vault City. All destinations are open now, so you can choose any of them.@@Okay, the job's simple: take a package to one of our offices in Adytum, Vault City or San Francisco. All destinations are open now, choose any one you like.@@Good. You're gonna need to deliver the package to one of our offices: Adytum, San Fran or Vault City. You can choose any route right now.}
+{6010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6020}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{6040}{}{Why you don't make any deliveries to the Hub?@@Why there are no deliveries to the Hub?}
+{6050}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Okay. You need to take the package to our office in there. The route shouldn't be very dangerous, but watch out for Regulators while you're moving through the Boneyard.@@All right, take this package to our office there. Not much of a trek, but watch out for Regulators when you're crossing the Boneyard.@@Right, take this package and deliver it to our office there. Oh yeah, and watch out for them Regulators, those guys ain't a friendly bunch.}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{All right... Take this to our office in Vault City courtyard. Watch out for bandits on the road, some may be heavily armed.@@Okay. Take the package to our office in the Vault City courtyard. Keep an eye out for Khans, they often make ambushes at the very gates of the town.@@Right, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled, you never know when the Khans gonna hit.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{9000}{}{Okay. You need to take the package to our office in San Fran caravan depot. The route is dangerous, I won't lie about that. Keep an eye open for mutants while you're crossing the desert.@@As you wish... You need to deliver this to our office in San Francisco caravan depot. The route ain't exactly safe, If you get my drift. Watch out for muties when you're nearing to the western ends of the Great Desert.@@Right, take this package here and deliver it to our office in San Fran caravan depot. Watch out for muties, they like to lay ambushes at the western end of the Great Desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{10000}{}{Okay, you know the drill already... We still got all positions open, so what it'll it be?@@All right, you know the drill. Adytum, Vault City or San Fran?@@All right... Where do you want to go this time?@@You're lucky, we still got all positions open. Where do you wanna go?}
+{10010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10020}{}{I'll take the Vault City delivery.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{10040}{}{I don't think I have the time right now.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.@@Myabe some other time.@@On second thought, I'm not interested.}
+{11000}{}{Very good, very good... Here's your pay.@@All right, let me check it... Everything seems to be okay, here's your pay.@@Great, give it to me. Here's your pay.@@Nice, hope you didin't run into any trouble while on the road. Here's your pay.@@Very good, here's your pay.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.}
+{11020}{}{Thanks. I need to go now, goodbye.@@Thanks Mark, bye.@@Thanks, see you round, Mark.@@Thans, goodbye.@@Thanks Mark, I have to go now.@@Right, thanks. See you some other time, Mark}
+{12000}{}{Yep, it's ours all right. I hope you didin't kill anyone just to receive the reward... Just kiddin'. Here's some caps for your trouble. Anything else?@@Hmm, it's our package allright. Here's some little reward for returning it to us, better late than never... Anything else you want?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Take care, Mark.@@That's all. Goodbye.@@No, that's all. Goodbye.@@Nope, I just came to return this. See you later, Mark.}
+{13000}{}{Say what?@@You did fuckin' what?@@I can't believe this, you did what?@@No fucking way, you did what?}
+{13010}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{You idiot... now I'm gonna have to report this to my boss... The job is toast. You can take another job, but you better not fuck up next time!@@You moron, now I'm screwed, the delivery is toast. Eh... You can take another job, but better not fuck up next time!@@Fucking @sex@|idiot||pussy|... Now I'll have to report my ass back to the boss... Take some other job, but better not fuck up again, you hear? }
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{I'll inform all offices that you can't be trusted. Now get the hell out of my sight!@@You won't get any job from us again! Get lost!@@I'll inform all offices that you can't be trusted. Not one of them will ever hire you again! @@You idiot, I'll make sure you won't get any job at Gecko Express anymore!@@I'll inform all other offices, now get lost, you idiot! We're shitlisting your ass!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Fuck off.@@Whatever.@@I couldn't care less.}
+{16000}{}{Finish your current assignment, then we'll talk about another one.@@You've got other job goin'. Finish that delivery first, then we'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{Well, we had.. for some time. But we were forced to close the office pretty fast. Run into trouble with their council, some moron spread rumors of us being a front for NCR intelligence or something like that.}
+{17010}{}{Is that true?@@Are you?@@Is it true?}
+{17020}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.}
+{18000}{}{Of course not.@@No.@@Not at all.}
+{18010}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.@@Okay, let's change the subject.@@I get it. Let's talk about some other things.}
+{18020}{}{Okay, I need to get going.@@I see, we'll talk later.@@I've got to go now, bye.}
+{19000}{}{Get the hell outta my sight.@@Get lost!@@Get lost or I'll tell the boys to escort you out!@@Get the hell outta here.}
+
+[russ]
+{100}{}{Mark}
+{200}{}{You see: a man in dusty uniform of some sort.}
+{210}{}{This man wears an unobtrusive smile on his face. He seems to be busy shuffling between letters, holodisks, and small packages.}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{Welcome to the Gecko Express, you ship, we deliver it. I'm Mark, what can I do for you?@@Welcome to Gecko Express, stranger. You ship, we deliver. I'm Mark, need anything?@@Welcome to Gecko Express, wastelander. You ship, we deliver. The name's Mark, can I help you?}
+{2010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package...}
+{2040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{2050}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What's up?@@What do you want?@@What's up?@@Need anything?@@What can I help you with this time?@@Yeah?@@So, what's up?}
+{3010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?@@Care to tell me about this business?}
+{3020}{}{I've got a package from Adytum.@@I've got the package for you here. It's from Adytum.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{Mark, I've found a package one of your couriers must have lost.@@Hey Mark, I've found this in the desert.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours, Mark.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.}
+{4000}{}{We're a delivery company. We deliver stuff no one else is willing to take, and we keep a low profile. That's all.}
+{4010}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4020}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4030}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{[He looks at you for a while.] Yeah, we do. We could hire you as one of our couriers. Wanna give it a shot?@@[He looks at you for a while.] Sure. I can get you signed up as courier right away. Wanna give it a try?@@[He looks at you for a while.] Actually, yeah. We could use some extra couriers. Wanna get signed up?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, here's the deal. Your job is to take a package to one of our offices located in Adytum, San Fran or Vault City. All destinations are open now, so you can choose any of them.@@Okay, the job's simple: take a package to one of our offices in Adytum, Vault City or San Francisco. All destinations are open now, choose any one you like.@@Good. You're gonna need to deliver the package to one of our offices: Adytum, San Fran or Vault City. You can choose any route right now.}
+{6010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6020}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{6040}{}{Why you don't make any deliveries to the Hub?@@Why there are no deliveries to the Hub?}
+{6050}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Okay. You need to take the package to our office in there. The route shouldn't be very dangerous, but watch out for Regulators while you're moving through the Boneyard.@@All right, take this package to our office there. Not much of a trek, but watch out for Regulators when you're crossing the Boneyard.@@Right, take this package and deliver it to our office there. Oh yeah, and watch out for them Regulators, those guys ain't a friendly bunch.}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{All right... Take this to our office in Vault City courtyard. Watch out for bandits on the road, some may be heavily armed.@@Okay. Take the package to our office in the Vault City courtyard. Keep an eye out for Khans, they often make ambushes at the very gates of the town.@@Right, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled, you never know when the Khans gonna hit.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{9000}{}{Okay. You need to take the package to our office in San Fran caravan depot. The route is dangerous, I won't lie about that. Keep an eye open for mutants while you're crossing the desert.@@As you wish... You need to deliver this to our office in San Francisco caravan depot. The route ain't exactly safe, If you get my drift. Watch out for muties when you're nearing to the western ends of the Great Desert.@@Right, take this package here and deliver it to our office in San Fran caravan depot. Watch out for muties, they like to lay ambushes at the western end of the Great Desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{10000}{}{Okay, you know the drill already... We still got all positions open, so what it'll it be?@@All right, you know the drill. Adytum, Vault City or San Fran?@@All right... Where do you want to go this time?@@You're lucky, we still got all positions open. Where do you wanna go?}
+{10010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10020}{}{I'll take the Vault City delivery.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{10040}{}{I don't think I have the time right now.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.@@Myabe some other time.@@On second thought, I'm not interested.}
+{11000}{}{Very good, very good... Here's your pay.@@All right, let me check it... Everything seems to be okay, here's your pay.@@Great, give it to me. Here's your pay.@@Nice, hope you didin't run into any trouble while on the road. Here's your pay.@@Very good, here's your pay.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.}
+{11020}{}{Thanks. I need to go now, goodbye.@@Thanks Mark, bye.@@Thanks, see you round, Mark.@@Thans, goodbye.@@Thanks Mark, I have to go now.@@Right, thanks. See you some other time, Mark}
+{12000}{}{Yep, it's ours all right. I hope you didin't kill anyone just to receive the reward... Just kiddin'. Here's some caps for your trouble. Anything else?@@Hmm, it's our package allright. Here's some little reward for returning it to us, better late than never... Anything else you want?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Take care, Mark.@@That's all. Goodbye.@@No, that's all. Goodbye.@@Nope, I just came to return this. See you later, Mark.}
+{13000}{}{Say what?@@You did fuckin' what?@@I can't believe this, you did what?@@No fucking way, you did what?}
+{13010}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{You idiot... now I'm gonna have to report this to my boss... The job is toast. You can take another job, but you better not fuck up next time!@@You moron, now I'm screwed, the delivery is toast. Eh... You can take another job, but better not fuck up next time!@@Fucking @sex@|idiot||pussy|... Now I'll have to report my ass back to the boss... Take some other job, but better not fuck up again, you hear? }
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{I'll inform all offices that you can't be trusted. Now get the hell out of my sight!@@You won't get any job from us again! Get lost!@@I'll inform all offices that you can't be trusted. Not one of them will ever hire you again! @@You idiot, I'll make sure you won't get any job at Gecko Express anymore!@@I'll inform all other offices, now get lost, you idiot! We're shitlisting your ass!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Fuck off.@@Whatever.@@I couldn't care less.}
+{16000}{}{Finish your current assignment, then we'll talk about another one.@@You've got other job goin'. Finish that delivery first, then we'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{Well, we had.. for some time. But we were forced to close the office pretty fast. Run into trouble with their council, some moron spread rumors of us being a front for NCR intelligence or something like that.}
+{17010}{}{Is that true?@@Are you?@@Is it true?}
+{17020}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.}
+{18000}{}{Of course not.@@No.@@Not at all.}
+{18010}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.@@Okay, let's change the subject.@@I get it. Let's talk about some other things.}
+{18020}{}{Okay, I need to get going.@@I see, we'll talk later.@@I've got to go now, bye.}
+{19000}{}{Get the hell outta my sight.@@Get lost!@@Get lost or I'll tell the boys to escort you out!@@Get the hell outta here.}
+
+[pols]
+{100}{}{Mark}
+{200}{}{You see: a man in dusty uniform of some sort.}
+{210}{}{This man wears an unobtrusive smile on his face. He seems to be busy shuffling between letters, holodisks, and small packages.}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{Welcome to the Gecko Express, you ship, we deliver it. I'm Mark, what can I do for you?@@Welcome to Gecko Express, stranger. You ship, we deliver. I'm Mark, need anything?@@Welcome to Gecko Express, wastelander. You ship, we deliver. The name's Mark, can I help you?}
+{2010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package...}
+{2040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{2050}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What's up?@@What do you want?@@What's up?@@Need anything?@@What can I help you with this time?@@Yeah?@@So, what's up?}
+{3010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?@@Care to tell me about this business?}
+{3020}{}{I've got a package from Adytum.@@I've got the package for you here. It's from Adytum.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{Mark, I've found a package one of your couriers must have lost.@@Hey Mark, I've found this in the desert.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours, Mark.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.}
+{4000}{}{We're a delivery company. We deliver stuff no one else is willing to take, and we keep a low profile. That's all.}
+{4010}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4020}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4030}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{[He looks at you for a while.] Yeah, we do. We could hire you as one of our couriers. Wanna give it a shot?@@[He looks at you for a while.] Sure. I can get you signed up as courier right away. Wanna give it a try?@@[He looks at you for a while.] Actually, yeah. We could use some extra couriers. Wanna get signed up?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, here's the deal. Your job is to take a package to one of our offices located in Adytum, San Fran or Vault City. All destinations are open now, so you can choose any of them.@@Okay, the job's simple: take a package to one of our offices in Adytum, Vault City or San Francisco. All destinations are open now, choose any one you like.@@Good. You're gonna need to deliver the package to one of our offices: Adytum, San Fran or Vault City. You can choose any route right now.}
+{6010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6020}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{6040}{}{Why you don't make any deliveries to the Hub?@@Why there are no deliveries to the Hub?}
+{6050}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Okay. You need to take the package to our office in there. The route shouldn't be very dangerous, but watch out for Regulators while you're moving through the Boneyard.@@All right, take this package to our office there. Not much of a trek, but watch out for Regulators when you're crossing the Boneyard.@@Right, take this package and deliver it to our office there. Oh yeah, and watch out for them Regulators, those guys ain't a friendly bunch.}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{All right... Take this to our office in Vault City courtyard. Watch out for bandits on the road, some may be heavily armed.@@Okay. Take the package to our office in the Vault City courtyard. Keep an eye out for Khans, they often make ambushes at the very gates of the town.@@Right, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled, you never know when the Khans gonna hit.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{9000}{}{Okay. You need to take the package to our office in San Fran caravan depot. The route is dangerous, I won't lie about that. Keep an eye open for mutants while you're crossing the desert.@@As you wish... You need to deliver this to our office in San Francisco caravan depot. The route ain't exactly safe, If you get my drift. Watch out for muties when you're nearing to the western ends of the Great Desert.@@Right, take this package here and deliver it to our office in San Fran caravan depot. Watch out for muties, they like to lay ambushes at the western end of the Great Desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{10000}{}{Okay, you know the drill already... We still got all positions open, so what it'll it be?@@All right, you know the drill. Adytum, Vault City or San Fran?@@All right... Where do you want to go this time?@@You're lucky, we still got all positions open. Where do you wanna go?}
+{10010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10020}{}{I'll take the Vault City delivery.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{10040}{}{I don't think I have the time right now.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.@@Myabe some other time.@@On second thought, I'm not interested.}
+{11000}{}{Very good, very good... Here's your pay.@@All right, let me check it... Everything seems to be okay, here's your pay.@@Great, give it to me. Here's your pay.@@Nice, hope you didin't run into any trouble while on the road. Here's your pay.@@Very good, here's your pay.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.}
+{11020}{}{Thanks. I need to go now, goodbye.@@Thanks Mark, bye.@@Thanks, see you round, Mark.@@Thans, goodbye.@@Thanks Mark, I have to go now.@@Right, thanks. See you some other time, Mark}
+{12000}{}{Yep, it's ours all right. I hope you didin't kill anyone just to receive the reward... Just kiddin'. Here's some caps for your trouble. Anything else?@@Hmm, it's our package allright. Here's some little reward for returning it to us, better late than never... Anything else you want?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Take care, Mark.@@That's all. Goodbye.@@No, that's all. Goodbye.@@Nope, I just came to return this. See you later, Mark.}
+{13000}{}{Say what?@@You did fuckin' what?@@I can't believe this, you did what?@@No fucking way, you did what?}
+{13010}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{You idiot... now I'm gonna have to report this to my boss... The job is toast. You can take another job, but you better not fuck up next time!@@You moron, now I'm screwed, the delivery is toast. Eh... You can take another job, but better not fuck up next time!@@Fucking @sex@|idiot||pussy|... Now I'll have to report my ass back to the boss... Take some other job, but better not fuck up again, you hear? }
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{I'll inform all offices that you can't be trusted. Now get the hell out of my sight!@@You won't get any job from us again! Get lost!@@I'll inform all offices that you can't be trusted. Not one of them will ever hire you again! @@You idiot, I'll make sure you won't get any job at Gecko Express anymore!@@I'll inform all other offices, now get lost, you idiot! We're shitlisting your ass!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Fuck off.@@Whatever.@@I couldn't care less.}
+{16000}{}{Finish your current assignment, then we'll talk about another one.@@You've got other job goin'. Finish that delivery first, then we'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{Well, we had.. for some time. But we were forced to close the office pretty fast. Run into trouble with their council, some moron spread rumors of us being a front for NCR intelligence or something like that.}
+{17010}{}{Is that true?@@Are you?@@Is it true?}
+{17020}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.}
+{18000}{}{Of course not.@@No.@@Not at all.}
+{18010}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.@@Okay, let's change the subject.@@I get it. Let's talk about some other things.}
+{18020}{}{Okay, I need to get going.@@I see, we'll talk later.@@I've got to go now, bye.}
+{19000}{}{Get the hell outta my sight.@@Get lost!@@Get lost or I'll tell the boys to escort you out!@@Get the hell outta here.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{fuckup floater}
+{1020}{}{Fuckup}
+{1030}{}{Known.}
+{1040}{}{Not known. ->NOTE The vars names represent the city from which the job was taken. The numbers represent destinations and are the same for all vars for clarity - 1) NCR 2)Adytum 3)Vault City 4)San Fran. The city that the job was taken from, cannot of course use its own destination number (f.e. NCR can't use 1, Vault City can't use 3 etc)}
+{2000}{}{Welcome to the Gecko Express, you ship, we deliver it. I'm Mark, what can I do for you?@@Welcome to Gecko Express, stranger. You ship, we deliver. I'm Mark, need anything?@@Welcome to Gecko Express, wastelander. You ship, we deliver. The name's Mark, can I help you?}
+{2010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?}
+{2020}{}{I've got a package from Adytum.@@I've got the package for you here.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{2030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package...}
+{2040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{2050}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2060}{}{You guys got a job open?@@Got any job that needs to be done?@@Do you have any work that needs to be done?@@Got any work?}
+{2070}{}{I've found this package somewhere... It probably belongs to you.@@Hey, I've found this recently, I think it belongs to you.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours.}
+{2080}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.}
+{3000}{}{What's up?@@What do you want?@@What's up?@@Need anything?@@What can I help you with this time?@@Yeah?@@So, what's up?}
+{3010}{}{What is the Gecko Express exactly?@@What's the Gecko Express exactly?@@What do you do here?@@So, what business do you do here, exactly?@@Care to tell me about this business?}
+{3020}{}{I've got a package from Adytum.@@I've got the package for you here. It's from Adytum.@@I came to deliver a package from Adytum.@@I've got a package from Adytum right here.@@I was sent from the Adytum office, here's the package..}
+{3030}{}{I've got a package from Vault City.@@I came to deliver a package from Vault City.@@I've got a package from Vault City right here.@@I was sent by the Vault City office, here's the package..}
+{3040}{}{I've got a package from San Francisco.@@I came to deliver a package from San Fran.@@I've got a package from San Fran right here.@@I was by the San Fran Gecko Express office, here's the package..}
+{3050}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3060}{}{I'd like to do a delivery job.@@I want to sign up for the courier job.@@I want to sign up for a delivery job.@@I need some caps, I want to sign up for the courier job.}
+{3070}{}{Well... it's just that... I kind of misplaced the package.@@I seem to have lost the package.@@I, err... lost the package.@@I've... lost the package.}
+{3080}{}{Mark, I've found a package one of your couriers must have lost.@@Hey Mark, I've found this in the desert.@@Hey, is this package yours? I've found it just recently.@@I found this in the desert... I think it might be yours, Mark.}
+{3090}{}{Nevermind.@@Just looking around.@@Just passing by.@@Nevermind, I was looking for someone else.@@Gotta go, bye.@@I need to go, goodbye.@@Nothing right now, bye.@@Bye.@@Goodbye.}
+{4000}{}{We're a delivery company. We deliver stuff no one else is willing to take, and we keep a low profile. That's all.}
+{4010}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4020}{}{I see. Got any position open now?@@I get it. Got any open position now?}
+{4030}{}{Good for you. I have to get going.@@That's neat. I have to go.@@Yeah, yeah interesting. I've gotta go.@@Whatever, I've gotta go.}
+{5000}{}{[He looks at you for a while.] Yeah, we do. We could hire you as one of our couriers. Wanna give it a shot?@@[He looks at you for a while.] Sure. I can get you signed up as courier right away. Wanna give it a try?@@[He looks at you for a while.] Actually, yeah. We could use some extra couriers. Wanna get signed up?}
+{5010}{}{Yeah, sure.@@Why not.@@Yeah, I need some caps.@@Sure, I that can't be very diffcult.@@Yeah, sign me in.@@Okay, sign me up!@@Okay, sign me up.@@I'll try my best.}
+{5020}{}{On second thought, that ain't my sort of thing.@@I think I'll pass.@@This is not what I'm looking for, sorry.@@Not my kind of job, I'll pass.@@That's not my sort of thing really.}
+{6000}{}{Okay, here's the deal. Your job is to take a package to one of our offices located in Adytum, San Fran or Vault City. All destinations are open now, so you can choose any of them.@@Okay, the job's simple: take a package to one of our offices in Adytum, Vault City or San Francisco. All destinations are open now, choose any one you like.@@Good. You're gonna need to deliver the package to one of our offices: Adytum, San Fran or Vault City. You can choose any route right now.}
+{6010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{6020}{}{I'll take the package to Vault City.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{6030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{6040}{}{Why you don't make any deliveries to the Hub?@@Why there are no deliveries to the Hub?}
+{6050}{}{I don't think I have the time right now.@@Now it's not the best time for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.}
+{7000}{}{Okay. You need to take the package to our office in there. The route shouldn't be very dangerous, but watch out for Regulators while you're moving through the Boneyard.@@All right, take this package to our office there. Not much of a trek, but watch out for Regulators when you're crossing the Boneyard.@@Right, take this package and deliver it to our office there. Oh yeah, and watch out for them Regulators, those guys ain't a friendly bunch.}
+{7010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{8000}{}{All right... Take this to our office in Vault City courtyard. Watch out for bandits on the road, some may be heavily armed.@@Okay. Take the package to our office in the Vault City courtyard. Keep an eye out for Khans, they often make ambushes at the very gates of the town.@@Right, take the package and deliver it to our office in Vault City courtyard. And keep your eyes peeled, you never know when the Khans gonna hit.}
+{8010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.@@Time to shake some dust...@@Okay, I'm on it.}
+{9000}{}{Okay. You need to take the package to our office in San Fran caravan depot. The route is dangerous, I won't lie about that. Keep an eye open for mutants while you're crossing the desert.@@As you wish... You need to deliver this to our office in San Francisco caravan depot. The route ain't exactly safe, If you get my drift. Watch out for muties when you're nearing to the western ends of the Great Desert.@@Right, take this package here and deliver it to our office in San Fran caravan depot. Watch out for muties, they like to lay ambushes at the western end of the Great Desert.}
+{9010}{}{I get it.@@Okay.@@I'll get going now.@@All right, I'm going there right now.@@Okay, I'm leaving.@@Adytum, here I come...@@Time to hit the road then, see you later.@@Okay, I'll better get going now.}
+{10000}{}{Okay, you know the drill already... We still got all positions open, so what it'll it be?@@All right, you know the drill. Adytum, Vault City or San Fran?@@All right... Where do you want to go this time?@@You're lucky, we still got all positions open. Where do you wanna go?}
+{10010}{}{I'll take the route to Adytum.@@I'll take the Adytum route.@@I'll take the package to Adytum.@@Adytum it is then.@@Allright, I'll go to Adytum.}
+{10020}{}{I'll take the Vault City delivery.@@I'll go to Vault City.@@Vault City seems a good route...@@I'll take the Vault City route.}
+{10030}{}{Okay, I'll go to San Francisco then.@@I'll go to San Fran.@@I'll take San Fran.@@San Francisco it is then.@@Okay, I'll take San Francisco route.@@I'll go to San Francisco.}
+{10040}{}{I don't think I have the time right now.@@Now it's not the best for such a long route.@@I'll come back later.@@I think I'll pass, I don't have that much time to spare.@@Myabe some other time.@@On second thought, I'm not interested.}
+{11000}{}{Very good, very good... Here's your pay.@@All right, let me check it... Everything seems to be okay, here's your pay.@@Great, give it to me. Here's your pay.@@Nice, hope you didin't run into any trouble while on the road. Here's your pay.@@Very good, here's your pay.}
+{11010}{}{Thanks. There was something else though.@@Good. I wanted to ask you about something else though.@@Thanks!@@Right, thanks.@@Okay, thanks.}
+{11020}{}{Thanks. I need to go now, goodbye.@@Thanks Mark, bye.@@Thanks, see you round, Mark.@@Thans, goodbye.@@Thanks Mark, I have to go now.@@Right, thanks. See you some other time, Mark}
+{12000}{}{Yep, it's ours all right. I hope you didin't kill anyone just to receive the reward... Just kiddin'. Here's some caps for your trouble. Anything else?@@Hmm, it's our package allright. Here's some little reward for returning it to us, better late than never... Anything else you want?}
+{12010}{}{Yes.@@Yeah.@@Yep.}
+{12020}{}{No, that's all. Take care, Mark.@@That's all. Goodbye.@@No, that's all. Goodbye.@@Nope, I just came to return this. See you later, Mark.}
+{13000}{}{Say what?@@You did fuckin' what?@@I can't believe this, you did what?@@No fucking way, you did what?}
+{13010}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{13020}{}{I just lost it, sorry.@@I lost the package, sorry.@@I've lost the package, sorry.}
+{14000}{}{You idiot... now I'm gonna have to report this to my boss... The job is toast. You can take another job, but you better not fuck up next time!@@You moron, now I'm screwed, the delivery is toast. Eh... You can take another job, but better not fuck up next time!@@Fucking @sex@|idiot||pussy|... Now I'll have to report my ass back to the boss... Take some other job, but better not fuck up again, you hear? }
+{14010}{}{Yeah, yeah...@@Yeah, sorry.@@Yeah, whatever.@@Okay...@@All right, I won't screw up this time.}
+{15000}{}{I'll inform all offices that you can't be trusted. Now get the hell out of my sight!@@You won't get any job from us again! Get lost!@@I'll inform all offices that you can't be trusted. Not one of them will ever hire you again! @@You idiot, I'll make sure you won't get any job at Gecko Express anymore!@@I'll inform all other offices, now get lost, you idiot! We're shitlisting your ass!}
+{15010}{}{Fuck you.@@Whatever.@@Like I care.@@Shove it.@@Fuck off.@@Whatever.@@I couldn't care less.}
+{16000}{}{Finish your current assignment, then we'll talk about another one.@@You've got other job goin'. Finish that delivery first, then we'll talk.}
+{16010}{}{Yeah, right.@@Okay...@@All right.@@Yeah, okay...}
+{17000}{}{Well, we had.. for some time. But we were forced to close the office pretty fast. Run into trouble with their council, some moron spread rumors of us being a front for NCR intelligence or something like that.}
+{17010}{}{Is that true?@@Are you?@@Is it true?}
+{17020}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.}
+{18000}{}{Of course not.@@No.@@Not at all.}
+{18010}{}{I see. Let's talk about something else.@@Okay, I see.@@I see.@@Okay, let's change the subject.@@I get it. Let's talk about some other things.}
+{18020}{}{Okay, I need to get going.@@I see, we'll talk later.@@I've got to go now, bye.}
+{19000}{}{Get the hell outta my sight.@@Get lost!@@Get lost or I'll tell the boys to escort you out!@@Get the hell outta here.}
+

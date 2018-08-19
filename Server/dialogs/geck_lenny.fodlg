@@ -1,0 +1,185 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_player_npc = 0 R _var n name_mem_player_npc = 1 #
+3 1020 D _var n name_mem_player_npc = 1 @
+2 2000 None 0 #
+5 2010 #
+0 2020 @
+3 3000 None 0 #
+5 3010 #
+0 3020 @
+5 4000 None 0 #
+5 4010 #
+7 4020 #
+0 4030 @
+7 5000 None 0 #
+8 5010 #
+0 5020 @
+8 6000 None 0 #
+9 6010 #
+0 6020 @
+9 7000 None 0 #
+10 7010 #
+0 7020 @
+10 8000 None 0 #
+11 8010 #
+0 8020 @
+11 9000 None 0 #
+12 9010 #
+0 9020 @
+12 10000 None 0 #
+3 10010 #
+0 10020 &
+
+[engl]
+{100}{}{Lenny}
+{200}{}{You see an especially short, older ghoul.}
+{210}{}{You see Lenny, Harold's assistant.}
+{210}{}{You see a short, older ghoul. He appears to be preoccupied.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, my name's Lenny. H'how can I h'help you?}
+{2010}{}{What do you do here?}
+{2020}{}{I'm just looking around. Goodbye.}
+{3000}{}{How c'can I help you?}
+{3010}{}{What do you do here?}
+{3020}{}{I'm just looking around. Goodbye.}
+{4000}{}{W'well, I h'help H'harold mostly. Wh'when people get hurt, I h'help them out.}
+{4010}{}{Help Harold do what?}
+{4020}{}{You can heal people?}
+{4030}{}{I'll have to keep that in mind, if I get hurt. Thanks. Goodbye.}
+{5000}{}{Well, b'before the W'war I w'was a doctor.}
+{5010}{}{Before the war? But that must have been almost 160 years ago.}
+{5020}{}{Oh; well, that explains it. Thanks. Goodbye.}
+{6000}{}{That's t'true. B'but the radiation seems to have g'given us g'ghouls a longer life-span. ‘Course, it took almost eveything else away.}
+{6010}{}{Took things away?}
+{6020}{}{Everything seems to have good and bad mixed together. Goodbye.}
+{7000}{}{W'well, y'yes. We look l'like f'friggin' f'freaks. We d'don't have any skin, for Chrisakes.}
+{7010}{}{Well, I guess you have seen better days.}
+{7020}{}{As a group, you're not the most attractive bunch on the planet. Goodbye.}
+{8000}{}{Y'you c'could say that. I'd trade in all those years to b'be a 'normal person again.}
+{8010}{}{Well, not much hope of that, I suppose.}
+{8020}{}{I bet you would. Goodbye.}
+{9000}{}{If those f'fools in Vault City w'would share their medical technology, I'm sure we could c'cleanse the excess r'radiation and heal ourselves.}
+{9010}{}{They won't help you?}
+{9020}{}{I think I've heard enough. Goodbye.}
+{10000}{}{Y'you've been to Vault City? Then you t'tell me wh'what you think the chances of g'getting h'help from those bigots is. M'might as well watch a p'paper dog chase an asbestos c'cat through hell.}
+{10010}{}{I'm sorry to hear that, but I think you're right. Let me ask you about something else.}
+{10020}{}{I'm sorry to hear that. Goodbye.}
+
+[russ]
+{100}{}{Ленни}
+{200}{}{Вы видите очень невысокого, старого мертвяка.}
+{210}{}{Вы видите Ленни, ассистента Гарольда.}
+{210}{}{Вы видите низкого, старого мертвяка. Он выглядит озабоченным.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Привет, меня зовут Ленни. Чем могу помочь?}
+{2010}{}{Что ты здесь делаешь?}
+{2020}{}{Я просто осматриваю окрестности. Пока.}
+{3000}{}{Чем могу помочь?}
+{3010}{}{Что ты здесь делаешь?}
+{3020}{}{Я просто осматриваю окрестности. Пока.}
+{4000}{}{Ну я в основном помогаю Гарольду. Или если кто-то поранится помогаю им.}
+{4010}{}{Помогаете Гарольду в чем?}
+{4020}{}{Вы можете лечить людей?}
+{4030}{}{Я буду иметь это в виду, если поранюсь. Спасибо. До свидания.}
+{5000}{}{Я был врачом до войны.}
+{5010}{}{До войны? Но это должно быть, было почти 160 лет назад.}
+{5020}{}{О, ну, это все объясняет. Спасибо. До свидания.}
+{6000}{}{Да, это так. Радиация помогла нам жить дольше. Но забрала все остальное.}
+{6010}{}{Все остальное?}
+{6020}{}{У всего есть хорошая и плохая стороны. До свидания.}
+{7000}{}{Ну да. У нас не осталось кожи и мы выглядим как уроды.}
+{7010}{}{Ну, я думаю, вы видели и лучшие дни.}
+{7020}{}{Ну да, ты не самый красивый парень на планете. Пока.}
+{8000}{}{Я бы все отдал, что бы снова стать нормальным.}
+{8010}{}{Ну не так много надежды на это, я полагаю.}
+{8020}{}{Я уверен, что отдал бы. До свидания.}
+{9000}{}{Если бы эти глупцы из Города Убежища поделились своими медицинскими технологиями, мы бы могли что-то сделать.}
+{9010}{}{Они не хотят помогать вам?}
+{9020}{}{Я думаю, что я слышал достаточно. До свидания.}
+{10000}{}{Ты был в Городе Убежище? Тогда скажи мне какие шансы получить помощь от этих фанатиков? С таким же успехом можно ждать что прилетит НЛО и вылечит нас.}
+{10010}{}{Жаль слышать это, но ты прав. Могу я еще спросить?}
+{10020}{}{Мне очень жаль слышать это. До свидания.}
+
+[pols]
+{100}{}{Lenny}
+{200}{}{Widzisz bardzo niskiego, starego ghula.}
+{210}{}{Widzisz Lenny'ego, asystenta Harolda.}
+{210}{}{Widzisz niskiego, starszego ghula. Zdaje się być bardzo zajęty.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Witaj, nazywam się Lenny. W czym m-mogę ci p-pomóc?}
+{2010}{}{Czym się tu zajmujesz?}
+{2020}{}{Tylko się rozglądam. Do widzenia.}
+{3000}{}{W czym m-mogę ci pomóc?}
+{3010}{}{Czym się tu zajmujesz?}
+{3020}{}{Tylko się rozglądam. Do widzenia.}
+{4000}{}{C-cóż, zwykle pomagam H-haroldowi. Jeśli k-komuś stanie się krzywda, p-pomagam mu dojść do siebie.}
+{4010}{}{W czym pomagasz Haroldowi?}
+{4020}{}{Jesteś lekarzem?}
+{4030}{}{Postaram się o tym pamiętać. Dzięki. Do widzenia.}
+{5000}{}{Cóż, p-przed Wojną rzeczywiście byłem lekarzem.}
+{5010}{}{Przed wojną? Ale to było jakieś 160 lat temu!}
+{5020}{}{No tak, to wszystko jasne. Dzięki. Trzymaj się.}
+{6000}{}{To p-prawda. Ale dzięki n-napromieniowaniu ghule zdają się żyć trochę dłużej od ludzi. Oczywiście t-trochę też straciliśmy, hehehe...}
+{6010}{}{Straciliście?}
+{6020}{}{Na tym świecie nie ma nic za darmo. Do widzenia.}
+{7000}{}{No t-tak! Wyglądamy jak jakieś okropne p-potwory. Nie mamy nawet skrawka s-skóry, na litość bo-boską!}
+{7010}{}{Cóż, pewnie nie jest wam lekko.}
+{7020}{}{To fakt. O zwycięstwie w konkursie Mister Universum możesz raczej zapomnieć. Do widzenia.}
+{8000}{}{Można tak p-powiedzieć. Oddałbym wszystkie te lata, żeby tylko by-być znowu... czło-owiekiem.}
+{8010}{}{Na to chyba raczej nie możesz liczyć.}
+{8020}{}{Nie wątpię. Do widzenia.}
+{9000}{}{Gdyby ci głupcy z Kh-kryptopolis udostępnili nam swoje wypo-osażenie medyczne, na pewno dało by się chociaż częściowo odwrócić p-proces.}
+{9010}{}{Kryptopolis nie chce wam pomóc?}
+{9020}{}{To już chyba wszystko, co chcę wiedzieć. Do widzenia.}
+{10000}{}{Żartujesz sobie z-ze mnie? Włodarze Kh-kryptopolis nie raczylib-by na nas splunąć, a co dopiero nam p-pomóc}
+{10010}{}{Przykro to słyszeć, choć masz oczywiście rację. Mogę cię jeszcze o coś zapytać?}
+{10020}{}{Przykro mi to słyszeć. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, my name's Lenny. H'how can I h'help you?}
+{2010}{}{What do you do here?}
+{2020}{}{I'm just looking around. Goodbye.}
+{3000}{}{How c'can I help you?}
+{3010}{}{What do you do here?}
+{3020}{}{I'm just looking around. Goodbye.}
+{4000}{}{W'well, I h'help H'harold mostly. Wh'when people get hurt, I h'help them out.}
+{4010}{}{Help Harold do what?}
+{4020}{}{You can heal people?}
+{4030}{}{I'll have to keep that in mind, if I get hurt. Thanks. Goodbye.}
+{5000}{}{Well, b'before the W'war I w'was a doctor.}
+{5010}{}{Before the war? But that must have been almost 160 years ago.}
+{5020}{}{Oh; well, that explains it. Thanks. Goodbye.}
+{6000}{}{That's t'true. B'but the radiation seems to have g'given us g'ghouls a longer life-span. ‘Course, it took almost eveything else away.}
+{6010}{}{Took things away?}
+{6020}{}{Everything seems to have good and bad mixed together. Goodbye.}
+{7000}{}{W'well, y'yes. We look l'like f'friggin' f'freaks. We d'don't have any skin, for Chrisakes.}
+{7010}{}{Well, I guess you have seen better days.}
+{7020}{}{As a group, you're not the most attractive bunch on the planet. Goodbye.}
+{8000}{}{Y'you c'could say that. I'd trade in all those years to b'be a 'normal person again.}
+{8010}{}{Well, not much hope of that, I suppose.}
+{8020}{}{I bet you would. Goodbye.}
+{9000}{}{If those f'fools in Vault City w'would share their medical technology, I'm sure we could c'cleanse the excess r'radiation and heal ourselves.}
+{9010}{}{They won't help you?}
+{9020}{}{I think I've heard enough. Goodbye.}
+{10000}{}{Y'you've been to Vault City? Then you t'tell me wh'what you think the chances of g'getting h'help from those bigots is. M'might as well watch a p'paper dog chase an asbestos c'cat through hell.}
+{10010}{}{I'm sorry to hear that, but I think you're right. Let me ask you about something else.}
+{10020}{}{I'm sorry to hear that. Goodbye.}
+

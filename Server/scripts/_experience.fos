@@ -1,0 +1,11 @@
+//Exp
+#define EXP_DISASSEMBLE		(20)
+#define EXP_MINING			(20)
+#define EXP_WOOD			(10)
+
+//Actions
+#define ACT_DISASSEMBLE   	(1)
+#define ACT_MINING			(2)
+#define ACT_WOOD			(3)
+#define ACT_ENC_KILL		(4)
+#define ACT_CRAFT			(5)

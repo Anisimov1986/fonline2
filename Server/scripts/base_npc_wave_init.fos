@@ -1,0 +1,168 @@
+/**
+ * Created: 10.7.2012
+ * Author: mikewall
+ */
+ 
+#include "_macros.fos"
+#include "_itempid.fos"
+#include "_npc_pids.fos"
+#include "base_npc_wave.fos"
+#include "base_defines.fos"
+
+#define _Min	# (n1, n2) (n1 <= n2 ? n1 : n2)
+#define EnclaveSoldier Random(NPC_PID_SIERRAENCLAVE1,NPC_PID_SIERRAENCLAVE4)
+#define BosSoldier Random(NPC_PID_SIERRABOS1,NPC_PID_SIERRABOS4)
+BaseWaveDefinition@[]@ baseWaveDefinitions;
+BaseWaveDefinition@ GetBaseWaveDefinition(uint base, uint org)
+{
+	if(baseWaveDefinitions is null)
+	{
+		Info("Reading base wave definitions...");
+		@baseWaveDefinitions = CreateBaseWaveDefinitions();
+	}
+	for (uint i = 0; i < baseWaveDefinitions.length(); i++)
+	{
+		if(baseWaveDefinitions[i].Base == base && (baseWaveDefinitions[i].Org == org || baseWaveDefinitions[i].Org == ORG_ALL))
+		{
+			return baseWaveDefinitions[i];
+		}
+	}
+	return null;
+}
+
+BaseWaveDefinition@[] CreateBaseWaveDefinitions()
+{
+	//3 waves in first cycle
+	BaseWaveDefinition@[] baseWaveDefinitions = {
+		BaseWaveDefinition(SIERRA_BASE, ORG_BOS)
+			.AddCycle()
+				.AddWave(3, WAVE_ATTACKER_TYPE_MIXED)
+					.AddAttackerDefinition(PID_LASER_RIFLE, EnclaveSoldier)
+					.AddAttackerDefinition(PID_SNIPER_RIFLE, EnclaveSoldier)
+					.AddAttackerDefinition(PID_ROCKET_LAUNCHER, EnclaveSoldier)
+					.AddAttackerDefinition(PID_AVENGER_MINIGUN, EnclaveSoldier)
+				.AddWave(3, WAVE_ATTACKER_TYPE_MIXED)
+					.AddAttackerDefinition(PID_LASER_RIFLE, EnclaveSoldier)
+					.AddAttackerDefinition(PID_SNIPER_RIFLE, EnclaveSoldier)
+					.AddAttackerDefinition(PID_ROCKET_LAUNCHER, EnclaveSoldier)
+					.AddAttackerDefinition(PID_AVENGER_MINIGUN, EnclaveSoldier)
+				.AddWave(3, WAVE_ATTACKER_TYPE_MIXED)
+					.AddAttackerDefinition(PID_LASER_RIFLE, EnclaveSoldier)
+					.AddAttackerDefinition(PID_SNIPER_RIFLE, EnclaveSoldier)
+					.AddAttackerDefinition(PID_ROCKET_LAUNCHER, EnclaveSoldier)
+					.AddAttackerDefinition(PID_AVENGER_MINIGUN, EnclaveSoldier)
+			.Finish(),
+		BaseWaveDefinition(SIERRA_BASE, ORG_ENCLAVE)
+			.AddCycle()
+				.AddWave(3, WAVE_ATTACKER_TYPE_MIXED)
+					.AddAttackerDefinition(PID_LASER_RIFLE, BosSoldier)
+					.AddAttackerDefinition(PID_SNIPER_RIFLE, BosSoldier)
+					.AddAttackerDefinition(PID_ROCKET_LAUNCHER, BosSoldier)
+					.AddAttackerDefinition(PID_AVENGER_MINIGUN, BosSoldier)
+				.AddWave(3, WAVE_ATTACKER_TYPE_MIXED)
+					.AddAttackerDefinition(PID_LASER_RIFLE, BosSoldier)
+					.AddAttackerDefinition(PID_SNIPER_RIFLE, BosSoldier)
+					.AddAttackerDefinition(PID_ROCKET_LAUNCHER, BosSoldier)
+					.AddAttackerDefinition(PID_AVENGER_MINIGUN, BosSoldier)
+				.AddWave(3, WAVE_ATTACKER_TYPE_MIXED)
+					.AddAttackerDefinition(PID_LASER_RIFLE, BosSoldier)
+					.AddAttackerDefinition(PID_SNIPER_RIFLE, BosSoldier)
+					.AddAttackerDefinition(PID_ROCKET_LAUNCHER, BosSoldier)
+					.AddAttackerDefinition(PID_AVENGER_MINIGUN, BosSoldier)
+
+			.Finish()
+	};
+	
+	CreateIncreasingAttackerCountWaves(baseWaveDefinitions, 9, 2);
+	//CreateIncreasingAttackFrequencyWaves(baseWaveDefinitions, 9);
+	
+	return baseWaveDefinitions;
+}
+
+void CreateIncreasingAttackerCountWaves(BaseWaveDefinition@[] definitions, uint16 newCyclesCount, uint16 increment)
+{
+	for (uint i = 0; i < definitions.length(); i++)
+	{
+		BaseWaveDefinition@ definition = definitions[i];
+		Cycle@ sourceCycle = definition.GetCycle(0);
+		for (uint cycle = 0; cycle < newCyclesCount; cycle++)
+		{
+			Cycle@ nextCycle = definition.AddCycle();
+			for (uint wave = 0; wave < sourceCycle.Waves.length(); wave++)
+			{
+				Wave@ sourceWave = sourceCycle.Waves[wave];
+				Wave@ nextWave = nextCycle.AddWave(sourceWave.AttackerCount + increment, sourceWave.AttackerType);
+				for (uint j = 0; j < sourceWave.AttackerDefinitions.length(); j++)
+				{
+					nextWave.AttackerDefinitions.insertLast(sourceWave.AttackerDefinitions[j]);
+				}
+			}
+			@sourceCycle = @nextCycle;
+		}
+	}
+}
+
+//~run base_npc_wave_init ListBaseWaveDefinitions
+void ListBaseWaveDefinitions(Critter& critter, int, int, int)
+{
+	BaseWaveDefinition@ definition = GetBaseWaveDefinition(SIERRA_BASE, ORG_BOS);
+	critter.Say(SAY_NETMSG, "Listing wave defitions for Sierra base for BOS:");
+	if(valid(definition))
+	{
+		for (uint i = 0; i < definition.Cycles.length(); i++)
+		{
+			Cycle@ cycle = definition.Cycles[i];
+			critter.Say(SAY_NETMSG, "\t"+ (i+1) + ".cycle: index="+cycle.Index+", waves="+cycle.Waves.length());
+			for (uint j = 0; j < cycle.Waves.length(); j++)
+			{
+				Wave@ wave = cycle.Waves[j];
+				critter.Say(SAY_NETMSG, "\t\t"+ (j+1) + ".wave: attackerCount="+wave.AttackerCount);
+			}
+		}
+	}
+	definition = GetBaseWaveDefinition(SIERRA_BASE, ORG_ENCLAVE);
+	critter.Say(SAY_NETMSG, "Listing wave defitions for Sierra base for Enclave:");
+	if(valid(definition))
+	{
+		for (uint i = 0; i < definition.Cycles.length(); i++)
+		{
+			Cycle@ cycle = definition.Cycles[i];
+			critter.Say(SAY_NETMSG, "\t"+ (i+1) + ".cycle: index="+cycle.Index+", waves="+cycle.Waves.length());
+			for (uint j = 0; j < cycle.Waves.length(); j++)
+			{
+				Wave@ wave = cycle.Waves[j];
+				critter.Say(SAY_NETMSG, "\t\t"+ (j+1) + ".wave: attackerCount="+wave.AttackerCount);
+			}
+		}
+	}
+}
+
+//~run base_npc_wave_init Test
+void Test(Critter& critter, int, int, int)
+{
+	BaseWaveDefinition@ definition = GetBaseWaveDefinition(SIERRA_BASE, ORG_BOS);
+	if(valid(definition))
+	{
+		bool passed = true;
+		critter.Say(SAY_NETMSG, "Testing base wave definition for Sierra base.");
+		for (uint i = 0; i < definition.Cycles.length(); i++)
+		{
+			Cycle@ cycle = definition.GetCycle(i);
+			passed = passed || cycle.Index == i;
+			critter.Say(SAY_NETMSG, "\tGetCycle("+i+"): expected: "+i+", actual: "+cycle.Index);
+			for (uint j = 0; j < cycle.Waves.length(); j++)
+			{
+				Wave@ wave = definition.GetWave(i, j);
+				passed = passed || wave.Index == j;
+				critter.Say(SAY_NETMSG, "\tGetWave("+i+","+j+"): expected: "+j+", actual: "+wave.Index);
+			}
+		}
+		if(passed)
+			critter.Say(SAY_NETMSG, "Test passed.");
+		else
+			critter.Say(SAY_NETMSG, "Test failed. See messages above.");
+	}
+
+}
+
+

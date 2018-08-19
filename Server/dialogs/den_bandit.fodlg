@@ -1,0 +1,42 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Thug}
+{200}{}{You see: Thug.}
+{210}{}{This man looks pretty ruthless.}
+{1000}{}{Predialogue installations}
+{1010}{}{Male}
+{2000}{}{Get outa my face.@@You lookin' for trouble?@@Keep walking.@@Fuck off.@@Get lost.@@Not interested.@@Go away.@@You want piece of me?@@Get lost, shithead.@@Go fuck with somebody else.@@Get lost, trash.}
+
+[russ]
+{100}{}{Бандит}
+{210}{}{Бандит выглядит довольно безжалостным.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Эй @sex@|хмырь||уродина|, чего тебе тут надо?@@Проваливай отсюда.@@Исчезни падаль.}
+
+[pols]
+{100}{}{Zbir}
+{200}{}{Widzisz podejrzanie wyglądającego zbira.}
+{210}{}{Wygląda na wyjątkowo bezwzględnego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Male}
+{2000}{}{Zejdź mi z oczu.@@Szukasz kłopotów?@@Wypad stąd, @sex@|frajerze||koteczku|.@@Nie jestem zainteresowany, spływaj.@@Idź sobie.}
+
+[ptbr]
+{100}{}{Brutamonte}
+{200}{}{Você vê um Brutamonte.}
+{210}{}{Este homem parece ser bastante obstinado.}
+{1000}{}{Predialogue installations}
+{1010}{}{Male}
+{2000}{}{Cai fora daqui.@@Tá procurando treta?@@Vai-te embora.@@Vai tomar no cú.@@Se manda.@@Não quero saber.@@Vai embora.@@Tá querendo briga?@@Se manda, imbecil.@@Vai se lascar.@@Se manda, seu lixo.}

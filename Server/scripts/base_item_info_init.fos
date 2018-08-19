@@ -1,0 +1,102 @@
+/**
+ * Created: 10.7.2012
+ * Author: mikewall
+ */
+
+#include "pids_groups.fos"
+#include "base_item_info.fos"
+#include "base_defines.fos"
+
+BaseItemInfo@[]@ BaseItemInfos;
+BaseItemInfo@ GetBaseItemInfo(uint base, uint org)
+{
+	if(BaseItemInfos is null)
+	{
+		Info("Reading base item definitions...");
+		@BaseItemInfos = CreateBaseItemInfos();
+	}
+	for (uint i = 0; i < BaseItemInfos.length(); i++)
+	{
+		if(BaseItemInfos[i].Base == base && (BaseItemInfos[i].Org == org || BaseItemInfos[i].Org == ORG_ALL))
+		{
+			return BaseItemInfos[i];
+		}
+	}
+	return null;
+}
+
+BaseItemInfo@[] CreateBaseItemInfos()
+{
+	BaseItemInfo@[] baseItemInfos;
+	
+	baseItemInfos.insertLast(CreateBOSBaseItemInfo(SIERRA_BASE));
+	baseItemInfos.insertLast(CreateEnclaveBaseItemInfo(SIERRA_BASE));
+	
+	return baseItemInfos;
+}
+
+BaseItemInfo@ CreateCommonBaseItemInfo(uint base, uint org)
+{
+	return BaseItemInfo(base, org)
+			.AddItemDefinition(0, PID_BOTTLE_CAPS, 100, 2000, 3000, @capsMultiplier) // +10% caps each next cycle.
+			.AddItemDefinition(0, Pids_SoftDrugs, @drugsChance, 2, 4) // base chance 60, +5% each next cycle
+			.AddItemDefinition(2, Pids_SoftDrugs, @drugsChance, 2, 4) // base chance 60, +5% each next cycle			
+			.AddItemDefinition(4, Pids_SoftDrugs, @drugsChance, 2, 4) // base chance 60, +5% each next cycle
+            .AddItemDefinition(2, Pids_Drugs, @drugsChance, 2, 4) // base chance 60, +5% each next cycle
+			.AddItemDefinition(4, Pids_Drugs, @drugsChance, 2, 4) // base chance 60, +5% each next cycle
+            .AddItemDefinition(6, Pids_Drugs, @drugsChance, 2, 4) // base chance 60, +5% each next cycle
+			.AddItemDefinition(0, Pids_GENERALAmmo, @ammoChance, 50, 120) // base chance 79, +2% each next cycle
+			.AddItemDefinition(2, Pids_GENERALAmmo, @ammoChance, 80, 160) // base chance 79, +2% each next cycle
+			.AddItemDefinition(4, Pids_GENERALAmmo, @ammoChance, 120, 360) // base chance 79, +2% each next cycle
+			.AddItemDefinition(3, Pids_GOODAmmo, @GOODammoChance, 10, 20) // base chance 30, +5% each next cycle
+			.AddItemDefinition(2, Pids_ArmorMID, 25, 1, 1)
+			.AddItemDefinition(3, Pids_ArmorHIGH, 4, 1, 1)
+			.AddItemDefinition(0, Pids_HealingDrugs, @drugsChance, 2, 4) // base chance 60, +5% each next cycle
+            .AddItemDefinition(2, Pids_HealingDrugs, @drugsChance, 3, 6) // base chance 60, +5% each next cycle
+            .AddItemDefinition(4, Pids_HealingDrugs, @drugsChance, 3, 6) // base chance 60, +5% each next cycle
+			.AddItemDefinition(0, Pids_BOOKS, 25, 1, 1)
+			.AddItemDefinition(1, Pids_BOOKS, 25, 1, 1)
+			.AddItemDefinition(2, Pids_BOOKS, 25, 1, 1)
+			.AddItemDefinition(0, Pids_PREWAR, 5, 1, 1)
+			.AddItemDefinition(0, Pids_ROCKETS, @ammoChance, 10, 30, @rocketsMultiple) // base chance 79, +2% each next cycle, +20% rockets each next cycle
+			.AddItemDefinition(3, Pids_Implants, 1, 1, 1)
+			.AddItemDefinition(0, Pids_USEDammo, 50, 100, 400)
+			.AddItemDefinition(0, Pids_USEDammo, 50, 100, 400)
+			.AddItemDefinition(1, Pids_MiscExplosions, 20, 1, 1)
+			.AddItemDefinition(1, Pids_MiscToolsSpecial, 10, 1, 1)
+			.AddItemDefinition(2, Pids_T3_RECIPES, 5, 1, 1)
+			.AddItemDefinition(5, Pids_T4_RECIPES_WO_APA, 2, 1, 1)
+			.AddItemDefinition(5, Pids_T4_PARTS_WO_APA, 2, 1, 1)
+			.AddItemDefinition(3, Pids_WeaponsMISC, 3, 1, 1)
+			.AddItemDefinition(3, Pids_ENERGY, 3, 1, 1)
+			.AddItemDefinition(3, Pids_BG, 3, 1, 1);
+}
+
+float chance(uint cycle, float startChance, float cycleIncrement)
+{
+	return startChance * (1 + cycle * cycleIncrement / 100);
+}
+
+float capsMultiplier(uint cycle) {return 1 + cycle * 0.10;}
+float rocketsMultiple(uint cycle) {return 1 + cycle * 0.20;}
+float drugsChance(uint cycle) {return chance(cycle, 60, 5);}
+float ammoChance(uint cycle) {return chance(cycle, 79, 2);}
+float ArmorHIGHChance(uint cycle){return 1 + cycle;}
+float GOODammoChance(uint cycle) {return chance(cycle, 30, 5);}
+float ammoMultiplier(uint cycle) {return 1 + cycle * 1;}
+float lightArmorChance(uint cycle) {return chance(cycle, 75, 5);}
+float mediumArmorChance(uint cycle) {return chance(cycle, 60, 10);}
+float WeaponIMBAChance(uint cycle) {return chance(cycle, 4, 50);}
+
+BaseItemInfo@ CreateBOSBaseItemInfo(uint base)
+{
+	return CreateCommonBaseItemInfo(base, ORG_BOS)
+		    .AddItemDefinition(3, PID_BROTHERHOOD_COMBAT_ARMOR, 2, 1, 1);
+}
+
+BaseItemInfo@ CreateEnclaveBaseItemInfo(uint base)
+{
+	return CreateCommonBaseItemInfo(base, ORG_ENCLAVE)
+		    .AddItemDefinition(3, PID_BLACK_COMBAT_ARMOR, 2, 1, 1);
+}
+

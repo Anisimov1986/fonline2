@@ -1,0 +1,206 @@
+[comment]
+- Still need a Quest for Dan, please enter a Demand for Node 2 on the last answer node for Dan's quest.
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+5 2030 D _var p q_adam_beer = 0 #
+0 2040 #
+7 2050 D _var p q_adam_beer = 1 D _item p PID_BEER } 1 R _var p q_adam_beer + 1 R _item p PID_BEER - 1 R _param p ST_EXPERIENCE + 200 #
+12 2060 D _var p q_dan_bag = 1 R _item p PID_BAG - 1 R _var p q_dan_bag = 2 @
+3 3000 None 0 #
+2 3010 @
+4 4000 None 0 #
+2 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 #
+0 5020 @
+6 6000 None 0 #
+0 6010 R _var p q_adam_beer + 1 #
+0 6020 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+9 8010 #
+10 8020 @
+9 9000 None 0 #
+10 9010 #
+0 9020 @
+10 10000 None 0 #
+9 10010 #
+0 10020 @
+11 11000 None 0 #
+0 11010 @
+12 12000 None 0 #
+11 12010 #
+0 12020 &
+
+[engl]
+{100}{}{Adam}
+{200}{}{You see: Adam}
+{210}{}{This man seems to be very confident about himself. He's wearing the vice-sheriff's badge on his shoulder.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Good day stranger. New in town? I'm Adam, vice sheriff of Hub. Whatcha need?}
+{2010}{}{New? Not really. What kind of question is that?@@No, hardly. I frequent here quite often.}
+{2020}{}{Do you know anyone offering a job?@@Do you know where I could find a job here?@@Got any idea where I could find a job?@@I need a job, any ideas where I could find it?}
+{2030}{}{Vice sheriff? Where's the Sheriff then?@@So who's the Sheriff then?}
+{2040}{}{Nothing, bye.@@Just looking around.@@Nevermind.}
+{2050}{}{I got a beer for you, here.@@I've got beer for you, Charles.@@Here, I brought you that beer you wanted.}
+{2060}{}{I've got a package for you from Dan, here.@@I've got a package for you. It's from that Dan fellow.}
+{3000}{}{That's what all guards on duty should ask, I guess. I don't have good memory to remember all these faces I see every day.}
+{3010}{}{Right, let me ask you something else.@@Let me ask you something else.}
+{4000}{}{Job? Do I look like a hiring office? Go bother someone else.@@I don't know anything about that. Ask somebody else.}
+{4010}{}{Alright then, but can I at least ask you something else?}
+{4020}{}{Fine, fine, I'll go. Bye.@@Yeah sure, thanks for nothing.}
+{5000}{}{The sheriff name's Charles, you can meet him at the Police Station nearby. Good lad he is, that's right. He could move his sorry ass out of the office sometimes tho', especially on hot days like this.}
+{5010}{}{What do you mean?@@What do you mean by that?}
+{5020}{}{Thanks, I'll go see him then.}
+{6000}{}{Yeah, it is hot today, isn't it? I'm sweating like a pig in a butchery, I'm telling ya. Say, would you mind to bring me a beer? My throat is bone dry.}
+{6010}{}{Sure, I'll be right back.@@No problem, Charles.@@Sure, I can get you a beer.}
+{6020}{}{You shouldn't drink bein at duty, mister. Goodbye.}
+{7000}{}{Yeah, finally some good soul. [He opens the bottle and drinks for a while.] Yum yum. [He drinks a bit more.] That's what I needed. So what are you doing here, @sex@|my good man||darling|?}
+{7010}{}{I'm just looking around. Any rumors?}
+{8000}{}{[Laughs shortly] Rumors? Ha! You are in the boiling pot, pal. And holder of that pot, Charles, will have his hands badly burnt sooner or later. He's a lame scarred slug, he ain't got balls, you know what I'm saying, pal? He's so blind he doesn't see Brick's and my little cooperation, y'know. Life is so expensive in a big city like this, and being vice-sheriff isn't that profitable. Brick helps me, I help him, he's not convinced tho' that we should let the Enclave to garrison and protect the Hub.}
+{8010}{}{Brick?}
+{8020}{}{Enclave?}
+{9000}{}{Yeah, Brick and Dan "The Man", his assistant. You can meet them in Old Town, Brick runs a gun store there. "Gun store" my ass. }
+{9010}{}{Oh I see. What about the Enclave?}
+{9020}{}{Oh I see. Thanks Adam, I need to go. Bye.}
+{10000}{}{It's obvious we should have them here, right? I mean they own the sky, they are powerful striking force, and, well, they are far far west somewhere, people tell stories about an island or something. Won't interrupt little businesses here, will they?}
+{10010}{}{Maybe, who knows. What about that Brick fellow?}
+{10020}{}{Maybe, who knows. Thanks Adam, I need to go. Bye.}
+{11000}{}{That's none of your business, pal. Goodbye.}
+{11010}{}{Whatever, bye.}
+{12000}{}{Right about time. Thanks stranger.}
+{12010}{}{What's inside?@@I was wondering, what's inside that package?}
+{12020}{}{You're welcome.@@No problem.}
+
+[russ]
+{100}{}{Адам}
+{200}{}{Вы видите: Адама}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Хороший день, незнакомец. Новичок в городе? Я Адам, вице-шериф. Что тебе нужно?}
+{2010}{}{Новичок? Вообще-то нет. Что за вопрос.}
+{2020}{}{Не знаешь где мне найти работу?}
+{2030}{}{Заместитель шерифа? А где Шериф тогда?}
+{2040}{}{Ничего, до свидания.}
+{2050}{}{Я принес тебе пиво.}
+{2060}{}{У меня есть пакет для вас, от Дана, здесь.}
+{3000}{}{Я думаю это должны спрашивать все охранники на дежурстве. У меня не очень хорошая память, чтобы помнить все эти лица, которые я вижу каждый день.}
+{3010}{}{Понятно, у меня еще вопрос.}
+{4000}{}{Работа? Разве я похож на офис найма? Нет, иди беспокой кого-то другого.}
+{4010}{}{Ну, хорошо, но я могу по крайней мере задать вам вопрос?}
+{4020}{}{Ладно, ладно, я пойду. Пока.}
+{5000}{}{Шерифа зовут Чарльз, вы можете его найти в отделении полиции. Молодец он, это верно. Еще его задница может ходить по городу особенно в жаркие дни, как этот.}
+{5010}{}{Жаркий день?}
+{5020}{}{Спасибо, я пойду, поищу его тогда.}
+{6000}{}{Да, так жарко сегодня, не так ли? Я потею как свинья на бойне, I'm telling ya. Скажи,может ты мог бы принести мне пива? Нужно промочить горло.}
+{6010}{}{Конечно, я сейчас вернусь.}
+{6020}{}{Вы не должны пить на службе, мистер. До свидания.}
+{7000}{}{Ураааа, наконец-то хороший человек. [открывает бутылку и делает пару глотков] Буль Буль. [еще пару глотков] Да, это было то что нужно. Так что ты здесь делаешь, @sex@|мой друг||дорогая|?}
+{7010}{}{Да просто слоняюсь, есть какие-нибудь интересные слухи?}
+{8000}{}{[улыбается] Слухи? Вы обратились к тому кому надо. Чарльз обожжется рано или поздно. У него совсем нет яиц если ты понимаешь о чем я? Он настолько слеп, что не видит моего сотрудничества с Бриком. Жизнь в таком городе стоит денег, а мне платят слишком мало. Брик помогает мне, я помогаю ему. Хотя я не думаю что Анклав в Хабе хорошая идея.}
+{8010}{}{Брик?}
+{8020}{}{Анклав?}
+{9000}{}{Да Брик. Ты можешь найти его в старом городе, у него там оружейный магазин.}
+{9010}{}{Да я понял. Что насчет Анклава?}
+{9020}{}{Понял. Спасибо, Адам, мне нужно идти. Пока.}
+{10000}{}{Это очевидно, что они придут сюда, верно? Я имею в виду, что им принадлежит небо,у них мощные ударные силы, и, ну, они далеко где-то далеко на западе, люди говорят об острове или что-то типа того. Они же не будут вредить нашему маленькому бизнесу.}
+{10010}{}{Может, кто знает. А что насчет Брика?}
+{10020}{}{Может, кто знает. Спасибо, Адам, мне нужно идти. Пока.}
+{11000}{}{Не твое дело, приятель. До свидания.}
+{11010}{}{Да пофигу. Пока.}
+{12000}{}{Как раз вовремя, спасибо незнакомец.}
+{12010}{}{Что внутри?}
+{12020}{}{Пожалуйста.}
+
+[pols]
+{100}{}{Adam}
+{200}{}{Widzisz Adama.}
+{210}{}{Wydaje się, że to on tutaj dowodzi. Tak wygląda, ale nie wiesz tego do końca.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Dzień dobry, @sex@|nieznajomy||nieznajoma|. @sex@|Nowy||Nowa| w mieście? Jestem Adam, zastępca szeryfa w Hubie. Co cię tu sprowadza?}
+{2010}{}{@sex@|Nowy||Nowa|? Nie @sex@|powiedziałbym||powiedziałabym|. Co to w ogóle za pytanie?}
+{2020}{}{Znasz kogokolwiek oferującego pracę?}
+{2030}{}{Zastępca szeryfa? Gdzie jest w takim razie szeryf?}
+{2040}{}{Nic, do widzenia.}
+{2050}{}{Mam dla ciebie piwko, proszę.}
+{2060}{}{Mam dla ciebie przesyłkę od Dana, proszę.}
+{3000}{}{Takie pytania powinni zadawać wszyscy strażnicy na służbie. Nie mam głowy, żeby pamiętać wszystkie te twarze które widzę każdego dnia.}
+{3010}{}{Dobra, pozwól się spytać o coś innego.}
+{4000}{}{Pracę? Czy ja wyglądam na agencję pośrednictwa pracy? Nie, idź zawracać dupę komuś innemu.}
+{4010}{}{W porządku, ale mogę przynajmniej spytać o coś jeszcze?}
+{4020}{}{Dobra, dobra, już sobie idę. Do widzenia.}
+{5000}{}{Szeryf nazywa się Charles, możesz się z nim spotkać na pobliskim komisariacie policji. To porządny gość, ale mógłby ruszyć czasem tyłek zza biurka. Szczególnie w takie upały, jak dziś.}
+{5010}{}{Upały?}
+{5020}{}{Dzięki, w takim razie pójdę z nim porozmawiać.}
+{6000}{}{Tja, gorąco dzisiaj, c'nie? Pocę się jak dziwka w kościele, mówię ci. Hej, nie chciałoby ci się przynieść mi piwka?  Yeah, it is hot today, isn't it? I'm sweating like a pig in butchery, I'm telling ya. Say, would you mind to bring me a beer? Cholernie mnie suszy.}
+{6010}{}{Jasne, zaraz wracam.}
+{6020}{}{Nie powinien pan pić na służbie, panie władzo. Żegnam.}
+{7000}{}{Ooo taaak, nareszcie! [Otwiera butelkę i pije przez chwilę.] Mniam, mniam. [Pije jeszcze trochę.] Tego mi było trzeba. Więc, co cię tutaj sprowadza, @sex@|przyjacielu||kochanie|?}
+{7010}{}{Tak tylko, rozglądam się. Jakieś plotki?}
+{8000}{}{[Śmieje się.] Plotki? Ha! Znajdujesz się w środku garnka wrzącej wody, @sex@|bracie||kotku|. A ten, kto go trzyma, Charles, prędzej czy później paskudnie oparzy sobie rączki. W życiu musisz być rekinem, jeśli nie chcesz żeby dopadły cię inne rekiny. Charles nie jest rekinem, i obrotny też nie jest. Nie ma jaj, rozumiesz o co mi chodzi? Jest tak ślepy, że nie widzi naszej drobnej współpracy, mojej i Bricka, rozumiesz. Życie w wielkim mieście nie jest tanie, a pensja zastępcy szeryfa jest marniutka. Brick mi pomaga, ja pomagam jemu... Nie mogę go jednak przekonać, że powinniśmy pozwolić Enklawie stacjonować i bronić Hubu.}
+{8010}{}{Brick?}
+{8020}{}{Enklawie?}
+{9000}{}{Ta, Brick i Dan, jego pomocnik. Możesz ich spotkać na starym mieście, Brick prowadzi tam sklep z bronią.}
+{9010}{}{Aha, rozumiem. A o co chodziło z tą Enklawą?}
+{9020}{}{Aha, rozumiem. Dzięki Adam, muszę lecieć. Trzymaj się.}
+{10000}{}{To oczywiste, że powinniśmy ich tutaj mieć, prawda? Rozumiesz, władają nad niebem, mają potężną siłę ognia i, cóż, są gdzieś daleko na zachodzie, ludzie mówią o jakiejś wyspie czy czymś takim. Nie przeszkadzaliby chyba w naszych drobnych interesach, c'nie?}
+{10010}{}{Może, kto wie. Co mówiłeś Bricku?}
+{10020}{}{Może, kto wie. Dzięki Adam, muszę lecieć. Trzymaj się.}
+{11000}{}{Nie twój zasrany interes. Do widzenia.}
+{11010}{}{Cóż, do widzenia.}
+{12000}{}{W samą porę. Dzięki, @sex@|nieznajomy||kotku|.}
+{12010}{}{Co jest w środku?}
+{12020}{}{Proszę bardzo.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Good day stranger. New in town? I'm Adam, vice sheriff of Hub. Whatcha need?}
+{2010}{}{New? Not really. What kind of question is that?@@No, hardly. I frequent here quite often.}
+{2020}{}{Do you know anyone offering a job?@@Do you know where I could find a job here?@@Got any idea where I could find a job?@@I need a job, any ideas where I could find it?}
+{2030}{}{Vice sheriff? Where's the Sheriff then?@@So who's the Sheriff then?}
+{2040}{}{Nothing, bye.@@Just looking around.@@Nevermind.}
+{2050}{}{I got a beer for you, here.@@I've got beer for you, Charles.@@Here, I brought you that beer you wanted.}
+{2060}{}{I've got a package for you from Dan, here.@@I've got a package for you. It's from that Dan fellow.}
+{3000}{}{That's what all guards on duty should ask, I guess. I don't have good memory to remember all these faces I see every day.}
+{3010}{}{Right, let me ask you something else.@@Let me ask you something else.}
+{4000}{}{Job? Do I look like a hiring office? Go bother someone else.@@I don't know anything about that. Ask somebody else.}
+{4010}{}{Alright then, but can I at least ask you something else?}
+{4020}{}{Fine, fine, I'll go. Bye.@@Yeah sure, thanks for nothing.}
+{5000}{}{The sheriff name's Charles, you can meet him at the Police Station nearby. Good lad he is, that's right. He could move his sorry ass out of the office sometimes tho', especially on hot days like this.}
+{5010}{}{What do you mean?@@What do you mean by that?}
+{5020}{}{Thanks, I'll go see him then.}
+{6000}{}{Yeah, it is hot today, isn't it? I'm sweating like a pig in a butchery, I'm telling ya. Say, would you mind to bring me a beer? My throat is bone dry.}
+{6010}{}{Sure, I'll be right back.@@No problem, Charles.@@Sure, I can get you a beer.}
+{6020}{}{You shouldn't drink bein at duty, mister. Goodbye.}
+{7000}{}{Yeah, finally some good soul. [He opens the bottle and drinks for a while.] Yum yum. [He drinks a bit more.] That's what I needed. So what are you doing here, @sex@|my good man||darling|?}
+{7010}{}{I'm just looking around. Any rumors?}
+{8000}{}{[Laughs shortly] Rumors? Ha! You are in the boiling pot, pal. And holder of that pot, Charles, will have his hands badly burnt sooner or later. He's a lame scarred slug, he ain't got balls, you know what I'm saying, pal? He's so blind he doesn't see Brick's and my little cooperation, y'know. Life is so expensive in a big city like this, and being vice-sheriff isn't that profitable. Brick helps me, I help him, he's not convinced tho' that we should let the Enclave to garrison and protect the Hub.}
+{8010}{}{Brick?}
+{8020}{}{Enclave?}
+{9000}{}{Yeah, Brick and Dan "The Man", his assistant. You can meet them in Old Town, Brick runs a gun store there. "Gun store" my ass. }
+{9010}{}{Oh I see. What about the Enclave?}
+{9020}{}{Oh I see. Thanks Adam, I need to go. Bye.}
+{10000}{}{It's obvious we should have them here, right? I mean they own the sky, they are powerful striking force, and, well, they are far far west somewhere, people tell stories about an island or something. Won't interrupt little businesses here, will they?}
+{10010}{}{Maybe, who knows. What about that Brick fellow?}
+{10020}{}{Maybe, who knows. Thanks Adam, I need to go. Bye.}
+{11000}{}{That's none of your business, pal. Goodbye.}
+{11010}{}{Whatever, bye.}
+{12000}{}{Right about time. Thanks stranger.}
+{12010}{}{What's inside?@@I was wondering, what's inside that package?}
+{12020}{}{You're welcome.@@No problem.}
+

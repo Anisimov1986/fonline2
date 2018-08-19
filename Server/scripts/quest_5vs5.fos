@@ -1,0 +1,272 @@
+#include "_defines.fos"
+#include "_itempid.fos"
+#include "_macros.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "_npc_pids.fos"
+#include "_dialogs.fos"
+#include "utils_h.fos"
+#include "entire_h.fos"
+#include "critter_template.fos"
+
+import bool TeamArenaIsReadyForTeam1(int arenaId) from "teamarena";
+import bool TeamArenaIsReadyForTeam2(int arenaId) from "teamarena";
+import bool TeamArenaIsActive(int arenaId) from "teamarena";
+import bool TeamArenaIsValidTeam1(int arenaId, Critter@[]& critters) from "teamarena";
+import bool TeamArenaIsValidTeam2(int arenaId, Critter@[]& critters) from "teamarena";
+import uint TeamArenaGetSize(int arenaId) from "teamarena";
+import bool TeamArenaTeam1Join(int arenaId, Critter@[]& critters, bool turnBased) from "teamarena";
+import bool TeamArenaTeam2Join(int arenaId, Critter@[]& critters) from "teamarena";
+import bool TeamArenaIsMember(int arenaId, Critter& critter) from "teamarena";
+import void TeamArenaReset(int arenaId) from "teamarena";
+import uint TeamArenaGetLocationId(int arenaId) from "teamarena";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import uint PriceMod(uint caps) from "economy";
+import uint RewardMod(uint caps) from "economy";
+
+
+#define MIN_TEAM_SIZE                 (3)
+#define MAX_TEAM_SIZE                 (5)
+#define QUEST_COST                    (1000)
+#define QUEST_REWARD                  (1750)
+#define QUEST_DURATION                (REAL_MINUTE(15))
+#define EVENT_ID                      (70)
+#define _ADK_NR_5_VS_5_START          ("NR_5VS5_START")
+#define _ADK_NR_5_VS_5_TIMER_ID       ("NR_5VS5_TIMER_ID")
+
+#define ENCLAVE_COUNT                 (4)
+#define ROLE_ENCLAVE                  (288000)
+int[] enclavePids = {NPC_PID_ENCLAVE1, NPC_PID_ENCLAVE2, NPC_PID_ENCLAVE3, NPC_PID_ENCLAVE4, NPC_PID_ENCLAVE5};
+int[] enclaveBags = {BAG_ENCLAVE1, BAG_ENCLAVE1, BAG_ENCLAVE1, BAG_ENCLAVE1, BAG_ENCLAVE1};
+int[] enclaveParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK, 10, PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+	MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, ST_BONUS_LOOK, 100, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit,
+	ST_DIALOG_ID, DIALOG_5vs5_enclave_patrol};
+CritterTemplate enclaveCritterTemplate = CritterTemplate(enclavePids, ROLE_ENCLAVE)
+		.SetCritterParams(enclaveParams)
+		.SetCritterBags(enclaveBags)
+		.SetShowCritterDist1(40)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_HOME)
+		.SetAttachEventManager(false);
+
+const string[] employers = { "Mordino Family", "Wright Family", "Bishop Family" };
+
+bool d_IsReadyForTeam1(Critter& player, Critter@ npc, int arenaId)
+{
+    return TeamArenaIsReadyForTeam1(arenaId);
+}
+
+bool d_IsReadyForTeam2(Critter& player, Critter@ npc, int arenaId)
+{
+    return TeamArenaIsReadyForTeam2(arenaId);
+}
+
+bool d_IsActive(Critter& player, Critter@ npc, int arenaId)
+{
+    return TeamArenaIsActive(arenaId);
+}
+
+bool d_IsMember(Critter& player, Critter@ npc, int arenaId)
+{
+    return TeamArenaIsMember(arenaId, player);
+}
+
+bool d_IsNotMember(Critter& player, Critter@ npc, int arenaId)
+{
+    return !TeamArenaIsMember(arenaId, player);
+}
+
+bool d_IsValidTeam1(Critter& player, Critter@ npc, int arenaId)
+{
+	if (player.CountItem(PID_BOTTLE_CAPS) < PriceMod(QUEST_COST))
+	{
+		return false;
+	}
+
+	Critter@[] critters;
+	critters.insertLast(player);
+	player.GetFollowGroup(FIND_LIFE, critters);
+	
+	if (critters.length() < MIN_TEAM_SIZE || critters.length() > MAX_TEAM_SIZE)
+	{
+		return false;
+	}
+	
+    return TeamArenaIsValidTeam1(arenaId, critters);
+}
+
+bool d_IsValidTeam2(Critter& player, Critter@ npc, int arenaId)
+{
+	if (player.CountItem(PID_BOTTLE_CAPS) < PriceMod(QUEST_COST))
+	{
+		return false;
+	}
+
+	Critter@[] critters;
+	critters.insertLast(player);
+	player.GetFollowGroup(FIND_LIFE, critters);
+	
+	if (critters.length() < MIN_TEAM_SIZE || critters.length() > TeamArenaGetSize(arenaId))
+	{
+		return false;
+	}
+	
+    return TeamArenaIsValidTeam1(arenaId, critters);
+}
+
+void r_Team1Join(Critter& player, Critter@ npc, int arenaId, int turnBased)
+{
+	if (player.CountItem(PID_BOTTLE_CAPS) < PriceMod(QUEST_COST))
+	{
+		return;
+	}
+
+	Critter@[] critters;
+	critters.insertLast(player);
+	player.GetFollowGroup(FIND_LIFE, critters);
+	
+	if (critters.length() < MIN_TEAM_SIZE || critters.length() > MAX_TEAM_SIZE)
+	{
+		return;
+	}
+	
+    if (TeamArenaTeam1Join(arenaId, critters, turnBased > 0))
+	{
+		player.DeleteItem(PID_BOTTLE_CAPS, PriceMod(QUEST_COST));
+	}
+	
+	uint startTime = __FullSecond;
+	AddNewMessage("Salvatore Family is receiving delivery from Enclave. [Team size: " + critters.length() + ", Combat mode: " + (turnBased > 0 ? "TB" : "RT") + "]" , QUEST_DURATION, 1, COLOR_GREEN, true, EVENT_ID);
+	SaveAnyData(startTime, _ADK_NR_5_VS_5_START);
+	
+	uint[] values = {arenaId};
+	uint timerId = CreateTimeEvent(startTime + QUEST_DURATION, "_TimeoutCallback", values, true);
+	SaveAnyData(timerId, _ADK_NR_5_VS_5_TIMER_ID);
+}
+
+void r_Team2Join(Critter& player, Critter@ npc, int arenaId, int employerId)
+{
+	if (player.CountItem(PID_BOTTLE_CAPS) < PriceMod(QUEST_COST))
+	{
+		return;
+	}
+
+	Critter@[] critters;
+	critters.insertLast(player);
+	player.GetFollowGroup(FIND_LIFE, critters);
+	
+	if (critters.length() != TeamArenaGetSize(arenaId))
+	{
+		return;
+	}
+	
+    if (TeamArenaTeam2Join(arenaId, critters))
+	{
+		player.DeleteItem(PID_BOTTLE_CAPS, PriceMod(QUEST_COST));
+	}
+	
+	RemoveMessageByEvent(EVENT_ID);
+	if (QUEST_DURATION > __FullSecond - GetAnyData(_ADK_NR_5_VS_5_START))
+	{
+		uint duration = QUEST_DURATION - (__FullSecond - GetAnyData(_ADK_NR_5_VS_5_START));
+		AddNewMessage("Salvatore Family is receiving delivery from Enclave. " + employers[employerId] + " is trying to intercept delivery.", duration, 1, COLOR_GREEN, true, EVENT_ID);
+	}
+}
+
+uint VictoryCallback(uint[]@ values)
+{
+	if (values.length() != 2)
+	{
+		return 0;
+	}
+	
+	RemoveMessageByEvent(EVENT_ID);
+	EraseTimeEvent(GetAnyData(_ADK_NR_5_VS_5_TIMER_ID));
+	CloseArena(values[0]);
+	return 0;
+}
+
+uint _TimeoutCallback(uint[]@ values)
+{
+	if (values.length() != 1)
+	{
+		return 0;
+	}
+	
+	CloseArena(values[0]);
+	return 0;
+}
+
+void CloseArena(int arenaId)
+{
+	SpawnEnclave(arenaId);
+	TeamArenaReset(arenaId);
+	EraseAnyData(_ADK_NR_5_VS_5_TIMER_ID);
+	EraseAnyData(_ADK_NR_5_VS_5_START);
+}
+
+void SpawnEnclave(int arenaId)
+{
+	uint locationId = TeamArenaGetLocationId(arenaId);
+	
+	Location@ location = GetLocation(locationId);
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	Map@ map = location.GetMapByIndex(0);
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	int entire = Random(0, 3);
+	for (int i = 0; i < ENCLAVE_COUNT; i++)
+	{
+		Critter@ critter = enclaveCritterTemplate.Spawn(map, entire, i);
+		
+		if (i == 0)
+		{
+			critter.AddItem(PID_BRIEFCASE, 1);
+		}
+	}
+}
+
+bool d_EnclaveHaveBriefcase(Critter& player, Critter@ npc)
+{
+    return npc.CountItem(PID_BRIEFCASE) > 0;
+}
+
+bool d_EnclaveNotHaveBriefcase(Critter& player, Critter@ npc)
+{
+    return npc.CountItem(PID_BRIEFCASE) == 0;
+}
+
+void r_GiveBriefcaseToPlayer(Critter& player, Critter@ npc)
+{
+	if (npc.CountItem(PID_BRIEFCASE) > 0)
+	{
+		npc.DeleteItem(PID_BRIEFCASE, 1);
+		player.AddItem(PID_BRIEFCASE, 1);
+	}
+}
+
+bool d_PlayerHaveBriefcase(Critter& player, Critter@ npc)
+{
+    return player.CountItem(PID_BRIEFCASE) > 0;
+}
+
+bool d_PlayerNotHaveBriefcase(Critter& player, Critter@ npc)
+{
+    return player.CountItem(PID_BRIEFCASE) == 0;
+}
+
+void r_GiveBriefcaseToNpc(Critter& player, Critter@ npc)
+{
+	if (player.CountItem(PID_BRIEFCASE) > 0)
+	{
+		player.DeleteItem(PID_BRIEFCASE, 1);
+		player.AddItem(PID_BOTTLE_CAPS, RewardMod(QUEST_REWARD));
+	}
+}

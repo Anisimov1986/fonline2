@@ -1,0 +1,765 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+14 1010 D _var p bosside = 0 D or D _var p bosside = 20 D or D _param p MAIN_FACTION = 1 D or D _param p MAIN_FACTION = 3 D or D _param p MAIN_FACTION = 4 D or D _param p MAIN_FACTION = 5 D or D _param p MAIN_FACTION } 6 #
+70 1020 D _var p bosside = 18 #
+69 1030 D _var p bosside = 17 #
+60 1040 D _var p bosside = 22 D or D _var p bosside = 14 D or D _var p bosside = 16 #
+50 1050 D _var p bosside = 12 D or D _var p bosside = 13 #
+41 1060 D _var p bosside = 7 D or D _var p bosside = 8 #
+40 1070 D _var p bosside = 6 #
+45 1080 D _var p bosside = 21 D or D _var p bosside = 9 D or D _var p bosside = 10 D or D _var p bosside = 11 #
+31 1090 D _var p bosside = 3 D or D _var p bosside = 4 D or D _var p bosside = 5 #
+5 1100 D _var p bosside = 2 #
+2 1110 D _var p bosside = 1 @
+2 2000 None 0 #
+3 2010 #
+30 2020 @
+3 3000 None 0 #
+4 3010 #
+30 3020 @
+4 4000 None 0 #
+6 4010 #
+30 4020 @
+5 5000 None 0 #
+10 5010 D _var p bosside = 2 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+30 6020 @
+7 7000 None 0 #
+11 7010 D _var p q_vc_mcclure } 1 #
+8 7020 #
+30 7030 @
+8 8000 None 0 #
+9 8010 #
+30 8020 @
+9 9000 None 0 #
+13 9010 R _var p bosside = 2 #
+30 9020 @
+10 10000 None 0 #
+7 10010 #
+65507 10020 @
+11 11000 None 0 #
+12 11010 #
+8 11020 @
+12 12000 None 0 #
+8 12010 @
+13 13000 None 0 #
+0 13010 R _script dialog@r_ShowQuestMessage 1 9334 @
+14 14000 None 0 @
+30 15000 Attack 0 #
+3 15010 #
+65507 15020 @
+31 16000 None 0 #
+33 16010 D _var p bosside = 3 R _var p bosside = 6 R _param p ST_EXPERIENCE + 1000 #
+34 16020 D _var p bosside = 4 R _var p bosside = 7 R _param p ST_EXPERIENCE + 2000 #
+32 16030 D _var p bosside = 5 R _var p bosside = 8 @
+32 17000 None 0 #
+35 17010 R _param p ST_EXPERIENCE + 4000 @
+33 18000 None 0 #
+0 18010 R _script dialog@r_ShowQuestMessage 1 9334 @
+34 19000 None 0 #
+0 19010 R _script dialog@r_ShowQuestMessage 1 9334 @
+35 20000 None 0 #
+0 20010 R _script dialog@r_ShowQuestMessage 1 9334 @
+40 21000 None 0 #
+42 21010 @
+41 22000 None 0 #
+42 22010 @
+42 23000 None 0 #
+43 23010 @
+43 24000 None 0 #
+44 24010 R _var p bosside = 9 @
+44 25000 None 0 #
+0 25010 R _script quest@r_CreateLocationZone 3 9314 19 25 R _script dialog@r_ShowQuestMessage 1 9334 @
+45 26000 None 0 #
+71 26010 D _var p bosside = 21 #
+47 26020 D _var p bosside = 10 D _item p PID_VERTIBIRD_PARTS } 1 R _var p bosside = 12 R _item p PID_VERTIBIRD_PARTS - 1 R _param p ST_EXPERIENCE + 3000 #
+48 26030 D _var p bosside = 11 D _item p PID_VERTIBIRD_PARTS } 1 R _var p bosside = 13 R _item p PID_VERTIBIRD_PARTS - 1 R _param p ST_EXPERIENCE + 6000 #
+46 26040 @
+46 27000 None 0 @
+47 28000 None 0 #
+0 28010 R _script dialog@r_ShowQuestMessage 1 9334 @
+48 29000 None 0 #
+0 29010 R _script dialog@r_ShowQuestMessage 1 9334 @
+50 30000 None 0 #
+51 30010 @
+51 31000 None 0 #
+52 31010 @
+52 32000 None 0 #
+53 32010 @
+53 33000 None 0 #
+54 33010 @
+54 34000 None 0 #
+55 34010 @
+55 35000 None 0 #
+56 35010 @
+56 36000 None 0 #
+0 36010 R _var p bosside = 14 R _script dialog@r_ShowQuestMessage 1 9334 R _script quest@r_CreateLocationZone 3 9311 6 14 @
+60 37000 None 0 #
+71 37010 D _var p bosside = 22 #
+61 37020 D _var p bosside = 16 R _var p bosside = 17 R _param p ST_EXPERIENCE + 10000 #
+0 37030 @
+61 38000 None 0 #
+62 38010 #
+0 38020 @
+62 39000 None 0 #
+63 39010 #
+0 39020 @
+63 40000 None 0 #
+64 40010 #
+0 40020 @
+64 41000 None 0 #
+65 41010 #
+0 41020 @
+65 42000 None 0 #
+66 42010 #
+0 42020 @
+66 43000 None 0 #
+0 43010 R _script dialog@r_ShowQuestMessage 1 9334 R _var p bosside = 18 R _script faction@JoinBos 0  R _item p PID_BROTHERHOOD_COMBAT_ARMOR + 1 @
+69 44000 None 0 #
+62 44010 #
+0 44020 @
+70 45000 None 0 #
+80 45010 D _var p q_finderskeepers = 4 D or D _var p q_finderskeepers = 5 #
+0 45020 @
+71 46000 None 0 #
+0 46010 D _var p bosside = 21 R _script quest@r_CreateLocationZone 3 9314 19 25 R _var p bosside = 9 #
+0 46020 D _var p bosside = 22 R _script quest@r_CreateLocationZone 3 9311 6 14 R _var p bosside = 14 @
+80 47000 None 0 #
+81 47010 @
+81 48000 None 0 #
+82 48010 D _var p q_finders_check = 1 D _param p ST_INTELLECT { 7 R _var p q_finderskeepers = 7 R _param p ST_EXPERIENCE + 2000 R _script dialog@r_ShowQuestMessage 1 9630 #
+83 48020 D _var p q_finders_check = 1 D _param p ST_INTELLECT } 7 R _var p q_finderskeepers = 8 #
+0 48030 R _var p q_finderskeepers = 6 R _param p ST_EXPERIENCE + 1000 R _script dialog@r_ShowQuestMessage 1 9630 @
+82 49000 None 0 @
+83 50000 None 0 #
+84 50010 R _param p ST_EXPERIENCE + 4000 @
+84 51000 None 0 #
+85 51010 @
+85 52000 None 0 #
+86 52010 @
+86 53000 None 0 #
+0 53010 R _script dialog@r_ShowQuestMessage 1 9630 &
+
+[engl]
+{100}{}{Scribe Kendrick}
+{200}{}{Scribe Kendrick}
+{210}{}{You see an aged woman dressed in grey robes. She stares through the window, as if she was looking for something in the cloudless sky.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not in bos}
+{1020}{}{Full bos member}
+{1030}{}{before vows}
+{1040}{}{Dock mission ongoing/success or lost location}
+{1050}{}{Dock mission}
+{1060}{}{Vertibird mission}
+{1070}{}{Vertibird mission, shitty vc quest outcome}
+{1080}{}{Vertibird mission success/waiting or lost location
+}
+{1090}{}{Talked to Macclure}
+{1100}{}{met again}
+{1110}{}{answer}
+{2000}{}{[The woman turns around and pierces you with her green eyes.] Well, well... what do we have here? Another incompetent fool sent by that sly dog Matthews? [She notices your reaction.] Now, I don't have time for pleasantries. You want to join us, get used to me, Initiate... Maggot. Yeah, That will be your callsign now. Do you like it?}
+{2010}{}{Yes... Ma'am. }
+{2020}{}{Fuck this.@@I've had enough.@@That enough for me.@@ Screw you, I'm getting the hell outta here.@@That's enough.@@That does it. Im getting the hell outta here.}
+{3000}{}{I am no fucking' Ma'am! You will address me as Scribe Kendrick, is that understood? Good. I don't need no sniveling pussies that need their asses wiped everyday!}
+{3010}{}{[Wait.]@@[Let her talk.]@@[Let the woman talk.]@@[Let the elderly Scribe talk.]}
+{3020}{}{Fuck this.@@I've had enough.@@That's enough for me.@@ Screw you, I'm getting the hell outta here.@@That's enough.@@That does it. I'm getting the hell outta here.}
+{4000}{}{Right. Now, as you hopefully already managed to deduce, I am Scribe Kendrick, chief of the Spec-Ops here in Lost Hills. During your training you will answer to me, and to me only. It is my duty to reshape you, a worthless piece o' brahmin dung into something hopefully less pathetic. And I intend to do so, unless you'll happen to die in the process. Which doesn't make any big difference anyway.}
+{4010}{}{Understood, Scribe Kendrick.@@As you command, Scribe Kendrick.}
+{4020}{}{Fuck this.@@I've had enough.@@That enough for me.@@ Screw you, I'm getting the hell outta here.@@That's enough.@@That does it. Im getting the hell outta here.@@This is too much for me. I'm getting the fuck outta here.}
+{5000}{}{Look who's back! What news do you have for me, you miserable Initiate Maggot?@@The aura of incompetence precedes you, Initiate. Why do you disturb me?@@What the hell do you want now?@@[Sighs.] What is it now, Initiate?}
+{5010}{}{Could you please repeat what was my task, Scribe Kendrick?@@Could you tell me again about my task, Scribe Kendrick?@@I...um...forgot my orders. Could you repeat them, Scribe Kendrick?}
+{5020}{}{I was just passing by, Scribe Kendrick. I am going to Vault City now.}
+{6000}{}{Allright. Let us concentrate on your training. First, you will perform... A diplomatic mission. Sorta. The Brotherhood needs to asses its surroundings. As for the major players like NCR, Enclave and the Hub we've got things covered. But...there are some that are a... a big question mark. And I need you to check what's behind that. You will travel to Vault City, Initiate.}
+{6010}{}{Yes, Scribe Kendrick. I suppose something needs to be done when I get there?}
+{6020}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{7000}{}{Yes, you smartass, there is. Get to Vault City, find someone of authority. Not necesserily the President, Chief, General, or whatever those morons have in the higher echelons. But still, it needs to be someone rather high up.}
+{7010}{}{Someone like Councillor McClure?}
+{7020}{}{And then?@@What then?@@What should I do then?}
+{7030}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{8000}{}{You're starting to get on my nerves, Initiate Maggot! I'm getting to it! [She pauses for a while.] So, where was I? Ah, yes. We need to check what are their intentions. They never answered any diplomatic mail we sent via caravans, nor they have ever requested help. Considering their stance towards the humans outside of their city, we suspect they might be already leaning towards the Enclave, but the Brotherhood needs to be one-fucking-hundred-percent sure. And that's where you come in, maggot.}
+{8010}{}{I understand, Scribe Kendrick.@@Yes Ma... Scribe Kendrick. I understand now.@@As you command, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+{8020}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{9000}{}{Right. Our proposition is simple. We want to establish official relations, arranging some trade agreement, food for weapons or something like that, and lastly, we will need a bunker there. Call it an embassy, it might ring better in their ears. Got it?}
+{9010}{}{Yes, Scribe Kendrick.@@Yes Ma... Scribe Kendrick. I understand.@@As you command, Scribe Kendrick.@@If that's your order, Scribe Kendrick.}
+{9020}{}{Fuck this, go there yourself.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.@@Whatever, I'm getting the hell outta here.@@I've got better things to do. }
+{10000}{}{Do you think I'm an idiot? Do I look like an idiot? No? So why do you treat me like an idiot? For fuck's sake, I will repeat your orders, but this is the last, I repeat, last fucking time!}
+{10010}{}{No, I mean... Yes, Scribe Kendrick. I'm all ears. And eyes. And everything else, for that matter. So, my task was...}
+{10020}{}{Screw you, old hag.@@Fuck you, you old bat.@@Fuck off, you old bitch.@@Go fuck yourself, Scribe Kendrick.@@I've had enough of your shit, you cunt.@@That's enough, bitch.@@Fuck off, you old hag.@@Shut up, you old cunt.}
+{11000}{}{Who? I don't know any stupid... wait a minute. So you've been to Vault City? Who's this McClure of yours?}
+{11010}{}{He's the city's council member. Rather high up, as you would've put it, Scribe Kendrick. }
+{11020}{}{It just... uh... crossed my mind. I've heard of the man but that's all. I've never been to Vault City, Scribe Kendrick. So, what should I do once I get there?}
+{12000}{}{[She takes a step closer.] Well.... That's not something I was expecting. [She seems to be surprised.] But it's good, nevertheless. If you had contact with this fellow, things should be simpler. All right...now... [She makes a long pause, with seconds turning to years of waiting.]}
+{12010}{}{I was supposed to go to Vault City to...}
+{13000}{}{Good. [She looks at you coldly.] What are you waiting for? Get moving, maggot!}
+{13010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@As you command, Scribe Kendrick.}
+{14000}{}{What are you doing here? Get lost!@@What the fuck are you doing here? Get the fuck out, maggot!@@Get lost, before I call the guards!
+}
+{15000}{}{What the fuck did you say? Say it again, I dare you!@@What did you say? Please repeat so I can order the guards to tear you to shreds!@@What the fuck? Say it again, and you're dead!}
+{15010}{}{Nothing, it's nothing. I await your orders, Ma'am. @@Not a thing, Ma'am.@@Nothing really, Ma'am.}
+{15020}{}{Screw you, old hag.@@I said, fuck you, you old bat.@@Fuck off, you old bitch.@@I said you could go and fuck yourself, Scribe Kendrick.@@I've had enough of your shit, you cunt.@@That's enough, bitch.}
+{16000}{}{You're back. What news do you bring, Initiate?@@You're back already? I hope you didn't screw up, Initiate.@@Look who's back. What news, Initiate?}
+{16010}{}{I've been to Vault City and managed to talk to Councillor McClure. He rejected our offer, and he didn't spill anything else. That's all I could get out of him, Scribe Kendrick.}
+{16020}{}{I've travelled to Vault City as you ordered, Scribe Kendrick. I was able to make contact with Councillor McClure. He assured me that Vault City is neutral for the time being, though he would not accept our offer. They've probably got some differring opionions on this Council of theirs, and they can't decide what course to take. That's all, Scribe Kendrick.}
+{16030}{}{I've been to Vault City and talked with one Councillor McClure. I was able to get some things out of him, though he rejected our offer. It is not his position to decide, the Council settles such matters collectively. He assured me that Vault City stays neutral, at least for the time being. We also don't have to worry about the Enclave, he didn't even mention them. But...}
+{17000}{}{Yes? Spill it out, Initiate!@@Go on.@@Continue, Initiate.}
+{17010}{}{But, he did mention the NCR, and that, I assume is our main competitor in bringing Vault City under our protection. Some influential people inside are working to make that place another state of the Republic. The Councillor himself seems pretty sympathethic to our cause, but he can't act alone, at least not yet. That is all, Scribe Kendrick.}
+{18000}{}{Damn it, Initiate! I was hoping I was wrong about you but... I'm always right about people. You fucked this up, big time. I'll deal with you later, but now, I have to think what to do with this clusterfuck you brought about. Now, get outta my sight! }
+{18010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{19000}{}{Crap. This is not what I was expecting, Initiate. Though at least I think we're safe to assume there won't be any surprises from them for a while. You could have done better, but hell, at least we know something more than nothing. Now go. Dismissed.}
+{19010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{20000}{}{Well that's not good news. But at least we've got some insight what's going on there. You didn't manage to accomplish your task, but I'll be straight with you, Initiate. I never assumed you will succeed. Good thing is, now we know who's our man there if we'll want to pull some strings again in the future. Maybe you're not so worthless after all. That's all. Dismissed.}
+{20010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{21000}{}{Here comes the incompetent fool. Good thing you're here. We've got our men busy with other tasks, so we're unfortunately dependant on you again. I've got another mission for you, Initiate, you better not screw this up this time. You're getting your sorry ass to the Boneyard this time.}
+{21010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{22000}{}{Oh, there you are, maggot. We've got an urgent situation here, so I'm gonna need you to get your ass to the Boneyard.}
+{22010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{23000}{}{All right, here's the deal. We have received urgent transmission from our man in Adytum. He saw a Vertibird crash not far from there... This is a great opportunity for the Brotherhood! We need to replicate the Vertibird technology for ourselves, so the Enclave won't be able to outrun us every time. And you will help us accomplish this.}
+{23010}{}{But... I can't haul a Vertibird all by myself.@@I understand, Scribe Kendrick, but I can't just pull the Vertibird all by myself back to Lost Hills...@@But... Scribe Kendrick, I don't have the means to transport the Vertibird wreck back to Lost Hills...}
+{24000}{}{Damn, I thought you were smarter, Initate Maggot. The Vertibird, or precisely, its frame is not a very complicated construction, bah, we even got most of it already in our hands. But so far we weren't able to construct or replicate a fitting and working engine that could lift it. And now the luck smiles upon us. You will extract the engine parts, the more, the better. }
+{24010}{}{I see. But what about the Enclave? Won't they be sending a rescue party or something?@@What if they managed to send a distress signal, and another Vertibird is already on the way?@@What if someone managed to send a distress beacon?}
+{25000}{}{That is not likely. Our contact saw the Vertibird crash into a building, they probably didin't even know what hit them, and I doubt anyone survived to call for help. However, if they did manage to do that, you have full authorisation to use lethal force, should you encounter any Enclave troops, or anyone else that could hinder your efforts. We need those engine parts, and we need them now. Here are the coords, move out, Initiate, time is of the essence!}
+{25010}{}{Yes, Scribe Kendrick. I'm moving out.@@Understood. Initiate @pname@ moving out!@@Yes, Scribe Kendrick, I'm on my way!}
+{26000}{}{About time... Do you have the engine parts?}
+{26010}{}{Scribe Kendrick, I can't find that Vertibird. Could you give me the coordinates again?@@Scribe Kendrick, I can't find my way through the Boneyard ruins. Could you please give me the coordinates again?}
+{26020}{}{Yes, Scribe Kendrick, though they are not in perfect condition. The crash was pretty bad, no one survived indeed. I did run into Enclave rescue team though. I just don't know how did they managed to get there so fast, I didn't see another Vertibird anywhere near.}
+{26030}{}{Yes, Scribe Kendrick, I have them. None of the crew survived the crash. I also had to dispatch the Enclave Rescue party. I just don't know how did they managed to get there so fast, I didn't see another Vertibird anywhere near.}
+{26040}{}{Not yet, Scribe Kendrick.}
+{27000}{}{Move your fuckin' ass now or you'll be sorry!@@Get moving you idiot, or they will blow up the wreck!@@Move out you moron, we don't have time for this shit!@@Get your stupid ass moving, you idiot! We need those engine parts!}
+{28000}{}{Hmm, that's strange. Wel'll have to take a look into it later. Now, show me those parts! [You give her the parts you extracted from the engine.] Well, fuck my old ass, this is a pile of junk! I hoped for something better... still, maybe our tech boys will be able to salvage something from it. You're on a thin line... If it was up to me, I'd fry your incompetent ass, Initiate Maggot! But the Elders say we need every man and woman now... How unfortunate. Dismissed!}
+{28010}{}{Yes, Scribe Kendrick. @@Yes, Scribe Kendrick, I'll take my leave now.@@As you wish, Scribe Kendrick.}
+{29000}{}{Hmm, that's strange. Wel'll have to take a look into it later. Now, show me those parts! [You give her the parts you extracted from the engine.] Holy fuck, this is it! Good job, Initiate! I wasn't expecting you'd perform that well. Our tech boys will be very happy to have those. Dismissed!}
+{29010}{}{Yes, Scribe Kendrick. @@Yes, Scribe Kendrick, I'll take my leave now.@@As you wish, Scribe Kendrick.}
+{30000}{}{It's good to see you, Initiate Maggot. I've got a new job for you. Considering your past exploits I'm not really convinced you're up to it... But the Elders think otherwise. 
+}
+{30010}{}{I'm listening, Scribe Kendrick.@@I'm all ears, Scribe Kendrick.@@I'm yours to command, Scribe Kendrick.}
+{31000}{}{Good. Cos this is not gonna be a walk in the park, Initiate Maggot. You remember the Boneyard mission? You were wondering how did the Enclave troops manage to get there so fast?
+}
+{31010}{}{How?@@So... how?@@Yes, how?@@Yes, Scribe Kendrick, how?}
+{32000}{}{First, I thought you just missed the other Vertibird. But then we asked our man from Adytum. He didn't see any Vertibird either. So we were wondering...and the answer was so simple. Boats!
+}
+{32010}{}{Boats?}
+{33000}{}{Yes, Initiate Maggot, boats. Large metal objects floating on water. Rings a bell? Good. We started sniffing around the west coast, and we got a message from our outpost in San Francisco. Some local came to them asking for caps, claiming he saw something we might be interested in...}
+{33010}{}{And?@@And then what, Scribe Kendrick?}
+{34000}{}{He claimed he saw some lights near the old pier, south from the Shi area. So we sent our patrol to investigate, and they saw some movement on there. Also, they saw the boats.
+}
+{34010}{}{So, what are my orders?@@What are my orders then, Scribe Kendrick?}
+{35000}{}{Simple. Go there, and blow up the boats. Blowing them up won't be hard, but getting to them will be. We suspect the outpost is heavily guarded, though our men didn't manage to spot anything in detail. I recommend you use a stealthy approach, unless you want to fight at least a company of enclave troops. [She notices your reaction.] And no, we can't afford and will not risk our paladins for a such mission, since we don't know how many troops does the Enclave actually have there. You on the other hand...you're just an Initiate.}
+{35010}{}{Acknowledged, Scribe Kendrick. Expendable Initiate Maggot is ready for a suicide mission. I assume I'm going to have to jump into a fuel tank and hope that parts of my body will clog up engines?}
+{36000}{}{[She grins.] Save your jokes for someone that will appreciate them. That place is probably a refuelling and supply outpost. So it should be packed dense with ammo, grenades and such stuff. But what you need to find is some explosives with a timer. Try to place them somewhere where when they detonate, they will set a chain reaction, so hopefully the whole installation, along with the boats, we be blown sky-fucking-high. Remember to set the timer to allow yourself time to get your ass outta there. Any questions?}
+{36010}{}{No, Scribe Kendrick. I am leaving at once.}
+{37000}{}{You're back already? Did you complete your mission, Initiate Maggot?@@Back already? What news do you have for me, Initiate Maggot?
+}
+{37010}{}{Scribe Kendrick, I can't find that pier... Could you give me the coordinates again?@@Scribe Kendrick, I got lost in San Francisco... Could you please give me the coordinates again?}
+{37020}{}{Yes, I did, Scribe Kendrick. The outpost was crawling with enclave troops, but I managed to plant the explosives.}
+{37030}{}{I was just leaving, Scribe Kendrick.@@Not yet, Scribe Kendrick.@@I'm on it, Scribe Kendrick.}
+{38000}{}{No shit! I'll send a word to San Fran so they check what's left of that stinkin' outpost. Good job, good job indeed! Now, Initiate Magg... @pname@, I think you're ready to become a full member of the Brotherhood, and of the Vulture Squad. If you think you're ready, then repeat after me and say your vows.}
+{38010}{}{[Do as she says.]}
+{38020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{39000}{}{Do you, Initiate @pname@, vow to be a loyal member of the Brotherhood?}
+{39010}{}{Yes, I do.@@Yes.}
+{39020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{40000}{}{Do you promise to help your Brothers and Sisters regardless of circumstances, and whenever they are in need?}
+{40010}{}{Yes, I do.@@Yes.@@Of course I do.}
+{40020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{41000}{}{Do you swear to obey our Elders' commands, even if it would lead you to a certain death?}
+{41010}{}{Umm... Yes, I do.@@Yes, I do.@@Yes.}
+{41020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{42000}{}{The words have been spoken. Are you ready to begin service in the Brotherhood of Steel and be a loyal @sex@|Brother||Sister| until the end of your days?}
+{42010}{}{Yes, I do.@@Yes.@@Yes!@@I am ready.}
+{42020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{43000}{}{Then rise up, Apprentice Knight @pname@. You are now a sworn @sex@|Brother||Sister| of the Brotherhood of Steel. Take this armor, and wear it with pride. As for now, you're free to go. You are granted access to our main facility, and to our barracks under this building. Remember, you're also a member of the Vulture Squad, so I am still going to be your direct superior. It's been a long day, @pname@... I need to rest. Dismissed. 
+}
+{43010}{}{Yes, Scribe Kendrick.}
+{44000}{}{Are you ready to say your vows now, Initiate?}
+{44010}{}{Yes, I am.@@Yes, I am ready.@@I am ready.}
+{44020}{}{Not yet, Scribe Kendrick.@@I need to think about this.@@I'm not sure yet.}
+{45000}{}{I don't have any orders for you right now. Come back later.@@I don't have any tasks for you now, come back later.}
+{45010}{}{One of our bunkers was looted. I've dealt with the perpetrators and took the holodisk they've stolen. I thought It could be important. }
+{45020}{}{As you wish, Scribe Kendrick.@@Understood.@@Understood, Scribe Kendrick.}
+{46000}{}{What the fuck you've been doing all that time?! You goddamn idiot! [She shows you the coordinates again.] Don't fuck it up this time! Get your ass moving, now!@@What?! Are you fucking retarded, Initiate Maggot? Take those, and get the fuck outta here before I reconsider putting your severed head on the fence! [She gives you the coordintes again.]}
+{46010}{}{Yes, I am leaving at once!@@It won't happen again, Scribe Kendrick, I am moving out now!@@It won't happen again, I'm going there now!}
+{46020}{}{Yes, I am leaving at once!@@It won't happen again, Scribe Kendrick, I am moving out now!@@It won't happen again, I'm going there now!@@Yes, Scribe Kendrick, I am leaving now!}
+{47000}{}{No shit... Fucking worms, I told them posting autocannons was necessary but no... idiots. And you... [She pauses for a moment.] You should have left that holodisk where it was.}
+{47010}{}{What? Why? I don't understand, Scribe Kendrick.@@Why? I don't understand. }
+{48000}{}{You don't have to. This ain't matters for your ears, at least not yet.}
+{48010}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me I should have left that holodisk there...}
+{48020}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me I should have left that holodisk there... Unless...}
+{48030}{}{All right.@@As you wish.@@I understand.@@Understood.}
+{49000}{}{You will understand. In time. Now go.}
+{50000}{}{[She stares at you with curiosity.]@@[Scribe Kendrick gives you a curious stare.]}
+{50010}{}{Unless you wanted it to be found... and the data on that holodisk points exactly where you want to. This is some kind of bait for the Enclave, isn't it?}
+{51000}{}{You're a smart one. Since you already deduced everything, yes, it was a ruse. We set up a whole fucking network of "abandoned" bunkers, and loaded them with surplus gear with hidden radio transmitters. Unfortunately, only one of the bunkers got raided by their operatives as of now.}
+{51010}{}{You want to track them?@@So, you want to track them?}
+{52000}{}{Yes. Ever since the San Francisco pier incident, they're a lot more secretive in their movements. And we know they have other bases in the mainland, so it's crucial they raid as many fake bunkers as possible. Ah, I've already told you too much... [She turns her head to the window.]}
+{52010}{}{Scribe Kendrick?@@Erm, Scribe Kendrick?}
+{53000}{}{I will have to deal with this. You are dismissed, report to me later.@@I will have to deal with this. Wait for new orders, Apprentice Knight.}
+{53010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+
+[russ]
+{100}{}{Brotherhood Recruiter}
+{1000}{}{Predialogue installations}
+{1010}{}{Not in bos}
+{1020}{}{In bos}
+{1030}{}{before vows}
+{1040}{}{Dock mission ongoing/success}
+{1050}{}{Dock mission}
+{1060}{}{Vertibird mission}
+{1070}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{1080}{}{Vertibird mission success/waiting.}
+{1090}{}{Talked to Macclure}
+{1100}{}{met again}
+{1110}{}{answer}
+{2000}{}{Welcome civilian! Are you interested in joining our cause?}
+{2010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{2020}{}{Goodbye.@@I need to go.@@Sorry, wrong room.@@I need to be somewhere else.}
+{3000}{}{Hello again. What do you need this time, Wastelander?@@Hello again, Wastelander, what do you need?@@Welcome back, how can I help you?@@You're back. How can I help you?}
+{3010}{}{What can you tell me about the Brotherhood?@@What is the Brotherhood exactly?@@Can you tell me about the Brotherhood?}
+{3020}{}{Just passing by.@@I was just leaving.@@I've got to go.}
+{4000}{}{Go ahead.@@Sure.@@No problem.@@Yes?}
+{4010}{}{I'd like to join the Brotherhood.@@I'd like to join.@@I want to join the Brotherhood.@@I want to join the Brotherhood.}
+{4020}{}{On second thought, I've got to go.@@Nevermind, I need to get going.@@Um, I need to go now.@@I've got to go. Goodbye.}
+{5000}{}{Report to Scribe Kendrick.@@Report to Scribe Kendrick, now.@@Go and report to Scribe Kendrick, Initiate.}
+{5010}{}{Could you please repeat what was my task, Scribe Kendrick?@@Could you tell me again about my task, Scribe Kendrick?@@I... um... forgot my orders. Could you repeat them, Scribe Kendrick?}
+{5020}{}{I was just passing by, Scribe Kendrick.}
+{6000}{}{Yes?@@Good day.@@I'm busy now, come back later.@@I don't have time right now, come back later.}
+{6010}{}{Yes, Scribe Kendrick. And what should I do when I get there?}
+{6020}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{7000}{}{The Brotherhood? All I can say to you is that we are an ancient order, dedicated to preserving and reclaiming lost technology. We are fighting to preserve the balance in the Wasteland, keeping the old tech from falling into the wrong hands. To be honest, I'm not really the one you want to be asking. Should you ever become an Initiate, talk to some of the Scribes, they are well versed in our history.}
+{7010}{}{Like Concillor McClure?}
+{7020}{}{Okay. One more thing...@@I get it. Can we change the subject?@@Right, can I ask you about something else?}
+{7030}{}{Hmm, thanks. I must depart.@@Okay, thanks. I need to go.@@Hmm, maybe I will someday. Goodbye.@@Thanks, but I need to be somewhere else.@@Right. I must go now. See you later.}
+{8000}{}{[Just when you're about to start talking to the man, you remember about the certain "upgrade" the mysterious Enclave member made to your Pip-Boy. You're not sure if talking to this Brotherhood member might be considered treason, but it's better to stay on the safe side. You quickly turn around and walk away.]}
+{8010}{}{[Walk away.]@@[Quickly turn around and walk away.]@@[Leave immediately.]}
+{8020}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{9000}{}{Right. Our proposition is simple. We want to establish official relations, arranging some trade agreement, food for weapons or something like that, and lastly, we will need a bunker there. Call it an embassy, it might ring better in their ears.}
+{9010}{}{Yes, Scribe Kendrick.@@Yes Ma... Scribe Kendrick. I understand.@@As you command, Scribe Kendrick.@@If that's your order, Scribe Kendrick.}
+{9020}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.@@Whatever, I'm getting the hell outta here.@@I've got better things to do. }
+{10000}{}{Very well! The first task is simple! We need you to go get visit Vault city and estabilish diplomatic conversation. When they will agree to talk, come back to us.}
+{10010}{}{Sir yes Sir! But how they would be sure that i am from brotherhood? [Choose brotherhood storyline]}
+{10020}{}{Ah, fuck this.@@I'll be going then.@@I see. I think I should be going.}
+{11000}{}{Who? I don't know any stupid... wait a minute. So you've been to Vault City? Who's this McClure of yours?}
+{11010}{}{He's a the city's council member. Rather high up, as you would've put it, Scribe Kendrick. }
+{11020}{}{Actually, I am sorry, something just crossed mi mind. I've never been to Vault City, Scribe Kendrick.}
+{12000}{}{[She takes a step closer.] Well.... That's not something I was expecting. [She seems to be surprised.] But it's good, nevertheless. If you had contact with this fellow, things should be simpler. }
+{12010}{}{I was supposed to go to Vault City to...}
+{13000}{}{I am sorry, but you are not skilled enough, come back later. [Level 15 needed]}
+{13010}{}{Oh, okay.@@Crap.@@I'll be back.@@Damn, I'll be back later then.@@Right. Goodbye.}
+{14000}{}{What are you doing here? Get lost!@@What the fuck are you doing here? Get the fuck out, maggot!@@Get lost, before I call the guards!
+}
+{15000}{}{Yes, Knight Matthews.@@Initiate @pname@ ready for duty, Knight Matthews.@@As you command, Knight Matthews.}
+{15010}{}{I see. I'll be going, Knight Matthews.@@Uhuh. I'll go now, Knight Matthews.}
+{15020}{}{Screw you, old hag.@@I said, fuck you, you old bat.@@Fuck off, you old bitch.@@I said you could go and fuck yourself, Scribe Kendrick.}
+{16000}{}{Mcclure talked to}
+{16010}{}{I've been to Vault City and managed to talk to McClure. He wasn't very talkative though, all I could get out of him is that they are neutral. At least for now.}
+{16020}{}{I've travelled to Vault City as you ordered, Scribe Kendrick. I was able to make contact with Councillor McClure. }
+{16030}{}{I've been to Vault City and talked with one Councillor McClure. I was able to get some things out of him, though he rejected our offer. It is not his position to decide, the Council settles such matters collectively. He assured me that Vault City stays neutral, at least for the time being. We also don't have to worry about the Enclave, he didin't even mention them. But...}
+{17000}{}{I've been to Vault City and talked with one Councillor McClure. I was able to get some things out of him, though he rejected our offer. It is not his position to decide, the Council settles such matters collectively. He assured me that Vault City stays neutral, at least for the time being. We also don't have to worry about the Enclave, he didin't even mention them. But he did mention the NCR, and that, I assume is our main competitor in bringing Vault City under our protection. Some people of influence are working to make that place another state of the Republic. The Councillor himself seems pretty sympathethic to our cause, but he can't act alone, at least not yet.}
+{17010}{}{But, he did mention the NCR, and that, I assume is our main competitor in bringing Vault City under our protection. Some influential people inside the city are working to make that place another state of the Republic. The Councillor himself seems pretty sympathethic to our cause, but he can't act alone, at least not yet.}
+{18000}{}{Damn it, Initiate! I was hoping I was wrong about you but... I'm always right about people like you. You fucked this up. Get outta my sight! I'll deal with you later, now, I have to think what to do with this clusterfuck you brought about.}
+{18010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{19000}{}{I see. This is not what I was expecting, Initiate. Though at least, I think we're safe to assume there won't be any surprises from them for a while. You could have done better, but hell, at least we know something more than nothing. Dismissed.}
+{19010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{20000}{}{Well... that not good news. But at least we've got some insight what's going on there. You didin't manage to accomplish your task, but I'll be straight with you, Initiate. I never assumed you will succeed. Good thing is, now we know who's our man there if we'll want to pull some strings again in the future. Maybe you're not so worthless after all. That's all. Dismissed.}
+{20010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{21000}{}{Verti}
+{21010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{22000}{}{Oh, there you are. Good, we've got a situation, Initate @pname@, and I'm gonna need to get your ass to the Boneyard.}
+{22010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{23000}{}{xx}
+{23010}{}{But... I can't haul a Vertibird all by myself.@@I understand, Scribe Kendrick, but I can't just pull the Vertibird all by myself back to Lost Hills...}
+{24000}{}{Damn, I thought you were smarter, Initate @pname@. The Vertibird, or precisely, its frame is not a very complicated construction, bah, we even got most of it already in our hands. But so far we weren't able to construct or replicate a fitting and working engine that could lift it. And now the luck smiles upon us. You will extract the engine parts, the more, the better. }
+{24010}{}{I see. But what about the Enclave? Won't they be sending a rescue party or something?@@What if they managed to send a distress signal, and another Vertibird is already on the way?}
+{25000}{}{That is not likely. Our contact saw the Vertibird crash into a building, I doubt anyone survived. However, if they did manage to call for help, you have full authorisation to use lethal force, should you encounter any Enclave troops, or anyone else that could hinder your efforts. We need those engine parts, and we need them now. Move out, Initiate, time is of the essence!}
+{25010}{}{Yes, Scribe Kendrick. I'm moving out.@@Understood. Initiate @pname@ moving out!@@Yes, Scribe Kendrick, I'm on my way!}
+{26000}{}{xxx}
+{26010}{}{Scribe Kendrick, I can't find that Vertibird... Could you give me the coordinates again?@@Scribe Kendrick, I can't find my way through those Boneyard ruins. Could you please give me the coordinates again?}
+{26020}{}{Yes, Scribe Kendrick, though they are not in perfect condition. The crash was pretty bad, no one survived indeed. I did run into Enclave rescue team though. }
+{26030}{}{Yes, Scribe Kendrick, I have them. No one of the crew survived the crash. Nor did anyone from the rescue party.}
+{26040}{}{I was just leaving, Scribe Kendrick.@@I'm moving out, Scribe Kendrick.}
+{27000}{}{Move your fuckin' ass now or you'll be sorry!@@Get moving you idiot, or they will blow up the wreck!@@Move out you moron, we don't have time for this shit!@@Get your stupid ass moving, you idiot! We need those engine parts!}
+{28000}{}{Hmm, that's strange. Wel'll have to take a look into it later. Now, show me those parts! [You give her the parts you extracted from the engine.] Well, fuck my old ass, this is a pile of junk! I hoped for something better... still, maybe our tech boys will salvage something from it. You're on a thin line Initiate... If it was up to me I'd fry your incompetent ass. But the Elders say we need every man and woman now. Unfortunately...}
+{28010}{}{Yes, Scribe Kendrick. @@Yes, Scribe Kendrick, I'll take my leave now.@@As you wish, Scribe Kendrick.}
+{29000}{}{Hmm, that's strange. Wel'll have to take a look into it later. Now, show me those parts! [You give her the parts you extracted from the engine.] Holy fuck, this is it! Good job, Initiate! I wasn't expecting you'd perform that well. Our tech boys will be very happy to have those. Dismissed!}
+{29010}{}{Yes, Scribe Kendrick. @@Yes, Scribe Kendrick, I'll take my leave now.@@As you wish, Scribe Kendrick.}
+{30000}{}{dock
+}
+{30010}{}{I'm listening, Scribe Kendrick.@@I'm all ears, Scribe Kendrick.@@I'm yours to command, Scribe Kendrick.}
+{31000}{}{Good. Cos this is not gonna be a walk in the park, Initiate Maggot. You remember the Boneyard mission? You were wondering how did the Enclave troops manage to get there so fast, though they didin't fly there...
+}
+{31010}{}{I'm listening, Scribe Kendrick.@@I'm all ears, Scribe Kendrick.@@I'm yours to command, Scribe Kendrick.}
+{32000}{}{Good. Cos this is not gonna be a walk in the park, Initiate Maggot. You remember the Boneyard mission? You were wondering how did the Enclave troops manage to get there so fast, though they didin't fly there...
+}
+{32010}{}{Boats?}
+{33000}{}{Boats? Where did they get them?
+}
+{33010}{}{And?@@And then what, Scribe Kendrick?}
+{34000}{}{He claimed he saw some movement in the old pier, south from the Shi area. So we sent our patrol to investigate, and they saw some movement on the pier. And they saw the boats.
+}
+{34010}{}{So, what are my orders?@@What are my orders then, Scribe Kendrick?}
+{35000}{}{Simple. Go there, and blow up the boats. Blowing them up won't be hard, but getting to them will be. We suspect the outpost is heavily guarded, though our men didin't manage to spot anything in detail.
+}
+{35010}{}{But how will I blow them up?@@But how am I supposed to blow them up exactly?}
+{36000}{}{Simple. Go there, and blow up the boats. Blowing them up won't be hard, but getting to them will be. We suspect the outpost is heavily guarded, though our men didin't manage to spot anything in detail.
+}
+{36010}{}{No, Scribe Kendrick. I am leaving at once.}
+{37000}{}{Dock
+}
+{37010}{}{Scribe Kendrick, I can't find that pier... Could you give me the coordinates again?@@Scribe Kendrick, I got lost in San Francisco... Could you please give me the coordinates again?}
+{37020}{}{Yes, I did, Scribe Kendrick. The outpost was crawling with enclave troops, but I managed to plant the explosives.}
+{37030}{}{I was just leaving, Scribe Kendrick.}
+{38000}{}{Yes, I did, Scribe Kendrick. The outpost was crawling with enclave troops, but I managed to plant the explosives in two crates.
+}
+{38010}{}{[Do as she says.]}
+{38020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{39000}{}{Do you vow to be a loyal member of the Brotherhood, live by our Code, and obey your superiors and our Elders?
+}
+{39010}{}{Yes, I do.}
+{39020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{40000}{}{Do you swear to always help your Brothers and Sisters when they are need?}
+{40010}{}{Yes, I do.}
+{40020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{41000}{}{Do you swear to obey our Elders commands, even if it would lead you to a certain death?}
+{41010}{}{Umm... Yes, I do.}
+{41020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{42000}{}{Are you ready to begin service in the Brotherhood of Steel until the end of your days?}
+{42010}{}{Yes, I do.@@Yes.@@Yes!@@I am ready.}
+{42020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{43000}{}{Then rise up, Apprentice Knight @pname@. You are now allowed access to our main facility. As for now, You're free to go. You're still a member of the Vulture Squad, so I will be your direct superior. Dismissed.
+}
+{43010}{}{Yes, Scribe Kendrick.}
+{44000}{}{Are you ready to say your vows now, Initiate?}
+{44010}{}{Yes, I am.}
+{44020}{}{Not yet, Scribe Kendrick.}
+{45000}{}{I don't have any orders for you right now. Come back later.
+}
+{45010}{}{One of our bunkers was looted. I've dealt with the raiders, and took the holodisk. I thought It could be important. }
+{45020}{}{As you wish, Scribe Kendrick.@@Understood.@@Understood, Scribe Kendrick.}
+{46000}{}{ }
+{46010}{}{Yes, I am leaving at once!@@It won't happen again, Scribe Kendrick, I am moving out now!@@It won't happen again, I'm going there now!}
+{46020}{}{Yes, I am leaving at once!@@It won't happen again, Scribe Kendrick, I am moving out now!@@It won't happen again, I'm going there now!@@Yes, Scribe Kendrick, I am leaving now!}
+{47000}{}{No shit. Give me that! [She takes the holodisk from you.] Fucking worms, I knew posting autocannons was necessary but no... what for?}
+{47010}{}{Scribe Kendrick?@@Erm... I don't understand.}
+{48000}{}{You don't have to. This ain't matters for your ears, at least not yet.}
+{48010}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me to leave that holodisk there...}
+{48020}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me I should have left that holodisk there...}
+{48030}{}{All right.@@As you wish.@@I understand.@@Understood.}
+{49000}{}{[She stares at you with curiosity.]}
+{50000}{}{[She stares at you with curiosity.]}
+{50010}{}{Unless you wanted to be found... and the data on that holodisk is false.}
+{51000}{}{You're a smart one. Since you already deduced everything, yes, it was a ruse. We set up a whole fucking network of "abandoned" bunkers, and loaded them with surplus gear with hidden radio transmitters.}
+{51010}{}{You want to track them?}
+{52000}{}{Yes. Ever since the San Francisco pier incident, they're a lot more secretive in their movements. And we know they have other bases in the mainland...}
+{52010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+{53000}{}{I will have to deal with this. Wait until I have new orders. Dismissed.@@That is all. I'll have to deal with this. Come back later.}
+{53010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+
+[pols]
+{100}{}{Skryba Kendrick}
+{200}{}{Widzisz: Skryba Kendrick.}
+{210}{}{Widzisz starsz¹ kobietê ubran¹ w szare szaty. Patrzy przez okno, jakby szuka³a czegoœ w bezchmurnym niebie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not in bos}
+{1020}{}{In bos}
+{1030}{}{before vows}
+{1040}{}{Dock mission ongoing/success}
+{1050}{}{Dock mission}
+{1060}{}{Vertibird mission}
+{1070}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{1080}{}{Vertibird mission success/waiting.}
+{1090}{}{Talked to Macclure}
+{1100}{}{met again}
+{1110}{}{answer}
+{2000}{}{[Kobieta odwraca si do ciebie i przenikliwe patrzy swoimi zielonymi oczami.] No, no...co my tutaj mamy? Kolejny niekompetentny wok przysany do mnie przez szczwanego Matthewsa? [Zauwaa twoj reakcj.] Dobra, nie mam czasu na uprzejmoci. Chcesz do nasz doczy, to przyzwyczaj si do mnie kadecie...Robaku. Ta, to bdzie twoje imi od tej pory. Podoba ci si?}
+{2010}{}{Tak jest...prosz pani.}
+{2020}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{3000}{}{adnego "prosz pani", kurwa! Nie jestemy w przedwojennym przedszkolu, kretynie. Tutaj, w Bractwie Stali, bdziesz zwraca si do mnie "Skrybo Kendrick", czy to jasne? Dobrze. Nie potrzebuj tutaj adnych paczcych cipek wymagajcych podcierania kadego dnia.}
+{3010}{}{[Pozwl Skrybie mwi]}
+{3020}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{4000}{}{W porzdku. Jak, mam nadziej, udao ci si wydedukowa jestem Skryba Kendrick, zwierzchnik dywizji do zada specjalnych tutaj w Lost Hills. Podczas swojego szkolenia otrzymujesz polecenia ode mnie, i tylko ode mnie. Moim obowizkiem jest przerobi t bezuyteczn kup bramiskiego gwna jak jeste w co znacznie mniej aosnego. I tak te zamierzam zrobi, ale nie bd przeszkadza ci w ewentualnej prbie samobjstwa, gdy twoje ycie i tak nie zrobi najmniejszej rnicy.}
+{4010}{}{@sex@|Zrozumiaem||Zrozumiaam|, Skrybo Kendrick.}
+{4020}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{5000}{}{Spjrzcie kto do nas powrci! Jakie masz dla mnie wiadomoci, kadecie Robaku?@@Smrd niekompetencji zdradzi twoj obecno wczeniej. Dlaczego mi przeszkadzasz?@@Czego chcesz tym razem?@@[Wzdycha z zaenowaniem] Co tym razem, kadecie?}
+{5010}{}{Czy moesz powtrzy mi moje zadanie, Skrybo Kendrick?@@Moesz opowiedzie mi jeszcze raz o moim zadaniu, Skrybo Kendrick?@@Ja, erm...zapomniaem swoich rozkazw. Moesz mi je powtrzy, Skrybo Kendrick?}
+{5020}{}{Wanie przechodziem, Skrybo Kendrick. Natychmiast wyruszam do Kryptopolis.}
+{6000}{}{I bardzo dobrze. Skupmy si na twoim szkoleniu. Najpierw wylemy ci na misj...dyplomatyczn. Poniekd. Bractwo Stali musi oceni sytuacj zewntrzn. Co do wikszych 'graczy', takich jak NCR, Enklawa czy Hub mamy ju jasno. Ale wci istnieje kilka...duych znakw zapytania. I chc, eby sprawdzi co si za nimi kryje. W zwizku z tym wyruszysz do Kryptopolis, kadecie.}
+{6010}{}{Tak jest, Skrybo Kendrick. Jak mniemam co musi zosta zrobione kiedy ju si tam dostan?}
+{6020}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{7000}{}{Tak, bystrzacho, zgadza si. Dosta si do Kryptopolis i znajd kogo z autorytetem. Nie musi by to Prezydent, Szef, Genera, czy cokolwiek te bezmzgi nazywaj z wyszych szczebli. Ale wciz musi by to kto znacznie wyej pooony ni zwyky mieszkaniec.}
+{7010}{}{Kto taki jak Senator McClure?}
+{7020}{}{A potem?@Co wtedy?@@I co mam zrobi dalej?}
+{7030}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{8000}{}{Zaczynasz mnie wkurwia, kadecie Robaku, wanie do tego zmierzam! [Przerywa na chwil.] Dobra, o czym to ja mwiam? A, tak, musimy dowiedzie si jakie s ich intencje. Dotychczas nie odpowiedzieli na adne z dyplomatycznych listw ktre wysalimy im za porednictwem karawan, ani te nie skontaktowali si z nami bd prosili o pomoc. Biorc pod uwag ich stosunek do osb z poza miasta moemy podejrzewa, e ju przychylaj si w kierunku Enklawy, ale Bractwo Stali musi mie stuprocentow kurwa pewno. I do tego nadaje si taka larwa jak ty.}
+{8010}{}{Przyjem, Skrybo Kendrick.@@Tak jest, prosz pa...Skrybo Kendrick.@@Wedle rozkazu, Skrybo Kendrick.@@Zrozumiaem, Skrybo Kendrick.}
+{8020}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{9000}{}{Dobra. Nasza propozycja jest prosta. Chcemy ugruntowa oficjalne stosunki, ustali jakie porozumienie w sprawie handlu, arcie za bro czy co w tym stylu, a na sam koniec wybudowa tam bunkier. Nazwij to ambasad, moe lepiej bdzie to im brzmiao. Jasne?}
+{9010}{}{Przyjem, Skrybo Kendrick.@@Tak jest, prosz pa...Skrybo Kendrick.@@Wedle rozkazu, Skrybo Kendrick.@@Zrozumiaem, Skrybo Kendrick.}
+{9020}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{10000}{}{Czy ty kurwa masz mnie za idiotk? Czy ja wygldam na idiotk? Nie? Wic jakim chujem pozwalasz sobie na traktowanie mnie jak idiotk? Do kurwy ndzy, powtrz twoje rozkazy, ale to jest ostatni, ostrzegam, ostatni pierdolony raz!}
+{10010}{}{Nie, to znaczy, tak, Skrybo Kendrick. Zamieniam si w such, i we wzrok, i wszystko inne. Wic, moim zadaniem byo...}
+{10020}{}{Pieprz to.@@Mam do.@@Dobra, mam do. Wychodz.@@A id si pierdol, suko. Wychodz std.@@Wystarczy tego, spierdalaj.@@Co, do cholery? Pieprz si, wychodz.}
+{11000}{}{Kto? Nie znam adnego...chwila. Czyli ju bye w Kryptopolis? Kim jest ten McClure?}
+{11010}{}{Jest senatorem, jak @sex@|powiedziaem||powiedziaam|. Ma spory autorytet, jak naley, Skrybo Kendrick.}
+{11020}{}{On jest...yyy...znaczy, tak tylko przyszed mi na myl. Syszam o nim, ale to wszystko. Nigdy nie @sex@|byem||byam| w Kryptopolis, Skrybo Kendrick. Wic co mam zrobi kiedy ju si tam dostan?}
+{12000}{}{[Bierze krok w twoj stron] C...nie tego si spodziewaam. [Wyglda na lekko zaskoczon.] Ale to dobrze. Jeli @sex@|miae||miaa| ju wczeniej kontakt z tym gociem, to sprawy powinny mie si prociej. No dobra,..teraz...[Przerywa na dug chwil, i sekundy oczekiwania wkrtce zmieniaj si w lata]}
+{12010}{}{@sex@|Miaem||Miaam| i do Kryptopolis, po...}
+{13000}{}{Dobrze. [Patrzy na ciebie chodno.] Na co jeszcze czekasz? Do roboty, woku!}
+{13010}{}{Przyjem, Skrybo Kendrick.@@Tak jest, prosz pa...Skrybo Kendrick.@@Wedle rozkazu, Skrybo Kendrick.@@Zrozumiaem, Skrybo Kendrick.}
+{14000}{}{Co ty tu robisz? Wyno si!@@Co ty tu kurwa robisz?@@Wyno si, zanim zawoam stranikw!}
+{15000}{}{Co ty @sex@|powiedzia||powiedziaa|? Powiedz to jeszcze raz, no miao!@@ Co e @sex@|powiedzia||powiedziaa|? Powtrz jeszcze raz, bo niedosyszaam, i nie jestem pewna czy mam zawoa stranikw, eby podziurawili twoje dupsko!@@Co kurwa? Czy ty wanie @sex@|powiedziae||powiedziaa| to co myl?  }
+{15010}{}{Nie, nie, ju nic. Oczekuj na twoje rozkazy, prosz pani.@@Niewane, prosz pani.@@Nic takiego, prosz pani.}
+{15020}{}{Dosy, stara krowo.@@@sex@|Powiedziaem||Powiedziaam| pierdol si, nietoperzu.@@Odpierdol si, stara kurwo.@@@sex@|Powiedziaem||Powiedziaam|, e moesz i si jeba, Skrybo Kendrick.@@Mam do twojego pierdolenia, suko.@@Wystarczy tego, dziwko.}
+{16000}{}{Jeste z powrotem. Jakie nowoci przynosisz, kadecie?@@Ju z powrotem? Mam nadziej, e nie nawalie, rekrucie.@@Spjrzcie kto do nas wrci. Co masz do zameldowania, rekrucie?}
+{16010}{}{@sex@|Byem||Byam| w Kryptopolis i udao mi si porozmawia z senatorem McClure'm. Odrzuci nasz propozycj, i nie zdradzi adnych informacji, Skrybo Kendrick.}
+{16020}{}{Udao mi si dosta do Kryptopolis jak rozkazaa, Skrybo Kendrick, i @sex@|nawizaem||nawizaam| kontakt z senatorem McClure'm. Zapewni, e Kryptopolis jest aktualnie cakowicie neutralne, chocia nie zaakceptuje naszej oferty. Prawdopodobnie maj sprzeczne zdania w tej swojej Radzie, i nie mog si zdecydowa na kierunek dziaania. To wszystko, Skrybo Kendrick.}
+{16030}{}{@sex@|Dotarem||Dotaram| do Kryptopolis i @sex@|porozmawiaem||porozmawiaam| z senatorem McClure'm. Udao mi si dowiedzie par rzeczy, jednake odrzuci nasz ofert. Twierdzi, e nie jest w pozycji decydowania o tym, i Rada rozwizuje takie problemy zbiorowo. Zapewni mnie, e Kryptopolis zachowuje neutralno, przynajmniej przez jaki czas. Nie musimy si rwnie martwi o Enklaw, nawet o nich nie wspomnia, ale...}
+{17000}{}{Tak? Gadaje, kadecie!@@Kontynuuj.@@Mw dalej, kadecie.}
+{17010}{}{Ale wspomnia o RNK i mniemam, e to jest nasz gwny rywal we wziciu Kryptopolis pod nasze skrzyda. Kilku wpywowych ludzi wewntrz pracuje by zrobi z Kryptopolis kolejny stan Republiki. Senator skania si bardziej ku naszej sprawie, ale nie moe dziaa samodzielnie, przynajmniej na razie. To wszystko, Skrybo Kendrick.}
+{18000}{}{Do diaba, rekrucie! Miaam nadziej, e sie myl co do ciebie, ale wyglda na to, e zawsze mam racj co do ludzi. Spierdolie po caoci, i poniesiesz konsekwencje pniej. Teraz musz wymyli co zrobi z tym rozpierdolem ktry @sex@|narobie||narobia|. Zejd mi z oczu w tej chwili!}
+{18010}{}{Tak, Skrybo Kendrick.@@Jak sobie yczysz, Skrybo Kendrick.@@Tak jest, Skrybo Kendrick, pjd ju.}
+{19000}{}{Cholera. Nie tego si spodziewaam, rekrucie. Przynajmniej moemy bezpiecznie zaoy, e nie bdzie adnych niespodzianek z ich strony przez jaki czas. Moge sobie lepiej poradzi, ale cholera przynajmniej wiemy wicej ni nic. To wszystko, odmaszerowa.}
+{19010}{}{Tak, Skrybo Kendrick.@@Jak sobie yczysz, Skrybo Kendrick.@@Tak jest, Skrybo Kendrick, pjd ju.}
+{20000}{}{Cz...to nie s zbyt dobre wiadomoci. Ale przynajmniej mamy pewien wgld w to, co si tam wyprawia. Nie udao ci si wykona swojego zadania w caoci, ale bdc szczer, kadecie, nigdy nie zaoyam, e ci si powiedzie. Na dobr spraw wiemy kto moe by nasz wtyk, jeli bdziemy chceli pocigna tam za jakie sznureczki w przyszoci. By moe nie jeste wcale @sex@|taki bezuyteczny||taka bezuyteczna| na @sex@|jakiego||jak| wygldasz. To tyle, odmaszerowa.}
+{20010}{}{Tak, Skrybo Kendrick.@@Jak sobie yczysz, Skrybo Kendrick.@@Tak jest, Skrybo Kendrick, pjd ju.}
+{21000}{}{Oto jest nasza chodzca niekompetencja. Dobrze, e jeste. Reszta ma inne obowizki na gowie, wic na nasze nieszczcie musimy znowu na tobie polega. Mam dla ciebie kolejne zadania, i lepiej eby tym razem nie nawali. Wysyamy twoje aosne dupsko do Gruzw.}
+{21010}{}{Tak, Skrybo Kendrick.@@Jak sobie yczysz, Skrybo Kendrick.@@Tak jest, Skrybo Kendrick, pjd ju.}
+{22000}{}{O, tutaj jeste, robaku. Mamy tutaj napit sytuacj, wic potrzebuj, eby @sex@|wzi||wzia| swoje leniwe dupsko w troki i ruszy do Gruzw.}
+{22010}{}{Tak, Skrybo Kendrick.@@Jak sobie yczysz, Skrybo Kendrick.@@Tak jest, Skrybo Kendrick, pjd ju.}
+{23000}{}{Dobra, sytuacja wyglda tak. Otrzymalimy piln transmisj od naszego czowieka w Adytum. Zobaczy Latacza rozbijajcego si nie tak daleko std. Jest to wietna okazja dla Bractwa! Potrzebujemy zdoby technologi Lataczy dla siebie, eby Enklawa nie bya cay czas dwa kroki przed nami. I ty w tym pomoesz.}
+{23010}{}{Tak, ale...nie jestem w stanie samodzielnie docign do was caego Latacza.@@Rozumiem, Skrybo Kendrick, ale nie jestem w stanie samodzielnie docign do Lost Hills caego Latacza...@Ale...Skrybo Kendrick, nie mam adnego rodka transportu by przywie wrak Latacza tutaj do Lost Hills.}
+{24000}{}{Eh, miaam nadziej, e jeste inteligentniejszy, kadecie Robaku. Latacz, a dokadniej jego konstrukcja, nie jest wcale skomplikowana. Ba, wikszo schematw mamy ju nawet w baszych bazach danych. Ale do tej pory nie udao nam si skonstruowa bd powieli odpowiedni i pracujcy silnik mogcy wynie Latacza w powietrze. A teraz szczcie nam sprzyja. Masz wydoby czci silnika, i im wicej tym lepiej.}
+{24010}{}{Rozumiem. Ale co z Enklaw? Nie wyl jakiego oddziau ratunkowego czy co?@@A co jeli przed rozbiciem piloci wysali sygna SOS, i kolejny Latacz jest ju w drodze?}
+{25000}{}{Nie jest to prawdopodobne. Nasz czowiek zobaczy, jak Latacz rozbi si o budynek, i wedle niego pewnie nawet nie dowiedzieli si co ich trafio. Wtpie rwnie, e ktokolwiek przey, by wezwa pomoc. Jednake, jeli faktycznie udao im si przey, masz autoryzacj na uycie siy jeli napotkasz jakichkolwiek onierzy Enklawy, lub kogokolwiek innego mogcego przeszkodzi w twoim zadaniu. Potrzebujemy tych czci silnika, i potrzebujemy ich teraz. Masz tutaj wsprzdne i ruszaj w drog, kadecie. Czas nagli!}
+{25010}{}{Tak jest, Skrybo Kendrick, wyruszam bezzwocznie!@@Przyjem, kadet @pname@ odmeldowuje si!@@Tak jest, Skrybo Kendrick, natychmiast ruszam w drog!}
+{26000}{}{Najwyszy czas. Masz ze sob czci silnika?}
+{26010}{}{Skrybo Kendrick, nie mog znale tego Latacza. Czy moesz poda mi wsprzdne jeszcze raz?}
+{26020}{}{Tak, Skrybo Kendrick, chocia nie s w idealnym stanie. Upadek by do powany, nikt nie przey. Jednake napotkaem oddzia ratunkowy Enklawy, chocia nie mam pojcia jak udao im si tak szybko tam dotrze. Nie widziaem adnego innego Latacza w pobliu.}
+{26030}{}{Tak, Skrybo Kendrick, mam je. Napotkaem rwnie oddzia ratunkowy Enklawy, chocia nie mam pojcia jak udao im si tak szybko tam dotrze. Nie widziaem adnego innego Latacza w pobliu.}
+{26040}{}{Jeszcze nie, Skrybo Kendrick.}
+{27000}{}{No to rusze dupsko, albo bdziesz tego aowa!@@Rusz si kretynie zanim wysadz wrak!@@Ty idioto, rusz dupsko! Potrzebujemy tych czci!}
+{28000}{}{Hmm, to dziwne. Bdziemy musieli zaj si tym pniej. Teraz poka mi te czci! [Dajesz jej czci ktre wydobye z silnika.] No ja pierdol, to sterta zomu! Miaam nadziej na co lepszego, ale c, moe nasi technicy wykombinuj co z nich. [Zwraca si do ciebie] Chodzisz po grzskim gruncie. Jeli zaleaoby to ode mnie to usmayabym twoje niekompetentne dupsko, kadecie Robaku! Niestety, Starszyzna mwi, e potrzebujemy kadego czowieka. Jaka szkoda. Odmaszerowa!}
+{28010}{}{Tak, Skrybo Kendrick.@@Jak sobie yczysz, Skrybo Kendrick.@@Tak jest, Skrybo Kendrick, pjd ju.}
+{29000}{}{Hmm, to dziwne. Bdziemy musieli zaj si tym pniej. Teraz poka mi te czci! [Dajesz jej czci ktre wydobye z silnika.] O cholera, tak! Tak, to jest to! Dobra robota, kadecie! Nie spodziewaam si, e tak dobrze sobie poradzisz. Nasi technicy bd bardzo szczliwy mogc si nimi pobawi. Odmaszerowa.}
+{29010}{}{Tak, Skrybo Kendrick.@@Jak sobie yczysz, Skrybo Kendrick.@@Tak jest, Skrybo Kendrick, pjd ju.}
+{30000}{}{Dobrze ci widzie, kadecie Robaku. Biorc pod uwag twoje dotychczasowe wyczyny nie jestem do koca przekonana, e si do tego nadajesz. Ale starszyzna ma inne zdanie.}
+{30010}{}{Sucham, Skrybo Kendrick.@@Zamieniam si w such, Skrybo Kendrick.@@Jestem do dyspozycji, Skrybo Kendrick.}
+{31000}{}{Dobrze. Poniewa to nie bedzie spacer w parku, kadecie Robaku. Pamitasz swoj ostatni misj w Gruzach? Pewnie zastanawiae si w jaki sposb onierze Enklawy tak szybko tam dotary?}
+{31010}{}{Jak?@@Tak, wic...jak?@@Tak, jak?@@Tak, Skrybo Kendrick, jak?}
+{32000}{}{Na pocztku mylaam, e po prostu omine drugiego Latacza. Ale pniej, kiedy zapytalimy naszego czowieka z Adytum, to powiedzia, e nie widzia adnych innych Lataczy poza tym jednym. Wic przemylelimy wszystko i...odpowied bya bardzo prosta. odzie!}
+{32010}{}{odzie?}
+{33000}{}{Tak, kadecie Robaku, odzie. Due, metalowe obiekty unoszce si na wodzie. Mwi ci to co? Dobrze. Zaczlimy wszy wok zachodniego wybrzea, i dostalimy wiadomo z naszej placwki w San Fransisco. Jaki tubylec przyszed do nich pytajc o kapsle twierdzc, e zobaczy co czym moglibymy by zainteresowani...}
+{33010}{}{Co takiego, Skrybo Kendrick?}
+{34000}{}{Twierdzi, e zobaczy jakie wiata w pobliu starej przystani, na poudnie od terenu Shi. Wic wysalimy tam patrol, i oni zobaczyli tam jakie poruszenie. Byy tam te i odzie.}
+{34010}{}{Wic jakie s moje rozkazy?@@Jakie mam wytyczne, Skrybo Kendrick?}
+{35000}{}{Proste. Dosta si tam, i wysad odzie. Wysadzenie ich nie bdzie trudne, ale dostanie si tam tak. Podejrzewamy, e placwka jest silnie strzeona, chocia nasi ludzie nie znaleli niczego konkretnego. Sugeruj dziaanie w ukryciu, chyba, e wolisz walczy z co najmniej kompani onierzy Enklawy.[Zauwaa twoj reakcj.] I nie, nie moemy pozwoli sobie na ryzykowanie naszymi Paladynami, poniewa nie mamy pojcia jak wiele wojska tam stacjonuje. A ty, z drugiej strony...jeste jedynie kadetem.}
+{35010}{}{Przyjem, Skrybo Kendrick. Przeznaczony na stracenie kadet Robak jest gotw na misj samobjcz. Jak mniemam mam wskoczy do zbiornika z paliwem i liczy na to, e kawaki mojego ciaa pouszkadzaj silniki?}
+{36000}{}{[Umiecha si.] Zachowaj te swoje arty dla kogo innego. To miejsce prawdopodobnie jest placwk zaopatrzeniow, wic gsto tam bdzie od amunicji, granatw, i tym podobnych. Pewnie znajd si tam i materiay wybuchowe z zapalnikami czasowymi. Ustaw je tak, e kiedy wybuchn, wywoaj reakcj acuchow i caa instalacja wraz z odziami pjdzie w pizdu. Pamitaj, eby ustawi zegar na tyle, eby mie jeszcze czas zabra stamtd swoje dupsko. Jakie pytania?}
+{36010}{}{Nie, Skrybo Kendrick. Wyruszam natychmiast.}
+{37000}{}{Ju tu jeste? Zakoczye swoje zadanie, kadecie Robaku?}
+{37010}{}{Skrybo Kendrick, nie mog znale tej przystani. Moesz mi jeszcze raz poda wsprzdne?}
+{37020}{}{Tak jest, Skrybo Kendrick. Placwka bya silnie strzeona, ale udao mi si podoy materiay wybuchowe.}
+{37030}{}{Jeszcze nie, ale wkrtce si tym zajm, Skrybo Kendrick.}
+{38000}{}{Bez jaj! Dam zna naszym chopcom z San Fran, eby sprawdzili co zostao z tamtej bazy. Dobra robota, naprawd dobra robota! A teraz, kadecie Rob...@pname@, myl, e zasuye sobie na przyjcie w szeregi Bractwa Stali, jak i oddziau Sp. Jeli jeste gotw zoy przysig, to powtarzaj za mn...}
+{38010}{}{[Rb tak jak mwi.]}
+{38020}{}{[Przerwij jej.] Nie, musz to jeszcze przemyle.}
+{39000}{}{Czy ty, kadecie @pname@, przysigasz lojalno i wierno Bractwu Stali?}
+{39010}{}{Tak, przysigam.}
+{39020}{}{[Przerwij jej.] Nie, musz to jeszcze przemyle.}
+{40000}{}{Czy przyrzekasz dziaa na rzecz Bractwa, wspierajc swoich Braci i Siostry niezalenie od okolicznoci, i kiedykolwiek tylko znajd si w potrzebie?}
+{40010}{}{Tak, przysigam.}
+{40020}{}{[Przerwij jej.] Nie, musz to jeszcze przemyle.}
+{41000}{}{Czy przysigasz wykonywa polecenia Starszyzny, nawet jeli kierowayby ci one na pewn mier?}
+{41010}{}{Tak, przysigam.}
+{41020}{}{[Przerwij jej.] Nie, musz to jeszcze przemyle.}
+{42000}{}{Sowa przysigi zostay wypowiedziane. Jeste gotw rozpocz sub w Bractwie Stali, i bycie lojalnym @sex@|Bratem||Siostr| do koca swoich dni?}
+{42010}{}{Tak, jestem @sex@|gotowy||gotowa|.}
+{42020}{}{[Przerwij jej.] Nie, musz to jeszcze przemyle.}
+{43000}{}{Wic mianuj ci na Rycerza @pname@. Od dzisiaj jeste @sex@|zaprzysionym Bratem||zaprzysion Siostr| w Bractwie Stali. We ten pancerz, i no go z dum. Co do twoich obowizkw, to na razie jeste wolny. Masz dostp do naszej gwnej placwki, i do koszar pod tym budynkiem. Pamitaj, jeste take czonkiem oddziau Sp, wic wci bd twoj bezporedni przeoon. To by dugi dzie @pname@, musz odpocz. Odmaszerowa.}
+{43010}{}{Tak, Skrybo Kendrick.}
+{44000}{}{Jeste gotw zoy przysig, Kadecie?}
+{44010}{}{Tak, jestem gotw.}
+{44020}{}{[Przerwij jej.] Nie, musz to jeszcze przemyle.}
+{45000}{}{Nie mam aktualnie dla ciebie adnych rozkazw. Przyjd pniej.
+}
+{45010}{}{One of our bunkers was looted. I've dealt with the raiders, and took the holodisk. I thought It could be important. }
+{45020}{}{As you wish, Scribe Kendrick.@@Understood.@@Understood, Scribe Kendrick.}
+{46000}{}{Co ty kurwa robi przez cay ten czas?! Ty pieprzony imbecylu! [Podaje ci wsprzdne jeszcze raz.] Nie spierdol tego, ruszaj dup!@@Co?! Czy ty jeste jaki niedorobiony, kadecie Robaku? We je, i wypieprzaj std zanim rozka powyciera tob wszystkie kible! [Podaje ci wsprzdne jeszcze raz.]}
+{46010}{}{Tak jest, wyruszam w tej chwili. To si nie powtrzy.}
+{46020}{}{Tak jest, wyruszam w tej chwili. To si nie powtrzy.}
+{47000}{}{No shit. Give me that! [She takes the holodisk from you.] Fucking worms, I knew posting autocannons was necessary but no... what for?}
+{47010}{}{Scribe Kendrick?@@Erm... I don't understand.}
+{48000}{}{You don't have to. This ain't matters for your ears, at least not yet.}
+{48010}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me to leave that holodisk there...}
+{48020}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me I should have left that holodisk there...}
+{48030}{}{All right.@@As you wish.@@I understand.@@Understood.}
+{49000}{}{[She stares at you with curiosity.]}
+{50000}{}{[She stares at you with curiosity.]}
+{50010}{}{Unless you wanted to be found... and the data on that holodisk is false.}
+{51000}{}{You're a smart one. Since you already deduced everything, yes, it was a ruse. We set up a whole fucking network of "abandoned" bunkers, and loaded them with surplus gear with hidden radio transmitters.}
+{51010}{}{You want to track them?}
+{52000}{}{Yes. Ever since the San Francisco pier incident, they're a lot more secretive in their movements. And we know they have other bases in the mainland...}
+{52010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+{53000}{}{I will have to deal with this. Wait until I have new orders. Dismissed.@@That is all. I'll have to deal with this. Come back later.}
+{53010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Not in bos}
+{1020}{}{Full bos member}
+{1030}{}{before vows}
+{1040}{}{Dock mission ongoing/success or lost location}
+{1050}{}{Dock mission}
+{1060}{}{Vertibird mission}
+{1070}{}{Vertibird mission, shitty vc quest outcome}
+{1080}{}{Vertibird mission success/waiting or lost location
+}
+{1090}{}{Talked to Macclure}
+{1100}{}{met again}
+{1110}{}{answer}
+{2000}{}{[The woman turns around and pierces you with her green eyes.] Well, well... what do we have here? Another incompetent fool sent by that sly dog Matthews? [She notices your reaction.] Now, I don't have time for pleasantries. You want to join us, get used to me, Initiate... Maggot. Yeah, That will be your callsign now. Do you like it?}
+{2010}{}{Yes... Ma'am. }
+{2020}{}{Fuck this.@@I've had enough.@@That enough for me.@@ Screw you, I'm getting the hell outta here.@@That's enough.@@That does it. Im getting the hell outta here.}
+{3000}{}{I am no fucking' Ma'am! You will address me as Scribe Kendrick, is that understood? Good. I don't need no sniveling pussies that need their asses wiped everyday!}
+{3010}{}{[Wait.]@@[Let her talk.]@@[Let the woman talk.]@@[Let the elderly Scribe talk.]}
+{3020}{}{Fuck this.@@I've had enough.@@That's enough for me.@@ Screw you, I'm getting the hell outta here.@@That's enough.@@That does it. I'm getting the hell outta here.}
+{4000}{}{Right. Now, as you hopefully already managed to deduce, I am Scribe Kendrick, chief of the Spec-Ops here in Lost Hills. During your training you will answer to me, and to me only. It is my duty to reshape you, a worthless piece o' brahmin dung into something hopefully less pathetic. And I intend to do so, unless you'll happen to die in the process. Which doesn't make any big difference anyway.}
+{4010}{}{Understood, Scribe Kendrick.@@As you command, Scribe Kendrick.}
+{4020}{}{Fuck this.@@I've had enough.@@That enough for me.@@ Screw you, I'm getting the hell outta here.@@That's enough.@@That does it. Im getting the hell outta here.@@This is too much for me. I'm getting the fuck outta here.}
+{5000}{}{Look who's back! What news do you have for me, you miserable Initiate Maggot?@@The aura of incompetence precedes you, Initiate. Why do you disturb me?@@What the hell do you want now?@@[Sighs.] What is it now, Initiate?}
+{5010}{}{Could you please repeat what was my task, Scribe Kendrick?@@Could you tell me again about my task, Scribe Kendrick?@@I...um...forgot my orders. Could you repeat them, Scribe Kendrick?}
+{5020}{}{I was just passing by, Scribe Kendrick. I am going to Vault City now.}
+{6000}{}{Allright. Let us concentrate on your training. First, you will perform... A diplomatic mission. Sorta. The Brotherhood needs to asses its surroundings. As for the major players like NCR, Enclave and the Hub we've got things covered. But...there are some that are a... a big question mark. And I need you to check what's behind that. You will travel to Vault City, Initiate.}
+{6010}{}{Yes, Scribe Kendrick. I suppose something needs to be done when I get there?}
+{6020}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{7000}{}{Yes, you smartass, there is. Get to Vault City, find someone of authority. Not necesserily the President, Chief, General, or whatever those morons have in the higher echelons. But still, it needs to be someone rather high up.}
+{7010}{}{Someone like Councillor McClure?}
+{7020}{}{And then?@@What then?@@What should I do then?}
+{7030}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{8000}{}{You're starting to get on my nerves, Initiate Maggot! I'm getting to it! [She pauses for a while.] So, where was I? Ah, yes. We need to check what are their intentions. They never answered any diplomatic mail we sent via caravans, nor they have ever requested help. Considering their stance towards the humans outside of their city, we suspect they might be already leaning towards the Enclave, but the Brotherhood needs to be one-fucking-hundred-percent sure. And that's where you come in, maggot.}
+{8010}{}{I understand, Scribe Kendrick.@@Yes Ma... Scribe Kendrick. I understand now.@@As you command, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+{8020}{}{Fuck this.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.}
+{9000}{}{Right. Our proposition is simple. We want to establish official relations, arranging some trade agreement, food for weapons or something like that, and lastly, we will need a bunker there. Call it an embassy, it might ring better in their ears. Got it?}
+{9010}{}{Yes, Scribe Kendrick.@@Yes Ma... Scribe Kendrick. I understand.@@As you command, Scribe Kendrick.@@If that's your order, Scribe Kendrick.}
+{9020}{}{Fuck this, go there yourself.@@I've got better things to do, you old witch.@@Fuck off, you old witch.@@Screw this.@@Fuck that shit.@@I'd rather be screwing ghoul chicks than listening to you, bitch.@@Whatever, I'm getting the hell outta here.@@I've got better things to do. }
+{10000}{}{Do you think I'm an idiot? Do I look like an idiot? No? So why do you treat me like an idiot? For fuck's sake, I will repeat your orders, but this is the last, I repeat, last fucking time!}
+{10010}{}{No, I mean... Yes, Scribe Kendrick. I'm all ears. And eyes. And everything else, for that matter. So, my task was...}
+{10020}{}{Screw you, old hag.@@Fuck you, you old bat.@@Fuck off, you old bitch.@@Go fuck yourself, Scribe Kendrick.@@I've had enough of your shit, you cunt.@@That's enough, bitch.@@Fuck off, you old hag.@@Shut up, you old cunt.}
+{11000}{}{Who? I don't know any stupid... wait a minute. So you've been to Vault City? Who's this McClure of yours?}
+{11010}{}{He's the city's council member. Rather high up, as you would've put it, Scribe Kendrick. }
+{11020}{}{It just... uh... crossed my mind. I've heard of the man but that's all. I've never been to Vault City, Scribe Kendrick. So, what should I do once I get there?}
+{12000}{}{[She takes a step closer.] Well.... That's not something I was expecting. [She seems to be surprised.] But it's good, nevertheless. If you had contact with this fellow, things should be simpler. All right...now... [She makes a long pause, with seconds turning to years of waiting.]}
+{12010}{}{I was supposed to go to Vault City to...}
+{13000}{}{Good. [She looks at you coldly.] What are you waiting for? Get moving, maggot!}
+{13010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@As you command, Scribe Kendrick.}
+{14000}{}{What are you doing here? Get lost!@@What the fuck are you doing here? Get the fuck out, maggot!@@Get lost, before I call the guards!
+}
+{15000}{}{What the fuck did you say? Say it again, I dare you!@@What did you say? Please repeat so I can order the guards to tear you to shreds!@@What the fuck? Say it again, and you're dead!}
+{15010}{}{Nothing, it's nothing. I await your orders, Ma'am. @@Not a thing, Ma'am.@@Nothing really, Ma'am.}
+{15020}{}{Screw you, old hag.@@I said, fuck you, you old bat.@@Fuck off, you old bitch.@@I said you could go and fuck yourself, Scribe Kendrick.@@I've had enough of your shit, you cunt.@@That's enough, bitch.}
+{16000}{}{You're back. What news do you bring, Initiate?@@You're back already? I hope you didn't screw up, Initiate.@@Look who's back. What news, Initiate?}
+{16010}{}{I've been to Vault City and managed to talk to Councillor McClure. He rejected our offer, and he didn't spill anything else. That's all I could get out of him, Scribe Kendrick.}
+{16020}{}{I've travelled to Vault City as you ordered, Scribe Kendrick. I was able to make contact with Councillor McClure. He assured me that Vault City is neutral for the time being, though he would not accept our offer. They've probably got some differring opionions on this Council of theirs, and they can't decide what course to take. That's all, Scribe Kendrick.}
+{16030}{}{I've been to Vault City and talked with one Councillor McClure. I was able to get some things out of him, though he rejected our offer. It is not his position to decide, the Council settles such matters collectively. He assured me that Vault City stays neutral, at least for the time being. We also don't have to worry about the Enclave, he didn't even mention them. But...}
+{17000}{}{Yes? Spill it out, Initiate!@@Go on.@@Continue, Initiate.}
+{17010}{}{But, he did mention the NCR, and that, I assume is our main competitor in bringing Vault City under our protection. Some influential people inside are working to make that place another state of the Republic. The Councillor himself seems pretty sympathethic to our cause, but he can't act alone, at least not yet. That is all, Scribe Kendrick.}
+{18000}{}{Damn it, Initiate! I was hoping I was wrong about you but... I'm always right about people. You fucked this up, big time. I'll deal with you later, but now, I have to think what to do with this clusterfuck you brought about. Now, get outta my sight! }
+{18010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{19000}{}{Crap. This is not what I was expecting, Initiate. Though at least I think we're safe to assume there won't be any surprises from them for a while. You could have done better, but hell, at least we know something more than nothing. Now go. Dismissed.}
+{19010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{20000}{}{Well that's not good news. But at least we've got some insight what's going on there. You didn't manage to accomplish your task, but I'll be straight with you, Initiate. I never assumed you will succeed. Good thing is, now we know who's our man there if we'll want to pull some strings again in the future. Maybe you're not so worthless after all. That's all. Dismissed.}
+{20010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@Yes, Scribe Kendrick, I'll take my leave now.}
+{21000}{}{Here comes the incompetent fool. Good thing you're here. We've got our men busy with other tasks, so we're unfortunately dependant on you again. I've got another mission for you, Initiate, you better not screw this up this time. You're getting your sorry ass to the Boneyard this time.}
+{21010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{22000}{}{Oh, there you are, maggot. We've got an urgent situation here, so I'm gonna need you to get your ass to the Boneyard.}
+{22010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.@@I'm listening, Scribe Kendrick.}
+{23000}{}{All right, here's the deal. We have received urgent transmission from our man in Adytum. He saw a Vertibird crash not far from there... This is a great opportunity for the Brotherhood! We need to replicate the Vertibird technology for ourselves, so the Enclave won't be able to outrun us every time. And you will help us accomplish this.}
+{23010}{}{But... I can't haul a Vertibird all by myself.@@I understand, Scribe Kendrick, but I can't just pull the Vertibird all by myself back to Lost Hills...@@But... Scribe Kendrick, I don't have the means to transport the Vertibird wreck back to Lost Hills...}
+{24000}{}{Damn, I thought you were smarter, Initate Maggot. The Vertibird, or precisely, its frame is not a very complicated construction, bah, we even got most of it already in our hands. But so far we weren't able to construct or replicate a fitting and working engine that could lift it. And now the luck smiles upon us. You will extract the engine parts, the more, the better. }
+{24010}{}{I see. But what about the Enclave? Won't they be sending a rescue party or something?@@What if they managed to send a distress signal, and another Vertibird is already on the way?@@What if someone managed to send a distress beacon?}
+{25000}{}{That is not likely. Our contact saw the Vertibird crash into a building, they probably didin't even know what hit them, and I doubt anyone survived to call for help. However, if they did manage to do that, you have full authorisation to use lethal force, should you encounter any Enclave troops, or anyone else that could hinder your efforts. We need those engine parts, and we need them now. Here are the coords, move out, Initiate, time is of the essence!}
+{25010}{}{Yes, Scribe Kendrick. I'm moving out.@@Understood. Initiate @pname@ moving out!@@Yes, Scribe Kendrick, I'm on my way!}
+{26000}{}{About time... Do you have the engine parts?}
+{26010}{}{Scribe Kendrick, I can't find that Vertibird. Could you give me the coordinates again?@@Scribe Kendrick, I can't find my way through the Boneyard ruins. Could you please give me the coordinates again?}
+{26020}{}{Yes, Scribe Kendrick, though they are not in perfect condition. The crash was pretty bad, no one survived indeed. I did run into Enclave rescue team though. I just don't know how did they managed to get there so fast, I didn't see another Vertibird anywhere near.}
+{26030}{}{Yes, Scribe Kendrick, I have them. None of the crew survived the crash. I also had to dispatch the Enclave Rescue party. I just don't know how did they managed to get there so fast, I didn't see another Vertibird anywhere near.}
+{26040}{}{Not yet, Scribe Kendrick.}
+{27000}{}{Move your fuckin' ass now or you'll be sorry!@@Get moving you idiot, or they will blow up the wreck!@@Move out you moron, we don't have time for this shit!@@Get your stupid ass moving, you idiot! We need those engine parts!}
+{28000}{}{Hmm, that's strange. Wel'll have to take a look into it later. Now, show me those parts! [You give her the parts you extracted from the engine.] Well, fuck my old ass, this is a pile of junk! I hoped for something better... still, maybe our tech boys will be able to salvage something from it. You're on a thin line... If it was up to me, I'd fry your incompetent ass, Initiate Maggot! But the Elders say we need every man and woman now... How unfortunate. Dismissed!}
+{28010}{}{Yes, Scribe Kendrick. @@Yes, Scribe Kendrick, I'll take my leave now.@@As you wish, Scribe Kendrick.}
+{29000}{}{Hmm, that's strange. Wel'll have to take a look into it later. Now, show me those parts! [You give her the parts you extracted from the engine.] Holy fuck, this is it! Good job, Initiate! I wasn't expecting you'd perform that well. Our tech boys will be very happy to have those. Dismissed!}
+{29010}{}{Yes, Scribe Kendrick. @@Yes, Scribe Kendrick, I'll take my leave now.@@As you wish, Scribe Kendrick.}
+{30000}{}{It's good to see you, Initiate Maggot. I've got a new job for you. Considering your past exploits I'm not really convinced you're up to it... But the Elders think otherwise. 
+}
+{30010}{}{I'm listening, Scribe Kendrick.@@I'm all ears, Scribe Kendrick.@@I'm yours to command, Scribe Kendrick.}
+{31000}{}{Good. Cos this is not gonna be a walk in the park, Initiate Maggot. You remember the Boneyard mission? You were wondering how did the Enclave troops manage to get there so fast?
+}
+{31010}{}{How?@@So... how?@@Yes, how?@@Yes, Scribe Kendrick, how?}
+{32000}{}{First, I thought you just missed the other Vertibird. But then we asked our man from Adytum. He didn't see any Vertibird either. So we were wondering...and the answer was so simple. Boats!
+}
+{32010}{}{Boats?}
+{33000}{}{Yes, Initiate Maggot, boats. Large metal objects floating on water. Rings a bell? Good. We started sniffing around the west coast, and we got a message from our outpost in San Francisco. Some local came to them asking for caps, claiming he saw something we might be interested in...}
+{33010}{}{And?@@And then what, Scribe Kendrick?}
+{34000}{}{He claimed he saw some lights near the old pier, south from the Shi area. So we sent our patrol to investigate, and they saw some movement on there. Also, they saw the boats.
+}
+{34010}{}{So, what are my orders?@@What are my orders then, Scribe Kendrick?}
+{35000}{}{Simple. Go there, and blow up the boats. Blowing them up won't be hard, but getting to them will be. We suspect the outpost is heavily guarded, though our men didn't manage to spot anything in detail. I recommend you use a stealthy approach, unless you want to fight at least a company of enclave troops. [She notices your reaction.] And no, we can't afford and will not risk our paladins for a such mission, since we don't know how many troops does the Enclave actually have there. You on the other hand...you're just an Initiate.}
+{35010}{}{Acknowledged, Scribe Kendrick. Expendable Initiate Maggot is ready for a suicide mission. I assume I'm going to have to jump into a fuel tank and hope that parts of my body will clog up engines?}
+{36000}{}{[She grins.] Save your jokes for someone that will appreciate them. That place is probably a refuelling and supply outpost. So it should be packed dense with ammo, grenades and such stuff. But what you need to find is some explosives with a timer. Try to place them somewhere where when they detonate, they will set a chain reaction, so hopefully the whole installation, along with the boats, we be blown sky-fucking-high. Remember to set the timer to allow yourself time to get your ass outta there. Any questions?}
+{36010}{}{No, Scribe Kendrick. I am leaving at once.}
+{37000}{}{You're back already? Did you complete your mission, Initiate Maggot?@@Back already? What news do you have for me, Initiate Maggot?
+}
+{37010}{}{Scribe Kendrick, I can't find that pier... Could you give me the coordinates again?@@Scribe Kendrick, I got lost in San Francisco... Could you please give me the coordinates again?}
+{37020}{}{Yes, I did, Scribe Kendrick. The outpost was crawling with enclave troops, but I managed to plant the explosives.}
+{37030}{}{I was just leaving, Scribe Kendrick.@@Not yet, Scribe Kendrick.@@I'm on it, Scribe Kendrick.}
+{38000}{}{No shit! I'll send a word to San Fran so they check what's left of that stinkin' outpost. Good job, good job indeed! Now, Initiate Magg... @pname@, I think you're ready to become a full member of the Brotherhood, and of the Vulture Squad. If you think you're ready, then repeat after me and say your vows.}
+{38010}{}{[Do as she says.]}
+{38020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{39000}{}{Do you, Initiate @pname@, vow to be a loyal member of the Brotherhood?}
+{39010}{}{Yes, I do.@@Yes.}
+{39020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{40000}{}{Do you promise to help your Brothers and Sisters regardless of circumstances, and whenever they are in need?}
+{40010}{}{Yes, I do.@@Yes.@@Of course I do.}
+{40020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{41000}{}{Do you swear to obey our Elders' commands, even if it would lead you to a certain death?}
+{41010}{}{Umm... Yes, I do.@@Yes, I do.@@Yes.}
+{41020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{42000}{}{The words have been spoken. Are you ready to begin service in the Brotherhood of Steel and be a loyal @sex@|Brother||Sister| until the end of your days?}
+{42010}{}{Yes, I do.@@Yes.@@Yes!@@I am ready.}
+{42020}{}{I need to think about this.@@I don't think I'm ready for this.@@I need to ponder on this.@@This is serious business, I need to think about it.}
+{43000}{}{Then rise up, Apprentice Knight @pname@. You are now a sworn @sex@|Brother||Sister| of the Brotherhood of Steel. Take this armor, and wear it with pride. As for now, you're free to go. You are granted access to our main facility, and to our barracks under this building. Remember, you're also a member of the Vulture Squad, so I am still going to be your direct superior. It's been a long day, @pname@... I need to rest. Dismissed. 
+}
+{43010}{}{Yes, Scribe Kendrick.}
+{44000}{}{Are you ready to say your vows now, Initiate?}
+{44010}{}{Yes, I am.@@Yes, I am ready.@@I am ready.}
+{44020}{}{Not yet, Scribe Kendrick.@@I need to think about this.@@I'm not sure yet.}
+{45000}{}{I don't have any orders for you right now. Come back later.@@I don't have any tasks for you now, come back later.}
+{45010}{}{One of our bunkers was looted. I've dealt with the perpetrators and took the holodisk they've stolen. I thought It could be important. }
+{45020}{}{As you wish, Scribe Kendrick.@@Understood.@@Understood, Scribe Kendrick.}
+{46000}{}{What the fuck you've been doing all that time?! You goddamn idiot! [She shows you the coordinates again.] Don't fuck it up this time! Get your ass moving, now!@@What?! Are you fucking retarded, Initiate Maggot? Take those, and get the fuck outta here before I reconsider putting your severed head on the fence! [She gives you the coordintes again.]}
+{46010}{}{Yes, I am leaving at once!@@It won't happen again, Scribe Kendrick, I am moving out now!@@It won't happen again, I'm going there now!}
+{46020}{}{Yes, I am leaving at once!@@It won't happen again, Scribe Kendrick, I am moving out now!@@It won't happen again, I'm going there now!@@Yes, Scribe Kendrick, I am leaving now!}
+{47000}{}{No shit... Fucking worms, I told them posting autocannons was necessary but no... idiots. And you... [She pauses for a moment.] You should have left that holodisk where it was.}
+{47010}{}{What? Why? I don't understand, Scribe Kendrick.@@Why? I don't understand. }
+{48000}{}{You don't have to. This ain't matters for your ears, at least not yet.}
+{48010}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me I should have left that holodisk there...}
+{48020}{}{I've managed to read part of the holodisk. It was used to store archival communications with other Brotherhood posts, Lost Hills included. The author mentioned the bunker network coordinates.... What I don't understand is why you told me I should have left that holodisk there... Unless...}
+{48030}{}{All right.@@As you wish.@@I understand.@@Understood.}
+{49000}{}{You will understand. In time. Now go.}
+{50000}{}{[She stares at you with curiosity.]@@[Scribe Kendrick gives you a curious stare.]}
+{50010}{}{Unless you wanted it to be found... and the data on that holodisk points exactly where you want to. This is some kind of bait for the Enclave, isn't it?}
+{51000}{}{You're a smart one. Since you already deduced everything, yes, it was a ruse. We set up a whole fucking network of "abandoned" bunkers, and loaded them with surplus gear with hidden radio transmitters. Unfortunately, only one of the bunkers got raided by their operatives as of now.}
+{51010}{}{You want to track them?@@So, you want to track them?}
+{52000}{}{Yes. Ever since the San Francisco pier incident, they're a lot more secretive in their movements. And we know they have other bases in the mainland, so it's crucial they raid as many fake bunkers as possible. Ah, I've already told you too much... [She turns her head to the window.]}
+{52010}{}{Scribe Kendrick?@@Erm, Scribe Kendrick?}
+{53000}{}{I will have to deal with this. You are dismissed, report to me later.@@I will have to deal with this. Wait for new orders, Apprentice Knight.}
+{53010}{}{Yes, Scribe Kendrick.@@As you wish, Scribe Kendrick.}
+

@@ -1,0 +1,503 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "_teams.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_gossip_h.fos"
+#include "critter_wave.fos"
+#include "_msgstr.fos" 
+
+#define KEVLAR_TRANSPORT_EVENT_ID       (16)
+#define STEEL_TRANSPORT_EVENT_ID        (17)
+#define URANIUM_TRANSPORT_EVENT_ID      (18)
+#define EVENT_DURATION                  (REAL_MINUTE(10))
+#define NUMBER_OF_DEFENDERS             (6)
+#define NUMBER_OF_ALIVE_ATTACKERS       (5)
+#define WAVE_TIME                       (REAL_SECOND(5))
+#define WAVE_SIZE_MIN                   (1)
+#define WAVE_SIZE_MAX                   (3)
+#define ROLE_ATTACKER_ROGUES            (288000)
+#define ROLE_ATTACKER_KHANS             (288001)
+#define ROLE_ATTACKER_RAIDERS           (288002)
+#define ROLE_DEFENDER                   (288003)
+
+import int GetNextTime(uint Id) from "game_events";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import void SpawnMinesLowQuantity(Map& map, uint entire, uint entireFillRatio, bool noLoot) from "game_event_utils";
+import void SpawnEventFlares(Map& map, uint entire) from "game_event_utils";
+import void RemoveEventFlares(Map& map) from "game_event_utils";
+
+// Cars
+uint[] carPids = {PID_SCOUT, PID_SCOUT, PID_SCOUT, PID_POLICE_CAR, PID_HUMMER}; 
+
+// Guards initialization
+int[] defenderParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK, 10,
+	PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+	MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+	ST_BONUS_LOOK, 100, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Guard}; 		
+int[] defenderPids = {NPC_PID_CARAVANGUARD32, NPC_PID_CARAVANGUARD82};
+int[] defenderWeaponPids = {PID_LASER_RIFLE_EXT_CAP, PID_LASER_RIFLE_EXT_CAP, PID_ROCKET_LAUNCHER,
+	PID_ROCKET_LAUNCHER, PID_ROCKET_LAUNCHER, PID_ROCKET_LAUNCHER, PID_ROCKET_LAUNCHER,
+	PID_AVENGER_MINIGUN, PID_AVENGER_MINIGUN, PID_VINDICATOR_MINIGUN, PID_VINDICATOR_MINIGUN,
+	PID_IMPROVED_FLAMETHROWER, PID_BOZAR, PID_GATLING_LASER};
+CritterTemplate guardCritterTemplate = CritterTemplate(defenderPids, ROLE_DEFENDER)
+	.SetStartEntire(ENTIRE_EVENT_DEFENDER_SPAWN)
+	.SetCritterParams(defenderParams)
+	.SetWeaponPids(defenderWeaponPids)	
+	.SetShowCritterDist1(40)
+	.SetAttachEventManager(true);
+CritterEventsManager guardCritterEvents = CritterEventsManager(ROLE_DEFENDER)
+	.When(CritterShown1())
+		.Execute(Conditionally(TargetHasRole(ROLE_ATTACKER_ROGUES), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+		.Execute(Conditionally(TargetHasRole(ROLE_ATTACKER_KHANS), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+		.Execute(Conditionally(TargetHasRole(ROLE_ATTACKER_RAIDERS), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26))
+	.When(CritterAttacked())
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(75), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 7, TIME_UNIT_REAL_SECOND)))
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29))
+	.When(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.Execute(Conditionally(CAnd(CritterHPBelowTresholdPercent(75), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.Execute(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 7, TIME_UNIT_REAL_SECOND)))
+	.When(CritterTimerTimeout(CTE_EVENT_MANAGER_1))
+		.Execute(Heal())
+		.Execute(Conditionally(CritterHPBelowTresholdPercent(75), StartCritterTimer(CTE_EVENT_MANAGER_1, 7, TIME_UNIT_REAL_SECOND)));			
+
+		
+// Rouges initialization			
+int[] attackerRoguesPids = {NPC_PID_ROGUES1, NPC_PID_ROGUES2, NPC_PID_ROGUES3, NPC_PID_ROGUES4, NPC_PID_ROGUES5};
+int[] attackerRoguesParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit,
+	MODE_UNLIMITED_AMMO, 1, MODE_NO_STEAL, 1}; 
+int[] attackerRoguesWeaponPids = {PID_FN_FAL, PID_14MM_PISTOL, PID_HK_CAWS, PID_PLASMA_PISTOL, PID_LASER_RIFLE_EXT_CAP,
+	PID_FLAMER, PID_ROCKET_LAUNCHER, PID_MINIGUN, PID_LIGHT_SUPPORT_WEAPON, PID_M60};
+CritterTemplate attackerRoguesCritterTemplate = CritterTemplate(attackerRoguesPids, ROLE_ATTACKER_ROGUES)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(attackerRoguesParams)
+		.SetWeaponPids(attackerRoguesWeaponPids)
+		.SetShowCritterDist1(45)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_HOME)
+		.SetAttachEventManager(true);
+CritterEventsManager attackerRoguesCritterEvents = CritterEventsManager(ROLE_ATTACKER_ROGUES)
+	.When(CritterShown1())
+		.Execute(Conditionally(TargetHasRole(ROLE_DEFENDER), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26));
+
+		
+// Khans initialization		
+int[] attackerKhansPids = {NPC_PID_KHAN1, NPC_PID_KHAN2, NPC_PID_KHAN3, NPC_PID_KHAN4, NPC_PID_KHAN5};
+int[] attackerKhansParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit,
+	MODE_UNLIMITED_AMMO, 1, MODE_NO_STEAL, 1}; 
+int[] attackerKhansWeaponPids = {PID_FN_FAL, PID_14MM_PISTOL, PID_HK_CAWS, PID_PLASMA_PISTOL, PID_LASER_RIFLE_EXT_CAP,
+	PID_FLAMER, PID_ROCKET_LAUNCHER, PID_MINIGUN, PID_LIGHT_SUPPORT_WEAPON, PID_M60};
+CritterTemplate attackerKhansCritterTemplate = CritterTemplate(attackerKhansPids, ROLE_ATTACKER_KHANS)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(attackerKhansParams)
+		.SetWeaponPids(attackerKhansWeaponPids)
+		.SetShowCritterDist1(45)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_HOME)
+		.SetAttachEventManager(true);
+CritterEventsManager attackerKhansCritterEvents = CritterEventsManager(ROLE_ATTACKER_KHANS)
+	.When(CritterShown1())
+		.Execute(Conditionally(TargetHasRole(ROLE_DEFENDER), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26));		
+
+		
+// Raiders initialization			
+int[] attackerRaidersPids = {NPC_PID_RAIDER1, NPC_PID_RAIDER2, NPC_PID_RAIDER3, NPC_PID_RAIDER4, NPC_PID_RAIDER5, NPC_PID_RAIDER6};
+int[] attackerRaidersParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit,
+	MODE_UNLIMITED_AMMO, 1, MODE_NO_STEAL, 1}; 
+int[] attackerRaidersWeaponPids = {PID_FN_FAL_HPFA, PID_FN_FAL, PID_14MM_PISTOL, PID_HK_CAWS, PID_10MM_SMG, PID_ASSAULT_RIFLE_EXT_MAG};
+CritterTemplate attackerRaidersCritterTemplate = CritterTemplate(attackerRaidersPids, ROLE_ATTACKER_RAIDERS)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(attackerRaidersParams)
+		.SetWeaponPids(attackerRaidersWeaponPids)
+		.SetShowCritterDist1(45)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_HOME)
+		.SetAttachEventManager(true);
+CritterEventsManager attackerRaidersCritterEvents = CritterEventsManager(ROLE_ATTACKER_RAIDERS)
+	.When(CritterShown1())
+		.Execute(Conditionally(TargetHasRole(ROLE_DEFENDER), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26));				
+		
+
+// Subevents initialization
+dictionary @transportEventLocs;
+void initTransportEventLocs()
+{
+	@transportEventLocs = dictionary();
+
+	transportEventLocs.set("" + KEVLAR_TRANSPORT_EVENT_ID,  TransportEventLoc(KEVLAR_TRANSPORT_EVENT_ID)
+			.AddWMRectangle(1260,    0, 1440,  300)
+			.AddWMRectangle(1200,  120, 1260,  300)
+			.AddWMRectangle(1020,    0, 1140,  120)
+			.SetReward(PID_KEVLAR_POLYMER, 30, 40)
+            .SetRareReward(Pids_T4_PARTS_WO_APA,10)
+            .SetRareReward(Pids_T4_RECIPES_WO_APA,10)
+			.SetTownName("Gecko")
+			.SetRole(ROLE_ATTACKER_KHANS)
+			.SetResourceName("Kevlar Polymer")
+			.SetGossipMsgId(STR_KEVLAR_TRANSPORT_EVENT_GOSSIP)
+	); 
+	transportEventLocs.set("" + STEEL_TRANSPORT_EVENT_ID,   TransportEventLoc(STEEL_TRANSPORT_EVENT_ID)
+			.AddWMRectangle( 420,  300,  540,  600)
+			.AddWMRectangle( 540,  360,  600,  600)
+			.AddWMRectangle( 600,  480,  660,  600)
+			.SetReward(PID_HIGH_GRADE_STEEL, 20, 30)
+            .SetRareReward(Pids_T4_PARTS_WO_APA,10)
+            .SetRareReward(Pids_T4_RECIPES_WO_APA,10)
+			.SetTownName("Redding")
+			.SetRole(ROLE_ATTACKER_RAIDERS)
+			.SetResourceName("High Grade Steel")
+			.SetGossipMsgId(STR_STEEL_TRANSPORT_EVENT_GOSSIP)
+	);
+	transportEventLocs.set("" + URANIUM_TRANSPORT_EVENT_ID, TransportEventLoc(URANIUM_TRANSPORT_EVENT_ID)
+			.AddWMRectangle( 960,  360, 1080,  540)
+			.AddWMRectangle(1020,  540, 1140,  600)
+			.AddWMRectangle(1140,  540, 1320,  720)
+			.AddWMRectangle(1200,  300, 1320,  540)
+			.SetReward(PID_REFINED_ORE, 40, 60)
+            .SetRareReward(Pids_T4_PARTS_WO_APA,10)
+            .SetRareReward(Pids_T4_RECIPES_WO_APA,10)
+			.SetTownName("Broken Hills")
+			.SetRole(ROLE_ATTACKER_ROGUES)
+			.SetResourceName("Refined Uranium Ore")
+			.SetGossipMsgId(STR_URANIUM_TRANSPORT_EVENT_GOSSIP)
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	TransportEventLoc @transportEventLoc;
+		
+	if (!valid(transportEventLocs))
+	{
+		initTransportEventLocs();
+	}
+	
+	if (transportEventLocs.get("" + id, @transportEventLoc))
+	{
+		transportEventLoc.StartEvent();
+		
+		uint[] values = {id};
+		CreateTimeEvent(__FullSecond + EVENT_DURATION, "e_event_stop", values, true);
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	TransportEventLoc @transportEventLoc;
+		
+	if (!valid(transportEventLocs))
+	{
+		initTransportEventLocs();
+	}
+	
+	if (transportEventLocs.get("" + values[0], @transportEventLoc))
+	{
+		transportEventLoc.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start( Critter& cr, int id, int , int)
+{
+	event_start(id);
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class TransportEventLoc
+{
+	#define _GetKey	("TransportEventLoc" + eventId)
+
+	private int eventId, role;
+	private int[] rewardPids, rewardMinCounts, rewardMaxCounts;
+    private double [] rewardChances; 
+    private uint16[] rareRewardPids;
+    private float rareRewardChances;
+	private WorldMapArea worldMapArea;
+	private string townName, resourceName; 
+	private uint gossipLocMsgId = 0;
+
+	
+	TransportEventLoc(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	TransportEventLoc@ AddWMRectangle(int worldMinX, int worldMinY, int worldMaxX, int worldMaxY)
+	{
+		worldMapArea.AddRectangle(worldMinX, worldMinY, worldMaxX, worldMaxY);	
+		return @this;
+	}
+	
+	TransportEventLoc@ SetReward(int rewardPid, int rewardMinCount, int rewardMaxCount)
+	{
+		return SetReward(rewardPid, rewardMinCount, rewardMaxCount, 1);
+	}
+    
+    TransportEventLoc@ SetRareReward(uint16[] rareRewardArray, float rareRewardChance)
+    {
+        for (uint i = 0; i < rareRewardArray.length(); i++)
+        {
+            rareRewardPids.insertLast(rareRewardArray[i]);
+        }
+        rareRewardChances = rareRewardChance;
+		return @this;
+    }
+    
+    TransportEventLoc@ SetReward(int rewardPid, int rewardMinCount, int rewardMaxCount, double rewardChance)
+    {
+        rewardPids.insertLast(rewardPid);
+		rewardMinCounts.insertLast(rewardMinCount);
+		rewardMaxCounts.insertLast(rewardMaxCount);
+        rewardChances.insertLast(rewardChance);
+		return @this;
+    }
+	
+	TransportEventLoc@ SetTownName(string townName)
+	{
+		this.townName = townName;
+		return @this;
+	}
+	
+	TransportEventLoc@ SetResourceName(string resourceName)
+	{
+		this.resourceName = resourceName;
+		return @this;
+	}
+	
+	TransportEventLoc@ SetRole(int role)
+	{
+		this.role = role;
+		return @this;
+	}
+	
+	TransportEventLoc@ SetGossipMsgId(uint gossipLocMsgId)
+	{
+		this.gossipLocMsgId = gossipLocMsgId;
+		return @this;
+	}
+	
+	void StartEvent()
+	{
+		Map@ map = CreateEventMap();
+		
+		if (!valid(map)) 
+		{
+			return;
+		}
+		
+		
+		AddCars(map);
+		AddDefenders(map);
+		AddAttackers(map);
+		SpawnMinesLowQuantity(map, ENTIRE_EVENT_MINE_SPAWN, 70, true);
+		SpawnEventFlares(map, ENTIRE_EVENT_FLARE_SPAWN);
+		
+		AddNewMessage("Convoy transporting " + resourceName + " to " + townName + " is under attack.", EVENT_DURATION, 1, COLOR_GREEN, true, eventId);
+		
+		InitializeGossip();
+		
+		SaveMapId(map.Id);
+	}
+	
+	void InitializeGossip()
+	{
+		if (gossipLocMsgId > 0)
+		{			
+			GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, EVENT_DURATION);
+			gossipDefinition.SetGossipId(eventId);
+			gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+			gossipDefinition.SetMsgId(gossipLocMsgId);
+			StartGossip(gossipDefinition);
+		}
+	}
+	
+	private void SaveMapId(uint mapId)
+	{
+		Serializator serializator;
+		serializator.Set(mapId);
+		serializator.Save(_GetKey);
+	}
+	
+	private uint LoadMapId()
+	{
+		uint mapId = 0;
+		Serializator serializator;
+		
+		if(serializator.Load(_GetKey))
+		{
+			serializator.Get(mapId);
+		}
+		
+		return mapId;
+	}
+	
+	private Map@ CreateEventMap()
+	{
+		uint x = 0, y = 0;
+		uint[] locationPids = {LOCATION_EventResourceTransportD1, LOCATION_EventResourceTransportD2};
+		
+		worldMapArea.ComputeRandomCoorinates(x, y);
+		
+		uint locationId = CreateLocation(locationPids[Random(0, locationPids.length() - 1)], x, y, null);
+		 
+		if (locationId == 0)
+		{
+			return null;
+		}
+		
+		Location @location = GetLocation(locationId);
+		if (!valid(location)) 
+		{
+			return null;
+		}
+		
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			return null;
+		}
+		
+		location.Visible = true;
+		location.AutoGarbage = false;
+		location.Color = COLOR_RED;
+		
+		return map;
+	}
+	
+	private void AddCars(Map& map)
+	{
+		uint entireCarSpawnNum = map.CountEntire(ENTIRE_EVENT_CAR_SPAWN);
+
+		int rareCar = -1;
+        if (HAS_CHANCE(rareRewardChances))
+        {
+            rareCar = Random(0, entireCarSpawnNum-1);
+        }
+
+        for (uint8 i = 0; i < entireCarSpawnNum; i++)
+		{
+			AutoCarTemplate autoCarTemplate = AutoCarTemplate(carPids[Random(0, carPids.length() - 1)], ENTIRE_EVENT_CAR_SPAWN).SetGuardRole(ROLE_DEFENDER);
+			
+            for (uint j = 0; j < rewardPids.length(); j++)
+                autoCarTemplate.AddLoot(rewardPids[j], (rewardMinCounts[j] / entireCarSpawnNum) > 0 ? (rewardMinCounts[j] / entireCarSpawnNum) : 1, (rewardMaxCounts[j] / entireCarSpawnNum) > 0 ? (rewardMaxCounts[j] / entireCarSpawnNum) : 1, rewardChances[j]);
+            
+            if (rareCar == i && rareRewardPids.length()>0 ) 
+            {
+                autoCarTemplate.AddLoot(rareRewardPids[Random(0,rareRewardPids.length()-1) ], 1, 1, 1.0);
+            }
+            autoCarTemplate.Spawn(map, i);
+		}
+	}
+	
+	private void AddDefenders(Map& map)
+	{		
+		for (uint i = 0; i < NUMBER_OF_DEFENDERS; i++)
+		{
+			guardCritterTemplate.Spawn(map);
+		}
+	}
+
+	private void AddAttackers(Map& map)
+	{
+		CritterWave(map.Id, role)
+				.SetCrittersPerWave(WAVE_SIZE_MIN, WAVE_SIZE_MAX)
+				.SetWaveTimeout(WAVE_TIME)
+				.SetMaxAliveCritters(NUMBER_OF_ALIVE_ATTACKERS)
+				.SetWaveSpawnedCallback("e_WaveSpawned")
+				.Start();
+			
+		//Some extra methods, see game_event_class_utils.fos for details
+		//SetWaveCountDown(1000)
+		//SetCrittersCountDown(100)
+		//DisableMaxAliveCritters()
+		//SetAutoDelete(false)
+		//SetSkipWaveIfNoPlayers(true)
+		//Get...
+	}
+	
+	void StopEvent()
+	{
+		Map@ map = GetMap(LoadMapId());
+	
+		if (!valid(map))
+		{
+			return;
+		}
+
+		RemoveMessageByEvent(eventId);
+		RemoveEventFlares(map);
+		
+		Location@ location = map.GetLocation();
+		
+		if (!valid(location))
+		{
+			return;
+		}
+		
+		location.Visible = false;
+		location.AutoGarbage = true;
+		location.Update();
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+		
+		CritterWave(map.Id, role).Stop();
+		
+		EraseAnyData(_GetKey);
+	}
+}
+
+uint e_WaveSpawned(array<uint>@ values)
+{
+	if (values[2] == 3)
+	{
+		CritterWave critterWave(values[0], values[1]);
+		critterWave.SetSkipWaveIfNoPlayers(true);
+	}
+
+	return 0;
+}

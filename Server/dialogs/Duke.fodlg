@@ -1,0 +1,99 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+5 1020 D _var p name_mem_player_npc = 1 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+0 3010 #
+0 3020 R _var p name_mem_player_npc + 1 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 100000 R _var p name_mem_player_npc = 0 R _script economy_dialogs@r_TakeCaps 1 100000 R _item p PID_BASEMAP_MERCHANT + 1 R _script tc@r_AddFeeToLocker 1 5000 @
+4 4000 None 0 #
+0 4010 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+4 5010 D _script economy_dialogs@d_IsEnoughCaps 1 100000 R _var p name_mem_player_npc = 0 R _script economy_dialogs@r_TakeCaps 1 100000 R _item p PID_BASEMAP_MERCHANT + 1 #
+0 5020 &
+
+[engl]
+{100}{}{Duke}
+{200}{}{You see: Duke}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Howdy stranger! Welcome to Redding. I like you for some reason, so I've got a deal for you!}
+{2010}{}{I'm listening...}
+{2020}{}{Sorry, but I'm saving my caps right now. Goodbye.}
+{3000}{}{I'm selling my mansion for @lex base3_price@ caps. It's pret'y nice, I'll tell ya. Very large, you can store almost anythin' there. I have the map to the location. So if you have the caps, the map is yours. Whaddya say pardner?}
+{3010}{}{A deal like this is gonna empty my pockets. Goodbye.}
+{3020}{}{I might... Can you give me some gather the cash? I'll back shortly.}
+{3030}{}{Sure! Hell, I'll buy it right now!}
+{4000}{}{Yee'haw! Now that's what I'm talking about. Boy, my wife's gonna be mighty happy when I come home with a pot full o' caps! Thanks a ton stranger.}
+{4010}{}{Thanks again...uh, you.}
+{5000}{}{Good to see ya' again pardner, are you here to make a deal? Remember? It's just @lex base3_price@ caps!}
+{5010}{}{You betch'ya you son of a gun. Here you go, take the caps.}
+{5020}{}{Nope, still visiting the thrift store. I'll be back later.}
+
+[russ]
+{100}{}{Дюк}
+{200}{}{Вы видите: Дюк}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Привет незнакомец! Добро пожаловать в Реддинг. Ты мне нравишься по какой-то причине, так что у меня есть предложение!}
+{2010}{}{Я соушаю...}
+{2020}{}{Извини, но я сейчас экономлю. До свидания.}
+{3000}{}{Я продаю свое поместье за @lex base3_price@ крышек. Оно просто отличное, скажу я тебе. Просто огромный дом и территория вокруг. У меня есть карта. Так что ,ты мне деньги я тебе карту, как тебе сделка партнер?}
+{3010}{}{Мда, такие сделки проделают черную дыру в моих финансах. Пока.}
+{3020}{}{Я мог бы ... дайте мне время и я принесу деньги. Ладно?}
+{3030}{}{Конечно! Черт, я куплю его прямо сейчас!}
+{4000}{}{О, это просто отлично. Моя жена будет просто счастлива когда я принесу ей столько денег! Спасибо незнакомец.}
+{4010}{}{Тебе спасибо.}
+{5000}{}{Рад тебя видеть партнер, ты обдумал мою сделку? Напоминаю, всего @lex base3_price@ крышек за шикарное поместье.}
+{5010}{}{Сукин ты сын. Вот, пожалуйста, @lex base3_price@ крышек.}
+{5020}{}{Нет еще. Вернусь позже.}
+
+[pols]
+{100}{}{Duke}
+{200}{}{Widzisz Duke'a.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Witaj, @sex@|nieznajomy||piękna nieznajoma|! Świetny dzień na ubicie interesu, nieprawdaż? A tak się szczęśliwie składa, że mam wspaniałą ofertę w sam raz dla ciebie!}
+{2010}{}{Zamieniam się w słuch...}
+{2020}{}{Wybacz, zbieram na Fundusz Ochrony Złotych Gekonów, może innym razem.}
+{3000}{}{Mam zamiar się przeprowadzić, więc potrzebuję sprzedać swoją willę. To wielki budynek, zmieścisz tam wszystko, co sobie zamarzysz. No i cena jest bardzo konkurencyjna, zależy mi na czasie. Jedynie @lex base3_price@, i jest twoja! Co ty na to?}
+{3010}{}{Mam lepsze rzeczy, na które mogę wydać sto tysięcy. Bywaj.}
+{3020}{}{Być może... Ale najpierw muszę zebrać forsę, nie mam przy sobie takiej gotówki. Wrócę później.}
+{3030}{}{Wchodzę w to! Masz tutaj @lex base3_price@ kapsli, chcę się od razu wprowadzić!}
+{4000}{}{Świetnie! Wiedziałem, że jesteś odpowiednią osobą do ubicia interesu! Moja żona nie uwierzy, jak wrócę do niej z tym worem kapsli! Jeszcze raz dziękuję, @sex@|partnerze||piękna|. Tutaj masz mapę do posiadłości, jest na takim odludziu, że nikt inny bez tej mapy tam nie trafi.}
+{4010}{}{W porządku, dzięki.}
+{5000}{}{Dobrze cię widzieć, @sex@|kolego||piękna|. @sex@|Przemyślałeś||Przemyślałaś| moją ofertę? Jedyne sto tysięcy i cudowna willa może być Twoja!}
+{5010}{}{Pewnie, że @sex@|przemyślałem||przemyślałam|. Trzymaj, to twoje @lex base3_price@ kapsli.}
+{5020}{}{Nie mam jeszcze stu tysięcy, wrócę niebawem.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Howdy stranger! Welcome to Redding. I like you for some reason, so I've got a deal for you!}
+{2010}{}{I'm listening...}
+{2020}{}{Sorry, but I'm saving my caps right now. Goodbye.}
+{3000}{}{I'm selling my mansion for @lex base3_price@ caps. It's pret'y nice, I'll tell ya. Very large, you can store almost anythin' there. I have the map to the location. So if you have the caps, the map is yours. Whaddya say pardner?}
+{3010}{}{A deal like this is gonna empty my pockets. Goodbye.}
+{3020}{}{I might... Can you give me some gather the cash? I'll back shortly.}
+{3030}{}{Sure! Hell, I'll buy it right now!}
+{4000}{}{Yee'haw! Now that's what I'm talking about. Boy, my wife's gonna be mighty happy when I come home with a pot full o' caps! Thanks a ton stranger.}
+{4010}{}{Thanks again...uh, you.}
+{5000}{}{Good to see ya' again pardner, are you here to make a deal? Remember? It's just @lex base3_price@ caps!}
+{5010}{}{You betch'ya you son of a gun. Here you go, take the caps.}
+{5020}{}{Nope, still visiting the thrift store. I'll be back later.}
+

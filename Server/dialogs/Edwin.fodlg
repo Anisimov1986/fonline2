@@ -1,0 +1,164 @@
+[comment]
+San Fransisco, Basement
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 D or D _var p name_mem_player_npc = 2 #
+10 1020 D _var p name_mem_player_npc = 1 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc ! 2 #
+9 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 #
+7 5020 R _var p name_mem_player_npc + 1 @
+6 6000 None 0 #
+7 6010 R _var p name_mem_player_npc + 1 @
+7 7000 economy_dialogs@dlg_PreparePrice 0 #
+0 7010 #
+0 7020 #
+8 7030 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _var p name_mem_player_npc = 2 R _script economy_dialogs@r_TakeCaps 1 50000 R _item p PID_BASEMAP_BASEMENT + 1 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+3 9010 D _var p name_mem_player_npc ! 2 #
+0 9020 @
+10 10000 None 0 #
+8 10010 D _script economy_dialogs@d_IsEnoughCaps 1 50000 R _var p name_mem_player_npc = 2 R _script economy_dialogs@r_TakeCaps 1 50000 R _item p PID_BASEMAP_BASEMENT + 1 #
+0 10020 &
+
+[engl]
+{100}{}{Edwin}
+{200}{}{You see: Edwin}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Hello there. You've got the looks of a traveller, I kind of envy you. I'm Edwin, nice to meet you wastelander.}
+{2010}{}{What's your story?}
+{2020}{}{Wanna trade?@@Got something to trade?@@Want to trade?}
+{2030}{}{I must be going now.}
+{3000}{}{My story? Nothing good. You see, I was a slave to the raiders. I had a collar and everything, no hopes of leaving, and bound to die soon. My family was dead already, so I didn't really care anyway.}
+{3010}{}{But you're standing here. How did you escape?}
+{4000}{}{Escape? It was more like an accident. Some muties followed the raiders to the cave where I and the rest of the captives were held. And then a miracle happened, my collar shut off. I don't know how but it did.}
+{4010}{}{You were damn lucky then, Edwin.}
+{5000}{}{Yeah, I guess so. Well, and while the raiders were busy fighting the muties,  I managed to sneak out of the cave. Then I ran as fast as I could. I went far too, but I had to stop and rest somewhere. So I found an empty basement nad took shelter there. I hid for some time, and I never heard of those raiders again.}
+{5010}{}{And then?}
+{5020}{}{Basement, you say? Do you still remember its location? I could pay you.}
+{6000}{}{I left and made my way here, to San Fansisco. I got a job as a trader for the caravans, but I'm still trying to get back on my feet.}
+{6010}{}{You know, I could buy the location of the basement from you. Name your price.}
+{7000}{}{That would be great. About the price, I can make one about right now. Hmmm...it had a large space on the outside, there were some walls too. Umm. Let's call it...about @lex base4_price@ caps. It's my final offer too. If you got the money, we can make the deal right now.}
+{7010}{}{I need to gather the caps. Later, Edwin.}
+{7020}{}{Fifty thousand for some ruined shithole? No way.}
+{7030}{}{Okay, it's a deal.}
+{8000}{}{Thanks. I hope you'll make good use of that basement.}
+{8010}{}{I sure will. Goodbye, Edwin.}
+{9000}{}{Woah, Woah! Not so fast there pal. I'm not selling anything... yet.}
+{9010}{}{Well then...what's your story?}
+{9020}{}{Okay, I've got to go then.}
+{10000}{}{You're back. Are you interested in making the deal?}
+{10010}{}{Yep, here you go. I'll  take that map now.}
+{10020}{}{Maybe, but not right now. Goodbye.@@Not really. See you.@@I have to think about it.}
+
+[russ]
+{100}{}{Эдвин}
+{200}{}{Вы видите: Эдвина}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Вы должно быть путешественник, не так ли? Должно быть это так интересно, путешествовать. Я Эдвин, приятно познакомится с тобой, путник.}
+{2010}{}{Расскажи о себе?}
+{2020}{}{Я хотел бы посмотреть что у тебя есть на обмен!}
+{2030}{}{Мне уже пора.}
+{3000}{}{О себе? Это грустная история. Вы видите, я был рабом рейдеров. Да, у меня был ошейник и все такое, не было надежды на побег, только мысли о смерти. Мою семью уже убили, так что мне было уже на все плевать.}
+{3010}{}{Звучит интересно. Как ты сбежал?}
+{4000}{}{Побег? Это было больше похоже неожиданное спасение. Похоже что мутанты из Брокен Хиллс выследили рейдеров и напали на пещеру где нас держали. Я был с другими рабами и вдруг мой ошейник отключился, не знаю кого благодарить за это!}
+{4010}{}{Ничего себе, ну ты везунчик!}
+{5000}{}{Да, мне повезло, и пока рейдеры сражались с мутантами, я смог сбежать из пещеры. К сожалению это заметили и несколько рейдеров погнались за мной. Я бежал так быстро как мог, но нужно было найти место где можно спрятаться от погони. Вот тогда-то я и нашел подвал. Я спрятался там и переждал.}
+{5010}{}{О, пожалуйста, скажите мне, что произошло после?}
+{5020}{}{Подвал говоришь? Мне бы пригодился такой схрон, назови свою цену.}
+{6000}{}{Я покинул подвал и пришел сюда, в Сан-Франциско. Тут я нашел работу продавцом... Эх мне бы не помешали деньги.}
+{6010}{}{Если тебе нужны деньги. Я бы мог купить этот подвал. Назови свою цену.}
+{7000}{}{О это было бы просто отлично! Цена. Хмм...Я даже не знаю сколько может стоить такой огромный подвал. Ну пусть будет @lex base4_price@ крышек и карта твоя.}
+{7010}{}{Э-э, мне нужно время подумать, ладно?}
+{7020}{}{Блин, не бери в голову. Но это просто сумасшедшая цена. Пока.}
+{7030}{}{Я готов купть карту прямо сейчас!}
+{8000}{}{Большое вам спасибо. Я действительно надеюсь, что вы будете использовать этот подвал.}
+{8010}{}{Конечно. До свидания.}
+{9000}{}{Вау, Вау! Полегче. Я еще не торгую, заходи позже.}
+{9010}{}{Понятно, расскажи о себе?}
+{9020}{}{Ну извините! Я ухожу.}
+{10000}{}{Незнакомец, ты вернулся? Ты принес деньги?}
+{10010}{}{Да, здесь все. Давай сюда карту скорее.}
+{10020}{}{Нет еще, может позже.}
+
+[pols]
+{100}{}{Edwin}
+{200}{}{Widzisz łysiejącego mężczyznę w podniszczonym ubraniu.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Witaj, @sex@|nieznajomy||nieznajoma|, nazywam się Edwin. Wyglądasz na na kogoś, kto dużo wędrował i dużo widział... Z kim mam przyjemność?}
+{2010}{}{@pname@. Nie jesteś stąd, prawda?}
+{2020}{}{@sex@|Chciałbym||Chciałabym| coś kupić.}
+{2030}{}{Muszę już iść.}
+{3000}{}{Prawda. Jeszcze do niedawno byłem niewolnikiem, miałem sczeznąć tak jak inni przede mną. Nie żebym się tym specjalnie przejmował, moja rodzina została zamordowana gdy mnie porwano.}
+{3010}{}{Współczuję. A jak udało ci się uciec?}
+{4000}{}{Uciec? Nie planowałem tego, zresztą w normalnych okolicznościach jest to praktycznie niemożliwe. Ale uśmiechnęło się do mnie szczęście. Moi oprawcy natknęli się na grupę supermutantów, no i wywiązała się walka. I wtedy, do dzisiaj nie wiem jak to się stało, nadajnik, który miałem w obroży wyłączył się. Po prostu przestał działać!}
+{4010}{}{Faktycznie, niezły fart!}
+{5000}{}{Dokładnie. Tak więc, kiedy tamci byli zajęci wyrzynaniem się nawzajem, ja skorzystałem z okazji i wyślizgnąłem się, gdy nikt nie patrzył. Potem uciekałem najszybciej, jak potrafiłem, nie wiem czy mnie zauważyli. W każdym razie, po jakimś czasie musiałem odpocząć, a do tego zaczynało się robić ciemno. I wtedy szczęście znowu się do mnie uśmiechęło! Znalazłem wejście do jakiejś przedwojennej piwnicy, i tam przeczekałem aż odgłosy walki ucichną. Minął dzień, dyskretnie obserwowałem okolicę z mojej kryjówki, ale nie zauważyłem, żeby ktoś mnie szukał. W sumie to niepotrzebnie, do tego czasu pewnie wszyscy byli już martwi.}
+{5010}{}{Niezła opowieść. Co działo się potem?}
+{5020}{}{Piwnica, powiadasz? A nie mógłbyś mi pokazać gdzie ona jest? @sex@|Mógłbym||Mogłabym| ci zapłacić...}
+{6000}{}{Nic specjalnego, wędrowałem aż doszedłem tutaj, do San Francisco. Niedawno udało mi się nawet znaleźć pracę u handlarzy, ale potrzeba mi jeszcze dużo kapsli, żeby stanąć na nogi.}
+{6010}{}{Jeśli cały czas potrzebujesz gotówki, chętnie zapłacę ci, jeśli podasz mi lokalizację tej piwnicy. Podaj tylko cenę.}
+{7000}{}{Świetnie. Co do ceny... jest całkiem obszerna, strop wygląda na solidny, w środku jest też trochę mebli, ale nic specjalnego. Powiedzmy... @lex base4_price@ kapsli? Zapłacisz, a powiem ci, jak tam dotrzeć.}
+{7010}{}{Wrócę jak będę @sex@|miał||miała| pieniądze.}
+{7020}{}{Chyba żartujesz, 50,000 za jakąś zrujnowaną norę? Znajdź sobie innego frajera, na razie.}
+{7030}{}{W porządku, zapłacę Ci.}
+{8000}{}{Świetnie. [Edwin wręcza ci mapę.] Trzymaj, tu masz dokładnie rozrysowane, jak tam trafić.}
+{8010}{}{Dzięki! Trzymaj się.}
+{9000}{}{Zaraz, zaraz, nie tak szybko. Nie mam jeszcze towaru, przyjdź później.}
+{9010}{}{W porzadku. A co tak w ogóle tutaj robisz? Nie wyglądasz na miejscowego...}
+{9020}{}{Rozumiem. Do widzenia zatem.}
+{10000}{}{@sex@|Wróciłeś||Wróciłaś|! Masz kapsle?}
+{10010}{}{Tak, masz. A teraz lepiej powiedz mi, gdzie jest ta piwnica.}
+{10020}{}{Jeszcze nie udało mi się zebrać całej sumy. Wpadnę później.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Hello there. You've got the looks of a traveller, I kind of envy you. I'm Edwin, nice to meet you wastelander.}
+{2010}{}{What's your story?}
+{2020}{}{Wanna trade?@@Got something to trade?@@Want to trade?}
+{2030}{}{I must be going now.}
+{3000}{}{My story? Nothing good. You see, I was a slave to the raiders. I had a collar and everything, no hopes of leaving, and bound to die soon. My family was dead already, so I didn't really care anyway.}
+{3010}{}{But you're standing here. How did you escape?}
+{4000}{}{Escape? It was more like an accident. Some muties followed the raiders to the cave where I and the rest of the captives were held. And then a miracle happened, my collar shut off. I don't know how but it did.}
+{4010}{}{You were damn lucky then, Edwin.}
+{5000}{}{Yeah, I guess so. Well, and while the raiders were busy fighting the muties,  I managed to sneak out of the cave. Then I ran as fast as I could. I went far too, but I had to stop and rest somewhere. So I found an empty basement nad took shelter there. I hid for some time, and I never heard of those raiders again.}
+{5010}{}{And then?}
+{5020}{}{Basement, you say? Do you still remember its location? I could pay you.}
+{6000}{}{I left and made my way here, to San Fansisco. I got a job as a trader for the caravans, but I'm still trying to get back on my feet.}
+{6010}{}{You know, I could buy the location of the basement from you. Name your price.}
+{7000}{}{That would be great. About the price, I can make one about right now. Hmmm...it had a large space on the outside, there were some walls too. Umm. Let's call it...about @lex base4_price@ caps. It's my final offer too. If you got the money, we can make the deal right now.}
+{7010}{}{I need to gather the caps. Later, Edwin.}
+{7020}{}{Fifty thousand for some ruined shithole? No way.}
+{7030}{}{Okay, it's a deal.}
+{8000}{}{Thanks. I hope you'll make good use of that basement.}
+{8010}{}{I sure will. Goodbye, Edwin.}
+{9000}{}{Woah, Woah! Not so fast there pal. I'm not selling anything... yet.}
+{9010}{}{Well then...what's your story?}
+{9020}{}{Okay, I've got to go then.}
+{10000}{}{You're back. Are you interested in making the deal?}
+{10010}{}{Yep, here you go. I'll  take that map now.}
+{10020}{}{Maybe, but not right now. Goodbye.@@Not really. See you.@@I have to think about it.}
+

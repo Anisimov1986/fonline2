@@ -1,0 +1,167 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p q_start_questcaravan = 7 D _var p name_mem_player_npc = 0 #
+12 1020 D _var p q_start_questcaravan = 7 D _var p name_mem_player_npc = 1 #
+11 1030 D _var p q_start_questcaravan ! 7 @
+2 2000 None 0 #
+3 2010 R _var p name_mem_player_npc = 1 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 R _var p q_start_questcaravan = 10 R _script economy_dialogs@r_GiveCaps 1 7000 R _param p ST_EXPERIENCE + 7500 R _script dialog@r_HoloRemove 1 93 R _script dialog@r_HoloRemove 1 94 R _script dialog@r_HoloRemove 1 95 R _script dialog@r_HoloRemove 1 96 R _script dialog@r_GarbageLocation 0  #
+9 6020 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+0 8010 R _script dialog@r_ShowQuestMessage 1 9311 @
+9 9000 None 0 #
+7 9010 R _var p q_start_questcaravan = 10 R _script economy_dialogs@r_GiveCaps 1 7000 R _param p ST_EXPERIENCE + 7500 R _script dialog@r_HoloRemove 1 93 R _script dialog@r_HoloRemove 1 94 R _script dialog@r_HoloRemove 1 95 R _script dialog@r_HoloRemove 1 96 R _script dialog@r_GarbageLocation 0  #
+10 9020 @
+10 10000 None 0 #
+8 10010 @
+11 11000 None 0 @
+12 12000 None 0 #
+7 12010 R _var p q_start_questcaravan = 10 R _script economy_dialogs@r_GiveCaps 1 7000 R _param p ST_EXPERIENCE + 7500 R _script dialog@r_HoloRemove 1 93 R _script dialog@r_HoloRemove 1 94 R _script dialog@r_HoloRemove 1 95 R _script dialog@r_HoloRemove 1 96 R _script dialog@r_GarbageLocation 0  #
+0 12020 &
+
+[engl]
+{100}{}{Kenny}
+{200}{}{You see your old friend, Kenny.}
+{210}{}{Yeah, that's really him!}
+{1000}{}{Predialogue installations}
+{1010}{}{with plans}
+{1020}{}{meet again}
+{1030}{}{plans given away or unknown}
+{2000}{}{Well, well, well... [Smiles enigmatically.] We meet again, @pname@. Good job. Now, if you would be so kind to let my download the data you got from those raiders...}
+{2010}{}{Kenny? What the hell are you doing here? How do you know all that?}
+{3000}{}{All that moves is easily heard in the Wasteland. Anyway, to keep things simple, my task was to supervise the delivery of those plans you're carrying.}
+{3010}{}{And you failed, huh?}
+{4000}{}{Regrettably yes... Good thing you were there to save my ass, friend. Give me these plans and leave this place before those guys in the valley notice us.}
+{4010}{}{And why should I believe you?@@Why should I believe you?}
+{5000}{}{[You can feel anger in his voice.] Because I saved your life? Because of all that had happened? Oh, right, you don't remember...}
+{5010}{}{What happened? What do you mean?!}
+{6000}{}{I can't tell you now. You have to believe me. Please, give me these plans now.}
+{6010}{}{All right. Have it your way, Kenny. [Pass the plans.]}
+{6020}{}{No way, Kenny. I'll give them back to their rightful owners.}
+{7000}{}{Thanks, @pname@. Take these, as a token of our... gratitude. [He gives you a bag of bottlecaps.] I will also have to erase the data from your PipBoy in case you lose it. [He takes your wrist, and then enters some command.] Done. Now, you should get moving before someone notices us. Goodbye, I'm certain that we'll meet again someday.}
+{7010}{}{Our? What do you mean? And what do you know about me? I have to know!}
+{8000}{}{I can't tell you now. Leave this place.}
+{8010}{}{Fine.@@Yeah, fine.}
+{9000}{}{I will reward you as generously as they would, that you can be sure of.}
+{9010}{}{Well, if you say so... Take them.}
+{9020}{}{Thanks, but no. Let me go, Kenny.}
+{10000}{}{[He seems to be fighting with himself somewhere inside his head.] Normally, I wouldn't let anyone do that... But I can't kill you, I just can't... You don't remember anything, but I do.}
+{10010}{}{What are you talking about?}
+{11000}{}{Leave this place.@@Go away, quickly.@@We'll meet again some day.}
+{12000}{}{You've changed your mind? We really need those plans, @pname@.}
+{12010}{}{Here you are. [You pass him the plans.]}
+{12020}{}{I don't care.}
+
+[russ]
+{100}{}{Kenny}
+{200}{}{You see your old friend, Kenny.}
+{210}{}{Yeah, that's really him!}
+{1000}{}{Predialogue installations}
+{1010}{}{with plans}
+{1020}{}{meet again}
+{1030}{}{Answer text}
+{2000}{}{Well, well, well... [Smiles enigmatically.] We meet again, @pname@. Good job. Now please, give me these plans.}
+{2010}{}{Kenny? What the hell are you doing here?}
+{3000}{}{I couldn't tell you all the truth just after you lost your memory, I hope you'll understand that. I am the Brotherhood of Steel agent, and my task was to supervise the transport of these plans.}
+{3010}{}{And you failed, huh?}
+{4000}{}{Good that you were to save my ass, friend. Give me these plans and let's get out of this place.}
+{4010}{}{How can I believe you?}
+{5000}{}{[He looks a bit surprised.] Because I saved your life? Because of everything what happened before your amnesia?}
+{5010}{}{What happened before my amnesia? What do you mean!?}
+{6000}{}{[He seems embarassed.] I... I can't tell you now. You have to believe me. Please, give me these plans.}
+{6010}{}{Sure, Kenny. Here you are. [You pass him the plans.]}
+{6020}{}{No way, Kenny. I'll give them back to the Enclave, and they're going to reward me very, very well.}
+{7000}{}{Thanks, @pname@. Here's your reward. Well, now you should believe me that I work for Brotherhood. [Gives you a Brotherhood Armor.] I'm sorry, but I also have to erase the data from your PipBoy in case you lose it. [Takes your wrist, enters some command.] Done. Now, we both should go away from here. Goodbye, I'm certain that we'll meet again someday.}
+{7010}{}{What do you know about me? I have to know!}
+{8000}{}{I can't tell you now. We should leave that place. Goodbye. [Walks away.]}
+{8010}{}{Sure, great. Bye.}
+{9000}{}{I will reward you as generously as they would do that, I promise.}
+{9010}{}{Well, if you say so... Good, take these plans.}
+{9020}{}{Thanks, but no. Let me go, Kenny.}
+{10000}{}{[He seems to be fighting with himself somewhere inside his head.] Normally, I wouldn't let anyone do that... But I can't kill you, I just can't... You don't remember anything, but I do.}
+{10010}{}{What are you talking about?}
+{11000}{}{We should leave that place.@@Go away, quickly.@@We'll meet again some day.}
+{12000}{}{You've changed your mind? Please give these plans to me, Brotherhood really needs them.}
+{12010}{}{Here you are. [You pass him the plans.]}
+{12020}{}{I don't care. Bye, Kenny.}
+
+[pols]
+{100}{}{Kenny}
+{200}{}{Widzisz swojego starego znajomego, Kenny'ego.}
+{210}{}{Tak, to naprawdę on!}
+{1000}{}{Predialogue installations}
+{1010}{}{with plans}
+{1020}{}{meet again}
+{1030}{}{Answer text}
+{2000}{}{Proszę proszę... [Uśmiecha się enigmatycznie.] Znowu się spotykamy, @pname@. Dobra robota, a teraz oddaj mi te plany.}
+{2010}{}{Kenny? Co ty tu do cholery robisz?}
+{3000}{}{Nie mogłem ci powiedzieć całej prawdy po tym jak @sex@|straciłeś||straciłaś| pamięć. Mam nadzieję że to zrozumiesz. Moim zadaniem był nadzór nad dostarczeniem tych planów do moich przyjaciół z Bractwa.}
+{3010}{}{Niezbyt udany ten nadzór, co?}
+{4000}{}{Miałem szczęście, @sex@|uratowałeś||uratowałaś| mój tyłek. Daj mi te plany i zwijajmy się zanim ten oddział Enklawy w dolinie nas zauważy.}
+{4010}{}{Dlaczego @sex@|miałbym||miałabym| ci wierzyć?}
+{5000}{}{Bo uratowałem ci życie? Nie mówiąc o tym, co się działo zanim @sex@|straciłeś||straciłaś| pamięć?}
+{5010}{}{O czym ty mówisz?! Znaliśmy się wcześniej?}
+{6000}{}{[Kenny wygląda na zmieszanego.] Ja... Nie mogę ci teraz powiedzieć. Musisz mi uwierzyć na słowo. Na miłość boską, daj mi te plany i uciekajmy stąd!}
+{6010}{}{No dobra, trzymaj. [Oddajesz mu plany.]}
+{6020}{}{Nic z tego, Kenny. Oddam je Enklawie, na pewno zapłacą mi za nie sporą sumkę.}
+{7000}{}{Dzięki. Masz, to za twoją fatygę. Może to pomoże ci uwierzyć że współpracuję z Bractwem. [Kenny wręcza ci Pancerz Bractwa.] Wybacz, ale muszę też wymazać dane tych planów z twojego Pip-Boya, na wypadek gdybyś... sam wiesz. [Kenny śmiało wyciąga twój nadgarstek i kasuje dane planów.] Zrobione. Muszę oddać te plany kontaktowi z Bractwa, także nasze drogi znowu muszą się rozejść... ale jestem pewny że jeszcze się spotkamy. A teraz, spadajmy stąd.}
+{7010}{}{Powiedz mi co wiesz o mnie, muszę to wiedzieć!}
+{8000}{}{Nie mogę. Przynajmniej jeszcze nie teraz. Muszę już iść, wybacz.}
+{8010}{}{Świetnie... po prostu świetnie. Na razie, Kenny.}
+{9000}{}{Nagrodzę cię tak samo hojnie jak oni, tego możesz być @sex@|pewny||pewna|.}
+{9010}{}{Skoro tak mówisz... niech ci będzie.}
+{9020}{}{Dzięki, ale nie skorzystam. Puść mnie, Kenny.}
+{10000}{}{[Kenny zdaje się walczyć sam ze sobą.] Gdyby to była inna osoba, już dawno bym ją zabił... ale ty... nie, nie mogę. Ty nic nie pamiętasz, ale ja tak.}
+{10010}{}{Kenny, o czym ty mówisz?}
+{11000}{}{Idź już.@@Uciekaj stąd, szybko.@@Jeszcze się spotkamy.}
+{12000}{}{Zmieniłeś zdanie? Oddaj mi te plany, naprawdę dużo od nich zależy.}
+{12010}{}{Tak. Trzymaj. [Oddajesz mu plany.]}
+{12020}{}{A co mnie to obchodzi? Na razie, Kenny.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{with plans}
+{1020}{}{meet again}
+{1030}{}{plans given away or unknown}
+{2000}{}{Well, well, well... [Smiles enigmatically.] We meet again, @pname@. Good job. Now, if you would be so kind to let my download the data you got from those raiders...}
+{2010}{}{Kenny? What the hell are you doing here? How do you know all that?}
+{3000}{}{All that moves is easily heard in the Wasteland. Anyway, to keep things simple, my task was to supervise the delivery of those plans you're carrying.}
+{3010}{}{And you failed, huh?}
+{4000}{}{Regrettably yes... Good thing you were there to save my ass, friend. Give me these plans and leave this place before those guys in the valley notice us.}
+{4010}{}{And why should I believe you?@@Why should I believe you?}
+{5000}{}{[You can feel anger in his voice.] Because I saved your life? Because of all that had happened? Oh, right, you don't remember...}
+{5010}{}{What happened? What do you mean?!}
+{6000}{}{I can't tell you now. You have to believe me. Please, give me these plans now.}
+{6010}{}{All right. Have it your way, Kenny. [Pass the plans.]}
+{6020}{}{No way, Kenny. I'll give them back to their rightful owners.}
+{7000}{}{Thanks, @pname@. Take these, as a token of our... gratitude. [He gives you a bag of bottlecaps.] I will also have to erase the data from your PipBoy in case you lose it. [He takes your wrist, and then enters some command.] Done. Now, you should get moving before someone notices us. Goodbye, I'm certain that we'll meet again someday.}
+{7010}{}{Our? What do you mean? And what do you know about me? I have to know!}
+{8000}{}{I can't tell you now. Leave this place.}
+{8010}{}{Fine.@@Yeah, fine.}
+{9000}{}{I will reward you as generously as they would, that you can be sure of.}
+{9010}{}{Well, if you say so... Take them.}
+{9020}{}{Thanks, but no. Let me go, Kenny.}
+{10000}{}{[He seems to be fighting with himself somewhere inside his head.] Normally, I wouldn't let anyone do that... But I can't kill you, I just can't... You don't remember anything, but I do.}
+{10010}{}{What are you talking about?}
+{11000}{}{Leave this place.@@Go away, quickly.@@We'll meet again some day.}
+{12000}{}{You've changed your mind? We really need those plans, @pname@.}
+{12010}{}{Here you are. [You pass him the plans.]}
+{12020}{}{I don't care.}
+

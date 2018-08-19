@@ -1,0 +1,24 @@
+// Author: [SoT]Skycast
+// Light version
+
+const uint16[] TcTowns = {
+LOCATION_Redding,
+LOCATION_BrokenHills,	
+LOCATION_Modoc,
+LOCATION_Den,
+LOCATION_Gecko,
+LOCATION_Klamath
+};
+
+
+
+uint ItemLevel(Item& item)
+{
+	if (!valid(item))
+		return 0;
+	if (item.Proto.Cost>7000)
+		return 3;
+	if (item.Proto.Cost>=500)
+		return 2;
+	return 1;
+}

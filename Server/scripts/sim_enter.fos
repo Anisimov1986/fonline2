@@ -1,0 +1,96 @@
+// Author: Wesan
+
+#include "_macros.fos"
+#include "utils_h.fos"
+#include "mapdata_h.fos"
+
+import Location@ CreateLocationForCritter( Critter& player, int locPid, int worldX, int worldY, int delta, int varNum, bool visible ) from "location";
+
+void RoomEntry( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_EnterRoom" );
+}
+
+#define SIM_ROOM    ( 7999 )
+
+bool _EnterRoom( Item& item, Critter& cr, int skill )
+{
+    if( cr.IsPlayer() )
+    {
+
+        GameVar@ LocationVar = GetLocalVar( LVAR_simulation_room, cr.Id );
+        if( LocationVar != 0 )       // Somehow location still exist, tping there then.
+        {
+            Location@ loc = GetLocation( LocationVar.GetValue() );
+            Map@      map;
+            @map = loc.GetMapByIndex( 0 );
+            if( not valid( map ) )
+                return false;
+            cr.TransitToMap( map.Id, 0 );
+            Log( "Location existed, tping there." + cr.Id );
+            return ( true );
+        }
+        else
+        {
+            int       delta = __GlobalMapZoneLength;
+            Location@ loc = CreateLocationForCritter( cr, SIM_ROOM, cr.WorldX, cr.WorldY, delta, LVAR_simulation_room, false );
+
+            Map@      map;
+            @map = loc.GetMapByIndex( 0 );
+            if( not valid( map ) )
+                return false;
+            cr.TransitToMap( map.Id, 0 );
+
+            loc.AutoGarbage = false;
+        }
+    }
+    return ( true );
+}
+
+void RoomExit( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_ExitRoom" );
+}
+
+bool _ExitRoom( Item& item, Critter& cr, int skill )
+{
+    if( cr.IsPlayer() )
+    {
+        Location@ loc = GetLocationOf( cr );
+        loc.AutoGarbage = true;
+
+        int      ownerId = GetRootMapData( loc, MAP_DATA_QUEST_OWNER );
+        Critter@ master = GetCritter( ownerId );
+        Map@     room = cr.GetMap();
+        if( cr.IsPlayer() && cr.Id == master.Id )
+        {
+            BringItems( room, cr, true );
+
+        }
+        GameVar@ LocationVar = GetLocalVar( LVAR_simulation_room, cr.Id );
+        LocationVar = 0;
+
+        Map@ map = GetMapByPid( MAP_vcity_vault_1, 0 );
+        cr.TransitToMap( map.Id, 10 );
+    }
+
+    return ( true );
+}
+
+void _MapInit( Map& map, bool firstTime )
+{
+    map.SetEvent( MAP_EVENT_IN_CRITTER, "RoomGetIn" );
+}
+
+void RoomGetIn( Map& map, Critter& cr )
+{
+    Location@ location = map.GetLocation();
+    int       ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+
+    if( cr.IsPlayer() && cr.Id == master.Id )
+    {
+        StoreItems( map, cr, true );
+
+    }
+}

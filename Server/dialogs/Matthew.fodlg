@@ -1,0 +1,167 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p name_mem_player_npc = 0 #
+6 1020 D _var p name_mem_player_npc } 1 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+0 4010 R _var p name_mem_player_npc = 1 @
+5 5000 None 0 #
+5 5010 D _item p PID_DOG_TAGS } 1 R _script economy_dialogs@r_GiveCaps 1 100 R _param p ST_EXPERIENCE + 250 R _item p PID_DOG_TAGS - 1 R _script karma@r_AddKarma 1 5 #
+5 5020 D _item p PID_DOG_TAGS } 10 R _script economy_dialogs@r_GiveCaps 1 1000 R _param p ST_EXPERIENCE + 2500 R _item p PID_DOG_TAGS - 10 R _script karma@r_AddKarma 1 50 #
+5 5030 D _item p PID_DOG_TAGS } 100 R _script economy_dialogs@r_GiveCaps 1 10000 R _param p ST_EXPERIENCE + 25000 R _item p PID_DOG_TAGS - 100 R _script karma@r_AddKarma 1 500 #
+0 5040 @
+6 6000 None 0 #
+5 6010 D _item p PID_DOG_TAGS } 1 R _script economy_dialogs@r_GiveCaps 1 100 R _param p ST_EXPERIENCE + 250 R _item p PID_DOG_TAGS - 1 R _script karma@r_AddKarma 1 5 #
+5 6020 D _item p PID_DOG_TAGS } 10 R _script economy_dialogs@r_GiveCaps 1 1000 R _param p ST_EXPERIENCE + 2500 R _item p PID_DOG_TAGS - 10 R _script karma@r_AddKarma 1 50 #
+5 6030 D _item p PID_DOG_TAGS } 100 R _script economy_dialogs@r_GiveCaps 1 10000 R _param p ST_EXPERIENCE + 25000 R _item p PID_DOG_TAGS - 100 R _script karma@r_AddKarma 1 500 #
+9 6040 #
+10 6050 D _item p PID_COMBAT_ARMOR } 1 D _item p PID_DOG_TAGS } 100 D _item p PID_BOTTLE_CAPS } 10000 R _param p ST_EXPERIENCE + 1000 R _script dialog@r_ChangeProto 2 17 599 R _item p PID_DOG_TAGS - 100 R _item p PID_BOTTLE_CAPS - 10000 #
+0 6060 @
+9 7000 None 0 #
+0 7010 #
+0 7020 @
+10 8000 None 0 #
+0 8010 &
+
+[engl]
+{100}{}{Matthew}
+{200}{}{You see: Matt}
+{210}{}{This mutant seems very old, but you can still see enormous strenght slumbering in his muscles.}
+{1000}{}{Initial preferences}
+{1010}{}{Not known.}
+{1020}{}{Known}
+{2000}{}{[The mutant bounces back and forth, probably due to severe intoxication.] Yeah? [Burp.] Who are you? Came to buy a drink for old veteran Matt?@@[The old mutant bounces back and forth, probably due to severe intoxication.] Hi there, I'm Matt, but I don't recall... [Burp.]... seeing you here before. Came to buy a drink for old veteran?}
+{2010}{}{I'm @pname@. A veteran? You fought in the Master's? Army?@@I'm @pname@. A veteran you say? You fought in the Master's Army?}
+{2020}{}{I don't have time for this. @@Later, Matt.@@I've got to go.}
+{3000}{}{Yeah but I was dipped late, didin't see much combat there. When the Master... [Belch.]... died I decided to seek my own path, and became a merc. Made a lotsa caps, oh yeah. It's been like that for years, and I've still would be a mercenary, If I hadn't killed my own son. [You can almost see tears on flowing from the mutant's watery eyes.] Yeah, that's right... We were supposed to raid a caravan, and we did. Killed them all, not much of a fight actually. Then I found him. Most of my memories before dipping are... [Hiccup.]... bleak, but a man knows his son's face forever.}
+{3010}{}{Oh. I'm sorry for you, Matt. What happened next?@@That sucks, Matt. What happened next?}
+{3020}{}{I think I've heard enough.@@Wasteland's harsh.@@I heard enough for today.}
+{4000}{}{Well, I fell into rage. They, the Mercs... [Belch.]... tried to stop me, but I managed to waste the entire raiding party. Hell, I came back to the man that hired us, and killed him too. But he wasn't the one pulling strings, cos from time to time, some mercs would try ambush me. After a coupla years, I felt exhausted, so I came back south and wound up here. I'd still hunt them all down, if it wasn't for my old wounds.... But I appreciate every time one of those... [Burp.]... fucks gives up a ghost. Say, you're an adventurer of sorts, yeah? I'd be happy to know that someone is still after their asses. I could... [Hiccup.]... pay you for every Dog Tag you bring me, some of them probably still wear those. [He shows you a Dog-Tag.] Whaddya say?}
+{4010}{}{Sure thing, if I find any, I'll bring them to you.@@No problem, If I find any, I'll bring them to you.}
+{5000}{}{Thanks, @pname@.@@Right. Thanks, @pname@.@@Hope they died a painful death. Thanks, @pname@.}
+{5010}{}{I have another one.}
+{5020}{}{I have another 10.}
+{5030}{}{I have another 100.}
+{5040}{}{No problem. I'll come back when I find more.@@It was a piece of cake. I'm sure I'll bring more.}
+{6000}{}{Yes, @pname@? Got any Dog Tags?@@Yeah, I remember you. Got Dog Tags?@@Got any Dog Tags?}
+{6010}{}{Yeah, here one I found.@@Yeah, take it.@@Yep, got one right here.@@Yeah, here's one.@@Yep, take it.}
+{6020}{}{I gathered 10 of them already.@@ Ye i have 10 of them.}
+{6030}{}{You won't believe but I brought you 100 Dog Tags.}
+{6040}{}{What if i will bring you much of them, what about extra reward?}
+{6050}{}{Time for you to keep a promise and improve my armor. I brought 100 Dog Tags, Combat Armor and 10000 caps.}
+{6060}{}{No, not yet. I will come back later.}
+{7000}{}{Hm, good question. Looks like i have idea, bring me 100 Dog Tags, Combat Armor and 10000 caps. I have the necessary skills to upgrade your armor to Ranger Armor.}
+{7010}{}{Shitty upgrade for 100 dog tags? Try to find other idiot.}
+{7020}{}{Ok, i will try. Looks like good enough reward for me.}
+{8000}{}{Oh i see, you really did it. Time to reward you. [He taking you armor and after some time returning Ranger Armor to you!]}
+{8010}{}{Finally.}
+
+[russ]
+{100}{}{Мэтью}
+{200}{}{Вы видите: Мэтью}
+{210}{}{Если вы посмотрите внимательно, то увидите что это мутант очень стар. Его мышцы, однако, по-прежнему сильны.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{1020}{}{Known}
+{2000}{}{Что вы хотите от старого ветерана?}
+{2010}{}{Что? Война закончилась прежде, чем вы даже родились!}
+{2020}{}{Опять сумасшедший чувак. Пока.}
+{3000}{}{Не эта война! Ну, возможно, это была даже не война.. Несколько сражений произошло между моими наемниками и рейдерами. Потребовались годы сражений и десятки бесстрашных солдат. Мы выиграли, но теперь я последний остался...}
+{3010}{}{Совсем не счастливый конец. Могу ли я вам чем-то помочь?}
+{3020}{}{Скучно, все погибли, ничего интересного. * Зевок * Пока.}
+{4000}{}{На самом деле да ... У каждого наемника есть именной жетон [показывает вам свой жетон] и теперь они разбросаны по всей пустоши, если увидишь такой, принеси мне, я тебе заплачу. А если ты займешься этим всерьез и будешь приносить мне много жетонов, я поделю с тобой кое-чем действительно интересным. Кое-чем что окупит твои старания.}
+{4010}{}{Хорошо, если найду, обязательно принесу тебе.}
+{5000}{}{Спасибо большое @pname@.}
+{5010}{}{У меня есть еще один.}
+{5020}{}{У меня тут еще 10 завалялось.}
+{5030}{}{Да у меня тут их еще целая гора, возьми еще 100.}
+{5040}{}{Нет проблем. Я вернусь, когда найду еще.}
+{6000}{}{Да @pname@? Ну что, нашел жетоны?}
+{6010}{}{Вот, я нашел один жетон.}
+{6020}{}{Я уже насобирал 10 штук. Вот возьми.}
+{6030}{}{Я тут не терял времени зря, насобирал 100 штук. Забирай.}
+{6040}{}{А что если я принесу тебе много жетонов сразу? Будет дополнительная награда?}
+{6050}{}{Настало время выполнить твое обещание о "специальной награде". Я принес 100 жетонов, Боевую Броню и 10000 крышек!}
+{6060}{}{Нет, еще нет. Я вернусь позже.}
+{7000}{}{Хмм, хороший вопрос и похоже я знаю на него ответ. Принеси мне 100 жетонов, Боевую Броню и 10000 крышек, я смогу улучшить её до брони рейнджера.}
+{7010}{}{И всего-то? Ищи дурачка.}
+{7020}{}{Хорошо, я попробую. Похоже достойная награда.}
+{8000}{}{Да, действительно. Время наградить тебя. [Он забирает вашу боевую броню и через некоторое время возвращает броню рейнджера!]}
+{8010}{}{Ну наконец-то.}
+
+[pols]
+{100}{}{Matthew}
+{200}{}{Widzisz Matthew'a.}
+{210}{}{Kiedy przypatrujesz się bliżej, ten mutant wygląda na bardzo starego. Niemniej, jego mięśnie są wciąż potężne, a w oczach wciąż tli się urażona duma.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{1020}{}{Known}
+{2000}{}{Czego chcesz od starego weterana?}
+{2010}{}{Co? Wojna skończyła się, zanim zdążyłeś się nawet urodzić!}
+{2020}{}{Kolejny porąbaniec. Do widzenia.}
+{3000}{}{Nie ta wojna! Cóż, może to nawet nie była wojna... Kilka bitew pomiędzy moją grupą najemników a najeźdźcami. Zabrały lata walk i dziesiątki nieustraszonych żołnierzy. Wygraliśmy, ale teraz pozostałem tylko ja, ostatni...}
+{3010}{}{To nie jest wesołe zakończenie. Mogę ci w czymś pomóc?}
+{3020}{}{Nuuuda, wszyscy zginęli, no normalnie szalenie ciekawe. [Ziewasz.] Do widzenia.}
+{4000}{}{Właściwie, tak... Każdy zakontraktowany żołnierz taki jak ja miał swój nieśmiertelnik. [Pokazuje ci swój nieśmiertelnik.] Teraz są one rozsiane po całym Pustkowiach... Jeśli pomożesz mi je zebrać, solidnie zapłacę za każdą sztukę. A jeśli przyniesiesz mi wystarczająco dużo, możliwe że podzielę się z tobą czymś specjalnym. Czymś, co wynagrodzi twój wysiłek.}
+{4010}{}{W porządku, kiedy je znajdę, przyniosę do ciebie.}
+{5000}{}{Wielkie dzięki, @pname@.}
+{5010}{}{I have another one.}
+{5020}{}{I have another 10.}
+{5030}{}{I have another 100.}
+{5040}{}{Nie ma sprawy. Wrócę, kiedy znajdę więcej.}
+{6000}{}{Tak, @pname@? @sex@|Znalazłeś||Znalazłaś| więcej nieśmiertelników?}
+{6010}{}{Oto nieśmiertelnik, który @sex@|znalazłem||znalazłam|.}
+{6020}{}{I gathered 10 of them already.@@ Ye i have 10 of them.}
+{6030}{}{You won't believe but I brought you 100 Dog Tags.@@ }
+{6040}{}{What if i will bring you much of them, will be some extra reward?}
+{6050}{}{@sex@|Przyniosłem||Przyniosłam| ci już mnóstwo nieśmiertelników, czy mogę dostać tą "specjalną nagrodę"?}
+{6060}{}{No, not yet. I will come back later.}
+{7000}{}{Hm, good question. Looks like i have idea, bring me 100 Dog Tags, Combat Armor and 10000 caps. I have the necessary skills to upgrade your armor to Ranger Armor.}
+{7010}{}{Shitty upgrade for 100 dog tags? Try to find other idiot.}
+{7020}{}{Ok, i will try. Looks like good enough reward for me.}
+{8000}{}{Oh i see, you really did it. Time to reward you. [He taking you armor and after some time returning you Ranger Armor!]}
+{8010}{}{Finally.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Not known.}
+{1020}{}{Known}
+{2000}{}{[The mutant bounces back and forth, probably due to severe intoxication.] Yeah? [Burp.] Who are you? Came to buy a drink for old veteran Matt?@@[The old mutant bounces back and forth, probably due to severe intoxication.] Hi there, I'm Matt, but I don't recall... [Burp.]... seeing you here before. Came to buy a drink for old veteran?}
+{2010}{}{I'm @pname@. A veteran? You fought in the Master's? Army?@@I'm @pname@. A veteran you say? You fought in the Master's Army?}
+{2020}{}{I don't have time for this. @@Later, Matt.@@I've got to go.}
+{3000}{}{Yeah but I was dipped late, didin't see much combat there. When the Master... [Belch.]... died I decided to seek my own path, and became a merc. Made a lotsa caps, oh yeah. It's been like that for years, and I've still would be a mercenary, If I hadn't killed my own son. [You can almost see tears on flowing from the mutant's watery eyes.] Yeah, that's right... We were supposed to raid a caravan, and we did. Killed them all, not much of a fight actually. Then I found him. Most of my memories before dipping are... [Hiccup.]... bleak, but a man knows his son's face forever.}
+{3010}{}{Oh. I'm sorry for you, Matt. What happened next?@@That sucks, Matt. What happened next?}
+{3020}{}{I think I've heard enough.@@Wasteland's harsh.@@I heard enough for today.}
+{4000}{}{Well, I fell into rage. They, the Mercs... [Belch.]... tried to stop me, but I managed to waste the entire raiding party. Hell, I came back to the man that hired us, and killed him too. But he wasn't the one pulling strings, cos from time to time, some mercs would try ambush me. After a coupla years, I felt exhausted, so I came back south and wound up here. I'd still hunt them all down, if it wasn't for my old wounds.... But I appreciate every time one of those... [Burp.]... fucks gives up a ghost. Say, you're an adventurer of sorts, yeah? I'd be happy to know that someone is still after their asses. I could... [Hiccup.]... pay you for every Dog Tag you bring me, some of them probably still wear those. [He shows you a Dog-Tag.] Whaddya say?}
+{4010}{}{Sure thing, if I find any, I'll bring them to you.@@No problem, If I find any, I'll bring them to you.}
+{5000}{}{Thanks, @pname@.@@Right. Thanks, @pname@.@@Hope they died a painful death. Thanks, @pname@.}
+{5010}{}{I have another one.}
+{5020}{}{I have another 10.}
+{5030}{}{I have another 100.}
+{5040}{}{No problem. I'll come back when I find more.@@It was a piece of cake. I'm sure I'll bring more.}
+{6000}{}{Yes, @pname@? Got any Dog Tags?@@Yeah, I remember you. Got Dog Tags?@@Got any Dog Tags?}
+{6010}{}{Yeah, here one I found.@@Yeah, take it.@@Yep, got one right here.@@Yeah, here's one.@@Yep, take it.}
+{6020}{}{I gathered 10 of them already.@@ Ye i have 10 of them.}
+{6030}{}{You won't believe but I brought you 100 Dog Tags.}
+{6040}{}{What if i will bring you much of them, what about extra reward?}
+{6050}{}{Time for you to keep a promise and improve my armor. I brought 100 Dog Tags, Combat Armor and 10000 caps.}
+{6060}{}{No, not yet. I will come back later.}
+{7000}{}{Hm, good question. Looks like i have idea, bring me 100 Dog Tags, Combat Armor and 10000 caps. I have the necessary skills to upgrade your armor to Ranger Armor.}
+{7010}{}{Shitty upgrade for 100 dog tags? Try to find other idiot.}
+{7020}{}{Ok, i will try. Looks like good enough reward for me.}
+{8000}{}{Oh i see, you really did it. Time to reward you. [He taking you armor and after some time returning Ranger Armor to you!]}
+{8010}{}{Finally.}
+

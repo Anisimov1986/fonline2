@@ -1,0 +1,183 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+8 2010 #
+4 2020 #
+3 2030 #
+6 2040 #
+0 2050 @
+3 3000 None 0 #
+0 3010 #
+9 3020 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+0 5010 #
+9 5020 @
+9 6000 None 0 #
+8 6010 #
+4 6020 #
+3 6030 #
+6 6040 #
+0 6050 @
+6 7000 None 0 #
+7 7010 #
+9 7020 #
+0 7030 @
+7 8000 None 0 #
+0 8010 #
+0 8020 @
+8 9000 None 0 #
+9 9010 #
+0 9020 &
+
+[engl]
+{100}{}{Lucas White}
+{200}{}{You see: Lucas White.}
+{210}{}{You see a crafty, good-looking man.}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[He smiles when he notices you. For some unknown reason his smile is making you nervous] Hello there, wastelander. Something I can help you with?}
+{2010}{}{Who are you?}
+{2020}{}{What are the rules of gambling on those molerats I see fighting?}
+{2030}{}{What do you know about Fight Club?}
+{2040}{}{Where do you get all those molerats from?}
+{2050}{}{Not really.}
+{3000}{}{[His expression turns serious, and he looks piercingly into your eyes. After a short while of your nervousness, he suddenly smiles once again, even more unsettlingly than before.] Fight club? First time I heard that. To my knowledge it doesn't exist.}
+{3010}{}{[You feel like you don't want to remain in his presence any longer.] I see...umm, I'll be going now. Goodbye! [Leave hurriedly]}
+{3020}{}{[You try to escape the tension in the air by quickly changing the subject.] Nevermind, let me ask something else.}
+{4000}{}{Rules are very simple: Only two molerats to a fight. No armors, no enhancemens. Fights will go on as long as they have to. If the other molerat goes limp, the fight is over. We select molerats at random, and we can guarantee it, as we have no time or volunteers for assessing. Moreover the looks are deceiving.}
+{4010}{}{[continue]}
+{5000}{}{Those molerats fight for your entertainment. We take bets on either one of them, and that is the core enjoyment of my fine establishment! (To bet use commands ~bet1 and ~bet2, or ~b1 and ~b2. A message will display how much you can bet, and a popup will let you type wanted amount)}
+{5010}{}{Awesome! I'm feeling lucky right now! [exit]}
+{5020}{}{Cool. Let me ask you something else, though.}
+{6000}{}{[His smile is unsettling] Sure, go ahead.}
+{6010}{}{Can you remind me who you are?}
+{6020}{}{Could you tell me about the rules again?}
+{6030}{}{I wish to ask about the Fight Club.}
+{6040}{}{Where do you get all those molerats from?}
+{6050}{}{Nah, nevermind.}
+{7000}{}{We hire hunters to capture wild ones and bring them here, of course.}
+{7010}{}{I see. Am I qualified enough for you to hire me?}
+{7020}{}{Oh, all right. Let me ask something else.}
+{7030}{}{Right, that was kind of a stupid question. It would be best if I leave now to wallow in self-pity.}
+{8000}{}{Absolutely. It's not even that tough. The hard part is tracking them, really. [His smile deepens, giving you goosebumps.] It wasn't before, but since we've been quite successful, you can imagine the impact of it towards molerat population.}
+{8010}{}{Well, I'm ready right now, so I'll depart immediately.}
+{8020}{}{Those poor molerats! I'll let them breed in peace for a while, then.}
+{9000}{}{My name is Lucas White. I'm a proud owner of this fine gambling establishment, as well as associate of local stores, such as furniture and clothes shop. [He smiles and pauses for a short while.] I've seen the Hub bloom over many years, as well as contribute to it myself, to be honest.}
+{9010}{}{[You have a feeling that he's something more than what he says, but you dismiss it as unimportant.] I see. I have other questions...}
+{9020}{}{Then I must say you're an important person in Hub. I bid you a good day.}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[He smiles when he notices you. For some unknown reason his smile is making you nervous] Hello there, wastelander. Something I can help you with?}
+{2010}{}{Who are you?}
+{2020}{}{What are the rules of gambling on those molerats I see fighting?}
+{2030}{}{What do you know about Fight Club?}
+{2040}{}{Where do you get all those molerats from?}
+{2050}{}{Not really.}
+{3000}{}{[His expression turns serious, and he looks piercingly into your eyes. After a short while of your nervousness, he suddenly smiles once again, even more unsettlingly than before.] Fight club? First time I heard that. To my knowledge it doesn't exist.}
+{3010}{}{[You feel like you don't want to remain in his presence any longer.] I see...umm, I'll be going now. Goodbye! [Leave hurriedly]}
+{3020}{}{[You try to escape the tension in the air by quickly changing the subject.] Nevermind, let me ask something else.}
+{4000}{}{Rules are very simple: Only two molerats to a fight. No armors, no enhancemens. Fights will go on as long as they have to. If the other molerat goes limp, the fight is over. We select molerats at random, and we can guarantee it, as we have no time or volunteers for assessing. Moreover the looks are deceiving.}
+{4010}{}{[continue]}
+{5000}{}{Those molerats fight for your entertainment. We take bets on either one of them, and that is the core enjoyment of my fine establishment! (To bet use commands ~bet1 and ~bet2, or ~b1 and ~b2. A message will display how much you can bet, and a popup will let you type wanted amount)}
+{5010}{}{Awesome! I'm feeling lucky right now! [exit]}
+{5020}{}{Cool. Let me ask you something else, though.}
+{6000}{}{[His smile is unsettling] Sure, go ahead.}
+{6010}{}{Can you remind me who you are?}
+{6020}{}{Could you tell me about the rules again?}
+{6030}{}{I wish to ask about the Fight Club.}
+{6040}{}{Where do you get all those molerats from?}
+{6050}{}{Nah, nevermind.}
+{7000}{}{We hire hunters to capture wild ones and bring them here, of course.}
+{7010}{}{I see. Am I qualified enough for you to hire me?}
+{7020}{}{Oh, all right. Let me ask something else.}
+{7030}{}{Right, that was kind of a stupid question. It would be best if I leave now to wallow in self-pity.}
+{8000}{}{Absolutely. It's not even that tough. The hard part is tracking them, really. [His smile deepens, giving you goosebumps.] It wasn't before, but since we've been quite successful, you can imagine the impact of it towards molerat population.}
+{8010}{}{Well, I'm ready right now, so I'll depart immediately.}
+{8020}{}{Those poor molerats! I'll let them breed in peace for a while, then.}
+{9000}{}{My name is Lucas White. I'm a proud owner of this fine gambling establishment, as well as associate of local stores, such as furniture and clothes shop. [He smiles and pauses for a short while.] I've seen the Hub bloom over many years, as well as contribute to it myself, to be honest.}
+{9010}{}{[You have a feeling that he's something more than what he says, but you dismiss it as unimportant.] I see. I have other questions...}
+{9020}{}{Then I must say you're an important person in Hub. I bid you a good day.}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[He smiles when he notices you. For some unknown reason his smile is making you nervous] Hello there, wastelander. Something I can help you with?}
+{2010}{}{Who are you?}
+{2020}{}{What are the rules of gambling on those molerats I see fighting?}
+{2030}{}{What do you know about Fight Club?}
+{2040}{}{Where do you get all those molerats from?}
+{2050}{}{Not really.}
+{3000}{}{[His expression turns serious, and he looks piercingly into your eyes. After a short while of your nervousness, he suddenly smiles once again, even more unsettlingly than before.] Fight club? First time I heard that. To my knowledge it doesn't exist.}
+{3010}{}{[You feel like you don't want to remain in his presence any longer.] I see...umm, I'll be going now. Goodbye! [Leave hurriedly]}
+{3020}{}{[You try to escape the tension in the air by quickly changing the subject.] Nevermind, let me ask something else.}
+{4000}{}{Rules are very simple: Only two molerats to a fight. No armors, no enhancemens. Fights will go on as long as they have to. If the other molerat goes limp, the fight is over. We select molerats at random, and we can guarantee it, as we have no time or volunteers for assessing. Moreover the looks are deceiving.}
+{4010}{}{[continue]}
+{5000}{}{Those molerats fight for your entertainment. We take bets on either one of them, and that is the core enjoyment of my fine establishment! (To bet use commands ~bet1 and ~bet2, or ~b1 and ~b2. A message will display how much you can bet, and a popup will let you type wanted amount)}
+{5010}{}{Awesome! I'm feeling lucky right now! [exit]}
+{5020}{}{Cool. Let me ask you something else, though.}
+{6000}{}{[His smile is unsettling] Sure, go ahead.}
+{6010}{}{Can you remind me who you are?}
+{6020}{}{Could you tell me about the rules again?}
+{6030}{}{I wish to ask about the Fight Club.}
+{6040}{}{Where do you get all those molerats from?}
+{6050}{}{Nah, nevermind.}
+{7000}{}{We hire hunters to capture wild ones and bring them here, of course.}
+{7010}{}{I see. Am I qualified enough for you to hire me?}
+{7020}{}{Oh, all right. Let me ask something else.}
+{7030}{}{Right, that was kind of a stupid question. It would be best if I leave now to wallow in self-pity.}
+{8000}{}{Absolutely. It's not even that tough. The hard part is tracking them, really. [His smile deepens, giving you goosebumps.] It wasn't before, but since we've been quite successful, you can imagine the impact of it towards molerat population.}
+{8010}{}{Well, I'm ready right now, so I'll depart immediately.}
+{8020}{}{Those poor molerats! I'll let them breed in peace for a while, then.}
+{9000}{}{My name is Lucas White. I'm a proud owner of this fine gambling establishment, as well as associate of local stores, such as furniture and clothes shop. [He smiles and pauses for a short while.] I've seen the Hub bloom over many years, as well as contribute to it myself, to be honest.}
+{9010}{}{[You have a feeling that he's something more than what he says, but you dismiss it as unimportant.] I see. I have other questions...}
+{9020}{}{Then I must say you're an important person in Hub. I bid you a good day.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[He smiles when he notices you. For some unknown reason his smile is making you nervous] Hello there, wastelander. Something I can help you with?}
+{2010}{}{Who are you?}
+{2020}{}{What are the rules of gambling on those molerats I see fighting?}
+{2030}{}{What do you know about Fight Club?}
+{2040}{}{Where do you get all those molerats from?}
+{2050}{}{Not really.}
+{3000}{}{[His expression turns serious, and he looks piercingly into your eyes. After a short while of your nervousness, he suddenly smiles once again, even more unsettlingly than before.] Fight club? First time I heard that. To my knowledge it doesn't exist.}
+{3010}{}{[You feel like you don't want to remain in his presence any longer.] I see...umm, I'll be going now. Goodbye! [Leave hurriedly]}
+{3020}{}{[You try to escape the tension in the air by quickly changing the subject.] Nevermind, let me ask something else.}
+{4000}{}{Rules are very simple: Only two molerats to a fight. No armors, no enhancemens. Fights will go on as long as they have to. If the other molerat goes limp, the fight is over. We select molerats at random, and we can guarantee it, as we have no time or volunteers for assessing. Moreover the looks are deceiving.}
+{4010}{}{[continue]}
+{5000}{}{Those molerats fight for your entertainment. We take bets on either one of them, and that is the core enjoyment of my fine establishment! (To bet use commands ~bet1 and ~bet2, or ~b1 and ~b2. A message will display how much you can bet, and a popup will let you type wanted amount)}
+{5010}{}{Awesome! I'm feeling lucky right now! [exit]}
+{5020}{}{Cool. Let me ask you something else, though.}
+{6000}{}{[His smile is unsettling] Sure, go ahead.}
+{6010}{}{Can you remind me who you are?}
+{6020}{}{Could you tell me about the rules again?}
+{6030}{}{I wish to ask about the Fight Club.}
+{6040}{}{Where do you get all those molerats from?}
+{6050}{}{Nah, nevermind.}
+{7000}{}{We hire hunters to capture wild ones and bring them here, of course.}
+{7010}{}{I see. Am I qualified enough for you to hire me?}
+{7020}{}{Oh, all right. Let me ask something else.}
+{7030}{}{Right, that was kind of a stupid question. It would be best if I leave now to wallow in self-pity.}
+{8000}{}{Absolutely. It's not even that tough. The hard part is tracking them, really. [His smile deepens, giving you goosebumps.] It wasn't before, but since we've been quite successful, you can imagine the impact of it towards molerat population.}
+{8010}{}{Well, I'm ready right now, so I'll depart immediately.}
+{8020}{}{Those poor molerats! I'll let them breed in peace for a while, then.}
+{9000}{}{My name is Lucas White. I'm a proud owner of this fine gambling establishment, as well as associate of local stores, such as furniture and clothes shop. [He smiles and pauses for a short while.] I've seen the Hub bloom over many years, as well as contribute to it myself, to be honest.}
+{9010}{}{[You have a feeling that he's something more than what he says, but you dismiss it as unimportant.] I see. I have other questions...}
+{9020}{}{Then I must say you're an important person in Hub. I bid you a good day.}
+

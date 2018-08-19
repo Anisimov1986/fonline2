@@ -1,0 +1,40 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Yoz}
+{200}{}{You see: man in metal armor doing some paperwork.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Junktown scouts aren't currently recruiting.@@ Hello, how is it going?@@ Junktown scouts is the force which keeps the peace around here, so watch yourself stranger.@@ Hey, watcha doing?}
+
+[russ]
+{100}{}{Йоз}
+{200}{}{Вы видите : человека в металлической броне, он занимается бумажной работой .}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{В разведчики Джинктауна сейчас не набора.@@Привет, как дела?@@Разведчики Джанктауна это сила, которая охраняет мир в этом месте, так что следи за собой незнакомец.@@Хей, как дела?}
+
+[pols]
+{100}{}{Yoz}
+{200}{}{Widzisz mężczyznę w metalowej zbroi. Jego uwaga jest skoncetrowana na dokumentach leżących na biurku.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Zwiadowcy Złomowa nie potrzebują nowych rekrutów, przynajmniej na razie.@@Jak leci?@@Lepiej nic nie kombinuj, Zwiadowcy Złomowa pilnują tu porządku.@@Nie mam teraz czasu.}
+
+[ptbr]
+{100}{}{Yoz}
+{200}{}{Você vê um homem em armadura de metal mexendo em uma papelada.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Os guardas do Sucatão não estão recrutando atualmente.@@ Olá, como vai?@@ Os escoltas do Sucatão são a força que mantem a paz por aqui, então tome cuidado forasteiro.@@ Ei, tá fazendo o quê?}
+

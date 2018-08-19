@@ -1,0 +1,48 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _item p PID_EMPTY_WATER_BAG } 1 R _item p PID_EMPTY_WATER_BAG - 1 R _item p PID_FULL_WATER_BAG + 1 R _script dialog@r_QuestNotice 2 9300 1 #
+2 1020 D _item p PID_EMPTY_WATER_BAG = 0 R _script dialog@r_QuestNotice 2 9300 2 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Waterpump}
+{200}{}{Waterpump}
+{210}{}{Waterpump}
+{1000}{}{Predialogue installations}
+{1010}{}{Has bag}
+{1020}{}{Has no bag}
+{2000}{}{ }
+
+[russ]
+{100}{}{Waterpump}
+{200}{}{Waterpump}
+{210}{}{Waterpump}
+{1000}{}{Predialogue installations}
+{1010}{}{Has bag}
+{1020}{}{Has no bag}
+{2000}{}{ }
+
+[pols]
+{100}{}{Pompa wodna}
+{200}{}{Widzisz starą pompę wodną.}
+{210}{}{Jest to jedno z niewielu miejsc, gdzie można zdobyć relatywnie nieskażony tlenek wodoru, zwany też popularnie wodą.}
+{1000}{}{Predialogue installations}
+{1010}{}{Has bag}
+{1020}{}{Has no bag}
+{2000}{}{ }
+
+[ptbr]
+{100}{}{Bomba d'água}
+{200}{}{Bomba d'água}
+{210}{}{Bomba d'água}
+{1000}{}{Predialogue installations}
+{1010}{}{Has bag}
+{1020}{}{Has no bag}
+{2000}{}{ }

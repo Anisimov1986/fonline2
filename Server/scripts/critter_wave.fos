@@ -1,0 +1,446 @@
+#ifndef __CRITTER_WAVE__
+#define __CRITTER_WAVE__
+
+#include "critter_template.fos"
+#include "serializator.fos"
+
+class CritterWave
+{
+	#define _GetKeyAW ("CritterWave" + mapId + ";" + role)
+
+	uint mapId;
+	int role;
+	uint waveTimeout = 0, crittersPerWaveMin = 1, crittersPerWaveMax = 1, maxAliveCritters = 0, waveCountDown = 0, crittersCountDown = 0;
+	bool skipWaveIfNoPlayers = false, maxAliveCrittersEnabled = false, waveCountDownEnabled = false, crittersCountDownEnabled = false, autoDelete = true;
+	
+	uint wavesSpawnedTotal = 0, crittersSpawnedTotal = 0;
+	string waveSpawnedCallback;
+	
+	uint lastWaveTime, eventId = 0;
+	bool started = false, stopped = false, deleted = false;
+
+	
+	CritterWave(uint mapId, int role)
+	{
+		this.mapId = mapId;
+		this.role = role;
+		
+		Load();
+	}
+	
+	private void Load()
+	{
+		Serializator serializator;
+		if(!serializator.Load(_GetKeyAW))
+		{
+			return;
+		}
+		
+		serializator.Get(mapId);
+		serializator.Get(role);
+		
+		serializator.Get(waveTimeout);
+		serializator.Get(crittersPerWaveMin);
+		serializator.Get(crittersPerWaveMax);
+		serializator.Get(maxAliveCritters);
+		serializator.Get(waveCountDown);
+		serializator.Get(crittersCountDown);
+		
+		serializator.Get(skipWaveIfNoPlayers);
+		serializator.Get(maxAliveCrittersEnabled);
+		serializator.Get(waveCountDownEnabled);
+		serializator.Get(crittersCountDownEnabled);
+		serializator.Get(autoDelete);
+		
+		serializator.Get(wavesSpawnedTotal);
+		serializator.Get(crittersSpawnedTotal);
+		
+		serializator.Get(waveSpawnedCallback);
+		
+		serializator.Get(lastWaveTime);
+		serializator.Get(started);
+		serializator.Get(stopped);
+		serializator.Get(deleted);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(mapId);
+		serializator.Set(role);
+		
+		serializator.Set(waveTimeout);
+		serializator.Set(crittersPerWaveMin);
+		serializator.Set(crittersPerWaveMax);
+		serializator.Set(maxAliveCritters);
+		serializator.Set(waveCountDown);
+		serializator.Set(crittersCountDown);
+		
+		serializator.Set(skipWaveIfNoPlayers);
+		serializator.Set(maxAliveCrittersEnabled);
+		serializator.Set(waveCountDownEnabled);
+		serializator.Set(crittersCountDownEnabled);
+		serializator.Set(autoDelete);
+		
+		serializator.Set(wavesSpawnedTotal);
+		serializator.Set(crittersSpawnedTotal);
+		
+		serializator.Set(waveSpawnedCallback);
+		
+		serializator.Set(lastWaveTime);
+		serializator.Set(started);
+		serializator.Set(stopped);
+		serializator.Set(deleted);
+
+		serializator.Save(_GetKeyAW);
+	}
+	
+	private void SaveIfStarted()
+	{
+		if (started && !deleted)
+		{
+			Save();
+		}
+	}
+		
+	uint GetWaveCountDown()
+	{
+		return waveCountDown;
+	}
+	
+	CritterWave@ SetWaveCountDown(uint waveCountDown)
+	{
+		this.waveCountDown = waveCountDown;
+		waveCountDownEnabled = true;
+		
+		SaveIfStarted();
+		return @this;
+	}
+	
+	CritterWave@ DisableWaveCountDown()
+	{
+		waveCountDownEnabled = false;
+		
+		SaveIfStarted();
+		return @this;
+	}
+	
+	uint GetCrittersCountDown()
+	{
+		return crittersCountDown;
+	}
+	
+	CritterWave@  SetCrittersCountDown(uint crittersCountDown)
+	{
+		this.crittersCountDown = crittersCountDown;
+		crittersCountDownEnabled = true;
+		
+		SaveIfStarted();
+		return @this;
+	}
+	
+	CritterWave@ DisableCrittersCountDown()
+	{
+		crittersCountDownEnabled = false;
+		
+		SaveIfStarted();
+		return @this;
+	}
+	
+	uint GetCrittersPerWaveMin()
+	{
+		return crittersPerWaveMin;
+	}
+	
+	uint GetCrittersPerWaveMax()
+	{
+		return crittersPerWaveMax;
+	}
+	
+	CritterWave@ SetCrittersPerWave(uint crittersPerWaveMin, uint crittersPerWaveMax)
+	{
+		this.crittersPerWaveMin = crittersPerWaveMin;
+		this.crittersPerWaveMax = crittersPerWaveMax;
+		
+		SaveIfStarted();
+		return  @this;
+	}
+	
+	uint GetWaveTimeout()
+	{
+		return waveTimeout;
+	}
+	
+	CritterWave@ SetWaveTimeout(uint waveTimeout)
+	{
+		this.waveTimeout = waveTimeout;
+		if (eventId > 0)
+		{
+			uint[] values = {mapId, role};
+			EraseTimeEvent(eventId);
+			eventId = CreateTimeEvent(lastWaveTime + waveTimeout, "e_CritterWaveEvent", values, true);
+		}
+		
+		SaveIfStarted();
+		return  @this;
+	}
+	
+	uint GetMaxAliveCritters()
+	{
+		return maxAliveCritters;
+	}
+	
+	CritterWave@ SetMaxAliveCritters(uint maxAliveCritters)
+	{
+		this.maxAliveCritters = maxAliveCritters;
+		maxAliveCrittersEnabled = true;
+		
+		SaveIfStarted();
+		return  @this;
+	}
+
+	CritterWave@ DisableMaxAliveCritters()
+	{
+		maxAliveCrittersEnabled = false;
+		
+		SaveIfStarted();
+		return  @this;
+	}
+	
+	bool GetSkipWaveIfNoPlayers()
+	{
+		return skipWaveIfNoPlayers;
+	}
+	
+	CritterWave@ SetSkipWaveIfNoPlayers(bool skipWaveIfNoPlayers)
+	{
+		this.skipWaveIfNoPlayers = skipWaveIfNoPlayers;
+		
+		SaveIfStarted();
+		return  @this;
+	}
+	
+	bool GetAutoDelete()
+	{
+		return autoDelete;
+	}
+	
+	CritterWave@ SetAutoDelete(bool autoDelete)
+	{
+		this.autoDelete = autoDelete;
+		
+		SaveIfStarted();
+		return  @this;
+	}
+	
+	string GetWaveSpawnedCallback()
+	{
+		return waveSpawnedCallback;
+	}
+	
+	CritterWave@ SetWaveSpawnedCallback(string waveSpawnedCallback)
+	{
+		this.waveSpawnedCallback = waveSpawnedCallback;
+		
+		SaveIfStarted();
+		return  @this;
+	}
+	
+	CritterWave@ DisableWaveSpawnedCallback()
+	{
+		this.waveSpawnedCallback = "";
+		
+		SaveIfStarted();
+		return  @this;
+	}
+	
+	void Start()
+	{
+		if (started && !stopped || deleted)
+		{
+			return;
+		}
+	
+		started = true;
+		
+		SpawnWave();
+	}
+	
+	void Stop()
+	{
+		if (!started || stopped)
+		{
+			return;
+		}
+		
+		stopped = true;
+		
+		Save();
+	}
+	
+	void Delete()
+	{
+		if (eventId > 0)
+		{
+			EraseTimeEvent(eventId);
+			eventId = 0;
+		}
+		EraseAnyData(_GetKeyAW);
+	}
+	
+	void SpawnWave()
+	{	
+		CritterTemplate @critterTemplate;
+		eventId = 0;
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		if (stopped)
+		{
+			AutoDelete();
+			return;
+		}
+				
+		if (waveCountDownEnabled && waveCountDown == 0)
+		{
+			stopped = true;
+			AutoDelete();
+			return;
+		}
+		
+		critterTemplateMap.get("" + role, @critterTemplate);
+		if (!valid(critterTemplate)) 
+		{
+			Delete();
+			return;
+		}
+		
+		Map@ map = GetMap(mapId);
+		
+		if (!valid(map))
+		{
+			Delete();
+			return;
+		}
+		
+		uint playersCount = 0, aliveCrittersCount = 0;
+		array<Critter@> critters;
+		map.GetCritters(0, FIND_LIFE_AND_KO, critters);
+		for (uint i = 0; i < critters.length(); i++)
+		{
+			if(critters[i].Stat[ST_NPC_ROLE] == role)
+			{	
+				aliveCrittersCount++;
+			}
+			else if(critters[i].IsPlayer())
+			{
+				playersCount++;
+			}
+		}
+		
+		if (skipWaveIfNoPlayers && playersCount == 0)
+		{
+			ScheduleNextWave();
+			return;
+		}
+		
+		uint crittersToAdd = Random(crittersPerWaveMin, crittersPerWaveMax);
+		uint crittersSpawnedInWave = 0;
+		
+		for (uint i = 0; i < crittersToAdd; i++)
+		{
+			if (maxAliveCrittersEnabled && aliveCrittersCount >= maxAliveCritters)
+			{
+				break;
+			}
+			
+			if (crittersCountDownEnabled && crittersCountDown == 0)
+			{
+				stopped = true;
+				AutoDelete();
+				break;
+			}
+		
+			Critter@ critter = critterTemplate.Spawn(map);
+			
+			if (valid(critter))
+			{
+				crittersSpawnedInWave++;
+				crittersSpawnedTotal++;
+				
+				if (maxAliveCrittersEnabled)
+				{
+					aliveCrittersCount++;
+				}
+				
+				if (crittersCountDownEnabled)
+				{
+					
+					crittersCountDown--;
+				}
+			}
+		}
+		
+		wavesSpawnedTotal++;
+		
+		if (waveCountDownEnabled)
+		{
+			waveCountDown--;
+			
+			if (waveCountDown == 0)
+			{
+				stopped = true;
+				AutoDelete();
+			}
+		}
+		
+		ExecuteCallback(crittersSpawnedInWave);
+		ScheduleNextWave();
+	}
+	
+	private void ExecuteCallback(uint crittersSpawnedInWave)
+	{
+		if (waveSpawnedCallback != "")
+		{
+			uint[] values = {mapId, role, wavesSpawnedTotal, crittersSpawnedTotal, crittersSpawnedInWave};
+			CreateTimeEvent(0, waveSpawnedCallback, values, true);
+		}
+	}
+	
+	private void AutoDelete()
+	{
+		if (autoDelete)
+		{
+			Delete();
+		}
+	}
+	
+	private void ScheduleNextWave()
+	{
+		lastWaveTime = __FullSecond;		
+				
+		if (!stopped)
+		{
+			uint[] values = {mapId, role};
+			eventId = CreateTimeEvent(__FullSecond + waveTimeout, "e_CritterWaveEvent", values, true);
+		}
+		Save();
+	}
+}
+
+uint e_CritterWaveEvent(array<uint>@ values)
+{
+	uint mapId = values[0];
+	uint role = values[1];
+
+	CritterWave(mapId, role).SpawnWave();
+	
+	return 0;
+}
+
+
+#endif

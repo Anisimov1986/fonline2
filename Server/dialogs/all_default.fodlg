@@ -1,0 +1,76 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+0 2030 @
+3 3000 Attack 0 &
+
+[engl]
+{100}{}{Stranger}
+{200}{}{You see a stranger.}
+{210}{}{You see some person that looks strange to you.}
+{240}{}{You see the body of some unknown person.}
+{250}{}{You see the body of some unknown person.}
+{260}{}{You see a dismembered corpse of some stranger.}
+{270}{}{You see a dismembered corpse of some unknown person, it's horrible.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Hello.@@Hi.@@What's up?@@Nice to meet you.@@Good day.}
+{2010}{}{Let's trade.}
+{2020}{}{Hmph, I don't like your face.@@I'll kill you!!!}
+{2030}{}{Bye.}
+{3000}{}{You're dead!@@Let's see who wins.@@Die, die, die!!!}
+
+[russ]
+{100}{}{Незнакомец}
+{200}{}{Вы видите незнакомого человека.}
+{210}{}{Вы видите незнакомого человека, каких тысячи.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Привет.@@Хай.@@Здаров.@@Прива.@@Добрый день.}
+{2010}{}{Давай поторгуем.}
+{2020}{}{Что-то рожа мне твоя не нравится.@@Я убъю тебя!!!}
+{2030}{}{Пока.}
+{3000}{}{Ты труп!@@А ну это мы посмотрим, кто кого.@@Порву как тузик грелку!}
+
+[pols]
+{100}{}{Nieznajomy}
+{200}{}{Widzisz nieznajomą osobę.}
+{210}{}{Widzisz osobę, która nie wygląda na nikogo znajomego.}
+{240}{}{Widzisz ciało nieznajomej osoby.}
+{250}{}{Widzisz ciało nieznajomej osoby.}
+{260}{}{Widzisz rozczłonkowane ciało nieznajomej osoby.}
+{270}{}{Widzisz rozczłonkowane ciało nieznajomej osoby, wygląda okropnie.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Cześć.@@Hej!@@Co słychać?@@Miło cię widzieć.@@Dzień dobry.}
+{2010}{}{Pohandlujmy.}
+{2020}{}{Nie podoba mi się twój krzywy ryj.@@Zabiję cię!}
+{2030}{}{Na razie.}
+{3000}{}{Już nie żyjesz!@@No, zobaczymy kto wygra.@@Giń, giń, giń!}
+
+[ptbr]
+{100}{}{Estranho}
+{200}{}{Você vê um estranho.}
+{210}{}{Você vê uma pessoa que parece estranha para você.}
+{240}{}{Você vê o corpo de um desconhecido.}
+{250}{}{Você vê o corpo de uma pessoa desconhecida.}
+{260}{}{Você vê o cadáver esquartejado de um estranho.}
+{270}{}{Você vê o cadáver desmembrado de uma pessoa desconhecida, é terrível.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Olá.@@Oi.@@Diz aí!@@Prazer em te conhecer.@@Bom dia.}
+{2010}{}{Vamo fazer negócio.}
+{2020}{}{Hunf, eu não gosto dessa tua cara.@@Vô te matar!!!}
+{2030}{}{Tchau.}
+{3000}{}{Cê tá morto!@@Vamo ver quem ganha.@@Morre, morre, morre!!!}
+

@@ -1,0 +1,109 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 None 0 #
+10 2010 #
+4 2020 #
+0 2030 @
+4 3000 None 0 #
+6 3010 #
+0 3020 @
+6 4000 None 0 #
+8 4010 #
+0 4020 @
+8 5000 None 0 #
+0 5010 @
+10 6000 None 0 #
+0 6010 &
+
+[engl]
+{100}{}{Mickey}
+{200}{}{You see a short, spry gentleman.}
+{210}{}{You see Micky, the treasure hunter.}
+{210}{}{This very short man looks friendly and brave. His gaze darts around as if looking for shiny objects.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Hey there, friend! Haven't seen any jewels or precious metals lying around anywhere, have ya'?}
+{2010}{}{No, not today. If I run across any, I'll let you know, though.}
+{2020}{}{What's your name?}
+{2030}{}{Never mind.}
+{3000}{}{Me? I'm Micky, suave and debonaire Treasure Hunter of Broken Hills.}
+{3010}{}{Treasure Hunter?}
+{3020}{}{How nice. Good day.}
+{4000}{}{Don't tell me you haven't heard of me! You've never been told of the tales of the Fast Micky? Of his running gun battles, two-fisted action, and pernicious plunderings?}
+{4010}{}{I'm afraid I've never had the pleasure.}
+{4020}{}{Sorry pal, bye.}
+{5000}{}{Well, you're missing out, friend. One of these days I'll have to fill you in on the gory details.}
+{5010}{}{I'll be waiting with bated breath.}
+{6000}{}{Oh well. I guess I shouldn't be surprised. The market for Treasure Hunters has really dropped in recent years. The whole death and famine and fight-for-survival thing really hurts people's sense of adventure. Keep me in mind, though, if anything comes up.}
+{6010}{}{You'll be the first on my list.}
+
+[russ]
+{100}{}{Микки}
+{200}{}{Вы видите невысокого подвижного человека.}
+{210}{}{Этот невысокий человечек выглядит смелым и доброжелательным. Его быстрый взгляд как будто ищет нечто красивое и блестящее.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Привет, @sex@|друг! Нигде не видали||подруга! Нигде не видала| бесхозных самоцветиков или драгметаллов?}
+{2010}{}{Нет, сегодня как-то не попадались. Ну, если увижу - дам знать.}
+{2020}{}{Как вас зовут?}
+{2030}{}{Нет, ничего.}
+{3000}{}{Я? Я Микки, вежливый и предупредительный охотник за сокровищами из Брокен Хиллс.}
+{3010}{}{Охотник за сокровищами?}
+{3020}{}{Как мило. Всего доброго.}
+{4000}{}{Только не говорите, что никогда обо мне не слышали! Неужели вам никто не рассказывал истории о Быстром Микки? О его удивительных перестрелках, опустошительных налетах и разбитых вражеских мордах?}
+{4010}{}{Боюсь, что это удовольствие прошло мимо меня.}
+{4020}{}{Извини приятель, до свидания.}
+{5000}{}{Ну что ж, вы много потеряли, @sex@|мой друг.||дорогая моя.| Когда-нибудь я расскажу вам все в кровавых подробностях.}
+{5010}{}{Я буду ждать, затаив дыхание.}
+{6000}{}{О, наверное, я не удивлюсь. Видите ли, рынок охотников за сокровищами в последнее время переживает некоторые трудности. Аналитики считают, что главными факторами, которые негативно влияют на стремление людей к приключениям, являются резкий рост смертности, нехватка продовольствия и обострение борьбы за существование. Впрочем, если чего подвернется - имейте меня в виду.}
+{6010}{}{Вы будете первым в моем списке.}
+
+[pols]
+{100}{}{Mickey}
+{200}{}{Widzisz niskiego, żwawego dżentelmena.}
+{210}{}{To Micky, poszukiwacz skarbów.}
+{210}{}{Ten bardzo niski człowiek wygląda przyjacielsko i odważnie. Jego spojrzenie przeszukuje otoczenie, jakby szukając świecących przedmiotów.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Witaj, przyjazna duszo! Nie wpadły ci gdzieś tu w oko jakieś klejnoty, albo wartościowe metale?}
+{2010}{}{Nie, nie dzisiaj. Jeżeli jednak natrafię na jakieś, natychmiast cię o nich powiadomię.}
+{2020}{}{Jak się nazywasz?}
+{2030}{}{Nieważne.}
+{3000}{}{Ja? Jestem Micky, szarmancki i uroczy poszukiwacz skarbów z Broken Hills.}
+{3010}{}{Poszukiwacz skarbów?}
+{3020}{}{Jak miło. Uszanowanie.}
+{4000}{}{Nie mów, że nie znasz mojego imienia! Nigdy nie opowiadano ci historii o Szybkim Mickym? O potyczkach strzeleckich, pojedynkach bokserskich i złowrogich grabieżach?}
+{4010}{}{Obawiam się, że nie dane mi było o tym usłyszeć.}
+{4020}{}{Przykro mi, kolego. Na razie}
+{5000}{}{Cóż, dużo tracisz, przyjazna duszo. Któregoś dnia będę ci musiał to wszystko opowiedzieć w najkrwawszych szczegółach.}
+{5010}{}{Będę czekać z zapartym tchem.}
+{6000}{}{No cóż. Chyba nie powinienem się temu dziwić. Rynek pracy dla poszukiwaczy skarbów w ostatnich latach bardzo się skurczył. Ta cała śmierć, głód i walka o przetrwanie przytłumiły w ludziach chęć przygody. Jeżeli jednak coś wypłynie, pamiętaj o mnie.}
+{6010}{}{Będziesz pierwszy na mojej liście.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Hey there, friend! Haven't seen any jewels or precious metals lying around anywhere, have ya'?}
+{2010}{}{No, not today. If I run across any, I'll let you know, though.}
+{2020}{}{What's your name?}
+{2030}{}{Never mind.}
+{3000}{}{Me? I'm Micky, suave and debonaire Treasure Hunter of Broken Hills.}
+{3010}{}{Treasure Hunter?}
+{3020}{}{How nice. Good day.}
+{4000}{}{Don't tell me you haven't heard of me! You've never been told of the tales of the Fast Micky? Of his running gun battles, two-fisted action, and pernicious plunderings?}
+{4010}{}{I'm afraid I've never had the pleasure.}
+{4020}{}{Sorry pal, bye.}
+{5000}{}{Well, you're missing out, friend. One of these days I'll have to fill you in on the gory details.}
+{5010}{}{I'll be waiting with bated breath.}
+{6000}{}{Oh well. I guess I shouldn't be surprised. The market for Treasure Hunters has really dropped in recent years. The whole death and famine and fight-for-survival thing really hurts people's sense of adventure. Keep me in mind, though, if anything comes up.}
+{6010}{}{You'll be the first on my list.}
+

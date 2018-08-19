@@ -1,0 +1,85 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 300 R _script economy_dialogs@r_TakeCaps 1 300 R _item p PID_REFINED_ORE + 1 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 1500 R _script economy_dialogs@r_TakeCaps 1 1500 R _item p PID_REFINED_ORE + 5 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_REFINED_ORE + 10 #
+0 3040 @
+4 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Far Go Trader's Worker}
+{200}{}{You see: one of the Far Go Traders.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Welcome to Far Go Traders! We're importing Refined Uranium, straight from Broken Hills! Are you interested in purchasing it?}
+{2010}{}{I came to buy Refined Uranium.@@Got Refined Uranium?}
+{2020}{}{Gotta go.@@I need to go now.@@Later.@@See you later.}
+{3000}{}{Very well, @lex rore2_price@ caps per one. How many do you need?}
+{3010}{}{Just one.@@Only one.@@I need just one.@@Give me one.}
+{3020}{}{Five is enough.@@Give me five.@@I need five.}
+{3030}{}{Give me ten, I have the caps.@@Ten.@@I want ten.@@I need ten.}
+{3040}{}{Well, maybe later. Bye@@Nevermind.@@Maybe some other time.@@Later.}
+{4000}{}{Here you go.@@Okay, here you go.@@Right, here you go.}
+{4010}{}{Thanks, bye.@@All right, thanks. I need to go now.@@Thanks, I've gotta go.}
+
+[russ]
+{100}{}{Сотрудник "Far Go Trader's"}
+{200}{}{Вы видите: одного из сотрудников "Far Go trader's"}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Добро пожаловать в "Far Go Traders"! Мы импортируем обогащенную урановую руду, прямиком из Брокен Хиллс! Вы заинтересованы в покупке?}
+{2010}{}{Да, я как раз за этим и пришел.}
+{2020}{}{Буду знать, пока.}
+{3000}{}{Отлично, наша цена @lex rore2_price@ монет за кусок. Сколько вам нужно?}
+{3010}{}{Одного будет достаточно.}
+{3020}{}{Возьму пять.}
+{3030}{}{Дайте десять.}
+{3040}{}{Хм, может быть позже. Пока.}
+{4000}{}{Вот, держи.}
+{4010}{}{Спасибо. Пока.}
+
+[pols]
+{100}{}{Pracownik Wszędobylskiej Karawany}
+{200}{}{Widzisz jednego z pracowników Wszędobylskiej Karawany.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Witaj w Wszędobylskiej Karawanie! Importujemy przetworzoną rudę uranu, prosto z Broken Hills! Jesteś @sex@|zainteresowany||zainteresowana| zakupem?}
+{2010}{}{Tak, jestem tu by kupić przetworzony uran.}
+{2020}{}{Dobrze wiedzieć. Do widzenia.}
+{3000}{}{Świetnie, @lex rore2_price@ kapsli za sztukę. Ile potrzebujesz?}
+{3010}{}{Tylko jedną.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Daj mi dziesięć, mam pieniądze}
+{3040}{}{Cóż, może później. Na razie.}
+{4000}{}{Proszę bardzo.}
+{4010}{}{Dzięki. Na razie.}
+
+[ptbr]
+{100}{}{Funcionário dos Mecantes Vai Longe}
+{200}{}{Você vê: um dos Mercantes Vai Longe.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Bem-vindo aos Mercantes Vai Longe! Nós estamos importando Urânio Refinado, direto de Serra Quebrada! Você está interessado em comprar?}
+{2010}{}{Eu vim comprar urânio refinado=.@@Tem urânio refinado?}
+{2020}{}{Tenho que ir.@@Eu preciso ir agora.@@Até depois.@@Te vejo depois.}
+{3000}{}{Tudo bem...  @lex rore2_price@ tampinhas por cada. Quantos vai levar?}
+{3010}{}{Só um.@@Apenas um mesmo.@@Preciso só de um.@@Me dá um.}
+{3020}{}{Cinco tá bom.@@Me dá cinco.@@Preciso de cinco.}
+{3030}{}{Me dá dez.@@Dez.@@Quero dez.@@Preciso de dez.}
+{3040}{}{Bem, talvez depois. Tchau.@@Deixa pra lá.@@Talvez depois.@@Tchau.}
+{4000}{}{Tá aqui.@@OK, tá aqui.@@Certo, tá aqui.}
+{4010}{}{Obrigado, tchau.@@Tudo bem, obrigado. Eu preciso ir agora.@@Obrigado, tenho que ir.}
+

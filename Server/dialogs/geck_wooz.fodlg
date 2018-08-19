@@ -1,0 +1,420 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+4 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+7 2010 #
+3 2020 #
+6 2030 #
+65506 2040 #
+0 2050 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+7 4010 #
+3 4020 #
+8 4030 #
+6 4040 #
+0 4050 @
+6 5000 None 0 #
+20 5010 #
+4 5020 @
+7 6000 None 0 #
+34 6010 #
+36 6020 #
+4 6030 #
+0 6040 @
+8 7000 None 0 #
+25 7010 #
+0 7020 @
+20 8000 None 0 #
+21 8010 #
+22 8020 @
+21 9000 None 0 #
+23 9010 #
+0 9020 @
+22 10000 None 0 #
+32 10010 #
+4 10020 @
+23 11000 None 0 #
+24 11010 @
+24 12000 None 0 #
+4 12010 #
+0 12020 @
+25 13000 None 0 #
+26 13010 @
+26 14000 None 0 #
+28 14010 @
+28 15000 None 0 #
+29 15010 @
+29 16000 None 0 #
+30 16010 #
+31 16020 @
+30 17000 None 0 #
+4 17010 #
+0 17020 @
+31 18000 None 0 #
+4 18010 #
+0 18020 @
+32 19000 None 0 #
+33 19010 @
+33 20000 None 0 #
+4 20010 @
+34 21000 None 0 #
+35 21010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_GAMMA_GULP_BEER + 1 #
+35 21020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_BOTTLE_CAPS - 500 R _item p PID_GAMMA_GULP_BEER + 5 #
+35 21030 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_GAMMA_GULP_BEER + 10 #
+4 21040 @
+35 22000 None 0 #
+34 22010 #
+0 22020 @
+36 23000 None 0 #
+37 23010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_ROENTGEN_RUM + 1 R _item p PID_BOTTLE_CAPS - 100 #
+37 23020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_ROENTGEN_RUM + 5 R _item p PID_BOTTLE_CAPS - 500 #
+37 23030 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_ROENTGEN_RUM + 10 R _item p PID_BOTTLE_CAPS - 1000 #
+4 23040 @
+37 24000 None 0 #
+36 24010 #
+0 24020 &
+
+[engl]
+{100}{}{Wooz}
+{200}{}{You see: a tall ghoul with long hair.}
+{210}{}{You see Wooz, the bartender.}
+{210}{}{You see an extremely tall and lanky ghoul with long hair.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{I'm Wooz. What do you want, smoothskin?@@I'm Wooz. What do you need, smoothskin? I'm Wooz and this is my place. What can I getcha?@@Lookie here, a smoothskin! I'm Wooz, and this is my place. Need anything?}
+{2010}{}{Booze, Wooz.@@I need to drink.@@Got anything to drink?}
+{2020}{}{What do you do here?@@Tell me about your job.}
+{2030}{}{Tell me about this place.@@Can you tell me anythinga bout this place?}
+{2040}{}{I want to trade.@@Want to trade?@@Got anything for sale?}
+{2050}{}{I don't want anything from you. Goodbye.@@I've got to go now. Nice meeting you, Wooz.@@I've got to be somewhere else, goobye.}
+{3000}{}{I run this place. Are you dumb? I sell drinks, trade for things, tell stories, and play Tragic.}
+{3010}{}{Right, let me ask you something else.@@Yeah, thanks for the heads up.}
+{3020}{}{Stinking ghoul...@@Screw you, ghoul.@@Fuck you, I'm leaving.}
+{4000}{}{What do you want now?@@Need anything?@@You're back,smoothskin. Need something?@@What?@@What now?}
+{4010}{}{I need booze, Wooz.@@I need to drink.@@Got anything to drink?@@I need something to drink.}
+{4020}{}{What do you do here?@@Tell me about your job.@@Care to tell me about your job?@@What's your job here, Wooz?}
+{4030}{}{Tell stories? Like what?@@Stories? What stories?}
+{4040}{}{Tell me about this place.@@Got anything interesting to tell about this place?}
+{4050}{}{I guess I don't need anything right now. Goodbye.}
+{5000}{}{Not much to tell, really. Just a bunch of ghouls clinging tenaciously to the ass end of life.}
+{5010}{}{No, I meant tell me about this bar.@@I meant this bar.}
+{5020}{}{Well, that describes a lot of people. Nothing new in that. I wanted to know something else.}
+{6000}{}{You want a drink, huh? Well, we've got our very own Gamma Gulp Beer for mere hundred caps per bottle and, for special occasions, Roentgen Rum for hundred. What'll it be?@@You couldn't choose better, smoothie.We've got Gamma Gulp for a hundred, and Roentgen Rum for hundred caps. Interested?}
+{6010}{}{I'd like a Gamma Gulp Beer. Is it supposed to glow like that?@@I'll take the Gamma Gulp then.@@Gamma Gulp it is then.}
+{6020}{}{I'll take the Rum.@@Give me that Rum, Wooz.@@I need Roentgen Rum.}
+{6030}{}{Can't afford it. Let me ask you something else.@@On second thought, let me ask you something else.@@Nevermind, let's talk about something else.}
+{6040}{}{Uh uh, goodbye.@@Bye.@@I've got to go.@@I need to go, bye Wooz.}
+{7000}{}{I've got this great story. It's really funny. You see there's this head, right?}
+{7010}{}{A head?}
+{7020}{}{Uh, I think I've heard this one already. I don't have the time to listen to this now. Goodbye.}
+{8000}{}{Well, the Harp's named after a favorite hangout that I used to have before the war. I guess it's just a reminder of times past. Sort of a joke on the only way we're going to get a better deal, too.}
+{8010}{}{Before the war? But that was a long time ago.}
+{8020}{}{Better deal? What do you mean?}
+{9000}{}{It sure was a long time ago. How do you think ghouls are made? You think some of us just got up one fine day and said to ourselves: "Gee, I wonder what it'd be like to have my flesh rotting off my fucking body?"}
+{9010}{}{Well, no, I didn't. Say, how do you make a ghoul?}
+{9020}{}{You know, I just don't give a flying fuck what made you that ugly. Goodbye.}
+{10000}{}{‘Bout the only way us ghouls are going to get an even break is when we're toting a harp of our own.}
+{10010}{}{I didn't know that ghouls were especially musical.}
+{10020}{}{Oh, I see. Heh, heh. Let me ask you something.}
+{11000}{}{With silver-bells and cockleshells and… Boy, you are dumb, aren't you? Severe radiation. That's how. How do you think? You know, many bombs go boom, flash of light and heat, flesh burns off, but you don't-quite-die-type severe radiation?}
+{11010}{}{Uh well, I mean…}
+{12000}{}{Well, I didn't think so. Fuck you very much for bringing back all those intensely painful memories. Asshole. We're a town of fucking leftovers - slightly overcooked leftovers.}
+{12010}{}{I prefer medium-rare myself. Hey, let me ask you something else.}
+{12020}{}{Well, I uh, um. Sorry. I'll just let you wallow in self-pity, then. Goodbye.}
+{13000}{}{Yeah, it's a head. But it's not attached to a body. You see, it's been severed.}
+{13010}{}{A severed head. I see. And this becomes entertaining when?}
+{14000}{}{Just hold on a minute. This severed head, you see, it's in Hell. And it flies around there, you know, in Hell. And it runs into all kinds of famous people there…}
+{14010}{}{Wait, a severed head is in Hell, and it flies around… doing what?}
+{15000}{}{Well, it's doing stuff. You know. It's got, things that it wants to do, or maybe things it's forced to do. The point is, it's doing stuff, you know, there in Hell. Oh God, I just can't stand it! [You assume his vocal his vocal cords are emitting some sort of a laugh.]}
+{15010}{}{You kind of obsess about this, don't you? Hmm. Were you and your mother close? Did you ever have problems with bed-wetting?}
+{16000}{}{No, you just don't understand. It's all about a severed head. Get it? Heh, heh, heh, It's funny! How can you think about a severed head, in Hell of all places, and not laugh?}
+{16010}{}{Wooz, I don't know you very well, and I'm pretty sure I don't want to. However, I think I can say, without fear of exaggeration, that you need help. Immediate, competent help.}
+{16020}{}{Oh. I see. Why, yes. Of course; that's very funny. Heh heh. I just can't contain my amusement. I need to ask you something else though.}
+{17000}{}{Fuck you! You're just like all the rest of them. I tell, you it's hilariously funny. It's not my fault that you don't have a sense of humor.}
+{17010}{}{You're right, Wooz. I guess I'm just not as clever as you are. You're truly a pearl amongst swine. Now tell me something else.}
+{17020}{}{I have enough of a sense of humor to recognize the absence of one in others. Goodbye.}
+{18000}{}{Alright, enjoy. Hope your piss don't glow, hah!}
+{18010}{}{Uh, thanks Wooz. I had something I wanted to ask you.}
+{18020}{}{I look forward to it. Bye Wooz.}
+{19000}{}{Well, usually I just pound on the hollow heads of my customers — sort of like bongos. How the hell did they ever let you out of your shithole town? You're a danger to yourself and others.}
+{19010}{}{Bongos?}
+{20000}{}{You fell out of the stupid tree and hit every damn branch on the way down, didn't you?}
+{20010}{}{Tree? I guess I'm just not hip to your lingo… man. Uh, let me ask you something.}
+{21000}{}{Allrighty, smoothskin. How many?@@How many?@@No problem, smoothie. How many bottles?}
+{21010}{}{Just one.@@Give me one then.@@I'll take one.}
+{21020}{}{I'll take five.@@Give me five.@@I want five.@@Five.@@I need five.}
+{21030}{}{Ten.@@I'll take ten.@@I think I'll take ten.@@Give me ten, Wooz.}
+{21040}{}{Nevermind. I wanted to ask you something else.@@Nevermind.@@I think I forgot the cash.@@On second thought...}
+{22000}{}{Here you go. Need anything else?@@Okay, enjoy. Anything else?@@Here you are. Want anything else, smoothskin?}
+{22010}{}{I think I'll buy more of that Gamma Gulp.@@I need more Gamma Gulp, don't ask.}
+{22020}{}{That would be all, Wooz.@@No, thanks.@@No, I've got enough of it already. Bye.}
+{23000}{}{Okay, smoothskin. How many?@@How many?@@No problem, smoothie. How many bottles?@@Sure thing smoothskin. How many of them bottles you want?@@Right, smoothie. How many?}
+{23010}{}{Just one.@@Give me one then.@@I'll take one.}
+{23020}{}{I'll take five.@@Give me five.@@I want five.@@Five.@@I need five.@@Give me five bottles, Wooz.@@I want five, Wooz.}
+{23030}{}{Ten.@@I'll take ten.@@I think I'll take ten.@@Give me ten, Wooz.@@I've got a party goin' on. Give me ten.@@Ten, Wooz.@@Ten. Don't ask.@@I think I'll need ten.}
+{23040}{}{Nevermind. I wanted to ask you something else.@@Nevermind.@@I think I forgot the cash.@@On second thought...@@Something else, maybe.}
+{24000}{}{Here you go. Need anything else?@@Okay, enjoy. Anything else?@@Here you are. Want anything else, smoothskin?}
+{24010}{}{I think I'll buy more of that Rum.@@I need more of it.@@I'll buy more Rum, Wooz.@@I need more Rum, Wooz.}
+{24020}{}{That would be all, Wooz.@@No, thanks.@@No, I've got enough of it already. Bye.@@No, it'll be all, Wooz. Bye.@@Thanks, but no. Bye.}
+
+[russ]
+{100}{}{Вуз}
+{200}{}{Вы видите высокого мертвяка с длинными волосами.}
+{210}{}{Вы видите Вуза.}
+{210}{}{Вы видите долговязого мертвяка с длинными волосами.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Я Вуз. Что ты хочешь?}
+{2010}{}{Бухло, Вуз.}
+{2020}{}{Что ты здесь делаешь?}
+{2030}{}{Расскажи мне об этом месте.}
+{2040}{}{Я хочу торговать.}
+{2050}{}{Мне от тебя ничего не надо. Пока.}
+{3000}{}{Ты что, тормоз? Я - хозяин этого заведения. Продаю выпивку, торгую помаленьку, байки рассказываю, в TTG играю.}
+{3010}{}{Ясно, а можно еще вопрос?}
+{3020}{}{Мне пора, пока.}
+{4000}{}{Что ты хочешь? }
+{4010}{}{Я хочу выпить.}
+{4020}{}{Что ты здесь делаешь?}
+{4030}{}{Рассказываешь байки?}
+{4040}{}{Расскажи мне об этом месте.}
+{4050}{}{Да мне сейчас вроде ничего не надо. Пока.}
+{5000}{}{Да что тут рассказывать, собственно... Просто горстка мертвяков отчаянно пытается выжить в этой сраке.}
+{5010}{}{Да нет, ты мне про бар расскажи.}
+{5020}{}{Ну, а кому щас легко?! Ладно, мне уже пора.}
+{6000}{}{Выпить хочешь? Из местных раритетов - Урановое пиво за 100 монет и Рентгеновский Ром за 100. Что будешь?}
+{6010}{}{Давай Урановое... Оно в темноте светится?}
+{6020}{}{Ну, ради такого случая... Давай Рентгеновского! }
+{6030}{}{Я не могу себе это позволить. Я лучше спрошу.}
+{6040}{}{Н-да... Счастливо.}
+{7000}{}{О! У меня такая байка есть! Уссаться можно. Короче, представь себе голову...}
+{7010}{}{Голову?}
+{7020}{}{Забей, эту я уже слыхал. Пока.}
+{8000}{}{Бар назван Арфа в честь одного тусовочного места где я ошивался до войны. Что-то вроде напоминания о прошлом и символ надежды на возрождение.}
+{8010}{}{До войны? Но это же черт знает когда было.}
+{8020}{}{Надежда на возрождение? Что ты хочешь этим сказать?}
+{9000}{}{Конечно, это было давно. А откуда, по-твоему, появились мертвяки? Что, думаешь просто кто-то встал с утреца и сказал себе: Едрена палка, а почему бы мне не стать живым трупом с гниющей плотью?}
+{9010}{}{Да как бы нет, я так не @sex@думал|||а|. А откуда произошли мертвяки на самом деле?}
+{9020}{}{Знаешь, мне как-то глубоко насрать на то, почему вы мертвяки стали такими уродами. Прощай.}
+{10000}{}{С такими настроениями в обществе мертвяки не скоро получат относительное спокойствие и независимость, а пока арфа будет нашим символом и надеждой.}
+{10010}{}{Никогда бы не подумал, что мертвяки настолько музыкальны.}
+{10020}{}{Н-да, ясно. Хе-хе-хе. Можно спросить кое-что?}
+{11000}{}{Ну не боженька же нас такими сделал, тупица! Война... И радиация. Что, никогда не слыхал об этом? Когда взорвались бомбы, ядерное пламя сожгло нашу плоть, а радиация, та самая, которая не убивает, а просто поклеточно разрушает тебя, довершила начатое.}
+{11010}{}{Н-да. Понятно.}
+{12000}{}{Наконец-то. И вообще, какого хера надо было будить все эти и без того болезненные воспоминания? Скотина, мы всего лишь кучка гниющих отбросов, слегка пережаренных гниющих отбросов.}
+{12010}{}{Я бы @sex@сказал|||а| недожаренных... Кхм, ладно, проехали. Позволь мне спросить еще кое-что.}
+{12020}{}{Ладно, не буду мешать тебе жалеть самого себя. Пока.}
+{13000}{}{Да, голову.@sex@ Представил|||а|? Так вот это голова, притом не приделанная к туловищу - типа его оторвало.}
+{13010}{}{Так, оторванная голова. И в чем фишка?}
+{14000}{}{Щас объясню. Ну так вот, эта отрванная башка, она типа в Аду. [Гы-гы-гы] Ну она там летает, туда-сюда, и, короче, нарывается на всяких знаменитых людей, ну там звезд и так далее.}
+{14010}{}{Погодь, погодь. Оторванная голова летает по Аду? И чего она там делает?}
+{15000}{}{Ну, это, все делает. [Хы-хы] Ну, типа, у нее есть дела, которые она хочет сделать, или должна, короче не знаю. Весь прикол в том, что она там какой-то херней мается, в этом Аду. [Ха-ха-ха-ха] Ой, я уссываюсь.}
+{15010}{}{Ты че, извращенец что ли? У тебя к матери повышенное чувство нежности было? В кроватку писался?}
+{16000}{}{Нет-нет-нет, постой. Вся фишка в голове. Понимаешь? Только представь себе оторванную голову в Аду, это ж прикольно! Разве можно не смеяться представляя оторванную голову в Аду?}
+{16010}{}{Вуз, я конечно тебя мало знаю, но думаю угадаю если скажу, что тебе нужна медицинская помощь. Немедленная, квалифицированная медицинская помошь. }
+{16020}{}{А, ну да, конечно, это очень смешно. Ха-ха-ха, конечно. Аж кушать не могу как смешно. Кхм, ну ладно, посмеялись и хватит. У меня есть к тебе еще пара вопросов.}
+{17000}{}{Да пош@sex@|ел||ла| ты! Ты так@sex@|ой||ая| же как все они. Я тебе говорю, это просто офигительно смешно. Кто же виноват, что у тебя нету чувства юмора.}
+{17010}{}{Пожалуй ты прав, Вуз. Наверное, я действительно не так умен как ты. Ты - единственный светлый разум среди нас, свиней. В таком случае, ответь мне еще на один вопрос.}
+{17020}{}{У меня достаточно чувства юмора, чтобы признать отсутствие оного в других. До свидания.}
+{18000}{}{Ну! Я ж тебе говорил, что это убойная шутяга.}
+{18010}{}{ Да. В первый раз такое слышу. Можно спросить?}
+{18020}{}{Все я ухожу.}
+{19000}{}{Ну, обычно я просто стучу по пустой голове моих клиентов - вроде как бонго.}
+{19010}{}{Бонго?}
+{20000}{}{Ты упал с дерева и ударился о каждую проклятую ветку на пути вниз, не так ли?}
+{20010}{}{Дерево? Это типа жаргон. Ладно, у меня есть еще вопрос.}
+{21000}{}{Хорошо гладкокожий. Сколько?@@Сколько?@@Нет, проблем гладкокожий. Сколько бутылок?}
+{21010}{}{Всего одну.@@Давай одну.@@Я возьму одну.}
+{21020}{}{Я беру пять.@@Давай пять штук.@@Я хочу пять.@@Пять.@@Мне понадобится пять.}
+{21030}{}{Десять.@@Я возьму десять.@@Думаю, десять будет самый раз.@@Давай десять, Вуз.}
+{21040}{}{Неважно. Я хотел спросить кое-что еще.@@Неважно.@@Кажется, я забыл крышки.@@В следующий раз...}
+{22000}{}{Забирай.@@Окей, приятного.@@Вот, пожалуйста.}
+{22010}{}{Думаю, я куплю больше пива Гамма-Глоток.@@Мне нужно больше пива Гамма-Глоток, Не спрашивай, зачем.}
+{22020}{}{Этого достаточно, Вуз.@@Нет, спасибо.@@Уже достаточно. Пока.}
+{23000}{}{Конечно, сколько?@@Сколько?@@Без проблем?@@Ясное дело, сколько бутылок ты хочешь?}
+{23010}{}{Всего лишь одну.@@Давай одну.@@Возьму одну.}
+{23020}{}{Я беру пять.@@Давай пять штук.@@Я хочу пять.@@Пять.@@Мне понадобится пять.@@GДай мне пять бутылок, Вуз.@@Я хочу пять, Вуз.}
+{23030}{}{Десятть.@@Я возьму десять.@@Думаю, десять будет самый раз.@@Давай десять, Вуз.@@Я собираю вечеринку, дай мне десять.@@Десять, Вуз.@@Десять, не спрашивай, зачем.@@Думаю, мне понадобится десять.}
+{23040}{}{Неважно. Я хотел спросить кое-что еще.@@Неважно.@@Кажется, я забыл крышки.@@В следующий раз...}
+{24000}{}{Вот, что-то еще?@@Окей, наслаждайся. Что-то еще?@@То, что ты хотел. Что-то еще ??}
+{24010}{}{Думаю, я куплю больше Рома.@@Мне нужно больше.@@Я куплю больше рома, Вуз.@@Хочу больше рома, Вуз.}
+{24020}{}{На этом пока все, Вуз.@@Нет, спасибо.@@Уже достаточно. Пока.@@Нет, это будут последние, Вуз. Пока.@@Спасибо, хватит. До встречи.}
+
+[pols]
+{100}{}{Wooz}
+{200}{}{Widzisz wysokiego ghula o długich włosach.}
+{210}{}{Widzisz Wooza.}
+{210}{}{Widzisz niebywale wysokiego i chudego ghula o długich włosach.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Jestem Wooz. Czego sobie życzysz?}
+{2010}{}{Kufel, Wooz.}
+{2020}{}{Czym się tu zajmujesz?}
+{2030}{}{Opowiedz mi o tym miejscu.}
+{2040}{}{Chcę pohandlować.}
+{2050}{}{Niczego od ciebie nie chcę. Na razie.}
+{3000}{}{Prowadzę to miejsce. Komórka mózgowa nie pracuje? Sprzedaję trunki, wymieniam się towarem, opowiadam historie i gram w Tragica.}
+{3010}{}{W porządku. Pozwól, że spytam o coś innego.}
+{3020}{}{Muszę iść, do widzenia.}
+{4000}{}{Czego chcesz teraz?}
+{4010}{}{Kufel, Wooz.}
+{4020}{}{Czym się tu zajmujesz?}
+{4030}{}{Opowiadasz historie?}
+{4040}{}{Opowiedz mi o tym mieście.}
+{4050}{}{Chyba jednak nic od ciebie w tej chwili nie potrzebuję. Na razie.}
+{5000}{}{Nie ma dużo do opowiadania. Ot, parę ghuli trzymających się kurczowo życia od dupy strony.}
+{5010}{}{Nie, chodziło mi o historię tego baru.}
+{5020}{}{Cóż, to opisuje wielu ludzi. Nic w tym nowego. Opowiedz mi o czymś jeszcze.}
+{6000}{}{Chcesz się napić, co? Cóż, mam domowej roboty piwo "Promienny Łyk" po $100 za butelkę i, na specjalne okazje, Rum Roentgena po $100 za butelkę.}
+{6010}{}{Poproszę "Promienny Łyk". Ekhem... Powinien tak świecić?}
+{6020}{}{To w pewnym sensie specjalna okazja. Butelkę Rumu Roentgena.}
+{6030}{}{Nie mam tyle kasy. Pozwól, że spytam o coś innego.}
+{6040}{}{Yyy, na razie.}
+{7000}{}{Mam wspaniałą historię. Jest naprawdę zabawna. No wiesz, jest taka głowa, nie?}
+{7010}{}{Głowa?}
+{7020}{}{Ee, chyba już to @sex@|słyszałem||słyszałam|. Nie mam w tej chwili czasu na wysłuchiwanie tego. Na razie.}
+{8000}{}{Cóż, Harfa nosi imię po moim ulubionym miejscu, do którego wpadałem przed wojną. To chyba jest tylko wspomnienie dawnych czasów. No i to taki żarcik o jedynym sposobie, w jaki moglibyśmy uzyskać lepsze warunki.}
+{8010}{}{Przed wojną? Ale to było dawno temu.}
+{8020}{}{Lepsze warunki? Co masz na myśli?}
+{9000}{}{O tak, to było dawno temu. A myślisz, że w jaki sposób powstają ghule? Myślisz, że tak po prostu pewnego razu wstaliśmy z łóżka i powiedzieliśmy do siebie: "Hmm, ciekawe, jakby to było mieć gnijące i ciało odpadające od pierdolonych kości?"}
+{9010}{}{Ależ nie. Słuchaj, więc w jaki sposób powstają ghule?}
+{9020}{}{Wiesz co, naprawdę gówno mnie obchodzi, co cię tak oszpeciło. Na razie.}
+{10000}{}{Praktycznie jedynym sposobem na lepsze czasy byłoby tańczenie przy grze własnej harfy.}
+{10010}{}{Pierwsze słyszę, żeby ghule były jakoś szczególnie muzykalne.}
+{10020}{}{A, rozumiem. He, he. Pozwól, że zapytam o coś innego.}
+{11000}{}{Są na to specjalne drakwie, gusła i... Kurde, ale cię musiał ktoś w dzieciństwie bić pałą po głowie. Silna radiacja. W taki sposób. No wiesz, wiele bomb robi bum, wybuch światła i gorąca, skóra z ciebie złazi płatami, ale ty nie giniesz, to ten specjalny rodzaj promieniowania.}
+{11010}{}{Eee, tak, to znaczy...}
+{12000}{}{Tak myślałem. Pięknie ci kurwa dziękuję za rozdrapanie tych bardzo bolesnych ran. @sex@|Frajer||Pizda|. Jesteśmy miastem pieprzonych resztek - nieco przesmażonych resztek.}
+{12010}{}{Ja wolę średnio krwiste. Słuchaj, zapytam cię o coś innego.}
+{12020}{}{Cóż, eee, hmm. Przepraszam. Po prostu zostawię cię teraz twojemu użalaniu się nad sobą. Do widzenia.}
+{13000}{}{Tak, to głowa. Ale nie jest przyczepiona do ciała. Widzisz, została uszkodzona.}
+{13010}{}{Uszkodzona głowa. Rozumiem. I kiedy mam zacząć się śmiać?}
+{14000}{}{Czekaj chwilę. Tak uszkodzona głowa, widzisz, jest w piekle. [Śmieje się.] No i, wiesz, ona sobie tam, w piekle, lata dookoła. I wpada na różnego rodzaju sławnych ludzi... [Chichocze.]}
+{14010}{}{Czekaj, uszkodzona głowa jest w piekle, i lata dookoła... I co robi?}
+{15000}{}{No, robi różne rzeczy. [Śmieje się.] No wiesz. Rzeczy, które chce zrobić, albo może rzeczy, które jest zmuszona zrobić. Chodzi o to, że robi te rzeczy, wiesz, tam w piekle. O Boże... [Wybucha śmiechem.] Nie mogę!}
+{15010}{}{Masz na tym punkcie lekką obsesję, co nie? Hmm. Czy ty i mamusia byliście ze sobą blisko? Miałeś kiedyś problemy z moczeniem łóżka?}
+{16000}{}{Nie, ty po prostu nie rozumiesz. Tu chodzi o tę uszkodzoną głowę. Kapujesz? Hehehehehe. To jest śmieszne! Jak możesz myśleć o uszkodzonej głowie, w piekle, jakby nie było innych miejsc, i nie śmiać się?}
+{16010}{}{Wooz, nie znam cię zbyt dobrze, i mam raczej pewność, że nie chcę cię bliżej poznać. Sądzę, że mogę powiedzieć, bez obawy o przesadę, że potrzebujesz pomocy. Natychmiastowej, fachowej pomocy.}
+{16020}{}{Aaa... Rozumiem. Ależ tak. Oczywiście. To bardzo zabawne. Hehe. Wprost nie mogę powstrzymać mojego rozbawienia... Ale wystarczy tej rozrywki - o, moja biedna głowa - pozwól, że zapytam cię o coś.}
+{17000}{}{Pierdol się! Nie różnisz się niczym od innych. Mówię ci, że to jest komicznie zabawne. Nie moja wina, że nie masz poczucia humoru.}
+{17010}{}{Masz rację, Wooz. Chyba po prostu nie mam aż tyle rozumu co ty. Rzeczywiście jesteś perłą pośród świń. A teraz powiedź mi coś innego.}
+{17020}{}{Mam wystarczająco poczucia humoru, aby zauważyć jego brak u innych. Do widzenia.}
+{18000}{}{Proszę bardzo. Mam nadzieję że nie będziesz sikać na świecąco!}
+{18010}{}{Uch, dzięki, Wooz. Chcę o coś zapytać.}
+{18020}{}{Nie moge się tego doczekać. Do widzenia, Wooz.}
+{19000}{}{Cóż, zazwyczaj gram na pustych łbach moich klientów - jak na bongo. W jaki sposób w ogóle wypuścili cię z twojej wioski? Stanowisz zagrożenie dla siebie i dla innych.}
+{19010}{}{Bongo?}
+{20000}{}{Padając z drzewa głupoty udało ci się uderzyć w każdą pieprzoną gałąź, co?}
+{20010}{}{Drzewa? Chyba nie do końca kminię twoją nawijkę, koleś. Eee, pozwól, że zapytam cię o coś.}
+{21000}{}{Allrighty, smoothskin. How many?@@How many?@@}
+{21010}{}{Just one.@@Give me one then.@@I'll take one.}
+{21020}{}{I'll take five.@@Give me five.@@I want five.@@Five.@@I need five.}
+{21030}{}{Ten.@@I'll take ten.@@I think I'll take ten.@@Give me ten, Wooz.}
+{21040}{}{Nevermind. I wanted to ask you something else.@@Nevermind.@@I think I forgot the cash.@@On second thought...}
+{22000}{}{Here you go.@@Okay, enjoy.@@Here you are.}
+{22010}{}{I think I'll buy more of that Gamma Gulp.@@I need more Gamma Gulp, don't ask.}
+{22020}{}{That would be all, Wooz.@@No, thanks.@@No, I've got enough of it already. Bye.}
+{23000}{}{Allrighty, smoothskin. How many?@@How many?@@No problem, smoothie. How many bottles?@@Sure thing smoothskin. How many of them bottles you want?}
+{23010}{}{Just one.@@Give me one then.@@I'll take one.}
+{23020}{}{I'll take five.@@Give me five.@@I want five.@@Five.@@I need five.@@Give me five bottles, Wooz.@@I want five, Wooz.}
+{23030}{}{Ten.@@I'll take ten.@@I think I'll take ten.@@Give me ten, Wooz.@@I've got a party goin' on. Give me ten.@@Ten, Wooz.@@Ten. Don't ask.@@I think I'll need ten.}
+{23040}{}{Nevermind. I wanted to ask you something else.@@Nevermind.@@I think I forgot the cash.@@On second thought...}
+{24000}{}{Here you go. Need anything else?@@Okay, enjoy. Anything else?@@Here you are. Want anything else, smoothskin?}
+{24010}{}{I think I'll buy more of that Rum.@@I need more of it.@@I'll buy more Rum, Wooz.@@I need more Rum, Wooz.}
+{24020}{}{That would be all, Wooz.@@No, thanks.@@No, I've got enough of it already. Bye.@@No, it'll be all, Wooz. Bye.@@Thanks, but no. Bye.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{I'm Wooz. What do you want, smoothskin?@@I'm Wooz. What do you need, smoothskin? I'm Wooz and this is my place. What can I getcha?@@Lookie here, a smoothskin! I'm Wooz, and this is my place. Need anything?}
+{2010}{}{Booze, Wooz.@@I need to drink.@@Got anything to drink?}
+{2020}{}{What do you do here?@@Tell me about your job.}
+{2030}{}{Tell me about this place.@@Can you tell me anythinga bout this place?}
+{2040}{}{I want to trade.@@Want to trade?@@Got anything for sale?}
+{2050}{}{I don't want anything from you. Goodbye.@@I've got to go now. Nice meeting you, Wooz.@@I've got to be somewhere else, goobye.}
+{3000}{}{I run this place. Are you dumb? I sell drinks, trade for things, tell stories, and play Tragic.}
+{3010}{}{Right, let me ask you something else.@@Yeah, thanks for the heads up.}
+{3020}{}{Stinking ghoul...@@Screw you, ghoul.@@Fuck you, I'm leaving.}
+{4000}{}{What do you want now?@@Need anything?@@You're back,smoothskin. Need something?@@What?@@What now?}
+{4010}{}{I need booze, Wooz.@@I need to drink.@@Got anything to drink?@@I need something to drink.}
+{4020}{}{What do you do here?@@Tell me about your job.@@Care to tell me about your job?@@What's your job here, Wooz?}
+{4030}{}{Tell stories? Like what?@@Stories? What stories?}
+{4040}{}{Tell me about this place.@@Got anything interesting to tell about this place?}
+{4050}{}{I guess I don't need anything right now. Goodbye.}
+{5000}{}{Not much to tell, really. Just a bunch of ghouls clinging tenaciously to the ass end of life.}
+{5010}{}{No, I meant tell me about this bar.@@I meant this bar.}
+{5020}{}{Well, that describes a lot of people. Nothing new in that. I wanted to know something else.}
+{6000}{}{You want a drink, huh? Well, we've got our very own Gamma Gulp Beer for mere hundred caps per bottle and, for special occasions, Roentgen Rum for hundred. What'll it be?@@You couldn't choose better, smoothie.We've got Gamma Gulp for a hundred, and Roentgen Rum for hundred caps. Interested?}
+{6010}{}{I'd like a Gamma Gulp Beer. Is it supposed to glow like that?@@I'll take the Gamma Gulp then.@@Gamma Gulp it is then.}
+{6020}{}{I'll take the Rum.@@Give me that Rum, Wooz.@@I need Roentgen Rum.}
+{6030}{}{Can't afford it. Let me ask you something else.@@On second thought, let me ask you something else.@@Nevermind, let's talk about something else.}
+{6040}{}{Uh uh, goodbye.@@Bye.@@I've got to go.@@I need to go, bye Wooz.}
+{7000}{}{I've got this great story. It's really funny. You see there's this head, right?}
+{7010}{}{A head?}
+{7020}{}{Uh, I think I've heard this one already. I don't have the time to listen to this now. Goodbye.}
+{8000}{}{Well, the Harp's named after a favorite hangout that I used to have before the war. I guess it's just a reminder of times past. Sort of a joke on the only way we're going to get a better deal, too.}
+{8010}{}{Before the war? But that was a long time ago.}
+{8020}{}{Better deal? What do you mean?}
+{9000}{}{It sure was a long time ago. How do you think ghouls are made? You think some of us just got up one fine day and said to ourselves: "Gee, I wonder what it'd be like to have my flesh rotting off my fucking body?"}
+{9010}{}{Well, no, I didn't. Say, how do you make a ghoul?}
+{9020}{}{You know, I just don't give a flying fuck what made you that ugly. Goodbye.}
+{10000}{}{‘Bout the only way us ghouls are going to get an even break is when we're toting a harp of our own.}
+{10010}{}{I didn't know that ghouls were especially musical.}
+{10020}{}{Oh, I see. Heh, heh. Let me ask you something.}
+{11000}{}{With silver-bells and cockleshells and… Boy, you are dumb, aren't you? Severe radiation. That's how. How do you think? You know, many bombs go boom, flash of light and heat, flesh burns off, but you don't-quite-die-type severe radiation?}
+{11010}{}{Uh well, I mean…}
+{12000}{}{Well, I didn't think so. Fuck you very much for bringing back all those intensely painful memories. Asshole. We're a town of fucking leftovers - slightly overcooked leftovers.}
+{12010}{}{I prefer medium-rare myself. Hey, let me ask you something else.}
+{12020}{}{Well, I uh, um. Sorry. I'll just let you wallow in self-pity, then. Goodbye.}
+{13000}{}{Yeah, it's a head. But it's not attached to a body. You see, it's been severed.}
+{13010}{}{A severed head. I see. And this becomes entertaining when?}
+{14000}{}{Just hold on a minute. This severed head, you see, it's in Hell. And it flies around there, you know, in Hell. And it runs into all kinds of famous people there…}
+{14010}{}{Wait, a severed head is in Hell, and it flies around… doing what?}
+{15000}{}{Well, it's doing stuff. You know. It's got, things that it wants to do, or maybe things it's forced to do. The point is, it's doing stuff, you know, there in Hell. Oh God, I just can't stand it! [You assume his vocal his vocal cords are emitting some sort of a laugh.]}
+{15010}{}{You kind of obsess about this, don't you? Hmm. Were you and your mother close? Did you ever have problems with bed-wetting?}
+{16000}{}{No, you just don't understand. It's all about a severed head. Get it? Heh, heh, heh, It's funny! How can you think about a severed head, in Hell of all places, and not laugh?}
+{16010}{}{Wooz, I don't know you very well, and I'm pretty sure I don't want to. However, I think I can say, without fear of exaggeration, that you need help. Immediate, competent help.}
+{16020}{}{Oh. I see. Why, yes. Of course; that's very funny. Heh heh. I just can't contain my amusement. I need to ask you something else though.}
+{17000}{}{Fuck you! You're just like all the rest of them. I tell, you it's hilariously funny. It's not my fault that you don't have a sense of humor.}
+{17010}{}{You're right, Wooz. I guess I'm just not as clever as you are. You're truly a pearl amongst swine. Now tell me something else.}
+{17020}{}{I have enough of a sense of humor to recognize the absence of one in others. Goodbye.}
+{18000}{}{Alright, enjoy. Hope your piss don't glow, hah!}
+{18010}{}{Uh, thanks Wooz. I had something I wanted to ask you.}
+{18020}{}{I look forward to it. Bye Wooz.}
+{19000}{}{Well, usually I just pound on the hollow heads of my customers — sort of like bongos. How the hell did they ever let you out of your shithole town? You're a danger to yourself and others.}
+{19010}{}{Bongos?}
+{20000}{}{You fell out of the stupid tree and hit every damn branch on the way down, didn't you?}
+{20010}{}{Tree? I guess I'm just not hip to your lingo… man. Uh, let me ask you something.}
+{21000}{}{Allrighty, smoothskin. How many?@@How many?@@No problem, smoothie. How many bottles?}
+{21010}{}{Just one.@@Give me one then.@@I'll take one.}
+{21020}{}{I'll take five.@@Give me five.@@I want five.@@Five.@@I need five.}
+{21030}{}{Ten.@@I'll take ten.@@I think I'll take ten.@@Give me ten, Wooz.}
+{21040}{}{Nevermind. I wanted to ask you something else.@@Nevermind.@@I think I forgot the cash.@@On second thought...}
+{22000}{}{Here you go. Need anything else?@@Okay, enjoy. Anything else?@@Here you are. Want anything else, smoothskin?}
+{22010}{}{I think I'll buy more of that Gamma Gulp.@@I need more Gamma Gulp, don't ask.}
+{22020}{}{That would be all, Wooz.@@No, thanks.@@No, I've got enough of it already. Bye.}
+{23000}{}{Okay, smoothskin. How many?@@How many?@@No problem, smoothie. How many bottles?@@Sure thing smoothskin. How many of them bottles you want?@@Right, smoothie. How many?}
+{23010}{}{Just one.@@Give me one then.@@I'll take one.}
+{23020}{}{I'll take five.@@Give me five.@@I want five.@@Five.@@I need five.@@Give me five bottles, Wooz.@@I want five, Wooz.}
+{23030}{}{Ten.@@I'll take ten.@@I think I'll take ten.@@Give me ten, Wooz.@@I've got a party goin' on. Give me ten.@@Ten, Wooz.@@Ten. Don't ask.@@I think I'll need ten.}
+{23040}{}{Nevermind. I wanted to ask you something else.@@Nevermind.@@I think I forgot the cash.@@On second thought...@@Something else, maybe.}
+{24000}{}{Here you go. Need anything else?@@Okay, enjoy. Anything else?@@Here you are. Want anything else, smoothskin?}
+{24010}{}{I think I'll buy more of that Rum.@@I need more of it.@@I'll buy more Rum, Wooz.@@I need more Rum, Wooz.}
+{24020}{}{That would be all, Wooz.@@No, thanks.@@No, I've got enough of it already. Bye.@@No, it'll be all, Wooz. Bye.@@Thanks, but no. Bye.}
+

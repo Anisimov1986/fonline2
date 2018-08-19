@@ -1,0 +1,219 @@
+//
+// FOnline: 2238
+// Rotators
+//
+// worldmap_h.fos
+//
+
+#ifndef __WORLDMAP__
+#define __WORLDMAP__
+
+#define ZONE_COUNT_X                       (25)
+#define ZONE_COUNT_Y                       (30)
+#define ZONE_LENGTH                        (60)
+
+#define STR_VIEW                           ( 10000010 )   // {10000010}{}{Вы наткнулись на @lex who@.}
+#define STR_VIEW_WITH_PLAYER               ( 10000011 )   // {10000011}{}{Вы наткнулись на @lex who@ и @lex player@.}
+#define STR_VIEW_WITH_PLAYERS              ( 10000012 )   // {10000012}{}{Вы наткнулись на @lex who@ и банду @lex player@.}
+#define STR_VIEW_ONLY_PLAYER               ( 10000013 )   // {10000013}{}{Вы наткнулись на @lex player@.}
+#define STR_VIEW_ONLY_PLAYERS              ( 10000014 )   // {10000014}{}{Вы наткнулись на банду @lex player@.}
+#define STR_QUESTION                       ( 10000020 )   // {10000020}{}{Вы хотите увидеть @lex who@?}
+#define STR_QUESTION_WITH_PLAYER           ( 10000021 )   // {10000021}{}{Вы хотите увидеть @lex who@ и @lex player@?}
+#define STR_QUESTION_WITH_PLAYERS          ( 10000022 )   // {10000022}{}{Вы хотите увидеть @lex who@ и банду @lex player@?}
+#define STR_QUESTION_ONLY_PLAYER           ( 10000023 )   // {10000023}{}{Вы хотите увидеть @lex player@?}
+#define STR_QUESTION_ONLY_PLAYERS          ( 10000024 )   // {10000024}{}{Вы хотите увидеть банду @lex player@?}
+
+/*
+// 2 groups, fighting
+#define STR_VIEW_F                         (10000110)
+#define STR_VIEW_WITH_PLAYER_F             (10000111)
+#define STR_VIEW_WITH_PLAYERS_F            (10000112)
+#define STR_VIEW_ONLY_PLAYER_F             (10000113)
+#define STR_VIEW_ONLY_PLAYERS_F            (10000114)
+#define STR_QUESTION_F                     (10000120)
+#define STR_QUESTION_WITH_PLAYER_F         (10000121)
+#define STR_QUESTION_WITH_PLAYERS_F        (10000122)
+#define STR_QUESTION_ONLY_PLAYER_F         (10000123)
+#define STR_QUESTION_ONLY_PLAYERS_F        (10000124)
+
+// 2 groups, (fending off)
+#define STR_VIEW_D                         (10000210)
+#define STR_VIEW_WITH_PLAYER_D             (10000211)
+#define STR_VIEW_WITH_PLAYERS_D            (10000212)
+#define STR_VIEW_ONLY_PLAYER_D             (10000213)
+#define STR_VIEW_ONLY_PLAYERS_D            (10000214)
+#define STR_QUESTION_D                     (10000220)
+#define STR_QUESTION_WITH_PLAYER_D         (10000221)
+#define STR_QUESTION_WITH_PLAYERS_D        (10000222)
+#define STR_QUESTION_ONLY_PLAYER_D         (10000223)
+#define STR_QUESTION_ONLY_PLAYERS_D        (10000224)
+
+// 2 groups (doing nothing)
+#define STR_VIEW_N                         (10000310)
+#define STR_VIEW_WITH_PLAYER_N             (10000311)
+#define STR_VIEW_WITH_PLAYERS_N            (10000312)
+#define STR_VIEW_ONLY_PLAYER_N             (10000313)
+#define STR_VIEW_ONLY_PLAYERS_N            (10000314)
+#define STR_QUESTION_N                     (10000320)
+#define STR_QUESTION_WITH_PLAYER_N         (10000321)
+#define STR_QUESTION_WITH_PLAYERS_N        (10000322)
+#define STR_QUESTION_ONLY_PLAYER_N         (10000323)
+#define STR_QUESTION_ONLY_PLAYERS_N        (10000324)
+*/
+
+#define VS_MODE_NONE				(0)
+#define VS_MODE_ALLOW				(1)
+#define VS_MODE_NEVER				(2)
+#define VS_MODE_ALWAYS				(3)
+#define VS_MODE_RESERVED			(4)
+
+#define ENCOUNTER_OBJECT_NONE              (0)
+#define ENCOUNTER_OBJECT_CRITTER           (1)
+#define ENCOUNTER_OBJECT_ITEM              (2)
+
+#define CHECK_RANDOM                       (0)
+#define CHECK_PARAM                        (1)
+#define CHECK_LVAR                         (2)
+#define CHECK_GVAR                         (3)
+#define CHECK_HOUR                         (4)
+#define CHECK_LVAR_ANY                     (5)
+#define CHECK_PARAM_ANY                    (6)
+#define ASSIGN_LVAR                        (10)
+
+#define ACTION_NONE                        (0)     // 2 groups aren't performing any actions
+#define ACTION_FIGHTING                    (1)     // 1st group fights group 2
+#define ACTION_DEFENDING                   (2)     // 1st group fending off group 2
+
+#define TERRAIN_Desert                     ( 0 )
+#define TERRAIN_Mountain                   ( 1 )
+#define TERRAIN_City                       ( 2 )
+#define TERRAIN_Coast                      ( 3 )
+#define TERRAIN_Water                      ( 4 )
+
+#define FILL_No_Fill                       (0)
+#define FILL_Fill_W                        (1)
+
+// Encounter frequency percentages
+#define CHANCE_Forced                      ( 100 ) // This shouldn't change
+#define CHANCE_Frequent                    ( 50 )  // Was 9/3d6
+#define CHANCE_Common                      ( 22 )  // Was 8/3d6
+#define CHANCE_Uncommon                    ( 12 )  // Was 6/3d6
+#define CHANCE_Rare                        ( 4 )   // Was 5/3d6
+#define CHANCE_None                        ( 0 )   // This shouldn't change
+
+#define POSITION_NONE                      ( 0 )
+#define POSITION_SURROUNDING               ( 1 )   // Окружают
+#define POSITION_HUDDLE                    ( 2 )   //
+#define POSITION_WEDGE                     ( 3 )
+#define POSITION_CONE                      ( 4 )
+#define POSITION_DOUBLE_LINE               ( 5 )
+#define POSITION_STRAIGHT_LINE             ( 6 )
+
+uint[][] PositionDirs =
+{
+    { 0 },                                     // POSITION_NONE
+// Steps Path 1       Path 2
+    { 1, 4, 3, 2, 1, 0, 5, 2, 3, 4, 5, 0, 1 }, // POSITION_SURROUNDING
+    { 1, 5, 0, 1, 2, 3, 4, 1, 0, 5, 4, 3, 2 }, // POSITION_HUDDLE
+    { 1, 4,           2 },                     // POSITION_WEDGE
+    { 1, 5,           1 },                     // POSITION_CONE
+    { 2, 1, 2,         4, 5 },                 // POSITION_DOUBLE_LINE
+    { 2, 1, 2,         4, 5 } // POSITION_STRAIGHT_LINE
+};
+
+#define GROUP_Player#(i)                   (uint(-1 - i))     // player groups in encounters
+#define GROUP_Aliens                            (0)
+#define GROUP_Ants                              (1)
+#define GROUP_Bandits                           (2)
+#define GROUP_Blades                            (3)
+#define GROUP_Bootlegger                        (4)
+#define GROUP_Brahmins                          (5)
+#define GROUP_Brotherhood_Patrol                (6)
+#define GROUP_Centaurs                          (7)
+#define GROUP_Claim_Jumpers                     (8)
+#define GROUP_Coyotes                           (9)
+#define GROUP_Deathclaws1                       (10)
+#define GROUP_Enclave_Patrol                    (11)
+#define GROUP_Farmers                           (12)
+#define GROUP_Fire_Geckos                       (13)
+#define GROUP_Floaters                          (14)
+#define GROUP_Gang                              (15)
+#define GROUP_Gecko_Patrol                      (16)
+#define GROUP_Ghouls                            (17)
+#define GROUP_Giant_Rats                        (18)
+#define GROUP_Golden_Geckos                     (19)
+#define GROUP_Highwaymen                        (20)
+#define GROUP_Hobos                             (21)
+#define GROUP_Homesteaders                      (22)
+#define GROUP_Hub_Patrol                        (23)
+#define GROUP_Hubologist                        (24)
+#define GROUP_Hunters                           (25)
+#define GROUP_Junktown_Scouts                   (26)
+#define GROUP_Khans                             (27)
+#define GROUP_Mantis                            (28)
+#define GROUP_Marauders                         (29)
+#define GROUP_Mercenaries                       (30)
+#define GROUP_Molerats                          (31)
+#define GROUP_Moonshiners                       (32)
+#define GROUP_Mutated_Molerats                  (33)
+#define GROUP_Mutated_Pigrats                   (34)
+#define GROUP_Mutated_Rats                      (35)
+#define GROUP_Peasants                          (36)
+#define GROUP_Pigrats                           (37)
+#define GROUP_Press_Gang                        (38)
+#define GROUP_Punkers                           (39)
+#define GROUP_Rabid_Dogs                        (40)
+#define GROUP_Radscorpions                      (41)
+#define GROUP_Raiders_Metal_Armor               (42)
+#define GROUP_Raiders_Weak                      (43)
+#define GROUP_NCR_Rangers                       (44)
+#define GROUP_Regulators                        (45)
+#define GROUP_Rippers                           (46)
+#define GROUP_Robbers                           (47)
+#define GROUP_Rogues                            (48)
+#define GROUP_Scavengers                        (49)
+#define GROUP_Silver_Geckos                     (50)
+#define GROUP_Small_Radscorpions                (51)
+#define GROUP_Super_Mutants_Army                (52)
+#define GROUP_Thugs                             (53)
+#define GROUP_Trappers                          (54)
+#define GROUP_Unity_Patrol                      (55)
+#define GROUP_Vault_City_Patrol                 (56)
+#define GROUP_Wild_Brahmins                     (57)
+#define GROUP_Wild_Dogs                         (58)
+#define GROUP_Wolves                            (59)
+#define GROUP_Deathclaws2                       (60)
+#define GROUP_Deathclaws3                       (61)
+#define GROUP_CentaursFloaters                  (62)
+#define GROUP_MutatedRadscorpions               (63)
+#define GROUP_BlackRadscorpions                 (64)
+#define GROUP_BanditsVS                         (65)
+#define GROUP_RobbersVS                         (66)
+#define GROUP_SupplyCaravan                     (67)
+#define GROUP_SupplyCaravan2                    (68)
+#define GROUP_Game_Foreshadowing                (69)
+#define GROUP_MAX                               (70)
+
+#define FLAG_SecretShelter                 (0)
+#define FLAG_SecretTreasure1               (1)
+#define FLAG_CaesarAmbush                  (2)
+#define FLAG_SecretHowitzer                (3)
+#define FLAG_LA_Surroundings               (4)
+#define FLAG_CrashedHummer                 (5)
+#define FLAG_BattleGround                  (6)
+#define FLAG_SecretDogCompanion            (7)
+#define FLAG_ShaEnin                       (8)
+#define FLAG_Q_Ruined_Militarybase         (9)
+
+#define END_OF_DEFINES                     (0)     // This is for parser in WorldEditor tool, please keep macros etc under this, NOT before.
+
+// some useful macros (still, their representations are used throughout the code in many places)
+#define ZONE_X                             # (wx)                           ((wx) / ZONE_LENGTH)
+#define ZONE_Y                             # (wy)                           ((wy) / ZONE_LENGTH)
+#define ZONE_IDX                           # (zx, zy)((zy) * ZONE_COUNT_X + (zx))
+#define VALID_ZONE_COORDS                  # (zx, zy)(((zx) >= 0) && ((zy) >= 0) && (ZONE_COUNT_X > (zx)) && (ZONE_COUNT_Y > (zy)))
+
+#ifndef __WORLDMAP_MODULE__
+//import IZone@ GetZone(uint wx, uint wy) from "worldmap";
+#endif
+#endif // ifndef worldmap

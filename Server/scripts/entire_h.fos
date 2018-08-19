@@ -1,0 +1,179 @@
+#ifndef _ENTIRE_H_
+#define _ENTIRE_H_
+
+#define ENTIRE_DEFAULT                     ( 0 )
+#define ENTIRE_ENCOUNTER_HIPE			   ( 0 )
+#define ENTIRE_ENCOUNTER_MIDPE			   ( 1 )
+#define ENTIRE_ENCOUNTER_LOWPE			   ( 2 )
+#define ENTIRE_ENCOUNTER_NPC    		   ( 10 )
+#define ENTIRE_NAT                         ( 11 ) // Nature resources
+#define ENTIRE_TRASH                       ( 12 ) // Trash
+#define ENTIRE_RES                         ( 13 ) // Res for craft
+#define ENTIRE_CONT1                       ( 14 ) // Container l1
+#define ENTIRE_CONT2                       ( 15 ) // Container l2
+#define ENTIRE_ENC_CONT_H                  ( 20 )
+#define ENTIRE_ENC_CONT_V                  ( 21 )
+#define ENTIRE_ENC_GRAVE                   ( 22 )
+#define ENTIRE_RESOURCE_ROCK               ( 70 )
+#define ENTIRE_RESOURCE_FLINT              ( 71 )
+#define ENTIRE_RESOURCE_TOBACCO            ( 72 )
+#define ENTIRE_RESOURCE_XANDERROOT         ( 73 )
+#define ENTIRE_RESOURCE_BROCKFLOWER        ( 74 )
+#define ENTIRE_RESOURCE_FRUIT              ( 75 )
+#define ENTIRE_PLAYER_START                ( 240 )
+#define ENTIRE_NO_LOG_OFF                  ( 241 )
+#define ENTIRE_REPLICATION                 ( 242 )
+#define ENTIRE_CAR                         ( 243 )
+#define ENTIRE_CAR_CRITTERS                ( 244 )
+#define ENTIRE_BIG_CAR                     ( 245 )
+
+#define ENTIRE_EVENT_MOB_SPAWN             ( 301 )
+#define ENTIRE_EVENT_BOAT_SPAWN            ( 302 )
+#define ENTIRE_EVENT_BOX_SPAWN             ( 303 )
+#define ENTIRE_EVENT_MOB_HOME              ( 304 )
+#define ENTIRE_EVENT_DEFENDER_SPAWN        ( 305 )
+#define ENTIRE_EVENT_CAR_SPAWN             ( 306 )
+#define ENTIRE_EVENT_MINE_SPAWN            ( 307 )
+#define ENTIRE_EVENT_FLARE_SPAWN           ( 308 )
+#define ENTIRE_EVENT_MOB_PATROL            ( 309 )
+#define ENTIRE_TC_LOCKER                   ( 333 )
+
+
+#define DEFAULT_FACTIONROOM_ENTIRE         ( 350 )
+#define ENTIRE_HG_CAGE_SPAWN               ( 903 )
+#define ENTIRE_HG_BOXES_SPAWN              ( 904 )
+
+#define DEFAULT_CAR_PARK_ENTIRE            ( 400 )
+#define DEFAULT_PATROL_ENTIRE              ( 401 )
+#define DEFAULT_HIDEOUT_ENTIRE             ( 402 )
+#define DEFAULT_TOWN_JAIL_ENTIRE           ( 500 )
+#define DEFAULT_BUYABLE_HOUSE_START        ( 500 )
+#define DEFAULT_RESERVED                   ( 600 )
+#define DEFAULT_HOTEL_ENTIRE               ( 700 )
+#define DEFAULT_HOTEL_ROOM_ENTIRE_START    ( 701 )
+#define DEFAULT_ENEMY_SPAWN_POINT          ( 800 )
+#define DEFAULT_ALLY_SPAWN_POINT           ( 900 )
+
+//Random dungeon begin: 2000
+#define RANDOM_DUNGEON_SPAWN_BASE          ( 2000 )
+#define RANDOM_DUNGEON_SPAWN_EXIT_0        ( 2000 )
+#define RANDOM_DUNGEON_SPAWN_EXIT_1        ( 2001 )
+#define RANDOM_DUNGEON_SPAWN_EXIT_2        ( 2002 )
+#define RANDOM_DUNGEON_SPAWN_EXIT_3        ( 2003 )
+#define RANDOM_DUNGEON_SPAWN_EXIT_4        ( 2004 )
+
+#define RANDOM_DUNGEON_SPAWN_LIGHT_BASE    ( 2010 )
+#define RANDOM_DUNGEON_SPAWN_LIGHT_0       ( 2010 )
+#define RANDOM_DUNGEON_SPAWN_LIGHT_1       ( 2011 )
+#define RANDOM_DUNGEON_SPAWN_LIGHT_2       ( 2012 )
+#define RANDOM_DUNGEON_SPAWN_LIGHT_3       ( 2013 )
+#define RANDOM_DUNGEON_SPAWN_LIGHT_4       ( 2014 )
+
+#define RANDOM_DUNGEON_CRITTER_SPAWN       ( 2020 )
+#define RANDOM_DUNGEON_CRITTER_SPAWN_ROOM1 ( 2021 )
+#define RANDOM_DUNGEON_CRITTER_SPAWN_ROOM2 ( 2022 )
+#define RANDOM_DUNGEON_CRITTER_SPAWN_ROOM3 ( 2023 )
+#define RANDOM_DUNGEON_CRITTER_SPAWN_ROOM4 ( 2024 )
+#define RANDOM_DUNGEON_CRITTER_SPAWN_ROOM5 ( 2025 )
+#define RANDOM_DUNGEON_CRITTER_PATROL      ( 2030 )
+
+#define RANDOM_DUNGEON_CONTAINER_H         ( 2040 )
+#define RANDOM_DUNGEON_CONTAINER_V         ( 2041 )
+#define RANDOM_DUNGEON_CONTAINER_H_ROOM1   ( 2042 )
+#define RANDOM_DUNGEON_CONTAINER_V_ROOM1   ( 2043 )
+#define RANDOM_DUNGEON_CONTAINER_H_ROOM2   ( 2044 )
+#define RANDOM_DUNGEON_CONTAINER_V_ROOM2   ( 2045 )
+#define RANDOM_DUNGEON_CONTAINER_H_ROOM3   ( 2046 )
+#define RANDOM_DUNGEON_CONTAINER_V_ROOM3   ( 2047 )
+#define RANDOM_DUNGEON_CONTAINER_H_ROOM4   ( 2048 )
+#define RANDOM_DUNGEON_CONTAINER_V_ROOM4   ( 2049 )
+#define RANDOM_DUNGEON_CONTAINER_H_ROOM5   ( 2050 )
+#define RANDOM_DUNGEON_CONTAINER_V_ROOM5   ( 2051 )
+
+#define RANDOM_DUNGEON_TRAP_EXIT_0         ( 2060 )
+#define RANDOM_DUNGEON_TRAP_EXIT_1         ( 2061 )
+#define RANDOM_DUNGEON_TRAP_EXIT_2         ( 2062 )
+#define RANDOM_DUNGEON_TRAP_EXIT_3         ( 2063 )
+#define RANDOM_DUNGEON_TRAP_EXIT_4         ( 2064 )
+
+#define RANDOM_DUNGEON_TRAP_CENTRAL_0      ( 2070 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_1      ( 2071 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_2      ( 2072 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_3      ( 2073 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_4      ( 2074 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_5      ( 2075 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_6      ( 2076 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_7      ( 2077 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_8      ( 2078 )
+#define RANDOM_DUNGEON_TRAP_CENTRAL_9      ( 2079 )
+
+#define RANDOM_DUNGEON_GROUP_CENTER_1      ( 2080 )
+#define RANDOM_DUNGEON_GROUP_CRITTER_1     ( 2081 )
+#define RANDOM_DUNGEON_GROUP_EXTRA_1       ( 2082 )
+#define RANDOM_DUNGEON_GROUP_CENTER_2      ( 2083 )
+#define RANDOM_DUNGEON_GROUP_CRITTER_2     ( 2084 )
+#define RANDOM_DUNGEON_GROUP_EXTRA_2       ( 2085 )
+#define RANDOM_DUNGEON_GROUP_CENTER_3      ( 2086 )
+#define RANDOM_DUNGEON_GROUP_CRITTER_3     ( 2087 )
+#define RANDOM_DUNGEON_GROUP_EXTRA_3       ( 2088 )
+
+#define RANDOM_DUNGEON_NEST_1              ( 2100 )
+#define RANDOM_DUNGEON_NEST_2              ( 2101 )
+#define RANDOM_DUNGEON_NEST_3              ( 2102 )
+#define RANDOM_DUNGEON_NEST_4              ( 2103 )
+#define RANDOM_DUNGEON_NEST_5              ( 2104 )
+
+#define RANDOM_DUNGEON_STORAGE_1           ( 2105 )
+#define RANDOM_DUNGEON_STORAGE_2           ( 2106 )
+#define RANDOM_DUNGEON_STORAGE_3           ( 2107 )
+
+#define RANDOM_DUNGEON_WALL_BE_H1          ( 2110 )
+#define RANDOM_DUNGEON_WALL_W1_H1          ( 2111 )
+#define RANDOM_DUNGEON_WALL_W2_H1          ( 2112 )
+#define RANDOM_DUNGEON_WALL_EN_H1          ( 2113 )
+#define RANDOM_DUNGEON_WALL_DO_H1          ( 2114 )
+#define RANDOM_DUNGEON_WALL_BE_V1          ( 2115 )
+#define RANDOM_DUNGEON_WALL_W1_V1          ( 2116 )
+#define RANDOM_DUNGEON_WALL_W2_V1          ( 2117 )
+#define RANDOM_DUNGEON_WALL_EN_V1          ( 2118 )
+#define RANDOM_DUNGEON_WALL_DO_V1          ( 2119 )
+
+#define RANDOM_DUNGEON_WALL_BE_H2          ( 2120 )
+#define RANDOM_DUNGEON_WALL_W1_H2          ( 2121 )
+#define RANDOM_DUNGEON_WALL_W2_H2          ( 2122 )
+#define RANDOM_DUNGEON_WALL_EN_H2          ( 2123 )
+#define RANDOM_DUNGEON_WALL_DO_H2          ( 2124 )
+#define RANDOM_DUNGEON_WALL_BE_V2          ( 2125 )
+#define RANDOM_DUNGEON_WALL_W1_V2          ( 2126 )
+#define RANDOM_DUNGEON_WALL_W2_V2          ( 2127 )
+#define RANDOM_DUNGEON_WALL_EN_V2          ( 2128 )
+#define RANDOM_DUNGEON_WALL_DO_V2          ( 2129 )
+
+#define RANDOM_DUNGEON_WALL_BE_H3          ( 2130 )
+#define RANDOM_DUNGEON_WALL_W1_H3          ( 2131 )
+#define RANDOM_DUNGEON_WALL_W2_H3          ( 2132 )
+#define RANDOM_DUNGEON_WALL_EN_H3          ( 2133 )
+#define RANDOM_DUNGEON_WALL_DO_H3          ( 2134 )
+#define RANDOM_DUNGEON_WALL_BE_V3          ( 2135 )
+#define RANDOM_DUNGEON_WALL_W1_V3          ( 2136 )
+#define RANDOM_DUNGEON_WALL_W2_V3          ( 2137 )
+#define RANDOM_DUNGEON_WALL_EN_V3          ( 2138 )
+#define RANDOM_DUNGEON_WALL_DO_V3          ( 2139 )
+
+#define RANDOM_DUNGEON_PORTAL_0            ( 2140 )
+#define RANDOM_DUNGEON_PORTAL_1            ( 2141 )
+#define RANDOM_DUNGEON_PORTAL_2            ( 2142 )
+#define RANDOM_DUNGEON_PORTAL_3            ( 2143 )
+#define RANDOM_DUNGEON_PORTAL_4            ( 2144 )
+
+//Random dungeon end: 2199
+
+#define ENTIRE_CARAVAN_DROP_ZONE           ( 110 ) // Box unloading quest
+class Entire
+{
+    int    Number;
+    uint16 HexX;
+    uint16 HexY;
+}
+
+#endif

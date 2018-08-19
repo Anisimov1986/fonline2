@@ -1,0 +1,52 @@
+[comment]
+
+
+[data]
+lang=engl russ ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script game_event_mutants_attacks_sf@d_IsReadyToFinishEvent 0  #
+0 2020 @
+3 3000 None 0 #
+0 3010 R _script game_event_mutants_attacks_sf@d_FinishEvent 0  &
+
+[engl]
+{100}{}{Scribe Matthew}
+{200}{}{You see: Scribe Matthew.}
+{210}{}{You see a young man wearing Brotherhood robes.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Yes, what is it?@@Yes?@@I'm listening.@@You have my attention.}
+{2010}{}{I've killed the mutants. You said something about a reward?}
+{2020}{}{Sorry, wrong door.@@Nevermind.@@I need to go.}
+{3000}{}{Yes, you've done nice job. Thank you for your assistance. Here are your caps, and take this as a bonus.}
+{3010}{}{Thanks.}
+
+[russ]
+{100}{}{Scribe Matthew}
+{200}{}{You see: Scribe Matthew.}
+{210}{}{You see a young man wearing brotherhood robes.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Welcome wastelander. How can I help you?}
+{2010}{}{I've killed mutants. You said something about reward.}
+{2020}{}{Sorry, wrong door.}
+{3000}{}{Yes, you've done nice job. Thank you for your assitance. Here's your caps and take this.}
+{3010}{}{Thanks.}
+
+[ptbr]
+{100}{}{Escrivão Mateus}
+{210}{}{Você vê um jovem rapaz usando a armadura da Irmandade.}
+{210}{}{Você vê o escrivão Mateus.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Bem-vindo forasteiro. Como posso ajudá-lo?}
+{2010}{}{Matei os mutantes. Você disse algo sobre ter uma recompnesa antes..}
+{2020}{}{Foi mal, porta errada.}
+{3000}{}{Sim, você fez um ótimo trabalho. Obrigado por sua assistência. Aqui estão algumas tampinhas e leve isso aqui também.}
+{3010}{}{Obrigado.}
+

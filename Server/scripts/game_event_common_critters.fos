@@ -1,0 +1,158 @@
+#ifndef __GAME_EVENT_COMMON_CRITTERS__
+#define __GAME_EVENT_COMMON_CRITTERS__
+
+#include "game_event_class_utils.fos"
+#include "critter_template.fos"
+#include "entire_h.fos"
+#include "_defines.fos"
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+
+#define ROLE_BANDIT                     (288000)
+#define ROLE_ROBBER                     (288001)
+#define ROLE_HIGHWAYMEN                 (288002)
+#define ROLE_GANG                       (288004)
+#define ROLE_RAIDER                     (288005)
+#define ROLE_ROGUE                      (288006)
+#define ROLE_KHAN                       (288007)
+#define ROLE_REGULATOR                  (288008)
+#define ROLE_PUNKER                     (288009)
+
+
+#define	NEED_REINFORCEMENTS_MESSAGE_ID  (1999)
+
+
+CritterEventsTemplate badCritterTemplate = CritterEventsTemplate()
+	.WhenT(PlayerShown1())
+		.ExecuteT(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26))
+	.WhenT(CritterAttacked())
+		.ExecuteT(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.ExecuteT(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.ExecuteT(Conditionally(CritterHPAboveTresholdPercent(20), Attack(AI_PLANE_ATTACK_PRIORITY + 25, AI_PLANE_ATTACK_PRIORITY + 29)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+		.ExecuteT(SendMessage(NEED_REINFORCEMENTS_MESSAGE_ID, MESSAGE_TO_ALL_ON_MAP))
+	.WhenT(PlaneFinished(ATTACK_PLANE_IDENTIFIER, false))
+		.ExecuteT(Conditionally(CAnd(CritterHPBelowTresholdPercent(50), CriterTimerNotActive(CTE_EVENT_MANAGER_1)), Heal()))
+		.ExecuteT(Conditionally(CriterTimerNotActive(CTE_EVENT_MANAGER_1), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(20), RunAway()))
+	.WhenT(CritterTimerTimeout(CTE_EVENT_MANAGER_1))
+		.ExecuteT(Heal())
+		.ExecuteT(Conditionally(CritterHPBelowTresholdPercent(75), StartCritterTimer(CTE_EVENT_MANAGER_1, 30, TIME_UNIT_REAL_SECOND)))
+	.WhenT(CritterMessageReceived(NEED_REINFORCEMENTS_MESSAGE_ID))     //Provide reinforcements
+		.ExecuteT(Conditionally(DistanceBetween(0, 75), Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 35)));	
+
+
+// Bandits initialization
+int[] banditParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit, ST_BAG_ID, BAG_Bandit}; 		
+int[] banditPids = {NPC_PID_BANDIT1, NPC_PID_BANDIT2, NPC_PID_BANDIT3, NPC_PID_BANDIT4, NPC_PID_BANDIT5, NPC_PID_BANDIT6};
+CritterTemplate banditCritterTemplate = CritterTemplate(banditPids, ROLE_BANDIT)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(banditParams)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager banditCritterEvents = CritterEventsManager(ROLE_BANDIT)
+		.Add(badCritterTemplate);
+
+		
+// Robbers initialization
+int[] robberParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit, ST_BAG_ID, BAG_Robber}; 		
+int[] robberPids = {NPC_PID_ROBBER1, NPC_PID_ROBBER2, NPC_PID_ROBBER3, NPC_PID_ROBBER4, NPC_PID_ROBBER5, NPC_PID_ROBBER6};
+CritterTemplate robberCritterTemplate = CritterTemplate(robberPids, ROLE_ROBBER)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(robberParams)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager robberCritterEvents = CritterEventsManager(ROLE_ROBBER)
+		.Add(badCritterTemplate);
+
+		
+// Highwayman initialization
+int[] highwaymenParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit}; 		
+int[] highwaymenPids = {NPC_PID_HIGHWAYMEN1, NPC_PID_HIGHWAYMEN2, NPC_PID_HIGHWAYMEN3, NPC_PID_HIGHWAYMEN4, NPC_PID_HIGHWAYMEN5};
+int[] highwaymenBags = {BAG_GANG45, BAG_GANG44, BAG_GANG, BAG_GANG, BAG_GANG};
+CritterTemplate highwaymenCritterTemplate = CritterTemplate(highwaymenPids, ROLE_HIGHWAYMEN)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(highwaymenParams)
+		.SetCritterBags(highwaymenBags)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager highwaymenCritterEvents = CritterEventsManager(ROLE_HIGHWAYMEN)
+		.Add(badCritterTemplate);
+
+
+// Gang initialization
+int[] gangParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit, ST_BAG_ID, BAG_GANG}; 		
+int[] gangPids = {NPC_PID_GANG1, NPC_PID_GANG2, NPC_PID_GANG3, NPC_PID_GANG4, NPC_PID_GANG5};
+CritterTemplate gangCritterTemplate = CritterTemplate(gangPids, ROLE_GANG)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(gangParams)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager gangCritterEvents = CritterEventsManager(ROLE_GANG)
+		.Add(badCritterTemplate);
+
+		
+// Raiders initialization
+int[] raiderParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit}; 		
+int[] raiderPids = {NPC_PID_RAIDER1, NPC_PID_RAIDER2, NPC_PID_RAIDER3, NPC_PID_RAIDER4, NPC_PID_RAIDER5, NPC_PID_RAIDER6, NPC_PID_RAIDER11, NPC_PID_RAIDER22, NPC_PID_RAIDER33, NPC_PID_RAIDER44, NPC_PID_RAIDER55};
+int[] raiderBags = {BAG_Raider, BAG_Raider, BAG_Raider0, BAG_Raider0, BAG_Raider, BAG_Raider, BAG_GANG, BAG_GANG, BAG_GANG, BAG_GANG105, BAG_GANG};
+CritterTemplate raiderCritterTemplate = CritterTemplate(raiderPids, ROLE_RAIDER)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(raiderParams)
+		.SetCritterBags(raiderBags)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager raiderCritterEvents = CritterEventsManager(ROLE_RAIDER)
+		.Add(badCritterTemplate);
+		
+
+// Rogues initialization
+int[] rogueParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit, ST_BAG_ID, BAG_HIGHNPC}; 		
+int[] roguePids = {NPC_PID_ROGUES1, NPC_PID_ROGUES2, NPC_PID_ROGUES3, NPC_PID_ROGUES4, NPC_PID_ROGUES5};
+CritterTemplate rogueCritterTemplate = CritterTemplate(roguePids, ROLE_ROGUE)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(rogueParams)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager rogueCritterEvents = CritterEventsManager(ROLE_ROGUE)
+		.Add(badCritterTemplate);
+	
+
+// Khans initialization
+int[] khanParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit, ST_BAG_ID, BAG_HIGHNPC}; 		
+int[] khanPids = {NPC_PID_KHAN1, NPC_PID_KHAN2, NPC_PID_KHAN3, NPC_PID_KHAN4, NPC_PID_KHAN5};
+CritterTemplate khanCritterTemplate = CritterTemplate(khanPids, ROLE_KHAN)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(khanParams)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager khanCritterEvents = CritterEventsManager(ROLE_KHAN)
+		.Add(badCritterTemplate);
+
+		
+// Regulators initialization
+int[] regulatorParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit, ST_BAG_ID, BAG_HIGHNPC}; 		
+int[] regulatorPids = {NPC_PID_REGULATOR2, NPC_PID_REGULATOR3, NPC_PID_REGULATOR4, NPC_PID_REGULATOR5};
+CritterTemplate regulatorCritterTemplate = CritterTemplate(regulatorPids, ROLE_REGULATOR)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(regulatorParams)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager regulatorCritterEvents = CritterEventsManager(ROLE_REGULATOR)
+		.Add(badCritterTemplate);
+
+
+// Punkers initialization
+int[] punkerParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit}; 		
+int[] punkerPids = {NPC_PID_PUNKER1, NPC_PID_PUNKER2, NPC_PID_PUNKER3, NPC_PID_PUNKER4, NPC_PID_PUNKER5};
+int[] punkerBags = {BAG_PUNKER141, BAG_PUNKER149, BAG_PUNKER, BAG_PUNKER136, BAG_PUNKER105};
+CritterTemplate punkerCritterTemplate = CritterTemplate(punkerPids, ROLE_PUNKER)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetCritterParams(punkerParams)
+		.SetCritterBags(punkerBags)
+		.SetShowCritterDist1(30)
+		.SetAttachEventManager(true);
+CritterEventsManager punkerCritterEvents = CritterEventsManager(ROLE_PUNKER)
+		.Add(badCritterTemplate);
+		

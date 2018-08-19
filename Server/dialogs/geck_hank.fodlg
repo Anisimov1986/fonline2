@@ -1,0 +1,95 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+3 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+0 5010 &
+
+[engl]
+{100}{}{Hank}
+{200}{}{You see a glowing ghoul with a concerned look on his face.}
+{210}{}{You see Hank the glowing ghoul, a worker here in the powerplant.}
+{210}{}{You see a glowing ghoul monitoring some power plant gauges.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Well, what do we've got here? A smoothskin! I'm Hank. I take care of the inside of the reactor core. Not that it needs much maintenance anyway...}
+{2010}{}{Hi there, Hank. I need to get inside the core.}
+{2020}{}{Just taking a tour. Bye.@@I was just passing.@@Nice reactor you've got here. Gotta go.}
+{3000}{}{It's you again. Man,  it feels so good and toasty this close to the core. Most smoothies don't care for that.}
+{3010}{}{Really? Good for you. I need to get inside the core, Hank.}
+{3020}{}{Just looking around, Hank. Bye.@@Goodbye.@@I need to go, later.}
+{4000}{}{Heh, heh. I wouldn't advise that, smoothy. You'd fry yourself in a matter of second. Me, I like the warmth, but I you... Not a good idea at all. Quite a lot of heat and rads in there. That's why the smoothies that built this place used that maintenance bot.}
+{4010}{}{Maintenance bot?}
+{5000}{}{Yeah, the smoothies that built this place didn't want to fry either, so they used a robot. It was designed to perform maintenance stuff by remote control from a terminal in the control room. }
+{5010}{}{I'll have to check that out. Goodbye.}
+
+[russ]
+{100}{}{Хэнк}
+{200}{}{Вы видите светящегося мертвяка, наблюдающего за чем-то.}
+{210}{}{Вы видите Xэнка, светящегося мертвяка, он работает здесь, на электростанции.}
+{210}{}{Вы видите светящегося мертвяка, смотрящего за несколькими замерщиками электростанции.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Привет, меня зовут Хэнк. Я присматриваю за сердцем реактора. Это никогда не требовало особой заботы.}
+{2010}{}{Привет, Хэнк. Можно как нибудь попасть внутрь Сердца реактора?}
+{2020}{}{Привет, Хэнк. Я просто прогуливаюсь здесь. Пока.}
+{3000}{}{Привет, здорово, что ты опять @sex@|пришел||пришла|. А я тут уже почти совсем зажарился. И никого это не волнует.}
+{3010}{}{Привет, Хэнк. Можно как нибудь попасть внутрь Сердца реактора?}
+{3020}{}{Привет, Хэнк. Я просто прогуливаюсь здесь. Пока.}
+{4000}{}{Хех... Я бы не советовал соваться туда, человек. Ты поджаришься до хрустящей корочки. Что касается меня, я люблю, когда жарковато, но я не советовал бы пробовать это тебе. Там довольно жарко и высокая радиация. Вот почему те, кто построил все это, также сделали ремонтный бот.}
+{4010}{}{Ремонтный бот?}
+{5000}{}{Да, те, кто построили все здесь, тоже не хотели зажариться, а потому они сделали и робота. Он был предназначен выполнять ремонтные задачи с удаленным контролем с терминала, который находится в комнате в сторону запада.}
+{5010}{}{Отлично. Это можно как-нибудь использовать. [Выход]}
+
+[pols]
+{100}{}{Hank}
+{200}{}{Widzisz jarzącego się ghula z zatroskanym wyrazem twarzy.}
+{210}{}{Widzisz Hanka, jarzącego się ghula, pracownika elektrowni.}
+{210}{}{Widzisz jarzącego się ghula, śledzącego różne wskaźniki.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Cześć, jestem Hank. Opiekuję się wnętrzem rdzenia reaktora. Właściwie, rzadko kiedy trzeba cokolwiek przy nim robić.}
+{2010}{}{Hej, Hank. Muszę dostać się do rdzenia.}
+{2020}{}{Cześć, Hank. Tylko się rozglądam. Do widzenia.}
+{3000}{}{Cześć, miło że znowu @sex@|wpadłeś||wpadłaś|. Jak miło i cieplutko jest tak blisko rdzenia... Ale większości gładkoskórków to nie interesuje.}
+{3010}{}{Hej, Hank. Muszę dostać się do rdzenia.}
+{3020}{}{Cześć, Hank. Tylko się rozglądam. Do widzenia.}
+{4000}{}{He, he. Nie radziłbym tego żadnemu z gładkoskórków. Usmażyłoby cię tam. Ja lubię ciepło, ale nie polecałbym tego tobie. Trochę tam za dużo gorąca i promieniowania. Dlatego też gładkoskórki, które zbudowały to miejsce, umieściły tu robota naprawczego.}
+{4010}{}{Robota naprawczego?}
+{5000}{}{Ta, gładkoskórki, które zbudowały to miejsce, same też nie chciały się usmażyć, więc umieściły tu robota. Został zaprojektowany do wykonywania robót naprawczych, a sterować można nim zdalnie z terminalu za moimi plecami.}
+{5010}{}{Muszę to sprawdzić. Do zobaczenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Well, what do we've got here? A smoothskin! I'm Hank. I take care of the inside of the reactor core. Not that it needs much maintenance anyway...}
+{2010}{}{Hi there, Hank. I need to get inside the core.}
+{2020}{}{Just taking a tour. Bye.@@I was just passing.@@Nice reactor you've got here. Gotta go.}
+{3000}{}{It's you again. Man,  it feels so good and toasty this close to the core. Most smoothies don't care for that.}
+{3010}{}{Really? Good for you. I need to get inside the core, Hank.}
+{3020}{}{Just looking around, Hank. Bye.@@Goodbye.@@I need to go, later.}
+{4000}{}{Heh, heh. I wouldn't advise that, smoothy. You'd fry yourself in a matter of second. Me, I like the warmth, but I you... Not a good idea at all. Quite a lot of heat and rads in there. That's why the smoothies that built this place used that maintenance bot.}
+{4010}{}{Maintenance bot?}
+{5000}{}{Yeah, the smoothies that built this place didn't want to fry either, so they used a robot. It was designed to perform maintenance stuff by remote control from a terminal in the control room. }
+{5010}{}{I'll have to check that out. Goodbye.}
+

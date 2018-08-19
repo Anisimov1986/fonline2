@@ -1,0 +1,243 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+10 1010 D _var p name_mem_player_npc = 1 D _script quest@quest_checkcdopp 1 9712 #
+14 1020 D _var p name_mem_player_npc = 1 D _script quest@quest_checkcd 1 9712 R _var p NCR_Citizenship = 1 R _var p name_mem_player_npc = 0 R _script map_ncr@r_MakeCitizen 0  #
+3 1030 D _param p PE_NCR_CITIZENSHIP > 0 #
+2 1040 D _param p PE_NCR_CITIZENSHIP { 0 @
+2 2000 None 0 #
+4 2010 #
+5 2020 @
+3 3000 None 0 #
+4 3010 #
+6 3020 #
+5 3030 @
+4 4000 None 0 #
+7 4010 D _param p PE_NCR_CITIZENSHIP { 0 #
+0 4020 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+8 6010 @
+7 7000 None 0 #
+9 7010 D _var p NCR_Citizenship = 1 #
+13 7020 D _var p NCR_Citizenship = 0 D _param p REPUTATION_NCR } 0 D _param p ST_LEVEL < 10 #
+13 7030 D _var p NCR_Citizenship = 0 D _param p REPUTATION_NCR < 0 D _param p ST_LEVEL } 10 #
+13 7040 D _var p NCR_Citizenship = 0 D _param p REPUTATION_NCR < 0 D _param p ST_LEVEL < 10 #
+11 7050 D _var p NCR_Citizenship = 0 D _param p REPUTATION_NCR } 0 D _param p ST_LEVEL } 10 #
+6 7060 #
+0 7070 @
+8 8000 None 0 #
+7 8010 D _param p PE_NCR_CITIZENSHIP { 0 #
+5 8020 D _param p PE_NCR_CITIZENSHIP { 0 #
+0 8030 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 #
+12 11010 R _script quest@quest_setcd 2 9712 180 R _var p name_mem_player_npc = 1 #
+0 11020 @
+12 12000 None 0 #
+0 12010 @
+13 13000 None 0 #
+0 13010 @
+14 14000 None 0 #
+0 14010 &
+
+[engl]
+{100}{}{NCR Clerk}
+{200}{}{You see: NCR Clerk.}
+{210}{}{You see a female clerk attending to some unknown to you duties. She's good-looking, despite being middle-aged.}
+{1000}{}{Predialogue installations}
+{1010}{}{on cd}
+{1020}{}{cd over}
+{1030}{}{citizen}
+{1040}{}{non citizen}
+{2000}{}{Greetings, wastelander. How can I help you?}
+{2010}{}{That depends. What do you do here?}
+{2020}{}{You can't. I'm a hopeless case.}
+{3000}{}{How can I help you, citizen?}
+{3010}{}{Umm, could you remind me what do you do here?}
+{3020}{}{Could you tell me again what are my rights as a NCR citizen?}
+{3030}{}{You can't. I'm a hopeless case.}
+{4000}{}{[The woman smiles warmly.] This is NCR Citizenship Office. We keep track of all the people who requested or were given government approval, and now are considered true citizens of New California Republic.}
+{4010}{}{Citizens? Can I become one too?}
+{4020}{}{Oh, I see. Well then, I'll leave you alone, then.}
+{5000}{}{[Woman's face expression turns into the one of mild shock.] Oh, I see. Well then, have a nice day.}
+{5010}{}{[exit]}
+{6000}{}{As a citizen, first and foremost, you're under our protection. To put it bluntly we know not to shoot you, as you would be one of our own. Sadly we don't have resources to cover the entire wasteland, so accidents happen. But as long as you're in this fine city you can feel safe.}
+{6010}{}{[continue]}
+{7000}{}{Of course you can. As a rising republic we're gladly welcoming people under our wings. Would you like to form an application?}
+{7010}{}{Yes, I'd like to.}
+{7020}{}{Yes, I'd like to.}
+{7030}{}{Yes, I'd like to.}
+{7040}{}{Yes, I'd like to.}
+{7050}{}{Yes, I'd like to.}
+{7060}{}{What would be my rights as a citizen?}
+{7070}{}{Not really. [walk away]}
+{8000}{}{Also your vote is important to us when there's an election in progress. There are no major duties for a citizen to attend to, except abiding to our rules. No crime, such as violence or thievery, is allowed within the city perimiter. In an event of such occurence only the president may un-revoke your citizenship.}
+{8010}{}{Wow, that sounds interesting. Can I make a request, then?}
+{8020}{}{Ugh, no way I'm letting you tie my hands like that. I'm outta here.}
+{8030}{}{I see. Thanks for making it clear for me.}
+{9000}{}{Hmm, it seems your name is @pname@, is that correct? Well, according to our database you've already been a citizen, and your citizenship had been revoked, most likely due to criminal activity. I am sorry, but you can't form an application in this case. The only way to reaquire your citizen status is to be granted such from the President.}
+{9010}{}{Damn.}
+{10000}{}{Oh, you're back already? It hasn't been reviewed yet, you have to wait some more.}
+{10010}{}{Crap, I'm anxious. I'll come back soon, then.}
+{11000}{}{That's great. If you could just sign here, and here...}
+{11010}{}{[Sign the papers.]}
+{11020}{}{Actually, I changed my mind. I'm too big of a wild child to be branded as NCR citizen.}
+{12000}{}{Okay, then. Come back in approximately three hours. Your application would be reviewed by then.}
+{12010}{}{I understand. Goodbye 'till later, then.}
+{13000}{}{I'm sorry. Computer is rejecting your application. (Negative NCR karma and/or level lower than 10)}
+{13010}{}{Damn. I'll come back some other time, then.}
+{14000}{}{Hello again. Let's see now...yes, it seems you have qualified. Congratulations! You're a full fledged citizen of New California Republic now.}
+{14010}{}{Awesome. Thanks.}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{on cd}
+{1020}{}{cd over}
+{1030}{}{citizen}
+{1040}{}{non citizen}
+{2000}{}{Greetings, wastelander. How can I help you?}
+{2010}{}{That depends. What do you do here?}
+{2020}{}{You can't. I'm a hopeless case.}
+{3000}{}{How can I help you, citizen?}
+{3010}{}{Umm, could you remind me what do you do here?}
+{3020}{}{Could you tell me again what are my rights as a NCR citizen?}
+{3030}{}{You can't. I'm a hopeless case.}
+{4000}{}{[The woman smiles warmly.] This is NCR Citizenship Office. We keep track of all the people who requested or were given government approval, and now are considered true citizens of New California Republic.}
+{4010}{}{Citizens? Can I become one too?}
+{4020}{}{Oh, I see. Well then, I'll leave you alone, then.}
+{5000}{}{[Woman's face expression turns into the one of mild shock.] Oh, I see. Well then, have a nice day.}
+{5010}{}{[exit]}
+{6000}{}{As a citizen, first and foremost, you're under our protection. To put it bluntly we know not to shoot you, as you would be one of our own. Sadly we don't have resources to cover the entire wasteland, so accidents happen. But as long as you're in this fine city you can feel safe.}
+{6010}{}{[continue]}
+{7000}{}{Of course you can. As a rising republic we're gladly welcoming people under our wings. Would you like to form an application?}
+{7010}{}{Yes, I'd like to.}
+{7020}{}{Yes, I'd like to.}
+{7030}{}{Yes, I'd like to.}
+{7040}{}{Yes, I'd like to.}
+{7050}{}{Yes, I'd like to.}
+{7060}{}{What would be my rights as a citizen?}
+{7070}{}{Not really. [walk away]}
+{8000}{}{Also your vote is important to us when there's an election in progress. There are no major duties for a citizen to attend to, except abiding to our rules. No crime, such as violence or thievery, is allowed within the city perimiter. In an event of such occurence only the president may un-revoke your citizenship.}
+{8010}{}{Wow, that sounds interesting. Can I make a request, then?}
+{8020}{}{Ugh, no way I'm letting you tie my hands like that. I'm outta here.}
+{8030}{}{I see. Thanks for making it clear for me.}
+{9000}{}{Hmm, it seems your name is @pname@, is that correct? Well, according to our database you've already been a citizen, and your citizenship had been revoked, most likely due to criminal activity. I am sorry, but you can't form an application in this case. The only way to reaquire your citizen status is to be granted such from the President.}
+{9010}{}{Damn.}
+{10000}{}{Oh, you're back already? It hasn't been reviewed yet, you have to wait some more.}
+{10010}{}{Crap, I'm anxious. I'll come back soon, then.}
+{11000}{}{That's great. If you could just sign here, and here...}
+{11010}{}{[Sign the papers.]}
+{11020}{}{Actually, I changed my mind. I'm too big of a wild child to be branded as NCR citizen.}
+{12000}{}{Okay, then. Come back in approximately three hours. Your application would be reviewed by then.}
+{12010}{}{I understand. Goodbye 'till later, then.}
+{13000}{}{I'm sorry. Computer is rejecting your application. (Negative NCR karma and/or level lower than 10)}
+{13010}{}{Damn. I'll come back some other time, then.}
+{14000}{}{Hello again. Let's see now...yes, it seems you have qualified. Congratulations! You're a full fledged citizen of New California Republic now.}
+{14010}{}{Awesome. Thanks.}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{on cd}
+{1020}{}{cd over}
+{1030}{}{citizen}
+{1040}{}{non citizen}
+{2000}{}{Greetings, wastelander. How can I help you?}
+{2010}{}{That depends. What do you do here?}
+{2020}{}{You can't. I'm a hopeless case.}
+{3000}{}{How can I help you, citizen?}
+{3010}{}{Umm, could you remind me what do you do here?}
+{3020}{}{Could you tell me again what are my rights as a NCR citizen?}
+{3030}{}{You can't. I'm a hopeless case.}
+{4000}{}{[The woman smiles warmly.] This is NCR Citizenship Office. We keep track of all the people who requested or were given government approval, and now are considered true citizens of New California Republic.}
+{4010}{}{Citizens? Can I become one too?}
+{4020}{}{Oh, I see. Well then, I'll leave you alone, then.}
+{5000}{}{[Woman's face expression turns into the one of mild shock.] Oh, I see. Well then, have a nice day.}
+{5010}{}{[exit]}
+{6000}{}{As a citizen, first and foremost, you're under our protection. To put it bluntly we know not to shoot you, as you would be one of our own. Sadly we don't have resources to cover the entire wasteland, so accidents happen. But as long as you're in this fine city you can feel safe.}
+{6010}{}{[continue]}
+{7000}{}{Of course you can. As a rising republic we're gladly welcoming people under our wings. Would you like to form an application?}
+{7010}{}{Yes, I'd like to.}
+{7020}{}{Yes, I'd like to.}
+{7030}{}{Yes, I'd like to.}
+{7040}{}{Yes, I'd like to.}
+{7050}{}{Yes, I'd like to.}
+{7060}{}{What would be my rights as a citizen?}
+{7070}{}{Not really. [walk away]}
+{8000}{}{Also your vote is important to us when there's an election in progress. There are no major duties for a citizen to attend to, except abiding to our rules. No crime, such as violence or thievery, is allowed within the city perimiter. In an event of such occurence only the president may un-revoke your citizenship.}
+{8010}{}{Wow, that sounds interesting. Can I make a request, then?}
+{8020}{}{Ugh, no way I'm letting you tie my hands like that. I'm outta here.}
+{8030}{}{I see. Thanks for making it clear for me.}
+{9000}{}{Hmm, it seems your name is @pname@, is that correct? Well, according to our database you've already been a citizen, and your citizenship had been revoked, most likely due to criminal activity. I am sorry, but you can't form an application in this case. The only way to reaquire your citizen status is to be granted such from the President.}
+{9010}{}{Damn.}
+{10000}{}{Oh, you're back already? It hasn't been reviewed yet, you have to wait some more.}
+{10010}{}{Crap, I'm anxious. I'll come back soon, then.}
+{11000}{}{That's great. If you could just sign here, and here...}
+{11010}{}{[Sign the papers.]}
+{11020}{}{Actually, I changed my mind. I'm too big of a wild child to be branded as NCR citizen.}
+{12000}{}{Okay, then. Come back in approximately three hours. Your application would be reviewed by then.}
+{12010}{}{I understand. Goodbye 'till later, then.}
+{13000}{}{I'm sorry. Computer is rejecting your application. (Negative NCR karma and/or level lower than 10)}
+{13010}{}{Damn. I'll come back some other time, then.}
+{14000}{}{Hello again. Let's see now...yes, it seems you have qualified. Congratulations! You're a full fledged citizen of New California Republic now.}
+{14010}{}{Awesome. Thanks.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{on cd}
+{1020}{}{cd over}
+{1030}{}{citizen}
+{1040}{}{non citizen}
+{2000}{}{Greetings, wastelander. How can I help you?}
+{2010}{}{That depends. What do you do here?}
+{2020}{}{You can't. I'm a hopeless case.}
+{3000}{}{How can I help you, citizen?}
+{3010}{}{Umm, could you remind me what do you do here?}
+{3020}{}{Could you tell me again what are my rights as a NCR citizen?}
+{3030}{}{You can't. I'm a hopeless case.}
+{4000}{}{[The woman smiles warmly.] This is NCR Citizenship Office. We keep track of all the people who requested or were given government approval, and now are considered true citizens of New California Republic.}
+{4010}{}{Citizens? Can I become one too?}
+{4020}{}{Oh, I see. Well then, I'll leave you alone, then.}
+{5000}{}{[Woman's face expression turns into the one of mild shock.] Oh, I see. Well then, have a nice day.}
+{5010}{}{[exit]}
+{6000}{}{As a citizen, first and foremost, you're under our protection. To put it bluntly we know not to shoot you, as you would be one of our own. Sadly we don't have resources to cover the entire wasteland, so accidents happen. But as long as you're in this fine city you can feel safe.}
+{6010}{}{[continue]}
+{7000}{}{Of course you can. As a rising republic we're gladly welcoming people under our wings. Would you like to form an application?}
+{7010}{}{Yes, I'd like to.}
+{7020}{}{Yes, I'd like to.}
+{7030}{}{Yes, I'd like to.}
+{7040}{}{Yes, I'd like to.}
+{7050}{}{Yes, I'd like to.}
+{7060}{}{What would be my rights as a citizen?}
+{7070}{}{Not really. [walk away]}
+{8000}{}{Also your vote is important to us when there's an election in progress. There are no major duties for a citizen to attend to, except abiding to our rules. No crime, such as violence or thievery, is allowed within the city perimiter. In an event of such occurence only the president may un-revoke your citizenship.}
+{8010}{}{Wow, that sounds interesting. Can I make a request, then?}
+{8020}{}{Ugh, no way I'm letting you tie my hands like that. I'm outta here.}
+{8030}{}{I see. Thanks for making it clear for me.}
+{9000}{}{Hmm, it seems your name is @pname@, is that correct? Well, according to our database you've already been a citizen, and your citizenship had been revoked, most likely due to criminal activity. I am sorry, but you can't form an application in this case. The only way to reaquire your citizen status is to be granted such from the President.}
+{9010}{}{Damn.}
+{10000}{}{Oh, you're back already? It hasn't been reviewed yet, you have to wait some more.}
+{10010}{}{Crap, I'm anxious. I'll come back soon, then.}
+{11000}{}{That's great. If you could just sign here, and here...}
+{11010}{}{[Sign the papers.]}
+{11020}{}{Actually, I changed my mind. I'm too big of a wild child to be branded as NCR citizen.}
+{12000}{}{Okay, then. Come back in approximately three hours. Your application would be reviewed by then.}
+{12010}{}{I understand. Goodbye 'till later, then.}
+{13000}{}{I'm sorry. Computer is rejecting your application. (Negative NCR karma and/or level lower than 10)}
+{13010}{}{Damn. I'll come back some other time, then.}
+{14000}{}{Hello again. Let's see now...yes, it seems you have qualified. Congratulations! You're a full fledged citizen of New California Republic now.}
+{14010}{}{Awesome. Thanks.}
+

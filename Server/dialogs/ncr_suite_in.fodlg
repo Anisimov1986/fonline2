@@ -1,0 +1,39 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _param p MAIN_FACTION = 5 D _param p MAIN_FACTION_RANK = 3 R _script dialog@r_teleport 1 402 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Suite Doorman}
+{200}{}{You see Suite Doorman.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome, Mr. President.@@Hello, Mr. President.}
+
+[russ]
+{100}{}{Suite Doorman}
+{200}{}{You see Suite Doorman.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome President.}
+
+[pols]
+{100}{}{Suite Doorman}
+{200}{}{You see Suite Doorman.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome President.}
+
+[ptbr]
+{100}{}{Porteiro da Suíte}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Bem-vindo Sr. Presidente.@@Olá Sr. Presidente.}
+

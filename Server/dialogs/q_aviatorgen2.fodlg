@@ -1,0 +1,113 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+3 1010 D _var p q_aviator_chek = 1 D or D _var p q_aviator_chek = 2 D or D _var p q_aviator_chek = 3 #
+2 1020 D _var p q_aviator_chek = 0 R _var p q_aviator_chek = 1 @
+2 2000 None 0 #
+11 2010 D _param p ST_PERCEPTION } 6 D _var p q_aviator_chek = 1 R _var p q_aviator_chek = 2 #
+10 2020 D _var p q_aviator_chek = 1 R _var p q_aviator_chek = 2 #
+0 2030 @
+3 3000 None 0 #
+11 3010 D _param p ST_PERCEPTION } 6 D _var p q_aviator_chek = 1 R _var p q_aviator_chek = 2 #
+10 3020 D _var p q_aviator_chek = 1 R _var p q_aviator_chek = 2 #
+3 3030 D _var p q_aviator_chek = 2 R _item p PID_FLUX_CAPACITOR + 1 R _var p q_aviator_chek = 3 #
+0 3040 @
+10 4000 None 0 #
+3 4010 #
+0 4020 @
+11 5000 None 0 #
+0 5010 R _var p q_aviator_chek = 3 R _item p PID_FLUX_CAPACITOR + 1 #
+0 5020 &
+
+[engl]
+{100}{}{Power Generator}
+{200}{}{You see: Power Generator.}
+{210}{}{The generator seems have been the main source of power for the elevator. It is not functioning right now though.}
+{1000}{}{Predialogue installations}
+{1010}{}{second time}
+{1020}{}{first time}
+{2000}{}{[The main power grid seems to be dead.]@@[The generators are dead.]}
+{2010}{}{[Examine the generators.] Let's take a closer look...@@[Take a closer look.] Let's see...}
+{2020}{}{[Try to repair the generators.] I'll give it a shot.@@[Attempt to fix the generators.] Let's try this...@@[Repair the generators.] Here it goes...}
+{2030}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+{3000}{}{[The generators stand silent.]@@[The generators are dead.]@@[The power grid is offline.]}
+{3010}{}{[Examine the generators.] Hmm... let's see...@@[Take a closer look at the generators.] Let's see...}
+{3020}{}{[Try to repair the generators.] I'll give it a shot.@@[Attempt to fix the generators.] Let's try this...@@[Repair the generators.] Here it goes...}
+{3030}{}{[Take the loose part.] All right, I think I'd better take this.@@[Take the part.] I'd better take it.@@[Take the part.] @@Maybe I'll find some use for it later.}
+{3040}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+{4000}{}{[Those generators seem to be beyond repair. Just before you leaving, when you notice a mechanical part clumsily attached to the side.]@@[Your attempt fails. Too many parts and circuits seem to be broken or burnt. You are about to leave, when you notice a mechanical part clumsily attached to the side.]@@[You fail to do any repairs. Those generators won't ever run again. As you are about to leave, you notice a mechanical part clumsily attached to the side.]}
+{4010}{}{At least I tried...@@It was worth a shot.@@Nevermind this.@@There goes another plan...@@Damn.}
+{4020}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+{5000}{}{[As you search through the rusted machinery, you notice a clumsily inserted mechanical part on the side of the generator.]}
+{5010}{}{[Take the part.] Wonder what this is for...@@[Take the generator part.] This might come in handy later.@@[Take the generator part.] I'd better take this.}
+{5020}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+
+[russ]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{not been above, second time}
+{1020}{}{not been above}
+{2000}{}{[The main power grid seems to be dead. As you look around the rusted hulks you notice a clumsily inserted part on the side of the generator.]}
+{2010}{}{[Examine the generators.]@@[Take a closer look at the generators.]}
+{2020}{}{[Try to repair the generators.]}
+{2030}{}{[Leave the generators alone.]@@[Step away from the generators.]}
+{3000}{}{[The generators stand silent.]@@[The generators are dead.]}
+{3010}{}{[Examine the generators.]@@[Take a closer look at the generators.]}
+{3020}{}{[Try to repair the generators.]@@[Attempt to fix the generators.]@@[Repair the generators.]}
+{3030}{}{[Take the loose part.] All right, I think I'll better take this.@@[Take the part.] I'll better take it.@@[Take the part.] @@Maybe I'll find some use for it later.}
+{3040}{}{[Leave the generators alone.]@@[Step away from the generators.]}
+{4000}{}{[Those generators seem to be beyond repair.]@@[Your attempt fails. Too many parts and circuits seem to be broken or burnt.]@@[You fail to do any repairs. Those generators won't ever run again.]}
+{4010}{}{At least I've tried...@@It was worth a shot.@@Nevermind this.@@There goes another plan...@@Damn.}
+{4020}{}{[Try to repair the generators.]@@[Attempt to fix the generators.]@@[Repair the generators.]}
+{5000}{}{[As you search through the rusted machinery, you notice a clumsily inserted mechanical part on the side of the generator.]}
+{5010}{}{[Take the part.] Wonder what's that for...@@[Take the generator part.] This might come in handy later.@@[Take the generator part.] I'll better take this.}
+{5020}{}{[Leave the generators alone.]@@[Step away from the generators.]}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{not been above, second time}
+{1020}{}{not been above}
+{2000}{}{[The main power grid seems to be dead. As you look around the rusted hulks you notice a clumsily inserted part on the side of the generator.]}
+{2010}{}{[Examine the generators.]@@[Take a closer look at the generators.]}
+{2020}{}{[Try to repair the generators.]}
+{2030}{}{[Leave the generators alone.]@@[Step away from the generators.]}
+{3000}{}{[The generators stand silent.]@@[The generators are dead.]}
+{3010}{}{[Examine the generators.]@@[Take a closer look at the generators.]}
+{3020}{}{[Try to repair the generators.]@@[Attempt to fix the generators.]@@[Repair the generators.]}
+{3030}{}{[Take the loose part.] All right, I think I'll better take this.@@[Take the part.] I'll better take it.@@[Take the part.] @@Maybe I'll find some use for it later.}
+{3040}{}{[Leave the generators alone.]@@[Step away from the generators.]}
+{4000}{}{[Those generators seem to be beyond repair.]@@[Your attempt fails. Too many parts and circuits seem to be broken or burnt.]@@[You fail to do any repairs. Those generators won't ever run again.]}
+{4010}{}{At least I've tried...@@It was worth a shot.@@Nevermind this.@@There goes another plan...@@Damn.}
+{4020}{}{[Try to repair the generators.]@@[Attempt to fix the generators.]@@[Repair the generators.]}
+{5000}{}{[As you search through the rusted machinery, you notice a clumsily inserted mechanical part on the side of the generator.]}
+{5010}{}{[Take the part.] Wonder what's that for...@@[Take the generator part.] This might come in handy later.@@[Take the generator part.] I'll better take this.}
+{5020}{}{[Leave the generators alone.]@@[Step away from the generators.]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{second time}
+{1020}{}{first time}
+{2000}{}{[The main power grid seems to be dead.]@@[The generators are dead.]}
+{2010}{}{[Examine the generators.] Let's take a closer look...@@[Take a closer look.] Let's see...}
+{2020}{}{[Try to repair the generators.] I'll give it a shot.@@[Attempt to fix the generators.] Let's try this...@@[Repair the generators.] Here it goes...}
+{2030}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+{3000}{}{[The generators stand silent.]@@[The generators are dead.]@@[The power grid is offline.]}
+{3010}{}{[Examine the generators.] Hmm... let's see...@@[Take a closer look at the generators.] Let's see...}
+{3020}{}{[Try to repair the generators.] I'll give it a shot.@@[Attempt to fix the generators.] Let's try this...@@[Repair the generators.] Here it goes...}
+{3030}{}{[Take the loose part.] All right, I think I'd better take this.@@[Take the part.] I'd better take it.@@[Take the part.] @@Maybe I'll find some use for it later.}
+{3040}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+{4000}{}{[Those generators seem to be beyond repair. Just before you leaving, when you notice a mechanical part clumsily attached to the side.]@@[Your attempt fails. Too many parts and circuits seem to be broken or burnt. You are about to leave, when you notice a mechanical part clumsily attached to the side.]@@[You fail to do any repairs. Those generators won't ever run again. As you are about to leave, you notice a mechanical part clumsily attached to the side.]}
+{4010}{}{At least I tried...@@It was worth a shot.@@Nevermind this.@@There goes another plan...@@Damn.}
+{4020}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+{5000}{}{[As you search through the rusted machinery, you notice a clumsily inserted mechanical part on the side of the generator.]}
+{5010}{}{[Take the part.] Wonder what this is for...@@[Take the generator part.] This might come in handy later.@@[Take the generator part.] I'd better take this.}
+{5020}{}{[Leave the generators alone.]@@[Step away from the generators.]@@[Leave.]@@[Step back.]@@[Step away.]}
+

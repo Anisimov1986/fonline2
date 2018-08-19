@@ -1,0 +1,54 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _script quest_5vs5@d_EnclaveHaveBriefcase 0  @
+2 2000 None 0 #
+0 2010 D _script quest_5vs5@d_EnclaveHaveBriefcase 0  R _script quest_5vs5@r_GiveBriefcaseToPlayer 0  #
+0 2020 D _script quest_5vs5@d_EnclaveNotHaveBriefcase 0  &
+
+[engl]
+{100}{}{Enclave Patrolman}
+{200}{}{You see an Enclave patrolman.}
+{210}{}{You see an Enclave patrolman.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{I have a delivery for Salvalore.}
+{2010}{}{Yes, Mr Salvatore sent me to receive this delivery.}
+{2020}{}{Hmmm maybe not today.}
+
+[russ]
+{100}{}{Enclave Patrolman}
+{200}{}{You see an Enclave patrolman.}
+{210}{}{You see an Enclave patrolman.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{I have a delivery for Salvalore.}
+{2010}{}{Yes, Mr Salvatore sent me to receive this delivery.}
+{2020}{}{Hmmm maybe not today.}
+
+[pols]
+{100}{}{Enclave Patrolman}
+{200}{}{You see an Enclave patrolman.}
+{210}{}{You see an Enclave patrolman.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{I have a delivery for Salvalore.}
+{2010}{}{Yes, Mr Salvatore sent me to receive this delivery.}
+{2020}{}{Hmmm maybe not today.}
+
+[ptbr]
+{100}{}{Escolta do Enclave}
+{200}{}{Você vê um escolta do Enclave.}
+{210}{}{Você vê um escolta do Enclave.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Eu tenho uma entrega para Salvalore.}
+{2010}{}{Sim, o Sr. Salvatore me enviou para receber esta encomenda.}
+{2020}{}{Hmmm talvez hoje não.}
+

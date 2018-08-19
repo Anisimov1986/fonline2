@@ -1,0 +1,253 @@
+[comment]
+
+
+[data]
+lang=engl
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p Tut_Kenny = 0 #
+3 1020 D _var p Tut_Kenny = 1 #
+4 1030 D _var p Tut_Kenny = 2 #
+5 1040 D _var p Tut_Kenny = 3 #
+6 1050 D _var p Tut_Kenny = 4 #
+7 1060 D _var p Tut_Kenny = 5 #
+8 1070 D _var p Tut_Kenny = 6 #
+9 1080 D _var p Tut_Kenny = 7 #
+10 1090 D _var p Tut_Kenny = 8 #
+11 1100 D _var p Tut_Kenny = 9 #
+12 1110 D _var p Tut_Kenny = 10 #
+13 1120 D _var p Tut_Kenny = 11 #
+14 1130 D _var p Tut_Kenny = 12 #
+15 1140 D _var p Tut_Kenny = 13 #
+17 1150 D _var p Tut_Kenny = 14 #
+18 1160 D _var p Tut_Kenny = 15 #
+19 1170 D _var p Tut_Kenny = 16 #
+20 1180 D _var p Tut_Kenny = 17 #
+22 1190 D _var p Tut_Kenny = 18 #
+23 1200 D _var p Tut_Kenny = 19 #
+25 1210 D _var p Tut_Kenny = 20 #
+26 1220 D _var p Tut_Kenny = 21 #
+27 1230 D _var p Tut_Kenny = 22 #
+28 1240 D _var p Tut_Kenny = 23 #
+29 1250 D _var p Tut_Kenny = 24 #
+30 1260 D _var p Tut_Kenny = 25 #
+31 1270 D _var p Tut_Kenny = 26 #
+32 1280 D _var p Tut_Kenny = 27 #
+33 1290 D _var p Tut_Kenny = 28 @
+2 2000 None 0 #
+0 2010 R _var p Tut_Kenny = 1 @
+3 3000 None 0 #
+0 3010 R _var p Tut_Kenny = 2 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+0 5010 R _var p Tut_Kenny = 4 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 R _var p Tut_Kenny = 6 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+0 9010 R _var p Tut_Kenny = 8 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 #
+0 11010 R _var p Tut_Kenny = 10 @
+12 12000 None 0 #
+0 12010 @
+13 13000 None 0 #
+0 13010 R _var p Tut_Kenny = 12 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 #
+16 15010 @
+16 16000 None 0 #
+0 16010 R _var p Tut_Kenny = 14 @
+17 17000 None 0 #
+0 17010 @
+18 18000 None 0 #
+0 18010 R _var p Tut_Kenny = 16 @
+19 19000 None 0 #
+0 19010 @
+20 20000 None 0 #
+21 20010 @
+21 21000 None 0 #
+0 21010 R _var p Tut_Kenny = 18 @
+22 22000 None 0 #
+0 22010 @
+23 23000 None 0 #
+24 23010 @
+24 24000 None 0 #
+0 24010 R _var p Tut_Kenny = 20 @
+25 25000 None 0 #
+0 25010 @
+26 26000 None 0 #
+0 26010 R _var p Tut_Kenny = 22 @
+27 27000 None 0 #
+0 27010 @
+28 28000 None 0 #
+0 28010 R _var p Tut_Kenny = 24 @
+29 29000 None 0 #
+0 29010 @
+30 30000 None 0 #
+0 30010 R _var p Tut_Kenny = 26 @
+31 31000 None 0 #
+0 31010 @
+32 32000 None 0 #
+0 32010 R _var p Tut_Kenny = 28 @
+33 33000 None 0 &
+
+[engl]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Meeting the instructor}
+{1020}{}{Shooting:Single}
+{1030}{}{Shooting:Single -not done}
+{1040}{}{Shooting:Burst}
+{1050}{}{Shooting: Burst -not done}
+{1060}{}{Shooting:Onehex}
+{1070}{}{Shooting:Onehex -not done}
+{1080}{}{Shooting:Aimed}
+{1090}{}{Shooting:Aimed -not done}
+{1100}{}{Weapon swap and reload}
+{1110}{}{Weapon swap and reload -not done}
+{1120}{}{Hexshooting}
+{1130}{}{Hexshooting -not done}
+{1140}{}{Healing:FA}
+{1150}{}{Healing:FA -not done}
+{1160}{}{Healing:Stims}
+{1170}{}{Healing:Stims -not done}
+{1180}{}{Healing:Doc}
+{1190}{}{Healing:Doc -not done}
+{1200}{}{Healing:Others}
+{1210}{}{Healing:Others -not done}
+{1220}{}{Maintenance:Inventory}
+{1230}{}{Maintenance:Inventory -not done}
+{1240}{}{Maintenance:ArmorOnSelf}
+{1250}{}{Maintenance:ArmorOnSelf -not done}
+{1260}{}{Lockpicking}
+{1270}{}{Lockpicking -not done}
+{1280}{}{Finished}
+{1290}{}{Just can't leave you}
+{2000}{}{[Before you stands a huge man, fully geared in a battered powered Armor. He squints at you, as you approach.]
+Who's next? You? Alright let's get you through this. I'm Paladin Wilson, your instructor. Now, hurry your ass up, I still have a whole bunch of you recruits to process today! Follow me.}
+{2010}{}{[You follow him on his heels.]}
+{3000}{}{Welcome to our little bunker bootcamp, Initiate. I will teach you some basics before you head out in the field. I assume you have been issued the standard training gear... Yes looks good. What you are holding there is the AK 112 automatic rifle, a good gun for any mission. Most guns of this type come with 2 firing modes. You will now learn to make use of a gun and its different firing modes.
+See this lever here? Flip it to switch the firing mode... [Press hotkey N to cycle through the weapon's attack modes.]
+Now let's see your shooting. Stand like this and fire a single shot at that target over there. [Press A to enter attack mode. Click the target to attack it.]}
+{3010}{}{Yes, Sir.}
+{4000}{}{What's the matter? Just fire at the damn target, Initiate!
+[Press A to enter attack mode and click the desired target.]}
+{4010}{}{Yes, Sir.}
+{5000}{}{Okay, that's not too hard, right? Now I want you to fire a whole bucket of bullets into that bitch. Give it a nice juicy burst and mind the recoil.
+[Press N to switch to "BURST" mode, press A to enter attack mode and click the target.]}
+{5010}{}{Time to shred it.}
+{6000}{}{Initiate, don't test my patience. [He hoists up his own AK and with earpiercing noise he fires a short burst at the dummy.] Now you!
+[Press N to enter "BURST" mode, press A to enter attack mode and click the target.]}
+{6010}{}{Okay, okay!}
+{7000}{}{Yeahh, feel the power. A well placed burst can be the most powerful attack if you know how to use it right. Noticed how your gun jumped up from the continuous recoil? If you try to burst at a target that's far away, many of the fired rounds will not even remotely hit the target. So, if you want to deal more damage with a burst, you need to get close. Step over to the target now and jam the barrel in it's chest for a nice point blank overkill.
+[This maneuver is called "one-hexing". For a maximal effect, the burst needs to be shot from a field (hex) adjacent to the target. This will obviously require some more skill on moving targets. Onehex the target now.]}
+{7010}{}{Roger.}
+{8000}{}{No, no, that's not how you do it! Get close. So close you could kiss the target. But don't kiss it. Pump it full of bullets!
+[Step on a field right next to the target and burst it.]}
+{8010}{}{Sorry, Sir. I'll try again.}
+{9000}{}{[Laughs like a maniac.] Hahah! Tear that shit up!
+Noticed how much more damage you can do that way? Good. Be sure to remember it, Initiate. Point blank attacks are nice, but sometimes you might just want to keep your distance and try a more refined approach. The next attack you are going to perform will be an aimed single shot at the target's right leg to make him stumble. Look down the sight, breathe out and squeeze the trigger..
+[Cycle the attack mode back to "SINGLE". To aim at a bodypart, use the key combos ALT+ Q/W/A/S/D/Z/X/C. Each combo is for one body part respectively, it will be displayed on the top left corner of your screen what you aim at with the next attack.
+ALT-C is the one for shooting at the right leg. To exit aimed shooting again use ALT-E.]}
+{9010}{}{[You peek down the sight and focus the target's leg.]Here goes nothing...}
+{10000}{}{I see a target without a bullet in its leg, Initiate. That's not what I want to see. Get to it!
+[Cycle the attack mode back to "SINGLE". To aim at a bodypart, use the key combos ALT+ Q/W/A/S/D/Z/X/C. Each combo is for one body part respectively, it will be displayed on the top left corner of your screen what you aim at with the next attack.
+ALT-C is the one for shooting at the right leg. To exit aimed shooting again use ALT-E.]}
+{10010}{}{Yes, Sir.}
+{11000}{}{Well done, you might become a good shot someday, if you keep practising.
+Before we move on to some other things, I want you to learn another way to attack, but you'll need another caliber for this. Holster the AK and get out that Rocket Launcher on your back. Load a rocket, like this...
+[You can have 2 weapons ready at all times. You can swap between weapons by pressing B. Press B now to switch to the Rocket Launcher in the other item slot.
+Then reload it, which is simply done by pressing R]}
+{11010}{}{Uh, okay. This looks heavy...}
+{12000}{}{Load a fucking rocket into that launcher, Initiate!
+[You can have 2 weapons ready at all times. You can swap between weapons by pressing B. Press B now to switch to the Rocket Launcher in the other item slot.
+Then reload it, which is simply done by pressing R]}
+{12010}{}{This pressure is killing me..}
+{13000}{}{Looking good. Rockets, grenades and explosives deal splash damage, let me show you a neat trick how to make use of that. See that critter there? It has no business being here, time to smoke it out.
+[The following technique is called Hexshooting - Not to be confused with One-Hexing. It can be performed with Rocket Launchers and all thrown explosives. When an enemy hides behind some obstacle you can't attack, because he is out of your view. But there is still a way to hit that enemy, or even pull him out of his cover. To hexshoot you have to activate attack mode and hold down CTRL. You will see that the crosshairs cursor turns into a large field, several hexes in diameter. This is the area of effect if the attack is successful. Try to place such an attack to hit the hiding rat now.]}
+{13010}{}{Time to meet the great piper in the sky, vermin.}
+{14000}{}{Try again, Initiate!
+[The following technique is called Hexshooting - Not to be confused with One-Hexing. It can be performed with Rocket Launchers and all thrown explosives. When an enemy hides behind some obstacle you can't attack, because he is out of your view. But there is still a way to hit that enemy, or even pull him out of his cover. To hexshoot you have to activate attack mode and hold down CTRL. You will see that the crosshairs cursor turns into a large field, several hexes in diameter. This is the area of effect if the attack is successful. Try to place such an attack to hit the hiding rat now.]}
+{14010}{}{Yes, Sir. At once.}
+{15000}{}{One less rat to worry about, well done. And now...
+[Suddenly he pulls out a gun and shoots you straight in the arm.]}
+{15010}{}{What the fuck??!! My arm! [It really hurts. Seems the bullet went right through some bones too.] Ouuuch, ahhrgh!}
+{16000}{}{Keep it together, Initiate! This is a very important part of your training. Be glad it was me who shot you this time, you will have a lot more of that soon enough. Now let me show you how to treat injuries like this...
+[When you get hit you'll lose hit points (HP). To replenish your character's HP you can apply first aid to yourself. The value of the first aid skill equals the maximum hp you can replenish with this action, although it can't go beyond 150hp during an active combat timer. To first aid yourself use the keys ALT-5.]}
+{16010}{}{[Sweat runs down your face as you follow his instructions to treat your wound...]}
+{17000}{}{You don't like the sight of your own blood? Then fucking do something about it, Initiate!
+[When you get hit you'll lose hit points (HP). To replenish your character's HP you can apply first aid to yourself. The value of the first aid skill equals the maximum hp you can replenish with this action, although it can't go beyond 150hp during an active combat timer. To first aid yourself use the keys ALT-5.]}
+{17010}{}{So much pain!}
+{18000}{}{Alright, now you know how to apply first aid. But seems to me it wasn't enough, your wound is still bleeding. But hey, nothing that can't be solved with the help of our good old friend -Science! Take these. (He hands you a few strange looking hypodermics.] Inject one of those and watch your wounds heal before your eyes.
+[There are several healing items you can use on yourself, provided you have some of them in your inventory of course:
+Use ALT-1 to apply healing powders. These are the weakest healing drug.
+Use ALT-2 to apply a Stimpak, the most common healing item.
+Use ALT-3 to apply a Super Stimpak, this one is powerful and heals up to 100 HP, but has also slight adverse effects, meaning you will lose a few HP again after a while.
+Replenish all your HP by using healing drugs now.]}
+{18010}{}{Okay.}
+{19000}{}{Don't tell me you are afraid of needles, Initiate!
+[There are several healing items you can use on yourself, provided you have some of them in your inventory of course:
+Use ALT-1 to apply healing powders. These are the weakest healing drug.
+Use ALT-2 to apply a Stimpak, the most common healing item.
+Use ALT-3 to apply a Super Stimpak, this one is powerful and heals up to 100 HP, but has also slight adverse effects, meaning you will lose a few HP again after a while.
+Replenish all your HP by using healing drugs now.]}
+{19010}{}{No, no. Of course I'm not afraid.}
+{20000}{}{All patched up?}
+{20010}{}{Yes, Sir, the bleeding has stopped. But my arm still hurts like hell...I think something has cracked in there.}
+{21000}{}{How fortunate! Well, okay, a broken limb shouldn't be considered as fortunate, [Grins.] but the fact that I can show you how to deal with that is.
+[Crippled limbs will greatly stagger your performance in battle, a broken arm for example means you can't use 2-handed weapons anymore until it has been healed.
+Your own injuries are displayed in the top left corner of the screen. Healing heavy injuries like this is done with the "Doctor"-skill. To apply doctor on yourself press ALT-6.]}
+{21010}{}{I'll try, Sir.}
+{22000}{}{Take care of that broken arm, Initiate. Do I have to explain this again??
+[Crippled limbs will greatly stagger your performance in battle, a broken arm for example means you can't use 2-handed weapons anymore until it has been healed.
+Your own injuries are displayed in the top left corner of the screen. Healing heavy injuries like this is done with the "Doctor"-skill. To apply doctor on yourself press ALT-6.]}
+{22010}{}{No, Sir. I get it.}
+{23000}{}{Feeling better now? Sorry about me shooting you, I know that was a bit drastic. Originally the plan was to let you treat somebody from the infirmary, but those slobs have forgotten to bring a patient down here - Hold on...
+[At the very moment 2 men in doctor's coats enter the room. They carry a stretcher with a wounded soldier.]}
+{23010}{}{You mean that patient over there, Sir?}
+{24000}{}{That's the one. Alrighty, then. I've already shown you what needs to be done, now use that knowledge to help your fellow Brother!
+[Good healing skills are a life saver in combat. First aid can be even more effective when you apply them on your team mates. As mentioned before, during an active combat timer the limit of replenishable HP is 150. For usage on others than yourself the cap is at 225 HP however. This is why you always should keep an eye on your friend's health too and rather use your first aid skill on them than yourself.
+To see how much HP someone has, as well as possible injuries, press F9 and their HP value will be displayed. Red Letters above indicate crippled limbs.
+To use first aid on others press 5 and click the target you wish to heal. To use doctor on others press 6 and click the target. If your skills aren't that great you may also use healing drugs on others, the hotkeys for this aren't preset by default however.
+Use your skills to completely heal the wounded soldier now.]}
+{24010}{}{Hope I won't kill him.}
+{25000}{}{He is still injured, Initiate. Finish the job!
+[Press 5 and click the target to first aid it, press 6 and click the target to apply doctor skills on it.]}
+{25010}{}{Sir.}
+{26000}{}{Well done Initiate. You might consider a career as field medic. Okay, now you have the knowledge to destroy or heal living things. But not only your health is important, the condition of your weapons and gear are too. Observe.
+[He takes out a small set of tools and starts working on his gun. After some screw tightening and tweaking he holds it up and smiles.] There. Now it's ready for the next battle. Take a look at your gun now.
+[Regular maintenance is important as items degrade by use.
+Open your inventory screen by pressing I. Click once on the Assault Rifle to see its description. You will see 2 values: Detoriation is the current state of the item. The higher the value the higher the risk of failed attacks and lowered damage output. Durability indicates how much longer the item can be maintained.
+Maintenance means reducing the detoriation. To do this, click and hold on the item to repair and choose the PipBoy icon from the rolldown menu. Choose "Repair" in the new window that popped up.]}
+{26010}{}{Let's see here...}
+{27000}{}{Your gun still looks like shit. You can do better.
+[Open your inventory screen by pressing I. Click once on the Assault Rifle to see its description. Click and hold on the item to repair and choose the PipBoy icon from the rolldown menu. Choose "Repair" in the new window that popped up.]}
+{27010}{}{Sorry Sir, I try again.}
+{28000}{}{Good. Next I will show you how to take care of your armor in a quick and efficient manner. Observe and repeat.
+[Armors can be repaired just like any item via the inventory screen. But you can also repair it quickly without even removing it. To do so, press 8 and click yourself. Note that this also can be done on other characters, but they have to be in the same faction as yourself.]}
+{28010}{}{[You carefully repeat the steps he shows you.]}
+{29000}{}{Take care of your damn armor, Initiate!
+[Press 8 and click yourself to repair the armor you are wearing.]}
+{29010}{}{I'm trying, I'm trying!}
+{30000}{}{There you go. Make sure to check your gear in regular intervals. Now for one last lesson. It will happen often enough to you that you run out of supplies, but there are many places out there that hold all sorts of treasure. Whether it's pre-war stuff or some raider stash, most of the time containers holding the goodies are locked. I'll show you now how to crack these bastards open...
+[To pick the lock of a container press 2 and click the container. The chance to successfully break a lock open depends on the "Lockpick" skill. This skill can temporarily be increased by equipping tools like a lockpick set in either item slot. Open the container in this room with the Lockpick skill now.]}
+{30010}{}{[You start fiddling with the lock...]}
+{31000}{}{Why is that container still closed, Initiate?
+[Open the container by using the "Lockpick" skill. To do so, press 2 and then click the container.]}
+{31010}{}{[You start fiddling with the lock...]}
+{32000}{}{Good tumbling there, Initiate. Well...
+All in all you didn't do too bad, you should at least survive a week or two now.[Laughs heartedly at his own sarcasm.]
+Congratulations, Initiate you have passed basic training! Now get the hell outta here and report to your C.O.
+Diiiis-missed!}
+{32010}{}{Thank you, Sir.}
+{33000}{}{What are you still doing here?@@We're done here.@@Report to your commanding officer, Initiate!@@Don't get on my nerves, Initiate...}
+

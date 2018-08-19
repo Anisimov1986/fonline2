@@ -1,0 +1,21 @@
+#ifndef __GAME_EVENT_COMMON_WORLDMAP__
+#define __GAME_EVENT_COMMON_WORLDMAP__
+
+#include "game_event_class_utils.fos"
+
+WorldMapArea costalCityArea = WorldMapArea()
+		.AddRectangle( 320, 720, 360, 740)
+		.AddRectangle( 352, 755, 376, 787)
+		.AddRectangle( 352, 755, 376, 787)
+		.AddRectangle( 380, 840, 420, 900)
+		.AddRectangle( 400, 900, 480, 930)
+		.AddRectangle( 453,1010, 480,1085)	
+		.AddRectangle( 640,1260, 660,1305)	
+		.AddRectangle( 690,1380, 720,1455)	
+		.AddRectangle( 720,1440, 780,1460)	
+		.AddRectangle( 840,1440, 960,1475)	
+		.AddRectangle( 960,1500,1080,1530)	
+		.AddRectangle(1020,1440,1050,1500)	
+		.AddRectangle(1100,1560,1200,1585);
+		
+#endif		

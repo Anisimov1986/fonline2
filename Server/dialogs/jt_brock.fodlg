@@ -1,0 +1,40 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Brock}
+{200}{}{You see: a dangerous looking man.}
+{210}{}{Though his untidy mohawk is hardly intimidating, the man keeps a tough looking expression on his face.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Get lost.@@ Don't mess with the shit, or shit'll hit the fan!@@A few years back we had this dog called Dicky. One day we crashed Kylee and some other girls' party. One of them got pregnant, and dayum, it's a wonder the kid doesn't bark and howl now.@@You lost, wimp?@@Get off our turf, you pissashit!@@Get the fuck out.@@Mess with Huberto, and your face is a mess.}
+
+[russ]
+{100}{}{Брок}
+{200}{}{Вы видите : хулигана, в руках у него нож, на лице серьезное выражание.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Не бузи тут, а то снег башка попадет!@@Я знаю шестнадцать методов как заставить человека страдать.@@Эй червяк ты заблудился?}
+
+[pols]
+{100}{}{Brock}
+{200}{}{Widzisz mężczyznę w irokezie. W dłoni trzyma niebezpieczne narzędzie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Won z naszej dzielni!@@Mógłbym być twoim ojcem, ale pies mnie wyprzedził na schodach.@@Co jest, nie wiesz gdzie jesteś? Widzisz ten nóż?@@Wypierdalaj, @sex@|koleś||panienko|.}
+
+[ptbr]
+{100}{}{Brock}
+{200}{}{Você vê um homem de moicano, faca na mão e uma expressão bem séria.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Tenho que manter a gangue forte!@@ Não cutuque merda pra não sair fedido!@@ Sei dezesseis jeitos de fazer sofrer e posso te mostrar se não sair daqui.@@ @sex@|Seu||Sua| verme, tá @sex@|perdido||perdida|?}

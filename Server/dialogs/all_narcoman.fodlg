@@ -1,0 +1,170 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+7 1010 D _param p ST_INTELLECT > 3 #
+8 1020 D _param p ST_INTELLECT < 4 @
+2 2000 None 0 #
+3 2010 #
+4 2020 D _item p PID_BOTTLE_CAPS > 4 R _item p PID_BOTTLE_CAPS - 5 R _item n PID_BOTTLE_CAPS + 5 #
+6 2030 #
+5 2040 #
+0 2050 D _param p ST_STRENGTH > 6 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+65507 6010 @
+7 7000 None 0 #
+2 7010 @
+8 8000 None 0 #
+10 8010 D _item p PID_BOTTLE_CAPS > 4 R _item p PID_BOTTLE_CAPS - 5 R _item n PID_BOTTLE_CAPS + 5 #
+9 8020 @
+9 9000 None 0 #
+65507 9010 #
+0 9020 @
+10 10000 None 0 #
+0 10010 &
+
+[engl]
+{100}{}{Drug addict}
+{200}{}{You see: Drug addict.}
+{210}{}{This man's eyes are senselessly fixed at some point in the sky. He is mumbling to himself.}
+{210}{}{It seems that this person is on drugs. Probably not of the best quality.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{[The man is shivering and shaking.] Mmmm... Have some spare change?@@[This man is high on drugs.] Have some caps?@@[This man looks like he's one step from the grave.] I need some caps, please! Only a few!}
+{2010}{}{Get lost!}
+{2020}{}{Here, eat this! [Give him 5 caps.]}
+{2030}{}{Get lost, junkie!}
+{2040}{}{Fuck off.}
+{2050}{}{Get lost, dopehead!}
+{3000}{}{[Anger flashes in his eyes.] Scrooge!@@Fuckin' skinflint!}
+{3010}{}{Go to hell!}
+{4000}{}{[He grabs the coins like a vulture grabs his prey and hides them in his stained pants.] Gee, thanks!}
+{4010}{}{Who knows, I'll save you today, tommorow you might save me...}
+{5000}{}{[He leaves, disappointed.]}
+{5010}{}{Ermm... Okay. [Leave.]}
+{6000}{}{[He thinks for a moment and then jumps on you, screaming.] Fucker, I'll kill you!}
+{6010}{}{Bite me! [Attack.]}
+{7000}{}{Ahhhh...@@I am swimming...@@I am powerful!@@Hello, Mr. Flower.@@All the colors...@@Do you see the sky, my friend?@@They're not listening...@@Where am I?@@Got it!@@Oh, no! Stop! Wait! Okay, move along.@@There... There! Awwww...@@Yeah, baby!@@What was it?@@Sasha? Where are you, Sasha?@@Colors are fading!@@Mommy?@@Hey! Get away from me! Oh...@@Don't do this!@@I don't... I don't see anything... again.@@I need...@@Give me more...@@There? No.@@No. Can't find it.@@Stop it!@@Ouch.@@Oh, it hurts.@@[Cough] [Cough] [Cough]@@Oh, my head!}
+{7010}{}{Are you okay?@@What's the matter with you?}
+{8000}{}{[This man doesn't very healthy.] Hey, @sex@|buddy||miss|, have some spare change? I need a fix!}
+{8010}{}{Here! [Give him 5 caps.]}
+{8020}{}{Errr...@@Awwww!@@Ughgh!@@Ummmm!}
+{9000}{}{You're really bad!}
+{9010}{}{Arrgh! [Attack]}
+{9020}{}{Whooo! [Leave]}
+{10000}{}{You're a @sex@|good guy||nice girl|, even if you're stupid.}
+{10010}{}{Fuck you. [Leave]}
+
+[russ]
+{100}{}{Наркоман}
+{200}{}{Вы видите наркомана.}
+{210}{}{Он плохо выглядит. Вы подозреваете, что это ломки от наркотиков.}
+{210}{}{Вы видите тощего наркомана в лохмотьях. Его глаза бессмысленно уставлены в одну точку. Он говорит какую-то бессмыслицу.}
+{210}{}{Этот парень явно обдолбан. И обдолбан он явно наркотой не самого высшего качества.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{[Этот парень явно слишком балует с наркотой. Его трясет и колотит] Эээ... Послушай, у тебя пары монет не найдется?@@[Этот человек в сильном наркотическом опьянении] У тебя пары монет не найдется?@@[Этот человек похож на живой труп] У тебя пары монет не найдется?}
+{2010}{}{Пошел вон!}
+{2020}{}{На, подавись, наркоша! [Вы даете ему 5 монет]}
+{2030}{}{С дороги, придурок обдолбанный!}
+{2040}{}{В другой раз.}
+{2050}{}{С дороги, придурок обдолбанный! [Выход]}
+{3000}{}{[Смотрит сквозь вас] Жадина!@@[Смотрит сквозь вас] Жлобина!}
+{3010}{}{Да иди ты к черту! [Выход]}
+{4000}{}{[Он как стервятник хватает монеты и прячет в одежды] Спасибо!}
+{4010}{}{Кто знает, сегодня я тебя @sex@|спас||спасла|, завтра ты меня... [Выход]}
+{5000}{}{[Он разочарованно уходит] ...}
+{5010}{}{Эээ... ну ладно. [Выход]}
+{6000}{}{[Он думает секунду и с криком бросается на вас] Задушу!}
+{6010}{}{Получи! [Бой]}
+{7000}{}{Аххх...@@Я плаваю...@@У меня есть силы!@@Привет, господин Цветок.@@Все цвета...@@Видишь это небо, друг мой?@@Они не слушают...@@Где я?@@Вот оно!@@Ой, нет! Стой! Подожди! Окей, иди.@@Там, там... ахх...@@Да, детка!@@Что это было?@@Саша? Где ты Саша?@@Цвета пропадают!@@Мама?@@Эй! Уйди прочь от меня! Ох...@@Не делай этого!@@Я снова ничего... не вижу.@@Мне надо...@@Дай еще...@@Там? Нет.@@Нет. Не могу это найти.@@Останови это!@@Ух.@@О, больно.@@<кашляет> <кашляет> <кашляет>.@@О, моя голова!@@mov eax, ebx.}
+{7010}{}{С тобой все в порядке?@@Что с тобой?}
+{8000}{}{[Этому дяде, кажется, плохо] У тебя пары монет не найдется?}
+{8010}{}{На! [Даете ему 5 монет]}
+{8020}{}{Эээ...@@Аууу!@@Уггг!@@Уммм!}
+{9000}{}{Ты совсем @sex@|плохой||плохая|!}
+{9010}{}{Грррр! [Бой]}
+{9020}{}{Уууу! [Выход]}
+{10000}{}{Ты @sex@|хороший парень||хорошая женщина|, хоть и @sex@|слабоват||слабовата| на голову.}
+{10010}{}{Агууу. [Выход]}
+
+[pols]
+{100}{}{Narkoman}
+{200}{}{Widzisz osobę uzależnioną od narkotyków.}
+{210}{}{Wygląda bardzo źle.}
+{210}{}{Widzisz narkomana ubranego w jakieś obsyfiałe szmaty. Jego szklane oczy wpatrują się w nieokreślony punkt przestrzeni. Mruczy pod nosem jakieś niezrozumiałe bzdury.}
+{210}{}{Wygląda na to, że ten koleś jest pod wpływem narkotyków. I to wyjątkowo złych.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{[Koleś jest ewidentnie naćpany. Cały drży i się trzęsie.] Te, @sex@|koleś||koleżanko|! Masz pożyczyć pięć kapsli?@@[Facet jest na mocnym haju.] Masz jakieś drobniaki?@@[Gość wygląda jak - ledwo - żywy trup.] Odstąpisz parę kapsli?}
+{2010}{}{Spadaj!}
+{2020}{}{Jasne, łap! [Dajesz mu 5 kapsli.]}
+{2030}{}{Odwal się, ćpunie!}
+{2040}{}{Może kiedy indziej.}
+{2050}{}{Wal się, ćpunie! [Odejdź.]}
+{3000}{}{[Spogląda na ciebie.] Sknera!@@[Spogląda na ciebie.] Jebany centuś!}
+{3010}{}{Idź w cholerę! [Odejdź.]}
+{4000}{}{[Chwyta kapsle i chowa je do kieszeni.] Dzięki!}
+{4010}{}{Kto wie - dzisiaj ja pomagam tobie, może kiedyś ty ocalisz mnie... [Odejdź.]}
+{5000}{}{[Odchodzi, rozczarowany.]}
+{5010}{}{Hmmm... OK. [Odejdź.]}
+{6000}{}{[Myśli przez chwilę, po czym rzuca się na ciebie.] Zabiję cię!}
+{6010}{}{Co powiesz na to? [Atakuje.]}
+{7000}{}{Ach...@@Płynę...@@Jestem niezwyciężony!@@O stary, o Boże! Podwójna tęcza...@@Jestem Laska. Z Kalifornii.@@W życiu musisz odpowiedzieć sobie na jedno zajebiście ważne pytanie - co chcę w życiu robić? I zacząć to robić.@@Nic nie widzę!@@Matka nie wie, że ćpię.@@Mam dla ciebie poradę. Khanowie są wolni na szybkość.@@Gdzie ja jestem?@@Ja przedwczoraj ściszałem telewizor.@@Bunkrów nie ma, ale i tak jest zajebiście.@@[Kaszle.]@@[Smarka.]@@Mamo, gdzie jesteś?@@Wszystko jest takie... zamazane.@@Tato?@@Ej! Zostaw mnie w spokoju!@@Nie, nie rób tego! Nieee!@@Jestem synem króla sedesów. To wysoko postawiona poprzeczka.@@Daj mi więcej.@@Tutaj? Nie.@@Nie mogę tego znaleźć...@@Przestań!@@Ała.@@Cholera, to boli.@@[Kaszle.] [Kaszle.] [Kaszle.]@@Aaa, moja głowa!@@mov eax, ebx.}
+{7010}{}{Wszystko w porządku?@@Co z tobą?}
+{8000}{}{[Z tym gościem na pewno coś jest nie w porządku.] Hej, pożyczysz parę kapsli?}
+{8010}{}{Trzymaj! [Dajesz mu 5 kapsli.]}
+{8020}{}{Eee...@@Auu!@@Grr!@@Uaa!}
+{9000}{}{Jesteś bardzo @sex@|zły||zła|!}
+{9010}{}{Grr! [Atakuj.]}
+{9020}{}{Uuu! [Odejdź.]}
+{10000}{}{Jesteś @sex@|miłym kolesiem||miłą dziewczyną|, choć trochę @sex@|naiwnym||naiwną|.}
+{10010}{}{Auu. [Odejdź.]}
+
+[ptbr]
+{100}{}{Viciado}
+{200}{}{Você vê um viciado em drogas qualquer.}
+{210}{}{Os olhos deste homem estão fixos olhando para um ponto qualquer no céu. Ele está resmungando consigo.}
+{210}{}{Parece que esta pessoa está drogada. Provavelmente não da melhor qualidade.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{[O homem está arrepiado e tremento.] Mmmm... tem algum trocado?@@[Este homem está alto sob efeito de drogas.] Tem umas tampinhas?@@[Este homem parece estar a um passo de sua tumba.] Tô precisando de grana! Só um pouco!}
+{2010}{}{Sai daqui!}
+{2020}{}{Aqui, come isso! [Dá cinco tampas.]}
+{2030}{}{Sai fora, viciado!}
+{2040}{}{Vai tomar no cú.}
+{2050}{}{Cai fora, cabeça de merda!}
+{3000}{}{[Fúria fazem seus olhos brilhar.] Sovina!@@Pão-duro do caralho!}
+{3010}{}{Vai tomar no cú!}
+{4000}{}{[Ele pega as tampinhas como um abutre pega sua presa e esconde-as nas suas calças manchadas.] Ou, valeu.}
+{4010}{}{O mundo dá voltas... eu te salvo hoje, amanhã, quem sabe, você pode me salvar...}
+{5000}{}{[Ele sai desapontado.]}
+{5010}{}{Ahmm... certo. [Sai.]}
+{6000}{}{[Ele pensa por um momento e então pula sobre você, gritando.] Filho da puta, eu vou te matar!}
+{6010}{}{Vem seu merda! [Ataca.]}
+{7000}{}{Ahhhh...@@Eu tô nadando...@@Eu sô poderoso!@@Olá, @sex@|Senhor||Senhora| Flor.@@Todas estas cores...@@Você vê o céu, meu amigo?@@Eles não estão ouvindo...@@Onde eu estou?@@Entendi!@@Ah não! Para! Espera! OK, tudo bem.@@Lá... Lá! Awwww...@@É isso aí!@@O que foi isso?@@Sasha? Onde é que tu tá, Sasha?@@As cores estão dissolvendo!@@Momãe?@@Ei! Sai de perto de mim! Aaah...@@Não faz isso!@@Eu... eu não vejo nada... novamente.@@Eu preciso...@@Me dê mais...@@Lá? Não.@@Não. Não posso achá-lo.@@Pare com isso!@@Ái.@@Isso dói.@@[Cof] [Cof] [Cof]@@Ái, minha cabeça!}
+{7010}{}{Tá tudo bem?@@Qual o teu problema?}
+{8000}{}{[Este homem não parece ser saudável.] Ei, @sex@|xapa||moça|, tem alguns trocados?}
+{8010}{}{Aqui! [Dá 5 tampinhas para ele.]}
+{8020}{}{Errr...@@Awwww!@@Ughgh!@@Ummmm!}
+{9000}{}{Você é muito mau!}
+{9010}{}{Arrgh! [Ataca]}
+{9020}{}{Queeem! [Sai]}
+{10000}{}{Você é @sex@|um cara legal||uma moça legal|, mesmo se você é idiota.}
+{10010}{}{Vai se foder. [Sai]}
+

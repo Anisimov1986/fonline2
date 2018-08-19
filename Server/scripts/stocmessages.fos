@@ -1,0 +1,278 @@
+//
+
+#include "_defines.fos"
+#include "_macros.fos"
+
+#include "buffer_h.fos"
+
+import uint[] GetOnlinePlayers(uint faction) from "faction_cache";
+import string@ GetSafePlayerName(uint id) from "utils";
+Messages@[] screenTexts;
+
+class Messages
+{
+	string Text;
+	int Showtimer=0;
+	int Color;
+	int Time;
+	bool TcTimer = false;
+	uint TownId=0;
+	uint FactionId=0;
+	bool EventTimer = false;
+	uint EventId=0;
+	int FactionMessage = 0;
+	uint MapMessage = 0;
+	/*
+	void settext(string& text)
+	{
+		Text=text;
+	}
+	string gettext()
+	{ 
+		return Text; 
+	}
+	*/
+}
+
+void servermessage(Critter& player, int , int , int , string@ message , int[]@ )
+{
+	AddNewMessage(message,REAL_SECOND(30),0,COLOR_WHITE);
+}
+
+void servermapmessage(Critter& player, int , int , int , string@ message , int[]@ )
+{
+	Map@ map = player.GetMap();
+	if (valid (map))
+		AddNewMapMessage(message,REAL_SECOND(30),0,COLOR_WHITE,map.Id);
+}
+
+void AddNewMessage( string text,int time, int showtimer, uint color)
+{ 
+	Messages element;
+    element.Text = text; 
+	element.Time = __FullSecond+time; 
+	element.Showtimer = showtimer; 
+	element.Color = color; 
+    screenTexts.insertLast(@element);
+	SendMessagesToClients(null);
+}
+
+void AddNewMapMessage( string text,int time, int showtimer, uint color, uint mapId)
+{ 
+	Messages element;
+    element.Text = text; 
+	element.Time = __FullSecond+time; 
+	element.Showtimer = showtimer; 
+	element.Color = color; 
+	element.MapMessage = mapId; 
+    screenTexts.insertLast(@element);
+	SendMessagesToClients(null);
+}
+
+void AddNewMessage( string text,int time, int showtimer, uint color , int factionmessage)
+{ 
+	/*
+	Messages element;
+    element.Text = "[Faction] "+text; 
+	element.Time = __FullSecond+time; 
+	element.Showtimer = showtimer; 
+	element.Color = color; 
+	element.FactionMessage = factionmessage;
+    screenTexts.insertLast(@element);
+	SendMessagesToClients(null);
+	*/
+	SendFactionMessage(null, factionmessage, text);
+	
+}
+
+void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid)
+{ 
+	Messages element;
+    element.Text = text; 
+	element.Time = __FullSecond+time; 
+	element.Showtimer = showtimer; 
+	element.Color = color; 
+	element.EventTimer = eventtimer;
+	element.EventId = eventid;
+    screenTexts.insertLast(@element);
+	SendMessagesToClients(null);
+}
+
+void AddNewMessage( string text,int time, int showtimer, uint color, bool tctimer, uint townid, uint factionid)
+{ 
+	Messages element;
+    element.Text = text; 
+	element.Time = __FullSecond+time; 
+	element.Showtimer = showtimer; 
+	element.Color = color; 
+	element.TcTimer = tctimer;
+	element.TownId = townid;
+	element.FactionId = factionid;
+    screenTexts.insertLast(@element);
+	SendMessagesToClients(null);
+}
+
+void RemoveMessageByTown(uint id)
+{
+	CleanUpOldMessages();
+	bool removed=false;
+	for (uint i=0; i<screenTexts.length(); i++ )
+	{
+		if (screenTexts[i].TownId==id)
+		{
+			screenTexts.removeAt( i );
+			removed=true;
+			i--;
+		}
+	}
+	if (removed)
+		SendMessagesToClients(null);
+}
+
+bool IsTcTimer(uint town)
+{
+	CleanUpOldMessages();
+	for (uint i=0; i<screenTexts.length(); i++ )
+	{
+		if (screenTexts[i].TcTimer && screenTexts[i].TownId==town)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool IsAnyTcTimer()
+{
+	CleanUpOldMessages();
+	for (uint i=0; i<screenTexts.length(); i++ )
+	{
+		if (screenTexts[i].TcTimer)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void RemoveMessageByEvent(uint id)
+{
+	CleanUpOldMessages();
+	bool removed=false;
+	for (uint i=0; i<screenTexts.length(); i++ )
+	{
+		if (screenTexts[i].EventId==id)
+		{
+			screenTexts.removeAt( i );
+			removed=true;
+			i--;
+		}
+	}
+	if (removed)
+		SendMessagesToClients(null);
+}
+bool IsEventTimer(uint town)
+{
+	CleanUpOldMessages();
+	for (uint i=0; i<screenTexts.length(); i++ )
+	{
+		if (screenTexts[i].EventTimer && screenTexts[i].EventId==town)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void test( Critter& player, int , int , int  )
+{
+	AddNewMessage("test",__FullSecond+REAL_SECOND(100),1,COLOR_WHITE);
+}
+
+/*
+void SendMessagesToClient(Critter& cr)
+{
+	CleanUpOldMessages();
+	cr.RunClientScript("client_main@ResetMessages", 0, 0, 0, null, null);
+	for (uint i=0; i<screenTexts.length(); i++ )
+	{
+		if (screenTexts[i].FactionMessage == 0 || screenTexts[i].FactionMessage == cr.Param[MAIN_FACTION])
+			cr.RunClientScript("client_main@ShowNewServerMessage", screenTexts[i].Time, screenTexts[i].Color, screenTexts[i].Showtimer, screenTexts[i].Text, null);
+	}
+}
+*/
+
+void SendMessagesToClients(Critter@ cr)
+{
+	CleanUpOldMessages();
+	Critter@[] players;
+	if (valid(cr))
+		players.insertLast(cr);
+	else
+		GetAllPlayers(players);
+	for (uint i=0; i<players.length() ; i++)
+	{
+		if(_CritIsOnline(players[i]))
+		{
+			players[i].RunClientScript("client_main@ResetMessages", 0, 0, 0, null, null);
+			for (uint j=0; j<screenTexts.length(); j++ )
+			{
+				if (screenTexts[j].MapMessage > 0)
+				{
+					Map@ map = players[i].GetMap();
+					if (!valid(map) || map.Id != screenTexts[j].MapMessage)
+						continue;
+				}
+				if (screenTexts[j].FactionMessage == 0 || screenTexts[j].FactionMessage == players[i].Param[MAIN_FACTION])
+				{
+					players[i].RunClientScript("client_main@ShowNewServerMessage", screenTexts[j].Time, screenTexts[j].Color, screenTexts[j].Showtimer, screenTexts[j].Text, null);
+					if (screenTexts[j].Showtimer!=1 && !screenTexts[j].EventTimer && !screenTexts[j].TcTimer)
+					{
+						if (screenTexts[j].FactionMessage>0 || screenTexts[j].MapMessage > 0)
+							players[i].Say(SAY_NETMSG,"|"+screenTexts[j].Color+" "+screenTexts[j].Text);
+						else
+							players[i].Say(SAY_NETMSG,"|"+screenTexts[j].Color+" [Server] "+screenTexts[j].Text);
+					}
+				}
+			}
+		}
+	}
+}
+
+void SendFactionMessage(Critter@ FromCr, uint faction, string message)
+{
+	if (faction == 0)
+        return;
+    uint[] Players = GetOnlinePlayers(faction);
+	if (valid(FromCr))
+		message="["+GetSafePlayerName(FromCr.Id)+"] "+message;
+	else
+		message="[Faction] "+message;
+    uint color = 0;
+	for (uint i=0; i<Players.length(); i++ )
+	{
+		Critter@ cr = GetCritter(Players[i]);
+		if (valid(cr) && _CritIsOnline(cr))
+        {
+            if (valid(FromCr) && FromCr.Id==cr.Id)
+                color = COLOR_YELLOW;
+            else if (!valid(FromCr))
+                color = COLOR_WHITE;
+            else
+                color =  COLOR_TEXT;
+            cr.Say(SAY_FACTION_CHAT, "|"+COLOR_CHANGE_ALPHA(color,80)+" "+message);
+        }
+	}
+}
+
+void CleanUpOldMessages()
+{
+	for (uint i=0; i<screenTexts.length(); i++ )
+	{
+		if (int(__FullSecond)>screenTexts[i].Time)
+		{
+			screenTexts.removeAt( i );
+			i--;
+		}
+	}
+}

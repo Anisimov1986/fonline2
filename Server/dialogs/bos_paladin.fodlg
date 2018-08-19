@@ -1,0 +1,62 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _param p TRAIT_SKILLED = 1 #
+2 1020 D _param p MAIN_FACTION ! 2 #
+3 1030 D _param p MAIN_FACTION = 2 @
+2 2000 None 0 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Brotherhood Paladin}
+{200}{}{You see: Brotherhood Paladin.}
+{210}{}{This person is dressed in an antiquated power armor.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Yeah?@@You got something to say?@@What do you want, outworlder?@@Hello, peasant.@@I'm a Paladin of the Brotherhood of Steel. That means I don't have to talk to you.@@Watch your step.@@Leave me alone.@@What the fuck do you want?@@Wanna play target practice?@@Go get me a nuka, I'm thirsty.@@It's so goddamn hot under this getup.@@I'm so sick of this fucking desert.@@What is your business here?@@I'm on patrol here. Think before you try anything stupid.@@I've got an itchy trigger finger.@@You are one ugly motherfucker, aren't you?@@What are you gawking at?@@Stand back.@@Who the hell are you?@@Try anything and you'll regret it.@@Try it.@@Go ahead...make my day.@@Don't test me.@@I could crush you like an ant...a pre-war ant.@@Don't fuck with the Brotherhood.}
+{3000}{}{What is it?@@You want my armor, don't you?@@What's going on in the wasteland?@@Seen any action lately?@@If you work hard, one day you'll reach my level.@@You think you got what it takes to be a Paladin?@@Yeah?@@Watch your step.@@It's so goddamn hot under this getup.@@I'm so sick of this fucking desert.@@Goddamn showers broke down again.@@Ready for action.@@Anything to report?@@See anything suspicious?@@Wanna get a beer later?}
+{4000}{}{Get outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!}
+
+[russ]
+{100}{}{Brotherhood Paladin}
+{200}{}{You see: Brotherhood Paladin.}
+{210}{}{This person is dressed in an antiquated power armor.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Yeah?@@You got something to say?@@What do you want, outworlder?@@Hello, peasant.@@I'm a Paladin of the Brotherhood of Steel. That means I don't have to talk to you.@@Watch your step.@@Leave me alone.@@What the fuck do you want?@@Wanna play target practice?@@Go get me a nuka, I'm thirsty.@@It's so goddamn hot under this getup.@@I'm so sick of this fucking desert.@@What is your business here?@@I'm on patrol here. Don't try and be smart.@@I've got an itchy trigger finger.@@You are one ugly motherfucker, aren't you?@@What are you gawking at?@@Stand back.@@Who the hell are you?@@Try anything and you'll regret it.@@Try it.@@Go ahead...make my day.@@Don't test me.@@I could crush you like an ant...a pre-war ant.@@Don't fuck with the Brotherhood.}
+{3000}{}{What is it?@@You want my armor, don't you?@@What's going on in the wasteland?@@Seen any action lately?@@If you work hard, one day you'll reach my level.@@You think you got what it takes to be a Paladin?@@Yeah?@@Watch your step.@@It's so goddamn hot under this getup.@@I'm so sick of this fucking desert.@@Goddamn showers broke down again.@@Ready for action.@@Anything to report?@@See anything suspicious?@@Wanna get a beer later?}
+{4000}{}{Get outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!}
+
+[pols]
+{100}{}{Paladyn Bractwa}
+{200}{}{Widzisz: Paladyn Bractwa.}
+{210}{}{Ta osoba nosi antyczny pancerz wspomagany. Stoi pewnie i budzi lêk swoj¹ prezencj¹.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Taa?@@Masz mi coï¿½ do powiedzenia?@@Czego chcesz, nomadzie?@@Witaj, kmiocie.@@Jestem Paladynem Bractwa Stali. To oznacza, ï¿½e nie muszï¿½ z tobï¿½ rozmawiaï¿½, robaku.@@Uwaï¿½aj gdzie ï¿½azisz.@@Zostaw mnie w spokoju.@@Czego ty kurwa chcesz?@@Chcesz siï¿½ pobawiï¿½ w strzelnicï¿½? Nie ruszaj siï¿½ przez chwilkï¿½...@@Skocz mi po Nuka-Colï¿½, piï¿½ mi siï¿½ chce.@@Jest zajebiï¿½cie gorï¿½co w tym pancerzu.@@Mam doï¿½ï¿½ tej jebanej pustyni.@@W jakiej sprawie tu jesteï¿½?@@Jestem tu na patrolu. Pomyï¿½l zanim sprï¿½bujesz zrobiï¿½ coï¿½ gï¿½upiego.@@Cyngiel mnie ï¿½wierzbi.@@Jesteï¿½ jebitnie brzydkim sukinsynem, wiesz?@@Na co siï¿½ gapisz?@@Odejdï¿½.@@Kim ty do cholery jesteï¿½?@@Sprï¿½buj czegoï¿½, a bï¿½dziesz tego ï¿½aï¿½owaï¿½.@@ï¿½miaï¿½o...zrï¿½b coï¿½, ï¿½eby mï¿½j dzieï¿½ nie byï¿½ nudny.@@Nie nadwyrï¿½aj mojej cierpliwoï¿½ci.@@Mogï¿½ rozdeptaï¿½ ciï¿½ jak mrï¿½wkï¿½...przedwojennï¿½ mrï¿½wkï¿½.@@Nie zadzieraj z Bractwem.}
+{3000}{}{No, co tam?@@Chcesz mojej zbroi, nie? Widaï¿½.@@Jak tam na pustkowiu?@@Braï¿½eï¿½ udziaï¿½ w jakiejï¿½ akcji, ostatnio?@@Jeï¿½li bï¿½dziesz sumiennie wykonywaï¿½ swoje obowiï¿½zki, to pewnego dnia osiï¿½gniesz i mï¿½j poziom.@@Jesteï¿½ pewny, ï¿½e kiedykolwiek zasï¿½uï¿½ysz na miano Paladyna?@@Taa?@@Uwaï¿½aj gdzie chodzisz.@@Jest zajebiï¿½cie gorï¿½co w tym pancerzu.@@Mam doï¿½ï¿½ tej jebanej pustyni.@@Ja pierdolï¿½, znowu zepsuï¿½y siï¿½ prysznice.@@Jestem zwarty i gotowy.@@Masz coï¿½ do zameldowania?@@Widziaï¿½eï¿½ coï¿½ podejrzanego?@@Skoczymy pï¿½niej na piwo?}
+{4000}{}{Wypierdalaj stï¿½d, mutancie!@@Wynoï¿½ siï¿½, zmutowana paskudo!@@FEV zamieniï¿½ twï¿½j mï¿½zg w szambo? Oddal siï¿½ stï¿½d, zanim napytasz sobie biedy.@@Nie tolerujemy tutaj takich jak ty, wyrzutku FEVsa..@@Wynoï¿½ siï¿½ stï¿½d, zanim poczï¿½stuje ciï¿½ oï¿½owiem!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not bos}
+{1030}{}{in bos}
+{2000}{}{Yeah?@@You got something to say?@@What do you want, outworlder?@@Hello, peasant.@@I'm a Paladin of the Brotherhood of Steel. That means I don't have to talk to you.@@Watch your step.@@Leave me alone.@@What the fuck do you want?@@Wanna play target practice?@@Go get me a nuka, I'm thirsty.@@It's so goddamn hot under this getup.@@I'm so sick of this fucking desert.@@What is your business here?@@I'm on patrol here. Think before you try anything stupid.@@I've got an itchy trigger finger.@@You are one ugly motherfucker, aren't you?@@What are you gawking at?@@Stand back.@@Who the hell are you?@@Try anything and you'll regret it.@@Try it.@@Go ahead...make my day.@@Don't test me.@@I could crush you like an ant...a pre-war ant.@@Don't fuck with the Brotherhood.}
+{3000}{}{What is it?@@You want my armor, don't you?@@What's going on in the wasteland?@@Seen any action lately?@@If you work hard, one day you'll reach my level.@@You think you got what it takes to be a Paladin?@@Yeah?@@Watch your step.@@It's so goddamn hot under this getup.@@I'm so sick of this fucking desert.@@Goddamn showers broke down again.@@Ready for action.@@Anything to report?@@See anything suspicious?@@Wanna get a beer later?}
+{4000}{}{Get outta here, mutant!@@Get lost, mutant abomination!@@Get the hell outta here, mutant!@@We don't need your kind around here, mutant.@@Get lost, mutant!}
+

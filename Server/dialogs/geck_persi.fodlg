@@ -1,0 +1,104 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+3 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 #
+65506 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+65506 3020 #
+0 3030 @
+4 4000 None 0 #
+3 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Percy}
+{200}{}{You see a short ghoul.}
+{210}{}{You see Percy Crump, the successful ghoul merchant.}
+{210}{}{You see a shorter and rather stout ghoul. He's nattily attired-uh, for a ghoul, that is.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{2000}{}{Hello there, Percy Crump here, Master Merchant in this locality. But you kin call me just plain ole Percy. Yes, you can. Heck, everybody does. Now, what can I do ya' for?}
+{2010}{}{I was just wondering what's going on here in town.}
+{2020}{}{I was wondering if you had anything I could buy or trade for?}
+{2030}{}{Uh, nothing really, I was just looking around. Goodbye.}
+{3000}{}{What can ole Percy do fer ya?}
+{3010}{}{I was just wondering what's going on here in town.}
+{3020}{}{I was wondering if you had anything I could buy or trade for?}
+{3030}{}{Uh, nothing really, I was just looking around. Goodbye.}
+{4000}{}{Not a whole lot new here in town. I hear Wooz rooked some newbie out of a Black Orchid the other day.  Heh, heh, hee.}
+{4010}{}{Uh, fascinating. I was wondering about something else.}
+{4020}{}{Oh, that's too bad. Gotta go.}
+
+[russ]
+{100}{}{Перси}
+{200}{}{Вы видите невысокого мертвяка.}
+{210}{}{Вы видите Перси Крампа, преуспевающего мертвяка-торговца.}
+{210}{}{Вы видите невысокого, но крепкого опрятно одетого мертвяка.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{2000}{}{Привет, я Перси Крамп, Главный Торговец в этих краях. Но ты можешь звать меня просто старина Перси, как и все вокруг. Что я могу для тебя сделать?}
+{2010}{}{Я просто хотел знать что происходит в городе?}
+{2020}{}{Я хотел знать нет ли у тебя товара на продажу или на обмен.}
+{2030}{}{Да так, ничего. Я тут просто хожу-гляжу. Пока.}
+{3000}{}{Чем старик Перси может тебе помочь?}
+{3010}{}{Я просто хотел знать что происходит в городе?}
+{3020}{}{Я хотел знать нет ли у тебя товара на продажу или на обмен.}
+{3030}{}{Да так, ничего. Я тут просто хожу-гляжу. Пока.}
+{4000}{}{Да, в приницпе никаких новостей толком и нет. Только вот слышал, что Вуз нанял себе нового работника из Черной Орхидеи. И еще беда - друг мой пропал, звать его Вуди.}
+{4010}{}{Можно задать вопрос?}
+{4020}{}{Да, это печально. Пока.}
+
+[pols]
+{100}{}{Percy}
+{200}{}{Widzisz niskiego ghula.}
+{210}{}{Widzisz Percy'ego Crumpa, sławnego ghula-handlarza.}
+{210}{}{Widzisz niskiego, krępego ghula. Ma miłą powierzchowność... jak na ghula, oczywiście.}
+{210}{}{Idzisz Jeremy'ego, ghula kierującego działem zaopatrzenia.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{2000}{}{Witam, witam! Jestem Percy Crump, Główny Kupiec tej miejscowości. Ale dla ciebie mogę być po prostu dobrym starym Percym. Czemu by nie, w końcu wszyscy tak na mnie mówią, he he. Co mogę dla ciebie zrobić?}
+{2010}{}{Co nowego słychać w waszym mieście?}
+{2020}{}{Zastanawiam się właśnie czy masz tu coś ciekawego na wymianę?}
+{2030}{}{Cóż, w zasadzie nic. Tylko się rozglądam. Do widzenia.}
+{3000}{}{Co stary Percy może dla ciebie zrobić?}
+{3010}{}{Zastanawiam się, co słychać w waszym mieście.}
+{3020}{}{Zastanawiam się właśnie czy masz tu coś ciekawego na wymianę?}
+{3030}{}{Cóż, w zasadzie nic. Tylko się rozglądam. Do widzenia.}
+{4000}{}{W mieście nie dzieje się zbyt wiele. Podobno Wooz wykopał jakiegoś żółtodzioba z knajpy. Hehehe.}
+{4010}{}{Och, interesujące. @sex@|Chciałbym||Chciałabym| spytać o coś innego.}
+{4020}{}{Och, interesujące. Do zobaczenia.}
+
+[ptbr]
+{100}{}{Percival}
+{200}{}{Você vê um carniçal baixinho.}
+{210}{}{Você vê Percy Barulhento, um carniçal mercador de sucesso.}
+{210}{}{Você vê um carniçal mais baixo do que largo. Ele está bem vestido, para um carniçal, é isso.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{Known}
+{2000}{}{Opa @sex@|meu fi||minha fia|. Me chamo de Percy Barulhento, Mestre Mercante da região. Mas seu tipo basta só me chamar de Percy. Sim, você pode. Se bem que, todos me chamam assim. O quê que você manda?}
+{2010}{}{Eu estava pensando sobre o que tem acontecido ultimamente aqui pela cidade.}
+{2020}{}{Eu estava me perguntando se você não tinha algo interessante que eu pudesse comprar ou trocar.}
+{2030}{}{Um, em nada, na verdade. Só estava dando uma olhada mesmo. Indo aqui, tchau.}
+{3000}{}{Quê que o véi Percy pode fazê procê?}
+{3010}{}{Eu estava pensando sobre o que tem acontecido ultimamente aqui pela cidade.}
+{3020}{}{Eu estava me perguntando se você não tinha algo interessante que eu pudesse comprar ou trocar.}
+{3030}{}{Um, em nada, na verdade. Só estava dando uma olhada mesmo. Vou indo. Até mais.}
+{4000}{}{Nada de grande novidade acontece aqui na cidade. Ouvi dizer que Wooz enganou um novato da Orquídea Negra um outro dia. Heh, heh, hee.}
+{4010}{}{Um, fascinante. Eu tava a me perguntar sobre outra coisa.}
+{4020}{}{Am, interessante. Preciso ir.}
+

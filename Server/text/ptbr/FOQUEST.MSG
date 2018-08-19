@@ -1,0 +1,398 @@
+# 22.06.2013 Fonline2 Team
+
+#
+#
+#
+
+{4}{}{%d. }
+{5}{}{Progresso atual: }
+{6}{}{@lex questName@^@lex questTask@}
+{7}{}{@lex Title@^@lex Message@^@lex File@^@lex TitleColor@^@lex MessageColor@}
+#
+# ID
+# Quest name
+#
+
+#
+# Formulas are:
+#	ID * 1000 + %exp%. (1-100) - Text player sees with quest var equal to %exp%.
+#	ID * 1000 + 101 - Quest tab name.
+#	ID * 1000 + 102 - Overall quest description.
+
+# 7000
+# Caravan from Hub to VC
+{7000001}{}{Eu aceitei o trabalho de escolta de caravana. O lider disse para estar aqui as 10:00.}
+{7000002}{}{A caravana esta saindo. A tarefa e simples - proteja a caravana a todos os custos.}
+{7000003}{}{Falhou: Acho que roubar nao foi uma boa ideia.}
+{7000004}{}{Falhou: Deixei a caravana para tras.}
+{7000005}{}{Falhou: Voce morreu.}
+{7000006}{}{Falhou: O lider da caravana morreu.}
+{7000007}{}{Falhou: Matei  o lider da caravana. Acho que a companhia nao me dara outros trabalhos.}
+{7000008}{}{Sucesso: Nossa caravana alcancou o destino. Eu deveria pedir meu pagamento agora.}
+{7000009}{}{A caravana esta saindo. A tarefa e simples - proteja a caravana a todos os custos.}
+{7000010}{}{Sucesso: Nossa caravana alcancou o destino. Eu deveria pedir meu pagamento agora.}
+{7000011}{}{A caravana chegou a salvo em seu destino.}
+
+
+# 9001 - My first tent
+{9001001}{}{Fale com Melsak, o vaqueiro local.}
+{9001002}{}{Melsak pode ter algumas pecas de couro de brahmin para sua tenda.}
+{9001003}{}{Para pegar as pecas de couro, Melsak pediu para voce ir ao Chiquim pegar 10 bolsas de agua.}
+{9001004}{}{Chiquim apenas lhe deu 4 bolsas de agua. Volte e fale com  Melsak.}
+{9001005}{}{Voce matou um brahmin do Chiquim. Talvez o Chiquim diga isso a Melsak.}
+{9001006}{}{Voce viu movimentos nas arvores quando Chiquim deu seu último suspiro. Tomara que ninguem tenha lhe visto.}
+{9001007}{}{Melsak pediu para voce trazer um canivete caseiro, entao ele mesmo podera fazer as bolsas. Procure nos vendedores.}
+{9001008}{}{Completo: Melsak me deu 10 pecas de couro de brahmin. Agora posso criar minha tenda.}
+{9001009}{}{Falhou: Devido a suas acoes, Melsak se recusa a lhe dar as pecas de couro para sua tenda.}
+{9001101}{}{Sucatao}
+{9001102}{}{Minha primeira tenda}
+
+# 9002 - Melsak's revenge
+{9002001}{}{Melsak lhe contou sobre sua aldeia e o Matador. Fale com ele depois sobre o assunto.}
+{9002002}{}{Encontre Liana em Klamath, que poderia saber o paradeiro do Matador.}
+{9002005}{}{Um dos aldeoes viu traficantes de escravos levando Liana para o Favelao alguns dias atras.}
+{9002006}{}{De acordo com o Metzger, Liana nao esta em Favelao. Encontre-a.}
+{9002007}{}{Metzger ira lhe dizer o seu paradeiro por 5000 tampinhas. Pague-o ou procure outra forma.}
+{9002008}{}{Metzger mostrou a voce o local onde Liana esta mantida.}
+{9002009}{}{Um dos guardas mostrou a voce o local onde Liana esta mantida.}
+{9002010}{}{Um dos aborigenes lhe mostrou o possivel paradeiro de Liana.}
+{9002011}{}{Liana foi resgatada das maos dos traficantes de escravos.}
+{9002012}{}{O Matador deve estar localizado em algum lugar da costa a nortoeste. Explore a area.}
+{9002013}{}{Encontrei um local para um homem durao. Este deve ser o local do Matador.}
+{9002014}{}{O Matador esta morto. Volte e fale com Melsak.}
+{9002015}{}{Falhou: demorou demais. Liana esta provavelmente morta numa hora destas.}
+{9002016}{}{Falhou: demorou demais. O Matador deixou seu campo.}
+{9002017}{}{Completo: Finalmente, Melsak teve sua vinganca.}
+{9002101}{}{Sucatao}
+{9002102}{}{A vinganca de Melsak}
+
+# 9004 - You're such a tool...
+{9004001}{}{Pedro pediu para trazer um novo jogo de ferramentas, umas "melhorezinhas". Voce nao tem ideia do que ele quis dizer.}
+{9004002}{}{Completo: Voce trouxe a Pete um Super Jogo de Ferramentas. Parece que ele gostou. De quebra, ele ainda lhe ensinou alguns truques em reparos.}
+{9004003}{}{Completo: Voce trouxe a Pete um Super Jogo de Ferramentas. Parece que ele gostou. De quebra, ele ainda lhe ensinou alguns truques em reparos mas voce ja sabe muito. Nao ajudou em nada.}
+{9004101}{}{Sucatao}
+{9004102}{}{Ferramentas para o Pete...}
+
+# 9005 - Broken delivery
+{9005001}{}{Mariana quer que voce entregue o Record-o-matic para Benjamin, o dono do bar Skumm Pitt.}
+{9005002}{}{Completo: Record-o-matic foi entregue a Benjamin e ele lhe deu algumas bebidas por conta da casa.}
+{9005101}{}{Sucatao}
+{9005102}{}{Entrega}
+
+# 9007 - It's complicated
+{9007001}{}{Miguel, nervoso e timido que e, pediu para ir falar com Mariana e perguntar discretamente se esta aberta para um encontro.}
+{9007002}{}{Sua abordagem para puxar uma resposta positiva de Mariana falhou. Volte e fale para Miguel sobre o resultado.}
+{9007003}{}{Mariana concordou em se encontrar com Miguel em um encontro. Eu deveria voltar e informar sobre as boas novas.}
+{9007004}{}{Voce teve um lance legal com Mariana mas ela disse que gostaria de sair com Miguel de qualquer forma Avise-o.}
+{9007005}{}{Completo: Miguel tomou a recusa de Mariana de forma positiva. A tentativa valeu a pena.}
+{9007006}{}{Completo: Mariana e Miguel irao sair em um encontro.}
+{9007007}{}{Completo: Miguel nao pode acreditar que voce teve deu uma rapidinha com Mariana. Deixe-o perecer neste mundo a sos.}
+{9007101}{}{Sucatao}
+{9007102}{}{e... complicado}
+
+# 9008 - Electronic revolution
+{9008001}{}{Mariana precisa de pecas eletronicas. Traga pelo menos cinco.}
+{9008002}{}{As pecas eletronicas que trouxe pareceram ser o suficiente. Lembre-se de trazer mais quando puder.}
+{9008101}{}{Sucatao}
+{9008102}{}{Revolucao eletronica}
+
+# 9010 - Redemption song
+{9010001}{}{Depois de ouvir a historia de Benjamin, ele pede para voce oferecer um trabalho de garconete a Carla, a prostituta.}
+{9010002}{}{Voce falou com Carla e ela concordou em trabalhar com Benjamin, se voce emprestar 400 tampinhas.}
+{9010003}{}{Benjamin lhe deu algo pela confusao, e algmas bebidas tambem. Voce deveria falar com Carla depois para pedir seu dinheiro de volta.}
+{9010004}{}{Carla ficou bem feliz com o emprestimo que deu a ela. Ela vai conversar os detalhes com Benjamin. Ela falou para contar a ele a noticia imediatamente.}
+{9010005}{}{Quando voce pressinou Carla sobre o dinheiro que ela lhe deve, ela calou-se e nao quis falar com voce. Falar com o Xerife ou Benjamin pode resolver.}
+{9010006}{}{Miguel revelou que ele esta cobrindo Carla. Tente pressionar Carla novamente.}
+{9010007}{}{Carla ficou amarela quando disse que ela trabalha com Miguel. Entao ela mudou de atitute e pediu para falar para Benjamin que acabou.}
+{9010008}{}{Completo: Benjamin admitiu que ele tentou lhe enganar e da seu dinheiro de volta.}
+{9010101}{}{Sucatao}
+{9010102}{}{Cancao da Redencao}
+
+# 9013 - King of the junk
+{9013001}{}{Pedro precisa de sucata para consertar sua bomba que vive quebrando. o traga cinco pecas.}
+{9013002}{}{Pedro ficou feliz pelas pecas de sucata que voce trouxe para ele. Voce pode trazer mais quando tiver.}
+{9013101}{}{Sucatao}
+{9013102}{}{Rei do Lixo!}
+
+# 9015 - Stay frosty
+{9015001}{}{Margarete esta insatisfeita porque Pedro nao quer consertar a geladeira. Ela pediu para ir la e lembra-lo do servico.}
+{9015002}{}{Pedro disse a voce que ira consertar a geladeira. Em Breve. Voce deveria ir falar as boas noticias para Margarete.}
+{9015003}{}{Completo: embora Margarete foi deixada apenas com promesas, ela agradece sua ajuda e lhe da um quarto no hotel.}
+{9015101}{}{Sucatao}
+{9015102}{}{Fica frio}
+
+# 9017 - Zach's scorpion tails
+{9017001}{}{Zaca lhe ofereceu um pequeno trabalho. o traga cinco caudas de radscorpiao, ele ira recompensa-lo.}
+{9017002}{}{As caudas de radscorpiao que trouxe parecem ser de qualidade. Ele quer que traga mais quando tiver.}
+{9017101}{}{Sucatao}
+{9017102}{}{Caudas de radscorpioes para Zaca}
+
+# 9019 - A broken heart
+{9019001}{}{Doutor Zacarias pediu para encontrar Remedio para Cardiacos para Carla.}
+{9019002}{}{Completo: Parece que as pilulas sao verdadeiras.}
+{9019101}{}{Sucatao}
+{9019102}{}{Situacao de Carla}
+
+# 9020 - Thirst of the west
+{9020001}{}{Joel esta com sede. o traga uma bolsa d'agua cheia a ele.}
+{9020002}{}{Joel bebeu a agua de uma vez. Voce pode voltar depois, ele com certeza vai querer mais.}
+{9020003}{}{Joel esta doente novamente. o traga uma bolsa d'agua cheia para ele.}
+{9020101}{}{Sucatao}
+{9020102}{}{Sede da peste}
+
+# 9021 - Aldo's medicine
+{9021001}{}{Aldo tem um problema raro. Traga um pouco de "remedio" para reduzir o seu sofrimento.}
+{9021002}{}{Aldo engole o seu "remedio" em questoes de minutos. Nao ha dúvidas que ele vai precisar de mais.}
+{9021101}{}{Klamath}
+{9021102}{}{O tempo nunca e desperdicado quando voce desperdica todo o tempo}
+
+# 9023 - Bob's booze run
+{9023001}{}{Ze Uisque pediu para voce ir ao Favelao e entregar a um cara chamado Chiquim, o dono do "Buraco". Fale sobre a ultima producao e avise-o que ele vai ter que pagar o dobro.}
+{9023002}{}{Chiquim nao aceitou bem a mensagem e se refusou em pagar o dobro. Voce deveria voltar e falar com o Ze.}
+{9023003}{}{Ze nao ficou surpreso com a resposta de Chiquim. Ele tambem mencionou que voce poderia voltar depois para fazer outra entrega.}
+{9023101}{}{Klamath}
+{9023102}{}{Entrega das bebidas do Ze}
+
+# 9025 - Maida's gecko skins
+{9025001}{}{Maida quer que voce traga quatro couracas de kalango-dourado.}
+{9025002}{}{Voce trouxe as couracas para Maida. Elas que voce traga mais depois.}
+{9025101}{}{Klamath}
+{9025102}{}{Couracas de kalango da Maida}
+
+# 9027 - Brahmin shortage
+{9027001}{}{O curtume de Modoc precisa ser suprido com uma quantidade boa de couro de brahmin. O coureiro, Lee Balton pediu que o trouxesse ao menos 10 pecas.}
+{9027002}{}{Por trazer os couros para Lee, ele vez uma bela Armadura de Couro para voce. Para que o curtume continue a funcionar, voce poderia trazer mais couracas depois.}
+{9027003}{}{Por trazer os couros para Lee, ele vez uma bela Armadura de Couro para voce. Para que o curtume continue a funcionar, voce poderia trazer mais couracas depois.}
+{9027101}{}{Modoc}
+{9027102}{}{Escassez de Brahmin}
+
+# 9031 - Gunsmith profession
+{9031001}{}{Eduardo, do Ponto Central, concordou em compartilhar sua experiencia em montar armamentos basicos por 2000 tampinhas e uma barra de Aco de Alta Qualidade.}
+{9031002}{}{Sucesso: Voce aprendeu o nivel um da profissao de Armeiro.}
+{9031003}{}{Eduardo lhe disse que se quiser melhorar suas habilidades voce devesse procurar em alguem em Serra Quebrada.}
+{9031004}{}{Vitoriano, o principal mercante de Serra Quebrada  parece ser a pessoa que Eduardo estava falando. Voce ira precisar paga-lo 4000 tampinhas para aprender o que ele sabe.}
+{9031005}{}{Sucesso: Voce aprendeu o nivel dois da profissao de Armeiro.}
+{9031006}{}{Vitoriano disse para voce ir a Nova Reno procurar um homem chamado Barbosa. Procure-o se quiser aprimorar ainda mais suas habilidades.}
+{9031007}{}{Barbosa prometeu lhe mostrar tudo o que sabe sobre fabricar armamentos de alta ponta contanto que voce o trouxesse uma arma experimental chamada XL70E3 e 6000 tampinhas.}
+{9031008}{}{Completo: Voce aprendeu o terceiro nivel de Armeiro, voce aprendeu tudo o que precisava saber para criar armas convencionais.}
+{9031101}{}{Ponto Central}
+{9031102}{}{Profissao: Armeiro}
+
+# 9032 - Armorer profession
+{9032001}{}{Tiaguim do Sucatao pode lhe ensinar como construir armaduras basicas por uns agrados.}
+{9032002}{}{Sucesso: Voce aprendeu a profissao de Arneiro nivel um.}
+{9032003}{}{Tiaguim lhe disse que voce poderia aprimorar ainda mais suas habilidades no curtume de Modoc.}
+{9032004}{}{Lee Balton de Modoc pode lhe ensinar a manufaturar armaduras de protecao mais avancadas. Para faze-lo compartilhar seu conhecimento, voce deve trazer para ele uma Armadura de Combate, quatro pecas de polimero de Kevlar e 4000 tampinhas.}
+{9032005}{}{Sucesso: Voce aprendeu a profissao de Arneiro nivel dois.}
+{9032006}{}{Lee lhe deu a dica de procurar em Sao Francisco para que voce aprenda a produzir armaduras ainda mais avancadas.}
+{9032007}{}{Buck, um antigo engenheiro que vive em Sao Francisco pode lhe ajudar em avancar nos conhecimentos em producao de armaduras de alta tecnologia por 6000 tampinhas.}
+{9032008}{}{Completo: Voce aprendeu a profissao de arneiro nivel tres, nao ha mais nada que voce possa aprender.}
+{9032101}{}{Sucatao}
+{9032102}{}{Profissao: Arneiro}
+
+# 9033 - Chemist profession
+{9033001}{}{Doutor Oetker na Cidade do Abrigo pode lhe ensinar o basico em quimica. Ele o fara se voce trouxer 12 rochas de Minerais, 10 componentes quimicos e 2000 tampinhas.}
+{9033002}{}{Sucesso: Voce aprendeu a profissao de Quimico nivel um.}
+{9033003}{}{Oetker lhe disse que Doutor Fung e um quimico experiente e que provavelmente poderia ensinar ainda mais do que ele lhe ensinou.}
+{9033004}{}{Doutor Fung de Sao Francisco concordou em dar continuidade nos estudos das artes da quimica se trouxer um Super Estimulante, XoRad, Rad-x e 4000 tampinhas.}
+{9033005}{}{Sucesso: Voce aprendeu a profissao Quimico nivel dois.}
+{9033006}{}{Voce deveria ir a Nova Reno, onde um homem chamado Renesco pode lhe ajudar com seu conhecimento.}
+{9033007}{}{Renesco pode lhe ensinar mais sobre quimica, mas ele precisa de um hipertrofiador, Psycho, Jet e 6000 tampinhas.}
+{9033008}{}{Completo: Voce aprendeu o nivel tres de Quimica, voce pode fazer todo tipo de droga comumente encontrada no deserto.}
+{9033101}{}{Cidade do Abrigo}
+{9033102}{}{Profissao: @sex@|Quimico||Quimica|}
+
+# 9034 - Scientist profession
+{9034001}{}{Arlinda, a bibliotecaria do Ossuario pode lhe ensinar a produzir armas eletricas. Em retorno, ela pede 12 pecas de circuitos eletronicos, 1 pistola laser, 1 transformador de energia e 2000 tampinhas.}
+{9034002}{}{Sucesso: Voce aprendeu a profissao de Cientista nivel um.}
+{9034003}{}{Arlinda lhe indicou para ir a Vermelheiro, para encontrar alguem chamado Lucas.}
+{9034004}{}{Lucas de Vermelheiro tem vasto conhecimento sobre a manufatura de armamentos avancados baseados em eletricidade. Voce precisa trazer os seguintes itens: 1 rifle laser, 2 transformadores de energia, 12 componentes quimicos e 4000 tampinhas.}
+{9034005}{}{Sucesso: Voce aprendeu a profissao de Cientista nivel dois.}
+{9034006}{}{Lucas sugeriu que ha alguem que sabe mais que ele. Procure por Alberto Unpiedra em Sao Francisco.}
+{9034007}{}{Alberto Unpiedra de Sao Francisco ira lhe ensinar como manufaturar as armas de energia mais avancadas por 1 rifle laser e 6000 tampinhas.}
+{9034008}{}{Completo: Voce aprendeu a profissao de Cientista nivel tres.}
+{9034101}{}{Ossuario}
+{9034102}{}{Profissao: Cientista}
+
+# 9102 - Dan's delivery
+{9102001}{}{Voce aceitou o trabalho de entrega de Dan, "o cara" do Ponto Central. Voce deve entregar o pacote para Adao, o vice-xerife, e sob nenhuma circunstância voce deve abrir o pacote.}
+{9102002}{}{O pacote nao foi aberto e Adao aceitou. Voce precisa voltar para Dan e dize-lo que voce entregou o pacote.}
+{9102003}{}{Completo: O pacote foi entregue sem nenhum problema.}
+{9102101}{}{Ponto Central}
+{9102102}{}{Entrega de Dan}
+
+# 9104 - Get some beer for Adam!
+{9104001}{}{Adao esta fritando sob o quente sol pos-apocaliptico. Ele precisa de uma cerveja ou duas para resfriar.}
+{9104002}{}{Completo: Adao tomou sua bebida e lhe contou rumores e fofocas em retorno.}
+{9104101}{}{Ponto Central}
+{9104102}{}{Pegue uma cerveja para Adao!}
+
+# 9105 - Is there a doctor in the house?
+{9105001}{}{O rosto palido do Cristiano denuncia sua condicao. Ele precisa de certo medicamento da Annie, a doutora da cidade. Encontre-a.}
+{9105002}{}{Voce obteve pilulas para condicoes cardiacas de Aninha. Pegue-as e as de ao Cristiano.}
+{9105003}{}{Completo: Voce obteve e trouxe remedio para cardiacos para Cristiano com sucesso.}
+{9105101}{}{Ponto Central}
+{9105102}{}{Tem algum medico na casa?}
+
+# 9116 - Iguana treat
+{9116001}{}{O Loiro das Iguanas pediu pra entregar uns espetinhos para o Charles, o xerife.}
+{9116002}{}{Charles ficou bem feliz com o espetinho gratuito. Volte e diga que Charles gostou do presente.}
+{9116003}{}{Voce fez o que o O Loiro das Iguanas pediu, ele lhe recompensou com algumas tampinhas e um brinde. Parece que ha mais coisas a se fazer.}
+{9116004}{}{O Loiro das Iguanas falou desta coisa nova que esta a produzir - Nuka-Cola. Devido ao atraso na última entrega do material para produzir a bebida, Bob quer que voce o traga dez frutas, na troc de uma boa recompensa.}
+{9116005}{}{Completo: Voce entregou dez frutas ao Bob. Agora ele sera capaz de produzir sua soda.}
+{9116101}{}{Ponto Central}
+{9116102}{}{Gostosura de Iguana}
+
+# 9300 - Waterpump
+{9300001}{}{Voce encheu a bolsa de agua.}
+{9300002}{}{Voce nao tem bolsa de agua para encher.}
+
+# 9301 - Fridge
+{9301001}{}{Voce conseguiu consertar a geladeira.}
+{9301002}{}{Voce nao tem ferramentas nem habilidades para consertar a geladeira.}
+
+# 9311 - Caravaneer's secret
+{9311001}{}{Kenny pediu para checar o que esta aconteceu com a caravana que ele estava esperando. Procure-a a oeste do Ponto Central.}
+{9311002}{}{Voce descobriu que a caravana foi atacada. Um dos atacantes tinha um holodisco. Melhor mostra-lo ao Kenny.}
+{9311003}{}{Kenny lhe deixou sua tenda e partiu. Ele mencionou que ha uma pessoa na Cidade do Abrigo que poderia decodificar a mensagem.}
+{9311004}{}{Bruno, o expert em computadores da Cidade do Abrigo disse que ira decodificar a mensagem do holodisco se o trouxer um radio.}
+{9311005}{}{Bruno decodificou a informacao mas ainda precisa ser decifrada. Bruno sugeriu de usar o computador central do Abrigo, mas voce precisa de autorizacao do Conselheiro McClure para entrar no abrigo.}
+{9311006}{}{Voce decifrou a informacao. Explore o local mencionado na mensagem.}
+{9311007}{}{Voce pegou as plantas baixas do Petroleiro das maos do lider dos ladroes de estrada. Voce deveria entrega-los ao ponto de destino.}
+{9311008}{}{Completo: Voce entregou as plantas baixas do petroleiro para o Enclave.}
+{9311009}{}{Completo: Voce entregou as plantas baixas do petroleiro para o Enclave.}
+{9311010}{}{Completo: Voce entregou as plantas baixas do petroleiro para Kenny.}
+{9311101}{}{Kenny, o mercador}
+{9311102}{}{Segredo da Caravaneiro}
+
+# 9312 - Radscorpion cave
+{9312001}{}{Kenny salvou sua vida entao voce ofereceu-se em pagar a divida matando os radscorpioes na caverna proxima. o traga a garra do maior deles como prova.}
+{9312002}{}{Completo: Voce limpou a caverna e deu a garra para Kenny.}
+{9312101}{}{Kenny, o mercador}
+{9312102}{}{Caverna de radscorpioes}
+
+# 9313 - That's all for your health
+{9313001}{}{Se por um acaso voce encontrar Fofuras de Queijo, traga para Bruno. Ele ira pagar bem por cada pacote do seu salgadinho preferido.}
+{9313101}{}{Cidade do Abrigo}
+{9313102}{}{Diga: Queijo!}
+
+# 9314 - Artifacts of the Ancient Order
+{9314001}{}{Se voce visitar o Clarao e encontrar algum cartao de acesso, o de para Josue. Ele os ve como reliquias preciosas e ira paga-lo bem.}
+{9314101}{}{Favelao}
+{9314102}{}{Artefatos de uma Ordem Antiga}
+
+# 9316 - A Subversive Citizen
+{9316001}{}{Um dos Cidadaos, Nilo, esta criticando abertamente as politicas do Conselho. Voce foi incubido de persuadi-lo e para-lo. Ele pode ser encontrado em algum lugar da praca da Cidade do Abrigo.}
+{9316002}{}{Voce tentou falar com Nilo mas ele nao quer. Tente uma abordagem diferente.}
+{9316003}{}{Voce conseguiu ouvir algumas das acusacoes do Nilo ao Conselho, mas depois de um tempo ele ficou com raiva e nao quis mais falar. Volte ao McClure.}
+{9316004}{}{Voce conseguiu ouvir algumas das acusacoes do Nilo ao Conselho, mas depois de um tempo ele ficou com raiva e nao quis mais falar. Volte ao McClure.}
+{9316005}{}{Voce conseguiu ouvir algumas das acusacoes do Nilo ao Conselho, mas depois de um tempo ele ficou com raiva e nao quis mais falar. Volte ao McClure.}
+{9316006}{}{Voce conseguiu ouvir algumas das acusacoes do Nilo ao Conselho, mas depois de um tempo ele ficou com raiva e nao quis mais falar. Volte ao McClure.}
+{9316007}{}{Voce conseguiu convencer Nilo de parar com suas atividades subversivas. Volte e fale com o McClure sobre o seu sucesso.}
+{9316008}{}{Voce entendeu que o que Nilo diz e correto. Volte para McClure e tente persuadi-lo para compartilhar as perspectivas de Nilo.}
+{9316009}{}{Completo: Embora voce nao conseguiu convencer Nilo de parar com suas atividades, voce descobriu o porque ele esta tao chateado.}
+{9316010}{}{Completo: Voce conseguiu convencer Nilo de parar com suas atividades subversivas. O Conselheiro McClure ficou bastante satisfeito.}
+{9316011}{}{Completo: Voce conseguiu convencer o Conselheiro McClure que muitas das acusacoes de Nilo tem fundamento. Ele ira considerar em implementar algumas de suas reformas.}
+{9316101}{}{Cidade do Abrigo}
+{9316102}{}{Cidadao Subversivo}
+
+# 9317 - Well, well, well...
+{9317001}{}{O poco de Adytum esta quebrado. Pestis quer que voce o conserte.}
+{9317002}{}{O poco foi consertado. Volte e fale com Pestis.}
+{9317003}{}{Explore o poco e cheque o porque de estar seco.}
+{9317004}{}{Voce amarrou uma corda no poco. e hora de ir la embaixo.}
+{9317005}{}{Parece que alguem esta bombeando a agua para fora. Fale com Pestis.}
+{9317006}{}{Parece que as pessoas de uma fazenda proxima de Adytum sao responsaveis. Va la e resolva a situacao.}
+{9317007}{}{Volte para a bomba d'agua e decida como resolver o problema.}
+{9317010}{}{Voce quebrou o painel entao o fluxo permanecera como esta, suprindo apenas a fazenda. Volte e fale com Jeremias.}
+{9317011}{}{Completo: Voce decidiu que apenas a fazenda seria suprida com agua e garantiu  a possibilidade de nao mudar a situacao quebrando o painel.}
+{9317020}{}{Voce desligou a bomba e Adytum agora e o único local suprido com agua. Va falar com Pestis.}
+{9317021}{}{Completo: Voce decidiu desativar a bomba fazendo de Adytum o único local a receber agua.}
+{9317030}{}{Voce ativa a bomba para funcionar pela metade. Fale com o Pestis agora.}
+{9317031}{}{Pestis concordou em fazer um acordo com as pessoas da fazenda. Fale com o Jeremias.}
+{9317032}{}{Completo: Voce forcou dois lados opostos de fazerem acordo. Ambos os lados agora sao supridos com agua.}
+{9317101}{}{Adytum}
+{9317102}{}{Compartilhando um problema}
+
+# 9318 QUESTNOTICES
+{9318001}{}{Voce consertou o poco de Adytum, fale com Pestis.}
+{9318002}{}{Voce nao tem ferramentas ou habilidades suficientes para consertar o poco.}
+{9318003}{}{Voce colocou a corda, pode-se entrar agora no poco.}
+{9318004}{}{Voce nao tem corda presa no poco.}
+{9318005}{}{Ele esta morto.}
+
+# 9319 - Deathclaws group quest
+{9319001}{}{Um bando de iucapias jovens tomaram refúgio na caverna proxima a fazenda de Pestis. Ele quer que voce mate todos.}
+{9319002}{}{Os iucapias estao todos mortos. Volte a Pestis e conte sobre seu sucesso.}
+{9319101}{}{Adytum}
+{9319102}{}{Uma ameaca em potencial}
+
+# 9321 - Raiders group quest
+{9321001}{}{Xerife Charles do Ponto Central quer que voce de conta dos ladroes de estrada que estao prejudicando as caravanas locais.}
+{9321002}{}{Voce conseguiu lidar com a presenca dos ladroes de estrada que estavam na area. Retorne e fale com o xerife.}
+{9321101}{}{Ponto Central}
+{9321102}{}{Braco forte da lei}
+
+# 9323 - Molerats group quest
+{9323001}{}{Warren tem um problema com ratoupeiras. Voce prometeu resolver este problema.}
+{9323002}{}{Todos as ratoupeiras foram exterminadas. Fale com o Warren.}
+{9323101}{}{Sucatao}
+{9323102}{}{Sinto cheiro de rato}
+
+# 9325 - Drifters quest
+{9325003}{}{Jack, o mercador da Cidade Velha do Ponto Central quer que voce resolva um problema com uns sem-teto que tomaram residencia em seu armazem.}
+{9325004}{}{Voce conseguiu convencer os sem-teto em deixar o armazem sem usar forca. Volte e fale com Jack.}
+{9325005}{}{Usando suas habilidades de negociacao supremas, voce conseguiu convencer a cada sem-teto a deixar o armazem, direto para o alem. Fale com o Jack.}
+{9325006}{}{Sucesso: Ja que os sem-teto se fora, Jack pode usar seu armazem livremente agora. Ele ate lhe pagou um extra por lidar com eles pacificamente.}
+{9325007}{}{Sucesso: Voce evitou todos os sem-teto e sua inclinacao de usar violencia sem hesitacao o impressionou. Bom trabalho, assassino de criancas.} 
+{9325101}{}{Ponto Central}
+{9325102}{}{Aqui nao!}
+
+# 9334 - BoS
+{9334001}{}{Voce se tornou um Iniciado da Irmandade do Aco. Fale com a Escriba Kendrick para receber suas ordens.}
+{9334002}{}{Suas primeiras ordens sao para viajar para Cidade do Abrigo e encontrar uma autoridade. Sua tarefa e buscar uma ideia da atitute da cidade com a Irmandade e convence-los a estabelecer relacoes oficiais com Colinas Perdidas.}
+{9334003}{}{Conselheiro McClure rejeitou a oferta da Irmandade e isso foi tudo o que voce conseguiu dele. Volte para Colinas Perdidas e reporte a missao.}
+{9334004}{}{Conselheiro McClure rejeitou a oferta e tudo o que voce conseguiu arrancar dele foi sua garantia que a Cidade do Abrigo, por ora, permanecera neutra. Volte para Colinas Perdidas e reporte a missao.}
+{9334005}{}{Embora o Conselheiro McClure rejeitou a oferta, voce conseguiu ter uma percepcao das politicas internas da Cidade do Abrigo. Reporte seus achados para a Escriba Kendrick.}
+{9334006}{}{Seus esforcos nao impressionam a Escriba Kendrick. Seria mais sabio nao repetir este erro novamente. Reporte a ela mais tarde.}
+{9334007}{}{Escriba Kendrick nao ficou satisfeita com seus achados, mas ao menos a Cidade do Abrigo tambem nao ira unir-se ao Enclave. Reporte a ela posteriormente para receber mais ordens.}
+{9334008}{}{Escriba Kendrick nao ficou feliz com seus achados mas sua informacao sobre a politica da cidade pode se tornar crucial no futuro. Reporte a ela posteriormente para receber novas ordens.}
+{9334009}{}{Voce recebeu suas novas ordens. Sua nova tarefa e recuperar partes da maquinaria de um Vertipassaro do Enclave que caiu no Ossuario, proximo de Adytum.}
+{9334010}{}{Voce conseguiu eliminar o grupo de resgate do Enclave e recuperar as partes de maquinaria do Vertipassaro. Volte para as Colinas Perdidas e reportem ao Escriba Kendrick.}
+{9334011}{}{Voce conseguiu eliminar o grupo de resgate do Enclave e recuperar as partes de maquinaria do Vertipassaro. Volte para as Colinas Perdidas e reportem ao Escriba Kendrick.}
+{9334012}{}{As partes que voce entregou foram seriamente danificados. Voce nao tem certeza se foi por conta do acidente do Vertipassaro, ou porque voce nao teve habilidades para extrair as partes com propriedade. Reporte a Escriba Kendrick para recever novas ordens.}
+{9334013}{}{As partes que voce entregou estavam quase intactos. A Escriba Kendrick pareceu bastante satisfeita. Reporte a ela para receber novas ordens.}
+{9334014}{}{Voce recebeu uma nova tarefa da Escriba Kendrick. Voce ira infiltrar em uma instalacao do Enclave em algum lugar ao sul de Sao Francisco. Encontre explosivos com gatilho a radio na caixa de suprimentos, arme-a, ajuste o timer e deixe a area o mais rapido que puder.}
+{9334015}{}{Voce encontrou os explosivos e os armou. Agora encontre o radio detonador.}
+{9334016}{}{Voce encontrou o detonador de radio e ajustou o tempo. Saia daqui rapido e volte as Colinas Perdidas.}
+{9334017}{}{Voce teve sucesso em sua missao e agora voce e considerado um membro juramentado da Irmandade. Reporte a Escriba Kendrick posteriomente para receber novas ordens.}
+{9334021}{}{Parece que voce demorou muito e nao pode encontrar o local de queda do Vertipassaro. Volte para Colinas Perdidas e fale com o Escriba Kenrick.}
+{9334022}{}{Parece que as coordenadas do posto avancado do Enclave se apagaram automaticamente do seu Pip-Boy. Obviamente, voce deveria ter ido logo apos as instrucoes da missao. e provavel que a Escriba Kendrick nao fique feliz com a noticia.}
+{9334101}{}{Colinas perdidas}
+{9334102}{}{Irmaos de guerra}
+
+# 9335 - Enclave
+{9335001}{}{}
+{9335002}{}{Sua primeira missao e para experimentar um lugar chamado Clarao. Voce precisa conectar seu Pip-Boy em um supercomputador e estabelecer conexao com a rede do Enclave.}
+{9335003}{}{Voce baixou os arquivos com sucesso, volte para o posto de gasolina e reporte ao Cris.}
+{9335004}{}{Voce recebeu a missao de assegurar o corpo do Escriba da Irmandade em uma aldeia indigena. Caso os aldeoes tornem-se hostis, esta liberado o uso de forca letal.}
+{9335005}{}{Os aldeoes o atacaram a vista entao voce foi forcado a pacificar a toda a aldeia. A area esta agora segura para que a equipe de limpeza pegue o corpo do Escriba. Volte para o posto de gasolina.}
+{9335006}{}{Sua nova tarefa e baixar informacoes do posto avancado da Irmandade recentemente abandonado. As torres defesa ainda estao ativas, entao proceda com cautela.}
+{9335007}{}{Voce baixou as informacoes com sucesso. Volte ao posto de gasolina e reporte ao Cris.}
+{9335008}{}{Voce obteve sucesso em suas missoes e foi considerado agora um membro do Enclave.}
+{9335021}{}{Enquanto esteve preocupado com outros assuntos, voce negigenciou sua missao do Enclave. Nao importa o quanto tente, voce nao pode se lembrar o local exato da aldeia. Volte e fale com o Cris e o pergunte sobre as coordenadas.}
+{9335022}{}{Enquanto esteve preocupado com outros assuntos, voce negigenciou sua missao do Enclave. As coordendas foram autodeletadas de seu Pip-Boy. Volte e fale com o Cris e o pergunte sobre as coordenadas.}
+{9335101}{}{Posto de gasolina}
+{9335102}{}{America, a Bela}
+
+# 9630 - Finders Keepers
+{9630001}{}{O Cavaleiro Mateus nao reconheceu o holodisco que voce encontrou nas dependencias da Irmandade e lhe desmentiu. Voce vai precisar encontrar alguma prova e faze-lo falar.}
+{9630002}{}{Bruno nao foi capaz de lhe ajudar mas ele lhe indicou de ir para o Computador Central da Cidade do Abrigo. Voce ira precisar de permissao para acessar o Abrigo.}
+{9630003}{}{Voce conseguiu ler apernas uma pequena porcao das informacoes do holodisco. Parece que e algum tipo de arquivo de comunicacao da Irmandade. Va para Colinas Perdidas.}
+{9630004}{}{O Cavaleiro Mateus pegou o holodisco mas ele nao lhe deu nenhuma explicacao ou recompensa.}
+{9630005}{}{O Cavaleiro Mateus pegou o holodisco e lhe encaminhou para a Escriba Kendrick.}
+{9630006}{}{A Escriba Kendrick ouviu o seu relatorio mas foi relutante em divulgar qualquer tipo de informacao. Voce deve esperar por novas ordens.}
+{9630007}{}{A Escriba Kendrick ouviu o seu relatorio mas foi relutante em divulgar qualquer tipo de informacao. Voce deve aguardar por novas ordens.}
+{9630008}{}{A Escriba Kendrick ouviu seu relatorio e confirmou suas suposicoes. Aguarde por novas ordens.}
+{9630101}{}{Colinas Perdidas}
+{9630102}{}{A busca dos Guardioes}

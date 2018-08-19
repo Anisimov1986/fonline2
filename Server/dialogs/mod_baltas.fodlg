@@ -1,0 +1,69 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+5 2020 #
+0 2030 @
+5 3000 None 0 #
+0 3010 &
+
+[engl]
+{100}{}{Balthas}
+{200}{}{You see: a heavy-set man wearing a leather apron.}
+{210}{}{The man smells of leather.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Hello, my name's Balthas. I run the Tannery here in Modoc. Can I help you?}
+{2010}{}{I'd like to see your wares.}
+{2020}{}{How's business, Balthas?}
+{2030}{}{Just looking, thanks.}
+{3000}{}{Oh you know. It's been pretty slow, recently. I mean, the customers are there, but it's hard keeping up with demand. Grisham's never got enough hides to spare for me.}
+{3010}{}{That sucks, man. I mean, I don't even have a job. Life is tough. Later.}
+
+[russ]
+{100}{}{Балтаз}
+{200}{}{Большой человек в кожаном фартуке .}
+{210}{}{Высокий, мускулистый человек, пахнет кожей.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Здравствуй, меня зовут Балтаз. Я содержу кожевенную мастерскую здесь, в Модоке. Могу ли я вам помочь?}
+{2010}{}{Я хотел бы увидеть ваши товары.}
+{2020}{}{Как идут дела, Балтаз?}
+{2030}{}{Просто смотрю, спасибо.}
+{3000}{}{Ой ну вы знаете. Все идет не очень хорошо последнее время. Трудно идти в ногу с спросом. Гришэм никогда не получает достаточно шкур, чтобы оставалось и мне.}
+{3010}{}{Это отстой, чувак. Я имею в виду, у меня даже нет работы. Жизнь сложная штука.}
+
+[pols]
+{100}{}{Balthas}
+{200}{}{Widzisz zwalistego mężczyznę, ubranego w skórzany fartuch.}
+{210}{}{Wysoki, muskularny mężczyzna, który pachnie i wygląda, jak wyprawiona skóra.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Witaj, nazywam się Balthas. Prowadzę w Modoc garbarnię. W czym mogę ci pomóc?}
+{2010}{}{Mogę zobaczyć, co masz na sprzedaż?}
+{2020}{}{Jak tam idzie w interesach, Balthas?}
+{2030}{}{Tylko się rozglądam, dzięki.}
+{3000}{}{No cóż, hmm. Wszystko idzie ostatnio bardzo dobrze. Trudno nadążyć za popytem. Grisham nigdy nie mam dość skór, a ja potrzebuję wciąż więcej i więcej.}
+{3010}{}{Paskudnie, stary. To znaczy, ja nawet nie mam pracy. Życie jest ciężkie. Do zobaczenia.}
+
+[ptbr]
+{100}{}{Baltazar}
+{200}{}{Um homem vestindo um avental de couro.}
+{210}{}{Um homem alto e musculoso que cheira a couro.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Opa, sou o Balta. Eu sou dono desse curtume aqui em Modoc. Quer alguma coisa?}
+{2010}{}{Eu gostaria de ver o que tem para vender.}
+{2020}{}{Como vai os negócios por aqui?}
+{2030}{}{Só dando uma olhada, @sex@|obrigado||obrigada|.}
+{3000}{}{Ah, cê sabe... tá bem devagar ultimamente. Digo, os clientes aparecem mas é difícil ter material para fazer todos os pedidos. Jorge nunca tem couro o suficiente para suprir.}
+{3010}{}{Que merda, cara. Digo, eu nem tenho trabalho. Não tá fácil pra ninguém. Até depois.}
+

@@ -1,0 +1,266 @@
+import bool AddWalkPlane( Critter& npc, uint priority, int identifier, uint identifierExt, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes"; 
+
+#define	DEFAULT_HOUSE_HOLD_TIME	(REAL_MONTH(1))
+#define FD_NO_MONEY                 ( 20 ) // Dialog number when not enought money
+#define FD_UNKNOWN_ERROR			( 4 )  // Dialog number when unknown error
+#define FD_BUY_SUCCESS			    ( 8 )  // Dialog number for success
+#define MOVE_TO_PLANE_IDENTIFIER	( 102 )
+#define WAIT_TO_PLANE_IDENTIFIER	( 103 )
+
+void dlg_AddOccupant(Critter& player, Critter@ npc, string@ playerName)
+{
+	if(!IS_DIALOG_SAY_MODE(playerName) || IS_DIALOG_END(playerName))
+        return;
+    
+    Critter@ occupant = GetPlayer(playerName);
+    if(!valid(occupant))
+    {
+        player.SayMsg(SAY_DIALOG, TEXTMSG_TEXT, 70305);
+        return;
+    }
+    House@ house = GetHouse(player);
+    if(!valid(house))
+		return;
+	
+	house.AddOccupant(occupant);
+	player.SayMsg(SAY_DIALOG, TEXTMSG_TEXT, 70306);
+}
+
+void dlg_RemoveOccupant(Critter& player, Critter@ npc, string@ playerName)
+{
+	if(!IS_DIALOG_SAY_MODE(playerName) || IS_DIALOG_END(playerName))
+        return;
+    
+    uint occupantId = GetPlayerId(playerName);
+    if(occupantId <= 0)
+    {
+        player.SayMsg(SAY_DIALOG, TEXTMSG_TEXT, 70305);
+        return;
+    }
+    House@ house = GetHouse(player);
+    if(!valid(house))
+		return;
+	
+	house.RemoveOccupant(occupantId);
+	player.SayMsg(SAY_DIALOG, TEXTMSG_TEXT, 70307);
+}
+
+bool d_OwnsHouse(Critter& master, Critter@ slave)
+{
+	return valid(GetHouse(master));
+}
+
+void dlg_LoadAvailableHouses(Critter& player, Critter@ npc, string@ lexems)
+{
+	if(IS_DIALOG_END(lexems) || IS_DIALOG_SAY_MODE(lexems))
+        return;
+	
+	Map@ map = player.GetMap();
+	if(!valid(map))
+		return;
+	
+	uint houseIndex = 0;
+	for (uint i = 0; i < houses.length(); i++)
+	{
+		House@ house = houses[i];
+		house.Load();
+		if(house.IsOnMap(map) && !house.HasOwner())
+		{
+			lexems += "$houseName" + houseIndex + houses[i].GetName();
+			houseIndex++;
+		}
+	}
+		
+	// TODO: to prevent situation when while choosing house some house is released,
+	// houses should be stored to some array when using index in r_SetOwner function
+}
+
+//Hub flats
+void dlg_LoadAvailableHousesFlats(Critter& player, Critter@ npc, string@ lexems)
+{
+	if(IS_DIALOG_END(lexems) || IS_DIALOG_SAY_MODE(lexems))
+        return;
+	
+	Map@ map = GetMapByPid(MAP_hub_flats,0); 
+	if(!valid(map))
+		return;
+	
+	uint houseIndex = 0;
+	for (uint i = 0; i < houses.length(); i++)
+	{
+		House@ house = houses[i];
+		house.Load();
+		if(house.IsOnMap(map) && !house.HasOwner())
+		{
+			lexems += "$houseName" + houseIndex + houses[i].GetName();
+			houseIndex++;
+		}
+	}
+		
+	// TODO: to prevent situation when while choosing house some house is released,
+	// houses should be stored to some array when using index in r_SetOwner function
+}
+
+
+uint r_SetOwner(Critter& player, Critter@ npc, int houseIndex)
+{
+	Map@ map = player.GetMap();
+	if(!valid(map))
+		return FD_UNKNOWN_ERROR;
+	
+	int index = 0;
+	for (uint i = 0; i < houses.length(); i++)
+	{
+		House@ house = houses[i];
+		house.Load();
+		if(house.IsOnMap(map) && !house.HasOwner())
+		{
+			if(index == houseIndex)
+			{ 
+				if( _CritCountItem( player, PID_BOTTLE_CAPS ) < house.GetPrice() )
+					return FD_NO_MONEY;
+				player.DeleteItem( PID_BOTTLE_CAPS, house.GetPrice() );
+				houses[i].SetOwner(player, __FullSecond + DEFAULT_HOUSE_HOLD_TIME);
+				return FD_BUY_SUCCESS;
+			}
+			else
+				index++;
+		}
+	}
+	return FD_UNKNOWN_ERROR;
+}
+
+//Flats
+uint r_SetOwnerFlats(Critter& player, Critter@ npc, int houseIndex)
+{
+	Map@ map = GetMapByPid(MAP_hub_flats,0); 
+	if(!valid(map))
+		return FD_UNKNOWN_ERROR;
+	
+	int index = 0;
+	for (uint i = 0; i < houses.length(); i++)
+	{
+		House@ house = houses[i];
+		house.Load();
+		if(house.IsOnMap(map) && !house.HasOwner())
+		{
+			if(index == houseIndex)
+			{ 
+				if( _CritCountItem( player, PID_BOTTLE_CAPS ) < house.GetPrice() )
+					return FD_NO_MONEY;
+				player.DeleteItem( PID_BOTTLE_CAPS, house.GetPrice() );
+				houses[i].SetOwner(player, __FullSecond + DEFAULT_HOUSE_HOLD_TIME);
+				return FD_BUY_SUCCESS;
+			}
+			else
+				index++;
+		}
+	}
+	return FD_UNKNOWN_ERROR;
+}
+
+bool d_IsAnyHouseAvailable(Critter& master, Critter@ slave)
+{
+	Map@ map = master.GetMap();
+	if(!valid(map))
+		return false;
+	return GetAvalilableHouseCount(map) > 0;
+}
+
+//Flats
+bool d_IsAnyHouseAvailableFlats(Critter& master, Critter@ slave)
+{
+	Map@ map = GetMapByPid(MAP_hub_flats,0); 
+	if(!valid(map))
+		return false;
+	return GetAvalilableHouseCount(map) > 0;
+}
+
+bool d_IsNoHouseAvailable(Critter& master, Critter@ slave)
+{
+	return !d_IsAnyHouseAvailable(master, slave);
+}
+
+bool d_IsHouseCountAvailable(Critter& master, Critter@ slave, int count)
+{
+	Map@ map = master.GetMap();
+	if(!valid(map))
+		return false;
+	
+	return int(GetAvalilableHouseCount(map)) >= count;
+}
+
+//Flats
+bool d_IsHouseCountAvailableFlats(Critter& master, Critter@ slave, int count)
+{
+	Map@ map = GetMapByPid(MAP_hub_flats,0);
+	if(!valid(map))
+		return false;
+	
+	return int(GetAvalilableHouseCount(map)) >= count;
+}
+
+void r_PresentHouses(Critter& master, Critter@ slave)
+{
+	Map@ map = master.GetMap();
+	if(!valid(map))
+		return;
+		
+	Critter@ presenter = GetHousePresenter(map);
+	if(!valid(presenter))
+		return;
+	
+	PresenterMoveNextToHouse(presenter, -1);
+}
+
+int __PlaneEnd(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+{
+	if (!valid(plane))
+	{
+		return PLANE_RUN_GLOBAL;
+	}
+	
+	int houseIdx = plane.IdentifierExt;
+	
+	if (plane.Identifier == MOVE_TO_PLANE_IDENTIFIER)
+	{
+		if(houses[houseIdx].HasOwner())
+		{
+			critter.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70130, "$houseOwner" + houses[houseIdx].GetOwnerName());
+		}
+		else
+		{
+			critter.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70129, "$houseName" + houses[houseIdx].GetName());
+		}
+		
+		NpcPlane@ waitPlane = CreatePlane();
+		waitPlane.Type = AI_PLANE_MISC;
+		waitPlane.Identifier = WAIT_TO_PLANE_IDENTIFIER;
+		waitPlane.IdentifierExt = houseIdx;
+		waitPlane.Priority = AI_PLANE_MISC_PRIORITY;
+		waitPlane.Misc_WaitSecond = __FullSecond + REAL_SECOND(5);
+		critter.AddPlane(waitPlane);
+	}
+	
+	if (plane.Identifier == WAIT_TO_PLANE_IDENTIFIER)
+	{
+		PresenterMoveNextToHouse(critter, houseIdx);
+	}
+	
+	return PLANE_RUN_GLOBAL;
+}
+
+void PresenterMoveNextToHouse(Critter& critter, int houseIdx)
+{
+	do
+	{
+		houseIdx ++;
+	}
+	while (uint(houseIdx) < houses.length() && !houses[houseIdx].IsOnMap(critter.GetMap()));
+	
+	if (uint(houseIdx) < houses.length())
+	{	
+		AddWalkPlane(critter, AI_PLANE_WALK_PRIORITY, MOVE_TO_PLANE_IDENTIFIER, houseIdx, houses[houseIdx].GetDoorX(), houses[houseIdx].GetDoorY(), 
+				GetDirection(critter.HexX, critter.HexY, houses[houseIdx].GetDoorX(), houses[houseIdx].GetDoorY()), true, 1);
+	}
+}

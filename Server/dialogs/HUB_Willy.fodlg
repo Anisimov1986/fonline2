@@ -1,0 +1,234 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+6 2030 D _param p SK_OUTDOORSMAN { 99 #
+0 2040 @
+3 3000 None 0 #
+2 3010 @
+4 4000 None 0 #
+2 4010 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+2 6010 #
+0 6020 @
+7 7000 None 0 #
+9 7010 #
+8 7020 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+11 9010 R _var p q_far-go-traders_willy + 1 #
+0 9020 #
+10 9030 @
+10 10000 None 0 #
+11 10010 R _var p q_far-go-traders_willy + 1 #
+0 10020 @
+11 11000 None 0 #
+12 11010 #
+0 11020 @
+12 12000 None 0 #
+0 12010 @
+13 13000 None 0 #
+14 13010 D _var p q_far-go-traders_willy = 2 R _script economy_dialogs@r_GiveCaps 1 1000 R _param p ST_EXPERIENCE + 5000 R _var p q_far-go-traders_willy + 1 #
+14 13020 D _var p q_far-go-traders_willy = 3 R _script economy_dialogs@r_GiveCaps 1 2000 R _param p ST_EXPERIENCE + 10000 R _var p q_far-go-traders_willy + 1 #
+14 13030 D _var p q_far-go-traders_willy = 4 R _script economy_dialogs@r_GiveCaps 1 3000 R _param p ST_EXPERIENCE + 15000 R _var p q_far-go-traders_willy + 1 #
+14 13040 D _var p q_far-go-traders_willy = 5 R _script economy_dialogs@r_GiveCaps 1 4000 R _param p ST_EXPERIENCE + 20000 R _var p q_far-go-traders_willy + 1 #
+14 13050 D _var p q_far-go-traders_willy = 6 R _script economy_dialogs@r_GiveCaps 1 5000 R _param p ST_EXPERIENCE + 30000 R _var p q_far-go-traders_willy + 1 #
+0 13060 @
+14 14000 None 0 #
+0 14010 &
+
+[engl]
+{100}{}{Willy}
+{200}{}{You see: Willy, a Far Go Traders caravan.}
+{1000}{}{Predialogue installations}
+{1010}{}{Wow, thanks, Willy. I can afford myself a new pair of shoes now, I need them. Bye.}
+{2000}{}{Howdy ho, stranger! Name's Willy, I run the place people call "Far Go Traders". We go far and trade there, right?}
+{2010}{}{I'd like to trade here.}
+{2020}{}{Thanks, captain Obvious. Here, have this rock.}
+{2030}{}{Do you have a job for me to do? I need some caps.}
+{2040}{}{I must go now. Goodbye.}
+{3000}{}{Hold on, stranger. I said we trade there, that means far away from here. Plus we prefer wholesale barters rather than small scale ones. This means I'm not interested with few rusted guns and old gecko pelt you have to offer.}
+{3010}{}{Right, my mistake. Let me ask something else.}
+{4000}{}{What, another rock? What can I do with all of them?}
+{4010}{}{Dunno, rock it like it's hot. Tell me something else.}
+{5000}{}{Oh, Mr Brick, right. Here, here, no rush, hush-hush, he he. [he smiles nervously] Say "Hello" to Mr Brick from me.}
+{5010}{}{Sure I'll do. Bye.}
+{6000}{}{I might have something to do, but not for you yet. I need someone able to travel far away, survive such trip and come back.}
+{6010}{}{Well that sucks! Maybe I can ask you something else?}
+{6020}{}{I guess I can't handle myself out there in the wasteland, oh well, I'll just take myself into the wasteland now. Bye!}
+{7000}{}{Yes, there is a task waiting for a @sex@|man||girl| like you. See, we have to know if it's worth to send our caravans here and there and, even more important, what goods might be expected in the destination city.}
+{7010}{}{I understand, but I'm not a professional salesman. What is it for me?}
+{7020}{}{One people... to move forward to our destiny. Destiny.}
+{8000}{}{I'm sorry, what?}
+{8010}{}{Just thinking out loud. Please continue, what is it for me?}
+{9000}{}{Well, we need someone not from our company to visit few northern towns, talk to their authorities, whatever they might be, and check if they are interested in trading with us. You're up for it?}
+{9010}{}{Yes sir, ready to rock'n'roll}
+{9020}{}{Nah, I've heard north is dangerous. They sleep in caves, eat babies and sacrifice puppies there. I'm leaving, bye.}
+{9030}{}{Why don't you send someone from your company?}
+{10000}{}{They will be more honest with someone not involved directly into business. And speaking about honest, we don't risk much sending over there someone we don't even know, without any worthy stuff of ours. So, what's it gonna be?}
+{10010}{}{Yes sir, ready to rock'n'roll.}
+{10020}{}{Nah, I've heard north is dangerous. They sleep in caves, eat babies and sacrifice puppies there. I'm leaving, bye.}
+{11000}{}{Great. I expect you to visit Gecko, Modoc, Redding, Den and Klamath. Order doesn't matter really, just find someone from authorities and ask what they need. Actually you don't have to go to all of these places, however the more cities you visit, the higher my gratitude will be. Clear?}
+{11010}{}{Clear, anything else I need to know?}
+{11020}{}{Clear. I'll go now, bye.}
+{12000}{}{Since you decide to come here with results of your journey, be aware that I won't give you second chance. They might get suspicious seeing the same fellow in their town, asking questions and what-not. }
+{12010}{}{Fair enough, will be back.}
+{13000}{}{Excellent! So what did they say?}
+{13010}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13020}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13030}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13040}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13050}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13060}{}{Actually I'll be right back. See ya.}
+{14000}{}{Woohoo, seems like we're gonna organize some serious travelling soon! Great job, stranger, here, have this rocks ... I mean caps. }
+{14010}{}{Wow, thanks, Willy. I can afford myself a new pair of shoes now, I need them. Bye.}
+
+[russ]
+{100}{}{Вилли}
+{200}{}{Вы видите: Вилли, один из каравана "Far Go Traders".}
+{1000}{}{Predialogue installations}
+{1010}{}{Wow, thanks, Willy. I can afford myself a new pair of shoes now, I need them. Bye.}
+{2000}{}{Привет, незнакомец! Мое имя Вилли, я содержу место которое люди называют "Far Go Traders". Мы идем далеко и торгуем там, понял?}
+{2010}{}{Я хотел бы торговать здесь.}
+{2020}{}{Спасибо, капитан очевидность. Вот, возьми этот камень.}
+{2030}{}{У вас есть работа для меня? Мне нужны деньги.}
+{2040}{}{Я должен идти. До свидания.}
+{3000}{}{Подожди, незнакомец. Я сказал что мы торгуем там, далеко от сюда. Плюс мы предпочитаем оптовые сделки, а не всякую мелочь. Это означает, что мне не интересна та шкурка гекко и тот ржавый пистолет который ты мне предложишь.}
+{3010}{}{Поятно. У меня есть вопрос.}
+{4000}{}{Что, еще камень? Что я буду делать со всеми этими камнями?}
+{4010}{}{Понятия не имею. Скажи мне лучше вот что...}
+{5000}{}{Oh, Mr Brick, right. Here, here, no rush, hush-hush, he he. [he smiles nervously] Say "Hello" to Mr Brick from me.}
+{5010}{}{Sure I'll do. Bye.}
+{6000}{}{Возможно скоро мне понадобится человек который будет способен выживать в пустоши и выполнять мои поручения. Но не сегодня.}
+{6010}{}{Это отстой! Я пожалуй спрошу кое-что еще.}
+{6020}{}{Понятно, может быть навещу тебя позже. }
+{7000}{}{Yes, there is a task waiting for a @sex@|man||girl| like you. See, we have to know if it's worth to send our caravans here and there and, even more important, what goods might be expected in the destination city.}
+{7010}{}{I understand, but I'm not a professional salesman. What is it for me?}
+{7020}{}{One people... to move forward to our destiny. Destiny.}
+{8000}{}{I'm sorry, what?}
+{8010}{}{Just thinking out loud. Please continue, what is it for me?}
+{9000}{}{Well, we need someone not from our company to visit few northern towns, talk to their authorities, whatever they might be, and check if they are interested in trading with us. You're up for it?}
+{9010}{}{Yes sir, ready to rock'n'roll}
+{9020}{}{Nah, I've heard north is dangerous. They sleep in caves, eat babies and sacrifice puppies there. I'm leaving, bye.}
+{9030}{}{Why don't you send someone from your company?}
+{10000}{}{They will be more honest with someone not involved directly into business. And speaking about honest, we don't risk much sending over there someone we don't even know, without any worthy stuff of ours. So, what's it gonna be?}
+{10010}{}{Yes sir, ready to rock'n'roll.}
+{10020}{}{Nah, I've heard north is dangerous. They sleep in caves, eat babies and sacrifice puppies there. I'm leaving, bye.}
+{11000}{}{Great. I expect you to visit Gecko, Modoc, Redding, Den and Klamath. Order doesn't matter really, just find someone from authorities and ask what they need. Actually you don't have to go to all of these places, however the more cities you visit, the higher my gratitude will be. Clear?}
+{11010}{}{Clear, anything else I need to know?}
+{11020}{}{Clear. I'll go now, bye.}
+{12000}{}{Since you decide to come here with results of your journey, be aware that I won't give you second chance. They might get suspicious seeing the same fellow in their town, asking questions and what-not. }
+{12010}{}{Fair enough, will be back.}
+{13000}{}{Excellent! So what did they say?}
+{13010}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13020}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13030}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13040}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13050}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13060}{}{Actually I'll be right back. See ya.}
+{14000}{}{Woohoo, seems like we're gonna organize some serious travelling soon! Great job, stranger, here, have this rocks ... I mean caps. }
+{14010}{}{Wow, thanks, Willy. I can afford myself a new pair of shoes now, I need them. Bye.}
+
+[pols]
+{100}{}{Willy}
+{200}{}{Widzisz Willy'ego, z Wszędobylskiej Karawany.}
+{1000}{}{Predialogue installations}
+{1010}{}{Łał, dzięki, Willy. Stać mnie teraz na nową parę butów, przydałyby mi się. Do widzenia.}
+{2000}{}{Siemanderko, @sex@|nieznajomy||nieznajoma|! Jestem Willy, zarządzam tym miejscem które ludzie nazywają "Wszędobylską Karawaną". Nasze karawany jeżdżą wszędzie, więc ma to sens, co nie?}
+{2010}{}{@sex@|Chciałbym||Chciałabym| tu pohandlować.}
+{2020}{}{Dzięki, kapitanie Oczywisty. Proszę, w ramach podziękowania - oto bezcenny, argentyński kaktus.}
+{2030}{}{Masz dla mnie jakąś robotę? Potrzebuję trochę kapsli.}
+{2040}{}{Muszę już iść. Do widzenia.}
+{3000}{}{Poczekaj, hej hej. Jesteśmy karawaną, czyli tutaj nie handlujemy - jeździmy po świecie i robimy interesy daleko stąd. Do tego, preferujemy raczej hurtowe transakcje - więc nie jestem raczej zainteresowany jakimiś kilkoma zardzewiałymi pukawkami czy starą skórką gekona.}
+{3010}{}{Racja, mój błąd. Pozwól mi spytać o coś innego.}
+{4000}{}{A na chuj mnie ten kaktus?}
+{4010}{}{Kurde, nie wiem. Opowiedz mi o czymś innym.}
+{5000}{}{Och, pan Brick, racja. Proszę, proszę, tutaj, spokojnie, cii, he he. [Uśmiecha się nerwowo.] Pozdrów ode mnie pana Bricka.}
+{5010}{}{Tak, jasne, pozdrowię. Do widzenia.}
+{6000}{}{Miałbym pewną sprawę do zlecenia, ale jeszcze nie dla ciebie. Potrzebuję kogoś kto będzie w stanie wyruszyć w daleką podróż, przeżyć i wrócić tutaj.}
+{6010}{}{Tak, naprawdę, nie jestem w stanie poradzić sobie na Pustkowiach. Właściwie to muszę tam teraz iść, do widzenia.}
+{6020}{}{Ach, kijowo! Może mogę zrobić dla ciebie coś innego?}
+{7000}{}{Tak, jest zadanie czekające na @sex@|faceta, takiego||dziewczynę, taką| jak ty. Rozumiesz, musimy wiedzieć, czy i gdzie opłaca się wysyłać nasze karawany i, co jeszcze ważniejsze, jakie towary można z zyskiem sprzedać w mieście przeznaczenia.}
+{7010}{}{Rozumiem, ale nie jestem profesjonalnym sprzedawcą. Na czym ma polegać moja rola?}
+{7020}{}{...by wyruszyć ku naszemu przeznaczeniu. Przeznaczeniu.}
+{8000}{}{Przepraszam, co?}
+{8010}{}{Tylko głośno @sex@|myślałem||myślałam|. Proszę, kontynuuj. Na czym ma polegać moja rola?}
+{9000}{}{Cóż, potrzebujemy kogoś spoza naszej firmy, aby odwiedził kilka północnych miast, porozmawiał z ich przywódcami - kimkolwiek oni mogą być - i sprawdził, czy są zainteresowani handlem z nami. Piszesz się na to?}
+{9010}{}{Tak jest, szefie, melduję się w gotowości.}
+{9020}{}{Nieee, @sex@|słyszałem||słyszałam| że na północy jest niebezpiecznie. Ludzie śpią w jaskiniach, jedzą niemowlęta i składają w ofierze ohydnym bożkom małe, słodkie pieski. Wychodzę, do widzenia.}
+{9030}{}{Dlaczego nie wyślesz tam kogoś ze swojej firmy?}
+{10000}{}{Będą bardziej szczerze rozmawiać z kimś nie powiązanym bezpośrednio z naszą firmą. A jak już mówimy o szczerości - to nie ryzykujemy wiele wysyłając tam kogoś, kogo nawet nie znamy, bez żadnego cennego sprzętu będącego naszą własnością. To jak będzie?}
+{10010}{}{Tak jest, szefie, melduję się w gotowości.}
+{10020}{}{Nieee, @sex@|słyszałem||słyszałam| że na północy jest niebezpiecznie. Ludzie śpią w jaskiniach, jedzą niemowlęta i składają w ofierze ohydnym bożkom małe, słodkie pieski. Wychodzę, do widzenia.}
+{11000}{}{Wspaniale. Oczekuję, że odwiedzisz Gecko, Modoc, Redding, Norę i Klamath. Kolejność nie ma znaczenia, tylko znajdź kogoś zarządzającego miastem i spytaj się, czego potrzebują. Właściwie nie musisz jechać do wszystkich tych miejsc, ale im więcej odwiedzisz, tym większa będzie moja wdzięczność. Jasne?}
+{11010}{}{Jasne, jeszcze coś co @sex@|powinienem||powinnam| wiedzieć?}
+{11020}{}{Jasne. Już sobie pójdę, do widzenia.}
+{12000}{}{Jeśli zdecydujesz się wrócić do mnie z rezultatem swojej podróży, pamiętaj, że nie dam ci już drugiej szansy. Mogą nabrać podejrzeń, widząc tą samą osobę w ich mieście, zadającą pytania i tak dalej.}
+{12010}{}{Rozumiem, wrócę niebawem.}
+{13000}{}{Wspaniale! A więc, co powiedzieli?}
+{13010}{}{Cóż... [Powtarzanie tego wszystkiego zajmuje chwilę, to *była* cholernie długa podróż.] ...więc generalnie, wygląda to zachęcająco.}
+{13020}{}{Cóż... [Powtarzanie tego wszystkiego zajmuje chwilę, to *była* cholernie długa podróż.] ...więc generalnie, wygląda to zachęcająco.}
+{13030}{}{Cóż... [Powtarzanie tego wszystkiego zajmuje chwilę, to *była* cholernie długa podróż.] ...więc generalnie, wygląda to zachęcająco.}
+{13040}{}{Cóż... [Powtarzanie tego wszystkiego zajmuje chwilę, to *była* cholernie długa podróż.] ...więc generalnie, wygląda to zachęcająco.}
+{13050}{}{Cóż... [Powtarzanie tego wszystkiego zajmuje chwilę, to *była* cholernie długa podróż.] ...więc generalnie, wygląda to zachęcająco.}
+{13060}{}{Właściwie, to zaraz wracam. Do zobaczenia.}
+{14000}{}{Ohohoho, wygląda na to że niedługo trzeba będzie zorganizować jakąś konkretną wyprawę... Świetna robota, @sex@|nieznajomy||nieznajoma|, proszę, oto bezcenny argentyński... ach, to znaczy, oto kapsle.}
+{14010}{}{Łał, dzięki, Willy. Stać mnie teraz na nową parę butów, przydadzą się od tego całego łażenia. Do widzenia!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Wow, thanks, Willy. I can afford myself a new pair of shoes now, I need them. Bye.}
+{2000}{}{Howdy ho, stranger! Name's Willy, I run the place people call "Far Go Traders". We go far and trade there, right?}
+{2010}{}{I'd like to trade here.}
+{2020}{}{Thanks, captain Obvious. Here, have this rock.}
+{2030}{}{Do you have a job for me to do? I need some caps.}
+{2040}{}{I must go now. Goodbye.}
+{3000}{}{Hold on, stranger. I said we trade there, that means far away from here. Plus we prefer wholesale barters rather than small scale ones. This means I'm not interested with few rusted guns and old gecko pelt you have to offer.}
+{3010}{}{Right, my mistake. Let me ask something else.}
+{4000}{}{What, another rock? What can I do with all of them?}
+{4010}{}{Dunno, rock it like it's hot. Tell me something else.}
+{5000}{}{Oh, Mr Brick, right. Here, here, no rush, hush-hush, he he. [he smiles nervously] Say "Hello" to Mr Brick from me.}
+{5010}{}{Sure I'll do. Bye.}
+{6000}{}{I might have something to do, but not for you yet. I need someone able to travel far away, survive such trip and come back.}
+{6010}{}{Well that sucks! Maybe I can ask you something else?}
+{6020}{}{I guess I can't handle myself out there in the wasteland, oh well, I'll just take myself into the wasteland now. Bye!}
+{7000}{}{Yes, there is a task waiting for a @sex@|man||girl| like you. See, we have to know if it's worth to send our caravans here and there and, even more important, what goods might be expected in the destination city.}
+{7010}{}{I understand, but I'm not a professional salesman. What is it for me?}
+{7020}{}{One people... to move forward to our destiny. Destiny.}
+{8000}{}{I'm sorry, what?}
+{8010}{}{Just thinking out loud. Please continue, what is it for me?}
+{9000}{}{Well, we need someone not from our company to visit few northern towns, talk to their authorities, whatever they might be, and check if they are interested in trading with us. You're up for it?}
+{9010}{}{Yes sir, ready to rock'n'roll}
+{9020}{}{Nah, I've heard north is dangerous. They sleep in caves, eat babies and sacrifice puppies there. I'm leaving, bye.}
+{9030}{}{Why don't you send someone from your company?}
+{10000}{}{They will be more honest with someone not involved directly into business. And speaking about honest, we don't risk much sending over there someone we don't even know, without any worthy stuff of ours. So, what's it gonna be?}
+{10010}{}{Yes sir, ready to rock'n'roll.}
+{10020}{}{Nah, I've heard north is dangerous. They sleep in caves, eat babies and sacrifice puppies there. I'm leaving, bye.}
+{11000}{}{Great. I expect you to visit Gecko, Modoc, Redding, Den and Klamath. Order doesn't matter really, just find someone from authorities and ask what they need. Actually you don't have to go to all of these places, however the more cities you visit, the higher my gratitude will be. Clear?}
+{11010}{}{Clear, anything else I need to know?}
+{11020}{}{Clear. I'll go now, bye.}
+{12000}{}{Since you decide to come here with results of your journey, be aware that I won't give you second chance. They might get suspicious seeing the same fellow in their town, asking questions and what-not. }
+{12010}{}{Fair enough, will be back.}
+{13000}{}{Excellent! So what did they say?}
+{13010}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13020}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13030}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13040}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13050}{}{Well ... [repeating him all this stuff takes a longer while, that *was* a goddamn long trip] ... so basically, this looks promising.}
+{13060}{}{Actually I'll be right back. See ya.}
+{14000}{}{Woohoo, seems like we're gonna organize some serious travelling soon! Great job, stranger, here, have this rocks ... I mean caps. }
+{14010}{}{Wow, thanks, Willy. I can afford myself a new pair of shoes now, I need them. Bye.}
+

@@ -1,0 +1,159 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+8 1020 D _var n name_mem_npc_player = 1 @
+3 2000 None 0 #
+11 2010 #
+65506 2020 #
+6 2030 #
+7 2040 #
+0 2050 @
+6 3000 None 0 #
+10 3010 @
+7 4000 None 0 #
+11 4010 #
+0 4020 @
+8 5000 None 0 #
+11 5010 #
+65506 5020 #
+7 5030 #
+6 5040 #
+0 5050 @
+10 6000 None 0 #
+8 6010 #
+0 6020 @
+11 7000 None 0 #
+8 7010 #
+0 7020 &
+
+[engl]
+{100}{}{Bill}
+{200}{}{You see: Bill.}
+{210}{}{Judging from his smell, you suspect that he's been tending to the brahmin recently.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Howdy, pard. What can I do for you?}
+{2010}{}{I'm looking for a job.}
+{2020}{}{Wanna trade?}
+{2030}{}{What can you tell me about Chad?}
+{2040}{}{Who are you?}
+{2050}{}{Nothing, bye.}
+{3000}{}{You got questions about Chad? Like what?}
+{3010}{}{Do you trust him?}
+{4000}{}{Me? I'm Bill. I am, as the man said, the Bill you have to pay. Though technically, I suppose, sometimes I pay you. I'm the caravan outfitter for this town. I plan the caravan routes and arrange for provisioning.}
+{4010}{}{Hiring for jobs? Could I get in on that?}
+{4020}{}{Interesting, bye.}
+{5000}{}{What do you want?}
+{5010}{}{I'm looking for a job.}
+{5020}{}{I need to buy stuff.}
+{5030}{}{Who are you?}
+{5040}{}{What can you tell me about Chad?}
+{5050}{}{Nothing, bye.}
+{6000}{}{Do I trust him? Maybe... to an extent. I trust him to run my caravans for me. He might be a bit shady fella, but ‘til he gives me a reason not to trust him, I'll keep on like I have.}
+{6010}{}{I have some more questions.}
+{6020}{}{Great. Thanks for your time.}
+{7000}{}{You want a job? Well, we ordinarily have two choices for your lot. Shoveling brahmin dung for a day, or escorting caravans. We got caravans to Gecko, the New California Republic, and Vault City. But at the moment, we're full up. Sorry pal.}
+{7010}{}{I had some more questions.}
+{7020}{}{Bye!}
+
+[russ]
+{100}{}{Билл}
+{200}{}{Вы видите мужчину среднего роста в пыльной одежде.}
+{210}{}{Вы видите мужчину среднего роста в пыльной одежде. От него воняет так, как будто он круглый день возится с браминами.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Тупой}
+{1020}{}{Не знаком}
+{2000}{}{Привет, @sex@|прохожий.||незнакомка.| Что я могу для тебя сделать?}
+{2010}{}{Я ищу работу.}
+{2020}{}{Я хочу купить кое-что.}
+{2030}{}{Что ты можешь рассказать мне о Чеде?}
+{2040}{}{Кто вы?}
+{2050}{}{Мне пора.}
+{3000}{}{Ты хочешь спросить о Чеде? Что конкретно?}
+{3010}{}{Вы ему доверяете?}
+{4000}{}{Я? Я Билл. Я снабженец караванов этого города. Я планирую караванные маршруты и комплектую караваны товаром. Я нанимаю людей на работу, и еще я отвечаю за патрули Единства.}
+{4010}{}{Работу? Какую работу?}
+{4020}{}{Спасибо. Пока.}
+{5000}{}{Что вам надо?}
+{5010}{}{Я ищу работу.}
+{5020}{}{Я хочу купить кое-что.}
+{5030}{}{Кто вы?}
+{5040}{}{Что ты можешь рассказать мне о Чеде?}
+{5050}{}{Ничего. Пока}
+{6000}{}{Доверяю ли я ему? Очевидно, да... до определенной степени. Я доверяю ему управлять моими караванами. Да, он немного подозрительный, но пока он ведет себя как положено, мне не на что жаловаться.}
+{6010}{}{Я хочу еще кое-что.@@У меня есть еще вопросы.}
+{6020}{}{Замечательно. Спасибо за разговор.}
+{7000}{}{Тебе нужна работа? Ничем не могу помочь, может в другой раз.}
+{7010}{}{Я хочу еще кое-что.@@У меня есть еще вопросы.}
+{7020}{}{Спасибо.}
+
+[pols]
+{100}{}{Bill}
+{200}{}{Widzisz średniego wzrostu mężczyznę ubranego w przykurzone ubranie.}
+{210}{}{Widzisz średniego wzrostu mężczyznę w przykurzonym ubraniu. Pachnie tak, jakby doglądał braminów.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Czołem, partnerze. Co mogę dla ciebie zrobić?}
+{2010}{}{Szukam pracy.}
+{2020}{}{Chcę coś kupić.}
+{2030}{}{Co możesz mi powiedzieć o Chadzie?}
+{2040}{}{Kim jesteś?}
+{2050}{}{Nic, na razie.}
+{3000}{}{Masz jakieś pytania o Chada? Na przykład?}
+{3010}{}{Czy mu wierzysz?}
+{4000}{}{Ja? Jestem Bill. Jestem, jak to mówią, Bill, któremu się płaci. Pomimo że formalnie rzecz biorąc, to czasem i ja płacę tobie. Jestem zaopatrzeniowcem karawany w tym mieście. Planuję trasy karawan i załatwiam zaopatrzenie. Zatrudniam ludzi do roboty, stoję też na czele Patroli Jedności.}
+{4010}{}{Roboty? Dokładnie jakiej?}
+{4020}{}{Ciekawe. Na razie!}
+{5000}{}{Czego chcesz?}
+{5010}{}{Szukam pracy.}
+{5020}{}{Chcę coś kupić.}
+{5030}{}{Kim jesteś?}
+{5040}{}{Co możesz mi powiedzieć o Chadzie}
+{5050}{}{Nic, na razie.}
+{6000}{}{Czy mu wierzę? Oczywiście... do pewnego stopnia. Zawierzam mu prowadzenie dla mnie karawan. Może być nieco podejrzany, ale dopóki nie da mi powodu, abym mu nie ufał, sprawy zostaną na swoim miejscu.}
+{6010}{}{Mam kilka innych pytań.}
+{6020}{}{Wspaniale. Dzięki za twój czas.}
+{7000}{}{Chcesz pracy? Cóż, masz do wyboru: przerzucanie braminiego łajna lub eskortowanie jednej z naszych karawan. Obsługujemy trasy do Gecko, Shady Sands i Kryptopolis. W tym momencie jednak, przykro mi - ale mamy komplet.}
+{7010}{}{Mam kilka innych pytań.}
+{7020}{}{Na razie!}
+
+[ptbr]
+{100}{}{André}
+{200}{}{Você vê o André.}
+{210}{}{Julgando pelo cheiro, você suspeita que ele esteve cuidando de brahmins recentemente.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Diga lá chapa.}
+{2010}{}{Tem emprego?}
+{2020}{}{Quer fazer negócio?}
+{2030}{}{O que que tu acha do Chad?}
+{2040}{}{Quem é tu?}
+{2050}{}{Nada, tchau.}
+{3000}{}{O que tem o Chad?}
+{3010}{}{Confia nele?}
+{4000}{}{Eu? Meu nome é André. Eu organizo as caravanas nesta cidade.}
+{4010}{}{Tá contratando?}
+{4020}{}{Interessante. Valeu.}
+{5000}{}{O que é?}
+{5010}{}{Tô procurando trabalho.}
+{5020}{}{Preciso comprar coisas.}
+{5030}{}{Quem é?}
+{5040}{}{O que que tu acha do Chad?}
+{5050}{}{Nada. Valeu aí.}
+{6000}{}{Se eu confio nele? Talvez... até certo ponto. Eu confio nele para liderar caravanas. Ele pode ser um pouco reservado mas enquanto ele der razão para confiar, eu vou imaginar que confio sim.}
+{6010}{}{Tenho outras perguntas.}
+{6020}{}{Ótimo. Obrigado por seu tempo.}
+{7000}{}{Você quer um trabalho? Certo. A gente tem dois tipos de trabalho para seu tipo. Limpar o curral dos brahmin o dia todo, ou escoltando caravanas. Temos caravanas para Calango, a República da Nova Califórnia e a Cidade do Abrigo. Mas a gente tá com o máximo de gente lotada nas caravanas.}
+{7010}{}{Queria perguntar outra coisa.}
+{7020}{}{Valeu.}
+

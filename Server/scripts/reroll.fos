@@ -1,0 +1,50 @@
+#include "_macros.fos"
+#include "logging_h.fos"
+#include "utils_h.fos"
+
+
+void TryReroll(Critter& cr)
+{
+    bool toReroll=false;
+
+    if (cr.Param[FREE_REROLL]>0)
+        toReroll=true;
+    else if (cr.Param[ST_LEVEL]>=24 && cr.Param[ST_EXPERIENCE]>=276000)
+    {
+        uint cost = MIN(4851000,cr.Param[ST_EXPERIENCE]) / 10;// - MIN(20000, cr.Param[ST_KARMA] * 20 );
+        if (cr.CountItem(PID_BOTTLE_CAPS)+1000>=cost)
+            toReroll=true;
+    }
+
+    if( toReroll )
+    {
+        Map@ map = cr.GetMap();
+        if( valid( map ) )
+        {
+            FLog( LOG_HINT_BOOK, "Deleting char id(" + cr.Id + ") name(" + cr.Name + ") on map " + map.Id + " and making reroll disk with exp: " + cr.StatBase[ ST_EXPERIENCE ] + "." );
+            Item@ item = map.AddItem( cr.HexX, cr.HexY, PID_FALLOUT_2_HINTBOOK, 1 );
+            if( valid( item ) )
+            {
+                item.Val2 = cr.StatBase[ ST_EXPERIENCE ];
+                FLog( LOG_HINT_BOOK, "Char id(" + cr.Id + ") name(" + cr.Name + ") hintbook spawned." );
+            }
+            else
+                FLog( LOG_HINT_BOOK, "Char id(" + cr.Id + ") name(" + cr.Name + ") cant spawn hintbook." );
+            for( uint i = IMPLANTS_START; i < IMPLANTS_END + 1; i++ )
+            {
+                if( cr.Perk[ i ] != 0 )
+                {
+                    uint implant = i - IMPLANTS_START + 9800;
+                    FLog( LOG_HINT_BOOK, "Deleting char id(" + cr.Id + ") name(" + cr.Name + ") on map " + map.Id + " and spawning implant id " + implant + "." );
+                    map.AddItem( cr.HexX, cr.HexY, implant, 1 );
+                    break;
+                }
+            }
+
+        }
+        else
+            FLog( LOG_HINT_BOOK, "Deleting char id(" + cr.Id + ") name(" + cr.Name + ") on WM, reroll failed. Exp: " + cr.StatBase[ ST_EXPERIENCE ] + "." );
+    }
+    else
+        FLog( LOG_REG, "Deleted player: " + cr.Name + " (" + cr.Id + ") from ip: " + GetIP( cr.GetIp() ) + " Exp: " + cr.StatBase[ ST_EXPERIENCE ] + ". Caps: "+cr.CountItem(PID_BOTTLE_CAPS) );
+}

@@ -1,0 +1,6 @@
+Inclusive is the time spent in the function and its callees, exclusive is the time spent in
+the function itself. So all of exclusive should sum up to 100% and inclusive should decrease
+as you descend the call tree.
+More precisely:
+ inclusive is % of times when the function was in the callstack when a sample was taken
+ exclusive is % of times when the function was on top of the callstack.

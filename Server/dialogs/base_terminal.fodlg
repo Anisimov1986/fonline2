@@ -1,0 +1,111 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _script base@d_CheckTerminalLock 1 0 @
+2 2000 None 0 #
+10 2010 R _script dialog@Type 0  #
+20 2020 R _script dialog@Type 0  #
+0 2030 @
+3 3000 None 0 @
+10 4000 None 0 #
+11 4010 R _script dialog@Type 0  R _script base@r_BaseToEnclave 1 0 #
+0 4020 R _script dialog@Type 0  @
+11 5000 None 0 #
+0 5010 R _script dialog@Type 0  @
+20 6000 None 0 #
+21 6010 R _script dialog@Type 0  R _script base@r_BaseToBos 1 0 #
+0 6020 @
+21 7000 None 0 #
+0 7010 @
+50 8000 None 0 &
+
+[engl]
+{100}{}{Terminal}
+{1000}{}{Initial preferences}
+{1010}{}{Checking of blocking.}
+{2000}{}{[The screen flickers.] Welcome to PoseidoNet. Loading... Credentials verified. Please input command:}
+{2010}{}{[Connect to the Enclave.]}
+{2020}{}{[Connect to the Brotherhood of Steel.]}
+{2030}{}{[Step away from the terminal.]}
+{3000}{}{[Terminal is blocked, try again later.]}
+{4000}{}{Sergeant Anderson, 13th Scout Detachment. Just who am I speaking with?@@Corporal Hendricks, 3th Infantry Battalion. Who is this?@@Staff Sergeant Webb, who's there?@@Corporal O'Brien, 3rd Scout Detachment. Who's this?@@Sergeant Hewes, 2nd Navarro Battalion. Who am I speaking here?@@Corporal Fraser, 2nd Battalion. Why isn't your video feed working?}
+{4010}{}{I've captured the base. Consider it now under Enclave's control.}
+{4020}{}{Ah, hmm, no one. [Disconnect]}
+{5000}{}{Excellent! If you manage to defend the base few hours we'll send you a supply vehicle. Now put your hand on the terminal so we can scan your fingerprints. There will be scanner on the vehicle's trunk, it can be unlocked with your fingerprints only.}
+{5010}{}{[You do as he said.] That's it, over and out.}
+{6000}{}{Apprentice Scribe Abrams, Lost Hills here. Who is this?@@This is Brotherhood of Steel Initiate Jones speaking. Who are you?@@Initiate Hodges here. Who's this?@@Apprentice Scribe Lowe, Lost Hills. Who is this?@@Initiate Emerson speaking. Who's there?@@Journeyman Scribe Matthews, who the hell is this?@@Initiate Jennings speaking. Who's there?}
+{6010}{}{This is @pname@, this base has been succesfully captured, waiting for orders, Sir!}
+{6020}{}{[Disconnect]@@[Leave.]@@[Step away.]}
+{7000}{}{This is most unexpected! We need you to hold it as long as you can! We'll help you with the defense, just hold on a few more hours, and we'll send you a supply vehicle. There will be an eye scanner in it's trunk, so only you will be able to access it. Can you see the scanner on the terminal? Yes? Look at it... Okay.. good! Your eye pattern has been received. Godspeed!}
+{7010}{}{[Disconnect.]@@[Leave the terminal.]@@[Step away.]}
+{8000}{}{Unhandled exception at 0xA647B1FF.}
+
+[russ]
+{100}{}{Terminal}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Проверим блокировку.}
+{2000}{}{[Выберите действие]}
+{2010}{}{[Связаться с Анклавом]}
+{2020}{}{[Связаться с Братством стали]}
+{2030}{}{[Выйти из терминала]}
+{3000}{}{[Терминал заблокирован, попробуйте войти в систему позже]}
+{4000}{}{Анклав на связи, кто говорит?}
+{4010}{}{Я захватил базу, теперь она под вашим контролем.}
+{4020}{}{А, эмм, ничего. [Отключиться]}
+{5000}{}{Отлично, если сможете удержать базу - вышлем вам снаряжение. Ожидайте машину в течении нескольких часов. Сейчас положи на терминал руку, я сосканирую твои отпечатки, на багажнике будет стоять замок реагирующий на  них. [Вы делаете все что он говорит] Все, готово, держись солдат!}
+{5010}{}{До связи.}
+{6000}{}{Это Братство стали, кто и зачем связался?}
+{6010}{}{Это @pname@, база успешно захвачена, жду дальнейжих распоряжений.}
+{6020}{}{[Отключиться]}
+{7000}{}{Мы поможем тебе в удержании базы. Через несколько часов машина доставит припасы, оружие, аммуницую и прочее барахло. У нее на багажнике будет сканер сетчатки глаз, так что доступ будет только у тебя. Так, видишь там на терминале сияющий глазок, вот глянь туда. [Заглядываете в глазок] Информация о сетчатке пришла, береги глаза. Удачи в обороне!}
+{7010}{}{[Отключиться]}
+{8000}{}{Сбой в программе.}
+
+[pols]
+{100}{}{Terminal}
+{1000}{}{Initial preferences}
+{1010}{}{Checking of blocking.}
+{2000}{}{[Wpisz komendę.]}
+{2010}{}{[Połącz z Enklawą.]}
+{2020}{}{[Połącz z Bractwem Stali.]}
+{2030}{}{[Wyjdź.]}
+{3000}{}{[Terminal jest zablokowany, spróbuj później.]}
+{4000}{}{Tutaj Enklawa, z kim rozmawiam?}
+{4010}{}{Zająłem bazę. Jest teraz pod waszą kontroną.}
+{4020}{}{Ach, hmm, pomyłka. [Rozłącz się.]}
+{5000}{}{Doskonale. Jeżeli zdołasz obronić bazę przez kilka godzin, wyślemy samochód z zaopatrzeniem. Teraz połóż palec na terminalu, aby zeskanować twoje odciski palców. W bagażniku samochodu będzie zamontowany podobne urządzenie, przez co otworzyć go będziesz @sex@|mógł||mogła| jedynie ty. [Przejeżdżasz palcem po skanerze.] W porządku, zrobione.}
+{5010}{}{Bez odbioru.}
+{6000}{}{Z tej strony Bractwo Stali. Z kim mam przyjemność?}
+{6010}{}{Tutaj @pname@, baza została zajęta, czekam na rozkazy.}
+{6020}{}{[Rozłącz się.]}
+{7000}{}{Pomożemy ci w obronie bazy. Za kilka godzinach pod wejście do bazy podjedzie nasz samochód pełen broni, amunicji i innych przydatnych rzeczy. W bagażniku zamontowany będzie skaner tęczówki. Spójrz na chwilę na wyświetlacz. [Ekran zamigotał.] Świetnie, wzór twoich oczu został zeskanowany. Uważaj na nie, powodzenia!}
+{7010}{}{[Rozłącz się.]}
+{8000}{}{Krytyczny wyjątek 0xA647B1FF.}
+
+[ptbr]
+{100}{}{Terminal}
+{1000}{}{Initial preferences}
+{1010}{}{Checking of blocking.}
+{2000}{}{[A tela faísca muito.] Bem-vindo a PoseidoNet. Carregando... Acesso autorizado. Digite a linha de comando:}
+{2010}{}{[Conectar a Enclave.]}
+{2020}{}{[Conectar a Irmandade do Aço.]}
+{2030}{}{[Deixa o terminal como está.]}
+{3000}{}{[O terminal está bloqueado, tente novamente mais tarde.]}
+{4000}{}{Sargento Anderson, 13° Grupo de Batedores. Com quem falo?@@Capitão Henrique, 3° Batalhão de Infrantaria. Quem é?@@Sargento Fernando, quem é aí?@@Capitão Barbosa, 3° Grupo de Batedores. Quem é?@@Sargento Pessoa, 2° Batalhão de Navarro. Com quem eu falo?@@Cadete Braz, 2° Batalhão. Porque sua alimentação de imagem não está funcionando?}
+{4010}{}{Capturei essa base. Considere sob controle do Enclave.}
+{4020}{}{Ah, hmm, ninguém. [Desconecta]}
+{5000}{}{Excelente! Se você conseguir defender a base por algumas horas enviaremos um veículo de suprimentos. Agora coloque a mão no terminal para que possamos escanear suas impressões digitais. Tem um leitor de impressões no porta-malas do veículo que poderá ser destravado apenas com suas impressões digitais.}
+{5010}{}{[Você faz como instruído.] Pronto. Câmbio e desligo.}
+{6000}{}{Aprendiz de escrivão Abraão. Quem é?@@Aqui fala o Iniciado da Brotherhood of Steel João. Quem é você?@@Iniciado Francisco aqui. Quem fala?@@Aprendiz de Escrivão Pedro. Quem fala?@@Iniciado Rômulo falando. Identifique-se.@@Oficial Escrivão Mateus, quem diabos está aí?@@Iniciado Bruno. Quem é?}
+{6010}{}{Aqui é @pname@, esta base foi capturada com sucesso. Aguardando instruçôes, Senhor!}
+{6020}{}{[Desconecta]@@[Sai.]@@[Vai embora.]}
+{7000}{}{Precisamos que mantenha posição o máximo que puder! Ajudaremos a defendê-la. Aguarde algumas horas e enviaremos um veículo com suprimentos. Haverá um scanner ocular no porta-malas, então apenas você poderá acessar. Pode ver o scanner no terminal? Sim? Olhe para ele... Ótimo.. bom! Os padrões do seu olho foram recebidos. Aguarde.}
+{7010}{}{[Desconecta.]@@[Sai.]@@[Deixa o terminal.]}
+{8000}{}{Unhandled exception at 0xA647B1FF.}
+

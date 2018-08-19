@@ -1,0 +1,43 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Customer}
+{210}{}{There is nothing unusual about this person.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Leave me alone.@@Get lost.@@You got nothin' else to do?@@Yeah, hi.@@Heard any news from Reno?@@What?@@Get lost, tramp.@@This beer tastes like piss.@@Me? Drunk? Fuck no.@@I've got better things to do.@@Look, I just want to be left alone.@@Heard any news from the south?@@How's life treatin' ya?@@Man, I'm gonna get wasted tonite!@@Shut up and drink.@@Got a smoke?@@There's no way I'm getting outta here tonight.@@At least the booze like me.@@Time is never wasted when you're wasted all the time.@@I need to get laid.@@Bottoms up.@@Go pester someone else.@@No, I don't think we're gonna talk.@@I think I'm gonna puke.@@Hi.@@What?@@Yeah?}
+
+[russ]
+{100}{}{Постоянный клиент}
+{200}{}{Вы видите постоянного клиента.}
+{210}{}{Вы видите завсегдатая. Он чувствует себя здесь как дома.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Привет! Хоть одно новое лицо. Может угостишь меня чем-нибудь?@@Привет.}
+
+[pols]
+{100}{}{Klient}
+{200}{}{Widzisz klienta.}
+{210}{}{Nic nadzwyczajnego nie zwraca twojej uwagi.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Cześć.@@Jak leci na Pustkowiach?@@Napij się! Nie jest tu drogo.@@Nie ma to jak dobry trunek i zacna kompania.@@Świetne piwo.@@Usiądź. Och, czekaj. Może lepiej nie.@@Do dna!}
+
+[ptbr]
+{100}{}{Cliente}
+{200}{}{Você vê um cliente.}
+{210}{}{Não há nada de especial nesta pessoa.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Me deixa em paz aqui.@@Se manda.@@Não tem nada melhor para fazer?@@Sim, o que é?@@Tem alguma novidade de Reno?@@Diga...@@Se manda daqui.@@Essa cerveja tem gosto de mijo.@@Eu? Bêbado? Claro que não.@@Eu tenho mais o que fazer.@@Olha, quero ficar só.@@Que notícias tem do sul?@@Como vão as coisas?@@ @sex@|Cara||Olha|, hoje eu só saio daqui na maca!@@Cala a boca e bebe.@@Tem um cigarrinho aí?@@Não tem nem perigo deu sair daqui hoje a noite.@@Pelo menos as bebidas gostam de mim.@@O tempo nunca é desperdiçado quando a gente tá bêbado toda hora.@@Eu preciso dar uma.@@Saúde.@@Vai perturbar outro.@@Não, eu não acho que a gente vai conversar.@@Acho que vou vomitar.@@Oi.@@O que é?@@Diga?}
+

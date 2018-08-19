@@ -1,0 +1,237 @@
+#include "_macros.fos"
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+
+import int GetIniValue(string& iniKey, int defaultValue) from "ini_parser";
+import int[]@ GetIniValues4(string& iniKey, int[]@ defaultValues) from "ini_parser";
+
+uint InvItemCount = 10;
+
+uint ItemsIndex = 0;
+IGUIElementImageOpt@[] ItemsUIs;
+IGUIElementTextOpt@[] ItemCountUIs;
+IGUIElementButtonOpt@ MoveUpButton;
+IGUIElementButtonOpt@ MoveDownButton;
+IGUIElementButtonOpt@ CancelButton;
+
+uint[] ItemIds;
+uint[] ItemCounts;
+
+bool IsMovableContainer(ItemCl& locker)
+{
+    // if that function will change, remember to update its copy inside movable_container module
+
+    return( locker.GetType() == ITEM_TYPE_CONTAINER && locker.Proto.ProtoId >= 750 && locker.Proto.ProtoId < 800 );
+}
+
+void PickUpItem(ItemCl& item)
+{
+	CritterCl@ chosen = GetChosen();
+	if(!valid(chosen))
+		return;
+
+	// sanity checks
+	if( !chosen.IsLife() )
+		return;
+
+	if( item.HexX != chosen.HexX || item.HexY != chosen.HexY )
+		return;
+
+	if( item.Accessory != ACCESSORY_HEX )
+		return;
+
+	uint[] pickUp = {CHOSEN_USE_SKL_ON_ITEM, 0, uint(SKILL_PICK_ON_GROUND), item.Id, 0, 0, 0};
+
+	// avoid unintentional opening of containers
+	if( IsMovableContainer(item) )
+	    pickUp[2] = SK_SCIENCE;
+
+	// enforce pick up animation
+	RunServerScriptUnsafe( "item@unsafe_GroundPickUpAnimation", 0, 0, 0, null, null );
+
+	SetChosenActions(pickUp);
+	HideScreen(CLIENT_SCREEN_MULTI_PICKUP, 0, 0, 0);
+}
+
+void ShowGroundPickupScreen(int, int, int, string@, int[]@ itemsIds)
+{
+	if(!valid(itemsIds) || itemsIds.length() == 0 || itemsIds.length() % 2 != 0 )
+		return;
+		
+	if(!PrepareScreen(itemsIds))
+	{
+		Message("<Error 1>");
+		return;
+	}
+
+	ShowScreen(CLIENT_SCREEN_MULTI_PICKUP, 0, 0, 0);
+}
+
+bool PrepareScreen(int[] itemIds)
+{
+	if(itemIds.length() == 0 || itemIds.length() % 2 != 0)
+		return false;
+	
+	ItemsIndex = 0;
+	ClearItems();
+	ItemIds.resize(0);
+	ItemCounts.resize(0);
+	for (uint i=0, iLen=itemIds.length(); i<iLen; i+=2 )
+	{
+		ItemCl@ item = GetItem(itemIds[i]);
+		if( valid(item) )
+		{
+			ItemIds.insertLast( itemIds[i] );
+			ItemCounts.insertLast( itemIds[i+1] );
+		}
+	}
+
+	RefreshItems();
+	RefreshButtons();
+	
+	return true;
+}
+
+void ClearItems()
+{
+	for (uint i = 0; i < ItemsUIs.length(); i++)
+	{
+		ItemsUIs[i].clearImage();
+		ItemCountUIs[i].Text("");
+	}
+}
+
+void RefreshItems()
+{	
+	for (uint i = ItemsIndex; i < ItemIds.length() && i < ItemsIndex + InvItemCount; i++)
+	{
+		ItemCl@ item = GetItem(ItemIds[i]);
+		if(valid(item))
+		{
+			ItemsUIs[i - ItemsIndex].loadImage((item.PicInv > 0 ? item.PicInv : item.Proto.PicInv), 0);
+			ItemCountUIs[i - ItemsIndex].Text(ItemCounts[i] == 1 ? "" : ("x"+ItemCounts[i]));
+		}
+	}
+}
+
+void RefreshButtons()
+{
+	MoveUpButton.setVisible(ItemsIndex > 0);
+	MoveDownButton.setVisible(ItemIds.length() > ItemsIndex + InvItemCount);
+}
+
+void InitGroundPickUpScreen()
+{
+	GUI_CreateScreen(CLIENT_SCREEN_MULTI_PICKUP, GetIfaceIniStr("GPickupMainPic"))
+		.AutoCursor(true, CURSOR_HAND);
+
+	int itemHeight = GetIniValue("GPickupHeightItem", 30);
+	int itemWidth = GetIniValue("GPickupWidthItem", 70);
+	int[] positions = GetIniValues4("GPickupInv", null);
+	InvItemCount = positions[3] / itemHeight;
+	ItemsUIs.resize(0);
+	for (uint i = 0; i < InvItemCount; i++)
+	{
+		IGUIElementImageOpt@ item = GUI_AddImage(CLIENT_SCREEN_MULTI_PICKUP)
+			.Stretch(true)
+			.Position(positions[0], positions[1] + i * itemHeight, itemWidth, itemHeight)
+			.CallbackMouseClick(ItemClicked(i));
+			
+		ItemsUIs.insertLast(item);
+		
+		IGUIElementTextOpt@ count = GUI_AddText(CLIENT_SCREEN_MULTI_PICKUP)
+			.TextOptions(FONT_FALLOUT, COLOR_WHITE, 0)
+			.Position(positions[0] + 2, positions[1] + i * itemHeight)
+			.TextBoxSize(itemWidth, itemHeight);
+			
+		ItemCountUIs.insertLast(count);
+	}
+	
+	@MoveUpButton = GUI_AddButton(CLIENT_SCREEN_MULTI_PICKUP)
+		.UpPic(GetIfaceIniStr("GPickupInvScrUpPic"))
+		.DownPic(GetIfaceIniStr("GPickupInvScrUpPicDn"))
+		.Position("GPickupInvScrUp")
+		.CallbackMouseClick(MoveUpCallback());
+	@MoveDownButton = GUI_AddButton(CLIENT_SCREEN_MULTI_PICKUP)
+		.UpPic(GetIfaceIniStr("GPickupInvScrDnPic"))
+		.DownPic(GetIfaceIniStr("GPickupInvScrDnPicDn"))
+		.Position("GPickupInvScrDn")
+		.CallbackMouseClick(MoveDownCallback());	
+	@CancelButton = GUI_AddButton(CLIENT_SCREEN_MULTI_PICKUP)
+		.DownPic(GetIfaceIniStr("GPickupCancelPicDn"))
+		.Position("GPickupCancel")
+		.CallbackMouseClick(CancelCallback());
+}
+
+class ItemClicked : IGUIElementCallbackMouseClick
+{
+	private uint Index;
+	
+	ItemClicked(uint index)
+	{
+		Index = index;
+	}
+	
+	void OnMouseClick(int id, int click) override
+	{
+		if(ItemsIndex + Index >= ItemIds.length())
+			return;
+		
+		if(click == MOUSE_CLICK_WHEEL_DOWN)
+			MoveDown();
+		if(click == MOUSE_CLICK_WHEEL_UP)
+			MoveUp();
+		
+		if(click != MOUSE_CLICK_LEFT)
+			return;
+		
+		ItemCl@ item = GetItem(ItemIds[ItemsIndex + Index]);
+		if(!valid(item))
+			return;
+		
+		PickUpItem(item);
+	}
+}
+
+class CancelCallback : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int id, int click) override
+	{
+		HideScreen(CLIENT_SCREEN_MULTI_PICKUP, 0, 0, 0);
+	}
+}
+
+class MoveUpCallback : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int id, int click) override
+	{
+		MoveUp();
+	}
+}
+
+void MoveUp()
+{
+	if(!MoveUpButton.isVisible())
+		return;
+	ItemsIndex--;
+	RefreshItems();
+	RefreshButtons();
+}
+
+class MoveDownCallback : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int id, int click) override
+	{
+		MoveDown();
+	}
+}
+
+void MoveDown()
+{
+	if(!MoveDownButton.isVisible())
+		return;
+	ItemsIndex++;
+	RefreshItems();
+	RefreshButtons();
+}
+

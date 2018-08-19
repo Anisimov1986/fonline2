@@ -1,0 +1,196 @@
+#ifndef __NPC_COMMON__
+#define __NPC_COMMON__
+
+#include "_macros.fos"
+#include "utils_h.fos"
+#include "npc_planes_h.fos"
+
+bool AttackCritter( Critter& attacker, Critter& target )
+{
+	return AttackCritter(attacker, target, __DeadHitPoints);
+}
+
+bool AttackCritter(Critter& attacker, Critter& target, uint minhp)
+{
+    return AddAttackPlane(attacker, 0, target, minhp);
+}
+
+#define _FreeHex      (map.IsHexPassed(hx, hy) && @ (map.GetCritter(hx, hy)) == null)
+#define _AddHex                                                                  \
+    do { coordsX.insertLast(hx); coordsY.insertLast(hy); free++; if(free == num) \
+             return; } while(false)
+#define _OldHex       (hx == px && hy == py)
+
+void FindFreeHexes(Map@ map, uint16 hexX, uint16 hexY, int& num, array<uint16>& coordsX, array<uint16>& coordsY)
+{
+    if(num == 0)
+        return;
+    int    free = 0;
+    uint16 hx = hexX;
+    uint16 hy = hexY;
+    uint16 px = 0;
+    uint16 py = 0;
+    if(_FreeHex)
+        _AddHex;
+    for(uint8 dir = 0; dir < 6; dir++)
+    {
+        hx = hexX;
+        hy = hexY;
+        px = hx;
+        py = hy;
+        map.MoveHexByDir(hx, hy, dir, 1);
+        if(_OldHex || !_FreeHex)
+            continue;
+        _AddHex;
+    }
+
+    for(uint8 dir = 0; dir < 6; dir++)
+    {
+        hx = hexX;
+        hy = hexY;
+        px = hx;
+        py = hy;
+        map.MoveHexByDir(hx, hy, dir, 1);
+        if(_OldHex)
+            continue;
+        px = hx;
+        py = hy;
+        map.MoveHexByDir(hx, hy, dir, 1);
+        if(_OldHex || !_FreeHex)
+            continue;
+        _AddHex;
+    }
+
+    for(uint8 dir = 0; dir < 6; dir++)
+    {
+        hx = hexX;
+        hy = hexY;
+        px = hx;
+        py = hy;
+        map.MoveHexByDir(hx, hy, dir, 1);
+        if(_OldHex)
+            continue;
+        px = hx;
+        py = hy;
+        map.MoveHexByDir(hx, hy, (dir + 1) % 6, 1);
+        if(_OldHex || !_FreeHex)
+            continue;
+        _AddHex;
+    }
+    num = free;
+}
+
+#define _ReturnHex    outX = hx; outY = hy; return true
+// search near area for free hex
+bool FindNearestFreeHex(Map@ map, uint16 hexX, uint16 hexY, uint16& outX, uint16& outY)
+{
+    uint16 hx = hexX;
+    uint16 hy = hexY;
+    uint16 px = 0;
+    uint16 py = 0;
+    if(_FreeHex)
+    {
+        _ReturnHex;
+    }
+    for(uint8 dir = 0; dir < 6; dir++)
+    {
+        for(uint i = 1; i <= 2; i++)
+        {
+            hx = hexX;
+            hy = hexY;
+            px = hx;
+            py = hy;
+            map.MoveHexByDir(hx, hy, dir, i);
+            if(_OldHex || !_FreeHex)
+                continue;
+            _ReturnHex;
+        }
+    }
+    return false;
+}
+
+bool Flee(Critter& cr)
+{
+    return Flee(cr, true);
+}
+
+bool Flee(Critter& cr, bool Run)
+{
+    uint16 hx = cr.HexX;
+    uint16 hy = cr.HexY;
+
+    // follower.Say(SAY_SHOUT, "I'm outta here!");
+
+    if(FindPreferredGridApprox(cr.GetMap(), hx, hy))
+    {
+        cr.ErasePlane(AI_PLANE_WALK, true);
+        cr.ErasePlane(AI_PLANE_ATTACK, true);
+        //DLog("Found exit at: " + hx + "," + hy);
+        return AddWalkPlane(cr, 60, PLANE_GOTO_EXIT, 0, hx, hy, 0xFF, Run, 1);
+    }
+    else
+        Log("Unable to find exitgrid to flee to on map PID " + cr.GetMapProtoId() + "!");
+
+    return false;
+}
+
+void r_MoveRandom(Critter& player, Critter@npc, int val)
+{
+    npc.MoveRandom();
+}
+
+/**
+ * Issue random walk for a critter to a hex in stepDist distance, as long as the actual distance
+ * to home pos is less than maxDist. In this case, it issues walkplane closely to homepos.
+ *
+ * @param maxDist Max distance in hexes.
+ * @param stepDist Step distance, the actual distance of single move
+ */
+void MoveRandom(Critter& npc, uint maxDist)
+{
+    MoveRandom(npc, maxDist, maxDist / 2, false);
+}
+
+void MoveRandom(Critter& npc, uint maxDist, bool Run)
+{
+    MoveRandom(npc, maxDist, maxDist / 2, false);
+}
+
+void MoveRandom(Critter& npc, uint maxDist, uint stepDist, bool Run)
+{
+    uint   dummy;
+    uint8  dummy2;
+    uint16 hx = 0, hy = 0;
+    // home position
+    npc.GetHomePos(dummy, hx, hy, dummy2);
+
+    // don't get too far away
+    uint16 dist = GetDistantion(npc.HexX, npc.HexY, hx, hy);
+    if(dist < maxDist)
+        AddWalkPlane(npc, 0, PLANE_WANDER, 0, npc.HexX + Random(-stepDist, stepDist), npc.HexY + Random(-stepDist, stepDist), 0xff, Run, 0);
+    else
+    {
+        // come a lil' bit closer
+        AddWalkPlane(npc, 0, PLANE_WANDER, 0, hx + Random(-maxDist, maxDist), hy + Random(-maxDist, maxDist), 0xff, Run, 0);
+    }
+}
+
+void TransferToNPCMap(Critter& critter)
+{
+    Map@ npcmap = GetMapByPid(MAP_BufferMap, 0);
+    Map@ map = critter.GetMap();
+
+    if(!valid(npcmap))
+    {
+        Log("NPC map is invalid! Couldn't transfer NPC to buffer map");
+        return;
+    }
+
+    if(critter.GetMapId() != npcmap.Id)
+    {
+        //DLog("Transfering to NPC map");
+        critter.TransitToMap(npcmap.Id, 0);
+        ClearEnemyStack(critter);
+    }
+}
+#endif

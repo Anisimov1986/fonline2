@@ -1,0 +1,174 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+3 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+8 2010 #
+8 2020 #
+0 2030 @
+3 3000 None 0 #
+8 3010 #
+0 3020 @
+4 4000 None 0 #
+6 4010 #
+0 4020 @
+6 5000 None 0 #
+7 5010 D _item p PID_BOTTLE_CAPS > 24 R _item p PID_BOTTLE_CAPS - 25 #
+0 5020 @
+7 6000 None 0 #
+0 6010 #
+0 6020 @
+8 7000 None 0 #
+4 7010 #
+9 7020 #
+0 7030 @
+9 8000 None 0 #
+10 8010 #
+0 8020 @
+10 9000 None 0 #
+4 9010 #
+0 9020 &
+
+[engl]
+{100}{}{Ananias}
+{200}{}{You see a short man with a thick mustache.}
+{210}{}{You see the Great Ananias.}
+{210}{}{You see a short, mustachioed man with a somewhat furtive look to him.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello, welcome, salutations! I am the Great Ananias [He offers you a slight bow.] I bring mysteries from near and far friend. Mysteries from a world beyond our own... of the Netherworld.}
+{2010}{}{What kind of mysteries?}
+{2020}{}{Uh, nice to meet you Mr. Great Anus...something.}
+{2030}{}{Hmm, mysteries make me sleep uneasily, I better go. Goodbye.}
+{3000}{}{Come back to learn of the Great Ananias' mysteries of the Netherworld have you?}
+{3010}{}{What kind of mysteries?}
+{3020}{}{Hmm, mysteries make me sleep uneasily, I better go. Goodbye.}
+{4000}{}{Today, in the room within, I have, for your eyes exclusively...A Jan-u-wine Egyptian Mummy!}
+{4010}{}{Oh, really?}
+{4020}{}{I don't have any interest in that sort of thing. Corpses scare me.}
+{5000}{}{For a person of your obvious class I would be happy to show this unique, and historic, specimen to you for a mere $25.}
+{5010}{}{OK, I'll cough up the dough. Now...Show Me The Mummy!}
+{5020}{}{I don't want to spend that much. I think I'll survive without seeing the thing. Goodbye.}
+{6000}{}{There you go! Presenting, the MUMMY! (a crypt-like door swings open to reveal a jan-u-wine Egyptian mummy standing in an open sarcophagus that looks as though it's made out of pure gold!)}
+{6010}{}{That's a mummy? I can't believe I just paid $25 to see a six-foot hunk of jerky. Goodbye.}
+{6020}{}{Wow, that's fantastic...I guess. (you look at the Mummy very intently for a while). Uh, thanks, Goodbye.}
+{7000}{}{I know things that mere mortal man is not meant to know. Aiiieeee! Nyarloth...Oh, sorry (heh, heh). Got a little carried away there for a moment. I have tales of a Ghost that haunts these very grounds, as well as a Jan-u-wine Egypt-ee-an Mummy that you can see, right here in this marvelous sarcophagus.}
+{7010}{}{Tell me about the mummy. I'm just dying to hear more about that.}
+{7020}{}{I've just got to hear that ghost story. Uh, do I get a nice hot cup of cocoa to go with it?}
+{7030}{}{I don't think I have any more time to waste on whatever it is that you're hawking.}
+{8000}{}{Well, you see, (he motions you closer) there was once a great queen that ruled all of the surrounding town. She kept her  throne by virtue of a special amulet that she kept around her neck at all times. Great stuff, huh?}
+{8010}{}{Uh, yeah. You bet. So this princess had a *magic* amulet. Oh, do go on. I just can't stand this level of suspense much longer. [Yawn.]}
+{8020}{}{Okay. I think I've heard just about enough. Goodbye.}
+{9000}{}{Well, I'll cut to the chase then. So, the evil wizard poisoned the young princess and took her amulet. She's been wandering around the room next door ever since. Well, uh, that is, just at the witching hour, anyway. That's why I keep the door locked. Pretty darn scary, huh?}
+{9010}{}{The ghost of an amuletless princess in the trashed room next door? That's it? I can't believe you're peddling that as a story. I'd rather hear about this stupid Mummy you're supposed to have here.}
+{9020}{}{OK. I think I've heard just about enough. Goodbye.}
+
+[russ]
+{100}{}{Великий Ананиус}
+{200}{}{Вы видите Великого Ананиуса.}
+{210}{}{Вы видите усатого мужчину низкого роста, с вороватым взглядом.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Привет, здравствуйте, добро пожаловать! Я Великий Ананиус. [Кланяется тебе с напыщенным жестом] Я собираю чудеса по всему свету!}
+{2010}{}{Какие чудеса?}
+{2020}{}{Ух приятно встретить вас г-н большой анус...}
+{2030}{}{Хм, чудеса будут мешать мне спать ночью, я лучше пойду. До свидания.}
+{3000}{}{Вернулись, чтобы узнать тайны Великого Ананиуса?}
+{3010}{}{Какие тайны?}
+{3020}{}{Хм, тайны будут мешать мне спать ночью, я лучше пойду. До свидания.}
+{4000}{}{Сегодня в этой комнате, исключительно для вас....Египетская Мумия!}
+{4010}{}{Что, правда?}
+{4020}{}{У меня нет никакого интереса к такого рода вещам. Трупы пугают меня.}
+{5000}{}{Для человека вашего класса, я бы рады показать вам этот уникальный и исторический, образец всего за $25.}
+{5010}{}{Хорошо...Покажите мне мумию!}
+{5020}{}{Я не хочу тратить так много. Я думаю, что обойдусь без этого. До свидания.}
+{6000}{}{Представляю вам, мумию! (скрипящие двери открываются, чтобы показать египетскую мумия стоящую в открытом саркофаге , которая выглядит, как будто она сделана из чистого золота!)}
+{6010}{}{Это мумия? Я не могу поверить, я только заплатил 25 $, чтобы увидеть шести футовый кусок вяленого мяса. До свидания.}
+{6020}{}{Ничего себе, это фантастика ... Наверное. (Вы смотрите на мумию очень пристально). Ну спасибо, до свидания.}
+{7000}{}{Я обладатель великих чудес и тайн, я могу показать вам великую египетскую мумию или рассказать ужасающую историю о призраке.}
+{7010}{}{Расскажи мне о мумии. Я просто умираю от любопытства.}
+{7020}{}{Я хочу узнать историю призрака.}
+{7030}{}{Я не думаю, что у меня столько времени, чтобы тратить его на эти глупости.}
+{8000}{}{Ну, видите ли, когда-то была великая царица, которая правила всеми окружающими городами. Она поддерживала свой трон специальным амулетом, который она носила на шее. Интересно, да?}
+{8010}{}{Ну, да. Еще бы. Так что это была принцесса с * волшебным * амулетом. О, продолжайте. Я просто не могу выдерживать это напряжение (зевок).}
+{8020}{}{Я думаю, что я услышал достаточно. До свидания.}
+{9000}{}{Ну, тогда я перейду к развядке. Злой волшебник отравил юную принцессу и взял ее амулет. Теперь ее призрак бродит по округе. Страшно, да?}
+{9010}{}{Да, это охренительно страшная и правдивая история, я чуть в штаны не наложил. Есть еще что-то?}
+{9020}{}{Я думаю, что я услышал достаточно. До свидания.}
+
+[pols]
+{100}{}{Ananiasz}
+{200}{}{Widzisz niskiego człowieka z wielkimi wąsami.}
+{210}{}{Widzisz Wielkiego Ananiasza.}
+{210}{}{Widzisz niskiego, wąsatego człowieka o bardzo tajemniczym spojrzeniu.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Cześć, witaj, pozdrawienia! Jestem Wielki Ananiasz. [Dostojnie i grzecznie się kłania.] Przynoszę tajemnice z bliska i daleka... Tajemnice spoza naszego świata... Tajemnice pozaświatów.}
+{2010}{}{Jakie tajemnice?}
+{2020}{}{Och, miło pana poznać, panie Wielki Ananas... czy jakoś tak.}
+{2030}{}{Hmm, tajemnice... Później nie będę @sex@|mógł||mogła| zasnąć. Lepiej stąd pójdę, do widzenia.}
+{3000}{}{@sex@|Wróciłeś||Wróciłaś|, aby poznać tajemnice zaświatów Wielkiego Ananiasza, czyż tak?}
+{3010}{}{Jakie tajemnice?}
+{3020}{}{Hmm, tajemnice... Później nie będę @sex@|mógł||mogła| zasnąć. Lepiej stąd pójdę, do widzenia.}
+{4000}{}{Dziś, w tym pokoju, znajduje się, tylko dla twoich oczu... Auto-styczna, przerażająca egipska mumia!}
+{4010}{}{Och, naprawdę?}
+{4020}{}{Nie interesują mnie tego typu rzeczy. Boję się trupów.}
+{5000}{}{Dla osoby o widocznej zdala tak wysublimowanej klasie i wiedzy, z przyjemnością pokażę ten unikatowy, historyczny eksponat za marne $25.}
+{5010}{}{OK, przełknę to jakoś. Teraz... Pokaż mi mumię!}
+{5020}{}{Nie chcę tyle wydawać. Myślę, że obejdę się bez oglądania tej... rzeczy. Do widzenia.}
+{6000}{}{Proszę bardzo! Oto i ona, przerażająca mumia! [Drzwi otwierają się z zamachem, aby ukazać "auto-styczną" egipską mumię stojącą w sarkofagu wyglądającym na wykonany z czystego złota!]}
+{6010}{}{To jest mumia? Nie wierzę, że właśnie @sex@|zapłaciłem||zapłaciłam| 25 kapsli, aby zobaczyć zawiniętego w szmaty martwego ghula. Do widzenia.}
+{6020}{}{Łał, to niesamowite... Chyba. [Przyglądasz się przez chwilę bardzo dokładnie.] Uch, dzięki, do widzenia.}
+{7000}{}{Wiem rzeczy, których zwykły śmiertelnik wiedzieć nie powinien. Aaaauuuu! Och, przepraszam, hehehehe. Trochę mnie poniosło, przez chwilę. Znam opowieści o duchu, który nawiedza miejscową ziemię, jak równieżtę egipską mumię, o tam, w tym cudownym sarkofagu.a}
+{7010}{}{Opowiedz mi o mumii. Umieram z ciekawości, aby dowiedzieć się czegoś więcej.}
+{7020}{}{Mam wielką ochotę na opowieść o duchach. Mogę prosić o gorący kubek kakao w zestawie?}
+{7030}{}{Nie mam zamiaru tracić więcej czasu na twoje bzdury.}
+{8000}{}{Cóż, rozumiesz... [Przybliża się, ściszając głos.] Była sobie kiedyś wielka królowa, która rządziła całym miastem. Utrzymywała się ptzy władzy dzięki sile pewnego amuletu, który nosiła na szyi w każdej chwili. Świetna opowieść, co nie?}
+{8010}{}{Och, yeah. No jasne. A więc, ta księżniczka miała "magiczny" amulet. Ależ nie przerywaj... Po prostu nie mogę dłużej znieść tego napięcia. [Ziewasz.]}
+{8020}{}{OK. Chyba @sex@|usłyszałem||usłyszałam| wystarczająco wiele. Do widzenia.}
+{9000}{}{Cóż, w takim razie streszczę. A więc, zły czarnoksiężnik otruł młodą księżniczkę i zabrał jej amulet. Od tej chwili, nawiedza pokój obok. Dobra, hm, to znaczy, o godzinie duchów, nieważne. Dlatego trzymam drzwi zamknięte. Cholernie przerażające, co?}
+{9010}{}{Duch płaczącej po stracie amuletu księżniczki w tej rupieciarni za drzwiami? Serio? Nie wierzę, że nazywasz te bzdury "opowieścią". Już chyba wolę usłyszeć o tej durnej mumii.}
+{9020}{}{OK. Chyba @sex@|usłyszałem||usłyszałam| wystarczająco wiele. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello, welcome, salutations! I am the Great Ananias [He offers you a slight bow.] I bring mysteries from near and far friend. Mysteries from a world beyond our own... of the Netherworld.}
+{2010}{}{What kind of mysteries?}
+{2020}{}{Uh, nice to meet you Mr. Great Anus...something.}
+{2030}{}{Hmm, mysteries make me sleep uneasily, I better go. Goodbye.}
+{3000}{}{Come back to learn of the Great Ananias' mysteries of the Netherworld have you?}
+{3010}{}{What kind of mysteries?}
+{3020}{}{Hmm, mysteries make me sleep uneasily, I better go. Goodbye.}
+{4000}{}{Today, in the room within, I have, for your eyes exclusively...A Jan-u-wine Egyptian Mummy!}
+{4010}{}{Oh, really?}
+{4020}{}{I don't have any interest in that sort of thing. Corpses scare me.}
+{5000}{}{For a person of your obvious class I would be happy to show this unique, and historic, specimen to you for a mere $25.}
+{5010}{}{OK, I'll cough up the dough. Now...Show Me The Mummy!}
+{5020}{}{I don't want to spend that much. I think I'll survive without seeing the thing. Goodbye.}
+{6000}{}{There you go! Presenting, the MUMMY! (a crypt-like door swings open to reveal a jan-u-wine Egyptian mummy standing in an open sarcophagus that looks as though it's made out of pure gold!)}
+{6010}{}{That's a mummy? I can't believe I just paid $25 to see a six-foot hunk of jerky. Goodbye.}
+{6020}{}{Wow, that's fantastic...I guess. (you look at the Mummy very intently for a while). Uh, thanks, Goodbye.}
+{7000}{}{I know things that mere mortal man is not meant to know. Aiiieeee! Nyarloth...Oh, sorry (heh, heh). Got a little carried away there for a moment. I have tales of a Ghost that haunts these very grounds, as well as a Jan-u-wine Egypt-ee-an Mummy that you can see, right here in this marvelous sarcophagus.}
+{7010}{}{Tell me about the mummy. I'm just dying to hear more about that.}
+{7020}{}{I've just got to hear that ghost story. Uh, do I get a nice hot cup of cocoa to go with it?}
+{7030}{}{I don't think I have any more time to waste on whatever it is that you're hawking.}
+{8000}{}{Well, you see, (he motions you closer) there was once a great queen that ruled all of the surrounding town. She kept her  throne by virtue of a special amulet that she kept around her neck at all times. Great stuff, huh?}
+{8010}{}{Uh, yeah. You bet. So this princess had a *magic* amulet. Oh, do go on. I just can't stand this level of suspense much longer. [Yawn.]}
+{8020}{}{Okay. I think I've heard just about enough. Goodbye.}
+{9000}{}{Well, I'll cut to the chase then. So, the evil wizard poisoned the young princess and took her amulet. She's been wandering around the room next door ever since. Well, uh, that is, just at the witching hour, anyway. That's why I keep the door locked. Pretty darn scary, huh?}
+{9010}{}{The ghost of an amuletless princess in the trashed room next door? That's it? I can't believe you're peddling that as a story. I'd rather hear about this stupid Mummy you're supposed to have here.}
+{9020}{}{OK. I think I've heard just about enough. Goodbye.}
+

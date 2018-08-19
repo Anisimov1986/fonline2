@@ -1,0 +1,329 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "_itempid.fos"
+#include "_msgstr.fos"
+#include "_time.fos"
+
+/**
+ * Setting values for door in mapper:
+ *
+ * Value0 - entire number for mulithex door
+ * Value1 - if <> 0 then door is not destroyable if == 2 autokill critters blocking door
+ * Value2 - if <> 0 then door is not autoclosed
+ * Value3 -	seconds to wait till autoclosing (or showing door after destroyed),
+ *                      0 - default seconds delay
+ */
+
+#define DEFAULT_AUTO_CLOSE_DELAY    ( REAL_MINUTE( 3 ) )
+#define DEFAULT_UNDESTROY_DELAY     ( REAL_MINUTE( 10 ) )
+#define PID_DOOR_BLOCKER            ( 823 )
+
+import bool UseSkillOnLocker( Critter& cr, Item& locker, int skill, bool password ) from "lockers";
+import bool TryCloseDoor( Item& door, bool playSound ) from "item";
+import void RemoveTrap( Item& door ) from "trap";
+
+class Blocker
+{
+    uint   DoorId;
+    uint16 HexX;
+    uint16 HexY;
+
+    Blocker( Item@ door, Entire@ blockEntire )
+    {
+        DoorId = door.Id;
+        HexX = blockEntire.HexX;
+        HexY = blockEntire.HexY;
+    }
+
+    void Block()
+    {
+        Item@ door = GetItem( DoorId );
+        if( !valid( door ) )
+            return;
+
+        Map@ map = GetMap( door.MapId );
+        if( !valid( map ) )
+            return;
+
+        Item@ blocker = map.GetItem( HexX, HexY, PID_DOOR_BLOCKER );
+        if( valid( blocker ) )     // blocker already exists
+            return;
+
+        @blocker = map.AddItem( HexX, HexY, PID_DOOR_BLOCKER, 1 );
+        UNSETFLAG( blocker.Flags, ITEM_NO_BLOCK );
+		
+		if (FLAG( door.Flags, ITEM_SHOOT_THRU ))
+			SETFLAG( blocker.Flags, ITEM_SHOOT_THRU );
+    }
+
+    void Unblock()
+    {
+        Item@ door = GetItem( DoorId );
+        if( !valid( door ) )
+            return;
+
+        Map@ map = GetMap( door.MapId );
+        if( !valid( map ) )
+            return;
+
+        Item@ blockerItem = map.GetItem( HexX, HexY, PID_DOOR_BLOCKER );
+        if( valid( blockerItem ) )
+        {
+            Info( "Deleting blocker." );
+            DeleteItem( blockerItem );
+        }
+    }
+}
+
+Blocker@[] Blockers;
+Blocker@[] GetBlockers( Item@ door )
+{
+    Blocker@[] blockers;
+    for( uint i = 0; i < Blockers.length(); i++ )
+        if( Blockers[ i ].DoorId == door.Id )
+            blockers.insertLast( Blockers[ i ] );
+
+    return blockers;
+}
+
+// Mapper
+void MultihexDoorInit( Item& door, bool )
+{
+    Info( "Initializing multithex door..." );
+    if( valid( door ) )
+    {
+        Info( "Type: " + door.GetType() );
+        Info( "Val0: " + door.Val0 );
+    }
+    if( !valid( door ) || door.GetType() != ITEM_TYPE_DOOR || door.Val0 == 0 )
+    {
+        Info( "Not valid door." );
+        return;
+    }
+
+    Map@ map = GetMap( door.MapId );
+    if( !valid( map ) )
+    {
+        Info( "Invalid map found." );
+        return;
+    }
+
+    door.SetEvent( ITEM_EVENT_SKILL, "e_MultihexDoorSkill" );
+
+    Entire[] blockEntires;
+    ParseEntires( map, blockEntires, door.Val0 );
+
+    Info( "Found " + blockEntires.length() + " block entires." );
+    for( uint i = 0; i < blockEntires.length(); i++ )
+    {
+        Blocker@ blocker = Blocker( door, blockEntires[ i ] );
+        if( _LockerIsOpen( door ) )
+        {
+            Info( "Unblocking entire" );
+            blocker.Unblock();
+        }
+        else
+        {
+            Info( "Blocking entire" );
+            blocker.Block();
+        }
+
+
+        Blockers.insertLast( blocker );
+    }
+}
+
+// import bool BlockMultihexDoor(Item& door) from "doors";
+bool BlockMultihexDoor( Item& door )
+{
+    Blocker@[] blockers = GetBlockers( door );
+    if( blockers.length() == 0 )
+    {
+        Info( "No blockers found." );
+        return false;
+    }
+
+    for( uint i = 0; i < blockers.length(); i++ )
+    {
+        Info( "Blocking entire." );
+        blockers[ i ].Block();
+    }
+
+    return true;
+}
+
+// Export
+bool UnblockMultihexDoor( Item& door )
+{
+    Blocker@[] blockers = GetBlockers( door );
+    if( blockers.length() == 0 )
+    {
+        Info( "No blockers found." );
+        return false;
+    }
+
+    for( uint i = 0; i < blockers.length(); i++ )
+    {
+        Info( "Unblocking entire." );
+        blockers[ i ].Unblock();
+    }
+
+    return true;
+}
+
+bool e_MultihexDoorSkill( Item& door, Critter& cr, int skill )
+{
+    if( IsStandingOnBlocker( cr, door ) )
+    {
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_USE_NOTHING );
+        return true;
+    }
+    if( !UseSkillOnLocker( cr, door, skill, false ) )
+        return true;
+
+    if( _LockerIsOpen( door ) )
+        UnblockMultihexDoor( door );
+    else
+        BlockMultihexDoor( door );
+
+    return true;
+}
+
+void KillStandingOnBlocker( Item& door, uint anim2 )
+{
+    uint16 hx = 0, hy = 0;
+    Map@   map = door.GetMapPosition( hx, hy );
+    if( !valid( map ) )
+        return;
+
+    for( uint i = 0; i < Blockers.length(); i++ )
+    {
+        if( Blockers[ i ].DoorId != door.Id )
+            continue;
+
+        Critter@ cr = map.GetCritter( Blockers[ i ].HexX, Blockers[ i ].HexY );
+        if( valid( cr ) && !cr.IsDead() )
+        {
+            cr.ToDead( anim2, null );
+        }
+    }
+}
+
+bool IsStandingOnBlocker( Item& door )
+{
+    uint16 x = 0;
+    uint16 y = 0;
+    Map@   map = door.GetMapPosition( x, y );
+    if( !valid( map ) )
+        return false;
+
+    for( uint i = 0; i < Blockers.length(); i++ )
+    {
+        if( Blockers[ i ].DoorId != door.Id )
+            continue;
+
+        Critter@ critter = map.GetCritter( Blockers[ i ].HexX, Blockers[ i ].HexY );
+        if( valid( critter ) && critter.IsLife() )
+            return true;
+    }
+    return false;
+}
+
+bool IsStandingOnBlocker( Critter& cr, Item& door )
+{
+    Blocker@[] blockers = GetBlockers( door );
+
+    for( uint i = 0; i < blockers.length(); i++ )
+        if( blockers[ i ].HexX == cr.HexX && blockers[ i ].HexY == cr.HexY )
+            return true;
+
+    return false;
+}
+
+// Export
+void OnAutoOpen( Item& locker )
+{
+    if( locker.Val2 != 0 )
+        return;
+
+	if(locker.Val8 != 0)
+        EraseTimeEvent(locker.Val8);
+	
+
+	uint autoCloseDelay = locker.Val3 == 0 ? DEFAULT_AUTO_CLOSE_DELAY : REAL_SECOND( locker.Val3 );
+    locker.Val8 = CreateTimeEvent( __FullSecond + autoCloseDelay, "item@e_AutoCloseDoor", locker.Id, true );
+}
+
+void OnAutoClose( Item& locker )
+{
+    if( locker.Val2 != 0 )
+        return;
+
+    if( locker.Val8 != 0 )
+        EraseTimeEvent(locker.Val8);
+}
+
+void Info( string& info )
+{
+    // Log(info);
+}
+
+// import void DoorRemove(Map@ map , int hexX, int hexY, int radius) from "doors";
+void DoorRemove( Map@ map, int hexX, int hexY, int radius ) // Export
+{
+    if( !valid( map ) )
+        return;
+    Item@[] items;
+    if( map.GetItems( hexX, hexY, radius, 0, items ) == 0 )
+        return;                                                   // Add all items in radius to array items
+    Item@ item;
+    Info( "Found " + items.length() + " items around explosion." );
+    for( uint i = 0, l = items.length(); i < l; i++ )
+    {
+        @item = items[ i ];
+        if( valid( item ) && item.GetType() == ITEM_TYPE_DOOR && ( !FLAG( item.LockerCondition, LOCKER_NOOPEN ) ) && ( !FLAG( item.Flags, ITEM_HIDDEN ) ) && item.Val1 == 0 )
+        {
+            RemoveTrap( item );
+            DestroyDoor( item );
+        }
+    }
+}
+
+void DestroyDoor( Item& door )
+{
+    Info( "Destroying door: " + door.Id );
+
+    // hide door
+    SETFLAG( door.Flags, ITEM_HIDDEN );
+    UNSETFLAG( door.Flags, ITEM_CAN_LOOK );//Checker for destroyed door.
+    if( _LockerIsClose( door ) )
+    {
+        door.LockerOpen();
+        UnblockMultihexDoor( door );
+    }
+
+    if(door.Val8 != 0)
+        EraseTimeEvent(door.Val8);
+
+    uint autoCloseDelay = door.Val3 == 0 ? DEFAULT_UNDESTROY_DELAY : REAL_SECOND( door.Val3 );
+    door.Val8 = CreateTimeEvent( __FullSecond + autoCloseDelay, "e_UndestroyDoor", door.Id, true );
+}
+
+uint e_UndestroyDoor( uint[] @ values )
+{
+    Item@ door = GetItem( values[ 0 ] );
+    if( !valid( door ) )
+        return 0;
+
+    uint autoCloseDelay = door.Val3 == 0 ? DEFAULT_UNDESTROY_DELAY : REAL_SECOND( door.Val3 );
+    if( !TryCloseDoor( door, false ) )
+        return autoCloseDelay;
+
+    Info( "Undestroying door: " + door.Id );
+    // unhide door
+    UNSETFLAG( door.Flags, ITEM_HIDDEN );
+	SETFLAG( door.Flags, ITEM_CAN_LOOK ); //Checker for destroyed door.
+
+    return 0;
+}
+

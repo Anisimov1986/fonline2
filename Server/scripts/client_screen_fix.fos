@@ -1,0 +1,170 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+IGUIElementCheckBoxOpt@[] BuState;
+IGUIElementTextOpt@ Channel;
+ScreenFix@ screenFix;
+
+void ChangeFilter(uint id)
+{
+	if (!BuState[id].IsChecked()) 
+	{
+		Message("Uncheck same");
+		return;
+	}
+	RunServerScriptUnsafe("fix_boy@unsafe_UpdateFix",id,0,0,null,null);
+}
+
+class ButtonDown : IGUIElementCallbackMouseClick
+{
+	ButtonDown(IGUIElementTextOpt@ tekst)
+	{
+		@Channel = tekst;
+		if(@Channel != null) 
+		{
+			CritterCl@ chosen = GetChosen();
+			if valid(chosen)
+			{
+				if (chosen.ParamBase[CRAFT]<10)
+					Channel.setText("0"+chosen.ParamBase[CRAFT]);
+				else 
+					Channel.setText(""+chosen.ParamBase[CRAFT]);
+			}
+		}
+	}
+    void OnMouseClick(int mm, int click)
+    {
+		int channel=0;
+		string@ tekst1=Channel.getText();
+		StrToInt(tekst1,channel);
+		channel-=1;
+		if (channel<1 || channel>99)
+			return;
+		channel=CLAMP(channel,1,99);
+		if (channel<10)
+			Channel.setText("0"+channel);
+		else 
+			Channel.setText(""+channel);
+		RunServerScriptUnsafe("fix_boy@unsafe_ChangeNum",channel,0,0,null,null);
+	}
+	IGUIElementTextOpt@ Channel;
+}
+
+class ButtonUp : IGUIElementCallbackMouseClick
+{
+	ButtonUp(IGUIElementTextOpt@ tekst)
+	{
+		@Channel = tekst;
+		if(@Channel != null) 
+		{
+			CritterCl@ chosen = GetChosen();
+			if valid(chosen)
+			{
+				if (chosen.ParamBase[CRAFT]<10)
+					Channel.setText("0"+chosen.ParamBase[CRAFT]);
+				else 
+					Channel.setText(""+chosen.ParamBase[CRAFT]);
+			}
+		}
+	}
+	IGUIElementButtonOpt@ up;
+    void OnMouseClick(int mm, int click)
+    {
+		int channel=0;
+		string@ tekst1=Channel.getText();
+		StrToInt(tekst1,channel);
+		channel+=1;
+		if (channel<1 || channel>99)return;
+		channel=CLAMP(channel,1,99);
+		if (channel<10)Channel.setText("0"+channel);
+		else Channel.setText(""+channel);
+		RunServerScriptUnsafe("fix_boy@unsafe_ChangeNum",channel,0,0,null,null);
+    }
+	IGUIElementTextOpt@ Channel;
+}
+
+class Buttons : IGUIElementCallbackMouseClick
+{
+	int id;
+	Buttons(uint id)
+	{
+		this.id=id;
+	}
+	
+    void OnMouseClick(int mm, int click)
+    {
+		if (!BuState[id].IsChecked())
+		{
+			BuState[id].setState(true);
+			return;
+		}
+		ChangeFilter(id);
+	}
+}
+
+void InitFixScreen()
+{
+	@screenFix = ScreenFix();
+	SetFixBoyCallbackShow(screenFix);
+	
+	@Channel = GUI_AddText(CLIENT_SCREEN_FIX_BOY)
+	.TextOptions(FONT_BIG_NUM, COLOR_GRAY)
+	.TextBoxSize(85, 20)
+	.Position("FixNum");
+	
+	ButtonDown down(Channel);
+	GUI_AddButton ( CLIENT_SCREEN_FIX_BOY)
+	.CallbackMouseClick( down )
+	.Position("FixDow")
+	.DownPic(GetIfaceIniStr("FixDowPic")) ;
+	
+	ButtonUp up(Channel);
+	GUI_AddButton ( CLIENT_SCREEN_FIX_BOY )
+	.CallbackMouseClick( up )
+	.Position("FixUp")
+	.DownPic(GetIfaceIniStr("FixUpPic")) ;
+	
+	BuState.resize(6);
+	for(uint i=0; i<5; i++)
+	{
+		Buttons check(i);
+		@BuState[i]=GUI_AddCheckBox ( CLIENT_SCREEN_FIX_BOY)
+		.CallbackMouseClick(check)
+		.Position("FixButton" + (i+1))
+		.CheckedPic(GetIfaceIniStr( "FixButtonPic" + (i+1)));
+	}
+    
+    Buttons check(5);
+    @BuState[5]=GUI_AddCheckBox ( CLIENT_SCREEN_FIX_BOY)
+    .CallbackMouseClick(check)
+
+	.Position(353,22)
+	.UnCheckedPic("LILREDUP.FRM")
+    .CheckedPic("LILREDDN.FRM");
+    
+    GUI_AddText(CLIENT_SCREEN_FIX_BOY)
+	.TextOptions(FONT_FAT, COLOR_YELLOW)
+	.TextBoxSize(100, 10)
+    .Text("Blueprints")
+	.Position(370,20);
+}
+
+class ScreenFix : IGUIScreenCallbackShow
+{
+	
+	void OnShow(int , int , int )
+	{
+		for(int i=0; i<6; i++)
+		{
+			BuState[i].setState(false);
+		}
+		CritterCl@ chosen = GetChosen();
+		if 
+			(chosen.ParamBase[CRAFT]<10)Channel.setText("0"+chosen.ParamBase[CRAFT]);
+		else 
+			Channel.setText(""+chosen.ParamBase[CRAFT]);
+	}
+	
+}

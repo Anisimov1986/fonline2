@@ -1,0 +1,275 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+12 1010 D _var n name_mem_npc_player = 1 #
+2 1020 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 #
+5 2020 #
+8 2030 #
+9 2040 #
+0 2050 @
+3 3000 None 0 #
+4 3010 #
+17 3020 #
+65506 3030 #
+0 3040 @
+4 4000 None 0 #
+12 4010 @
+5 5000 None 0 #
+6 5010 #
+7 5020 #
+12 5030 @
+6 6000 None 0 #
+7 6010 #
+12 6020 @
+7 7000 None 0 #
+6 7010 #
+12 7020 @
+8 8000 None 0 #
+12 8010 #
+0 8020 @
+9 9000 None 0 #
+10 9010 #
+12 9020 #
+0 9030 @
+10 10000 None 0 #
+16 10010 #
+0 10020 @
+12 11000 None 0 #
+3 11010 #
+5 11020 #
+8 11030 #
+9 11040 #
+20 11050 #
+0 11060 @
+16 12000 None 0 #
+12 12010 #
+0 12020 @
+17 13000 None 0 #
+0 13010 #
+0 13020 &
+
+[engl]
+{100}{}{Lou}
+{200}{}{You see a tired woman who might have been quite a looker when she was younger.}
+{210}{}{You see Lou, the owner of the Malamute Saloon.}
+{210}{}{You see an older woman wearing quite a bit of rouge.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{1020}{}{Unknown}
+{2000}{}{Hello there. I'm Lou. Owner of the Malamute Saloon, finest house north of San Fran.}
+{2010}{}{Hello, Lou. I'm interested in getting something.}
+{2020}{}{Hello, Lou. What's going on in this town?}
+{2030}{}{What's a Malamute?}
+{2040}{}{Where's San Fran from here?}
+{2050}{}{I gotta go, Lou. Goodbye,}
+{3000}{}{What can I do for you? You want an empty bed, a full one? Maybe some booze or other goods?}
+{3010}{}{I'd like a room with an empty bed, Lou.}
+{3020}{}{A full bed? That sounds good. Tell me more about that.}
+{3030}{}{Booze and other goods. Let's barter.}
+{3040}{}{Nothing for now, Lou. Goodbye.}
+{4000}{}{You wanna get some sleep, huh? Well, that's going to cost you $40. Includes fresh, mostly clean sheets too. You still interested?}
+{4010}{}{Hmm, I guess I'm not that tired. Let me ask you about something else.}
+{5000}{}{Well, mostly we mine gold ore here and trade it to other areas.}
+{5010}{}{You mine gold ore here?}
+{5020}{}{Where do you trade the ore?}
+{5030}{}{That's interesting. Tell me something else, though.}
+{6000}{}{Yup. Just in the north part of town alone there are working gold mines.}
+{6010}{}{You said that you trade the ore?}
+{6020}{}{Interesting. Let me ask you about something else, though.}
+{7000}{}{Well, we trade gold ore to Vault City in return for medical supplies. We trade ore to the New California Republic in return for fresh brahmin and other victuals, and we trade gold to New Reno for drugs and booze.}
+{7010}{}{You mine the gold here?}
+{7020}{}{Interesting. Let me ask you about something else, though.}
+{8000}{}{Jist a big dog.}
+{8010}{}{Oh, I see. Hmm, let me ask you about something else.}
+{8020}{}{Of course. That's all I really wanted to know. Thanks. Goodbye.}
+{9000}{}{San Francisco is quite a ways south of here. You're a long ways from there. South and jist a tich to the west. It's right next to the ocean, don'tcha know. Don't know why any sane person'd want to go there for.}
+{9010}{}{Why? Is it dangerous?}
+{9020}{}{Interesting. Let me ask you about something else, though.}
+{9030}{}{Thanks for the information. Goodbye.}
+{10000}{}{Well, I hear all kinds of things about the whole city bein' full o' nuthin' but crazy guys with all kinds of fancy technology.}
+{10010}{}{Fancy technology?}
+{10020}{}{Crazy world, huh? Well, don't let it get you down. Goodbye.}
+{11000}{}{What now?}
+{11010}{}{Lou, I'm interested in getting something here.}
+{11020}{}{Hello, Lou. What's going on in this town?}
+{11030}{}{What's a Malamute?}
+{11040}{}{Where's San Fran from here?}
+{11050}{}{I need a good night's sleep.@@Can I get a room?@@I want to rent a room.}
+{11060}{}{I gotta go, Lou. Bye.}
+{12000}{}{Somethin' like that. It's been a while since someone came from down them ways. Talkin' about some Central Comittee and a commune or something'. Don't know much for certain. It's a long ways off.}
+{12010}{}{I've got a couple other questions.}
+{12020}{}{That's all I need to know for now. Thanks. Goodbye.}
+{13000}{}{Looking for someone to help you warm up that big lonely bed, huh? Let me see who I've got available. Hmm, why don't you try Fannie Mae? She oughta be around here somewheres. You can make the arrangements with her yourself.}
+{13010}{}{Sounds like a good idea. I'll go do that. Goodbye.}
+{13020}{}{But I didn't…okay. Goodbye.}
+
+[russ]
+{100}{}{Лу}
+{200}{}{Вы видите уставшую женщину, в молодости, видно, она была красивой.}
+{210}{}{Вы видите Лу, владелицу Салуна Маламут.}
+{210}{}{Вы видите пожилую женщину, у которой много косметики на лице.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{1020}{}{Unknown}
+{2000}{}{Привет. Я Лу. Хозяйка салуна "Мэйлмют" - лучшего заведения к северу от Сан-Франциско.}
+{2010}{}{Привет, Лу. Мне тут кое-что нужно.}
+{2020}{}{Привет, Лу. Что нового в городе?}
+{2030}{}{А что такое мэйлмют?}
+{2040}{}{А Сан-Франциско в какой стороне от сюда?}
+{2050}{}{Я должен идти, Лу. До свидания.}
+{3000}{}{Чем могу служить? Может, номер снимешь, можно спать, а можно просто спать. Может, выпить или еще чего прикупить?}
+{3010}{}{Мне бы комнату и просто спать, Лу.}
+{3020}{}{Не просто спать? Это здорово. Расскажи мне об этом подробнее.}
+{3030}{}{Выпить и прикупить. Так и запишем. Давай торговать.}
+{3040}{}{Пока ничего, Лу. До свидания.}
+{4000}{}{Просто спать, а? Ну, это будет сорок монет. На свежих простынях, почти чистых. Ну что, берем?}
+{4010}{}{Хм, пожалуй я не настолько устал. Лучше я тебя еще кое о чем спрошу.}
+{5000}{}{Ну, по большей части мы добываем здесь золотую руду и продаем ее в другие места.}
+{5010}{}{Вы здесь добываете золото?}
+{5020}{}{Куда вы продаете золото?}
+{5030}{}{Это интересно. Расскажи мне еще о другом.}
+{6000}{}{Угу, прямо в городе, к северу от сюда, работают 2 шахты. И еще одна на западе.}
+{6010}{}{Ты говоришь, вы торгуете золотой рудой?}
+{6020}{}{Интересно. Можно я задам тебе еще несколько вопросов?}
+{7000}{}{Ну, мы продаем золотую руду в Город Убежище, в обмен на лекарства.Продаем в НКР, в обмен на свежую брамятину и другие продукты,и продаем руду Нью Рено за выпивку и наркотики.}
+{7010}{}{Вы здесь добываете золото?}
+{7020}{}{Интересно. Можно я задам тебе еще несколько вопросов?}
+{8000}{}{Просто большой пес.}
+{8010}{}{А, понятно. Хм, можно я спрошу тебя о другом?}
+{8020}{}{Это все, что мне хотелось узнать. Спасибо и до свидания.}
+{9000}{}{Сан-Франциско это довольно далеко на юг от сюда.Туда довольно долго добираться. На юг и чуть-чуть к западу. Это же прямо у океана, разве не знаешь? Не понимаю, кто в здравом уме, мог бы туда отправиться.}
+{9010}{}{Почему? Это опасно?}
+{9020}{}{Можно еще спросить?}
+{9030}{}{Это все, что мне хотелось узнать. Спасибо и до свидания.}
+{10000}{}{Ну, я слышала всякие вещи о сумасшедших парнях со всякими фантастическими технологиями технологии.}
+{10010}{}{Необычные технологии?}
+{10020}{}{Сумасшедший мир, да? Ну, не позволяйте ему захватить вас. До свидания.}
+{11000}{}{Что теперь?}
+{11010}{}{Привет, Лу. Мне тут кое-что нужно.}
+{11020}{}{Привет, Лу. Что нового в городе?}
+{11030}{}{А что такое мэйлмют?}
+{11040}{}{А Сан-Франциско в какой стороне от сюда?}
+{11050}{}{Мне бы комнату и просто спать, Лу.}
+{11060}{}{Я должен идти, Лу. До свидания.}
+{12000}{}{Типа того. Прошло много времени с тех пор как кто-то приходил от туда. Поговаривали о каком-то центральном комитете, коммуне и других вещах. Я не много об этом знаю на самом деле.}
+{12010}{}{У меня есть пара других вопросов.}
+{12020}{}{Это все, что мне нужно знать. Спасибо. До свидания.}
+{13000}{}{Так тебе нужен кто-нибудь согреть большую, одинокую постель, а? Ну-ка посмотрим, кто у нас свободен. Хм, а может, тебе взять Фанни Мэй? Она точно где-то здесь. Договариваться с ней будешь сам.}
+{13010}{}{Похоже, хорошая идея. До свидания.}
+{13020}{}{Ну не знаю. Я подумаю. Пока.}
+
+[pols]
+{100}{}{Lou}
+{200}{}{Widzisz podstarzałą, zmęczoną kobietę. Musiała być całkiem ładna, gdy była młoda.}
+{210}{}{Widzisz Lou, właścicielkę saloonu Malamute.}
+{210}{}{Widzisz starszą, mocno umalowaną kobietę.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{1020}{}{Unknown}
+{2000}{}{Witaj, nazywam się Lou, jestem właścicielką Malamute. To najlepszy lokal na północ od San Fran.}
+{2010}{}{Witaj Lou, @sex@|chciałbym||chciałabym|...}
+{2020}{}{Witaj. Jakieś wieści?}
+{2030}{}{Malamute? A co to takiego?}
+{2040}{}{San Fran? Gdzie to jest?}
+{2050}{}{Muszę już iść, Lou, na razie.}
+{3000}{}{Co tylko zechcesz. Wolne łóżko, *zajęte* łóżko, może jakiś trunek czy coś innego?}
+{3010}{}{@sex@|Chciałbym||Chciałabym| tu przenocować, Lou. Sam.}
+{3020}{}{*Zajęte* łóżko? Brzmi dobrze, powiedz coś więcej.}
+{3030}{}{Pohandlujmy.}
+{3040}{}{Na razie nic Lou, do widzenia.}
+{4000}{}{@sex@|Niewyspany||Niewyspana|, co? To będzie 40 kapsli. Do tego prawie świeża i zazwyczaj czysta pościel! @sex@|Zainteresowany||Zainteresowana|?}
+{4010}{}{Hmmm, jednak może jeszcze nie pójdę spać. Mam inne pytania.}
+{5000}{}{Nic ciekawego. Wydobywamy tutaj złoto i sprzedajemy innym.}
+{5010}{}{Macie tutaj złoto?}
+{5020}{}{Innym czyli komu?}
+{5030}{}{Ciekawe. Mam jeszcze parę pytań...}
+{6000}{}{Tak jest. Na północ stąd jest większośc kopalń.}
+{6010}{}{Mówiłaś że handlujecie z innymi miastami?}
+{6020}{}{Interesujące... Mogę spytać o coś innego?}
+{7000}{}{No więc, głównie to wysyłamy je do Kryptopolis, w zamian za leki i inne tego typu rzeczy, do RNK za trzodę i jedzenie, i do New Reno, wódę i koks.}
+{7010}{}{Wydobywacie tu złoto?}
+{7020}{}{Jasne. @sex@|Chciałbym||Chciałabym| spytać o coś innego...}
+{8000}{}{Po prostu taki duży pies.}
+{8010}{}{Mhm. Mogę jeszcze o coś spytać?}
+{8020}{}{Oczywiście. To wszystko co @sex@|chciałem||chciałam| wiedzieć. Do widzenia.}
+{9000}{}{San Fran, czyli San Francisco. Kawał drogi stąd, na południe. Właściwie to na południowy zachód. Leży na wybrzeżu, wiesz? Tyle że nie znam nikogo, kto chciałby się tam kiedykolwiek wybrać.}
+{9010}{}{Dlaczego? Jest tam niebezpiecznie?}
+{9020}{}{Rozumiem. @sex@|Chciałbym||Chciałabym| spytać o coś innego.}
+{9030}{}{Dzięki za rozmowę. Na razie.}
+{10000}{}{Słyszałam jak ludzie gadali że pełno tam świrów, którzy mają dostęp do różnych dziwnych wynalazków.}
+{10010}{}{Dziwnych wynalazków?}
+{10020}{}{Taki już jest ten świat, heh. Cóż, na mnie pora, żegnaj.}
+{11000}{}{Co chcesz?}
+{11010}{}{Lou, mam sprawę.}
+{11020}{}{Witaj Lou, słyszałaś coś ciekawego ostatnio?}
+{11030}{}{Co to jest ten Malamute?}
+{11040}{}{Wiesz jak dostać się do San Francisco?}
+{11050}{}{Potrzebuję się dobrze wyspać.@@Masz wolny pokój?@@Lou, @sex@|chciałbym||chciałabym| wynająć pokój.}
+{11060}{}{Muszę spadać, Lou. Na razie.}
+{12000}{}{No, dziwnych. Dawno nie spotkałam nikogo, kto by tam zawitał. Podobno jest tam jakaś Komunia, czy coś takiego. Nie wiem nic konkretnego, to daleko stąd.}
+{12010}{}{Miałbym parę innych pytań.}
+{12020}{}{Dzięki, to wszystko. Do widzenia.}
+{13000}{}{Szukasz kogoś, kto by cię ogrzał w tą noc? Zobaczę która jest teraz wolna... O, Fannie Mae, zagadaj do niej, kręci się gdzieś tutaj. *Wszystko*  z nią załatwisz.}
+{13010}{}{Brzmi dobrze, niech będzie. Do widzenia.}
+{13020}{}{Ale ja nie... Żegnam.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{1020}{}{Unknown}
+{2000}{}{Hello there. I'm Lou. Owner of the Malamute Saloon, finest house north of San Fran.}
+{2010}{}{Hello, Lou. I'm interested in getting something.}
+{2020}{}{Hello, Lou. What's going on in this town?}
+{2030}{}{What's a Malamute?}
+{2040}{}{Where's San Fran from here?}
+{2050}{}{I gotta go, Lou. Goodbye,}
+{3000}{}{What can I do for you? You want an empty bed, a full one? Maybe some booze or other goods?}
+{3010}{}{I'd like a room with an empty bed, Lou.}
+{3020}{}{A full bed? That sounds good. Tell me more about that.}
+{3030}{}{Booze and other goods. Let's barter.}
+{3040}{}{Nothing for now, Lou. Goodbye.}
+{4000}{}{You wanna get some sleep, huh? Well, that's going to cost you $40. Includes fresh, mostly clean sheets too. You still interested?}
+{4010}{}{Hmm, I guess I'm not that tired. Let me ask you about something else.}
+{5000}{}{Well, mostly we mine gold ore here and trade it to other areas.}
+{5010}{}{You mine gold ore here?}
+{5020}{}{Where do you trade the ore?}
+{5030}{}{That's interesting. Tell me something else, though.}
+{6000}{}{Yup. Just in the north part of town alone there are working gold mines.}
+{6010}{}{You said that you trade the ore?}
+{6020}{}{Interesting. Let me ask you about something else, though.}
+{7000}{}{Well, we trade gold ore to Vault City in return for medical supplies. We trade ore to the New California Republic in return for fresh brahmin and other victuals, and we trade gold to New Reno for drugs and booze.}
+{7010}{}{You mine the gold here?}
+{7020}{}{Interesting. Let me ask you about something else, though.}
+{8000}{}{Jist a big dog.}
+{8010}{}{Oh, I see. Hmm, let me ask you about something else.}
+{8020}{}{Of course. That's all I really wanted to know. Thanks. Goodbye.}
+{9000}{}{San Francisco is quite a ways south of here. You're a long ways from there. South and jist a tich to the west. It's right next to the ocean, don'tcha know. Don't know why any sane person'd want to go there for.}
+{9010}{}{Why? Is it dangerous?}
+{9020}{}{Interesting. Let me ask you about something else, though.}
+{9030}{}{Thanks for the information. Goodbye.}
+{10000}{}{Well, I hear all kinds of things about the whole city bein' full o' nuthin' but crazy guys with all kinds of fancy technology.}
+{10010}{}{Fancy technology?}
+{10020}{}{Crazy world, huh? Well, don't let it get you down. Goodbye.}
+{11000}{}{What now?}
+{11010}{}{Lou, I'm interested in getting something here.}
+{11020}{}{Hello, Lou. What's going on in this town?}
+{11030}{}{What's a Malamute?}
+{11040}{}{Where's San Fran from here?}
+{11050}{}{I need a good night's sleep.@@Can I get a room?@@I want to rent a room.}
+{11060}{}{I gotta go, Lou. Bye.}
+{12000}{}{Somethin' like that. It's been a while since someone came from down them ways. Talkin' about some Central Comittee and a commune or something'. Don't know much for certain. It's a long ways off.}
+{12010}{}{I've got a couple other questions.}
+{12020}{}{That's all I need to know for now. Thanks. Goodbye.}
+{13000}{}{Looking for someone to help you warm up that big lonely bed, huh? Let me see who I've got available. Hmm, why don't you try Fannie Mae? She oughta be around here somewheres. You can make the arrangements with her yourself.}
+{13010}{}{Sounds like a good idea. I'll go do that. Goodbye.}
+{13020}{}{But I didn't…okay. Goodbye.}
+

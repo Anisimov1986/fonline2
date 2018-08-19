@@ -1,0 +1,175 @@
+#include "_macros.fos"
+#include "pids_groups.fos"
+#include "serializator.fos"
+#include "_msgstr.fos"
+
+import bool Present( int what, int[]& where ) from "utils_for_array";
+
+const int[] Dialogs={DIALOG_all_citizen,DIALOG_all_prostitute,DIALOG_all_poorman,DIALOG_all_alco,DIALOG_all_narcoman};
+
+uint e_event_start(array<uint>@ values)
+{
+	event_start();
+	return 0;
+}
+
+void event_start()
+{
+	Serializator save;
+	uint NpcId=FindNpc();
+	uint ItemId=FindItem();
+	if (NpcId == 0)
+		return;
+	uint EventId=CreateTimeEvent(__FullSecond+REAL_MINUTE(60), "e_event_stop", 0, true);
+    save.Set( NpcId );
+	save.Set( ItemId );
+	save.Set( EventId );
+    save.Save( "QuestEvent" );
+	InitNpc(NpcId);
+	Log("Quest started, NpcId="+NpcId+", ItemId="+ItemId+", EventId="+EventId);
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	Serializator load;
+	if( load.Load( "QuestEvent" ))
+	{
+		uint NpcId=0;
+		uint ItemId=0;
+		uint EventId=0;
+		load.Get( NpcId );
+		load.Get( ItemId );
+		load.Get( EventId );
+		DeInitNpc(NpcId);
+		if (!valid(values) && EventId>0)
+			EraseTimeEvent(EventId);
+		EraseAnyData("QuestEvent");
+	}
+	return 0;
+}
+
+void InitNpc(int pid)
+{
+	Critter@ npc=GetCritter(pid);
+    if(not valid(npc)) return;
+	SETFLAG( npc.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST );
+	npc.SetEvent ( CRITTER_EVENT_TALK , "_Talk"); 
+}
+void DeInitNpc(int pid)
+{
+	Critter@ npc=GetCritter(pid);
+    if(not valid(npc)) return;
+	UNSETFLAG( npc.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST );
+	npc.SetEvent ( CRITTER_EVENT_TALK , ""); 
+}
+
+bool _Talk(Critter& cr, Critter& player, bool attach, uint talkCount)
+{
+    if(attach)
+    {
+		RunDialog(player, DIALOG_quest_event, cr.HexX, cr.HexY, false);
+		return false;
+    }
+    return true;
+}
+
+uint FindNpc()
+{
+	Critter@[] allnpcs;
+	Critter@[] npcs;
+    uint num = GetAllNpc( 0, allnpcs );
+	for( uint i = 0; i < num; i++ )
+    {
+		if (Present(allnpcs[i].Param[ST_DIALOG_ID],Dialogs))
+			npcs.insertLast(allnpcs[i]);
+	}
+	uint randomid = Random(0,npcs.length());
+	if (valid (npcs[randomid]))
+		return npcs[randomid].Id;
+	return 0;			
+}
+
+uint FindItem()
+{
+	return Pids_AllWeapon[Random(0,Pids_AllWeapon.length())];
+}	
+
+
+
+void r_QuestFinished(Critter& player, Critter@ npc)
+{
+	Serializator load;
+	if( load.Load( "QuestEvent" ))
+	{
+		uint NpcId=0;
+		uint ItemId=0;
+		uint EventId=0;
+		load.Get( NpcId );
+		load.Get( ItemId );
+		load.Get( EventId );
+		Log("Need item"+ItemId);
+		if (ItemId>0 && player.CountItem(ItemId)>0)
+		{
+			Log("player have item");
+			Item@ item = player.GetItem  ( ItemId, -1);
+			if(valid (item))
+			{
+				Log("item valid");
+				_SubItem(item,1);
+				player.StatBase[ ST_EXPERIENCE ] += 1000;	
+			}
+		}
+		Log("stopping event");
+		e_event_stop(null);
+	}
+}
+
+bool d_HaveQuestItem(Critter& player, Critter@ npc)
+{
+	return HaveQuestItem(player);
+}
+
+bool d_NotHaveQuestItem(Critter& player, Critter@ npc)
+{
+	return !HaveQuestItem(player);
+}
+
+bool HaveQuestItem(Critter& player)
+{
+	Serializator load;
+	if( load.Load( "QuestEvent" ))
+	{
+		uint NpcId=0;
+		uint ItemId=0;
+		uint EventId=0;
+		load.Get( NpcId );
+		load.Get( ItemId );
+		load.Get( EventId );
+		if (ItemId>0 && player.CountItem(ItemId)>0)
+			return true;
+	}
+	return false;
+}
+
+void dlg_Prepare( Critter& player, Critter@ npc, string@ lexems )
+{
+    if( not IS_DIALOG_GENERATED( lexems ) )
+        return;
+	Serializator load;
+	if( load.Load( "QuestEvent" ))
+	{
+		uint NpcId=0;
+		uint ItemId=0;
+		uint EventId=0;
+		load.Get( NpcId );
+		load.Get( ItemId );
+		load.Get( EventId );
+		lexems += "$itemname" + "@msg ITEM " + STR_ITEM_NAME( ItemId ) + "@";
+	}
+}
+
+
+void event_start( Critter& cr, int, int , int)
+{
+	event_start();
+}

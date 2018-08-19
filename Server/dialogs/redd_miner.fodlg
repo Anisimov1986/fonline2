@@ -1,0 +1,60 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Miner}
+{200}{}{You see: a Miner.}
+{210}{}{You see a Miner. His clothes are worn and stained.}
+{210}{}{You see a mineworker.}
+{210}{}{You see a tired miner.}
+{210}{}{You see someone covered in dirt.}
+{210}{}{This person must be a miner.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Another day older and deeper in debt...@@I've got dirt everywhere.@@It sure is dark down there.@@Dig we must.@@We dig 'em and then we die in 'em.@@Why isn't gold ever found on the surface?}
+
+[russ]
+{100}{}{Шахтер}
+{200}{}{Вы видите шахтера.}
+{210}{}{Вы видите шахтера. Он покрыт слоем копоти.}
+{210}{}{Вы видите уставшего шахтера.}
+{210}{}{Вы видите золотодобытчика.}
+{210}{}{Вы видите кого-то закиданного землей и мусором.}
+{210}{}{Это должно быть шахтер.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Привет.@@Чего тебе?@@Пошел вон.@@Ох-хо-хо.@@Есть выпить?@@Проходи мимо.@@7 дней в забое... или запое?@@Че нада?}
+
+[pols]
+{100}{}{Górnik}
+{200}{}{Widzisz górnika.}
+{210}{}{Widzisz górnika. Jego ubranie jest zużyte i zniszczone.}
+{210}{}{Widzisz pracownika kopalni.}
+{210}{}{Widzisz zmęczonego górnika.}
+{210}{}{Widzisz człowieka ubrudzonego pyłem.}
+{210}{}{Ten człowiek pewnie jest górnikiem.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Kolejny dzień, a dług rośnie...@@Cały jestem uwalony.@@Tam na dole jest ciemno jak w dupie u gekona.@@Trzeba dalej kopać.@@Kopiemy, kopiemy i zdychamy.@@Tyle kopania, a gówno znajdujemy.}
+
+[ptbr]
+{100}{}{Minerador}
+{200}{}{Você vê um minerador.}
+{210}{}{Você vê um minerador. Suas roupas estão amassadas e manchadas.}
+{210}{}{Você vê um trabalhador de mina.}
+{210}{}{Você vê um minerador. Ele parece estar bastante cansado.}
+{210}{}{Você vê alguém coberto de sujeira.}
+{210}{}{Esta pessoa deve ser um mineirador.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{A cada dia que passa mais velho e endividado...@@Eu tô com minhas roupas todas sujas.@@Com certeza é escuro abaixo de nós.@@Cavar nós devemos.@@Nós cavamos e então morremos nele.@@Porque a gente não acha ouro na superfície?}
+

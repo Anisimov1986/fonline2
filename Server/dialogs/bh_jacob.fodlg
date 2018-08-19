@@ -1,0 +1,254 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+18 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 #
+5 2020 @
+3 3000 None 0 #
+8 3010 #
+7 3020 #
+65506 3030 #
+0 3040 @
+7 4000 None 0 #
+18 4010 @
+8 5000 None 0 #
+9 5010 #
+11 5020 #
+12 5030 @
+9 6000 None 0 #
+10 6010 @
+10 7000 None 0 #
+13 7010 #
+0 7020 @
+11 8000 None 0 #
+10 8010 #
+0 8020 @
+12 9000 None 0 #
+18 9010 #
+0 9020 @
+13 10000 None 0 #
+14 10010 #
+0 10020 @
+14 11000 None 0 #
+15 11010 #
+16 11020 @
+15 12000 None 0 #
+16 12010 #
+0 12020 @
+16 13000 None 0 #
+18 13010 #
+0 13020 @
+18 14000 None 0 #
+7 14010 #
+8 14020 #
+65506 14030 #
+0 14040 &
+
+[engl]
+{100}{}{Jacob}
+{200}{}{You see: Jacob.}
+{210}{}{You see a bedraggled man in a stained lab coat. His hands are discolored from chemicals.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{1020}{}{Known}
+{2000}{}{Hi there. I'm Jacob, the chemist of the Chemist's Drugstore. What can I do for you?}
+{2010}{}{Da yagga! Eep oop op!}
+{2020}{}{Dugstore? Rugstore?}
+{3000}{}{Hi there. I'm Jacob, the chemist of the Chemist's Drugstore. What can I do for you?}
+{3010}{}{What can you tell me about Broken Hills?}
+{3020}{}{I want some chemicals mixed.}
+{3030}{}{I'd like to trade.}
+{3040}{}{Bye.}
+{4000}{}{Sorry pal, ain't got the facilities for that these days.}
+{4010}{}{Fine, I had some more questions.}
+{5000}{}{Why don't you tell me how you feel about mutants first?}
+{5010}{}{I hate them.}
+{5020}{}{I'm ambivalent about them.}
+{5030}{}{I like them!}
+{6000}{}{In that case, I'll give you the real history.}
+{6010}{}{Go on.}
+{7000}{}{A human named Jacob - I was named after him - founded this place. The mutant Marcus came along and forced everyone under his rule.}
+{7010}{}{Tell me more.}
+{7020}{}{That's enough. You're crazy. Goodbye.}
+{8000}{}{Maybe if I tell you the real history, you'll change your mind.}
+{8010}{}{Okay. Tell me.}
+{8020}{}{No, I'm not really interested.}
+{9000}{}{In that case, it's just great being here.  This town has everything you could want… mutant sheriff, uranium mine, hospital, store… you can get just about anything here. You want anything else?}
+{9010}{}{Yes.}
+{9020}{}{No. Bye.}
+{10000}{}{He ruled here ever since the Master was destroyed, then he left town and arranged another replacement. He puts down anyone who disagrees with him… or they just "disappear." The place looks civilized on the top of things, but the truth is that it's a killing ground for bloodthirsty mutants. There's a friend of a friend who had friends who disappeared after speaking up.}
+{10010}{}{Go on.}
+{10020}{}{That's enough. You're crazy. Goodbye.}
+{11000}{}{We all pretend that this is a civilized town, that we're all on the up and up… but we all live in fear of the mutant rage. Each day, there are fewer and fewer humans.}
+{11010}{}{All the mutants I've seen look old and decrepit.}
+{11020}{}{Why not fight back?}
+{12000}{}{That's because they're trying to fool you, friend. They're trying to fool you.}
+{12010}{}{Why not fight back against them, then?}
+{12020}{}{Fool me? I see. Well, I have to go. Nice talking to you.}
+{13000}{}{We've tried, but there's not a lot we can do in our state. There's not a lot of humans left.}
+{13010}{}{Interesting, tell me something else.}
+{13020}{}{Too bad, bye.}
+{14000}{}{What do you want this time?}
+{14010}{}{I want some chemicals mixed.}
+{14020}{}{What can you tell me about Broken Hills?}
+{14030}{}{I'd like to trade.}
+{14040}{}{Bye.}
+
+[russ]
+{100}{}{Джейкоб}
+{200}{}{Вы видите человека в запачканном лабораторном халате.}
+{210}{}{Вы видите человека в запачканном лабораторном халате. Его руки в пятнах от химикалий.}
+{210}{}{Вы видите Джекоба Аптекаря.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Тупой}
+{1020}{}{Ответ}
+{2000}{}{Привет. Я Джейкоб, городской аптекарь. Чем могу быть полезен?@@Что вам надо?}
+{2010}{}{Даа ягга! Иип ооп оп!}
+{2020}{}{Аптеки-матеки?}
+{3000}{}{Привет. Я Джейкоб, городской аптекарь. Чем могу быть полезен?@@Что вам надо?}
+{3010}{}{Что ты можешь рассказать о Брокен Хиллс?}
+{3020}{}{Мне бы кое-какую химию намешать.}
+{3030}{}{Хочу купить кое-что.}
+{3040}{}{Пока.}
+{4000}{}{Извини приятель, не было поставок в последнее время.}
+{4010}{}{Ладно, у меня ещё вопросы остались.}
+{5000}{}{Почему бы тебе для начала не сказать, как ты относишься к мутантам?}
+{5010}{}{Я их ненавижу.}
+{5020}{}{Живут себе, кушать не просят.}
+{5030}{}{Я их обожаю!}
+{6000}{}{В таком случае я расскажу тебе правдивую историю этого города.}
+{6010}{}{-дальше-}
+{7000}{}{Этот город основал человек по имени Джейкоб, меня назвали в его честь. Затем пришел мутант Маркус и силой захватил власть.}
+{7010}{}{Расскажи мне подробнее.}
+{7020}{}{Достаточно. Ты не в своем уме. Пока.}
+{8000}{}{Может быть, если я расскажу тебе правдивую историю, ты передумаешь.}
+{8010}{}{Хорошо. Расскажи мне.}
+{8020}{}{Нет, не думаю, что мне это интересно.}
+{9000}{}{В таком случае тут просто замечательно. В этом городе есть все, чего твоя душа пожелает... мутант-шериф, урановая шахта, больница, магазин... Ты можешь достать здесь почти все, что угодно. Хочешь что-нибудь еще?}
+{9010}{}{Да.}
+{9020}{}{Нет.}
+{10000}{}{Он правит здесь с тех пор, как убили Создателя. Он убирает любого, кто с ним не согласен... или этот несогласный просто "исчезает". На первый взгляд этот городок выглядит миленько - но на самом деле тут зона охоты для кровожадных мутантов. Многие могут сказать, что их друзья исчезли после того, как говорили неудобные вещи.}
+{10010}{}{Продолжай.}
+{10020}{}{Достаточно. Ты не в своем уме. Пока.}
+{11000}{}{Снаружи тут мирный, культурный город, который растет и развивается... но мы все живем в постоянном страхе перед злобой мутантов. С каждым днем здесь становится все меньше и меньше чистокровных людей.}
+{11010}{}{Всемутанты которых я видел выглядят старыми и дряхлыми.}
+{11020}{}{Почему бы не дать отпор ?}
+{12000}{}{Это потому, что они пытаются обмануть вас, друг. Они пытаются обмануть вас.}
+{12010}{}{Почему бы не бороться против них, тогда ?}
+{12020}{}{Дурака из меня сделать решил? Понимаю. Ну, я должен идти. Приятно было пообщаться .}
+{13000}{}{Мы пытались, но мы не так много можем. Слишком мало людей осталось.}
+{13010}{}{Интересно, расскажи мне что-нибудь ещё.}
+{13020}{}{Жаль, до свидания.}
+{14000}{}{What do you want this time?}
+{14010}{}{Мне бы кое-какую химию намешать.}
+{14020}{}{Что ты можешь рассказать о Брокен Хиллс?}
+{14030}{}{Хочу купить кое-что.}
+{14040}{}{Пока.}
+
+[pols]
+{100}{}{Jacob}
+{200}{}{Widzisz spoconego mężczyznę noszącego laboratoryjny fartuch.}
+{210}{}{Widzisz Jacoba, aptekarza.}
+{210}{}{Widzisz spoconego mężczyznę w poplamionym fartuchu. Na jego dłoniach widać przebarwienia od chemikaliów.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{1020}{}{Known}
+{2000}{}{Witam. Jestem Jacob, właściciel tej apteki. Co mogę dla ciebie zrobić?}
+{2010}{}{Da jagga! Ip oop op!}
+{2020}{}{Teka? Ptaka?}
+{3000}{}{Witam. Jestem Jacob, właściciel tej apteki. Co mogę dla ciebie zrobić?}
+{3010}{}{Co możesz mi powiedzieć o Broken Hills?}
+{3020}{}{Chcę wymieszać trochę chemikaliów.}
+{3030}{}{Chcę pohandlować.}
+{3040}{}{Do widzenia.}
+{4000}{}{Przykro mi, ale nie mam potrzebnego sprzętu.}
+{4010}{}{W porządku, mam jeszcze kilka pytań.}
+{5000}{}{A może najpierw ty mi powiesz, co myślisz o mutantach?}
+{5010}{}{Nienawidzę ich.}
+{5020}{}{Nie mogę się zdecydować.}
+{5030}{}{Lubię ich!}
+{6000}{}{W takim razie opowiem ci prawdziwą historię.}
+{6010}{}{Kontynuuj.}
+{7000}{}{Człowiek imieniem Jacob - nazwano mnie po nim - założył to miejsce. Potem przyszedł mutant Marcus i zmusił wszystkich do uległości pod swoją ręką.}
+{7010}{}{Opowiedz mi więcej.}
+{7020}{}{Wystarczy. Jesteś szalony. Żegnam.}
+{8000}{}{Może jeżeli opowiem ci prawdziwą historię, to się zdecydujesz.}
+{8010}{}{Dobra. Opowiadaj.}
+{8020}{}{Nie, nie bardzo mnie to interesuje.}
+{9000}{}{W takim razie to po prostu wspaniale tu być. To miasto ma wszystko, czego można zapragnąć... Szeryfa mutanta, kopalnię uranu, szpital, sklep... Możesz tu znaleźć praktycznie wszystko. Czy chcesz jeszcze czegoś?}
+{9010}{}{Tak.}
+{9020}{}{Nie. Do widzenia.}
+{10000}{}{Ucisza każdego, kto ośmieli się z nim nie zgodzić... Albo po prostu taki ktoś "znika". To miejsca z zewnątrz wygląda na cywilizowane, ale prawda jest taka, że to łowisko dla krwiożerczych mutantów. Przyjaciel przyjaciela miał przyjaciół, którzy zniknęli, gdy tylko podnieśli głos.}
+{10010}{}{Mów dalej.}
+{10020}{}{Wystarczy. Jesteś szalony. Żegnam.}
+{11000}{}{Wszyscy udajemy, że to jest cywilizowane miasto, że czujemy się wspaniale... ale wszyscy żyjemy w strachu przed gniewem mutantów. Z każdym dniem jest coraz mniej i mniej ludzi.}
+{11010}{}{Wszyscy z mutantów, których tu widzę, wyglądają na starych i schorowanych.}
+{11020}{}{Dlaczego nie walczycie?}
+{12000}{}{Dlatego, że próbują cię oszukać, przyjacielu. Próbują cię oszukać.}
+{12010}{}{Dlaczego więc nie walczycie?}
+{12020}{}{Oszukać mnie? Rozumiem. Cóż, muszę już iść. Miło się rozmawiało.}
+{13000}{}{Próbowaliśmy, ale w naszym stanie nie możemy prawie nic zrobić. Niewielu ludzi tu pozostało.}
+{13010}{}{Ciekawe, powiedz mi o czymś innym.}
+{13020}{}{Szkoda, do widzenia.}
+{14000}{}{Czego chcesz tym razem?}
+{14010}{}{Chcę wymieszać trochę chemikaliów.}
+{14020}{}{Co możesz mi opowiedzieć o Broken Hills?}
+{14030}{}{Chcę pohandlować.}
+{14040}{}{Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{1020}{}{Known}
+{2000}{}{Hi there. I'm Jacob, the chemist of the Chemist's Drugstore. What can I do for you?}
+{2010}{}{Da yagga! Eep oop op!}
+{2020}{}{Dugstore? Rugstore?}
+{3000}{}{Hi there. I'm Jacob, the chemist of the Chemist's Drugstore. What can I do for you?}
+{3010}{}{What can you tell me about Broken Hills?}
+{3020}{}{I want some chemicals mixed.}
+{3030}{}{I'd like to trade.}
+{3040}{}{Bye.}
+{4000}{}{Sorry pal, ain't got the facilities for that these days.}
+{4010}{}{Fine, I had some more questions.}
+{5000}{}{Why don't you tell me how you feel about mutants first?}
+{5010}{}{I hate them.}
+{5020}{}{I'm ambivalent about them.}
+{5030}{}{I like them!}
+{6000}{}{In that case, I'll give you the real history.}
+{6010}{}{Go on.}
+{7000}{}{A human named Jacob - I was named after him - founded this place. The mutant Marcus came along and forced everyone under his rule.}
+{7010}{}{Tell me more.}
+{7020}{}{That's enough. You're crazy. Goodbye.}
+{8000}{}{Maybe if I tell you the real history, you'll change your mind.}
+{8010}{}{Okay. Tell me.}
+{8020}{}{No, I'm not really interested.}
+{9000}{}{In that case, it's just great being here.  This town has everything you could want… mutant sheriff, uranium mine, hospital, store… you can get just about anything here. You want anything else?}
+{9010}{}{Yes.}
+{9020}{}{No. Bye.}
+{10000}{}{He ruled here ever since the Master was destroyed, then he left town and arranged another replacement. He puts down anyone who disagrees with him… or they just "disappear." The place looks civilized on the top of things, but the truth is that it's a killing ground for bloodthirsty mutants. There's a friend of a friend who had friends who disappeared after speaking up.}
+{10010}{}{Go on.}
+{10020}{}{That's enough. You're crazy. Goodbye.}
+{11000}{}{We all pretend that this is a civilized town, that we're all on the up and up… but we all live in fear of the mutant rage. Each day, there are fewer and fewer humans.}
+{11010}{}{All the mutants I've seen look old and decrepit.}
+{11020}{}{Why not fight back?}
+{12000}{}{That's because they're trying to fool you, friend. They're trying to fool you.}
+{12010}{}{Why not fight back against them, then?}
+{12020}{}{Fool me? I see. Well, I have to go. Nice talking to you.}
+{13000}{}{We've tried, but there's not a lot we can do in our state. There's not a lot of humans left.}
+{13010}{}{Interesting, tell me something else.}
+{13020}{}{Too bad, bye.}
+{14000}{}{What do you want this time?}
+{14010}{}{I want some chemicals mixed.}
+{14020}{}{What can you tell me about Broken Hills?}
+{14030}{}{I'd like to trade.}
+{14040}{}{Bye.}
+

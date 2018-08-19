@@ -1,0 +1,144 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+4 2010 D _var p name_mem_player_npc = 0 D _param p SK_SCIENCE } 100 #
+10 2020 D _param p SK_SCIENCE < 100 #
+5 2030 D _param p PE_PROF_SCIENTIST { 1 #
+3 2040 D _var p name_mem_player_npc = 0 #
+7 2050 D _var p name_mem_player_npc = 1 D _param p PE_PROF_SCIENTIST = 1 D _item p PID_ENERGY_TRANSFORMER } 2 D _item p PID_CHEMICAL_COMPONENTS } 12 D _script economy_dialogs@d_IsEnoughCaps 1 4000 R _script economy_dialogs@r_TakeCaps 1 4000 R _item p PID_ENERGY_TRANSFORMER - 2 R _item p PID_CHEMICAL_COMPONENTS - 12 R _param p PE_PROF_SCIENTIST = 2 R _var p prof_energy = 5 R _param p ST_EXPERIENCE + 1200 R _script tc@r_AddFeeToLocker 1 200 #
+9 2060 D _var p name_mem_player_npc = 1 D _param p PE_PROF_SCIENTIST = 1 R _var p prof_energy = 4 #
+8 2070 D _param p PE_PROF_SCIENTIST = 2 R _var p prof_energy = 6 @
+3 3000 None 0 @
+4 4000 None 0 @
+5 5000 None 0 #
+6 5010 D _param p PE_PROF_SCIENTIST = 1 R _var p prof_energy = 4 #
+0 5020 @
+6 6000 economy_dialogs@dlg_PreparePrice 0 #
+0 6010 R _var p name_mem_player_npc = 1 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 &
+
+[engl]
+{100}{}{Lucas}
+{200}{}{Lucas, the Kokoweef Mine foreman}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Yeah? Why do you bother me, the Kokoweef Mine foreman, the most important person in this town?}
+{2010}{}{I've been told you are the man to ask for some scientific stuff.}
+{2020}{}{I want to learn your trade.@@I need to learn about energy-based weaponry.}
+{2030}{}{I'm very sorry for taking your precious time, sir, I just wanted to ask if you can share any of your great scientific knowledge with me.}
+{2040}{}{Most important my ass.@@Most important dipshit.@@Most important douchebag.}
+{2050}{}{(Scientist profession level 2) I'm back, and I have what's needed, I guess.@@(Scientist profession level 2) I guess I've got what you wanted.@@(Scientist profession level 2) I'm back, and I guess I have all that you told me to bring.}
+{2060}{}{Can you repeat what I need to bring?@@Um, could you tell me again what I was supposed to bring?@@Erm, I forgot what you wanted me to bring...}
+{2070}{}{Do you know anyone who can teach me more about energy weapons?@@Know anyone who could teach me more?}
+{3000}{}{Oh, what do we have here, a joker? Fuck off.@@Fuck you.@@Go fuck yourself.}
+{4000}{}{It's not just "stuff", pal. Come back when you can show some respect.@@Stuff is something that can be stuffed into that empty cranium of yours. Get lost.}
+{5000}{}{Hmm, I might be able to find a free moment or two. What do you want to know? What knowledge do you have so far?}
+{5010}{}{Well, I've met Ambrose from Boneyard and...@@Well, I met that Ambrose chick and she taught me...}
+{5020}{}{Erm, I mean, that is, well... I need to think about it. Bye.@@Nevermind.@@Later, Lucas.}
+{6000}{}{Ambrose? Well that changes things. I've spent some quality time with her back in the day... Nevermind, no use in wasting time for chit-chat. To teach you something more than what you already know we're gonna need two energy transformers and, say, 11 ... no, 12 .. no, 13... nah, 12 chemical components. Yes, that should be perfect. Oh, and @lex prof2_price@ caps too.}
+{6010}{}{I'll be back soon. Goodbye.@@Okay... I'll be back.@@Right, I'll get back to you when I get those.}
+{7000}{}{No guessing here, you are supposed to be a scientist. A scientist doesn't guess, he knows. Anyway, put the rifle here and have a look ... [He teaches you some useful scientific methods]... and here it is. I'm glad I could teach someone able to appreciate it. If you feel like you are ready to learn more, go to San Francisco and find mister Alberto Unpiedra. He's a wise-ass fella, I believe he sticks with those Hubologists living up there. }
+{7010}{}{Of course. Thanks a lot, Lucas. Goodbye.@@Okay. Thanks, Lucas.@@Okay, thanks.}
+{8000}{}{San Francisco, Alberto Unpiedra. He's a wise-ass fella, I believe he sticks with those Hubologists living up there.}
+{8010}{}{Of course. Thanks a lot, Lucas. Goodbye.@@Okay, thanks.@@Okay, bye.}
+{9000}{}{You deaf or something? I said we're gonna need a laser rifle, two energy transformers and, say, 12 chemical components. Yes, that should be perfect. Oh, and @lex prof2_price@ caps. }
+{9010}{}{Sorry. I'll be back soon. Goodbye.@@Okay, I'll get those.}
+{10000}{}{You do not know enough. Come back when you're more skilled.}
+
+[russ]
+{100}{}{Лукас}
+{200}{}{Лукас, мастер шахты "Kokoweef".}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Да? Почему вы беспокоите меня? Я самый важный и занятой человек в этом городе.}
+{2010}{}{Мне сказали вы человек с которым можно поговорить о всяких научных вещах.}
+{2020}{}{Я хочу выучить вашу профессию.}
+{2030}{}{Извините что отнимаю ваше ценнейшее время сэр. Я просто хотел узнать не соблаговолите ли вы поделится со мной своими великими научными знаниями.}
+{2040}{}{Самое важное и занятое это моя задница. }
+{2050}{}{[Профессия: Ученый уровень 2] Я думаю я принес все что нужно.}
+{2060}{}{Повторите пожалуйста что я должен принести.}
+{2070}{}{Не подскажете у кого я бы мог еще поучиться?}
+{3000}{}{О да у нас тут шутник! Пошел в жопу!}
+{4000}{}{Это не просто "всякие вещи", приятель. Возвращайся, когда сможешь продемонстрировать некоторое уважение. Прощай.}
+{5000}{}{Хм, хм, я мог бы найти время. Что вы хотите знать? Какие знания у вас уже есть?}
+{5010}{}{Ну, я встречался с Эмброуз в Бониярде и ...}
+{5020}{}{Эм, я имею в виду, то есть, ну ... Мне нужно подумать об этом. Пока.}
+{6000}{}{Эмброуз?! Чтож вы сразу не сказали?! Значит не будем тратить время на пустые слова. Отлично, отлично, вернемся к делу. Для обучения нам два трансформатора и 11... нет, 12 химических компонентов. Да это все что нужно, а ну и конечно @lex prof2_price@ крышек за мое дорожайшее время.}
+{6010}{}{Я скоро вернусь. До свидания.}
+{7000}{}{Не нужно "думать", нужно знать, ты же будущий ученый. Так приступим... [он обучает вас разным важным научным приемам] ... и вот так. Я рад что поделился своими знаниями с человеком который может их оценить по достоинству. Если вы поймете что хотите продолжить обучение и узнать больше, идите в Сан-Франциско и найдите там Альберто Унпедро. Он очень умный человек, работает на Хабологов. }
+{7010}{}{Конечно. Большое спасибо, сэр Лукас. До свидания.}
+{8000}{}{В Сан-Франциско есть человек который сможет продолжить ваше обучение. Это Альберто Унпедро. Он работает на Хабологов.}
+{8010}{}{Понятно. Большое спасибо, сэр Лукас. До свидания.}
+{9000}{}{Нам понадобится 12 химических компонентов, 2 трансформатора и @lex prof2_price@ монет.}
+{9010}{}{Я скоро вернусь. До свидания.}
+{10000}{}{Вы не достаточно знаете для этого. Возвращайтесь когда будете более подкованы в научных вопросах. [Требуется наука 100]}
+
+[pols]
+{100}{}{Lucas}
+{200}{}{Lucas, sztygar kopalni Kokoweef.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Ta? Dlaczego zawracasz głowę mi, sztygarowi kopalni Kokoweef, najważniejszej osobie w tym mieście?}
+{2010}{}{Powiedziano mi, że jesteś osobą która wie sporo o różnych naukowych rzeczach i tym podobnych pierdołach.}
+{2020}{}{@sex@|Chciałbym||Chciałabym| nauczyć się twojej profesji...}
+{2030}{}{Szalenie przykro mi, że zabieram szanownemu panu jego jakże drogocenny czas, jednakże @sex@|byłbym||byłabym| niezmiernie @sex@|wdzięczny||wdzięczna|, jeśli, jeżeli nie stanowi to problemu, zechciałby pan być tak uprzejmy, by podzielić się ze mną odrobiną swej obszernej naukowej wiedzy.}
+{2040}{}{Najważniejszy w tym zasranym mieście jest mój tyłek. }
+{2050}{}{(Profesja: Naukowiec, poziom 2.) Jestem z powrotem. Zdaje mi się, że mam wszystko, czego pan sobie życzył.}
+{2060}{}{Mógłby pan powtórzyć, co @sex@|miałem||miałam| przynieść?}
+{2070}{}{Czy mógłby mi pan powiedzieć, kto jest w stanie nauczyć mnie więcej o broniach energetycznych?}
+{3000}{}{Och, kogo my tu mamy, osobistego błazna? Wypierdalaj.}
+{4000}{}{To nie są jakieś "pierdoły", @sex@|kolego||koleżanko|. Wróć, kiedy nauczysz się nieco respektu. Żegnam.}
+{5000}{}{Hm. Hmm... Mógłbym znaleźć chwilkę albo dwie. Co chcesz wiedzieć? Jaką wiedzę udało ci się posiąść dotychczas?}
+{5010}{}{Cóż, @sex@|widziałem||widziałam| się z Ambrosem z Gruzów i...}
+{5020}{}{Ekhm, to znaczy, ten, no... Muszę to jescze przemyśleć. Do widzenia.}
+{6000}{}{Ambrose?! Dlaczego nie mówisz od razu?! Nie będziemy tracić więcej czasu na pogaduszki. Bardzo dobrze, baaardzo dobrze. W porządku, wracając do interesów. Aby nauczyć cię jeszcze czegoś ponad to, co już wiesz, będziemy potrzebować strzelby laserowej, dwóch transformatorów energii oraz, powiedzmy, jedenastu... nie, dwunastu komponentów chemicznych. Tak, tyle powinno wystarczyć. Och, oraz @lex prof2_price@ kapsli.}
+{6010}{}{Zaraz wracam. Do widzenia.}
+{7000}{}{"Zdaje mi się"? Podobno masz być naukowcem... Naukowcowi się nie "zdaje", naukowiec *wie*. Mniejsza z tym, połóż tu tą strzelbę i spójrz... [Uczy cię wielu użytecznych metod naukowych.] ...i proszę bardzo, o to chodzi. Cieszę się, że mogłem podzielić się swą olbrzymią wiedzą z kimś, kto jest w stanie ją docenić. Jeśli czujesz się na siłach, aby dowiedzieć się jeszcze więcej, w San Francisco spotkaj się z panem Alberto Unpiedrą. To mądry gość, trzyma się z mieszkającymi tam Centrologami.}
+{7010}{}{Oczywiście. Wielkie dzięki, panie Lucasie. Do widzenia.}
+{8000}{}{San Francisco, Alberto Unpiedra. To mądry gość, trzyma się z mieszkającymi tam Centrologami.}
+{8010}{}{Oczywiście. Wielkie dzięki, panie Lucasie. Do widzenia.}
+{9000}{}{Będziemy potrzebować strzelby laserowej, dwóch transformatorów energii i, powiedzmy, dwunastu komponentów chemicznych. Tak, tyle wystarczy. No, oraz @lex prof2_price@ kapsli.}
+{9010}{}{Wracam za niedługo. Do widzenia.}
+{10000}{}{Nie wiesz jeszcze wszystkiego, co @sex@|powinieneś||powinnaś|. Wróć, kiedy nieco się podszkolisz. (Wymagana umiejętność: Nauka 100%.)}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Yeah? Why do you bother me, the Kokoweef Mine foreman, the most important person in this town?}
+{2010}{}{I've been told you are the man to ask for some scientific stuff.}
+{2020}{}{I want to learn your trade.@@I need to learn about energy-based weaponry.}
+{2030}{}{I'm very sorry for taking your precious time, sir, I just wanted to ask if you can share any of your great scientific knowledge with me.}
+{2040}{}{Most important my ass.@@Most important dipshit.@@Most important douchebag.}
+{2050}{}{(Scientist profession level 2) I'm back, and I have what's needed, I guess.@@(Scientist profession level 2) I guess I've got what you wanted.@@(Scientist profession level 2) I'm back, and I guess I have all that you told me to bring.}
+{2060}{}{Can you repeat what I need to bring?@@Um, could you tell me again what I was supposed to bring?@@Erm, I forgot what you wanted me to bring...}
+{2070}{}{Do you know anyone who can teach me more about energy weapons?@@Know anyone who could teach me more?}
+{3000}{}{Oh, what do we have here, a joker? Fuck off.@@Fuck you.@@Go fuck yourself.}
+{4000}{}{It's not just "stuff", pal. Come back when you can show some respect.@@Stuff is something that can be stuffed into that empty cranium of yours. Get lost.}
+{5000}{}{Hmm, I might be able to find a free moment or two. What do you want to know? What knowledge do you have so far?}
+{5010}{}{Well, I've met Ambrose from Boneyard and...@@Well, I met that Ambrose chick and she taught me...}
+{5020}{}{Erm, I mean, that is, well... I need to think about it. Bye.@@Nevermind.@@Later, Lucas.}
+{6000}{}{Ambrose? Well that changes things. I've spent some quality time with her back in the day... Nevermind, no use in wasting time for chit-chat. To teach you something more than what you already know we're gonna need two energy transformers and, say, 11 ... no, 12 .. no, 13... nah, 12 chemical components. Yes, that should be perfect. Oh, and @lex prof2_price@ caps too.}
+{6010}{}{I'll be back soon. Goodbye.@@Okay... I'll be back.@@Right, I'll get back to you when I get those.}
+{7000}{}{No guessing here, you are supposed to be a scientist. A scientist doesn't guess, he knows. Anyway, put the rifle here and have a look ... [He teaches you some useful scientific methods]... and here it is. I'm glad I could teach someone able to appreciate it. If you feel like you are ready to learn more, go to San Francisco and find mister Alberto Unpiedra. He's a wise-ass fella, I believe he sticks with those Hubologists living up there. }
+{7010}{}{Of course. Thanks a lot, Lucas. Goodbye.@@Okay. Thanks, Lucas.@@Okay, thanks.}
+{8000}{}{San Francisco, Alberto Unpiedra. He's a wise-ass fella, I believe he sticks with those Hubologists living up there.}
+{8010}{}{Of course. Thanks a lot, Lucas. Goodbye.@@Okay, thanks.@@Okay, bye.}
+{9000}{}{You deaf or something? I said we're gonna need a laser rifle, two energy transformers and, say, 12 chemical components. Yes, that should be perfect. Oh, and @lex prof2_price@ caps. }
+{9010}{}{Sorry. I'll be back soon. Goodbye.@@Okay, I'll get those.}
+{10000}{}{You do not know enough. Come back when you're more skilled.}
+

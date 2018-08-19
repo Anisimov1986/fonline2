@@ -1,0 +1,67 @@
+//
+// FOnline: 2238
+// Rotators
+//
+// movable_container.fos
+//
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+
+import bool DecraftItem(Critter& cr, Item@ item) from "disassemble";
+
+bool IsMovableContainer(Item&locker)
+{
+    // if that function will change, remember to update its copy inside client_screen_ground_pickup module
+
+    return( locker.GetType() == ITEM_TYPE_CONTAINER && locker.Proto.ProtoId >= 750 && locker.Proto.ProtoId < 800 );
+}
+
+void TryPickupContainer(Critter& cr, Item& locker)
+{
+    if( IsMovableContainer(locker) )
+    {
+        if(locker.Accessory != ACCESSORY_CRITTER)
+        {
+            array<Item@> items;
+            if(locker.GetItems(0, items) == 0)
+            {
+                int freeWeight = cr.Stat[ST_CARRY_WEIGHT] - cr.ItemsWeight();
+                if(freeWeight >= int(locker.Proto.Weight) || cr.ItemsWeight() == 0)
+                {
+                    MoveItem(locker, 1, cr);
+                }
+                else
+                    cr.SayMsg(SAY_NETMSG, TEXTMSG_GAME, STR_OVERWEIGHT);
+            }
+            else
+                cr.Say(SAY_NETMSG, "You can't pickup container with items inside.");
+        }
+        else
+        {
+           //ReverseItem(cr, locker);
+		   DecraftItem(cr,locker);
+        }
+    }
+}
+
+void TryRotateContainer(Critter& cr, Item& locker)
+{
+    if( IsMovableContainer(locker) )
+    {
+        array<Item@> items;
+        if(locker.GetItems(0, items) == 0)
+        {
+            int pid = locker.GetProtoId();
+            if(pid % 2 == 0)
+                pid += 1;
+            else
+                pid -= 1;
+            ProtoItem@ proto = GetProtoItem(pid);
+            if(valid(proto))
+            {
+                locker.ChangeProto(pid);
+            }
+        }
+    }
+}

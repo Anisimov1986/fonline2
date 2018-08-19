@@ -1,0 +1,43 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Den resident}
+{200}{}{You see a Den resident.}
+{210}{}{You see a resident of the Den.}
+{1000}{}{Predialogue installations}
+{1010}{}{Float}
+{2000}{}{Fuck off.@@Got a few caps?@@Get lost, punk.@@Never seen you before.@@What do you want?@@I need a drink@@You better watch your back.@@Talk to Joey if you need to get high.@@That Lara's sure is a hot piece of ass.@@I'd watch myself if I were you.@@Get the fuck out of my face!}
+
+[russ]
+{100}{}{Житель Дена}
+{200}{}{Вы видите обычного жителя}
+{210}{}{Вы видите обычного горожанина.}
+{1000}{}{Predialogue installations}
+{1010}{}{Float}
+{2000}{}{Отвали урод.@@Исчезни шваль.@@Ты кто такой, я тебя не звал иди на х-й.@@Чего?.@@Ану съебал быстро.}
+
+[pols]
+{100}{}{Mieszkaniec Nory}
+{200}{}{Widzisz mieszkańca Nory.}
+{210}{}{Zwykła osoba zamieszkująca to miasto.}
+{1000}{}{Predialogue installations}
+{1010}{}{Float}
+{2000}{}{Witamy w Norze.@@Mam nadzieję, że spodoba ci się nasze małe miasto.@@Jet pochłania coraz więcej ofiar z każdym dniem.@@To miasto nie jest tak bezpieczne, jak wszyscy byśmy tego chcieli.@@Uważaj na siebie.}
+
+[ptbr]
+{100}{}{Morador do Favelão}
+{200}{}{Você vê um morador do Favelão.}
+{210}{}{Você vê um morador do Favelão.}
+{1000}{}{Predialogue installations}
+{1010}{}{Float}
+{2000}{}{Cai fora.@@Tem um trocado aí?@@Se manda, otário.@@Nunca te vi antes.@@O quê que tu quer?@@Preciso beber@@Melhor tomar cuidado.@@Fale com o Joel se quiser ficar alto.@@Aquela Lara sim tem uma bunda gostosa.@@Eu tomaria cuidado se fosse tu.@@Cai fora daqui!}

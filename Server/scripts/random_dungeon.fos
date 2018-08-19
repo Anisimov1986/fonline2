@@ -1,0 +1,1262 @@
+#include "_defines.fos"
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "entire_h.fos"
+#include "serializator.fos"
+
+import bool Present(int what, int[]& where) from "utils_for_array";
+import void RandomizeMap(Map@ map, uint index) from "random_map";
+import void ReplicateCritter( Critter& cr ) from "replication";
+
+#define GO_BACK_TIMEOUT                   (REAL_MINUTE(1))
+
+#define MAP_DIR_NORTH                     (0)
+#define MAP_DIR_EAST                      (1)
+#define MAP_DIR_SOUTH                     (2)
+#define MAP_DIR_WEST                      (3)
+
+#define SIERRA_CAVES_L1_DUNGEON_ID        (1)
+#define SIERRA_CAVES_L2_DUNGEON_ID        (2)
+#define SIERRA_CAVES_EVENT_TB_DUNGEON_ID  (3)
+#define SIERRA_CAVES_EVENT_RT_DUNGEON_ID  (4)
+
+dictionary dungeonDefinitions, dungeonMaps;
+
+//--------------------------------------------------
+//Dungeons definition
+
+DungeonDefinition sierraCavesL1Dungeon = DungeonDefinition(SIERRA_CAVES_L1_DUNGEON_ID)
+	.SetKillLogoffPlayers(false)
+	.SetEnterExistingLocationChance(50)
+	.SetExitSpawnChance(25)
+	.SetBallancedTeamsChance(98)
+	.AddMap(DungeonMap(LOCATION_SierraCavesL1_1)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL1_2)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL1_3)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL1_4)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL1_5)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST));
+
+DungeonDefinition sierraCavesL2Dungeon = DungeonDefinition(SIERRA_CAVES_L2_DUNGEON_ID)
+	.SetKillLogoffPlayers(false)
+	.SetEnterExistingLocationChance(50)
+	.SetExitSpawnChance(0)
+	.SetBallancedTeamsChance(75)
+	.AddMap(DungeonMap(LOCATION_SierraCavesL2_1)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL2_2)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL2_3)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL2_4)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH))
+	.AddMap(DungeonMap(LOCATION_SierraCavesL2_5)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST));
+
+DungeonDefinition sierraCavesEventTBDungeon = DungeonDefinition(SIERRA_CAVES_EVENT_TB_DUNGEON_ID)
+	.SetKillLogoffPlayers(true)
+	.SetPlayerMapInCallback("event_sierra_caves@_CritterEnteredDungeonLoc")
+	.SetPlayerMapOutCallback("event_sierra_caves@_CritterLeftDungeonLoc")
+	.SetEnterExistingLocationChance(90)
+	.SetExitSpawnChance(0)
+	.SetBallancedTeamsChance(0)
+	.SetForceTBMode(true)
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_1)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_2)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_3)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_4)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_5)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST));
+
+DungeonDefinition sierraCavesEventRTDungeon = DungeonDefinition(SIERRA_CAVES_EVENT_RT_DUNGEON_ID)
+	.SetKillLogoffPlayers(true)
+	.SetPlayerMapInCallback("event_sierra_caves@_CritterEnteredDungeonLoc")
+	.SetPlayerMapOutCallback("event_sierra_caves@_CritterLeftDungeonLoc")
+	.SetEnterExistingLocationChance(90)
+	.SetExitSpawnChance(0)
+	.SetBallancedTeamsChance(0)
+	.SetForceRTMode(true)
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_1)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_2)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_3)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_WEST))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_4)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH))
+	.AddMap(DungeonMap(LOCATION_SierraCavesEvent_5)
+		.AddExit(MAP_DIR_NORTH)
+		.AddExit(MAP_DIR_EAST)
+		.AddExit(MAP_DIR_SOUTH)
+		.AddExit(MAP_DIR_WEST));
+//--------------------------------------------------
+
+class DungeonDefinition
+{
+	private DungeonMap@[] dungeonMaps;
+	private uint id;
+	private int enterExistingLocationChance;
+	private int exitSpawnChance;
+	private int ballancedTeamsChance;
+	private bool killLogoffPlayers;
+	private bool forceTBMode = false;
+	private bool forceRTMode = false;
+	private string playerMapOutCallback = "";
+	private string playerMapInCallback = "";
+	
+	DungeonDefinition(uint id)
+	{
+		this.id = id;
+		dungeonDefinitions.set("" + id, @this);
+	}
+	
+	DungeonDefinition@ SetPlayerMapOutCallback(string playerMapOutCallback)
+	{
+		this.playerMapOutCallback = playerMapOutCallback;
+		return @this;
+	}
+	
+	DungeonDefinition@ SetPlayerMapInCallback(string playerMapInCallback)
+	{
+		this.playerMapInCallback = playerMapInCallback;
+		return @this;
+	}
+	
+	string GetPlayerMapOutCallback()
+	{
+		return playerMapOutCallback;
+	}
+	
+	string GetPlayerMapInCallback()
+	{
+		return playerMapInCallback;
+	}
+	
+	DungeonDefinition@ AddMap(DungeonMap& dungeonMap)
+	{
+		dungeonMaps.insertLast(dungeonMap);
+		dungeonMap.SetDungeonId(id);
+		return @this;
+	}
+	
+	DungeonDefinition@ SetEnterExistingLocationChance(int enterExistingLocationChance)
+	{
+		this.enterExistingLocationChance = enterExistingLocationChance;
+		return @this;
+	}
+	
+	DungeonDefinition@ SetExitSpawnChance(int exitSpawnChance)
+	{
+		this.exitSpawnChance = exitSpawnChance;
+		return @this;
+	}
+	
+	DungeonDefinition@ SetKillLogoffPlayers(bool killLogoffPlayers)
+	{
+		this.killLogoffPlayers = killLogoffPlayers;
+		return @this;
+	}
+	
+	DungeonDefinition@ SetForceTBMode(bool forceTBMode)
+	{
+		this.forceTBMode = forceTBMode;
+		return @this;
+	}
+	
+	DungeonDefinition@ SetForceRTMode(bool forceRTMode)
+	{
+		this.forceRTMode = forceRTMode;
+		return @this;
+	}
+	
+	int GetExitSpawnChance()
+	{
+		return exitSpawnChance;
+	}
+	
+	bool GetKillLogoffPlayers()
+	{
+		return killLogoffPlayers;
+	}
+	
+	DungeonDefinition@ SetBallancedTeamsChance(int ballancedTeamsChance)
+	{
+		this.ballancedTeamsChance = ballancedTeamsChance;
+		return @this;
+	}
+	
+	uint GetId()
+	{
+		return id;
+	}
+	
+	void TransitLeaderToDungeon(Critter@ leader, uint mapDir, uint fromLocationId, bool withGroup)
+	{
+		Critter@[] nonCombarCritters;
+		Map@ map = leader.GetMap();
+		
+		if (valid(map) && leader.Timeout[TO_BATTLE] > 0 && !map.IsTurnBased())
+		{
+			return;
+		}
+		
+		nonCombarCritters.insertLast(leader);
+		
+		if (withGroup)
+		{
+			if (!valid(map) || (map.IsTurnBased() && leader.Timeout[TO_BATTLE] == 0) || !map.IsTurnBased())
+			{
+				Critter@[] critters;
+				leader.GetFollowGroup(FIND_LIFE, critters);
+				for (uint i = 0; i < critters.length(); i++)
+				{
+					if (critters[i].Timeout[TO_BATTLE] == 0)
+					{
+						nonCombarCritters.insertLast(critters[i]);
+					}
+				}
+			}
+		}
+		
+		bool turnBasedMode = leader.Mode[MODE_DEFAULT_COMBAT] == COMBAT_MODE_TURN_BASED;
+		bool acceptBoth = leader.Mode[MODE_DEFAULT_COMBAT] == COMBAT_MODE_ANY;
+		
+		if (forceTBMode)
+		{
+			turnBasedMode = true;
+			acceptBoth = false;
+		} 
+		else if (forceRTMode)
+		{
+			turnBasedMode = false;
+			acceptBoth = false;
+		}	
+		
+		SplitTeamAndTransitToDungeon(nonCombarCritters, mapDir, turnBasedMode, acceptBoth, fromLocationId);
+	}
+	
+	private	void SplitTeamAndTransitToDungeon(Critter@[] critters, uint mapDir, bool turnBasedMode, bool acceptBoth, uint fromLocationId)
+	{
+		while (critters.length() > 0)
+		{
+			if (critters.length() <= 2)
+			{
+				TransitTeamToDungeon(RemoveRandomTeam(critters, 2), mapDir, turnBasedMode, acceptBoth, fromLocationId);
+			}
+			else if (critters.length() <= 3)
+			{
+				if (HAS_CHANCE(1))
+				{
+					TransitTeamToDungeon(RemoveRandomTeam(critters, 1), mapDir, turnBasedMode, acceptBoth, fromLocationId);
+				}
+				else
+				{
+					TransitTeamToDungeon(RemoveRandomTeam(critters, 3), mapDir, turnBasedMode, acceptBoth, fromLocationId);
+				}
+			}
+			else 
+			{
+				if (HAS_CHANCE(5))
+				{
+					TransitTeamToDungeon(RemoveRandomTeam(critters, 4), mapDir, turnBasedMode, acceptBoth, fromLocationId);
+				}
+				else
+				{
+					if (HAS_CHANCE(5))
+					{
+						TransitTeamToDungeon(RemoveRandomTeam(critters, 1), mapDir, turnBasedMode, acceptBoth, fromLocationId);
+					}
+					else
+					{
+						TransitTeamToDungeon(RemoveRandomTeam(critters, Random(2, 3)), mapDir, turnBasedMode, acceptBoth, fromLocationId);
+					}
+				}
+			}
+		}
+	}
+	
+	private Critter@[]@ RemoveRandomTeam(Critter@[]@ critters, uint size)
+	{
+		Critter@[] result;
+		
+		if (size > critters.length)
+		{
+			size = critters.length;
+		}
+		
+		for (uint i = 0; i < size; i++)
+		{
+			uint idx = Random(0, critters.length() - 1);
+			result.insertLast(critters[idx]);
+			@critters[idx] = critters[critters.length() - 1];
+			critters.removeLast();
+		}
+	
+		return result;
+	}
+	
+	void FindPlayers(Critter@[]& players)
+	{
+		Location@[] locations;
+		for (uint i = 0; i < dungeonMaps.length(); i++)
+		{
+			GetAllLocations(dungeonMaps[i].GetLocationPid(), locations);
+		}
+		
+		for (uint i = 0; i < locations.length(); i++)
+		{
+			if (!valid(locations[i]))
+			{
+				continue;
+			}
+			
+			Map@ map = locations[i].GetMapByIndex(0);
+			if (!valid(map))
+			{
+				continue;
+			}
+			
+			map.GetCritters(0, FIND_ALL | FIND_ONLY_PLAYERS, players);
+		}
+	}
+	
+	private	void TransitTeamToDungeon(Critter@[] critters, uint mapDir, bool turnBasedMode, bool acceptBoth, uint fromLocationId)
+	{	
+		if (HAS_CHANCE(enterExistingLocationChance))
+		{
+			Location@[] locations;
+			for (uint i = 0; i < dungeonMaps.length(); i++)
+			{
+				GetAllLocations(dungeonMaps[i].GetLocationPid(), locations);
+			}
+		
+			//Five tries
+			if (locations.length() > 0)
+			{
+				bool ballancedTeams = HAS_CHANCE(ballancedTeamsChance);
+			
+				for (uint i = 0; i < 5; i++)
+				{
+					Location@ location = locations[Random(0, locations.length() - 1)];
+					DungeonLocation dungeonLocation = DungeonLocation(location.Id);
+					
+					if (location.Id == fromLocationId)
+					{
+						continue;
+					}
+					
+					//Skipping invalid (broken locations) 
+					if (!dungeonLocation.IsValid())
+					{
+						continue;
+					}
+					
+					//Now two dungeons can share one location (to prevent future errors)
+					if (dungeonLocation.GetDungeonId() != id)
+					{
+						continue;
+					}
+					
+					if (!acceptBoth && dungeonLocation.IsTurnBased() != turnBasedMode)
+					{
+						continue;
+					}
+					
+					if (dungeonLocation.GetTeamSize() != critters.length() && ballancedTeams)
+					{
+						continue;
+					}
+					
+					if (!dungeonLocation.IsAvailableFromDir(mapDir))
+					{
+						continue;
+					}
+				
+					dungeonLocation.TransitTeamToLocation(critters, mapDir);
+					return;
+				}
+			}
+		}
+		
+		DungeonMap@[] availableDungeonMaps;
+		for (uint i = 0; i < dungeonMaps.length(); i++)
+		{
+			if (dungeonMaps[i].IsAvailableFromDir(mapDir))
+			{
+				availableDungeonMaps.insertLast(dungeonMaps[i]);
+			}
+		}
+		
+		int newMapIdx = Random(0, availableDungeonMaps.length() - 1);
+		DungeonLocation(this, availableDungeonMaps[newMapIdx], critters[0].WorldX, critters[0].WorldY, mapDir, turnBasedMode)
+			.TransitTeamToLocation(critters, mapDir);
+	}
+}
+
+
+class DungeonMap
+{
+	private uint locationPid;
+	private uint[] exitDirs;
+	private uint dungeonId;
+	
+	DungeonMap(uint locationPid)
+	{
+		this.locationPid = locationPid;
+		dungeonMaps.set("" + locationPid, @this);
+	}
+	
+	DungeonMap@ AddExit(uint mapDir)
+	{
+		exitDirs.insertLast(mapDir);
+		return @this;
+	}
+	
+	DungeonMap@ SetDungeonId(uint dungeonId)
+	{
+		this.dungeonId = dungeonId;
+		return @this;
+	}
+	
+	uint GetDungeonId()
+	{
+		return dungeonId;
+	}
+	
+	bool IsAvailableFromDir(uint mapDir)
+	{
+		for (uint i = 0; i < exitDirs.length(); i++)
+		{
+			if (exitDirs[i] == mapDir)
+			{
+				return true;
+			}
+		}
+					
+		return false;
+	}
+	
+	uint GetLocationPid()
+	{
+		return locationPid;
+	}
+	
+	int ExitsCount()
+	{
+		return exitDirs.length();
+	}
+	
+	uint ExitMapDir(uint exitIdx)
+	{
+		return exitDirs[exitIdx];
+	}
+	
+	int RandomExitIdx(uint mapDir, int[]& blockedExits)
+	{
+		int[] exits;
+	
+		for (uint i = 0; i < exitDirs.length(); i++)
+		{
+			if (exitDirs[i] == mapDir)
+			{			
+				if (!Present(i, blockedExits))
+				{
+					exits.insertLast(i);
+				}
+			}
+		}
+		
+		if (exits.length() > 0)
+		{
+			return exits[Random(0, exits.length() - 1)];
+		}
+		else
+		{
+			return -1;
+		}
+	}
+}
+
+
+class DungeonLocation
+{
+	#define _GetKeyDL ("DungeonLocation" + locationId)
+	private uint locationId = 0;
+	private DungeonDefinition@ dungeonDefinition;
+	private DungeonMap@ dungeonMap;
+	private int dungeonExitIdx = -1;
+	private bool[] isExitBlocked;
+	private bool turnBasedMode;
+	private uint teamSize = 0;
+	private dictionary critterExitIdxs = dictionary();
+	private dictionary critterEnterTimes = dictionary();
+	private bool locked = false;
+	private bool isLoaded = false;
+	
+	DungeonLocation(DungeonDefinition@ dungeonDefinition, DungeonMap@ dungeonMap, uint x, uint y, uint mapDir, bool turnBasedMode)
+	{
+		@this.dungeonDefinition = dungeonDefinition;
+		@this.dungeonMap = dungeonMap;
+		this.turnBasedMode = turnBasedMode;
+		
+		isExitBlocked.resize(dungeonMap.ExitsCount());
+		for (uint i = 0; i < isExitBlocked.length(); i++)
+		{
+			isExitBlocked[i] = false;
+		}
+		
+		if (SpawnLocation(x, y, turnBasedMode))
+		{
+			SpawnExit(mapDir);
+			Save();
+		}
+		
+		isLoaded = true;
+	}
+	
+	DungeonLocation(uint locationId)
+	{
+		this.locationId = locationId;
+		Load();
+	}
+	
+	uint GetDungeonId()
+	{
+		return dungeonDefinition.GetId();
+	}
+	
+	bool IsValid()
+	{
+		return locationId != 0 && isLoaded;
+	}
+	
+	bool IsTurnBased()
+	{
+		return turnBasedMode;
+	}
+	
+	uint GetTeamSize()
+	{
+		return teamSize;
+	}
+	
+	int GetExitsCount()
+	{
+		return dungeonMap.ExitsCount();
+	}
+	
+	bool IsLocked()
+	{
+		return locked;
+	}
+	
+	void SetLocked(bool locked)
+	{
+		this.locked = locked;
+		Save();
+	}
+	
+	bool HasUnblockedExit()
+	{
+		for (uint i = 0; i < isExitBlocked.length(); i++)
+		{
+			if (!isExitBlocked[i])
+			{
+				return true;
+			}
+		}
+	
+		return false;
+	}
+	
+	bool IsAvailableFromDir(uint mapDir)
+	{
+		int[] blockedExits;
+
+		for (uint i = 0; i < isExitBlocked.length(); i++)
+		{
+			if (isExitBlocked[i])
+			{
+				blockedExits.insertLast(i);
+			}
+		}
+	
+		return dungeonMap.RandomExitIdx(mapDir, blockedExits) >= 0;
+	}
+	
+	uint ExitMapDir(uint exitIdx)
+	{
+		return dungeonMap.ExitMapDir(exitIdx);
+	}
+	
+	int GetAndBlockRandomFreeExit()
+	{
+		int[] freeExits;
+
+		for (uint i = 0; i < isExitBlocked.length(); i++)
+		{
+			if (!isExitBlocked[i])
+			{
+				freeExits.insertLast(i);
+			}
+		}
+	
+		if (freeExits.length() > 0)
+		{
+			int exitIdx = freeExits[Random(0, freeExits.length() - 1)];
+			isExitBlocked[exitIdx] = true;
+			return exitIdx;
+		}
+		else
+		{
+			return - 1;
+		}
+	}
+	
+	void TransitTeamToLocation(Critter@[] critters, uint mapDir)
+	{
+		int[] blockedExits;
+		Map@ map = GetMap();
+		
+		if (!valid(map))
+		{
+			return;
+		}
+		
+		for (uint i = 0; i < isExitBlocked.length(); i++)
+		{
+			if (isExitBlocked[i])
+			{
+				blockedExits.insertLast(i);
+			}
+		}
+		
+		int exitIdx = dungeonMap.RandomExitIdx(mapDir, blockedExits);
+		
+		if (exitIdx < 0)
+		{
+			Log("Failed to find exitId for given mapdir. DungeonId:" + dungeonDefinition.GetId() + ", LocationPid:" + dungeonMap.GetLocationPid() + ", mapDir:" + mapDir);
+		
+			//Try to use random free exit
+			exitIdx = GetAndBlockRandomFreeExit();
+		
+			if (exitIdx < 0)
+			{
+				Log("Failed to find free exitId. DungeonId:" + dungeonDefinition.GetId() + ", LocationPid:" + dungeonMap.GetLocationPid());
+				exitIdx = 0;
+			}
+		}
+		
+		bool isTurnBased = map.IsTurnBased();
+		isExitBlocked[exitIdx] = true;
+		for (uint i = 0; i < critters.length(); i++)
+		{
+			critters[i].TransitToMap(map.Id, RANDOM_DUNGEON_SPAWN_BASE + exitIdx);
+			critterExitIdxs.set("" + critters[i].Id, exitIdx);
+			critterEnterTimes.set("" + critters[i].Id, isTurnBased ? 0 : __FullSecond);
+			critters[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_RANDOM_CAVE_WELCOME);
+		}
+		
+		if (teamSize == 0)
+		{
+			teamSize = critters.length();
+		}
+		
+		Save();
+	}
+	
+	void TryExit(Critter@ critter, int exitIdx)
+	{
+		int critterExitIdx;
+		uint critterEnterTime;
+		
+		if (locked)
+		{
+			critter.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_RANDOM_CAVE_LOCKED);
+			return;
+		}
+		
+		if (critterExitIdxs.get("" + critter.Id, critterExitIdx) && critterEnterTimes.get("" + critter.Id, critterEnterTime))
+		{
+			if (critterExitIdx == exitIdx && critterEnterTime + GO_BACK_TIMEOUT > __FullSecond)
+			{
+				critter.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_RANDOM_CAVE_GO_BACK);
+				return;
+			}
+		}
+		
+		critterExitIdxs.delete("" + critter.Id);
+		critterEnterTimes.delete("" + critter.Id);
+		
+		if (exitIdx == dungeonExitIdx)
+		{		
+			uint[] values = {critter.Id};
+			CreateTimeEvent(__FullSecond, "_TransitLeaderToGlobal", values, true);
+		}
+		else
+		{
+			uint[] values = {dungeonDefinition.GetId(), critter.Id, (dungeonMap.ExitMapDir(exitIdx) + 2) % 4, locationId, 1};
+			CreateTimeEvent(__FullSecond, "_TransitLeaderToDungeon", values, true);
+		}
+	}
+	
+	void OnPlayerOut(Critter& player)
+	{
+		if (dungeonDefinition.GetPlayerMapOutCallback() != "")
+		{
+			uint[] values = {dungeonDefinition.GetId(), player.Id};
+			CreateTimeEvent(__FullSecond, dungeonDefinition.GetPlayerMapOutCallback(), values, true);
+		}
+		
+		TryDestroy();
+	}
+	
+	void OnPlayerIn(Critter& player)
+	{
+		if (dungeonDefinition.GetPlayerMapInCallback() != "")
+		{
+			uint[] values = {dungeonDefinition.GetId(), player.Id};
+			CreateTimeEvent(__FullSecond, dungeonDefinition.GetPlayerMapInCallback(), values, true);
+		}
+	}
+	
+	private void TryDestroy()
+	{
+		Location@ location = GetLocation(locationId);
+		
+		if (!valid(location))
+		{
+			EraseAnyData(_GetKeyDL);
+			return;
+		}
+		
+		Map@ map = location.GetMapByIndex(0);
+		
+		if (!valid(map))
+		{
+			EraseAnyData(_GetKeyDL);
+			return;
+		}
+		
+		uint count = map.GetCritters(0, FIND_ALL | FIND_ONLY_PLAYERS, null);
+		
+		if (count == 0)
+		{
+			EraseAnyData(_GetKeyDL);
+		}
+	}
+	
+	private bool SpawnLocation(uint x, uint y, bool turnBasedMode)
+	{
+		locationId = CreateLocation(dungeonMap.GetLocationPid(), x, y, null);	
+		if (locationId == 0)
+		{
+			return false;
+		}
+		
+		Location @location = GetLocation(locationId);
+		if (!valid(location)) 
+		{
+			return false;
+		}
+		
+		location.AutoGarbage = true;
+		
+		Map@ map = location.GetMapByIndex(0);
+		if (!valid(map))
+		{
+			return false;
+		}
+		
+		map.SetScript("_DungeonMapInit");
+		map.SetTurnBasedAvailability(turnBasedMode);
+		
+		RandomizeMap(map, dungeonDefinition.GetId());
+		
+		return true;
+	}
+	
+	private void SpawnExit(uint mapDir)
+	{
+		if (HAS_CHANCE(dungeonDefinition.GetExitSpawnChance()))
+		{
+			int[] exits;
+	
+			for (int i = 0; i < dungeonMap.ExitsCount(); i++)
+			{
+				if (dungeonMap.ExitMapDir(i) != mapDir)
+				{			
+					exits.insertLast(i);
+				}
+			}	
+			
+			if (exits.length() > 0)
+			{
+				dungeonExitIdx = exits[Random(0, exits.length() - 1)];
+				isExitBlocked[dungeonExitIdx] = true;
+				RenderExit();
+			}
+		}
+	}
+	
+	private void RenderExit()
+	{
+		Map@ map = GetMap();
+		if (!valid(map))
+		{
+			return;
+		}
+		
+		uint lightSpawnNum = map.CountEntire(RANDOM_DUNGEON_SPAWN_LIGHT_BASE + dungeonExitIdx);
+		uint16 hexX = 0;
+		uint16 hexY = 0;
+		uint8 dir = 0;
+		
+		for (uint i = 0; i < lightSpawnNum; i++)
+		{
+			if (map.GetEntireCoords(RANDOM_DUNGEON_SPAWN_LIGHT_BASE + dungeonExitIdx, i, hexX, hexY, dir))
+			{
+				Item @flare = map.AddItem(hexX, hexY, PID_ACTIVE_FLARE, 1);
+				UNSETFLAG(flare.Flags, ITEM_CAN_PICKUP);
+				UNSETFLAG(flare.Flags, ITEM_CAN_USE);
+				flare.LightIntensity = 50;
+				flare.LightColor = 113475161;
+				flare.LightDistance = 13;
+			}
+		}
+	}
+	
+	Map@ GetMap()
+	{
+		Location @location = GetLocation(locationId);
+		if (!valid(location)) 
+		{
+			TryDestroy();
+			return null;
+		}
+		
+		Map@ map = location.GetMapByIndex(0);	
+		if (!valid(map))
+		{
+			TryDestroy();
+			return null;
+		}
+		
+		return map;
+	}
+	
+	private void Load()
+	{
+		Serializator serializator;
+		uint size = 0;
+		
+		if(!serializator.Load(_GetKeyDL))
+		{
+			return;
+		}
+		
+		uint id = 0;
+		serializator.Get(id);
+		dungeonDefinitions.get("" + id, @dungeonDefinition);
+		serializator.Get(id);
+		dungeonMaps.get("" + id, @dungeonMap);
+		serializator.Get(dungeonExitIdx);
+		serializator.Get(isExitBlocked);
+		serializator.Get(turnBasedMode);
+		serializator.Get(teamSize);
+		
+		serializator.Get(size);
+		for (uint i = 0; i < size; i++)
+		{
+			string key = "";
+			int data = 0;
+			serializator.Get(key);
+			serializator.Get(data);
+			critterExitIdxs.set(key, data);
+		}
+		
+		serializator.Get(size);
+		for (uint i = 0; i < size; i++)
+		{
+			string key = "";
+			uint data = 0;
+			serializator.Get(key);
+			serializator.Get(data);
+			critterEnterTimes.set(key, data);
+		}
+		serializator.Get(locked);
+		
+		isLoaded = true;
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		string@[] keys;
+		
+		serializator.Set(dungeonDefinition.GetId());
+		serializator.Set(dungeonMap.GetLocationPid());
+		serializator.Set(dungeonExitIdx);
+		serializator.Set(isExitBlocked);
+		serializator.Set(turnBasedMode);
+		serializator.Set(teamSize);
+				
+		critterExitIdxs.keys(keys);
+		serializator.Set(keys.length());
+		for (uint i = 0; i < keys.length(); i++)
+		{
+			int data;
+			critterExitIdxs.get(keys[i], data);
+			serializator.Set(keys[i]);
+			serializator.Set(data);
+		}
+		
+		critterEnterTimes.keys(keys);
+		serializator.Set(keys.length());
+		for (uint i = 0; i < keys.length(); i++)
+		{
+			uint data;
+			critterEnterTimes.get(keys[i], data);
+			serializator.Set(keys[i]);
+			serializator.Set(data);
+		}
+		serializator.Set(locked);
+		
+		serializator.Save(_GetKeyDL);
+	}
+}
+
+
+void _DungeonMapInit(Map& map, bool firstTime)
+{
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_DungeonMapCritterIn");
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_DungeonMapCritterOut");
+}
+
+void _DungeonMapCritterIn(Map& map, Critter& critter)
+{
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	if (!critter.IsPlayer())
+	{
+		return;
+	}
+
+	DungeonLocation(location.Id).OnPlayerIn(critter);
+}
+
+void _DungeonMapCritterOut(Map& map, Critter& critter)
+{
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	if (!critter.IsPlayer())
+	{
+		return;
+	}
+
+	DungeonLocation(location.Id).OnPlayerOut(critter);
+}
+
+void t_DungeonExit(Critter& critter, Scenery& trigger, bool entered, uint8 dir, int exitId)
+{
+	if (critter.IsPlayer() && entered)
+	{
+		Map@ map = critter.GetMap();
+		if (!valid(map))
+		{
+			return;
+		}
+		
+		Location@ location = map.GetLocation();
+		if (!valid(location))
+		{
+			return;
+		}
+		
+		DungeonLocation(location.Id).TryExit(critter, exitId);
+	}
+}
+
+void t_DungeonEnter(Critter& critter, Scenery& trigger, bool entered, uint8 dir, int dungeonId)
+{
+	if (critter.IsPlayer() && entered)
+	{		
+		uint[] values = {dungeonId, critter.Id, HAS_CHANCE(50) ? MAP_DIR_SOUTH : MAP_DIR_WEST, 0, 1};
+		CreateTimeEvent(__FullSecond, "_TransitLeaderToDungeon", values, true);
+	}
+}
+
+void transit(Critter& critter, int dungeonId, int , int)
+{
+	if (critter.IsPlayer())
+	{		
+		uint[] values = {dungeonId, critter.Id, HAS_CHANCE(50) ? MAP_DIR_SOUTH : MAP_DIR_WEST, 0, 1};
+		CreateTimeEvent(__FullSecond, "_TransitLeaderToDungeon", values, true);
+	}
+}
+
+uint _TransitLeaderToDungeon(uint[]@ values)
+{
+	if (values.length() != 5)
+	{
+		return 0;
+	}
+	
+	DungeonDefinition@ dungeonDefinition;
+	Critter@ critter = GetCritter(values[1]);
+	uint mapDir = values[2];
+	uint locationId = values[3];
+	bool withGroup = values[4] != 0;
+	
+	if (!valid(critter))
+	{
+		return 0;
+	}
+	
+	dungeonDefinitions.get("" + values[0], @dungeonDefinition);
+
+	if (!valid(dungeonDefinitions))
+	{
+		return 0;
+	}
+	
+	dungeonDefinition.TransitLeaderToDungeon(critter, mapDir, locationId, withGroup);
+	return 0;
+}
+
+uint _TransitLeaderToGlobal(uint[]@ values)
+{
+	if (values.length() != 1)
+	{
+		return 0;
+	}
+
+	Critter@ critter = GetCritter(values[0]);
+
+	if (!valid(critter))
+	{
+		return 0;
+	}
+	
+	critter.TransitToGlobal(true);
+	return 0;
+}
+
+int GetAndBlockRandomFreeExit(uint locationId)
+{
+	DungeonLocation dungeonLocation(locationId);
+	
+	if (!dungeonLocation.IsValid())
+	{
+		return -1;
+	}
+
+	return dungeonLocation.GetAndBlockRandomFreeExit();
+}
+
+int GetExitsCount(uint locationId)
+{
+	DungeonLocation dungeonLocation(locationId);
+	
+	if (!dungeonLocation.IsValid())
+	{
+		return -1;
+	}
+
+	return dungeonLocation.GetExitsCount();
+}
+
+bool HasUnblockedExit(uint locationId)
+{
+	DungeonLocation dungeonLocation(locationId);
+	
+	if (!dungeonLocation.IsValid())
+	{
+		return false;
+	}
+
+	return dungeonLocation.HasUnblockedExit();
+}
+
+bool IsLocked(uint locationId)
+{
+	DungeonLocation dungeonLocation(locationId);
+	
+	if (!dungeonLocation.IsValid())
+	{
+		return false;
+	}
+
+	return dungeonLocation.IsLocked();
+}
+
+void SetLocked(uint locationId)
+{
+	DungeonLocation dungeonLocation(locationId);
+	
+	if (!dungeonLocation.IsValid())
+	{
+		return;
+	}
+
+	dungeonLocation.SetLocked(true);
+}
+
+void ProcessLogoffPlayerInRandomDungeon(Critter& player)
+{
+	if (!valid(player))
+	{
+		return;
+	}
+
+	Map@ map = player.GetMap();
+	
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	if (player.IsDead())
+	{
+		return;
+	}
+	
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	string@[] keys;
+	dungeonMaps.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		DungeonMap @dungeonMap;
+
+		if (dungeonMaps.get(keys[i], @dungeonMap) && location.GetProtoId() == dungeonMap.GetLocationPid())
+		{
+			DungeonDefinition@ dungeonDefinition;
+			dungeonDefinitions.get("" + dungeonMap.GetDungeonId(), @dungeonDefinition);
+		
+			if (dungeonDefinition.GetKillLogoffPlayers())
+			{
+				player.ToDead(ANIM2_DEAD_PRONE_FRONT, null);
+				player.StatBase[ST_CURRENT_HP] = -100;
+				ReplicateCritter(player);
+			} else {
+				player.ParamBase[LOGOFF_IN_RANDOM_DUNGEON] = dungeonDefinition.GetId();
+			}
+		}
+	}
+}
+
+void ProcessLoginPlayerInRandomDungeon(Critter& player)
+{
+	if (player.ParamBase[LOGOFF_IN_RANDOM_DUNGEON] != 0)
+	{
+		TransitToDungeon(player, player.ParamBase[LOGOFF_IN_RANDOM_DUNGEON], Random(0, 3), 0);
+		player.ParamBase[LOGOFF_IN_RANDOM_DUNGEON] = 0;
+	}
+}
+
+uint ExitMapDir(uint locationId, uint exitIdx)
+{
+	DungeonLocation dungeonLocation(locationId);
+	
+	if (!dungeonLocation.IsValid())
+	{
+		return 0;
+	}
+
+	return dungeonLocation.ExitMapDir(exitIdx);
+}
+
+void TransitToDungeon(Critter& critter, int dungeonId, uint mapDir, uint delay)
+{
+	if (critter.IsPlayer())
+	{		
+		uint[] values = {dungeonId, critter.Id, mapDir, 0, 1};
+		CreateTimeEvent(__FullSecond + delay, "_TransitLeaderToDungeon", values, true);
+	}
+}
+
+void TransitToDungeonImmediate(Critter& critter, int dungeonId, uint mapDir, bool withGroup)
+{
+	if (critter.IsPlayer())
+	{		
+		uint[] values = {dungeonId, critter.Id, mapDir, 0, withGroup ? 1 : 0};
+		_TransitLeaderToDungeon(values);
+	}
+}
+
+void FindPlayersInDungeon(int dungeonId, Critter@[]& players)
+{
+	DungeonDefinition@ dungeonDefinition;
+	dungeonDefinitions.get("" + dungeonId, @dungeonDefinition);
+
+	if (valid(dungeonDefinition))
+	{
+		dungeonDefinition.FindPlayers(players);
+	}
+}

@@ -1,0 +1,78 @@
+#include "_defines.fos"
+#include "_npc_roles.fos"
+#include "_macros.fos"
+#include "_maps.fos"
+
+void _MapInit(Map& map, bool firstTime)
+{
+
+
+    array<Critter@> npcs;
+    map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+    for (uint i = 0; i < npcs.length(); i++)
+    {
+    Critter@ critter = npcs[i];
+
+    critter.ParamBase[ST_AI_ID] = 0;
+    critter.ParamBase[ST_TEAM_ID] = 4;
+	critter.ParamBase[ST_DIALOG_ID] = 9339;
+	critter.ParamBase[ST_KILL_EXPERIENCE] = 0;	
+	
+    }
+
+    //map.SetEvent(MAP_EVENT_OUT_CRITTER, "_CrOut");
+}
+
+
+void r_setoutfit(Critter& cr, Critter@ npc)
+{
+	cr.ChangeCrType(npc.StatBase[ST_BASE_CRTYPE]);
+	
+    Item@ armor = cr.GetItem(0, SLOT_ARMOR);
+
+    if(valid(armor))
+        cr.MoveItem(armor.Id, 0, SLOT_INV);
+
+        cr.ParamBase[ST_BASE_CRTYPE] = npc.ParamBase[ST_BASE_CRTYPE];
+
+    return;
+
+}
+
+
+void r_outfittp(Critter& player, Critter@ npc)
+{
+	int location = 0;
+
+	if( player.Stat[ ST_GENDER ] == GENDER_MALE )
+	{
+	location = 9318;
+	}
+	
+	if( player.Stat[ ST_GENDER ] == GENDER_FEMALE )
+	{
+	location = 9319;
+	}
+		
+	Location@ loc = GetLocation( CreateLocation(location, player.WorldX, player.WorldY, null) );
+
+	if(!valid(loc))
+		return;
+	Map@ map = loc.GetMapByIndex( 0 );
+	if( valid(map) )
+	{
+		player.TransitToMap( map.Id, 0, true );
+	}
+	loc.AutoGarbage = true;
+}
+
+void exit(Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+    if( !player.IsPlayer() )
+        return;
+
+	Map@ map = GetMapByPid( MAP_hub_oldtown, 0 );
+	
+	if( valid(map) )
+		player.TransitToMap( map.Id, 33, true );
+}

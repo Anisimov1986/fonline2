@@ -1,0 +1,82 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _script dialog@d_HoldsItems 0  #
+51 1020 D _param p TRAIT_SKILLED = 1 #
+50 1030 D _param p TRAIT_SKILLED = 0 @
+50 2000 None 0 @
+51 3000 None 0 @
+3 4000 None 0 #
+0 4010 R _script dialog@r_RetrieveItems 0  #
+0 4020 &
+
+[engl]
+{100}{}{Vault City Guard}
+{200}{}{You see: Vault City Guard.}
+{210}{}{These brave souls are all that stand between civilization and utter chaos. According to them, at least.}
+{240}{}{You see a dead Guard.}
+{260}{}{You see a slain Guard.}
+{1000}{}{Predialogue installations}
+{1010}{}{playerstuff}
+{1020}{}{mutant}
+{1030}{}{normal}
+{2000}{}{Welcome to Vault City! Try anything and we'll kill you.@@It's not so easy being a guard.@@What hole did you crawl out of?@@Don't give me an excuse.@@Harm anyone here and it'll be the last thing you do.@@Maybe you'd be more comfortable in New Reno?@@Sorry, we aren't hiring guards right now.@@I'm on duty here.@@I'm busy.@@Hi.@@What makes you think I want to talk to you?@@Wow, you're ugly!@@You ever been to San Fran?@@Some idiot tried shooting his gun here last week. He was dead five times before he hit the ground.@@Go shoot some ghouls in Gecko for me, will ya?@@We are safe here.@@Nobody can get through our defenses.@@I hope the Enclave and the Brotherhood kill each other.@@My servant disobeyed me. I had to kill him, or they'd all start acting up.@@We don't condone slavery here.@@The servants here have a good life.@@Stop distracting me.@@Fuck off.@@Try me.@@Stay away from our enemies.@@You're either with us or against us.@@Need to find some new servants...@@The fuck you lookin' at?@@No drugs or contraband are permitted in the city.@@Do we have to strip search you?@@Beat it.@@Get lost, I'm working.@@Any lawbreakers will be neutralized immediately.@@What the hell do you want, outsider?@@You aren't a citizen, I don't work for you.@@Hello, outsider.}
+{3000}{}{I can't believe McClure is allowing you filthy bastards to even step through the outer gates...@@Get the fuck outta here, mutant!@@McClure allowed you trash in, but I ain't gonna polish your shoes, mutant.@@Get lost, mutant!@@Bleh, get lost before I puke.@@Go back to whatever shithole you came from.@@Go back to those mutant lovers in the Hub or Shady Sands.@@Fucking mutant...@@Fucking mutant scum...@@Get the fuck outta my face, mutant.}
+{4000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{4010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{4020}{}{No, thanks, you can keep it.}
+
+[russ]
+{100}{}{Охранник}
+{200}{}{Вы видите гвардейца.}
+{210}{}{Вы видите гвардейца. Он совсем не похож на вас.}
+{240}{}{Вы видите мертвого охранника .}
+{260}{}{Вы видите убитого гвардейца.}
+{1000}{}{Predialogue installations}
+{1010}{}{playerstuff}
+{1020}{}{mutant}
+{1030}{}{Player is VC <> all guards}
+{2000}{}{Привет, путешественник .@@Не слонятся.@@Я думаю, самое время, чтобы уйти.@@Мне не нравятся такие как вы.}
+{3000}{}{Привет, путешественник .@@Не слонятся.@@Я думаю, самое время, чтобы уйти.@@Мне не нравятся такие как вы.}
+{4000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{4010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{4020}{}{No, thanks, you can keep it.}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz strażnika. Zawsze wyglądają na takich, którzy cię nie lubią.}
+{240}{}{Widzisz martwego strażnika.}
+{260}{}{Widzisz zabitego strażnika.}
+{1000}{}{Predialogue installations}
+{1010}{}{playerstuff}
+{1020}{}{mutant}
+{1030}{}{Player is VC <> all guards}
+{2000}{}{Cześć, podróżniku.@@Zajmij się własnymi sprawami, przybyszu z zewnątrz.@@Nie szwędaj się tutaj.@@Jeśli chcesz wejść do miasta, porozmawiaj z Wallacem.@@Myślę że nadszedł czas, abyś stąd @sex@|poszedł||poszła|.@@Nie podobasz mi się. Mam cię na oku.}
+{3000}{}{Cześć, podróżniku.@@Zajmij się własnymi sprawami, przybyszu z zewnątrz.@@Nie szwędaj się tutaj.@@Jeśli chcesz wejść do miasta, porozmawiaj z Wallacem.@@Myślę że nadszedł czas, abyś stąd @sex@|poszedł||poszła|.@@Nie podobasz mi się. Mam cię na oku.}
+{4000}{}{Hey, you are the one that was beaten up here. I think I might have your stuff. Guess you want it back, huh?}
+{4010}{}{Sure! Thanks! [Take back your stuff.]@@Yeah, thanks. [Take back your stuff.]@@Yeah... [Take back your stuff.]}
+{4020}{}{No, thanks, you can keep it.}
+
+[ptbr]
+{100}{}{Guarda da Cidade do Abrigo}
+{200}{}{Você vê: Guarda da Cidade do Abrigo.}
+{210}{}{As bravas almas que são o limiar entre a civilização e o caos e desordem. De acordo com eles, ao menos.}
+{240}{}{Você vê um guarda morto.}
+{260}{}{Você vê um guarda assassinado.}
+{1000}{}{Predialogue installations}
+{1010}{}{playerstuff}
+{1020}{}{mutant}
+{1030}{}{normal}
+{2000}{}{Bem-vindo a Cidade do Abrigo! Faça qualquer coisa ilegal e o matamos.@@Não é fácil ser guarda.@@De que buraco você saiu?@@Não me dê razão para atirar.@@Machuque alguém aqui e irá ser a última coisa que fez.@@Talvez você se sinta mais confortável em Nova Reno.@@Estou ocupado.@@Oi.@@Porque acha que eu quero falar com você?@@Nossa, você é muito @sex@|feio||feia| !@@Já esteve em São Francisco?@@Um idiota tentou usar sua arma aqui semana passada. Ele morreu cinco vezes antes de cair no chão.@@Vá atirar em alguns carniçais de Calango por mim, que tal?@@Estamos a salvo aqui.@@Ninguém pode entrar por nossas defesas.@@Espero que o Enclave e a Irmandade se matem.@@Meu servo me desobedeceu. Eu tive que matá-lo ou então isso caberia como mal exemplo.}
+{3000}{}{Não acredito McClure está permitindo estes malditos andarem por aqui...@@Sai daqui, mutante!@@McClure autoriza a entrada de lixo. Sem problemas... faça qualquer coisa que eu atiro. Seu monstro!@@Vá embora mutante. Não tem nada para você aqui!@@Escória.@@Volte pro inferno de onde veio.@@Serra Quebrada fica mais ao sul.@@Maldito mutante...@@Merda de mutante...@@Sai da minha frente, seu monstro!.}
+{4000}{}{Ei, você foi um dos que desmaiaram na última vez. Eu acho que estou com suas coisas aqui. Quer de volta?}
+{4010}{}{Claro! [Pega as coisas de volta.]@@Sim, quero. [Pega as coisas de volta.]@@É... [Pega as coisas de volta.]}
+{4020}{}{Não, obrigado. Pode ficar.}
+

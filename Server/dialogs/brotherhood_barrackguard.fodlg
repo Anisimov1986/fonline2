@@ -1,0 +1,53 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _param p MAIN_FACTION = 2 R _script dialog@r_OpenDoor 3 96 75 9349 #
+3 1020 D _param p MAIN_FACTION ! 2 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Brotherhood Paladin}
+{200}{}{You see: Brotherhood Paladin.}
+{210}{}{You see: Brotherhood Paladin.}
+{1000}{}{Predialogue installations}
+{1010}{}{Isfaction}
+{1020}{}{Quests not completed.}
+{2000}{}{Step in.@@The door is open.@@You can come in.@@The way is open.@@Step in.}
+{3000}{}{You are not allowed in here.@@This is a restricted area, leave now.@@Turn around, you are not allowed in here.}
+
+[russ]
+{100}{}{Brotherhood Paladin}
+{200}{}{You see: Brotherhood Paladin.}
+{210}{}{You see: Brotherhood Paladin.}
+{1000}{}{Predialogue installations}
+{1010}{}{Quests completed}
+{1020}{}{Quests not completed.}
+{2000}{}{Step in.@@The door is open.@@You can come in.@@The way is open.@@Step in.}
+{3000}{}{You are not allowed in here.@@This is a restricted area, leave now.@@Turn around, you are not allowed in here.}
+
+[pols]
+{100}{}{Paladyn Bractwa}
+{200}{}{Widzisz: Paladyn Bractwa.}
+{210}{}{Widzisz: Paladyn Bractwa.}
+{1000}{}{Predialogue installations}
+{1010}{}{Quests completed}
+{1020}{}{Quests not completed.}
+{2000}{}{Wejd�.@@Drzwi s� otwarte.@@�mia�o, mo�esz wej��.@Droga wolna.@Nie kr�puj si� i wchod�.}
+{3000}{}{Nie wolno ci tu przebywa�.@@To zastrze�ona strefa, oddal si� st�d.@@Odwr�� si� i odejd�. Nie masz tutaj wst�pu.}
+
+[ptbr]
+{100}{}{Paladino da Irmandade}
+{200}{}{Você vê: Paladino da Irmandade.}
+{210}{}{Você vê: Paladino da Irmandade.}
+{1000}{}{Predialogue installations}
+{1010}{}{Isfaction}
+{1020}{}{Quests not completed.}
+{2000}{}{Pode entrar.@@A porta está aberta.@@Você pode entrar.@@Entre.@@Estou livre, pode entrar.}
+{3000}{}{Você não pode entrar aqui.@@Esta é uma área restrita, saia agora.@@Não entre, esta é uma área restrita.}

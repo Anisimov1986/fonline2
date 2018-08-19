@@ -1,0 +1,77 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p vc_vaultaccess = 0 #
+4 2020 D _var p vc_vaultaccess = 1 R _script dialog@r_OpenDoor 3 52 59 4759 #
+0 2030 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Vault City Guard}
+{200}{}{You see: Vault City Guard}
+{210}{}{The man seems to be tasked with guarding the entrance to the Vault.}
+{240}{}{You see a dead Guard.}
+{260}{}{You see a slain Guard.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{Yes, outworlder?@@Yeah?@@What do you want, outworlder?}
+{2010}{}{I would like you to open the door.@@Open the door please.@@Open the door.}
+{2020}{}{I would like you to open the door.@@Open the door please.@@Open the door.}
+{2030}{}{Nothing, nice Vault you've got here. Bye.@@Nevermind.@@Just passing through.}
+{3000}{}{I'm sorry, but you don't have the permission to access our Vault.@@Get out of here, Outlander.@@Councillor McClure is the only person who could give you the right to enter the Vault.@@Forget it.@@No way, outsider.}
+{4000}{}{I don't know how it's possible, but you seem to have McClure's permission. Please, go in.@@Welcome to Vault 8.@@Just don't break anything.@@Old McClure is insane, granting an access to our Vault to some dirty outlander.}
+
+[russ]
+{100}{}{Охранник}
+{200}{}{Вы видите охранника.}
+{210}{}{Вы видите охранника. Он.. охраняет вход в убежище.}
+{240}{}{Вы видите мертвого охранника.}
+{260}{}{Вы видите убитого охранника.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[Смотрит на вас с подозрением.] Чем могу помочь, странник?}
+{2010}{}{Я бы хотел войти, сэр.}
+{2020}{}{Я бы хотел войти, сэр.}
+{2030}{}{Ничего. Хорошее у вас тут убежище, до свидания.}
+{3000}{}{Сожалею, но у вас нет допуска в убежище.@@Пошел вон, чужеземец.@@Советник МакКлюр единственный, кто может выдать вам разрешение.@@Забудьте.@@Убирайся, бродяга.}
+{4000}{}{Не знаю как вам это удалось это достать, но я вижу у Вас разрешение от МакКлюра. Пожалуйста, проходите.@@Добро пожаловать в Убежище 8.@@Постарайтесь ничего не сломать.@@Старый МакКлюр выжил из ума, пускает к нам всякий сброд с пустоши.}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz strażnika. Pilnuje wejścia do Krypty.}
+{240}{}{Widzisz martwego strażnika.}
+{260}{}{Widzisz zmasakrowanego strażnika.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[Spogląda na ciebie podejrzliwie.] Tak, @sex@|Obcy||Obca|?}
+{2010}{}{Proszę otworzyć drzwi.}
+{2020}{}{Proszę otworzyć drzwi.}
+{2030}{}{Nic takiego, kozacka Krypta. Nie przeszkadzaj sobie, już się stąd zmywam.}
+{3000}{}{Przykro mi, ale nie masz prawa wchodzić do naszej Krypty.@@Spadaj stąd, @sex@|Obcy||Obca|.@@Radny McClure jest jedyną osobą, która może przyznać ci prawo wstępu do Krypty.@@Zapomnij o tym.@@Nie ma mowy, @sex@|Obcy||Obca|.}
+{4000}{}{Nie mam pojęcia, jak to możliwe, ale faktycznie - masz pozwolenie. Proszę, wejdź.@@Witam w Krypcie 8.@@Tylko niczego nie popsuj.@@Stary McClure musiał oszaleć, że przyznał prawo wstępu jakiemuś brudnemu przybłędzie.}
+
+[ptbr]
+{100}{}{Guarda}
+{200}{}{Você vê um guarda.}
+{210}{}{Você vê um guarda. Ele está... bem, guardando a entrada do Abrigo.}
+{240}{}{Você vê um guarda morto}
+{260}{}{Você vê um guarda assassinado.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[Ele olha para você com suspeita.] Sim, forasteiro?}
+{2010}{}{Eu gostaria que você abrisse a porta, senhor.}
+{2020}{}{Eu gostaria que você abrisse a porta, senhor.}
+{2030}{}{Nada, belo Abrigo que você tem aqui. Até mais.}
+{3000}{}{Não posso, você não tem permissão para entrar no nosso Abrigo.@@Cai fora daqui, forasteiro.@@O Conselheiro McClure é a pessoa que poderia dar autorização para você entrar no Abrigo.@@Pode esquecer.@@Sem chances, forasteiro.}
+{4000}{}{Eu não sei como isto é possível mas parece que tenha autorização do McClure. Pode entrar.@@Bem-vindo ao Abrigo 8.@@Apenas não quebre nada.@@O velho McClure deve estar louco, dando acesso ao Abrigo para um forasteiro imundo.}
+

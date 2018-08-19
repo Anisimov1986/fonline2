@@ -1,0 +1,40 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Jenna}
+{200}{}{You see: a nurse preparing some tools and reading reports.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{God, I wish everyone stopped harrasing me.@@What do you want?@@If you could tell Jeremy to stop bothering me that would be nice.@@Hmm? I'm busy.}
+
+[russ]
+{100}{}{Дженна}
+{200}{}{Вы видите : медсестра готовит какие-то инструменты и читает отчеты.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Боже, когда уже все оставят меня в покое.@@Ну чего тебе еще?@@Передай Джереми чтобы прекратил пялится на меня.@@Я занята.}
+
+[pols]
+{100}{}{Jenna}
+{200}{}{Widzisz pielęgniarkę. Jest zajęta przygotowywaniem przyrządów medycznych.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Boże, odczepilibyście się wreszcie ode mnie.@@@sex@|Następny||Następna|... Czego chcesz?@@Czy @sex@|byłbyś tak miły i powiedział||byłabyś tak miła i powiedziała| Jeremiemu, żeby się ode mnie odwalił?@@Co? Nie, nie mam czasu na głupoty.@@}
+
+[ptbr]
+{100}{}{Gina}
+{200}{}{Você vê uma enfermeira preparando algumas ferramentas e lendo alguns relatórios.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Meu Deus, gostaria que todos parassem de me encher o saco.@@Quê que tu quer?@@Se tu fizesse o favor de pedir pro Jeremias parar de me encher o saco seria maravilhoso.@@Hum? Estou ocupada.}
+

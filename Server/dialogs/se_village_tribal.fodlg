@@ -1,0 +1,46 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+3 1010 D _param p TRAIT_SKILLED = 1 R _script dialog@r_AttackGroup 1 207 #
+2 1020 D _param p TRAIT_SKILLED = 0 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Tribal}
+{1000}{}{Predialogue installations}
+{1010}{}{ mutant}
+{1020}{}{normal}
+{2000}{}{Me don't like you.@@Me don't want you here.@@Leave.@@Don't anger the B'retth.@@Leave, or you will face the wrath of B'retth.@@B'rett is better not disturb.@@Do not tempt B'retth to unleash his fury.@@B'retth can wake the steel warrior.@@Leave us.@@Leave, now.@@This is not a place for you, outworlder.@@B'retth can summon a steel warrior if he wants to.@@Your presence here upsets B'retth.@@Leave this place, outlander.@@Leave now.@@You have to leave now.@@You are disturbing B'retth, outworlder.@@Go away, outworlder.}
+{3000}{}{Mutant abomination! Die!@@Die, mutant!@@Die, mutant abomination!}
+
+[russ]
+{100}{}{Ханский Рейдер}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{normal}
+{2000}{}{Me don't like you.@@Me don't want you here.@@Leave.@@Don't anger the B'rett.@@Leave, or you will face the wrath of B'rett.@@B'rett is better not disturb.@@Do not tempt B'rett to unleash his fury.@@B'rett can wake the steel warrior.@@Leave us.@@Leave, now.@@This is not a place for you, outworlder.@@B'rett can summon a steel warrior if he wants to.@@Your presence here upsets B'rett.}
+{3000}{}{Mutant abomination! Die!@@Die, mutant!@@Die, mutant abomination!}
+
+[pols]
+{100}{}{Wojownik Chanów}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{normal}
+{2000}{}{Me don't like you.@@Me don't want you here.@@Leave.@@Don't anger the B'rett.@@Leave, or you will face the wrath of B'rett.@@B'rett is better not disturb.@@Do not tempt B'rett to unleash his fury.@@B'rett can wake the steel warrior.@@Leave us.@@Leave, now.@@This is not a place for you, outworlder.@@B'rett can summon a steel warrior if he wants to.@@Your presence here upsets B'rett.}
+{3000}{}{Mutant abomination! Die!@@Die, mutant!@@Die, mutant abomination!}
+
+[ptbr]
+{100}{}{Aborígene}
+{1000}{}{Predialogue installations}
+{1010}{}{ mutant}
+{1020}{}{normal}
+{2000}{}{Eu não gostar de tu.@@Eu não querer tu aqui.@@Sai.@@Não irrite o B'retth.@@Sai, ou vai ver B'retth com raiva.@@B'rett não gosta de perturbação.@@Não teste a paciência de  B'retth.@@B'retth pode acordar o guerreiro de aço.@@Nos deixe.@@Vai embora, agora.}
+{3000}{}{Abominação mutante! Morre!@@Morre mutante!@@Morre, seu demônio!}
+

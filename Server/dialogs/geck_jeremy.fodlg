@@ -1,0 +1,125 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+3 1020 D _var p name_mem_npc_player = 1 #
+6 1030 D _param p ST_INTELLECT < 4 @
+2 2000 None 0 #
+5 2010 #
+4 2020 #
+0 2030 @
+3 3000 None 0 #
+5 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+7 4010 @
+5 5000 None 0 #
+4 5010 #
+0 5020 @
+7 6000 None 0 #
+0 6010 &
+
+[engl]
+{100}{}{Jeremy}
+{200}{}{You see a ghoul with a shaved head.}
+{210}{}{You see Jeremy, the ghoul in charge of supplies.}
+{210}{}{You see a tall, thin ghoul who seems to be very busy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{1030}{}{Idiot}
+{2000}{}{Hello there. My name's Jeremy. I'm in charge of the all-powerful supply cabinet here. I keep track of all our stored supplies.}
+{2010}{}{All-powerful?}
+{2020}{}{I need something from storage.}
+{2030}{}{I don't need anything. I was just looking around. Goodbye.}
+{3000}{}{Hello again. Come to visit the all-powerful supply cabinet, or do you just need something from storage?}
+{3010}{}{All-powerful?}
+{3020}{}{I need something from storage.}
+{3030}{}{I don't need anything. I was just looking around. Goodbye.}
+{4000}{}{Well, if you want something from storage you need a Request Authorization Form. Do you have a Request Authorization Form?}
+{4010}{}{Uh, no I don't. Where do I get a Request Form?}
+{5000}{}{Okay, maybe not all-powerful. But it's pretty damn important. What do you want?}
+{5010}{}{I need something from Storage.}
+{5020}{}{Uh, nothing. I was just looking around. Goodbye.}
+{6000}{}{Well, you could get one from either Harold back in the settlement, or you could get one from Festus right here in the main reactor control room. I don't care who you get it from, as long as you get it. No Request Authorization, no parts — that's the way it works.}
+{6010}{}{Oh, okay. Well, I better go get one, then. Goodbye.}
+
+[russ]
+{100}{}{Джереми}
+{200}{}{Вы видите мертвяка с бритой головой.}
+{210}{}{Вы видите Джереми, мертвяка, который заведует запасами.}
+{210}{}{Вы видите высокого, худого мертвяка, который выглядит очень занятым.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{1030}{}{Idiot}
+{2000}{}{Привет. Меня зовут Джереми. Я заведую тут всеми всемогущими запасами. Я слежу за всеми нашими хранящимися запасами.}
+{2010}{}{Всемогущие?}
+{2020}{}{Мне нужно кое-что со склада.}
+{2030}{}{Мне ничего не надо. Просто осматриваюсь тут. Пока.}
+{3000}{}{Привет еще раз. Пришел посмотреть на всемогущие запасы или тебе просто что-то нужно со склада?}
+{3010}{}{Всемогущие?}
+{3020}{}{Мне нужно кое-что со склада.}
+{3030}{}{Мне ничего не надо. Просто осматриваюсь тут. Пока.}
+{4000}{}{Ну, если ты хочешь что-то со склада, то тебе нужно Подтверждение Запроса. У тебя есть Подтверждение Запроса?}
+{4010}{}{О, нет, нету. Где я могу его достать?}
+{5000}{}{Ну хорошо, может и не всемогущие. Но все-таки, черт возьми, довольно важные. Что тебе надо?}
+{5010}{}{Мне нужно кое-что со склада.}
+{5020}{}{Мне ничего не надо. Просто осматриваюсь тут. Пока.}
+{6000}{}{Ну, ты можешь взять одну либо у Гарольда в поселении, либо у Фестуса прямо здесь в главной комнате управления реактора. Меня не волнует, кто тебе даст ее, если ты ее все же достанешь. Никаких Подтверждений Запроса, никаких деталей - вот как все это делается.}
+{6010}{}{Ну, ладно. Хорошо, пойду тогда возьму одну. Пока.}
+
+[pols]
+{100}{}{Jeremy}
+{200}{}{Widzisz ghula o wygolonej głowie.}
+{210}{}{Idzisz Jeremy'ego, ghula kierującego działem zaopatrzenia.}
+{210}{}{Widzisz wysokiego, chudego ghula. Zdaje się być niezwykle zajęty.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{1030}{}{Idiot}
+{2000}{}{Witaj. Jestem Jeremy. Rządzę naszym wszechmocnym działem zaopatrzeniowym. Pilnuję stanu wyposażenia naszej elektrowni.}
+{2010}{}{Wszechmocnym?}
+{2020}{}{Potrzebuję czegoś z magazynu.}
+{2030}{}{Niczego mi nie trzeba. Chcę się tylko trochę rozejrzeć. Do widzenia.}
+{3000}{}{Witam ponownie. Składasz tylko wizytę w wszechmocnym dziale zaopatrzeniowym, czy potrzebujesz czegoś z magazynu?}
+{3010}{}{Wszechmocnym?}
+{3020}{}{Potrzebuję czegoś z magazynu.}
+{3030}{}{Niczego mi nie trzeba. Chcę się tylko trochę rozejrzeć. Do widzenia.}
+{4000}{}{Cóż, jeśli chcesz czegoś z magazynu musisz wypełnić Formularz Zamówienia. Masz go ze sobą?}
+{4010}{}{Uhm, nie, nie mam. Gdzie go mogę dostać?}
+{5000}{}{No dobra, może nie wszechmocny, ale mimo to - bardzo ważny. Czego tu szukasz?}
+{5010}{}{Potrzebuję czegoś z magazynu.}
+{5020}{}{Niczego mi nie trzeba. Chcę się tylko trochę rozejrzeć. Do widzenia.}
+{6000}{}{Możesz spróbować u Harolda, w mieście, albo u Festusa, tutaj w centrum sterowania reaktora. Zresztą, nieważne kto ci go da, ale musisz go zdobyć. Bez Formularza Zamówienia nie mogę ci wydać nic z magazynu.}
+{6010}{}{Och, w porządku. W takim razie pójdę go poszukać. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{1030}{}{Idiot}
+{2000}{}{Hello there. My name's Jeremy. I'm in charge of the all-powerful supply cabinet here. I keep track of all our stored supplies.}
+{2010}{}{All-powerful?}
+{2020}{}{I need something from storage.}
+{2030}{}{I don't need anything. I was just looking around. Goodbye.}
+{3000}{}{Hello again. Come to visit the all-powerful supply cabinet, or do you just need something from storage?}
+{3010}{}{All-powerful?}
+{3020}{}{I need something from storage.}
+{3030}{}{I don't need anything. I was just looking around. Goodbye.}
+{4000}{}{Well, if you want something from storage you need a Request Authorization Form. Do you have a Request Authorization Form?}
+{4010}{}{Uh, no I don't. Where do I get a Request Form?}
+{5000}{}{Okay, maybe not all-powerful. But it's pretty damn important. What do you want?}
+{5010}{}{I need something from Storage.}
+{5020}{}{Uh, nothing. I was just looking around. Goodbye.}
+{6000}{}{Well, you could get one from either Harold back in the settlement, or you could get one from Festus right here in the main reactor control room. I don't care who you get it from, as long as you get it. No Request Authorization, no parts — that's the way it works.}
+{6010}{}{Oh, okay. Well, I better go get one, then. Goodbye.}
+

@@ -1,0 +1,64 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+4 2010 #
+0 2020 @
+4 3000 None 0 #
+0 3010 &
+
+[engl]
+{100}{}{Phyllis}
+{200}{}{You see: the Resident Medical Assistant, Phyllis.}
+{210}{}{You see a thin young woman. She smells faintly of antiseptic.}
+{1000}{}{Predialogue installations}
+{1010}{}{Wewq}
+{2000}{}{Hello there. I am Nurse Phyllis, how can I help you today?}
+{2010}{}{Have you seen Dr Troy? I need to speak with him.}
+{2020}{}{Nothing.}
+{3000}{}{Doctor Troy is next door in his office.}
+{3010}{}{Thanks for your help.}
+
+[russ]
+{100}{}{Филлис}
+{200}{}{Вы видите Главного Фельдшера Филлис.}
+{210}{}{Вы видите худенькую девушку. От нее доносится легкий запах антисептических средств.}
+{1000}{}{Predialogue installations}
+{1010}{}{Wewq}
+{2000}{}{О, привет! Я вас раньше не видела... вы @sex@|новый гражданин||новая гражданка|? Чем я могу вам помочь?}
+{2010}{}{Вы видели доктора Троя? Мне нужно поговорить с ним.}
+{2020}{}{Ничего.}
+{3000}{}{Доктор Трой за следующей дверью в своем кабинете.}
+{3010}{}{Спасибо за помощь.}
+
+[pols]
+{100}{}{Phyllis}
+{200}{}{Widzisz Obywatela Asystenta Medycznego, Phyllis.}
+{210}{}{Widzisz szczupłą, młodą kobietą. Od otaczającego ją zapachu antyseptyków można zemdleć.}
+{1000}{}{Predialogue installations}
+{1010}{}{Wewq}
+{2000}{}{Cześć. Jestem pielęgniarka Phyllis, w czym mogę ci dziś pomóc?}
+{2010}{}{Widziałaś doktora Troy? Muszę z nim porozmawiać.}
+{2020}{}{W niczym.}
+{3000}{}{Doktor Troy jest w swoim biurze, kolejne drzwi.}
+{3010}{}{Dzięki za pomoc.}
+
+[ptbr]
+{100}{}{Filis}
+{200}{}{você vê a Asisstente médica residente, Filis.}
+{210}{}{você vê uma mulher jovem, bem magra. Ele tem um cheiro vago de antiséptico.}
+{1000}{}{Predialogue installations}
+{1010}{}{Wewq}
+{2000}{}{Olá. Eu sou a Enfermeira Phyllis, como posso ajudá-lo hoje?}
+{2010}{}{Você viu o Doutor Troy? Eu preciso falar com ele.}
+{2020}{}{Nada.}
+{3000}{}{O Doutor Troy está no seu escritório.}
+{3010}{}{@sex@|Obrigado||Obrigada| pela ajuda.}
+

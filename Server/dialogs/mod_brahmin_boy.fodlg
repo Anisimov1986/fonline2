@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Boy}
+{200}{}{You see: a little dirty boy tending to brahmin.}
+{210}{}{You see a little shepherd.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{Sigh...@@So tired...@@It's a living.}
+
+[russ]
+{100}{}{Мальчик}
+{200}{}{Вы видите грязного мальчика, ухаживающего за брамином.}
+{210}{}{Вы видите маленького пастуха.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{Вздох...@@Так устал...@@*Зевает*}
+
+[pols]
+{100}{}{Chłopiec}
+{200}{}{Widzisz rozczochranego, małego chłopca zajmującego się braminami.}
+{210}{}{Widzisz chłopca stajennego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{[Ziewa.]@@Tak zmęczony...@@[Wzdycha.]}
+
+[ptbr]
+{100}{}{Menino}
+{200}{}{Você vê: um menino, todo sujo. Está a ordenhar os brahmin.}
+{210}{}{Você vê um pequeno pastor.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{[Suspirando]...@@Que chato...@@É a vida.}
+

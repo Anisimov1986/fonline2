@@ -1,0 +1,49 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p jt_margaretfridge = 3 D _param p SK_REPAIR } 60 D or D _var p jt_margaretfridge = 3 D _item p PID_MULTI_TOOL } 1 D or D _var p jt_margaretfridge = 3 D _item p PID_SUPER_TOOL_KIT } 1 R _var p jt_margaretfridge = 4 R _script dialog@r_QuestNotice 2 9301 1 R _script karma@r_AddKarma 1 60 #
+2 1020 D _var p jt_margaretfridge = 3 R _script dialog@r_QuestNotice 2 9301 2 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Fridge}
+{200}{}{Fridge}
+{210}{}{Fridge}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{2000}{}{ }
+
+[russ]
+{100}{}{Fridge}
+{200}{}{Fridge}
+{210}{}{Fridge}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{2000}{}{ }
+
+[pols]
+{100}{}{Lodówka}
+{200}{}{Lodówka. Nic nadzwyczajnego}
+{210}{}{Lodówka. Pierwszy raz widzisz ten cud przedwojennej techniki.}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{2000}{}{ }
+
+[ptbr]
+{100}{}{Geladeira}
+{200}{}{Geladeira}
+{210}{}{Geladeira}
+{1000}{}{Predialogue installations}
+{1010}{}{Repair approach}
+{1020}{}{Repair Fail}
+{2000}{}{ }
+

@@ -1,0 +1,47 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Brahmin}
+{200}{}{You see a mutated cow with two heads.}
+{210}{}{Looks like the first head is picking up grass from the ground and the second one is chewing it.}
+{1000}{}{Predialogue installations}
+{1010}{}{Just mooing}
+{2000}{}{Mooo.@@Moo, moo.@@Murrr.@@Mhooo.@@Mooooo!}
+
+[russ]
+{100}{}{Брамин}
+{200}{}{Это брамин. Двухголовый.}
+{210}{}{Необыкновенная голова брамина - возможно результат воздействия радиации на обычную корову.}
+{210}{}{Вы не заметили ничего необычного в брамине.}
+{210}{}{Брама не очень разговорчив.}
+{210}{}{Разве ты не можешь найти что-нибудь получше болтовни с двухголовой коровой?}
+{1000}{}{Predialogue installations}
+{1010}{}{Just mooing}
+{2000}{}{Му!@@Муууууууу!@@Му?@@Му...@@Му-Му-Му...@@Му-Му.@@МУ!!! МУ!!! МУУУУУ!!!@@Му, му, му?@@Му.}
+
+[pols]
+{100}{}{Bramin}
+{200}{}{Widzisz zmutowaną, dwugłową krowę.}
+{210}{}{Jedna głowa skubie z ziemi trawę, a druga ją żuje.}
+{1000}{}{Predialogue installations}
+{1010}{}{Just mooing}
+{2000}{}{Muuu.@@Muu, muu.@@MUU.@@Mu? Mu.}
+
+[ptbr]
+{100}{}{Brahmin}
+{200}{}{Você vê uma vaca mutante de duas cabeças.}
+{210}{}{Parece que a primeça cabeça está pegando a grama do chão e a segunda tá mastigando.}
+{1000}{}{Predialogue installations}
+{1010}{}{Just mooing}
+{2000}{}{Muuu.@@Muuu, muu.@@Murrr.@@Mhuuu.@@Muuuuu!}
+

@@ -1,0 +1,455 @@
+#ifndef __GAME_EVENT_GOSSIP_H__
+#define __GAME_EVENT_GOSSIP_H__
+
+#include "serializator.fos"
+
+#define GOSSIP_SCOPE_EVENT     ( 0 )
+#define GOSSIP_SCOPE_TC        ( 1 )
+#define GOSSIP_SCOPE_CUSTOM    ( 10000 )
+
+#define GOSSIP_SLOW            ( 10 )
+#define GOSSIP_MEDIUM          ( 20 )
+#define GOSSIP_FAST            ( 30 )
+#define GOSSIP_TEST            ( 1000 )
+
+import uint[]@+ GetGossipCritterIdsCache() from "game_event_gossip";
+import bool Present(uint what, uint[]& where) from "utils_for_array";
+
+
+class GossipDefinition
+{
+	private uint gossipId, scopeId = GOSSIP_SCOPE_CUSTOM;
+	private uint delay = 0;
+	private uint steps, stepDuration, gossipQuantity, gossipQuantityIncrease;
+	private uint sourceLocationId = 0;
+	private uint msgId, sourceMsgId = 0;
+	private uint msgDurationMin, msgDurationMax;
+	private string lexems = "";
+
+	GossipDefinition@ SetGossipId(uint gossipId)
+	{
+		this.gossipId = gossipId;
+		return @this;
+	}
+	
+	uint GetGossipId()
+	{
+		return gossipId;
+	}
+	
+	GossipDefinition@ SetScopeId(uint scopeId)
+	{
+		this.scopeId = scopeId;
+		return @this;
+	}
+	
+	uint GetScopeId()
+	{
+		return scopeId;
+	}
+	
+	GossipDefinition@ SetDelay(uint delay)
+	{
+		this.delay = delay;
+		return @this;
+	}
+	
+	uint GetDelay()
+	{
+		return delay;
+	}
+	
+	GossipDefinition@ SetSteps(uint steps)
+	{
+		this.steps = steps;
+		return @this;
+	}
+	
+	uint GetSteps()
+	{
+		return steps;
+	}
+	
+	GossipDefinition@ SetStepDuration(uint stepDuration)
+	{
+		this.stepDuration = stepDuration;
+		return @this;
+	}
+	
+	uint GetStepDuration()
+	{
+		return stepDuration;
+	}
+	
+	GossipDefinition@ SetGossipQuantity(uint gossipQuantity)
+	{
+		this.gossipQuantity = gossipQuantity;
+		return @this;
+	}
+	
+	uint GetGossipQuantity()
+	{
+		return gossipQuantity;
+	}
+	
+	GossipDefinition@ SetGossipQuantityIncrease(int gossipQuantityIncrease)
+	{
+		this.gossipQuantityIncrease = gossipQuantityIncrease * 100;
+		return @this;
+	}
+	
+	GossipDefinition@ SetGossipQuantityIncreaseDecimal(int gossipQuantityIncrease)
+	{
+		this.gossipQuantityIncrease = gossipQuantityIncrease;
+		return @this;
+	}
+	
+	uint GetGossipQuantityIncrease()
+	{
+		return gossipQuantityIncrease;
+	}
+	
+	GossipDefinition@ SetSourceLocationId(int sourceLocationId)
+	{
+		this.sourceLocationId = sourceLocationId;
+		return @this;
+	}
+	
+	uint GetSourceLocationId()
+	{
+		return sourceLocationId;
+	}
+	
+	GossipDefinition@ SetMsgId(uint msgId)
+	{
+		this.msgId = msgId;
+		return @this;
+	}
+	
+	uint GetMsgId()
+	{
+		return msgId;
+	}
+	
+	GossipDefinition@ SetSourceMsgId(uint sourceMsgId)
+	{
+		this.sourceMsgId = sourceMsgId;
+		return @this;
+	}
+	
+	uint GetSourceMsgId()
+	{
+		return sourceMsgId;
+	}
+	
+	GossipDefinition@ SetLexems(string lexems)
+	{
+		this.lexems = lexems;
+		return @this;
+	}
+	
+	string GetLexems()
+	{
+		return lexems;
+	}
+	
+	GossipDefinition@ SetMsgDuration(uint msgDurationMin, uint msgDurationMax)
+	{
+		this.msgDurationMin = msgDurationMin;
+		this.msgDurationMax = msgDurationMax;
+		return @this;
+	}
+	
+	uint GetMsgDurationMin()
+	{
+		return msgDurationMin;
+	}
+	
+	uint GetMsgDurationMax()
+	{
+		return msgDurationMax;
+	}
+	
+	void Load(Serializator &serializator)
+	{
+		serializator.Get(gossipId);
+		serializator.Get(scopeId);
+		serializator.Get(delay);
+		serializator.Get(steps);
+		serializator.Get(stepDuration);
+		serializator.Get(gossipQuantity);
+		serializator.Get(gossipQuantityIncrease);
+		serializator.Get(sourceLocationId);
+		serializator.Get(msgId);
+		serializator.Get(sourceMsgId);
+		serializator.Get(msgDurationMin);
+		serializator.Get(msgDurationMax);
+		serializator.Get(lexems);
+	}
+	
+	void Save(Serializator &serializator)
+	{
+		serializator.Set(gossipId);
+		serializator.Set(scopeId);
+		serializator.Set(delay);
+		serializator.Set(steps);
+		serializator.Set(stepDuration);
+		serializator.Set(gossipQuantity);
+		serializator.Set(gossipQuantityIncrease);
+		serializator.Set(sourceLocationId);
+		serializator.Set(msgId);
+		serializator.Set(sourceMsgId);
+		serializator.Set(msgDurationMin);
+		serializator.Set(msgDurationMax);
+		serializator.Set(lexems);
+	}	
+}
+
+class Gossip
+{
+	#define _GetKey ("Gossip" + gossipDefinition.GetGossipId() + ";" + gossipDefinition.GetScopeId())
+
+	private uint step, quantity;
+	private uint stepTimerId, msgTimerId;
+	private bool started = false, finished = false;
+	private GossipDefinition gossipDefinition;
+	
+
+	Gossip(uint gossipId, uint scopeId)
+	{
+		gossipDefinition.SetGossipId(gossipId);
+		gossipDefinition.SetScopeId(scopeId);
+		
+		Load();
+	}
+
+	Gossip(GossipDefinition &gossipdefinition)
+	{
+		this.gossipDefinition = gossipdefinition;
+	}	
+
+	void Start() 
+	{
+		if (started || finished)
+		{
+			return;
+		}
+		
+		step = 0;
+		quantity = gossipDefinition.GetGossipQuantity();
+		
+		uint[] values = {gossipDefinition.GetGossipId(), gossipDefinition.GetScopeId()};
+		
+		started = true;
+		
+		if (gossipDefinition.GetSteps() == 0)
+		{
+			Finish();
+			
+			return;
+		}
+		
+		stepTimerId = CreateTimeEvent(__FullSecond + gossipDefinition.GetDelay() + gossipDefinition.GetStepDuration(), "e_StepEvent", values, true);
+		msgTimerId = CreateTimeEvent(__FullSecond + gossipDefinition.GetDelay(), "e_MsgEvent", values, false);
+		
+		Save();
+	}
+	
+	uint NextStep() 
+	{
+		step++;
+		quantity = gossipDefinition.GetGossipQuantity() + step * gossipDefinition.GetGossipQuantityIncrease() / 100;
+		
+		if (step < gossipDefinition.GetSteps())
+		{
+			uint[] values = {gossipDefinition.GetGossipId(), gossipDefinition.GetScopeId()};
+			
+			EraseTimeEvent(msgTimerId);
+			msgTimerId = CreateTimeEvent(__FullSecond, "e_MsgEvent", values, false);
+			Save();
+			
+			return gossipDefinition.GetStepDuration();
+		}
+		else
+		{
+			Finish();
+			
+			return 0;
+		}
+	}
+	
+	uint SendGossip() 
+	{
+		uint[]@ gossipCritterIdsCache = GetGossipCritterIdsCache();
+		uint[] critterIds;
+		
+		//Find random critters
+		for(uint i = 0; i < quantity; i++)
+		{
+			uint critterId = gossipCritterIdsCache[Random(0, gossipCritterIdsCache.length() - 1)];
+		
+			if (!Present(critterId, critterIds))
+			{
+				critterIds.insertLast(critterId);
+			}
+		}
+		
+		//Say gossip
+		for(uint i = 0; i < critterIds.length(); i++)
+		{
+			Critter@ critter = GetCritter(critterIds[i]);
+			if (!valid(critter) || critter.IsDead() || FLAG(critter.ParamBase[CR_FLAGS1], NPC_GIVING_QUEST)) 
+			{
+				continue;
+			}		
+			
+			uint msgId = gossipDefinition.GetMsgId();
+			string lexems = gossipDefinition.GetLexems();
+			
+			if (gossipDefinition.GetSourceLocationId() != 0)
+			{
+				Map@ map = critter.GetMap();
+				if (!valid(map)) 
+				{
+					continue;
+				}
+
+				Location@ location = map.GetLocation();
+				if (!valid(location)) 
+				{
+					continue;
+				}
+				
+				if (location.Id == gossipDefinition.GetSourceLocationId())
+				{
+					msgId = gossipDefinition.GetSourceMsgId();
+				}
+			}
+
+			critter.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, msgId, lexems);
+		}
+		
+		return Random(gossipDefinition.GetMsgDurationMin(), gossipDefinition.GetMsgDurationMax());
+	}
+	
+	void Finish()
+	{
+		if (!started || finished)
+		{
+			return;
+		}
+		
+		EraseTimeEvent(stepTimerId);
+		EraseTimeEvent(msgTimerId);
+		
+		started = false;
+		finished = true;
+		
+		EraseAnyData(_GetKey);
+	}
+	
+	private void Load()
+	{
+		Serializator serializator;
+		
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(step);
+		serializator.Get(quantity);
+		serializator.Get(stepTimerId);
+		serializator.Get(msgTimerId);
+		serializator.Get(started);
+		
+		gossipDefinition.Load(serializator);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(step);
+		serializator.Set(quantity);
+		serializator.Set(stepTimerId);
+		serializator.Set(msgTimerId);
+		serializator.Set(started);
+		
+		gossipDefinition.Save(serializator);
+
+		serializator.Save(_GetKey);
+	}
+}
+
+uint e_StepEvent(array<uint>@ values)
+{
+	uint gossipId = values[0];
+	uint scopeId = values[1];
+
+	return Gossip(gossipId, scopeId).NextStep();
+}
+
+uint e_MsgEvent(array<uint>@ values)
+{
+	uint gossipId = values[0];
+	uint scopeId = values[1];
+	
+	return Gossip(gossipId, scopeId).SendGossip();
+}
+
+GossipDefinition@+ CreateGossipDefinition(uint type, uint duration) 
+{
+	uint[]@ gossipCritterIdsCache = GetGossipCritterIdsCache();
+	GossipDefinition gossipDefinition;
+	uint startQuantity, finishQuantity, steps;
+	
+	
+	if (type == GOSSIP_SLOW)
+	{
+		startQuantity = gossipCritterIdsCache.length() * 0.001;
+		finishQuantity = gossipCritterIdsCache.length() * 0.01;
+	}
+	else if (type == GOSSIP_MEDIUM)
+	{
+		startQuantity = gossipCritterIdsCache.length() * 0.002;
+		finishQuantity = gossipCritterIdsCache.length() * 0.02;	
+	}
+	else if (type == GOSSIP_FAST)
+	{
+		startQuantity = gossipCritterIdsCache.length() * 0.004;
+		finishQuantity = gossipCritterIdsCache.length() * 0.04;	
+	}
+	else if (type == GOSSIP_TEST)
+	{
+		startQuantity = gossipCritterIdsCache.length() * 0.05;
+		finishQuantity = gossipCritterIdsCache.length() * 0.10;	
+	}
+	else
+	{
+		return null;
+	}
+	
+	steps = (duration + REAL_SECOND(60) -1) / REAL_SECOND(60);
+	
+	gossipDefinition.SetSteps(steps);
+	gossipDefinition.SetStepDuration(REAL_SECOND(60));
+	gossipDefinition.SetGossipQuantity(startQuantity);
+	gossipDefinition.SetGossipQuantityIncreaseDecimal(100 * (finishQuantity - startQuantity) / steps);
+	gossipDefinition.SetMsgDuration(REAL_SECOND(5), REAL_SECOND(15));
+	
+	return gossipDefinition;
+}
+
+void StartGossip(GossipDefinition &gossipDefinition)
+{
+	Gossip(gossipDefinition).Start();
+}
+
+void StopGossip(uint gossipId, uint scopeId)
+{
+	Gossip(gossipId, scopeId).Finish();
+}
+
+
+#endif

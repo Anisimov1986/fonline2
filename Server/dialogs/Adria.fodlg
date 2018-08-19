@@ -1,0 +1,115 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+4 2010 D _var p name_mem_npc_player = 0 #
+3 2020 #
+0 2030 #
+6 2040 D _script economy_dialogs@d_IsEnoughCaps 1 30000 D _var p name_mem_npc_player = 1 R _script economy_dialogs@r_TakeCaps 1 30000 R _item p PID_BASEMAP_SHACK + 1 R _var p name_mem_npc_player = 0 @
+3 3000 None 0 #
+2 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 R _var p name_mem_npc_player = 1 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+0 5010 #
+0 5020 #
+6 5030 D _script economy_dialogs@d_IsEnoughCaps 1 30000 R _item p PID_BASEMAP_SHACK + 1 R _var p name_mem_npc_player = 0 R _script economy_dialogs@r_TakeCaps 1 30000 @
+6 6000 None 0 #
+0 6010 &
+
+[engl]
+{100}{}{Adria}
+{200}{}{You see: Adria}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hello wanderer, I sense your soul begging for answers. What can old Adria do for you?}
+{2010}{}{What are you doing here?}
+{2020}{}{Soul? What?}
+{2030}{}{Uh, nothing, bye granny.}
+{2040}{}{I have something to refresh your memory.}
+{3000}{}{Every living creature has a soul, my child. Every human being, every animal, even if it doesn't look like it in the first place. Yes, souls and spirits, all around us ...}
+{3010}{}{Right, souls. Can I ask for something else?}
+{3020}{}{Right, spirits. It seems you are hearing them often, granny. Bye.}
+{4000}{}{It's been a long time since I've left my old shack in the desert. It's abandoned now, as many others are. I still might remember where it is, if you need it. }
+{4010}{}{Sure I do.}
+{5000}{}{So... My memory needs refreshing. And for this refreshment... you'll need @lex base1_price@ caps, my child. I have some old debts to pay off.}
+{5010}{}{@lex base1_price@ caps? Ask your invisible friends for some spare change, granny. Bye.}
+{5020}{}{That's a lot of cash, I'll be back.}
+{5030}{}{Really? Then I have the caps to refresh your memory.}
+{6000}{}{Well done, my child. Here you are, the map you've asked for.}
+{6010}{}{Thanks, Adria.}
+
+[russ]
+{100}{}{Адрия}
+{200}{}{Вы видите: Адрия}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Здравствуйте странник, я чувствую ваша душа просит ответов. Что может старая Адрия сделать для вас?}
+{2010}{}{Что вы здесь делаете?}
+{2020}{}{Душа? Что?}
+{2030}{}{Ну, ничего, до свидания бабуля.}
+{2040}{}{У меня есть кое-что, чтобы освежить вашу память.}
+{3000}{}{Каждое живое существо имеет душу, дитя мое. Каждый человек, каждое животное, даже если кажется что это не так. Да, души и духи, везде вокруг нас...}
+{3010}{}{Ну да, душа. Могу ли спросить кое-что еще?}
+{3020}{}{Ага, духи. Старуха совсем из ума выжила. Пока.}
+{4000}{}{Прошло много времени, с тех пор как я оставила свой старый дом в пустыне. Он заброшен сейчас, как и многие другие вокруг. Я до сих пор, возможно, помню, где он, если тебя это интересует. }
+{4010}{}{Интересует.}
+{5000}{}{Чтобы освежить мою память, тебе понадобится @lex base1_price@ крышек, дитя мое. У меня есть некоторые старые долги, которые нужно оплатить.}
+{5010}{}{@lex base1_price@ крышек? Попросите лучше своих духов дать вам денег, бабуля. Пока.}
+{5020}{}{Это много денег, я вернусь позже.}
+{5030}{}{В самом деле? Тогда у меня есть крышки, чтобы освежить вашу память.}
+{6000}{}{Молодец, дитя мое. Вот, пожалуйста, карта.}
+{6010}{}{Спасибо, Адрия.}
+
+[pols]
+{100}{}{Adria}
+{200}{}{Widzisz Adrię.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Witaj, @sex@|niezajomy||niezajoma|. Wyczuwam w tobie niespokojną duszę szukającą odpowiedzi. W czym mogę Ci pomóc?}
+{2010}{}{Eee, co tutaj robisz, babciu?}
+{2020}{}{Co? Jaką znowu duszę?}
+{2030}{}{W niczym, na razie babciu.}
+{2040}{}{Mam coś, co odświeży ci pamięć.}
+{3000}{}{Dusza? Dusza, moje dziecko, jest obecna w każdym żywym stworzeniu. W każdym człowieku, zwierzęciu, czy mutancie. Nawet jeśli wydaje ci się, że jej tam nie ma. Wszystko, co nas otacza, ma duszę...}
+{3010}{}{Aha. Możemy porozmawiać o czymś innym?}
+{3020}{}{Chyba na starość padło ci na mózg. Czas na mnie.}
+{4000}{}{Co robię? Też poszukuję odpowiedzi... Na przykład takich, jak spłacić moje stare długi, trochę się ich nazbierało. Może pomożesz starej kobiecie w potrzebie? W zamian mógłabym ci dać mapę do mojej starej chaty. Już tam nie mieszkam, bo za daleko do miasta, ale ty jesteś @sex@||młody|młoda|, dla ciebie to nie będzie problem.}
+{4010}{}{Zawsze pomagam babciom w potrzebie.}
+{5000}{}{Ach... Wiesz jak wzruszyć starą kobietę. Żeby znaleźć odpowiedzi których szukam, potrzebuję @lex base1_price@ kapsli. Nie patrz tak, długo żyłam, to i długi się nagromadziły...}
+{5010}{}{@lex base1_price@ kapsli? To ile ty masz lat, 200? Popytaj jakieś inne dusze, ja nie mam przy sobie drobniaków. Na razie.}
+{5020}{}{Musiałaś mieć bardzo udane życie. Jeszcze tu wrócę.}
+{5030}{}{Tak się składa, że mam coś, co pomoże ci znaleźć twoje "odpowiedzi".}
+{6000}{}{Świetnie, nie pożałujesz tego. Tu masz mapę, którą obiecałam.}
+{6010}{}{Dzięki, mam nadzieję że to coś więcej niż namiot. Żegnaj.}
+
+[ptbr]
+{100}{}{Adriana}
+{200}{}{Você vê: Adriana}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Oi forasteiro, sinto que sua alma pede por respostas. O quê que a vovó aqui pode fazer por você?}
+{2010}{}{O que você está fazendo aqui?}
+{2020}{}{Alma? Hã?}
+{2030}{}{Um, nada, tchau vovó.}
+{2040}{}{Eu tenho algo para refrescar sua memória.}
+{3000}{}{Toda criatura tem uma alma @sex@|meu fi||minha fia|. Todo ser humano, todos os animais, por incrível que pareça. Isso aí, alma e espíritos, em todos os lugares ...}
+{3010}{}{Certo, almas. Posso perguntar algo pra senhora?}
+{3020}{}{Entendi, espíritos. Parece que a senhora tá ouvindo eles demais ultimamente, vovó. Tchau.}
+{4000}{}{Já faz muito tempo que eu deixei minha velha cabana no deserto. Tá abandonada, que nem outras por aí. Eu ainda posso lembrar onde é, se você precisar. }
+{4010}{}{Sim senhora.}
+{5000}{}{Então... minha memória precisa ser refrescada. E para refrescar... eu vou precisar de @lex base1_price@ tampinhas, @sex@|meu fi||minha fia|. Eu tenho umas dívidas antigas para pagar.}
+{5010}{}{@lex base1_price@ tampinhas? Faça o seguinte, peça uns trocados pros seus amigos invisíveis vovó. Tchau.}
+{5020}{}{Isso é muito caro, volto depois.}
+{5030}{}{Sério? Eu tenho essas tampinhas bem aqui.}
+{6000}{}{Muito bem, @sex@|meu fi||minha fia|. Tá aqui o mapa que você pediu.}
+{6010}{}{@sex@|Obrigado||Obrigada|, Adriana.}
+

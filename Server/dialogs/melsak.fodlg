@@ -1,0 +1,357 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p melsak = 0 #
+5 2020 D _var p melsak > 0 #
+17 2030 D _var p q_my_first_tent = 1 #
+20 2040 D _var p q_my_first_tent = 2 #
+18 2050 D _var p q_my_first_tent = 4 D _item p PID_EMPTY_WATER_BAG } 4 R _item p PID_EMPTY_WATER_BAG - 4 R _var p q_my_first_tent = 7 R _script q_my_first_tent@r_FinishGetBagsSubQuest 0  R _script dialog@r_ShowQuestMessage 1 9001 R _param p ST_EXPERIENCE + 200 #
+23 2060 D _var p q_my_first_tent = 5 D _item p PID_EMPTY_WATER_BAG } 4 R _item p PID_EMPTY_WATER_BAG - 4 R _var p q_my_first_tent = 9 R _script dialog@r_ShowQuestMessage 1 9001 R _script q_my_first_tent@r_FinishGetBagsSubQuest 0  #
+24 2070 D _var p q_my_first_tent = 6 D _item p PID_EMPTY_WATER_BAG } 4 R _item p PID_EMPTY_WATER_BAG - 4 R _var p q_my_first_tent = 9 R _script dialog@r_ShowQuestMessage 1 9001 R _script q_my_first_tent@r_FinishGetBagsSubQuest 0  #
+25 2080 D _var p q_my_first_tent = 7 D _item p PID_SHIV = 0 #
+26 2090 D _var p q_my_first_tent = 7 D _item p PID_SHIV > 0 R _item p PID_SHIV - 1 R _var p q_my_first_tent = 8 R _item p PID_BRAHMIN_SKIN + 10 R _param p ST_EXPERIENCE + 1000 @
+3 3000 None 0 #
+4 3010 #
+4 3020 @
+4 4000 None 0 #
+5 4010 R _var p melsak = 1 #
+0 4020 @
+5 5000 None 0 #
+30 5010 D _param p PE_GECKO_SKINNING = 0 #
+14 5020 #
+22 5030 #
+0 5040 @
+14 6000 None 0 #
+15 6010 #
+16 6020 #
+5 6030 @
+15 7000 None 0 #
+5 7010 #
+0 7020 @
+16 8000 None 0 #
+5 8010 #
+0 8020 @
+17 9000 None 0 #
+19 9010 @
+18 10000 None 0 #
+0 10010 #
+0 10020 @
+19 11000 None 0 #
+20 11010 #
+0 11020 R _var p q_my_first_tent = 2 R _param p ST_EXPERIENCE + 100 @
+20 12000 None 0 #
+21 12010 #
+5 12020 R _var p q_my_first_tent = 2 @
+21 13000 None 0 #
+0 13010 R _var p q_my_first_tent = 3 R _script dialog@r_ShowQuestMessage 1 9001 R _script q_my_first_tent@r_StartGetBagsSubQuest 0  #
+5 13020 R _var p q_my_first_tent = 2 @
+22 14000 None 0 #
+5 14010 #
+0 14020 @
+23 15000 None 0 @
+24 16000 None 0 @
+25 17000 None 0 #
+0 17010 @
+26 18000 None 0 #
+0 18010 R _script dialog@r_ShowQuestMessage 1 9001 #
+0 18020 R _script dialog@r_ShowQuestMessage 1 9001 @
+29 19000 None 0 @
+30 20000 None 0 #
+31 20010 #
+0 20020 @
+31 21000 economy_dialogs@dlg_PreparePrice 0 #
+32 21010 D _script economy_dialogs@d_IsEnoughCaps 1 600 R _script economy_dialogs@r_TakeCaps 1 600 R _param p PE_GECKO_SKINNING + 1 #
+0 21020 @
+32 22000 None 0 #
+0 22010 &
+
+[engl]
+{100}{}{Melsak}
+{200}{}{You see: Melsak, the local brahmin herdsman.}
+{210}{}{The man's origins are obviously tribal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[Stares at you silently.] Good day to you.}
+{2010}{}{Good day to you, too. So... how are you?}
+{2020}{}{I have a few more questions.}
+{2030}{}{I was told that you might be able to help me with something.}
+{2040}{}{Well, do you have any brahmin hides I could use for my tent?}
+{2050}{}{Frankie gave me only four bags. He said he didn't have more. Here. [You hand over the water bags]}
+{2060}{}{Frankie gave me only four bags. He said he didn't have more. Here. [You hand over the water bags]}
+{2070}{}{Frankie gave me only four bags. He said he didn't have more. Here. [You hand over the water bags]}
+{2080}{}{So, what did you want again?}
+{2090}{}{I've got a shiv for you. [You hand him the shiv.] Can I get those hides already?}
+{3000}{}{I am fine, thank you. How are you?}
+{3010}{}{Quite good. I am kind of new around here, so I'm just getting to know how things work.}
+{3020}{}{Quite bad, I am kind of new here, and I'm completely lost.}
+{4000}{}{[Stares at you for a while waiting for your question.] Would you like me to help you with something?}
+{4010}{}{I don't know...well, I got some questions.}
+{4020}{}{No, not really.}
+{5000}{}{Ask then.}
+{5010}{}{Well, you look like you know bit about hunting geckos, am I right?}
+{5020}{}{What can you tell me about Junktown?}
+{5030}{}{Do you know about any other towns around?}
+{5040}{}{Nevermind, I need to go.}
+{6000}{}{Junktown is very good place to live. It's safe, the people here are helpful, and if you behave, then you should be fine.}
+{6010}{}{Do you know where I could get some caps? I mean, do you know of any jobs around?}
+{6020}{}{Can I trade with someone here?}
+{6030}{}{Yeah, it looks like everyone here is very happy. Let me ask you something else.}
+{7000}{}{I am not aware of any jobs here, but that is only because I have no need to seek any. My job here is to take care of the brahmin and that is all I care about.}
+{7010}{}{Okay, let me ask you something else.}
+{7020}{}{Okay, that's all I wanted to know. See you around.}
+{8000}{}{TODO: add info about local traders}
+{8010}{}{Thanks for the info. I have more questions if you don't mind.}
+{8020}{}{Thanks for the info. That would be all for now.}
+{9000}{}{What would it be?}
+{9010}{}{I was told that you could help me find a safe place where I could keep my stuff and rest.}
+{10000}{}{[He takes the water bags.] Only four? Hm, as I see once again, Frankie is not a man of his words. Thank you for these, anyway. But before I give you your hides, I would ask one more thing of you. As I still need more waterbags, I will try to make some myself, but I need a shiv. If you bring me one I will give you your hides.}
+{10010}{}{What?! Oh, okay, I'll do it. I'll be back soon.}
+{10020}{}{What?! No way, forget it. I am fed up with helping you. Bye.}
+{11000}{}{Yes, you have been told right. I can show you how to make a tent from brahmin hides. You need at least ten brahmin hides to make one. The next thing would be to find the right spot for your tent somewhere in the wasteland (go to the worldmap and travel to a spot where you want to place your tent). When you find a right place (enter the chosen location) this is how you make a tent... [he takes few hides and wood and shows you how to combine them together to make a proper tent] (You must use your fixboy with 10 brahmin hides and 2 pieces of wood in your inventory).}
+{11010}{}{Hm, that's quite easy. Thanks. Do you have any brahmin hides? }
+{11020}{}{Hm, that's quite easy.}
+{12000}{}{Yes, I do, but I need them and I cannot just give them to you. [He pauses for a while, looking like he is thinking.] On the other hand, if you are willing to help me with one thing, I can give you the brahmin hides you require.}
+{12010}{}{Sure, what's that?}
+{12020}{}{Well, I think I'll find them myself instead. Thanks, though. Can I ask you more questions?}
+{13000}{}{There is a man, who calls himself Frankie. He is a brahmin herdsman and he owes me some water bags, ten to be precise. He can be found not far from here. If you bring me those water bags, you will have your brahmin hides.}
+{13010}{}{Okay, show me where he is and I'll be on my way.}
+{13020}{}{Well, I think I'll just find them myself. Thanks, though. Can I ask you more questions?}
+{14000}{}{Yes, I do. There are two towns near  that I have visited. Hub to the south South and Necropolis to the East. There is also the New California Republic to the North, but I have only stayed there for a short time as I was nearly shot to death after being mistaken for a thief.}
+{14010}{}{Thanks, I will visit them. But I would like to ask something else.}
+{14020}{}{Thanks. I think I'll visit them right away.}
+{15000}{}{[He takes the water bags.] I am aware of that. Frankie just left and he told me what you did. I am afraid I am not willing to help you any longer. Please, leave now.}
+{16000}{}{[He takes the water bags.] I will take these bags as a memory to Frankie. Someone saw you, you know. And I am not willing to help you any more. Please, leave now.}
+{17000}{}{I need a shiv, so I can make some more water bags.}
+{17010}{}{Ah, okay, I remember now.}
+{18000}{}{I appreciate what you have done for me. Of course you can have your hides. [He gives you 10 brahmin hides.] Here, take it and make a nice tent as I taught you. Of course, you'll also need two pieces of wood.}
+{18010}{}{Thank you. See you around.}
+{18020}{}{So long, sucker.}
+{19000}{}{Thank you again, good man.}
+{20000}{}{Well yes, I know a thing or two, but if you want me to teach you, first you must pay.}
+{20010}{}{Very well, how much?}
+{20020}{}{What? No. Maybe later.}
+{21000}{}{@lex skinning_price@ bottle caps should be a fine price for training. You will gain more by selling hides in no time. Also I can't think of anyone who would teach you for less.}
+{21010}{}{(Gain perk: Gecko Skinning) Okay, teach me how to properly skin geckos.}
+{21020}{}{Oh, I don't have enough caps. Bye}
+{22000}{}{Good. Listen closely... [In a short time you learn how to skin geckos.])}
+{22010}{}{Okay, I get it now, thank you for the training.}
+
+[russ]
+{100}{}{Melsak}
+{200}{}{Melsak, the local brahmin herdsman.}
+{210}{}{Tribal looking guy }
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[stares at you silently] Good day to you.}
+{2010}{}{Good day to you, too. So...how are you?}
+{2020}{}{I have few more questions.}
+{2030}{}{I was told, that you might be able to help me with something.}
+{2040}{}{Well, do you have any brahmin hides I could use for my tent?}
+{2050}{}{Frankie gave me only four bags. He said he didn't have more. Here. [you hand him over the water bags]}
+{2060}{}{Frankie gave me only four bags. He said he didn't have more. Here. [you hand him over the water bags]}
+{2070}{}{Frankie gave me only four bags. He said he didn't have more. Here. [you hand him over the water bags]}
+{2080}{}{So, what did you want again?}
+{2090}{}{I've got a shiv for you. [you hand him the shiv] Can I get those hides at last?}
+{3000}{}{I am fine, thank you. How are you yourself?}
+{3010}{}{Quite good. I am kind of new around, so I am just getting to know how things go here.}
+{3020}{}{Quite bad, I am kind of new around, so I am lost here.}
+{4000}{}{[stares at you for a while waiting for your question] Would you like me to help you with something?}
+{4010}{}{I don't know...well, I got some questions.}
+{4020}{}{No, not really.}
+{5000}{}{Ask, then.}
+{5010}{}{Well, you look like you know bit about hunting gecko's, Am i right?}
+{5020}{}{What can you tell me about Junktown?}
+{5030}{}{Do you know about any other towns around?}
+{5040}{}{Nevermind, I need to go.}
+{6000}{}{Junktown is very good place to live in. It is safe, people here are helpfull and if you behave, then you should be fine.}
+{6010}{}{Do you know where I could get some caps? I mean, do you know of any jobs around?}
+{6020}{}{Can I exchange stuff with someone here?}
+{6030}{}{Yeah, it looks like people here are very happy. Let me ask you something else.}
+{7000}{}{I am not aware of any jobs here, but that is only I have never seek for any. My job here is to take care of brahmins and that is all I care about.}
+{7010}{}{Okey, let me ask you something else.}
+{7020}{}{Okey, that would be all I wanted to know. See you around.}
+{8000}{}{TODO: add info about local traders}
+{8010}{}{Thanks for the info. I have more questions if you don't mind.}
+{8020}{}{Thanks for the info. That would be all for now.}
+{9000}{}{What would it be?}
+{9010}{}{I was told that you could help me find a safe place where I could keep my stuff and rest.}
+{10000}{}{[he takes the water bags] Only four? Hm, as I see again, Frankie is not man of his words. Thank you for that, anyway. But before I give you your hides, I would ask you one more thing. As I still need more waterbags, I will try to make some myself, but I need a shiv. If you bring me one I will give you your hides.}
+{10010}{}{What?! Oh, okey, I will do it. I'll be back soon.}
+{10020}{}{What?! No way, forget it. I am fed up with helping you. Bye.}
+{11000}{}{Yes, you have been told right. I can show you how to make a tent from brahmin hides. You need at least ten brahmin hides to make one. The next thing would be to find the right spot for your tent somewhere in the wasteland (go to global map and travel to the chosen spot on map where you want to place your tent). When you find a right place (enter the chosen place and go to local map) this is how you make a tent... [he takes few hides and wood stick and shows you how to combine them together to make a proper tent] (you go to your inventory and use Science skill on brahmin hides in your inventory).}
+{11010}{}{Hm, that's quite easy. Thanks. Do you have any brahmin hides? }
+{11020}{}{Hm, that's quite easy.}
+{12000}{}{Yes, I do, but I need them and I cannot just give them to you. [stops for a while, he looks like he is thinking] On the other hand, If you are willing to help me with one thing, I would give you the brahmin hides you require.}
+{12010}{}{Sure, what's that?}
+{12020}{}{Well, I think I will find it myself. Thanks, though. Can I ask you more questions?}
+{13000}{}{There is a man, who calls himself Frankie. He is a brahmin herdsman and he should have some water bags for me, ten to be precise. He likes one place in forest not far from here. If you bring me those water bags, you will have your brahmin hides.}
+{13010}{}{Ok, show me where he is and I am on my way.}
+{13020}{}{Well, I think I will find it myself. Thanks, though. Can I ask you more questions?}
+{14000}{}{Yes, I do. There are two towns near, I have visited. Hub on South and Necropolis on East. There is also New California Republic on North, but I have stayed there just for a short time as I have been shot to death.}
+{14010}{}{Thanks, I will visit them. But I would like to ask something else.}
+{14020}{}{Thanks. I think I'll visit them right away.}
+{15000}{}{[he takes the water bags] I am aware of that. Frankie has just left and he has told me what you have done. I am afraid I am not willing to help you any longer. Please, leave now.}
+{16000}{}{[he takes the water bags] I will take those bags as a memory to Frankie. Someone have seen what you have done, you know. And for that I am not willing to help you anymore. Please, leave now.}
+{17000}{}{I need a shiv, so I can make some more water bags, I need.}
+{17010}{}{Ah, okey, I remember now.}
+{18000}{}{I appreciate what you have done for me. Of course you can have your hides. [he gives you 10 brahmin hides] Here, take it and make a nice tent as I tought you.}
+{18010}{}{Thank you. See you around.}
+{18020}{}{So long, sucker.}
+{19000}{}{Thank you again, good man.}
+{20000}{}{Well, yes i know a thing or two, but if you want me to teach you, first you must pay.}
+{20010}{}{Very well, how much?}
+{20020}{}{What? No. Maybe later.}
+{21000}{}{@lex skinning_price@ Bootle caps should be a fine price for training. You will gain more by skinning in no time. Also i don't think of anyone who will teach you for less.}
+{21010}{}{[GECKO SKINNING] Ok, Teach me how to properly skin geckos.}
+{21020}{}{Oh, i don't have enough caps. Bye}
+{22000}{}{Good. Listen closely... (In short time you learn how to skin gecko's)}
+{22010}{}{Ok, i get it now, thank You for your training.}
+
+[pols]
+{100}{}{Melsak}
+{200}{}{Melsak, miejscowy dozorca braminów.}
+{210}{}{Koleś wyglądający na dzikusa.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[Przez dłuższą chwilę, patrzy na ciebie, milcząc.] Dzień dobry.}
+{2010}{}{Dzień dobry. Więc... Jak się masz?}
+{2020}{}{Mam do ciebie kilka pytań.}
+{2030}{}{Powiedziano mi, że mógłbyś być w stanie pomóc mi w pewnej sprawie.}
+{2040}{}{Hm, masz może jakieś skóry bramina, z których @sex@|mógłbym||mógłabym| zbudować namiot?}
+{2050}{}{Frankie dał mi tylko cztery bukłaki. Powiedział, że więcej nie ma. Proszę. [Wręczasz mu bukłaki.]}
+{2060}{}{Frankie dał mi tylko cztery bukłaki. Powiedział, że więcej nie ma. Proszę. [Wręczasz mu bukłaki.]}
+{2070}{}{Frankie dał mi tylko cztery bukłaki. Powiedział, że więcej nie ma. Proszę. [Wręczasz mu bukłaki.]}
+{2080}{}{Hm, czego znowu chcesz?}
+{2090}{}{Mam dla ciebie Shiv. [Wręczasz mu ostrze.] Mogę w końcu dostać te skóry?}
+{3000}{}{Wszystko w porządku, dzięki. A co tam u ciebie?}
+{3010}{}{Całkiem nieźle. Jestem tu @sex@|nowy||nowa|, więc dopiero powoli zaczynam łapać, jak się tu wszystko odbywa.}
+{3020}{}{Dość źle, jestem tu @sex@|nowy||nowa| i nieco @sex@|zagubiony||zagubiona|.}
+{4000}{}{[Patrzy się na ciebie przez chwilę, czekając na twoje pytanie.] @sex@|Chciałbyś||Chciałbyś|, abym w czymś ci pomógł?}
+{4010}{}{@sex@|Sam||Sama| nie wiem... Dobra, mam kilka pytań.}
+{4020}{}{Nie, właściwie nie.}
+{5000}{}{W takim razie, pytaj.}
+{5010}{}{Cóż, wyglądasz na kogoś kto ma pojęcie o polowaniu na gekony, mam rację?}
+{5020}{}{Co możesz mi opowiedzieć o Złomowie?}
+{5030}{}{Czy wiesz o jakichś innych miastach w okolicy?}
+{5040}{}{Nieważne, muszę iść.}
+{6000}{}{Złomowo to bardzo dobre miejsce do życia. Jest tu bezpiecznie, ludzie są pomocni. Jeżeli dobrze się zachowujesz, wszystko powinno być w porządku.}
+{6010}{}{Czy wiesz gdzie @sex@|mógłbym||mogłabym| zarobić nieco kapsli? To znaczy, jest tu jakaś robota?}
+{6020}{}{Mogę tutaj wymienić z kimś rzeczy?}
+{6030}{}{Taaa, wygląda na to, że ludzie tutaj są bardzo szczęśliwi. Pozwól, że spytam o coś innego.}
+{7000}{}{Nie słyszałem o żadnej pracy w okolicy, ale tylko dlatego, że nigdy żadnej nie szukałem. Moją pracą jest zajmowanie się braminami i tylko o to dbam.}
+{7010}{}{Dobra, pozwól, że spytam o coś innego.}
+{7020}{}{Dobra, to będzie wszystko, czego @sex@|chciałem||chciałam| się dowiedzieć. Do zobaczenia.}
+{8000}{}{Tak, jest w mieście kilku handlarzy. Musisz ich poszukać, ja się nie zajmuję takimi rzeczami.}
+{8010}{}{Dzięki za informacje. Jeśli nie masz nic przeciwko, chcę zadać więcej pytań.}
+{8020}{}{Dzięki za informacje. To będzie chyba wszystko.}
+{9000}{}{Słucham.}
+{9010}{}{Powiedziano mi, że możesz pomóc mi znaleźć bezpieczne miejsce gdzie @sex@|mógłbym||mogłabym| trzymać swoje rzeczy.}
+{10000}{}{[Bierze bukłaki.] Tylko cztery? Hm, to już kolejny raz, Frankie rzadko dotrzymuje słowa. Mimo to, dzięki. Ale zanim wręczę ci te skóry, muszę poprosić o coś jeszcze. Jako że potrzebuję więcej bukłaków, postaram się zrobić je samodzielnie - ale potrzebuję ostrza. Przynieś mi Shiv, a dam ci twoje skóry.}
+{10010}{}{Co?! Och, w porządku, zrobię to. Zaraz wracam.}
+{10020}{}{Co?! Nie ma mowy, zapomnij. Znudziło mi się już latanie za takimi bzdurami. Do widzenia.}
+{11000}{}{Tak, dobrze ci powiedziano. Mogę ci pokazać, jak zrobić namiot ze skór bramina. Potrzebujesz przynajmniej dziesięciu skór na jeden namiot. Kolejnym krokiem jest znalezienie odpowiedniego miejsca gdzieś na Pustkowiach (znajdź dowolne miejsce na mapie świata, gdzie chcesz umieścić namiot). Kiedy znajdziesz lokację, która ci odpowiada (wejdź na mapę lokalną wybranego przez siebie miejsca)... W taki sposób robisz namiot... [Bierze kilka skór oraz drewnianych pali i pokazuje ci, jak złączyć je aby zrobić solidny namiot.] (wejdź w ekran FixBoy'a - odpowiedni przycisk bądź klawisz "F", wybierz podświetlony na zielono namiot, po czym naciśnij przycisk "fix"). Kiedy będziesz już dumnym posiadaczem namiotu, rozłóż go w wybranym miejscu ("użyj" namiotu z poziomu ekranu ekwipunku).}
+{11010}{}{Hm, to proste. Dzięki. Masz może jakieś skóry bramina? }
+{11020}{}{Hm, to proste.}
+{12000}{}{Tak, mam, ale potrzebuję ich i nie mogę tak po prostu ci ich dać. [Na chwilę przestaje mówić, na jego twarzy widać oznaki intensywnego myślenia.] Z drugiej strony, jeśli @sex@|chciałbyś||chciałabyś| mi pomóc w jednej sprawie, mógłbym podarować ci potrzebne skóry.}
+{12010}{}{Jasne, o co chodzi?}
+{12020}{}{Cóż, myślę że dam radę znaleźć je @sex@|sam||sama|. Mimo to, dzięki. Mogę spytać o coś jeszcze?}
+{13000}{}{Jest pewien gość, nazywa się Frankie. Jest dozorcą braminów i powinien mieć dla mnie kilka bukłaków z wodą, dokładnie dziesięć. Zwykle przebywa w jednym miejscu w lesie, niedaleko stąd. Jeśli przyniesiesz mi te bukłaki, dam ci dziesięć skór.}
+{13010}{}{W porządku, pokaż mi gdzie on jest i ruszam w drogę.}
+{13020}{}{Cóż, myślę że dam radę znaleźć je @sex@|sam||sama|. Mimo to, dzięki. Mogę spytać o coś jeszcze?}
+{14000}{}{Tak, w okolicy są dwa miasta, które swego czasu odwiedziłem. Na południe stąd, niedaleko, znajduje się Hub. To duże miasto kupieckie, silnie strzeżone i bezpieczne jak Złomowo. Na wschodzie natomiast leży Nekropolis, miasto umarłych. Nie radzę się tam wybierać, zamieszkujące je ghule są wrogo nastawione, a po wejściu do miasta znaleźć wyjście jest niełatwo. Na północy jest Republika Nowej Kalifornii, ale byłem tam krótko. Zaraz po przybyciu zostałem prawie śmiertelnie postrzelony... O ile za murami miasta jest bezpiecznie, teren dookoła miasta nie jest przez nikogo strzeżony.}
+{14010}{}{Dzięki. Chcę spytać o coś jeszcze.}
+{14020}{}{Dzięki. Myślę, że w takim razie czas ruszać w drogę.}
+{15000}{}{[Bierze bukłaki.] Wiem o tym. Frankie właśnie odszedł i powiedział mi, co @sex@|zrobiłeś||zrobiłaś|. Obawiam się, że nie mam ochoty dłużej ci pomagać. Teraz odejdź, proszę.}
+{16000}{}{[Bierze bukłaki.] Wezmę te bukłaki jako świadectwo pamięci o Frankiem. Ktoś widział, co @sex@|zrobiłeś||zrobiłaś|. Obawiam się, że nie mam ochoty dłużej ci pomagać. Teraz odejdź, proszę.}
+{17000}{}{Aby zrobić bukłaki, których potrzebuję, muszę dostać Shiv.}
+{17010}{}{Ach, w porządku, już pamiętam.}
+{18000}{}{Doceniam, co dla mnie @sex@|zrobiłeś||zrobiłaś|. Oczywiście, możesz wziąć te skóry. [Daje ci dziesięć skór bramina.] Proszę, weź je i postaw ładny namiot, tak jak cię uczyłem. Jeśli w przyszłości będziesz @sex@|chciał||chciała| postawić więcej namiotów, nie ma ku temu przeszkód. Możesz mieć ich dowolną ilość, rozsianych po całym Pustkowiach.}
+{18010}{}{Dzięki. Do zobaczenia.}
+{18020}{}{Cześć, frajerze.}
+{19000}{}{Jeszcze raz dziękuję. Jesteś dobrym człowiekiem.}
+{20000}{}{Cóż, tak, wiem to i owo, ale jeśli mam cię czegoś nauczyć - najpierw musisz mi zapłacić.}
+{20010}{}{Dobra, ile?}
+{20020}{}{Co? Nie, chyba żartujesz. Może potem.}
+{21000}{}{@lex skinning_price@ kapsli to chyba rozsądna cena za trening. Na sprzedaży skór gekonów zarobisz więcej w mgnieniu oka. Poza tym nie znam nikogo, kto nauczyłby cię tego za mniej.}
+{21010}{}{(Perk: Patroszenie gekonów) W porządku, naucz mnie jak odpowiednio oprawiać gekony.}
+{21020}{}{Och, nie mam tylu kapsli. Do widzenia.}
+{22000}{}{Dobrze. Słuchaj uważnie... [W krótkim czasie objaśnia ci, jak zdzierać skórę z gekonów.]}
+{22010}{}{W porządku, teraz rozumiem. Dzięki za lekcję.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[Stares at you silently.] Good day to you.}
+{2010}{}{Good day to you, too. So... how are you?}
+{2020}{}{I have a few more questions.}
+{2030}{}{I was told that you might be able to help me with something.}
+{2040}{}{Well, do you have any brahmin hides I could use for my tent?}
+{2050}{}{Frankie gave me only four bags. He said he didn't have more. Here. [You hand over the water bags]}
+{2060}{}{Frankie gave me only four bags. He said he didn't have more. Here. [You hand over the water bags]}
+{2070}{}{Frankie gave me only four bags. He said he didn't have more. Here. [You hand over the water bags]}
+{2080}{}{So, what did you want again?}
+{2090}{}{I've got a shiv for you. [You hand him the shiv.] Can I get those hides already?}
+{3000}{}{I am fine, thank you. How are you?}
+{3010}{}{Quite good. I am kind of new around here, so I'm just getting to know how things work.}
+{3020}{}{Quite bad, I am kind of new here, and I'm completely lost.}
+{4000}{}{[Stares at you for a while waiting for your question.] Would you like me to help you with something?}
+{4010}{}{I don't know...well, I got some questions.}
+{4020}{}{No, not really.}
+{5000}{}{Ask then.}
+{5010}{}{Well, you look like you know bit about hunting geckos, am I right?}
+{5020}{}{What can you tell me about Junktown?}
+{5030}{}{Do you know about any other towns around?}
+{5040}{}{Nevermind, I need to go.}
+{6000}{}{Junktown is very good place to live. It's safe, the people here are helpful, and if you behave, then you should be fine.}
+{6010}{}{Do you know where I could get some caps? I mean, do you know of any jobs around?}
+{6020}{}{Can I trade with someone here?}
+{6030}{}{Yeah, it looks like everyone here is very happy. Let me ask you something else.}
+{7000}{}{I am not aware of any jobs here, but that is only because I have no need to seek any. My job here is to take care of the brahmin and that is all I care about.}
+{7010}{}{Okay, let me ask you something else.}
+{7020}{}{Okay, that's all I wanted to know. See you around.}
+{8000}{}{TODO: add info about local traders}
+{8010}{}{Thanks for the info. I have more questions if you don't mind.}
+{8020}{}{Thanks for the info. That would be all for now.}
+{9000}{}{What would it be?}
+{9010}{}{I was told that you could help me find a safe place where I could keep my stuff and rest.}
+{10000}{}{[He takes the water bags.] Only four? Hm, as I see once again, Frankie is not a man of his words. Thank you for these, anyway. But before I give you your hides, I would ask one more thing of you. As I still need more waterbags, I will try to make some myself, but I need a shiv. If you bring me one I will give you your hides.}
+{10010}{}{What?! Oh, okay, I'll do it. I'll be back soon.}
+{10020}{}{What?! No way, forget it. I am fed up with helping you. Bye.}
+{11000}{}{Yes, you have been told right. I can show you how to make a tent from brahmin hides. You need at least ten brahmin hides to make one. The next thing would be to find the right spot for your tent somewhere in the wasteland (go to the worldmap and travel to a spot where you want to place your tent). When you find a right place (enter the chosen location) this is how you make a tent... [he takes few hides and wood and shows you how to combine them together to make a proper tent] (You must use your fixboy with 10 brahmin hides and 2 pieces of wood in your inventory).}
+{11010}{}{Hm, that's quite easy. Thanks. Do you have any brahmin hides? }
+{11020}{}{Hm, that's quite easy.}
+{12000}{}{Yes, I do, but I need them and I cannot just give them to you. [He pauses for a while, looking like he is thinking.] On the other hand, if you are willing to help me with one thing, I can give you the brahmin hides you require.}
+{12010}{}{Sure, what's that?}
+{12020}{}{Well, I think I'll find them myself instead. Thanks, though. Can I ask you more questions?}
+{13000}{}{There is a man, who calls himself Frankie. He is a brahmin herdsman and he owes me some water bags, ten to be precise. He can be found not far from here. If you bring me those water bags, you will have your brahmin hides.}
+{13010}{}{Okay, show me where he is and I'll be on my way.}
+{13020}{}{Well, I think I'll just find them myself. Thanks, though. Can I ask you more questions?}
+{14000}{}{Yes, I do. There are two towns near  that I have visited. Hub to the south South and Necropolis to the East. There is also the New California Republic to the North, but I have only stayed there for a short time as I was nearly shot to death after being mistaken for a thief.}
+{14010}{}{Thanks, I will visit them. But I would like to ask something else.}
+{14020}{}{Thanks. I think I'll visit them right away.}
+{15000}{}{[He takes the water bags.] I am aware of that. Frankie just left and he told me what you did. I am afraid I am not willing to help you any longer. Please, leave now.}
+{16000}{}{[He takes the water bags.] I will take these bags as a memory to Frankie. Someone saw you, you know. And I am not willing to help you any more. Please, leave now.}
+{17000}{}{I need a shiv, so I can make some more water bags.}
+{17010}{}{Ah, okay, I remember now.}
+{18000}{}{I appreciate what you have done for me. Of course you can have your hides. [He gives you 10 brahmin hides.] Here, take it and make a nice tent as I taught you. Of course, you'll also need two pieces of wood.}
+{18010}{}{Thank you. See you around.}
+{18020}{}{So long, sucker.}
+{19000}{}{Thank you again, good man.}
+{20000}{}{Well yes, I know a thing or two, but if you want me to teach you, first you must pay.}
+{20010}{}{Very well, how much?}
+{20020}{}{What? No. Maybe later.}
+{21000}{}{@lex skinning_price@ bottle caps should be a fine price for training. You will gain more by selling hides in no time. Also I can't think of anyone who would teach you for less.}
+{21010}{}{(Gain perk: Gecko Skinning) Okay, teach me how to properly skin geckos.}
+{21020}{}{Oh, I don't have enough caps. Bye}
+{22000}{}{Good. Listen closely... [In a short time you learn how to skin geckos.])}
+{22010}{}{Okay, I get it now, thank you for the training.}
+

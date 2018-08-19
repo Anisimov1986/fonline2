@@ -1,0 +1,109 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+#include "_macros.fos"
+#include "_msgstr.fos"
+
+#define BaseLine (99999)
+uint Line;
+uint LastLine;
+IGUIElementTextOpt@ NewsText;
+
+class ExitScreenButton : IGUIElementCallbackMouseClick
+{
+    void OnMouseClick(int id, int click)
+    {
+        ::HideScreen( CLIENT_SCREEN_NEWS, 0, 0, 0 );
+    }
+}
+
+class Buttons : IGUIElementCallbackMouseClick
+{
+    int id;
+	Buttons(uint id)
+	{
+		this.id=id;
+	}
+	
+	void OnMouseClick(int mm, int click)
+    {
+		switch( id )
+		{
+		case 0:
+			ListNews(1);
+			break;
+		case 1:
+			ListNews(-1);
+			break;
+		}
+    }
+}
+
+void ListNews(int list)
+{
+	if (Line+list>int(LastLine) || Line+list<BaseLine)
+		return;
+	Line+=list;
+	NewsText.setText(GetMsgStr( TEXTMSG_TEXT, Line ));
+}
+
+void InitNewsScreen()
+{
+	Line=BaseLine;
+	while(IsMsgStr(TEXTMSG_TEXT, Line))
+		Line++;
+	Line--;
+	LastLine=Line;
+	
+	GUI_CreateScreen(CLIENT_SCREEN_NEWS,"review.frm")
+		//.CloseOnMiss(true)
+        .Transparent(true)
+		.AutoCursor(true,CURSOR_DEFAULT);
+		
+	GUI_AddText(CLIENT_SCREEN_NEWS)
+		.Position(230,70)
+		.Text((GetMsgStr( TEXTMSG_TEXT, 99997 )),FONT_FALLOUT,COLOR_SAND,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);	
+		
+	ExitScreenButton exit;
+    GUI_AddButton ( CLIENT_SCREEN_NEWS )
+	.Visible(true)
+	.CallbackMouseClick( exit )
+	.Position(500,398)
+    .DownPic("di_done2.frm");
+	
+	Buttons b0(0);
+	GUI_AddButton ( CLIENT_SCREEN_NEWS )
+	.Visible(true)
+	.CallbackMouseClick(b0)
+	.Position(476,153)
+    .DownPic("di_bgup2.frm");
+	
+	Buttons b1(1);
+	GUI_AddButton ( CLIENT_SCREEN_NEWS )
+	.Visible(true)
+	.CallbackMouseClick(b1)
+	.Position(476,192)
+    .DownPic("di_bgdn2.frm");
+	
+	@NewsText = GUI_AddText(CLIENT_SCREEN_NEWS)
+	.Position(82,80)
+	.TextBoxSize(350, 330)
+	.TextOptions(FONT_FALLOUT,COLOR_SAND)
+	.Text(GetMsgStr( TEXTMSG_TEXT, LastLine ));
+	
+	
+}
+
+
+void ShowNewsScreen()
+{
+	__News = false;
+	if (GUI_IsTransparentScreen(CLIENT_SCREEN_NEWS))
+		HideScreen(CLIENT_SCREEN_NEWS,0,0,0);
+	else
+		ShowScreen(CLIENT_SCREEN_NEWS,0,0,0);
+}
+
+void ShowNewsScreen(int, int, int, string@, int[]@)
+{
+	__News = true;
+}

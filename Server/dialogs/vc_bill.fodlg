@@ -1,0 +1,502 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+3 1020 @
+2 2000 None 0 #
+4 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 #
+10 3020 D _item p PID_CHEEZY_POOFS > 0 D _var p q_vc_billpoofs = 1 #
+29 3030 D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers = 0 D or D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers = 1 #
+25 3040 D _var p q_start_questcaravan = 4 #
+19 3050 D _var p q_start_questcaravan = 4 D _item p PID_RADIO } 1 R _item p PID_RADIO - 1 #
+27 3060 D _var p vc_vaultaccess = 0 #
+0 3070 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+29 4030 D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers = 0 D or D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers = 1 #
+14 4040 D _var p q_start_questcaravan = 3 #
+0 4050 @
+5 5000 None 0 #
+7 5010 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+0 6020 @
+7 7000 None 0 #
+8 7010 #
+11 7020 #
+0 7030 @
+8 8000 None 0 #
+9 8010 #
+13 8020 #
+0 8030 @
+9 9000 None 0 #
+11 9010 R _var p q_vc_billpoofs = 1 #
+0 9020 R _var p q_vc_billpoofs = 1 @
+10 10000 None 0 #
+12 10010 D _item p PID_CHEEZY_POOFS } 1 R _item p PID_CHEEZY_POOFS - 1 R _item p PID_BOTTLE_CAPS + 50 R _param p ST_EXPERIENCE + 100 R _script karma@r_AddKarma 1 5 #
+0 10020 @
+11 11000 None 0 #
+4 11010 #
+10 11020 D _item p PID_CHEEZY_POOFS > 0 D _var p q_vc_billpoofs = 1 #
+25 11030 D _var p q_start_questcaravan = 4 #
+19 11040 D _var p q_start_questcaravan = 4 D _item p PID_RADIO } 1 R _param p ST_EXPERIENCE + 3000 R _var p q_start_questcaravan = 5 R _item p PID_RADIO - 1 #
+27 11050 #
+0 11060 @
+12 12000 None 0 #
+12 12010 D _item p PID_CHEEZY_POOFS } 1 R _item p PID_BOTTLE_CAPS + 50 R _item p PID_CHEEZY_POOFS - 1 R _param p ST_EXPERIENCE + 100 R _script karma@r_AddKarma 1 5 #
+0 12020 D _item p PID_CHEEZY_POOFS = 0 #
+0 12030 @
+13 13000 None 0 #
+0 13010 @
+14 14000 None 0 #
+15 14010 @
+15 15000 None 0 #
+16 15010 @
+16 16000 None 0 #
+17 16010 R _var p q_start_questcaravan = 4 @
+17 17000 None 0 #
+0 17010 R _script dialog@r_ShowQuestMessage 1 9311 @
+19 18000 None 0 #
+20 18010 R _script dialog@r_HoloNotice 1 93 R _param p ST_EXPERIENCE + 3000 R _var p q_start_questcaravan = 5 @
+20 19000 None 0 #
+21 19010 @
+21 20000 None 0 #
+22 20010 @
+22 21000 None 0 #
+23 21010 @
+23 22000 None 0 #
+24 22010 #
+0 22020 R _script dialog@r_ShowQuestMessage 1 9311 @
+24 23000 None 0 #
+27 23010 #
+11 23020 #
+0 23030 R _script dialog@r_ShowQuestMessage 1 9311 #
+0 23040 R _script dialog@r_ShowQuestMessage 1 9311 @
+25 24000 None 0 #
+11 24010 #
+0 24020 R _script dialog@r_ShowQuestMessage 1 9311 @
+27 25000 None 0 #
+11 25010 #
+0 25020 R _script dialog@r_ShowQuestMessage 1 9311 @
+29 26000 None 0 #
+30 26010 R _script dialog@r_FadeOut 1 0 #
+33 26020 @
+30 27000 None 0 #
+31 27010 R _var p q_finderskeepers = 2 R _param p ST_EXPERIENCE + 500 #
+0 27020 @
+31 28000 None 0 #
+32 28010 D _var p vc_vaultaccess = 0 #
+0 28020 D _var p vc_vaultaccess = 1 R _script dialog@r_ShowQuestMessage 1 9630 @
+32 29000 None 0 #
+0 29010 R _script dialog@r_ShowQuestMessage 1 9630 @
+33 30000 None 0 &
+
+[engl]
+{100}{}{Bill}
+{200}{}{You see: Bill, a local computer expert.}
+{210}{}{An intelligent-looking man wearing large glasses.}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Hello, my name's Bill. Who are you?@@The name's Bill. And you are?@@This better be important... I'm Bill, who are you?}
+{2010}{}{I'm @pname@, nice to meet you. What are you doing here?}
+{2020}{}{You know Bill, that was a real pleasure to meet you - but I've got to go. See you around.}
+{3000}{}{Hello again. How can I help you?}
+{3010}{}{Once again, what are you doing here?}
+{3020}{}{I've got some cheezy poofs for you, Bill.}
+{3030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{3040}{}{Could you remind me what did you want me to bring in exchange for decoding a holodisk data?}
+{3050}{}{I've brought you that radio.}
+{3060}{}{Who could give me the right to get inside the Vault?}
+{3070}{}{Just checking if you're doing fine, Bill. Goodbye.}
+{4000}{}{Computers, mostly. You've probably noticed that there's a lot of high-tech stuff here... Well, someone's got to take care of it - and that someone's me. Either there's something to repair manually or some software error occures - I'm the man everyone's adressing for help. In the free time, I do some programming, scripting, stuff like that.}
+{4010}{}{That sounds really cool, Bill.}
+{4020}{}{Holy shit, you've got the most boring job in the whole wasteland.}
+{4030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{4040}{}{Hey, maybe you're the guy that Kenny was talking about?}
+{4050}{}{Oh, that's really great. I'd love to talk a bit longer, but have to go. Bye, Bill.}
+{5000}{}{You're right, I like that job. I earn a lot, but that's not the most important... To be honest, I could spend a whole life just coding and eating cheezy poofs.}
+{5010}{}{Cheezy poofs?}
+{5020}{}{Yeah, that's a cool life. So cool, that I'm sorry to interrupt you. Gotta go, bye.}
+{6000}{}{[Sighs.] Well, maybe for you it is. But you know, I'm not the type of the guy running with a minigun, killing mutants, saving or destroying wasteland according to the mood, and so on. I'm really happy when I can just sit in the front of the screen, code and eat cheezy poofs.}
+{6010}{}{Cheezy poofs? What kind of creatures are that?}
+{6020}{}{Yeah, sure, loser. Bye.}
+{7000}{}{You've never heard of cheezy poofs? They're so yummy, they're so cheezy, they're so poofy, they're... [He calms down.] They're just the best, you just should've tried them. I'd be happy to offer you some, but the technology needed to product them vanished after the war. You can find them scattered all around wasteland though, but not in Vault City...}
+{7010}{}{Why "not in Vault City"?}
+{7020}{}{Can we talk about something else?}
+{7030}{}{That's so sad. Bye, Bill.}
+{8000}{}{Those dumb idiots banned them! Directive 2197/43CPX, calling it "dangerously unhealthy", full of "potentially harmful substances" and a lot more of bullshit like that.}
+{8010}{}{What a band of authocratic fuckers are they!}
+{8020}{}{They are doing it for the good of you and the whole society, Bill. You should have understood that they need to take care of every aspect of our lifes, because we're too dumb to do anything but work and pay taxes.}
+{8030}{}{Yeah, sure. That's kinda depressing. I've gotta go, Bill, take care and see you 'round.}
+{9000}{}{Sure they are. If you happen to encounter some cheezy poofs during your adventures - I beg you, bring them to me! I'll pay you generously.}
+{9010}{}{Fine, I'll remember that. Well, could we change the topic?}
+{9020}{}{Yeah, sure. Goodbye, Bill.}
+{10000}{}{Really!? Quick, give them to me! I pay 50 caps a pack!}
+{10010}{}{Here you are.}
+{10020}{}{You know, I'd rather eat them myself. They seem sooo delicious...}
+{11000}{}{Sure. How can I help you?}
+{11010}{}{Could you remind me what's your profession about?}
+{11020}{}{I've got some cheezy poofs for you, Bill.}
+{11030}{}{Could you remind me what were these things you wanted me to bring in exchange for decoding a holodisk data?}
+{11040}{}{I've brought you that radio.}
+{11050}{}{Who could give me the right to get inside the Vault?}
+{11060}{}{It was a real pleasure talking to you, but I've got to go. Bye, Bill.}
+{12000}{}{Thanks! Have some more?}
+{12010}{}{Sure I've got. Here, take it.}
+{12020}{}{Nope, that's all I had. Bye, Bill.}
+{12030}{}{Maybe I've got, maybe I don't - but what's certain, I don't want to sell them now. Goodbye.}
+{13000}{}{You know, there's plenty of sick minds like you around - maybe you should go and talk to them, 'cause I don't like the direction this conversation's goin'. Good bye.}
+{13010}{}{As you wish. Bye, Bill.}
+{14000}{}{What do you mean?}
+{14010}{}{Well, I've heard that in Vault City there is one guy, who'll be able to decode that data from this holodisk. [You present him your PipBoy with data from holodisk found at the massacred caravan.] Am I right?}
+{15000}{}{[Examines your PipBoy.] Sure, it seems that it's one of encypyted data packages used by military and big trade companies. I can decode that, but well... It'd take some time and effort, and I'm quite busy...}
+{15010}{}{I really need to know what was inside that holodisk. How much will I have to pay you for encoding it?}
+{16000}{}{I don't care about caps, those idiots pay me a lot for keeping their stuff up and running. But you know, I'm not perfectly sure if my way to decode that data is right. I'd have to call a buddy of mine, who's currently awat. If you'd bring me a radio, I'd be glad to decode that holodisk for you.}
+{16010}{}{Really? I thought that's a simple task you!}
+{17000}{}{Maybe it is, maybe it isn't. But it doesn't matter, you'll bring me that radio - I'll help you with decoding}
+{17010}{}{Yeah, sure. Maybe. I'll be back, Bill.}
+{18000}{}{That's great! Let's have a look... Yeah, it's working. [You don't understand a word apart of "Hello, it's Bill" from the two computer geeks conversation.] As I thought, it'll be simple.}
+{18010}{}{Yeah, sure. Now decode that data for me. Please.}
+{19000}{}{Ah, of course. [Takes your PipBoy, then puts a screwdriver in a little hole in the metal surface. He spins it twice, takes screwdriver out, gives you your PipBoy back.] Done.}
+{19010}{}{What? You've just...}
+{20000}{}{Yeah, these series had that fatal flaw. It was quickly withdrawed, solved and re-issued, but some of are still in use - you've got to be an expert to notice the difference.}
+{20010}{}{Did I just gave you a brand new radio and all you had to do was to put a screwdiver in my PipBoy?}
+{21000}{}{I had to spin it, too. Twice.}
+{21010}{}{Very funny, Bill. [You take a look at the contents of decoded holodisk.] But wait... [You can't believe you eyes.] There's just a bunch of random symbols!}
+{22000}{}{It still doesn't make any sense, but that's not my problem. Well, I've done my job - you told me to decode it, not decode and decipher.}
+{22010}{}{Do you know anyone who could help me with that?}
+{22020}{}{Screw you, Bill. Bye.}
+{23000}{}{I know only one computer able to perform such a task in a reasonable amount of time - our local Vault's mainframe. But as a non-Citizen, I don't have the permission to get inside the Vault, not to mention using the computer, sorry.}
+{23010}{}{Who could give me the right to enter the Vault?}
+{23020}{}{Damn. Can we talk about something else?}
+{23030}{}{Great. Thank you, anyway. Goodbye, Bill.}
+{23040}{}{Then fuck you, dickhead. Bye.}
+{24000}{}{I need to consult a buddy of mine, who's currently away. If you'd bring me a radio, I'd just call him. You can either craft it, buy or find somewhere.}
+{24010}{}{Great. Can we talk about something else?}
+{24020}{}{Cool. I better start looking for it, wish me good luck. Bye, Bill.}
+{25000}{}{I don't think that your chances of success are very high, but if you really insist - try talking to Councillor McClure. He's residing in a Council's building, that big one in the northern part of the city.}
+{25010}{}{Can I ask you another question?}
+{25020}{}{I'll go and talk to him then. Bye, Bill.}
+{26000}{}{It depends... Ah, nevermind, I'm bored anyway. Let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one I'll just run a simple check, this won't take long.@@It depends... ah, fuck it, let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one. I'll run a diagnostics check, this won't take long.}
+{26010}{}{[Wait.]@@[Wait patiently.]@@[Let him do his tests.]}
+{26020}{}{On second thought, I think I'll pass. Give me back the disk.@@Nah, I don't have time for this. Give me back the disk and I'll get going.}
+{27000}{}{[After an hour of tinkering he gives you back the holodisk.] What the hell... It looks like a regular holodisk, but the markings are strange, it may be not of Pre-War origin. I wasn't able to read it, but diagnostics showed there are no I/O errors, so... Where the fuck did you find it?}
+{27010}{}{You don't wanna know, Bill. What else can you tell me?@@You wouldn't believe me anyway. What else can you tell me about this holodisk?@@I think this knowledge could do you harm, Bill. What else can you tell me about this holodisk?}
+{27020}{}{None of your business Bill. If you can't help me, I'll get going.@@You don't want to know, Bill. I will get going then, maybe someone else will be able to help me.}
+{28000}{}{Right, as you wish. About the holodisk... I can't tell really what it is, or how to read it. . You'd have to check it with our Vault Mainframe. @@Okay, fine. Well, about the holodisk... I can't help you much. You might try our Mainframe though. I don't have any other ideas.}
+{28010}{}{How do I get inside the Vault?@@How do I get there?@@How do I get to the Mainframe then?}
+{28020}{}{Good thing I've been already granted access to that damn Vault... See you round, Bill.@@Yeah, I will do that. Thanks Bill, see you later.@@Okay, I'll try the mainframe then. Thanks for your time.}
+{29000}{}{Not everyone can access the Mainframe, let alone the Vault itself. But, if you feel it's important, talk to Councillor McClure. He's residing in the Council building, that big one in the northern part of the city. If anyone can grant you access to the Vault, it's him. He a good guy, if you play nice, you might make him play ball.}
+{29010}{}{Okay, I'll talk to him. Thanks, Bill.@@Okay, I'll go and see him then.@@I'll go see him then. See you round, Bill.}
+{30000}{}{Fine.@@Okay.@@So be it.}
+
+[russ]
+{100}{}{Bill}
+{200}{}{You see Bill, local computer expert.}
+{210}{}{Intelligent-looking man wearing nerdy glasses.}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Hello, my name's Bill. Who are you?}
+{2010}{}{I'm @pname@, nice to meet you. What are you doing here?}
+{2020}{}{You know Bill, that was a real pleasure to meet you - but I've got to go. See you around.}
+{3000}{}{Hello again. How can I help you?}
+{3010}{}{Once again, what are you doing here?}
+{3020}{}{I've got some cheezy poofs for you, Bill.}
+{3030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{3040}{}{Could you remind me what did you want me to bring in exchange for decoding a holodisk data?}
+{3050}{}{I've brought you that radio.}
+{3060}{}{Who could give me the right to get inside the Vault?}
+{3070}{}{Just checking if you're doing fine, Bill. Goodbye.}
+{4000}{}{Computers, mostly. You've probably noticed that there's a lot of high-tech stuff here... Well, someone's got to take care of it - and that someone's me. Either there's something to repair manually or some software error occures - I'm the man everyone's adressing for help. In the free time, I do some programming, scripting, stuff like that.}
+{4010}{}{That sounds really cool, Bill.}
+{4020}{}{Holy shit, you've got the most boring job in the whole wasteland.}
+{4030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{4040}{}{Well, I suppose you're that guy Kenny was talking about!}
+{4050}{}{Oh, that's really great. I'd love to talk a bit longer, but have to go. Bye, Bill.}
+{5000}{}{You're right, I like that job. I earn a lot, but that's not the most important... To be honest, I could spend a whole life just coding and eating cheezy poofs.}
+{5010}{}{Cheezy poofs?}
+{5020}{}{Yeah, that's a cool life. So cool, that I'm sorry to interrupt you. Gotta go, bye.}
+{6000}{}{[Sighs.] Well, maybe for you it is. But you know, I'm not the type of the guy running with a minigun, killing mutants, saving or destroying wasteland according to the mood, and so on. I'm really happy when I can just sit in the front of the screen, code and eat cheezy poofs.}
+{6010}{}{Cheezy poofs? What kind of creatures are that?}
+{6020}{}{Yeah, sure, loser. Bye.}
+{7000}{}{You've never heard of cheezy poofs? They're so yummy, they're so cheezy, they're so poofy, they're... [He calms down.] They're just the best, you just should've tried them. I'd be happy to offer you some, but the technology needed to product them vanished after the war. You can find them scattered all around wasteland though, but not in Vault City...}
+{7010}{}{Why "not in Vault City"?}
+{7020}{}{Can we talk about something else?}
+{7030}{}{That's so sad. Bye, Bill.}
+{8000}{}{Those dumb idiots banned them! Directive 2197/43CPX, calling it "dangerously unhealthy", full of "potentially harmful substances" and a lot more of bullshit like that.}
+{8010}{}{What a band of authocratic fuckers are they!}
+{8020}{}{They are doing it for the good of you and the whole society, Bill. You should have understood that they need to take care of every aspect of our lifes, because we're too dumb to do anything but work and pay taxes.}
+{8030}{}{Yeah, sure. That's kinda depressing. I've gotta go, Bill, take care and see you 'round.}
+{9000}{}{Sure they are. If you happen to encounter some cheezy poofs during your adventures - I beg you, bring them to me! I'll pay you generously.}
+{9010}{}{Fine, I'll remember that. Well, could we change the topic?}
+{9020}{}{Yeah, sure. Goodbye, Bill.}
+{10000}{}{Really!? Quick, give them to me! I pay 50 caps a pack!}
+{10010}{}{Here you are.}
+{10020}{}{You know, I'd rather eat them myself. They seem sooo delicious...}
+{11000}{}{Sure. How can I help you?}
+{11010}{}{Could you remind me what's your profession about?}
+{11020}{}{I've got some cheezy poofs for you, Bill.}
+{11030}{}{Could you remind me what were these things you wanted me to bring in exchange for decoding a holodisk data?}
+{11040}{}{I've brought you that radio.}
+{11050}{}{Who could give me the right to get inside the Vault?}
+{11060}{}{It was a real pleasure talking to you, but I've got to go. Bye, Bill.}
+{12000}{}{Thanks! Have some more?}
+{12010}{}{Sure I've got. Here, take it.}
+{12020}{}{Nope, that's all I had. Bye, Bill.}
+{12030}{}{Maybe I've got, maybe I don't - but what's certain, I don't want to sell them now. Goodbye.}
+{13000}{}{You know, there's plenty of sick minds like you around - maybe you should go and talk to them, 'cause I don't like the direction this conversation's goin'. Good bye.}
+{13010}{}{As you wish. Bye, Bill.}
+{14000}{}{What do you mean?}
+{14010}{}{Well, I've heard that in Vault City there is one guy, who'll be able to decode that data from holodisk. [You present him your PipBoy with data from holodisk found at the massacred caravan.] Was that about you?}
+{15000}{}{[Examines your PipBoy.] Sure, it seems that it's one of encypyted data packages used by military and big trade companies. I can decode that, but well... It'd take some time and effort, and I'm quite busy...}
+{15010}{}{I really need to know what was inside that holodisk. How much will I have to pay you for encoding it?}
+{16000}{}{I don't care about caps, those idiots pay me a lot for keeping their stuff up and running. But you know, I'm not perfectly sure if my way to decode that data is right. I'd have to call a buddy of mine, who's currently awat. If you'd bring me a radio, I'd be glad to decode that holodisk for you.}
+{16010}{}{Really? I thought that's a simple task you!}
+{17000}{}{Maybe it is, maybe it isn't. But it doesn't matter, you'll bring me that radio - I'll help you with decoding}
+{17010}{}{Yeah, sure. Maybe. I'll be back, Bill.}
+{18000}{}{That's great! Let's have a look... Yeah, it's working. [You don't understand a word apart of "Hello, it's Bill" from the two computer geeks conversation.] As I thought, it'll be simple.}
+{18010}{}{Yeah, sure. Now decode that data for me. Please.}
+{19000}{}{Ah, of course. [Takes your PipBoy, then puts a screwdriver in a little hole in the metal surface. He spins it twice, takes screwdriver out, gives you your PipBoy back.] Done.}
+{19010}{}{What? You've just...}
+{20000}{}{Yeah, these series had that fatal flaw. It was quickly withdrawed, solved and re-issued, but some of are still in use - you've got to be an expert to notice the difference.}
+{20010}{}{Did I just gave you a brand new radio and all you had to do was to put a screwdiver in my PipBoy?}
+{21000}{}{I had to spin it, too. Twice.}
+{21010}{}{Very funny, Bill. [You take a look at the contents of decoded holodisk.] But wait... [You can't believe you eyes.] There's just a bunch of random symbols!}
+{22000}{}{It still doesn't make any sense, but that's not my problem. Well, I've done my job - you told me to decode it, not decode and decipher.}
+{22010}{}{Do you know anyone who could help me with that?}
+{22020}{}{Screw you, Bill. Bye.}
+{23000}{}{I know only one computer able to perform such a task in a reasonable amount of time - local Vault's main computer. But as a non-Citizen, I don't have the permission to get inside the Vault, not talking 'bout using the computer, sorry.}
+{23010}{}{Who could give me the right to enter the Vault?}
+{23020}{}{Damn. Can we talk about something else?}
+{23030}{}{Great. Thank you, anyway. Goodbye, Bill.}
+{23040}{}{Then fuck you, dickhead. Bye.}
+{24000}{}{I need to consult a buddy of mine, who's currently away. If you'd bring me a radio, I'd just call him. You can either craft it, buy or find somewhere.}
+{24010}{}{Great. Can we talk about something else?}
+{24020}{}{Cool. I better start looking for it, wish me good luck. Bye, Bill.}
+{25000}{}{I don't think that your chances of success are very high, but if you really insist - try talking to Councillor McClure. He's residing in a Council's building, that big one in the northern part of the city.}
+{25010}{}{Can I ask you another question?}
+{25020}{}{I'll go and talk to him then. Bye, Bill.}
+{26000}{}{It depends... Ah, nevermind, I'm bored anyway. Let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one I'll just run a simple check, this won't take long.@@It depends... ah, fuck it, let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one. I'll run a diagnostics check, this won't take long.}
+{26010}{}{[Wait.]@@[Wait patiently.]@@[Let him do his tests.]}
+{26020}{}{On second thought, I think I'll pass. Give me back the disk.@@Nah, I don't have time for this. Give me back the disk and I'll get going.}
+{27000}{}{It looks like a regular holodisk, but the markings are strange, it's not of Pre-War origin. Where did you find it? }
+{27010}{}{You don't wanna know, Bill.@@You wouldn't believe me anyway.@@I think this knowledge could do you harm, Bill.}
+{27020}{}{None of your business Bill. If you can't help me, I'll get going.@@You don't want to know, Bill. I will get going then, maybe someone else will be able to help me.}
+{28000}{}{Right, as you wish. I can't tell really what it is, or how to read it. . You'd have to check it with our Vault Mainframe.@@Okay, fine. Well, about the holodisk... I can't help you much. You might try our Mainframe though, if you don't have any other ideas.}
+{28010}{}{How do I get inside the Vault?}
+{28020}{}{Good thing I've been already granted access to that damn Vault...@@Yeah, I will do that. Thanks.@@Okay, I'll try the mainframe then.}
+{29000}{}{Talk to Councillor McClure. He's residing in a Council's building, that big one in the northern part of the city. If anyone can grant you access to the Vault, it's him. He a good guy, if you play nice, you might make him play ball.}
+{29010}{}{Okay, I'll talk to him. Thanks, Bill.@@Okay, I'll go and see him then.@@I'll go see him then. See you round, Bill.}
+{30000}{}{Fine.@@Okay.@@So be it.}
+
+[pols]
+{100}{}{Bill}
+{200}{}{Widzisz Billa, miejscowego speca od komputerów.}
+{210}{}{Inteligentnie wyglądający mężczyzna w kujońskich okularkach.}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Witaj, jestem Bill. A ty?}
+{2010}{}{@pname@, miło poznać. Co porabiasz?}
+{2020}{}{Miło cię poznać Bill, muszę już iść.}
+{3000}{}{Cześć, @sex@|chciałeś||chciałaś| coś?}
+{3010}{}{Możesz powiedzieć co tutaj robisz?}
+{3020}{}{Mam chipsy serowe.}
+{3030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{3040}{}{Mógłbyś mi przypomnieć, co chcesz w zamian za zdekodowanie tej wiadomości?}
+{3050}{}{@sex@|Przyniosłem||Przyniosłam| ci to radio.}
+{3060}{}{Kto mógłby przyznać mi prawo wejścia do Krypty?}
+{3070}{}{@sex@|Wpadłem||Wpadłam| tylko na chwilę. Na razie, Bill.}
+{4000}{}{Siedzę przy komputerach... Widzisz ile tu tego cholerstwa? Ktoś musi zajmować się tymi cudeńkami jeśli zaczną wariować, i ten ktoś to właśnie ja. Czasami odpanie jakiś kabelek, zasilacz się spali, albo program się zawiesi, więc mam sporo roboty. W wolnym czasie piszę sobie programy, skrypty i takie tam.}
+{4010}{}{Brzmi intrygująco.}
+{4020}{}{Stary, masz chyba najnudniejszą robotę na pustkowiach.}
+{4030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{4040}{}{To chyba o tobie mówił Kenny... Mam sprawę.}
+{4050}{}{Wspaniale. @sex@|Pogadałbym||Pogadałabym| z tobą dłużej, ale mam ważne sprawy do załatwienia. Na razie.}
+{5000}{}{Żebyś @sex@|wiedział||wiedziała|, to dobra robota, dobrze płacą, nie strzelają do ciebie... Ale pieniądze to nie wszystko, jak powiedział pewien filozof. Jakbym mógł, to bym tylko programował i żarł chipsy serowe. To by było coś.}
+{5010}{}{Chipsy serowe?}
+{5020}{}{Widzę że dobrze się urządziłeś. Muszę już iść.}
+{6000}{}{[Wzdycha.] Może dla ciebie, ale wałęsanie się po pustkowiach, zabijanie mutantów i zbieranie złomu... to nie dla mnie. Dobrze mi tu, mogę siedzieć spokojnie przed ekranem i jeść chipsy serowe.}
+{6010}{}{Chipsy serowe? A co to za danie?}
+{6020}{}{No jasne. Na razie, mięczaku.}
+{7000}{}{Nigdy ich nie @sex@|jadłeś||jadłaś|? @sex@|Człowieku||Kobieto|, najlepsze żarcie pod słońcem! Są takie pyszne, serowe, chrupiące... [Bill uspokaja się.] Po prostu są zajebiste, poczęstowałbym cię, ale niestety w Kryptopolis nie można ich znaleźć. Jak będziesz mieć okazję to spróbuj koniecznie. Nikt już nie wie jak się je robi, ale można jeszcze sporo ich znaleźć na pustkowiach.}
+{7010}{}{Dlaczego nie ma ich w Kryptopolis?}
+{7020}{}{Może pogadamy o czymś innym?}
+{7030}{}{Wzruszyła mnie twoja historia. Na razie, Bill.}
+{8000}{}{Dlaczego? Ci idioci ich zakazali! Zgodnie z dyrektywą komitetu ds. żywienia  2197/43CPX zawierają "niezidentyfikowane substancje" a ich spożywanie ich może być "potencjalnie szkodliwe dla zdrowia", i tego typu bzdury.}
+{8010}{}{Autokratyczne dupki.}
+{8020}{}{Ale oni robią to dla dobra twojego i całej wspólnoty. Władze muszą być zaangażowane w każdy aspekt naszego życia, sami jesteśmy zbyt głupi żeby robić coś poza pracą i płaceniem podatków.}
+{8030}{}{Współczuję. Czas na mnie, trzymaj się.}
+{9000}{}{Dobrze gadasz... Hej, wiesz co? Jeśli natkniesz się na jakieś z tych chipsów, gdy będziesz wędrować po pustkowiach, przynieś mi je. Dobrze zapłacę!}
+{9010}{}{W porządku, jak coś znajdę to dam ci znać. Możemy porozmawiać o czymś innym?}
+{9020}{}{Pewnie. Na razie, Bill.}
+{10000}{}{Naprawdę? 50 kapsli za paczkę, dawaj!}
+{10010}{}{Trzymaj.}
+{10020}{}{W sumie... Są takie pyszne, że chyba jednak @sex@|sam||sama| je zjem.}
+{11000}{}{Pewnie. W czym mogę ci pomóc?}
+{11010}{}{Możesz mi przypomnieć, czym się zajmujesz?}
+{11020}{}{Mam chipsy serowe.}
+{11030}{}{Przypomnij mi, czego chciałeś wzamian za odkodowanie tej wiadomości.}
+{11040}{}{@sex@|Przyniosłem||Przyniosłem| ci to radio.}
+{11050}{}{Kto mógłby przyznać mi prawo wejścia do Krypty?}
+{11060}{}{Miło się rozmawiało, ale musze już lecieć. Trzymaj się, Bill.}
+{12000}{}{Dzięki! Masz może więcej?}
+{12010}{}{Pewnie.}
+{12020}{}{Nie, to wszystko co @sex@|znalazłem||znalazłam|. Pójdę już.}
+{12030}{}{Może mam, może nie mam, nieważne. Bywaj.}
+{13000}{}{Oczywiście, władza zawsze wie lepiej. Nie chce mi się z tobą gadać. Idź sobie.}
+{13010}{}{Pff, jak chcesz.}
+{14000}{}{Co przez to rozumiesz?}
+{14010}{}{Powiedziano mi, że w Kryptopolis jest pewien facet, który mógłby to zdekodować. [Pokazujesz mu swojego PipBoy'a, z zakodowaną wiadomością z holodysku, który @sex@|znalazłeś||znalazłaś| przy zmasakrowanej karawanie.] Dobrze @sex@|trafiłem||trafiłam|?}
+{15000}{}{[Bill ogląda uważnie PipBoy'a.]Tak, to ja. Ten typ szyfrowania jest używany głównie przez kompanie handlowe i najemnicze. Mógłbym to zdekodować, ale widzisz, mam tu sporo roboty do ogarnięcia...}
+{15010}{}{Bill, to bardzo ważne. Muszę wiedzieć, co jest tam zapisane. Ile muszę ci zapłacić, żebyś się za to zabrał?}
+{16000}{}{Nie potrzebuję forsy, ci idioci płacą mi tu tyle, żebym za nic w świecie nie chciał się stąd ruszyć. I nie chcę. Słuchaj, nie jestem do końca pewien, czy mój sposób na zdekodowanie tych danych jest w stu procentach odpowiedni. Muszę skontaktować się z kumplem, który ostatnio zajmował się podobnymi sprawami - ale gość parę dni temu dokądś wyjechał. Jeśli przyniesiesz mi radio, po prostu do niego zadzwonię i odkodujemy tą wiadomość. Umowa stoi?}
+{16010}{}{Naprawdę? @sex@|Myślałem||Myślałam|, że dla ciebie to nic trudnego...}
+{17000}{}{Może tak, może nie. Ale to nie ma znaczenia. Przynieś mi to, o co proszę, a zdekoduję tą wiadomość. Nie ma innej opcji.}
+{17010}{}{No to ja się jeszcze zastanowię. Na razie, Bill.}
+{18000}{}{Świetnie! Spójrzmy... Elegancko, działa doskonale. [Poza "Cześć, tu Bill" nie rozumiesz ani słowa z rozmowy dwóch komputerowych maniaków.] Tak jak myślałem, to nie będzie skomplikowane...}
+{18010}{}{Tak, tak, jasne. Możesz zdekodować tą cholerną wiadomość?}
+{19000}{}{A, jasne, oczywiście. [Bill zabiera twojego PipBpy'a i wkłada śrubokręt w małą dziurkę w metalowej obudowie. Następnie przekręca go dwa razy, po czym oddaje ci twoją własność.] Już. Trzymaj.}
+{19010}{}{Co? Ty przecież...}
+{20000}{}{Haha, widzisz, ta konkretna partia miała wadę, którą można właśnie w ten sposób wykorzystać. Szybko je wycofano, ale nie wszystkie... Tylko ekspert odróżni ten model od innych, prawidłowo działających.}
+{20010}{}{Kurwa mać, czy ja właśnie @sex@|oddałem||oddałam| nowiuteńkie radio za to, żebyś tylko włożył tam zasrany śrubokręt?!}
+{21000}{}{Musiałem go też przekręcić. Dwa razy.}
+{21010}{}{Bardzo śmieszne, kurwa. Bardzo śmieszne. [Spoglądasz na zawartość odkodowanej wiadomości.] Zaraz, moment, ale tam są tylko jakieś losowe znaki, co to ma znaczyć?!}
+{22000}{}{Nie wiem. @sex@|Kazałeś||Kazałaś| mi go zdekodować, a nie zdekodować i rozszyfrować. Ja zrobiłem, co do mnie należało.}
+{22010}{}{Wspaniale. A nie wiesz może, kto mógłby go rozszyfrować?}
+{22020}{}{Wiesz co? Pierdol się, idę stąd.}
+{23000}{}{Do wykonania takiego zadania w rozsądnym czasie będzie potrzebna maszyna o wielkiej mocy obliczeniowej. Przychodzi mi na myśl jedynie główny komputer naszej Krypty... Niestety, jako nie-obywatel nie masz tam prawa wstępu, a tym bardziej do używania komputera.}
+{23010}{}{Kto mógłby mi przyznać prawo wstępu do Krypty?}
+{23020}{}{Cholera. Może pogadamy o czymś innym?}
+{23030}{}{Wyśmienicie... Do widzenia, Bill.}
+{23040}{}{To spierdalaj, chuju. A żebyś zdechł.}
+{24000}{}{Muszę się skonsultować z kumplem, który obecnie jest poza miastem. Jeśli przyniesiesz mi radio, zadzwonię do niego i zdekodujemy wiadomość. Możesz je złożyć samodzielnie albo gdzieś kupić czy też znaleźć.}
+{24010}{}{W porządku. Masz jeszcze chwilę?}
+{24020}{}{Dobra, to ja będę się zbierać. Życz mi szczęścia.}
+{25000}{}{Ekhem, bez obrazy, ale nie przypuszczam, że masz jakiekolwiek szanse. Jednak jeśli naprawdę nalegasz, spróbuj porozmawiać z Radnym McClure. Urzęduje w siedzibie Rady, to ten wielki gmach na północy miasta.}
+{25010}{}{Mogę spytać o coś innego?}
+{25020}{}{W takim razie idę z nim pogadać. Dzięki, Bill.}
+{26000}{}{It depends... Ah, nevermind, I'm bored anyway. Let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one I'll just run a simple check, this won't take long.@@It depends... ah, fuck it, let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one. I'll run a diagnostics check, this won't take long.}
+{26010}{}{[Wait.]@@[Wait patiently.]@@[Let him do his tests.]}
+{26020}{}{On second thought, I think I'll pass. Give me back the disk.@@Nah, I don't have time for this. Give me back the disk and I'll get going.}
+{27000}{}{It looks like a regular holodisk, but the markings are strange, it's not of Pre-War origin. Where did you find it? }
+{27010}{}{You don't wanna know, Bill.@@You wouldn't believe me anyway.@@I think this knowledge could do you harm, Bill.}
+{27020}{}{None of your business Bill. If you can't help me, I'll get going.@@You don't want to know, Bill. I will get going then, maybe someone else will be able to help me.}
+{28000}{}{Right, as you wish. I can't tell really what it is, or how to read it. . You'd have to check it with our Vault Mainframe.@@Okay, fine. Well, about the holodisk... I can't help you much. You might try our Mainframe though, if you don't have any other ideas.}
+{28010}{}{How do I get inside the Vault?}
+{28020}{}{Good thing I've been already granted access to that damn Vault...@@Yeah, I will do that. Thanks.@@Okay, I'll try the mainframe then.}
+{29000}{}{Talk to Councillor McClure. He's residing in a Council's building, that big one in the northern part of the city. If anyone can grant you access to the Vault, it's him. He a good guy, if you play nice, you might make him play ball.}
+{29010}{}{Okay, I'll talk to him. Thanks, Bill.@@Okay, I'll go and see him then.@@I'll go see him then. See you round, Bill.}
+{30000}{}{Fine.@@Okay.@@So be it.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Hello, my name's Bill. Who are you?@@The name's Bill. And you are?@@This better be important... I'm Bill, who are you?}
+{2010}{}{I'm @pname@, nice to meet you. What are you doing here?}
+{2020}{}{You know Bill, that was a real pleasure to meet you - but I've got to go. See you around.}
+{3000}{}{Hello again. How can I help you?}
+{3010}{}{Once again, what are you doing here?}
+{3020}{}{I've got some cheezy poofs for you, Bill.}
+{3030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{3040}{}{Could you remind me what did you want me to bring in exchange for decoding a holodisk data?}
+{3050}{}{I've brought you that radio.}
+{3060}{}{Who could give me the right to get inside the Vault?}
+{3070}{}{Just checking if you're doing fine, Bill. Goodbye.}
+{4000}{}{Computers, mostly. You've probably noticed that there's a lot of high-tech stuff here... Well, someone's got to take care of it - and that someone's me. Either there's something to repair manually or some software error occures - I'm the man everyone's adressing for help. In the free time, I do some programming, scripting, stuff like that.}
+{4010}{}{That sounds really cool, Bill.}
+{4020}{}{Holy shit, you've got the most boring job in the whole wasteland.}
+{4030}{}{Say, could you help me with this holodisk? My Pip-Boy can't read it, but it looks like it's brand new, and so, I was wondering....}
+{4040}{}{Hey, maybe you're the guy that Kenny was talking about?}
+{4050}{}{Oh, that's really great. I'd love to talk a bit longer, but have to go. Bye, Bill.}
+{5000}{}{You're right, I like that job. I earn a lot, but that's not the most important... To be honest, I could spend a whole life just coding and eating cheezy poofs.}
+{5010}{}{Cheezy poofs?}
+{5020}{}{Yeah, that's a cool life. So cool, that I'm sorry to interrupt you. Gotta go, bye.}
+{6000}{}{[Sighs.] Well, maybe for you it is. But you know, I'm not the type of the guy running with a minigun, killing mutants, saving or destroying wasteland according to the mood, and so on. I'm really happy when I can just sit in the front of the screen, code and eat cheezy poofs.}
+{6010}{}{Cheezy poofs? What kind of creatures are that?}
+{6020}{}{Yeah, sure, loser. Bye.}
+{7000}{}{You've never heard of cheezy poofs? They're so yummy, they're so cheezy, they're so poofy, they're... [He calms down.] They're just the best, you just should've tried them. I'd be happy to offer you some, but the technology needed to product them vanished after the war. You can find them scattered all around wasteland though, but not in Vault City...}
+{7010}{}{Why "not in Vault City"?}
+{7020}{}{Can we talk about something else?}
+{7030}{}{That's so sad. Bye, Bill.}
+{8000}{}{Those dumb idiots banned them! Directive 2197/43CPX, calling it "dangerously unhealthy", full of "potentially harmful substances" and a lot more of bullshit like that.}
+{8010}{}{What a band of authocratic fuckers are they!}
+{8020}{}{They are doing it for the good of you and the whole society, Bill. You should have understood that they need to take care of every aspect of our lifes, because we're too dumb to do anything but work and pay taxes.}
+{8030}{}{Yeah, sure. That's kinda depressing. I've gotta go, Bill, take care and see you 'round.}
+{9000}{}{Sure they are. If you happen to encounter some cheezy poofs during your adventures - I beg you, bring them to me! I'll pay you generously.}
+{9010}{}{Fine, I'll remember that. Well, could we change the topic?}
+{9020}{}{Yeah, sure. Goodbye, Bill.}
+{10000}{}{Really!? Quick, give them to me! I pay 50 caps a pack!}
+{10010}{}{Here you are.}
+{10020}{}{You know, I'd rather eat them myself. They seem sooo delicious...}
+{11000}{}{Sure. How can I help you?}
+{11010}{}{Could you remind me what's your profession about?}
+{11020}{}{I've got some cheezy poofs for you, Bill.}
+{11030}{}{Could you remind me what were these things you wanted me to bring in exchange for decoding a holodisk data?}
+{11040}{}{I've brought you that radio.}
+{11050}{}{Who could give me the right to get inside the Vault?}
+{11060}{}{It was a real pleasure talking to you, but I've got to go. Bye, Bill.}
+{12000}{}{Thanks! Have some more?}
+{12010}{}{Sure I've got. Here, take it.}
+{12020}{}{Nope, that's all I had. Bye, Bill.}
+{12030}{}{Maybe I've got, maybe I don't - but what's certain, I don't want to sell them now. Goodbye.}
+{13000}{}{You know, there's plenty of sick minds like you around - maybe you should go and talk to them, 'cause I don't like the direction this conversation's goin'. Good bye.}
+{13010}{}{As you wish. Bye, Bill.}
+{14000}{}{What do you mean?}
+{14010}{}{Well, I've heard that in Vault City there is one guy, who'll be able to decode that data from this holodisk. [You present him your PipBoy with data from holodisk found at the massacred caravan.] Am I right?}
+{15000}{}{[Examines your PipBoy.] Sure, it seems that it's one of encypyted data packages used by military and big trade companies. I can decode that, but well... It'd take some time and effort, and I'm quite busy...}
+{15010}{}{I really need to know what was inside that holodisk. How much will I have to pay you for encoding it?}
+{16000}{}{I don't care about caps, those idiots pay me a lot for keeping their stuff up and running. But you know, I'm not perfectly sure if my way to decode that data is right. I'd have to call a buddy of mine, who's currently awat. If you'd bring me a radio, I'd be glad to decode that holodisk for you.}
+{16010}{}{Really? I thought that's a simple task you!}
+{17000}{}{Maybe it is, maybe it isn't. But it doesn't matter, you'll bring me that radio - I'll help you with decoding}
+{17010}{}{Yeah, sure. Maybe. I'll be back, Bill.}
+{18000}{}{That's great! Let's have a look... Yeah, it's working. [You don't understand a word apart of "Hello, it's Bill" from the two computer geeks conversation.] As I thought, it'll be simple.}
+{18010}{}{Yeah, sure. Now decode that data for me. Please.}
+{19000}{}{Ah, of course. [Takes your PipBoy, then puts a screwdriver in a little hole in the metal surface. He spins it twice, takes screwdriver out, gives you your PipBoy back.] Done.}
+{19010}{}{What? You've just...}
+{20000}{}{Yeah, these series had that fatal flaw. It was quickly withdrawed, solved and re-issued, but some of are still in use - you've got to be an expert to notice the difference.}
+{20010}{}{Did I just gave you a brand new radio and all you had to do was to put a screwdiver in my PipBoy?}
+{21000}{}{I had to spin it, too. Twice.}
+{21010}{}{Very funny, Bill. [You take a look at the contents of decoded holodisk.] But wait... [You can't believe you eyes.] There's just a bunch of random symbols!}
+{22000}{}{It still doesn't make any sense, but that's not my problem. Well, I've done my job - you told me to decode it, not decode and decipher.}
+{22010}{}{Do you know anyone who could help me with that?}
+{22020}{}{Screw you, Bill. Bye.}
+{23000}{}{I know only one computer able to perform such a task in a reasonable amount of time - our local Vault's mainframe. But as a non-Citizen, I don't have the permission to get inside the Vault, not to mention using the computer, sorry.}
+{23010}{}{Who could give me the right to enter the Vault?}
+{23020}{}{Damn. Can we talk about something else?}
+{23030}{}{Great. Thank you, anyway. Goodbye, Bill.}
+{23040}{}{Then fuck you, dickhead. Bye.}
+{24000}{}{I need to consult a buddy of mine, who's currently away. If you'd bring me a radio, I'd just call him. You can either craft it, buy or find somewhere.}
+{24010}{}{Great. Can we talk about something else?}
+{24020}{}{Cool. I better start looking for it, wish me good luck. Bye, Bill.}
+{25000}{}{I don't think that your chances of success are very high, but if you really insist - try talking to Councillor McClure. He's residing in a Council's building, that big one in the northern part of the city.}
+{25010}{}{Can I ask you another question?}
+{25020}{}{I'll go and talk to him then. Bye, Bill.}
+{26000}{}{It depends... Ah, nevermind, I'm bored anyway. Let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one I'll just run a simple check, this won't take long.@@It depends... ah, fuck it, let me see it. [He examines the holodisk in his hands.] Hmmm, interesting, never seen anything like that one. I'll run a diagnostics check, this won't take long.}
+{26010}{}{[Wait.]@@[Wait patiently.]@@[Let him do his tests.]}
+{26020}{}{On second thought, I think I'll pass. Give me back the disk.@@Nah, I don't have time for this. Give me back the disk and I'll get going.}
+{27000}{}{[After an hour of tinkering he gives you back the holodisk.] What the hell... It looks like a regular holodisk, but the markings are strange, it may be not of Pre-War origin. I wasn't able to read it, but diagnostics showed there are no I/O errors, so... Where the fuck did you find it?}
+{27010}{}{You don't wanna know, Bill. What else can you tell me?@@You wouldn't believe me anyway. What else can you tell me about this holodisk?@@I think this knowledge could do you harm, Bill. What else can you tell me about this holodisk?}
+{27020}{}{None of your business Bill. If you can't help me, I'll get going.@@You don't want to know, Bill. I will get going then, maybe someone else will be able to help me.}
+{28000}{}{Right, as you wish. About the holodisk... I can't tell really what it is, or how to read it. . You'd have to check it with our Vault Mainframe. @@Okay, fine. Well, about the holodisk... I can't help you much. You might try our Mainframe though. I don't have any other ideas.}
+{28010}{}{How do I get inside the Vault?@@How do I get there?@@How do I get to the Mainframe then?}
+{28020}{}{Good thing I've been already granted access to that damn Vault... See you round, Bill.@@Yeah, I will do that. Thanks Bill, see you later.@@Okay, I'll try the mainframe then. Thanks for your time.}
+{29000}{}{Not everyone can access the Mainframe, let alone the Vault itself. But, if you feel it's important, talk to Councillor McClure. He's residing in the Council building, that big one in the northern part of the city. If anyone can grant you access to the Vault, it's him. He a good guy, if you play nice, you might make him play ball.}
+{29010}{}{Okay, I'll talk to him. Thanks, Bill.@@Okay, I'll go and see him then.@@I'll go see him then. See you round, Bill.}
+{30000}{}{Fine.@@Okay.@@So be it.}
+

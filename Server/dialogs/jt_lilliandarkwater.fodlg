@@ -1,0 +1,139 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+4 1020 D _var p name_mem_player_npc = 1 @
+2 2000 None 0 #
+3 2010 R _var p name_mem_player_npc = 1 #
+65506 2020 R _var p name_mem_player_npc = 1 #
+0 2030 R _var p name_mem_player_npc = 1 @
+3 3000 None 0 #
+65506 3010 #
+6 3020 #
+5 3030 #
+0 3040 @
+4 4000 None 0 #
+6 4010 #
+5 4020 #
+65506 4030 #
+0 4040 @
+5 5000 None 0 #
+3 5010 #
+0 5020 @
+6 6000 None 0 #
+3 6010 #
+0 6020 &
+
+[engl]
+{100}{}{Lillian}
+{200}{}{You see: a middle aged woman, could be the shopkeeper.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not met.}
+{1020}{}{Met.}
+{2000}{}{My name is Lillian Darkwatter, I am the owner of this shop. Is there anything you want?}
+{2010}{}{I would like to ask some questions.@@I wanted to ak you something.}
+{2020}{}{I'd like to trade.@@Want to trade?@@Interested in trading?}
+{2030}{}{Yeah, I've gotta go.@@Nice to meet you, but I need to get going.}
+{3000}{}{What's on your mind?@@Yes?@@What is it?@@I'm listening...}
+{3010}{}{I want to trade.@@Wanna trade?@@}
+{3020}{}{Fine shop you have here.}
+{3030}{}{Anything interesting going on lately?}
+{3040}{}{I need to go.@@I need to get going.}
+{4000}{}{Welcome, have a pleasant stay.}
+{4010}{}{Fine shop you have here.}
+{4020}{}{Anything interesting going on lately?}
+{4030}{}{I'd like to see what you have to offer.}
+{4040}{}{I need to go.@@I need to get going.I need to go now.}
+{5000}{}{Besides the usual routine, nothing that I have heard of. I'm close knit to my shop and don't mind much into other people daily affairs.}
+{5010}{}{Whatever, there was something else.}
+{5020}{}{Boring, bye.@@Goodbye.@@I see, goodbye.}
+{6000}{}{I try my best to keep it tight and fit, thanks. This shack you call my shop is a gift from my grandfather Killian, I kind of was born into it, family business you could say. Not that I had much choice in it, someone had to keep it running and it's a good living.}
+{6010}{}{Good to hear. I want to bother you with something.}
+{6020}{}{It sure is, was nice talking with you, I am leaving.}
+
+[russ]
+{100}{}{Лилиан}
+{200}{}{Вы видите: леди средних лет, может быть владельцем магазина.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not met.}
+{1020}{}{Met.}
+{2000}{}{Меня зовут Лилиан Дарквоттер, владелец этого магазина. Что вам угодно?}
+{2010}{}{Я хотел бы задать несколько вопросов.}
+{2020}{}{Я хотел бы, поторговать.}
+{2030}{}{Было приятно познакомится, но мне уже пора уходить.}
+{3000}{}{Что у тебя на уме?}
+{3010}{}{Торговля.}
+{3020}{}{Хороший магазин у вас.}
+{3030}{}{Что-нибудь интересное происходит в последнее время?}
+{3040}{}{Ничего особенного.}
+{4000}{}{Добро пожаловать, приятного пребывания.}
+{4010}{}{Хороший магазин у вас.}
+{4020}{}{Что-нибудь интересное происходит в последнее время?}
+{4030}{}{Я хотел бы посмотреть, что вы предлагаете.}
+{4040}{}{Я уже ухожу.}
+{5000}{}{Ничего интересного, все как всегда.}
+{5010}{}{Хорошо, тогда другой вопрос.}
+{5020}{}{Скукота, пока.}
+{6000}{}{Спасибо, я стараюсь. Эта лачуга, которую вы называете магазином досталась мне от отца, я выросла в этом магазине. Не то чтобы у меня был большой выбор, но кто-то ведь должен заниматься этим магазином.}
+{6010}{}{Рад слышать. Я хочу еще кое-что спросить.}
+{6020}{}{Было приятно поговорить, но мне уже пора.}
+
+[pols]
+{100}{}{Lillian}
+{200}{}{Widzisz kobietę w średnim wieku, wygląda na właścicielkę.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not met.}
+{1020}{}{Met.}
+{2000}{}{[Kobieta odwraca się i wita cię skinieniem głowy.] Witaj, @sex@|nieznajomy||nieznajoma|! Nazywam się Lillian Darkwater, jestem właścicielką tego sklepu. Mam tu duży wybór najróżniejszych rzeczy potrzebnych każdemu, kto przemierza Pustkowia. Nie znajdziesz lepiej zaopatrzonego sklepu w Złomowie. To jak, chcesz coś kupić?}
+{2010}{}{Właściwie to @sex@|chciałem||chciałam| zadać kilka pytań.}
+{2020}{}{Tak.}
+{2030}{}{Miło poznać. Czas na mnie.}
+{3000}{}{Tak?}
+{3010}{}{@sex@|Chciałbym||Chciałabym| zobaczyć co masz na stanie.}
+{3020}{}{Niezły ten twój sklep.}
+{3030}{}{Dzieje się tu coś?}
+{3040}{}{Nie, właśnie wychodziłem.}
+{4000}{}{Witaj ponownie, w czym mogę ci pomóc tym razem?}
+{4010}{}{Nieźle ma pani tu urządzone.}
+{4020}{}{Jakieś wieści?}
+{4030}{}{@sex@|Chciałbym||Chciałabym| coś kupić.}
+{4040}{}{Czas na mnie.}
+{5000}{}{Nic nadzwyczajnego, dzień jak co dzień. Nie ruszam się stąd zbyt często i nie mam za bardzo czasu na pogaduszki, więc nie będę dla ciebie dobrym źródłem informacji.}
+{5010}{}{Rozumiem. Jeszcze jedno...}
+{5020}{}{Dzięki za nic, na razie.}
+{6000}{}{Dzięki, staram się jak mogę. Ta buda którą nazywasz sklepem to spadek po moim ojcu Killianie. Można powiedzieć że to rodzinny biznes. Inna sprawa, że nie miałam za bardzo innego wyboru, ale da się z tego całkiem nieźle żyć.}
+{6010}{}{Mhm. Mam jeszcze jedną sprawę.}
+{6020}{}{To fakt, całkiem nieźle. Miło się rozmawiało, ale muszę już iść.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Not met.}
+{1020}{}{Met.}
+{2000}{}{My name is Lillian Darkwatter, I am the owner of this shop. Is there anything you want?}
+{2010}{}{I would like to ask some questions.@@I wanted to ak you something.}
+{2020}{}{I'd like to trade.@@Want to trade?@@Interested in trading?}
+{2030}{}{Yeah, I've gotta go.@@Nice to meet you, but I need to get going.}
+{3000}{}{What's on your mind?@@Yes?@@What is it?@@I'm listening...}
+{3010}{}{I want to trade.@@Wanna trade?@@}
+{3020}{}{Fine shop you have here.}
+{3030}{}{Anything interesting going on lately?}
+{3040}{}{I need to go.@@I need to get going.}
+{4000}{}{Welcome, have a pleasant stay.}
+{4010}{}{Fine shop you have here.}
+{4020}{}{Anything interesting going on lately?}
+{4030}{}{I'd like to see what you have to offer.}
+{4040}{}{I need to go.@@I need to get going.I need to go now.}
+{5000}{}{Besides the usual routine, nothing that I have heard of. I'm close knit to my shop and don't mind much into other people daily affairs.}
+{5010}{}{Whatever, there was something else.}
+{5020}{}{Boring, bye.@@Goodbye.@@I see, goodbye.}
+{6000}{}{I try my best to keep it tight and fit, thanks. This shack you call my shop is a gift from my grandfather Killian, I kind of was born into it, family business you could say. Not that I had much choice in it, someone had to keep it running and it's a good living.}
+{6010}{}{Good to hear. I want to bother you with something.}
+{6020}{}{It sure is, was nice talking with you, I am leaving.}
+

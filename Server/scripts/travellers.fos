@@ -1,0 +1,23 @@
+#include "_macros.fos"
+#include "_npc_pids.fos"
+
+import void SetTraveller( uint crId, bool isTransit, uint entireNum, uint timeWaitLoc, uint timeWaitEnc, uint16[] locPids, bool visibleEncounters ) from "traveller";
+void _Init( Critter& cr, bool firstTime )
+{
+    uint16[] locPids;
+    locPids.insertLast( LOCATION_Hub );
+	locPids.insertLast( LOCATION_Junktown );
+    SetTraveller( cr.Id, false, 0, REAL_MINUTE(12), REAL_MINUTE(15), locPids, true );
+}
+
+void AddNpc( Critter& cr, int, int, int )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+    {
+        cr.Say( SAY_NETMSG, "Can't add Npc on global." );
+        return;
+    }
+    int[] params = { ST_REPLICATION_TIME, -1 };
+    map.AddNpc( NPC_PID_CARAVANLEADER2, cr.HexX + 1, cr.HexY + 1, 6, params, null, "travellers@_Init" );
+}

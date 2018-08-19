@@ -1,0 +1,74 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var p bosside = 16 #
+4 1020 D _var p bosside = 14 #
+2 1030 D _var p bosside = 15 @
+2 2000 None 0 #
+0 2010 D _var p bosside = 15 R _var p bosside = 16 R _script dialog@r_ShowQuestMessage 1 9334 @
+3 3000 None 0 @
+4 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Crate}
+{200}{}{You see: Crate}
+{210}{}{A crate filled with some military equipment. You will need to take a closer look at the markings to determine what's inside of it.}
+{1000}{}{Initial preferences}
+{1010}{}{already planted}
+{1020}{}{Timer found before the exlosives.}
+{1030}{}{setting the timer
+}
+{2000}{}{[The crate's description matches the one you were given at the briefing. This is the radio detonator with a timer. Set it to sixty minutes, as you were ordered.]}
+{2010}{}{[Set the timer.] Okay, here it goes.@@[Set the timer.] Here goes nothing.@@[Set the timer.] That should do.@@[Set the timer.] All right, you're gonna burn.@@[Set the timer.] Burn motherfucker, burn...}
+{3000}{}{[The timer is already set, get out of here as soon as possible.]}
+{4000}{}{[You have found the timer but its frequency is already set. You will have to find the explosives first, arm them, set the frequency of the timer and then set the timer itself.]}
+{4010}{}{At least I found this...@@Good, now to find the explosives...@@There you are. Now, the explosives...}
+
+[russ]
+{100}{}{Crate}
+{200}{}{You see: Crate}
+{210}{}{A crate filled with some military equipment. You will need to take a closer look at the markings to determine what's inside of it.}
+{1000}{}{Initial preferences}
+{1010}{}{already planted}
+{1020}{}{Timer found before the exlosives.}
+{1030}{}{First time planting explosives.}
+{2000}{}{[The crate's description matches the one you've been at the briefing. This must be the right place to plant the explosives.]}
+{2010}{}{[Plant explosives.] Okay, here it goes.@@[Plant explosives.] Here goes nothing.@@[Plant explosives.] That should do.@@[Plant explosives.] All right, you're gonna burn.@@[Plant explosives.] Burn motherfucker, burn...}
+{3000}{}{[The explosives have already been planted.]@@[You don't need to plant explosives twice.]@@[There's no need to plant another set of explosives here.]@@The explosives are already set.}
+{4000}{}{[You have found the timer, but you need to find the explosives first.]}
+{4010}{}{At least I found this...@@Good, now to find the explosives...@@There you are. Now, the explosives...}
+
+[pols]
+{100}{}{Crate}
+{200}{}{You see: Crate}
+{210}{}{A crate filled with some military equipment. You will need to take a closer look at the markings to determine what's inside of it.}
+{1000}{}{Initial preferences}
+{1010}{}{already planted}
+{1020}{}{Timer found before the exlosives.}
+{1030}{}{First time planting explosives.}
+{2000}{}{[The crate's description matches the one you've been at the briefing. This must be the right place to plant the explosives.]}
+{2010}{}{[Plant explosives.] Okay, here it goes.@@[Plant explosives.] Here goes nothing.@@[Plant explosives.] That should do.@@[Plant explosives.] All right, you're gonna burn.@@[Plant explosives.] Burn motherfucker, burn...}
+{3000}{}{[The explosives have already been planted.]@@[You don't need to plant explosives twice.]@@[There's no need to plant another set of explosives here.]@@The explosives are already set.}
+{4000}{}{[You have found the timer, but you need to find the explosives first.]}
+{4010}{}{At least I found this...@@Good, now to find the explosives...@@There you are. Now, the explosives...}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{already planted}
+{1020}{}{Timer found before the exlosives.}
+{1030}{}{setting the timer
+}
+{2000}{}{[The crate's description matches the one you were given at the briefing. This is the radio detonator with a timer. Set it to sixty minutes, as you were ordered.]}
+{2010}{}{[Set the timer.] Okay, here it goes.@@[Set the timer.] Here goes nothing.@@[Set the timer.] That should do.@@[Set the timer.] All right, you're gonna burn.@@[Set the timer.] Burn motherfucker, burn...}
+{3000}{}{[The timer is already set, get out of here as soon as possible.]}
+{4000}{}{[You have found the timer but its frequency is already set. You will have to find the explosives first, arm them, set the frequency of the timer and then set the timer itself.]}
+{4010}{}{At least I found this...@@Good, now to find the explosives...@@There you are. Now, the explosives...}
+

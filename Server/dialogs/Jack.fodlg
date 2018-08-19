@@ -1,0 +1,109 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc = 0 #
+0 2020 #
+6 2030 D _var p name_mem_player_npc = 1 D _script economy_dialogs@d_IsEnoughCaps 1 30000 R _script economy_dialogs@r_TakeCaps 1 30000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_CAMP + 1 @
+3 3000 None 0 #
+4 3010 D _item p PID_BOTTLE_CAPS } 5 R _item p PID_BOTTLE_CAPS - 5 R _var p name_mem_player_npc + 1 #
+0 3020 @
+4 4000 None 0 #
+5 4010 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+0 5010 #
+6 5020 D _script economy_dialogs@d_IsEnoughCaps 1 30000 R _script economy_dialogs@r_TakeCaps 1 30000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_CAMP + 1 #
+0 5030 @
+6 6000 None 0 #
+0 6010 &
+
+[engl]
+{100}{}{Jack}
+{200}{}{You see: Jack}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hi there, my friend. I'm Jack the Hunter, what are you looking for?}
+{2010}{}{Hunter? Hey, do you know anything about hunting camps?}
+{2020}{}{Hunter? No, I don't need that kind of services, I can handle myself with hunting. Bye.}
+{2030}{}{I'm back with money for the map you've mentioned before.}
+{3000}{}{I might do, but before I tell you, would you buy me a beer?}
+{3010}{}{Sure. Bartender! Beer for my friend! [5 caps].}
+{3020}{}{No way, filthy bum, trick someone else. Bye.}
+{4000}{}{Oooh lovely, thanks friend. [takes few gulps] Ooooh yeah! Right, so you want to know about hunting camps? I know such places, yes sir. I can share a map of one of them. }
+{4010}{}{Yes, yes, this is what I need.}
+{5000}{}{Not so fast, my *friend*. It's gonna cost you @lex base1_price@ caps}
+{5010}{}{30 grants for a map? Bye, dude.}
+{5020}{}{I can afford this, I'll go ahead and buy one!}
+{5030}{}{I can afford this, I think. I'll be back later.}
+{6000}{}{Great, let me take care of those shiny things. Thank you, here's your map. Have good hunts!}
+{6010}{}{Sure I will. Goodbye Jack.}
+
+[russ]
+{100}{}{Джек}
+{200}{}{Вы видите: Джек}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Привет, мой друг. Я Джек - охотник, что ты ищешь?}
+{2010}{}{Охотник? Эй, а что знаешь об охотничьих лагерях?}
+{2020}{}{Охотник? Я и сам отличный охотник. Пока.}
+{2030}{}{Я вернулся с деньгами за карту, о который мы ранее говорили.}
+{3000}{}{Возможно, но перед тем как продолжить разговор, может купишь мне пива?}
+{3010}{}{Конечно. Бармен! Пива моему другу. [5 крышек].}
+{3020}{}{Ни в коем случае, грязная задница, дури кого-то другого. Пока.}
+{4000}{}{Ооо прекрасно, спасибо друг. [делает несколько глотков] Ооо Да! Хорошо, так что ты хотел узнать об этих лагерях? Вообще-то я знаю одно из таких мест, могу тебе продать карту. }
+{4010}{}{Да, да, это то, что нужно.}
+{5000}{}{Не так быстро, мой *друг*. Это будет стоить тебе @lex base1_price@ крышек}
+{5010}{}{30 кусков за карту? Пока, чувак.}
+{5020}{}{Я могу себе это позволить, давай карту!}
+{5030}{}{Мне нужно обдумать, вернусь позже.}
+{6000}{}{Великолепно, позволь мне позаботиться о этих блестящих круглешках. Спасибо, вот твоя карта!}
+{6010}{}{Хорошо. Пока  Джек.}
+
+[pols]
+{100}{}{Jack}
+{200}{}{Widzisz Jacka, myśliwego.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Cześć, @sex@|kolego||koleżanko|. Jestem Jack Łowca, czego tu szukasz?}
+{2010}{}{Łowca? Hm, wiesz coś na temat obozów myśliwych?}
+{2020}{}{Łowca? Nie potrzebuję pomocy nikogo zajmującego się łowiectwem, @sex@|sam||sama| daję sobie radę z polowaniem. Do widzenia.}
+{2030}{}{Wracam z pieniędzmi po mapę, o której wspomniałeś.}
+{3000}{}{Mógłbym, ale zanim ci powiem, nie @sex@|zechciałbyś||zechciałabyś| kupić mi piwa?}
+{3010}{}{Jasne. Barman! Piwo dla mojego przyjaciela! [Zapłać 5 kapsli.]}
+{3020}{}{Nie ma mowy, cwaniaku, idź szukać frajera gdzie indziej. Do widzenia.}
+{4000}{}{Oooch, cudownie, wielkie dzięki. [Bierze kilka łyków.] Oooch tak! W porządku, chcesz dowiedzieć się czegoś o obozach myśliwych? Znam takie miejsca, o tak, @sex@|kolego||panienko|. Mogę się z tobą podzielić mapą jednego z nich.}
+{4010}{}{Tak, tak, właśnie tego potrzebuję.}
+{5000}{}{Nie tak szybko, *@sex@|mój drogi||moja droga|*. Będzie cię to kosztowało @lex base1_price@ kapsli.}
+{5010}{}{30 patyków za mapę? Na razie, cwaniaku.}
+{5020}{}{Stać mnie na to! Jasne, kupuję!}
+{5030}{}{Chyba mnie na to stać... Ale wrócę później.}
+{6000}{}{Świetnie, pozwól, że zaopiekuję się tymi błyskotkami... Dzięki, oto twoja mapa. Udanych łowów!}
+{6010}{}{Dzięki. Do widzenia, Jack.}
+
+[ptbr]
+{100}{}{Jack}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hi there, my friend. I'm Jack the Hunter, what are you looking for?}
+{2010}{}{Hunter? Hey, do you know anything about hunting camps?}
+{2020}{}{Hunter? No, I don't need that kind of services, I can handle myself with hunting. Bye.}
+{2030}{}{I'm back with money for the map you've mentioned before.}
+{3000}{}{I might do, but before I tell you, would you buy me a beer?}
+{3010}{}{Sure. Bartender! Beer for my friend! [5 caps].}
+{3020}{}{No way, filthy bum, trick someone else. Bye.}
+{4000}{}{Oooh lovely, thanks friend. [takes few gulps] Ooooh yeah! Right, so you want to know about hunting camps? I know such places, yes sir. I can share a map of one of them. }
+{4010}{}{Yes, yes, this is what I need.}
+{5000}{}{Not so fast, my *friend*. It's gonna cost you @lex base1_price@ caps}
+{5010}{}{30 grants for a map? Bye, dude.}
+{5020}{}{I can afford this, I'll go ahead and buy one!}
+{5030}{}{I can afford this, I think. I'll be back later.}
+{6000}{}{Great, let me take care of those shiny things. Thank you, here's your map. Have good hunts!}
+{6010}{}{Sure I will. Goodbye Jack.}
+

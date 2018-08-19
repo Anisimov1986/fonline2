@@ -1,0 +1,547 @@
+// Автор TabaK
+
+// ST_VAR0 - маска недоступных контейнеров
+// ST_VAR1 - режим сортировкb
+// ST_VAR2 - текущий контейнер
+// ST_VAR3 - флаги настройки уборки
+
+#include "_defines.fos"
+#include "_macros.fos"
+#include "_itempid.fos"
+#include "utils_h.fos"
+
+// Текущий режим сортировки лута(хранится в ST_VAR1):
+#define MODE_ACCURATE       ( 1 )
+#define MODE_ANY            ( 2 )
+
+// Флаги настройки уборки
+#define GATHER_ARMOR        ( 0x00000001 )
+#define GATHER_DRUG         ( 0x00000002 )
+#define GATHER_WEAPON       ( 0x00000004 )
+#define GATHER_AMMO         ( 0x00000008 )
+#define GATHER_MISC         ( 0x00000010 )
+#define GATHER_EXPLOSIVE    ( 0x00000020 )
+#define REPAIR_ITEMS        ( 0x00000040 )
+
+import bool AddPickPlane( Critter& npc, uint priority, Item@ item, uint useItemId, bool toOpen ) from "npc_planes";
+import void HealCritter( Critter& player ) from "stdlib";
+import void RemoveDeadBlocker( Critter& cr ) from "main";
+
+void _roboInit( Critter& cr, bool )
+{
+    cr.SetEvent( CRITTER_EVENT_PLANE_BEGIN, "_DiscardAll" );
+	cr.SetEvent( CRITTER_EVENT_BARTER, "_Barter" );
+	cr.SetEvent( CRITTER_EVENT_USE_SKILL_ON_ME, "_TryRepair" );
+    cr.SetHomePos(cr.HexX, cr.HexY, cr.Dir);
+}
+
+
+void r_GatherItems( Critter& master, Critter@ cr )
+{
+    Map@ map = cr.GetMap();
+    Item@[] items;
+    if( !FLAG( cr.Stat[ ST_VAR3 ], GATHER_ARMOR ) ) //Adding selsected type of items to array
+        map.GetItemsByType( ITEM_TYPE_ARMOR, items );
+    if( !FLAG( cr.Stat[ ST_VAR3 ], GATHER_DRUG ) )
+        map.GetItemsByType( ITEM_TYPE_DRUG, items );
+    if( !FLAG( cr.Stat[ ST_VAR3 ], GATHER_WEAPON ) )
+        map.GetItemsByType( ITEM_TYPE_WEAPON, items );
+    if( !FLAG( cr.Stat[ ST_VAR3 ], GATHER_AMMO ) )
+        map.GetItemsByType( ITEM_TYPE_AMMO, items );
+    if( !FLAG( cr.Stat[ ST_VAR3 ], GATHER_MISC ) )
+        map.GetItemsByType( ITEM_TYPE_MISC, items );
+    if( items.length() == 0 ) // No money - no honey
+    {
+        cr.GetItems( SLOT_INV, items ); //Cheking items in robot inventory
+        if( items.length() == 0 )
+        {
+            Finish( cr );
+        }
+        else
+        {
+            cr.SetEvent( CRITTER_EVENT_PLANE_END, "_FindContainers" );
+            NpcPlane@ plane = CreatePlane();
+            cr.AddPlane( plane );
+            cr.DropPlanes();
+        }
+        return;
+    }
+    int totalWeight = 0;
+    for( uint n = 0; n < items.length(); n++ )
+    {
+        if( !SortMisc( items[ n ], cr ) || !FLAG( items[ n ].Flags, ITEM_CAN_PICKUP ) || FLAG( items[ n ].Flags, ITEM_NO_LOOT ) )
+            continue;
+
+        AddPickPlane( cr, 0xFFFFF - GetDistantion( cr.HexX, cr.HexY, items[ n ].HexX, items[ n ].HexY ), items[ n ], 0, false ); //Go pick selected items
+    }
+    if( cr.IsNoPlanes() ) //If no items selected or robot cant carry, go sleep
+    {
+        Finish( cr );
+        return;
+    }
+    cr.SetEvent( CRITTER_EVENT_PLANE_END, "_FindContainers" ); //After all items picked, work with containers
+}
+
+int _FindContainers( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
+{
+    if( reason == REASON_GAG_ITEM && valid( someItem ) && someItem.GetType() == ITEM_TYPE_DOOR ) //If stucked because of door on way
+    {
+        if( someItem.LockerId == 0 ) //If door can be opened - go and open it, else fuck it
+        {
+            AddPickPlane( cr, plane.Priority + 1, someItem, 0, true );
+            return PLANE_KEEP;
+        }
+        return PLANE_DISCARD;
+    }
+    else if( reason == REASON_SUCCESS ) //If reach pile with items try to pick items
+    {
+        Item@[] items;
+        cr.GetMap().GetItems( plane.Pick_HexX, plane.Pick_HexY, items );
+        TryPickItems( items, cr );
+
+    }
+    if( !cr.IsNoPlanes() )
+        return PLANE_DISCARD;
+    Map@ map = cr.GetMap();
+    bool foundEmpty = false;
+    int  suitableContainer = -1;
+    Item@[] items;
+    cr.GetItems( SLOT_INV, items );
+    if( items.length() == 0 )
+    {
+        if( reason == REASON_SUCCESS )
+            r_GatherItems( cr, cr );
+        else
+            Finish( cr );
+        return PLANE_DISCARD;
+    }
+    if(!FLAG(cr.Stat[ST_VAR3], REPAIR_ITEMS)) 
+        TryRepairItems(items);
+    Item@ sortItem = items[ 0 ];
+    items.resize( 0 );
+    map.GetItemsByType( ITEM_TYPE_CONTAINER, items );
+    for( uint n = 0; n < items.length(); n++ )
+    {
+        if( ( ( cr.Stat[ ST_VAR0 ] >> n ) & 0x1 ) == 1 || items[ n ].LockerId > 0 || items[ n ].GetScriptId() != 0 )
+            continue;
+        Item@[] curItems;
+        items[ n ].GetItems( 0, curItems );
+        uint totalVol = 0;
+        for( uint m = 0; m < curItems.length(); m++ )
+            totalVol += curItems[ m ].Proto.Volume;
+        if( items[ n ].Proto.Container_Volume - totalVol < sortItem.Proto.Volume )
+            continue;
+        if( curItems.length() == 0 && !foundEmpty )
+        {
+            suitableContainer = n;
+            foundEmpty = true;
+        }
+        else if( curItems.length() > 0 && curItems[ 0 ].GetType() == sortItem.GetType() )
+        {
+            if( ( sortItem.GetType() == ITEM_TYPE_WEAPON && sortItem.Proto.Weapon_Skill_0 != curItems[ 0 ].Proto.Weapon_Skill_0 ) ||
+                ( sortItem.GetType() == ITEM_TYPE_MISC && IsExplosive( sortItem ) != IsExplosive( curItems[ 0 ] ) ) )
+            {
+                if( !foundEmpty )
+                    suitableContainer = n;
+                continue;
+            }
+            cr.StatBase[ ST_VAR1 ] = MODE_ACCURATE;
+            cr.StatBase[ ST_VAR2 ] = n;
+            AddPickPlane( cr, 0, items[ n ], 0, true );
+            cr.SetEvent( CRITTER_EVENT_PLANE_END, "_PutItems" );
+            return PLANE_DISCARD;
+        }
+        else if( suitableContainer == -1 )
+            suitableContainer = n;
+    }
+    if( suitableContainer >= 0 )
+    {
+        cr.StatBase[ ST_VAR1 ] = foundEmpty ? MODE_ACCURATE : MODE_ANY;
+        cr.StatBase[ ST_VAR2 ] = suitableContainer;
+        AddPickPlane( cr, 0, items[ suitableContainer ], 0, true );
+        cr.SetEvent( CRITTER_EVENT_PLANE_END, "_PutItems" );
+    }
+    else
+        Finish( cr );
+    return PLANE_DISCARD;
+}
+
+bool IsExplosive( Item@ item )
+{
+    uint pid = item.GetProtoId();
+    return ( pid == PID_PLASTIC_EXPLOSIVES || pid == PID_MINE || pid == PID_DYNAMITE );
+}
+
+bool SortMisc( Item@ item, Critter& cr )
+{
+    if( item.GetType() != ITEM_TYPE_MISC )
+        return true;
+    return !( ( FLAG( cr.Stat[ ST_VAR3 ], GATHER_EXPLOSIVE ) && IsExplosive( item ) ) || ( FLAG( cr.Stat[ ST_VAR3 ], GATHER_MISC ) && !IsExplosive( item ) ) );
+}
+
+void TryPickItems( Item@[] items, Critter& cr )
+{
+    CheckForbiddenItems(items, false);
+    for( uint n = 0, nMax = items.length(); n < nMax; n++ ) //Checking weight of items in pile
+    {
+        if (!valid(items[ n ]))
+            continue;
+        switch( items[ n ].GetType() )
+        {
+        case ITEM_TYPE_ARMOR:
+            if( FLAG( cr.Stat[ ST_VAR3 ], GATHER_ARMOR ) )
+                @items[ n ] = null;
+            break;
+        case ITEM_TYPE_DRUG:
+            if( FLAG( cr.Stat[ ST_VAR3 ], GATHER_DRUG ) )
+                @items[ n ] = null;
+            break;
+        case ITEM_TYPE_WEAPON:
+            if( FLAG( cr.Stat[ ST_VAR3 ], GATHER_WEAPON ) )
+                @items[ n ] = null;
+            break;
+        case ITEM_TYPE_AMMO:
+            if( FLAG( cr.Stat[ ST_VAR3 ], GATHER_AMMO ) )
+                @items[ n ] = null;
+            break;
+        case ITEM_TYPE_MISC:
+            if( !SortMisc( items[ n ], cr ) )
+                @items[ n ] = null;
+            break;
+        default:
+            break;
+        }
+    }
+    MoveItems( items, cr);
+}
+
+void TryRepairItems(Item@[] items)
+{
+    for(uint n=0, nMax=items.length();n<nMax;n++)
+    {
+        if (!items[n].IsDeteriorable() || items[n].Deterioration < 100 || items[n].Val4 >= MAXDURABILITY(items[n]) || FLAG( items[n].BrokenFlags, BI_NOTRESC ))
+            continue;
+        int deteriorationProcent = items[n].Deterioration * 100 / MAX_DETERIORATION;
+        if ( deteriorationProcent <= (MAXDURABILITY(items[n]) - items[n].Val4))
+        {
+            items[n].Val4 += deteriorationProcent;
+            items[n].Deterioration = 0;
+        }
+        else if (deteriorationProcent > (MAXDURABILITY(items[n]) - items[n].Val4))
+        {
+            items[n].Deterioration = (deteriorationProcent - (MAXDURABILITY(items[n]) - items[n].Val4)) * 100;
+            items[n].Val4 = MAXDURABILITY(items[n]);
+        }     
+        items[n].Update();
+    }
+}
+
+int _DiscardAll( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
+{
+    if( plane.Type != AI_PLANE_PICK && reason != REASON_GO_HOME )
+        return PLANE_DISCARD;
+    return PLANE_KEEP;
+}
+
+int _PutItems( Critter& cr, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
+{
+    if( reason >= REASON_HEX_BUSY  && reason <= REASON_FIND_PATH_ERROR )
+    {
+        cr.StatBase[ ST_VAR0 ] |= ( 1 << cr.Stat[ ST_VAR2 ] );
+        return _FindContainers( cr, plane, REASON_FROM_SCRIPT, null, null );
+    }
+    else if( reason != REASON_SUCCESS )
+    {
+        switch( reason )
+        {
+        case REASON_GAG_ITEM:
+            if( valid( someItem ) && someItem.GetType() == ITEM_TYPE_DOOR )
+            {
+                if( someItem.LockerId == 0 )
+                {
+                    AddPickPlane( cr, plane.Priority + 1, someItem, 0, true );
+                    return PLANE_KEEP;
+                }
+                cr.StatBase[ ST_VAR0 ] |= ( 1 << cr.Stat[ ST_VAR2 ] );
+                return _FindContainers( cr, plane, REASON_FROM_SCRIPT, null, null );
+            }
+            break;
+        case REASON_GAG_CRITTER:
+            if( plane.Priority > 0 )
+                plane.Priority--;
+            return PLANE_KEEP;
+        default:
+            return PLANE_DISCARD;
+        }
+    }
+    Item@ cont = cr.GetMap().GetItem( plane.Pick_HexX, plane.Pick_HexY, plane.Pick_Pid );
+    if( @cont == null || cont.GetType() != ITEM_TYPE_CONTAINER )
+        return PLANE_DISCARD;
+    else if( cont.Proto.Container_Changeble && !FLAG( cont.LockerCondition, LOCKER_ISOPEN ) )
+    {
+        AddPickPlane( cr, 0, cont, 0, true );
+        return PLANE_DISCARD;
+    }
+    Item@[] items;
+    cr.GetItems( SLOT_INV, items );
+    if( items.length() == 0 )
+    {
+        r_GatherItems( cr, cr );
+        return PLANE_DISCARD;
+    }
+    Item@ sortItem = items[ 0 ];
+    items.resize( 0 );
+    cr.GetItemsByType( sortItem.GetType(), items );
+    if( cr.Stat[ ST_VAR1 ] == MODE_ACCURATE )
+    {
+        Item@[] moveItems;
+        switch( sortItem.GetType() )
+        {
+        case ITEM_TYPE_WEAPON:
+            for( uint i = 0; i < items.length(); i++ )
+                if( items[ i ].Proto.Weapon_Skill_0 == sortItem.Proto.Weapon_Skill_0 )
+                    moveItems.insertLast( items[ i ] );
+            MoveItems( moveItems, cont, 0 );
+            break;
+        case ITEM_TYPE_MISC:
+            for( uint i = 0; i < items.length(); i++ )
+                if( IsExplosive( items[ i ] ) == IsExplosive( sortItem ) )
+                    moveItems.insertLast( items[ i ] );
+            MoveItems( moveItems, cont, 0 );
+            break;
+        default:
+            MoveItems( items, cont, 0 );
+            break;
+        }
+    }
+    else
+        MoveItems( items, cont, 0 );
+    return _FindContainers( cr, plane, REASON_FROM_SCRIPT, null, null );
+}
+
+void Finish( Critter& cr )
+{
+    cr.SetEvent( CRITTER_EVENT_PLANE_END, "" );
+    Item@[] items;
+    cr.GetMap().GetItemsByType( ITEM_TYPE_CONTAINER, items );
+
+    for( uint n = 0; n < items.length(); n++ )
+    {
+        if( items[ n ].Proto.Container_Changeble && FLAG( items[ n ].LockerCondition, LOCKER_ISOPEN ) )
+        {
+            AddPickPlane( cr, 0xFFFFF - GetDistantion( cr.HexX, cr.HexY, items[ n ].HexX, items[ n ].HexY ), items[ n ], 0, true );
+        }
+    }
+
+    if( !cr.IsNoPlanes() )
+        cr.SetEvent( CRITTER_EVENT_PLANE_END, "_FindContainers" );
+}
+
+void dlg_GetCleanSet( Critter& master, Critter@ npc, string@ lexems )
+{
+    if( !IS_DIALOG_GENERATED( lexems ) )
+        return;
+    lexems = "$itemlist";
+    if( npc.Stat[ ST_VAR3 ] == 127 || npc.Stat[ ST_VAR3 ] == 63 )
+    {
+        lexems += "@msg text 2656@";
+        return;
+    }
+    bool empty = true;
+
+    if( !FLAG( npc.Stat[ ST_VAR3 ], GATHER_ARMOR ) )
+    {
+        lexems += "@msg text 2650@";
+        empty = false;
+    }
+
+    if( !FLAG( npc.Stat[ ST_VAR3 ], GATHER_DRUG ) )
+    {
+        if( !empty )
+            lexems += ", ";
+        lexems += "@msg text 2651@";
+        empty = false;
+    }
+
+    if( !FLAG( npc.Stat[ ST_VAR3 ], GATHER_WEAPON ) )
+    {
+        if( !empty )
+            lexems += ", ";
+        lexems += "@msg text 2652@";
+        empty = false;
+    }
+    if( !FLAG( npc.Stat[ ST_VAR3 ], GATHER_AMMO ) )
+    {
+        if( !empty )
+            lexems += ", ";
+        lexems += "@msg text 2653@";
+        empty = false;
+    }
+    if( !FLAG( npc.Stat[ ST_VAR3 ], GATHER_MISC ) )
+    {
+        if( !empty )
+            lexems += ", ";
+        lexems += "@msg text 2654@";
+        empty = false;
+    }
+    if( !FLAG( npc.Stat[ ST_VAR3 ], GATHER_EXPLOSIVE ) )
+    {
+        if( !empty )
+            lexems += ", ";
+        lexems += "@msg text 2655@";
+        empty = false;
+    }
+    if( !FLAG( npc.Stat[ ST_VAR3 ], REPAIR_ITEMS ) )
+    {
+        if( !empty )
+            lexems += ", ";
+        lexems += "@msg text 2657@";
+        empty = false;
+    }
+
+    lexems += ".";
+}
+
+bool d_CleanArmor( Critter& master, Critter@ npc )         { return FLAG( npc.Stat[ ST_VAR3 ], GATHER_ARMOR ); }
+bool d_DontCleanArmor( Critter& master, Critter@ npc )     { return !FLAG( npc.Stat[ ST_VAR3 ], GATHER_ARMOR ); }
+bool d_CleanDrugs( Critter& master, Critter@ npc )         { return FLAG( npc.Stat[ ST_VAR3 ], GATHER_DRUG ); }
+bool d_DontCleanDrugs( Critter& master, Critter@ npc )     { return !FLAG( npc.Stat[ ST_VAR3 ], GATHER_DRUG ); }
+bool d_CleanWeapon( Critter& master, Critter@ npc )        { return FLAG( npc.Stat[ ST_VAR3 ], GATHER_WEAPON ); }
+bool d_DontCleanWeapon( Critter& master, Critter@ npc )    { return !FLAG( npc.Stat[ ST_VAR3 ], GATHER_WEAPON ); }
+bool d_CleanAmmo( Critter& master, Critter@ npc )          { return FLAG( npc.Stat[ ST_VAR3 ], GATHER_AMMO ); }
+bool d_DontCleanAmmo( Critter& master, Critter@ npc )      { return !FLAG( npc.Stat[ ST_VAR3 ], GATHER_AMMO ); }
+bool d_CleanMisc( Critter& master, Critter@ npc )          { return FLAG( npc.Stat[ ST_VAR3 ], GATHER_MISC ); }
+bool d_DontCleanMisc( Critter& master, Critter@ npc )      { return !FLAG( npc.Stat[ ST_VAR3 ], GATHER_MISC ); }
+bool d_CleanExplosive( Critter& master, Critter@ npc )     { return FLAG( npc.Stat[ ST_VAR3 ], GATHER_EXPLOSIVE ); }
+bool d_DontCleanExplosive( Critter& master, Critter@ npc ) { return !FLAG( npc.Stat[ ST_VAR3 ], GATHER_EXPLOSIVE ); }
+bool d_RepairItems( Critter& master, Critter@ npc )        { return FLAG( npc.Stat[ ST_VAR3 ], REPAIR_ITEMS ); }
+bool d_DontRepairItems( Critter& master, Critter@ npc )    { return !FLAG( npc.Stat[ ST_VAR3 ], REPAIR_ITEMS ); }
+
+void r_CleanArmor( Critter& master, Critter@ npc )         { UNSETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_ARMOR ); }
+void r_DontCleanArmor( Critter& master, Critter@ npc )     { SETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_ARMOR ); }
+void r_CleanDrugs( Critter& master, Critter@ npc )         { UNSETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_DRUG ); }
+void r_DontCleanDrugs( Critter& master, Critter@ npc )     { SETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_DRUG ); }
+void r_CleanWeapon( Critter& master, Critter@ npc )        { UNSETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_WEAPON ); }
+void r_DontCleanWeapon( Critter& master, Critter@ npc )    { SETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_WEAPON ); }
+void r_CleanAmmo( Critter& master, Critter@ npc )          { UNSETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_AMMO ); }
+void r_DontCleanAmmo( Critter& master, Critter@ npc )      { SETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_AMMO ); }
+void r_CleanMisc( Critter& master, Critter@ npc )          { UNSETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_MISC ); }
+void r_DontCleanMisc( Critter& master, Critter@ npc )      { SETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_MISC ); }
+void r_CleanExplosive( Critter& master, Critter@ npc )     { UNSETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_EXPLOSIVE ); }
+void r_DontCleanExplosive( Critter& master, Critter@ npc ) { SETFLAG( npc.StatBase[ ST_VAR3 ], GATHER_EXPLOSIVE ); }
+void r_RepairItems( Critter& master, Critter@ npc )        { UNSETFLAG( npc.StatBase[ ST_VAR3 ], REPAIR_ITEMS ); }
+void r_DontRepairItems( Critter& master, Critter@ npc )    { SETFLAG( npc.StatBase[ ST_VAR3 ], REPAIR_ITEMS ); }
+/*
+   uint r_AskRepair(Critter& master, Critter@ npc)
+   {
+        Item@[] slotItems;
+        master.GetItems(SLOT_HAND1, slotItems);
+        master.GetItems(SLOT_HAND2, slotItems);
+        master.GetItems(SLOT_ARMOR, slotItems);
+        if(slotItems.length()==0) return 4;
+        for(uint n=0; n<slotItems.length();n++)
+        {
+                if(slotItems[n].IsDeteriorable()) return 5;
+        }
+        return 4;
+   }
+
+   void dlg_Repair(Critter& master, Critter@ npc, string@ lexems)
+   {
+        if(!IS_DIALOG_GENERATED(lexems)) return;
+        lexems="$fixdetails";
+        Item@[] slotItems;
+        master.GetItems(SLOT_HAND1, slotItems);
+        master.GetItems(SLOT_HAND2, slotItems);
+        master.GetItems(SLOT_ARMOR, slotItems);
+        for(uint n=0; n<slotItems.length(); n++)
+        {
+                if(!slotItems[n].IsDeteriorable()) continue;
+                lexems+="@msg item "+(slotItems[n].GetProtoId()*100)+"@ - ";
+                int maxRepairCount = (slotItems[n].Proto.MaxRepairCount>0)?((slotItems[n].Proto.MaxRepairCount+10)*10):DEFAULT_MAX_REPAIR_COUNT;
+                if(FLAG(slotItems[n].BrokenFlags,BI_ETERNAL) || FLAG(slotItems[n].BrokenFlags,BI_NOTRESC) || slotItems[n].RadioChannel>=maxRepairCount)                 lexems+="@msg text 2659@\n";
+                else if(slotItems[n].Deterioration<=50) lexems+="@msg text 2660@\n";
+                else lexems+="@msg text 2658@\n";
+        }
+   }
+
+   bool d_NeedRepair(Critter& master, Critter@ npc)
+   {
+        Item@[] slotItems;
+        master.GetItems(SLOT_HAND1, slotItems);
+        master.GetItems(SLOT_HAND2, slotItems);
+        master.GetItems(SLOT_ARMOR, slotItems);
+        for(uint n=0; n<slotItems.length(); n++)
+        {
+                if(slotItems[n].IsDeteriorable() && slotItems[n].Deterioration>50) return true;
+        }
+        return false;
+   }
+
+   void r_PerformRepair(Critter& master, Critter@ npc)
+   {
+        Item@[] slotItems;
+        master.GetItems(SLOT_HAND1, slotItems);
+        master.GetItems(SLOT_HAND2, slotItems);
+        master.GetItems(SLOT_ARMOR, slotItems);
+        TryRepairItems(slotItems);
+        _CritAnimateUse(npc);
+   }
+ */
+ 
+void RobotItem(Item& item, bool firstTime)
+{
+    item.SetEvent( ITEM_EVENT_USE, "_UseRobotItem" );  
+}
+
+bool _UseRobotItem( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
+{
+	if( not valid( onCritter ) && not valid( onItem ) && not valid( onScenery ) )
+	{
+		CreateRobot(cr,item);
+		return true;
+	}
+	return false;
+}
+
+
+
+
+void CreateRobot(Critter& cr, Item& roboItem)
+{
+    int[] params ={ST_BONUS_LOOK, 100, ST_REPLICATION_TIME, -1, ST_KILL_EXPERIENCE, 0, ST_MAX_LIFE, 120, ST_DIALOG_ID , 9356, MODE_NO_TALK, 0,
+               MODE_NO_RUN, 1, MODE_NO_LOOT, 0, MODE_NO_FLATTEN, 1, ST_BAG_ID, 0, ST_FREE_BARTER_PLAYER, cr.Id, MODE_NO_HOME, 0}; 
+
+    Map@ map = cr.GetMap();
+    if (!valid(map) || (!IsBaseMap(map) && !IsTentMap(map)))
+        return;
+    if (map.GetCritters (350, FIND_ALL | FIND_ONLY_NPC , null)>0)
+        return;
+    uint16 hexX=cr.HexX;
+    uint16 hexY=cr.HexY;
+    map.MoveHexByDir(hexX,hexY,cr.Dir,1);
+    if (!map.IsHexPassed( hexX, hexY ))
+        return;
+
+    DeleteItem(roboItem);
+    map.AddNpc(350, hexX, hexY, cr.Dir, params, null, "robo_cleaner@_roboInit" );
+}
+
+bool _Barter(Critter& npc, Critter& player, bool attach, uint barterCount)
+{
+	npc.StatBase[ST_FREE_BARTER_PLAYER] = player.Id;
+	return true;
+}
+
+
+bool _TryRepair(Critter& cr, Critter& whoUse, int skill)
+{
+    if(skill == SK_REPAIR)
+    {
+	    RemoveDeadBlocker( cr );
+		cr.ToLife();
+		HealCritter( cr );
+        return true;
+    }
+	return false;
+}

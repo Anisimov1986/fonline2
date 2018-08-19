@@ -1,0 +1,114 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc = 0 #
+6 2020 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_NUKA_COLA + 1 #
+0 2030 #
+5 2040 D _var p name_mem_player_npc = 1 D _script economy_dialogs@d_IsEnoughCaps 1 40000 R _script economy_dialogs@r_TakeCaps 1 40000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_SMALLHOUSE + 1 R _script map_ncr@r_BaseProfit 0  @
+3 3000 None 0 #
+4 3010 R _var p name_mem_player_npc + 1 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+0 4010 #
+0 4020 #
+5 4030 D _script economy_dialogs@d_IsEnoughCaps 1 40000 R _var p name_mem_player_npc = 0 R _script economy_dialogs@r_TakeCaps 1 40000 R _item p PID_BASEMAP_SMALLHOUSE + 1 R _script map_ncr@r_BaseProfit 0  @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+3 6010 D _var p name_mem_player_npc = 0 #
+0 6020 &
+
+[engl]
+{100}{}{Diane Colress}
+{200}{}{You see: Diane Colress}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Diane Colress here. What can I do for you, lonely stranger? Want some Nuka? Only a hundred caps! Do it for a greater cause.}
+{2010}{}{Are you okay? Who are you again?}
+{2020}{}{Okay, I'll take one.@@Fine, I'll take one.@@I'll take one then.}
+{2030}{}{Sorry, I must have lost track of the... uh road? See you later.}
+{2040}{}{I got the caps for the map, Diane.}
+{3000}{}{I used to be a news reporter for the Shady Sands Courier, but I made some bad calls, and here I am now, selling Nuka on the streets. I'm [She pauses for dramatic effect.] Diane Colress, giving you latest news my miserable. [Clears throat.]So, as you can see, I am in desperate need of some fast caps.}
+{3010}{}{What the fuck is wrong with you?@@What the hell is wrong with you?@@What is wrong with you, woman?}
+{4000}{}{[She makes an angry expression.] Then suddely, I was interrupted. Back to the topic, I need to sell my house, and everything in it. I'll give you the map to the house, only for @lex base2_price@ caps. Final offer, find out tonight, if the stranger will help a lonely damsel in distress!}
+{4010}{}{I guess you're going to be selling Nuka for the rest of your life. Goodbye.}
+{4020}{}{Ouch, what a price. I'll come back later.}
+{4030}{}{Hey I got that kind of caps. Here you go...Diane Coleslaw was it?}
+{5000}{}{Excellent! Goodbye Nuka-Cola selling days, I'm off to do greater things! This is Diane Colress, your favourite news reporter signing out.}
+{5010}{}{Erm, just don't get yourself hurt. Thanks though.}
+{6000}{}{The lonely stranger accepts the price of the Nuka-Cola. Diane Colress and the rest of Shady Sands thanks you for your purchase.}
+{6010}{}{Thanks...uh, are what is wrong with you, woman?}
+{6020}{}{Thanks, I must be going now. Bye.}
+
+[russ]
+{100}{}{Диана Колресс}
+{200}{}{Вы видите: Диану Колресс}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Я Диана Колресс. Что я могу сделать для тебя, одинокий странник? Хочешь Нюки? Только для тебя 20 крышек.}
+{2010}{}{Ты в порядке?}
+{2020}{}{Я куплю одну ядер-кола. Это как раз то что нужно.}
+{2030}{}{Извините, я похоже заблудился. Увидимся леди.}
+{2040}{}{Я принес деньги и согласен купить твой дом, давай карту.}
+{3000}{}{Я была новостным корреспондентом  НКР, теперь я продаю Нюка-Колу на улице. Я [драматическая пауза] Диана Корлесс, рассказываю вам о своей идущей под откос жизни, мне бы не помешали деньги.}
+{3010}{}{Леди! Просто скажите мне, в чем дело!?}
+{4000}{}{Мне нужно продать свой дом. Отличный домик, и все что вокруг...Всего @lex base2_price@ крышек, это последнее предложение! Я дам тебе карту.}
+{4010}{}{Я думаю, вы будете продавцом Нюка-Колы всю вашу оставшуюся жизнь, пока.}
+{4020}{}{Ох, дороговато. Мне нужно обдумать.}
+{4030}{}{О, у меня как раз есть деньги, пожалуй уютный домик, это то что мне нужно.}
+{5000}{}{Отлично!  Диана Колресс говорит: Прощай торговля Нюка-Колой, я ухожу! }
+{5010}{}{Эх, удачи тебе и спасибо.}
+{6000}{}{Одинокий странник покупает Нюка-Колу. НКР благодарит вас за покупку.}
+{6010}{}{Ты в порядке?}
+{6020}{}{Спасибо, мне уже пора.}
+
+[pols]
+{100}{}{Diana Colress}
+{200}{}{Widzisz kobietę w średnim wieku. Przygląda ci się badawczo.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Diane Colress, do usług. Pomóc ci w czymś? Może chcesz Nuka-Colę? Jedyne 20 kapsli!}
+{2010}{}{Erm... wszystko w porządku? Kim jesteś?}
+{2020}{}{Niech będzie, trochę mnie suszy.}
+{2030}{}{Chyba pomyliłem lokale. Do widzenia.}
+{2040}{}{Mam kapsle. Dobijemy targu?}
+{3000}{}{Raczej, kim byłam... Dziennikarką dla Kuriera Kalifornijskiego, musiałeś słyszeć... A teraz sprzedaję Nukę. Wspaniale, prawda? A wystarczyło trzymać język za zębami i nie wściubiać nosa w nie swoje sprawy, a zwłaszcza w sprawy w paru radnych, który mieli sporo za uszami. No i się doigrałam, wywalono mnie z roboty i doszczętnie udupiono. Potrzebuję forsy żeby stanąć na nogi, z tej gównianej roboty nie da się wyżyć. Właśnie! Nie chcesz może kupić domu?}
+{3010}{}{Domu? A za ile?}
+{4000}{}{Hmm, z racji tego że pilnie potrzebuję funduszy, dam ci okazyjną cenę. Co powiesz na @lex base2_price@ kapsli?}
+{4010}{}{Czterdzieści tysięcy? No, to chyba będziesz dalej sprzedawać Nuka-Colę. Na razie.}
+{4020}{}{Sporo... Wrócę niebawem.}
+{4030}{}{Tak się składa że mam przy sobie trochę gotówki. Umowa stoi.}
+{5000}{}{Świetnie, teraz będę mogła się odegrać na tych skurwielach. Dzięki, jeszcze o mnie usłyszysz!}
+{5010}{}{Aha. Uważaj na siebie.}
+{6000}{}{Trzymaj. Dzięki za wsparcie Funduszu Zemsty imienia Diane Colress.}
+{6010}{}{Eee... że jak? Wszystko w porządku? Kim jesteś?}
+{6020}{}{Ehm... Cieszę się, że @sex@|mogłem||mogłam| pomóc. Muszę już iść.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Diane Colress here. What can I do for you, lonely stranger? Want some Nuka? Only a hundred caps! Do it for a greater cause.}
+{2010}{}{Are you okay? Who are you again?}
+{2020}{}{Okay, I'll take one.@@Fine, I'll take one.@@I'll take one then.}
+{2030}{}{Sorry, I must have lost track of the... uh road? See you later.}
+{2040}{}{I got the caps for the map, Diane.}
+{3000}{}{I used to be a news reporter for the Shady Sands Courier, but I made some bad calls, and here I am now, selling Nuka on the streets. I'm [She pauses for dramatic effect.] Diane Colress, giving you latest news my miserable. [Clears throat.]So, as you can see, I am in desperate need of some fast caps.}
+{3010}{}{What the fuck is wrong with you?@@What the hell is wrong with you?@@What is wrong with you, woman?}
+{4000}{}{[She makes an angry expression.] Then suddely, I was interrupted. Back to the topic, I need to sell my house, and everything in it. I'll give you the map to the house, only for @lex base2_price@ caps. Final offer, find out tonight, if the stranger will help a lonely damsel in distress!}
+{4010}{}{I guess you're going to be selling Nuka for the rest of your life. Goodbye.}
+{4020}{}{Ouch, what a price. I'll come back later.}
+{4030}{}{Hey I got that kind of caps. Here you go...Diane Coleslaw was it?}
+{5000}{}{Excellent! Goodbye Nuka-Cola selling days, I'm off to do greater things! This is Diane Colress, your favourite news reporter signing out.}
+{5010}{}{Erm, just don't get yourself hurt. Thanks though.}
+{6000}{}{The lonely stranger accepts the price of the Nuka-Cola. Diane Colress and the rest of Shady Sands thanks you for your purchase.}
+{6010}{}{Thanks...uh, are what is wrong with you, woman?}
+{6020}{}{Thanks, I must be going now. Bye.}
+

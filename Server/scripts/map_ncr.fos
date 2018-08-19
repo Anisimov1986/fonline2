@@ -1,0 +1,1161 @@
+#include "_macros.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "npc_common_h.fos"
+#include "economy_h.fos"
+#include "ncr_profit.fos"
+#include "polygon_h.fos"
+#include "_ai.fos"
+#include "pdata_h.fos"
+#include "utils_h.fos"
+
+import void HealCritter( Critter& cr ) from "stdlib";
+import void _InitHelplessCitizen( Critter& npc, bool firstTime ) from "town_critters";
+import bool IsEventTimer( uint town ) from "stocmessages";
+
+#define TeamId                    StatBase[ ST_TEAM_ID ]
+#define SAME_TEAM                 # ( cr, attacker )( cr.TeamId == attacker.TeamId )
+#define BANK_SAFE                 ( 501 )
+#define ENTIRE_EXIT_BANK          ( 801 )
+#define ENTIRE_GUARD_COMEBACK     ( 802 )
+#define ENTIRE_BOMB               ( 800 )
+#define ENTIRE_VOTING_PODIUM      ( 803 )
+#define ENTIRE_ELECTION_GUARD     ( 804 )
+#define PID_VOTING_PODIUM         ( 10021 )
+#define BOMB_EXPLODE_TIMEOUT      ( REAL_MINUTE( 1 ) )
+#define PID_NCR_GATE              ( 4778 )
+#define ROLE_ELECTION_DEFENDER    ( 290000 )
+
+int[] Defenderparams =
+{
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, ST_LUCK, 10, MODE_INVULNERABLE, 1, ST_BAG_ID, 272,
+    MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, ST_TEAM_ID, TEAM_Respawn,
+    ST_BONUS_LOOK, 100, ST_DIALOG_ID, 5051, ST_MELEE_DAMAGE_EXT, 800, ST_NPC_ROLE, ROLE_ELECTION_DEFENDER, ST_AI_ID, 14
+};
+
+import void AddNewMessage( string text, int time, int showtimer, uint color, int factionmessage ) from "stocmessages";
+import void AddNewMessage( string text, int time, int showtimer, uint color ) from "stocmessages";
+import void SwitchState( Item& locker ) from "lockers";
+import bool BlockMultihexDoor( Item& door ) from "doors";
+import bool UnblockMultihexDoor( Item& door ) from "doors";
+import void Explode( Map@ map, uint16 hexX, uint16 hexY, Critter@ cr, uint16 explodePid, uint ownerId, int bonusDamage, int bonusRadius ) from "explode";
+import void QuakeScreen( Map& map ) from "effects";
+import void DestroyDoor( Item& door ) from "doors";
+import void AddNewMessage( string text, int time, int showtimer, uint color, bool eventtimer, uint eventid ) from "stocmessages";
+import int  GetNextTime( uint Id ) from "game_events";
+import void JoinFaction( uint id, uint faction, uint rank, bool update ) from "faction_core";
+import bool QuitFaction( uint id ) from "faction_core";
+import bool IsRelation( uint faction, uint faction2, int relation ) from "faction_cache";
+
+uint16[] weaponPidsT0 = { PID_10MM_PISTOL, PID_LASER_PISTOL };
+uint16[] weaponPidsT1 = { PID_TOMMY_GUN, PID_14MM_PISTOL, PID_GREASE_GUN, PID_PLASMA_PISTOL_EXT_CART };
+uint16[] weaponPidsT2 = { PID_ASSAULT_RIFLE, PID_10MM_SMG, PID_LASER_RIFLE };
+uint16[] weaponPidsT3 = { PID_XL70E3, PID_223_PISTOL, PID_HK_P90C, PID_LASER_RIFLE_EXT_CAP };
+uint16[] weaponPidsT4 = { PID_PK12_GAUSS_PISTOL, PID_HK_G11E, PID_YK42B_PULSE_RIFLE };
+
+void SwitchTier( Critter& cr, int TierLevel, int, int )
+{
+    if( TierLevel <= 4 )
+    {
+        GameVar@ GuardsTier = GetGlobalVar( GVAR_NCR_GuardsTier );
+        GuardsTier = TierLevel;
+        cr.Say( SAY_NETMSG, "|" + COLOR_RED + " Tier changed to level " + TierLevel );
+    }
+    else
+        cr.Say( SAY_NETMSG, "|" + COLOR_RED + " Wrong number." );
+}
+
+array< uint16 > bank_area_v =
+{
+    186, 192,
+    170,  192,
+    170, 204,
+    186, 204
+};
+IPolygon@       bank_area;
+
+void _MapInit( Map& map, bool firstTime )
+{
+    @bank_area = NewPolygon();
+    bank_area.AddVertices( bank_area_v );
+    map.SetEvent(MAP_EVENT_IN_CRITTER, "_CrIn");
+}
+
+void _CrIn(Map& map,Critter& cr)
+{
+    if( !cr.IsPlayer() )
+        return;
+    
+    Location @ loc = GetLocationOf( cr );
+    
+    if( IsInPersonalDataList( loc, "CriminalList", cr.Id ) )
+    {
+        Critter@[] critters;
+        map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, critters );
+        for( uint x = 0; x < critters.length(); x++ )
+        {
+            if( critters[ x ].StatBase[ ST_TEAM_ID ] == TEAM_Respawn )
+            {
+                if( critters[ x ].IsSee( cr ) )
+                    AttackCritter( critters[ x ], cr );
+            }
+        }
+        
+        cr.ReputationBase[ REPUTATION_NCR ] = -10000;
+    }
+}
+
+bool entrance_ncr( Location& loc, Critter@[]& critters, uint8 entrance )
+{
+    if( entrance == 2 )     // NCR Camp
+    {
+        for( uint i = 0; i < critters.length(); i++ )
+        {
+            if( !valid( critters[ i ] ) )
+                return false;
+            if( critters[ i ].FACTION == 5 || critters[ i ].FACTION == 6 )
+                return true;
+            return false;
+        }
+    }
+
+    if( entrance == 3 )     // BoS Secret Entrance
+    {
+        for( uint i = 0; i < critters.length(); i++ )
+        {
+            if( !valid( critters[ i ] ) )
+                return false;
+            if( critters[ 0 ].FACTION == 2 )
+                return true;
+            return false;
+        }
+    }
+
+
+    if( entrance == 4 )     // President's Suite
+    {
+        for( uint i = 0; i < critters.length(); i++ )
+        {
+            if( !valid( critters[ i ] ) )
+                return false;
+            if( critters[ 0 ].FACTION == 5 && FACTION_LEADER( critters[ 0 ] ) )
+                return true;
+            return false;
+        }
+    }
+    return true;
+}
+
+void GuardInit( Critter& npc, bool firstTime )
+{
+    if( firstTime )
+    {
+        InitGuard( npc );
+    }
+
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_OnShow" );
+    npc.SetEvent( CRITTER_EVENT_DEAD, "_Death" );
+    npc.SetEvent( CRITTER_EVENT_RESPAWN, "_GuardRespawn" );
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked" );
+    npc.SetEvent( CRITTER_EVENT_ATTACKED, "_OnAttacked" );
+}
+
+void _OnShow( Critter& guard, Critter& player )
+{
+    if( ( player.Reputation[ REPUTATION_NCR ] < -1000 || IsRelation( 5, player.Param[ MAIN_FACTION ], -1 ) ) && guard.IsSee( player ) )
+        AttackCritter( guard, player );
+}
+
+void _Death( Critter& cr, Critter@ killer )
+{
+    if( !valid( killer ) )
+        return;
+    if( killer.Param[ MAIN_FACTION ] == 5 ||  killer.Param[ MAIN_FACTION ] == 6 )
+        return;
+
+    killer.ReputationBase[ REPUTATION_NCR ] -= 100;
+
+    Map@              map = cr.GetMap();
+    array< Critter@ > critters;
+    map.GetCritters( 0, FIND_DEAD | FIND_ONLY_NPC, critters );
+    int               deadguards = 0;
+
+    for( uint i = 0; i < critters.length(); i++ )
+        if( critters[ i ].Stat[ ST_DIALOG_ID ] == 5051 )
+            deadguards++;
+
+    if( deadguards == 1 && !IsEventTimer( 666 ) )
+        AddNewMessage( "~msg 70381", REAL_MINUTE( 10 ), 0, COLOR_WHITE, true, 666 );
+}
+
+bool _OnAttacked( Critter& npc, Critter& attacker )
+{
+    if( attacker.Param[ MAIN_FACTION ] == 5 ||  attacker.Param[ MAIN_FACTION ] == 6 || IsRelation( 5, attacker.Param[ MAIN_FACTION ], 1 ) )
+    {
+        npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70382 );
+        return true;
+    }
+
+    TakeAwayCitizenship( attacker );
+    if( npc.IsSee( attacker ) )
+        return false;
+    else
+        return true;
+
+}
+
+
+void _SomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+    // Zombie swarm.
+    if( attacker.Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm && cr.IsSee( attacker ) )
+    {
+        Attack( cr, attacker );
+        return;
+    }
+    if( attacked.Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm && cr.IsSee( attacked ) )
+    {
+        Attack( cr, attacked );
+        return;
+    }
+
+    if( attacker.Id == cr.Id )
+        return;
+    if( attacker.Id == attacked.Id )
+        return;
+    if( SAME_TEAM( cr, attacker ) )
+        return;
+    if( attacker.Param[ MAIN_FACTION ] == 5 ||  attacker.Param[ MAIN_FACTION ] == 6 || IsRelation( 5, attacker.Param[ MAIN_FACTION ], 1 ) )
+        return;
+    if( attacked.Param[ MAIN_FACTION ] == 5 ||  attacked.Param[ MAIN_FACTION ] == 6 )
+        TakeAwayCitizenship( attacker );
+    if( attacker.IsNpc() )
+        return;
+    if( _IsAggressor( attacked ) )
+        return;
+
+    if( cr.IsSee( attacker ) )
+        Attack( cr, attacker );
+}
+
+
+void Attack( Critter& cr, Critter& attacker )
+{
+    NpcPlane@ plane = cr.GetCurPlane();
+    if( valid( plane ) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id )
+        return;
+    AttackCritter( cr, attacker );
+}
+
+void InitGuard( Critter& npc )
+{
+
+    array< Item@ > items;
+    npc.GetItems( -1, items );
+    DeleteItems( items );
+
+    npc.StatBase[ ST_TEAM_ID ] = TEAM_Respawn;
+    npc.StatBase[ ST_DIALOG_ID ] = 5051;
+    npc.StatBase[ ST_BONUS_LOOK ] = 30;
+    npc.StatBase[ ST_REPLICATION_TIME ] = 10;
+    npc.SkillBase[ SK_SMALL_GUNS ] = 200;
+    npc.SkillBase[ SK_BIG_GUNS ] = 200;
+    npc.SkillBase[ SK_ENERGY_WEAPONS ] = 200;
+    npc.ParamBase[ PE_BONUS_RANGED_DAMAGE ] = 2;
+    npc.ParamBase[ PE_BONUS_RATE_OF_FIRE ] = 1;
+    _CritSetMode( npc, MODE_NO_LOOT );
+    _CritSetMode( npc, MODE_NO_DROP );
+    _CritSetMode( npc, MODE_NO_LOOSE_LIMBS );
+    _CritSetMode( npc, MODE_NO_ENEMY_STACK );
+    _CritSetMode( npc, MODE_NO_STEAL );
+    _CritSetMode( npc, MODE_UNLIMITED_AMMO );
+
+
+    GameVar@ GuardsTier = GetGlobalVar( GVAR_NCR_GuardsTier );
+    uint16[] weaponPids;
+
+    if( GuardsTier == 1 )
+        weaponPids = weaponPidsT1;
+    else if( GuardsTier == 2 )
+        weaponPids = weaponPidsT2;
+    else if( GuardsTier == 3 )
+        weaponPids = weaponPidsT3;
+    else if( GuardsTier == 4 )
+        weaponPids = weaponPidsT4;
+    else
+        weaponPids = weaponPidsT0;
+
+    Item@ item = npc.AddItem( weaponPids[ Random( 0, weaponPids.length() - 1 ) ], 1 );
+
+    if( valid( item ) )
+    {
+        npc.SetFavoriteItem( SLOT_HAND1, item.GetProtoId() );
+        npc.MoveItem( item.Id, 1, SLOT_HAND1 );
+    }
+}
+
+void _GuardRespawn( Critter& npc )
+{
+    InitGuard( npc );
+
+
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return;
+
+    uint16 hx = 0;
+    uint16 hy = 0;
+    uint8  dir = 0;
+    uint   count = map.CountEntire( ENTIRE_GUARD_COMEBACK );
+    for( uint s = 0; s < count; s++ )
+    {
+        if( map.GetEntireCoords( ENTIRE_GUARD_COMEBACK, s, hx, hy, dir ) && map.IsHexPassed( hx, hy ) )
+        {
+            npc.TransitToMap( map.Id, hx, hy, dir );
+        }
+    }
+}
+
+void r_GiveWeapon( Critter& player, Critter@ npc )
+{
+    Item@ item = player.GetItem( 0, SLOT_HAND1 );
+    if( valid( item ) && item.GetType() == ITEM_TYPE_WEAPON )
+    {
+        array< Item@ > items;
+        int            count = npc.GetItems( -1, items );
+        DeleteItems( items );
+
+        MoveItem( item, 1, npc );
+        npc.SetFavoriteItem( SLOT_HAND1, item.GetProtoId() );
+        npc.MoveItem( item.Id, 1, SLOT_HAND1 );
+    }
+    else
+        player.Say( SAY_NETMSG, "|" + COLOR_RED + " You need to have weapon in main hand to give it to soldier." );
+}
+
+
+void r_PresDoor( Critter& player, Critter@ npc )
+{
+
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return;
+
+    Item@ door = map.GetItem( 182, 304, 4777 );
+    if( !valid( door ) )
+        return;
+
+    if( door.Proto.Type != ITEM_TYPE_DOOR )
+        return;
+
+    SwitchState( door );
+
+    if( _LockerIsOpen( door ) )
+        SETFLAG( door.Flags, ITEM_HIDDEN );
+    else
+        UNSETFLAG( door.Flags, ITEM_HIDDEN );
+}
+
+void r_MainGate( Critter& player, Critter@ npc )
+{
+
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return;
+
+    Item@ door = map.GetItem( 168, 174, 4778 );
+    if( !valid( door ) )
+        return;
+
+    if( door.Proto.Type != ITEM_TYPE_DOOR )
+        return;
+
+    SwitchState( door );
+
+
+    if( _LockerIsOpen( door ) )
+    {
+        SETFLAG( door.Flags, ITEM_HIDDEN );
+        UnblockMultihexDoor( door );
+    }
+    else
+    {
+        UNSETFLAG( door.Flags, ITEM_HIDDEN );
+        BlockMultihexDoor( door );
+    }
+}
+
+bool d_IsGateDestroyed( Critter& player, Critter@ npc )
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return false;
+
+    Item@ door = map.GetItem( 168, 174, 4778 );
+    if( !valid( door ) )
+        return false;
+
+    if( door.Proto.Type != ITEM_TYPE_DOOR )
+        return false;
+
+    if( !FLAG( door.Flags, ITEM_CAN_LOOK ) )
+        return true;
+
+    return false;
+}
+
+bool IsGateDestroyed()
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return false;
+
+    Item@ door = map.GetItem( 168, 174, 4778 );
+    if( !valid( door ) )
+        return false;
+
+    if( door.Proto.Type != ITEM_TYPE_DOOR )
+        return false;
+
+    if( !FLAG( door.Flags, ITEM_CAN_LOOK ) )
+        return true;
+
+    return false;
+}
+
+void _BoSDoor( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_BosDoorUse" );
+}
+
+bool _BosDoorUse( Item& door, Critter& cr, int skill )
+{
+    if( cr.Param[ MAIN_FACTION ] != 2 )
+        return false;
+    else
+    {
+        SwitchState( door );
+        return true;
+    }
+}
+
+
+
+void _Forcefield( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_USE_ON_ME, "_ForcefieldUse" );
+}
+
+bool _ForcefieldUse( Item& item, Critter& crit, Item@ usedItem )
+{
+    GameVar@ GatePlanted = GetGlobalVar( GVAR_NCR_Gate );
+
+    if( GatePlanted == 1 )
+    {
+        return false;
+    }
+
+    if( IsGateDestroyed() )
+    {
+        crit.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70590 );
+        return false;
+    }
+
+    if( usedItem.GetProtoId() != PID_DYNAMITE )
+    {
+        crit.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70591 );
+        return false;
+    }
+
+    if( _CritCountItem( crit, PID_DYNAMITE ) < 5 )
+    {
+        Log( "Less than 5 dynamite" );
+        crit.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70592 );         // Need atleast 5
+        return false;
+    }
+    TakeAwayCitizenship( crit );
+    crit.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70593 );
+    crit.DeleteItem( PID_DYNAMITE, 5 );
+
+    GatePlanted = 1;
+    CreateTimeEvent( __FullSecond + BOMB_EXPLODE_TIMEOUT, "e_BombExplode", crit.Id, true );
+
+    return true;
+}
+
+uint e_BombExplode( array< uint >@ values )
+{
+    uint     critterId = values[ 0 ];
+    GameVar@ GatePlanted = GetGlobalVar( GVAR_NCR_Gate );
+    Map@     map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+    {
+        return 0;
+    }
+
+    // Remove doors
+    array< Item@ > doors;
+    map.GetItems( PID_NCR_GATE, doors );
+    for( uint i = 0; i < doors.length(); i++ )
+    {
+        DestroyDoor( doors[ i ] );
+    }
+
+    // Fire explosion
+    uint   explosionSpawnNum = map.CountEntire( ENTIRE_BOMB );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    for( uint i = 0; i < explosionSpawnNum; i++ )
+    {
+        if( map.GetEntireCoords( ENTIRE_BOMB, i, hexX, hexY, dir ) )
+        {
+            Explode( map, hexX, hexY, null, PID_ACTIVE_MINE, critterId, 1000, 5 );
+        }
+    }
+
+    GatePlanted = 0;
+    QuakeScreen( map );
+
+    return 0;
+}
+
+void r_NCRProfit( Critter& player, Critter@ npc, int amount )
+{
+    NCRProfit( amount );
+}
+
+void r_KevlarProfit( Critter& player, Critter@ npc, int amount )
+{
+    NCRProfit( Kevlar_PROFIT * amount );
+}
+
+void r_BaseProfit( Critter& player, Critter@ npc )
+{
+    NCRProfit( BaseMap_PROFIT );
+}
+
+void NCRProfit( int amount )
+{
+    int  CapsMod = RewardMod( amount );
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+    {
+        return;
+    }
+    array< Item@ > safes;
+    map.GetItems( BANK_SAFE, safes );
+    Item@          RandomSafe = ( safes[ Random( 0, safes.length() - 1 ) ] );
+    RandomSafe.AddItem( PID_BOTTLE_CAPS, CapsMod, 0 );
+}
+
+void r_MakeCitizen( Critter& player, Critter@ npc )
+{
+    GiveCitizenship( player );
+}
+
+void GiveCitizenship( Critter& player )
+{
+    if( player.Perk[ PE_NCR_CITIZENSHIP ] != 0 )
+        return;
+    SETFLAG( player.ParamBase[ CR_FLAGS1 ], CR_NCR_CITIZEN );
+    player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70594 );     // citizenship warning
+    player.ParamBase[ PE_NCR_CITIZENSHIP ] = 1;
+}
+
+void GiveCitizenship( Critter& player, int, int, int )
+{
+    GiveCitizenship( player );
+}
+
+void TakeAwayCitizenship( Critter& player )
+{
+    if( player.Perk[ PE_NCR_CITIZENSHIP ] == 0 )
+        return;
+    UNSETFLAG( player.ParamBase[ CR_FLAGS1 ], CR_NCR_CITIZEN );
+    player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70595 );     // citizenship warning
+    player.ParamBase[ PE_NCR_CITIZENSHIP ] = 0;
+}
+
+void TakeAwayCitizenship( Critter& player, int, int, int )
+{
+    TakeAwayCitizenship( player );
+}
+
+void KickOutFromBank( Critter& player, int, int, int )
+{
+    Map@              map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    array< Critter@ > critters;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < critters.length(); i++ )
+    {
+        if( bank_area.IsWithin( critters[ i ] ) )
+        {
+            uint16 hx = 0;
+            uint16 hy = 0;
+            uint8  dir = 0;
+            uint   count = map.CountEntire( ENTIRE_EXIT_BANK );
+            for( uint s = 0; s < count; s++ )
+            {
+                if( map.GetEntireCoords( ENTIRE_EXIT_BANK, s, hx, hy, dir ) && map.IsHexPassed( hx, hy ) )
+                {
+                    critters[ i ].TransitToMap( map.Id, hx, hy, dir );
+                }
+            }
+        }
+    }
+}
+
+void KickOutFromBank()
+{
+    Map@              map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    array< Critter@ > critters;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters );
+
+    for( uint i = 0; i < critters.length(); i++ )
+    {
+        if( bank_area.IsWithin( critters[ i ] ) )
+        {
+            uint16 hx = 0;
+            uint16 hy = 0;
+            uint8  dir = 0;
+            uint   count = map.CountEntire( ENTIRE_EXIT_BANK );
+            for( uint s = 0; s < count; s++ )
+            {
+                if( map.GetEntireCoords( ENTIRE_EXIT_BANK, s, hx, hy, dir ) && map.IsHexPassed( hx, hy ) )
+                {
+                    critters[ i ].TransitToMap( map.Id, hx, hy, dir );
+                }
+            }
+        }
+    }
+}
+
+
+uint e_event_start( array< uint >@ values )
+{
+    if( values[ 0 ] == 0 )
+        return 0;
+    event_start( values[ 0 ] );
+    return GetNextTime( values[ 0 ] );
+}
+
+void event_start( uint id )
+{
+    Critter@[] players;
+    int NcrPlayersOnline = 0;
+    GetAllPlayers( players );
+    for( uint i = 0; i < players.length(); i++ )
+    {
+        if( _CritIsOnline( players[ i ] ) && players[ i ].Param[ MAIN_FACTION ] == 5 || _CritIsOnline( players[ i ] ) && players[ i ].Param[ MAIN_FACTION ] == 6 )
+        {
+            NcrPlayersOnline++;
+        }
+    }
+
+    if( NcrPlayersOnline <= 6 )
+    {
+        Log( "Not enough NCR players. Event cancelled." );
+        return;
+    }
+
+    AddNewMessage( "Shady Sands is opening bank vault to collect town profit. The transaction is vulnerable for attacks. Vault will open in:", REAL_MINUTE( 10 ), 1, COLOR_ORANGE, true, id );
+    CreateTimeEvent( __FullSecond + REAL_MINUTE( 10 ), "e_event_vaultopen", id, true );
+    KickOutFromBank();
+}
+
+
+uint e_event_vaultopen( array< uint >@ values )
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return 0;
+
+
+    Item@ door = map.GetItem( 179, 204, 2826 );
+    if( !valid( door ) )
+        return 0;
+
+    if( _LockerIsClose( door ) )
+        SwitchState( door );
+
+    AddNewMessage( "The vault is open. It will close again in:", REAL_MINUTE( 5 ), 1, COLOR_ORANGE, true, 0 );
+    CreateTimeEvent( __FullSecond + REAL_MINUTE( 5 ), "e_event_vaultclose", 0, true );
+
+    return 0;
+}
+
+uint e_event_vaultclose( array< uint >@ values )
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return 0;
+
+
+    Item@ door = map.GetItem( 179, 204, 2826 );
+    if( !valid( door ) )
+        return 0;
+
+    if( _LockerIsOpen( door ) )
+        SwitchState( door );
+
+    KickOutFromBank();
+    return 0;
+}
+
+void event_start( Critter& cr, int, int, int )
+{
+    event_start( 2 );
+}
+
+
+void event_start( Critter& critter, int actionType, int, int, string@, int[] @ values )
+{
+    event_start( 2 );
+}
+
+uint dlg_ResetKarma( Critter& player, Critter@ terminal, string@ playerName )
+{
+    if( not IS_DIALOG_SAY_MODE( playerName ) )
+        return 8;
+
+    uint playerId = GetPlayerId( playerName );
+    if( playerId == 0 )
+        return 8;
+    Critter@ cr = GetCritter( playerId );
+    if( not valid( cr ) )
+        return 8;
+
+    cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " President have forgiven you and did reset your NCR karma." );
+    cr.ReputationBase[ REPUTATION_NCR ] = 0;
+    return 7;
+}
+
+uint dlg_NCRBlacklist( Critter& player, Critter@ terminal, string@ playerName ) // NCR request.
+{
+    if( not IS_DIALOG_SAY_MODE( playerName ) )
+        return 10;
+
+    uint playerId = GetPlayerId( playerName );
+    if( playerId == 0 )
+        return 10;
+    Critter@ cr = GetCritter( playerId );
+    if( valid( cr ) )
+        cr.ReputationBase[ REPUTATION_NCR ] = -10000;
+
+    Location @ loc = GetLocationOf( player );
+    
+    AddToPersonalDataList( loc, "CriminalList", playerId );
+    
+    //cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You were reported by NCR rangers and will be shot by NCR guards." );
+    
+    return 9;
+}
+
+void dlg_showNCRBlacklist( Critter& player, Critter@ master, string@ lexems )
+{
+    if( IS_DIALOG_END( lexems ) || IS_DIALOG_SAY_MODE( lexems ) )
+        return;
+    
+    lexems += "$banned";
+    array< uint > critters;
+    Location @ loc = GetLocationOf( player );
+    uint          size = GetPersonalDataList( loc, "CriminalList", critters );
+    for( uint i = 0; i < size; i++ )
+    {
+        string@ name = GetPlayerName(critters[i]);
+        if(valid(name))
+            lexems += name + " ("+critters[i]+")" + "\n";
+    }
+}
+
+uint dlg_GiveCitizenship( Critter& player, Critter@ terminal, string@ playerName )
+{
+    if( not IS_DIALOG_SAY_MODE( playerName ) )
+        return 8;
+
+    uint playerId = GetPlayerId( playerName );
+    if( playerId == 0 )
+        return 8;
+    Critter@ cr = GetCritter( playerId );
+    if( not valid( cr ) )
+        return 8;
+
+    cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " President awarded you with Citizenship." );
+    GiveCitizenship( cr );
+    return 7;
+}
+
+uint dlg_TakeCitizenship( Critter& player, Critter@ terminal, string@ playerName )
+{
+    if( not IS_DIALOG_SAY_MODE( playerName ) )
+        return 8;
+
+    uint playerId = GetPlayerId( playerName );
+    if( playerId == 0 )
+        return 8;
+    Critter@ cr = GetCritter( playerId );
+    if( not valid( cr ) )
+        return 8;
+
+    cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " President removed your Citizenship." );
+    TakeAwayCitizenship( cr );
+    return 7;
+}
+
+void Election( Critter& cr, int, int, int )
+{
+    SpawnPodiums();
+    SpawnElectionGuard();
+
+    GameVar@ Candi1Votes = GetGlobalVar( GVAR_NCR_Candidate1Votes );
+    GameVar@ Candi2Votes = GetGlobalVar( GVAR_NCR_Candidate2Votes );
+    GameVar@ Candi3Votes = GetGlobalVar( GVAR_NCR_Candidate3Votes );
+    GameVar@ Candi4Votes = GetGlobalVar( GVAR_NCR_Candidate4Votes );
+    GameVar@ Candi5Votes = GetGlobalVar( GVAR_NCR_Candidate5Votes );
+
+    Candi1Votes = 0;
+    Candi2Votes = 0;
+    Candi3Votes = 0;
+    Candi4Votes = 0;
+    Candi5Votes = 0;
+
+    AddNewMessage( "NCR Election began. Shady Sands is protected from raids for election time. Citizens should head there to vote. Voting will end in:", REAL_HOUR( 1 ), 1, COLOR_ORANGE, true, 0 );
+    CreateTimeEvent( __FullSecond + REAL_HOUR( 1 ), "e_election_end", 0, true );
+}
+
+void SpawnPodiums()
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return;
+
+    uint   entiresnum = map.CountEntire( ENTIRE_VOTING_PODIUM );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( map.GetEntireCoords( ENTIRE_VOTING_PODIUM, i, hexX, hexY ) )
+        {
+            Item@ podium = map.AddItem( hexX, hexY, PID_VOTING_PODIUM, 1 );
+        }
+    }
+
+}
+
+uint e_election_end( array< uint >@ values )
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return 0;
+
+    RemovePodiums();
+    RemoveElectionGuard();
+    CheckVotes();
+    return 0;
+}
+
+
+void RemovePodiums()
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return;
+    array< Item@ > podiums;
+    map.GetItems( PID_VOTING_PODIUM, podiums );
+    DeleteItems( podiums );
+
+}
+
+void dlg_Voting( Critter& player, Critter@ npc, string@ lexems )
+{
+    if( not IS_DIALOG_GENERATED( lexems ) )
+        return;
+
+
+    GameVar@ Candi1 = GetGlobalVar( GVAR_NCR_Candidate1 );
+    GameVar@ Candi2 = GetGlobalVar( GVAR_NCR_Candidate2 );
+    GameVar@ Candi3 = GetGlobalVar( GVAR_NCR_Candidate3 );
+    GameVar@ Candi4 = GetGlobalVar( GVAR_NCR_Candidate4 );
+    GameVar@ Candi5 = GetGlobalVar( GVAR_NCR_Candidate5 );
+
+    if( Candi1 != 0 )
+        lexems += "$candidate1" + GetPlayerName( Candi1.GetValue() );
+    else
+        lexems += "$candidate1" + "Null";
+    if( Candi2 != 0 )
+        lexems += "$candidate2" + GetPlayerName( Candi2.GetValue() );
+    else
+        lexems += "$candidate2" + "Null";
+    if( Candi3 != 0 )
+        lexems += "$candidate3" + GetPlayerName( Candi3.GetValue() );
+    else
+        lexems += "$candidate3" + "Null";
+    if( Candi4 != 0 )
+        lexems += "$candidate4" + GetPlayerName( Candi4.GetValue() );
+    else
+        lexems += "$candidate4" + "Null";
+    if( Candi5 != 0 )
+        lexems += "$candidate5" + GetPlayerName( Candi5.GetValue() );
+    else
+        lexems += "$candidate5" + "Null";
+
+}
+
+
+void SetCandidate( Critter& cr, int Candidate, int PlayerId, int )
+{
+    GameVar@ Candi1 = GetGlobalVar( GVAR_NCR_Candidate1 );
+    GameVar@ Candi2 = GetGlobalVar( GVAR_NCR_Candidate2 );
+    GameVar@ Candi3 = GetGlobalVar( GVAR_NCR_Candidate3 );
+    GameVar@ Candi4 = GetGlobalVar( GVAR_NCR_Candidate4 );
+    GameVar@ Candi5 = GetGlobalVar( GVAR_NCR_Candidate5 );
+    Critter@ PresCandidate = GetCritter( PlayerId );
+
+    if( Candidate == 1 )
+    {
+        Candi1 = PlayerId;
+        if( PlayerId != 0 )
+            cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Candidate one is " + GetPlayerName( Candi1.GetValue() ) );
+        if( valid( PresCandidate ) )
+            PresCandidate.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You have became candidate one." );
+    }
+    else if( Candidate == 2 )
+    {
+        Candi2 = PlayerId;
+        if( PlayerId != 0 )
+            cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Candidate two is " + GetPlayerName( Candi2.GetValue() ) );
+        if( valid( PresCandidate ) )
+            PresCandidate.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You have became candidate two." );
+    }
+    else if( Candidate == 3 )
+    {
+        Candi3 = PlayerId;
+        if( PlayerId != 0 )
+            cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Candidate three is " + GetPlayerName( Candi3.GetValue() ) );
+        if( valid( PresCandidate ) )
+            PresCandidate.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You have became candidate three." );
+    }
+    else if( Candidate == 4 )
+    {
+        Candi4 = PlayerId;
+        if( PlayerId != 0 )
+            cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Candidate four is " + GetPlayerName( Candi4.GetValue() ) );
+        if( valid( PresCandidate ) )
+            PresCandidate.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You have became candidate four." );
+    }
+    else if( Candidate == 5 )
+    {
+        Candi5 = PlayerId;
+        if( PlayerId != 0 )
+            cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Candidate five is " + GetPlayerName( Candi5.GetValue() ) );
+        if( valid( PresCandidate ) )
+            PresCandidate.Say( SAY_NETMSG, "|" + COLOR_WHITE + " You have became candidate five." );
+    }
+    else
+    {
+        cr.Say( SAY_NETMSG, "|" + COLOR_RED + " Wrong candidate number." );
+    }
+}
+
+bool d_IsCandidateOnSpot( Critter& player, Critter@ npc, int CandidateNumber )
+{
+    if( CandidateNumber == 1 && GetGlobalVar( GVAR_NCR_Candidate1 ) != 0 )
+        return true;
+    else if( CandidateNumber == 2 && GetGlobalVar( GVAR_NCR_Candidate2 ) != 0 )
+        return true;
+    else if( CandidateNumber == 3 && GetGlobalVar( GVAR_NCR_Candidate3 ) != 0 )
+        return true;
+    else if( CandidateNumber == 4 && GetGlobalVar( GVAR_NCR_Candidate4 ) != 0 )
+        return true;
+    else if( CandidateNumber == 5 && GetGlobalVar( GVAR_NCR_Candidate5 ) != 0 )
+        return true;
+    else
+        return false;
+}
+
+void CheckVotes()
+{
+
+    GameVar@ Candi1Votes = GetGlobalVar( GVAR_NCR_Candidate1Votes );
+    GameVar@ Candi2Votes = GetGlobalVar( GVAR_NCR_Candidate2Votes );
+    GameVar@ Candi3Votes = GetGlobalVar( GVAR_NCR_Candidate3Votes );
+    GameVar@ Candi4Votes = GetGlobalVar( GVAR_NCR_Candidate4Votes );
+    GameVar@ Candi5Votes = GetGlobalVar( GVAR_NCR_Candidate5Votes );
+
+    GameVar@ Candi1 = GetGlobalVar( GVAR_NCR_Candidate1 );
+    GameVar@ Candi2 = GetGlobalVar( GVAR_NCR_Candidate2 );
+    GameVar@ Candi3 = GetGlobalVar( GVAR_NCR_Candidate3 );
+    GameVar@ Candi4 = GetGlobalVar( GVAR_NCR_Candidate4 );
+    GameVar@ Candi5 = GetGlobalVar( GVAR_NCR_Candidate5 );
+
+    int[] votesCount = { Candi1Votes.GetValue(), Candi2Votes.GetValue(), Candi3Votes.GetValue(), Candi4Votes.GetValue(), Candi5Votes.GetValue() };
+
+    int maxVote = votesCount[ 0 ];
+    int maxIdx = 0;
+
+    for( uint i = 1; i < votesCount.length(); i++ )
+    {
+        if( votesCount[ i ] > maxVote )
+        {
+            maxIdx = i;
+            maxVote = votesCount[ i ];
+        }
+    }
+
+    Log( "Winner " + maxIdx );
+
+    if( maxIdx == 0 )
+    {
+        AddNewMessage( "NCR new president is " + GetPlayerName( Candi1.GetValue() ) + ", who won with " + Candi1Votes.GetValue() + " votes!", REAL_MINUTE( 10 ), 0, COLOR_ORANGE, true, 0 );
+        MakePresident( GetCritter( Candi1.GetValue() ) );
+    }
+    else if( maxIdx == 1 )
+    {
+        AddNewMessage( "NCR new president is " + GetPlayerName( Candi2.GetValue() ) + ", who won with " + Candi2Votes.GetValue() + " votes!", REAL_MINUTE( 10 ), 0, COLOR_ORANGE, true, 0 );
+        MakePresident( GetCritter( Candi2.GetValue() ) );
+    }
+    else if( maxIdx == 2 )
+    {
+        AddNewMessage( "NCR new president is " + GetPlayerName( Candi3.GetValue() ) + ", who won with " + Candi3Votes.GetValue() + " votes!", REAL_MINUTE( 10 ), 0, COLOR_ORANGE, true, 0 );
+        MakePresident( GetCritter( Candi3.GetValue() ) );
+    }
+    else if( maxIdx == 3 )
+    {
+        AddNewMessage( "NCR new president is " + GetPlayerName( Candi4.GetValue() ) + ", who won with " + Candi4Votes.GetValue() + " votes!", REAL_MINUTE( 10 ), 0, COLOR_ORANGE, true, 0 );
+        MakePresident( GetCritter( Candi4.GetValue() ) );
+    }
+    else if( maxIdx == 4 )
+    {
+        AddNewMessage( "NCR new president is " + GetPlayerName( Candi5.GetValue() ) + ", who won with " + Candi5Votes.GetValue() + " votes!", REAL_MINUTE( 10 ), 0, COLOR_ORANGE, true, 0 );
+        MakePresident( GetCritter( Candi5.GetValue() ) );
+    }
+
+}
+
+void MakePresident( Critter& cr )
+{
+    if( !QuitFaction( cr.Id ) )
+        return;
+    JoinFaction( cr.Id, 5, FACTION_RANK_LEADER, true );
+    cr.Say( SAY_NETMSG, "|" + COLOR_WHITE + " Congratulations. You have became president of New California Republic! But the hard work just begins..." );
+}
+
+void SpawnElectionGuard()
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return;
+
+    uint   entiresnum = map.CountEntire( ENTIRE_ELECTION_GUARD );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( map.GetEntireCoords( ENTIRE_ELECTION_GUARD, i, hexX, hexY ) )
+        {
+            Critter@ TempGuard = map.AddNpc( Random( 561, 562 ), hexX, hexY, Random( 0, 5 ), Defenderparams, null, null );
+            TempGuard.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_OnShow" );
+            TempGuard.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked" );
+            TempGuard.SetEvent( CRITTER_EVENT_ATTACKED, "_OnAttacked" );
+        }
+    }
+
+}
+
+void RemoveElectionGuard()
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+    if( !valid( map ) )
+        return;
+
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        if( npcs[ i ].Stat[ ST_NPC_ROLE ] == ROLE_ELECTION_DEFENDER )
+            DeleteNpc( npcs[ i ] );
+    }
+    return;
+}
+
+void RemoveCandidate( Critter& cr, int Candidate, int, int )
+{
+    GameVar@ Candi1 = GetGlobalVar( GVAR_NCR_Candidate1 );
+    GameVar@ Candi2 = GetGlobalVar( GVAR_NCR_Candidate2 );
+    GameVar@ Candi3 = GetGlobalVar( GVAR_NCR_Candidate3 );
+    GameVar@ Candi4 = GetGlobalVar( GVAR_NCR_Candidate4 );
+    GameVar@ Candi5 = GetGlobalVar( GVAR_NCR_Candidate5 );
+
+    if( Candidate == 1 )
+    {
+        Candi1 = 0;
+    }
+    else if( Candidate == 2 )
+    {
+        Candi2 = 0;
+    }
+    else if( Candidate == 3 )
+    {
+        Candi3 = 0;
+    }
+    else if( Candidate == 4 )
+    {
+        Candi4 = 0;
+    }
+    else if( Candidate == 5 )
+    {
+        Candi5 = 0;
+    }
+    else
+    {
+        cr.Say( SAY_NETMSG, "|" + COLOR_RED + " Wrong candidate number." );
+    }
+}
+
+void RemoveCandidates( Critter& cr, int, int, int )
+{
+    GameVar@ Candi1 = GetGlobalVar( GVAR_NCR_Candidate1 );
+    GameVar@ Candi2 = GetGlobalVar( GVAR_NCR_Candidate2 );
+    GameVar@ Candi3 = GetGlobalVar( GVAR_NCR_Candidate3 );
+    GameVar@ Candi4 = GetGlobalVar( GVAR_NCR_Candidate4 );
+    GameVar@ Candi5 = GetGlobalVar( GVAR_NCR_Candidate5 );
+
+    Candi1 = 0;
+    Candi2 = 0;
+    Candi3 = 0;
+    Candi4 = 0;
+    Candi5 = 0;
+}
+
+void PatchNpcRepl( Critter& cr, int, int, int ) // Stop fighting back kurwa and run away.
+{
+    Map@ map = GetMapByPid( MAP_ncr_bazaar, 0 );
+
+    Critter@[] critters;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, critters );
+    for( uint x = 0; x < critters.length(); x++ )
+    {
+        if( critters[ x ].StatBase[ ST_TEAM_ID ] != TEAM_Respawn )
+        {
+            critters[ x ].StatBase[ ST_REPLICATION_TIME ] = 60;
+            critters[ x ].StatBase[ ST_AI_ID ] = AIPACKET_FO1_RUNAWAY;
+            critters[ x ].StatBase[ ST_TEAM_ID ] = 0;
+            critters[ x ].StatBase[ ST_BAG_ID ] = 0;
+            critters[ x ].SkillBase[ SK_SMALL_GUNS ] = 0;
+            critters[ x ].SkillBase[ SK_BIG_GUNS ] = 0;
+            critters[ x ].SkillBase[ SK_ENERGY_WEAPONS ] = 0;
+            critters[ x ].SkillBase[ SK_UNARMED ] = 0;
+            if( critters[ x ].GetScriptId() == 0 )           // delete stuff from normal npc, no shopkeepers etc.
+            {
+                array< Item@ > items;
+                int            count = critters[ x ].GetItems( -1, items );
+                DeleteItems( items );
+            }
+            critters[ x ].ToDead( ANIM2_DEAD_BURST, null );
+            critters[ x ].ToLife();
+            HealCritter( critters[ x ] );
+        }
+    }
+}

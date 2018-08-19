@@ -1,0 +1,495 @@
+[comment]
+- No item is given to the players to give to Charles. So it will be invisible ninja package for now and only work with the var.
+-(To be added to Son of Bob's Iguana Bits Stand)
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+30 1020 D _var p name_mem_player_npc = 1 #
+32 1030 D _var p name_mem_player_npc = 2 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+5 2030 #
+6 2040 D _var p q_iguana_bob = 0 #
+9 2050 D _var p q_iguana_bob = 2 #
+14 2060 D _var p q_iguana_bob = 4 D _item p PID_MUTATED_FRUIT } 10 R _var p q_iguana_bob = 5 R _item p PID_MUTATED_FRUIT - 10 R _var p name_mem_player_npc = 1 R _param p ST_EXPERIENCE + 750 R _script economy_dialogs@r_GiveCaps 1 500 R _item p PID_KNIFE + 1 #
+0 2070 #
+12 2080 D _var p q_iguana_bob = 3 @
+3 3000 None 0 #
+0 3010 D _item p PID_BOTTLE_CAPS } 115 R _item p PID_BOTTLE_CAPS - 115 R _item p PID_MEAT_ON_A_STICK + 1 R _item p PID_NUKA_COLA + 1 #
+0 3020 D _item p PID_BOTTLE_CAPS } 15 R _item p PID_BOTTLE_CAPS - 15 R _item p PID_MEAT_ON_A_STICK + 1 #
+0 3030 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_NUKA_COLA + 1 #
+21 3040 #
+0 3050 @
+4 4000 None 0 #
+21 4010 #
+0 4020 @
+5 5000 None 0 #
+15 5010 #
+16 5020 #
+17 5030 #
+18 5040 #
+19 5050 #
+21 5060 #
+0 5070 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+8 7010 R _var p q_iguana_bob = 1 #
+0 7020 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+10 9010 R _var p q_iguana_bob = 3 R _script economy_dialogs@r_GiveCaps 1 200 R _item p PID_MEAT_ON_A_STICK + 1 R _param p ST_EXPERIENCE + 600 R _script karma@r_AddKarma 1 20 #
+11 9020 @
+10 10000 None 0 #
+12 10010 #
+0 10020 @
+11 11000 None 0 #
+0 11010 @
+12 12000 None 0 #
+13 12010 @
+13 13000 None 0 #
+0 13010 R _var p q_iguana_bob = 4 #
+0 13020 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 #
+5 15010 #
+21 15020 @
+16 16000 None 0 #
+5 16010 #
+21 16020 @
+17 17000 None 0 #
+5 17010 #
+21 17020 @
+18 18000 None 0 #
+5 18010 #
+21 18020 @
+19 19000 None 0 #
+5 19010 #
+21 19020 @
+20 20000 None 0 @
+21 21000 None 0 #
+3 21010 D _var p name_mem_player_npc = 0 #
+31 21020 D _var p name_mem_player_npc = 1 #
+4 21030 #
+5 21040 #
+6 21050 D _var p q_iguana_bob = 0 #
+9 21060 D _var p q_iguana_bob = 2 #
+9 21070 D _var p q_iguana_bob = 4 D _item p PID_MUTATED_FRUIT } 10 R _var p name_mem_player_npc = 1 R _var p q_iguana_bob = 5 R _item p PID_MUTATED_FRUIT - 10 R _item p PID_KNIFE + 1 R _param p ST_EXPERIENCE + 750 R _script economy_dialogs@r_GiveCaps 1 500 #
+0 21080 #
+12 21090 D _var p q_iguana_bob = 3 #
+33 21100 D _var p q_iguana_bob = 5 D _script quest@quest_checkcd 1 9117 D _item p PID_MUTATED_FRUIT } 10 R _script quest@quest_setcd 2 9117 122 R _script economy_dialogs@r_GiveCaps 1 250 R _param p ST_EXPERIENCE + 300 @
+30 22000 None 0 #
+31 22010 #
+4 22020 #
+5 22030 #
+33 22040 D _script quest@quest_checkcd 1 9117 D _item p PID_MUTATED_FRUIT } 10 R _script quest@quest_setcd 2 9117 122 R _script economy_dialogs@r_GiveCaps 1 250 R _param p ST_EXPERIENCE + 300 R _item p PID_MUTATED_FRUIT - 10 #
+0 22050 @
+31 23000 None 0 #
+0 23010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_MEAT_ON_A_STICK + 1 R _item p PID_NUKA_COLA + 1 #
+0 23020 D _item p PID_BOTTLE_CAPS } 10 R _item p PID_BOTTLE_CAPS - 10 R _item p PID_MEAT_ON_A_STICK + 1 #
+0 23030 D _item p PID_BOTTLE_CAPS } 90 R _item p PID_BOTTLE_CAPS - 90 R _item p PID_NUKA_COLA + 1 #
+21 23040 #
+0 23050 @
+32 24000 None 0 @
+33 25000 None 0 #
+0 25010 &
+
+[engl]
+{100}{}{Iguana Bob}
+{200}{}{You see: Iguana Bob, the street vendor.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{Get your Iguana here! Fresh Iguana Bits! You'll never find better food anywhere else. Well hello there, are you a buying customer? My name is Iguana Bob. Would you like to buy a delicious Iguana Bits on a stick? It's only 15 caps.}
+{2010}{}{I'd like an Iguana.}
+{2020}{}{Excuse me, where am I?}
+{2030}{}{Can you help me find some place?@@I need some directions.@@Can you show me around?@@I'm new here, and need some directions.}
+{2040}{}{I'm looking for some work.@@Got any work?@@I need a job, got any?@@I'm looking for work.}
+{2050}{}{I delivered the Iguana to Charles.}
+{2060}{}{Here you go, I've got the fruit.@@I've gathered the fruit you wanted.@@I've got the fruit you wanted.}
+{2070}{}{Nevermind.@@I've got to go.@@No thanks. Goodbye.}
+{2080}{}{Hey, I'll take that job.@@I'll take that job you mentioned.}
+{3000}{}{Great! Would you like some Nuka-Cola to go with your purchase? It's a new thing we're doing. Only a hundred caps!}
+{3010}{}{I'll buy both then.@@I'll take both.@@Okay, I'll take both.}
+{3020}{}{I'm hungry, not thirsty. I'll take the Iguana only.@@I'll take the Iguana only.@@No thanks, I'll take the Iguana without the Nuka.}
+{3030}{}{Can I just get the Nuka please?@@Can I have the Nuka only?}
+{3040}{}{Never mind. May I ask something else?@@On second thought, I've got other question for you.}
+{3050}{}{I'll pass. Goodybe.@@No thanks, bye.@@Thanks, but I'll pass.See you later, Bob.@@It's so tempting, but I'll have to pass. Goodbye.}
+{4000}{}{Where are you? Why you are in the Hub of course, @sex@|stranger||darlin'|. Are you lost or something?}
+{4010}{}{Just looking around. Can we talk about something else?@@No, but I'm new here. Can I ask you something else?}
+{4020}{}{Oh, alright. Goodbye.@@Okay, thanks, and goodbye.@@Right. See you later.}
+{5000}{}{Sure I can if it helps you get around the city. So, what directions do you need precisely?}
+{5010}{}{Where can I get a drink?@@I need to drink. Where should I go?}
+{5020}{}{Is there a workbench?@@I'm looking for a workbench.}
+{5030}{}{Where can I find a place to trade?@@Are there any traders here in town?}
+{5040}{}{Are there any Doctors around?@@I need to find a doctor.@@I'm looking for a doctor.}
+{5050}{}{Can I buy a home somewhere?@@I think I'll be staying here for a while. Are there any houses for sale here?}
+{5060}{}{Okay, thanks. Can I ask something else?@@I see. Can we talk about something else?@@Okay, I want to ask you something else.}
+{5070}{}{I think I understand. Goodbye.@@Okay, I think I get it. Thanks, and goodbye.}
+{6000}{}{You're new here right, like really new? I can help you out if you're trying to start a life here or somethin. Charles loves my Iguanas. If you don't know him, he is the sheriff of this town. And I need you to...}
+{6010}{}{Yes?@@What?@@I'm listening.@@Okay, go on.}
+{7000}{}{I've got a small gift for him. Just to remind him of our mutual... understanding. I can't leave my stand right now, so could you take this package and give it to him?}
+{7010}{}{Sure, I can do that.@@No problem Bob, I can do that.@@I can do that, sure.}
+{7020}{}{Do it on your own time bob. Bye.@@Not interested, sorry.@@Maybe some other time.}
+{8000}{}{Okay. Head to the police station, it's just across that street on the right.}
+{8010}{}{Okay, be right back!@@All right, I'll be right back.@@Yeah, I'll go there now.}
+{9000}{}{You gave him the package? What did he say?@@You gave that package?}
+{9010}{}{Well, he seemed a bit strange, but said you're a good friend, and still remembers your "arrangement"... whatever that is.}
+{9020}{}{[Lie.] He was pretty upset, if you ask me... Said something like "Fuck this shit!" and "Screw Bob."}
+{10000}{}{Well, such a good friend he is... [He smiles strangely.] Here you go, a little payment for your effort. And a Iguana on me, friend. I might have another job for you, if you're interested of course...}
+{10010}{}{Sure.@@Yeah, I'm interested.@@I'm all ears, Bob.@@I'm up for it.}
+{10020}{}{Not right now, I'm busy. Goodbye.@@Maybe later Bob, see you around.}
+{11000}{}{Charles would never say that, and you're just a fucking liar. Get lost! Oh, and don't forget about your payment, shithead.}
+{11010}{}{Pfft, Whatever. Later.@@Whatever, asshole.@@Screw you, Bob.}
+{12000}{}{I knew you'd accept. While you were gone, a guard ordered twenty Nuka-Cola Bottles. As you know, the Nuka-Cola maker came in not too long ago. It takes water and fruits, then the machine will do it's little magic to make the cold beverage everybody loves. However, I didn't get that many fruits, and the next shipment comes in two weeks.}
+{12010}{}{Wow! Twenty Nuka-Colas? What do I have to do?}
+{13000}{}{What I need you to do is gather ten fruits and bring them to me. That should probably last me till' the next shipment. Will you still do it?}
+{13010}{}{You need ten fruits? Easy. Be right back.}
+{13020}{}{Not right now, sorry. Goodbye.}
+{14000}{}{Just look at that, ten good fruits, ready to be made into soda. You really helped me out you know. I'll give you more than what I was going to give you so here. You've earned it. I'll also give you a friendly discount here. Thank you for everything friend. Don't stop here, you can come back from time to time and get me fruits. I'll even reward you.}
+{14010}{}{Hey, no problem. Goodbye.}
+{15000}{}{If you're looking for a drink, try the Maltese Falcon. There would be a building to my left that has a light up sign that says "Maltese Falcon". It's got some good priced drinks there.}
+{15010}{}{Alright, what about another building?}
+{15020}{}{I understand, can I ask something else?}
+{16000}{}{If you're looking for a workbench, there is a small workshop behind the Crimson Caravan's building. Just go north, you'll know what I'm talking about.}
+{16010}{}{Alright, what about another building?}
+{16020}{}{I understand, can I ask something else?}
+{17000}{}{The only shops I know are me, the General Store, and the weapons store. If you're looking to trade goods, go left, then go on the next turn till you hit a building with a "General Store" sign on it. As for a weapons shop [He points to his right] that building with the "Guns" sign on it if you couldn't already figure it out.}
+{17010}{}{Alright, what about another building?}
+{17020}{}{I understand, can I ask something else?}
+{18000}{}{There's a Clinic on the far left. Head left, skip the first turn you see, but turn on the other. Then you will soon reach the Clinic.}
+{18010}{}{Alright, what about another building?}
+{18020}{}{I understand, can I ask something else?}
+{19000}{}{Looking to buy a house? Go to the police station, there should be a house seller there. The police station is the building to my right that has the "police" sign on it. If you don't like houses here, there are homes to buy on the other side of Hub.}
+{19010}{}{Alright, what about another building?}
+{19020}{}{I understand, can I ask something else?}
+{20000}{}{Setting up a shop? See the man standing behind the table over there? He can get you set up with those. Or if you go to the trading district that is south-west of town, there should be some shopkeepers there.}
+{21000}{}{What else can I do for you?}
+{21010}{}{I'd like an Iguana.}
+{21020}{}{I'd like an Iguana.}
+{21030}{}{Excuse me, where am I?}
+{21040}{}{Can you help me find some place?}
+{21050}{}{I'm looking for some work.}
+{21060}{}{I delivered it to Charles.}
+{21070}{}{Here you go, ten fruits.}
+{21080}{}{Never mind. I have to go.}
+{21090}{}{Hey, I'll take that task you asked me.}
+{21100}{}{Here you go Bob. I got you ten fruits.}
+{22000}{}{Get your Iguana here! Fresh Iguana Bits! You'll never find better food anywhere else. It's you again, how're you doing? What can Iguana Bob do for you today?}
+{22010}{}{Can I get some Iguana?}
+{22020}{}{Where was I again?}
+{22030}{}{Can you help me find a building?}
+{22040}{}{Here you go Bob. I got you ten fruits.}
+{22050}{}{Nothing today Bob. Bye.}
+{23000}{}{Here for mouth watering iguana bits? I'm giving you a discount too. It'll be 10 caps for an Iguana and 90 caps for Nuka-Cola. What's your pick friend?}
+{23010}{}{I'll take both Nuka and Iguana for 100 caps.}
+{23020}{}{I'll just take Iguana please.}
+{23030}{}{Can I get the Nuka-Cola alone please?}
+{23040}{}{Seems tempting, but I have something else to ask.}
+{23050}{}{It sounds so good! But sadly I can't. Goodbye Bob.}
+{24000}{}{I don't ever want to serve you @pname@. Go away.}
+{25000}{}{How nice of you friend, to bring more fruit. Keep up the good work. Here's a little payment for your hard work.}
+{25010}{}{Of course.}
+
+[russ]
+{100}{}{Iguana Bob}
+{200}{}{Вы видите Игуана Боба}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{Лучшие игуаны только здесь! Свежие кусочки игуаны! Вы нигде не найдете лучшей еды. Приветствую, будете покупать что-либо? Меня зовут Игуана Боб. Хотите купить превосходные кусочки игуаны на палочке? Стоят всего 15 крышек.}
+{2010}{}{Я хочу игуану.}
+{2020}{}{Простите, но куда я попал?}
+{2030}{}{Не могли бы вы помочь мне найти одно место?@@Мне нужно пройти в одно место...@@Не поможете мне осмотреться вокруг?@@Я тут новенький, поможете сориентироваться?}
+{2040}{}{Я ищу какую-нибудь работу.@@Есть какая-нибудь работа?@@Ищу работу, есть что на примете?@@Ищу работу.}
+{2050}{}{Я отнес игуану Чарльзу.}
+{2060}{}{Поручение выполнено, У меня есть фрукты.@@Я собрал фрукты, как вы хотели.@@У меня есть фрукты.}
+{2070}{}{Неважно.@@Мне нужно идти.@@Нет, спасибо. Пока.}
+{2080}{}{Да, я возьмусь за эту работу.@@Мне интересная эта работа.}
+{3000}{}{Превосходно! Не хотите ли купить Нюка-Колу в придачу? Это наш новый продукт. Всего за сотню крышек!}
+{3010}{}{Я куплю и то и другое.@@Ок, куплю и то и другое.@@Хорошо, возьму все.}
+{3020}{}{Я голоден, но не хочу пить. Я возьму только игуану.@@Я куплю только игуану.@@Нет, спасибо, я возьму только игуану без Нюка-Колы.}
+{3030}{}{Могу я взять только Нюка Колу?@@Могу я выбрать только Нюку?}
+{3040}{}{Неважно. Могу я спросить что-то еще?@@В следующий раз, я хочу спросить кое-что еще.}
+{3050}{}{Я пас. До встречи.@@Нет, спасибо, пока.@@Спасибо, но я откажусь, увидимся, Боб.@@Это очень заманчиво, но я откажусь. До свидания.}
+{4000}{}{Где ты? Почему ты в Хабе, конечно, @sex@|незнакомец||красавица|. Потерял@sex@|||а| что-то?}
+{4010}{}{Просто осматриваюсь. Можем поговорить о чем-то другом?@@Нет, но я новенький здесь. Могу я спросить что-то еще?}
+{4020}{}{Ох, все в порядке. До свидания.@@Хорошо, спасибо, и до встречи.@@Верно. Еще увидимся.}
+{5000}{}{Конечно смогу, если это поможет тебе сориентироваться в городе. Итак, какие конкретно места тебя интересуют?}
+{5010}{}{Где я могу выпить?@@Мне нужно выпить. Куда я должен пойти?}
+{5020}{}{Здесь есть верстак?@@Я ищу верстак.}
+{5030}{}{Где здесь можно поторговать?@@Какие торговцы есть в этом городе?}
+{5040}{}{Здесь есть доктора в округе?@@Мне нужно найти врача.@@Я ищу доктора.}
+{5050}{}{Могу я купить здесь дом?@@Думаю, я бы остановился здесь на некоторое время. Здесь есть дома на продажу?}
+{5060}{}{Ок, спасибо. Могу я спросить что-то еще?@@Вижу. Мы можем поговорить о чем-нибудь еще?@@Хорошо, я хотел бы спросить о чем-нибудь другом.}
+{5070}{}{Думаю, я понял. До свидания.@@Думаю, я понял. Спасибо и до встречи.}
+{6000}{}{Ты новенький здесь, действительно новенький? Я могу помочь тебе если ты собираешься здесь устроиться. Чарльз обожает мои игуаны. Если ты с ним не знаком, то это шериф нашего города. И ты можешь мне помочь...}
+{6010}{}{Да?@@Что?@@Я слушаю.@@Хорошо, я слушаю.}
+{7000}{}{У меня есть небольшой подарок для него. Просто чтобы напомнить ему о нашем...взаимопонимании. Я не могу сейчас покинуть свой прилавок, так что не мог бы ты передать ему этот пакет?}
+{7010}{}{Конечно, я могу это сделать@@Без проблем Боб, я сделаю это.@@Я могу это сделать, без проблем.}
+{7020}{}{Трать на это собственное время, Боб. Пока.@@Извини, но не интересует.@@Может в следующий раз.}
+{8000}{}{Хорошо. Тебе в полицейский участок, это дальше вдоль улицы справа.}
+{8010}{}{Хорошо, скоро вернусь!@@Окей, скоро буду.@@Хорошо, я пошел.}
+{9000}{}{Ты отдал ему пакет? Что он сказал?@@Ты отдал ему пакет?}
+{9010}{}{Хорошо, он был слегка удивлен, но сказал, что ты хороший друг, и до сих пор помнишь ваши "соглашения"... что-то в этом роде.}
+{9020}{}{[Солгать.] Он был очень расстроен, если спросишь меня... сказал что-то вроде "Вот дерьмо!" and "Скряга Боб."}
+{10000}{}{Хорошо, он хороший друг... [Странно улыбается.] Вот небольшая плата за твои усилия. И игуана от меня, друг. Возможно, у меня есть другая работа для тебя, если ты заинтересован, конечно...}
+{10010}{}{Заманчиво.@@О да, я заинтересован.@@Я весь во внимании, Боб.@@Внимательно слушаю.}
+{10020}{}{Сейчас я занят. До свидания.@@Может позже, Боб. Увидимся.}
+{11000}{}{Чарльз никогда бы не сказал такого, а ты просто долбанный лжец. Пошел прочь! Ах да, не забудь свою оплату, болван.}
+{11010}{}{Пф, ну и ладно, пока.@@Ну и ладно, кретин.@@Да пошел ты, Боб.}
+{12000}{}{Я знал, что ты возьмешься. Пока тебя не было, один охранник заказал 20 бутылок Нька-Колы. Как ты знаешь, машина по производству Нюка-Колы появилась не так давно. Для производства требуются вода и фрукты, после этого, путем некоторых волшебных манипуляций, машина делает напиток, который все так любят. Как бы то ни было, у меня нет такого количества фруктов, а следующая поставка прибудет по прошествии двух недель.}
+{12010}{}{Вау! Двадцать штук Нюка-Колы? И что ты планируешь делать?}
+{13000}{}{Если ты пойдешь и добудешь мне 10 фруктов, это будет именно то, что мне нужно. Этого, вероятно, будет достаточно, чтобы протянуть до следующей поставки. Сможешь это сделать?}
+{13010}{}{Тебе нужно десять фруктов? Легко. Скоро вернусь.}
+{13020}{}{Сейчас не могу, извини. Счастливо оставаться.}
+{14000}{}{Ты только посмотри, десять фруктов, готовые к переработке. Знаешь, ты действительно мне помог. Я дам даже больше, чем собирался. Ты честно их заработал. Также я предоставлю тебе дружескую скидку. Спасибо за все, друг. Можешь приносить еще фрукты, я с радостью куплю их.}
+{14010}{}{Нет проблем, а теперь мне пора.}
+{15000}{}{Если ты ищешь, где выпить, то тебе в Мальтийский Сокол. Это здание слева от меня со светящейся вывеской "Maltese Falcon". Там можно найти выпивку по хорошей цене.}
+{15010}{}{Хорошо, а что насчет остальных заведений?}
+{15020}{}{Понял, могу я спросить кое-что еще?}
+{16000}{}{Если ты ищешь верстак, то есть небольшая мастерская за здание Crimson Caravan. Просто иди на север и поймешь, о чем я говорю.}
+{16010}{}{Хорошо, а что насчет остальных заведений?}
+{16020}{}{Понял, могу я спросить кое-что еще?}
+{17000}{}{Магазины, про которые мне известно, это Центральный магазин и Оружейный. Если ты хочешь продать обычные товары, иди налево, далее один поворот и иди, пока не увидишь здание с надписью на вывеске: "General Store". Что касается оружейного магазина [Он повернулся направо], то это здание с надписью: "Guns", если ты до сих пор его не заметил.}
+{17010}{}{Хорошо, а что насчет остальных заведений?}
+{17020}{}{Понял, могу я спросить кое-что еще?}
+{18000}{}{Есть клиники, если углубиться немного в город. Повернись налево, пропусти первый поворот, который увидишь, но поверни на следующем. Там ты вскоре увидишь клинику.}
+{18010}{}{Хорошо, а что насчет остальных заведений?}
+{18020}{}{Понял, могу я спросить кое-что еще?}
+{19000}{}{Присматриваешь домик для покупки? Идите в полицейский участок, там будет торговец недвижимостью. Полицейский участок - это здание справа от меня с вывеской "police". Если тебе не нравятся здешние дома, то можно купить квартиру на другой стороне Хаба.}
+{19010}{}{Хорошо, а что насчет остальных заведений?}
+{19020}{}{Понял, могу я спросить кое-что еще?}
+{20000}{}{Хочешь открыть магазин? Видишь парня, стоящего позади той вывески? Он может помочь тебе с этим. Или если пойдешь в торговый район на юго-востоке города, там тоже можно найти владельцев магазинов.}
+{21000}{}{Что еще я могу для тебя сделать?}
+{21010}{}{Я возьму игуану.}
+{21020}{}{Я возьму игуану.}
+{21030}{}{Прости, но где я?}
+{21040}{}{Не поможете найти одно место?}
+{21050}{}{Я ищу какую-нибудь работу.}
+{21060}{}{Я доставил это Чарльзу.}
+{21070}{}{Как ты и хотел: 10 фруктов.}
+{21080}{}{Неважно. Мне нужно идти.}
+{21090}{}{Эй, я возьмусь за то поручение, о котором ты просил.}
+{21100}{}{Как ты и просил, Боб, вот 10 фруктов.}
+{22000}{}{Лучшие игуаны только здесь! Свежие кусочки игуаны! Вы нигде не найдете лучшей еды. Это снова ты, как дела? Чем могу помочь?}
+{22010}{}{Могу я взять игуану?}
+{22020}{}{Не напомнишь, где я?}
+{22030}{}{Поможешь мне найти здание?}
+{22040}{}{Как ты и просил, Боб, вот 10 фруктов.}
+{22050}{}{На сегодня все, Боб. Пока.}
+{23000}{}{Захотелось сочных кусочков игуаны? Я конечно же предоставлю тебе скидку. Получится 10 крышек за игуану и 90 за Нька-Колу. Что возьмешь, приятель?}
+{23010}{}{Я возьму и Нюку и игуану за 100 крышек.}
+{23020}{}{Давай только игуану, пожалуйста.}
+{23030}{}{Могу я взять только Нюка-Колу?}
+{23040}{}{Звучит заманчиво, но я зашел лишь кое-что спросить.}
+{23050}{}{Заманчивое предложение! Но, к сожалению, я не могу. До свидания, Боб.}
+{24000}{}{Я больше не хочу помогать тебе @pname@. Всего хорошего.}
+{25000}{}{Друг, как любезно с твоей стороны принести мне фруктов. Продолжай в том же духе. Здесь небольшая плата за твою тяжелую работу.}
+{25010}{}{Конечно.}
+
+[pols]
+{100}{}{Iguana Bob}
+{200}{}{Widzisz Iguana Boba.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{Świeżutka iguana na patyku! Nigdzie, nigdy nie znajdziesz lepszego jedzenia niż u mnie. O, witaj, masz zamiar spróbować przepysznych iguan? Nazywam się Iguana Bob. @sex@|Chciałbyś||Chciałabyś| kupić iguanę na patyku? Kosztuje zaledwie 15 kapsli.}
+{2010}{}{Poproszę iguanę.}
+{2020}{}{Przepraszam, gdzie ja jestem?}
+{2030}{}{Możesz pomóc mi znaleźć pewne miejsce?}
+{2040}{}{Szukam jakiejś pracy.}
+{2050}{}{Przesyłka dla Charlesa została dostarczona.}
+{2060}{}{Proszę bardzo, oto dziesięć owoców.}
+{2070}{}{Nieważne. Muszę iść, do widzenia.}
+{2080}{}{Hej, podejmę się tego zadania, o które mnie pytałeś.}
+{3000}{}{Świetnie! Czy @sex@|chciałbyś||chciałabyś| również Nuka-Colę w zestawie? To nowość w naszej sprzedaży, będzie oczywiście kosztować dodatkowe 100 kapsli.}
+{3010}{}{W porządku, poproszę iguanę z colą za 115 kapsli.}
+{3020}{}{Wezmę samą iguanę.}
+{3030}{}{Mogę dostać tylko colę?}
+{3040}{}{Nieważne. Moge spytać o coś innego?}
+{3050}{}{Brzmi kusząco, ale podziękuję. Do widzenia.}
+{4000}{}{Gdzie jesteś? Znajdujesz się w Hubie, @sex@|nieznajomy||kochanie|. @sex@|Zgubiłeś||Zgubiłaś| się, czy co? To prawdopodobnie najlepsze miasto handlowe w całej Kalifornii, założone przez człowieka imieniem Angus.}
+{4010}{}{Och, w porządku. Mogę spytać o coś innego?}
+{4020}{}{Och, w porządku. Do widzenia.}
+{5000}{}{Jasne, że mogę, jeśli ma ci to pomóc w zaznajomieniu się z miastem. Gdzie chcesz iść?}
+{5010}{}{Gdzie mogę się napić?}
+{5020}{}{Jest tu jakiś warsztat?}
+{5030}{}{Gdzie tu można pohandlować?}
+{5040}{}{Jest w okolicy jakiś lekarz?}
+{5050}{}{Mogę tu kupić dom?}
+{5060}{}{Mogę spytać o coś innego?}
+{5070}{}{Do widzenia.}
+{6000}{}{Jesteś tu @sex@|nowy||nowa|, w sensie, naprawdę @sex@|nowy||nowa|? Mogę ci pomóc w rozpoczęciu życia tutaj, nie żeby mnie to obchodziło, ale właściwie... @sex@|Mógłbyś||Mógłabyś| wyświadczyć mi drobną przysługę. Nie wiem czy @sex@|zdążyłeś||zdążyłaś| poznać Charlesa, szeryfa. Uwielbia moje iguany.}
+{6010}{}{Co mam zrobić?}
+{7000}{}{Jeśli możesz, chciałbym, abyś @sex@|przekazał||przekazała| mu ode mnie drobny podarunek, w zamian za bycie świetnym klientem i przyjacielem. Rozumiesz, nie mogę zostawić stoiska bez opieki. Zapłacę ci za twój wysiłek. Co ty na to?}
+{7010}{}{Jasne, mogę to zrobić.}
+{7020}{}{Zajmij się tym sam. Do widzenia.}
+{8000}{}{Wielkie dzięki! Och, jeśli nie wiesz, gdzie szukać Charlesa, powinien znajdować się na posterunku policji. Na budynku znajduje się znak policji, nie możesz go nie zauważyć. Weź to i wręcz mu. [Daje ci mały pakunek.]}
+{8010}{}{Dobra, zaraz wracam!}
+{9000}{}{Dostarczyłeś mu paczkę? Co powiedział?}
+{9010}{}{Był bardzo ucieszony, opowiadał mi jak dobrym kolegą jesteś.}
+{9020}{}{[Skłam.] Był mocno zawiedziony, mówił "pierdolę to" i "jebać Boba". Okropny widok, tak mi przykro.}
+{10000}{}{Charles to świetny kumpel. Dzięki. Proszę, tak jak obiecywałem, oto nagroda. Dorzucę też coś ekstra, darmową iguan na koszt firmy! Mam jeszcze jedną przysługę, o którą mogę cię poprosić, tym razem z lepszą zapłatą. Piszesz się na to?}
+{10010}{}{Jak najbardziej.}
+{10020}{}{Nie teraz, jestem @sex@|zajęty||zajęta|. Do widzenia.}
+{11000}{}{Charles nigdy by tego nie powiedział! Jesteś @sex@|cholernym kłamcą||cholerną kłamczynią|, wiesz o tym? Spierdalaj stąd, nie chcę cię tu więcej widzieć. Och, tylko nie zapomnij swojej zapłaty. Tak zachowuje się porządna osoba, może to cię czegoś nauczy. Teraz odejdź!}
+{11010}{}{Pfff, jak chcesz. [Odejdź.]}
+{12000}{}{Wiedziałem, że się zgodzisz. Kiedy cię nie było, strażnik zamówił dwadzieścia butelek Nuka-Coli. Do produkcji potrzebuję wody i owoców, wrzucam to do maszyny, tam dzieje się jakaś magia i po chwili wyskakuje butelka chłodnego napoju uwielbianego przez wszystkich. Nie mam jednak tylu owoców, a następna dostawa przyjeżdża dopiero za twa tygodnie.}
+{12010}{}{Łał! Dwadzieścia butelek? Co mam zrobić?}
+{13000}{}{Zbierz dziesięć owoców i przynieś je do mnie. Powinno wystarczyć do następnej dostawy. Dalej @sex@|zainteresowany||zainteresowana|?}
+{13010}{}{Potrzebujesz dziesięciu owoców? Łatwizna. Zaraz wracam.}
+{13020}{}{Nie teraz, przykro mi. Do widzenia.}
+{14000}{}{Popatrz tylko, dziesięć świeżutkich owoców, gotowych do przerobienia na colę. Naprawdę mi @sex@|pomogłeś||pomogłaś|, wiesz o tym? Dam ci nawet więcej, niż zamierzałem, proszę. @sex@|Zasłużyłeś||Zasłużyłaś| na to. Przyznaję ci też przyjacielską zniżkę na przyszłość. Dzięki za wszystko. Co jakiś czas możesz wpadać z owocami. Wynagrodzę cię.}
+{14010}{}{Hej, żaden problem. Do widzenia.}
+{15000}{}{Jeśli chcesz się napić, spróbuj "Sokoła Maltańskiego". Na lewo od mojego stoiska znajduje się budynek z neonem, nie da się go przegapić. Mają tam niezłe alkohole w dobrej cenie.}
+{15010}{}{W porządku, co z innymi miejscami?}
+{15020}{}{Rozumiem, mogę spytać o coś innego?}
+{16000}{}{Jeśli szukasz warsztatu, odwiedź mały budynek za siedzibą Karmazynowej Karawany. Po prostu idź na północ, zorientujesz się, o czym mówię.}
+{16010}{}{W porządku, co z innymi miejscami?}
+{16020}{}{Rozumiem, mogę spytać o coś innego?}
+{17000}{}{Jedyne sklepy, jakie znam, to moje stoisko, sklep wielobranżowy i sklep z bronią. Jeśli szukasz wyposażenia idź w lewo, potem za zakrętem aż do budynku z napisem "General Store". Sklep z bronią to ten budynek z napisem "Guns". [Wskazuje na prawo.]}
+{17010}{}{W porządku, co z innymi miejscami?}
+{17020}{}{Rozumiem, mogę spytać o coś innego?}
+{18000}{}{Klinika znajduje się na lewo, na obrzeżach tej dzielnicy. Idź w lewo, omiń pierwszy zakręt i skręć w następny. Po chwili dojdziesz do Kliniki.}
+{18010}{}{W porządku, co z innymi miejscami?}
+{18020}{}{Rozumiem, mogę spytać o coś innego?}
+{19000}{}{Chcesz kupić dom? Idź na posterunek policji, dam rezyduje sprzedawca domów. To ten budynek na prawo ode mnie, z napisem "Police". Jeśli nie podobają ci się kwatery tutaj, w innych dzielnicach Hubu również znajdziesz domy na sprzedaż.}
+{19010}{}{W porządku, co z innymi miejscami?}
+{19020}{}{Rozumiem, mogę spytać o coś innego?}
+{20000}{}{Chcesz założyć sklep? Widzisz gościa stojącego za stołem, o tam? Pogadaj z nim. W dzielnicy handlowej, na południowym zachodzie miasta, powinno być więcej takich sprzedawców.}
+{21000}{}{Co jeszcze mogę dla ciebie zrobić?}
+{21010}{}{Poproszę iguanę.}
+{21020}{}{Poproszę iguanę.}
+{21030}{}{Przepraszam, gdzie ja jestem?}
+{21040}{}{Możesz pomóc mi znaleźć pewne miejsce?}
+{21050}{}{Szukam jakiejś pracy.}
+{21060}{}{Przesyłka dla Charlesa została dostarczona.}
+{21070}{}{Proszę bardzo, oto dziesięć owoców.}
+{21080}{}{Nieważne. Muszę iść, do widzenia.}
+{21090}{}{Hej, podejmę się tego zadania, o które mnie pytałeś.}
+{21100}{}{Proszę, Bob. @sex@|Przyniosłem||Przyniosłam| ci dziesięć owoców.}
+{22000}{}{Świeżutka iguana na patyku! Nigdzie, nigdy nie znajdziesz lepszego jedzenia niż u mnie. To znowu ty, jak się masz? W czym dzisiaj może ci pomóc Iguana Bob?}
+{22010}{}{Poproszę iguanę.}
+{22020}{}{Przypomnij mi, gdzie ja jestem?}
+{22030}{}{Pomożesz mi znaleźć pewien budynek?}
+{22040}{}{Proszę, Bob. @sex@|Przyniosłem||Przyniosłam| ci dziesięć owoców.}
+{22050}{}{Nieważne, Bob. Dzięki, do widzenia.}
+{23000}{}{@sex@|Przyszedłeś||Przyszłaś| po rozpływającą się w ustach iguanę? Masz u mnie zniżkę, 10 kapsli za iguanę i 90 kapsli za colę. Co wybierasz, @sex@|przyjacielu||przyjaciółko|?}
+{23010}{}{Wezmę Nukę z Iguaną za 100 kapsli.}
+{23020}{}{Poproszę tylko iguanę.}
+{23030}{}{Mogę prosić jedynie colę?}
+{23040}{}{Brzmi kusząco, ale muszę spytać o coś innego.}
+{23050}{}{Brzmi tak smakowicie! Ale niestety, nie mogę. Do widzenia, Bob.}
+{24000}{}{Nie chcę cię tu widzieć, @pname@. Idź sobie.}
+{25000}{}{Jak miło z twojej strony, @sex@|przyjacielu||przyjaciółko|. Oto drobna zapłata za twoją ciężką pracę.}
+{25010}{}{Oczywiście.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{Get your Iguana here! Fresh Iguana Bits! You'll never find better food anywhere else. Well hello there, are you a buying customer? My name is Iguana Bob. Would you like to buy a delicious Iguana Bits on a stick? It's only 15 caps.}
+{2010}{}{I'd like an Iguana.}
+{2020}{}{Excuse me, where am I?}
+{2030}{}{Can you help me find some place?@@I need some directions.@@Can you show me around?@@I'm new here, and need some directions.}
+{2040}{}{I'm looking for some work.@@Got any work?@@I need a job, got any?@@I'm looking for work.}
+{2050}{}{I delivered the Iguana to Charles.}
+{2060}{}{Here you go, I've got the fruit.@@I've gathered the fruit you wanted.@@I've got the fruit you wanted.}
+{2070}{}{Nevermind.@@I've got to go.@@No thanks. Goodbye.}
+{2080}{}{Hey, I'll take that job.@@I'll take that job you mentioned.}
+{3000}{}{Great! Would you like some Nuka-Cola to go with your purchase? It's a new thing we're doing. Only a hundred caps!}
+{3010}{}{I'll buy both then.@@I'll take both.@@Okay, I'll take both.}
+{3020}{}{I'm hungry, not thirsty. I'll take the Iguana only.@@I'll take the Iguana only.@@No thanks, I'll take the Iguana without the Nuka.}
+{3030}{}{Can I just get the Nuka please?@@Can I have the Nuka only?}
+{3040}{}{Never mind. May I ask something else?@@On second thought, I've got other question for you.}
+{3050}{}{I'll pass. Goodybe.@@No thanks, bye.@@Thanks, but I'll pass.See you later, Bob.@@It's so tempting, but I'll have to pass. Goodbye.}
+{4000}{}{Where are you? Why you are in the Hub of course, @sex@|stranger||darlin'|. Are you lost or something?}
+{4010}{}{Just looking around. Can we talk about something else?@@No, but I'm new here. Can I ask you something else?}
+{4020}{}{Oh, alright. Goodbye.@@Okay, thanks, and goodbye.@@Right. See you later.}
+{5000}{}{Sure I can if it helps you get around the city. So, what directions do you need precisely?}
+{5010}{}{Where can I get a drink?@@I need to drink. Where should I go?}
+{5020}{}{Is there a workbench?@@I'm looking for a workbench.}
+{5030}{}{Where can I find a place to trade?@@Are there any traders here in town?}
+{5040}{}{Are there any Doctors around?@@I need to find a doctor.@@I'm looking for a doctor.}
+{5050}{}{Can I buy a home somewhere?@@I think I'll be staying here for a while. Are there any houses for sale here?}
+{5060}{}{Okay, thanks. Can I ask something else?@@I see. Can we talk about something else?@@Okay, I want to ask you something else.}
+{5070}{}{I think I understand. Goodbye.@@Okay, I think I get it. Thanks, and goodbye.}
+{6000}{}{You're new here right, like really new? I can help you out if you're trying to start a life here or somethin. Charles loves my Iguanas. If you don't know him, he is the sheriff of this town. And I need you to...}
+{6010}{}{Yes?@@What?@@I'm listening.@@Okay, go on.}
+{7000}{}{I've got a small gift for him. Just to remind him of our mutual... understanding. I can't leave my stand right now, so could you take this package and give it to him?}
+{7010}{}{Sure, I can do that.@@No problem Bob, I can do that.@@I can do that, sure.}
+{7020}{}{Do it on your own time bob. Bye.@@Not interested, sorry.@@Maybe some other time.}
+{8000}{}{Okay. Head to the police station, it's just across that street on the right.}
+{8010}{}{Okay, be right back!@@All right, I'll be right back.@@Yeah, I'll go there now.}
+{9000}{}{You gave him the package? What did he say?@@You gave that package?}
+{9010}{}{Well, he seemed a bit strange, but said you're a good friend, and still remembers your "arrangement"... whatever that is.}
+{9020}{}{[Lie.] He was pretty upset, if you ask me... Said something like "Fuck this shit!" and "Screw Bob."}
+{10000}{}{Well, such a good friend he is... [He smiles strangely.] Here you go, a little payment for your effort. And a Iguana on me, friend. I might have another job for you, if you're interested of course...}
+{10010}{}{Sure.@@Yeah, I'm interested.@@I'm all ears, Bob.@@I'm up for it.}
+{10020}{}{Not right now, I'm busy. Goodbye.@@Maybe later Bob, see you around.}
+{11000}{}{Charles would never say that, and you're just a fucking liar. Get lost! Oh, and don't forget about your payment, shithead.}
+{11010}{}{Pfft, Whatever. Later.@@Whatever, asshole.@@Screw you, Bob.}
+{12000}{}{I knew you'd accept. While you were gone, a guard ordered twenty Nuka-Cola Bottles. As you know, the Nuka-Cola maker came in not too long ago. It takes water and fruits, then the machine will do it's little magic to make the cold beverage everybody loves. However, I didn't get that many fruits, and the next shipment comes in two weeks.}
+{12010}{}{Wow! Twenty Nuka-Colas? What do I have to do?}
+{13000}{}{What I need you to do is gather ten fruits and bring them to me. That should probably last me till' the next shipment. Will you still do it?}
+{13010}{}{You need ten fruits? Easy. Be right back.}
+{13020}{}{Not right now, sorry. Goodbye.}
+{14000}{}{Just look at that, ten good fruits, ready to be made into soda. You really helped me out you know. I'll give you more than what I was going to give you so here. You've earned it. I'll also give you a friendly discount here. Thank you for everything friend. Don't stop here, you can come back from time to time and get me fruits. I'll even reward you.}
+{14010}{}{Hey, no problem. Goodbye.}
+{15000}{}{If you're looking for a drink, try the Maltese Falcon. There would be a building to my left that has a light up sign that says "Maltese Falcon". It's got some good priced drinks there.}
+{15010}{}{Alright, what about another building?}
+{15020}{}{I understand, can I ask something else?}
+{16000}{}{If you're looking for a workbench, there is a small workshop behind the Crimson Caravan's building. Just go north, you'll know what I'm talking about.}
+{16010}{}{Alright, what about another building?}
+{16020}{}{I understand, can I ask something else?}
+{17000}{}{The only shops I know are me, the General Store, and the weapons store. If you're looking to trade goods, go left, then go on the next turn till you hit a building with a "General Store" sign on it. As for a weapons shop [He points to his right] that building with the "Guns" sign on it if you couldn't already figure it out.}
+{17010}{}{Alright, what about another building?}
+{17020}{}{I understand, can I ask something else?}
+{18000}{}{There's a Clinic on the far left. Head left, skip the first turn you see, but turn on the other. Then you will soon reach the Clinic.}
+{18010}{}{Alright, what about another building?}
+{18020}{}{I understand, can I ask something else?}
+{19000}{}{Looking to buy a house? Go to the police station, there should be a house seller there. The police station is the building to my right that has the "police" sign on it. If you don't like houses here, there are homes to buy on the other side of Hub.}
+{19010}{}{Alright, what about another building?}
+{19020}{}{I understand, can I ask something else?}
+{20000}{}{Setting up a shop? See the man standing behind the table over there? He can get you set up with those. Or if you go to the trading district that is south-west of town, there should be some shopkeepers there.}
+{21000}{}{What else can I do for you?}
+{21010}{}{I'd like an Iguana.}
+{21020}{}{I'd like an Iguana.}
+{21030}{}{Excuse me, where am I?}
+{21040}{}{Can you help me find some place?}
+{21050}{}{I'm looking for some work.}
+{21060}{}{I delivered it to Charles.}
+{21070}{}{Here you go, ten fruits.}
+{21080}{}{Never mind. I have to go.}
+{21090}{}{Hey, I'll take that task you asked me.}
+{21100}{}{Here you go Bob. I got you ten fruits.}
+{22000}{}{Get your Iguana here! Fresh Iguana Bits! You'll never find better food anywhere else. It's you again, how're you doing? What can Iguana Bob do for you today?}
+{22010}{}{Can I get some Iguana?}
+{22020}{}{Where was I again?}
+{22030}{}{Can you help me find a building?}
+{22040}{}{Here you go Bob. I got you ten fruits.}
+{22050}{}{Nothing today Bob. Bye.}
+{23000}{}{Here for mouth watering iguana bits? I'm giving you a discount too. It'll be 10 caps for an Iguana and 90 caps for Nuka-Cola. What's your pick friend?}
+{23010}{}{I'll take both Nuka and Iguana for 100 caps.}
+{23020}{}{I'll just take Iguana please.}
+{23030}{}{Can I get the Nuka-Cola alone please?}
+{23040}{}{Seems tempting, but I have something else to ask.}
+{23050}{}{It sounds so good! But sadly I can't. Goodbye Bob.}
+{24000}{}{I don't ever want to serve you @pname@. Go away.}
+{25000}{}{How nice of you friend, to bring more fruit. Keep up the good work. Here's a little payment for your hard work.}
+{25010}{}{Of course.}
+

@@ -1,0 +1,301 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 #
+6 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+4 2010 #
+5 2020 #
+7 2030 #
+3 2040 #
+16 2050 #
+0 2060 @
+3 3000 None 0 #
+6 3010 #
+0 3020 @
+4 4000 None 0 #
+6 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 #
+7 5020 #
+0 5030 @
+6 6000 None 0 #
+4 6010 #
+5 6020 #
+7 6030 #
+3 6040 #
+16 6050 #
+0 6060 @
+7 7000 None 0 #
+6 7010 #
+0 7020 #
+9 7030 @
+9 8000 None 0 #
+10 8010 #
+0 8020 @
+10 9000 None 0 #
+11 9010 #
+0 9020 @
+11 10000 None 0 #
+0 10010 #
+6 10020 #
+12 10030 @
+12 11000 None 0 #
+13 11010 @
+13 12000 None 0 #
+14 12010 @
+14 13000 None 0 #
+15 13010 #
+0 13020 @
+15 14000 None 0 #
+6 14010 #
+0 14020 @
+16 15000 None 0 #
+6 15010 #
+0 15020 &
+
+[engl]
+{100}{}{Athabaska Dick}
+{200}{}{You see a scruffy-looking man with a large beard.}
+{210}{}{You see Athabaska Dick.}
+{210}{}{This man looks like a miner who would know his way around a pit.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeiiu}
+{1020}{}{Ciaeiiu}
+{2000}{}{Howdy. My name's Athabaska Dick. Mostly people just call me Dick. 'Course, there's some that call me Athabaska. Mostly they just call me Dick, though.}
+{2010}{}{Dick, what do you do here?}
+{2020}{}{Hey Dick… what's going on in town lately?}
+{2030}{}{Hear any interesting rumors?}
+{2040}{}{What's At-the-basket mean?}
+{2050}{}{Who's the mayor of this town?}
+{2060}{}{I gotta go. Bye, Dick.}
+{3000}{}{Atha-baska, Athabaska. That's not so dang hard to say, is it? Criminy. That's just my nickname. Do you really want to know how I got my nickname?}
+{3010}{}{Uh, not really. Let me ask you something else.}
+{3020}{}{I think that's all I need to know. Goodbye.}
+{4000}{}{I work a spell now and then here at the Morningstar. They can always used experienced help.}
+{4010}{}{Let me ask you something else, then.}
+{4020}{}{I understand. Well, that's all I needed to know. Goodbye.}
+{5000}{}{Well, not much lately except about them goll-dang Wanamingos.}
+{5010}{}{Of course. Let me ask you about something else.}
+{5020}{}{Want-a-mongols? What the heck is that?}
+{5030}{}{Well, that's all I needed to know. Goodbye.}
+{6000}{}{What can old Athabaska Dick do you for?}
+{6010}{}{Dick, what do you do here?}
+{6020}{}{Hey Dick…what's going on in town lately?}
+{6030}{}{Hear any interesting rumors?}
+{6040}{}{What's At-the-basket mean?}
+{6050}{}{Who's the mayor of this town?}
+{6060}{}{I gotta go. Bye, Dick.}
+{7000}{}{You're tellin' me you ain't never heard of the Wanamingos?}
+{7010}{}{Uh, well, um. Sure I've heard about the Wanamingos. Let me ask you something else.}
+{7020}{}{I've never heard about Wana-whatchamacallits, and I don't have time to waste on your fairytale now. Goodbye.}
+{7030}{}{Nope, never heard of anything like that. Tell me about them.}
+{8000}{}{Well, some say they were here before the A-bombs, H-bombs, and all-what-else hit. Others say they were jean-eti-cally injuneered as weapons. An' then there's some what says that they're from a whole differ'nt planet.}
+{8010}{}{What are *they*? Who cares where they came from, just tell me what *they* are.}
+{8020}{}{Yeah, sure. I've heard enough, old-timer. Goodbye.}
+{9000}{}{Well, I don't rightly know what they are 'zactly. But I kin tell you this: they shut down the Wanamingo Mine just west of town a few years back.}
+{9010}{}{The Wanamingo mine?}
+{9020}{}{That's nice. Well, I better be going, old-timer. Thanks for the story. Goodbye.}
+{10000}{}{Yup. And the Great Wanamingo was the richest strike in these here parts, too. Ascorti got some idiot tribal to clear it out a couple years back, now he's making a killing.}
+{10010}{}{Really? Lucky guy, goodbye.}
+{10020}{}{Well he must be proud of himself. I've got some other questions.}
+{10030}{}{Tell me about those Want-to-mangles, then.}
+{11000}{}{Well you see - here's the god's honest truth - I know someone who saw one up close-like, it all happened a couple years back… [time passes]… With huge fangs that it uses to… [more time passes]}
+{11010}{}{Uhh.}
+{12000}{}{You're jist gonna fall asleep anyhow, but here goes nuthin.' It was late at night, see, and so… [time passes] ...tracks like a cross 'tween a Radscorpion and a Gecko… [more time passes] …See, I told you you'd fall asleep.}
+{12010}{}{Huh, what? [Your head snaps up. you must have been dozing.]}
+{13000}{}{…So, now you know. The slaves that used to work the mine blew up the dynamite stores and escaped, rather than face those Wanamingos. Shut down the mine right after and nobody went back.}
+{13010}{}{Where did you say the Great Wanamingo Mine is?}
+{13020}{}{Sounds sensible enough. Well, goodbye for now.@@I feel like a lot of time has passed. I'd better get going.}
+{14000}{}{Jist west of town. But there ain't none there anymore.}
+{14010}{}{I think I've heard all I need to about Wanamingos. Let me ask you something else.}
+{14020}{}{I'll keep an eye out for anyone Wanting-to-mingle. Goodbye.}
+{15000}{}{Ascorti's the mayor. He runs Ascorti's Ace downtown. He takes care of buying and selling a lot of stuff. He's right in the middle of all kinds o' things.}
+{15010}{}{Let me ask you about something else.}
+{15020}{}{I think I've listened to you long enough. Goodbye.}
+
+[russ]
+{100}{}{Дик}
+{200}{}{Вы видите неряшливого мужчину с большой бородой.}
+{210}{}{Вы видите Авабаска Дика.}
+{210}{}{This man looks like a miner who would know his way around a pit.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeiiu}
+{1020}{}{Ciaeiiu}
+{2000}{}{Привет. Меня зовут Дик Атабаска. Многие зовут меня просто Дик. Конечно, некоторые зовут Атабаска. Хотя все-таки большинство зовет меня - Дик.}
+{2010}{}{Хм. Дик, что ты здесь делаешь?}
+{2020}{}{Эй, Дик... что нового в городе?}
+{2030}{}{Есть какие-нибудь интересные слухи?}
+{2040}{}{Авабаска.... что это за прозвище вообще такое?}
+{2050}{}{Кто мэр этого города?}
+{2060}{}{Всего доброго.}
+{3000}{}{Ата-баска, Атабаска. Неужели это так трудно выговорить, блин? Урроды. Это просто мое прозвище. Тебе правда интересно узнать, как я его получил?}
+{3010}{}{Ну, на самом деле нет. Можно я тебя еще кое о чем спрошу?}
+{3020}{}{Я и так знаю уже слишком много. До свидания.}
+{4000}{}{Иногда стою смену на шахте "Утренняя звезда". Им всегда нужна квалифицированная помощь.}
+{4010}{}{Тогда позволь мне задать еще один вопрос.}
+{4020}{}{Понятно. Ну, это все, что мне нужно знать. До свидания.}
+{5000}{}{Ну, ничего особенного кроме этих Ванаминго.}
+{5010}{}{Конечно. У меня еще вопрос.}
+{5020}{}{Вана-монго-лы? Что это еще за хрень?}
+{5030}{}{Ну, вот и все, что мне нужно было узнать. До свидания.}
+{6000}{}{Чем старый Дик Атабаска может тебе помочь?}
+{6010}{}{Хм. Дик, что ты здесь делаешь?}
+{6020}{}{Эй, Дик... что нового в городе?}
+{6030}{}{Есть какие-нибудь интересные слухи?}
+{6040}{}{Авабаска.... что это за прозвище вообще такое?}
+{6050}{}{Кто мэр этого города?}
+{6060}{}{Всего доброго.}
+{7000}{}{Ты говоришь мне, что ты не разу не слышал о Ванаминго?}
+{7010}{}{Мм, ну, гм. Конечно, я слышал о Ванаминго. Хочу спросить вас о другом.}
+{7020}{}{Я никогда не слышал о Вана-что-то-там, и у меня нет времени, чтобы тратить его на сказки. До свидания.}
+{7030}{}{Нет, никогда не слышал ничего подобного. Расскажите мне о них.}
+{8000}{}{Ну, некоторые говорят, что они были здесь раньше атомных и водородных бомб и всего такого. Другие говорят что это генетическое оружие. А кто-то говорит, что это пришельцы с другой планеты.}
+{8010}{}{Какая разница, откуда они взялись, просто расскажи мне, что они из себя представляют.}
+{8020}{}{Да, конечно. Я услышал достаточно. До свидания.}
+{9000}{}{Ну я не знаю что они из себя представляют на самом деле, но знаю что из-за них закрыли шахту на заподе города, несколько лет назад.}
+{9010}{}{Шахта Ванаминго?}
+{9020}{}{Понятно. Ну, я, пожалуй, пойду. Спасибо за рассказ. До свидания.}
+{10000}{}{Да, Великий Ванаминго самая богатая шахта. Аскорти нанял какого-то идиота, чтобы очистить ее.}
+{10010}{}{В самом деле? Счастливчик, до свидания.}
+{10020}{}{Ну он должен быть горд собой. У меня есть другие вопросы.}
+{10030}{}{Расскажи еще об этих Ванамонгерах.}
+{11000}{}{Я знаю, того кто видел их с близкого расстояния. У них огромные клыки...Они их используют, чтобы....}
+{11010}{}{Гм.}
+{12000}{}{Это было поздней ночью, они были похожи на смесь скорпиона и гекко.}
+{12010}{}{Хм..}
+{13000}{}{В итоге, рабы которые работали в шахте, взорвали проходы динамитом и сбежали. Шахта была закрыта и никто не до сих пор туда не ходил.}
+{13010}{}{Где, ты говоришь Великая Шахта Ванаминго?}
+{13020}{}{Звучит достаточно разумно. Ну, пока до свидания.}
+{14000}{}{На западе от города. Но там уже никого не осталось.}
+{14010}{}{Я думаю, что я слышал все, что нужно. Позвольте мне задать вам другой вопрос.}
+{14020}{}{Я буду держаться подальше от Вана-фигана. Пока.}
+{15000}{}{Аскорти мэр этого города, он держит казино около главного входа в город, занимается покупкой и продажей всяких вещей.}
+{15010}{}{Позвольте мне спросить вас о другом.}
+{15020}{}{Я думаю, что я слушал вас достаточно долго. До свидания.}
+
+[pols]
+{100}{}{Dick Athabaska}
+{200}{}{Widzisz brodatego, niechlujnie wyglądającego mężczyznę.}
+{210}{}{Widzisz Dicka Athabaskę.}
+{210}{}{Ten człowiek wygląda na kogoś, kto potrafi sobie poradzić w kopalni.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeiiu}
+{1020}{}{Ciaeiiu}
+{2000}{}{Siema, nazywam się Dick Athabaska, zazwyczaj ludzie mówią do mnie po prostu Dick, niektórzy Athabasca, ale w sumie większość jednak mówi Dick.}
+{2010}{}{Aha. Co tutaj porabiasz, Dick?}
+{2020}{}{Witaj Dick, działo się tu ostatnio coś ciekawego?}
+{2030}{}{Slyszałeś jakieś plotki?}
+{2040}{}{Co właściwie znaczy to nazwisko, A-ta-Baśka?}
+{2050}{}{Kto tu rządzi?}
+{2060}{}{Muszę iść, na razie, Dick.}
+{3000}{}{Atha-baska, Athabaska. Chyba nie jest aż tak trudno to wymówić, co? Kurde, to po prostu moja ksywa. Naprawdę chcesz wiedzieć skąd ją mam?}
+{3010}{}{Eee, w sumie to nie. Mogę ci zadać inne pytanie?}
+{3020}{}{Chyba wiem już wszystko. Na razie.}
+{4000}{}{Czasem mam robotę tutaj w kopalni Morningstar, im zawsze przyda się doświadczony chłop.}
+{4010}{}{Mam inne pytania.}
+{4020}{}{Rozumiem, to chyba wszystko. Do widzenia.}
+{5000}{}{W sumie to niewiele się tu dzieje, no, może poza tymi cholernymi Wanamingo.}
+{5010}{}{Jasne. Mam więcej pytań...}
+{5020}{}{Łana-Mingo? A co to niby jest?}
+{5030}{}{To wszystko, na razie.}
+{6000}{}{Czy stary Dick Athabasca może ci w czymś pomóc?}
+{6010}{}{Czym się tu zajmujesz, Dick?}
+{6020}{}{Hej Dick... Dzieje się tutaj coś ciekawego?}
+{6030}{}{Słyszałeś jakieś wieści?}
+{6040}{}{A-ta-Baśka?}
+{6050}{}{Kto tu rządzi?}
+{6060}{}{Muszę spadać. Na razie, Dick.}
+{7000}{}{No nie mów mi że nigdy o nich nie @sex@|słyszałeś||słyszałaś|?}
+{7010}{}{Eee, jasne że @sex@|słyszałem||słyszałam|. Może pogadamy o czymś innym?}
+{7020}{}{Nie, nie @sex@|słyszałem||słyszałam| o tych Łanach-Na-Mingu i nie mam czasu na bajeczki. Żegnam.}
+{7030}{}{Nie, nigdy. Opowiadaj.}
+{8000}{}{No, ludzie mówią że były tu zanim zrzucili bomby nuklearne, termonuklearne i tego typu szajs. Inni mówią że zrobili je w lejb-ra-toriach jako broń bio-lo-lo-gicz-ną. A jeszcze inni gadają że one nie są stąd, w sensie, rozumiesz, nie z tej planety.}
+{8010}{}{Ale czym one są konkretnie? Nie obchodzi mnie skąd się wzięły, powiedz mi czym one *są*.}
+{8020}{}{Ta, jasne. Wystarczy, staruszku. Na razie.}
+{9000}{}{No, nie wiem dokładnie czym one są. Ale powiem ci jedno, to właśnie przez nie parę lat temu zamknięto kopalnię Wanamingo.
+{9010}
+{9010}{}{error}
+{9020}{}{Nieźle... No, będę się zbierać. Dzięki za opowieść, dziadku.}
+{10000}{}{Ta jest. Ta kopalnia była największą w tych okolicach.}
+{10010}{}{Co ty nie powiesz? Na razie.}
+{10020}{}{Ciekawe. Mam parę innych pytań.}
+{10030}{}{No to opowiedz mi o tych Łanach-Na-Mingu.}
+{11000}{}{Wiesz co, powiem Ci że znam kogoś kto widział je z bliska, wyglądały jak... [Dick ciągnie swoją opowieść.] ...i miały takie wieeelkie kły... [Mija sporo czasu, zanim staruszek dokańcza obszerną relację.]}
+{11010}{}{Aaaha.}
+{12000}{}{Pewnie zaraz zaśniesz, ale powiem ci jeszcze - była późna noc, ciemno jak u mutanta w zadku i... [Zaczynasz przysypiać.] ...ślady coś jak między radskorpionem a gekonem... [Oczy ci się kleją.] ...widzisz? Mówiłem, że przyśniesz.}
+{12010}{}{Co, gdzie? [Wyrywasz się z lekkiej drzemki.]}
+{13000}{}{No więc widzisz. Niewolnicy którzy tam pracowali wysadzili magazyny z dynamitem i nawiali. Kopalnię zamknięto i od tego czasu nikt kto się tam zapuścił, nie wracał.}
+{13010}{}{I mówisz że gdzie jest ta kopalnia?}
+{13020}{}{Brzmi sensownie. Na razie.}
+{14000}{}{Na zachód od miasteczka. Ale teraz już *ich* tam nie ma.}
+{14010}{}{@sex@|Nasłuchałem||Nasłuchałam| się wystarczająco. Mogę ci zadać parę innych pytań?}
+{14020}{}{Będę na nie uważać. Na razie.}
+{15000}{}{Ascorti jest burmistrzem, kasyno też jest jego. Handluje różnymi rzeczami, mało rzeczy dzieje się tu bez jego wiedzy.}
+{15010}{}{@sex@|Chciałbym||Chciałabym| zapytać o coś innego}
+{15020}{}{@sex@|Nasłuchałem||Nasłuchałem| się już. Do widzenia, Dick.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeiiu}
+{1020}{}{Ciaeiiu}
+{2000}{}{Howdy. My name's Athabaska Dick. Mostly people just call me Dick. 'Course, there's some that call me Athabaska. Mostly they just call me Dick, though.}
+{2010}{}{Dick, what do you do here?}
+{2020}{}{Hey Dick… what's going on in town lately?}
+{2030}{}{Hear any interesting rumors?}
+{2040}{}{What's At-the-basket mean?}
+{2050}{}{Who's the mayor of this town?}
+{2060}{}{I gotta go. Bye, Dick.}
+{3000}{}{Atha-baska, Athabaska. That's not so dang hard to say, is it? Criminy. That's just my nickname. Do you really want to know how I got my nickname?}
+{3010}{}{Uh, not really. Let me ask you something else.}
+{3020}{}{I think that's all I need to know. Goodbye.}
+{4000}{}{I work a spell now and then here at the Morningstar. They can always used experienced help.}
+{4010}{}{Let me ask you something else, then.}
+{4020}{}{I understand. Well, that's all I needed to know. Goodbye.}
+{5000}{}{Well, not much lately except about them goll-dang Wanamingos.}
+{5010}{}{Of course. Let me ask you about something else.}
+{5020}{}{Want-a-mongols? What the heck is that?}
+{5030}{}{Well, that's all I needed to know. Goodbye.}
+{6000}{}{What can old Athabaska Dick do you for?}
+{6010}{}{Dick, what do you do here?}
+{6020}{}{Hey Dick…what's going on in town lately?}
+{6030}{}{Hear any interesting rumors?}
+{6040}{}{What's At-the-basket mean?}
+{6050}{}{Who's the mayor of this town?}
+{6060}{}{I gotta go. Bye, Dick.}
+{7000}{}{You're tellin' me you ain't never heard of the Wanamingos?}
+{7010}{}{Uh, well, um. Sure I've heard about the Wanamingos. Let me ask you something else.}
+{7020}{}{I've never heard about Wana-whatchamacallits, and I don't have time to waste on your fairytale now. Goodbye.}
+{7030}{}{Nope, never heard of anything like that. Tell me about them.}
+{8000}{}{Well, some say they were here before the A-bombs, H-bombs, and all-what-else hit. Others say they were jean-eti-cally injuneered as weapons. An' then there's some what says that they're from a whole differ'nt planet.}
+{8010}{}{What are *they*? Who cares where they came from, just tell me what *they* are.}
+{8020}{}{Yeah, sure. I've heard enough, old-timer. Goodbye.}
+{9000}{}{Well, I don't rightly know what they are 'zactly. But I kin tell you this: they shut down the Wanamingo Mine just west of town a few years back.}
+{9010}{}{The Wanamingo mine?}
+{9020}{}{That's nice. Well, I better be going, old-timer. Thanks for the story. Goodbye.}
+{10000}{}{Yup. And the Great Wanamingo was the richest strike in these here parts, too. Ascorti got some idiot tribal to clear it out a couple years back, now he's making a killing.}
+{10010}{}{Really? Lucky guy, goodbye.}
+{10020}{}{Well he must be proud of himself. I've got some other questions.}
+{10030}{}{Tell me about those Want-to-mangles, then.}
+{11000}{}{Well you see - here's the god's honest truth - I know someone who saw one up close-like, it all happened a couple years back… [time passes]… With huge fangs that it uses to… [more time passes]}
+{11010}{}{Uhh.}
+{12000}{}{You're jist gonna fall asleep anyhow, but here goes nuthin.' It was late at night, see, and so… [time passes] ...tracks like a cross 'tween a Radscorpion and a Gecko… [more time passes] …See, I told you you'd fall asleep.}
+{12010}{}{Huh, what? [Your head snaps up. you must have been dozing.]}
+{13000}{}{…So, now you know. The slaves that used to work the mine blew up the dynamite stores and escaped, rather than face those Wanamingos. Shut down the mine right after and nobody went back.}
+{13010}{}{Where did you say the Great Wanamingo Mine is?}
+{13020}{}{Sounds sensible enough. Well, goodbye for now.@@I feel like a lot of time has passed. I'd better get going.}
+{14000}{}{Jist west of town. But there ain't none there anymore.}
+{14010}{}{I think I've heard all I need to about Wanamingos. Let me ask you something else.}
+{14020}{}{I'll keep an eye out for anyone Wanting-to-mingle. Goodbye.}
+{15000}{}{Ascorti's the mayor. He runs Ascorti's Ace downtown. He takes care of buying and selling a lot of stuff. He's right in the middle of all kinds o' things.}
+{15010}{}{Let me ask you about something else.}
+{15020}{}{I think I've listened to you long enough. Goodbye.}
+

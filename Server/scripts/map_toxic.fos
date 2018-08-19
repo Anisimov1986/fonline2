@@ -1,0 +1,214 @@
+#include "_macros.fos"
+#include "custom_data_h.fos"
+
+import bool AddWalkPlane(Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut) from "npc_planes";
+import void AddAttackProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+import void RemoveAttackProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+
+#define ENTIRE_BARR_SPAWN ( 520 )
+#define ROLE_ROBO ( 521 )
+#define CLOUD_PID ( 10007 )
+#define ENTIRE_CLOSE_TO_VALVE ( 511 )
+
+
+
+void _ToxicMapItemInit( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_USE, "_ToxicMapItemUse" );
+}
+
+bool _ToxicMapItemUse( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
+{
+	if( not valid( onCritter ) && not valid( onItem ) && not valid( onScenery ) )
+	{
+        UseToxicMap(cr,item);
+        return true;
+	}
+    return false;
+}
+
+void UseToxicMap(Critter& cr, Item& item)
+{
+    cr.DeleteItem( PID_TOXIC_MAP, 1 );
+    Location@ loc = GetLocation( CreateLocation (LOCATION_ToxicCaves, 150, 30, null) );
+    if (!valid(loc))
+        return;
+    cr.SetKnownLoc(true,loc.Id);
+    
+    uint mapLen = loc.GetMapCount();
+    for( uint m=0; m<mapLen; m++ )
+	{
+		Map@ map = loc.GetMapByIndex( m );
+		if( !valid(map) )
+			return;
+
+		if( cr.ModeBase[MODE_DEFAULT_COMBAT] == COMBAT_MODE_TURN_BASED ) //Turn based addon
+			map.SetTurnBasedAvailability( true );
+        
+	}
+    cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70440);
+    CreateTimeEvent( __FullSecond + REAL_DAY( 4 ), "map_toxic@e_DeleteLocation", loc.Id, true );
+}	
+
+uint e_DeleteLocation(uint[]@ values)
+{
+	Location@ loc = GetLocation(values[0]);
+	if (valid(loc))
+		DeleteLocation( loc.Id );
+
+	return( 0 );
+}
+
+bool _ToxicCritterIn(Location& loc, Critter@[]& critters, uint8 entrance)
+{
+    for (uint i=0; i < critters.length();i++)
+    {
+        Critter@ cr = critters[i];
+        if (!valid(cr) || !cr.IsPlayer())
+            continue;
+        if (cr.GetItemsByType(ITEM_TYPE_CAR, null)>0)
+            return true;
+    }
+
+    for (uint i=0; i < critters.length();i++)
+    {
+        Critter@ cr = critters[i];
+        if (!valid(cr) || !cr.IsPlayer())
+            continue;
+        if( cr.IsKnownLoc( true, loc.Id ) )
+            cr.UnsetKnownLoc( true, loc.Id );
+        if(!loc.AutoGarbage)
+            loc.AutoGarbage=true;
+    }
+    return true;
+}
+
+void _MinigMapInit(Map& map, bool)
+{
+    SpawnBarrels(map);
+
+    Critter@ robo = map.GetNpc(ROLE_ROBO, FIND_ALL | FIND_ONLY_NPC, 0);
+    if (!valid(robo))
+        return;
+    AddAttackProtection(robo, robo, ATTACK_PROTECTION_ALL);	
+}
+
+void SpawnBarrels(Map& map)
+{
+	uint entiresnum = map.CountEntire(ENTIRE_BARR_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+		if (map.GetEntireCoords(ENTIRE_BARR_SPAWN, i, hexX, hexY))
+			if(Random(0, 1) == 1)
+				map.AddItem( hexX, hexY, Random(10010,10013), 1 );
+}
+
+void r_MoveRobo(Critter& player, Critter@ npc, int direction )
+{
+    Map@ map = player.GetMap();
+    if (!valid(map))
+        return;
+    Critter@ robo = map.GetNpc(ROLE_ROBO, FIND_LIFE | FIND_ONLY_NPC, 0);
+    if (!valid(robo))
+        return;
+
+    robo.ModeBase[ MODE_NO_HOME ] = 1;
+
+    uint16 hexX = robo.HexX;
+    uint16 hexY = robo.HexY;
+    map.MoveHexByDir (hexX, hexY, uint8(direction), 1);
+    if (map.IsHexPassed (hexX, hexY))
+        robo.MoveToDir( direction );
+    else
+        robo.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70385 );
+}
+
+void r_TurnValve(Critter& player, Critter@ npc )
+{
+    Map@ map = player.GetMap();
+    if (!valid(map))
+        return;
+    Critter@ robo = map.GetNpc(ROLE_ROBO, FIND_LIFE | FIND_ONLY_NPC, 0);
+    if (!valid(robo))
+        return;
+    RemoveAttackProtection(robo, robo, ATTACK_PROTECTION_ALL);	
+    
+    
+	array<Item@> clouds;
+	map.GetItems(CLOUD_PID, clouds);
+	DeleteItems(clouds); 
+	Location@ loc = map.GetLocation();
+	loc.AutoGarbage = true;	
+}
+
+bool d_IsOnValve( Critter& player, Critter@ npc )
+{
+    Map@ map = player.GetMap();
+    if (!valid(map))
+        return false;
+    Critter@ robo = map.GetNpc(ROLE_ROBO, FIND_LIFE | FIND_ONLY_NPC, 0);
+    if (!valid(robo))
+        return false;
+        
+    int entireNum = int(ENTIRE_CLOSE_TO_VALVE); 
+    uint16 hexX = robo.HexX;
+    uint16 hexY = robo.HexY; 
+    if(map.GetNearEntireCoords(entireNum, hexX, hexY) && robo.HexX==hexX && robo.HexY == hexY)
+        return true;
+
+    return false;
+}
+
+/*
+void t_terminal( Critter& cr, Scenery& trigger, bool entered, uint8 dir )
+{
+
+    if( entered )
+    {
+        
+    }
+    else
+    {
+        Map@ map = cr.GetMap();
+        Critter@ robo = map.GetNpc(ROLE_ROBO, FIND_ALL | FIND_ONLY_NPC, 0);
+    if( robo.HexX != 87 && robo.HexY != 81 )
+        {
+        robo.Say( SAY_NORM_ON_HEAD, "Operator Abandoned the spot. Returning back." );
+        robo.SetHomePos( 87, 81, 2 );
+        }
+    }
+} */
+void r_ReturnRobot(Critter& player, Critter@ npc )
+{
+    Map@ map = player.GetMap();
+    Critter@ robo = map.GetNpc(ROLE_ROBO, FIND_LIFE | FIND_ONLY_NPC, 0);
+    if (!valid(robo) || robo.ModeBase[ MODE_NO_HOME ] == 0)
+        return;
+    if( robo.HexX != 57 && robo.HexY != 39 )
+    {
+        robo.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70386 );
+        robo.ModeBase[ MODE_NO_HOME ] = 0;
+        robo.SetHomePos( 57, 39, 2 );
+    }
+}
+
+
+
+void dlg_QuitRobo(Critter& player, Critter@ npc, string@ string)
+{
+	/*
+    if(IS_DIALOG_END(string))
+    {
+        Map@ map = player.GetMap();
+        Critter@ robo = map.GetNpc(ROLE_ROBO, FIND_ALL | FIND_ONLY_NPC, 0);
+        if( robo.HexX != 57 && robo.HexY != 39 )
+        {
+            robo.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70386 );
+            robo.ModeBase[ MODE_NO_HOME ] = 0;
+            robo.SetHomePos( 57, 39, 2 );
+            //AddWalkPlane(robo, AI_PLANE_WALK_PRIORITY, 57, 39, 2, false, 0);
+        }
+    }
+    */
+}

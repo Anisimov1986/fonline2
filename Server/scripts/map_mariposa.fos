@@ -1,0 +1,68 @@
+#include "_itempid.fos"
+#include "_defines.fos"
+#include "_macros.fos"
+
+#define ENTIRE_BOMB            (800)
+#define BOMB_EXPLODE_TIMEOUT   (REAL_SECOND(30))
+
+import void Explode(Map@ map, uint16 hexX, uint16 hexY, Critter@ cr, uint16 explodePid, uint ownerId, int bonusDamage, int bonusRadius) from "explode";
+import void QuakeScreen(Map& map) from "effects";
+import void DestroyDoor(Item& door) from "doors";
+
+
+//PID_MARIPOSA_BOMB                    (9509)
+bool critter_use_mariposa_bomb(Critter& cr, Item& item, Critter@ targetCr, Item@ targetItem, Scenery@ targetScen, uint param)
+{
+	if (!valid(targetItem))
+	{
+		return false;
+	}
+	
+	if (targetItem.GetProtoId() != PID_MARIPOSA_DOOR)
+	{
+		return false;
+	}
+	
+	cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70366 );
+
+	CreateTimeEvent(__FullSecond + BOMB_EXPLODE_TIMEOUT, "e_BombExplode", cr.Id, true);
+	
+	DeleteItem(item);
+	
+	return true;
+}
+
+uint e_BombExplode(array<uint>@ values)
+{
+    uint critterId = values[0];
+
+	Map@ map = GetMapByPid(MAP_mariposa_enter, 0);
+	if (!valid(map)) {
+		return 0;
+	}
+	
+	//Remove doors
+	array<Item@> doors;
+	map.GetItems(PID_MARIPOSA_DOOR, doors);	
+	for (uint i = 0; i < doors.length(); i++)
+	{
+		DestroyDoor(doors[i]);
+	}
+	
+	//Fire explosion
+	uint explosionSpawnNum = map.CountEntire(ENTIRE_BOMB);
+	uint16 hexX = 0;
+	uint16 hexY = 0;
+	uint8 dir = 0;
+	for (uint i = 0; i < explosionSpawnNum; i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_BOMB, i, hexX, hexY, dir))
+		{
+			Explode(map, hexX, hexY, null, PID_ACTIVE_MINE, critterId, 1000, 5);
+		}
+	}
+	
+	QuakeScreen(map);
+
+	return 0;
+}

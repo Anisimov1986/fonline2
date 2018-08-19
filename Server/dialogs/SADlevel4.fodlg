@@ -1,0 +1,50 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _param p SK_SCIENCE } 130 R _script dialog@r_OpenDoor_MapIndex 4 92 80 11484 3 R _script dialog@r_OpenDoor_MapIndex 4 82 80 11484 3 #
+3 1020 D _param p SK_SCIENCE < 130 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see: Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Level 2 entry gates unlocked.}
+{3000}{}{Access Denied.}
+
+[russ]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Level 2 Entry Gates Unlocked.}
+{3000}{}{Access Denied...}
+
+[pols]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Level 2 Entry Gates Unlocked.}
+{3000}{}{Access Denied...}
+
+[ptbr]
+{100}{}{Terminal de acesso}
+{200}{}{Você vê o terminal de acesso.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Portões de entrada do Nível 2 destravados.}
+{3000}{}{Acesso negado.}
+

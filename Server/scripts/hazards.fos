@@ -1,0 +1,57 @@
+#include "_macros.fos"
+#include "stdlib_h.fos"
+#include "utils_h.fos"
+
+import void AffectRadiation( Critter& cr, int value ) from "radiation";
+import void AffectPoison( Critter& cr, int value ) from "poison";
+const int[] notaffected = { BT_SUPER_MUTANT, BT_GHOUL, BT_RADSCORPION, BT_FLOATER, BT_CENTAUR, BT_ROBOT, BT_MANTI, BT_DEADCLAW, BT_GECKO, BT_ALIEN };
+
+void t_goo( Critter& cr, Scenery& trigger, bool entered, uint8 dir )
+{
+	if( notaffected.find( cr.Stat[ST_BODY_TYPE] ) >= 0 ) 
+        return;
+
+    if( entered )
+    {
+        AffectGoo( cr );
+        cr.AddTimeEvent( "cte_Goo", REAL_SECOND( 1 ), CTE_GOO );
+    }
+    else
+        cr.EraseTimeEvents( CTE_GOO );
+}
+
+void AffectGoo( Critter& cr )
+{
+ 
+	if( HasItem( cr, PID_RUBBER_BOOTS) )
+	{
+		if(HAS_CHANCE( 5 ))
+		{
+			cr.DeleteItem( PID_RUBBER_BOOTS, 1 );
+			if( HasItem( cr, PID_RUBBER_BOOTS) )
+				cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70370);	
+			else
+				cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70371);
+		}
+		return;
+	}
+	AffectRadiation( cr, Random( 10, 20 ) );
+	AffectPoison( cr, Random( 1, 2 ) );
+    Damage( cr, Random( 5, 10 ), DAMAGE_PLASMA, 0 );
+	cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70372);
+	
+}
+
+uint cte_Goo( Critter& cr, int identifier, uint& rate )
+{
+    if( cr.IsDead() )
+    {
+        cr.EraseTimeEvents( CTE_GOO );
+		return 0;
+    }
+    else
+    {
+        AffectGoo( cr );
+		return(REAL_SECOND(1));
+    }
+}

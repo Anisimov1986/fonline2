@@ -1,0 +1,262 @@
+#include "_macros.fos"
+#include "economy_h.fos"
+#include "_dialogs.fos"
+#include "logging_h.fos"
+
+#define PREWAR_REWARD				( RewardMod(500) )
+#define TRAGIC_REWARD				( RewardMod(1600) )
+#define SILVER_PELT_REWARD			( RewardMod(40) )
+#define GOLDEN_PELT_REWARD			( RewardMod(80) )
+
+#define SILVER_PELT_REWARD2			( RewardMod(100) )
+#define GOLDEN_PELT_REWARD2			( RewardMod(200) )
+#define FIRE_PELT_REWARD2			( RewardMod(350) )
+
+#define ANNIE_BOOK_REWARD			( RewardMod(250) )
+#define Q_NECRO_WATER				( RewardMod(10000) )	
+#define MPART_REWARD				( RewardMod(2050) )
+#define	Q_ADYTUM_WELL				( RewardMod(3000) )
+#define	CHEEZY_POOFS_REWARD			( RewardMod(50) )
+
+#define	BASE1_PRICE					( PriceMod(30000) )
+#define	BASE2_PRICE					( PriceMod(40000) )
+#define	BASE3_PRICE					( PriceMod(100000) )
+#define	BASE4_PRICE					( PriceMod(50000) )
+#define	BASE5_PRICE					( PriceMod(200000) )
+#define	BASE6_PRICE					( PriceMod(80000) )
+
+#define	PROF1_PRICE					( PriceMod(2000) )
+#define	PROF2_PRICE					( PriceMod(4000) )
+#define	PROF3_PRICE					( PriceMod(6000) )
+#define	BARBER_PRICE				( PriceMod(100) )
+#define	HEAL_DRUGS_PRICE			( PriceMod(450) )
+#define	HEAL_PRICE					( PriceMod(500) )
+#define	HEAL2_PRICE					( PriceMod(300) )
+#define AJET_PRICE					( PriceMod(600) )
+#define BOOK3_PRICE					( PriceMod(3000) )
+#define BOOK4_PRICE					( PriceMod(4000) )
+#define CHEMS_PRICE					( PriceMod(200) )
+#define CHEMS2_PRICE				( PriceMod(300) )
+#define JET_PRICE					( PriceMod(900) )
+#define ENTRANS_PRICE				( PriceMod(1000) )
+#define ENTRANS2_PRICE				( PriceMod(1500) )
+#define SKINNING_PRICE				( PriceMod(600) )
+#define HGSTEEL_PRICE				( PriceMod(1500) )
+#define HGSTEEL2_PRICE				( PriceMod(1000) )
+#define STOOL_PRICE					( PriceMod(4000) )
+#define KEY_PRICE					( PriceMod(400) )
+#define IMPLANT_PRICE				( PriceMod(50000) )
+#define RIMPLANT_PRICE				( PriceMod(20000) )
+#define STOOL2_PRICE				( PriceMod(2000) )
+#define KEVLAR_PRICE				( PriceMod(750) )
+#define KEVLAR2_PRICE				( PriceMod(500) )
+#define ARMOR_UPGRADE_PRICE			( PriceMod(500) )
+#define RORE_PRICE					( PriceMod(200) )
+#define RORE2_PRICE					( PriceMod(300) )
+#define ARMOR2_UPGRADE_PRICE		( PriceMod(150) )
+
+void dlg_PreparePrice( Critter& player, Critter@ npc, string@ lexems )
+{
+    if( not IS_DIALOG_GENERATED( lexems ) || !valid(npc))
+        return;
+	switch (npc.Param[ST_DIALOG_ID])
+	{
+		case DIALOG_Collector:
+			lexems += "$prewar_reward" + PREWAR_REWARD;
+			break;
+		
+		case DIALOG_geck_tragicplayer:
+			lexems += "$tragic_reward" + TRAGIC_REWARD;
+			break;
+		
+		case DIALOG_Gorn:
+		case DIALOG_melsak:
+			lexems += "$silver_pelt_reward" + SILVER_PELT_REWARD;
+			lexems += "$golden_pelt_reward" + GOLDEN_PELT_REWARD;
+			lexems += "$skinning_price" + SKINNING_PRICE;
+			break;
+		
+		case DIALOG_HUB_Annie:
+			lexems += "$annie_book_reward" + ANNIE_BOOK_REWARD;
+			break;
+			
+		case DIALOG_HUB_Christopher:
+			lexems += "$q_necro_water_reward" + Q_NECRO_WATER;
+			break;
+		case DIALOG_JunkyardMechanic:
+			lexems += "$stool2_price" + STOOL2_PRICE;
+			lexems += "$mpart_reward" + MPART_REWARD;
+			break;
+		case DIALOG_Pestis:
+		case DIALOG_q_adytum_jeremy:
+			lexems += "$q_adytum_well" + Q_ADYTUM_WELL;
+			lexems += "$skinning_price" + SKINNING_PRICE;
+			break;
+		case DIALOG_tanner:
+			lexems += "$silver_pelt_reward" + SILVER_PELT_REWARD2;
+			lexems += "$golden_pelt_reward" + GOLDEN_PELT_REWARD2;
+			lexems += "$fire_pelt_reward" + FIRE_PELT_REWARD2;
+			lexems += "$prof2_price" + PROF2_PRICE;
+			lexems += "$armor2_upgrade_price" + ARMOR2_UPGRADE_PRICE;
+			break;
+		case DIALOG_vc_bill:
+			lexems += "$cheezy_poofs_reward" + CHEEZY_POOFS_REWARD;
+			break;
+		case DIALOG_Adria:
+		case DIALOG_JtJack:
+		case DIALOG_Kathleen:
+			lexems += "$base1_price" + BASE1_PRICE;
+			break;
+		case DIALOG_all_barber:	
+			lexems += "$barber_price" + BARBER_PRICE;
+			break;
+		case DIALOG_all_doctor:
+		case DIALOG_Holiday:
+		case DIALOG_CCDrfung:
+		case DIALOG_CCDrhub:
+		case DIALOG_Zacharius:
+		case DIALOG_Renesco:
+		case DIALOG_DocOetker:
+			lexems += "$heal_drugs_price" + HEAL_DRUGS_PRICE;
+			lexems += "$heal_price" + HEAL_PRICE;
+			lexems += "$heal2_price" + HEAL2_PRICE;
+			lexems += "$ajet_price" + AJET_PRICE;
+			lexems += "$chems_price" + CHEMS_PRICE;
+			lexems += "$chems2_price" + CHEMS2_PRICE;
+			lexems += "$prof1_price" + PROF1_PRICE;
+			lexems += "$prof2_price" + PROF2_PRICE;
+			lexems += "$prof3_price" + PROF3_PRICE;
+			break;
+		case DIALOG_Ambrose:
+		case DIALOG_Edward:
+		case DIALOG_Jim:
+			lexems += "$prof1_price" + PROF1_PRICE;
+			break;
+		case DIALOG_Lucas:
+		case DIALOG_Neil:
+			lexems += "$prof2_price" + PROF2_PRICE;
+			break;		
+		case DIALOG_Alberto:
+		case DIALOG_Algernon:
+		case DIALOG_Buck:
+			lexems += "$prof3_price" + PROF3_PRICE;
+			break;
+		case DIALOG_Bookseller:
+			lexems += "$book3_price" + BOOK3_PRICE;
+			lexems += "$book4_price" + BOOK4_PRICE;
+			break;
+		case DIALOG_den_joe:
+			lexems += "$jet_price" + JET_PRICE;
+			break;
+		case DIALOG_Diane_Colress:
+		case DIALOG_Katarina:
+			lexems += "$base2_price" + BASE2_PRICE;
+			break;
+		case DIALOG_Duke:
+		case DIALOG_Ron:
+			lexems += "$base3_price" + BASE3_PRICE;
+			break;
+		case DIALOG_Edwin:
+			lexems += "$base4_price" + BASE4_PRICE;
+			break;
+		case DIALOG_enclave_recruiter:
+			lexems += "$base5_price" + BASE5_PRICE;
+			break;	
+		case DIALOG_ETHubologist:
+			lexems += "$entrans_price" + ENTRANS_PRICE;
+			break;
+		case DIALOG_ETVCenergy:
+			lexems += "$entrans2_price" + ENTRANS2_PRICE;
+			break;
+		case DIALOG_HGSGunrunner:
+			lexems += "$hgsteel_price" + HGSTEEL_PRICE;	
+			lexems += "$stool_price" + STOOL_PRICE;
+			break;
+		case DIALOG_HGSMorningstar:
+			lexems += "$hgsteel2_price" + HGSTEEL2_PRICE;	
+			break;
+		case DIALOG_hub_car_seller:
+		case DIALOG_nr_t_ray:
+			lexems += "$key_price" + KEY_PRICE;	
+			break;
+		case DIALOG_Mechanic:
+			lexems += "$stool2_price" + STOOL2_PRICE;
+			break;
+		case DIALOG_KPNCRTechnic:
+			lexems += "$kevlar_price" + KEVLAR_PRICE;
+			break;
+		case DIALOG_KPSkeeter:
+			lexems += "$kevlar2_price" + KEVLAR2_PRICE;
+			break;
+		case DIALOG_Mel:
+			lexems += "$base6_price" + BASE6_PRICE;
+			break;
+		case DIALOG_NCRarmor:
+			lexems += "$armor_upgrade_price" + ARMOR_UPGRADE_PRICE;
+			break;
+		case DIALOG_RUZaius:
+			lexems += "$rore_price" + RORE_PRICE;
+			break;
+		case DIALOG_RUFargotraders:
+			lexems += "$rore2_price" + RORE2_PRICE;
+			break;
+	
+	}
+}
+
+void dlg_PrepareImplantPrice( Critter& player, Critter@ npc, string@ lexems )
+{
+    if( not IS_DIALOG_GENERATED( lexems ))
+		return;
+	lexems += "$implant_price" + IMPLANT_PRICE;	
+	lexems += "$rimplant_price" + RIMPLANT_PRICE;	
+	
+}
+
+uint bugcaps = 1;
+
+void enabledebugcaps(Critter& player, int num, int, int)
+{
+    bugcaps = num;
+}
+
+void r_GiveCaps(Critter& player, Critter@ npc, int caps)
+{
+	caps = RewardMod(caps);
+	if (caps>0)
+    {
+        player.AddItem( PID_BOTTLE_CAPS, caps );
+        if (bugcaps==1)
+        {
+            Map@ map = player.GetMap();
+            if (valid(map))
+                FLog( LOG_CAPS, "," + player.Id + "," + player.Name + "," +caps+","+map.GetProtoId()+","+player.HexX+"x"+player.HexY);
+        }
+    }
+}
+
+void r_TakeCaps(Critter& player, Critter@ npc, int caps)
+{
+	caps = PriceMod(caps);
+	if( (_CritCountItem( player, PID_BOTTLE_CAPS ) < uint(caps) ) || uint(caps)==0)
+	{
+		string error="Take Caps Error for player id "+player.Id+" caps summ "+caps;
+		if (valid(npc))
+			error+=" and npc id "+npc.Id;
+	}
+	if (caps>0)
+		player.DeleteItem( PID_BOTTLE_CAPS, caps );
+}
+
+bool d_IsEnoughCaps(Critter& player, Critter@ npc, int caps)
+{
+	caps = PriceMod(caps);
+	if( _CritCountItem( player, PID_BOTTLE_CAPS ) < uint(caps) )
+		return false;
+	return true;
+}
+
+bool d_IsNotEnoughCaps(Critter& player, Critter@ npc, int caps)
+{
+	return !d_IsEnoughCaps(player, npc, caps);
+}

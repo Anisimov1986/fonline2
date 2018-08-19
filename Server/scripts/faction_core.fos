@@ -1,0 +1,526 @@
+#include "_macros.fos"
+#include "serializator.fos"
+#include "buffer_h.fos"
+#include "utils_h.fos"
+
+#define _ADK_FactionName	# (i)		("FACTION" +i+ "INFO")
+#define _ADK_FactionScore	# (i)		("FACTION" +i+ "SCORE")
+#define _ADK_FactionAlly	# (i)		("FACTION" +i+ "ALLY")
+#define _ADK_FactionEnemy	# (i)		("FACTION" +i+ "ENEMY")
+#define CrParam				# (cr, num)	(cr.ParamBase[num])
+
+import uint[] GetFactionPlayers(uint faction) from "faction_cache";
+import uint[] GetOnlinePlayers(uint faction) from "faction_cache";
+import void RebuldFactionCache(uint id, bool add) from "faction_cache";
+import void AddNewCacheFaction() from "faction_cache";
+import void DeleteCacheFaction(uint faction) from "faction_cache";
+import void AddFactionTo(uint faction, uint faction2, int relation, bool send) from "faction_cache";
+import uint[] GetFactionRelationsCache(uint faction, bool ally) from "faction_cache";
+import void ProcessFactionBases(Critter& cr) from "personal_base";
+
+array<string> DefaultFactions ={"Junktown Scouts","Brotherhood of Steel","Enclave","Raiders","New California Republic","NCR Rangers"};
+
+void LoadPlayerFactionData (Critter& cr) //Loading data for just logged in player
+{
+	for (uint i = FACTION_START; i <= FACTION_END ; i++)
+		CrParam(cr,i)=GetLvar(cr, i);
+}
+
+void SavePlayerFactionData (Critter& cr) //Saving data for exiting player 
+{
+	for (uint i = FACTION_START; i <= FACTION_END ; i++)
+		SetLvar(cr, i,CrParam(cr,i));
+}
+
+uint[] GetFactionRelations(uint faction, bool ally)
+{
+    uint[] values;
+    if (faction==0)
+        return values;
+    string key=_ADK_FactionAlly(faction);
+    if (!ally)
+        key=_ADK_FactionEnemy(faction);
+    
+    if(IsAnyData(key))
+        GetAnyData(key, values);
+    return values;
+}
+
+void SaveAnyData(uint[]@ values, string key)
+{
+    if (!valid(values) || values.length()==0)
+    {
+        if (IsAnyData(key))
+            EraseAnyData(key);
+    }
+    else
+        SetAnyData(key,values);
+    
+}
+
+/* Deprecated
+bool IsRelation(uint faction, uint faction2, int relation)
+{
+    if (relation==0)
+    {
+        uint[] arrayally = GetFactionRelations(faction,true);
+        if (arrayally.find(faction2) >= 0)
+            return false;
+            
+        uint[] arrayenemy = GetFactionRelations(faction,false);  
+        if (arrayenemy.find(faction2) >= 0)
+            return false;
+        return true;
+    }
+    else if (relation==1)
+    {
+        uint[] arrayally = GetFactionRelations(faction,true);
+        if (arrayally.find(faction2) >= 0)
+            return true;
+        return false;
+    }
+    else if (relation==-1)
+    {
+        uint[] arrayenemy = GetFactionRelations(faction,false);
+        if (arrayenemy.find(faction2) >= 0)
+            return true;
+        return false;
+    }
+    return false;
+}
+
+void AddFactionTo(uint faction, uint faction2, int relation, bool send)
+{
+    if (relation==0)
+    {
+        uint[] arrayally = GetFactionRelations(faction,true);
+        if (arrayally.find(faction2) >= 0)
+        {
+            arrayally.removeAt(arrayally.find(faction2));
+            SaveAnyData(arrayally, _ADK_FactionAlly(faction));
+        }
+        uint[] arrayenemy = GetFactionRelations(faction,false);
+        if (arrayenemy.find(faction2) >= 0)
+        {
+            arrayenemy.removeAt(arrayenemy.find(faction2));
+            SaveAnyData(arrayenemy, _ADK_FactionEnemy(faction));
+        } 
+    }
+    else if (relation==1)
+    {
+        uint[] arrayenemy = GetFactionRelations(faction,false);
+        if (arrayenemy.find(faction2) >= 0)
+        {
+            arrayenemy.removeAt(arrayenemy.find(faction2));
+            SaveAnyData(arrayenemy, _ADK_FactionEnemy(faction));
+        }
+        uint[] arrayally = GetFactionRelations(faction,true);
+        if (arrayally.find(faction2) < 0)
+        {
+            arrayally.insertLast(faction2);
+            SaveAnyData(arrayally, _ADK_FactionAlly(faction));
+        }
+        else
+            return;
+    }
+    else if (relation==-1)
+    {
+        uint[] arrayally = GetFactionRelations(faction,true);
+        if (arrayally.find(faction2) >= 0)
+        {
+            arrayally.removeAt(arrayally.find(faction2));
+            SaveAnyData(arrayally, _ADK_FactionAlly(faction));
+        }
+        uint[] arrayenemy = GetFactionRelations(faction,false);
+        if (arrayenemy.find(faction2) < 0)
+        {
+            arrayenemy.insertLast(faction2);
+            SaveAnyData(arrayenemy, _ADK_FactionEnemy(faction));
+            
+        }
+        else
+            return;
+    }
+    if (send)
+        SendRelationsData(null);
+}
+*/
+
+int GetFactionScore(uint faction)
+{
+    return GetAnyData(_ADK_FactionScore(faction));
+}
+
+void ChangeFactionScore(uint faction, int score)
+{
+    int basescore = GetFactionScore(faction);
+    if (basescore<=0 && score<=0)
+        return;
+    basescore+=score;
+    if (basescore<0)
+        basescore=0;
+    SaveAnyData(basescore,_ADK_FactionScore(faction));
+}
+
+void changefscore(Critter& cr, int faction, int score,int )
+{
+    ChangeFactionScore(faction, score);
+}
+
+void sendfscore(Critter& cr, int faction, int score,int )
+{
+    SendFactionScore(cr);
+}
+
+void SendFactionScore(Critter@ cr)
+{
+    if(!IsAnyData("FACTIONS_COUNT"))
+	{
+		Log("Something terribly wrong with factions info");
+		return;
+	}
+    Critter@[] players;
+	if (valid(cr))
+		players.insertLast(cr);
+	else
+		GetAllPlayers(players);
+    int[] scores;
+    
+    for (uint i=0, k=GetFactionCount(); i<=k ; i++)
+        scores.insertLast(GetFactionScore(i));
+    
+    for (uint i=0, k=players.length(); i<k ; i++)
+	{
+        if(valid(players[i]) && _CritIsOnline(players[i]))
+            players[i].RunClientScript( "client_screen_factions@ReceiveScoresData", 0, 0, 0, null, scores );
+    }
+}
+
+void StartFactions()	//Init faction first time
+{
+	if(!IsAnyData("FACTIONS_COUNT"))
+	{
+		Serializator factions;
+		SetFactionCount(DefaultFactions.length());
+		uint j;
+		for (uint i = 0 ; i < DefaultFactions.length() ; i++)
+		{
+			j=i+1;
+			factions.Set(DefaultFactions[i]).Save(_ADK_FactionName(j));
+		}
+	}
+}
+
+uint RegisterNewFaction(string name)  //Register New Faction
+{
+	if(!IsAnyData("FACTIONS_COUNT"))
+		StartFactions();
+	Serializator newfaction;
+	int count = GetFactionCount();
+	SetFactionCount(++count);
+	newfaction.Set(name).Save(_ADK_FactionName(count));
+    CreateTimeEvent(__FullSecond+REAL_SECOND(0.3), "faction_core@e_UpdateFD", 0, false);
+    return count;
+}
+
+uint e_UpdateRD(uint[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+    if (valid(cr))
+        SendRelationsData(cr);
+	return 0;
+}
+
+void SendRelationsData(Critter@ cr) //Export , if cr is null than send data to all
+{
+    if(!IsAnyData("FACTIONS_COUNT"))
+	{
+		Log("Something terribly wrong with factions info");
+		return;
+	}
+    Critter@[] players;
+	if (valid(cr))
+		players.insertLast(cr);
+	else
+		GetAllPlayers(players);
+
+	Buffer@ buff = NewBuffer();
+    uint[][] ally;
+    uint[][] enemy;
+    for (uint i=0, k=GetFactionCount(); i<=k ; i++)
+	{      
+         ally.insertLast(GetFactionRelationsCache(i, true));
+         enemy.insertLast(GetFactionRelationsCache(i, false));
+    }
+	buff << ally << enemy;
+    
+    for (uint i=0, k=players.length(); i<k ; i++)
+	{
+        if(valid(players[i]) && _CritIsOnline(players[i]))
+		{
+            players[i].RunClientScript( "client_screen_factions@ReceiveRelationsData", 0, 0, 0, null, buff.AsInt32() );
+        }
+    }
+}
+
+
+
+void SendFactionData(Critter@ cr,int faction) //Export , if cr is null than send data to all
+{
+	if(!IsAnyData("FACTIONS_COUNT"))
+	{
+		Log("Something terribly wrong with factions info");
+		return;
+	}
+	array<string> Factions = GetFactions();
+	Critter@[] players;
+	if (valid(cr))
+    {
+		players.insertLast(cr);
+    }
+    else if (faction>0)
+    {
+        array<uint> Players = GetOnlinePlayers(faction);
+        for (uint i=0; i<Players.length(); i++ )
+        {
+            Critter@ cr = GetCritter(Players[i]);
+            if (valid(cr))
+                players.insertLast(cr);
+        }
+    }   
+	else
+    {
+		GetAllPlayers(players);
+    }
+	for (uint i=0, k=players.length(); i<k ; i++)
+	{
+		Buffer@ buff = NewBuffer();
+		buff << Factions;
+
+		if(valid(players[i]) && _CritIsOnline(players[i]))
+		{
+			if (faction==0 || (faction>0 && players[i].Param[MAIN_FACTION]==faction))
+			{
+				if (players[i].Param[MAIN_FACTION]!=0)
+				{
+					array<uint> FactionMembers=GetFactionPlayers(players[i].Param[MAIN_FACTION]);
+					array<string> Members;
+					array<int> Ranks;
+					if (FactionMembers.length()>0)
+					{
+						for (uint j=0, z=FactionMembers.length() ; j<z; j++)
+						{
+							Members.insertLast(GetSafePlayerName(FactionMembers[j]));
+							Ranks.insertLast(GetLvar(FactionMembers[j], MAIN_FACTION_RANK));
+						}
+						buff << Members << Ranks;
+					}
+					Members.resize(0);
+					Ranks.resize(0);
+					FactionMembers.resize(0);
+				}
+				players[i].RunClientScript( "client_screen_factions@ReceiveFactionData", 0, 0, 0, null, buff.AsInt32() );
+			}
+		}
+	}
+	players.resize(0);
+}
+
+array<string> GetFactions()
+{
+	
+	Serializator factions_name;
+	array<string> factions;
+	int count = GetFactionCount();
+	string Name;
+	for (int i = 0; i <= count; i++)
+	{
+		if(factions_name.Load(_ADK_FactionName(i)))
+		{
+			factions_name.Get(Name);
+			factions.insertLast(Name);
+		}
+		else
+		{
+			factions.insertLast("");
+		}
+	}
+	return factions;
+}
+
+
+uint GetFactionIdByName (string name)
+{
+    array<string> Factions = GetFactions();
+    if (Factions.find(name)>=0)
+        return Factions.find(name);
+    else
+        return 0;
+}
+
+string GetFactionNameById (int id)
+{
+	Serializator factions_name;
+	string Name;
+	if(factions_name.Load(_ADK_FactionName(id)))
+	{
+		factions_name.Get(Name);	
+		return Name;
+	}
+	return "";
+}
+
+int GetFactionCount()
+{
+	Serializator factions_count;
+	array<string> factions;
+	int count = 0;
+	if (factions_count.Load("FACTIONS_COUNT"))
+		factions_count.Get(count);
+	return count;
+}
+
+void SetFactionCount(int count)
+{
+	Serializator factions_count;
+	factions_count.Set(count).Save("FACTIONS_COUNT");
+	AddNewCacheFaction();
+}
+
+void JoinFaction(uint id, uint faction, uint rank, bool update)
+{
+	if (GetLvar(id, MAIN_FACTION)!=0)
+	{
+		Log("Cant join faction - already member of some faction");
+		return;
+	}
+	SaveFactionParam(id,MAIN_FACTION,faction);
+	SaveFactionParam(id,MAIN_FACTION_RANK,rank);
+	RebuldFactionCache(id, true);
+    if (update)
+        UpdateFactionData(faction);
+	Critter@ cr = GetCritter(id);
+	if (valid(cr))
+		ProcessFactionBases(cr);
+}
+
+bool QuitFaction(uint id)
+{
+	if (GetLvar(id, MAIN_FACTION)==0)
+		return true;
+
+    if (GetLvar(id, MAIN_FACTION_RANK)==FACTION_RANK_LEADER)
+    {
+		Log("Leader can't quit faction");
+		return false;
+	}
+	RebuldFactionCache(id, false);
+	UpdateFactionData(GetLvar(id, MAIN_FACTION));
+	ClearPlayerData(id);
+	Critter@ cr = GetCritter(id);
+	if (valid(cr))
+		ProcessFactionBases(cr);
+    return true;
+}
+
+void ClearPlayerData(uint id)
+{
+	for (uint i = FACTION_START; i <= FACTION_END ; i++)
+		SaveFactionParam(id, i,0);	
+}
+
+void ChangeFactionRank(uint id,uint newrank, bool update)
+{
+	SaveFactionParam(id, MAIN_FACTION_RANK,newrank);
+    if (update)
+        UpdateFactionData(GetLvar(id, MAIN_FACTION));
+}
+
+void SaveFactionParam(int id, int num,int param)
+{
+	Critter@ cr = GetCritter(id);
+	if (valid(cr))
+		CrParam(cr,num)=param;
+	SetLvar(id, num,param);
+}
+
+void UpdateFactionData(int faction)
+{
+	CreateTimeEvent(__FullSecond+REAL_SECOND(0.5), "faction_core@e_UpdateFD_for_faction", faction, false);
+}
+
+uint e_UpdateFD(uint[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	SendFactionData(cr,0);
+	return 0;
+}
+
+uint e_UpdateFD_for_faction(uint[]@ values)
+{
+    SendFactionData(null,values[0]);
+	return 0;
+}
+
+void ClearCharFactionInfo(Critter& cr)//Player deleted - Update data for his faction
+{
+	uint oldfaction = GetLvar(cr.Id, MAIN_FACTION);
+	if (oldfaction>0)
+	{
+		RebuldFactionCache(cr.Id, false);
+		UpdateFactionData(oldfaction);
+	}
+}
+
+void DeleteFactionByMember(uint crId)
+{
+    uint id = GetLvar(crId, MAIN_FACTION);
+    if (id<=6)
+        return;
+    DeleteFaction(id);
+}
+
+void DeleteFaction(uint id)
+{
+	if (IsAnyData(_ADK_FactionName(id)))
+		EraseAnyData(_ADK_FactionName(id));
+    if (IsAnyData(_ADK_FactionAlly(id)))
+            EraseAnyData(_ADK_FactionAlly(id));
+    if (IsAnyData(_ADK_FactionEnemy(id)))
+            EraseAnyData(_ADK_FactionEnemy(id));   
+    uint[] players = GetFactionPlayers(id);  
+    for (uint i=0, k=players.length(); i<k ; i++)
+	{
+        if (GetLvar(players[i], MAIN_FACTION)==int(id))
+            ClearPlayerData(players[i]);
+    }
+    DeleteCacheFaction(id);
+    
+    
+    for (uint i=1, k=GetFactionCount(); i<=k ; i++)
+	{      
+         if (i==id)
+            continue;
+         AddFactionTo(i, id, 0, false);
+    }
+    
+    CreateTimeEvent(__FullSecond+REAL_SECOND(0.3), "faction_core@e_UpdateFD", 0, false);
+    CreateTimeEvent(__FullSecond+REAL_SECOND(0.5), "faction_core@e_UpdateRD", 0, false);
+    
+}
+
+void DeleteFaction( Critter& cr, int id, int, int )
+{
+    DeleteFaction(id);
+}
+
+void JoinFaction(Critter& cr, int id, int faction, int rank)
+{
+    if (QuitFaction(id))
+        JoinFaction(id, faction, rank, true);
+}
+
+void QuitFaction(Critter& cr, int id, int , int )
+{
+    QuitFaction(id);
+}

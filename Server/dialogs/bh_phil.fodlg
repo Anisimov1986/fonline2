@@ -1,0 +1,430 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+23 1020 D _var n name_mem_npc_player = 1 @
+3 2000 None 0 #
+6 2010 #
+7 2020 #
+8 2030 @
+6 3000 None 0 #
+17 3010 #
+18 3020 #
+31 3030 #
+0 3040 @
+7 4000 None 0 #
+17 4010 #
+18 4020 #
+19 4030 #
+2 4040 #
+0 4050 @
+8 5000 None 0 #
+17 5010 #
+18 5020 #
+19 5030 #
+2 5040 #
+0 5050 @
+9 6000 None 0 #
+11 6010 #
+13 6020 #
+10 6030 @
+17 7000 None 0 #
+21 7010 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_NUKA_COLA + 1 R _item p PID_BOTTLE_CAPS - 100 #
+24 7020 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_NUKA_COLA + 1 R _item p PID_BOTTLE_CAPS - 100 #
+25 7030 D _item p PID_BOTTLE_CAPS > 99 R _item p PID_NUKA_COLA + 1 R _item p PID_BOTTLE_CAPS - 100 #
+20 7040 @
+18 8000 None 0 #
+21 8010 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BEER + 1 R _item p PID_BOTTLE_CAPS - 10 #
+24 8020 D _item p PID_BOTTLE_CAPS > 10 R _item p PID_BOTTLE_CAPS - 1 #
+25 8030 D _item p PID_BOTTLE_CAPS > 11 R _item p PID_BOTTLE_CAPS - 2 #
+20 8040 @
+20 9000 None 0 #
+0 9010 @
+21 10000 None 0 #
+22 10010 #
+26 10020 #
+28 10030 #
+0 10040 @
+24 11000 None 0 #
+22 11010 #
+26 11020 #
+28 11030 #
+0 11040 @
+25 12000 None 0 #
+22 12010 #
+26 12020 #
+28 12030 #
+0 12040 @
+26 13000 None 0 #
+21 13010 #
+0 13020 @
+28 14000 None 0 #
+21 14010 #
+0 14020 @
+31 15000 None 0 #
+17 15010 #
+18 15020 #
+19 15030 #
+0 15040 @
+32 16000 None 0 #
+0 16010 @
+22 17000 None 0 #
+17 17010 #
+18 17020 #
+31 17030 #
+0 17040 @
+23 18000 None 0 #
+22 18010 #
+27 18020 #
+0 18030 @
+27 19000 None 0 #
+22 19010 #
+0 19020 &
+
+[engl]
+{100}{}{Phil}
+{200}{}{You see a ghoul wearing an apron.}
+{210}{}{You see Phil, the bartender. He's cleaning a glass.}
+{210}{}{You see a ghoul wearing an apron. You assume he's the bartender of this saloon.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{1020}{}{Ciaeii}
+{2000}{}{Howdy, stranger. New to town? What's your name?}
+{2010}{}{@pname@.}
+{2020}{}{None of your business, pal.}
+{2030}{}{Well, I'm kind of undercover right now.}
+{3000}{}{Well, pleased to meet you, @pname@. I'm Phil. I own this place. Now... what'll it be?}
+{3010}{}{Nuka-Cola.}
+{3020}{}{Beer.}
+{3030}{}{Nothing.}
+{3040}{}{Nothing, sorry. Bye!}
+{4000}{}{Fine, pal. Be that way. I'm Phil. I own this place and run it. What'll it be?}
+{4010}{}{Nuka-Cola.}
+{4020}{}{Beer.}
+{4030}{}{Rotgut.}
+{4040}{}{Nothing.}
+{4050}{}{Nothing, sorry. Bye!}
+{5000}{}{Undercover, eh? I guess I can understand that. I'm Phil, by the way. What'll it be?}
+{5010}{}{Nuka-Cola.}
+{5020}{}{Beer.}
+{5030}{}{Rotgut.}
+{5040}{}{Nothing.}
+{5050}{}{Nothing, sorry. Bye!}
+{6000}{}{You want beer? Nuka-Cola?}
+{6010}{}{Deer!}
+{6020}{}{Gola!}
+{6030}{}{Nuffiiiink.}
+{7000}{}{That'll be 100 caps.}
+{7010}{}{Thanks.}
+{7020}{}{[Give Phil a 1 cap tip.] Here you go, Phil.}
+{7030}{}{[Give Phil a 2 caps tip] Thanks, Phil.}
+{7040}{}{Oops, I'm tapped.}
+{8000}{}{That'll be 10 caps.}
+{8010}{}{Thanks.}
+{8020}{}{[Give Phil a 1 cap tip.] Here you go, Phil.}
+{8030}{}{[Give Phil a 2 caps tip] Thanks, Phil.}
+{8040}{}{Oops, I'm tapped.}
+{9000}{}{Tapped, eh? Too bad. You can stick around here, but don't bug the customers. I got work to do. See you.}
+{9010}{}{Fine, bye.}
+{10000}{}{Anything else?}
+{10010}{}{I want more to drink.}
+{10020}{}{What's been going on in town?}
+{10030}{}{What's there to do around here?}
+{10040}{}{Nothing. Forget it.}
+{11000}{}{Hey, thanks! Anything else?}
+{11010}{}{I want more to drink.}
+{11020}{}{What's been going on in town?}
+{11030}{}{What's there to do around here?}
+{11040}{}{Nothing. Forget it.}
+{12000}{}{Wow! Thanks! Anything else I can do for you?}
+{12010}{}{I want more to drink.}
+{12020}{}{What's been going on in town?}
+{12030}{}{What's there to do around here?}
+{12040}{}{Nothing. Forget it.}
+{13000}{}{What's been going on in town? Well... a couple of loons've been locked up for spreading hate propaganda. Caravans all over the place. That's about normal.}
+{13010}{}{Thanks. I have more questions.}
+{13020}{}{Thanks. Bye.}
+{14000}{}{There's always a caravan headed out someplace. If you wanna be part of one of those, you can talk to the Bill, the Outfitter. Other than that, we haven't got much to do in this place. Sorry.}
+{14010}{}{Thanks! I have a few more questions.}
+{14020}{}{All right. Well, I'm outta here. See ya.}
+{15000}{}{Til you're buying, I ain't talking. What's your pleasure?}
+{15010}{}{Nuka-Cola.}
+{15020}{}{Beer.}
+{15030}{}{Rotgut.}
+{15040}{}{Forget this, I'm going.}
+{16000}{}{Get out of my bar. Now. Scumbag.}
+{16010}{}{Fine.}
+{17000}{}{What'll it be?}
+{17010}{}{Nuka-Cola.}
+{17020}{}{Beer.}
+{17030}{}{Nothing.}
+{17040}{}{Nothing, bye.}
+{18000}{}{Welcome back, what can I do for you?}
+{18010}{}{I want a drink, Phil.}
+{18020}{}{Nothing, I've got a few questions.}
+{18030}{}{Nothing, bye.}
+{19000}{}{Nothing? Ha. Ha. You don't park yourself here without drinking something, friend. I gotta pay the bills, too. Let's try that again. SO! What'll it be?}
+{19010}{}{Fine, I'll buy a drink.}
+{19020}{}{Forget it. I'm out of here.}
+
+[russ]
+{100}{}{Фил}
+{200}{}{Вы видите мертвяка одетого в фартук.}
+{210}{}{Вы видите Фила, бармена. Он протирает стакан.}
+{210}{}{Вы видите мертвяка в фартуке, протирающего стакан. Видя, что он за стойкой бара, вы предполагаете, что он бармен этого салуна.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Тупой}
+{1020}{}{Не знаком}
+{2000}{}{Привет, @sex@|незнакомец||незнакомка|. Добро пожаловать в город. Как тебя зовут?}
+{2010}{}{@pname@.}
+{2020}{}{Не твое дело, приятель.}
+{2030}{}{Ну, я сейчас инкогнито.}
+{3000}{}{@pname@, да? Ну, рад тебя видеть. Хочешь что-нибудь выпить?}
+{3010}{}{Нюка-Колу.}
+{3020}{}{Пиво.}
+{3030}{}{Ничего.}
+{3040}{}{Ничего, извини. Пока!}
+{4000}{}{Ладно, @sex@|дружище||подруга|. Пусть так. Я Фил. Я владелец этого заведения. Чего пьем?}
+{4010}{}{Нюка-Колу.}
+{4020}{}{Пиво.}
+{4030}{}{Рыгаловку.}
+{4040}{}{Ничего.}
+{4050}{}{Ничего, извини. Пока!}
+{5000}{}{Инкогнито, говоришь? Я понимаю, да. Между прочим, меня зовут Фил. Чего будем пить?}
+{5010}{}{Нюка-Колу.}
+{5020}{}{Пиво.}
+{5030}{}{Рыгаловку.}
+{5040}{}{Ничего.}
+{5050}{}{Ничего, извини. Пока!}
+{6000}{}{Тебе пиво? Рыгаловку? Нюка-Колу?}
+{6010}{}{Пива!}
+{6020}{}{error}
+{6030}{}{Колу!}
+{7000}{}{Это будет 100 монет.}
+{7010}{}{Спасибо.}
+{7020}{}{[Дать Филу $1 на чай] Вот, Фил, держи.}
+{7030}{}{[Дать Филу $2 на чай] Спасибо, Фил.}
+{7040}{}{Упс, я пас.}
+{8000}{}{С тебя $10.}
+{8010}{}{Вот.}
+{8020}{}{[Дать Филу $1 на чай] Вот, Фил, держи.}
+{8030}{}{[Дать Филу $2 на чай] Спасибо, Фил.}
+{8040}{}{Упс, я пас.}
+{9000}{}{Ничего? Ха. Ха. Тебе нечего здесь делать, если ты не собираешься пить. Мне тоже приходится платить по счетам. Так что давай попробуем еще раз. Итак! Чего будем пить?}
+{9010}{}{Ладно, забыли. Пойду-ка я отсюда.}
+{10000}{}{Пока ты пьешь, я молчу. Итак, чего сегодня душа просит?}
+{10010}{}{Пожалуй выпью еще!}
+{10020}{}{Что происходит в городе?}
+{10030}{}{Что здесь есть интересного?}
+{10040}{}{Ничего. Забудьте об этом.}
+{11000}{}{Эй, спасибо! Что-нибудь еще?@@Ух ты! Спасибо! Чем еще я могу быть полезен?}
+{11010}{}{Я хочу еще выпить.}
+{11020}{}{Что происходит в городе?}
+{11030}{}{Что здесь есть интересного?}
+{11040}{}{Ничего. Забудьте об этом.}
+{12000}{}{Эй, спасибо! Что-нибудь еще?@@Ух ты! Спасибо! Чем еще я могу быть полезен?}
+{12010}{}{Я хочу еще выпить.}
+{12020}{}{Что происходит в городе?}
+{12030}{}{Что здесь есть интересного?}
+{12040}{}{Ничего. Забудьте об этом.}
+{13000}{}{Что происходит в городе? Ну... пару бездельников опять посадили за разжигание межвидовой розни... Очистители в шахте иногда барахлят. Караваны по-прежнему ходят. Все как обычно.}
+{13010}{}{Спасибо. У меня есть еще вопросы.}
+{13020}{}{Спасибо. Пока.}
+{14000}{}{Здесь есть караван, который всегда куда-нибудь отправляется. Если хочешь к ним присоединиться - поговори с Биллом, снабженцем. Больше, думаю, в этом месте делать нечего. Извини.}
+{14010}{}{Спасибо! У меня есть еще вопросы.}
+{14020}{}{Ладно. Ну, мне пора. Пока.}
+{15000}{}{Пока ты пьешь, я молчу. Итак, чего сегодня душа просит?}
+{15010}{}{Колу!}
+{15020}{}{error}
+{15030}{}{Бормотуху.}
+{15040}{}{Ничего. Забудьте об этом.}
+{16000}{}{Вон из моего бара. Быстро. Дерьмо.}
+{16010}{}{Я лучше пойду.}
+{17000}{}{Что-нибудь еще?.}
+{17010}{}{Колу!}
+{17020}{}{Пиво.}
+{17030}{}{Ничего.}
+{17040}{}{Ничего. Пока.}
+{18000}{}{Эй! С возвращением! Чем могу быть полезен?}
+{18010}{}{Мне бы выпить Фил.}
+{18020}{}{Ничего, просто поговорить.}
+{18030}{}{Ничего, до свидания .}
+{19000}{}{Ничего? Ха. Ха. Тебе нечего здесь делать, если ты не собираешься пить. Мне тоже приходится платить по счетам. Так что давай попробуем еще раз. Итак! Чего будем пить?}
+{19010}{}{Хорошо, я куплю выпить.}
+{19020}{}{Забудь. Мне пора уходить.}
+
+[pols]
+{100}{}{Phil}
+{200}{}{Widzisz ghula w fartuchu.}
+{210}{}{Widzisz barmana imieniem Phil. Wyciera szklankę.}
+{210}{}{Widzisz ghula w fartuchu, wycierającego szklankę. Jako, że stoi za barem, zakładasz, że jest tutaj barmanem.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{1020}{}{Ciaeii}
+{2000}{}{Czołem, przybyszu. Witamy w mieście. Jak się nazywasz?}
+{2010}{}{@pname@.}
+{2020}{}{Nie twój interes, koleś.}
+{2030}{}{Nie chcę ujawniać mojej tożsamości}
+{3000}{}{@pname@, miło mi cię poznać. Jestem Phil, to mój interes. Czego się napijesz?}
+{3010}{}{Nuka-Coli.}
+{3020}{}{Piwa.}
+{3030}{}{Niczego.}
+{3040}{}{Niczego, przykro mi. Do widzenia!}
+{4000}{}{Jak sobie życzysz. Niech ci będzie. Jestem Phil, to mój lokal. Czego się napijesz?}
+{4010}{}{Nuka-Coli.}
+{4020}{}{Piwa.}
+{4030}{}{Zgnilca.}
+{4040}{}{Niczego.}
+{4050}{}{Niczego, przykro mi. Do widzenia!}
+{5000}{}{To tajemnica, tak? No cóż, jak sobie chcesz. Ja nazywam się Phil. Czego się napijesz?}
+{5010}{}{Nuka-Coli.}
+{5020}{}{Piwa.}
+{5030}{}{Zgnilca.}
+{5040}{}{Niczego.}
+{5050}{}{Niczego, przykro mi. Do widzenia!}
+{6000}{}{Chcesz piwa? Nuka-Coli?}
+{6010}{}{Pifo!}
+{6020}{}{Kolaaa!}
+{6030}{}{Niczechhho.}
+{7000}{}{Będzie to kosztowało 100 kapsli.}
+{7010}{}{Dzięki.}
+{7020}{}{[Daj Philowi $1 napiwku.] Trzymaj, Phil.}
+{7030}{}{[Daj Philowi $2 napiwku.] Dzięki, Phil.}
+{7040}{}{Uuups, jestem @sex@|spłukany||spłukana|.}
+{8000}{}{To będzie 10 kapsli.}
+{8010}{}{Dzięki.}
+{8020}{}{[Daj Philowi $1 napiwku.] Trzymaj, Phil.}
+{8030}{}{[Daj Philowi $2 napiwku.] Dzięki, Phil.}
+{8040}{}{Uuups, jestem @sex@|spłukany||spłukana|.}
+{9000}{}{@sex@|Spłukany||Spłukana|, tak? Szkoda. Możesz tu posiedzieć, tylko nie wkurzaj klientów. Muszę wracać do pracy. Trzymaj się.}
+{9010}{}{W porządku, pa.}
+{10000}{}{Coś jeszcze?}
+{10010}{}{Chcę jeszcze coś do picia.}
+{10020}{}{Co słychać w mieście?}
+{10030}{}{Co jest tu do roboty?}
+{10040}{}{Nic. Na razie.}
+{11000}{}{Hej, dzięki! Coś jeszcze?}
+{11010}{}{Chcę jeszcze coś do picia.}
+{11020}{}{Co słychać w mieście?}
+{11030}{}{Co jest tu do roboty?}
+{11040}{}{Nic. Na razie.}
+{12000}{}{Łał! Dzięki! Coś jeszcze mogę dla ciebie zrobić?}
+{12010}{}{Chcę jeszcze coś do picia.}
+{12020}{}{Co słychać w mieście?}
+{12030}{}{Co jest tu do roboty?}
+{12040}{}{Nic. Na razie.}
+{13000}{}{Co słychać w mieście? Cóż... Paru świrów zamknęli za szerzenie rasistowskiej propagandy. Przybyło mnóstwo karawan. W sumie nic nowego.}
+{13010}{}{Dzięki. Mam jeszcze kilka pytań.}
+{13020}{}{Dzięki. Pa.}
+{14000}{}{Zawsze znajdzie się jakaś karawana ruszająca w drogę. Jeśli chcesz się do którejś załapać, pogadaj z Billem. Poza tym niewiele jest tu do roboty. Przykro mi.}
+{14010}{}{Dzięki! Mam jeszcze kilka pytań.}
+{14020}{}{W porządku. Muszę już iść. Do zobaczenia.}
+{15000}{}{Dopóki płacisz, nie wtrącam się. Czego sobie życzysz?}
+{15010}{}{Nuka-Coli.}
+{15020}{}{Piwa.}
+{15030}{}{Zgnilca.}
+{15040}{}{Mniejsza z tym, właśnie wychodzę.}
+{16000}{}{Wynoś się z mojego baru. Natychmiast. @sex@|Gnój||Pizda|.}
+{16010}{}{W porządku.}
+{17000}{}{Czego nalać?}
+{17010}{}{Nuka-Coli.}
+{17020}{}{Piwa.}
+{17030}{}{Niczego.}
+{17040}{}{Niczego, do widzenia.}
+{18000}{}{Witam z powrotem, czym mogę służyć?}
+{18010}{}{Chcę się napić, Phil.}
+{18020}{}{Mam parę pytań.}
+{18030}{}{Nieważne, do widzenia.}
+{19000}{}{Hahaha. To nie jest miejsce w którym siedzisz o suchym pysku, @sex@|kolego||koleżanko|. Mam rachunki do zapłacenia. A więc, *co nalać*?}
+{19010}{}{W porządku, kupię coś do picia.}
+{19020}{}{Zapomnij o tym. Wychodzę stąd.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{1020}{}{Ciaeii}
+{2000}{}{Howdy, stranger. New to town? What's your name?}
+{2010}{}{@pname@.}
+{2020}{}{None of your business, pal.}
+{2030}{}{Well, I'm kind of undercover right now.}
+{3000}{}{Well, pleased to meet you, @pname@. I'm Phil. I own this place. Now... what'll it be?}
+{3010}{}{Nuka-Cola.}
+{3020}{}{Beer.}
+{3030}{}{Nothing.}
+{3040}{}{Nothing, sorry. Bye!}
+{4000}{}{Fine, pal. Be that way. I'm Phil. I own this place and run it. What'll it be?}
+{4010}{}{Nuka-Cola.}
+{4020}{}{Beer.}
+{4030}{}{Rotgut.}
+{4040}{}{Nothing.}
+{4050}{}{Nothing, sorry. Bye!}
+{5000}{}{Undercover, eh? I guess I can understand that. I'm Phil, by the way. What'll it be?}
+{5010}{}{Nuka-Cola.}
+{5020}{}{Beer.}
+{5030}{}{Rotgut.}
+{5040}{}{Nothing.}
+{5050}{}{Nothing, sorry. Bye!}
+{6000}{}{You want beer? Nuka-Cola?}
+{6010}{}{Deer!}
+{6020}{}{Gola!}
+{6030}{}{Nuffiiiink.}
+{7000}{}{That'll be 100 caps.}
+{7010}{}{Thanks.}
+{7020}{}{[Give Phil a 1 cap tip.] Here you go, Phil.}
+{7030}{}{[Give Phil a 2 caps tip] Thanks, Phil.}
+{7040}{}{Oops, I'm tapped.}
+{8000}{}{That'll be 10 caps.}
+{8010}{}{Thanks.}
+{8020}{}{[Give Phil a 1 cap tip.] Here you go, Phil.}
+{8030}{}{[Give Phil a 2 caps tip] Thanks, Phil.}
+{8040}{}{Oops, I'm tapped.}
+{9000}{}{Tapped, eh? Too bad. You can stick around here, but don't bug the customers. I got work to do. See you.}
+{9010}{}{Fine, bye.}
+{10000}{}{Anything else?}
+{10010}{}{I want more to drink.}
+{10020}{}{What's been going on in town?}
+{10030}{}{What's there to do around here?}
+{10040}{}{Nothing. Forget it.}
+{11000}{}{Hey, thanks! Anything else?}
+{11010}{}{I want more to drink.}
+{11020}{}{What's been going on in town?}
+{11030}{}{What's there to do around here?}
+{11040}{}{Nothing. Forget it.}
+{12000}{}{Wow! Thanks! Anything else I can do for you?}
+{12010}{}{I want more to drink.}
+{12020}{}{What's been going on in town?}
+{12030}{}{What's there to do around here?}
+{12040}{}{Nothing. Forget it.}
+{13000}{}{What's been going on in town? Well... a couple of loons've been locked up for spreading hate propaganda. Caravans all over the place. That's about normal.}
+{13010}{}{Thanks. I have more questions.}
+{13020}{}{Thanks. Bye.}
+{14000}{}{There's always a caravan headed out someplace. If you wanna be part of one of those, you can talk to the Bill, the Outfitter. Other than that, we haven't got much to do in this place. Sorry.}
+{14010}{}{Thanks! I have a few more questions.}
+{14020}{}{All right. Well, I'm outta here. See ya.}
+{15000}{}{Til you're buying, I ain't talking. What's your pleasure?}
+{15010}{}{Nuka-Cola.}
+{15020}{}{Beer.}
+{15030}{}{Rotgut.}
+{15040}{}{Forget this, I'm going.}
+{16000}{}{Get out of my bar. Now. Scumbag.}
+{16010}{}{Fine.}
+{17000}{}{What'll it be?}
+{17010}{}{Nuka-Cola.}
+{17020}{}{Beer.}
+{17030}{}{Nothing.}
+{17040}{}{Nothing, bye.}
+{18000}{}{Welcome back, what can I do for you?}
+{18010}{}{I want a drink, Phil.}
+{18020}{}{Nothing, I've got a few questions.}
+{18030}{}{Nothing, bye.}
+{19000}{}{Nothing? Ha. Ha. You don't park yourself here without drinking something, friend. I gotta pay the bills, too. Let's try that again. SO! What'll it be?}
+{19010}{}{Fine, I'll buy a drink.}
+{19020}{}{Forget it. I'm out of here.}
+

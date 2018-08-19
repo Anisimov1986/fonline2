@@ -1,0 +1,294 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 R _script dialog@Type 0  #
+54 2020 D _var p sierra_robots = 1 D _param p SK_SCIENCE } 130 R _script map_sierra@r_EnableBPower 0  R _script dialog@Type 0  #
+53 2030 D _param p SK_SCIENCE } 130 D _var p sierra_robots = 0 R _script map_sierra@r_TimedAlarm 0  R _script map_sierra@r_EnableBPower 0  R _script dialog@Type 0  #
+52 2040 D _param p SK_SCIENCE } 130 D _param p MAIN_FACTION ! 0 R _script map_sierra@r_HackTower 0  R _script dialog@Type 0  #
+0 2050 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+0 4010 D _var p sierra_robots = 1 #
+5 4020 D _var p sierra_robots = 0 R _script dialog@Type 0  #
+0 4030 @
+5 5000 None 0 #
+0 5010 D _var p sierra_robots = 1 #
+0 5020 #
+6 5030 D _var p sierra_robots = 0 R _script dialog@Type 0  @
+6 6000 None 0 #
+0 6010 D _var p sierra_robots = 1 #
+7 6020 D _var p sierra_robots = 0 R _script dialog@Type 0  #
+0 6030 @
+7 7000 None 0 #
+0 7010 D _var p sierra_robots = 1 #
+8 7020 D _var p sierra_robots = 0 R _script dialog@Type 0  #
+0 7030 @
+8 8000 None 0 #
+0 8010 D _var p sierra_robots = 1 #
+0 8020 #
+9 8030 D _var p sierra_robots = 0 R _script dialog@Type 0  @
+9 9000 None 0 #
+0 9010 D _var p sierra_robots = 1 #
+0 9020 #
+10 9030 D _var p sierra_robots = 0 R _script dialog@Type 0  @
+10 10000 None 0 #
+0 10010 D _var p sierra_robots = 1 #
+11 10020 D _var p sierra_robots = 0 R _script dialog@Type 0  #
+0 10030 @
+11 11000 None 0 #
+0 11010 D _var p sierra_robots = 1 #
+0 11020 #
+12 11030 D _var p sierra_robots = 0 R _script dialog@Type 0  @
+12 12000 None 0 #
+0 12010 D _var p sierra_robots = 1 #
+51 12020 D _var p sierra_robots = 0 R _script map_sierra@r_DisableAlarm 0  R _script dialog@Type 0  #
+0 12030 @
+51 13000 None 0 #
+0 13010 @
+52 14000 None 0 #
+0 14010 @
+53 15000 None 0 #
+4 15010 R _script dialog@Type 0  @
+54 16000 None 0 &
+
+[engl]
+{100}{}{Skynet}
+{200}{}{Skynet}
+{210}{}{Skynet}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[You look at the shiny screen of the computer.]}
+{2010}{}{[Browse the database.]}
+{2020}{}{Connect Backup Power [Power up the elevator.]}
+{2030}{}{Connect Backup Power [Power up the elevator.]}
+{2040}{}{[Hack the Sentry Turrets.]@@[Try to hack the Sentry Turrets.]}
+{2050}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{3000}{}{No authorization to browse the database. System shutdown.}
+{3010}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{4000}{}{[Work in progress... 3%.]}
+{4010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{4020}{}{[Hack in.]}
+{4030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{5000}{}{[Work in progress... 15%.]}
+{5010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{5020}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{5030}{}{[Hack in.]}
+{6000}{}{[Work in progress... 26%.]}
+{6010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{6020}{}{[Hack in.]}
+{6030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{7000}{}{[Work in progress... 39%.]}
+{7010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{7020}{}{[Hack in.]}
+{7030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{8000}{}{[Work in progress... 50%.]}
+{8010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{8020}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{8030}{}{[Hack in.]}
+{9000}{}{[Work in progress... 63%.]}
+{9010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.
+{9020}
+{9020}{}{error}
+{9030}{}{[Hack in.]}
+{10000}{}{[Work in progress... 78%.]}
+{10010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{10020}{}{[Hack in.]}
+{10030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{11000}{}{[Work in progress... 91%.]}
+{11010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.@@Fuck my stiny ass!}
+{11020}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{11030}{}{[Hack in.]}
+{12000}{}{[Work in progress... 99%.]}
+{12010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.@@Fuckin' fuckedy fuck!}
+{12020}{}{[Hack in.]}
+{12030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{13000}{}{Security System temporarily disabled for 10 minutes.}
+{13010}{}{Yeah, finally. @@That was close.@@Fuck yeah.@@Phew.@@Yeah...}
+{14000}{}{Turrets temporarily disabled for 60 minutes.}
+{14010}{}{[Leave.]}
+{15000}{}{Backup Power established... Security System activation in 10 seconds.}
+{15010}{}{Try to shut it down.@@Try to stop the activation.}
+{16000}{}{Elevator successfully powered.}
+
+[russ]
+{100}{}{Skynet}
+{200}{}{Skynet}
+{210}{}{Skynet}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[You look at the shiny screen of the computer.]}
+{2010}{}{[Browse the database.]}
+{2020}{}{Connect Backup Power [power up the elevator]}
+{2030}{}{Connect Backup Power [power up the elevator]}
+{2040}{}{[Hack the Sentry Turrets]}
+{2050}{}{[Leave.]}
+{3000}{}{[No authorization to browse the database. System shutdown.]}
+{3010}{}{[Leave.]}
+{4000}{}{[Work in progress... 3%]}
+{4010}{}{Too late! Get ready!}
+{4020}{}{[Hacking]}
+{4030}{}{[Leave.]}
+{5000}{}{[Work in progress... 15%]}
+{5010}{}{Too late! Get ready!}
+{5020}{}{[Leave.]}
+{5030}{}{[Hacking]}
+{6000}{}{[Work in progress... 26%]}
+{6010}{}{Too late! Get ready!}
+{6020}{}{[Hacking]}
+{6030}{}{[Leave.]}
+{7000}{}{[Work in progress... 39%]}
+{7010}{}{Too late! Get ready!}
+{7020}{}{[Hacking]}
+{7030}{}{[Leave.]}
+{8000}{}{[Work in progress... 50%]}
+{8010}{}{Too late! Get ready!}
+{8020}{}{[Leave.]}
+{8030}{}{[Hacking]}
+{9000}{}{[Work in progress... 63%]}
+{9010}{}{Too late! Get ready!}
+{9020}{}{[Leave.]}
+{9030}{}{[Hacking]}
+{10000}{}{[Work in progress... 78%]}
+{10010}{}{Too late! Get ready!}
+{10020}{}{[Hacking]}
+{10030}{}{[Leave.]}
+{11000}{}{[Work in progress... 91%]}
+{11010}{}{Too late! Get ready!}
+{11020}{}{[Leave.]}
+{11030}{}{[Hacking]}
+{12000}{}{[Work in progress... 99%]}
+{12010}{}{Too late! Get ready!}
+{12020}{}{[Hacking]}
+{12030}{}{[Leave.]}
+{13000}{}{[Security System Succesfully Disabled [10 minutes]]}
+{13010}{}{Yeah, finally. [Leave.]}
+{14000}{}{Turrets Hacked [60 minutes]}
+{14010}{}{Exit}
+{15000}{}{Backup Power Established... Security System Activation [10 seconds]}
+{15010}{}{Try to shut it down!}
+{16000}{}{Elevator sucessfully powered.}
+
+[pols]
+{100}{}{Skynet}
+{200}{}{Skynet}
+{210}{}{Skynet}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[Wpatrujesz się w lśniący ekran monitora.]}
+{2010}{}{[Przeszukaj bazę danych.]}
+{2020}{}{Connect Backup Power [power up the elevator]}
+{2030}{}{[Podłącz swojego PipBoya do terminala i rozpocznij sekwencję deszyfryzacji.]}
+{2040}{}{[Hack the Sentry Turrets]}
+{2050}{}{[Odejdź.]}
+{3000}{}{[Odmowa dostępu do bazy danych - brak autoryzacji. Następuje wyłączenie systemu.]}
+{3010}{}{[Odejdź.]}
+{4000}{}{[Deszyfryzacja w toku... 3%]}
+{4010}{}{Too late! Get ready!}
+{4020}{}{[Czekaj.]}
+{4030}{}{[Odejdź.]}
+{5000}{}{[Deszyfryzacja w toku... 5%]}
+{5010}{}{Too late! Get ready!}
+{5020}{}{[Odejdź.]}
+{5030}{}{[Czekaj.]}
+{6000}{}{[Deszyfryzacja w toku... 6%]}
+{6010}{}{Too late! Get ready!}
+{6020}{}{[Czekaj.]}
+{6030}{}{[Odejdź.]}
+{7000}{}{[Deszyfryzacja w toku... 9%]}
+{7010}{}{Too late! Get ready!}
+{7020}{}{[Czekaj.]}
+{7030}{}{[Odejdź.]}
+{8000}{}{[Deszyfryzacja w toku... 10%]}
+{8010}{}{Too late! Get ready!}
+{8020}{}{[Odejdź.]}
+{8030}{}{[Czekaj.]}
+{9000}{}{[Deszyfryzacja w toku... 13%]}
+{9010}{}{Too late! Get ready!}
+{9020}{}{[Odejdź.]}
+{9030}{}{[Czekaj.]}
+{10000}{}{[Deszyfryzacja w toku... 18%]}
+{10010}{}{Too late! Get ready!}
+{10020}{}{[Czekaj.]}
+{10030}{}{[Odejdź.]}
+{11000}{}{[Deszyfryzacja w toku... 21%]}
+{11010}{}{Too late! Get ready!}
+{11020}{}{[Odejdź.]}
+{11030}{}{[Czekaj.]}
+{12000}{}{[Deszyfryzacja w toku... 23%]}
+{12010}{}{Too late! Get ready!}
+{12020}{}{[Czekaj.]}
+{12030}{}{[Odejdź.]}
+{13000}{}{[Deszyfryzacja zakończona.]}
+{13010}{}{No, nareszcie. [Odejdź.]}
+{14000}{}{Turrets Hacked [60 minutes]}
+{14010}{}{Exit}
+{15000}{}{Backup Power Established... Security System Activation [10 seconds]}
+{15010}{}{Try to shut it down!}
+{16000}{}{Elevator sucessfully powered.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[You look at the shiny screen of the computer.]}
+{2010}{}{[Browse the database.]}
+{2020}{}{Connect Backup Power [Power up the elevator.]}
+{2030}{}{Connect Backup Power [Power up the elevator.]}
+{2040}{}{[Hack the Sentry Turrets.]@@[Try to hack the Sentry Turrets.]}
+{2050}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{3000}{}{No authorization to browse the database. System shutdown.}
+{3010}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{4000}{}{[Work in progress... 3%.]}
+{4010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{4020}{}{[Hack in.]}
+{4030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{5000}{}{[Work in progress... 15%.]}
+{5010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{5020}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{5030}{}{[Hack in.]}
+{6000}{}{[Work in progress... 26%.]}
+{6010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{6020}{}{[Hack in.]}
+{6030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{7000}{}{[Work in progress... 39%.]}
+{7010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{7020}{}{[Hack in.]}
+{7030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{8000}{}{[Work in progress... 50%.]}
+{8010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{8020}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{8030}{}{[Hack in.]}
+{9000}{}{[Work in progress... 63%.]}
+{9010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.
+{9020}
+{9020}{}{error}
+{9030}{}{[Hack in.]}
+{10000}{}{[Work in progress... 78%.]}
+{10010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.}
+{10020}{}{[Hack in.]}
+{10030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{11000}{}{[Work in progress... 91%.]}
+{11010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.@@Fuck my stiny ass!}
+{11020}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{11030}{}{[Hack in.]}
+{12000}{}{[Work in progress... 99%.]}
+{12010}{}{Shit!@@Fuck.@@Crap.@@Damn.@@Fuckin' hell!@@Dayum.@@Oh hell.@@Oh fuck.@@Fuck me.@@Shiieeet.@@Fuckin' fuckedy fuck!}
+{12020}{}{[Hack in.]}
+{12030}{}{[Leave.]@@[Step away from the terminal.]@@[Logout.]@@[Logoff.]@@[Log off.]}
+{13000}{}{Security System temporarily disabled for 10 minutes.}
+{13010}{}{Yeah, finally. @@That was close.@@Fuck yeah.@@Phew.@@Yeah...}
+{14000}{}{Turrets temporarily disabled for 60 minutes.}
+{14010}{}{[Leave.]}
+{15000}{}{Backup Power established... Security System activation in 10 seconds.}
+{15010}{}{Try to shut it down.@@Try to stop the activation.}
+{16000}{}{Elevator successfully powered.}
+

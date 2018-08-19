@@ -1,0 +1,183 @@
+
+#include "_macros.fos"
+#include "serializator.fos"
+
+#define _KeyEvent               # (index) ( "GE_" + index )
+GameEvents@[] Events;
+class GameEvents
+{
+	uint Id;
+	int MinTime;
+	int MaxTime;
+	string RunFunc;
+	bool running = false;
+	uint EventId = 0;
+	bool enabled = false;
+	
+    void Save()
+    {
+        Serializator save;
+        save.Set( this.EventId );
+		save.Set( enabled );
+        save.Save( _KeyEvent( this.Id ) );
+    }
+	
+	void Load()
+    {
+        Serializator load;
+		if( load.Load( _KeyEvent( this.Id ) ) )
+		{
+			load.Get( this.EventId );
+			load.Get( enabled );
+		}
+    }
+	
+	void SetEnabled(bool enabled)
+	{	
+		this.enabled = enabled;
+		
+		if (enabled && !IsStarted())
+		{
+			Start();
+		}
+		else if (!enabled && IsStarted())
+		{
+			Stop();
+		}
+		else
+		{
+			Save();
+		}
+	}
+	
+	bool IsEnabled()
+	{
+		return enabled;
+	}
+	
+	void Start()
+	{
+		if (IsEnabled())
+		{
+			//this.EventId = CreateTimeEvent(__FullSecond+Random(this.MinTime,this.MaxTime), this.RunFunc, this.Id, true);
+			this.EventId = CreateTimeEvent(__FullSecond+Random(0, (this.MinTime + this.MaxTime) / 2), this.RunFunc, this.Id, true);
+			this.Save();
+		}
+	}
+	
+	void Stop()
+	{
+		if (IsStarted())
+		{
+			EraseTimeEvent(EventId);
+			EventId = 0;
+			this.Save();
+		}
+	}
+	
+	bool IsStarted()
+	{
+		if (this.EventId == 0)
+			return false;
+		uint duration = 0;
+		uint[] values;
+		if( GetTimeEvent( this.EventId, duration, values ) )
+			return true;
+		return false;
+	}
+}
+
+void DefineEvent( uint Id, int MinTime, int MaxTime, string RunFunc, string InitFunc)
+{ 
+	GameEvents element;
+	element.Id = Id;
+    element.MinTime = MinTime; 
+	element.MaxTime = MaxTime; 
+	element.RunFunc = RunFunc; 
+    Events.insertLast(@element);
+	
+	if (InitFunc != "")
+		CreateTimeEvent(__FullSecond, InitFunc, Id, false);
+}
+
+void DefineEvent( uint Id, int MinTime, int MaxTime, string RunFunc)
+{ 
+	DefineEvent(Id, MinTime, MaxTime, RunFunc, "");
+}
+
+void DeclareEvents()
+{
+    #include "game_events_init.fos"
+}
+
+void CheckAllGameEvents()
+{
+	for (uint i=0; i<Events.length(); i++ )
+	{
+		Events[i].Load();
+		if (Events[i].IsStarted())
+		{
+			continue;
+		}
+		else
+		{
+			Events[i].Start();
+		}
+		
+	}
+}
+
+int GetNextTime(uint Id)
+{
+	for (uint i=0; i<Events.length(); i++ )
+	{
+		if (Events[i].Id==Id)
+			return Random(Events[i].MinTime,Events[i].MaxTime);
+	}
+	return 0;
+}
+
+void enable(Critter& cr, int eventId, int, int)
+{
+	for (uint i=0; i<Events.length(); i++ )
+	{
+		if (Events[i].Id == uint(eventId))
+		{
+			Events[i].Load();
+			Events[i].SetEnabled(true);
+			return;
+		}
+	}
+	
+	cr.Say(SAY_NETMSG, "Incorrect eventId");
+}
+
+void disable(Critter& cr, int eventId, int, int)
+{
+	for (uint i=0; i<Events.length(); i++ )
+	{
+		if (Events[i].Id == uint(eventId))
+		{
+			Events[i].Load();
+			Events[i].SetEnabled(false);
+			return;
+		}
+	}
+	
+	cr.Say(SAY_NETMSG, "Incorrect eventId");
+}
+
+void status(Critter& cr, int , int, int)
+{
+	cr.Say(SAY_NETMSG, "Event status:");
+	for (uint i=0; i<Events.length(); i++ )
+	{
+		Events[i].Load();
+		
+		cr.Say(SAY_NETMSG,
+			Events[i].Id + " "  
+			+ (Events[i].enabled ? "1" : "0") + " " 
+			+ Events[i].RunFunc
+		);
+	}
+}

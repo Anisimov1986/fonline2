@@ -1,0 +1,515 @@
+// Author: [SoT]Skycast
+// Light version
+
+#include "_macros.fos"
+
+#include "tc_defines.fos"
+#include "utils_for_array.fos"
+#include "pids_groups.fos"
+#include "entire.fos"
+#include "logging_h.fos"
+#include "mapdata_h.fos"
+#include "utils_h.fos"
+#include "ncr_profit.fos"
+
+#define TOWN_NEEDED_NUM_FOR_TC                   (3)
+#define TOWN_CAPTURE_NEARBY_HEXES                (8)
+#define TOWN_CAPTOR_LEVEL_REQ                    (10)
+#define TOWN_CAPTOR_WEAPON_LEVEL_REQ             (2)
+#define TOWN_CAPTOR_ARMOR_LEVEL_REQ              (2)
+#define TOWN_CAPTOR_WEAPON_DETOR_REQ			 (40)
+#define TOWN_CAPTOR_ARMOR_DETOR_REQ              (40)
+import int GetDeteriorationProcent( Item& item ) from "repair";
+import bool IsTcTimer(uint town) from "stocmessages";
+import bool IsAnyTcTimer() from "stocmessages";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool tctimer, uint townid, uint factionid) from "stocmessages";
+import string GetFactionNameById(int id) from "faction_core";
+import void RemoveMessageByTown(uint id) from "stocmessages";
+import uint16 GetRealHour() from "time";
+import void NCRProfit( int amount ) from "map_ncr";
+import void ChangeFactionScore(uint faction, int score) from "faction_core";
+
+void r_StartTc(Critter& cr, Critter@ npc)
+{
+	if (GetNearMembers(cr)<TOWN_NEEDED_NUM_FOR_TC)
+		return;
+	Map@ map=cr.GetMap();
+	if(!valid(map))
+       return ;
+	Location @ town = map.GetLocation();
+	if(!valid(town))
+		return;
+	if (!Present(town.GetProtoId(),TcTowns))
+		return;
+	if (!IsTimeToTc(cr))
+		return;
+	//if (IsTcTimerHere(cr))
+	//	return;
+	if (IsAnyTcTimer())
+		return;
+	if (map.GetData(MAP_DATA_FACTION)==cr.Param[MAIN_FACTION])
+		return;
+	string faction_name=GetFactionNameById(cr.Param[MAIN_FACTION]);
+	if (faction_name=="")
+		return;
+	string mapname = GetTownName(town.GetProtoId());
+	uint[] values = { town.GetProtoId(), cr.Param[MAIN_FACTION] };
+	CreateTimeEvent(__FullSecond+REAL_SECOND(10), "e_capturing_town", values, false);
+	map.SetData(MAP_DATA_ACTIVE_COUNTDOWN, 1);
+	AddNewMessage( faction_name+" are taking " +mapname+ ". Time until taken:",REAL_MINUTE(15), 1, COLOR_GREEN, true, town.GetProtoId(), cr.Param[MAIN_FACTION]);
+}
+
+void StopTc( uint id)
+{
+	RemoveMessageByTown(id);
+}
+
+void TcFinished(uint townid,uint factionid)
+{
+	Location @ town = GetLocationByPid(townid,0);
+	if(!valid(town))
+        return;
+	Map@ map=town.GetMapByIndex(0);
+	if(!valid(map))
+        return;
+	
+	for(uint i = 0; i < TcTowns.length(); i++)
+    {
+		if  (TcTowns[i]==townid)
+		{
+			map.SetData(MAP_DATA_FACTION,factionid);
+			map.SetData(MAP_DATA_ACTIVE_COUNTDOWN, 0);
+            ChangeFactionScore(factionid, 500);
+			SetBestScore( 24+i, null, ""+GetFactionNameById(factionid) );
+			SayTownCaptured(map, factionid);
+		}
+	}
+}
+
+void ResetTcStats( Critter& cr, int, int, int )
+{
+	for(uint i = 30; i < 36; i++)
+	{
+		SetBestScore( i, null, "None" );
+	}
+}
+
+uint e_capturing_town(array<uint>@ values)
+{
+    if(!valid(values))
+        return(0);
+	Location @ town = GetLocationByPid(values[0],0);
+	if(!valid(town))
+        return(0);
+	Map@ map=town.GetMapByIndex(0);
+	if(!valid(map))
+        return(0);
+	if (GetActiveMembers(map,values[1])<TOWN_NEEDED_NUM_FOR_TC)
+	{
+		map.SetData(MAP_DATA_ACTIVE_COUNTDOWN, 0);
+		StopTc(values[0]);
+		return(0);
+	}
+	if (!IsTcTimer(values[0]))
+	{
+		map.SetData(MAP_DATA_ACTIVE_COUNTDOWN, 0);
+		TcFinished(values[0],values[1]);
+		return(0);
+	}
+    return REAL_SECOND(10);
+}
+
+bool IsValidCaptor(Critter& cr)
+{
+	if(cr.Mode[MODE_HIDE] != 0 || cr.Cond != COND_LIFE || !_CritIsOnline(cr))
+        return false;
+    if(cr.Stat[ST_LEVEL] < TOWN_CAPTOR_LEVEL_REQ)
+        return false;
+    Item@ armor = cr.GetItem(0, SLOT_ARMOR);
+    if(!valid(armor) || GetDeteriorationProcent(armor) > TOWN_CAPTOR_ARMOR_DETOR_REQ || ItemLevel(armor)<TOWN_CAPTOR_ARMOR_LEVEL_REQ)
+        return false;
+    Item@ weapon = cr.GetItem(0, SLOT_HAND1);
+    if(!valid(weapon))
+        return false;
+    if(valid(weapon) && weapon.GetType() == ITEM_TYPE_WEAPON && ItemLevel(weapon) >= TOWN_CAPTOR_WEAPON_LEVEL_REQ && GetDeteriorationProcent(weapon) <= TOWN_CAPTOR_WEAPON_DETOR_REQ)
+        return true;
+    @weapon = cr.GetItem(0, SLOT_HAND2);
+    return valid(weapon) && weapon.GetType() == ITEM_TYPE_WEAPON && ItemLevel(weapon) >= TOWN_CAPTOR_WEAPON_LEVEL_REQ && GetDeteriorationProcent(weapon) <= TOWN_CAPTOR_WEAPON_DETOR_REQ;
+}
+
+
+void SayTownCaptured(Map& map, int factionid)
+{
+    if (!valid(map))
+		return;
+	array<Critter@> crits;
+    uint            num = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO  , crits);
+    for(uint i = 0; i < num; i++)
+    {
+        if( crits[i].Param[MAIN_FACTION] == factionid )
+        {
+             crits[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70390);
+        }
+    }
+}
+
+uint GetNearMembers(Critter& player)
+{
+    array<Critter@> crits;
+    uint            num = player.GetMap().GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE, crits);
+    uint            nearmembers = 0;
+
+    for(uint i = 0; i < num; i++)
+    {
+        if(( GetCrittersDistantion(player, crits[i]) < TOWN_CAPTURE_NEARBY_HEXES)  && player.Param[MAIN_FACTION] == crits[i].Param[MAIN_FACTION] )
+        {
+            if( IsValidCaptor(crits[i]) )
+                nearmembers++;
+            else
+                crits[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70391);
+        }
+    }
+    return nearmembers;
+}
+
+uint GetActiveMembers(Map& map, int factionid)
+{
+    if (!valid(map))
+		return 0;
+	array<Critter@> crits;
+    uint            num = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO  , crits);
+    uint            nearmembers = 0;
+
+    for(uint i = 0; i < num; i++)
+    {
+        if( crits[i].Param[MAIN_FACTION] == factionid )
+        {
+            if(IsValidCaptor(crits[i]))
+                nearmembers++;
+        }
+    }
+    return nearmembers;
+}
+
+bool IsControllingTown(Critter& player)
+{
+	Map@ map=player.GetMap();
+	if (!valid(map))
+		return false;
+	if (map.GetData(MAP_DATA_FACTION)==0)
+		return false;
+	if (map.GetData(MAP_DATA_FACTION) == player.Param[MAIN_FACTION])
+		return true;
+	return false;
+}
+
+bool IsTcTimerHere(Critter& cr)
+{
+	Location @ town = GetLocationOf(cr);
+	if(!valid(town))
+		return false;
+	return IsTcTimer(town.GetProtoId());
+}
+
+
+
+void _RewardContainerInit(Item& item, bool firstTime)
+{
+    item.SetEvent(ITEM_EVENT_SKILL, "_UseRewardContainer");
+}
+
+// Executed when opening reward chest
+bool _UseRewardContainer(Item& item, Critter& cr, int skill)
+{
+   // Opening / Closing
+    if((skill == -1) || (skill == SK_STEAL))
+    {
+        Map@ map=cr.GetMap();
+		if(!valid(map))
+        {
+            cr.Say(SAY_NETMSG, "Error. Report to gm.");
+            return true;
+        }
+		Location @ town = map.GetLocation();
+        if(!valid(town) && Present(town.GetProtoId(),TcTowns))
+        {
+            cr.Say(SAY_NETMSG, "Error. Report to gm.");
+            return true;
+        }
+        if(!IsControllingTown(cr))
+        {
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70392);
+            return true;
+        }
+		if(cr.Param[MAIN_FACTION]>4 && !FACTION_MANAGER(cr))
+		{
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70393);
+            return true;
+        }
+		if(cr.Param[MAIN_FACTION]==5)
+		{
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70394);
+            return true;
+        }
+        if(_LockerIsClose(item))
+        {
+            item.LockerId = 0;
+            return false;
+        }
+    }
+    return false;
+}
+
+void FillLockers()
+{
+	for (uint i = 0; i< TcTowns.length(); i++)
+	{
+    
+        Location @ town = GetLocationByPid(TcTowns[i],0);
+        Map@ map=town.GetMapByIndex(0);
+        if( map.GetData(MAP_DATA_FACTION)==5 )
+        {
+			if (valid(map))
+			{
+            	NCRProfit(TC_PROFIT); // Town profit for having town by ncr, they cannot use tc lockers.
+        	}
+		}
+        else
+        {
+		Item@ locker=GetLocker(TcTowns[i]);
+		if (valid(locker))
+		{
+			AddReward(locker);
+		}
+        }
+        
+	}
+}
+
+void AddReward(Item@ locker)
+{
+	if( !valid( locker ) )
+		return;
+	Log("fill locker");
+	FillBag( locker, Pids_RIFLESregular, 1, 1, 1 );
+	FillBag( locker, Pids_WeaponsMISC,   1, 1, 1 );
+	FillBag( locker, Pids_ENERGY,        1, 1, 1 );
+	FillBag( locker, Pids_BG,            1, 1, 1 );
+	FillBag( locker, Pids_ArmorLight,    1, 1, 1 );
+	FillBag( locker, Pids_ArmorMID,      1, 1, 1 );
+ 	FillBag( locker, Pids_GENERALAmmo,   10, 30, 60 );
+	FillBag( locker, Pids_USEDammo,      10, 30, 90 );
+	FillBag( locker, Pids_Drugs,         5, 1, 4 );
+	FillBag( locker, Pids_HealingDrugs,  10, 4, 8 );
+	FillBag( locker, Pids_BOOKS,          10, 1, 1 );
+	FillBag( locker, Pids_BLUEPRINTSALL, 0.7, 1, 1 );
+}
+
+Item@ GetLocker(uint loc)
+{
+	
+	Location @ town = GetLocationByPid(loc,0);
+	if(!valid(town))
+        return null;
+	Map@ map=town.GetMapByIndex(0);
+	if((!valid(map)) || map.GetData(MAP_DATA_FACTION)==0)
+        return null;
+	uint16 xx=0;
+	uint16 yy=0;
+	if (!map.GetEntireCoords(ENTIRE_TC_LOCKER,0, xx, yy))
+		return null;
+	Item@[] items;
+	map.GetItems( xx, yy, items );
+	for (uint i = 0; i< items.length(); i++)
+	{
+		if (items[i].GetType() == ITEM_TYPE_CONTAINER)
+			return items[i];
+	}
+	return null;
+}
+
+void TcLockerInit()
+{
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(GetTime()), "e_filllocker", 0, false);
+	CreateTimeEvent(__FullSecond+REAL_HOUR(GetTimeToRotate()), "e_rotate", 0, false);
+}
+
+uint e_filllocker(array<uint>@ values)
+{
+	FillLockers();
+	if (GetTime()<2)
+		REAL_MINUTE(62);
+	return REAL_MINUTE(GetTime());
+}
+
+
+uint GetTime()
+{
+	uint16 second = 0;
+    uint16 minute = 0;
+    uint16 hour = 0;
+    uint16 a, b, c, d, g;
+    GetTime(a, b, c, d, hour, minute, second, g);
+	return (60-minute);
+}
+
+uint GetTimeToRotate()
+{
+	uint16 second = 0;
+    uint16 minute = 0;
+    uint16 hour = 0;
+    uint16 a, b, c, d, g;
+    GetTime(a, b, c, d, hour, minute, second, g);
+	if ( hour >= 0 && hour <=16)
+	{
+		Log("till rotate "+(16-hour));
+		return 16-hour;
+	}
+	Log("till rotate "+(24-hour+16));
+	return 24-hour+16;
+}
+
+
+void SetTownTo( Critter& cr, int id, int, int )
+{
+	Map@ map=cr.GetMap();
+	if(!valid(map))
+       return;
+	map.SetData(MAP_DATA_FACTION,id);
+}
+
+void r_AddFeeToLocker(Critter& player, Critter@ npc, int num)
+{
+	Location @ town = GetLocationOf(npc);
+	if(!valid(town))
+       return;
+	uint pid = town.GetProtoId();
+	if (!Present(pid,TcTowns))
+		return;
+	Item@ locker=GetLocker(pid);
+	if (!valid(locker))
+		return;
+	FLog(LOG_TC_INCOME, "Adding caps in tc locker of town "+GetTownName(pid)+" from npc "+npc.Id+" by player "+player.Name+" ammount: "+num);
+	locker.AddItem( PID_BOTTLE_CAPS, num, 0 );
+}
+
+bool IsTimeToTc(Critter& cr)
+{
+	Location @ town = GetLocationOf(cr);
+	if(!valid(town) || !town.IsTC())
+		return false;
+	uint varnum=200+town.GetProtoId();	
+	GameVar@ var = GetGlobalVar(varnum);
+	if (!valid(var))
+		return false;
+    uint16     tctime = var.GetValue();	
+	if (tctime==24 || GetRealHour()==tctime)
+		return true;
+	else
+		cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70395, "$tctime" + tctime);
+	return false;
+}
+
+void SetTownTcTime( Critter& cr, int time, int, int )
+{
+	Location @ town = GetLocationOf(cr);
+	if(!valid(town))
+		return;
+	if (time<0 || time>23)
+		return;
+	uint varnum=200+town.GetProtoId();
+	GameVar@ var = GetGlobalVar(varnum);
+	if (!valid(var))
+		return;
+    var=time;
+		return;
+}
+
+void ShowTcTime()
+{
+	for (uint i = 0; i< TcTowns.length(); i++)
+	{
+		uint varnum=200+TcTowns[i];
+		GameVar@ var = GetGlobalVar(varnum);
+		if (valid(var))
+		{
+			if (var.GetValue()==24)
+				SetBestScore( 30+i, null, "Anytime" );
+			else
+				SetBestScore( 30+i, null, var.GetValue()+".00-"+(var.GetValue()+1)+".00" );
+		}
+	}
+}
+
+uint e_rotate(array<uint>@ values)
+{
+	RotateTowns();
+	return REAL_DAY(1);
+}
+
+void RotateTowns()
+{
+	array<uint> TownTime  = { 24, 24,18,19,20,22 };
+	for (uint i = 0; i< TcTowns.length(); i++)
+	{
+		uint random=Random(0,TownTime.length()-1);
+		uint varnum=200+TcTowns[i];
+		GameVar@ var = GetGlobalVar(varnum);
+		if (valid(var))
+		{
+			var=TownTime[random];
+		}
+		TownTime.removeAt(random);
+	}
+	ShowTcTime();
+}
+
+void RotateTowns( Critter& cr, int , int, int )
+{
+	RotateTowns();
+}
+
+void ShowTcTime( Critter& cr, int , int, int )
+{
+	ShowTcTime();
+}
+
+void PatchTownScore( Critter& cr, int , int, int )
+{
+	for(uint i = 0; i < TcTowns.length(); i++)
+    {
+		Location @ town = GetLocationByPid(TcTowns[i],0);
+		if(!valid(town))
+			continue;
+		Map@ map=town.GetMapByIndex(0);
+		if(!valid(map))
+			continue;
+		SetBestScore( 24+i, null, ""+GetFactionNameById(map.GetData(MAP_DATA_FACTION)) );
+	}
+}
+
+string GetTownName(uint16 TownProtoId)
+{	
+	file z;
+	string line;
+	int lineNumber;
+	string@[]@ elements;
+	z.open( "text/engl/FOGM.MSG", "r" );
+	uint townid = (TownProtoId+100)*1000;
+	string mapname = ""+townid;
+	lineNumber = 0;
+	while(z.readLine(line) > 0)
+	{
+		lineNumber++;
+		if (mapname==substring(line, 1, mapname.length()))
+		{
+			@elements = splitEx(line, "}{}{");
+			@elements = splitEx(elements[1], "}");
+			mapname=elements[0];
+			break;
+		}
+			
+	}
+	z.close();
+	return mapname;
+}

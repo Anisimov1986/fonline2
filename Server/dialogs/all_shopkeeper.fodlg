@@ -1,0 +1,159 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+7 1010 D _script shopkeeper@d_HasNoSupplier 0  #
+2 1020 @
+2 2000 None 0 #
+65506 2010 D _script shopkeeper@d_IsNotSupplier 0  D _script shopkeeper@d_HasNoOldItems 0  #
+6 2020 D _script shopkeeper@d_HasOldItems 0  #
+0 2030 D _script shopkeeper@d_HasNoSupplier 0  D _item p PID_BOTTLE_CAPS } 10000 D _param p ST_LEVEL } 21 D _var p has_shopkeeper = 0 R _script shopkeeper@r_StartAuction 0  #
+65506 2040 D _script shopkeeper@d_IsSupplier 0  #
+0 2050 D _script shopkeeper@d_IsSupplier 0  R _script shopkeeper@r_SetupItemCosts 0  #
+4 2060 D _script shopkeeper@d_IsSupplier 0  #
+0 2070 D _script shopkeeper@d_IsNotSupplier 0  D or D _script shopkeeper@d_IsSupplierForMoreThanDays 1 3 #
+5 2080 D _script shopkeeper@d_IsSupplierForLessThanDays 1 3 #
+2 2090 D _script shopkeeper@d_IsSupplierForLessThanDays 1 3 D _item p PID_BOTTLE_CAPS } 10000 R _script shopkeeper@r_AddSupplyDays 1 7 R _item p PID_BOTTLE_CAPS - 10000 #
+8 2100 D _script shopkeeper@d_IsSupplier 0  @
+3 3000 None 0 @
+4 4000 shopkeeper@dlg_SetDaysLeft 0 @
+5 5000 None 0 @
+6 6000 None 0 #
+65506 6010 #
+0 6020 @
+7 7000 None 0 #
+2 7010 @
+8 8000 None 0 #
+9 8010 D _script shopkeeper@d_IsSupplier 0  R _script shopkeeper@r_EndContract 0  #
+0 8020 @
+9 9000 None 0 &
+
+[engl]
+{100}{}{Shopkeeper}
+{200}{}{You see: Shopkeeper.}
+{210}{}{This person might be hired by someone to sell his items.}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{Yeah?@@What do you want?@@Hello, what do you want?@@Want anything?@@Need anything?}
+{2010}{}{I want to trade.@@ I want to take a look at your stuff.@@I want to take a look at your wares.@@Got anything interesting for sale?}
+{2020}{}{I want to trade.@@Got anything interesting?@@Want to barter?@@Wanna trade?}
+{2030}{}{Allright. I'll drop off the caps and hope for the best. [Pay 10.000 to get onto the list.]}
+{2040}{}{I want to give you some items.@@I've got some items for sale.@@I've got some stuff I want to sell.}
+{2050}{}{I want to change prices.@@I need to adjust some of the prices...}
+{2060}{}{How many days of our contract are remaining?}
+{2070}{}{Nothing really.@@Nothing.@@Nevermind.@@Later.}
+{2080}{}{Nothing really.@@Nothing.@@Nevermind.}
+{2090}{}{I want to pay you 10000 caps for the next 7 days.@@I've got your pay for the next seven days.}
+{2100}{}{I want to break the contract.@@I want to end our contract.@@I think we should end our contract.}
+{3000}{}{Very well! I'll take the pay for one week. I want be paid for another week maximum 3 days before our deal goes off. Now give me what you want me to sell.}
+{4000}{}{Let me see, I have it somewhere here... [He checks his papers.] Aaah, yes, here it is. We are bound by contract for @lex daysLeft@ more days.}
+{5000}{}{Okay, just remember, our contract expires in less than 3 days, so don't forget to pay.}
+{6000}{}{Okay, but take the stuff you left here first.}
+{6010}{}{Uh, okay.@@All right.@@Okay.@@Got it.}
+{6020}{}{Wait, I'll come back later.@@Wait a sec, I'll be right back.}
+{7000}{}{Hello. I'm currently free to hire. Because of that I'm burdened by many offers so I need to choose one person randomly. If you're interested in getting onto hire list please pay me 10.000 bottle caps. I'm not going to give those caps back if someone else will contract me. But if you win we'll start with contract for 7 days so please do check tommorow.}
+{7010}{}{Fine, I'll remember that.@@Okay, got it.@@Right...}
+{8000}{}{Are you sure?}
+{8010}{}{Yes.@@Yeah.@@Sure.@@Yep.}
+{8020}{}{On the secound tought... No.@@Uhm... not really.@@Not really.@@Nope.}
+{9000}{}{All right. Free shopkeeper here!}
+
+[russ]
+{100}{}{Торговец}
+{200}{}{Вы видите лавочника.}
+{210}{}{Владелец магазина.}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{Чего изволите?}
+{2010}{}{Торговать.}
+{2020}{}{Торговать.}
+{2030}{}{Вот тебе 10000 монет. Не забудь добавить меня в свой список.}
+{2040}{}{Я принес вещи на продажу.}
+{2050}{}{Я хочу изменить цены.}
+{2060}{}{Сколько дней до следующей оплаты?}
+{2070}{}{Ничего, на самом деле.}
+{2080}{}{Ничего, на самом деле.}
+{2090}{}{Я хочу заплатить 10000 монет за следующие 7 дней.}
+{2100}{}{Я хочу прекратить контракт.}
+{3000}{}{Очень хорошо ! Я возьму оплату за неделю, следующая оплата за 3 дня до понца срока. Теперь давай показывай, что принес на продажу.}
+{4000}{}{Давай посмотрим, у меня где-то здесь записано [проверяет бумаги]. Ага вот. До конца оплаченого срока ещё @lex daysLeft@ дней.}
+{5000}{}{Хорошо, контракт истекает через 3 дня, так что не забудь заплатить.}
+{6000}{}{Хорошо, на сначала забери вещи которые оставил тут.}
+{6010}{}{Ну, хорошо.}
+{6020}{}{Я позже зайду.}
+{7000}{}{Я сейчас свободен, но уже очень много желающих заключить сделку. Могу внести тебя в список и когда придет время принимать решение я вспомню и о тебе. Всего 10000 монет и если тебе повезет, заключим контракт на 7 дней, в любом случае деньги мои.}
+{7010}{}{Хорошо, я запомню.}
+{8000}{}{Вы уверены?}
+{8010}{}{Да.}
+{8020}{}{А с другой стороны...}
+{9000}{}{Хорошо. Свободный торговец!}
+
+[pols]
+{100}{}{Sprzedawca}
+{200}{}{Widzisz sprzedawcę.}
+{210}{}{Sprzedawca, wynajęty przez kogoś aby sprzedawał jego towary.}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{W czym mogę pomóc?}
+{2010}{}{Handel.}
+{2020}{}{Handel.}
+{2030}{}{Allright. I'll drop off the caps and hope for the best. [Pay 10.000 to get onto the list.]}
+{2040}{}{Chcę dać ci kilka przedmiotów.}
+{2050}{}{Chcę zmienić ceny.}
+{2060}{}{Ile dni mi pozostało?}
+{2070}{}{Właściwie, to już nic.}
+{2080}{}{Właściwie, to już nic.}
+{2090}{}{Chcę ci zapłacić za kolejne 7 dni.}
+{2100}{}{Chcę zerwać nasz kontrakt.}
+{3000}{}{Świetnie! Biorę zapłatę za tydzień, będziesz @sex@|mógł||mogła| zapłacić mi za kolejny trzy dni przed końcem obecnej umowy. Teraz daj mi to, co mam sprzedawać.}
+{4000}{}{Czekaj, gdzieś to było zapisane... [Sprawdza papiery.]. Ooo, tutaj. Jesteś właścicielem stoiska przez następne @lex daysLeft@ dni.}
+{5000}{}{Dobra, ale pamiętaj że nasza umowa wygasa w przeciągu trzech kolejnych dni - pamiętaj o zapłacie.}
+{6000}{}{Dobra, ale najpierw weź rzeczy, które tu @sex@|zostawiłeś||zostawiłaś|.}
+{6010}{}{Aha, w porządku.}
+{6020}{}{Czekaj, wrócę potem.}
+{7000}{}{Hello. I'm currently free to hire. Because of that I'm burdened by many offers so I need to choose one person randomly. If you're interested in getting onto hire list please pay me 10.000 bottle caps. I'm not going to give those caps back if someone else will contract me. But if you win we'll start with contract for 7 days so please do check tommorow.}
+{7010}{}{Dobrze, będę pamiętać.}
+{8000}{}{Jesteś @sex@|pewien||pewna|?}
+{8010}{}{Tak.}
+{8020}{}{Zastanowię się jeszcze.}
+{9000}{}{W porządku. Handlarz do wynajęcia, tutaj!}
+
+[ptbr]
+{100}{}{Vendedor}
+{200}{}{Você vê um vendedor.}
+{210}{}{Esta pessoa foi contratada por alguém para vender objetos.}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{@@Hein?@@O que você quer?@@Olá, o que você quer?@@Quer algo?@@Precisa de alguma coisa?}
+{2010}{}{Eu quero negociar.@@Quero dar uma olhada em suas coisas.@@Eu quero dar uma olhada nos seus produtos.@@Tem algo interessante à venda?}
+{2020}{}{Eu quero negociar.@@Tem algo de interessante?@@Quer negociar?@@Quer trocar equipamentos?}
+{2030}{}{(Contratar.) Aqui está 10000 tampinhas. Agora você trabalha pra mim!}
+{2040}{}{Eu quero te dar alguns itens.}
+{2050}{}{Eu quero mudar os preços.}
+{2060}{}{Quantos dias de contrato ainda temos?}
+{2070}{}{Nada na verdade.@@Nada.@@Deixa para lá.}
+{2080}{}{Nada na verdade.@@Nada.@@Deixa para lá.}
+{2090}{}{Eu quero pagar 10000 para os pŕoximos 7 dias.}
+{2100}{}{Eu quero cancelar o contrato.}
+{3000}{}{Bem! eu irei aceitar o pagamento para uma semana. Eu quero ser pago por outra semana no máximo três dias antes o nosso contrato expire. Agora me dê o que quer vender.}
+{4000}{}{Deixe-me ver, eu tenho isso aqui em algum lugar... [Ele checa seus documentos.] Aaah, sim, aqui está. Segundo o contrato ainda tenho  @lex daysLeft@ dias.}
+{5000}{}{Certo, mas lembre-se que nosso contrato expira em menos de três dias então não se esqueça de me pagar.}
+{6000}{}{Certo, mas pegue as coisas que você deixou aqui primeiro.}
+{6010}{}{Uhm, ok.}
+{6020}{}{Espera, eu volto depois.}
+{7000}{}{Eu tou disponível para contrato. Se você estiver interessado, pague 10000 tampinhas. Nosso contrato durará sete dias.}
+{7010}{}{Ótimo, lembrarei disto.}
+{8000}{}{Tem certeza?}
+{8010}{}{Sim.}
+{8020}{}{Pensando bem... Não.}
+{9000}{}{Tudo bem. Vendedor livre aqui!}
+

@@ -1,0 +1,152 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+12 1010 D _var p name_mem_npc_player = 2 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_Wait 0  #
+9 1020 D _var p name_mem_npc_player = 1 R _script dialog@r_Wait 0  R _var p name_mem_npc_player = 2 #
+10 1030 D _var p name_mem_player_npc = 0 D _var p name_mem_npc_player = 3 R _var p name_mem_player_npc = 1 #
+11 1040 D _item p PID_ADVANCED_POWER_ARMOR_MK2 } 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR } 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ENCLAVE_ARMOR } 1 D _var p name_mem_player_npc = 0 D or D _var p name_mem_npc_player = 4 R _var p name_mem_player_npc = 1 R _var p name_mem_npc_player = 4 #
+3 1050 D _item p PID_ENCLAVE_ARMOR < 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR < 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR_MK2 < 1 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 1 R _script dialog@r_Wait 0  @
+3 2000 Attack 0 #
+4 2010 #
+65507 2020 R _script dialog@r_AttackGroup 1 207 #
+8 2030 D _param p ST_INTELLECT > 5 R _var p name_mem_npc_player = 4 #
+7 2040 D _param p SK_SCIENCE } 70 D or D _param p SK_REPAIR } 70 R _var p name_mem_npc_player = 3 #
+6 2050 D _item p PID_BOTTLE_CAPS } 500 @
+4 3000 None 0 #
+9 3010 R _var p name_mem_npc_player = 1 @
+6 4000 Attack 0 #
+65507 4010 R _script dialog@r_AttackGroup 1 207 #
+10 4020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_BOTTLE_CAPS - 500 R _var p name_mem_npc_player = 3 @
+7 5000 None 0 #
+0 5010 R _var p name_mem_npc_player = 3 @
+8 6000 None 0 #
+0 6010 R _var p name_mem_npc_player = 4 @
+9 7000 None 0 @
+10 8000 None 0 @
+11 9000 None 0 @
+12 10000 Attack 0 &
+
+[engl]
+{100}{}{Guard}
+{200}{}{You see: Guard}
+{210}{}{This person is keeping watch over this area.}
+{1000}{}{Initial preferences}
+{1010}{}{Agressive check 2/Attack}
+{1020}{}{Agressive check 1}
+{1030}{}{Player talked out via bribe/technician}
+{1040}{}{Player has APA or ECA or result of dialog}
+{1050}{}{Question without ECA or EPA, cancelling dialog makes npc aggresive on first node}
+{2000}{}{That's as far as you go, stranger.@@Stop! Don't go any further!@@Hey, stop! Don't go any further!@@Hey, you! Stop right there. You won't go any further if you know what's good for you.@@Hey! Stop!@@One more step and you'll be sorry.}
+{2010}{}{What? Why?@@Why?@@I'm just looking around, why do you even bother?@@Yeah? Why?}
+{2020}{}{[Attack.] I'll go where I want!@@[Attack.] Hah. Nice camouflage, but it won't help you when this whole fuckin' base blows up.@@[Attack.] I won't be pushed around by a piece of shit like you!@@[Attack.] Fuck you.@@[Attack.] I'll go where I want. But you... You're going to hell, I'm afraid.}
+{2030}{}{I'm here on the president's special order, and you won't be addressing me like that, you filth!@@I'm with the Intelligence Division. We're conducting an assessment of your preparedness in case of infiltration. Get the fuck out of my way, trash!@@Shut your fuckin' mouth, you're addressing a member of the Intelligence Department!@@I'm under Intelligence Department's jurisdiction, and you will not, I repeat, will not address me like that!@@Who are you to interrupt my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.@@The guys from maintenance sent me.@@I'm from maintenance.@@I'm a replacement for the engineer that drowned recently.}
+{2050}{}{I think you should direct your interest elsewhere... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when  no one is looking.]@@Hold your horses... [Lower your voice.] I might have an interesting opportunity for you...@@Relax, relax... I've got something that might ease you up a bit... Little rusty caps. Interested?}
+{3000}{}{That's none of your business. Just get lost.@@That's none of your fuckin' business. Get lost before things get ugly.@@Just get lost, or you'll be really sorry.@@That's none of your concern.@@Go away, or you'll regret it, I won't repeat myself.}
+{3010}{}{Yeah, allright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.}
+{4000}{}{Whoa. Give me that shit and don't show yourself here again.@@All right. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost.@@Okay, just don't spill it out to anybody or we're both gonna end up dead.@@Wow, fuck. Okay, I'll take those. Just be quiet about this.}
+{4010}{}{[Attack.] On second thought, I think It'll be better to kill you instead.@@[Attack.] Hmm, maybe I'll save some caps by killing you instead?@@[Attack.] No deal. You're gonna die anyway.@@[Attack.] Fuck it, it's a waste of caps anyway.@@[Attack.] I'll keep the caps. But you won't get to keep your life, I'm afraid.}
+{4020}{}{Sure thing. [Hand over five hundred caps.] @@Yeah, sure... [Hand over 500 caps.] @@You've made the best deal of your life. [Hand over five hundred caps.] @@Yeah, take those. [Hand over five hundred caps.]@@Good, now let me go. [Hand over 500 caps.]}
+{5000}{}{Uh, what? Yeah, I heard they needed a replacement. Go.@@Ah, yeah, I heard they needed some replacement. Off you go.@@Alright, now go.@@Okay, go.}
+{5010}{}{Yeah, alright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.@@Okay, thanks.@@Right, I'm on the move now.@@Yeah, thanks.@@Good. I'll be going now}
+{6000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didn't know... I'm very sorry Sir, this won't happen again!}
+{6010}{}{Good. Now get your ugly face outta my sight.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered again. Now, get the fuck out of my way.}
+{7000}{}{Yeah, go.@@Get lost.@@Get the fuck outta here.@@Go away, and don't bother us again.@@We're busy people, don't bother us.@@I would leave this place if I were you.@@You should leave, now.@@Get lost, or you'll be sorry.}
+{8000}{}{Get lost before someone sees us.@@Go, now.@@Get lost.@@Move your ass.@@I never saw you, is that clear?@@Get lost before some grunts show up.@@Get movin' before someone catches us.@@Move your fuckin' ass, now!}
+{9000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We have not spotted any intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no trespassers sighted yet.@@Nothing to report yet, Sir.@@We've spotted no enemies, Sir.}
+{10000}{}{Now, you're toast.@@I told you to stay the fuck away! Now you're gonna die!@@You should have left when you had the chance. Too bad I'm gonna have to kill you now.@@You're dead!@@That does it! You're dead!@@This was just one step too far. Time to die!}
+
+[russ]
+{100}{}{Guard}
+{200}{}{You see: Guard}
+{210}{}{This person is keeping watch over this area.}
+{1000}{}{Initial preferences}
+{1010}{}{Agressive check 2/Attack}
+{1020}{}{Agressive check 1}
+{1030}{}{Player talked out via bribe/technician}
+{1040}{}{Player has APA or ECA or result of dialog}
+{1050}{}{Question without ECA or EPA, cancelling dialog makes npc aggresive on first node}
+{2000}{}{That's as far as you go, stranger.@@Stop! Don't go any further.@@Don't go any further, stop!@@Hey, you! Stop right there. You won't go any further if you know what's good for you.@@Hey! Stop!@@One more step and you'll be sorry.}
+{2010}{}{What? Why?@@Why?@@I'm just looking around, why do you even bother?@@Yeah?Why?}
+{2020}{}{[Attack.] I'll go where I want!@@[Attack.] Hah. Nice camouflage, but it won't help you when this all fuckin' base is gonna blow.@@[Attack.] I won't be pushed around by some shit like you!@@[Attack.] Fuck you.@@[Attack.] I'll go where I want. But you... You're going to hell, I'm afraid.}
+{2030}{}{I'm here on the president's special order, and you won't be addresing me like that, you filth!@@I'm with the Intelligence Division, we're running a routine check up of your preparedness in case of outside intrusion. Get the fuck out of my way, trash@Shut your fuckin mouth, you're adressing a member of the Intelligence Department!@@I'm under Intelligence Department's jurisdiction, and you will not, I repeat, will not adress me like that!@@Who are you to interrupt my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.@@The guys from maintenance sent me.@@I'm from maintenance.@@I'm a replacement for the engineer that drowned recently.}
+{2050}{}{I think you should direct your interest elsewhere... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when  no one is looking.]@@Hold your horses... [Lower your voice.] I might have some interesting opportuinity for you...@@Relax, relax... I've got something that might ease you a bit... Little rusty caps. Interested?}
+{3000}{}{That's none of your business. Just get lost.@@That's none of your fuckin' business. Get lost before things get ugly.@@Just get lost, or you'll be really sorry.@@That's none of your concern.@@Go away, or you'll regret it, I won't repeat myself.}
+{3010}{}{Yeah, allright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.}
+{4000}{}{Wha-. Fuck. Gimme those, and get lost.@@Whoa. Give me this shit and don't show yourself here anymore.@@What? You suggest that I... ah, fuck it, I'll take those. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost.@@Okay, just don't spill it out to anybody or we're both gonna end up dead.@@Wow, fuck. Okay, I'll take those. Just be quiet about this.}
+{4010}{}{[Attack.] On second thought, I think It'll be better to kill you instead.@@[Attack.] Hmm, maybe I'll save some caps by killing you instead?@@[Attack.] No deal. You're gonna die anyway.@@[Attack.] Fuck it, it's a waste of caps anyway.@@[Attack.] I'll keep the caps. But you won't get to keep your life, I'm afraid.}
+{4020}{}{Sure thing, there.[Hand over five hundred caps.] @@Yeah, sure... [Hand over 500 caps.] @@You've made the best deal of your life. [Hand over five hundred caps.] @@Yeah, take those. [Hand over five hundred caps.]@@Good, now let me go. [Hand over 500 caps.]}
+{5000}{}{Uh, what? Yeah, I heard they needed a replacement. Go.@@Ah, yeah, I heard they needed some replacement. Off you go.@@Allright, now go.@@Okay, go.}
+{5010}{}{Yeah, allright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.@@Okay, thanks.@@Right, I'm on the move now.@@Yeah, thanks.@@Good. I'll be going now}
+{6000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didin't know... I'm very sorry Sir, this won't happen again!}
+{6010}{}{Good. Now take your ugly face outta my sight.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered again. Now, get the fuck out of my way.}
+{7000}{}{Yeah, go.@@Get lost.@@Get the fuck outta here.@@Go away, and don't bother us again.@@We're busy people, don't bother us.@@I would leave this place if I were you.@@You should leave, now.@@Get lost, or you'll be sorry.}
+{8000}{}{Get lost before someone sees us.@@Go, now.@@Get lost.@@Move your ass.@@I never saw you, is that clear?@@Get lost before some grunts show up.@@Get movin' before someone catches us.@@Move your fuckin' ass, now!}
+{9000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We've spotted no intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no tresspassers sighted yet.@@Nothing to report yet, Sir.@@We've spotted no enemies, Sir.}
+{10000}{}{Now, you're toast.@@I told you to stay the fuck away! Now you're gonna die!@@You should have left when you had the chance. Too bad I'm gonna have to kill you now.@@You're dead!@@That does it! You're dead!@@This was just one step too far. Time to die!}
+
+[pols]
+{100}{}{Guard}
+{200}{}{You see: Guard}
+{210}{}{This person is keeping watch over this area.}
+{1000}{}{Initial preferences}
+{1010}{}{Agressive check 2/Attack}
+{1020}{}{Agressive check 1}
+{1030}{}{Player talked out via bribe/technician}
+{1040}{}{Player has APA or ECA or result of dialog}
+{1050}{}{Question without ECA or EPA, cancelling dialog makes npc aggresive on first node}
+{2000}{}{That's as far as you go, stranger.@@Stop! Don't go any further.@@Don't go any further, stop!@@Hey, you! Stop right there. You won't go any further if you know what's good for you.@@Hey! Stop!@@One more step and you'll be sorry.}
+{2010}{}{What? Why?@@Why?@@I'm just looking around, why do you even bother?@@Yeah?Why?}
+{2020}{}{[Attack.] I'll go where I want!@@[Attack.] Hah. Nice camouflage, but it won't help you when this all fuckin' base is gonna blow.@@[Attack.] I won't be pushed around by some shit like you!@@[Attack.] Fuck you.@@[Attack.] I'll go where I want. But you... You're going to hell, I'm afraid.}
+{2030}{}{I'm here on the president's special order, and you won't be addresing me like that, you filth!@@I'm with the Intelligence Division, we're running a routine check up of your preparedness in case of outside intrusion. Get the fuck out of my way, trash@Shut your fuckin mouth, you're adressing a member of the Intelligence Department!@@I'm under Intelligence Department's jurisdiction, and you will not, I repeat, will not adress me like that!@@Who are you to interrupt my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.@@The guys from maintenance sent me.@@I'm from maintenance.@@I'm a replacement for the engineer that drowned recently.}
+{2050}{}{I think you should direct your interest elsewhere... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when  no one is looking.]@@Hold your horses... [Lower your voice.] I might have some interesting opportuinity for you...@@Relax, relax... I've got something that might ease you a bit... Little rusty caps. Interested?}
+{3000}{}{That's none of your business. Just get lost.@@That's none of your fuckin' business. Get lost before things get ugly.@@Just get lost, or you'll be really sorry.@@That's none of your concern.@@Go away, or you'll regret it, I won't repeat myself.}
+{3010}{}{Yeah, allright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.}
+{4000}{}{Wha-. Fuck. Gimme those, and get lost.@@Whoa. Give me this shit and don't show yourself here anymore.@@What? You suggest that I... ah, fuck it, I'll take those. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost.@@Okay, just don't spill it out to anybody or we're both gonna end up dead.@@Wow, fuck. Okay, I'll take those. Just be quiet about this.}
+{4010}{}{[Attack.] On second thought, I think It'll be better to kill you instead.@@[Attack.] Hmm, maybe I'll save some caps by killing you instead?@@[Attack.] No deal. You're gonna die anyway.@@[Attack.] Fuck it, it's a waste of caps anyway.@@[Attack.] I'll keep the caps. But you won't get to keep your life, I'm afraid.}
+{4020}{}{Sure thing, there.[Hand over five hundred caps.] @@Yeah, sure... [Hand over 500 caps.] @@You've made the best deal of your life. [Hand over five hundred caps.] @@Yeah, take those. [Hand over five hundred caps.]@@Good, now let me go. [Hand over 500 caps.]}
+{5000}{}{Uh, what? Yeah, I heard they needed a replacement. Go.@@Ah, yeah, I heard they needed some replacement. Off you go.@@Allright, now go.@@Okay, go.}
+{5010}{}{Yeah, allright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.@@Okay, thanks.@@Right, I'm on the move now.@@Yeah, thanks.@@Good. I'll be going now}
+{6000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didin't know... I'm very sorry Sir, this won't happen again!}
+{6010}{}{Good. Now take your ugly face outta my sight.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered again. Now, get the fuck out of my way.}
+{7000}{}{Yeah, go.@@Get lost.@@Get the fuck outta here.@@Go away, and don't bother us again.@@We're busy people, don't bother us.@@I would leave this place if I were you.@@You should leave, now.@@Get lost, or you'll be sorry.}
+{8000}{}{Get lost before someone sees us.@@Go, now.@@Get lost.@@Move your ass.@@I never saw you, is that clear?@@Get lost before some grunts show up.@@Get movin' before someone catches us.@@Move your fuckin' ass, now!}
+{9000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We've spotted no intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no tresspassers sighted yet.@@Nothing to report yet, Sir.@@We've spotted no enemies, Sir.}
+{10000}{}{Now, you're toast.@@I told you to stay the fuck away! Now you're gonna die!@@You should have left when you had the chance. Too bad I'm gonna have to kill you now.@@You're dead!@@That does it! You're dead!@@This was just one step too far. Time to die!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Agressive check 2/Attack}
+{1020}{}{Agressive check 1}
+{1030}{}{Player talked out via bribe/technician}
+{1040}{}{Player has APA or ECA or result of dialog}
+{1050}{}{Question without ECA or EPA, cancelling dialog makes npc aggresive on first node}
+{2000}{}{That's as far as you go, stranger.@@Stop! Don't go any further!@@Hey, stop! Don't go any further!@@Hey, you! Stop right there. You won't go any further if you know what's good for you.@@Hey! Stop!@@One more step and you'll be sorry.}
+{2010}{}{What? Why?@@Why?@@I'm just looking around, why do you even bother?@@Yeah? Why?}
+{2020}{}{[Attack.] I'll go where I want!@@[Attack.] Hah. Nice camouflage, but it won't help you when this whole fuckin' base blows up.@@[Attack.] I won't be pushed around by a piece of shit like you!@@[Attack.] Fuck you.@@[Attack.] I'll go where I want. But you... You're going to hell, I'm afraid.}
+{2030}{}{I'm here on the president's special order, and you won't be addressing me like that, you filth!@@I'm with the Intelligence Division. We're conducting an assessment of your preparedness in case of infiltration. Get the fuck out of my way, trash!@@Shut your fuckin' mouth, you're addressing a member of the Intelligence Department!@@I'm under Intelligence Department's jurisdiction, and you will not, I repeat, will not address me like that!@@Who are you to interrupt my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.@@The guys from maintenance sent me.@@I'm from maintenance.@@I'm a replacement for the engineer that drowned recently.}
+{2050}{}{I think you should direct your interest elsewhere... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when  no one is looking.]@@Hold your horses... [Lower your voice.] I might have an interesting opportunity for you...@@Relax, relax... I've got something that might ease you up a bit... Little rusty caps. Interested?}
+{3000}{}{That's none of your business. Just get lost.@@That's none of your fuckin' business. Get lost before things get ugly.@@Just get lost, or you'll be really sorry.@@That's none of your concern.@@Go away, or you'll regret it, I won't repeat myself.}
+{3010}{}{Yeah, allright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.}
+{4000}{}{Whoa. Give me that shit and don't show yourself here again.@@All right. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost.@@Okay, just don't spill it out to anybody or we're both gonna end up dead.@@Wow, fuck. Okay, I'll take those. Just be quiet about this.}
+{4010}{}{[Attack.] On second thought, I think It'll be better to kill you instead.@@[Attack.] Hmm, maybe I'll save some caps by killing you instead?@@[Attack.] No deal. You're gonna die anyway.@@[Attack.] Fuck it, it's a waste of caps anyway.@@[Attack.] I'll keep the caps. But you won't get to keep your life, I'm afraid.}
+{4020}{}{Sure thing. [Hand over five hundred caps.] @@Yeah, sure... [Hand over 500 caps.] @@You've made the best deal of your life. [Hand over five hundred caps.] @@Yeah, take those. [Hand over five hundred caps.]@@Good, now let me go. [Hand over 500 caps.]}
+{5000}{}{Uh, what? Yeah, I heard they needed a replacement. Go.@@Ah, yeah, I heard they needed some replacement. Off you go.@@Alright, now go.@@Okay, go.}
+{5010}{}{Yeah, alright.@@Right, I'm going now.@@Yeah, I'm leaving.@@Yeah, yeah, I'm going.@@Okay, thanks.@@Right, I'm on the move now.@@Yeah, thanks.@@Good. I'll be going now}
+{6000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didn't know... I'm very sorry Sir, this won't happen again!}
+{6010}{}{Good. Now get your ugly face outta my sight.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered again. Now, get the fuck out of my way.}
+{7000}{}{Yeah, go.@@Get lost.@@Get the fuck outta here.@@Go away, and don't bother us again.@@We're busy people, don't bother us.@@I would leave this place if I were you.@@You should leave, now.@@Get lost, or you'll be sorry.}
+{8000}{}{Get lost before someone sees us.@@Go, now.@@Get lost.@@Move your ass.@@I never saw you, is that clear?@@Get lost before some grunts show up.@@Get movin' before someone catches us.@@Move your fuckin' ass, now!}
+{9000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We have not spotted any intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no trespassers sighted yet.@@Nothing to report yet, Sir.@@We've spotted no enemies, Sir.}
+{10000}{}{Now, you're toast.@@I told you to stay the fuck away! Now you're gonna die!@@You should have left when you had the chance. Too bad I'm gonna have to kill you now.@@You're dead!@@That does it! You're dead!@@This was just one step too far. Time to die!}
+

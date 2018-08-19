@@ -1,0 +1,230 @@
+[comment]
+- Please enter the caps amount, and add in the room renting scripts.
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+4 2010 #
+5 2020 #
+0 2030 #
+14 2040 D _var p q_fredric = 2 @
+4 3000 None 0 #
+2 3010 #
+0 3020 @
+5 4000 None 0 #
+2 4010 #
+0 4020 @
+6 5000 None 0 #
+0 5010 @
+7 6000 None 0 #
+0 6010 @
+8 7000 None 0 #
+0 7010 @
+9 8000 None 0 #
+0 8010 #
+0 8020 R _var p q_fredric + 1 @
+10 9000 None 0 #
+11 9010 @
+11 10000 None 0 #
+12 10010 #
+0 10020 @
+12 11000 None 0 #
+13 11010 #
+0 11020 @
+13 12000 None 0 #
+0 12010 @
+14 13000 None 0 #
+15 13010 R _var p q_fredric + 1 R _param p ST_EXPERIENCE + 75 R _script economy_dialogs@r_GiveCaps 1 150 R _item p PID_NUKA_COLA + 2 @
+15 14000 None 0 #
+2 14010 #
+0 14020 @
+16 15000 None 0 #
+3 15010 #
+2 15020 #
+0 15030 &
+
+[engl]
+{100}{}{Fredric}
+{200}{}{You see: Fredric}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome to the Maltese Falcon! I'm Frederic, Do you need something?}
+{2010}{}{I want to buy something.@@I want to trade.@@Got anything for trade?}
+{2020}{}{I want to rent a room here.@@Got a free room?@@I need a room.@@Got free rooms?}
+{2030}{}{No, I'm driving. Bye.@@Not really.@@Nevermind}
+{2040}{}{Maybe later, I have an answer from Benjamin.}
+{3000}{}{[Sighs.] Wrong door, stranger. If you want to trade, go across the street, you have few stores there. Anything else I can do for you?}
+{3010}{}{Yes, I wanted to ask you something else.@@I wanted to ask you something.}
+{3020}{}{No, Goodbye.@@Nope.@@No, see you later.}
+{4000}{}{Go talk with that girl over there. She will take care of the arrangements.}
+{4010}{}{Never mind. I do have something else to ask though.}
+{4020}{}{Ok. I have to get going.@@All right, thanks.@@Right.}
+{5000}{}{Very well. That'd be [] caps. Here's the key. If you leave anything in your room after that time, I'll keep it for you.}
+{5010}{}{Thanks.@@All right.@@Okay.}
+{6000}{}{Fine, a week then. That'd be [] caps. Here, your key. If you leave anything in your room after that time, I'll keep it for you.}
+{6010}{}{Thanks.@@Right.@@Okay.}
+{7000}{}{Perfect! Solid customer, I like it. That'd be [] caps, 10% discount included. Here's the key.  If you leave anything in your room after that time, I'll keep it for you.}
+{7010}{}{Thanks a lot.@@Thanks.@@Okay, thanks.}
+{8000}{}{There's one thing you could take care of. Do you know where Junktown is? Right... Go there, find Benjamin the bartender, and tell him I've reconsidered and my last offer for his bar. Then come back here, I need to know his answer.}
+{8010}{}{Move your fat ass yourself, mister. Bye.@@I've got better things to do.@@Sorry, not interested.}
+{8020}{}{I'm on my way.}
+{9000}{}{And I'm working for myself. What's next?}
+{9010}{}{Shouldn't you pay Mr Brick for protection?}
+{10000}{}{Look dude, I barely know who that Rick or Brick fellow is and I'm totally sure he doesn't protect anything that belongs to me. You've misunderstood something. }
+{10010}{}{Mr Brick won't like your answer, Freddie.}
+{10020}{}{If you say so...}
+{11000}{}{Don't you ever call me "Freddie" again or @sex@|I'll kick your balls out through your nose||I'll kick that ass of yours so hard, the checks will fall off|. Do I made myself clear?}
+{11010}{}{Mr Brick ...}
+{11020}{}{Clear. Uh, bye.}
+{12000}{}{Get the fuck out with your bricks! Now!}
+{12010}{}{I'll be back.}
+{13000}{}{Very well, what is it?}
+{13010}{}{He called you greedy old bastard, rejected your offer and told you to go fu-}
+{14000}{}{Enough! Erm, I've heard enough, that is. What a stubborn clown he is. Anyway, thanks for your time, here's something for you.}
+{14010}{}{Thank you, Frederic. I want to ask something.}
+{14020}{}{Thank you, Frederic. Goodbye.}
+{15000}{}{Give me a second...[He grabs a bottle from the shelf] there you go. Bottoms up.}
+{15010}{}{Thanks...can I get another?}
+{15020}{}{Thanks, can I ask you something else?}
+{15030}{}{Ahh, how refreshing. Thank you! Good day to you sir.}
+
+[russ]
+{100}{}{Фрэдрик}
+{200}{}{Вы видете Фрэдрика}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{ }
+{2000}{}{Добро пожаловать в Мальтийский сокол! Мое имя Фрэдрик, чего нибудь желаете?}
+{2010}{}{Я хочу купить кое-что.@@Поторгуем.@@Что есть на продажу?}
+{2020}{}{Хочу снять комнату.@@Есть свободная комната?@@Мне нужна комната.@@Свободная комната есть?}
+{2030}{}{Не, я зарулем. Пока.@@Нет, спасибо.@@Неважно}
+{2040}{}{Может поздже, я получил ответ от Бенджамина.}
+{3000}{}{[Подмигивает.] Ошибся дверью, незнакомец. На другой стороне улицы есть пару магазинчиков. Могу чем-то еще помочь?}
+{3010}{}{Да, хотел бы задать еще пару вопросов.@@Как раз собирался спросить.}
+{3020}{}{Нет, до свидания.@@Нет.@@Нет, увидимся позже.}
+{4000}{}{Поговори с вон той девушкой. Она позаботится о размещении.}
+{4010}{}{Неважно. У меня есть еще кое-что спросить.}
+{4020}{}{Хорошо. Мне надо идти.@@Ладно, спасибо@@Хорошо.}
+{5000}{}{Очень хорошо. Это будет стоить [] капсов. Вот ключ. Если вдруг забудешь что-то из своих вещей в комнате по истечение срока, можешь забрать у меня потом.}
+{5010}{}{Спасибо.@@Хорошо.@@Идет.}
+{6000}{}{Хорошо, тогда на неделю. Это будет стоить [] капсов. Вот, держи ключ. Если вдруг забудешь что-то из своих вещей в комнате по истечение срока, можешь забрать у меня потом.}
+{6010}{}{Спасибо.@@Хорошо.@@Идет.}
+{7000}{}{Великолепно! Солидный покупатель, мне это нравится. Это будет стоить [] капсов, 10% скидка включена. Вот ключ.  Если вдруг забудешь что-то из своих вещей в комнате по истечение срока, можешь забрать у меня потом.}
+{7010}{}{Большое спасибо.@@Спасибо.@@Хорошо, спасибо.}
+{8000}{}{Есть одно дело как раз для тебя. Знаешь где находится Джанктаун? Так вот... Идешь туда, находишь Бенджамина, местного бармена, и делаешь ему мое последнее предложение по покупке его бара. Потом возвращайся, расскажешь мне его мнение.}
+{8010}{}{Тащи как ты свою ленивую жопу туда сам, мистер. Пока.@@У меня есть чем заняться.@@Извини, неинтересно.}
+{8020}{}{Я уже в пути.}
+{9000}{}{И я ни на кого не работаю. Что дальше?}
+{9010}{}{Разве тебе не пора заплатить мистеру Брику за его защиту?}
+{10000}{}{Знаешь парень, я смутно представляю кто такой этот Рик-Брик или как там его, но я точно уверен что моего он ничего не защищает. Ты кажется чего-то не понял. }
+{10010}{}{Мистеру Брику не понравится твой ответ, Фрэдди.}
+{10020}{}{Если ты так считаешь...}
+{11000}{}{Никогда болье не называй меня "Фрэдди" или @sex@|твои яйца через нос вылетят||я тебе жопу на уши натяну|. Я понятно излагаю?}
+{11010}{}{Мистер Брик ...}
+{11020}{}{Понятно. Пока.}
+{12000}{}{Проваливай отсюда вместе со своим бриксом! Немедленно!}
+{12010}{}{Я еще вернусь.}
+{13000}{}{Хорошо, как дела?}
+{13010}{}{Он назвал тебя старым жадным ублюдком, отказался от предложения и посылал тебя на ху-}
+{14000}{}{Достаточно! Я уже все понял. Что ж за упрямый сукин сын. В любом случай, вот держи кое-что тебе - за беспокойство.}
+{14010}{}{Спасибо, Фредрик. Хочу еще кое что спросить.}
+{14020}{}{Спасибо, Фрэдрик. До свидания.}
+{15000}{}{Погоди-ка...[Хватает бутылку с полки] вот держи. Здорово утоляет жажду.}
+{15010}{}{Спасибо...могу я получить еще одну?}
+{15020}{}{Спасибо, могу я задать еще вопрос?}
+{15030}{}{Ух, очень освежает. Спасибо! Удачного дня.}
+
+[pols]
+{100}{}{Fredric}
+{200}{}{Widzisz Fredrica.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Witaj w Sokole Maltańskim! Jestem Fredric, potrzebujesz czegoś?}
+{2010}{}{Chcę kupić coś innego.}
+{2020}{}{Chcę tu wynająć pokój.}
+{2030}{}{Nie, prowadzę. Do widzenia.}
+{2040}{}{Może później, mam odpowiedź od Benjamina.}
+{3000}{}{[Wzdycha.] Złe drzwi, @sex@|nieznajomy||nieznajoma|. Jeśli chcesz pohandlować, kilka sklepów jest po drugiej stronie ulicy. Mogę służyć czymś jeszcze?}
+{3010}{}{Tak, @sex@|chciałem||chciałam| zabytać o coś innnego.}
+{3020}{}{Nie, do widzenia.}
+{4000}{}{Doskonale. Porozmawiaj z tą dziewczyną obok drzwi do hotelu. Ona wynajmie ci pokój.}
+{4010}{}{Dobra. Muszę już iść.}
+{4020}{}{Nieważne. Chcę spytać o coś jeszcze.}
+{5000}{}{Bardzo dobrze. Będzie to kosztowało [] kapsli. Oto klucz. Jeśli po tym czasie zostawisz coś w pokoju, przechowam to dla ciebie.}
+{5010}{}{Dzięki.}
+{6000}{}{Dobrze, w takim razie tydzień. To będze [] kapsli. Trzymaj swój klucz. Jeśli po tym czasie zostawisz coś w pokoju, przechowam to dla ciebie.}
+{6010}{}{Dzięki.}
+{7000}{}{Doskonale! Solidny klient, to lubię. Razem będzie to [] kapsli, wliczając 10% zniżki. Oto klucz. Jeśli po tym czasie zostawisz coś w pokoju, przechowam to dla ciebie.}
+{7010}{}{Wielkie dzięki.}
+{8000}{}{Jest jedna sprawa, którą @sex@|mógłbyś||mogłabyś| się zająć. Wiesz, gdzie leży Złomowo? Idź tam, znajdź Benjamina, barmana, i powiedz mu, że po namyśle zostaję przy swojej ostatniej ofercie za jego bar. Potem wróć tutaj, muszę znać jego odpowiedź.}
+{8010}{}{Sam rusz tam swoje grube dupsko, szanowny panie. Do widzenia.}
+{8020}{}{Już jestem w drodze.}
+{9000}{}{Pracuję dla siebie. Co jest następne?}
+{9010}{}{Nie powinieneś zapłacić panu Brickowi za ochronę?}
+{10000}{}{Słuchaj @sex@|koleś||panienko|, ledwo znam tego... Jak on się nazywał? Bo zapomniałem... Mick? Rick? Ale znam kogoś, kto go zna - i opowiedział mi to i owo. Ten koleś nie jest w stanie ochronić niczego, co do mnie należy. Chyba się nie zrozumieliśmy. }
+{10010}{}{Panu Brickowi nie spodoba się ta odpowiedź, Freddie.}
+{10020}{}{Jeśli tak mówisz...}
+{11000}{}{Nazwij mnie "Freddie" jeszcze jeden raz, a zrobię ci z dupy jesień średniowiecza. Zrozumiano?}
+{11010}{}{Ale pan Brick...}
+{11020}{}{Tak jest, zrozumiano. Ekhem, cześć.}
+{12000}{}{Wypierdalaj mi z tym panem Brickiem! Już!}
+{12010}{}{Jeszcze tu wrócę!}
+{13000}{}{Bardzo dobrze, jak brzmi?}
+{13010}{}{Nazwał cię chciwym, starym draniem, odrzucił twoją ofertę i kazał ci wypier...
+{14000}
+{14000}{}{error}
+{14010}{}{Dzięki, Frederic. Do zobaczenia.}
+{14020}{}{Dzięki, Frederic. @sex@|Chciałem||Chciałam| spytać o coś jeszcze...}
+{15000}{}{Daj mi chwilkę... [Bierze z półki butelkę.] Proszę bardzo. Do dna.}
+{15010}{}{Dzięki... Mogę jeszcze jedną?}
+{15020}{}{Dzięki, mogę spytać o coś jeszcze?}
+{15030}{}{Ach, cóż za ożeźwienie. Dzięki! Miłego dnia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Welcome to the Maltese Falcon! I'm Frederic, Do you need something?}
+{2010}{}{I want to buy something.@@I want to trade.@@Got anything for trade?}
+{2020}{}{I want to rent a room here.@@Got a free room?@@I need a room.@@Got free rooms?}
+{2030}{}{No, I'm driving. Bye.@@Not really.@@Nevermind}
+{2040}{}{Maybe later, I have an answer from Benjamin.}
+{3000}{}{[Sighs.] Wrong door, stranger. If you want to trade, go across the street, you have few stores there. Anything else I can do for you?}
+{3010}{}{Yes, I wanted to ask you something else.@@I wanted to ask you something.}
+{3020}{}{No, Goodbye.@@Nope.@@No, see you later.}
+{4000}{}{Go talk with that girl over there. She will take care of the arrangements.}
+{4010}{}{Never mind. I do have something else to ask though.}
+{4020}{}{Ok. I have to get going.@@All right, thanks.@@Right.}
+{5000}{}{Very well. That'd be [] caps. Here's the key. If you leave anything in your room after that time, I'll keep it for you.}
+{5010}{}{Thanks.@@All right.@@Okay.}
+{6000}{}{Fine, a week then. That'd be [] caps. Here, your key. If you leave anything in your room after that time, I'll keep it for you.}
+{6010}{}{Thanks.@@Right.@@Okay.}
+{7000}{}{Perfect! Solid customer, I like it. That'd be [] caps, 10% discount included. Here's the key.  If you leave anything in your room after that time, I'll keep it for you.}
+{7010}{}{Thanks a lot.@@Thanks.@@Okay, thanks.}
+{8000}{}{There's one thing you could take care of. Do you know where Junktown is? Right... Go there, find Benjamin the bartender, and tell him I've reconsidered and my last offer for his bar. Then come back here, I need to know his answer.}
+{8010}{}{Move your fat ass yourself, mister. Bye.@@I've got better things to do.@@Sorry, not interested.}
+{8020}{}{I'm on my way.}
+{9000}{}{And I'm working for myself. What's next?}
+{9010}{}{Shouldn't you pay Mr Brick for protection?}
+{10000}{}{Look dude, I barely know who that Rick or Brick fellow is and I'm totally sure he doesn't protect anything that belongs to me. You've misunderstood something. }
+{10010}{}{Mr Brick won't like your answer, Freddie.}
+{10020}{}{If you say so...}
+{11000}{}{Don't you ever call me "Freddie" again or @sex@|I'll kick your balls out through your nose||I'll kick that ass of yours so hard, the checks will fall off|. Do I made myself clear?}
+{11010}{}{Mr Brick ...}
+{11020}{}{Clear. Uh, bye.}
+{12000}{}{Get the fuck out with your bricks! Now!}
+{12010}{}{I'll be back.}
+{13000}{}{Very well, what is it?}
+{13010}{}{He called you greedy old bastard, rejected your offer and told you to go fu-}
+{14000}{}{Enough! Erm, I've heard enough, that is. What a stubborn clown he is. Anyway, thanks for your time, here's something for you.}
+{14010}{}{Thank you, Frederic. I want to ask something.}
+{14020}{}{Thank you, Frederic. Goodbye.}
+{15000}{}{Give me a second...[He grabs a bottle from the shelf] there you go. Bottoms up.}
+{15010}{}{Thanks...can I get another?}
+{15020}{}{Thanks, can I ask you something else?}
+{15030}{}{Ahh, how refreshing. Thank you! Good day to you sir.}
+

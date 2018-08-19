@@ -1,0 +1,323 @@
+#include "_vars.fos"
+#include "_msgstr.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_gossip_h.fos"
+#include "utils_h.fos"
+
+#define FIRE_GECKO_EVENT_ID               (69)
+#define MODOC_LEE_ROLE                    ( 288008 )
+
+import int GetNextTime(uint Id) from "game_events";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import void RemoveDeadBlocker(Critter& cr) from "main";
+		
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + FIRE_GECKO_EVENT_ID, GenericVarEvent(FIRE_GECKO_EVENT_ID)
+		.SetEventDuration(REAL_MINUTE(15))
+		.SetEventGVar(GVAR_modoc_fire_gecko_event)
+		.SetEventMessage("Modoc tannery lacks materials for his work. Lee Balton is buying up Fire Gecko skins from everyone.")
+		.SetGossipLocId(STR_MODOC_FIRE_GECKO_GOSSIP_LOC)
+		.SetGossipNoLocId(STR_MODOC_FIRE_GECKO_GOSSIP_NO_LOC)
+		.SetNPCData(MAP_modoc, MODOC_LEE_ROLE)
+	);
+}
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	GenericVarEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	GenericVarEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start(Critter& player, int id, int , int)
+{
+	event_start(id);
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class GenericVarEvent
+{	
+	#define _GetKey ("GenericVarEvent" + eventId)
+	private int eventId, eventDuration = REAL_MINUTE(10), eventGVar = 0, gossipLocId = 0, gossipNoLocId = 0;
+	private int mapPid = 0, npcRole = 0, tempReplicationTime = -1;
+	private string eventMessage = "";
+
+	bool started = false, loaded = false;
+
+	
+	GenericVarEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	private void Load()
+	{
+		if (loaded)
+		{
+			return;
+		}
+	
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+		{
+			return;
+		}
+		
+		serializator.Get(eventId);
+		serializator.Get(eventDuration);
+		serializator.Get(eventGVar);
+		serializator.Get(eventMessage);
+		serializator.Get(mapPid);
+		serializator.Get(npcRole);
+		serializator.Get(tempReplicationTime);
+		serializator.Get(started);
+		
+		loaded = true;
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(eventId);
+		serializator.Set(eventDuration);
+		serializator.Set(eventGVar);
+		serializator.Set(eventMessage);
+		serializator.Set(mapPid);
+		serializator.Set(npcRole);
+		serializator.Set(tempReplicationTime);
+		serializator.Set(started);
+		
+		serializator.Save(_GetKey);
+	}
+		
+	GenericVarEvent@ SetEventDuration(int eventDuration)
+	{
+		this.eventDuration = eventDuration;
+		return @this;
+	}
+	
+	GenericVarEvent@ SetEventGVar(int eventGVar)
+	{
+		this.eventGVar = eventGVar;
+		return @this;
+	}
+	
+	GenericVarEvent@ SetEventMessage(string& eventMessage)
+	{
+		this.eventMessage = eventMessage;
+		return @this;
+	}
+	
+	GenericVarEvent@ SetGossipLocId(int gossipLocId)
+	{
+		this.gossipLocId = gossipLocId;
+		return @this;
+	}
+
+	GenericVarEvent@ SetGossipNoLocId(int gossipNoLocId)
+	{
+		this.gossipNoLocId = gossipNoLocId;
+		return @this;
+	}
+	
+	GenericVarEvent@ SetNPCData(int mapPid, int npcRole)
+	{
+		this.mapPid = mapPid;
+		this.npcRole = npcRole;
+		return @this;
+	}
+	
+	void StartEvent()
+	{	
+		Load();
+		
+		if (started)
+		{
+			return;
+		}
+		
+		if (eventMessage != "")
+		{
+			AddNewMessage(eventMessage, eventDuration, 1, COLOR_GREEN, true, eventId);
+		}
+		
+		GameVar@ gvar = GetGlobalVar(eventGVar);
+		gvar = 1;
+		
+		if (gossipLocId != 0 && gossipNoLocId != 0)
+		{
+			InitializeGossip();
+		}
+		
+		UpdateNPCStart();
+		
+		CreateTimeEvent(__FullSecond + eventDuration, "e_EventStop", eventId, true);
+		started = true;		
+		Save();
+	}
+
+	private void UpdateNPCStart()
+	{
+		if (mapPid > 0)
+		{
+			Map@ map = GetMapByPid(mapPid, 0);
+			if (!valid(map)) 
+			{
+				return;
+			}
+		
+			//Set replication to 0 and revive
+			Critter@ critter = map.GetNpc(npcRole, FIND_ALL | FIND_ONLY_NPC, 0);			
+			if (valid(critter))
+			{
+				tempReplicationTime = critter.ParamBase[ST_REPLICATION_TIME];
+				critter.ParamBase[ST_REPLICATION_TIME] = 0;
+				
+				if (critter.IsDead())
+				{
+					RemoveDeadBlocker(critter);
+					critter.ToLife();
+					critter.StatBase[ST_CURRENT_HP] = critter.Stat[ST_MAX_LIFE];
+				}
+			}
+		}
+	}
+	
+	void StopEvent()
+	{
+		Load();
+		
+		if (!started)
+		{
+			return;
+		}
+		
+		RemoveMessageByEvent(eventId);
+		
+		GameVar@ gvar = GetGlobalVar(eventGVar);
+		gvar = 0;
+		
+		UpdateNPCStop();
+		
+		started = false;
+		EraseAnyData(_GetKey);
+	}
+	
+	private void UpdateNPCStop()
+	{
+		if (mapPid > 0)
+		{
+			Map@ map = GetMapByPid(mapPid, 0);
+			if (!valid(map)) 
+			{
+				return;
+			}
+		
+			Critter@ critter = map.GetNpc(npcRole, FIND_ALL | FIND_ONLY_NPC, 0);
+		
+			if (valid(critter))
+			{
+				//Restore replication time
+				if (tempReplicationTime > 0)
+				{
+					critter.ParamBase[ST_REPLICATION_TIME] = tempReplicationTime;
+					tempReplicationTime = -1;
+				}
+			}
+		}
+	}
+	
+	void InitializeGossip()
+	{				
+		GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, eventDuration);
+		gossipDefinition.SetGossipId(eventId);
+		gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+		gossipDefinition.SetDelay(0);
+		gossipDefinition.SetSourceLocationId(LOCATION_Modoc);
+		gossipDefinition.SetMsgId(gossipLocId);
+		gossipDefinition.SetSourceMsgId(gossipNoLocId);
+		StartGossip(gossipDefinition);
+	}
+}
+
+uint e_EventStop(array<uint>@ values)
+{
+	GenericVarEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}

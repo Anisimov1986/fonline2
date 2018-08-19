@@ -1,0 +1,840 @@
+#include "_macros.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "npc_common_h.fos"
+#include "_ai.fos"
+#include "utils_h.fos"
+
+#define TeamId       StatBase[ ST_TEAM_ID ]
+#define SAME_TEAM    # ( cr, attacker )( cr.TeamId == attacker.TeamId )
+
+import bool critter_use_skill( Critter& cr, int skill, Critter@ targetCr, Item@ targetItem, Scenery@ targetScen ) from "main";
+import void HealCritter( Critter& player ) from "stdlib";
+// Zed Spawn System
+
+int[] ZedParams =
+{
+    SK_SMALL_GUNS, 200,
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_HOME, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_NO_ENEMY_STACK, 1, MODE_UNLIMITED_AMMO, 1, ST_DIALOG_ID, 0, MODE_NO_TALK, 1,  ST_KILL_EXPERIENCE, 0, ST_BAG_ID, 0, ST_BONUS_LOOK, 120,
+    ST_LUCK, 10, ST_BONUS_LOOK, 30,
+    PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+    ST_REPLICATION_TIME, 0, ST_TEAM_ID, TEAM_ZombieSwarm
+};
+
+
+uint16[] weaponPidsT0 = { PID_SPEAR, PID_KNIFE };
+uint16[] weaponPidsT1 = { PID_SHARP_SPEAR, PID_HUNTING_RIFLE, PID_SAWED_OFF_SHOTGUN };
+uint16[] weaponPidsT2 = { PID_CATTLE_PROD, PID_ASSAULT_RIFLE, PID_SNIPER_RIFLE, PID_COMBAT_SHOTGUN };
+uint16[] weaponPidsT3 = { PID_RIPPER, PID_FN_FAL, PID_XL70E3, PID_SNIPER_RIFLE, PID_HK_CAWS };
+
+// To add zeds
+void spawn( Critter& cr, int entire, int amount, int tier )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint   entiresnum = map.CountEntire( entire );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( map.GetEntireCoords( entire, i, hexX, hexY, dir ) && AddAttacker( hexX, hexY, dir, map, tier ) )
+            attackers++;
+    }
+}
+
+bool AddAttacker( uint16 hexX, uint16 hexY, uint8 dir, Map& map, uint16 ZedsTier )
+{
+    hexX += Random( -3, 3 );
+    hexY += Random( -3, 3 );
+
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+    {
+        Log( "No Free Hex Hexx " + hexX + " Hexy " + hexX );
+        return false;
+    }
+
+    Critter@ attacker = map.AddNpc( Random( 806, 816 ), hexX, hexY,  dir, ZedParams, null, "zedswarm@ZedInit" );
+    if( !valid( attacker ) )
+    {
+        Log( "Invalid Mob" );
+        return false;
+    }
+
+    array< Item@ > items;
+    attacker.GetItems( -1, items );
+    DeleteItems( items );
+
+    uint16[] weaponPids;
+
+    if( ZedsTier == 1 )
+        weaponPids = weaponPidsT1;
+    else if( ZedsTier == 2 )
+        weaponPids = weaponPidsT2;
+    else if( ZedsTier == 3 )
+        weaponPids = weaponPidsT3;
+    else
+        weaponPids = weaponPidsT0;
+
+    Item@ weapon = attacker.AddItem( weaponPids[ Random( 0, weaponPids.length() - 1 ) ], 1 );
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+
+    return true;
+}
+
+void clean( Critter& cr, int, int, int ) // Cleanup
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        if( npcs[ i ].Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm )
+            DeleteNpc( npcs[ i ] );
+    }
+    return;
+}
+
+
+void WorldClean( Critter& cr, int, int, int )
+{
+    Critter@[] npcs;
+    GetAllNpc( 0, npcs );
+    for( uint i = 0, j = npcs.length(); i < j; i++ )
+    {
+        if( npcs[ i ].Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm )
+            DeleteNpc( npcs[ i ] );
+    }
+    npcs.resize( 0 );
+}
+
+void WorldCleanh( Critter& cr, int, int, int )
+{
+    Critter@[] npcs;
+    GetAllNpc( 0, npcs );
+    for( uint i = 0, j = npcs.length(); i < j; i++ )
+    {
+        if( npcs[ i ].Stat[ ST_TEAM_ID ] == TEAM_ZombieKiller )
+            DeleteNpc( npcs[ i ] );
+    }
+    npcs.resize( 0 );
+}
+
+void enableres( Critter& cr, int, int, int ) // Cleanup
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        if( npcs[ i ].Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm )
+            npcs[ i ].StatBase[ ST_REPLICATION_TIME ] = 0;
+    }
+    return;
+}
+
+void disableres( Critter& cr, int, int, int ) // Cleanup
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        if( npcs[ i ].Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm )
+            npcs[ i ].StatBase[ ST_REPLICATION_TIME ] = -1;
+    }
+    return;
+}
+void ZedInit( Critter& npc, bool firstTime )
+{
+    /*if(firstTime)
+       {
+            InitZed(npc);
+       }*/
+
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_OnShow" );
+    npc.SetEvent( CRITTER_EVENT_DEAD, "_Death" );
+    npc.SetEvent( CRITTER_EVENT_RESPAWN, "_ZedRespawn" );
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked" );
+    // npc.SetEvent(CRITTER_EVENT_ATTACKED, "_OnAttacked");
+}
+
+void _OnShow( Critter& Zed, Critter& brains )
+{
+    if( brains.Id == Zed.Id )
+        return;
+    if( SAME_TEAM( Zed, brains ) )
+        return;
+    if( Zed.IsSee( brains ) )
+        Attack( Zed, brains );
+    if( brains.IsSee( Zed ) )
+    {
+        Item@ item = brains.GetItem( 0, SLOT_HAND1 );
+        if( valid( item ) && item.GetType() == ITEM_TYPE_WEAPON )
+            Attack( brains, Zed );
+    }
+}
+
+void _Death( Critter& cr, Critter@ killer )
+{
+    if( !valid( killer ) )
+        return;
+    if( killer.IsPlayer() )    // Workaround so they will give exp everywhere.
+        killer.StatBase[ ST_EXPERIENCE ] += 500;
+}
+/*
+   bool _OnAttacked(Critter& npc, Critter& attacker)
+   {
+   //nothing now
+   }
+ */
+
+void _SomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+    if( attacker.Id == cr.Id )
+        return;
+    if( SAME_TEAM( cr, attacker ) )
+        return;
+    if( cr.IsSee( attacker ) )
+        Attack( cr, attacker );
+}
+
+
+void Attack( Critter& cr, Critter& attacker )
+{
+    NpcPlane@ plane = cr.GetCurPlane();
+    if( valid( plane ) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id )
+        return;
+    AttackCritter( cr, attacker );
+}
+/*
+   void InitZed(Critter& npc)
+   {
+
+        array<Item@> items;
+    npc.GetItems(-1, items);
+    DeleteItems(items);
+
+    uint16[] weaponPids;
+
+        if(ZedsTier == 1)
+        weaponPids = weaponPidsT1;
+        else if(ZedsTier == 2)
+        weaponPids = weaponPidsT2;
+        else if(ZedsTier == 3)
+        weaponPids = weaponPidsT3;
+    else
+        weaponPids = weaponPidsT0;
+
+        Item@ item = npc.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+
+        if(valid(item))
+        {
+                npc.SetFavoriteItem(SLOT_HAND1, item.GetProtoId());
+                npc.MoveItem(item.Id, 1, SLOT_HAND1);
+        }
+   }
+ */
+void _ZedRespawn( Critter& npc )
+{
+    // InitZed(npc);
+
+
+    Map@ map = npc.GetMap();
+    if( !valid( map ) )
+        return;
+
+    uint16 hx = 0;
+    uint16 hy = 0;
+    uint   mapId;
+    uint8  dir;
+    npc.GetHomePos( mapId, hx, hy, dir );
+
+    hx += Random( -3, 3 );
+    hy += Random( -3, 3 );
+    if( map.IsHexPassed( hx, hy ) )
+    {
+        npc.TransitToMap( map.Id, hx, hy, 0 );
+    }
+
+}
+
+
+// Counter Zombie to come.
+
+
+int[] HunterParams =
+{
+    SK_SMALL_GUNS, 200, SK_BIG_GUNS, 200, SK_ENERGY_WEAPONS, 200,
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_HOME, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_NO_ENEMY_STACK, 1, MODE_UNLIMITED_AMMO, 1, ST_DIALOG_ID, 0, MODE_NO_TALK, 1,  ST_KILL_EXPERIENCE, 0, ST_BAG_ID, 0,
+    ST_LUCK, 10, ST_BONUS_LOOK, 30,
+    PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+    ST_REPLICATION_TIME, -2, ST_TEAM_ID, TEAM_ZombieKiller
+};
+
+int[] HunterParamsh =
+{
+    SK_SMALL_GUNS, 200, SK_BIG_GUNS, 200, SK_ENERGY_WEAPONS, 200,
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_HOME, 0, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_NO_ENEMY_STACK, 1, MODE_UNLIMITED_AMMO, 1, ST_DIALOG_ID, 0, MODE_NO_TALK, 1,  ST_KILL_EXPERIENCE, 0, ST_BAG_ID, 0,
+    ST_LUCK, 10, ST_BONUS_LOOK, 30,
+    PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+    ST_REPLICATION_TIME, -2, ST_TEAM_ID, TEAM_ZombieKiller
+};
+
+uint16[] hweaponPidsT0 = { PID_10MM_PISTOL, PID_GREASE_GUN, PID_LASER_PISTOL, PID_FLAMER };
+uint16[] hweaponPidsT1 = { PID_TOMMY_GUN, PID_14MM_PISTOL, PID_PLASMA_PISTOL_EXT_CART, PID_FLAMER, PID_M60 };
+uint16[] hweaponPidsT2 = { PID_ASSAULT_RIFLE, PID_10MM_SMG, PID_LASER_RIFLE, PID_HK_CAWS, PID_IMPROVED_FLAMETHROWER, PID_M60, PID_ROCKET_LAUNCHER };
+uint16[] hweaponPidsT3 = { PID_XL70E3, PID_223_PISTOL, PID_HK_P90C, PID_LASER_RIFLE_EXT_CAP, PID_HK_G11, PID_IMPROVED_FLAMETHROWER, PID_LIGHT_SUPPORT_WEAPON, PID_ROCKET_LAUNCHER };
+
+
+int[] BHunterParams =
+{
+    SK_SMALL_GUNS, 200, SK_BIG_GUNS, 200, SK_ENERGY_WEAPONS, 200,
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_HOME, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_NO_ENEMY_STACK, 1, MODE_UNLIMITED_AMMO, 1, ST_DIALOG_ID, 0, MODE_NO_TALK, 1,  ST_KILL_EXPERIENCE, 0, ST_BAG_ID, 0, ST_MAX_LIFE_EXT, 150, ST_ACTION_POINTS, 16,
+    ST_LUCK, 10, ST_BONUS_LOOK, 30,
+    PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2, PE_TOUGHNESS, 2,
+    ST_REPLICATION_TIME, -2, ST_TEAM_ID, TEAM_ZombieKiller
+};
+
+int[] BHunterParamsh =
+{
+    SK_SMALL_GUNS, 200, SK_BIG_GUNS, 200, SK_ENERGY_WEAPONS, 200,
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_HOME, 0, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_NO_ENEMY_STACK, 1, MODE_UNLIMITED_AMMO, 1, ST_DIALOG_ID, 0, MODE_NO_TALK, 1,  ST_KILL_EXPERIENCE, 0, ST_BAG_ID, 0, ST_MAX_LIFE_EXT, 150, ST_ACTION_POINTS, 16,
+    ST_LUCK, 10, ST_BONUS_LOOK, 30,
+    PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2, PE_TOUGHNESS, 2,
+    ST_REPLICATION_TIME, -2, ST_TEAM_ID, TEAM_ZombieKiller
+};
+
+
+
+uint16[] bhweaponPidsT0 = { PID_10MM_PISTOL, PID_GREASE_GUN, PID_LASER_PISTOL };
+uint16[] bhweaponPidsT1 = { PID_TOMMY_GUN, PID_14MM_PISTOL, PID_PLASMA_PISTOL_EXT_CART, PID_ASSAULT_RIFLE };
+uint16[] bhweaponPidsT2 = { PID_ASSAULT_RIFLE, PID_10MM_SMG, PID_LASER_RIFLE, PID_HK_CAWS, PID_ROCKET_LAUNCHER };
+uint16[] bhweaponPidsT3 = { PID_XL70E3, PID_HK_P90C, PID_LASER_RIFLE_EXT_CAP, PID_HK_G11, PID_LIGHT_SUPPORT_WEAPON, PID_ROCKET_LAUNCHER };
+
+
+// To add Hunters
+void hspawn( Critter& cr, int entire, int amount, int tier )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint   entiresnum = map.CountEntire( entire );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( map.GetEntireCoords( entire, i, hexX, hexY, dir ) && HAddAttacker( hexX, hexY, dir, map, tier ) )
+            attackers++;
+    }
+}
+
+void hspawnbeside( Critter& cr, int nuthin, int amount, int tier )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint16 hexX = cr.HexX;
+    uint16 hexY = cr.HexY;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( int i = 0; i < amount; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( HAddAttacker( hexX, hexY, cr.Dir, map, tier ) )
+            attackers++;
+    }
+}
+
+void hspawnh( Critter& cr, int entire, int amount, int tier ) // Spawns with Return home.
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint   entiresnum = map.CountEntire( entire );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( map.GetEntireCoords( entire, i, hexX, hexY, dir ) && HAddAttackerh( hexX, hexY, dir, map, tier ) )
+            attackers++;
+    }
+}
+
+void hspawnbesideh( Critter& cr, int nuthin, int amount, int tier ) // Spawns with Return home.
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint16 hexX = cr.HexX;
+    uint16 hexY = cr.HexY;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( int i = 0; i < amount; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( HAddAttackerh( hexX, hexY, cr.Dir, map, tier ) )
+            attackers++;
+    }
+}
+
+bool HAddAttackerh( uint16 hexX, uint16 hexY, uint8 dir, Map& map, uint16 HuntersTier )
+{
+    hexX += Random( -3, 3 );
+    hexY += Random( -3, 3 );
+
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+    {
+        Log( "No Free Hex Hexx " + hexX + " Hexy " + hexX );
+        return false;
+    }
+
+    Critter@ attacker = map.AddNpc( Random( 776, 780 ), hexX, hexY,  dir, HunterParamsh, null, "zedswarm@HunterInit" );
+    if( !valid( attacker ) )
+    {
+        Log( "Invalid Mob" );
+        return false;
+    }
+
+    array< Item@ > items;
+    attacker.GetItems( -1, items );
+    DeleteItems( items );
+
+    uint16[] weaponPids;
+
+    if( HuntersTier == 1 )
+        weaponPids = hweaponPidsT1;
+    else if( HuntersTier == 2 )
+        weaponPids = hweaponPidsT2;
+    else if( HuntersTier == 3 )
+        weaponPids = hweaponPidsT3;
+    else
+        weaponPids = hweaponPidsT0;
+
+    Item@ weapon = attacker.AddItem( weaponPids[ Random( 0, weaponPids.length() - 1 ) ], 1 );
+
+    if( valid( weapon ) && weapon.GetProtoId() == PID_ROCKET_LAUNCHER )
+        weapon.AmmoPid = PID_ROCKET_AP;
+
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+
+    return true;
+}
+
+bool HAddAttacker( uint16 hexX, uint16 hexY, uint8 dir, Map& map, uint16 HuntersTier )
+{
+    hexX += Random( -3, 3 );
+    hexY += Random( -3, 3 );
+
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+    {
+        Log( "No Free Hex Hexx " + hexX + " Hexy " + hexX );
+        return false;
+    }
+
+    Critter@ attacker = map.AddNpc( Random( 776, 780 ), hexX, hexY,  dir, HunterParams, null, "zedswarm@HunterInit" );
+    if( !valid( attacker ) )
+    {
+        Log( "Invalid Mob" );
+        return false;
+    }
+
+    array< Item@ > items;
+    attacker.GetItems( -1, items );
+    DeleteItems( items );
+
+    uint16[] weaponPids;
+
+    if( HuntersTier == 1 )
+        weaponPids = hweaponPidsT1;
+    else if( HuntersTier == 2 )
+        weaponPids = hweaponPidsT2;
+    else if( HuntersTier == 3 )
+        weaponPids = hweaponPidsT3;
+    else
+        weaponPids = hweaponPidsT0;
+
+    Item@ weapon = attacker.AddItem( weaponPids[ Random( 0, weaponPids.length() - 1 ) ], 1 );
+
+    if( valid( weapon ) && weapon.GetProtoId() == PID_ROCKET_LAUNCHER )
+        weapon.AmmoPid = PID_ROCKET_AP;
+
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+
+    return true;
+}
+
+void hclean( Critter& cr, int, int, int ) // Cleanup
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        if( npcs[ i ].Stat[ ST_TEAM_ID ] == TEAM_ZombieKiller )
+            DeleteNpc( npcs[ i ] );
+    }
+
+    return;
+}
+
+void HunterInit( Critter& npc, bool firstTime )
+{
+    /*if(firstTime)
+       {
+            InitHunter(npc);
+       }*/
+    SETFLAG( npc.ParamBase[ CR_FLAGS1 ], NPC_FRIENDLY );
+
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_HunterOnShow" );
+    npc.SetEvent( CRITTER_EVENT_IDLE, "_HunterIdle" );
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_HunterSomeoneAttacked" );
+    npc.SetEvent( CRITTER_EVENT_ATTACKED, "_HunterOnAttacked" );
+}
+
+void _HunterIdle( Critter& follower )
+{
+    if( follower.Stat[ ST_CURRENT_HP ] <= 140  && follower.Timeout[ TO_SK_FIRST_AID ] <= 0 )
+    {
+        if( HAS_CHANCE( 10 ) )
+            critter_use_skill( follower, SK_FIRST_AID, follower, null, null );
+    }
+    follower.Wait( 75 );
+}
+
+void _HunterOnShow( Critter& Hunter, Critter& cr )
+{
+    if( cr.Id == Hunter.Id )
+        return;
+    if( SAME_TEAM( Hunter, cr ) )
+        return;
+    if( Hunter.IsSee( cr ) && cr.Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm )
+        Attack( Hunter, cr );
+}
+
+void _HunterSomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+    // Zombie swarm.
+    if( attacker.Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm && cr.IsSee( attacker ) )
+    {
+        Attack( cr, attacker );
+        return;
+    }
+    if( attacked.Stat[ ST_TEAM_ID ] == TEAM_ZombieSwarm && cr.IsSee( attacked ) )
+    {
+        Attack( cr, attacked );
+        return;
+    }
+
+    if( attacker.Id == cr.Id )
+        return;
+    if( attacker.Id == attacked.Id )
+        return;
+    if( SAME_TEAM( cr, attacker ) )
+        return;
+    if( _IsAggressor( attacked ) )
+        return;
+    if( attacker.IsPlayer() )
+        return;
+
+    if( cr.IsSee( attacker ) )
+        Attack( cr, attacker );
+}
+
+bool _HunterOnAttacked( Critter& npc, Critter& attacker )
+{
+    if( attacker.IsPlayer() || attacker.IsNpc() && attacker.Stat[ ST_TEAM_ID ] != TEAM_ZombieSwarm )
+    {
+        if( HAS_CHANCE( 40 ) )
+            npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70382 );
+        return true;
+    }
+
+    if( npc.IsSee( attacker ) )
+        return false;
+    else
+        return true;
+
+}
+
+// Same shit as zombies, just raiders look.
+void spawnr( Critter& cr, int entire, int amount, int tier )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint   entiresnum = map.CountEntire( entire );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( map.GetEntireCoords( entire, i, hexX, hexY, dir ) && AddAttackerr( hexX, hexY, dir, map, tier ) )
+            attackers++;
+    }
+}
+
+bool AddAttackerr( uint16 hexX, uint16 hexY, uint8 dir, Map& map, uint16 ZedsTier )
+{
+    hexX += Random( -3, 3 );
+    hexY += Random( -3, 3 );
+
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+    {
+        Log( "No Free Hex Hexx " + hexX + " Hexy " + hexX );
+        return false;
+    }
+
+    Critter@ attacker = map.AddNpc( Random( 718, 737 ), hexX, hexY,  dir, ZedParams, null, "zedswarm@ZedInit" );
+    if( !valid( attacker ) )
+    {
+        Log( "Invalid Mob" );
+        return false;
+    }
+
+    array< Item@ > items;
+    attacker.GetItems( -1, items );
+    DeleteItems( items );
+
+    uint16[] weaponPids;
+
+    if( ZedsTier == 1 )
+        weaponPids = weaponPidsT1;
+    else if( ZedsTier == 2 )
+        weaponPids = weaponPidsT2;
+    else if( ZedsTier == 3 )
+        weaponPids = weaponPidsT3;
+    else
+        weaponPids = weaponPidsT0;
+
+    Item@ weapon = attacker.AddItem( weaponPids[ Random( 0, weaponPids.length() - 1 ) ], 1 );
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+
+    return true;
+}
+
+
+// Bounty, same as hunters just ca's and more combat oriented gear
+
+
+// To add Hunters
+void bhspawn( Critter& cr, int entire, int amount, int tier )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint   entiresnum = map.CountEntire( entire );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( map.GetEntireCoords( entire, i, hexX, hexY, dir ) && BHAddAttacker( hexX, hexY, dir, map, tier ) )
+            attackers++;
+    }
+}
+
+void bhspawnbeside( Critter& cr, int nuthin, int amount, int tier )
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint16 hexX = cr.HexX;
+    uint16 hexY = cr.HexY;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( int i = 0; i < amount; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( BHAddAttacker( hexX, hexY, cr.Dir, map, tier ) )
+            attackers++;
+    }
+}
+
+void bhspawnh( Critter& cr, int entire, int amount, int tier ) // Spawns with Return home.
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint   entiresnum = map.CountEntire( entire );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( map.GetEntireCoords( entire, i, hexX, hexY, dir ) && BHAddAttackerh( hexX, hexY, dir, map, tier ) )
+            attackers++;
+    }
+}
+
+void bhspawnbesideh( Critter& cr, int nuthin, int amount, int tier ) // Spawns with Return home.
+{
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+        return;
+    uint16 hexX = cr.HexX;
+    uint16 hexY = cr.HexY;
+    uint   attackers = 0;
+    uint   spawnamount = amount;
+    for( int i = 0; i < amount; i++ )
+    {
+        if( attackers >= spawnamount )
+        {
+            Log( "All spawned " + attackers + " " + spawnamount );
+            break;
+        }
+        if( BHAddAttackerh( hexX, hexY, cr.Dir, map, tier ) )
+            attackers++;
+    }
+}
+
+bool BHAddAttackerh( uint16 hexX, uint16 hexY, uint8 dir, Map& map, uint16 HuntersTier )
+{
+    hexX += Random( -3, 3 );
+    hexY += Random( -3, 3 );
+
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+    {
+        Log( "No Free Hex Hexx " + hexX + " Hexy " + hexX );
+        return false;
+    }
+
+    Critter@ attacker = map.AddNpc( Random( 187, 188 ), hexX, hexY,  dir, BHunterParamsh, null, "zedswarm@HunterInit" );
+    if( !valid( attacker ) )
+    {
+        Log( "Invalid Mob" );
+        return false;
+    }
+
+    array< Item@ > items;
+    attacker.GetItems( -1, items );
+    DeleteItems( items );
+
+    uint16[] weaponPids;
+
+    if( HuntersTier == 1 )
+        weaponPids = bhweaponPidsT1;
+    else if( HuntersTier == 2 )
+        weaponPids = bhweaponPidsT2;
+    else if( HuntersTier == 3 )
+        weaponPids = bhweaponPidsT3;
+    else
+        weaponPids = bhweaponPidsT0;
+
+    Item@ weapon = attacker.AddItem( weaponPids[ Random( 0, weaponPids.length() - 1 ) ], 1 );
+
+    if( valid( weapon ) && weapon.GetProtoId() == PID_ROCKET_LAUNCHER )
+        weapon.AmmoPid = PID_ROCKET_AP;
+
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+
+    return true;
+}
+
+bool BHAddAttacker( uint16 hexX, uint16 hexY, uint8 dir, Map& map, uint16 HuntersTier )
+{
+    hexX += Random( -3, 3 );
+    hexY += Random( -3, 3 );
+
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+    {
+        Log( "No Free Hex Hexx " + hexX + " Hexy " + hexX );
+        return false;
+    }
+
+    Critter@ attacker = map.AddNpc( Random( 187, 188 ), hexX, hexY,  dir, BHunterParams, null, "zedswarm@HunterInit" );
+    if( !valid( attacker ) )
+    {
+        Log( "Invalid Mob" );
+        return false;
+    }
+
+    array< Item@ > items;
+    attacker.GetItems( -1, items );
+    DeleteItems( items );
+
+    uint16[] weaponPids;
+
+    if( HuntersTier == 1 )
+        weaponPids = bhweaponPidsT1;
+    else if( HuntersTier == 2 )
+        weaponPids = bhweaponPidsT2;
+    else if( HuntersTier == 3 )
+        weaponPids = bhweaponPidsT3;
+    else
+        weaponPids = bhweaponPidsT0;
+
+    Item@ weapon = attacker.AddItem( weaponPids[ Random( 0, weaponPids.length() - 1 ) ], 1 );
+
+    if( valid( weapon ) && weapon.GetProtoId() == PID_ROCKET_LAUNCHER )
+        weapon.AmmoPid = PID_ROCKET_AP;
+
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+
+    return true;
+}

@@ -1,0 +1,46 @@
+[comment]
+Ваши комментарии / Your comments.
+
+[data]
+lang=engl russ ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+0 2020 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{unsued}
+{200}{}{unsued}
+{210}{}{unsued}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{I'm selling stuff which make you fly. Are you interested?}
+{2010}{}{Let me see what you have.}
+{2020}{}{No, thanks.}
+{3000}{}{Guards! Get him!@@Rip his skin off!@@Thief! Thief!@@Guards! Shoot that bastard!}
+
+[russ]
+{100}{}{unsued}
+{200}{}{unsued}
+{210}{}{unsued}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{---}
+{2000}{}{Я продаю дурь от которой ты улетишь. Интересует?}
+{2010}{}{Давай глянем что у тебя там.}
+{2020}{}{Нет, спасибо.}
+{3000}{}{Охрана!@@Лови ворюгу!@@Вор! Вор!@@Охрана, стреляйте!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{I'm selling stuff which make you fly. Are you interested?}
+{2010}{}{Let me see what you have.}
+{2020}{}{No, thanks.}
+{3000}{}{Guards! Get him!@@Rip his skin off!@@Thief! Thief!@@Guards! Shoot that bastard!}
+

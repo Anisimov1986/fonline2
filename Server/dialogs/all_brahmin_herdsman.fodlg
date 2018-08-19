@@ -1,0 +1,119 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+6 2020 D _script item_brahmin_dung@d_CleanedSomeDung 0  R _var p name_mem_player_npc = 0 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+7 4010 #
+5 4020 D _item p PID_SHOVEL = 0 D _var p name_mem_player_npc = 0 #
+0 4030 @
+5 5000 None 0 #
+7 5010 R _item p PID_SHOVEL + 1 R _var p name_mem_player_npc = 1 @
+6 6000 None 0 #
+0 6010 R _script item_brahmin_dung@r_CleaningPayment 1 5 @
+7 7000 None 0 &
+
+[engl]
+{100}{}{Brahmin Herdsman}
+{200}{}{You see: Brahmin Herdsman.}
+{210}{}{Looks like this person has had more experience with brahmin than most people. You're not sure whether it's good or bad.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Whaddya want? Can't you see I'm working here?@@No time for chit-chat, I've got shitload of work to do.@@You want something?}
+{2010}{}{Hey there.@@Hi.@@Erm, hello.}
+{2020}{}{I've shovelled some of your shit. Time to pay up.@@I've shovelled the shit. Pay up, dude.}
+{2030}{}{I've gotta be somewhere else.@@I've gotta go.@@Gotta go, bye.}
+{3000}{}{Yeah, hey, whatever. What the hell do you want?}
+{3010}{}{I've noticed that there's a lot of, uh, shit around. Need any help?}
+{3020}{}{Nothing.@@Nothing, just passing through.}
+{4000}{}{Shovel my shit? I, uh... I guess you could. Don't know why you'd want to, though. I s'pose I could make it worth your while.}
+{4010}{}{Sure thing, let's get started.}
+{4020}{}{If you think I'm going into that field and grabbing fistfuls of brahmin shit, then you have another thing coming.}
+{4030}{}{I think I'll pass...@@No way.@@On second thought...}
+{5000}{}{Oh! A shovel. Right. Okay, here you go. Come back to me when you're done.}
+{5010}{}{Great. Time to shovel some shit...}
+{6000}{}{Well, you made that damn pen sparkle. Here's your pay, stranger.}
+{6010}{}{I love this job. Thanks, and see you later.}
+{7000}{}{Be careful inside the pen. The brahmin are domesticated, but they are still unpredictable.}
+
+[russ]
+{100}{}{Пастух}
+{200}{}{Вы видите грязного пастуха.}
+{210}{}{Вы видите грязного человека. Похоже, он имеет опыт в обращении с браминами больше, чем кто-либо другой.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Чего тебе? Не видишь я занят?@@Нет времени на болтовню, есть что по делу?}
+{2010}{}{Привет.}
+{2020}{}{Я перелопатил это дерьмо. Время расплаты.}
+{2030}{}{[Уйти]}
+{3000}{}{Привет ... что?}
+{3010}{}{Я смотрю у тебя тут все засрано. Я бы согласился за деньги тут немного прибраться.}
+{3020}{}{Ничего, проходил мимо.}
+{4000}{}{Прибраться? Хм... Пожалуй это можно устроить. Не знаю зачем тебе это, но думаю я смогу заплатить тебе за потраченное время.}
+{4010}{}{Ясное дело, давай приступим.}
+{4020}{}{Если ты думаешь что я буду разгребать это дерьмо голыми руками, то ты сильно ошибаешься.}
+{4030}{}{Пожалуй я лучше найду другое занятие.}
+{5000}{}{Ах да! Лопата. Точно. Вот, держи. Возвращайся за наградой когда закончишь работу.}
+{5010}{}{Отлично. Время изменить жизнь к лучшему!}
+{6000}{}{Отлчино, теперь этот гадюшник просто блестит. Вот твоя награда!}
+{6010}{}{Благодарю. Увидимся позже.}
+{7000}{}{Будь осторожен, это одомашненные брамины, но все равно от них можно ожидать все что угодно.}
+
+[pols]
+{100}{}{Dozorca braminów}
+{200}{}{Widzisz brudnego dozorcę braminów.}
+{210}{}{Widzisz ubrudzonego człowieka. Wygląda na to, że często ma do czynienia z braminami.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Czego chcesz? Nie widzisz, że tu pracuję?@@Nie mam czasu na pogawędki, chcesz czegoś czy nie?}
+{2010}{}{Cześć!}
+{2020}{}{@sex@|Posprzątałem||Posprzątałam| nieco tego gówna. Wyskakuj z kapsli.}
+{2030}{}{[Odejdź.]}
+{3000}{}{Cześć... Czego?}
+{3010}{}{@sex@|Zauważyłem||Zauważyłam|, że jest tu dookoła mnóstwo, ekhem, gówna. Może potrzebowałbyś trochę pomocy?}
+{3020}{}{Nic takiego, tylko przechodzę.}
+{4000}{}{Chcesz posprzątać moje gówno? Uch, hm, w porządku. Nie wiem, co cię do tego skłoniło... Dobra, jakoś ci się za to odpłacę.}
+{4010}{}{Jasne, bierzmy się do roboty..}
+{4020}{}{Naprawdę myślisz, że mam zamiar iść tam i gołymi rękami babrać się w... ehkem, kupie braminiego gówna?}
+{4030}{}{Chyba podziękuję...}
+{5000}{}{Och! Łopata. W porządku. Dobra, trzymaj. Wróć do mnie, kiedy skończysz, żeby odebrać zapłatę.}
+{5010}{}{Świetnie. Czas odmienić moje życie.}
+{6000}{}{Cóż, dzięki tobie ta zagroda błyszczy jak braminie jajca. Oto twoje kapsle.}
+{6010}{}{Dzięki. Do zobaczenia. Kocham cię, życie.}
+{7000}{}{Uważaj tam w zagrodzie, braminy są udomowione, ale to wciąż nieprzewidywalne zwierzęta.}
+
+[ptbr]
+{100}{}{Vaqueiro}
+{200}{}{Você vê um vaqueiro.}
+{210}{}{Parece que esta pessoa tem mais experiência com brahmin que outras. Você não tem certeza se isso é bom ou ruim.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Quê que cê quer? Não vê que tô trabalhando aqui?@@Sem tempo pra conversa fiada, eu tenho uma caralhada de coisas a fazer.@@Quer alguma coisa?}
+{2010}{}{Opa.}
+{2020}{}{Eu limpei o curral. Vim acertar os detalhes do pagamento.}
+{2030}{}{Eu tenho que estar em outro lugar.}
+{3000}{}{Opa o quê?}
+{3010}{}{Eu percebi que tem um monte de... merda no seu curral. Precisa de ajuda?}
+{3020}{}{Nada.@@Nada, só dando uma volta.}
+{4000}{}{Limpar o curral? Eu, ahm... é, eu acho que você pode fazer isso.@@É, tô precisando de ajuda. Estou cheio de trabalho e não tenho tempo livre para fazer isso eu mesmo.}
+{4010}{}{Combinado. Vou começar.}
+{4020}{}{Se você acha que eu vou entrar naquele curral e pegar merda nojenta de brahmin, está muito enganado.}
+{4030}{}{Eu acho que passo...@@Sem chance.@@Pensando melhor...}
+{5000}{}{Ah! Uma pá! Certo. Ok, aqui está. Volte quando terminar.}
+{5010}{}{Maravilha. Hora de catar merda...}
+{6000}{}{Bem, você fez todo o curral brilhar. Tá aqui o pagamento, forasteiro.}
+{6010}{}{Eu amo esse trabalho. Agradeço e te vejo depois.}
+{7000}{}{Tome cuidado dentro do curral. Os brahmin são domesticados mas ainda são bastante imprevisíveis.}
+

@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 None 0 &
+
+[engl]
+{100}{}{Lynette}
+{200}{}{You see: First Citizen Lynette.}
+{210}{}{You see a stern-looking woman with thick glasses, wearing a Vault City jumpsuit. Judging from her bearing, she seems important.}
+{1000}{}{Predialogue installations}
+{1010}{}{citizen}
+{2000}{}{I don't know how you got past the guards and into my private chambers, but you had best leave.@@Please go see the Proconsul. He will have what you need.@@Please go see Senior Councilman McClure. He will have what you need.@@Please go see my assistant. He will have what you need.}
+
+[russ]
+{100}{}{Линетт}
+{200}{}{Вы видите строгую женщину в очках с толстыми стеклами, одетую в спортивный костюм Города Убежища. Судя по ее манерам, она кажется важной персоной.}
+{210}{}{Вы видите Первую Гражданку Линетту. Она выглядит чрезвычайно занятой.}
+{1000}{}{Predialogue installations}
+{1010}{}{citizen}
+{2000}{}{Боже, тебя кто сюда пустил?@@Вон от сюда!@@Кыш!@@А ну иди от сюда!}
+
+[pols]
+{100}{}{Lynette}
+{200}{}{Widzisz nieprzyjemnie wyglądającą kobietę w grubych okularach, ubraną w kombinezon Kryptopolis. Sądząc z jej aparycji, jest tu kimś ważnym.}
+{210}{}{Widzisz Pierwszego Obywatela Lynette. Wygląda na zajętą.}
+{1000}{}{Predialogue installations}
+{1010}{}{citizen}
+{2000}{}{Nie wiem, w jaki sposób udało ci się ominąć straż i dostać do moich prywatnych komnat, ale teraz proszę cię o wyjście.@@Proszę, idź zobaczyć się z Prokonsulem. On będzie miał to, czego potrzebujesz.@@Proszę, idź zobaczyć się ze Starszym Radnym McClure. On będzie miał to, czego potrzebujesz.@@Proszę, idź zobaczyć się z moim asystentem. On będzie miał to, czego potrzebujesz.}
+
+[ptbr]
+{100}{}{Linete}
+{200}{}{Você vê uma mulher de olhar sério de óculos grossos, usando um traje da Cidade do Abrigo. Ao julgar pela sua aparência, ela parece ser importante.}
+{210}{}{Você vê a Primeira Cidadã Linette. Ela parece preocupada.}
+{1000}{}{Predialogue installations}
+{1010}{}{citizen}
+{2000}{}{Eu não sei como você passou pelos guardas e entrou nos meus aposentos mas aconselho a partir, agora.@@Por favor vá ver o Proconsul. Ele poderá lhe atender.@@Por favor, vá ver o Conselheiro Sênior McClure. Ele tem o que você precisa.@@Por favor vá falar com meu asisstente. Ele tem o que você precisa.}
+

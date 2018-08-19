@@ -1,0 +1,157 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+7 1010 D _script shopkeeper@d_HasNoSupplier 0  #
+2 1020 @
+2 2000 None 0 #
+65506 2010 D _script shopkeeper@d_IsNotSupplier 0  D _script shopkeeper@d_HasNoOldItems 0  #
+6 2020 D _script shopkeeper@d_HasOldItems 0  #
+3 2030 D _script shopkeeper@d_HasNoSupplier 0  D _param p MAIN_FACTION = 1 D _param p MAIN_FACTION_RANK = 3 R _script shopkeeper@r_SetSupplier 1 20 #
+65506 2040 D _script shopkeeper@d_IsSupplier 0  #
+0 2050 D _script shopkeeper@d_IsSupplier 0  R _script shopkeeper@r_SetupItemCosts 0  #
+4 2060 D _script shopkeeper@d_IsSupplier 0  #
+0 2070 D _script shopkeeper@d_IsNotSupplier 0  D or D _script shopkeeper@d_IsSupplierForMoreThanDays 1 3 #
+5 2080 D _script shopkeeper@d_IsSupplierForLessThanDays 1 3 #
+2 2090 D _script shopkeeper@d_IsSupplierForLessThanDays 1 3 R _script shopkeeper@r_AddSupplyDays 1 20 #
+8 2100 D _script shopkeeper@d_IsSupplier 0  @
+3 3000 None 0 @
+4 4000 shopkeeper@dlg_SetDaysLeft 0 @
+5 5000 None 0 @
+6 6000 None 0 #
+65506 6010 #
+0 6020 @
+7 7000 None 0 #
+2 7010 @
+8 8000 None 0 #
+9 8010 D _script shopkeeper@d_IsSupplier 0  R _script shopkeeper@r_EndContract 0  #
+0 8020 @
+9 9000 None 0 &
+
+[engl]
+{100}{}{Junktown Scouts Shopkeeper}
+{200}{}{You see: Shopkeeper.}
+{210}{}{This person might be hired by someone to sell his items.}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{Yeah?@@What do you want?@@Hello, what do you want?@@Want anything?@@Need anything?}
+{2010}{}{I want to trade.@@ I want to take a look at your stuff.@@I want to take a look at your wares.@@Got anything interesting for sale?}
+{2020}{}{I want to trade.@@Got anything interesting?@@Want to barter?@@Wanna trade?}
+{2030}{}{I'm Leader of Junktown Scouts, Let's set up the store.}
+{2040}{}{I want to give you some items.@@I've got some items for sale.@@I've got some stuff I want to sell.}
+{2050}{}{I want to change prices.@@I need to adjust some of the prices...}
+{2060}{}{How many days of our contract are remaining?}
+{2070}{}{Nothing really.@@Nothing.@@Nevermind.@@Later.}
+{2080}{}{Nothing really.@@Nothing.@@Nevermind.}
+{2090}{}{Remember that we're still on agreement.}
+{2100}{}{I want to break the contract.@@I want to end our contract.@@I think we should end our contract.}
+{3000}{}{Very well! For the Junktown Scouts!}
+{4000}{}{Let me see, I have it somewhere here... [He checks his papers.] Aaah, yes, here it is. We are bound by contract for @lex daysLeft@ more days.}
+{5000}{}{Okay, just remember, our contract expires in less than 3 days, so don't forget to pay.}
+{6000}{}{Okay, but take the stuff you left here first.}
+{6010}{}{Uh, okay.@@All right.@@Okay.@@Got it.}
+{6020}{}{Wait, I'll come back later.@@Wait a sec, I'll be right back.}
+{7000}{}{I am currently awaiting for Junktown Scouts leader to contact me. Our contract will bind us for twenty days.}
+{7010}{}{Fine, I'll remember that.@@Okay, got it.@@Right...}
+{8000}{}{Are you sure?}
+{8010}{}{Yes.@@Yeah.@@Sure.@@Yep.}
+{8020}{}{On the secound tought... No.@@Uhm... not really.@@Not really.@@Nope.}
+{9000}{}{All right. Free shopkeeper here!}
+
+[russ]
+{100}{}{Торговец Скаутов}
+{200}{}{Вы видите лавочника.}
+{210}{}{Управляющий. Судя по всему работает на Скаутов Джанктауна.}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{Чего изволите?}
+{2010}{}{Торговать.}
+{2020}{}{Торговать.}
+{2030}{}{Я лидер Скаутов Джанктауна, не забывай что ты работаешь на нас.}
+{2040}{}{Я принес вещи на продажу.}
+{2050}{}{Я хочу изменить цены.}
+{2060}{}{Сколько дней до конца контракта?}
+{2070}{}{Ничего, на самом деле.}
+{2080}{}{Ничего, на самом деле.}
+{2090}{}{Не забывай что ты работаешь на нас.}
+{2100}{}{Я хочу прекратить контракт.}
+{3000}{}{Очень хорошо ! Теперь давай показывай, что принес на продажу.}
+{4000}{}{Давай посмотрим, у меня где-то здесь записано [проверяет бумаги]. Ага вот. До конца оплаченого срока ещё @lex daysLeft@ дней.}
+{5000}{}{Хорошо, контракт истекает через 3 дня, не забудь.}
+{6000}{}{Хорошо, на сначала забери вещи которые оставил тут.}
+{6010}{}{Ну, хорошо.}
+{6020}{}{Я позже зайду.}
+{7000}{}{Я сейчас не работаю. Жду распоряжений от лидера Скаутов Джанктауна.}
+{7010}{}{Хорошо, я запомню.}
+{8000}{}{Вы уверены?}
+{8010}{}{Да.}
+{8020}{}{А с другой стороны...}
+{9000}{}{Хорошо. Свободный торговец!}
+
+[pols]
+{100}{}{Sprzedawca}
+{200}{}{Widzisz sprzedawcę.}
+{210}{}{Sprzedawca, wynajęty przez kogoś aby sprzedawał jego towary.}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{W czym mogę pomóc?}
+{2010}{}{Handel.}
+{2020}{}{Handel.}
+{2030}{}{(Zakup stoisko.) Oto 10000 kapsli. Od teraz, pracujesz dla mnie.}
+{2040}{}{Chcę dać ci kilka przedmiotów.}
+{2050}{}{Chcę zmienić ceny.}
+{2060}{}{Ile dni mi pozostało?}
+{2070}{}{Właściwie, to już nic.}
+{2080}{}{Właściwie, to już nic.}
+{2090}{}{Chcę ci zapłacić za kolejne 7 dni.}
+{2100}{}{Chcę zerwać nasz kontrakt.}
+{3000}{}{Świetnie! Biorę zapłatę za tydzień, będziesz @sex@|mógł||mogła| zapłacić mi za kolejny trzy dni przed końcem obecnej umowy. Teraz daj mi to, co mam sprzedawać.}
+{4000}{}{Czekaj, gdzieś to było zapisane... [Sprawdza papiery.]. Ooo, tutaj. Jesteś właścicielem stoiska przez następne @lex daysLeft@ dni.}
+{5000}{}{Dobra, ale pamiętaj że nasza umowa wygasa w przeciągu trzech kolejnych dni - pamiętaj o zapłacie.}
+{6000}{}{Dobra, ale najpierw weź rzeczy, które tu @sex@|zostawiłeś||zostawiłaś|.}
+{6010}{}{Aha, w porządku.}
+{6020}{}{Czekaj, wrócę potem.}
+{7000}{}{Obecnie, jestem do wynajęcia. Jeśli chcesz podpisać ze mną umowę, będziesz @sex@|musiał||musiała| zapłacić mi 10000 kapsli.}
+{7010}{}{Dobrze, będę pamiętać.}
+{8000}{}{Jesteś @sex@|pewien||pewna|?}
+{8010}{}{Tak.}
+{8020}{}{Zastanowię się jeszcze.}
+{9000}{}{W porządku. Handlarz do wynajęcia, tutaj!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Nonhired}
+{1020}{}{-}
+{2000}{}{Yeah?@@What do you want?@@Hello, what do you want?@@Want anything?@@Need anything?}
+{2010}{}{I want to trade.@@ I want to take a look at your stuff.@@I want to take a look at your wares.@@Got anything interesting for sale?}
+{2020}{}{I want to trade.@@Got anything interesting?@@Want to barter?@@Wanna trade?}
+{2030}{}{I'm Leader of Junktown Scouts, Let's set up the store.}
+{2040}{}{I want to give you some items.@@I've got some items for sale.@@I've got some stuff I want to sell.}
+{2050}{}{I want to change prices.@@I need to adjust some of the prices...}
+{2060}{}{How many days of our contract are remaining?}
+{2070}{}{Nothing really.@@Nothing.@@Nevermind.@@Later.}
+{2080}{}{Nothing really.@@Nothing.@@Nevermind.}
+{2090}{}{Remember that we're still on agreement.}
+{2100}{}{I want to break the contract.@@I want to end our contract.@@I think we should end our contract.}
+{3000}{}{Very well! For the Junktown Scouts!}
+{4000}{}{Let me see, I have it somewhere here... [He checks his papers.] Aaah, yes, here it is. We are bound by contract for @lex daysLeft@ more days.}
+{5000}{}{Okay, just remember, our contract expires in less than 3 days, so don't forget to pay.}
+{6000}{}{Okay, but take the stuff you left here first.}
+{6010}{}{Uh, okay.@@All right.@@Okay.@@Got it.}
+{6020}{}{Wait, I'll come back later.@@Wait a sec, I'll be right back.}
+{7000}{}{I am currently awaiting for Junktown Scouts leader to contact me. Our contract will bind us for twenty days.}
+{7010}{}{Fine, I'll remember that.@@Okay, got it.@@Right...}
+{8000}{}{Are you sure?}
+{8010}{}{Yes.@@Yeah.@@Sure.@@Yep.}
+{8020}{}{On the secound tought... No.@@Uhm... not really.@@Not really.@@Nope.}
+{9000}{}{All right. Free shopkeeper here!}
+

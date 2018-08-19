@@ -1,0 +1,155 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p q_start_questcaravan = 6 D _script quest@d_IsLocOwner 0  #
+11 1020 D _var p q_start_questcaravan > 6 D _script quest@d_IsLocOwner 0  R _script dialog@r_QuestNotice 2 9318 5 @
+2 2000 None 0 #
+3 2010 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+10 9010 @
+10 10000 None 0 #
+11 10010 R _var p q_start_questcaravan = 7 R _param p ST_EXPERIENCE + 5000 R _script dialog@r_HoloNotice 1 96 R _script quest@r_CreateLocationZone 3 9304 17 14 R _script dialog@r_ShowQuestMessage 1 9311 @
+11 11000 None 0 &
+
+[engl]
+{100}{}{Raiders' Leader}
+{200}{}{You see a tough-looking man. He seems to be mortally wounded, but still alive.}
+{210}{}{You see raiders' leader. He looks like he's about to die soon.}
+{220}{}{You see a tough-looking man. He seems to be mortally wounded, but still alive.}
+{230}{}{You see raiders' leader. He looks like he's about to die soon.}
+{240}{}{You see dead tough-looking man.}
+{250}{}{You see dead raiders' leader.}
+{260}{}{You see dead tough-looking man.}
+{270}{}{You see dead raiders' leader.}
+{1000}{}{Predialogue installations}
+{1010}{}{alive}
+{1020}{}{dying}
+{2000}{}{[He is coughing blood.] Who are you?}
+{2010}{}{I'm @pname@. You seem to be badly wounded, how can I help you?}
+{3000}{}{[Spits on the floor.] You can't. Let me die in peace, @sex@|man||woman|.}
+{3010}{}{What happened here?}
+{4000}{}{[Points a finger at dead man.] He... He was an Enclave mole here. Fucker shot me, afraid that I wouldn't give them these plans...}
+{4010}{}{What plans are you talking about?}
+{5000}{}{[He looks a bit surprised.] Really? I assumed you were here for them too...}
+{5010}{}{I didn't know about any plans. Please, tell me about them before you... Ahem.}
+{6000}{}{[He smiles.] Yeah, before I die. That's fine, I'm a raider... We're not afraid of death. [Coughs blood again.] Nothing interesting around so sure, why wouldn't I tell you that little story...}
+{6010}{}{Thanks. I'm listening.}
+{7000}{}{Some time ago, on behalf of the Enclave, we ambushed a caravan heading to the Hub. They paid really good, gave us directions and told us to look for some technical documents. The fight was a piece of cake, we've killed 'em all easily. [Laughs awfully.] There wasn't anything valuable in the caravan, but I thoroughly searched the dead body of their leader - and found them.}
+{7010}{}{Found what?}
+{8000}{}{[Grabs his stomach and winces.] Damn, if I wasn't be a raider boss, I'd say this hurts like hell. [Spits blood.] These plans, he had these plans. They forbade us to look at them - but come on, that only encouraged me to do so! [Hardly manages to get out a laugh.]}
+{8010}{}{Come on, plans of what?}
+{9000}{}{Easy, @sex@|man||darling|... I ain't no expert, but from what I managed to understand - it was 'bout some station on the sea... Yeah, I know that's hard to believe. It was called an "Oil Rig".}
+{9010}{}{Where are they?}
+{10000}{}{They're in my pocket. [Groans with pain.] Please, take them and deliver to the destination point. Coordinates are noted on the other side. [He turns pale.] It's a matter of honor. Raiders keep their contracts even after death... If you don't care about that - well, there's also a big reward waiting for you there.[He draws his last breath, sighs and passes away.]}
+{10010}{}{[Save plans on PipBoy and leave.]}
+{11000}{}{ }
+
+[russ]
+{100}{}{Raiders' Leader}
+{200}{}{You see a tough-looking man. He seems to be mortally wounded, but still alive.}
+{210}{}{You see raiders' leader. He looks like he's about to die soon.}
+{220}{}{You see a tough-looking man. He seems to be mortally wounded, but still alive.}
+{230}{}{You see raiders' leader. He looks like he's about to die soon.}
+{240}{}{You see dead tough-looking man.}
+{250}{}{You see dead raiders' leader.}
+{260}{}{You see dead tough-looking man.}
+{270}{}{You see dead raiders' leader.}
+{1000}{}{Predialogue installations}
+{1010}{}{alive}
+{1020}{}{dying}
+{2000}{}{[He is coughing blood.] Who are you?}
+{2010}{}{I'm @pname@. You seem to be badly wounded, how can I help you?}
+{3000}{}{[Spits on the floor.] You can't. Let me die in peace, please.}
+{3010}{}{What happened here? Please, tell me.}
+{4000}{}{[Points a finger at dead man.] He... He was an Enclave mole here. Fucker shot me, afraid that you'll take over these plans...}
+{4010}{}{What plans are you talking about?}
+{5000}{}{[He looks a bit surprised.] Really? I also thought that you're here to take them...}
+{5010}{}{I didn't know about any plans. Please, tell me about them before you... Akhem.}
+{6000}{}{[He smiles.] Yeah, before I die. That's fine, I'm a raider... We're not afraid of death. [Coughs blood again.] Nothing interesting around so sure, why wouldn't I tell you that little story...}
+{6010}{}{Thanks. I'm listening.}
+{7000}{}{Some time ago, on behalf of the Enclave, we've ambushed a caravan heading to the Hub. They paid really good, gave us directions and told to look for some technical documents. Fight was a piece of cake, we've killed 'em all easily. [Laughs awfully.] There wasn't anything valuable in the caravan, but I thoroughly searched the dead body of their leader - and found them.}
+{7010}{}{Found what?}
+{8000}{}{[Grabs his stomach and winces.] Damn, if I wouldn't be a raiders' boss, I'd say it hurts like hell. [Spits blood.] these plans, he had these plans. They forbade us to look at them - but come on, that only encouraged me to do so! [Hardly gets to laugh.]}
+{8010}{}{Come on, plans of what?}
+{9000}{}{Easy, @sex@|man||darling|... I ain't no expert, but from what I managed to understood - it was 'bout some station on the sea... Yeah, I know that's hard to believe. It was called an "Oil Rig".}
+{9010}{}{Where are they?}
+{10000}{}{They're in my pocket. [Groans with pain.] Take them and deliver to the destination point. Coordinates are noted on the other side. [He turns pale.] It's a matter of honor. Raiders always keep their contracts, even after death... If you don't care about it - well, there's also a big reward waiting there.[He draws his last breath, sighs and passes away.]}
+{10010}{}{[Leave.]}
+{11000}{}{[He is dead.]}
+
+[pols]
+{100}{}{Przywódca NajeŸdców}
+{200}{}{Widzisz twardo wygl¹daj¹cego mê¿czyznê. Jest ciê¿ko ranny, ale jeszcze ¿yje.}
+{210}{}{Widzisz przywódcê NajeŸdców. Wygl¹da na to, ¿e nied³ugo umrze.}
+{220}{}{Widzisz twardo wygl¹daj¹cego mê¿czyznê. Jest ciê¿ko ranny, ale jeszcze ¿yje.}
+{230}{}{Widzisz przywódcê NajeŸdców. Wygl¹da na to, ¿e nied³ugo umrze.}
+{240}{}{Widzisz martwego przywódcê NajeŸdców.}
+{250}{}{Widzisz martwego przywódcê NajeŸdców.}
+{260}{}{Widzisz martwego przywódcê NajeŸdców..}
+{270}{}{Widzisz martwego przywódcê NajeŸdców..}
+{1000}{}{Predialogue installations}
+{1010}{}{alive}
+{1020}{}{dying}
+{2000}{}{[Kaszle krwiï¿½.] Ugh... Kim jesteï¿½?}
+{2010}{}{Nazywam siï¿½ @pname@. Nie wyglï¿½dasz zbyt dobrze, pomï¿½c ci jakoï¿½?}
+{3000}{}{[Spluwa na podï¿½ogï¿½.] Nie moï¿½esz. Daj mi zdechï¿½ï¿½ w spokoju.}
+{3010}{}{Co tu siï¿½ w ogï¿½le staï¿½o?}
+{4000}{}{[Wskazuje palcem na trupa leï¿½ï¿½cego w kï¿½cie.] Ten koleï¿½... byï¿½ wtyczkï¿½ Enklawy. Skurwiel postrzeliï¿½ mnie, baï¿½ siï¿½ ï¿½e nie dotrzymam umowy i zatrzymam te plany przy sobie...}
+{4010}{}{Plany? Jakie plany? }
+{5000}{}{[Wyglï¿½da na zaskoczonego.] Myï¿½laï¿½em ï¿½e przysï¿½ali ciï¿½ ci drudzy, ï¿½eby je przejï¿½ï¿½...}
+{5010}{}{Nikt mnie nie przysï¿½aï¿½ i nic nie wiem o ï¿½adnych planach... moï¿½esz mi to wyjaï¿½niï¿½? Zanim...}
+{6000}{}{[Uï¿½miecha siï¿½.] Nie bojï¿½ siï¿½ ï¿½mierci, taki juï¿½ nasz los. ï¿½yjesz i umierasz, wielka mi sprawa. [Znowu kaszle krwiï¿½.] I tak nie mam tu z kim pogadaï¿½, wiï¿½c czemu nie...}
+{6010}{}{Dziï¿½ki, zamieniam siï¿½ w sï¿½uch.}
+{7000}{}{Jakiï¿½ czas temu Enklawa zleciï¿½a nam robotï¿½. Nic ciekawego, zwykï¿½a karawana do Hub. Jedyne co byï¿½o dziwne to zapï¿½ata, nikt nie pï¿½aci tak dobrze za takï¿½ robotï¿½... ale zaraz potem okazaï¿½o siï¿½ ï¿½e tak naprawdï¿½ chodzi im o dokumenty ktï¿½re miaï¿½ przy sobie jeden karzeï¿½. Szybko siï¿½ nimi zajï¿½liï¿½my, nie takie rzeczy siï¿½ robiï¿½o... [Smieje siï¿½ paskudnie.]}
+{7010}{}{Jakie dokumenty?}
+{8000}{}{[Chwyta siï¿½ za brzuch i wykrzywia.] Kurwa, gdybym nie byï¿½ tym, kim jestem, to bym powiedziaï¿½ ï¿½e zajebiï¿½cie boli... [Kaszle.] Ale dobra, o czym my tam? A, dokumenty. Plany. No, ten karzeï¿½ je miaï¿½. Zabronili nam na nie patrzeï¿½, ale wiesz jak to jest, taki zakaz to naprawdï¿½ zachï¿½ta... [Prï¿½buje siï¿½ ï¿½miaï¿½.]}
+{8010}{}{Plany, plany czego?}
+{9000}{}{Spokojnie, @sex@|stary||kotku|... Nie jestem fachowcem, ale z tego co wyglï¿½daï¿½o... wyglï¿½daï¿½o to jak jakaï¿½ instalacja na morzu... Na planach byï¿½o oznaczone jako "Platforma Wiertnicza".}
+{9010}{}{I gdzie sï¿½ te plany?}
+{10000}{}{Heheh, w mojej kieszeni. [Skrï¿½ca siï¿½ z bï¿½lu.] Masz, dostarcz je do punktu przeznaczenia. Wspï¿½rzï¿½dne masz podane na odwrocie. Albo jeszcze lepiej, skopiuj to sobie to tego ustrojstwa ktï¿½re masz na rï¿½ce... [Blednie.] To kwestia honoru, Najeï¿½dcy zawsze dotrzymujï¿½ swoich kontraktï¿½w. A jeï¿½li masz honor w dupie, jest jeszcze coï¿½. Powinni ci za nie dobrze zapï¿½aciï¿½, my dostaliï¿½my tylko czï¿½ï¿½ doli... Kurwa, chyba juï¿½ na mnie czas... Pamiï¿½taj... [Najeï¿½dca wydaje ostatnie tchnienie i umiera.]}
+{10010}{}{[Odejdï¿½.]}
+{11000}{}{[On juï¿½ nie ï¿½yje.]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{alive}
+{1020}{}{dying}
+{2000}{}{[He is coughing blood.] Who are you?}
+{2010}{}{I'm @pname@. You seem to be badly wounded, how can I help you?}
+{3000}{}{[Spits on the floor.] You can't. Let me die in peace, @sex@|man||woman|.}
+{3010}{}{What happened here?}
+{4000}{}{[Points a finger at dead man.] He... He was an Enclave mole here. Fucker shot me, afraid that I wouldn't give them these plans...}
+{4010}{}{What plans are you talking about?}
+{5000}{}{[He looks a bit surprised.] Really? I assumed you were here for them too...}
+{5010}{}{I didn't know about any plans. Please, tell me about them before you... Ahem.}
+{6000}{}{[He smiles.] Yeah, before I die. That's fine, I'm a raider... We're not afraid of death. [Coughs blood again.] Nothing interesting around so sure, why wouldn't I tell you that little story...}
+{6010}{}{Thanks. I'm listening.}
+{7000}{}{Some time ago, on behalf of the Enclave, we ambushed a caravan heading to the Hub. They paid really good, gave us directions and told us to look for some technical documents. The fight was a piece of cake, we've killed 'em all easily. [Laughs awfully.] There wasn't anything valuable in the caravan, but I thoroughly searched the dead body of their leader - and found them.}
+{7010}{}{Found what?}
+{8000}{}{[Grabs his stomach and winces.] Damn, if I wasn't be a raider boss, I'd say this hurts like hell. [Spits blood.] These plans, he had these plans. They forbade us to look at them - but come on, that only encouraged me to do so! [Hardly manages to get out a laugh.]}
+{8010}{}{Come on, plans of what?}
+{9000}{}{Easy, @sex@|man||darling|... I ain't no expert, but from what I managed to understand - it was 'bout some station on the sea... Yeah, I know that's hard to believe. It was called an "Oil Rig".}
+{9010}{}{Where are they?}
+{10000}{}{They're in my pocket. [Groans with pain.] Please, take them and deliver to the destination point. Coordinates are noted on the other side. [He turns pale.] It's a matter of honor. Raiders keep their contracts even after death... If you don't care about that - well, there's also a big reward waiting for you there.[He draws his last breath, sighs and passes away.]}
+{10010}{}{[Save plans on PipBoy and leave.]}
+{11000}{}{ }
+

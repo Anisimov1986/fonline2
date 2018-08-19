@@ -1,0 +1,166 @@
+#include "_macros.fos"
+#include "utils_h.fos"
+
+CharControl@[] CharControls;
+
+array<uint> CharControlHelper;
+class CharControl
+{
+    array<uint> PlayerId;
+    array<int> GUID0;
+    array<int> GUID1;
+    array<int> GUID2;
+    array<int> GUID3;
+    array<int> GUID4;
+    void AddPlayer(Critter& cr)
+    {
+        this.PlayerId.insertLast(cr.Id);
+        this.GUID0.insertLast(cr.GetUID(0));
+        this.GUID1.insertLast(cr.GetUID(1));
+        this.GUID2.insertLast(cr.GetUID(2));
+        this.GUID3.insertLast(cr.GetUID(3));
+        this.GUID4.insertLast(cr.GetUID(4));
+    }
+    void DelPlayer(uint crId)
+    {
+        int id = this.PlayerId.find(crId);
+        if (id>=0)
+        {
+            this.PlayerId.removeAt(id);
+            this.GUID0.removeAt(id);
+            this.GUID1.removeAt(id);
+            this.GUID2.removeAt(id);
+            this.GUID3.removeAt(id);
+            this.GUID4.removeAt(id);
+        }
+    }
+}
+
+bool _CritterIn(Location& loc, Critter@[]& critters, uint8 entrance)
+{
+    for (uint i=0;i<critters.length();i++)
+    {
+        if (!valid(critters[i]))
+            continue;
+        if (IsDoubleLog(critters, critters[i]) || IsRelog(critters[i],loc))
+        {
+            SayRelog(critters, critters[i]);
+            return false;
+        }
+    }
+    return true;
+}
+
+bool IsDoubleLog(Critter@[]& critters, Critter& cr)
+{
+    for (uint i=0;i<critters.length();i++)
+    {
+        if (!valid(critters[i]) || critters[i].Id==cr.Id)
+            continue;
+        
+        bool uidMatch = critters[i].GetUID(0)== cr.GetUID(0)
+                    &&  critters[i].GetUID(1)== cr.GetUID(1)
+                    &&  critters[i].GetUID(2)== cr.GetUID(2)
+                    &&  critters[i].GetUID(3)== cr.GetUID(3)
+                    &&  critters[i].GetUID(4)== cr.GetUID(4);
+       if (uidMatch)
+            return true;
+    }
+    return false;
+}
+
+void SayRelog(Critter@[]& critters, Critter& cr)
+{
+    for (uint i=0;i<critters.length();i++)
+    {
+        if (!valid(critters[i]))
+            continue;
+        critters[i].SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70441, "$name" + GetPlayerName(critters[i].Id));
+    }
+}
+
+bool enabled = true;
+
+void SetState(Critter& cr, int state, int, int)
+{
+    if (state == 1)
+        enabled=true;
+    else
+        enabled=false;
+
+
+}
+
+bool IsRelog(Critter& cr, Location& loc)
+{
+    if (!enabled)
+        return false;
+    int id = CharControlHelper.find(loc.Id);
+    if (id>=0 && valid(CharControls))
+    {
+        if (CharControls[id].PlayerId.find(cr.Id)>=0)
+            return false;
+        
+        for (uint i = 0; i < CharControls[id].GUID0.length(); i++)
+        {
+            bool uidMatch = CharControls[id].GUID0[i]== cr.GetUID(0)
+                         && CharControls[id].GUID1[i]== cr.GetUID(1)
+                         && CharControls[id].GUID2[i]== cr.GetUID(2)
+                         && CharControls[id].GUID3[i]== cr.GetUID(3)
+                         && CharControls[id].GUID4[i]== cr.GetUID(4);
+            if (uidMatch)
+                return true;
+        }
+    }
+    return false;
+
+
+}
+
+
+void AddPlayer(Critter& cr, Location& loc)
+{
+    int id = CharControlHelper.find(loc.Id);
+    if (id>=0 && valid(CharControls))
+    {
+        CharControls[id].AddPlayer(cr);
+        return;
+    }   
+    CharControlHelper.insertLast(loc.Id);
+    CharControl control;
+    control.AddPlayer(cr);
+    CharControls.insertLast(control);
+}
+
+void DelPlayer(Critter& cr, Location& loc)
+{
+    if (cr.IsDead())
+    {
+        uint[] values = {cr.Id,loc.Id};
+        CreateTimeEvent(__FullSecond + REAL_MINUTE(2), "e_Delete", values, false);
+        return;
+    }
+    int id = CharControlHelper.find(loc.Id);
+    if (id>=0 && valid(CharControls))
+        CharControls[id].DelPlayer(cr.Id);
+}
+
+uint e_Delete(uint[]@ values)
+{
+	int id = CharControlHelper.find(values[1]);
+    if (id>=0 && valid(CharControls))
+        CharControls[id].DelPlayer(values[0]);
+	return 0;
+}
+
+
+void ProcessCharControl(Critter& cr, Map& map, bool map_in) 
+{
+    Location@ loc = map.GetLocation();
+    if (not (loc.IsDungeon() || (loc.IsTown() && !loc.IsGuarded())))
+        return;
+    if (map_in)
+        AddPlayer(cr, loc);
+    else
+        DelPlayer(cr, loc);
+}

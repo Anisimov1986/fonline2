@@ -1,0 +1,41 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Durden}
+{200}{}{You see: a man trying some boxing moves against an unseen opponent.}
+{210}{}{He seems fully concetrated on fighting the invisible adversary.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Last dude who was dumb enough to challange me got a broken nose.@@Can't you see I'm busy@@Get lost, I have moves to perfect.@@Right, left, duck and counter. Right, left, duck and counter!}
+
+[russ]
+{100}{}{Дерден}
+{200}{}{Вы видите : боец в боксерских перчатках, молотит руками воздух.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Последний кто осмелился бится мной лишился всех зубов.@@Что тебе, не видишь, я боксирую?@@Исчезни.@@Правой, левой, уклонится, удар.}
+
+[pols]
+{100}{}{Durden}
+{200}{}{Widzisz mężczyznę w rękawicach bokserskich. Wydaje się walczyć z niewidocznym przeciwnikiem.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Ostatni koleś, który mi podskoczył, skończył z rozjebanym nosem.@@Czego? Nie widzisz, że ćwiczę?@@Spadaj, @sex@|mięczaku||lasencjo|.@@Prawy, lewy, zwód, kontra. Prawy, lewy, zwód, kontra...}
+
+[ptbr]
+{100}{}{Carneiro}
+{200}{}{Você vê alguém usando luvas de pugilista tentando alguns movimentos no ar.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{O último cara que foi burro em me desafiar ficou de nariz quebrado.@@O que tu quer, não vê que tou me exercitando?@@Cai fora, eu tenho movimentos para aperfeiçoar.@@Esquerda, direita, agacha e contra-ataca. Esquerda, direita, agacha e contra-ataca!}
+

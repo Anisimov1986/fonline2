@@ -1,0 +1,72 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 game_event_miniquest@dlg_Prepare 0 #
+2 2010 D _script game_event_miniquest@d_NotHaveQuestTimeout 0  #
+0 2020 D _script game_event_miniquest@d_NotHaveQuestTimeout 0  D _script game_event_miniquest@d_HaveQuestItem 0  R _script game_event_miniquest@r_QuestFinished 0  #
+0 2030 @
+2 3000 game_event_miniquest@dlg_Prepare 0 #
+0 3010 D _script game_event_miniquest@d_HaveQuestItem 0  D _script game_event_miniquest@d_NotHaveQuestTimeout 0  R _script game_event_miniquest@r_QuestFinished 0  #
+0 3020 &
+
+[engl]
+{100}{}{unused}
+{200}{}{unused}
+{210}{}{unused}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Hello. I hope you aren't some kind of troublemaker?}
+{2010}{}{Hello. No, I am not. Do you have some work for me?}
+{2020}{}{I have @lex itemname@ for you.}
+{2030}{}{I must be going now. Bye.}
+{3000}{}{Our recruits need more weapons for trainings. Could you bring me one @lex itemname@?}
+{3010}{}{I have @lex itemname@ for you.}
+{3020}{}{Ok. I will come back soon.}
+
+[russ]
+{100}{}{unused}
+{200}{}{unused}
+{210}{}{unused}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Здравствуй. Я надеюсь ты тут не за неприятностями?}
+{2010}{}{Привет, нет. Есть для меня какое-нибудь задание?}
+{2020}{}{Вот @lex itemname@ для тебя.}
+{2030}{}{Мне пора, удачи.}
+{3000}{}{Нашим новобранцам нужно больше оружия для тренировок. можешь принести мне @lex itemname@?}
+{3010}{}{У меня есть @lex itemname@ для тебя.}
+{3020}{}{Окей, скоро вернусь.}
+
+[pols]
+{100}{}{unused}
+{200}{}{unused}
+{210}{}{unused}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Hello. I hope you aren't some kind of troublemaker?}
+{2010}{}{Hello. No, I am not. Do you have some work for me?}
+{2020}{}{I have @lex itemname@ for you.}
+{2030}{}{I must be going now. Bye.}
+{3000}{}{Our recruits need more weapons for trainings. Could you bring me one @lex itemname@?}
+{3010}{}{I have @lex itemname@ for you.}
+{3020}{}{Ok. I will come back soon.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Hello. I hope you aren't some kind of troublemaker?}
+{2010}{}{Hello. No, I am not. Do you have some work for me?}
+{2020}{}{I have @lex itemname@ for you.}
+{2030}{}{I must be going now. Bye.}
+{3000}{}{Our recruits need more weapons for trainings. Could you bring me one @lex itemname@?}
+{3010}{}{I have @lex itemname@ for you.}
+{3020}{}{Ok. I will come back soon.}
+

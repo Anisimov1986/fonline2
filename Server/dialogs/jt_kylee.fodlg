@@ -1,0 +1,250 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p jt_benjamikyleeq = 0 D or D _var p jt_benjamikyleeq = 1 D or D _var p jt_benjamikyleeq = 2 D or D _var p jt_benjamikyleeq = 4 #
+12 1020 D _var p jt_benjamikyleeq = 3 #
+16 1030 D _var p jt_benjamikyleeq = 5 D or D _var p jt_benjamikyleeq = 6 #
+18 1040 D _var p jt_benjamikyleeq = 7 D or D _var p jt_benjamikyleeq = 8 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+11 2030 D _var p jt_benjamikyleeq = 2 D _item p PID_BOTTLE_CAPS > 399 R _item p PID_BOTTLE_CAPS - 400 R _var p jt_benjamikyleeq = 4 #
+7 2040 D _var p jt_benjamikyleeq = 1 #
+0 2050 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+0 4030 @
+5 5000 None 0 @
+6 6000 None 0 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+9 8010 #
+0 8020 @
+9 9000 None 0 #
+10 9010 R _var p jt_benjamikyleeq = 2 #
+0 9020 @
+10 10000 None 0 #
+0 10010 R _script dialog@r_ShowQuestMessage 1 9010 @
+11 11000 None 0 #
+0 11010 R _script dialog@r_ShowQuestMessage 1 9010 @
+12 12000 None 0 #
+13 12010 D _script quest@quest_checkcd 1 9011 @
+13 13000 None 0 #
+14 13010 R _var p jt_benjamikyleeq = 5 #
+0 13020 @
+14 14000 None 0 #
+15 14010 @
+15 15000 None 0 #
+16 15010 @
+16 16000 None 0 #
+17 16010 D _var p jt_benjamikyleeq = 6 D _param p ST_INTELLECT } 6 R _var p jt_benjamikyleeq = 7 @
+17 17000 None 0 #
+0 17010 R _script dialog@r_ShowQuestMessage 1 9010 @
+18 18000 None 0 &
+
+[engl]
+{100}{}{Kylee}
+{200}{}{You see: A poorly dressed young woman.}
+{210}{}{Judging from her clothes and overdone make-up, she may be the local prostitute.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{Werrye}
+{1030}{}{Ewrehhgr}
+{1040}{}{Werwerw}
+{2000}{}{[A poorly dressed, but attractive looking young woman examines you from feet to head while chewing on her lip. She manages to squeeze a smile inbetween.] Hey, how are you? Wanna have some fun, baby?@@[A poorly dressed, but attractive looking young woman examines you from feet to head while chewing on her lip. She manages to squeeze a smile inbetween.] How's your day hun? Wanna have some fun?@@[A poorly dressed, but attractive looking young woman examines you from feet to head while chewing on her lip. She manages to squeeze a smile inbetween.] Wanna play with Kylee?}
+{2010}{}{No, thanks, you dirty whore.@@Nope.@@I'd have more fun with a molerat, thank you.@@With you? No way.@@I prefer men.@@Wash yourself first, stinky whore.@@Bleh. Wash yourself first.@@I'd prefer to screw a ghoul.}
+{2020}{}{Err... what?@@What?@@What do you mean?}
+{2030}{}{Hey there, I've got the caps. I guess it's your lucky day, Kylee.@@I've got the cash. You're one lucky girl, Kylee.@@I've got the caps. Guess who's lucky today?}
+{2040}{}{I'm here to offer you a job as a waitress at Benjami's bar.@@Benjami sent me. He wants you to work at his place. As a waitress, not a hooker.}
+{2050}{}{Whatever.@@Not today.@@Gotta go.@@Not this time, sorry.@@I'm not in the mood really.}
+{3000}{}{Fuck off.@@Then fuck you.@@Get the fuck outta here.@@Screw you.@@Fuck off.}
+{3010}{}{Yeah, right.@@Yep, right...}
+{4000}{}{[She looks surprised] What the fuck, you never done this before?}
+{4010}{}{Uh, yes I am.@@Nope.@@Well, yes. I'm kinda new to this.}
+{4020}{}{I see where this is leading. Not interested.@@Not with a hooker.@@Blow it, slut.}
+{4030}{}{I'll pass, see you around.}
+{5000}{}{There's always the first time, we can work something out, plenty of free rooms. For a price of course, this piece of ass ain't free you know.}
+{6000}{}{Whatever,  fuck off you prick.@@Fuck you.@@Screw you.}
+{7000}{}{Yeah, I've been thinking about for a quite some time, I am so fucking tired of sucking those dirty cocks... Sorry, I shouldn't talk to a customer like that. But I'm really on the edge recently... anyway, to the point. This seems a good deal, but I'm really short on cash now, and I afford changing my job right now.}
+{7010}{}{Your point?@@So?}
+{8000}{}{I can take the job, sure... But I will need a little something for a fresh start. I know Ben is a good man, but you know how the biz' is, never gonna know when's the next payday...}
+{8010}{}{Yeah... So, let's be straight. How much?@@All right, how much do you need?@@Get on with it. How much?}
+{8020}{}{I ain't charity. Later, Kylee.@@I don't give money to hookers for nothing, you know. Bye.@@I won't give a cap to you, I'm not that stupid. I'm leaving.}
+{9000}{}{Well... four hundred?@@Erm... 400 caps?@@Okay... I need 400 caps.}
+{9010}{}{All right. I will come back with the money.@@Okay, can't really deny a woman in need. Be right back.@@Right, I'll be back with the cash.}
+{9020}{}{Too much.@@What? Four hundred? You've gotta be kidding me.@@Hahhahah.... Get lost, whore.}
+{10000}{}{[She jumps on you.] You will?! I will repay you, I promise!}
+{10010}{}{Yeah, yeah, just get off me. I have other matters to attend to.@@Okay, okay, just... get off me. I've gotta go.@@Right... I'm not that happy to see you, there's just something in my pocket. I need to go now, Kylee.}
+{11000}{}{Okay, I will just need some time to get my stuff and move to Benjami's place. You can go and tell him the good news.}
+{11010}{}{Okay. See you later, Kylee.@@All right. Be seein' you.@@Right. Until next time, Kylee.}
+{12000}{}{It's you... I haven't finished moved out yet, come back later.@@We'll talk later, when I'm finished with this.}
+{12010}{}{Hey, don't you remember our agreement?}
+{13000}{}{Well, I still need some time to practice... you know, the waitress job is not such as an easy thing to do.}
+{13010}{}{Really? Practicing? In a bar? Don't fuck with me Kylee, I am generous, but I'm not that stupid. Where are my caps?}
+{13020}{}{Practice makes perfect, as they say. Later, Kylee.}
+{14000}{}{[She freezes.] What are you talking about?}
+{14010}{}{The four hundred caps you owe me, Kylee.@@Four hundred caps I borrowed you, rings a bell?}
+{15000}{}{[She hisses.] Shove it. It's your word against mine. And I don't remember borrowing anything from you. Now get the hell out before I call the guards.}
+{15010}{}{We'll see about that. I'm going to the sheriff now.@@I won't let you fuck with me like that. Wait till the sheriff hears about this.}
+{16000}{}{I have nothing to say to you.@@You better leave.@@Get lost.@@I don't have time for your bullshit.@@Get lost.}
+{16010}{}{So, you're working with Mike... If you think that's gonna stop me, you're wrong. I'm gonna tell every fucking person living in this shithole what your couple is up to! And I'm also gonna tell them to watch out, cos they might be next... Wonder how long it will take for you to get thrown outta this place?}
+{17000}{}{[She thinks for a while.] Ah, fuck this, I've had enough. Go to Ben and tell him I'm through with this shit. It's over.}
+{17010}{}{So... this was all... Hell, you're all gonna pay for this!}
+{18000}{}{We're done. Don't talk to me again.@@Not now, I'm busy.@@Stop harassing me. We had our differences, but it's behind us now. Leave me.}
+
+[russ]
+{100}{}{Кайли}
+{200}{}{Вы видите: бедно одетая девушка, он похожа на проститутку.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{Werrye}
+{1030}{}{Ewrehhgr}
+{1040}{}{Werwerw}
+{2000}{}{[Привлекательные девушка, бедно одетая, жует губу и оценивает с ног до головы, ей удается выжать из себя теплую улыбку] Эй, как дела? Хочешь развлечься?}
+{2010}{}{Нет, но спасибо.}
+{2020}{}{Что ты имеешь в виду?}
+{2030}{}{Я принес деньги, это твой счастливый день.}
+{2040}{}{Я здесь, чтобы предложить тебе работу официанткой в ​​баре Бенджами, он, кажется, волнуется о тебе, если ты еще не заметила.}
+{2050}{}{Мне уже пора. Пока.}
+{3000}{}{Очень зря. [она вам подмигивает]}
+{3010}{}{Может в другой раз, я спешу.}
+{4000}{}{[Она смотри на вас со смущением] @sex@|Ты что девственник?||Ты что девственница?|}
+{4010}{}{Ээ, ну да.}
+{4020}{}{Я понял куда ты клонишь, нет спасибо. Не с проституткой.}
+{4030}{}{Мне уже пора. Пока.}
+{5000}{}{Все бывает в первый раз, мы сможем что-нибудь придумать, тут много свободных номеров. За разумную цену конечно, эта попка [гладит себя по попке] не бесплатная.}
+{6000}{}{@sex@|Ну и пошел ты в жопу импотент!||Пошла ты, фригидная сучка.|}
+{7000}{}{Да, я думала заняться чем-нибудь другим, устала спать со всякими свиньями за деньги. Возможно это выход.}
+{7010}{}{Ну так?}
+{8000}{}{Я соглашусь на работу официанткой, Бенджами может рассчитывать на меня, но только если кто-то одолжит мне немного денег. У меня совсем не денег, много времени может пройти до первой зарплаты на новом месте. Я надеюсь вы меня понимаете?}
+{8010}{}{Ох ... Ну ... Я посмотрю, что я могу сделать, о какой сумме мы говорим?}
+{8020}{}{Слушай так не пойдет. Пока.}
+{9000}{}{[она нерешительно переминается с ноги на ногу] 400 крышек. Это много я понимаю, но я отдам.}
+{9010}{}{Почему нет. Я вернусь с деньгами. Пока.}
+{9020}{}{Я не думаю, что это хорошая идея, я должен думать об этом.}
+{10000}{}{[она подбегает и повисает у вас на шее] Я отдам, я обещаю!}
+{10010}{}{Конечно. Мне пора идти.}
+{11000}{}{Спасибо, мне понадобится несколько дней, чтобы упаковать вещи и обговорить все детали с Бенджами, увидимся позже. Иди передай хорошие новости Бенжами.}
+{11010}{}{Никаких проблем, увидимся позже, берегите себя.}
+{12000}{}{А, это ты, я все еще не готова к перезду, увидимся позже.@@ О это ты, какой приятный сюрприз, я еще не приступила к работе поэтому не готова тебе вернуть деньги.}
+{12010}{}{Как дела? Я вижу ты еще не собралась, ты же помнишь наш уговор?}
+{13000}{}{Нуу, ээ, да ты прав. Мне нужно еще попрактиковатся в работе официанткой прежде чем приступать, так Бенджами сказал.}
+{13010}{}{Молодец, практика это хорошо. Удачи!}
+{13020}{}{В самом деле? Практиковаться официанткой? Я добр, но я не глуп. Я вижу ты задумалась с ответом, Не хочешь отдавать долг?}
+{14000}{}{[она выглядит удивленной и не знает что сказать] ... эээ, я не понимаю о чем ты.}
+{14010}{}{Как насчет 400 крышек, которые ты мне должна?}
+{15000}{}{Какие 400 крышек? Мы оба знаем, что это только мое слово против твоего, так что, убирайся с глаз моих или я вызову охрану.}
+{15010}{}{Ах так? Отлично, я с тобой еще разберусь. Я думаю это заинтересует шерифа.}
+{16000}{}{Мне нечго сказать.@@Тебе лучше уйти...@@Делай что хочешь.}
+{16010}{}{Я знаю вы с Майком наебываете народ, тебе лучше начать говорить пока горожане не узнали о том что продажный шериф и проститутка обьебывают людей на деньги.}
+{17000}{}{Все понятно, сходи к Бенджами, он все обьяснит.}
+{17010}{}{Ты опять пытаешься меня кинуть? Хорошо, я поговорю с ним.}
+{18000}{}{Эй, приятно видеть вас снова, я надеюсь, что мы можем забыть о прошлом.@@Не сейчас, я занята.}
+
+[pols]
+{100}{}{Kylee}
+{200}{}{Widzisz skąpo ubraną dziewczynę, wygląda na tutejszą prostytutkę.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{Werrye}
+{1030}{}{Ewrehhgr}
+{1040}{}{Werwerw}
+{2000}{}{Hej, jak się masz? Masz ochotę na małe bzykanko? [Porozumiewawczo mruga okiem.]}
+{2010}{}{Nie, dzięki.}
+{2020}{}{Bzykanko? O co ci chodzi?}
+{2030}{}{Tak, mam forsę. Zabieraj się do roboty.}
+{2040}{}{Benjami mnie przysłał. Miałby dla ciebie normalną pracę, chce żebyś została u niego kelnerką. Może tego nie zauważyłaś, ale bardzo mu na tobie zależy.}
+{2050}{}{error}
+{3000}{}{Jak sobie chcesz. Nie wiesz co tracisz. [Uśmiecha się zalotnie.]}
+{3010}{}{Ta, jasne.}
+{4000}{}{[Patrzy na ciebie z niedowierzaniem.] Ty... nigdy...?}
+{4010}{}{No... To jest... nigdy.}
+{4020}{}{Widzę do czego to zmierza, dzięki. Nie z dziwką.}
+{4030}{}{Chyba jednak sobie daruję. Na razie.}
+{5000}{}{Zawsze jest ten pierwszy raz, nie? Nie bój się, poradzimy sobie, pełno tu wolnych pokojów. Pamiętaj tylko, "lekcje" u Kylee nie są darmo.}
+{6000}{}{Jasne. Spierdalaj, złamasie.}
+{7000}{}{Wiesz co, w sumie to rozmyślałam nad swoją sytuacją. Mam już dość pierdolenia się z tymi brudnymi chujami za marne... Och, wybacz, zagalopowałam się, ostatnio jest mi dość ciężko. Możesz nie wierzyć, ale nie zarabiam kokosów, a takie przenosiny nie są proste. To jest jakieś wyjście, ale muszę mieć od czegoś zacząć...}
+{7010}{}{To znaczy?}
+{8000}{}{Zgodzę się pracować u Benjamiego, może na mnie liczyć, powiedz mu to. Ale potrzebuję pieniędzy. Sam pewnie wiesz jak to jest, idziesz do pracy i nigdy nie wiadomo kiedy dostaniesz wypłatę, jemu też pewnie nie jest lekko. Rozumiesz mnie... prawda?}
+{8010}{}{Eee... Zobaczę, co da się zrobić. A o jakiej kwocie w ogóle rozmawiamy?}
+{8020}{}{Nie da rady, @sex@|sam||sama| jestem teraz bez grosza. Na razie.}
+{9000}{}{[Kylee spuszcza głowę i odwraca wzrok.] 400 kapsli. Czekaj! Wiem, że się nie znamy i że to duża suma, ale jak tylko zarobię u Benjamiego, oddam ci wszystko co do kapsla, obiecuję!}
+{9010}{}{W porządku, niech ci będzie.}
+{9020}{}{Myślę że to kiepski pomysł. Muszę to jeszcze przemyśleć.}
+{10000}{}{[Kylee skacze ci w ramiona.] Dzięki! Obiecuję, że wszystko spłacę!}
+{10010}{}{Nie wątpię, ale muszę już iść..}
+{11000}{}{Dzięki! Potrzebuję tylko parę dni żeby się spakować i dogadać szczegóły z Bejamim. Wpadnij do mnie później, w międzyczasie przekaż mu to, co ci powiedziałam!}
+{11010}{}{Nie ma sprawy, zobaczymy się później.}
+{12000}{}{A, to ty... jeszcze się nie wyprowadziłam, przyjdź później.@@Cześć! Miło Cię znowu widzieć... ale wiesz, nie mam jeszcze pieniędzy, wpadnij później.}
+{12010}{}{Jak to później? Kiedy później? Nie pamiętasz już naszej umowy?}
+{13000}{}{Ehem... O, to ty... Potrzebuję jeszcze trochę czasu, Benjami kazał mi się przygotować i muszę się... podszkolić.}
+{13010}{}{Praktyka czyni mistrza, jak powiadają. Powodzenia zatem.}
+{13020}{}{Podszkolić? Na kelnerkę? Jaja sobie robisz? Słuchaj, jestem @sex@|hojny||hojna|, ale nie jestem @sex@|jakimś debilem||jakąś debilką|. Widać, że coś kombinujesz, masz w ogóle zamiar oddać mi moje kapsle?}
+{14000}{}{[Jej twarz tężeje, wygląda na to że nie wie co ci odpowiedzieć] Eee... O co czym ty mówisz?}
+{14010}{}{Jak to o czym? Gdzie jest kurwa moje czterysta baniek?}
+{15000}{}{Są w życiu ważniejsze rzeczy niż twoje czterysta baniek. Zresztą, słowo przeciw słowu. Daruj sobie i zabieraj się stąd, zanim wezwę bramkarzy.}
+{15010}{}{Dobra, sama tego chciałaś. Idę z tym do szeryfa, zobaczymy jaka wtedy będziesz wyszczekana.}
+{16000}{}{Nie mamy o czym gadać.@@Idź sobie już...@@Odejdź stąd.}
+{16010}{}{Kylee, może i masz szeryfa w kieszeni, czy w czymkolwiek innym, ale zobaczysz, dopnę swego. Powiem każdemu w tej zaplutej mieścinie jaka z was zgrana para oszustów, ciekawe co wtedy zrobicie?}
+{17000}{}{Ech, no dobrze, @sex@|wygrałeś||wygrałaś|. Idź do Benjamiego, on ci wszystko wyjaśni. To nie jest tak jak myślisz...}
+{17010}{}{Jasne. A jak niby jest? Dobra, szkoda czasu na gadkę z tobą. Idę do Benjamiego.}
+{18000}{}{Witaj ponownie, mam nadzieję że nie jesteś już na mnie @sex@|zły||zła|...@@Nie teraz, jestem zajęta.@@Zejdź mi z drogi, wyjaśniliśmy już sobie wszystko, więc nie przeginaj.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{Werrye}
+{1030}{}{Ewrehhgr}
+{1040}{}{Werwerw}
+{2000}{}{[A poorly dressed, but attractive looking young woman examines you from feet to head while chewing on her lip. She manages to squeeze a smile inbetween.] Hey, how are you? Wanna have some fun, baby?@@[A poorly dressed, but attractive looking young woman examines you from feet to head while chewing on her lip. She manages to squeeze a smile inbetween.] How's your day hun? Wanna have some fun?@@[A poorly dressed, but attractive looking young woman examines you from feet to head while chewing on her lip. She manages to squeeze a smile inbetween.] Wanna play with Kylee?}
+{2010}{}{No, thanks, you dirty whore.@@Nope.@@I'd have more fun with a molerat, thank you.@@With you? No way.@@I prefer men.@@Wash yourself first, stinky whore.@@Bleh. Wash yourself first.@@I'd prefer to screw a ghoul.}
+{2020}{}{Err... what?@@What?@@What do you mean?}
+{2030}{}{Hey there, I've got the caps. I guess it's your lucky day, Kylee.@@I've got the cash. You're one lucky girl, Kylee.@@I've got the caps. Guess who's lucky today?}
+{2040}{}{I'm here to offer you a job as a waitress at Benjami's bar.@@Benjami sent me. He wants you to work at his place. As a waitress, not a hooker.}
+{2050}{}{Whatever.@@Not today.@@Gotta go.@@Not this time, sorry.@@I'm not in the mood really.}
+{3000}{}{Fuck off.@@Then fuck you.@@Get the fuck outta here.@@Screw you.@@Fuck off.}
+{3010}{}{Yeah, right.@@Yep, right...}
+{4000}{}{[She looks surprised] What the fuck, you never done this before?}
+{4010}{}{Uh, yes I am.@@Nope.@@Well, yes. I'm kinda new to this.}
+{4020}{}{I see where this is leading. Not interested.@@Not with a hooker.@@Blow it, slut.}
+{4030}{}{I'll pass, see you around.}
+{5000}{}{There's always the first time, we can work something out, plenty of free rooms. For a price of course, this piece of ass ain't free you know.}
+{6000}{}{Whatever,  fuck off you prick.@@Fuck you.@@Screw you.}
+{7000}{}{Yeah, I've been thinking about for a quite some time, I am so fucking tired of sucking those dirty cocks... Sorry, I shouldn't talk to a customer like that. But I'm really on the edge recently... anyway, to the point. This seems a good deal, but I'm really short on cash now, and I afford changing my job right now.}
+{7010}{}{Your point?@@So?}
+{8000}{}{I can take the job, sure... But I will need a little something for a fresh start. I know Ben is a good man, but you know how the biz' is, never gonna know when's the next payday...}
+{8010}{}{Yeah... So, let's be straight. How much?@@All right, how much do you need?@@Get on with it. How much?}
+{8020}{}{I ain't charity. Later, Kylee.@@I don't give money to hookers for nothing, you know. Bye.@@I won't give a cap to you, I'm not that stupid. I'm leaving.}
+{9000}{}{Well... four hundred?@@Erm... 400 caps?@@Okay... I need 400 caps.}
+{9010}{}{All right. I will come back with the money.@@Okay, can't really deny a woman in need. Be right back.@@Right, I'll be back with the cash.}
+{9020}{}{Too much.@@What? Four hundred? You've gotta be kidding me.@@Hahhahah.... Get lost, whore.}
+{10000}{}{[She jumps on you.] You will?! I will repay you, I promise!}
+{10010}{}{Yeah, yeah, just get off me. I have other matters to attend to.@@Okay, okay, just... get off me. I've gotta go.@@Right... I'm not that happy to see you, there's just something in my pocket. I need to go now, Kylee.}
+{11000}{}{Okay, I will just need some time to get my stuff and move to Benjami's place. You can go and tell him the good news.}
+{11010}{}{Okay. See you later, Kylee.@@All right. Be seein' you.@@Right. Until next time, Kylee.}
+{12000}{}{It's you... I haven't finished moved out yet, come back later.@@We'll talk later, when I'm finished with this.}
+{12010}{}{Hey, don't you remember our agreement?}
+{13000}{}{Well, I still need some time to practice... you know, the waitress job is not such as an easy thing to do.}
+{13010}{}{Really? Practicing? In a bar? Don't fuck with me Kylee, I am generous, but I'm not that stupid. Where are my caps?}
+{13020}{}{Practice makes perfect, as they say. Later, Kylee.}
+{14000}{}{[She freezes.] What are you talking about?}
+{14010}{}{The four hundred caps you owe me, Kylee.@@Four hundred caps I borrowed you, rings a bell?}
+{15000}{}{[She hisses.] Shove it. It's your word against mine. And I don't remember borrowing anything from you. Now get the hell out before I call the guards.}
+{15010}{}{We'll see about that. I'm going to the sheriff now.@@I won't let you fuck with me like that. Wait till the sheriff hears about this.}
+{16000}{}{I have nothing to say to you.@@You better leave.@@Get lost.@@I don't have time for your bullshit.@@Get lost.}
+{16010}{}{So, you're working with Mike... If you think that's gonna stop me, you're wrong. I'm gonna tell every fucking person living in this shithole what your couple is up to! And I'm also gonna tell them to watch out, cos they might be next... Wonder how long it will take for you to get thrown outta this place?}
+{17000}{}{[She thinks for a while.] Ah, fuck this, I've had enough. Go to Ben and tell him I'm through with this shit. It's over.}
+{17010}{}{So... this was all... Hell, you're all gonna pay for this!}
+{18000}{}{We're done. Don't talk to me again.@@Not now, I'm busy.@@Stop harassing me. We had our differences, but it's behind us now. Leave me.}
+

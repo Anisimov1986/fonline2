@@ -1,0 +1,52 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var p q_finders_check = 2 #
+2 1020 D _var p q_finders_check ! 2 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Caravan Guard}
+{200}{}{You see: Caravan Guard.}
+{210}{}{The guards eyes cautiously follow you as you move around.}
+{1000}{}{Initial preferences}
+{1010}{}{gave up armor}
+{1020}{}{normal}
+{2000}{}{See that bald guy by the bunker entrance? If you got business talk to him, not me.@@Man, we're gonna get rich after we sell all that stuff we found here.@@Yeah?@@I don't have time for this.@@Get lost.@@Talk to Nate, he's in charge here.@@Nate better not skimp on our share again...@@Got a smoke?@@I need to drink.@@Whatever.@@Go away.}
+{3000}{}{Get lost, wimp.@@Hahah, what a pussy!@@Heheheh, get lost.@@Walk away now, you wuss.@@Get lost, wuss.@@What an idiot.@@Get lost.@@Thanks for the armor, pussy!@@Thanks for the armor, wimp!@@Wow, you're such an idiot.}
+
+[russ]
+{100}{}{Охранник}
+{200}{}{Вы видите охранника.}
+{210}{}{Вы видите профессионального охранника. Довольно крепкий парень. В любом случае не стоит попадаться ему под горячую руку.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Answer text}
+{1020}{}{-}
+{2000}{}{Смотри тут особо не возникай, и все будут здоровы.@@Я смотрю за тобой.@@Не нарушай.@@Будешь воровать - убью на месте.@@Попробуй только пальцем тронь кого-нибудь!}
+{3000}{}{Get lost, wimp.@@Hahah, what a pussy!@@Heheheh, get lost.@@Walk away now, you wuss.@@Get lost, wuss.@@What an idiot.@@Get lost.@@Thanks for the armor, pussy!}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz profesjonalnego strażnika. Wydaje się być doskonale wyszkolony, lepiej nie robić żadnych problemów w jego okolicy.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer text}
+{1020}{}{-}
+{2000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.@@Prawo to ja.}
+{3000}{}{Get lost, wimp.@@Hahah, what a pussy!@@Heheheh, get lost.@@Walk away now, you wuss.@@Get lost, wuss.@@What an idiot.@@Get lost.@@Thanks for the armor, pussy!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{gave up armor}
+{1020}{}{normal}
+{2000}{}{See that bald guy by the bunker entrance? If you got business talk to him, not me.@@Man, we're gonna get rich after we sell all that stuff we found here.@@Yeah?@@I don't have time for this.@@Get lost.@@Talk to Nate, he's in charge here.@@Nate better not skimp on our share again...@@Got a smoke?@@I need to drink.@@Whatever.@@Go away.}
+{3000}{}{Get lost, wimp.@@Hahah, what a pussy!@@Heheheh, get lost.@@Walk away now, you wuss.@@Get lost, wuss.@@What an idiot.@@Get lost.@@Thanks for the armor, pussy!@@Thanks for the armor, wimp!@@Wow, you're such an idiot.}
+

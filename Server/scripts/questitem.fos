@@ -1,0 +1,65 @@
+
+#include "_defines.fos"
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "_itempid.fos"
+#include "_vars.fos"
+
+//Special Quest shit etc.
+
+//Radio
+
+
+//Enclave Holodisk showing location of gas station.
+
+void EnclaveHolo(Item& item, bool firstTime)
+{
+    item.SetEvent(ITEM_EVENT_USE, "EnclaveHoloUse");
+}
+
+bool EnclaveHoloUse(Item& item, Critter& player, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+    if ( !player.IsKnownLoc(false, 16) )
+	{
+		player.SetKnownLoc( false, uint16( 16 ) );
+		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70345);
+	}
+	else
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70346);
+	}
+	return true;
+}
+
+void ArmoryAccess(Item& item, bool firstTime)
+{
+    item.SetEvent(ITEM_EVENT_USE, "ArmoryAccessUse");
+}
+
+bool ArmoryAccessUse(Item& item, Critter& player, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+    GameVar @qVar = GetLocalVar( LVAR_Bos_Access_Level, player.Id );
+    if( !valid( qVar ) )
+        return false;
+
+    qVar = 2;
+	player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70306);
+	return true;
+}
+
+void ScribeAccess(Item& item, bool firstTime)
+{
+    item.SetEvent(ITEM_EVENT_USE, "ScribeAccessUse");
+}
+
+bool ScribeAccessUse(Item& item, Critter& player, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+    GameVar @qVar = GetLocalVar( LVAR_Bos_Access_Level, player.Id );
+    if( !valid( qVar ) )
+        return false;
+
+    qVar = 1;
+	player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70306);
+	return true;
+}
+

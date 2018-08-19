@@ -1,0 +1,60 @@
+//
+// FOnline: 2238
+// Rotators
+//
+// follower_capturing.fos
+//
+
+#include "_macros.fos"
+#include "_npc_pids.fos"
+#include "utils_h.fos"
+#include "follower_h.fos"
+#include "npc_common_h.fos"
+#include "follower_common_h.fos"
+
+bool CaptureRoll(Critter& capturer)
+{
+    // return ((capturer.Skill[SK_OUTDOORSMAN] - (Random(0, 20 - (2 * capturer.Stat[ST_LUCK])))) > 60);
+    //return Random(0, 199 - capturer.Stat[ST_LUCK] * 10) < capturer.Skill[SK_OUTDOORSMAN];
+	return true;
+}
+
+bool CaptureBrahmin(Critter& capturer, Critter& target, bool& out sub)
+{
+    /*
+	if(target.CrType == CRTYPE_BRAHMIN && !_CritHasExtMode(target, MODE_EXT_NO_SLAVE) && !target.IsDead())
+    {
+        if(IsEncounterMap(capturer.GetMap()))
+        {
+			if(!CanHaveMoreFollowers(capturer, FOLLOWER_TYPE_BRAHMIN))
+            {
+                capturer.Say(SAY_NETMSG, "You can't tame the brahmin, because your party is already full.");
+                //AttackCritter(target, capturer);
+                sub = false;
+                return true;
+            }
+			
+
+            if(CaptureRoll(capturer))
+            {
+                MakeFollower(target, FOLLOWER_TYPE_BRAHMIN, "follower@critter_init", FOLLOWER_DLG_BRAHMIN, capturer, true);
+                ClearEnemyStack(target);
+                ClearFollowersEnemy(capturer, target);
+                target.FollowerVarBase[FV_MERCID] = 9; // 9 = one of the brahmin
+                target.FollowerVarBase[FV_TYPE] = FOLLOWER_TYPE_BRAHMIN;
+                capturer.Say(SAY_NETMSG, "You've tamed the wild brahmin.");
+                sub = true;
+                return true;
+            }
+            else
+            {
+                capturer.Say(SAY_NETMSG, "You've failed to tame the wild brahmin.");
+                AttackCritter(target, capturer);
+                sub = false;
+                return true;
+            }
+        }
+    }
+	*/
+    return false;
+}

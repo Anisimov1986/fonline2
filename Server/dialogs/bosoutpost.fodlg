@@ -1,0 +1,55 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p encside = 6 @
+2 2000 None 0 #
+3 2010 R _script dialog@Type 0  R _var p encside = 7 R _script faction@JoinEnclave 0  R _script dialog@r_GarbageLocation 0  @
+3 3000 None 0 #
+0 3010 R _script dialog@r_ShowQuestMessage 1 9335 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[As you look around the small outpost you find a small terminal. You watch as the blue screen flickers. Time to download the data.]}
+{2010}{}{[Search trough the data and download coordinates of Brotherhood outposts in California.]}
+{3000}{}{[Your Pip-Boy begins to pop out messages from Enclave technicans as they swipe through data you collect. A few minutes pass, and you're done. Time to get out of this place.]}
+{3010}{}{[Exit.] Good. Now you're screwed.@@[Exit.] Time to get back to Chris...@@[Exit.]}
+
+[russ]
+{100}{}{Терминал доступа}
+{200}{}{Вы видите: Терминал доступа.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[Осмотревшись в маленьком аванпосте, вы замечаете небольшой терминал. Вы наблюдаете голубое мерцание экрана. Время загрузить данные.]}
+{2010}{}{[Поиск данных и загрузка местоположений аванпостов Братства Стали в Калифорнии.]}
+{3000}{}{[Your pip-boy begins pop out messages from Enclave technicans as they swipe trough data you collect. A few minutes pass, and you're done. Time to get out of this place.]}
+{3010}{}{[Exit.] Good. Now you're screwed.@@[Exit.] Time to get back to Chris...@@[Exit.]}
+
+[pols]
+{100}{}{Terminal dostкpu}
+{200}{}{Widzisz terminal dostкpu.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[Rozgl№daj№c siк wokуі tej placуwki zauwaїasz maіy terminal. Patrzysz jak niebieski ekran miga. Nadszedі czas pobraж dane.]}
+{2010}{}{[Przeszukaj bazк danych i pobierz wspуіrzкdne posterunkуw Bractwa Stali w Kalifornii]}
+{3000}{}{[Twуj Pip-Boy zaczyna wyњwietlaж wiadomoњci technikуw Enklawy podczas sortowania przez nich danych ktуre pobierasz. Mija kilka minut i zadanie wykonane. Czas zwijaж siк st№d.]}
+{3010}{}{[Wyjdџ.] Њwietnie Teraz maj№ przer№bane.@@[Wyjdџ.] Wracamy do Chrisa...@@[Wyjdџ.]}
+
+[ptbr]
+{100}{}{Terminal de acesso}
+{200}{}{Você vê um terminal de acesso.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{[Enquanto você olha ao redor deste pequeno posto de comando, você vê um pequeno terminal. Você fica olhando enquanto uma tela azul pisca. Hora de baixar alguns dados.]}
+{2010}{}{[Vasculha pelos dados e baixa os dados dos postos de comando da Irmandade na Califórnia.]}
+{3000}{}{[Seu pipboy começa a abrir mensagens dos técnicos da Enclave enquanto ele baixa os dados. Passados alguns minutos e, está pronto. Hora de cair fora deste lugar.]}
+{3010}{}{[Sai.] Bom, agora você fodeu com tudo.@@[Sai.] Hora de voltar pro Cris...@@[Sai.]}
+

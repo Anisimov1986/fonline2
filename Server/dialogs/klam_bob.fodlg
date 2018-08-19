@@ -1,0 +1,312 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+6 1020 D _var n name_mem_npc_player = 1 @
+4 2000 None 0 #
+14 2010 #
+5 2020 #
+8 2030 @
+5 3000 None 0 #
+7 3010 D _item p PID_BOTTLE_CAPS > 4 R _item p PID_BOTTLE_CAPS - 5 #
+8 3020 #
+9 3030 #
+0 3040 @
+6 4000 None 0 #
+5 4010 #
+8 4020 #
+22 4030 D _var p klam_bobwhiskey = 0 #
+26 4040 D _var p klam_bobwhiskey = 2 R _script economy_dialogs@r_GiveCaps 1 150 R _param p ST_EXPERIENCE + 800 R _var p klam_bobwhiskey = 3 R _script quest@quest_setcd 2 9024 122 #
+27 4050 D _script quest@quest_checkcd 1 9024 D _var p klam_bobwhiskey = 3 R _var p klam_bobwhiskey = 1 @
+7 5000 None 0 #
+14 5010 #
+12 5020 #
+8 5030 #
+22 5040 D _var p klam_bobwhiskey = 0 #
+26 5050 D _var p klam_bobwhiskey = 2 R _script economy_dialogs@r_GiveCaps 1 150 R _var p klam_bobwhiskey = 3 R _script quest@quest_setcd 2 9024 122 R _param p ST_EXPERIENCE + 1200 #
+27 5060 D _script quest@quest_checkcd 1 9024 D _var p klam_bobwhiskey = 3 R _var p klam_bobwhiskey = 1 @
+8 6000 None 0 @
+9 7000 None 0 @
+12 8000 None 0 #
+13 8010 @
+13 9000 None 0 #
+14 9010 #
+0 9020 @
+14 10000 None 0 #
+17 10010 #
+18 10020 #
+0 10030 @
+17 11000 None 0 #
+14 11010 #
+0 11020 @
+18 12000 None 0 #
+14 12010 #
+0 12020 @
+22 13000 None 0 #
+23 13010 #
+23 13020 @
+23 14000 None 0 #
+24 14010 #
+0 14020 @
+24 15000 None 0 #
+25 15010 #
+0 15020 @
+25 16000 None 0 #
+0 16010 R _var p klam_bobwhiskey = 1 @
+26 17000 None 0 #
+0 17010 @
+27 18000 None 0 #
+0 18010 &
+
+[engl]
+{100}{}{Bob}
+{200}{}{You see an older man with a scraggly beard and a big red nose.}
+{210}{}{You see Whiskey Bob.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Howdy stranger, my name's Whiskey Bob. What's yours?}
+{2010}{}{@pname@. What's happening here in town?}
+{2020}{}{@pname@. Nice to meet you Whiskey Bob.}
+{2030}{}{I don't think you need to know my name.}
+{3000}{}{Always nice to find another drinking buddy. Wanna buy me a drink? Talking always makes me thirsty.}
+{3010}{}{Sure, Bob. Don't mind a bit.}
+{3020}{}{I don't want to buy you a drink, Whiskey Bob.}
+{3030}{}{I can't afford to right now.}
+{3040}{}{With a nickname like yours, Whiskey Bob, maybe you should be providing the drinks. Bye.}
+{4000}{}{Hello there, feller. Back to see Whiskey Bob again, huh? Ready to talk about drinks and business and suchlike?}
+{4010}{}{Sure, Bob - tell me about drinks and business.}
+{4020}{}{I think I had enough of that the last time.}
+{4030}{}{Not right now, Bob. I'm looking for work.}
+{4040}{}{Frankie sent me to tell you he's gonna pick up the hooch. But he's not paying double.}
+{4050}{}{Think you could send me on another hooch run, Bob?}
+{5000}{}{Thanks for the drink, partner. Now that my whistle's wet, I can do some talking.}
+{5010}{}{What's happening here in town?}
+{5020}{}{Where does your whiskey come from, Bob?}
+{5030}{}{Not interested Bob, I'm out of here.}
+{5040}{}{Got any work for me, Bob?}
+{5050}{}{Frankie sent me to tell you he's gonna pick up the hooch. But he's not paying double.}
+{5060}{}{Think you could send me on another hooch run, Bob?}
+{6000}{}{Humph, if you're not gonna be any drinking buddy of mine, then git.}
+{7000}{}{Looks as though your purse has run dry. You don't have enough money to buy old Bob a drink.}
+{8000}{}{Well, you see, I have a little side business. I have a moonshine still outside of town that needs to be fueled up every so often. It's kept me and my buddies in hooch for quite a while.}
+{8010}{}{Really? You're a lucky guy.}
+{9000}{}{You bet. It's a pretty lucrative enterprise, if you catch my drift. Only problem is, with this gimpy leg of mine, it takes me damn near an hour to limp it out to the shack to refuel the still, but that's better than paying some poor sap every time I want it refuelled.}
+{9010}{}{Yeah, I can imagine. Say, I have a few questions about Klamath.}
+{9020}{}{I hope it works out for you, Bob. I gotta go.}
+{10000}{}{All sorts of things going on hereabouts lately. We've still got that big flying machine in the canyon, the Duntons are up to no good, we always get a few troublemakers from the Den.}
+{10010}{}{Flying machine? What's all that about?}
+{10020}{}{What's happening with the Den?}
+{10030}{}{That all sounds fascinating, Bob, but I gotta run.}
+{11000}{}{Yeah. Big darn thing crashed in the canyon a couple years back. Nobody knows where it came from. Big scary thing, innit?}
+{11010}{}{Well that's an awful shame, Bob, but I was wondering what else was going on in town.}
+{11020}{}{Sorry to hear that, Bob. Bye.}
+{12000}{}{You'll not find a greater hive of scum and villainy. It's a rough sort of place a few days travel south of Klamath. Anything can be had there for a price...even slaves. But you have to be very careful there - lots of short tempers attached to dangerous weapons. I don't think they have much to do with us, though; we're too poor here. A few stragglers just turn up in town before we turn 'em back out again.}
+{12010}{}{Sounds like my kind of place, but I've got a few other questions about Klamath.}
+{12020}{}{Well so long as you're safe here. Bye, Bob.}
+{13000}{}{Welp, I figure ol' Bob might have somethin' to toss your way. You ever been to the Den, friend?}
+{13010}{}{Yeah, plenty of times.}
+{13020}{}{Naw, sorry Bob.}
+{14000}{}{Well, heck, it don't matter, 'cause that's where you're goin'. It's a ways southeast of here. I want you to head to a bar called The Hole. Find a fella named Frankie.}
+{14010}{}{Frankie, huh? Who's he?}
+{14020}{}{This doesn't really sound my style. Later, Bob.}
+{15000}{}{He's an ol' drinkin' buddy. I brew him up a couple batches of hooch, he tosses a couple caps my way. Nice little arrangement.}
+{15010}{}{And this involves me how?}
+{15020}{}{Forget it, I don't care. Goodbye, Bob.}
+{16000}{}{Heck, I'm gettin' to that. Hold your dang horses. I want ya to tell him my latest batch all ready to be picked up, and I'm expectin' him to pay double! (He chuckles) Times are hard for poor ol' Bob.}
+{16010}{}{Alright Bob, I'll go tell him. Frankie at the Hole. The hooch is ready. I can remember that. See you later.}
+{17000}{}{(He cackles) Didn't expect that skinflint bastard to pay a cap more than what we agreed. I just like remindin' him what a good deal he's gettin'. Awright, I figure I owe you some caps and a couple drinks on me. Much obliged, friend. There will be a new batch in a day, so come back if you wanna nathor' run.}
+{17010}{}{Thanks a lot, Bob. See you around.}
+{18000}{}{Sure thing. You know the drill by now. Head over to Frankie, tell him the batch is ready. Tell him I'm upping the usual rate, just to mess with the skinflint bastard, then get your ass back to me. I got hooch with your name on it.}
+{18010}{}{Thanks Bob, see you later.}
+
+[russ]
+{100}{}{Боб}
+{200}{}{Вы видите старого человека с худым лицом и большим тощим носом.}
+{210}{}{Вы видите Виски Боба.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{@sex@|Привет, меня зовут Виски Боб. А тебя как, приятель?||Ну что за симпатяжка. Меня зовут Виски Боб, а вас как?|}
+{2010}{}{Я @pname@. Что здесь происходит в городе?}
+{2020}{}{@pname@. Очень приятно, Виски Боб.}
+{2030}{}{Не думаю, что вам нужно знать мое имя.}
+{3000}{}{Всегда приятно найти себе приятеля, чтобы с ним выпить. Не хочешь угостить меня выпивкой? От разговоров у меня всегда горло пересыхает.}
+{3010}{}{Конечно, Боб. Не возражаю.}
+{3020}{}{Не хочу я вам выпивку покупать, Виски Боб.}
+{3030}{}{Не могу это сейчас себе позволить.}
+{3040}{}{С таким прозвищем как у тебя, уже самому надо производить выпивку.}
+{4000}{}{@sex@|Привет, приятель. Опять вернулся к Виски Бобу?||Привет, красавица. Xочешь поговорить с Виски Бобом о выпивке и работе? Xочешь, садись на мою коленку. (хе хе) Шучу.|}
+{4010}{}{Конечно, Боб, расскажи мне о напитках и работе.}
+{4020}{}{Мне в последне время слишком часто говорят о выпивке и работе.}
+{4030}{}{Не сейчас, Боб. Я ищу работу.}
+{4040}{}{Фрэнки послал меня сказать вам, что он собирается забрать cсамогон. Но он не будет платить вдвойне.}
+{4050}{}{Я готов для нового ответственного задания.}
+{5000}{}{Спасибо за выпивку. А теперь, когда я промочил горло, думаю, мы можем поговорить.}
+{5010}{}{Расскажите что творится в городе?}
+{5020}{}{Откуда вы берете виски, Боб?}
+{5030}{}{Нет, я сейчас очень занят@sex@|||а|.}
+{5040}{}{У тебя есть работа для меня, Боб?}
+{5050}{}{Фрэнки послал меня сказать вам, что он собирается забрать cсамогон. Но он не будет платить вдвойне.}
+{5060}{}{Я готов для нового ответственного задания.}
+{6000}{}{Ну,@sex@|мистер,||| может потом и увидимся. Пока.}
+{7000}{}{Если вы не хотите со мной выпить, то вам лучше убраться отсюда.}
+{8000}{}{Ну, видите ли, у меня есть небольшой бизнес на стороне. За городом у меня есть своя самогонная установка.}
+{8010}{}{В самом деле? Ты счастливый парень.}
+{9000}{}{Еще бы. Это довольно прибыльное предприятие. Одна проблема, это моя чертова нога, из-за нее мне приходится очень долго добиратся до самогонной установки.}
+{9010}{}{Да, я могу себе представить. У меня есть несколько вопросов о Кламате.}
+{9020}{}{Мне уже пора. Пока.}
+{10000}{}{Ну тут всегда что-нибудь происходит, летающая машина в каньене, всякие темные личности из Дена.}
+{10010}{}{Летательный аппарат? Что все это значит?}
+{10020}{}{Что там с Деном?}
+{10030}{}{Это все звучит увлекательно, Боб, но я должен бежать.}
+{11000}{}{Да. Большая летающая машина разбилась в каньоне пару лет назад. Никто не знает откуда она прилетела.}
+{11010}{}{Интересно, а что еще происходит в городе?}
+{11020}{}{Мне уже пора. Пока.}
+{12000}{}{Ден это город анархистов, злодеев, работорговцев и прочей нечисти.  Там все покупается и продается, даже люди. . Я не думаю, что у них много общего с нами, хотя, мы слишком бедные здесь.}
+{12010}{}{Понятно, но у меня есть еще вопросы.}
+{12020}{}{Ну пока вы здесь в безопасности. Пока, Боб.}
+{13000}{}{Возможно старина Боб найдет что-нибудь для тебя. Ты бывал в Дене?}
+{13010}{}{Да, много раз.}
+{13020}{}{Нет, извини Боб.}
+{14000}{}{Ну, черт возьми, это не имеет значения, потому что, ты туда отправишся. Это на юго-востоке отсюда. Я хочу, чтобы ты направился в бар под названием Дыра и нашел там парня по имени Фрэнки.}
+{14010}{}{Фрэнки, да? Кто он?}
+{14020}{}{Мне это не подходит. Пока Боб.}
+{15000}{}{Он мой старый приятель. Я поставляю ему самогон, а он наполняет мои карманы крышками. Хорошее соглашение?}
+{15010}{}{И как это касается меня?}
+{15020}{}{Забудь об этом, мне все равно. До свиданья, Боб.}
+{16000}{}{Черт возьми, сейчас дойдем и до этого, не гони лошадей. Я хочу чтобы ты ему передал, что новая партия готова, и я прошу за нее двойную цену! (Он посмеивается) Сложные времена для бедного Боба.}
+{16010}{}{Хорошо Боб, я ему передам. Скоро вернусь.}
+{17000}{}{(Он хихикает) Я и не ожидал что этот скряга заплатит хоть на цент больше чем мы договорились. Просто хотел напомнить ему кто в доме хозяин. Хорошо, я полагаю ты заслужил пару бесплатных напитков и несколько крышек. Премного благодарен, друг. Скоро будет новая поставка и мне понадобится твоя помощь опять.}
+{17010}{}{Спасибо, Боб. Увидимся.}
+{18000}{}{Конечно. Ты уже в курсе что делать. Беги к Френки и скажи что партия самогона готова. Скажи ему что я поднимаю цену, просто чтобы позлить этого скрягу, потом тащи свю задницу ко мне.}
+{18010}{}{Благодарю Боб, увидимся позже.}
+
+[pols]
+{100}{}{Bob}
+{200}{}{Widzisz starszego mężczyznę o postrzępionej brodzie. Czerwony nos to na pewno wynik jakiegoś ciężkiego przeziębienia.}
+{210}{}{Widzisz Boba Flaszkę.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Witaj, @sex@|nieznajomy||nieznajoma|, jestem Bob Flaszka. A ty, jak masz na imię?}
+{2010}{}{@pname@. Dzieje się tu coś ostatnio?}
+{2020}{}{@pname@. Miło cię poznać, Bob.}
+{2030}{}{Nie będzie ci do niczego potrzebne.}
+{3000}{}{Dobrze znaleźć @sex@|kolejnego kumpla||kolejną koleżankę| do napitki. Hm, może postawisz kolejkę? Od gadania robi mi się sucho w gardle.}
+{3010}{}{Jasne Bob, nie ma sprawy.}
+{3020}{}{Nic ci nie będę @sex@|stawiał||stawiała|.}
+{3030}{}{Nie mam kasy.}
+{3040}{}{Z takim imieniem, to ty powinieneś stawiać kolejki. Na razie.}
+{4000}{}{Witaj, witaj! Co tam? Napijemy się w końcu?}
+{4010}{}{W porządku, napijmy się. Możesz teraz pogadać?}
+{4020}{}{Chyba mi już wystarczy tego picia.}
+{4030}{}{Nie teraz, Bob, szukam roboty.}
+{4040}{}{Frankie kazał przekazać, że odbierze samogon. Ale nie zapłaci podwójnie...}
+{4050}{}{Potrzeba ci może znowu gońca?}
+{5000}{}{Dzięki za drinka, @sex@|kolego||koleżanko|. Teraz możemy pogadać.}
+{5010}{}{Dzieje się tutaj coś ciekawego?}
+{5020}{}{Skąd bierzesz samogon, Bob?}
+{5030}{}{To nie dla mnie. Na razie.}
+{5040}{}{Byłaby dla mnie jakaś robota, Bob?}
+{5050}{}{Frankie przysłał mnie i kazał ci powiedzieć, że odbierze samogon. Ale nie zapłaci ani kapsla więcej.}
+{5060}{}{Potrzebujesz gońca?}
+{6000}{}{Jak nie chcesz ze mną pić, to nie pogadamy. Spadaj.}
+{7000}{}{Przecież jesteś @sex@|spłukany||spłukana|.}
+{8000}{}{Widzisz, mam tutaj taki mały biznesik na boku. Pod miastem mam zadekowaną aparaturę do pędzenia bimbru, trzeba tylko dorzucać do niej co jakiś czas drewna.}
+{8010}{}{Naprawdę? Takim to dobrze.}
+{9000}{}{Żebyś @sex@|wiedział||wiedziała|. Można nieźle na tym zarobić, mówię ci. Jest tylko jeden mały problem, a konretnie to mój przetrącony kulas. Godzinę mi schodzi, zanim doczłapię się do aparatury. Ale to i tak lepsze niż płacenie jakiemuś cieciowi, żeby robił to za mnie.}
+{9010}{}{Wyobrażam sobie. Mam jeszcze kilka pytań.}
+{9020}{}{No i dobrze. Muszę już spadać.}
+{10000}{}{A wiesz, trochę się dzieje. Cały czas leży u nas ten wrak, Duntonowie ciągle coś kombinują, no i co jakiś czas wpadają tu przybłędy z Nory i robią burdel.}
+{10010}{}{Wrak?}
+{10020}{}{Nora?}
+{10030}{}{Fascynujące. Muszę już iść.}
+{11000}{}{Ta, wielkie bydle. Rozbiło się toto parę lat temu i rdzewieje sobie od tego czasu w kanionie. Zawadziło pewnie o jakąś brzozę czy coś.}
+{11010}{}{Ciekawe. Mam inne pytania, Bob.}
+{11020}{}{Aha. Czas już na mnie.}
+{12000}{}{Nie znajdziesz większego rynsztoka niż Nora. Burdel na kółkach, mówię ci. Jak masz ochotę na to możesz się tam wybrać, parę dni drogi na południe od Klamath. Wszystko można tam kupić, wszystko... nawet niewolników. Ale musisz mieć oczy w dupie i odbezpieczoną spluwę, łatwo tam zarobić kulkę. Na szczęście rzadko się u nas pojawiają ludzie stamtąd, za biedni jesteśmy chyba żeby nas obrobić.}
+{12010}{}{Brzmi zachęcająco, nie powiem. Miałbym jeszcze inne pytania.}
+{12020}{}{Hm, ciekawe. Na razie, Bob.}
+{13000}{}{A wiesz, miałbym coś dla ciebie. @sex@|Byłeś||Byłaś| kiedyś w Norze?}
+{13010}{}{Jasne, wiele razy.}
+{13020}{}{Nie.}
+{14000}{}{Nieważne, bo tam się właśnie wybierzesz. Znajdź bar Dziura, będzie w nim taki jeden Frankie.}
+{14010}{}{Frankie? Kto to?}
+{14020}{}{To niezbyt w moim guście. Na razie, Bob.}
+{15000}{}{Mój stary kumpel. Robię dla niego bimberek, a on płaci. Taki układzik.}
+{15010}{}{A co ja mam do tego?}
+{15020}{}{Zapomnij, Bob.}
+{16000}{}{No zara, dochodzę do tego. Przekaż mu że bimber jest gotowy, niech odbiera i płaci. Podwójnie. Czasy ciężkie, treba za coś pić, nie?}
+{16010}{}{Jasne. Frankie, Dziura. Bimber gotowy. Tyle chyba zapamiętam. Do zobaczenia.}
+{17000}{}{Ech, w sumie to nie spodziewałem się, że stary wyrwigrosz zapłaci więcej. Ale przynajmniej niech wie, jaki dobry interes ze mną ubija! [Śmieje się.] No ale gadka gadką, a ty pewnie chcesz zapłatę. Masz tu kapsle, i parę flaszek. Jak chcesz zarobić więcej, zajrzyj do mnie za jakiś czas.}
+{17010}{}{Dzięki, Bob. Trzymaj się.}
+{18000}{}{Jasne, @sex@|stary||kotku|. Wiesz co masz robić. Idź do Frankiego i przekaż mu, że może odbierać bimber. A, i powiedz mu, że płaci podwójnie - niech się wnerwia, sukinsyn! [Śmieje się.] Potem wróć do mnie, zapłata taka jak ostatnio.}
+{18010}{}{Dzięki, Bob. Do zobaczenia!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Howdy stranger, my name's Whiskey Bob. What's yours?}
+{2010}{}{@pname@. What's happening here in town?}
+{2020}{}{@pname@. Nice to meet you Whiskey Bob.}
+{2030}{}{I don't think you need to know my name.}
+{3000}{}{Always nice to find another drinking buddy. Wanna buy me a drink? Talking always makes me thirsty.}
+{3010}{}{Sure, Bob. Don't mind a bit.}
+{3020}{}{I don't want to buy you a drink, Whiskey Bob.}
+{3030}{}{I can't afford to right now.}
+{3040}{}{With a nickname like yours, Whiskey Bob, maybe you should be providing the drinks. Bye.}
+{4000}{}{Hello there, feller. Back to see Whiskey Bob again, huh? Ready to talk about drinks and business and suchlike?}
+{4010}{}{Sure, Bob - tell me about drinks and business.}
+{4020}{}{I think I had enough of that the last time.}
+{4030}{}{Not right now, Bob. I'm looking for work.}
+{4040}{}{Frankie sent me to tell you he's gonna pick up the hooch. But he's not paying double.}
+{4050}{}{Think you could send me on another hooch run, Bob?}
+{5000}{}{Thanks for the drink, partner. Now that my whistle's wet, I can do some talking.}
+{5010}{}{What's happening here in town?}
+{5020}{}{Where does your whiskey come from, Bob?}
+{5030}{}{Not interested Bob, I'm out of here.}
+{5040}{}{Got any work for me, Bob?}
+{5050}{}{Frankie sent me to tell you he's gonna pick up the hooch. But he's not paying double.}
+{5060}{}{Think you could send me on another hooch run, Bob?}
+{6000}{}{Humph, if you're not gonna be any drinking buddy of mine, then git.}
+{7000}{}{Looks as though your purse has run dry. You don't have enough money to buy old Bob a drink.}
+{8000}{}{Well, you see, I have a little side business. I have a moonshine still outside of town that needs to be fueled up every so often. It's kept me and my buddies in hooch for quite a while.}
+{8010}{}{Really? You're a lucky guy.}
+{9000}{}{You bet. It's a pretty lucrative enterprise, if you catch my drift. Only problem is, with this gimpy leg of mine, it takes me damn near an hour to limp it out to the shack to refuel the still, but that's better than paying some poor sap every time I want it refuelled.}
+{9010}{}{Yeah, I can imagine. Say, I have a few questions about Klamath.}
+{9020}{}{I hope it works out for you, Bob. I gotta go.}
+{10000}{}{All sorts of things going on hereabouts lately. We've still got that big flying machine in the canyon, the Duntons are up to no good, we always get a few troublemakers from the Den.}
+{10010}{}{Flying machine? What's all that about?}
+{10020}{}{What's happening with the Den?}
+{10030}{}{That all sounds fascinating, Bob, but I gotta run.}
+{11000}{}{Yeah. Big darn thing crashed in the canyon a couple years back. Nobody knows where it came from. Big scary thing, innit?}
+{11010}{}{Well that's an awful shame, Bob, but I was wondering what else was going on in town.}
+{11020}{}{Sorry to hear that, Bob. Bye.}
+{12000}{}{You'll not find a greater hive of scum and villainy. It's a rough sort of place a few days travel south of Klamath. Anything can be had there for a price...even slaves. But you have to be very careful there - lots of short tempers attached to dangerous weapons. I don't think they have much to do with us, though; we're too poor here. A few stragglers just turn up in town before we turn 'em back out again.}
+{12010}{}{Sounds like my kind of place, but I've got a few other questions about Klamath.}
+{12020}{}{Well so long as you're safe here. Bye, Bob.}
+{13000}{}{Welp, I figure ol' Bob might have somethin' to toss your way. You ever been to the Den, friend?}
+{13010}{}{Yeah, plenty of times.}
+{13020}{}{Naw, sorry Bob.}
+{14000}{}{Well, heck, it don't matter, 'cause that's where you're goin'. It's a ways southeast of here. I want you to head to a bar called The Hole. Find a fella named Frankie.}
+{14010}{}{Frankie, huh? Who's he?}
+{14020}{}{This doesn't really sound my style. Later, Bob.}
+{15000}{}{He's an ol' drinkin' buddy. I brew him up a couple batches of hooch, he tosses a couple caps my way. Nice little arrangement.}
+{15010}{}{And this involves me how?}
+{15020}{}{Forget it, I don't care. Goodbye, Bob.}
+{16000}{}{Heck, I'm gettin' to that. Hold your dang horses. I want ya to tell him my latest batch all ready to be picked up, and I'm expectin' him to pay double! (He chuckles) Times are hard for poor ol' Bob.}
+{16010}{}{Alright Bob, I'll go tell him. Frankie at the Hole. The hooch is ready. I can remember that. See you later.}
+{17000}{}{(He cackles) Didn't expect that skinflint bastard to pay a cap more than what we agreed. I just like remindin' him what a good deal he's gettin'. Awright, I figure I owe you some caps and a couple drinks on me. Much obliged, friend. There will be a new batch in a day, so come back if you wanna nathor' run.}
+{17010}{}{Thanks a lot, Bob. See you around.}
+{18000}{}{Sure thing. You know the drill by now. Head over to Frankie, tell him the batch is ready. Tell him I'm upping the usual rate, just to mess with the skinflint bastard, then get your ass back to me. I got hooch with your name on it.}
+{18010}{}{Thanks Bob, see you later.}
+

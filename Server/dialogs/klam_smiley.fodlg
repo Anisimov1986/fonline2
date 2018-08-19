@@ -1,0 +1,58 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+0 2010 D _script tc_dialogs@d_CanTakeOver 0  R _script tc@r_StartTc 0  #
+0 2020 &
+
+[engl]
+{100}{}{Smiley}
+{200}{}{You see a skilful middle-aged hunter, wearing leather clothes.}
+{210}{}{This is Smiley, a man with a reputation for hunting gecko.}
+{210}{}{You see a gecko hunter. He has a limp in his left leg.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Hey there, I'm Smiley, resident gecko trapper. What can I help you with ?}
+{2010}{}{Help me? Yeah, bring some booze and girls for our soldiers. This town is ours now.@@Can you help me? Sure, you can start by shutting the hell up. This town belongs to us now.}
+{2020}{}{Nothing. I'm outta here.}
+
+[russ]
+{100}{}{Смайли}
+{200}{}{Вы видите опытного охотника средних лет, он одет в кожу.}
+{210}{}{Это Смайли, лучший охотник на гекко.}
+{210}{}{Это Смайли, лучший охотник на гекко. Он прихрамывает на одну ногу, но в целом выглядит крепким парнем.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Привет, незнакомец. Люди называют меня Смайли. Я рад тебя видеть. Чем могу помочь?}
+{2010}{}{Помочь мне? Да, тащи выпивку и девочек для наших солдат. Теперь это наш город.}
+{2020}{}{Ничего. Я уже ухожу.}
+
+[pols]
+{100}{}{Smiley}
+{200}{}{Widzisz człowieka ubranego skórzane odzienie. Wygląda na doświadczonego myśliwego.}
+{210}{}{Widzisz Smileya, doświadczonego łowcę gekonów.}
+{210}{}{Widzisz kulejącego łowcę gekonów.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Jestem Smiley, nie ma tu lepszego, jeśli idzie o polowanie na gekony. Pomóc w czymś?}
+{2010}{}{Pomóc? Ta, przynieś wódę i przyprowadź dziewczyny, ta mieścina jest teraz nasza!}
+{2020}{}{Nic, na razie.}
+
+[ptbr]
+{100}{}{Bocão}
+{200}{}{Você observa um caçador habilidoso de meia-idade usando roupas de couro.}
+{210}{}{Este é o Bocão, um homem com reputação em caça de kalangos.}
+{210}{}{Você vê um caçador de kalango. Ele tem um machucado na perna esquerda.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Diga lá, sou o Bocão, um dos moradores daqui. O quê que eu posso fazer por você?}
+{2010}{}{Me ajudar? É, traz umas bebidas e mulheres que agora a cidade é nossa. }
+{2020}{}{Nada. Caindo fora. Valeu.}
+

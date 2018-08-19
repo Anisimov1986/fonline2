@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Balthas' Wife}
+{200}{}{It's Balthas' wife.}
+{210}{}{You see Balthas' wife. She appears to be in a pleasant mood.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{Hello.@@It's so peaceful around here.@@So quiet.@@Such a nice place here, don't you think?}
+
+[russ]
+{100}{}{Жена Балтаза}
+{200}{}{Это жна Балтаза .}
+{210}{}{Вы видите жену Балтаза. Она, кажется, в хорошем настроении.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{* насвистывает простую мелодию *@@Здесь так спокойно.@@Так тихо.@@Такое прекрасное место здесь, вы не думаете?}
+
+[pols]
+{100}{}{Żona Balthasa}
+{200}{}{Widzisz żonę Balthasa.}
+{210}{}{Widzisz żonę Balthasa. Wygląda na to, że jest w znakomitym nastroju.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{[Gwiżdże prostą melodyjkę.]@@Jest tu tak spokojnie.@@Cudowna cisza.@@Miłe miejsce, nie sądzisz?}
+
+[ptbr]
+{100}{}{Esposa do Baltazar}
+{200}{}{É a esposa do Baltazar.}
+{210}{}{Você vê a esposa do Baltazar. Ela parece estar de bom humor.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{*assobiando*@@Aqui é um canto seguro.@@Tão quieto.@@Lugar bom pra morar, não acha?}
+

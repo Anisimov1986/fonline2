@@ -1,0 +1,226 @@
+// Experimental evil npc random patrol script 
+
+#include "_macros.fos"
+#include "_npc_pids.fos"
+#include "mapdata_h.fos"
+#include "_msgstr.fos"
+#include "entire_h.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "_teams.fos"
+
+#define ENTIRE_MINE_SPAWN              (666)
+#define ENTIRE_HEX (99)
+#define CHANCE_TO_PATROL (30)
+#define ROLE_PATROLNPC   (2)
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import void AddAchievement(Critter& cr, uint achievement) from "achievements";
+import void ShowElevator( Critter& player, uint8 elevatorType, uint[] mapPids, uint entireNum ) from "elevator";
+import void SpawnMines(Map& map, uint entire, uint entireFillRatio, bool noLoot) from "game_event_utils";
+import void ChangeFactionScore(uint faction, int score) from "faction_core";
+
+uint lastRefresh;
+
+const uint16[] NpcForInit = {120,121,9,970};
+
+void _AresInit( Map& map, bool firstTime )
+{
+    if( firstTime ) 
+    {
+		for (uint i=0; i<NpcForInit.length();i++)
+		{
+			Critter@[] critters;
+			if (map.GetCritters( NpcForInit[i], FIND_LIFE_AND_KO | FIND_ONLY_NPC, critters ) > 0 )
+			{
+				for (uint j=0; j<critters.length();j++)
+				{
+					critters[j].SetScript( "_NpcInit" );
+				}
+			}
+		}
+		uint entiresnum = map.CountEntire(99);
+		if (entiresnum>58)
+			Log("Ares init error");
+		uint16 hexX=0;
+		uint16 hexY=0;
+		for (uint8 i=0; i<entiresnum;i++)
+		{
+			map.GetEntireCoords (ENTIRE_HEX, i, hexX, hexY);
+			Critter@ cr = map.GetCritter(hexX, hexY);
+			if (valid(cr))
+			{
+				cr.SetHomePos (hexX, hexY, Random(0,5));
+				map.SetData(i,1);
+			}
+		
+		}
+    }
+   
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_MapCrIn");
+	lastRefresh = __FullSecond;
+	SpawnMines(map, ENTIRE_MINE_SPAWN, 30, true);
+}
+
+
+
+
+void _NpcInit( Critter& cr, bool firstTime )
+{
+	if (firstTime)
+        cr.StatBase[ ST_REPLICATION_TIME ]=30;
+    cr.ModeBase[ MODE_NO_LOOT ]=1;
+    cr.ModeBase[ MODE_NO_DROP ]=1;
+    cr.ModeBase[ MODE_NO_LOOSE_LIMBS ]=1;
+    cr.ModeBase[ MODE_NO_STEAL]=1;
+    cr.ModeBase[ MODE_UNLIMITED_AMMO]=1;
+    cr.ParamBase[VISION_LEVEL]=1;
+	cr.SetBagRefreshTime(10);
+	cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_DeathShowCritter" );
+	if (cr.StatBase[ ST_NPC_ROLE ] == ROLE_PATROLNPC)
+		cr.SetEvent( CRITTER_EVENT_IDLE, "_RandomPatrol" );
+		
+	if ( cr.GetProtoId() == 970)
+		cr.SetEvent( CRITTER_EVENT_DEAD,        "_BossDeath" );
+}
+
+// BOSS DEATH
+void _BossDeath( Critter& npc, Critter@ killer )
+{
+	if (!valid(killer))
+		return;
+	AddAchievement(killer,PE_ACHIEV_ARESBOSS_KILLED);
+    if (killer.Param[MAIN_FACTION]!=0)
+        ChangeFactionScore(killer.Param[MAIN_FACTION], 200);
+}
+
+void _DeathShowCritter( Critter& deathclaw, Critter& cr )
+{
+    if( cr.IsPlayer() )
+    {
+		deathclaw.AddEnemyInStack( cr.Id );
+        AddAttackPlane( deathclaw, 0, cr );
+    }
+}
+
+
+void _RandomPatrol ( Critter& cr )
+{	
+
+	//cr.Say( SAY_NORM_ON_HEAD , "Idling" );
+	if (Random (1,100) < CHANCE_TO_PATROL )
+	{
+		Map@ map = cr.GetMap();
+		uint entiresnum = map.CountEntire(99);
+		uint16 hexX=0;
+		uint16 hexY=0;
+		uint mapId;
+		uint8 dir;
+		cr.GetHomePos (mapId , hexX, hexY, dir);
+		//Log("HomePos="+hexX+","+hexY);
+		uint8[] entires;
+		for (uint8 i=0; i<entiresnum;i++)
+		{
+			uint16 hexX2=0;
+			uint16 hexY2=0;
+			map.GetEntireCoords (ENTIRE_HEX, i, hexX2, hexY2);
+			if (hexX==hexX2 && hexY==hexY2)
+			{
+				//Log("HomeEntireNum="+i);
+				map.SetData(i,0);
+				for (uint j=0; j<entiresnum;j++)
+				{
+					if (map.GetData(j)==0)
+						entires.insertLast( j );
+				}
+				uint8 newentire=entires[Random(0,entires.length()-1)];
+				//Log("NewPositionEntire"+newentire);
+				map.GetEntireCoords (ENTIRE_HEX, newentire, hexX, hexY);
+				map.SetData(newentire,1);
+				cr.SetHomePos (hexX, hexY, Random(0,5));
+				//Log("Heading to pos="+hexX+","+hexY);
+				return;
+			}
+		}
+	}
+}
+
+bool s_RepairGenerator(Critter& player, Scenery& terminal, int skill, Item@ item)
+{
+    int value = 0;
+    if(valid(item))
+    {
+        if(item.GetProtoId() == PID_MULTI_TOOL)
+            value = 25;
+        else if(item.GetProtoId() == PID_SUPER_TOOL_KIT)
+            value = 50;
+        else
+            return false;
+    }
+    else if(skill != SK_REPAIR)
+        return false;
+
+    value += player.Skill[SK_REPAIR];
+    int testvalue = CLAMP(value, 5, 95);
+    if(testvalue < Random(1, 100))
+    {
+        player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70327);
+        return true;
+    }
+	SetRootMapData(player.GetMap(), MAP_DATA_ELEVATOR_TIME, __FullSecond + (REAL_SECOND(Random(2 * value, 3 * value))));
+    player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70328);
+    return true;
+}
+void _InitKey(Item& item, bool firstTime)
+{
+	if (firstTime)
+	{
+		item.Val9 = __FullSecond+REAL_DAY(1);
+	}
+}
+
+void r_EnableBPower(Critter& cr, Critter@ npc)
+{
+	SetRootMapData(cr.GetMap(), MAP_DATA_ELEVATOR_TIME, __FullSecond + (REAL_MINUTE(15)));
+}
+
+void t_Elevator( Critter& player, Scenery& trigger, bool entered, uint8 dir, int entireExit, int elevatorType, int map1Pid, int map2Pid, int map3Pid )
+{
+    if( entered )
+    {
+		uint time = GetRootMapData(player.GetMap(), MAP_DATA_ELEVATOR_TIME);
+        if(time == 0 || time < __FullSecond)
+        {
+            player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70329);
+            return;
+        }
+		if( player.Timeout[ TO_TRANSFER ] > 0 )
+            player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_TRANSFER_WAIT );
+        else if( player.Timeout[ TO_BATTLE ] > 0 )
+            player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        else
+        {
+            uint[] pids = { uint( map1Pid ) };
+            if( map2Pid > 0 )
+                pids.insertLast( uint( map2Pid ) );
+            if( map3Pid > 0 )
+                pids.insertLast( uint( map3Pid ) );
+            ShowElevator( player, elevatorType, pids, entireExit );
+        }
+    }
+}
+
+void _MapCrIn(Map& map, Critter& cr)
+{
+	if (lastRefresh + REAL_MINUTE(1) < __FullSecond)
+	{
+        SpawnMines(map, ENTIRE_MINE_SPAWN, 30, true);
+		lastRefresh = __FullSecond;
+	}
+}
+
+
+
+
+

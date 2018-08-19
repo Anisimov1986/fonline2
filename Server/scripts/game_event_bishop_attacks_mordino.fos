@@ -1,0 +1,268 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos"
+#include "economy_h.fos"
+
+#define EVENT_INTRO			( 4 )
+#define EVENT_WAVE_1		( 5 )
+#define INTRO_DURATION_MIN	( 1 )
+#define WAVE_1_DURATION_MIN	( 14 )
+#define NUMBER_OF_ATTACKERS	( 16 )
+#define ROLE_ATTACKER		( 288000 )
+#define ROLE_DEFENDER		( 288001 )
+#define ROLE_TARGET			( 288002 )
+
+import bool AddAttackPlane(Critter& npc, uint priority, Critter& target, bool run) from "npc_planes";
+import void AddNewMessage(string text ,int time, int showtimer, uint color, bool eventtimer, uint eventid) from "stocmessages";
+import bool IsEventTimer(uint town) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import int GetNextTime(uint Id) from "game_events";
+import bool IsItemAviable(uint16 pid) from "blueprints";
+
+int[] params = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK, 10,
+		PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+		MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+		ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_ATTACKER, ST_REPLICATION_TIME, -1, MODE_NO_RUN, 1};
+const int[] AttackerPids = {NPC_PID_BISHOP1, NPC_PID_BISHOP2, NPC_PID_BISHOP3, NPC_PID_BISHOP4 };
+const int[] WeaponPids = {PID_GREASE_GUN, PID_DESERT_EAGLE, PID_44_MAGNUM_REVOLVER, 
+		PID_14MM_PISTOL };
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);
+	return GetNextTime(values[0]);
+}
+
+void event_start(uint id) 
+{		
+	intro_start();
+}
+
+void intro_start()
+{
+    AddNewMessage("Gang war in New Reno. Bishop family is planning to attack Desperado club.", REAL_MINUTE(INTRO_DURATION_MIN + WAVE_1_DURATION_MIN), 1, COLOR_GREEN, true, EVENT_INTRO);
+	CreateTimeEvent(__FullSecond + REAL_MINUTE(INTRO_DURATION_MIN), "e_intro_stop", 0, true);
+}
+
+uint e_intro_stop(array<uint>@ values)
+{
+	RemoveMessageByEvent(EVENT_INTRO);
+	wave_1_start();
+	return 0;
+}
+
+void wave_1_start()
+{
+    AddNewMessage("Bishop family is attacking Desperado club. Lil' Jesus Mordino is calling for help. Time left:", REAL_MINUTE(WAVE_1_DURATION_MIN), 1, COLOR_GREEN, true, EVENT_WAVE_1);
+	CreateTimeEvent(__FullSecond + REAL_MINUTE(WAVE_1_DURATION_MIN), "e_event_stop", 0, true); 
+
+	Map@ map = GetMapByPid(MAP_newr1, 0);
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	uint entireSpawnNum = map.CountEntire(ENTIRE_EVENT_MOB_SPAWN);
+	uint entireHomeNum = map.CountEntire(ENTIRE_EVENT_MOB_HOME);
+	uint16 hexX = 0;
+	uint16 hexY = 0;
+	uint8 dir = 0;
+	uint16 homeX = 0;
+	uint16 homeY = 0;
+	uint8 homeDir = 0;
+	uint attackers = 0;
+	for (uint8 i = 0; i < entireSpawnNum; i++)
+	{
+		if (attackers >= NUMBER_OF_ATTACKERS)
+		{
+			break;
+		}
+		if (map.GetEntireCoords(ENTIRE_EVENT_MOB_SPAWN, i, hexX, hexY, dir)
+				&& map.GetEntireCoords(ENTIRE_EVENT_MOB_HOME, (attackers * 211) % entireHomeNum, homeX, homeY, homeDir) 
+				&& AddAttacker(hexX, hexY, dir, homeX, homeY, homeDir))
+		{
+			attackers++;
+		}
+	}
+	
+	InitializeGossip();
+}
+
+void InitializeGossip()
+{	
+	Location@ location = GetLocationByPid(LOCATION_NewReno, 0);
+	if (!valid(location)) 
+	{
+		return;
+	}
+	
+	GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, REAL_MINUTE(WAVE_1_DURATION_MIN));
+	gossipDefinition.SetGossipId(EVENT_INTRO);
+	gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+	gossipDefinition.SetSourceLocationId(location.Id);
+	gossipDefinition.SetMsgId(STR_BISHOP_MORDINO_EVENT_GOSSIP_LOC);
+	gossipDefinition.SetSourceMsgId(STR_BISHOP_MORDINO_EVENT_GOSSIP_NO_LOC);
+	StartGossip(gossipDefinition);
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_newr1, 0);
+	if (!valid(map)) {
+		return 0;
+	}
+	
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_ATTACKER) {
+			DeleteNpc(npcs[i]);
+		}
+	}
+	
+	StopGossip(EVENT_INTRO, GOSSIP_SCOPE_EVENT);
+	
+	return 0;
+}
+
+bool AddAttacker(uint16 hexX, uint16 hexY, uint8 dir, uint16 homeX, uint16 homeY, uint8 homeDir)
+{
+	Map@ map = GetMapByPid(MAP_newr1, 0);
+	if(!GetFreeHex(map, 1,hexX, hexY))
+	{
+		return false;
+	}
+	
+	Critter@ attacker = map.AddNpc(AttackerPids[(Random(0, AttackerPids.length() - 1))], hexX, hexY, dir, params, null, null);
+	if (!valid(attacker))
+	{
+		return false;
+	}
+	Item@ weapon = attacker.AddItem(WeaponPids[Random(0,WeaponPids.length()-1)], 1);
+	if (valid(weapon) && weapon.GetProtoId () == PID_ROCKET_LAUNCHER)
+	{
+		weapon.AmmoPid=PID_ROCKET_AP;
+	}
+
+	_AttackerInit(attacker, true);
+	attacker.SetScript("_AttackerInit");
+	
+	attacker.SetFavoriteItem(SLOT_HAND1, weapon.GetProtoId ());
+	attacker.SetHomePos(homeX, homeY, homeDir);
+	
+	//Critter@[] critters;
+	//map.GetCritters(0, FIND_LIFE_AND_KO, critters);
+	//for (uint i = 0; i < critters.length(); i++)
+	//{
+	//	CheckAndAttackCritter(attacker, critters[i]);
+	//}
+	
+	return true;
+}
+
+void _AttackerInit(Critter& attacker, bool firstTime)
+{
+	attacker.ShowCritterDist1 = 40;
+	attacker.SetEvent(CRITTER_EVENT_SHOW_CRITTER_1, "_Show" );
+	attacker.SetEvent(CRITTER_EVENT_DEAD, "_Dead");
+}
+
+void CheckAndAttackCritter(Critter& attacker, Critter& target)
+{
+	if (!attacker.CheckEnemyInStack(target.Id)) 
+	{
+		if (target.IsPlayer())
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 15, AI_PLANE_ATTACK_PRIORITY + 19), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+		else if (target.Stat[ST_NPC_ROLE] == ROLE_DEFENDER)
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 10, AI_PLANE_ATTACK_PRIORITY + 14), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+		else if (target.Stat[ST_NPC_ROLE] == ROLE_TARGET)
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 5, AI_PLANE_ATTACK_PRIORITY + 9), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+	}
+}
+
+void _Show(Critter& npc, Critter& cr)
+{
+	CheckAndAttackCritter(npc, cr);
+}
+
+void _Dead(Critter& mob, Critter@ killer)
+{
+    mob.ClearEnemyStack();
+}
+
+bool dialogIsReadyToFinishEvent( Critter& player, Critter@ npc)
+{
+	if (!IsEventTimer(EVENT_WAVE_1)) 
+	{
+		return false;
+	}
+
+	Map@ map = GetMapByPid(MAP_newr1, 0);
+	if (!valid(map)) 
+	{
+		return false;
+	}
+	
+	return map.GetNpcCount(ROLE_ATTACKER, FIND_LIFE) == 0;
+}
+
+void dialogFinishEvent(Critter& player, Critter@ npc)
+{
+	if (IsEventTimer(EVENT_WAVE_1)) 
+	{
+		RemoveMessageByEvent(EVENT_WAVE_1);
+		e_event_stop(null);
+		
+		player.AddItem(PID_LIL_JESUS_WEAPON, 1);
+		player.AddItem(PID_BOTTLE_CAPS, RewardMod(Random(6000, 9000)));
+		if (IsItemAviable(PID_PSYCHO))
+			player.AddItem(PID_PSYCHO, Random(1, 8));
+		if (IsItemAviable(PID_JET))			
+			player.AddItem(PID_JET, Random(1, 15));
+		if (IsItemAviable(PID_NUKA_COLA))			
+			player.AddItem(PID_NUKA_COLA, Random(1, 15));
+		if (IsItemAviable(PID_CIGARETTES))			
+			player.AddItem(PID_CIGARETTES, Random(1, 15));
+		if (IsItemAviable(PID_BUFFOUT))			
+			player.AddItem(PID_BUFFOUT, Random(1, 15));
+	}
+}
+
+void event_start( Critter& cr, int, int , int)
+{
+	event_start(EVENT_INTRO);
+}
+void event_stop( Critter& cr, int, int , int)
+{
+	e_event_stop(null);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(EVENT_INTRO);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	e_event_stop(null);
+}

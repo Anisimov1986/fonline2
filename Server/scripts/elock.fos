@@ -1,0 +1,237 @@
+#include "_macros.fos"
+#include "utils_h.fos"
+#include "_msgstr.fos"
+#include "logging_h.fos"
+import bool UseSkillOnLocker( Critter& cr, Item& locker, int skill, bool password ) from "lockers";
+import bool UseSkillOnCar( Critter& cr, Item& car, int skill, bool password ) from "car";
+import bool IsKeyAviable( Critter& cr, uint lockerId, bool toDelete ) from "lockers";
+import bool IsCar(Item@ item) from "car";
+import bool IsCarTrunk(Item@ item) from "car";
+import bool IsBaseManager(Critter& cr) from "personal_base";
+import bool IsKnownTent(Critter& player) from "personal_tent";
+
+bool TrySetElock( Critter& cr, Item& elock, Item@ targetItem )
+{
+    if (!valid(targetItem))
+    {
+        cr.ParamBase[LAST_ELOCK] = elock.Id;
+        cr.RunClientScript( "client_screen_numpad@ReceiveElockData", 1, 0, 0, null, null );
+        return true;
+    }
+    if (FLAG( targetItem.LockerCondition, LOCKER_ELOCK ))
+    {
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 712);
+        return true;
+    }
+    if (targetItem.GetType() == ITEM_TYPE_CONTAINER && targetItem.Proto.Container_Changeble)
+    {
+        if (!FLAG( targetItem.LockerCondition, LOCKER_ISOPEN ))
+        {
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 700);
+            return true;
+        }
+        
+        if (elock.LockerId < 1000 || elock.LockerId>9999)
+        {
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 701);
+            return true;
+        }
+        Location@ loc = GetLocationOf(cr);
+        if (!valid(loc))
+            return false;
+        if( !loc.IsBase() && !loc.IsTent())// && !IsInsideOwnHouse(cr) )
+        {
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 702 );
+            return true;
+        }
+        if( !cr.IsKnownLoc( true, loc.Id ) )
+        {
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 702 );
+            return true;
+        }
+    }
+    else if (targetItem.GetType() == ITEM_TYPE_CAR)
+    {
+        if (elock.LockerId < 1000 || elock.LockerId>9999)
+        {
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 701);
+            return true;
+        }
+        if (!IsKeyAviable( cr, targetItem.LockerId, true ))
+        {
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 711);
+            return true;
+        }
+        for( uint i = 0; i < 3; i++ )
+        {
+            Item@ bag = targetItem.GetChild( i );
+            if( valid( bag ) )
+                SetElock( cr, elock, bag );
+        }
+    }
+    else
+        return false;
+
+    SetElock( cr, elock, targetItem );
+    DeleteItem(elock);
+    cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 708, "$pass" + targetItem.Val7 );
+    return true;
+}
+
+void SetElock( Critter& cr, Item& elock, Item& targetItem )
+{
+    SETFLAG( targetItem.LockerCondition, LOCKER_ELOCK );
+    targetItem.Val7=elock.LockerId;
+    targetItem.LockerId=_CritFingersDoorId(cr.Id);
+    targetItem.LockerComplexity=0;
+}
+
+bool LockPickElock( Critter& cr, Item& locker)
+{
+    if (IsCarTrunk(locker))
+    {
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 709 ); 
+        return false;
+    }
+    
+    if (locker.LockerId ==_CritFingersDoorId(cr.Id) || IsBaseManager(cr) || IsKnownTent(cr))
+    {
+        TryUnsetElock(cr, locker);
+        return true;
+    }
+    Location@ loc = GetLocationOf(cr);
+    if (!valid(loc))
+        return false;
+    if (!loc.IsBase() && !loc.IsTent() && IsCar(locker))
+    {
+        if (locker.Val7 < 1000 || locker.Val7>9999)
+        {
+            cr.Say( SAY_NETMSG, "Something wrong - report to gm." ); 
+            return false;
+        }
+
+        int base = cr.Skill[ SK_LOCKPICK ];// - locker.LockerComplexity;
+        if( HasItemInHands(cr, PID_ELECTRONIC_LOCKPICKS ))
+        {
+            base += 25;
+            if( Random( 0, 30 ) == 0 )
+                cr.DeleteItem( PID_ELECTRONIC_LOCKPICKS, 1 );
+        }
+        else if( HasItemInHands(cr, PID_ELEC_LOCKPICK_MKII ))
+        {
+            base += 50;
+            if( Random( 0, 30 ) == 0 )
+                cr.DeleteItem( PID_ELEC_LOCKPICK_MKII , 1 );
+        }
+        else 
+        {
+            cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_NEED_ELECTRO );
+            return false;
+        }
+            
+        string password = locker.Val7;
+        string unlock = "";
+        base=CLAMP(base, 25, 150);
+        for (uint i=0; i<4; i++)
+        {
+            if (HAS_CHANCE(base - 45 * i))
+                unlock+= password[i]; 
+            else
+                unlock+="*";
+        }
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 710, "$pass" + unlock );
+        cr.TimeoutBase[ TO_SK_LOCKPICK ] = LOCKPICK_TIMEOUT( cr );
+        return false;
+    }    
+    cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 707 );
+    return false;
+}
+
+void TryUnsetElock( Critter& cr, Item& locker)
+{
+    UnSetElock(locker);
+    if (IsCar(locker))
+    {
+        for( uint i = 0; i < 3; i++ )
+        {
+            Item@ bag = locker.GetChild( i );
+            if( valid( bag ) )
+                UnSetElock(bag);
+        }
+    }
+    cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 706 );
+}
+
+void UnSetElock( Item& locker)
+{
+    UNSETFLAG( locker.LockerCondition, LOCKER_ELOCK );
+    locker.Val7=0;
+    locker.LockerId=0;
+    locker.LockerComplexity=0;
+}
+
+bool TryOpenElock( Critter& cr, Item& locker)
+{
+    cr.ParamBase[LAST_ELOCK] = locker.Id;
+    cr.RunClientScript( "client_screen_numpad@ReceiveElockData", 1, 0, 0, null, null );
+    return true;
+}
+
+void unsafe_Elock( Critter& cr, int password, int , int, string@ , int[] @ )
+{
+    if (password < 1000 || password > 9999 || cr.Param[LAST_ELOCK]==0)
+        return;
+    Item@ elock = GetItem( cr.Param[LAST_ELOCK] );
+    
+    if (!valid(elock) || !cr.IsLife())
+        return;
+    if (elock.GetProtoId() == PID_ELOCK )
+    {
+        if (elock.CritId!=cr.Id)
+            return;
+        cr.ParamBase[LAST_ELOCK]=0;
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 703, "$pass" + password );
+        elock.LockerId=password;
+        elock.Update();
+        cr.RunClientScript( "client_screen_numpad@ReceiveElockData", 2, 0, 0, null, null );
+    }
+    Map@ map = cr.GetMap();
+    if (!valid(map) || elock.MapId != map.Id)
+    {
+        cr.RunClientScript( "client_screen_numpad@ReceiveElockData", 2, 0, 0, null, null );
+        return;
+    }
+    if (GetDistantion(cr.HexX, cr.HexY, elock.HexX, elock.HexY)>1)   
+    {
+        cr.RunClientScript( "client_screen_numpad@ReceiveElockData", 2, 0, 0, null, null );
+        return;
+    }
+    uint LastLockPickTime  = GetLvar(cr,LVAR_elock_timeout);
+    if (__FullSecond>LastLockPickTime+REAL_SECOND(10))
+    {
+        SetLvar(cr, LVAR_elock_timeout,__FullSecond);
+        SetLvar(cr, LVAR_flood_count,0);
+    
+    }
+    SetLvar(cr, LVAR_flood_count,GetLvar(cr,LVAR_flood_count)+1);
+    if (GetLvar(cr,LVAR_flood_count)>15)
+    {
+        cr.Say(SAY_NETMSG, "Flood Detected.");
+        FLog( LOG_SUSPECT, cr.Name + " (" + cr.Id + ") LOCK BRUTEFORCE " + GetIP( cr.GetIp() )); 
+        SetLvar(cr, LVAR_elock_timeout,__FullSecond+REAL_SECOND(100));
+        cr.Disconnect();
+    }
+
+    if (elock.Val7==password)
+    {
+        cr.ParamBase[LAST_ELOCK]=0;
+        if (elock.GetType() == ITEM_TYPE_DOOR || elock.GetType() == ITEM_TYPE_CONTAINER)
+            UseSkillOnLocker( cr, elock, SKILL_PICK_ON_GROUND, true );
+        else if (elock.GetType() == ITEM_TYPE_CAR)
+            UseSkillOnCar( cr, elock, SKILL_PICK_ON_GROUND, true);
+        
+        cr.RunClientScript( "client_screen_numpad@ReceiveElockData", 2, 0, 0, null, null );
+    }
+    else
+        cr.PlaySound("encounter.ogg", true);
+}

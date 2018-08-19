@@ -1,0 +1,89 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 1000 R _script economy_dialogs@r_TakeCaps 1 1000 R _item p PID_HIGH_GRADE_STEEL + 1 R _script tc@r_AddFeeToLocker 1 50 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 5000 R _script economy_dialogs@r_TakeCaps 1 5000 R _item p PID_HIGH_GRADE_STEEL + 5 R _script tc@r_AddFeeToLocker 1 250 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 10000 R _script economy_dialogs@r_TakeCaps 1 10000 R _item p PID_HIGH_GRADE_STEEL + 10 R _script tc@r_AddFeeToLocker 1 500 #
+0 3040 @
+4 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Morningstar Mine Worker}
+{200}{}{You see: Morningstar Mine Worker}
+{210}{}{You see a Morningstar mine worker: must be a local resident.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{What do you need?}
+{2010}{}{I came to buy High Grade Steel.}
+{2020}{}{Thank you for information. Bye.}
+{3000}{}{Very well, @lex hgsteel2_price@ caps per one. How much do you need?}
+{3010}{}{Just one.}
+{3020}{}{Five is enough.}
+{3030}{}{Give me ten, I have the money.}
+{3040}{}{Well, maybe later. Bye}
+{4000}{}{Here you go.}
+{4010}{}{Thank you. Bye.}
+
+[russ]
+{100}{}{Рабочий шахты.}
+{200}{}{Вы видите: рабочий шахты "Morningstar"}
+{210}{}{Вы видите: рабочий шахты "Morningstar", должно быть местный.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Что вам нужно?}
+{2010}{}{Я пришел купить высококачественную сталь.}
+{2020}{}{Спасибо за информацию. Пока.}
+{3000}{}{Хорошо, @lex hgsteel2_price@ крышек за одну единицу. Сколько вам нужно?}
+{3010}{}{Онду и нужно.}
+{3020}{}{Пять будет в самы раз.}
+{3030}{}{Давай десять сразу.}
+{3040}{}{Ну, может быть, позже. До свидания.}
+{4000}{}{Держи.}
+{4010}{}{Спасибо. Пока.}
+
+[pols]
+{100}{}{Pracownik kopalni Morningstar}
+{200}{}{Widzisz pracownika kopalni Morningstar.}
+{210}{}{Widzisz pracownika kopalni Morningstar, mieszkańca tego miasta.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Czego chcesz?}
+{2010}{}{@sex@|Przyszedłem||Przyszłam| kupić stal wysokiej jakości.}
+{2020}{}{Nieważne, do widzenia.}
+{3000}{}{Doskonale, @lex hgsteel2_price@ kapsli za sztukę. Ile potrzebujesz?}
+{3010}{}{Tylko jedną.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Daj mi dziesięć, mam pieniądze.}
+{3040}{}{Cóż, może potem. Do widzenia}
+{4000}{}{Proszę bardzo.}
+{4010}{}{Dziękuję. Do widzenia.}
+
+[ptbr]
+{100}{}{Trabalhador da mina Estrela-do-amanhecer}
+{200}{}{Você vê um trabalhador da mina Estrela-do-amanhecer.}
+{210}{}{Você vê um trabalhador da mina Estrela-do-amanhecer. Muito provavelmente é um residente local.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Quer alguma coisa?}
+{2010}{}{Eu quero comprar Aço de Alta Qualidade.}
+{2020}{}{Obrigado pela informação. Fui.}
+{3000}{}{Muito bem, @lex hgsteel2_price@ tampas por uma. Quanto você precisa?}
+{3010}{}{Só uma.}
+{3020}{}{Cinco tá de bom tamanho.}
+{3030}{}{Me dá dez, quero dez.}
+{3040}{}{Certo, volto depois.}
+{4000}{}{Tá aqui.}
+{4010}{}{Valeu.}
+

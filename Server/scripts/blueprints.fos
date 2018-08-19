@@ -1,0 +1,534 @@
+// Working on magic
+
+#include "_macros.fos"
+#include "utils_h.fos"
+
+#define BP_TYPE_SG      (1)
+#define BP_TYPE_BG      (2)
+#define BP_TYPE_EN      (3)
+#define BP_TYPE_ARMOR   (4)
+#define BP_TYPE_MEELE   (5)
+#define BP_TYPE_DRUG    (6)
+#define _ADK_BPConsume	# (i)		("BP" +i+ "CONSUME")
+
+array<array<uint16>> Trees  =  
+{ 
+    {},
+    {PID_10MM_PISTOL, PID_44_MAGNUM_REVOLVER, PID_44_MAGNUM_SPEEDLOADER, PID_GREASE_GUN, PID_DESERT_EAGLE, PID_DESERT_EAGLE_EXT_MAG, PID_HUNTING_RIFLE,  PID_SCOPED_HUNTING_RIFLE, PID_TOMMY_GUN, PID_14MM_PISTOL, PID_COMBAT_SHOTGUN, PID_ASSAULT_RIFLE, PID_ASSAULT_RIFLE_EXT_MAG, PID_10MM_SMG, PID_FN_FAL, PID_HK_CAWS, PID_223_PISTOL, PID_NEEDLER_PISTOL, PID_HK_P90C, PID_SNIPER_RIFLE, PID_XL70E3},
+    {PID_FLAMER, PID_M60, PID_MINIGUN, PID_ROCKET_LAUNCHER, PID_IMPROVED_FLAMETHROWER, PID_LIGHT_SUPPORT_WEAPON, PID_AVENGER_MINIGUN},
+    {PID_LASER_PISTOL, PID_PLASMA_PISTOL, PID_MAGNETO_LASER_PISTOL, PID_PLASMA_PISTOL_EXT_CART, PID_LASER_RIFLE, PID_YK32_PULSE_PISTOL, PID_PLASMA_RIFLE, PID_LASER_RIFLE_EXT_CAP},
+    {PID_LEATHER_JACKET, PID_CURED_LEATHER_ARMOR, PID_LEATHER_ARMOR, PID_LEATHER_ARMOR_MK_II, PID_METAL_ARMOR, PID_METAL_ARMOR_MK_II, PID_TESLA_ARMOR, PID_COMBAT_ARMOR, PID_BLACK_ROBE, PID_COMBAT_ARMOR_MK_II},
+    {PID_COMBAT_KNIFE, PID_THROWING_KNIFE, PID_POWER_FIST, PID_FRAG_GRENADE, PID_CATTLE_PROD, PID_RIPPER, PID_MEGA_POWER_FIST, PID_SUPER_SLEDGE, PID_SUPER_CATTLE_PROD, PID_PLASMA_GRENADE},
+    {PID_STIMPAK, PID_RADAWAY, PID_RAD_X, PID_BUFFOUT, PID_PSYCHO}
+};
+
+const array<uint16> RECIPES_T3 = {PID_PLASMA_GRENADE_RECIPE,PID_AVENGER_MINIGUN_RECIPE,PID_SNIPER_RIFLE_RECIPE,PID_XL70E3_RECIPE,PID_HK_P90C_RECIPE,
+PID_COMBAT_ARMOR_MARK_II_RECIPE,PID_HUBOLOGIST_ROBE_RECIPE,PID_LASER_RIFLE_EXT_CAP_RECIPE,PID_LIGHT_SUPPORT_WEAPON_RECIPE,PID_COMBAT_ARMOR_RECIPE,PID_PLASMA_RIFLE_RECIPE};
+
+array<uint16>               UnlockedItems;
+array<uint16>               LockedRecipe;
+array<uint16>               NextItems;
+array<array<uint16>>        LevelBlueprints;
+array<array<array<uint16>>> TypeLevelBlueprints;
+
+
+void InitNextItems()
+{
+    NextItems.resize(0);
+    for (uint i=0; i < UnlockedItems.length(); i++)
+    {
+        uint16 nextitem = GetNextItem(UnlockedItems[i]);
+        if (nextitem>0 && UnlockedItems.find(nextitem)<0)
+        {
+            NextItems.insertLast(nextitem); 
+            Log("Next Gen Item: "+nextitem);
+        }
+    }
+}
+
+uint16 GetNextItem(uint16 pid)
+{
+    for (uint i=1; i < Trees.length(); i++)
+    {
+        int16 num = Trees[i].find(pid);
+        if (num<0 || uint(num+1)>=Trees[i].length())  
+            continue;
+        return Trees[i][num+1];
+    }
+    return 0;
+}
+
+uint8 GetItemType(uint16 pid) 
+{
+    for (uint i=1; i < Trees.length(); i++)
+    {
+        if (Trees[i].find(pid)>=0)
+            return i;
+    }
+    Log("cant find type for item "+pid);
+    return 0;
+} 
+
+void UnlockItem(Critter& cr, int pid, int  , int )
+{
+    if (pid>0)
+        UnlockItem(pid);
+}
+
+void UnlockAllItems(Critter& cr, int pid, int  , int )
+{
+	for (uint i=1; i < Trees.length(); i++)
+		for (uint j=0; j < Trees[i].length(); j++)
+			UnlockItem(Trees[i][j]);
+}
+
+void LockItem(Critter& cr, int pid, int  , int )
+{
+    if (pid>0)
+        LockItem(pid);
+}
+
+void UnlockItem(uint16 pid)
+{
+    if (UnlockedItems.find(pid)>=0)
+        return;
+    ProtoItem@ proto = GetProtoItem(pid);    
+    if(!valid(proto) || proto.NeedBlueprint == 0)
+        return;
+    UnlockedItems.insertLast(pid);
+    SaveUnlockedItems();
+    InitBlueprints();
+}
+
+void LockItem(uint16 pid)
+{
+    if (UnlockedItems.find(pid)<0)
+        return;
+    ProtoItem@ proto = GetProtoItem(pid);    
+    if(!valid(proto) || proto.NeedBlueprint == 0)
+        return;
+    UnlockedItems.removeAt(UnlockedItems.find(pid));
+    SaveUnlockedItems();
+    InitBlueprints();
+}
+
+void SaveUnlockedItems()
+{
+    if (UnlockedItems.length()<1)
+        return;
+    string items = "";
+    for (uint i=0; i < UnlockedItems.length(); i++)
+        items+=UnlockedItems[i]+";";
+    
+    file f;
+	if( f.open( "data/items.ini", "w" ) == 0 )
+	{
+        f.writeString(items);
+        f.close();
+    }
+}
+
+void LoadUnlockedItems()
+{
+    file f;
+    if( f.open( "data/items.ini", "r" ) == 0 )
+	{
+        string line;
+        string@[] lines;
+        while(f.readLine(line) > 0)
+        {
+            lines = split( line, ";" );
+        }
+        f.close();
+        for (uint i=0;i<lines.length();i++)
+        {
+            int pid=0;
+            if (StrToInt(lines[i],pid))
+            {
+                ProtoItem@ proto = GetProtoItem(pid);
+                if(!valid(proto) || proto.NeedBlueprint == 0)
+                    continue;
+                UnlockedItems.insertLast(pid);
+            }
+        }
+    }
+}
+
+void InitUnlockedItems() //export
+{
+    Log("Initializing unlocked items.");
+    UnlockedItems.resize(0);
+    LoadUnlockedItems();
+    Log("Found "+UnlockedItems.length()+" unlocked items.");
+    InitBlueprints();
+}
+
+void AddBlueprint(uint16 type, uint level, int pid)
+{
+    if(type >= TypeLevelBlueprints.length())
+        TypeLevelBlueprints.resize(type + 1);
+    if(level >= TypeLevelBlueprints[type].length())
+        TypeLevelBlueprints[type].resize(level + 1);
+        
+    if(TypeLevelBlueprints[type][level].find(pid)<0)  
+        TypeLevelBlueprints[type][level].insertLast(pid);
+}
+
+void AddBlueprint(uint level, int pid)
+{
+    if(level >= LevelBlueprints.length())
+        LevelBlueprints.resize(level + 1);
+        
+    if(LevelBlueprints[level].find(pid)<0)  
+        LevelBlueprints[level].insertLast(pid);
+}
+
+void InitBlueprints()
+{
+    InitNextItems();
+    Log("Initializing blueprints.");
+    LevelBlueprints.resize(0);
+    LockedRecipe.resize(0);
+    LockedRecipe=RECIPES_T3;
+    TypeLevelBlueprints.resize(0);
+    for (uint i=0; i < UnlockedItems.length(); i++)
+    {
+        ProtoItem@ proto = GetProtoItem(UnlockedItems[i]);
+        if(!valid(proto) || proto.NeedBlueprint == 0)
+            continue;
+        ProtoItem@ bp = GetProtoItem(proto.NeedBlueprint);
+        if (bp.Type== ITEM_TYPE_MISC && LockedRecipe.find(bp.ProtoId)>=0)
+        {
+            
+            LockedRecipe.removeAt(LockedRecipe.find(bp.ProtoId));
+            Log("Found Recipe Pid" + bp.ProtoId);
+            continue;
+        }
+        
+        if(!valid(bp) || bp.Type!= ITEM_TYPE_BLUEPRINT || bp.Blueprint_Param < 0 || bp.Blueprint_Level == 0)
+        {
+            Log("Proto " + proto.NeedBlueprint + " blueprint failed, ignored.");
+            continue;
+        }
+        AddBlueprint(bp.Blueprint_Level, bp.ProtoId);
+        uint8 type = GetItemType(proto.ProtoId);
+        if (type>0)
+            AddBlueprint(type, bp.Blueprint_Level, bp.ProtoId);
+    }
+    /*
+    for(uint i = 0, j = LevelBlueprints.length(); i < j; i++)
+    {
+        Log("Found " + LevelBlueprints[i].length() + " blueprints of level " + i);
+    }
+    */
+    
+    for(uint i = 0, j = TypeLevelBlueprints.length(); i < j; i++)
+        for(uint k = 0, m = TypeLevelBlueprints[i].length(); k < m; k++)
+            for(uint x = 0, z = TypeLevelBlueprints[i][k].length(); x < z; x++)
+                Log("Found Blueprint Pid" + TypeLevelBlueprints[i][k][x] + " type "+i+" level "+k+".");
+    
+}
+
+uint16 GetRandomBlueprintPid(uint8 level)
+{
+    uint16 pid = 0;
+    if(level >= LevelBlueprints.length())
+        return 0;
+    array<uint16>@ arr = LevelBlueprints[level];
+    pid = random_from_array(arr);
+    return pid;
+}
+
+uint16 GetRandomBlueprintPid()
+{
+	uint count = 0;
+	
+	for(uint i = 0; i < LevelBlueprints.length(); i++)
+		count += LevelBlueprints[i].length();
+
+	uint index = Random(0, count - 1);
+	
+	for(uint i = 0; i < LevelBlueprints.length(); i++)
+		if (index < LevelBlueprints[i].length())
+			return LevelBlueprints[i][index];
+		else
+			index -= LevelBlueprints[i].length();
+		
+    return 0;
+}
+
+bool CheckBP(uint16 pid)
+{
+    for(uint i = 0; i < LevelBlueprints.length(); i++)
+        if (LevelBlueprints[i].find(pid)>=0)
+            return true;
+    return false;
+}
+
+bool ConsumedBlueprintForPid(Critter& player, uint pid)   // export
+{
+    ProtoItem@ proto = GetProtoItem(pid);
+    return proto.NeedBlueprint == 0 || ConsumedBlueprint(player, proto.NeedBlueprint);
+}
+
+bool TrueConsumedBlueprintForPid(Critter& player, uint pid)   // export
+{
+    ProtoItem@ proto = GetProtoItem(pid);
+    return proto.NeedBlueprint != 0 && ConsumedBlueprint(player, proto.NeedBlueprint);
+}
+
+bool ConsumedBlueprint(Critter& player, uint pid)   // export
+{
+    ProtoItem@ proto = GetProtoItem(pid);
+	if (proto.Type ==ITEM_TYPE_MISC)
+		return true;
+    else if(proto.Type != ITEM_TYPE_BLUEPRINT)
+        return false;
+    return FLAG(player.Param[proto.Blueprint_Param], (1 << proto.Blueprint_Id));
+}
+
+void ConsumeBlueprint(Critter& player, Item& item)   // export
+{
+    if(item.Proto.Type != ITEM_TYPE_BLUEPRINT)
+        return;
+    SETFLAG(player.ParamBase[item.Proto.Blueprint_Param], (1 << item.Proto.Blueprint_Id));
+    uint num = GetAnyData(_ADK_BPConsume(item.Proto.ProtoId));
+    num++;
+    SaveAnyData(num, _ADK_BPConsume(item.Proto.ProtoId));
+    _SubItem(item, 1);
+    player.DropTimers();
+}
+
+void GetConsumeFor(Critter& cr, int id,int,int)
+{
+    uint num = GetAnyData(_ADK_BPConsume(id));
+    cr.Say(SAY_NETMSG, "Consumed "+num);
+}
+
+bool UseBp(Critter& player, Item& item)
+{
+    if(ConsumedBlueprint(player, item.GetProtoId()))
+    {
+        player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70365);
+        return true;
+    }
+    if (!CheckBP(item.GetProtoId()))
+    {
+        player.Say(SAY_NETMSG, "You can't you this item now, maybe later.");
+        return true;
+    }
+    ConsumeBlueprint(player, item);
+    return true;
+}
+
+bool IsItemAviable(uint16 pid)
+{
+    ProtoItem@ proto = GetProtoItem(pid);
+    if (!valid(proto))
+    {
+        Log("NOT VALID PROTO PID "+pid);
+        return false;
+    }
+    return IsItemAviable(proto);
+}
+
+bool IsItemAviable(ProtoItem@ proto)
+{
+    if (RECIPES_T3.find(proto.ProtoId)>=0)
+        return LockedRecipe.find(proto.ProtoId)<0;
+    return proto.NeedBlueprint == 0 || UnlockedItems.find(proto.ProtoId)>=0;
+}
+
+bool IsItemAviable(Item& item)
+{
+    if (RECIPES_T3.find(item.Proto.ProtoId)>=0)
+        return LockedRecipe.find(item.Proto.ProtoId)<0;
+    return item.Proto.NeedBlueprint == 0 || UnlockedItems.find(item.Proto.ProtoId)>=0;
+}
+
+uint16 GetRareItemPidForTree(int treeIndex)
+{
+	uint16 pid = Trees[treeIndex][Trees[treeIndex].length() - 1];
+	
+	for (int i = Trees[treeIndex].length() - 2; i >= 0; i--)
+	{
+		uint16 prevPid = Trees[treeIndex][i];
+	
+		if (IsItemAviable(prevPid))
+			return pid;
+		else 
+			pid = prevPid;
+	}
+	
+	return pid;
+}
+
+uint16 GetTopBlueprintPidForTree(int treeIndex)
+{	
+	for (int i = Trees[treeIndex].length() - 1; i >= 0; i--)
+	{
+		uint16 pid = Trees[treeIndex][i];
+		
+		if (IsItemAviable(pid))
+		{
+			ProtoItem@ proto = GetProtoItem(pid);
+			if (!valid(proto))
+				return 0;
+		
+			return proto.NeedBlueprint;
+		}
+	}
+	
+	return 0;
+}
+
+uint16 GetAviableItem(uint16 pid, bool allowrare)
+{
+    if (IsItemAviable(pid))
+        return pid;
+		
+	ProtoItem@ proto = GetProtoItem(pid);
+	if (proto.Stackable)
+		return 0;
+		
+    if (allowrare && HAS_CHANCE(8) && NextItems.length()>0)
+    {
+        pid = random_from_array(NextItems);
+        ProtoItem@ proto = GetProtoItem(pid);
+        if (valid(proto) && !proto.Stackable)
+            return proto.ProtoId;
+        return 0;
+    }
+
+    @proto = GetProtoItem(GetAlternativeItem(pid));
+    if (valid(proto) && !proto.Stackable)
+        return proto.ProtoId;
+    return 0;
+}
+
+bool ValidateItem(Critter& cr,Item& item)
+{
+    if (IsItemAviable(item))
+        return true;
+    else
+    {
+        if (cr.Param[BAG_CHECK]!=0)
+        {
+            if (cr.GetItemsByType(ITEM_TYPE_WEAPON, null)>1)
+            {
+                DeleteItem(item);
+                return false;
+            }
+        }
+        uint16 newitem = (GetAlternativeItem(item.Proto.ProtoId));
+        if (newitem > 0 && ChangeProto(cr,item, newitem))
+            return true;
+    
+        DeleteItem(item);
+    }
+    return false;
+}
+
+bool ValidateItemForCr(Critter& cr,Item& item)
+{
+    return ValidateItem(cr,item);
+}
+
+bool ChangeProto(Critter& cr, Item& item, uint16 newproto)
+{
+    ProtoItem@ proto = GetProtoItem(newproto); 
+    if (!valid(proto))
+        return false;
+    if (item.IsStackable() || proto.Stackable)
+    {
+        cr.AddItem (PID_COMBAT_KNIFE, 1);
+        return false;
+    }
+        
+    if( not cr.IsAnim1( proto.Weapon_Anim1 ) )
+    {
+        
+        if (cr.Stat[ ST_BODY_TYPE ] == BT_GHOUL)
+        {
+            newproto=PID_SHOTGUN;
+            @proto = GetProtoItem(newproto); 
+        }
+        else if (cr.Stat[ ST_BODY_TYPE ] == BT_SUPER_MUTANT)
+        {
+            newproto=PID_FLAMER;
+            @proto = GetProtoItem(newproto);
+        }
+        else
+            return false;
+    }    
+    item.ChangeProto(newproto);
+    if (item.GetType()==ITEM_TYPE_WEAPON)
+    {
+        if (proto.Weapon_MaxAmmoCount>0)
+        {
+            item.AmmoCount = proto.Weapon_MaxAmmoCount;
+            item.AmmoPid = proto.Weapon_DefaultAmmoPid;
+        }
+        cr.SetFavoriteItem(SLOT_HAND1, newproto);
+    }
+    item.Flags = proto.Flags;
+    item.Update();
+    return true;
+}
+
+uint16 GetAlternativeItem(uint16 pid)
+{
+	ProtoItem@ proto = GetProtoItem(pid);
+	if (proto.Stackable)
+		return 0;
+
+    for (uint i=1; i < Trees.length(); i++)
+    {
+        int16 num = Trees[i].find(pid);
+        if (num<0)  
+            continue;
+
+        for (int j=num-1; j >= 0; )
+        {
+            if (UnlockedItems.find(Trees[i][j])>=0)
+                return Trees[i][Random(0,j)];
+
+            j--;
+        }
+        return Trees[i][0];
+    }
+    return 0;
+}
+
+void _RandomBlueprintInit(Item& item, bool firstTime)
+{
+    uint16 pid = GetRandomTypeBlueprintPid(item.Proto.Blueprint_Type, item.Proto.Blueprint_Level);
+    if(pid == 0)
+    {
+        Log("no blueprints for item type " + item.Proto.Blueprint_Type + ", level " + item.Proto.Blueprint_Level);
+        DeleteItem(item);
+        return;
+    }
+    item.ChangeProto(pid);
+    item.SetScript("");
+    item.Update();
+    if(item.Proto.Type != ITEM_TYPE_BLUEPRINT)
+    {
+        Log("Spawned some crap instead of blueprint");
+        DeleteItem(item);
+    }
+}
+
+uint16 GetRandomTypeBlueprintPid(int8 type, uint8 level)   // export
+{
+    if(type <= 0)
+        return GetRandomBlueprintPid(level);
+    uint16 pid = 0;
+    if(uint(type) >= TypeLevelBlueprints.length())
+        return 0;
+    if(level >= TypeLevelBlueprints[type].length())
+        return 0;
+    array<uint16>@ arr = TypeLevelBlueprints[type][level];
+    pid = random_from_array(arr);
+    return pid;
+}

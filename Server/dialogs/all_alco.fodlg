@@ -1,0 +1,153 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+7 1010 D _param p ST_INTELLECT > 3 #
+8 1020 D _param p ST_INTELLECT < 4 @
+2 2000 None 0 #
+3 2010 #
+4 2020 D _item p PID_BEER > 0 R _item p PID_BEER - 1 #
+4 2030 D _item p PID_BOOZE > 0 R _item p PID_BOOZE - 1 #
+6 2040 #
+5 2050 @
+3 3000 None 0 #
+0 3010 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+0 5010 @
+6 6000 Attack 0 #
+0 6010 @
+7 7000 None 0 #
+2 7010 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+65507 9010 #
+0 9020 &
+
+[engl]
+{100}{}{Drunkard}
+{200}{}{You see: Drunkard.}
+{210}{}{You see some ragged drunkard staggering from side to side. His face is swollen, his nose looks like a plum. His smell is so repulsive that even a brahmin wouldn't probably stand it. He is mumbling something and singing loudly from time to time.}
+{210}{}{You see a drunkard. He is very dirty, it seems he had fallen into to some sort of mud puddle, but he doesn't appear to be upset at all.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Do you have a cure for my wounded... hic... soul?}
+{2010}{}{Sober up, fucktard!}
+{2020}{}{Here, have a beer. I am stocked up with booze today. [Give him a bottle of beer.]}
+{2030}{}{Have some vodka! [Give him a bottle of vodka.]}
+{2040}{}{Get the fuck outta my sight!@@Move along, drunkard!@@Go pester somebody else. @@Get off me, you filth!}
+{2050}{}{No, sorry.}
+{3000}{}{[His breath reeks of alcohol.] You're... [Hiccups.]... evil!}
+{3010}{}{Fuck off. [Leave]}
+{4000}{}{[Suddenly, he beams with joy. He grabs the bottle and gobbles it to the bottom.] You saved my life, @sex@|buddy||girl|... hiccup...}
+{4010}{}{Who knows, I'll save you today, tommorow you might save me...}
+{5000}{}{[He leaves, dissapointed.]}
+{5010}{}{Erm... Okay. [Leave.]}
+{6000}{}{Can somebody help me?@@Go away!@@Leave me alone.}
+{6010}{}{See ya. [Leave.]}
+{7000}{}{Wow, your face is completely pale.@@Don't tell them, we know that there's nothing there.@@Ohhhh...@@Can you see me?@@Be vewy vewy quieeet, pleaaaase.. I'm hunting wabbits!@@How'd you get there?@@Shhh! I am hiding, so nobody can find me...@@I can run faster than a wolf!@@I'm feeling so fine!@@This is in my blood...@@Right there, baby.@@Wow, can you feel the force?@@Wow, you're glowing...@@I love you, @sex@|man||girl|!@@What a wonderful life! What about yours?@@Little ones are flying in the night.@@Say hello to my little friend.@@I want to sleep, buddy...@@Did you see my dog?@@Shhh, they're right behind you...@@Ooh, my head.@@So much pain..@@I'm shaking. Can't stop shaking..@@Ooh, I need some more.@@I can't wait! I need more! Right now!@@Taking away my shit?@@Hey, did you hear about anything called G.E.C.K.? I am looking for it...}
+{7010}{}{Are you okay?}
+{8000}{}{[You see a filthy smelling person.]@@[He smells like a corpse.]@@[His breath is nauseating.]}
+{8010}{}{Awww!@@Awgggh!@@Uhh!}
+{9000}{}{Sorry, I can't understand a thing you're saying.@@You're too clever for me...@@Hmph. @sex@|You dumbass.||You shithead.|.}
+{9010}{}{Arrgh! [Attack]}
+{9020}{}{Awwwww! [Leave]}
+
+[russ]
+{100}{}{Алкоголик}
+{200}{}{Вы видите пьяницу.}
+{210}{}{Вы видите шатающегося из стороны в сторону пьяного человека в лохмотьях. Лицо его распухло, нос синющий как слива. А аромат рядом с ним такой, что свалит брамина насмерть. Он что-то бормочет про себя и иногда громко поет песни.}
+{210}{}{Вы видите алкаша. Он весьма грязен - кажется, он повалялся в луже, но не особо этим расстроен.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{У вас не найдется лекарства для моей измученной... ик... души?}
+{2010}{}{Иди, проспись, доходяга!}
+{2020}{}{Да, вот возьми пивка, не жалко. [Вы отдаете бутылку пива]}
+{2030}{}{Возьми водочки! [Вы отдаете бутылку водки]}
+{2040}{}{С дороги, придурок!@@Пшел вон, пьянь!@@А ну ка отвали от меня.}
+{2050}{}{Нет, извини.}
+{3000}{}{[Дышит на вас перегаром] Ты... ик... @sex@|злой||злая|!}
+{3010}{}{А иди к черту! [Выход]}
+{4000}{}{[Лицо его мгновенно просветляется, он хватает бутылку из ваших рук и жадно пьет из горла] Ты спас мою жизнь, дружище... ик...}
+{4010}{}{Кто знает, сегодня я тебя @sex@|спас||спасла|, завтра ты меня...}
+{5000}{}{[Он разочарованно уходит]}
+{5010}{}{Эээ... ну ладно. [Выход]}
+{6000}{}{Кто-нибудь мне поможет?@@Уходи!@@Оставь меня в покое.}
+{6010}{}{Пока. [Выход]}
+{7000}{}{Ого, у тебя странный землистый цвет лица.@@Не говори им, мы знаем, что это не там.@@Аххх...@@Ты меня видишь?@@Оцень тихо, я охоцусь на к'оликов.@@Как ты туда @sex@|забрался||забралась|?@@Цсс, я прячусь, никто меня не найдет...@@Я бегаю быстрее волка!@@Я так хорошо себя чувствую!@@Это течет по моим жилам...@@Вот там, детка.@@Оооохх, чувствуешь силу?@@Ого, ты светишься...@@Я люблю @sex@|тебя, парень||тебя|!@@Какая замечательная у меня жизнь. А у тебя?@@Маленькие летают ночью.@@Поздоровайся с моим маленьким другом.@@Малец, я хочу спать...@@Не видел мою собаку?@@Цссс, они прямо за тобой...@@Ооох, моя голова.@@У меня все болит.@@Меня начинает трясти.@@Ох, мне надо еще.@@Я не могу ждать, мне надо сейчас.@@Ты забираешь мое дерьмо?@@Эй, ты никогда не слышал про G.E.C.K.? Я ищу один такой...}
+{7010}{}{С тобой все в порядке?}
+{8000}{}{[Вы видите вонючего человека]@@[От него плохо пахнет]@@[Вам становится очень дурно, когда этот человек дышит на вас]}
+{8010}{}{Аууу!@@Уггг!@@Уммм!}
+{9000}{}{Извини, не понимаю.@@Ты слишком @sex@|умён||умна| для меня.@@Хм. @sex@|Ты дебил||Ты идиотка|.}
+{9010}{}{Грррр! [Бой]}
+{9020}{}{Уууу! [Выход]}
+
+[pols]
+{100}{}{Pijak}
+{200}{}{Widzisz pijaka.}
+{210}{}{Widzisz obleczonego w szmaty pijaka. Jego twarz jest obrzmiała, nos wygląda jak śliwka. Śmierdzi gorzej niż braminie gówno, zatacza się na boki i co jakiś czas krzyczy ledwo zrozumiałe bzdury.}
+{210}{}{Widzisz pijaka. Jest bardzo brudny, najwidoczniej wpadł do jakiegoś szamba - ale nie zdaje się, żeby zbytnio się tym przejmował.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Masz może jakieś lekarstwo na moją... [Czkawka.] Ekhem, umęczoną... duszę?}
+{2010}{}{Wytrzeźwiej!}
+{2020}{}{Jasne, trzymaj browara. [Dajesz mu butelkę piwa.]}
+{2030}{}{Pewnie, może napijesz się wódeczki? [Dajesz mu butelkę wódki.]}
+{2040}{}{Spadaj, frajerze!@@Odsuń się, obesrańcu!@@Idź wkurzać kogoś innego.}
+{2050}{}{Nie, przykro mi.}
+{3000}{}{[Śmierdzi od niego alkoholem.] Jesteś... [Czkawka.] ...@sex@|zły||zła|!}
+{3010}{}{A idź pan w cholerę! [Odejdź.]}
+{4000}{}{[Promienieje radością. Chwyta butelkę i momentalnie ją opróżnia.] Dzięki, ratujesz mi życie... Hic!}
+{4010}{}{Kto wie, dzisiaj ja ratuję ciebie - jutro może ty uratujesz mnie...}
+{5000}{}{[Odchodzi, zawiedziony.]}
+{5010}{}{Hm... OK. [Odchodzi.]}
+{6000}{}{Czy ktoś może mi pomóc?@@Odejdź!@@Zostaw mnie w spokoju.@@Nie rób mi krzywdy.}
+{6010}{}{Na razie. [Odejdź.]}
+{7000}{}{Łał, twoja twarz jest taka blada.@@Co, ze mną się nie napijesz?@@Ooo...@@Widzisz mnie? A teraz?@@A kto się w styczniu urodził...@@Jak się tutaj @sex@|dostałeś||dostałaś|?@@Cicho! Ukrywam się, żeby nikt mnie nie mógł znaleźć.@@Jestem szybszy niż błyskawica!@@Ooo, jak mi dobrze!@@Czuję te promile w mojej krwi...@@Ooo tak, maleńka.@@Moc jest z nami.@@Świecisz się jak... nie wiem... świeczka.@@Kocham cię, @sex@|stary||maleńka|!@@Życie jest takie piękne!@@Przywitaj się z moim małym przyjacielem.@@Widziałeś mojego psa?@@Uważaj, są tuż za tobą!@@O kurwa, moja głowa...@@Aśnaebaem!@@Oooch, chcę jeszcze więcej...@@Nie mogę czekać! Więcej! Teraz!@@Nie @sex@|słyszałeś||słyszałaś| przypadkiem o ustrojstwie zwanym G.E.C.K.? Muszę je znaleźć, żeby ocalić swoją wioskę...}
+{7010}{}{Wszystko w porządku?}
+{8000}{}{[Śmierdzi. Bardzo.]@@[Śmierdzi jak trup.]@@[Od jego oddechu chce ci się wymiotować.]}
+{8010}{}{Auuu!@@Grr!@@Uch!}
+{9000}{}{Nie rozumiem, o czym do mnie mówisz.@@O czym ty do mnie rozmawiasz?@@Ta, yhm. @sex@|Ciota.||Dziwka.|}
+{9010}{}{Aaargh! [Atakuj.]}
+{9020}{}{[Odejdź.]}
+
+[ptbr]
+{100}{}{Bêbado}
+{200}{}{Você vê um bêbado.}
+{210}{}{Você vê um bêbado maltrapilho cambaleando de um lado para outro. Sua cara está inchada e seu nariz vermelho escuro. Seu cheiro é tão repulsivo que mesmo um brahmin não suportaria. Ele está resmungando algo e cantando alto de tempos em tempos.}
+{210}{}{Você vê um bêbado. Ele está bastante sujo. Parece que ele caiu em algum tipo de poça de lama mas parece que ele não se importa com isto.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{1020}{}{-}
+{2000}{}{Você tem a cura para minha alma... hic... ferida?}
+{2010}{}{Cria vergonha, cú de cana!}
+{2020}{}{Pega, toma uma cerveja. Eu tô cheio de bebidas. [Dá a ele uma garrafa de cerveja.]}
+{2030}{}{Toma uma destilada! Álcool puro! [Dá a ele uma garrafa de bebida destilada.]}
+{2040}{}{Sai de perto de mim!@@Vai embora, bêbado!@@Vai perturbar @sex@|outro||outra|. @@Sai de mim, seu imundo!}
+{2050}{}{Não, tenho não.}
+{3000}{}{[Seu bafo fede a álcool.] Você é... [Hiccups.]... @sex@|mau||má|!}
+{3010}{}{Cai fora. [Sai]}
+{4000}{}{[Repentinamente, ele vibra de alegria. Ele pega a garrafa e toma pelo gargalo.] Você salvou minha vida, @sex@|xapa||moça|... hiccup...}
+{4010}{}{Você sabe como é, o mundo dá voltas...}
+{5000}{}{[Ele sai desapontado.]}
+{5010}{}{Ehm... OK. [Sai.]}
+{6000}{}{Alguém pode me ajudar?@@Vai embora!@@Me deixa em paz.}
+{6010}{}{Até depois. [Sai.]}
+{7000}{}{Sua cara tá pálida.@@Não conte a eles, nós sabemos que não tem nada aqui.@@Ahhhh...@@Podes me ver?@@Fique quieto, estou caçando toelhos!@@Como que você chegou aí?@@Shhh! Estou me escondendo daí ninguém irá me encontrar...@@IEu posso correr mais rápido que um lobo!@@Estou me sentindo tão bem!@@Isto está em meu sangue...@@Bem aí.@@Noss, pode sentir a força?@@Ou, você tá brilhando...@@Eu te amo, @sex@|cara||moça|!@@Que vida maravilhosa! Como vai a sua?@@Pequeninos estão voando durante a noite.@@Diga oi ao meu pequeno amigo.@@Eu quero dormir...@@Viu meu cão?@@Shhh, eles estão bem atrás de você...@@Aah, minha cabeça.@@Quanta dor...@@Estou tremendo, Não paro de tremer...@@Aah, eu preciso de mais um pouco.@@Não posso esperar! Eu preciso de mais! Agora!@@Ei, você já ouviu falar de algo chamado G.E.C.K., estou procurando por um destes...}
+{7010}{}{Você está bem?}
+{8000}{}{[Você vê uma pessoa nojenta e fedorenta.]@@[Ele fede como se estivesse morto.]@@[Seu bafo é nauseante.]}
+{8010}{}{Awww!@@Awgggh!@@Uhh!}
+{9000}{}{Desculpa, eu não entendo uma coisa do que você diz.@@Você é inteligente demais para mim...@@Hmph. @sex@|Seu bosta||Sua idiota|.}
+{9010}{}{Arrgh! [Ataca]}
+{9020}{}{Awwwww! [Sai]}
+

@@ -1,0 +1,148 @@
+#include "_macros.fos"
+#include "utils_h.fos"
+#include "entire.fos"
+#include "_msgstr.fos"
+#include "mapdata_h.fos"
+
+#include "pdata_h.fos"
+
+#define MAX_TENTS (20) // remove this comment if team approve the limit :>
+
+import void MoveCars(Map& from, Map& to) from "car";
+
+bool TrySetTent(Critter& player, Item& item) //Export
+{	
+	if( player.Timeout[ TO_BATTLE ] > 0 )
+    {
+        player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        return false;
+    }
+	Map@ map = player.GetMap();
+	if(!valid(map)) 
+		return false;
+	Location @ loc = map.GetLocation();
+	if(!valid(loc)) 
+		return false;  
+	int tenttype=CheckTentType(loc.GetProtoId());
+	if (tenttype==0)
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70389); 
+		return false;
+	}
+
+	if( GetPersonalDataListSize( player, "tents" ) >= MAX_TENTS )
+	{
+		player.SayMsg( SAY_NETMSG, TEXTMSG_TEXT , STR_TOO_MANY_TENTS );
+		return false;
+	}
+	
+	CreateTent(player,tenttype,map);
+	return true;
+}
+
+bool CreateTent(Critter & player, int tenttype, Map & oldmap)
+{	
+	Critter @[] Group;
+	Group.insertLast(@player);  // push him to array
+	player.GetFollowGroup(FIND_LIFE,Group);  // push other players to array
+
+	uint locationId = CreateLocation(tenttype, player.WorldX, player.WorldY,Group); // create our cave location
+	if(locationId==0) 
+		return false; // if no success
+	Location @ location = GetLocation(locationId);  // get loc by id
+	if(!valid(location)) 
+		return false;  // check if valid
+	SetRootMapData(location, MAP_DATA_TENT_OWNER, player.Id);
+	AddToPersonalDataList( player, "tents", location.Id );
+	location.AutoGarbage = false;  // set not to close if empty
+	location.Visible = false;  // set invisible for other players
+	location.Radius = 6;  // set small radius
+	location.Color=COLOR_SAFE;
+	Map @ map = location.GetMapByIndex( 0 ); 
+	if(valid(Group) && valid(map))
+    {
+        MoveCars(oldmap,map);
+		//players teleport				
+		for(uint i=0; i<Group.length(); i++)
+            Group[i].TransitToMap(map.Id,0);
+	}
+    else
+		Log("FAIL GROUP PROCESSING WHILE BUILDING TENT");
+
+	_CritDeleteItem( player, PID_BPACK_TENT, 1 );
+	return true;
+}
+
+uint CheckTentType(uint locPid)
+{
+	if ((locPid>=LOCATION_DesertEncounter1) && (locPid<=LOCATION_DesertEncounter14)) 
+		return LOCATION_Personal_Tent_Desert;
+	else if ((locPid>=LOCATION_CityEncounter1) && (locPid<=LOCATION_CityEncounter15)) 
+		return LOCATION_Personal_Tent_City;
+	else if ((locPid>=LOCATION_MountainEncounter1) && (locPid<=LOCATION_MountainEncounter14)) 
+		return LOCATION_Personal_Tent_Mountain;
+	else if ((locPid>=LOCATION_CoastDesertEncounter1) && (locPid<=LOCATION_CoastCityEncounter4)) 
+		return LOCATION_Personal_Tent_Coast;
+	return 0;
+}
+
+bool _InitPersonalTentTerminal( Critter& player, Scenery& scenery, int skill, Item@ item )
+{
+    
+	if( skill == SKILL_PICK_ON_GROUND && not valid( item ) )
+    { 
+		Location@ loc = GetLocationOf(player);
+		if (!valid(loc) || !loc.IsTent() || (!IsTentOwner(player) && !IsKnownTent(player)))
+			return true;
+		RunDialog(player, DIALOG_personal_tent_terminal, scenery.HexX, scenery.HexY, false );
+	}	
+	return true;
+}
+
+bool d_IsTentOwner( Critter& player, Critter@ terminal )
+{
+	return IsTentOwner(player);
+}
+
+bool d_IsTentMember( Critter& player, Critter@ terminal )
+{
+	return !IsTentOwner(player) && IsKnownTent(player);
+}
+
+bool IsTentOwner(Critter& player)
+{
+	Location@ loc = GetLocationOf( player );
+	if (!valid(loc) || !loc.IsTent())
+		return false;
+	return GetRootMapData( loc, MAP_DATA_TENT_OWNER ) == int(player.Id);
+}
+
+bool IsKnownTent(Critter& player)
+{
+	Location@ loc = GetLocationOf( player );
+	if (!valid(loc) || !loc.IsTent())
+		return false;
+	return player.IsKnownLoc(true, loc.Id);
+}
+
+void r_UnSeeTent( Critter& player, Critter@ terminal )
+{
+	Location@ loc = GetLocationOf( player );
+	if (!valid(loc) || !loc.IsTent())
+		return;
+	player.UnsetKnownLoc(true,loc.Id);
+}
+
+void r_DeleteTent( Critter& player, Critter@ terminal )
+{
+	Location@ loc = GetLocationOf( player );
+	if (!valid(loc) || !loc.IsTent())
+		return;
+	RemoveFromPersonalDataList(player, "tents", loc.Id );
+	DeleteLocation(loc.Id);
+}
+
+void test( Critter& cr, int, int, int )
+{
+	cr.Say(SAY_NETMSG, ""+GetPersonalDataListSize( cr, "tents" ));
+}

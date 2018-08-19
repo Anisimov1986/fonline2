@@ -1,0 +1,49 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Drifter}
+{200}{}{You see: a drifter.}
+{210}{}{This person's looks and demeanor are clearly influenced by the vagabond lifestyle.}
+{1000}{}{Initial preferences}
+{1010}{}{Peaceful resolution}
+{2000}{}{What do you want?@@What are you doing here?@@Leave us in peace.@@Get out.@@I'm not talking to you.@@I've got better things to do.}
+{3000}{}{Yeah, yeah, we're moving...@@Wonder where fate will take us now.@@You've done your part, now go.@@We're leaving soon...@@Where will we go?}
+
+[russ]
+{100}{}{Бродяга}
+{200}{}{Вы видите: обычный бродяга.}
+{210}{}{На внешность этого человека и его поведение явно наложил отпечаток образ жизни бомжа.}
+{1000}{}{Initial preferences}
+{1010}{}{Peaceful resolution}
+{2000}{}{Чего тебе?@@Что тебе здесь нужно?@@Оставь меня в покое.@@Проваливай.@@Я не буду разговаривать с тобой.@@У меня дела.}
+{3000}{}{Интересно что нас ждет впереди.@@Ты сделал свою работу, теперь уходи.@@Мы скоро уезжаем...@@Куда нам отправится?}
+
+[pols]
+{100}{}{Drifter}
+{200}{}{You see: a drifter.}
+{210}{}{This person's looks and demeanor are clearly influenced by the vagabond lifestyle.}
+{1000}{}{Initial preferences}
+{1010}{}{Peaceful resolution}
+{2000}{}{What do you want?@@What are you doing here?@@Leave us in peace.@@Get out.@@I'm not talking to you.@@I've got better things to do.}
+{3000}{}{Yeah, yeah, we're moving...@@Wonder where fate will take us now.@@You've done your part, now go.@@We're leaving soon...@@Where will we go?}
+
+[ptbr]
+{100}{}{Vagabundo}
+{200}{}{Você vê um vagabundo.}
+{210}{}{Esta pessoa parece e comporta-se como se fosse visivelmente influenciada pelo estilo de vida vagabundo.}
+{1000}{}{Initial preferences}
+{1010}{}{Peaceful resolution}
+{2000}{}{O que é?@@O que tu tá fazendo aqui?@@Deixa a gente em paz.@@Cai fora.@@Estou ocupado.@@Tenho mais o que fazer.}
+{3000}{}{Tá, tá, a gente tá indo...@@Nem sei para onde a gente poderia ir agora...@@Tu já fez a tua parte, agora vai embora daqui.@@Tamos indo em breve...@@Pra onde a gente vai?}
+

@@ -1,0 +1,598 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+
+#define ROLE_MANAGER		( 290000 )
+#define ROLE_ATTACKER		( 291000 )
+#define ROLE_FINISHER		( 292000 )
+#define ATTACKERS			( 6 )
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import void AddNewMapMessage( string text,int time, int showtimer, uint color, uint mapId) from "stocmessages";
+import int GetNextTime(uint Id) from "game_events";  
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import void GenerateStats(Item& item) from "custom_items";
+import uint EraseAttackPlane( Critter& npc, Critter& target ) from "npc_planes";
+import void FixState(Item& item) from "lockers";
+import bool _SetDoorTrap( Item& door, uint trapPid, bool noLoot ) from "trap";
+
+int[] params = { MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK ,10,
+MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+ST_BONUS_LOOK, 100, ST_DIALOG_ID, 9319, ST_REPLICATION_TIME, 1, ST_MELEE_DAMAGE_EXT, 800,ST_NPC_ROLE, ROLE_MANAGER };
+int[] params2 = { MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK ,1,PE_BONUS_RATE_OF_FIRE,1,PE_BONUS_RANGED_DAMAGE,2,
+MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, ST_MELEE_DAMAGE, 50, 
+ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_ATTACKER, ST_REPLICATION_TIME, -1 , ST_WALK_TIME, 130};
+int[] params3 = { MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK ,10,
+PE_BETTER_CRITICALS ,1,PE_BONUS_RATE_OF_FIRE,1,PE_BONUS_RANGED_DAMAGE,2,
+MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+ST_BONUS_LOOK, 100, ST_DIALOG_ID, 9320, ST_NPC_ROLE, ROLE_FINISHER, ST_REPLICATION_TIME, 1 ,MODE_NO_PVP, 1 };
+int HGEventTimer;
+//~run event_hungergames event_start 0 0 0
+void event_start(uint id)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (!valid(map))
+		return;
+	AddNewMessage( "Hunger Games event will start soon. Head to Hub Downtown and talk to event manager, time till beginning:",REAL_MINUTE(15), 1, COLOR_ORANGE, true, 9321);
+	HGEventTimer = CreateTimeEvent(__FullSecond+REAL_MINUTE(15), "e_event_gathering", 0, true);
+	EventCleanup();
+	//SpawnCages(map);
+	SpawnEventManager();
+}
+
+
+void SpawnCages(Map& map)
+{
+	uint entiresnum = map.CountEntire(ENTIRE_HG_CAGE_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_HG_CAGE_SPAWN, i, hexX, hexY))
+		{
+			Item@ cage = map.AddItem( hexX, hexY, Random(9840,9845), 1 );
+			if (!valid(cage))
+				continue;
+		}
+	}
+}
+
+void SpawnEventManager()
+{
+	Map@ map = GetMapByPid(MAP_hub,0);
+	map.AddNpc(94, 301, 319,	2,	params, null, null);
+	map.AddNpc(94, 317, 325,	0,	params, null, null);
+	map.AddNpc(94, 288, 329,	3,	params, null, null);
+}
+
+
+uint e_event_gathering(array<uint>@ values)
+{
+	AddNewMessage( "Let the Hunger Games begin!",REAL_SECOND(10), 0, COLOR_ORANGE, true, 1);
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (!valid(map))
+		return 0;
+	uint entiresnum = map.CountEntire(ENTIRE_HG_CAGE_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_HG_CAGE_SPAWN, i, hexX, hexY))
+		{
+			Item@[] items;
+			map.GetItems( hexX, hexY, items );
+			for (uint8 j=0; j<items.length();j++)
+			{
+				if (items[j].GetType() == ITEM_TYPE_MISC)
+				DeleteItem(items[j]);
+			}
+
+		}
+	}
+	SpawnLockers(map);
+	DeleteManager(null);
+	EnableMovement(map);
+	return 0;
+}
+
+void EnableMovement(Map& map)
+{
+	Critter@[] critters;
+	uint playernum = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO, critters);
+	for( uint c=0; c<playernum; c++ )
+	{
+		if( critters[c].GetAccess() == ACCESS_CLIENT )
+		{
+			critters[c].ModeBase[MODE_NO_WALK]=0;
+			critters[c].ModeBase[MODE_NO_RUN]=0;
+		}
+	}
+}
+
+const uint[] Pids_Traps = { PID_MOLOTOV_COCKTAIL, PID_FRAG_GRENADE, PID_PLASMA_GRENADE };
+
+void SpawnLockers(Map& map)
+{
+	uint entiresnum = map.CountEntire(ENTIRE_HG_BOXES_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_HG_BOXES_SPAWN, i, hexX, hexY))
+		{
+			Item@ locker = map.AddItem( hexX, hexY, Random(197,204), 1 );
+			if (!valid(locker))
+				continue;
+			AddLoot(locker,i);
+			FixState(locker);
+		}
+	}
+}
+
+void AddLoot(Item@ locker, uint type)
+{
+	if( !valid( locker ) )
+		return;
+    {
+		//ARMORS
+		FillBag( locker, PID_LEATHER_JACKET, 			12,  1, 1 );
+		FillBag( locker, PID_LEATHER_ARMOR, 			8,  1, 1 );
+		FillBag( locker, PID_LEATHER_ARMOR_MK_II, 			8,  1, 1 );
+		FillBag( locker, PID_CURED_LEATHER_ARMOR, 			12,  1, 1 );
+		FillBag( locker, PID_METAL_ARMOR, 			8,  1, 1 );
+		FillBag( locker, PID_METAL_ARMOR_MK_II, 			2,  1, 1 );
+		FillBag( locker, PID_TESLA_ARMOR, 			2,  1, 1 );
+		FillBag( locker, PID_COMBAT_ARMOR_MK_II, 			1,  1, 1 );
+		FillBag( locker, PID_COMBAT_ARMOR, 			2,  1, 1 );
+		FillBag( locker, PID_BROTHERHOOD_COMBAT_ARMOR, 			1,  0, 1 );
+		FillBag( locker, PID_BLACK_COMBAT_ARMOR, 			1,  0, 1 );
+		FillBag( locker, PID_RANGER_ARMOR, 			1,  1, 1 );
+		FillBag( locker, PID_DESERT_CAMO_ARMOR, 			1,  1, 1 );
+		FillBag( locker, PID_NAVY_ARMOR, 			1,  1, 1 );
+		//GUNS
+		FillBag( locker, PID_10MM_PISTOL, 			3,  1, 1 );
+		FillBag( locker, PID_14MM_PISTOL, 			3,  1, 1 );
+		FillBag( locker, PID_DESERT_EAGLE, 			3,  1, 1 );
+		FillBag( locker, PID_DESERT_EAGLE_EXT_MAG, 			3,  1, 1 );
+		FillBag( locker, PID_223_PISTOL, 			3,  1, 1 );
+		FillBag( locker, PID_44_MAGNUM_REVOLVER, 			3,  1, 1 );
+		FillBag( locker, PID_44_MAGNUM_SPEEDLOADER, 			3,  1, 1 );
+		FillBag( locker, PID_NEEDLER_PISTOL, 			3,  1, 1 );
+		//FillBag( locker, PID_PK12_GAUSS_PISTOL, 			1,  0, 1 );
+		FillBag( locker, PID_HUNTING_RIFLE, 			3,  1, 1 );
+		FillBag( locker, PID_SCOPED_HUNTING_RIFLE, 			3,  1, 1 );
+		FillBag( locker, PID_ASSAULT_RIFLE, 			2,  1, 1 );
+		FillBag( locker, PID_ASSAULT_RIFLE_EXT_MAG, 			2,  1, 1 );
+		FillBag( locker, PID_SNIPER_RIFLE, 			2,  1, 1 );
+		FillBag( locker, PID_FN_FAL, 			2,  1, 1 );
+		FillBag( locker, PID_XL70E3, 			2,  1, 1 );
+		//FillBag( locker, PID_M72_GAUSS_RIFLE, 			1,  0, 1 );
+		FillBag( locker, PID_SHOTGUN, 			3,  1, 1 );
+		FillBag( locker, PID_SAWED_OFF_SHOTGUN, 			3,  1, 1 );
+		FillBag( locker, PID_COMBAT_SHOTGUN, 			2,  1, 1 );
+		FillBag( locker, PID_HK_CAWS, 			2,  1, 1 );
+		FillBag( locker, PID_PANCOR_JACKHAMMER, 			2,  1, 1 );
+		FillBag( locker, PID_10MM_SMG, 			3,  1, 1 );
+		FillBag( locker, PID_HK_P90C, 			2,  1, 1 );
+		FillBag( locker, PID_TOMMY_GUN, 			3,  1, 1 );
+		FillBag( locker, PID_HK_G11, 			1,  0, 1 );
+		//FillBag( locker, PID_HK_G11E, 			1,  1, 1 );
+		FillBag( locker, PID_GREASE_GUN, 			3,  1, 1 );
+		FillBag( locker, PID_FLAMER, 			3,  1, 1 );
+		FillBag( locker, PID_IMPROVED_FLAMETHROWER, 			2,  1, 1 );
+		FillBag( locker, PID_ROCKET_LAUNCHER, 			2,  1, 1 );
+		FillBag( locker, PID_MINIGUN, 			2,  1, 1 );
+		FillBag( locker, PID_AVENGER_MINIGUN, 			2,  1, 1 );
+		//FillBag( locker, PID_VINDICATOR_MINIGUN, 			1,  0, 1 );
+		//FillBag( locker, PID_BOZAR, 			1,  0, 1 );
+		FillBag( locker, PID_LIGHT_SUPPORT_WEAPON, 			2,  1, 1 );
+		FillBag( locker, PID_M60, 			4,  1, 1 );
+		FillBag( locker, PID_LASER_PISTOL, 			3,  1, 1 );
+		FillBag( locker, PID_MAGNETO_LASER_PISTOL, 			3,  1, 1 );
+		FillBag( locker, PID_SOLAR_SCORCHER, 			1,  0, 1 );
+		FillBag( locker, PID_LASER_RIFLE, 			2,  1, 1 );
+		FillBag( locker, PID_LASER_RIFLE_EXT_CAP, 			2,  1, 1 );
+		//FillBag( locker, PID_GATLING_LASER, 			1,  0, 1 );
+		//FillBag( locker, PID_ALIEN_LASER_PISTOL, 			1,  0, 1 );
+		FillBag( locker, PID_PLASMA_PISTOL, 			2,  1, 1 );
+		FillBag( locker, PID_PLASMA_PISTOL_EXT_CART, 			2,  1, 1 );
+		FillBag( locker, PID_PLASMA_RIFLE, 			2,  1, 1 );
+		//FillBag( locker, PID_TURBO_PLASMA_RIFLE, 			1,  0, 1 );
+		FillBag( locker, PID_YK32_PULSE_PISTOL, 			2,  1, 1 );
+		//FillBag( locker, PID_YK42B_PULSE_RIFLE, 			1,  0, 1 );
+		FillBag( locker, PID_MOLOTOV_COCKTAIL, 			4,  1, 15 );
+		FillBag( locker, PID_FRAG_GRENADE, 			16,  15, 40 );
+		FillBag( locker, PID_PLASMA_GRENADE, 			8,  15, 40 );
+		FillBag( locker, PID_THROWING_KNIFE, 			10,  15, 40 );
+		FillBag( locker, PID_KNIFE, 			4,  1, 1 );
+		FillBag( locker, PID_COMBAT_KNIFE, 			4,  1, 1 );
+		FillBag( locker, PID_LIL_JESUS_WEAPON, 			4,  1, 1 );
+		FillBag( locker, PID_WAKIZASHI_BLADE, 			3,  1, 1 );
+		FillBag( locker, PID_ELI_KNIFE, 			2,  1, 1 );
+		FillBag( locker, PID_SPEAR, 			4,  1, 1 );
+		FillBag( locker, PID_SHARP_SPEAR, 			4,  1, 1 );
+		FillBag( locker, PID_CLUB, 			2,  1, 1 );
+		FillBag( locker, PID_CROWBAR, 			2,  1, 1 );
+		FillBag( locker, PID_WRENCH, 			2,  1, 1 );
+		FillBag( locker, PID_SLEDGEHAMMER, 			3,  1, 1 );
+		FillBag( locker, PID_LOUISVILLE_SLUGGER, 			2,  1, 1 );
+		FillBag( locker, PID_SUPER_SLEDGE, 			2,  1, 1 );
+		FillBag( locker, PID_CATTLE_PROD, 			2,  1, 1 );
+		FillBag( locker, PID_SUPER_CATTLE_PROD, 			2,  1, 1 );
+		FillBag( locker, PID_RIPPER, 			2,  1, 1 );
+		FillBag( locker, PID_POWER_FIST, 			3,  1, 1 );
+		FillBag( locker, PID_BRASS_KNUCKLES, 			4,  1, 1 );
+		FillBag( locker, PID_SPIKED_KNUCKLES, 			4,  1, 1 );
+		FillBag( locker, PID_MEGA_POWER_FIST, 			2,  1, 1 );
+		//AMMO
+		FillBag( locker, PID_4_7MM_CASELESS, 			8,  1, 50 );
+		FillBag( locker, PID_5MM_JHP, 			8,  1, 200 );
+		FillBag( locker, PID_5MM_AP, 			8,  1, 300 );
+		FillBag( locker, PID_7_62MM_AMMO, 			8,  1, 100 );
+		FillBag( locker, PID_9MM_AMMO, 			8,  1, 100 );
+		FillBag( locker, PID_9MM_BALL, 			8,  1, 100 );
+		FillBag( locker, PID_10MM_JHP, 			8,  1, 100 );
+		FillBag( locker, PID_10MM_AP, 			8,  1, 100 );
+		FillBag( locker, PID_14MM_AP, 			8,  1, 50 );
+		FillBag( locker, PID_44_MAGNUM_JHP, 			8,  1, 100 );
+		FillBag( locker, PID_44_FMJ_MAGNUM, 			8,  1, 100 );
+		FillBag( locker, PID_45_CALIBER_AMMO, 			8,  1, 100 );
+		FillBag( locker, PID_223_FMJ, 			8,  1, 100 );
+		FillBag( locker, PID_SHOTGUN_SHELLS, 			8,  1, 100 );
+		FillBag( locker, PID_SLUG_SHELLS, 			8,  1, 100 );
+		FillBag( locker, PID_2MM_EC_AMMO, 			8,  1, 25 );
+		FillBag( locker, PID_EXPLOSIVE_ROCKET, 			8,  1, 15 );
+		FillBag( locker, PID_ROCKET_AP, 			8,  1, 15 );
+		FillBag( locker, PID_FLAMETHROWER_FUEL, 			8,  1, 20 );
+		FillBag( locker, PID_FLAMETHROWER_FUEL_MK_II, 			8,  1, 20 );
+		FillBag( locker, PID_SMALL_ENERGY_CELL, 			8,  1, 100 );
+		FillBag( locker, PID_MICRO_FUSION_CELL, 			8,  1, 80 );
+		FillBag( locker, PID_HN_NEEDLER_CARTRIDGE, 			8,  1, 50 );
+		FillBag( locker, PID_HN_AP_NEEDLER_CARTRIDGE, 			8,  1, 50 );
+		//DRUGS
+		FillBag( locker, PID_STIMPAK, 			20,  1, 10 );
+		FillBag( locker, PID_SUPER_STIMPAK, 			20,  1, 4 );
+		FillBag( locker, PID_HEALING_POWDER, 			20,  1, 15 );
+		FillBag( locker, PID_HYPO, 			20,  1, 1 );
+		FillBag( locker, PID_NUKA_COLA, 			40,  1, 1 );
+		FillBag( locker, PID_BUFFOUT, 			30,  1, 1 );
+		FillBag( locker, PID_PSYCHO, 			30,  1, 1 );
+		FillBag( locker, PID_JET, 			30,  1, 1 );
+		FillBag( locker, PID_COOKIE, 			10,  1, 1 );
+		FillBag( locker, PID_CIGARETTES, 			40,  1, 1 );
+		//MISC
+		FillBag( locker, PID_FIRST_AID_KIT, 			3,  1, 1 );
+		FillBag( locker, PID_FIELD_MEDIC_KIT, 			3,  1, 1 );
+		FillBag( locker, PID_DOCTORS_BAG, 			3,  1, 1 );
+		FillBag( locker, PID_PARAMEDICS_BAG, 			3,  1, 1 );
+		FillBag( locker, PID_STEALTH_BOY, 			3,  1, 1 );
+	}
+	
+	if (HAS_CHANCE( 20 ))
+	{
+		_SetDoorTrap(locker, Pids_Traps[Random(0, Pids_Traps.length() - 1)], true);
+	}
+}
+
+uint e_event_finish(array<uint>@ values)
+{
+	EventCleanup();
+	DeleteMonstersSilent(null);
+	return 0;
+}
+
+void EventCleanup()
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if(!valid(map))
+		return;
+	Item@[] items;
+	map.GetItemsByType(ITEM_TYPE_ARMOR, items);
+	map.GetItemsByType(ITEM_TYPE_DRUG, items);
+	map.GetItemsByType(ITEM_TYPE_WEAPON, items);
+	map.GetItemsByType(ITEM_TYPE_AMMO, items);
+	map.GetItemsByType(ITEM_TYPE_CONTAINER, items);
+	map.GetItemsByType(ITEM_TYPE_MISC, items);
+		DeleteItems(items);
+}
+
+uint DeleteManager(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_hub,0);
+	if (!valid(map))
+		return 0;
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_MANAGER)
+			DeleteNpc(npcs[i]);
+	}
+	return 0;
+}
+
+uint DeleteMonsters(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (!valid(map))
+		return 0;
+	AddNewMapMessage( "Monsters have left the arena!" ,REAL_SECOND(5), 0 , COLOR_RED, map.Id);
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_ATTACKER)
+			DeleteNpc(npcs[i]);
+	}
+	return 0;
+}
+
+uint DeleteMonstersSilent(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (!valid(map))
+		return 0;
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_ATTACKER)
+			DeleteNpc(npcs[i]);
+	}
+	return 0;
+}
+
+void e_event_monsters(uint id)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (!valid(map))
+		return;
+	AddNewMapMessage( "Monsters have entered the arena! They will wander and attack unwary prey!" ,REAL_SECOND(10), 0 , COLOR_RED, map.Id);
+	uint entiresnum = map.CountEntire(ENTIRE_EVENT_MOB_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	uint8 dir=0;
+	uint attackers=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (attackers>=ATTACKERS)
+			break;
+		if (map.GetEntireCoords (ENTIRE_EVENT_MOB_SPAWN, i, hexX, hexY,dir) && AddAttacker(hexX,hexY,dir))
+			attackers++;
+	}
+}
+
+bool AddAttacker(uint16 hexX,uint16 hexY, uint8 dir)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if(!GetFreeHex(map, 1,hexX, hexY))
+	{
+		return false;
+	}
+	Critter@ attacker = map.AddNpc(663, hexX, hexY,	dir,	params2, null, null);
+	if (!valid(attacker))
+		return false;
+    attacker.ShowCritterDist1 = 20;
+    attacker.ShowCritterDist2 = 30;
+    attacker.SetEvent( CRITTER_EVENT_SHOW_CRITTER_1, "mob@_ShowPlayer" );
+    attacker.SetEvent( CRITTER_EVENT_HIDE_CRITTER_2, "_Hide" );
+	attacker.SetEvent(CRITTER_EVENT_DEAD, "_Dead");
+    attacker.SetEvent( CRITTER_EVENT_IDLE, "mob@_RandomPatrol" );
+    attacker.SetEvent( CRITTER_EVENT_ATTACKED,    "mob@_AttackedNew" );
+	attacker.ShowCritterDist2=1;
+	attacker.SetEvent(CRITTER_EVENT_SHOW_CRITTER_2, "mob@_ShowPlayerFastAttack");
+    FirstSpawnPatrol(attacker);
+	return true;
+}
+
+
+#define QUEST_PATROL_ENTIRE   (388)
+
+void FirstSpawnPatrol ( Critter& cr )
+{      
+        Map@ map = cr.GetMap();
+        uint entiresnum = map.CountEntire(QUEST_PATROL_ENTIRE);
+        uint16 hexX=0;
+        uint16 hexY=0;
+        uint mapId;
+        uint8 dir;
+        cr.GetHomePos (mapId , hexX, hexY, dir);
+ 
+        uint8[] entires;
+        for (uint8 i=0; i<entiresnum;i++)
+        {
+            uint16 hexX2=0;
+            uint16 hexY2=0;
+            map.GetEntireCoords (QUEST_PATROL_ENTIRE, i, hexX2, hexY2);
+        if (hexX==hexX2 && hexY==hexY2)
+        {
+    
+            map.SetData(i,0);
+            break;
+        }
+        }
+ 
+    for (uint j=0; j<entiresnum;j++)
+    {
+        if (map.GetData(j)==0)
+            entires.insertLast( j );
+    }
+    uint8 newentire=entires[Random(0,entires.length()-1)];
+    
+    map.GetEntireCoords (QUEST_PATROL_ENTIRE, newentire, hexX, hexY);
+    map.SetData(newentire,1);
+    cr.SetHomePos (hexX, hexY, Random(0,5));
+    
+}
+
+void _Hide( Critter& npc, Critter& player )
+{
+    if( not player.IsPlayer() )
+        return;
+    EraseAttackPlane( npc, player );
+    npc.EraseEnemyFromStack	( player.Id );
+}
+
+void _Dead(Critter& mob, Critter@ killer)
+{
+    mob.ClearEnemyStack();
+}
+
+
+
+
+void SpawnEventPrizer()
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	map.AddNpc(94, 230, 236,	3,	params3, null, null);
+}
+
+uint DeletePrizer(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (!valid(map))
+		return 0;
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_FINISHER)
+			DeleteNpc(npcs[i]);
+	}
+	return 0;
+}
+
+
+
+uint RespawnSpawnLockers(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (!valid(map))
+		return 0;
+	RespawnSpawnLockers1(map);
+	RespawnSpawnLockers2(map);
+	return 0;
+}
+
+void RespawnSpawnLockers1(Map& map)
+{
+	Item@[] items;
+	map.GetItemsByType(ITEM_TYPE_CONTAINER, items);
+		DeleteItems(items);
+}
+
+void RespawnSpawnLockers2(Map& map)
+{	
+	uint entiresnum = map.CountEntire(ENTIRE_HG_BOXES_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_HG_BOXES_SPAWN, i, hexX, hexY))
+		{
+			Item@ locker = map.AddItem( hexX, hexY, Random(197,204), 1 );
+			if (!valid(locker))
+				continue;
+			AddLoot(locker,i);
+			FixState(locker);
+		}
+	}
+}
+
+
+//To Start Event
+void event_start( Critter& cr, int, int , int)
+{
+	event_start(2);
+	DeleteManager(null);
+}
+void event_gathering( Critter& cr, int, int , int)
+{
+	e_event_gathering(null);
+}
+//To End Event
+void event_finish( Critter& cr, int, int , int)
+{
+	e_event_finish(null);
+}
+
+void event_cleanup( Critter& cr, int, int , int)
+{
+	EventCleanup();
+}
+//To add monsters when players are not figting
+void event_monsters( Critter& cr, int, int , int)
+{
+	e_event_monsters(2);
+}
+
+void event_completed()
+{
+	SpawnEventPrizer();
+	e_event_finish(null);
+}
+
+void event_RespawnLockers()
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (valid(map))
+		AddNewMapMessage( "The Loot will respawn in:",REAL_SECOND(57), 1, COLOR_ORANGE, map.Id);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(1), "RespawnSpawnLockers", 0, true);
+}
+
+void event_killmonsters( Critter& cr, int, int , int)
+{
+	DeleteMonsters(null);
+}
+
+//To Start Event
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(2);
+	DeletePrizer(null);
+}
+void event_gathering(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	e_event_gathering(null);
+}
+//To End Event
+void event_finish(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	e_event_finish(null);
+}
+
+void event_cleanup(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	EventCleanup();
+}
+//To add monsters when players are not figting
+void event_monsters(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	e_event_monsters(2);
+}
+
+void event_killmonsters(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	DeleteMonsters(null);
+}
+
+void event_SpeedUp(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	AddNewMessage( "Event will start faster!",REAL_SECOND(12), 1, COLOR_RED, true, 1);
+	RemoveMessageByEvent(9321);
+	EraseTimeEvent(HGEventTimer);
+	CreateTimeEvent(__FullSecond+REAL_SECOND(15), "e_event_gathering", 0, true);
+}
+
+void event_RespawnLockers(Critter& cr, int actionType, int, int, string@, int[]@ values)
+{
+	Map@ map = GetMapByPid(MAP_HG_Event,0);
+	if (valid(map))
+		AddNewMapMessage( "The Loot will respawn in:",REAL_SECOND(57), 1, COLOR_ORANGE, map.Id);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(1), "RespawnSpawnLockers", 0, true);
+}
+

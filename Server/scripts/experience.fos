@@ -1,0 +1,149 @@
+#include "_macros.fos"
+#include "logging_h.fos"
+#define _LogHintBook                      # (text) FLog(LOG_HINT_BOOK, text);
+
+void AddExp(Critter& cr, uint exp , uint type)
+{
+	cr.StatBase[ ST_EXPERIENCE ] += ExpMod(cr,exp);	
+}
+
+void AddExp(Critter& attacker, Critter& target , Map& map , uint type)
+{
+	if (!attacker.IsPlayer())
+		return;
+    Location@ loc = map.GetLocation();
+	if (loc.IsEncounter() || loc.IsQuest() )
+	{
+		Critter@[] players;
+		map.GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, players );
+		for (uint i = 0; i < players.length(); i++)
+			players[i].StatBase[ ST_EXPERIENCE ] += ExpMod(players[i],(target.Stat[ ST_KILL_EXPERIENCE ]/players.length()));
+	}
+	else if( loc.IsDungeon() || map.GetProtoId() == MAP_sf_tanker2 )
+    {
+        if( attacker.Param[ MAIN_FACTION ] == 0 )
+        {
+			attacker.StatBase[ ST_EXPERIENCE ] += ExpMod( attacker, target.Stat[ ST_KILL_EXPERIENCE ] );
+			return;
+        }
+			
+        Critter@[] players;
+        Critter@[] faction;
+        map.GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, players );
+        for( uint i = 0; i < players.length(); i++ )
+            if( players[ i ].Param[ MAIN_FACTION ] == attacker.Param[ MAIN_FACTION ] )
+				faction.insertLast( players[ i ] );
+				
+		for (uint i = 0; i < faction.length(); i++)
+				faction[ i ].StatBase[ ST_EXPERIENCE ] += ExpMod( faction[ i ], ( target.Stat[ ST_KILL_EXPERIENCE ] / faction.length() ) );
+    }
+}
+
+uint tmpmod=100;
+
+uint ExpMod(Critter& cr, int exp)
+{
+	if (exp<=0)
+        return 0;
+    uint mod = 0;
+	mod = (cr.Perk[PE_IMPLANT_SURVIVOR] > 0 ? 30 : 0);
+	if( tmpmod>0 )
+		exp += exp * tmpmod / float(100);
+	if( mod > 0 )
+		exp += exp * mod / float(100);
+	return exp;
+}
+
+void ChangeMod(Critter& cr, int mod, int, int)
+{
+	tmpmod=mod;
+}
+
+void TryUseHintBook( Critter& cr, Item& item )
+{
+	if (item.Val2==0)
+	{
+		_LogHintBook("Player id("+cr.Id+") name("+cr.Name+") hintbook deleted, was no exp");
+		DeleteItem(item);
+		return;
+	}
+	
+	int level = cr.Stat[ ST_LEVEL ];
+	if (item.Val1==0)
+	{
+		if (level!=1)
+		{
+			cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70363 );
+			return;
+		}
+		else
+		{
+			item.Val1=cr.Id;
+			item.Update();
+			_LogHintBook("Player id("+cr.Id+") name("+cr.Name+") used hintbook");
+		}
+	}
+	
+	if (item.Val1!=int(cr.Id))
+	{
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70364 );
+		return;
+	}
+	
+	if (cr.Stat[ ST_UNSPENT_PERKS ]!=0 && cr.Stat[ST_LEVEL]<24)
+	{
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70361 );
+		return;
+	}
+	
+	if (cr.Stat[ ST_UNSPENT_SKILL_POINTS ] > 24)
+	{
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70362 );
+		return;
+	}
+	
+	if (level==99)
+	{
+		_LogHintBook("Player id id("+cr.Id+") name("+cr.Name+") hintbook deleted, reached 99");
+		DeleteItem(item);
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70365 );
+		return;
+	}
+	int tolevel=0;
+	int toexp=0;
+	for (int i=1; i < 4; i++)
+	{
+		if (((level+i) % 3 ) == 0)
+		{
+			tolevel=level+i;
+			break;
+		}
+		
+	}
+	toexp=(NUMERICAL_NUMBER( tolevel-1 ) * 1000 );
+	if (toexp>cr.Stat[ ST_EXPERIENCE ])
+	{
+		toexp-=cr.Stat[ ST_EXPERIENCE ];
+		if (item.Val2>toexp)
+		{
+			item.Val2-=toexp;
+			item.Update();
+		}
+		else 
+		{
+			toexp=item.Val2;
+			_LogHintBook("Player id("+cr.Id+") name("+cr.Name+") hintbook deleted, exp end");
+			DeleteItem(item);	
+		}
+		cr.StatBase[ ST_EXPERIENCE ] += toexp;
+		_LogHintBook("Player id("+cr.Id+") name("+cr.Name+") get exp:"+toexp+".");
+		if (valid(item) && (tolevel==99))
+		{
+			_LogHintBook("Player id("+cr.Id+") name("+cr.Name+") hintbook deleted, reached 99");
+			DeleteItem(item);	
+		}
+	}
+	else
+		_LogHintBook("Player id("+cr.Id+") name("+cr.Name+") level calculation error");
+	return;
+}

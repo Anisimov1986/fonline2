@@ -1,0 +1,157 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+11 1010 D _param p TRAIT_SKILLED = 1 D _var p name_mem_player_npc = 1 D or D _param p TRAIT_SKILLED = 0 D _var p name_mem_player_npc = 1 #
+2 1020 D _param p TRAIT_SKILLED = 0 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 1 R _script dialog@r_Wait 0  #
+10 1030 D _param p TRAIT_SKILLED = 1 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 1 R _script dialog@r_Wait 0  @
+2 2000 Attack 0 #
+3 2010 #
+65507 2020 @
+3 3000 Attack 0 #
+4 3010 #
+11 3020 @
+4 4000 Attack 0 #
+5 4010 #
+11 4020 @
+5 5000 Attack 0 #
+6 5010 #
+65507 5020 @
+6 6000 Attack 0 #
+7 6010 @
+7 7000 Attack 0 #
+8 7010 @
+8 8000 Attack 0 #
+65507 8010 @
+10 9000 Attack 0 #
+65507 9010 #
+65507 9020 @
+11 10000 Attack 0 &
+
+[engl]
+{100}{}{Vault Dweller}
+{200}{}{You see: Vault Dweller.}
+{210}{}{The man is wearing a Power Armor. It is heavily damaged and is leaking hydrualic liquid.}
+{1000}{}{Initial preferences}
+{1010}{}{Cancelled dialog}
+{1020}{}{normal}
+{1030}{}{mutant}
+{2000}{}{[The man breathes heavily, and seems to be severely wounded. He points his gun at you.] Another one... I'm sorry, but your Master is dead, and soon you will follow him!@@[The man breathes heavily, and seems to be severely wounded. He points his gun at you.] Great, another of the Master's disciples... You're too late, I killed him.@@[The man breathes heavily, and seems to be severely wounded. He points his gun at you.]  You're too late, @sex@|buddy||woman|, I killed your Master. Prepare to meet him. In hell!}
+{2010}{}{What? Wait! I'm not who you think I am!@@No, don't! I'm not who you think I am!}
+{2020}{}{We'll see about that...@@Yeah, come and get it!@@You will regret this.}
+{3000}{}{Really? Care to elaborate?@@Yeah, right, I'm not gonna fall for this one.@@Oh. Go on, amuse me.@@Yeah, right... }
+{3010}{}{I don't know how I got here, I just stepped through that strange portal in the desert and...@@I don't know how I got here, I stepped through a portal in the desert and...}
+{3020}{}{Whatever, I've gotta go.@@Whatever, I'm getting the hell outta here.@@Believe what you want, I'm getting the hell outta this place.}
+{4000}{}{What? You've got to be fucking kidding me. Are you guys that desperate? Anyway, you won't stop me. I know the location of your military base, and soon me and my Brotherhood friends will end this once and for all.@@You're really stupid if you think I'm gonna believe this... My friends from the Brotherhood have discovered your military base, and soon, very soon, your Master's dream will end.}
+{4010}{}{Oh God... Wait a second... Tell me, where am I?@@Oh fuck... wait a sec. Where am I?@@Oh, fuck me... This can't be true... Please, tell me, where am I?}
+{4020}{}{No, just checking. Do what you want, but I'm leaving this shithole now. @@Whatever, dude, If you don't believe me, fine. Just let me get the hell outta this place.@@Believe what you want. I'm getting outta here.}
+{5000}{}{I see... You're trying to stop me here, until reinforcements arrive! Your brains are going to be a fine addition to the Cathedral walls... [He swifly reloads the Minigun.]}
+{5010}{}{Why don't you just listen to me! If this is the Cathedral, then you are that Vault Dweller who killed the Master! This is unbelievable!}
+{5020}{}{If that's what you really want...@@Yeah? Okay then, we'll see whose brains are a better decorating item.@@Fine, talking to you is a waste of time anyway.}
+{6000}{}{No shit. You're a bright one.@@Wow, you're a fast thinker allright.@@Your deduction technique is really something.}
+{6010}{}{This portal must have transported me back in time! You've gotta believe me, I come from the future!@@I must have been transported back in time! }
+{7000}{}{[He laughs loudly.] No way! A visitor from the future! If you already know about me, what happened to me after... [He starts laughing again.] ...I killed the Master and destroyed the mutant threat? I came back to my Vault, got married, had kids?}
+{7010}{}{Well... you kinda... died.@@You, how do I put this... killed the Master, but died shortly afterwards.@@Oh... well... you died after your battle with the Master.}
+{8000}{}{I see. So the fun time is over, eh? Okay then, let's dance!@@The joke is over, I see... nevermind, you ain't gonna live long anyway...@@So that's it huh? Are your buddies just around the corner? No matter, they ain't gonna help you much anyway...}
+{8010}{}{No, stop!@@No, don't do this!@@Stop, we don't have to do this!}
+{9000}{}{Looks like you're late for the party, mutant... Prepare yourself!@@Oh, another one... time to die!@@I will eradicate every one of you fuckin' mutants!@@Your Master is dead mutie... time to join him.@@You're too late mutant, your Master is dead, and your time to follow him is now!}
+{9010}{}{What? Wait!@@Wha?@@Nooo, wait!@@No, don't!@@No, listen to me!}
+{9020}{}{Come and try me, human.@@Yeah, come and try, human.@@You're already dead, human.}
+{10000}{}{You're not going anywhere!@@You're not leaving this place alive!@@Hey, you're not going anywhere!}
+
+[russ]
+{100}{}{Vault Dweller}
+{200}{}{You see: Vault Dweller.}
+{210}{}{The man is wearing a heavily modified Vault Jumpsuit.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Cancelled dialog}
+{1020}{}{-}
+{1030}{}{Answer text}
+{2000}{}{Another one... I'm sorry, but your Master is dead, and soon you will follow him!@@Great, another of the Master's disciples... You're too late, I killed him.@@You're too late, @sex@|buddy||woman|, I killed your Master. Prepare to meet him. In hell!}
+{2010}{}{What? Wait! I'm not who you think I am!@@No, don't! I'm not who you think I am!}
+{2020}{}{We'll see about that...@@Yeah, come and get it!}
+{3000}{}{Really? Please elaborate. [Even though his voice is garbled by the helmet, you can sense irony in his voice.]@@Yeah, right, I'm not gonna fall for this one.}
+{3010}{}{No, please, listen to me! I don't know how I got here, I just stepped through that strange portal in the desert and...}
+{3020}{}{Not really, I've gotta go.@@Whatever, I'm getting the hell outta here.@@Believe what you want, I'm getting the hell outta this place.}
+{4000}{}{What? You've got to be fucking kidding me. Are you guys so desperate?@@You're really stupid if you think I'm gonna believe this...}
+{4010}{}{Wait a second... here am I?}
+{4020}{}{No, just checking.@@Whatever, dude, If you don't believe me, fine. Just let me get the hell outta this place.@@Believe what you want. I'm getting outta here.}
+{5000}{}{I see... You're trying to stop me here, until reinforcements arrive. This ends here and now, your brains are going to be a fine addition to the Cathedral walls...}
+{5010}{}{No, please, you have to listen to me! If this is the Cathedral, then you are that Vault Dweller who killed the Master!}
+{5020}{}{If that's what you really want...@@Yeah? Okay then, we'll see whose brains are a better decorating item.@@Fine, talking to you is a waste of time anyway.}
+{6000}{}{No shit. You're a bright one.@@Wow, you're a fast thinker allright!}
+{6010}{}{This portal must have transported me back in time! Listen, I come from the future!@@I must have been transported back in time!}
+{7000}{}{[He laughs loudly.] No way! A visitor from the future! If you already know about me, what happened to me after I killed the Master and destroyed the mutant threat? }
+{7010}{}{Well... you kinda... died.@@You, how do I put this... killed the Master, but died shortly afterwards.@@Oh... well... you died after your battle with the Master.}
+{8000}{}{I see. So the fun time is over, eh? Let's dance!@@The joke is over, I see... nevermind, you ain't gonna live long anyway...@@So that's it huh? Are your reinforcements just around the corner? If you think you can stop me, you've got another thing coming...}
+{8010}{}{No, stop!@@No, don't do this!@@Stop, we don't have to do this!}
+{9000}{}{Смотри тут особо не возникай, и все будут здоровы.@@Я смотрю за тобой.@@Не нарушай.@@Будешь воровать - убью на месте.@@Попробуй только пальцем тронь кого-нибудь!}
+{9010}{}{What? Wait!@@Wha?@@Nooo, wait!@@No, don't!}
+{9020}{}{Come and try me, human.@@Yeah, come and try, human.@@You're already dead, human.}
+{10000}{}{You're not going anywhere!@@You're not leaving this place alive!@@Hey, you're not going anywhere!}
+
+[pols]
+{100}{}{Vault Dweller}
+{200}{}{You see: Vault Dweller.}
+{210}{}{The man is wearing a heavily modified Vault Jumpsuit.}
+{1000}{}{Initial preferences}
+{1010}{}{Cancelled dialog}
+{1020}{}{-}
+{1030}{}{Answer text}
+{2000}{}{Another one... I'm sorry, but your Master is dead, and soon you will follow him!@@Great, another of the Master's disciples... You're too late, I killed him.@@You're too late, @sex@|buddy||woman|, I killed your Master. Prepare to meet him. In hell!}
+{2010}{}{What? Wait! I'm not who you think I am!@@No, don't! I'm not who you think I am!}
+{2020}{}{We'll see about that...@@Yeah, come and get it!}
+{3000}{}{Really? Please elaborate. [Even though his voice is garbled by the helmet, you can sense irony in his voice.]@@Yeah, right, I'm not gonna fall for this one.}
+{3010}{}{No, please, listen to me! I don't know how I got here, I just stepped through that strange portal in the desert and...}
+{3020}{}{Not really, I've gotta go.@@Whatever, I'm getting the hell outta here.@@Believe what you want, I'm getting the hell outta this place.}
+{4000}{}{What? You've got to be fucking kidding me. Are you guys so desperate?@@You're really stupid if you think I'm gonna believe this...}
+{4010}{}{Wait a second... here am I?}
+{4020}{}{No, just checking.@@Whatever, dude, If you don't believe me, fine. Just let me get the hell outta this place.@@Believe what you want. I'm getting outta here.}
+{5000}{}{I see... You're trying to stop me here, until reinforcements arrive. This ends here and now, your brains are going to be a fine addition to the Cathedral walls...}
+{5010}{}{No, please, you have to listen to me! If this is the Cathedral, then you are that Vault Dweller who killed the Master!}
+{5020}{}{If that's what you really want...@@Yeah? Okay then, we'll see whose brains are a better decorating item.@@Fine, talking to you is a waste of time anyway.}
+{6000}{}{No shit. You're a bright one.@@Wow, you're a fast thinker allright!}
+{6010}{}{This portal must have transported me back in time! Listen, I come from the future!@@I must have been transported back in time!}
+{7000}{}{[He laughs loudly.] No way! A visitor from the future! If you already know about me, what happened to me after I killed the Master and destroyed the mutant threat? }
+{7010}{}{Well... you kinda... died.@@You, how do I put this... killed the Master, but died shortly afterwards.@@Oh... well... you died after your battle with the Master.}
+{8000}{}{I see. So the fun time is over, eh? Let's dance!@@The joke is over, I see... nevermind, you ain't gonna live long anyway...@@So that's it huh? Are your reinforcements just around the corner? If you think you can stop me, you've got another thing coming...}
+{8010}{}{No, stop!@@No, don't do this!@@Stop, we don't have to do this!}
+{9000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.}
+{9010}{}{What? Wait!@@Wha?@@Nooo, wait!@@No, don't!}
+{9020}{}{Come and try me, human.@@Yeah, come and try, human.@@You're already dead, human.}
+{10000}{}{You're not going anywhere!@@You're not leaving this place alive!@@Hey, you're not going anywhere!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Cancelled dialog}
+{1020}{}{normal}
+{1030}{}{mutant}
+{2000}{}{[The man breathes heavily, and seems to be severely wounded. He points his gun at you.] Another one... I'm sorry, but your Master is dead, and soon you will follow him!@@[The man breathes heavily, and seems to be severely wounded. He points his gun at you.] Great, another of the Master's disciples... You're too late, I killed him.@@[The man breathes heavily, and seems to be severely wounded. He points his gun at you.]  You're too late, @sex@|buddy||woman|, I killed your Master. Prepare to meet him. In hell!}
+{2010}{}{What? Wait! I'm not who you think I am!@@No, don't! I'm not who you think I am!}
+{2020}{}{We'll see about that...@@Yeah, come and get it!@@You will regret this.}
+{3000}{}{Really? Care to elaborate?@@Yeah, right, I'm not gonna fall for this one.@@Oh. Go on, amuse me.@@Yeah, right... }
+{3010}{}{I don't know how I got here, I just stepped through that strange portal in the desert and...@@I don't know how I got here, I stepped through a portal in the desert and...}
+{3020}{}{Whatever, I've gotta go.@@Whatever, I'm getting the hell outta here.@@Believe what you want, I'm getting the hell outta this place.}
+{4000}{}{What? You've got to be fucking kidding me. Are you guys that desperate? Anyway, you won't stop me. I know the location of your military base, and soon me and my Brotherhood friends will end this once and for all.@@You're really stupid if you think I'm gonna believe this... My friends from the Brotherhood have discovered your military base, and soon, very soon, your Master's dream will end.}
+{4010}{}{Oh God... Wait a second... Tell me, where am I?@@Oh fuck... wait a sec. Where am I?@@Oh, fuck me... This can't be true... Please, tell me, where am I?}
+{4020}{}{No, just checking. Do what you want, but I'm leaving this shithole now. @@Whatever, dude, If you don't believe me, fine. Just let me get the hell outta this place.@@Believe what you want. I'm getting outta here.}
+{5000}{}{I see... You're trying to stop me here, until reinforcements arrive! Your brains are going to be a fine addition to the Cathedral walls... [He swifly reloads the Minigun.]}
+{5010}{}{Why don't you just listen to me! If this is the Cathedral, then you are that Vault Dweller who killed the Master! This is unbelievable!}
+{5020}{}{If that's what you really want...@@Yeah? Okay then, we'll see whose brains are a better decorating item.@@Fine, talking to you is a waste of time anyway.}
+{6000}{}{No shit. You're a bright one.@@Wow, you're a fast thinker allright.@@Your deduction technique is really something.}
+{6010}{}{This portal must have transported me back in time! You've gotta believe me, I come from the future!@@I must have been transported back in time! }
+{7000}{}{[He laughs loudly.] No way! A visitor from the future! If you already know about me, what happened to me after... [He starts laughing again.] ...I killed the Master and destroyed the mutant threat? I came back to my Vault, got married, had kids?}
+{7010}{}{Well... you kinda... died.@@You, how do I put this... killed the Master, but died shortly afterwards.@@Oh... well... you died after your battle with the Master.}
+{8000}{}{I see. So the fun time is over, eh? Okay then, let's dance!@@The joke is over, I see... nevermind, you ain't gonna live long anyway...@@So that's it huh? Are your buddies just around the corner? No matter, they ain't gonna help you much anyway...}
+{8010}{}{No, stop!@@No, don't do this!@@Stop, we don't have to do this!}
+{9000}{}{Looks like you're late for the party, mutant... Prepare yourself!@@Oh, another one... time to die!@@I will eradicate every one of you fuckin' mutants!@@Your Master is dead mutie... time to join him.@@You're too late mutant, your Master is dead, and your time to follow him is now!}
+{9010}{}{What? Wait!@@Wha?@@Nooo, wait!@@No, don't!@@No, listen to me!}
+{9020}{}{Come and try me, human.@@Yeah, come and try, human.@@You're already dead, human.}
+{10000}{}{You're not going anywhere!@@You're not leaving this place alive!@@Hey, you're not going anywhere!}
+

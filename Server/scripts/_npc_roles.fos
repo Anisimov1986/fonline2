@@ -1,0 +1,45 @@
+#ifndef __NPC_ROLES__
+#define __NPC_ROLES__
+
+#define ROLE_CARAVAN_BOX                   (50) // 2238 Box lifting.
+#define	ROLE_HELPLESS_CITIZEN			( 201 )
+#define ROLE_PEN_BRAHMIN				( 202 )
+#define ROLE_METZGER_GUARD				( 203 )
+#define ROLE_MARIPOSA_MUTANT			( 204 )
+#define ROLE_MARIPOSA_NIGHTKIN			( 205 )
+#define ROLE_MARIPOSA_SNEAKY_NIGHTKIN	( 206 )
+#define ROLE_TRIGGER ATTACKER       	( 207 )
+#define ROLE_INVISIBLE_LAW              ( 208 )
+#define ROLE_JAIL_WARDEN                ( 209 )
+#define ROLE_GUARDS_DOG                 ( 210 )
+#define ROLE_GUARD_PATROL               ( 211 )
+#define ROLE_GUARD                      ( 212 )
+#define ROLE_SCAR_TINA                  ( 213 )
+#define ROLE_JAIL_WARDEN_AND_NOOB_LAW   ( 214 )
+#define ROLE_CAR_PARK_GUARD             ( 215 )
+#define ROLE_EVENT_GUARD                ( 216 )
+
+//encounter roles (300-399)
+#define ROLE_ENCOUNTER_HUMAN_GOOD		( 300 )
+#define ROLE_ENCOUNTER_HUMAN_EVIL		( 301 )
+#define ROLE_ENCOUNTER_HUMAN_NEUTRAL	( 302 )
+#define ROLE_ENCOUNTER_HUMAN_MAD		( 303 )
+#define ROLE_ENCOUNTER_HUMAN_COWARD		( 304 )
+//...
+#define ROLE_ENCOUNTER_ANIMAL_GOOD		( 310 )
+#define ROLE_ENCOUNTER_ANIMAL_EVIL		( 311 )
+#define ROLE_ENCOUNTER_ANIMAL_NEUTRAL	( 312 )
+#define ROLE_ENCOUNTER_ANIMAL_WEAK		( 313 )
+//...
+#define ROLE_ENCOUNTER_GUARD			( 320 )
+#define ROLE_ENCOUNTER_TRADER			( 321 )
+#define ROLE_ENCOUNTER_MOB				( 322 )
+#define ROLE_ENCOUNTER_TRIBAL			( 323 )
+
+//...
+
+//quest roles
+#define ROLE_Q_FIRST_TENT_FRANKIE	    ( 20000 )
+#define ROLE_Q_FIRST_TENT_BRAHMIN	    ( 20001 )
+
+#endif

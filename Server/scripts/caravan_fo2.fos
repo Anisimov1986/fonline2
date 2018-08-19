@@ -1,0 +1,263 @@
+/**
+* Author: wladimiiir
+*/
+
+#include "caravans_fo2_init.fos"
+#include "_msgstr.fos"
+
+dictionary PreparedCaravans;
+PreparedCaravan@ FindPreparedCaravan(Critter& player, Critter& caravanMaster)
+{
+	PreparedCaravan@ caravan;
+	PreparedCaravans.get("" + player.Id, @caravan);
+	
+	if(valid(caravan) && !caravan.IsMaster(caravanMaster))
+		//not master of this caravan
+		@caravan = null;
+		
+	return caravan;
+}
+
+/**
+* Dialog functions
+*/
+void r_PrepareCaravan(Critter& player, Critter@ npc, int caravanId)
+{
+	WorldmapLeader@ leader = GetCaravanLeader(caravanId);
+	if(!valid(leader))
+	{
+		Log("No caravan with ID=" + caravanId + " defined.");
+		return;
+	}
+	PreparedCaravan caravan(npc, leader);
+	
+	caravan.AddGuard(player);
+	PreparedCaravans.set("" + player.Id, caravan);
+}
+
+void r_RefreshFollowersCaravan(Critter& player, Critter@ master)
+{
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+	if(!valid(caravan))
+		return;
+
+	caravan.DeleteGuards();
+	caravan.AddGuard(player);	
+	Critter@[] critters;
+	player.GetFollowGroup(FIND_LIFE, critters);
+	for( uint i = 0, l = critters.length(); i < l && i < 9; i++ )
+		if (valid(critters[i]))
+			caravan.AddGuard(critters[i]);
+}
+
+/*
+void dlg_AddPlayer(Critter& player, Critter@ master, string@ playerName)
+{
+	if(!IS_DIALOG_SAY_MODE(playerName))
+		return;
+	
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+	if(!valid(caravan))
+		return;
+		
+	Critter@ guard = GetPlayer(playerName);
+	if(!valid(guard))
+	{
+		player.SayMsg(SAY_DIALOG, TEXTMSG_TEXT, 70305);
+		return;
+	}
+	Critter@[] critters;
+	player.GetFollowGroup(FIND_LIFE, critters);
+	bool followplayer=false;
+	for( uint i = 0, l = critters.length(); i < l; i++ )
+    {
+        Critter @ follower = critters[ i ];
+        if( valid( follower ) && guard.Id==follower.Id )
+			followplayer=true;
+            
+	}
+	if (!followplayer)
+	{
+		player.SayMsg(SAY_DIALOG, TEXTMSG_TEXT, 70331);
+		return;
+	}
+	caravan.AddGuard(guard);
+}
+*/
+
+void dlg_LoadAvailableFollowers(Critter& player, Critter@ master, string@ lexems)
+{
+	if(IS_DIALOG_END(lexems) || IS_DIALOG_SAY_MODE(lexems))
+        return;
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+
+	if(!valid(caravan))
+		return;
+		
+	Critter@[] critters = caravan.GetFollowers(player);
+	for( uint i = 0, l = critters.length(); i < l && i < 9; i++ )
+		lexems += "$follower" + i + ""+critters[ i ].Name;
+}
+
+bool d_IsAvailableFollowers(Critter& player, Critter@ master, int count)
+{
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+	if(!valid(caravan))
+		return false;
+		
+	Critter@[] critters = caravan.GetFollowers(player);
+	return (int(critters.length())>=count);
+}
+
+void r_KickFollower(Critter& player, Critter@ master, int followerIndex)
+{
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+	if(!valid(caravan))
+		return;
+	
+	Critter@[] critters = caravan.GetFollowers(player);
+	for( int i = 0, l = critters.length(); i < l && i < 9; i++ )
+    {
+		if (i==followerIndex)
+			caravan.DeleteGuard(critters[i]);
+	}
+}
+
+
+void r_SetCombatMode(Critter& player, Critter@ master, int combatMode)
+{
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+	if(valid(caravan))
+		caravan.SetCombatMode(combatMode);
+}
+
+void r_StartCaravan(Critter& player, Critter@ master)
+{
+    if( player.Timeout[ TO_BATTLE ] > 0 )
+    {
+        player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        return;
+    }
+
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+	if(valid(caravan))
+		caravan.Start(player);
+}
+
+void r_CancelCaravan(Critter& player, Critter@ master)
+{
+	PreparedCaravan@ caravan = FindPreparedCaravan(player, master);
+	if(valid(caravan))
+		PreparedCaravans.delete("" + player.Id);
+}
+
+bool d_HasPreparedCaravan(Critter& player, Critter@ master)
+{
+	return valid(FindPreparedCaravan(player, master));
+}
+
+bool d_HasNoPreparedCaravan(Critter& player, Critter@ master)
+{
+	return !d_HasPreparedCaravan(player, master);
+}
+
+void r_ContinueCaravan(Critter& player, Critter@ master)
+{
+		WorldmapRoute route(master);
+		if(!route.HasEnded())
+			route.ReadyToGo();
+}
+
+bool d_HasNoEnemy(Critter& player, Critter@ master)
+{
+	return HasNoEnemies(master);
+}
+/**
+* Structures
+*/
+class PreparedCaravan
+{
+	private Critter@ CaravanMaster;
+	private WorldmapLeader@ CaravanLeader;
+	private Critter@[] Guards;
+	private int CombatMode;
+	
+	PreparedCaravan(Critter& caravanMaster, WorldmapLeader& caravanLeader)
+	{
+		@CaravanMaster = caravanMaster;
+		@CaravanLeader = caravanLeader;
+		CombatMode = -1;
+	}
+	
+	bool IsMaster(Critter& npc)
+	{
+		return CaravanMaster.Id == npc.Id;
+	}
+	
+	void AddGuard(Critter& guard)
+	{
+		for (uint i = 0; i < Guards.length(); i++)
+			if(valid(Guards[i]) && Guards[i].Id == guard.Id)
+				return; //already added before
+		
+		Guards.insertLast(guard);
+	}
+	void DeleteGuard(Critter& guard)
+	{
+		for (uint i = 0; i < Guards.length(); i++)
+			if(valid(Guards[i]) && Guards[i].Id == guard.Id)
+				Guards.removeAt(i);
+	}
+	
+	void DeleteGuards()
+	{
+		Guards.resize(0);
+	}
+	
+	void SetCombatMode(int combatMode)
+	{
+		CombatMode = combatMode;
+	}
+	
+	void Start(Critter& player)
+	{
+		Map@ map = player.GetMap();
+		if(!valid(map))
+			return;
+		CaravanLeader.Start(map, GetGuardsOnMap(map), CombatMode);
+	}
+	Critter@[] GetFollowers(Critter& leader)
+	{
+		Critter@[] followers;
+		Map@ map = leader.GetMap();
+		if (valid(map))
+		{
+			for (uint i = 0; i < Guards.length(); i++)
+			{
+				Critter@ guard = Guards[i];
+				if(_CritIsOffline(guard) || !valid(guard.GetMap()) || guard.GetMap().Id != map.Id || leader.Id == guard.Id)
+					continue;
+					
+				followers.insertLast(guard);
+			}
+		}
+		
+		return followers;
+	}
+	
+	private Critter@[] GetGuardsOnMap(Map& map)
+	{
+		Critter@[] guards;
+		
+		for (uint i = 0; i < Guards.length(); i++)
+		{
+			Critter@ guard = Guards[i];
+			if(_CritIsOffline(guard) || !valid(guard.GetMap()) || guard.GetMap().Id != map.Id)
+				continue;
+				
+			guards.insertLast(guard);
+		}
+		
+		return guards;
+	}
+}

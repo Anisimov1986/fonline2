@@ -1,0 +1,277 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+10 2020 #
+11 2030 #
+15 2040 D _var p q_iguana_bob = 1 R _var p q_iguana_bob = 2 R _param p ST_EXPERIENCE + 500 #
+19 2050 D _var p q_raiders = 2 R _var p q_raiders = 0 R _param p ST_EXPERIENCE + 3500 R _script economy_dialogs@r_GiveCaps 1 1000 R _script karma@r_AddKarma 1 100 #
+0 2060 #
+20 2070 D _script quest@quest_checkcd 1 9322 D _var p q_raiders = 1 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+16 10010 D _var p q_raiders = 0 D _script quest@quest_checkcd 1 9322 D _param p ST_LEVEL } 15 #
+2 10020 @
+11 11000 None 0 #
+12 11010 D _var p Cannibal = 1 R _var p Cannibal = 2 #
+0 11020 @
+12 12000 None 0 #
+13 12010 @
+13 13000 None 0 #
+14 13010 @
+14 14000 None 0 #
+0 14010 @
+15 15000 None 0 #
+0 15010 @
+16 16000 None 0 #
+17 16010 R _var p q_raiders = 1 R _script quest@r_CreateLocationZone 3 9306 22 24 R _script quest@quest_setcd 2 9322 310 #
+2 16020 @
+17 17000 None 0 #
+18 17010 @
+18 18000 None 0 #
+0 18010 R _script dialog@r_ShowQuestMessage 1 9321 @
+19 19000 None 0 #
+0 19010 @
+20 20000 None 0 #
+0 20010 R _script quest@r_CreateLocationZone 3 9306 22 24 R _script dialog@r_ShowQuestMessage 1 9321 R _script quest@quest_setcd 2 9322 310 &
+
+[engl]
+{100}{}{Charles}
+{200}{}{You see: Charles}
+{210}{}{This guy seems to call the shots around here}
+{1000}{}{Predialogue installations}
+{1010}{}{Weq}
+{2000}{}{Good day to you. My name is Charles, and I'm a sheriff of this great town. How can I help you?@@Welcome to the sheriff's office, how can I help you?}
+{2010}{}{How is it going, sheriff?@@What's up, sheriff?@@Any news, sheriff?}
+{2020}{}{Do you know anyone offering a job?@@I'm looking for a job.@@I need a job, know anyone that could have something for me?}
+{2030}{}{I have a crime to report!@@I've got a crime to report!}
+{2040}{}{I got something for you from Bob. [Give him the package.]}
+{2050}{}{I've been to that Raiders' camp. They're all dead.@@I've paid those Raiders a visit. They didin't really appreciate it, but it doesn't matter now since they're all dead.@@I've dispatched all the Raiders from that camp.}
+{2060}{}{I don't need anything actually, just passing by.@@Just passing by, sheriff.@@Just looking around, don't mind me.}
+{2070}{}{Charles, the raiders have moved, any idea where they can be right now?@@Charles, the raiders have moved on, any idea where I could catch them?}
+{3000}{}{It's good, well, sort of. Hub is the highest populated city in Southern California, important place. It's a trading center, good to run business, earn some caps, hire some muscles... As every town we also have our own problems ...}
+{3010}{}{Problems?}
+{3020}{}{I see. Goodbye then.@@Thanks for the info. I've gotta go.}
+{4000}{}{Yeah, problems. You've might met Adam, he's my vice. I'm trying to keep him busy patrolling the streets instead of sitting in the Maltese Falcon. It's just... I don't have any evidence, but I feel like he's not quite honest with me.}
+{4010}{}{Maybe I can check it out for you?@@Really? Maybe I could check him out for you?}
+{5000}{}{No, thanks anyway. I have to handle this myself. Yeah, problems. City's thugs became a bit more active recently, more than they usually are. I wonder what it means and, more important, who or what causes this. And that damned Brick, old bastard ...}
+{5010}{}{Who's Brick?}
+{6000}{}{Yeah, Brick and his ass-licking fellow Dan, "The Man" so to speak. Good lord, I'd really like to question both of them, but I can't do anything unless one of them breaks the law. And these sneaky cunts don't do it, so neither can I. }
+{6010}{}{How about to, you know, provoke them?}
+{7000}{}{Might be a good idea, but no. I couldn't look at my ugly face in the mirror then. Law is the law. }
+{7010}{}{Tough rule, but I understand. What about help from outside?}
+{8000}{}{This also means even more problems. So far we are under Brotherhood's protection and luckily the Enclave doesn't seem to be interested in turning my town into war zone because of that. It's reasonable for both to keep Hub alive and running, not some deserted shit hole. I'm aware though that such status quo isn't forever and I'd have to pick one side or another. Sooner or later. }
+{8010}{}{Man, you are really in deep shit. I consider myself lucky with my own problems now.}
+{9000}{}{Well then, I'm glad I could help you feel better. Goodbye.}
+{9010}{}{Goodbye, Sheriff.}
+{10000}{}{You can ask Edward or Trevor, our city technician. Or go right next door to Far Go Traders and ask Willy if he doesn't need a hand with anything. You could also ask some traders in the market, or in the Oldtown.}
+{10010}{}{And how about you?@@All right... and how about you?@@And... how about you?}
+{10020}{}{Great, let me ask something else.@@Okay, let me ask you something else then.@@Right, let's change the subject.}
+{11000}{}{A crime? What is it?}
+{11010}{}{There's an old lady attracting random people to her son's house, which is cannibal!}
+{11020}{}{Uh, let me think ... Nothing so important really, bye.}
+{12000}{}{Cannibal house? What? Are you on drugs, stranger?}
+{12010}{}{So yeah, there's a cannibal in that house and she tells you to go there and ...}
+{13000}{}{Whoa whoa whoa, who tells you?}
+{13010}{}{Listen, I'm telling you, that old witch living in Old Town!}
+{14000}{}{Mrs. Meiwes? Are you mad, stranger? She's unable to hurt anyone. Such a nice granny, how dare you? Please, leave!}
+{14010}{}{But ... but ... duh, whatever.}
+{15000}{}{Something from Bob? Iguana Bob right? That's great! Give me a sec. [He opens the package carefully with a switchblade.] All right! A free Iguana on a stick! Bob is such a good fella, give him my thanks.}
+{15010}{}{No problem. Bye.}
+{16000}{}{Well... There is one thing... We've recently found a Raider outposet south-east from here. They've been raiding our caravans heading north. The thing is, I don't have any men to spare right now, so we could use some extra help. Are you up for that? They are no town thugs though, remember. They are tough, experienced, and have good weaponry.}
+{16010}{}{Sure, I'll do that. What about the reward?@@That's no problem, I can do that.@@I've dealt with worse.@@I'll take the job.}
+{16020}{}{I have to think about it. Can we talk about something else?@@I'll have to think about it. Can we change the subject?}
+{17000}{}{Great. About the pay... the Hub is generous, so you won't be dissapointed. As a bonus, you can keep everything that you'll find there.}
+{17010}{}{Great. Show me that location and I'm on my way.@@All right. Show me the location and I'm on my way.@@Okay, show me where to find them.}
+{18000}{}{[He points at your Pip-Boy's screen.] There. They're tough motherfuckers, be careful.@@[He marks the location on your Pip-Boy.] There. Give them hell.@@[He marks the location on your Pip-Boy.] See? There. Teach those fucks a lesson.}
+{18010}{}{Wish me good luck, then. Goodbye, Charles.}
+{19000}{}{[He looks at you with a mix of surprise, joy and proud.] Really? That's great! Those bastards were a pain in the ass, constantly killing our caravans and raiding farms. Here, there's your well-earned reward.}
+{19010}{}{Thank you, that was a pleasure. Goodbye, sheriff.}
+{20000}{}{God damn it! I know one more place, just get them in time. [He shows you another location on your Pip-Boy.]}
+{20010}{}{Okay, I will go there now.@@Right, I'll go there now.}
+
+[russ]
+{100}{}{Чарльз}
+{200}{}{Вы видите: Чарльза}
+{210}{}{This guy seems to call the shots around here}
+{1000}{}{Predialogue installations}
+{1010}{}{Weq}
+{2000}{}{Хорошего дня, незнакомец! Меня зовут Чарльз, я шериф этого великолепного города. Чем я могу вам помочь?}
+{2010}{}{Как дела, шериф?}
+{2020}{}{Где можно поискать работу?}
+{2030}{}{Я хочу сообщить о преступлении!}
+{2040}{}{У меня есть кое-что для вас от Боба. [Даете ему пакет]}
+{2050}{}{Я побывал в том лагере рейдеров. Они все мертвы.}
+{2060}{}{Ничем. Просто мимо проходил.}
+{2070}{}{Чарльз, я опасаюсь, что рейдеры могли переместиться куда-то, есть идеи, где они могут быть сейчас?}
+{3000}{}{Хорошо, ну, вроде как. Хаб - самый населенный город в Южной Калифорнии, важное место. Так же, как и везде, у нас есть свои проблемы.}
+{3010}{}{Проблемы?}
+{3020}{}{Погоди, уже время обеда? Ничего себе, я должен идти. Увидимся!}
+{4000}{}{Да, проблемы. Вы уже обошли весь Хаб? Возможно вы встречали Адама, он мой зам. Я пытаюсь заставлять его патрулировать улицы, вместо того чтобы сидеть в Мальтийском Соколе. Это трудно объяснить без каких-либо доказательств, но я чувствую, что он не совсем честен со мной.}
+{4010}{}{Возможно, я смогу проверить это для вас?}
+{5000}{}{Нет, но все равно спасибо. Я должен справиться с этим сам. Бандиты в городе стали более активными в последнее время. Интересно, что это означает, и, что более важно, кто или что является причиной этого. И этот проклятый Брик, старый ублюдок...}
+{5010}{}{Понятно, кто такой Брик?}
+{6000}{}{Да, Брик и его друг подлиза Дан. Боже, как бы я хотел засадить их за решетку, но, пока они в открытую не нарушают закон, я бессилен.}
+{6010}{}{Как насчет, ну знаете, их спровоцировать?}
+{7000}{}{Это, конечно, хорошая идея, но я тогда не смогу смотреть на себя в зеркале. Закон есть закон.}
+{7010}{}{Правила есть правила, я понимаю. А что насчет помощи "снаружи"?}
+{8000}{}{Это означает еще больше проблем. До сих пор мы находимся под защитой Братства Стали и, к счастью, Анклав, кажется, не заинтересован в превращении этого города в зону военных действий. Но рано или поздно нам придется выбрать сторону. }
+{8010}{}{Мда, вы действительно по уши в дерьме. Куда мне с моими проблемами до вас.}
+{9000}{}{Ну что ж, я рад, что помог вам почувствовать себя лучше. До свидания.}
+{9010}{}{До свидания, шериф.}
+{10000}{}{Вы можете спросить Эдварда или Тревора, они наши городские техники. Или зайдите к Вилли в "Far Go Traders".}
+{10010}{}{И как на счет тебя?}
+{10020}{}{Понятно, позвольте мне спросить кое-что еще.}
+{11000}{}{Преступление? Какое такое преступление?}
+{11010}{}{Там старая дама заманивает случайных людей в дом своего сына, который является людоедом!}
+{11020}{}{Ну, дай-ка подумать ... Ничего важного, пока.}
+{12000}{}{Дом каннибалов? Ты что, обкурился?}
+{12010}{}{Да нет, точно тебе говорю, там старуха...}
+{13000}{}{Воу Воу Воу, кто сказал вам?}
+{13010}{}{Слушай, я тебе говорю,  эта ведьма живет в старом городе!}
+{14000}{}{Миссис Мьювес? Ты с ума сошел? Она не может никому навредить. Такая хорошая бабушка, как вы смеете? Убирайся отсюда наркоман!}
+{14010}{}{Но ... Но ... }
+{15000}{}{Что-то от Боба? Игуана Боба, верно? Это здорово! Дай мне секунду. [Он открывает пакет] Отлично! Бесплатная игуана на палочке! Боб такой хороший друг, пожалуйста, передай ему мою благодарность.}
+{15010}{}{Нет проблем. Пока.}
+{16000}{}{Проклятье, есть одна проблема... Мы обнаружили блок-пост рейдеров и ищем кого-нибудь, кто сможет надрать им задницы. Можешь взяться за это? Но помни: это работа для целого отряда опытных бойцов. (Локация станет видна для вас и ваших спутников.)}
+{16010}{}{Конечно, я сделаю это. Что насчет награды?}
+{16020}{}{Мне нужно подумать об этом. Мы можем поговорить о чем-нибудь еще?}
+{17000}{}{Можешь не беспокоиться, мы будем щедры. И, конечно же, можешь оставить себе все, что там найдешь.}
+{17010}{}{Превосходно. Покажи мне эту локацию, и я выдвигаюсь.}
+{18000}{}{[Метка появилась в вашем Пип-бое.] здесь. Они сильные твари, будь осторожен.}
+{18010}{}{Тогда пожелай мне удачи. До встречи, Чарльз.}
+{19000}{}{[Он смотрит на вас со смешанным чувством удивления, радости и уважения.] Действительно? Это превосходно! Эти ублюдки были для нас большой головной болью, постоянно убивали караванщиков и совершали набеги на фермы. Возьми, это твоя заслуженная награда.}
+{19010}{}{Спасибо, было приятно работать. До свидания, шериф.}
+{20000}{}{Черт, сынок. Я знаю еще одно место, главное успей вовремя.}
+{20010}{}{Успею. Спасибо офицер.}
+
+[pols]
+{100}{}{Charles}
+{200}{}{Widzisz Charlesa.}
+{210}{}{Ten gość zarządza tym całym rozpiździelem.}
+{1000}{}{Predialogue installations}
+{1010}{}{Weq}
+{2000}{}{Dzień dobry, @sex@|nieznajomy||nieznajoma|! Nazywam się Charles, jestem szeryfem tego wspaniałego miasta. Jak mogę ci pomóc?}
+{2010}{}{Jak leci, szeryfie?}
+{2020}{}{Czy znasz kogoś szukającego osób do pracy?}
+{2030}{}{@sex@|Chciałbym||Chciałabym| zgłosić przestępstwo!}
+{2040}{}{Mam dla ciebie coś od Boba. [Wręczasz mu pakunek.]}
+{2050}{}{@sex@|Byłem||Byłam| w tym obozie Najeźdźców. Nie będą już sprawiać kłopotów.}
+{2060}{}{Właściwie, tak tylko @sex@|przechodziłem||przechodziłam| nieopodal.}
+{2070}{}{Charles, i am afraid the raiders have moved, any idea where they can be right now?}
+{3000}{}{Dobrze, cóż, powiedzmy. Hub to najbardziej zaludnione miasto w całej południowej Kalifornii, ważne miejsce. To centrum handlu, dobre do prowadzenia biznesu, zarobienia kilku kapsli, zatrudnienia jakichś mięśniaków czy czegokolwiek innego. Jak każde miasto, mamy też swoje problemy...}
+{3010}{}{Problemy?}
+{3020}{}{Zaczekaj, czyżby nie była właśnie pora na obiad? Łał, muszę już lecieć. Pa!}
+{4000}{}{Tak, problemy. @sex@|Zwiedziłeś||Zwiedziłaś| już każdą część Hubu? Możliwe, że @sex@|spotkałeś||spotkałaś| Adama, mojego zastępcę. Staram się zająć go patrolowaniem ulic, w innym wypadku siedziałby w Sokole Maltańskim. Ciężko powiedzieć bez żadnych dowodów, ale czuję że nie jest wobec mnie całkowicie szczery.}
+{4010}{}{Może sprawdzę to dla ciebie?}
+{5000}{}{Nie, dzięki. Muszę się tym zająć osobiście. Tak, problemy. Miejscowe zbiry zrobiły się ostatnio nieco bardziej aktywne, bardziej niż zwykle. Ciekawi mnie, co to oznacza, a - co ważniejsze - co albo kto jest przyczyną takiego stanu rzeczy. A ten przeklęty Brick, stary drań...}
+{5010}{}{Rozumiem. Kim jest Brick?}
+{6000}{}{Ta, Brick i jego przydupas Dan. Ależ bym chciał przesłuchać ich obydwu... Z akumulatorem na jajach jeszcze nikt nie kłamał. Co z tego, jeśli nie mogę nic zrobić dopóki jeden z nich nie złamie prawa. A te podstępne gnojki tego nie robią, więc ja też nie mogę.}
+{6010}{}{A co gdyby ich, powiedzmy, sprowokować?}
+{7000}{}{To mógłby być niezły pomysł, ale nie. Nie mógłbym spojrzeć w swoją krzywą twarz w lustrze po czymś takim. Prawo jest prawem.}
+{7010}{}{Twarde zasady, ale rozumiem. A może jakaś pomoc z zewnątrz?}
+{8000}{}{To by oznaczało jeszcze więcej problemów. Na razie jesteśmy pod ochroną Bractwa Stali, a Enklawa na szczęście nie chce zamieniać z tego powodu miasta w pole bitwy. To rozsądne z obydwu stron, że chcą zachować Hub żywy i bogaty. Jestem jednak świadom, że taki stan rzeczy nie jest wieczny, a ja będę musiał wybrać jedną albo drugą stronę...}
+{8010}{}{O stary, siedzisz po uszy w gównie. Jestem @sex@|szczęściarzem||szczęściarą| z moimi małymi problemami.}
+{9000}{}{W porządku, cieszę się że polepszyłem ci nastrój. Do widzenia.}
+{9010}{}{Do widzenia, szeryfie.}
+{10000}{}{Możesz spytać Edwarda albo Trevora, naszych miejskich techników. Albo zaraz następne drzwi, "Wszędobylska Karawana". Spytaj Willy'ego, czy kogoś nie potrzebuje.}
+{10010}{}{A co z tobą?}
+{10020}{}{Świetnie, pozwól mi spytać o coś jeszcze.}
+{11000}{}{Przestępstwo? Słucham, jakie?}
+{11010}{}{Starsza pani podstępem sprowadza przechodniów do domu jej syna, który jest kanibalem!}
+{11020}{}{Och, daj mi chwilkę pomyśleć... Właściwie to nic ważnego, do widzenia.}
+{12000}{}{Dom kanibali? Co? Jesteś @sex@|trzeźwy||trzeźwa|?}
+{12010}{}{Tak tak, w tym domu jest kanibal i ona mówi żeby tam wejść i...}
+{13000}{}{Hola hola hola, kto mówi?}
+{13010}{}{No słuchaj, mówię ci, ta stara wiedźma mieszkająca na starym mieście!}
+{14000}{}{Pani Meiwes? Odbiło ci? Ona nie skrzywdziłaby muchy. To taka miła staruszka, jak możesz? Proszę, wyjdź!}
+{14010}{}{Ale... ale... ach, nieważne.}
+{15000}{}{Coś od Boba? Iguana Boba, tak? To świetnie! Daj mi sekundkę. [Otwiera paczuszkę delikatnie sprężynowcem.] Rewelacja! Darmowa Iguana na patyku! Bob to świetny kolega, przekaż mu moje podziękowania.}
+{15010}{}{Nie ma problemu. Do widzenia.}
+{16000}{}{Cholera, jest jedna sprawa. Zlokalizowaliśmy jeden z obozów Najeźdźców i potrzebujemy kogoś, kto... ekhem, mówiąc oględnie, złoi im dupska. Piszesz się na to? Tylko uważaj, to robota dla całej ekipy doświadczonych żołnierzy. (Lokacja zostanie ujawniona tobie i wszystkim osobom w pobliżu, które cię otagowały.)}
+{16010}{}{Jasne, zrobię to. Co z nagrodą?}
+{16020}{}{Muszę to jeszcze przemyśleć. Możemy pogadać o czymś innym?}
+{17000}{}{O to się nie martw, będziemy hojni. Oczywiście możesz też zatrzymać wszystko, co tam znajdziesz.}
+{17010}{}{Świetnie. Pokaż mi, gdzie jest ten obóz i zabieram się do roboty.}
+{18000}{}{[Wskazuje punkt na ekranie twojego PipBoy'a.] Tutaj. Ostrzegam, to twarde skurwysyny.}
+{18010}{}{Życz mi szczęścia. Do zobaczenia, Charles.}
+{19000}{}{[Spogląda na ciebie z mieszanką zaskoczenia, radości i dumy.] Naprawdę? Cholera, rewelacyjnie! Ci gnoje byli odpowiedzialni za dziesiątki napadów na karawany i najazdów na farmy. Proszę, oto twoja zasłużona nagroda.}
+{19010}{}{Dzięki, to była czysta przyjemność. Do zobaczenia, szeryfie.}
+{20000}{}{God damn it, son. I know one more place, just get them in time.}
+{20010}{}{I will. Thank you officer.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Weq}
+{2000}{}{Good day to you. My name is Charles, and I'm a sheriff of this great town. How can I help you?@@Welcome to the sheriff's office, how can I help you?}
+{2010}{}{How is it going, sheriff?@@What's up, sheriff?@@Any news, sheriff?}
+{2020}{}{Do you know anyone offering a job?@@I'm looking for a job.@@I need a job, know anyone that could have something for me?}
+{2030}{}{I have a crime to report!@@I've got a crime to report!}
+{2040}{}{I got something for you from Bob. [Give him the package.]}
+{2050}{}{I've been to that Raiders' camp. They're all dead.@@I've paid those Raiders a visit. They didin't really appreciate it, but it doesn't matter now since they're all dead.@@I've dispatched all the Raiders from that camp.}
+{2060}{}{I don't need anything actually, just passing by.@@Just passing by, sheriff.@@Just looking around, don't mind me.}
+{2070}{}{Charles, the raiders have moved, any idea where they can be right now?@@Charles, the raiders have moved on, any idea where I could catch them?}
+{3000}{}{It's good, well, sort of. Hub is the highest populated city in Southern California, important place. It's a trading center, good to run business, earn some caps, hire some muscles... As every town we also have our own problems ...}
+{3010}{}{Problems?}
+{3020}{}{I see. Goodbye then.@@Thanks for the info. I've gotta go.}
+{4000}{}{Yeah, problems. You've might met Adam, he's my vice. I'm trying to keep him busy patrolling the streets instead of sitting in the Maltese Falcon. It's just... I don't have any evidence, but I feel like he's not quite honest with me.}
+{4010}{}{Maybe I can check it out for you?@@Really? Maybe I could check him out for you?}
+{5000}{}{No, thanks anyway. I have to handle this myself. Yeah, problems. City's thugs became a bit more active recently, more than they usually are. I wonder what it means and, more important, who or what causes this. And that damned Brick, old bastard ...}
+{5010}{}{Who's Brick?}
+{6000}{}{Yeah, Brick and his ass-licking fellow Dan, "The Man" so to speak. Good lord, I'd really like to question both of them, but I can't do anything unless one of them breaks the law. And these sneaky cunts don't do it, so neither can I. }
+{6010}{}{How about to, you know, provoke them?}
+{7000}{}{Might be a good idea, but no. I couldn't look at my ugly face in the mirror then. Law is the law. }
+{7010}{}{Tough rule, but I understand. What about help from outside?}
+{8000}{}{This also means even more problems. So far we are under Brotherhood's protection and luckily the Enclave doesn't seem to be interested in turning my town into war zone because of that. It's reasonable for both to keep Hub alive and running, not some deserted shit hole. I'm aware though that such status quo isn't forever and I'd have to pick one side or another. Sooner or later. }
+{8010}{}{Man, you are really in deep shit. I consider myself lucky with my own problems now.}
+{9000}{}{Well then, I'm glad I could help you feel better. Goodbye.}
+{9010}{}{Goodbye, Sheriff.}
+{10000}{}{You can ask Edward or Trevor, our city technician. Or go right next door to Far Go Traders and ask Willy if he doesn't need a hand with anything. You could also ask some traders in the market, or in the Oldtown.}
+{10010}{}{And how about you?@@All right... and how about you?@@And... how about you?}
+{10020}{}{Great, let me ask something else.@@Okay, let me ask you something else then.@@Right, let's change the subject.}
+{11000}{}{A crime? What is it?}
+{11010}{}{There's an old lady attracting random people to her son's house, which is cannibal!}
+{11020}{}{Uh, let me think ... Nothing so important really, bye.}
+{12000}{}{Cannibal house? What? Are you on drugs, stranger?}
+{12010}{}{So yeah, there's a cannibal in that house and she tells you to go there and ...}
+{13000}{}{Whoa whoa whoa, who tells you?}
+{13010}{}{Listen, I'm telling you, that old witch living in Old Town!}
+{14000}{}{Mrs. Meiwes? Are you mad, stranger? She's unable to hurt anyone. Such a nice granny, how dare you? Please, leave!}
+{14010}{}{But ... but ... duh, whatever.}
+{15000}{}{Something from Bob? Iguana Bob right? That's great! Give me a sec. [He opens the package carefully with a switchblade.] All right! A free Iguana on a stick! Bob is such a good fella, give him my thanks.}
+{15010}{}{No problem. Bye.}
+{16000}{}{Well... There is one thing... We've recently found a Raider outposet south-east from here. They've been raiding our caravans heading north. The thing is, I don't have any men to spare right now, so we could use some extra help. Are you up for that? They are no town thugs though, remember. They are tough, experienced, and have good weaponry.}
+{16010}{}{Sure, I'll do that. What about the reward?@@That's no problem, I can do that.@@I've dealt with worse.@@I'll take the job.}
+{16020}{}{I have to think about it. Can we talk about something else?@@I'll have to think about it. Can we change the subject?}
+{17000}{}{Great. About the pay... the Hub is generous, so you won't be dissapointed. As a bonus, you can keep everything that you'll find there.}
+{17010}{}{Great. Show me that location and I'm on my way.@@All right. Show me the location and I'm on my way.@@Okay, show me where to find them.}
+{18000}{}{[He points at your Pip-Boy's screen.] There. They're tough motherfuckers, be careful.@@[He marks the location on your Pip-Boy.] There. Give them hell.@@[He marks the location on your Pip-Boy.] See? There. Teach those fucks a lesson.}
+{18010}{}{Wish me good luck, then. Goodbye, Charles.}
+{19000}{}{[He looks at you with a mix of surprise, joy and proud.] Really? That's great! Those bastards were a pain in the ass, constantly killing our caravans and raiding farms. Here, there's your well-earned reward.}
+{19010}{}{Thank you, that was a pleasure. Goodbye, sheriff.}
+{20000}{}{God damn it! I know one more place, just get them in time. [He shows you another location on your Pip-Boy.]}
+{20010}{}{Okay, I will go there now.@@Right, I'll go there now.}
+

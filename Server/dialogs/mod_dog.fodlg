@@ -1,0 +1,60 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Laddy}
+{200}{}{You see a dog.}
+{210}{}{You see Johnny's dog, Laddy.}
+{210}{}{This dogs seems to be smart.}
+{210}{}{You think that this dog is probably smarter than you. Oh well.}
+{220}{}{Grrr.}
+{230}{}{Grrrrrrr.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Woof woof!@@Grrrr@@Sniff sniff@@Woof!!!}
+
+[russ]
+{100}{}{Ладди}
+{200}{}{Вы видите собаку.}
+{210}{}{Вы видите Ладди,собаку Джонни.}
+{210}{}{Эта собака похоже умная.}
+{210}{}{Вы думаете, что эта собака, вероятно, умнее, чем вы. Ну да ладно.}
+{220}{}{Рррр.}
+{230}{}{Рррррррр.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{[воет]@@Гав!@@Ваф! Ваф!@@[принюхивается]}
+
+[pols]
+{100}{}{Laddy}
+{200}{}{Widzisz psa.}
+{210}{}{Widzisz psa Johnny'ego, Laddy.}
+{210}{}{Ten pies wygląda na inteligentną bestię.}
+{210}{}{Nie masz wątpliwości, że ten pies jest prawdopodobnie bystrzejszy od ciebie.}
+{220}{}{Grrr.}
+{230}{}{Grrrrrrr.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{[Szczeka.]@@Grrrr!@@[Węszy.]@@Hau!}
+
+[ptbr]
+{100}{}{Guri}
+{200}{}{Você vê um cãozinho.}
+{210}{}{Você vê o Guri, o cãozinho do João.}
+{210}{}{Este cão parece ser bastante inteligente.}
+{210}{}{Você acha que este cão é provavelmente mais inteligente que você.}
+{220}{}{Grrr.}
+{230}{}{Grrrrrrr.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Au au!@@Grrrr@@*Snif* *snif*@@Au!!!}
+

@@ -1,0 +1,372 @@
+#include "entire_h.fos"
+
+#include "critter_template.fos"
+#include "_maps.fos"
+#include "_itempid.fos"
+#include "_npc_pids.fos"
+#include "_bags.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_common_loot.fos"
+#include "game_event_common_worldmap.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos"
+
+#define EVENT_DURATION                  (REAL_MINUTE(10))
+#define GOSSIP_DELAY                    (REAL_MINUTE(3))
+#define GOSSIP_DURATION                 (REAL_MINUTE(6))
+#define LOCKER_EVENT_ID                 (43)
+
+#define ROLE_SCAVENGER                  (288100)
+
+import void SpawnEventFlares(Map& map, uint entire) from "game_event_utils";
+import void SpawnMines(Map& map, uint entire, uint entireFillRatio, bool noLoot) from "game_event_utils";
+import void RemoveEventFlares(Map& map) from "game_event_utils";
+import int GetNextTime(uint Id) from "game_events";
+import Location@+ GetNearestVisibleLocation(uint x, uint y) from "game_event_utils";
+
+// Scavengers initialization
+int[] scavengerParams = {ST_REPLICATION_TIME, -1, ST_BAG_ID, BAG_WEAKSHIT}; 		
+int[] scavengerPids = {NPC_PID_SCAV1, NPC_PID_SCAV2, NPC_PID_SCAV3, NPC_PID_SCAV4, NPC_PID_SCAV5};
+CritterTemplate scavengerCritterTemplate = CritterTemplate(scavengerPids, ROLE_SCAVENGER)
+		.SetStartEntire(ENTIRE_EVENT_DEFENDER_SPAWN)
+		.SetCritterParams(scavengerParams);		
+
+		
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + LOCKER_EVENT_ID, LockerEvent(LOCKER_EVENT_ID)
+		.AddGroupId(GROUP_Scavengers)
+		.AddGroupId(GROUP_Giant_Rats)
+		.AddLocationPid(TERRAIN_City, LOCATION_EventLockerC1)
+		.AddLocationPid(TERRAIN_City, LOCATION_EventLockerC2)
+		.AddLocationPid(TERRAIN_City, LOCATION_EventLockerC3)
+		.AddWorldMapArea(costalCityArea)	
+		.AddLoot(PID_MULTI_TOOL, 1, 1, 0.5)
+		.AddLoot(PID_LOCKPICKS, 1, 1, 0.5)
+		.AddLoot(PID_ROPE, 0, 3)
+		.AddLoot(PID_METAL_TRASH, 0, 8)
+		.AddLoot(PID_CORD, 0, 3)
+		.AddLoot(PID_GUNPOWDER, 0, 8)
+		.AddLoot(PID_SHOTGUN_SHELLS, 20, 170)
+		.AddLoot(PID_223_FMJ, 20, 170)
+		.AddLoot(PID_5MM_JHP, 20, 170)
+		.AddLoot(PID_10MM_JHP, 20, 170)
+		.AddLoot(PID_STIMPAK, 0, 3)
+		.AddLoot(PID_NUKA_COLA, 1, 1, 0.5)
+		.AddLoot(PID_CIGARETTES, 1, 1, 0.5)
+		.AddLoot(PID_MENTATS, 1, 1, 0.5)
+		.AddLoot(PID_BUFFOUT, 1, 1, 0.5)
+		.AddLoot(PID_PSYCHO, 1, 1, 0.5)
+		.AddLoot(PID_JET, 1, 1, 0.5)
+		.AddLoot(PID_RAD_X, 1, 1, 0.5)
+		.AddLoot(PID_RADAWAY, 1, 1, 0.5)
+		.AddLoot(PID_SUPER_STIMPAK, 1, 1, 0.5)		
+		.AddLoot(PID_STIMPAK, 0, 3)
+		.AddLoot(PID_BOTTLE_CAPS, 250, 500)
+		.AddLoot(commonRareLoot)
+		.AddLoot(commonL2Loot)
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	LockerEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+		
+		uint[] values = {id};
+		CreateTimeEvent(__FullSecond + EVENT_DURATION, "e_event_stop", values, true);
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	LockerEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start( Critter& cr, int id, int , int)
+{
+	event_start(id);
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class LockerEvent
+{	
+	private int eventId;
+	private AutoLootGenerator autoLootGenerator;
+	private HybridLocationGenerator hybridLocationGenerator;
+	
+	
+	LockerEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	LockerEvent@ AddGroupId(uint groupId)
+	{
+		hybridLocationGenerator.AddGroupId(groupId);
+		return @this;
+	}
+	
+	LockerEvent@ AddWorldMapArea(WorldMapArea& worldMapArea)
+	{
+		hybridLocationGenerator.AddWorldMapArea(worldMapArea);
+		return @this;
+	}
+	
+	LockerEvent@ AddLocationPid(uint terrainType, uint locationPid)
+	{
+		hybridLocationGenerator.AddLocationPid(terrainType, locationPid);
+		return @this;
+	}
+	
+	LockerEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	LockerEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+		
+	LockerEvent@ AddLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	bool IsEventMap(Map& map)
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		return autoLocation.IsLocationMap(map);
+	}
+	
+	void StartEvent()
+	{	
+		AutoLocation autoLocation = AutoLocation(eventId);
+		Location @location = autoLocation.Create(hybridLocationGenerator);
+
+		if (!valid(location))
+		{
+			return;
+		}		
+		
+		location.Visible = true;
+		location.AutoGarbage = false;
+		location.Color = COLOR_RED;
+	
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			autoLocation.Delete();
+			return;
+		}
+		
+		AddLootToLocker(map);
+		AddScavengers(map);
+
+		SpawnEventFlares(map, ENTIRE_EVENT_FLARE_SPAWN);
+		SpawnMines(map, ENTIRE_EVENT_MINE_SPAWN, 85, true);
+		map.SetScript("_MapInit");
+		
+		InitializeGossip(location);
+	}
+	
+	void InitializeGossip(Location &location)
+	{			
+		Location @townLocation = GetNearestVisibleLocation(location.WorldX, location.WorldY);
+		if (!valid(townLocation)) 
+		{
+			return;
+		}
+
+		GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, GOSSIP_DURATION);
+		gossipDefinition.SetGossipId(eventId);
+		gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+		gossipDefinition.SetDelay(GOSSIP_DELAY);
+		gossipDefinition.SetSourceLocationId(location.Id);
+		gossipDefinition.SetMsgId(STR_LOCKER_EVENT_GOSSIP_LOC);
+		gossipDefinition.SetSourceMsgId(STR_LOCKER_EVENT_GOSSIP_NO_LOC);
+		gossipDefinition.SetLexems("$locationname" + "@msg GM " + STR_LOC_NAME(townLocation.GetProtoId()) + "@");
+		StartGossip(gossipDefinition);
+	}
+	
+	void StopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+	
+		autoLocation.Delete();
+		
+		Location @location = autoLocation.GetLocation();
+		
+		location.Visible = false;
+		location.AutoGarbage = true;
+		location.Update();
+	
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			return;
+		}
+	
+		RemoveEventFlares(map);
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+	}
+	
+	private void AddLootToLocker(Map& map)
+	{
+		autoLootGenerator.SpawnLootToContainers(map, 10, false, true);
+	}
+	
+	private void AddScavengers(Map& map)
+	{
+		int scavengersCount = map.CountEntire(ENTIRE_EVENT_DEFENDER_SPAWN);
+	
+		for (int i = 0; i < scavengersCount; i++)
+		{
+			Critter@ critter = scavengerCritterTemplate.Spawn(map);
+		}
+		
+		scavengerCritterTemplate.ToDeadAll(map, ANIM2_DEAD_EXPLODE);
+	}
+	
+	void TryStopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+	
+		Location @location = autoLocation.GetLocation();
+		Map @map = location.GetMapByIndex(0);
+
+		if (!valid(map)) 
+		{
+			return;
+		}
+		
+		array<Critter@> critters;
+		map.GetCritters(0, FIND_LIFE, critters);
+		
+		if (critters.length() == 0)
+		{
+			array<Item@> lockers;
+			map.GetItems(PID_FOOTLOCKER_RUSTY_RIGHT, lockers);
+			for (uint i = 0; i < lockers.length(); i++)
+			{
+				array<Item@> loot;				
+				lockers[i].GetItems(0, loot);
+				if (loot.length() > 0)
+				{
+					return;
+				}
+			}
+			
+			StopEvent();
+		}
+	}
+}
+
+LockerEvent@ findEvent(Map& map)
+{
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	string@[] keys;
+	events.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		LockerEvent @event;
+		
+		if (events.get(keys[i], @event) && event.IsEventMap(map))
+		{
+			return event;
+		}
+	}
+	
+	return null;
+}
+
+void _MapInit(Map& map, bool firstTime)
+{
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_MapCritterOut");
+}
+
+void _MapCritterOut(Map& map, Critter& cr)
+{
+	LockerEvent @event = findEvent(map);
+	if (valid(event))
+	{
+		event.TryStopEvent();
+	}
+}

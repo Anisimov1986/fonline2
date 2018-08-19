@@ -1,0 +1,175 @@
+//
+// FOnline: 2238
+// Rotators
+//
+// logging.fos
+//
+
+#ifndef __LOGGING__
+#define __LOGGING__
+#define _FileWriteString                 # (__file, __text) do { file f; f.open(__file, "a"); f.writeString(__text); f.close(); } while(false);
+
+#include "_macros.fos"
+#include "logging_h.fos"
+#include "time.fos"
+array<file@>  f;
+array<string> filenames;
+string        ilogdir = "";
+
+uint AddLog(string& filename)
+{
+    file fi;
+    f.insertLast(fi);
+    filenames.insertLast(filename);
+    return filenames.length() - 1;
+}
+
+uint AddLog(string& filename, uint index)
+{
+    file fi;
+    @f[index] = fi;
+    filenames.insertLast(filename);
+    return filenames.length() - 1;
+}
+
+void InitLogs()
+{
+    f.resize(LOG_COUNT);
+    AddLog("logs/banks.log",          LOG_BANKS);
+    //AddLog("logs/gms/commands.log", LOG_COMMANDS);
+    //AddLog("logs/weapons.log",      LOG_WEAPONS);
+    //AddLog("logs/explode.log",      LOG_EXPLODE);
+    //AddLog("logs/gm_help.log",      LOG_GM_HELP);
+    //AddLog("logs/gms/critter.log",  LOG_CRITTER);
+    AddLog("logs/getaccess.log",      LOG_GETACCESS);
+    //AddLog("logs/cars.log",         LOG_CAR);
+    //AddLog("logs/focd.log",         LOG_FOCD);
+    //AddLog("logs/debug.log",        LOG_DEBUG);
+    //AddLog("logs/follower.log",     LOG_FOLLOWER);
+    //AddLog("logs/traders.log",      LOG_TRADERS);
+    AddLog("logs/perks.log",          LOG_PERKS);
+    //AddLog("logs/factions.log",     LOG_FACTIONS);
+    //AddLog("logs/wmlocations.log",  LOG_WMLOCATIONS);
+	AddLog("logs/register.log",       LOG_REG);
+	AddLog("logs/login.log",       	  LOG_LOGIN);
+	AddLog("logs/tc_income.log",      LOG_TC_INCOME);
+	AddLog("logs/hintbook.log",       LOG_HINT_BOOK);
+    AddLog("logs/caps.log",           LOG_CAPS);
+    AddLog("logs/gm.log",             LOG_GM);
+    AddLog("logs/listen.log",         LOG_LISTEN);
+    AddLog("logs/suspect.log",        LOG_SUSPECT);
+    AddLog("logs/logoff.log",         LOG_LOGOFF);
+    AddLog("logs/crmaps.log",         LOG_MAPCHANGE);
+    AddLog("logs/client_login.log",   LOG_CLIENT_LOGIN);
+	AddLog("logs/event_winners.log",  LOG_EVENT_WINNERS);
+	AddLog("logs/fastrelog.log",      LOG_FAST_RELOG);
+	AddLog("logs/quest.log",          LOG_QUEST);
+    AddLog("logs/auction.log",        LOG_AUCTION);
+    AddLog("logs/rareloot.log",       LOG_RARE_LOOT);
+    
+}
+
+void GMLog(Critter& cr, string& text)
+{
+    _FileWriteString("logs/gms/" + cr.Name + ".log", GetLogHeader() + text + "\n");
+    #ifdef LOG_TO_SERVERLOG
+    Log(GetLogHeader() + text);
+    #endif
+}
+
+void FLog(uint logindex, string& text)
+{
+    f[logindex].open(filenames[logindex], "a");
+    f[logindex].writeString(GetLogHeader() + text + "\n");
+    if (logindex == LOG_GM)
+        Log(GetLogHeader() + text);
+    // f[logindex].flush();
+    #ifdef LOG_TO_SERVERLOG
+    Log(GetLogHeader() + text);
+    #endif
+    f[logindex].close();
+}
+
+// it's bad and ugly, should be replaced by DevConnect...
+void ILog(string& section, string& text)
+{
+    if(ilogdir.length() == 0 || section.length() == 0 || text.length() == 0)
+        return;
+    string filename = ilogdir + "/" + section + "." + __FullSecond;
+
+    file   ilog;
+    if(ilog.open(filename, "a") >= 0)
+    {
+        ilog.writeString(text + "\n");
+        ilog.close();
+    }
+}
+
+string GetLogHeader()
+{
+    return "[" + RealDateTimeToString() + "] ";
+}
+
+void CloseLogs()
+{
+    for(uint i = 0; i < f.length(); i++)
+        f[i].close();
+}
+
+void print_log(Critter& critter, int logindex, int size, int clear)
+{
+    f[logindex].open(filenames[logindex], "r");
+
+	bool complete = true;
+	
+	if (size == 0)
+	{
+		size = 50000;
+	}
+	
+	if (f[logindex].getSize() > size)
+	{
+		complete = false;
+		f[logindex].setPos(f[logindex].getSize() - size);
+		
+		//read first incomplete line
+		string line;
+		f[logindex].readLine(line);
+	}
+	
+	
+	while (!f[logindex].isEndOfFile())
+	{
+		string line;
+	
+		if (f[logindex].readLine(line) > 0)
+		{
+			critter.Say(SAY_NETMSG, substring(line, 0, line.length() - 1));
+		}
+	}
+	
+    f[logindex].close();
+	
+	if (!complete)
+	{
+		critter.Say(SAY_NETMSG, "Process stopped - file to big. Only last " + size + " characters transferred");
+		return;
+	}
+
+	if (clear > 0)
+	{
+		if (logindex != LOG_EVENT_WINNERS && logindex != LOG_FAST_RELOG)
+		{
+			critter.Say(SAY_NETMSG, "Clearing this log is not allowed.");
+			return;
+		}
+	
+		f[logindex].open(filenames[logindex], "w");
+		f[logindex].close();
+	}
+}
+
+
+//critter.Say(SAY_NETMSG, i + " " + rareLootQueue.GetSize());
+
+#endif

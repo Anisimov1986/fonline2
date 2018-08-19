@@ -1,0 +1,280 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+20 1020 D _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 #
+16 2020 #
+17 2030 #
+18 2040 #
+0 2050 @
+3 3000 None 0 #
+4 3010 #
+15 3020 #
+0 3030 @
+4 4000 None 0 #
+20 4010 #
+5 4020 #
+0 4030 @
+5 5000 None 0 #
+6 5010 #
+20 5020 #
+0 5030 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+8 7010 @
+9 8000 None 0 #
+11 8010 #
+12 8020 #
+20 8030 @
+11 9000 None 0 #
+20 9010 @
+12 10000 None 0 #
+11 10010 @
+15 11000 None 0 #
+20 11010 #
+0 11020 @
+16 12000 None 0 #
+20 12010 #
+20 12020 D _item p PID_BOTTLE_CAPS > 9 R _item p PID_BEER + 1 R _item p PID_BOTTLE_CAPS - 10 @
+17 13000 None 0 #
+20 13010 #
+20 13020 D _item p PID_BOTTLE_CAPS > 199 R _item n PID_BOOZE + 1 R _item p PID_BOTTLE_CAPS - 200 @
+18 14000 None 0 #
+9 14010 @
+20 15000 None 0 #
+3 15010 #
+16 15020 #
+17 15030 #
+18 15040 #
+0 15050 &
+
+[engl]
+{100}{}{Josh}
+{200}{}{You see a tall, thin man looking at you appraisingly.}
+{210}{}{You see Josh Laurence, owner of the Last Gasp Saloon.}
+{210}{}{You see a man looking you over, as though he's taking your measurements.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, friend. Name's Josh Laurence. I own this place.}
+{2010}{}{What is this place, exactly?}
+{2020}{}{I'd like to buy a drink.}
+{2030}{}{I'd like to buy a round for everyone here.}
+{2040}{}{What's going on in town lately?}
+{2050}{}{Nothing, right now. I was just passing through. Goodbye}
+{3000}{}{This is the Last Gasp Saloon and Funeral Parlor. A full service establishment. Bottle to Grave is our motto.}
+{3010}{}{That seems like a bizarre combination, Josh.}
+{3020}{}{How do I arrange for funeral services?}
+{3030}{}{Nice talking to you Josh, I gotta go.}
+{4000}{}{That it is. But I couldn't make ends meet just burying people - you might say business was dead. Oh, it was a grave matter. So I undertook the job of fixing up my place to sell drinks, too.}
+{4010}{}{Uh-huh. I'm almost afraid to ask you anything else now. But I guess I will anyway.}
+{4020}{}{Uh, doesn't it throw people off their feed to see all the stiffs in here?}
+{4030}{}{I don't think I can stand another pun. I'm leaving. Goodbye.}
+{5000}{}{Well, it would, if they was all real. But they ain't. Not all of 'em, anyway. 'Sides, the miners kinda like it. Makes 'em feel lucky to be alive.}
+{5010}{}{I think it's creepy. You're a very disturbed individual.}
+{5020}{}{I see. Well, let me ask you something else.}
+{5030}{}{I guess some people might feel that way. But I'm not one of them. It just makes me feel kind of queasy. Goodbye.}
+{6000}{}{You call *me* creepy? Hell, how many fellas you killed in your life?}
+{6010}{}{That's ridiculous, where'd you hear that?}
+{7000}{}{I dunno 'xactly. But it's a fact sure as fiddlin'. Why would a man who takes care of the dead be judged by a killer? Huh? Answer me that!}
+{7010}{}{Oh man, you should hear the way they scream when they finally go down. Ain't no prettier sound out there.}
+{8000}{}{I've been spending time reburying people in the graveyard next door. Someone - or something - keeps diggin' 'em up. Dunno why. I mean, it ain't like they have anything valuable on 'em.}
+{8010}{}{The graves are being excavated?}
+{8020}{}{How do you know that they don't have anything valuable on them?}
+{8030}{}{Probably just rats. Let me ask you about something else.}
+{9000}{}{Well, I ain't never seen nothin', but every week or so one or another of the graves is all pawed and half dug-up like. Don't rightly know what would do that.}
+{9010}{}{That's strange.}
+{10000}{}{Well, I don't know fer certain like... Uh, um. I was just guessin'. Yeah, that's it.}
+{10010}{}{What do you mean something's digging them up?}
+{11000}{}{Well, I guess you'd start by croaking someone. But I'd advise against it. Sheriff Marion isn't real keen on that kind of behavior.}
+{11010}{}{I'll try to behave myself. Let me ask you something else, Josh.}
+{11020}{}{I see... well, at least I know who to talk to if there are any unfortunate *accidents*. Goodbye, Josh.}
+{12000}{}{Certainly. That'll be ten caps.}
+{12010}{}{I guess I don't want a beer right now after all. Let me ask you about something, though.}
+{12020}{}{Here's your money.}
+{13000}{}{That's generous of you. That'll be 200 caps for a round of beer for everyone here. Hey, I'm a poet and didn't know it. Hey, I'll throw in one on the house for your generosity.}
+{13010}{}{Hmm, that pun seems to have taken all the fun out of the idea. Let me ask you something instead.}
+{13020}{}{Ouch. Puns kill, Josh. Just a friendly warning. Here's your money.}
+{14000}{}{Well, not a whole lot that I pay attention too. Mostly my business is kinda quiet. Still as the grave, you might say. Although, lately, that phrase don't mean so much.}
+{14010}{}{Huh? What do you mean?}
+{15000}{}{What can I do for you?}
+{15010}{}{What is this place, exactly?}
+{15020}{}{I'd like to buy a drink.}
+{15030}{}{I'd like to buy a round for everyone here.}
+{15040}{}{What's going on in town lately?}
+{15050}{}{Nothing, right now. I was just passing through. Goodbye.}
+
+[russ]
+{100}{}{Джош}
+{200}{}{Вы видите высокого, тонкого человека, который внимательно вас рассматривает.}
+{210}{}{Вы видите Джоша Лоуренса, владельца салуна Последний Вздох.}
+{210}{}{Вы видите человека, который вас рассматривает, словно снимает с вас мерку.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Привет, @sex@|дружок||дорогуша|. Меня зовут Джош Лоранс. Я владелец этого заведения.}
+{2010}{}{А что это за заведение?}
+{2020}{}{Я хотел бы выпить.}
+{2030}{}{Я хотел бы поставить выпивку всем посетителям.}
+{2040}{}{Что нового в городе?}
+{2050}{}{Привет. Просто проходил мимо. Пока.}
+{3000}{}{Это "Последний Вздох", салун и похоронное бюро. Полный комплекс услуг. Наш девиз - "С бутылкой в могилу".}
+{3010}{}{Уж больно несуразное сочетание, Джош.}
+{3020}{}{Как заказать похороны?}
+{3030}{}{Приятно с вами пообщаться Джош, я должен идти.}
+{4000}{}{Вот так. Но я бы не смог свести концы с концами, если бы просто хоронил людей - скажем так, мертвое дело. О, это было дело жизни и смерти. Так что я перестроил свое заведение, чтобы в нем еще и подавали выпивку.}
+{4010}{}{Угу. Я почти боюсь тебя о чем-нибудь еще спрашивать. Но все равно, попробую.}
+{4020}{}{Э-э, а весь этот антураж людям аппетит не портит?}
+{4030}{}{Пожалуй, следующего каламбура я уже не перенесу. До свидания. }
+{5000}{}{Ну, если бы тут все было настоящее, то может быть. Но оно не настоящее. По крайней мере, не все. К тому же шахтерам это даже нравится. Они чувствуют себя счастливцами, что вообще живы.}
+{5010}{}{Жутко это все. Ты очень неуравновешенный человек.}
+{5020}{}{Понятно. Тогда я наверно тебя кое о чем еще спрошу.}
+{5030}{}{Наверное, некоторые могут это оценить. Но, не я. У меня мурашки по коже. Я ухожу.}
+{6000}{}{Жутко? Неуравновешенный? А мне вообще говорили, что дикари едят своих мертвецов.}
+{6010}{}{Чушь какая. Кто тебе это сказал?}
+{7000}{}{Честно, не знаю. Но это самая рассвятая правда. Зачем бы вам еще затачивать себе зубы? Ась? Ответь, а?}
+{7010}{}{Oh man, you should hear the way they scream when they finally go down. Ain't no prettier sound out there.}
+{8000}{}{Я проводил перезахоронения людей на кладбище по соседству. Кто-то - или что-то раскапывает могилы. Не знаю, почему. Я имею в виду, не похоже что в них есть что-нибудь ценное.}
+{8010}{}{Раскапывают могилы?}
+{8020}{}{Откуда ты знаешь, что нет ничего ценного в них?}
+{8030}{}{Наверное, просто крысы. Позвольте мне спросить вас о другом.}
+{9000}{}{Ну я сам никого не видел, на раз в неделю одна из могил оказывается разрыта.}
+{9010}{}{Это странно. Давай поговорим лучше о другом.}
+{10000}{}{Ну я не знаю точно, просто догадки.}
+{10010}{}{И кто-же это делает?}
+{11000}{}{Ну, для начала нужно кого-нибудь удавить. Но шериф Мерион не одобряет такие вещи. Так что я не советую.}
+{11010}{}{Буду держать себя в руках. Можно еще кое о чем спросить, Джош?}
+{11020}{}{Понятно. По крайней мере буду знать, к кому обратиться, если произойдет какой-нибудь "несчастный случай". До свидания.}
+{12000}{}{Нет ничего проще. Десять монет.}
+{12010}{}{Что-то я уже расхотел. Лучше еще кое что спрошу.}
+{12020}{}{Вот деньги. }
+{13000}{}{Очень щедро с твоей стороны. Чтобы каждому послать привет - все в сумме 200 монет. Эй, я, оказывается поэт.}
+{13010}{}{Хм. Этот каламбур, похоже, убил все желание. Можно я кое о чем еще спрошу?}
+{13020}{}{Ох, каламбуры до могилы доведут, Джош. Просто дружеское предупреждение. Вот деньги.}
+{14000}{}{Ну, не много, что меня бы касалось. По большей части у меня тихий бизнес. Тихо, как в могиле, можно сказать. Но вот кто-то раскапывает могилы.}
+{14010}{}{А? Что ты имеешь в виду?}
+{15000}{}{Что я могу сделать для вас?}
+{15010}{}{А что это за заведение?}
+{15020}{}{Я хотел бы выпить.}
+{15030}{}{Я хотел бы поставить выпивку всем посетителям.}
+{15040}{}{Что нового в городе?}
+{15050}{}{Привет. Просто проходил мимо. Пока.}
+
+[pols]
+{100}{}{Josh}
+{200}{}{Widzisz wysokiego, szczupłego mężczyznę. Wydaje się taksować cię uważnie.}
+{210}{}{Widzisz Josha Laurenca, właściciela saloonu Ostatnie Tchnienie.}
+{210}{}{Widzisz mężczyznę. Wygląda, jakby brał z ciebie miarę.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Witaj @sex@|przyjacielu||przyjaciółko|, nazywam się Josh Laurance. Jestem właścicielem tych skromnych progów.}
+{2010}{}{A te skromne progi to co właściwie jest?}
+{2020}{}{Mogę się czegoś napić?}
+{2030}{}{Kolejka dla wszystich!}
+{2040}{}{Dzieje się tutaj coś ciekawego?}
+{2050}{}{Tylko przechodzę. Do widzenia.}
+{3000}{}{To saloon Ostatnie Tchnienie, knajpa i zakład pogrzebowy jednocześnie, pełny serwis. Flaszka do grobu, to nasze motto.}
+{3010}{}{To dość... intrygująca kombinacja, Josh.}
+{3020}{}{Jak mogę załatwić przygotowania pogrzebowe?}
+{3030}{}{Fajnie się gadało, ale muszę spadać.}
+{4000}{}{Ano. Ale nie wyrobiłbym, jakbym tylko grzebał ludzi. Można by powiedzieć że biznes *zdychał*, mówię ci, *śmiertelnie* poważna sprawa. Nie miałem za bardzo wyjścia, więc zająłem się też trunkami.}
+{4010}{}{Aha. Aż boję się spytać o cokolwiek innego... ale i tak zapytam.}
+{4020}{}{A ludziom nie przeszkadzają wszyscy sztywniacy, których tu oporządzasz?}
+{4030}{}{Nie zdzierżę jeszcze jednego takiego żartu. Czas na mnie.}
+{5000}{}{Może i by przeszkadzali, ale to wszystko manekiny. No, może prawie wszystko... Zresztą, tutejsi górnicy zdają się to lubić, można wręcz powiedzieć, że przypominam im jakiego mają farta że w ogóle żyją. Memento mori.}
+{5010}{}{Momento co? Niezły z ciebie świr...}
+{5020}{}{Rozumiem, mogę zadać kilka innych pytań?}
+{5030}{}{Być może... ale mi to nie podchodzi. Do widzenia.}
+{6000}{}{Kogo nazywasz świrem, @sex@|przemądrzalcu||mądralińska|? A ilu ludzi *ty* @sex@|zabiłeś||zabiłaś|, co? Kto tu jest normalny, a kto nie?}
+{6010}{}{To śmieszne, od kogo to słyszałeś?}
+{7000}{}{Nie pamiętam. Ale jakim prawem ktoś, kto opiekuje się zmarłymi miałby być oceniany przez zabójcę? Jakim prawem, pytam się?}
+{7010}{}{Człowieku, żebyś słyszał jak wyją gdy zdychają! Po prostu poezja...}
+{8000}{}{Ostatnio ciągle zakopuję trupy. To znaczy, *z powrotem* zakopuję. Ktoś, lub coś, wygrzebuje je z grobów. Nie wiem dlaczego, przecież nie mają przy sobie nic wartościowego...}
+{8010}{}{Wykopki, powiadasz?}
+{8020}{}{A skąd wiesz, że nic nie mają, co?}
+{8030}{}{To pewnie szczury. Jeszcze jedno...}
+{9000}{}{Ja nic nie widziałem, ale co parę dni jakiś grób zostaje rozkopany, nie do końca, ale i tak kiepsko to wygląda. Nie wiem kto normalny mógłby się tego dopuścić.}
+{9010}{}{Dziwne.}
+{10000}{}{No, po prawdzie to nie wiem, to jest... domyślam się. Tak, domyślam się.}
+{10010}{}{To znaczy, że ktoś lub coś wykopuje te zwłoki?}
+{11000}{}{Wystarczy kogoś zabić, ale odradzam. Szeryf Marion nie za bardzo lubi tego typu sytuacje.}
+{11010}{}{Będę @sex@|grzeczny||grzeczna|, obiecuję. Mogę spytać o coś innego, Josh?}
+{11020}{}{Aha... No, przynajmniej wiem do kogo zagadać jeśli jakieś tego typu *incydenty* się powtórzą. Do widzenia, Josh.}
+{12000}{}{Oczywiście. Dziesięć kapsli.}
+{12010}{}{Chyba przeszła mi ochota na piwo. Może jeszcze parę pytań?}
+{12020}{}{Trzymaj.}
+{13000}{}{Patrzcie, @sex@|jaki hojny||jaka hojna|. Dwieście kapsli za kolejkę dla wszystkich. W sumie to nigdy coś takiego mi się nie zdarzyło. Cholera, niech stracę, jeszcze jedna flaszka dla ciebie, na koszt firmy.}
+{13010}{}{Może jednak nie. Mam inną sprawę...}
+{13020}{}{Dobra. Masz tu kapsle.}
+{14000}{}{Niewiele, ale ja nie zwracam uwagi na takie rzeczy. Cicho jak w grobie, można by powiedzieć. Chociaż... hm, ostatnio to powiedzenie chyba straciło na aktualności.}
+{14010}{}{To znaczy?}
+{15000}{}{Pomóc w czymś?}
+{15010}{}{Co to za miejsce?}
+{15020}{}{@sex@|Chciałbym||Chciałabym| się napić.}
+{15030}{}{Kolejka dla wszystkich!}
+{15040}{}{Słyszałeś ostatnio coś ciekawego?}
+{15050}{}{Nie, tylko @sex@|wpadłem||wpadłam| na chwilę. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there, friend. Name's Josh Laurence. I own this place.}
+{2010}{}{What is this place, exactly?}
+{2020}{}{I'd like to buy a drink.}
+{2030}{}{I'd like to buy a round for everyone here.}
+{2040}{}{What's going on in town lately?}
+{2050}{}{Nothing, right now. I was just passing through. Goodbye}
+{3000}{}{This is the Last Gasp Saloon and Funeral Parlor. A full service establishment. Bottle to Grave is our motto.}
+{3010}{}{That seems like a bizarre combination, Josh.}
+{3020}{}{How do I arrange for funeral services?}
+{3030}{}{Nice talking to you Josh, I gotta go.}
+{4000}{}{That it is. But I couldn't make ends meet just burying people - you might say business was dead. Oh, it was a grave matter. So I undertook the job of fixing up my place to sell drinks, too.}
+{4010}{}{Uh-huh. I'm almost afraid to ask you anything else now. But I guess I will anyway.}
+{4020}{}{Uh, doesn't it throw people off their feed to see all the stiffs in here?}
+{4030}{}{I don't think I can stand another pun. I'm leaving. Goodbye.}
+{5000}{}{Well, it would, if they was all real. But they ain't. Not all of 'em, anyway. 'Sides, the miners kinda like it. Makes 'em feel lucky to be alive.}
+{5010}{}{I think it's creepy. You're a very disturbed individual.}
+{5020}{}{I see. Well, let me ask you something else.}
+{5030}{}{I guess some people might feel that way. But I'm not one of them. It just makes me feel kind of queasy. Goodbye.}
+{6000}{}{You call *me* creepy? Hell, how many fellas you killed in your life?}
+{6010}{}{That's ridiculous, where'd you hear that?}
+{7000}{}{I dunno 'xactly. But it's a fact sure as fiddlin'. Why would a man who takes care of the dead be judged by a killer? Huh? Answer me that!}
+{7010}{}{Oh man, you should hear the way they scream when they finally go down. Ain't no prettier sound out there.}
+{8000}{}{I've been spending time reburying people in the graveyard next door. Someone - or something - keeps diggin' 'em up. Dunno why. I mean, it ain't like they have anything valuable on 'em.}
+{8010}{}{The graves are being excavated?}
+{8020}{}{How do you know that they don't have anything valuable on them?}
+{8030}{}{Probably just rats. Let me ask you about something else.}
+{9000}{}{Well, I ain't never seen nothin', but every week or so one or another of the graves is all pawed and half dug-up like. Don't rightly know what would do that.}
+{9010}{}{That's strange.}
+{10000}{}{Well, I don't know fer certain like... Uh, um. I was just guessin'. Yeah, that's it.}
+{10010}{}{What do you mean something's digging them up?}
+{11000}{}{Well, I guess you'd start by croaking someone. But I'd advise against it. Sheriff Marion isn't real keen on that kind of behavior.}
+{11010}{}{I'll try to behave myself. Let me ask you something else, Josh.}
+{11020}{}{I see... well, at least I know who to talk to if there are any unfortunate *accidents*. Goodbye, Josh.}
+{12000}{}{Certainly. That'll be ten caps.}
+{12010}{}{I guess I don't want a beer right now after all. Let me ask you about something, though.}
+{12020}{}{Here's your money.}
+{13000}{}{That's generous of you. That'll be 200 caps for a round of beer for everyone here. Hey, I'm a poet and didn't know it. Hey, I'll throw in one on the house for your generosity.}
+{13010}{}{Hmm, that pun seems to have taken all the fun out of the idea. Let me ask you something instead.}
+{13020}{}{Ouch. Puns kill, Josh. Just a friendly warning. Here's your money.}
+{14000}{}{Well, not a whole lot that I pay attention too. Mostly my business is kinda quiet. Still as the grave, you might say. Although, lately, that phrase don't mean so much.}
+{14010}{}{Huh? What do you mean?}
+{15000}{}{What can I do for you?}
+{15010}{}{What is this place, exactly?}
+{15020}{}{I'd like to buy a drink.}
+{15030}{}{I'd like to buy a round for everyone here.}
+{15040}{}{What's going on in town lately?}
+{15050}{}{Nothing, right now. I was just passing through. Goodbye.}
+

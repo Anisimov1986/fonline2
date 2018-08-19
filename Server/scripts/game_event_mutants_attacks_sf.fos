@@ -1,0 +1,425 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "_teams.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos"
+#include "economy_h.fos"
+
+#define EVENT_INTRO				    ( 8 ) 
+#define EVENT_WAVE_1				( 9 ) 
+#define EVENT_WAVE_2				( 10 )
+#define EVENT_WAVE_3				( 11 )
+#define INTRO_DURATION_SECONDS	    ( 120 )
+#define WAVE_1_DURATION_SECONDS	    ( 160 )
+#define WAVE_2_DURATION_SECONDS	    ( 160 )
+#define WAVE_3_DURATION_SECONDS	    ( 760 )
+#define NUMBER_OF_ATTACKERS_WAVE_1	( 25 )
+#define NUMBER_OF_ATTACKERS_WAVE_2	( 20 )
+#define NUMBER_OF_ATTACKERS_WAVE_3	( 15 )
+#define NUMBER_DEFENDERS			( 8 )
+#define ROLE_ATTACKER				( 288000 )
+#define ROLE_DEFENDER				( 288001 )
+#define ROLE_TARGET					( 288002 )
+#define ROLE_NEUTRAL_1				( 288003 )
+#define ROLE_NEUTRAL_2				( 288007 )
+
+import bool AddAttackPlane(Critter& npc, uint priority, Critter& target, bool run) from "npc_planes";
+import void AddNewMessage(string text ,int time, int showtimer, uint color, bool eventtimer, uint eventid) from "stocmessages";
+import bool IsEventTimer(uint town) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import int GetNextTime(uint Id) from "game_events";
+import bool IsItemAviable(uint16 pid) from "blueprints";
+
+int[] attackerParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK, 10,
+		PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+		MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+		ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_ATTACKER, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Mariposa};
+
+const int[] attackerPids = {NPC_PID_MUTANT1, NPC_PID_MUTANT2, NPC_PID_MUTANT3, NPC_PID_MUTANT4, NPC_PID_MUTANT5};		
+	
+int[] defenderParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK, 10,
+		PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+		MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+		ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_DEFENDER, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_BoSTrooper};
+		
+const int[] defenderPids = {NPC_PID_BOS1, NPC_PID_BOS2, NPC_PID_BOS3, NPC_PID_BOS4, NPC_PID_BOS5};
+		
+const int[] weaponPids = {PID_LASER_RIFLE_EXT_CAP, PID_LASER_RIFLE_EXT_CAP, PID_LASER_RIFLE_EXT_CAP, PID_ROCKET_LAUNCHER,
+		PID_ROCKET_LAUNCHER, PID_ROCKET_LAUNCHER, PID_ROCKET_LAUNCHER, PID_ROCKET_LAUNCHER,
+		PID_AVENGER_MINIGUN, PID_AVENGER_MINIGUN, PID_VINDICATOR_MINIGUN, PID_VINDICATOR_MINIGUN,
+		PID_IMPROVED_FLAMETHROWER, PID_IMPROVED_FLAMETHROWER, PID_BOZAR, PID_GATLING_LASER};
+		
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);
+	return GetNextTime(values[0]);
+}
+
+void event_start(uint id) 
+{
+	Map@ map = GetMapByPid(MAP_sf_china, 0);
+	if (!valid(map))
+	{
+		return;
+	}
+
+	uint16 hexX = 0;
+	uint16 hexY = 0;
+	uint8 dir = 0;
+	if (!map.GetEntireCoords(ENTIRE_EVENT_CAR_SPAWN, 0, hexX, hexY, dir))
+	{
+		return;
+	}	
+	Item@ car = map.AddItem(hexX, hexY, PID_HUMMER, 1);
+    if (!valid(car))
+	{
+        return;
+	}
+    car.LockerId = 1;
+    car.Charge = Random(0, car.Proto.Car_TankVolume);
+    car.Deterioration = Random(0, car.Proto.Car_MaxDeterioration);
+	Item@ bag = car.GetChild(0);
+	bag.LockerId = 1;
+						
+	uint entireSpawnNum = map.CountEntire(ENTIRE_EVENT_DEFENDER_SPAWN);
+	uint defenders = 0;
+	for (uint8 i = 0; i < entireSpawnNum; i++)
+	{
+		if (defenders >= NUMBER_DEFENDERS)
+		{
+			break;
+		}
+		if (map.GetEntireCoords(ENTIRE_EVENT_DEFENDER_SPAWN, i, hexX, hexY, dir) && AddDefender(hexX, hexY, dir))
+		{
+			defenders++;
+		}
+	}
+	
+	intro_start();
+}	
+
+void intro_start()
+{
+    AddNewMessage("BoS transport has arrived to the SF bunker, Scribe Matthew is requesting help for the incoming mutant's attack. Time left:", REAL_SECOND(INTRO_DURATION_SECONDS + WAVE_1_DURATION_SECONDS + WAVE_2_DURATION_SECONDS + WAVE_3_DURATION_SECONDS), 1, COLOR_GREEN, true, EVENT_INTRO);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(INTRO_DURATION_SECONDS), "e_intro_stop", 0, true);
+}
+
+uint e_intro_stop(array<uint>@ values)
+{
+	RemoveMessageByEvent(EVENT_INTRO);
+	wave_1_start();
+	return 0;
+}
+
+void wave_1_start()
+{
+    AddNewMessage("BoS transport arrived to SF bunker. Mutants are trying to take it over. Scribe Matthew is calling for help. Time left:", REAL_SECOND(WAVE_1_DURATION_SECONDS + WAVE_2_DURATION_SECONDS + WAVE_3_DURATION_SECONDS), 1, COLOR_GREEN, true, EVENT_WAVE_1);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(WAVE_1_DURATION_SECONDS), "e_wave_1_stop", 0, true);
+	AddAttackerWave(NUMBER_OF_ATTACKERS_WAVE_1, 0);
+	InitializeGossip();
+}
+
+void InitializeGossip()
+{	
+	Location@ location = GetLocationByPid(LOCATION_SanFrancisco, 0);
+	if (!valid(location)) 
+	{
+		return;
+	}
+	
+	GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, REAL_SECOND(WAVE_1_DURATION_SECONDS) + REAL_SECOND(WAVE_2_DURATION_SECONDS) + REAL_SECOND(WAVE_3_DURATION_SECONDS));
+	gossipDefinition.SetGossipId(EVENT_INTRO);
+	gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+	gossipDefinition.SetSourceLocationId(location.Id);
+	gossipDefinition.SetMsgId(STR_SF_MUTANTS_EVENT_GOSSIP_LOC);
+	gossipDefinition.SetSourceMsgId(STR_SF_MUTANTS_EVENT_GOSSIP_NO_LOC);
+	StartGossip(gossipDefinition);
+}
+
+uint e_wave_1_stop(array<uint>@ values)
+{
+	RemoveMessageByEvent(EVENT_WAVE_1);
+	wave_2_start();
+	return 0;
+}
+
+void wave_2_start()
+{
+    AddNewMessage("BoS transport arrived to SF bunker. Mutants are trying to take it over. Scribe Matthew is calling for help. Time left:", REAL_SECOND(WAVE_2_DURATION_SECONDS + WAVE_3_DURATION_SECONDS), 1, COLOR_GREEN, true, EVENT_WAVE_2);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(WAVE_2_DURATION_SECONDS), "e_wave_2_stop", 0, true);
+	AddAttackerWave(NUMBER_OF_ATTACKERS_WAVE_2, NUMBER_OF_ATTACKERS_WAVE_1);
+}
+
+uint e_wave_2_stop(array<uint>@ values)
+{
+	RemoveMessageByEvent(EVENT_WAVE_2);
+	wave_3_start();
+	return 0;
+}
+
+void wave_3_start()
+{
+    AddNewMessage("BoS transport arrived to SF bunker. Mutants are trying to take it over. Scribe Matthew is calling for help. Time left:", REAL_SECOND(WAVE_3_DURATION_SECONDS), 1, COLOR_GREEN, true, EVENT_WAVE_3);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(WAVE_3_DURATION_SECONDS), "e_event_stop", 0, true);
+	AddAttackerWave(NUMBER_OF_ATTACKERS_WAVE_3, NUMBER_OF_ATTACKERS_WAVE_1 + NUMBER_OF_ATTACKERS_WAVE_2);
+}
+
+bool d_IsReadyToFinishEvent( Critter& player, Critter@ npc)
+{
+	if (!IsEventTimer(EVENT_WAVE_3)) 
+	{
+		return false;
+	}
+
+	Map@ map = GetMapByPid(MAP_sf_china, 0);
+	if (!valid(map)) 
+	{
+		return false;
+	}
+	
+	return map.GetNpcCount(ROLE_ATTACKER, FIND_LIFE) == 0;
+}
+
+void d_FinishEvent(Critter& player, Critter@ npc)
+{
+	if (IsEventTimer(EVENT_WAVE_3)) 
+	{
+		Map@ map = GetMapByPid(MAP_sf_china, 0);
+		uint aliveDefenders = map.GetNpcCount(ROLE_DEFENDER, FIND_LIFE);
+	
+		RemoveMessageByEvent(EVENT_WAVE_3);
+		e_event_stop(null);
+		
+		player.AddItem(PID_BOTTLE_CAPS, RewardMod(Random(1000 + aliveDefenders * 800, 2000 + aliveDefenders * 1200)));
+		if (IsItemAviable(PID_PSYCHO))	
+			player.AddItem(PID_PSYCHO, Random(10 + aliveDefenders * 3, 20 + aliveDefenders * 5));
+		if (IsItemAviable(PID_JET))	
+			player.AddItem(PID_JET, Random(10 + aliveDefenders * 3, 20 + aliveDefenders * 5));
+		if (IsItemAviable(PID_NUKA_COLA))	
+			player.AddItem(PID_NUKA_COLA, Random(10 + aliveDefenders * 3, 20 + aliveDefenders * 5));
+		if (IsItemAviable(PID_CIGARETTES))	
+			player.AddItem(PID_CIGARETTES, Random(10 + aliveDefenders * 3, 20 + aliveDefenders * 5));
+		if (IsItemAviable(PID_BUFFOUT))	
+			player.AddItem(PID_BUFFOUT, Random(10 + aliveDefenders * 3, 20 + aliveDefenders * 5));
+		player.AddItem(PID_BROTHERHOOD_COMBAT_ARMOR, Random(aliveDefenders / 2, aliveDefenders));
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_sf_china, 0);
+	if (!valid(map)) {
+		return 0;
+	}
+	
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_ATTACKER) {
+			DeleteNpc(npcs[i]);
+		}
+		
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_DEFENDER) {
+			DeleteNpc(npcs[i]);
+		}
+	}
+	
+	array<Item@> cars;
+	map.GetItems(PID_HUMMER, cars);
+	for (uint i=0 ; i<cars.length() ; i++)
+	{
+		if (cars[i].LockerId == 1) {
+			DeleteItem(cars[i]);
+		}
+	}
+	
+	StopGossip(EVENT_INTRO, GOSSIP_SCOPE_EVENT);
+	
+	return 0;
+}
+
+bool AddDefender(uint16 hexX, uint16 hexY, uint8 dir)
+{
+	Map@ map = GetMapByPid(MAP_sf_china, 0);
+	if(!GetFreeHex(map, 1,hexX, hexY))
+	{
+		return false;
+	}
+	
+	Critter@ defender = map.AddNpc(defenderPids[(Random(0, defenderPids.length() - 1))], hexX, hexY, dir, defenderParams, null, null);
+	if (!valid(defender))
+	{
+		return false;
+	}
+	
+	Item@ weapon = defender.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+	if (valid(weapon) && weapon.GetProtoId () == PID_ROCKET_LAUNCHER)
+	{
+		weapon.AmmoPid=PID_ROCKET_AP;
+	}
+
+	defender.SetFavoriteItem(SLOT_HAND1, weapon.GetProtoId());
+	defender.SetScript("_DefenderInit");
+	
+	_DefenderInit(defender, true);
+	
+	return true;
+}
+
+void _DefenderInit(Critter& defender, bool firstTime)
+{
+	defender.ShowCritterDist1 = 30;
+	defender.SetEvent(CRITTER_EVENT_SHOW_CRITTER_1, "_ShowDefender" );
+	defender.SetEvent(CRITTER_EVENT_DEAD, "_Dead");
+}
+
+void AddAttackerWave(uint16 numberAttacker, uint16 offset)
+{
+	Map@ map = GetMapByPid(MAP_sf_china, 0);
+	uint entireSpawnNum = map.CountEntire(ENTIRE_EVENT_MOB_SPAWN);
+	uint entireHomeNum = map.CountEntire(ENTIRE_EVENT_MOB_HOME);
+	uint16 hexX = 0;
+	uint16 hexY = 0;
+	uint8 dir = 0;
+	uint16 homeX = 0;
+	uint16 homeY = 0;
+	uint8 homeDir = 0;
+	uint attackers = 0;
+	for (uint8 i = 0; i < entireSpawnNum; i++)
+	{
+		if (attackers >= numberAttacker)
+		{
+			break;
+		}
+		if (map.GetEntireCoords(ENTIRE_EVENT_MOB_SPAWN, i, hexX, hexY, dir)
+				&& map.GetEntireCoords(ENTIRE_EVENT_MOB_HOME, ((attackers + offset) * 211) % entireHomeNum, homeX, homeY, homeDir) 
+				&& AddAttacker(hexX, hexY, dir, homeX, homeY, homeDir))
+		{
+			attackers++;
+		}
+	}
+}
+
+bool AddAttacker(uint16 hexX, uint16 hexY, uint8 dir, uint16 homeX, uint16 homeY, uint8 homeDir)
+{
+	Map@ map = GetMapByPid(MAP_sf_china, 0);
+	if(!GetFreeHex(map, 1,hexX, hexY))
+	{
+		return false;
+	}
+	
+	Critter@ attacker = map.AddNpc(attackerPids[(Random(0, attackerPids.length() - 1))], hexX, hexY, dir, attackerParams, null, null);
+	if (!valid(attacker))
+	{
+		return false;
+	}
+	Item@ weapon = attacker.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+	if (valid(weapon) && weapon.GetProtoId () == PID_ROCKET_LAUNCHER)
+	{
+		weapon.AmmoPid=PID_ROCKET_AP;
+	}
+	attacker.SetFavoriteItem(SLOT_HAND1, weapon.GetProtoId ());
+	attacker.SetHomePos(homeX, homeY, homeDir);
+	
+	_AttackerInit(attacker, true);
+	attacker.SetScript("_AttackerInit");
+	
+	//Critter@[] critters;
+	//map.GetCritters(0, FIND_LIFE_AND_KO, critters);
+	//for (uint i = 0; i < critters.length(); i++)
+	//{
+	//	CheckAndAttackCritterAttacker(attacker, critters[i]);
+	//}
+	
+	return true;
+}
+
+void _AttackerInit(Critter& attacker, bool firstTime)
+{
+	attacker.ShowCritterDist1 = 30;
+	attacker.SetEvent(CRITTER_EVENT_SHOW_CRITTER_1, "_ShowAttacker");
+	attacker.SetEvent(CRITTER_EVENT_DEAD, "_Dead");
+}
+
+void CheckAndAttackCritterAttacker(Critter& attacker, Critter& target)
+{
+	if (!attacker.CheckEnemyInStack(target.Id)) 
+	{
+		if (target.IsPlayer())
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 24), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+		else if (target.Stat[ST_NPC_ROLE] == ROLE_DEFENDER)
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 15, AI_PLANE_ATTACK_PRIORITY + 19), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+		else if (target.Stat[ST_NPC_ROLE] == ROLE_TARGET)
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 10, AI_PLANE_ATTACK_PRIORITY + 14), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+		else if (target.Stat[ST_NPC_ROLE] != ROLE_ATTACKER && target.Stat[ST_NPC_ROLE] != ROLE_NEUTRAL_1 && target.Stat[ST_NPC_ROLE] != ROLE_NEUTRAL_2)
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 5, AI_PLANE_ATTACK_PRIORITY + 9), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+	}
+}
+
+void CheckAndAttackCritterDefender(Critter& attacker, Critter& target)
+{
+	if (!attacker.CheckEnemyInStack(target.Id)) 
+	{
+		if (target.Stat[ST_NPC_ROLE] == ROLE_ATTACKER)
+		{
+			AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY + 10, AI_PLANE_ATTACK_PRIORITY + 14), target, true);
+			attacker.AddEnemyInStack(target.Id);
+		}
+	}
+}
+
+void _ShowAttacker(Critter& npc, Critter& cr)
+{
+	CheckAndAttackCritterAttacker(npc, cr);
+}
+
+void _ShowDefender(Critter& npc, Critter& cr)
+{
+	CheckAndAttackCritterDefender(npc, cr);
+}
+
+void _Dead(Critter& mob, Critter@ killer)
+{
+    mob.ClearEnemyStack();
+}
+
+void event_start( Critter& cr, int, int , int)
+{
+	event_start(EVENT_INTRO);
+}
+void event_stop( Critter& cr, int, int , int)
+{
+	e_event_stop(null);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(EVENT_INTRO);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	e_event_stop(null);
+}

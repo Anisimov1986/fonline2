@@ -1,0 +1,342 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var p q_vc_mcclure = 0 #
+3 1020 D _var p q_vc_mcclure = 1 D or D _var p q_vc_mcclure = 2 #
+25 1030 D _var p q_vc_mcclure } 3 D _var p q_vc_mcclure { 6 #
+26 1040 D _var p q_vc_mcclure } 7 @
+2 2000 None 0 @
+3 3000 None 0 #
+4 3010 R _var p q_vc_mcclure = 2 #
+5 3020 R _var p q_vc_mcclure = 2 #
+6 3030 R _var p q_vc_mcclure = 2 #
+7 3040 R _var p q_vc_mcclure = 2 #
+9 3050 #
+0 3060 @
+4 4000 None 0 @
+5 5000 None 0 @
+6 6000 None 0 @
+7 7000 None 0 @
+9 8000 None 0 #
+5 8010 R _var p q_vc_mcclure = 2 #
+10 8020 R _var p q_vc_mcclure = 2 #
+4 8030 R _var p q_vc_mcclure = 2 #
+12 8040 #
+0 8050 @
+10 9000 None 0 @
+12 10000 None 0 #
+13 10010 #
+0 10020 @
+13 11000 None 0 #
+14 11010 @
+14 12000 None 0 #
+17 12010 R _var p q_vc_mcclure = 3 R _script dialog@r_ShowQuestMessage 1 9316 #
+15 12020 #
+16 12030 R _var p q_vc_mcclure = 3 R _script dialog@r_ShowQuestMessage 1 9316 #
+18 12040 R _var p q_vc_mcclure = 3 R _script dialog@r_ShowQuestMessage 1 9316 @
+15 13000 None 0 #
+16 13010 R _var p q_vc_mcclure = 4 R _script dialog@r_ShowQuestMessage 1 9316 #
+17 13020 R _var p q_vc_mcclure = 4 R _script dialog@r_ShowQuestMessage 1 9316 #
+18 13030 R _var p q_vc_mcclure = 4 R _script dialog@r_ShowQuestMessage 1 9316 #
+19 13040 @
+16 14000 None 0 @
+17 15000 None 0 @
+18 16000 None 0 @
+19 17000 None 0 #
+16 17010 R _var p q_vc_mcclure = 5 R _script dialog@r_ShowQuestMessage 1 9316 #
+20 17020 #
+17 17030 R _var p q_vc_mcclure = 5 R _script dialog@r_ShowQuestMessage 1 9316 #
+18 17040 R _var p q_vc_mcclure = 5 R _script dialog@r_ShowQuestMessage 1 9316 @
+20 18000 None 0 #
+16 18010 R _var p q_vc_mcclure = 6 R _script dialog@r_ShowQuestMessage 1 9316 #
+17 18020 R _var p q_vc_mcclure = 6 R _script dialog@r_ShowQuestMessage 1 9316 #
+18 18030 R _var p q_vc_mcclure = 6 R _script dialog@r_ShowQuestMessage 1 9316 #
+21 18040 @
+21 19000 None 0 #
+22 19010 @
+22 20000 None 0 #
+23 20010 R _var p q_vc_mcclure = 7 #
+24 20020 R _var p q_vc_mcclure = 8 @
+23 21000 None 0 #
+0 21010 R _script dialog@r_ShowQuestMessage 1 9316 @
+24 22000 None 0 #
+0 22010 R _script dialog@r_ShowQuestMessage 1 9316 @
+25 23000 None 0 @
+26 24000 None 0 &
+
+[engl]
+{100}{}{Nigel}
+{200}{}{You see middle-aged Vault City citizen.}
+{210}{}{You see Nigel. He looks a bit upset.}
+{1000}{}{Predialogue installations}
+{1010}{}{McClure quest not initiated}
+{1020}{}{McClure quest initiated}
+{1030}{}{doesn't like us}
+{1040}{}{likes us}
+{2000}{}{These taxes are killing me.@@Band of socialist idiots.@@I want a smoke so badly.@@Fucking bureaucrats.@@One more directive and I'm going to kill somebody.@@I have to give them 90% of my income!@@This city is just insane.@@I'd gladly pay for that all, just leave me and my money alone.@@I'm gonna emigrate to Gecko, radiation be damned.}
+{3000}{}{[He looks at you with his bright eyes.] Yes, @sex@|sir||ma'am|?@@What is that again?@@I'm listening, @sex@|sir||ma'am|.@@[Stares at you in silence.]@@[Pretends not to see you.]@@How can I help you?}
+{3010}{}{Councillor McClure sent me to talk to you.}
+{3020}{}{Why are you so upset?}
+{3030}{}{How are you doing?}
+{3040}{}{I'm a journalist, writing an article about Vault City. Would you mind if I asked you a couple of questions, sir?}
+{3050}{}{Beautiful day, ain't it?}
+{3060}{}{Well, nevermind.}
+{4000}{}{Tell that fucking robber that if he'd like to talk to me, he'd better move his ass from his fancy office funded from my taxes.}
+{5000}{}{Not your business, @sex@|fellow||darling|.}
+{6000}{}{I'd feel better if you'd go away and stop wasting my time.}
+{7000}{}{Excuse me, but I'm not talking with the press.}
+{8000}{}{I wouldn't say so, @sex@|sir||ma'am|.}
+{8010}{}{What's the problem, pal?}
+{8020}{}{It's because that fucking Council, eh?}
+{8030}{}{McClure sent me here.}
+{8040}{}{[Remain silent.]}
+{8050}{}{[Leave.]}
+{9000}{}{Don't even tell me about those stupid fuckers.}
+{10000}{}{What's your problem, @sex@|sir||ma'am|?}
+{10010}{}{Just lookin' around. My name's @pname@, this is my first visit here. What can you tell me about this city?}
+{10020}{}{Well, nevermind.}
+{11000}{}{It's slowly rotting and will die soon because of those idiots in the Council.}
+{11010}{}{What do you mean by that?}
+{12000}{}{Just have a look at this. This city is almost dead. We don't produce anything, everything is being imported. Well, who'd bother producing anything, if he'd have to pay a 90% tax rate? If we weren't stocked with medical supplies for sale, we would've been bankrupt years ago.}
+{12010}{}{Come on, if I was stocked with those supplies and didn't have to do anything, I'd be fucking happy!}
+{12020}{}{That's interesting. Why people don't react?}
+{12030}{}{Those fucking merchants aren't doing no good to anyone, they should pay 100% in taxes even.}
+{12040}{}{I'll talk with McClure about this, he'll understand that.}
+{13000}{}{Most Citizens are stupid as fuck, 'cause the teaching standards are incredibly low. All the books have been transcribed into electronic format, you can ask Kohl. That sounds nice, don't it? But the access to them is strictly limited! It isn't that necessary, to be honest, 'cause kids get brainwashed in the schools and people don't ever seek any information about the outside world.}
+{13010}{}{If they are happy, what's the problem?}
+{13020}{}{Man, I think it's good that you've got everything in one computer rather than on mountains of useless paper.}
+{13030}{}{Councillor McClure won't like what you're saying.}
+{13040}{}{But you have to admit that it's quite clean and safe here, compared to the rest of the wasteland.}
+{14000}{}{I'm sorry, but I won't continue the conversation with someone with such a slave mentality. You would fit in well in San Francisco, fucking commie.}
+{15000}{}{You seem to be too blunt to understand what I'm saying, sorry. Goodbye.}
+{16000}{}{You're a Council spy?! Go away, scoundrel!}
+{17000}{}{Yeah, sure - but remember, we had a fully equipped Vault and a G.E.C.K. to start with, and the rest had only burnt ashes of what remained after nuclear warfare. Look at what they achieved in Hub, Shady Sands, even Gecko. Just with the harsh, but simple rules of the wasteland like freedom, hard work and entrepreneurship. If we would only follow these rules, Vault City could become the greatest place in the world, a true oasis in the wasteland.}
+{17010}{}{Maybe they've developed well, but safety is way more important than freedom.}
+{17020}{}{How would you like to improve the state of your city?}
+{17030}{}{You're an idiot, how can you compare this nice city with a shithole like Gecko!?}
+{17040}{}{You should talk with Councillor McClure about it, he's a really nice man.}
+{18000}{}{I would lower the taxes and let the private entrepreneurs do everything that is currently done by the state and funded with our money. Have you visited our pathetic "maintenance centers"? Even the shop in the outskirts of the city run by some poor slob in a shed is better supplied. Also, releasing servants and opening up for people of the outside would increase the amount of both consumers and workers, giving the economy a great boost.}
+{18010}{}{If everything works fine operated by the state, why would you change it? People would just spoil it.}
+{18020}{}{But you've got everything for free now, and you want people to pay. That's idiotic.}
+{18030}{}{These are interesting ideas, I'll pass them to McClure when I talk with him again.}
+{18040}{}{You know you won't change much by just standing and complaining here, Nigel.}
+{19000}{}{[He looks quite depressed as he realizes that.]}
+{19010}{}{How can I help you?}
+{20000}{}{You seem to be reasonable @sex@|guy||girl|, @pname@. What do you suggest I should do?}
+{20010}{}{You should keep your thoughts to yourself, Nigel. You're unable to change anything, and you will only bring the attention of those damn officials. Keep out of the trouble, that's my advice.}
+{20020}{}{I think you should keep fighting, Nigel. Behind the mask of democracy and happiness, this city has become an autocratic regime. We have to change it before it's too late.}
+{21000}{}{Yeah, I think you're right. It's been too long that the city's been run like this and Citizens are being told pure bullshit over and over again. I won't be bothering anybody no more.}
+{21010}{}{Goodbye, Nigel.}
+{22000}{}{Thank you, @pname@. You've heard what I've said. Go to Councillor McClure and repeat it to him. He seems to be the only clever guy in that fucking Council, maybe he could tell them something...}
+{22010}{}{I'll do that. Goodbye, Nigel.}
+{23000}{}{Go away, idiot.@@I don't want to talk with you.@@I've got nothing more to say.@@Begone.@@Leftist scum.}
+{24000}{}{Thanks for your help.@@I hope it all will turn out well.@@You're really smart.@@I apparently needed to talk to someone like you.}
+
+[russ]
+{100}{}{Найджел}
+{200}{}{Вы видите гражданина среднего возраста.}
+{210}{}{Вы видите Найджела. Он выглядит немного расстроенным.}
+{1000}{}{Predialogue installations}
+{1010}{}{McClure quest not initiated}
+{1020}{}{McClure quest initiated}
+{1030}{}{doesn't like us}
+{1040}{}{likes us}
+{2000}{}{Эти налоги убивают меня.@@Шайка социалистических идиотов.@@Я бы сейчас покурил, меня уже трясёт.@@Ебаные бюрократы.@@Еще одна директива и я кого-нибудь грохну.@@Я должен отдавать им 90% моего дохода!@@Город сошел с ума.@@Я бы с удовольствие платил за всё, если бы они оставили меня и мои деньги в покое.@@Собираюсь переехать в Гекко,насрать на излучение.}
+{3000}{}{[Он смотрит на вас своими светлыми глазами.] Слушаю Вас, @sex@|сэр||мэм|?@@Что на этот раз?@@Я слушаю, @sex@|сэр||мэм|.@@[Смотрит на вас молча.]@@[Делает вид, что не замечает вас.]@@Чем я могу Вам помочь?}
+{3010}{}{Советник МакКлюр послал меня поговорить с вами.}
+{3020}{}{Почему вы такой грустный?}
+{3030}{}{Как дела?}
+{3040}{}{Я журналист, готовлю статью о Городе Убежище. Могу я задать Вам несколько вопросов, сэр?}
+{3050}{}{Прекрасный денёк, не так ли?}
+{3060}{}{Забудьте.}
+{4000}{}{Скажите этому ебанному грабителю из Совета, что если он хочет поговорить со мной, пусть лучше вытащит из офиса свою жирную задницу, откормленную за мой счет .}
+{5000}{}{Не твое дело, @sex@|малец||дорогуша|.}
+{6000}{}{Мне было бы гораздо лучше, если бы вы исчезли и перестали тратить моё время.}
+{7000}{}{Извините, я не даю интервью.}
+{8000}{}{Я бы так не сказал, @sex@|сэр||мэм|.}
+{8010}{}{В чем проблема, приятель?}
+{8020}{}{Проблемы с Советом, да?}
+{8030}{}{МакКлюр послал меня сюда.}
+{8040}{}{[Сохранять тишину.]}
+{8050}{}{[Уйти.]}
+{9000}{}{Даже не говорите мне об этих дебилах.}
+{10000}{}{Какие-то проблемы, @sex@|сэр||мэм|?}
+{10010}{}{Просто осматриваюсь. Меня зовут @pname@, я первый раз здесь. Что вы можете рассказать мне о городе?}
+{10020}{}{Проехали.}
+{11000}{}{Город медленно умирает и разлагается из-за этих идиотов в Совете.}
+{11010}{}{Что вы имеете ввиду?}
+{12000}{}{Просто взгляните. Город практически мертв. Мы ничего не производим, всё привозное. Но кого бы беспокоило отсутствие производства при ставке налога 90%? Если бы у нас не было запасов различных изделий медицинского назначения,которые сейчас идут на продажу, мы бы обанкротились еще несколько лет назад.}
+{12010}{}{Да ладно, если б у меня было полно запасов и никакой необходимости производить, я был бы чертовски счастлив!}
+{12020}{}{Интересно. Но почему тогда люди не реагируют?}
+{12030}{}{Эти чертовы торгаши не приносят никакой пользы, они должны платить все 100% налога.}
+{12040}{}{Я поговорю с МакКлюром об этом, думаю он меня поймет.}
+{13000}{}{Большинство горожан слишком глупы, поскольку уровень образования чрезвычайно низок. Все книги переведены в электронный формат, можете спросить у Коля. Звучит хорошо, не так ли? Хрена лысого, доступ к ним жестко ограничен! Но это не так важно, если быть честным, поскольку детям еще в школе промывают мозги и забивают коллективным бредом и в итоге люди даже не пытаются по-другому взглянуть на внешний мир.}
+{13010}{}{Если они счастливы, то в чем проблема?}
+{13020}{}{Я думаю это хорошо, что у вас вся информацию хранится на одном компьютере и её не нужно искать среди гор "туалетной бумаги".}
+{13030}{}{Советнику МакКлюру не понравится, то, что вы сказали.}
+{13040}{}{Но вы должны признать, что здесь достаточно чисто и безопасно по сравнению с пустошью.}
+{14000}{}{Мне жаль, но я не хочу продолжать разговор с человеком, исповедующим рабскую идеологию. Тебе бы больше подошёл Сан-Франциско, гребанный коммуняка.}
+{15000}{}{Похоже, вы слишком глупы, чтобы понять меня. До свидания.}
+{16000}{}{Шпион Совета?! Убирайся, мерзавец!}
+{17000}{}{Конечно, но вспомните, ведь с самого начала у нас было полностью укомплектованное убежище и Г.Е.К.К., в то время, как у других был только пепел и прах, оставшиеся после ядерной войны. И посмотрите теперь чего достигли Хаб, Шэйди Сэндс, даже Гекко, следуя суровым, но простым законам пустоши: свобода, трудолюбие, предпринимательство. Если бы и мы следовали этим правилам, это было бы лучшее место в мире, настоящий оазис в пустыне.}
+{17010}{}{Возможно им и удалось добиться успехов в развитии, но ведь безопасность важнее свободы.}
+{17020}{}{Как бы вы хотели улучшить положение города?}
+{17030}{}{Ты идиот, как можно сравнивать такой замечательный город, с такой дырой как Гекко!}
+{17040}{}{Вам нужно поговорить с советником МакКлюром об этом, в действительности, он хороший человек.}
+{18000}{}{Я бы понизил налоги и позволил частным предпринимателям заниматься тем, чем сейчас занимается государство на наши деньги. Вы уже были в "центре обслуживания"? Даже самый дрянной магазин на окраине города в грязном сарае у полу-бомжа снабжается лучше. Кроме того, если освободить слуг и открыть город для людей извне, мы одновременно увеличим число и рабочих и потребителей, дав мощный стимул экономике.}
+{18010}{}{Если всё хорошо работает под управлением государства, зачем что-то менять? Люди могут всё только испортить.}
+{18020}{}{Но ведь у вас сейчас есть всё бесплатно, а вы хотите, чтобы люди за это платили. Идиотизм}
+{18030}{}{Интересные соображения, я сообщу о них МакКлюру, когда увижу его в следующий раз.}
+{18040}{}{Если просто стоять здесь и жаловаться, вряд ли что-то изменится, Найджел.}
+{19000}{}{[Он выглядит довольно подавленным, он всё понимает.]}
+{19010}{}{Могу я вам чем-то помочь?}
+{20000}{}{Я думаю, вы вполне @sex@|разумный человек||разумная женщина|, @pname@. Что вы предлагаете?}
+{20010}{}{Держите свои мысли при себе, Найджел. Вы не в состоянии ничего изменить и лишь навлечёте на себя гнев этих проклятых чинуш. Держитесь подальше от неприятностей, мой вам совет.}
+{20020}{}{Я думаю, вы должны продолжить борьбу, Найджел. Под маской демократии и благополучия в этом городе установился авторитарный режим, и мы должны изменить это, пока не слишком поздно.}
+{21000}{}{Да, я думаю вы правы. Это продолжается уже слишком долго, и будет продолжаться и дальше, и людям снова и снова будут втирать всю эту чушь. Я не буду больше жаловаться на жизнь.}
+{21010}{}{До свидания, Найджел.}
+{22000}{}{Спасибо вам, @pname@. Вы услышали, всё что я думаю, теперь идите и передайте это советнику МакКлюру, похоже он единственный умный человек в этом гребанном Совете и возможно ему удастся донести эту информацию до остальных.}
+{22010}{}{Я сделаю это. До свидания, Найджел.}
+{23000}{}{Проваливай, @sex@|баран||овца тупорылая|.@@Я не хочу с вами разговаривать.@@Мне больше нечего сказать.@@Съебись.@@Левацкая мразь.}
+{24000}{}{Спасибо за помощь.@@Я надеюсь все сложится отлично.@@Вы действительно умны.@@По-видимому мне нужно больше общаться с такими людьми, как вы.}
+
+[pols]
+{100}{}{Nigel}
+{200}{}{Widzisz Obywatela Kryptopolis w średnim wieku.}
+{210}{}{Widzisz Nigela. Wygląda na zdenerwowanego.}
+{1000}{}{Predialogue installations}
+{1010}{}{McClure quest not initiated}
+{1020}{}{McClure quest initiated}
+{1030}{}{doesn't like us}
+{1040}{}{likes us}
+{2000}{}{Te podatki doprowadzają mnie do szału.@@Banda socjalistycznych idiotów.@@Cholera, ale chciałbym sobie zapalić.@@Pierdoleni biurokraci.@@Jeszcze jedna dyrektywa i przysięgam, idę kogoś zabić.@@Muszę im oddawać 90% mojego dochodu, czaisz?@@Całe to miasto jest totalnie porąbane.@@Mogę za to wszystko zapłacić sam, tylko zostawcie mnie i moje pieniądze w spokoju.@@Jebać radiację, przeprowadzam się do Gecko.}
+{3000}{}{[Spogląda na ciebie.] Słucham, czym mogę @sex@|panu||pani| pomóc?@@O co znowu chodzi?@@[Wpatruje się w ciebie, milcząc.]@@[Udaje, że cię nie widzi.]@@Czym mogę służyć?}
+{3010}{}{Przysłał mnie radny McClure, porozmawiajmy.}
+{3020}{}{Wyglądasz na zdenerwowanego, o co chodzi?}
+{3030}{}{Jak się masz?}
+{3040}{}{Jestem @sex@|dziennikarzem||dziennikarką|, piszę artykuł o Kryptopolis. Czy mogę zadać kilka pytań?}
+{3050}{}{Śliczny dzień, nieprawdaż?}
+{3060}{}{Hm, nieważne.}
+{4000}{}{Powiedz temu pierdolonemu złodziejowi że jeśli chce ze mną porozmawiać, niech ruszy dupsko ze swojego wygodnego stołka zafundowanego z moich podatków i sam tutaj przyjdzie.}
+{5000}{}{Nie twój interes, @sex@|koleś||kotku|.}
+{6000}{}{Nieźle - ale czułbym się jeszcze lepiej, gdybyś już sobie @sex@|poszedł||poszła|.}
+{7000}{}{Proszę mi wybaczyć, ale nie rozmawiam z mediami.}
+{8000}{}{[Krzywi się.] Nie powiedziałbym.}
+{8010}{}{W czym problem, kolego?}
+{8020}{}{To przez tą pieprzoną Radę, hm?}
+{8030}{}{Przychodzę od McClure'a.}
+{8040}{}{[Stój w milczeniu.]}
+{8050}{}{[Odejdź.]}
+{9000}{}{Weź kurwa, nie mów mi nawet o tych frajerach.}
+{10000}{}{O co chodzi, @sex@|kolego||koleżanko|?}
+{10010}{}{Tylko się rozglądam. Jestem @pname@, jestem tu pierwszy raz. Mógłbyś mi trochę opowiedzieć o tym mieście?}
+{10020}{}{Hm, nieważne.}
+{11000}{}{Powoli dąży ku upadkowi i niedługo zgnije doszczętnie, dzięki idiotom z Rady.}
+{11010}{}{Co przez to rozumiesz?}
+{12000}{}{Rozejrzyj się dookoła. To miasto jest prawie wymarłe. Nic tu nie produkujemy, wszystko musimy importować z zewnątrz. Cóż, kto chciałby zajmować się produkcją, jeżeli i tak musiałby potem oddać 90% w podatkach? Gdybyśmy nie mieli na sprzedaż mnóstwa medykamentów niedostępnych nigdzie indziej, miasto zbankrutowałoby już lata temu.}
+{12010}{}{Daj spokój, gdybym ja @sex@|miał||miała| mnóstwo zapasów i nie @sex@|musiał||musiała| nic robić, @sex@|byłbym||byłabym| kurde w niebie!}
+{12020}{}{Interesujące. Dlaczego ludzie na to nie reagują?}
+{12030}{}{Z tych pieprzonych kupców nie ma żadnego pożytku, jak dla mnie to powinni płacić i 100% podatku.}
+{12040}{}{Porozmawiam o tym z McClurem, powinien to zrozumieć.}
+{13000}{}{Większość Obywateli jest po prostu głupia, ponieważ poziom nauczania jest żenująco niski. Wszystkie książki zostały przetranskrybowane na format elektroniczny, możesz pogadać o tym z Kohlem. Brzmi nieźle, co? Ale dostęp do tych zasobów jest ściśle ograniczony! Chociaż, szczerze mówiąc, nie musieli nawet tego robić - po praniu mózgu w szkole ludzie nawet nie szukają żadnych informacji o świecie zewnętrznym.}
+{13010}{}{Jeśli są szczęśliwi, w czym problem?}
+{13020}{}{Koleś, chyba dobrze jak wszystko jest na jednym komputerze, a nie na stertach bezużytecznego papieru?}
+{13030}{}{Radnemu McClure nie spodoba się to, co mówisz.}
+{13040}{}{Ale musisz przyznać, że w porównaniu z resztą pustkowi jest tu całkiem czysto i bezpiecznie...}
+{14000}{}{Przykro mi, ale nie zamierzam kontynuować rozmowy z kimś o mentalności niewolnika. Spierdalaj do San Francisco, @sex@|jebany komuchu||pieprzona komunistko|.}
+{15000}{}{Jesteś zbyt @sex@|tępy||tępa|, aby zrozumieć o czym mówię. Przykro mi, żegnam.}
+{16000}{}{Jesteś szpiegiem rady?! Zejdź mi z oczu!}
+{17000}{}{Tak, pewnie - ale pamiętaj, że na samym starcie mieliśmy w pełni wyposażoną Kryptę i G.E.C.K.'a, a cała reszta pustkowi tylko spopielone szczątki tego, co pozostało po nuklearnej zagładzie. Spójrz na to, co osiągnęli w Hubie, Cienistych Piaskach, nawet kurde w Gecko. Tylko dzięki twardym, ale prostym zasadom pustkowi takim jak wolność, ciężka praca i przedsiębiorczość. Gdybyśmy tutaj stosowali się do tych zasad, Kryptopolis byłoby najwspanialszym miejscem na świecie, prawdziwą oazą pustkowi.}
+{17010}{}{Może i nieźle się rozwinęli, ale bezpieczeństwo jest ważniejsze niż wolność.}
+{17020}{}{W jaki sposób chciałbyś zreformować Kryptopolis?}
+{17030}{}{Jesteś idiotą, jak możesz porównywać to śliczne miasto z zapadłą dziurą, jaką jest Gecko!}
+{17040}{}{Powinieneś o tym porozmawiać z Radnym McClure, to naprawdę fajny gość.}
+{18000}{}{Obniżyłbym podatki i pozwolił zająć się prywatnym przedsiębiorstwom tym wszystkim, co obecnie jest zarządzane przez miasto i fundowane z pieniędzy podatników. @sex@|Byłeś||Byłaś| kiedyś w naszych żałosnych "centrach zaopatrzeniowych"? Lepiej zaopatrzony jest sklepik po zewnętrznej stronie muru, kierowany przez jakiegoś biedaka w starej szopie... Co więcej uważam, że uwolnienie służących oraz otwarcie na przybyszy spoza miasta zwiększyłoby ilość zarówno konsumentów, jak i pracowników, co znacząco pomogłoby gospodarce.}
+{18010}{}{Jeśli wszystko działa dobrze zarządzane przez miasto, dlaczego chcesz cokolwiek zmieniać? Ludzie tylko by wszystko by tylko popsuli.}
+{18020}{}{Teraz wszystko jest za darmo, a ty chcesz żeby ludzie płacili. To idiotyczne.}
+{18030}{}{Ciekawe sugestie, przekażę je McClure'owi kiedy znów się z nim spotkam.}
+{18040}{}{Wiesz że niewiele zmienisz tylko stojąc tu i narzakając, Nigel.}
+{19000}{}{[Wygląda na nieco przybitego, kiedy zdaje sobie z tego sprawę.]}
+{19010}{}{Jak mogę ci pomóc?}
+{20000}{}{Wydajesz się być @sex@|rozsądnym gościem||rozsądną dziewczyną|, @pname@. Co mam zrobić? Doradź mi.}
+{20010}{}{Powinieneś swoje przemyślenia zatrzymać dla siebie, Nigel. Nic tutaj nie zmienisz, a możesz tylko ściągnąć uwagę władz. Trzymaj się z daleka od kłopotów, to moja rada.}
+{20020}{}{Nie możesz się poddawać. Pod przykrywką demokracji i szczęśliwości to miasto zmienia się w autokratyczny reżim. Musimy to zmienić, zanim będzie za późno.}
+{21000}{}{Myślę, że masz rację. Zbyt długo to miasto jest zarządzane w taki sposób, a Obywatele są zbyt zindoktrynowani żeby cokolwiek zmienić. Nie będę już głośno się uskarżał.}
+{21010}{}{Do widzenia, Nigel.}
+{22000}{}{Dziękuję ci, @pname@. @sex@|Słyszałeś||Słyszałaś|, co mówiłem. Idź do Radnego McClure'a i przekaż mu moje słowa. Wydaje mi się, że to jedyny rozsądny gość w całej tej zasranej Radzie, może on im jakoś przemówi do rozumu...}
+{22010}{}{Zrobię to. Do widzenia, Nigel.}
+{23000}{}{Odejdź, @sex@|idioto||idiotko|.@@Nie chce mi się z tobą gadać.@@Nie mam ci nic więcej do powiedzienia.@@Wynocha.@@Lewackie ścierwo.}
+{24000}{}{Dzięki za pomoc.@@Mam nadzieję, że to wszystko skończy się dobrze.@@Jesteś naprawdę @sex@|mądry||mądra|.@@Najwidoczniej potrzebowałem rozmowy z kimś takim, jak ty.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{McClure quest not initiated}
+{1020}{}{McClure quest initiated}
+{1030}{}{doesn't like us}
+{1040}{}{likes us}
+{2000}{}{These taxes are killing me.@@Band of socialist idiots.@@I want a smoke so badly.@@Fucking bureaucrats.@@One more directive and I'm going to kill somebody.@@I have to give them 90% of my income!@@This city is just insane.@@I'd gladly pay for that all, just leave me and my money alone.@@I'm gonna emigrate to Gecko, radiation be damned.}
+{3000}{}{[He looks at you with his bright eyes.] Yes, @sex@|sir||ma'am|?@@What is that again?@@I'm listening, @sex@|sir||ma'am|.@@[Stares at you in silence.]@@[Pretends not to see you.]@@How can I help you?}
+{3010}{}{Councillor McClure sent me to talk to you.}
+{3020}{}{Why are you so upset?}
+{3030}{}{How are you doing?}
+{3040}{}{I'm a journalist, writing an article about Vault City. Would you mind if I asked you a couple of questions, sir?}
+{3050}{}{Beautiful day, ain't it?}
+{3060}{}{Well, nevermind.}
+{4000}{}{Tell that fucking robber that if he'd like to talk to me, he'd better move his ass from his fancy office funded from my taxes.}
+{5000}{}{Not your business, @sex@|fellow||darling|.}
+{6000}{}{I'd feel better if you'd go away and stop wasting my time.}
+{7000}{}{Excuse me, but I'm not talking with the press.}
+{8000}{}{I wouldn't say so, @sex@|sir||ma'am|.}
+{8010}{}{What's the problem, pal?}
+{8020}{}{It's because that fucking Council, eh?}
+{8030}{}{McClure sent me here.}
+{8040}{}{[Remain silent.]}
+{8050}{}{[Leave.]}
+{9000}{}{Don't even tell me about those stupid fuckers.}
+{10000}{}{What's your problem, @sex@|sir||ma'am|?}
+{10010}{}{Just lookin' around. My name's @pname@, this is my first visit here. What can you tell me about this city?}
+{10020}{}{Well, nevermind.}
+{11000}{}{It's slowly rotting and will die soon because of those idiots in the Council.}
+{11010}{}{What do you mean by that?}
+{12000}{}{Just have a look at this. This city is almost dead. We don't produce anything, everything is being imported. Well, who'd bother producing anything, if he'd have to pay a 90% tax rate? If we weren't stocked with medical supplies for sale, we would've been bankrupt years ago.}
+{12010}{}{Come on, if I was stocked with those supplies and didn't have to do anything, I'd be fucking happy!}
+{12020}{}{That's interesting. Why people don't react?}
+{12030}{}{Those fucking merchants aren't doing no good to anyone, they should pay 100% in taxes even.}
+{12040}{}{I'll talk with McClure about this, he'll understand that.}
+{13000}{}{Most Citizens are stupid as fuck, 'cause the teaching standards are incredibly low. All the books have been transcribed into electronic format, you can ask Kohl. That sounds nice, don't it? But the access to them is strictly limited! It isn't that necessary, to be honest, 'cause kids get brainwashed in the schools and people don't ever seek any information about the outside world.}
+{13010}{}{If they are happy, what's the problem?}
+{13020}{}{Man, I think it's good that you've got everything in one computer rather than on mountains of useless paper.}
+{13030}{}{Councillor McClure won't like what you're saying.}
+{13040}{}{But you have to admit that it's quite clean and safe here, compared to the rest of the wasteland.}
+{14000}{}{I'm sorry, but I won't continue the conversation with someone with such a slave mentality. You would fit in well in San Francisco, fucking commie.}
+{15000}{}{You seem to be too blunt to understand what I'm saying, sorry. Goodbye.}
+{16000}{}{You're a Council spy?! Go away, scoundrel!}
+{17000}{}{Yeah, sure - but remember, we had a fully equipped Vault and a G.E.C.K. to start with, and the rest had only burnt ashes of what remained after nuclear warfare. Look at what they achieved in Hub, Shady Sands, even Gecko. Just with the harsh, but simple rules of the wasteland like freedom, hard work and entrepreneurship. If we would only follow these rules, Vault City could become the greatest place in the world, a true oasis in the wasteland.}
+{17010}{}{Maybe they've developed well, but safety is way more important than freedom.}
+{17020}{}{How would you like to improve the state of your city?}
+{17030}{}{You're an idiot, how can you compare this nice city with a shithole like Gecko!?}
+{17040}{}{You should talk with Councillor McClure about it, he's a really nice man.}
+{18000}{}{I would lower the taxes and let the private entrepreneurs do everything that is currently done by the state and funded with our money. Have you visited our pathetic "maintenance centers"? Even the shop in the outskirts of the city run by some poor slob in a shed is better supplied. Also, releasing servants and opening up for people of the outside would increase the amount of both consumers and workers, giving the economy a great boost.}
+{18010}{}{If everything works fine operated by the state, why would you change it? People would just spoil it.}
+{18020}{}{But you've got everything for free now, and you want people to pay. That's idiotic.}
+{18030}{}{These are interesting ideas, I'll pass them to McClure when I talk with him again.}
+{18040}{}{You know you won't change much by just standing and complaining here, Nigel.}
+{19000}{}{[He looks quite depressed as he realizes that.]}
+{19010}{}{How can I help you?}
+{20000}{}{You seem to be reasonable @sex@|guy||girl|, @pname@. What do you suggest I should do?}
+{20010}{}{You should keep your thoughts to yourself, Nigel. You're unable to change anything, and you will only bring the attention of those damn officials. Keep out of the trouble, that's my advice.}
+{20020}{}{I think you should keep fighting, Nigel. Behind the mask of democracy and happiness, this city has become an autocratic regime. We have to change it before it's too late.}
+{21000}{}{Yeah, I think you're right. It's been too long that the city's been run like this and Citizens are being told pure bullshit over and over again. I won't be bothering anybody no more.}
+{21010}{}{Goodbye, Nigel.}
+{22000}{}{Thank you, @pname@. You've heard what I've said. Go to Councillor McClure and repeat it to him. He seems to be the only clever guy in that fucking Council, maybe he could tell them something...}
+{22010}{}{I'll do that. Goodbye, Nigel.}
+{23000}{}{Go away, idiot.@@I don't want to talk with you.@@I've got nothing more to say.@@Begone.@@Leftist scum.}
+{24000}{}{Thanks for your help.@@I hope it all will turn out well.@@You're really smart.@@I apparently needed to talk to someone like you.}
+

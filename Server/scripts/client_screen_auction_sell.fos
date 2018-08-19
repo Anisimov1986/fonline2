@@ -1,0 +1,425 @@
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+#include "auction_h.fos"
+
+import int GetIniValue(string& iniKey, int defaultValue) from "ini_parser";
+import int[]@ GetIniValues4(string& iniKey, int[]@ defaultValues) from "ini_parser";
+import bool IsLexem( ItemCl& item, string& lex ) from "lexems";
+
+uint ItemsIndex = 0;
+uint InvItemCount = 10;
+uint ChosenItemCost = 0;
+uint[] ItemIds;
+bool EditingCost = false;
+
+IGUIElementImageOpt@[] ItemsUIs;
+IGUIElementTextOpt@[] ItemCountUIs;
+IGUIElementTextOpt@ ItemCost;
+IGUIElementTextOpt@ ItemFee;
+IGUIElementTextOpt@ ItemDescription;
+IGUIElementImageOpt@ ChosenItem;
+
+IGUIElementButtonOpt@ MoveUpButton;
+IGUIElementButtonOpt@ MoveDownButton;
+IGUIElementButtonOpt@ DoneButton;
+IGUIElementButtonOpt@ CancelButton;
+ItemCl@ ChosenItemCl;
+
+void AuctionSellOpen( int, int, int, string@, int[]@  )
+{
+    OpenAuctionSellScreen();
+}
+
+void ClearItems()
+{
+	for (uint i = 0; i < ItemsUIs.length(); i++)
+	{
+		ItemsUIs[i].clearImage();
+		ItemCountUIs[i].Text("");
+	}
+}
+
+void RefreshItems()
+{	
+    ClearItems();
+    ItemIds.resize(0);
+    CritterCl@ chosen = GetChosen();
+	if( !valid( chosen ))
+		return;
+    ItemCl@[] items;    
+    chosen.GetItems(-1,items);
+    for (uint i = 0; i < items.length(); i++)
+	{
+        if (auction_itemtypes.find(items[i].GetType())>=0)
+            ItemIds.insertLast(items[i].Id);
+        else
+        {
+            items.removeAt(i);
+            i--;
+        }
+    }
+    
+    for (uint i = ItemsIndex; i < items.length() && i < ItemsIndex + InvItemCount; i++)
+	{
+        ItemCl@ item = items[i];
+        ItemsUIs[i - ItemsIndex].loadImage((item.PicInv > 0 ? item.PicInv : item.Proto.PicInv), 0);
+        ItemCountUIs[i - ItemsIndex].Text(item.GetCount() == 1 ? "" : ("x"+item.GetCount()));
+	}
+}
+
+void testsell()
+{
+    OpenAuctionSellScreen();
+}
+
+void SetChosenItem(ItemCl& item)
+{
+    ChosenItemCost = 0;
+    SetCost();
+    ChosenItem.loadImage(item.Proto.PicInv, 0);
+    @ChosenItemCl = item;
+    string result;
+    result += GetMsgStr( TEXTMSG_ITEM, STR_ITEM_INFO( item ) ) + "\n";
+    if( item.Info == 2 && !IsLexem( item, "craftername" ) )
+    {
+        result += GetMsgStr( TEXTMSG_ITEM, STR_ITEM_INFO( item ) - 1 );
+    }
+    else
+        result += GetMsgStr( TEXTMSG_ITEM, STR_ITEM_INFO( item ) + 1 );
+    // Weight
+    result += "\n" + ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_ITEM_WEIGHT_GRAMM ), "VALUE", item.Proto.Weight * item.GetCount() );
+    // Weapon perks
+    if( item.Proto.Weapon_Perk != 0 )
+    {
+        result += "\n" + GetMsgStr( TEXTMSG_GAME, 574 ) + "" + GetMsgStr( TEXTMSG_GAME, STR_WEAPON_PERK( item.Proto.Weapon_Perk ) ) + ".";
+    }
+    // Deterioration
+    if( item.IsDeteriorable() )
+    {
+        uint8  brokenFlags              = item.BrokenFlags;
+        uint16 durability               = MAXDURABILITY( item ) - item.Val4;
+        uint16 deterioration    = item.Deterioration;
+
+        // Broken level, procent
+        result += "\n";
+        if( FLAG( brokenFlags, BI_NOTRESC ) )
+            result += GetMsgStr( TEXTMSG_GAME, STR_DETERIORATION_NO_RESC );
+        else
+        {
+            if( deterioration == MAX_DETERIORATION )
+                result += GetMsgStr( TEXTMSG_GAME, STR_DETERIORATION_BROKEN_LOW );
+            else
+                result += ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_DETERIORATION_PROCENT ), "VALUE", deterioration * 100 / MAX_DETERIORATION );
+            // Repair pool
+            CritterCl@ chosen = GetChosen();
+            result += "\n" + ReplaceText( GetMsgStr( TEXTMSG_GAME, STR_DETERIORATION_BROKEN_COUNT ), "VALUE", durability );
+        }
+
+    }
+    if( item.GetType() == ITEM_TYPE_ARMOR || item.GetType() == ITEM_TYPE_WEAPON)
+    {
+        uint num = item.GetType() == ITEM_TYPE_ARMOR ? 10700 : 10800;
+        for( uint i = 0; i < 25; i++ )
+        {
+            if( GetItem_Values( item, i ) > 0 )
+                result += "\n" + GetMsgStr( TEXTMSG_GAME, ( num + i ) ) + " +" + GetItem_Values( item, i );
+        }
+    }
+    if( item.Lexems != "" )
+        result=  FormatTags( result, item.Lexems );
+    ItemDescription.setText(result);
+    EditingCost = true;
+}
+
+class ItemClicked : IGUIElementCallbackMouseClick
+{
+	private uint Index;
+	
+	ItemClicked(uint index)
+	{
+		Index = index;
+	}
+	
+	void OnMouseClick(int id, int click) override
+	{
+		if(ItemsIndex + Index >= ItemIds.length())
+			return;
+		
+		if(click == MOUSE_CLICK_WHEEL_DOWN)
+			MoveDown();
+		if(click == MOUSE_CLICK_WHEEL_UP)
+			MoveUp();
+		
+		if(click != MOUSE_CLICK_LEFT)
+			return;
+		CritterCl@ chosen = GetChosen();
+        if( !valid( chosen ))
+            return;
+        ItemCl@[] items;    
+        chosen.GetItems(-1, items);
+        for (uint i = 0; i<items.length();i++)
+        {
+            if (items[i].Id==ItemIds[ItemsIndex + Index])
+            {
+                if (items[i].IsDeteriorable())
+                {
+                    if (items[i].Deterioration>=100)
+                    {
+                        Message(GetMsgStr( TEXTMSG_TEXT, 70426 ));
+                        return;
+                    }
+                    if (items[i].BrokenFlags>0)
+                    {
+                        Message(GetMsgStr( TEXTMSG_TEXT, 70427 ));
+                        return;
+                    }
+                }
+                if (auction_forbidden.find(items[i].GetProtoId())>=0)
+                {
+                    Message(GetMsgStr( TEXTMSG_TEXT, 70436 ));
+                    return;
+                }
+                SetChosenItem(items[i]);
+                return;
+            }
+        }
+	}
+}
+
+void RefreshButtons()
+{
+	MoveUpButton.setVisible(ItemsIndex > 0);
+	MoveDownButton.setVisible(ItemIds.length() > ItemsIndex + InvItemCount);
+}
+
+void InitAuctionSellScreen()
+{
+	GUI_CreateScreen(CLIENT_SCREEN_AUCTION_SELL, GetIfaceIniStr("AuctionSellMainPic")).CallbackKeyPress(ChangeCostCallback()).AutoCursor(true,CURSOR_DEFAULT);
+    GUI_AddText(CLIENT_SCREEN_AUCTION_SELL).Position("AuctionSellPriceLabelPos").Text("Price per 1 pc", FONT_FAT, COLOR_SAND, FT_CENTERXY);
+    GUI_AddText(CLIENT_SCREEN_AUCTION_SELL).Position("AuctionSellTaxLabelPos").Text("TAX", FONT_FAT, COLOR_SAND, FT_CENTERXY);
+    GUI_AddText(CLIENT_SCREEN_AUCTION_SELL).Position("AuctionSellInfoLabelPos").Text("period 1 week\ntax 10%", FONT_FAT, COLOR_SAND, FT_CENTERXY);
+    
+
+	int itemHeight = GetIniValue("PSHeightItem", 30);
+	int itemWidth = GetIniValue("PSWidthItem", 70);
+	int[] positions = GetIniValues4("PSInv", null);
+	InvItemCount = positions[3] / itemHeight;
+	ItemsUIs.resize(0);
+    ItemCountUIs.resize(0);
+	for (uint i = 0; i < InvItemCount; i++)
+	{
+		IGUIElementImageOpt@ item = GUI_AddImage(CLIENT_SCREEN_AUCTION_SELL)
+			.Stretch(true)
+			.Position(positions[0], positions[1] + i * itemHeight, itemWidth, itemHeight)
+			.CallbackMouseClick(ItemClicked(i));
+			
+		ItemsUIs.insertLast(item);
+        
+        IGUIElementTextOpt@ count = GUI_AddText(CLIENT_SCREEN_AUCTION_SELL)
+			.TextOptions(FONT_FALLOUT, COLOR_WHITE, 0)
+			.Position(positions[0] + 2, positions[1] + i * itemHeight)
+			.TextBoxSize(itemWidth, itemHeight);
+			
+		ItemCountUIs.insertLast(count);
+	}
+    
+    
+	
+	@ChosenItem = GUI_AddImage(CLIENT_SCREEN_AUCTION_SELL)
+		.Stretch(true)
+		.Position("AuctionSellSelectedItem");
+	@ItemCost = GUI_AddText(CLIENT_SCREEN_AUCTION_SELL)
+		.TextOptions(FONT_BIG_NUM, COLOR_GRAY)
+        .Text("000000000")
+		.Position("AuctionSellItemCostPos");
+    
+    @ItemFee = GUI_AddText(CLIENT_SCREEN_AUCTION_SELL)
+		.TextOptions(FONT_BIG_NUM, COLOR_GRAY)
+        .Text("000000000")
+		.Position("AuctionSellItemFeePos");
+        
+    @ItemDescription = GUI_AddText(CLIENT_SCREEN_AUCTION_SELL)
+        .Position("AuctionSellItemDescrTextBox");
+    
+	@MoveUpButton = GUI_AddButton(CLIENT_SCREEN_AUCTION_SELL)
+		.UpPic(GetIfaceIniStr("PSInvScrUpPic"))
+		.DownPic(GetIfaceIniStr("PSInvScrUpPicDn"))
+		.Position("PSInvScrUp")
+		.CallbackMouseClick(MoveUpCallback());
+	@MoveDownButton = GUI_AddButton(CLIENT_SCREEN_AUCTION_SELL)
+		.UpPic(GetIfaceIniStr("PSInvScrDnPic"))
+		.DownPic(GetIfaceIniStr("PSInvScrDnPicDn"))
+		.Position("PSInvScrDn")
+		.CallbackMouseClick(MoveDownCallback());	
+    
+	@DoneButton = GUI_AddButton(CLIENT_SCREEN_AUCTION_SELL)
+		.DownPic(GetIfaceIniStr("AuctionSellDoneImg"))
+		.Position("AuctionSellDonePos")
+		.CallbackMouseClick(DoneCallback());
+	@CancelButton = GUI_AddButton(CLIENT_SCREEN_AUCTION_SELL)
+		.DownPic(GetIfaceIniStr("AuctionSellCancelImg"))
+		.Position("AuctionSellCancelPos")
+		.CallbackMouseClick(CancelCallback());
+}
+
+void OpenAuctionSellScreen()
+{
+    ItemsIndex = 0;
+    ChosenItemCost = 0;
+    ItemCost.setText("000000000");
+    ItemFee.setText("000000000");
+    ItemDescription.setText("");
+    @ChosenItemCl=null;
+    EditingCost = false;
+    ChosenItem.clearImage();
+    RefreshItems();
+	RefreshButtons();
+    ShowScreen(CLIENT_SCREEN_AUCTION_SELL, 0, 0, 0);
+}
+
+class DoneCallback : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int id, int click) override
+	{
+        CritterCl@ chosen = GetChosen();
+        if (valid(ChosenItemCl) && valid( chosen ))
+        {
+            if (ChosenItemCost * 0.1 * ChosenItemCl.GetCount() > chosen.Param[ST_REPLICATION_MONEY]+chosen.CountItem(PID_BOTTLE_CAPS))
+            {    
+                Message(GetMsgStr( TEXTMSG_TEXT, 70430 ));
+                return;
+            }
+            if (ChosenItemCost * 0.1 * ChosenItemCl.GetCount()<1)
+            {
+                Message(GetMsgStr( TEXTMSG_TEXT, 70438 ));
+                return;
+            }
+            RunServerScriptUnsafe( "auction@unsafe_SellItem", ChosenItemCl.Id, ChosenItemCost, 0, null, null );
+        }
+		HideScreen(CLIENT_SCREEN_AUCTION_SELL, 0, 0, 0);
+	}
+}
+
+class CancelCallback : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int id, int click) override
+	{
+		HideScreen(CLIENT_SCREEN_AUCTION_SELL, 0, 0, 0);
+	}
+}
+
+class MoveUpCallback : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int id, int click) override
+	{
+		MoveUp();
+	}
+}
+
+void MoveUp()
+{
+	if(!MoveUpButton.isVisible())
+		return;
+	ItemsIndex--;
+	RefreshItems();
+	RefreshButtons();
+}
+
+class MoveDownCallback : IGUIElementCallbackMouseClick
+{
+	void OnMouseClick(int id, int click) override
+	{
+		MoveDown();
+	}
+}
+
+void MoveDown()
+{
+	if(!MoveDownButton.isVisible())
+		return;
+	ItemsIndex++;
+	RefreshItems();
+	RefreshButtons();
+}
+
+
+class ChangeCostCallback : IGUIScreenCallbackKeyPress
+{
+	bool OnKeyPress(uint8 key, string& keyText) override
+	{
+		if(!valid(ChosenItemCl) || !EditingCost)
+			return true;
+		
+		if(key == DIK_BACK)
+		{
+			ChosenItemCost = ChosenItemCost / 10;
+			SetCost();
+			return false;
+		}
+        string cost = "" + ChosenItemCost;
+        if (cost.length() >= 9)
+            return true;
+		
+		uint number = 555;
+		if(key >= DIK_1 && key <= DIK_0)
+			number = key == DIK_0 ? 0 : key - DIK_1 + 1;
+		else
+			switch(key)
+			{
+				case DIK_NUMPAD0:
+					number = 0;
+					break;
+				case DIK_NUMPAD1:
+					number = 1;
+					break;
+				case DIK_NUMPAD2:
+					number = 2;
+					break;
+				case DIK_NUMPAD3:
+					number = 3;
+					break;
+				case DIK_NUMPAD4:
+					number = 4;
+					break;
+				case DIK_NUMPAD5:
+					number = 5;
+					break;
+				case DIK_NUMPAD6:
+					number = 6;
+					break;
+				case DIK_NUMPAD7:
+					number = 7;
+					break;
+				case DIK_NUMPAD8:
+					number = 8;
+					break;
+				case DIK_NUMPAD9:
+					number = 9;
+					break;
+			}
+
+		if(number > 9)
+			return true;
+
+		ChosenItemCost = (ChosenItemCost * 10 + number) % 1000000000;
+        SetCost();
+		return false;
+	}
+}
+
+void SetCost()
+{
+	if (!valid(ChosenItemCl))
+        return;
+    string cost = "" + ChosenItemCost;
+	while(cost.length() < 9)
+		cost = "0" + cost;
+    ItemCost.setText(cost);
+    uint Fee = ChosenItemCost * 0.1 * ChosenItemCl.GetCount();
+    string fee = "" + Fee;
+	while(fee.length() < 9)
+		fee = "0" + fee;
+    ItemFee.setText(fee);
+}

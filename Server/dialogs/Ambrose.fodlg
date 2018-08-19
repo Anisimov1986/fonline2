@@ -1,0 +1,165 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+7 1020 D _var p name_mem_player_npc = 1 D _param p PE_PROF_SCIENTIST = 0 #
+2 1030 D _var p name_mem_player_npc = 1 D _param p PE_PROF_SCIENTIST } 1 @
+2 2000 None 0 #
+10 2010 D _param p SK_SCIENCE < 60 #
+3 2020 D _param p PE_PROF_SCIENTIST = 0 D _param p SK_SCIENCE } 60 #
+9 2030 D _param p PE_PROF_SCIENTIST = 1 R _var p prof_energy = 3 #
+0 2040 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 R _var p prof_energy = 1 @
+6 6000 economy_dialogs@dlg_PreparePrice 0 #
+0 6010 R _var p name_mem_player_npc = 1 @
+7 7000 None 0 #
+8 7010 D _script economy_dialogs@d_IsEnoughCaps 1 2000 D _item p PID_ENERGY_TRANSFORMER } 1 D _item p PID_LASER_PISTOL } 1 D _item p PID_ELECTRONIC_PART } 12 R _script economy_dialogs@r_TakeCaps 1 2000 R _item p PID_ENERGY_TRANSFORMER - 1 R _item p PID_LASER_PISTOL - 1 R _item p PID_ELECTRONIC_PART - 12 R _param p PE_PROF_SCIENTIST = 1 R _var p prof_energy = 2 R _param p ST_EXPERIENCE + 600 #
+5 7020 R _var p prof_energy = 1 #
+0 7030 @
+8 8000 None 0 #
+9 8010 R _var p prof_energy = 3 #
+0 8020 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 &
+
+[engl]
+{100}{}{Ambrose}
+{200}{}{You see: Ambrose, the nerdy librarian.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{known}
+{1030}{}{derp}
+{2000}{}{Welcome to the Library, a place where all knowledge of human kind is stored for future generations. My name is Ambrose. How can I help you?}
+{2010}{}{I'd like to gain some scientifical knowledge.}
+{2020}{}{Do you really read all these books?}
+{2030}{}{Can you tell me who might know more about science?}
+{2040}{}{What kind of name is that? I'll better go find someone normal. So long, Amber Rose.}
+{3000}{}{I wish I could. But unfortunately I don't have the time. I pick only some of them, mostly scientific ones. It's amazing what people were able to do before the War. Hey! Did you know that when...}
+{3010}{}{Yes yes, that's fascinating. You've mentioned something about scientific books?}
+{3020}{}{Oh please don't. Bye.}
+{4000}{}{If you insist, fine. [Looks a bit dissapointed.] Why do you ask?}
+{4010}{}{Would you mind sharing some of your knowledge with me?}
+{5000}{}{No, of course I wouldn't! In fact, I love to teach people new things! [She seems excited.] Let's see... we'll need few things first. Do you have a piece of paper? What, you torn that from the book? Merciless savage. Well, back on track, take notes, barbarian - one energy transformer, twelve electronic parts and some energy weapon, a laser pistol would be fine. All the items from that list will have a good use to explain different scientific methods and physical phenomenas. Oh yes, and did you know that...}
+{5010}{}{Be right back!}
+{6000}{}{Did you know, that this will also cost you @lex prof1_price@ caps?}
+{6010}{}{Uh, yeah, right. See you later, Ambrose.}
+{7000}{}{Welcome to the Library. How can I help you?}
+{7010}{}{I'm ready to start my studies.}
+{7020}{}{Please, can you repeat what I need to get?}
+{7030}{}{Whatever.}
+{8000}{}{Fine, let's not waste any more time. Take a seat please. Did you know... [She explains you the basics of science.] Well! Wasn't that fascinating? }
+{8010}{}{Sure. Where can I get more... fascination?}
+{8020}{}{Yeah, it was. thanks a lot.}
+{9000}{}{You mean who can teach you more? Well, I've heard about some wise guy living up north, in Redding. I don't know who it is, but probably someone from town's maintenance crew. Too bad they don't have even a library there, poor savages! Just terrible. I just remembered! Did you know that...}
+{9010}{}{Right, gotta go. Thanks again!}
+{10000}{}{You do not know all you need. Come back with when you're more skilled.}
+
+[russ]
+{100}{}{Эмброуз}
+{200}{}{Эмброуз, библиотекарь.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{known}
+{1030}{}{derp}
+{2000}{}{Добро пожаловать в библиотеку, место, где все знания человеческого рода сохраняется для будущих поколений. Меня зовут Эмброуз. Как я могу вам помочь?}
+{2010}{}{Я хочу выучить твою профессию...}
+{2020}{}{Вы действительно прочитали все эти книги?}
+{2030}{}{Не могли бы вы мне подсказать, у кого я могу узнать больше о науке?}
+{2040}{}{Что это за имя такое? Я лучше пойду найду кого-то с нормальным именем.}
+{3000}{}{К сожалению, нет, только некоторые, в основном научные. Удивительно, что люди смогли изобрести до тех ужасных событий. Знаете ли вы ...}
+{3010}{}{Да да, это наверняка увлекательно . Вы упомянули что-то о научных книгах?}
+{3020}{}{О, пожалуйста, нет, уже скучно. Пока.}
+{4000}{}{Если вы настаиваете, хорошо. Да, наука является своего рода моим хобби. А почему вы спрашиваете?}
+{4010}{}{Не могли бы вы поделиться некоторыми знаниями со мной?}
+{5000}{}{Конечно. Для начала обучения нам понадобятся некоторые вещи. У вас есть лист бумаги? Что, вы вырвали его из книги? Безжалостный дикарь. Так записывай - 1 Трансформатор, 12 Микросхем и Лазерный пистолет.}
+{5010}{}{Скоро вернусь!}
+{6000}{}{Совсем забыла, еще принеси @lex prof1_price@ крышек.}
+{6010}{}{А, да, точно. Увидимся позже, Эмброуз.}
+{7000}{}{Добро пожаловать в библиотеку. Чем я могу вам помочь?}
+{7010}{}{Я готов начать обучение.}
+{7020}{}{Пожалуйста повторите, что мне нужно чтобы начать обучение.}
+{7030}{}{Да ничем.}
+{8000}{}{Хорошо, давайте не будем терять времени. Садитесь, пожалуйста. Знаете ли вы... [объясняет вам основы науки]...}
+{8010}{}{Понятно, скажите а где я могу узнать больше о науке?}
+{8020}{}{Конечно, огромное спасибо.}
+{9000}{}{Вы имеете в виду, кто может научить вас большему, чем я? Ну, я слышала о каком-то умнике живущем на севере, в городе Реддинг. Я не знаю, кто это, но, вероятно, кто-то из обслуживающего персонала города. У них нет даже небольшой библиотеки. Знаете ли вы ...}
+{9010}{}{Мне уже пора идти. Еще раз спасибо!}
+{10000}{}{Вы не знаете, все, что для этого нужно. Возвращайтесь когда поднаберетесь опыта. [Требуется наука 60]}
+
+[pols]
+{100}{}{Ambrose}
+{200}{}{Widzisz Ambrose, bibliotekarkę.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{known}
+{1030}{}{derp}
+{2000}{}{Witaj w Bibliotece, przechowujemy tutaj całość wiedzy ludzkości dla przyszłych pokoleń. Jestem Ambrose, w czym mogę ci pomóc?}
+{2010}{}{Mogłabyś nauczyć mnie tego, co wiesz? Tyle tu książek, na pewno masz dużą wiedzę.}
+{2020}{}{Naprawdę czytasz te wszystkie szpargały?}
+{2030}{}{Znasz kogoś, kto mógłby wiedzieć coś więcej o naukach ścisłych?}
+{2040}{}{Poszukam lepiej kogoś mniej stukniętego. Na razie.}
+{3000}{}{Chciałabym, naprawdę. Ale nie starczy mi życia żeby je wszystkie przeczytać. Najczęściej sięgam po nauki ścisłe... Nie @sex@|uwierzyłbyś||uwierzyłabyś|, co potrafili konstruować ludzie przed wojną. Na przykład było takie urządzenie...}
+{3010}{}{Tak, tak, fascynujące. Mówiłaś coś o naukach ścisłych?}
+{3020}{}{Już zaczynam przysypiać. Na razie.}
+{4000}{}{Hmph, jak chcesz. Tak, można powiedzieć, że to moje główne pole zainteresowań. Czemu pytasz?}
+{4010}{}{Podzieliłabyś się ze mną swoją wiedzą?}
+{5000}{}{Oczywiście! Po to tu jestem. Zanotuj sobie, potrzebny będzie transformator, jakieś 12 układów scalonych i może do tego jakiś pistolet laserowy. Te rzeczy będą niezbędne, aby móc ci szybko wytłumaczyć podstawy. Na przykład, taki transformator, ma trzystopniowy układ...}
+{5010}{}{Zaraz wracam!}
+{6000}{}{Aha, zapomniałabym. Potrzebny będzie też datek na rzecz Biblioteki... jakieś @lex prof1_price@ kapsli powinno wystarczyć.}
+{6010}{}{Aha, jasne. Do zobaczenia, Ambrose.}
+{7000}{}{Witaj w Bibliotece. W czym mogę ci pomóc?}
+{7010}{}{(Profesja: Naukowiec, poziom 1.) Chcę rozpocząć naukę.}
+{7020}{}{Mogłabyś powtórzyć, co będzie mi potrzebne do nauki?}
+{7030}{}{Muszę iść.}
+{8000}{}{Świetnie, nie marnujmy już czasu. Na początek... [Ambrose wyjaśnia ci podstawy nauk ścisłych od zarania dziejów.] I jak? Nie mówiłam, że to fascynujące?}
+{8010}{}{Pewnie. Nie wiesz, gdzie @sex@|mógłbym||mogłabym| dowiedzieć się więcej takich... fascynujących rzeczy?}
+{8020}{}{Jasne, dzięki.}
+{9000}{}{Moja wiedza Ci nie wystarcza? Bardzo dobrze, zawsze powinno się dążyć do poszerzania horyzontów. Ale, odnośnie twojego pytania... Słyszałam o pewnym facecie, który mieszka w Redding. Nie wiem konkretnie kto to jest, ale pewnie ktoś z mechaników albo inżynierów w tamtej osadzie. Nie mają tam nawet malutkiej biblioteki, wyobrażasz sobie? A wiesz, kiedyś w kopalniach Redding...}
+{9010}{}{Jasne, muszę już lecieć. Na razie!}
+{10000}{}{Nie masz jeszcze wystarczającej wiedzy. Wróć do mnie, kiedy poszerzysz swoje horyzonty. (Wymagana umiejętność: Nauka 70%.)}
+
+[ptbr]
+{100}{}{Arlinda}
+{200}{}{Você vê: Arlinda, o rato de biblioteca.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{known}
+{1030}{}{derp}
+{2000}{}{Bem vindo a Livraria, um lugar onde todo o conhecimento da raça humana está armazenada para as futuras gerações. Meu nome é Arlinda. Como posso te ajudar?}
+{2010}{}{Eu gostaria de aprender alguma coisa científica.}
+{2020}{}{Você realmente leu todos esses livros?}
+{2030}{}{Você sabe me dizer que é o maior conhecedor de ciência?}
+{2040}{}{Que tipo de nome é esse? Eu irei encontrar alguem normal. Até mais ver, Amber Rose.}
+{3000}{}{Eu gostaria de puder. Mas infelizmente eu não tenho tempo. Eu escolho apenas alguns, os mais científicos. Isto é incrível o que as pessoas podiam fazer antes da guerra. Hey! Você sabia que quando...}
+{3010}{}{Sim sim, iso é fascinante. Você mencionou alguma coisa sobre livros científicos?}
+{3020}{}{Oh porfavor não. Tchau.}
+{4000}{}{Se você insiste, bem. [Olha um pouco desapontado.] Porque você pergunta?}
+{4010}{}{Você se incomodaria de dividir um pouco do seu conhecimento comigo?}
+{5000}{}{Não, claro que eu não me incomodaria! In fact, eu adoro ensinar coisas novas as pessoas! [Ela parece ansiosa.] Vamos ver... nós precisaremos de algumas coisas primeiro. Você tem um pedaço de papel? O QUE, você arrancou isso de um livro? Selvagem sem coração. Bem, voltando ao assunto, anote aí, seu cavalo - um transformador de energia, uma dúzia de parte eletrônicas e alguma arma de energia, uma pistola laser deve servir. Todos os itens da lista servirão de bom exemplo para explicar os diferentes métodos científicos e fenômenos físicos. Oh sim, e você sabia que...}
+{5010}{}{Até mais ver!}
+{6000}{}{Você sabia, isto irá custar à você @lex prof1_price@ caps?}
+{6010}{}{Uh, tá certo. Até depois, Arlinda.}
+{7000}{}{Bem vindo a Livraria. Como eu posso ajudar você?}
+{7010}{}{Eu estou pronto para começar meus estudos.}
+{7020}{}{Porfavor, você pode repetir o que eu preciso pegar?}
+{7030}{}{Tanto faz.}
+{8000}{}{Tudo bem, não desperdice mais tempo. Pegue uma cadeira e sente porfavor. Você sabia... [Ela explica o básico da ciência.] Bem! Isso não é fascinante? }
+{8010}{}{Claro. Onde eu posso conseguir mais... fascinação?}
+{8020}{}{Tá é isso. muito obrigado.}
+{9000}{}{Você acha que pode me ensinar mais? Bem, eu ouvir falar de um sábio que vive ao norte, em Redding. Eu não sei, mas talvez a equipe de manunteção da cidade saiba. Pena eles não tem uma biblioteca, pobres selvagens! Simplesmente terrível. Eu simplesmente lembrei! Você sabia que...}
+{9010}{}{Certo, tenho que ir. Obrigado de novo!}
+{10000}{}{Você não asbe do que você precisa. Volte quando estiver mais habilidoso.}
+

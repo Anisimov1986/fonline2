@@ -1,0 +1,217 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos"
+#include "economy_h.fos"
+
+#define ROLE_ATTACKER		( 288000 )
+#define ATTACKERS			( 10 )
+#define SUPPLY_AMMO			( 0 )
+#define SUPPLY_ARMORS		( 1 )
+#define SUPPLY_WEAPONS		( 2 )
+#define SUPPLY_MEDS		    ( 3 )
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import int GetNextTime(uint Id) from "game_events";
+
+int[] params = { MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK ,10,
+PE_BETTER_CRITICALS ,1,PE_BONUS_RATE_OF_FIRE,1,PE_BONUS_RANGED_DAMAGE,2,
+MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_ATTACKER, ST_REPLICATION_TIME, -1 };
+const int[] AttackerPids = { NPC_PID_Khan1,NPC_PID_Khan2,NPC_PID_Khan3,NPC_PID_Khan4,NPC_PID_Khan5,NPC_PID_Khan1,NPC_PID_Khan2,NPC_PID_Khan3,NPC_PID_Khan4,NPC_PID_Khan5};
+const int[] WeaponPids = { PID_LASER_RIFLE_EXT_CAP,PID_LASER_RIFLE_EXT_CAP,PID_LASER_RIFLE_EXT_CAP,PID_LASER_RIFLE_EXT_CAP,PID_LASER_RIFLE_EXT_CAP,PID_ROCKET_LAUNCHER,PID_ROCKET_LAUNCHER,PID_ROCKET_LAUNCHER};
+    
+   
+uint eventid()
+{
+	return CreateTimeEvent(__FullSecond+REAL_MINUTE(Random(360,600)), "e_event_start", 0, true);
+}
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0]==0)
+		return 0;
+	event_start(values[0]);
+	return GetNextTime(values[0]);
+}
+
+void event_start(uint id)
+{
+	Map@ map = GetMapByPid(MAP_newr2,0);
+	if (!valid(map))
+		return;
+    Item@ car = map.AddItem( 83, 87, PID_GREASY_TRUCK, 1 );
+    if( not valid( car ) )
+        return;
+	AddNewMessage( "Drug transaction between Khans and Bishop Family is being made. Time until end:",REAL_MINUTE(10), 1, COLOR_GREEN, true, id);
+	CreateTimeEvent(__FullSecond+REAL_MINUTE(10), "e_event_stop", id, true);
+    car.LockerId = 1;
+    car.Charge = Random( 0, car.Proto.Car_TankVolume );
+    car.Deterioration = Random( 0, car.Proto.Car_MaxDeterioration );
+	Item@ bag = car.GetChild( 0 );
+	SETFLAG(bag.LockerCondition, LOCKER_GUARDED );
+	bag.LockerId=ROLE_ATTACKER;
+	AddLoot(bag);
+	uint entiresnum = map.CountEntire(ENTIRE_EVENT_MOB_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	uint8 dir=0;
+	uint attackers=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (attackers>=ATTACKERS)
+			break;
+		if (map.GetEntireCoords (ENTIRE_EVENT_MOB_SPAWN, i, hexX, hexY,dir) && AddAttacker(hexX,hexY,dir))
+			attackers++;
+	}
+	
+	InitializeGossip(id);
+}
+
+void InitializeGossip(uint id)
+{	
+	Location@ location = GetLocationByPid(LOCATION_NewReno, 0);
+	if (!valid(location)) 
+	{
+		return;
+	}
+	
+	GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, REAL_MINUTE(10));
+	gossipDefinition.SetGossipId(id);
+	gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+	gossipDefinition.SetSourceLocationId(location.Id);
+	gossipDefinition.SetMsgId(STR_NR_KHANS_EVENT_GOSSIP_LOC);
+	gossipDefinition.SetSourceMsgId(STR_NR_KHANS_EVENT_GOSSIP_NO_LOC);
+	StartGossip(gossipDefinition);
+}
+
+
+uint e_event_stop(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_newr2,0);
+	if (!valid(map))
+		return 0;
+	array<Item@> cars;
+	map.GetItems(PID_GREASY_TRUCK, cars);
+	for (uint i=0 ; i<cars.length() ; i++)
+	{
+		DeleteItem(cars[i]);
+	}
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_ATTACKER)
+			DeleteNpc(npcs[i]);
+	}
+	uint entiresnum = map.CountEntire(ENTIRE_EVENT_BOX_SPAWN);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(ENTIRE_EVENT_BOX_SPAWN, i, hexX, hexY))
+		{
+			Item@[] items;
+			map.GetItems( hexX, hexY, items );
+			for (uint8 j=0; j<items.length();j++)
+			{
+				if (items[j].GetType() == ITEM_TYPE_CONTAINER)
+				DeleteItem(items[j]);
+			}
+
+		}
+	}
+	
+	StopGossip(values[0], GOSSIP_SCOPE_EVENT);
+	
+	return 0;
+}
+
+bool AddAttacker(uint16 hexX,uint16 hexY, uint8 dir)
+{
+	Map@ map = GetMapByPid(MAP_newr2,0);
+	if(!GetFreeHex(map, 1,hexX, hexY))
+	{
+		return false;
+	}
+	Critter@ attacker = map.AddNpc(AttackerPids[(Random(0,AttackerPids.length()-1))], hexX, hexY,	dir,	params, null, null);
+	if (!valid(attacker))
+		return false;
+	Item@ weapon = attacker.AddItem(WeaponPids[Random(0,WeaponPids.length()-1)], 1);
+	attacker.SetScript("_AttackerInit");
+	attacker.SetFavoriteItem(SLOT_HAND1, weapon.GetProtoId ());
+	Critter@[] deffenders;
+	map.GetCritters(0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, deffenders);
+	AttackTargets(attacker, deffenders);
+	return true;
+}
+
+void _AttackerInit(Critter& attacker, bool firstTime)
+{
+	attacker.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_Show");
+	attacker.SetEvent(CRITTER_EVENT_DEAD, "_Dead");
+}
+
+void AttackTargets(Critter@ attacker, Critter@[] targets) 
+{
+	for (uint i = 0; i < targets.length(); i++)
+	{
+		AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY, AI_PLANE_ATTACK_PRIORITY + 20), targets[i], true);
+		attacker.AddEnemyInStack(targets[i].Id);
+	}
+}
+
+void _Show(Critter& npc, Critter& cr)
+{
+	if (cr.IsPlayer() && !npc.CheckEnemyInStack(cr.Id))
+	{
+		npc.AddEnemyInStack( cr.Id );
+		AddAttackPlane( npc, Random(AI_PLANE_ATTACK_PRIORITY, AI_PLANE_ATTACK_PRIORITY + 20), cr ,true);
+	}
+}
+
+
+void _Dead(Critter& mob, Critter@ killer)
+{
+    mob.ClearEnemyStack();
+}
+
+void AddLoot(Item@ locker)
+{
+		FillBag( locker, PID_BOTTLE_CAPS,   		   100, RewardMod(3000), RewardMod(12000) );
+		FillBag( locker, PID_5MM_AP,   				   100,  400, 1000 );
+		FillBag( locker, PID_7_62MM_AMMO,   		   100,  200, 400 );
+		FillBag( locker, PID_223_FMJ,   			   100,  200, 400 );
+		FillBag( locker, PID_ROCKET_AP,   			   100,    8, 20 );
+		FillBag( locker, PID_BUFFOUT, 					90,    10, 25 );
+		FillBag( locker, PID_PSYCHO, 					90,    5, 13 );
+		FillBag( locker, PID_JET, 				    	90,    10, 25 );
+		FillBag( locker, PID_HYPO, 				   		90,    1, 6 );
+		FillBag( locker, PID_NUKA_COLA, 				90,    10, 30 );
+		FillBag( locker, PID_CIGARETTES, 				90,    10, 30 );
+}
+
+void event_start( Critter& cr, int, int , int)
+{
+	event_start(2);
+}
+void event_stop( Critter& cr, int, int , int)
+{
+	uint[] val={2};
+    e_event_stop(val);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(2);
+}
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	uint[] val={2};
+    e_event_stop(val);
+}

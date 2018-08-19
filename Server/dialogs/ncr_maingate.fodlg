@@ -1,0 +1,121 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+7 1010 D _script map_ncr@d_IsGateDestroyed 0  #
+2 1020 D _param p MAIN_FACTION = 5 D _param p MAIN_FACTION_RANK } 2 D or D _param p MAIN_FACTION = 6 D _param p MAIN_FACTION_RANK } 2 #
+4 1030 @
+2 2000 None 0 #
+3 2010 D _script dialog@d_IsDoorClosed 3 168 174 4778 R _script map_ncr@r_MainGate 0  #
+3 2020 D _script dialog@d_IsDoorOpen 3 168 174 4778 R _script map_ncr@r_MainGate 0  R _script quest@global_setcd 2 9710 60 #
+8 2030 D _param p MAIN_FACTION = 6 D _param p MAIN_FACTION_RANK } 2 @
+3 3000 None 0 @
+4 4000 None 0 @
+6 5000 None 0 @
+7 6000 None 0 @
+8 7000 map_ncr@dlg_NCRBlacklist 0 #
+11 7010 #
+0 7020 @
+9 8000 None 0 @
+10 9000 None 0 @
+11 10000 map_ncr@dlg_showNCRBlacklist 0 #
+0 10010 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{broken}
+{1020}{}{base}
+{1030}{}{ }
+{2000}{}{Input command:}
+{2010}{}{Destabilize suite forcefield. (Make it passable.)}
+{2020}{}{Stabilize suite forcefield. (Make it unpassable.)}
+{2030}{}{Blacklist person from town.}
+{3000}{}{Forcefield state changed.}
+{4000}{}{Access denied.}
+{5000}{}{Forcefield generator on cooldown.}
+{6000}{}{Forcefield not responding.}
+{7000}{}{Use SAY to write the name. Console upgrade by Noisy And Cleg.}
+{7010}{}{Check Banned List}
+{7020}{}{Cancel.}
+{8000}{}{Person blacklisted. Only president can clear up their name now.}
+{9000}{}{Error. Blacklist Failed}
+{10000}{}{Banned players: 
+@lex banned@}
+{10010}{}{Done.}
+
+[russ]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{broken}
+{1020}{}{base}
+{1030}{}{ }
+{2000}{}{Choose command.}
+{2010}{}{Destabilize Suite Forcefield. [Make Passable]}
+{2020}{}{Stabilize Suite Forcefield. [Make Unpassable]}
+{2030}{}{Blacklist person from town.}
+{3000}{}{Forcefield State Changed.}
+{4000}{}{Access Denied.}
+{5000}{}{Forcefield Generator on cooldown.}
+{6000}{}{Forcefield not responding.}
+{7000}{}{Person blacklisted.}
+{7010}{}{Check Banned List}
+{7020}{}{Cancel.}
+{8000}{}{Person blacklisted.}
+{9000}{}{Error. Blacklist Failed}
+{10000}{}{Banned Players: @lex banned@}
+{10010}{}{Done,,.}
+
+[pols]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{broken}
+{1020}{}{base}
+{1030}{}{ }
+{2000}{}{Choose command.}
+{2010}{}{Destabilize Suite Forcefield. [Make Passable]}
+{2020}{}{Stabilize Suite Forcefield. [Make Unpassable]}
+{2030}{}{Blacklist person from town.}
+{3000}{}{Forcefield State Changed.}
+{4000}{}{Access Denied.}
+{5000}{}{Forcefield Generator on cooldown.}
+{6000}{}{Forcefield not responding.}
+{7000}{}{Person blacklisted.}
+{7010}{}{Check Banned List}
+{7020}{}{Cancel.}
+{8000}{}{Person blacklisted.}
+{9000}{}{Error. Blacklist Failed}
+{10000}{}{Banned Players: @lex banned@}
+{10010}{}{Done,,.}
+
+[ptbr]
+{100}{}{Terminal de acesso}
+{200}{}{Você vê um terminal de acesso.}
+{1000}{}{Predialogue installations}
+{1010}{}{broken}
+{1020}{}{base}
+{1030}{}{ }
+{2000}{}{Escolher o comando.}
+{2010}{}{Desative o campo de força. [Abre passagem]}
+{2020}{}{Ative o campo de força. [Fecha passagem]}
+{2030}{}{Por um cidadão na lista negra.}
+{3000}{}{Estado do campo de força alterado.}
+{4000}{}{Acesso negado.}
+{5000}{}{Os capacitores estão a carregar. Aguarde...}
+{6000}{}{Forcefield not responding.}
+{7000}{}{Pessoa marcada na lista negra.}
+{7010}{}{Check Banned List}
+{7020}{}{Cancelar.}
+{8000}{}{Pessoa marcada na lista negra.}
+{9000}{}{Erro. Falha ao marcar pessoa.}
+{10000}{}{Banned Players: @lex banned@}
+{10010}{}{Done,,.}
+

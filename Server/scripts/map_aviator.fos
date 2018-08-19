@@ -1,0 +1,478 @@
+#include "_macros.fos"
+#include "_teams.fos"
+#include "npc_common_h.fos"
+
+#include "follower.fos"
+#include "entire.fos"
+#include "_npc_pids.fos"
+#include "pids_groups.fos"
+
+
+#define TeamId                 StatBase[ ST_TEAM_ID ]
+#define SAME_TEAM              # ( cr, attacker )( cr.TeamId == attacker.TeamId )
+#define BOYD                   ( 900 )
+#define ROLE_ATTACKER          ( 288000 )
+#define BOYD_TALK              ( 70570 )
+#define BOYD_TALK_RARE         ( 70571 )
+#define BOYD_HITBYPLAYER       ( 70572 )
+#define BOYD_ENEMYWARNING      ( 70573 )
+#define BOYD_ATTACK            ( 70574 )
+#define BOYD_NOT_OKAY          ( 70575 )
+#define BOYD_WAVE_SHOUTOUTS    ( 70576 )
+#define BOYD_WAVE_FINISH    ( 70577 )
+
+
+
+#define CTE_BOYDDISTANCE       ( 15 )
+#define BOYD_LEASH             ( 13 )
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import void AddNewMessage( string text, int time, int showtimer, uint color, bool eventtimer, uint eventid ) from "stocmessages";
+import int  GetNextTime( uint Id ) from "game_events";
+import bool critter_use_skill( Critter& cr, int skill, Critter@ targetCr, Item@ targetItem, Scenery@ targetScen ) from "main";
+import void SendQuestMessage( Critter& critter, uint questNameMsgNum, uint questTaskMsgNum ) from "quest";
+import void HealCritter( Critter& player ) from "stdlib";
+
+int[] params =
+{
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1,
+    ST_BONUS_LOOK, 100, ST_NPC_ROLE, ROLE_ATTACKER, ST_REPLICATION_TIME, REPLICATION_DELETE_FAST, ST_KILL_EXPERIENCE, 80, ST_MAX_LIFE, 40, ST_MELEE_DAMAGE , 15
+};
+const int[] AttackerPids = { NPC_PID_GHOUL1, NPC_PID_GHOUL2, NPC_PID_GHOUL3, NPC_PID_GHOUL4, NPC_PID_GHOUL5 };
+const int[] WeaponPids = { PID_KNIFE, PID_SHIV, PID_SWITCHBLADE, PID_SPEAR, PID_SHARPENED_POLE, PID_CLUB, PID_CROWBAR, PID_WRENCH, PID_BRASS_KNUCKLES, PID_SPIKED_KNUCKLES, PID_ROCK };
+
+
+void _MapInit( Map& map, bool )
+{
+    if(map.GetProtoId() == 9326)
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "aviator_wave@Death");
+    else
+    map.SetEvent( MAP_EVENT_CRITTER_DEAD, "Death" );
+	
+    if(map.GetProtoId() == 9321)
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "_CrOutFail");
+    else
+    map.SetEvent( MAP_EVENT_OUT_CRITTER, "	" );
+}
+
+void _CrOut( Map& map, Critter& cr )
+{
+
+    if( !cr.IsPlayer() )
+        return;
+
+    GameVar@ var = GetLocalVar( LVAR_q_aviator_main, cr.Id );
+    if( !valid( var ) || var == 30 ) // He will stay and get garbaged with location.
+        return;
+
+
+    Location@ location = map.GetLocation();
+    int       ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+
+    if( uint( ownerId ) != cr.Id )
+        return;
+
+    array< Critter@ > npcs;
+    map.GetCritters( 0, FIND_ALL | FIND_ONLY_NPC, npcs );
+    for( uint i = 0; i < npcs.length(); i++ )
+    {
+        if( npcs[ i ].Stat[ ST_NPC_ROLE ] == BOYD )
+        {
+            npcs[ i ].TransitToMap( master.GetMapId(), master.HexX + 3, master.HexY + 3, master.Dir );
+        }
+    }
+
+}
+
+void _CrOutFail( Map& map, Critter& cr )
+{
+
+    if( !cr.IsPlayer() )
+        return;
+
+    GameVar@ var = GetLocalVar( LVAR_q_aviator_main, cr.Id );
+
+
+    Location@ location = map.GetLocation();
+    int       ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+
+    if( uint( ownerId ) != cr.Id )
+        return;
+		
+    location.AutoGarbage = true;
+    if( !valid( var ) )
+        return;
+    var = 31;
+    SendQuestMessage( cr, LVAR_q_aviator_main * 1000 + 102, var.GetQuestStr() );
+}
+
+void Death( Map& map, Critter& cr, Critter@ killer )
+{
+    if( !cr.IsPlayer() )
+        return;
+
+    Location@ location = map.GetLocation();
+    location.AutoGarbage = true;
+
+    GameVar@ var = GetLocalVar( LVAR_q_aviator_main, cr.Id );
+    if( !valid( var ) )
+        return;
+    var = 30;
+    SendQuestMessage( cr, LVAR_q_aviator_main * 1000 + 102, var.GetQuestStr() );
+
+}
+
+
+void BoydInit( Critter& npc, bool firstTime )
+{
+    if( firstTime )
+    {
+        InitDrunk( npc );
+
+    }
+    npc.ShowCritterDist1 = 10;
+    npc.SetEvent( CRITTER_EVENT_SHOW_CRITTER_1, "_Show" );
+    npc.SetEvent( CRITTER_EVENT_DEAD, "_Death" );
+    npc.SetEvent( CRITTER_EVENT_PLANE_END, "_BPlaneEnd" );
+    npc.SetEvent( CRITTER_EVENT_IDLE, "_BIdle" );
+    npc.AddTimeEvent( "_CheckDistance", REAL_SECOND( 1 ), CTE_BOYDDISTANCE );
+
+    AttackAttacker( npc );
+}
+
+void _Show( Critter& guard, Critter& cr )
+{
+    Map@      map = guard.GetMap();
+    Location@ location = map.GetLocation();
+    int       ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+    Critter@  master = GetCritter( ownerId );
+
+    if( cr.IsPlayer() || cr.IsDead())
+        return;
+
+    if( guard.IsKnockout() )
+        return;
+        
+    if( GetCrittersDistantion( master, guard ) >= BOYD_LEASH )
+        return;
+
+    if( HAS_CHANCE( 25 ) ) // Say Attack
+        guard.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_ATTACK );
+
+    AttackCritter( guard, cr );
+}
+
+void _Death( Critter& cr, Critter@ killer )
+{
+    if( !valid( killer ) )
+        return;
+         
+    cr.ToLife();
+    HealCritter( cr );
+    
+    if( cr.IsKnockout() || cr.IsDead())
+        return;
+    
+    cr.ToKnockout( KNOCKOUT_ANIM2_DEFAULT( true ), 30, cr.HexX, cr.HexY );
+}
+
+
+
+void InitDrunk( Critter& npc )
+{
+    npc.StatBase[ ST_TEAM_ID ] = TEAM_Respawn;
+    npc.StatBase[ ST_BONUS_LOOK ] = 300;
+    npc.StatBase[ ST_REPLICATION_TIME ] = -1;
+    npc.StatBase[ ST_CRITICAL_CHANCE ] = 100;
+    npc.StatBase[ ST_NPC_ROLE ] = BOYD;
+    npc.StatBase[ ST_KILL_EXPERIENCE ] = 0;
+    npc.ModeBase[ MODE_SPECIAL_DEAD ] = 1;
+
+    SETFLAG( npc.ParamBase[ CR_FLAGS1 ], NPC_FRIENDLY );
+    
+    _CritSetMode( npc, MODE_NO_DROP );
+    _CritSetMode( npc, MODE_NO_KNOCK );
+    _CritSetMode( npc, MODE_NO_LOOSE_LIMBS );
+    _CritSetMode( npc, MODE_NO_ENEMY_STACK );
+    _CritSetMode( npc, MODE_NO_STEAL );
+    _CritSetMode( npc, MODE_UNLIMITED_AMMO );
+
+
+    Item@ item = npc.AddItem( PID_SAWED_OFF_SHOTGUN, 1 );
+    if( valid( item ) )
+    {
+        npc.SetFavoriteItem( SLOT_HAND1, item.GetProtoId() );
+        npc.MoveItem( item.Id, 1, SLOT_HAND1 );
+    }
+
+}
+
+
+void AttackAttacker( Critter& npc )
+{
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_BSomeoneAttacked" );
+    npc.SetEvent( CRITTER_EVENT_ATTACKED, "_OnAttacked" );
+}
+
+
+bool _OnAttacked( Critter& npc, Critter& attacker )
+{
+
+    if( npc.IsKnockout() )
+        return true;
+
+    if( !attacker.IsNpc() )
+    {
+        npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_HITBYPLAYER );
+        return true;
+    }
+
+
+    if( HAS_CHANCE( 25 ) ) // Say Attack
+        npc.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_ATTACK );
+
+
+    return false;
+}
+
+
+void _BSomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+
+    if( cr.IsKnockout() )
+        return;
+
+    if( attacker.Id == cr.Id )
+        return;
+
+    if( attacker.Id == attacked.Id )
+        return;
+
+    if( !attacker.IsNpc() )
+        return;
+
+    Attack( cr, attacker );
+}
+
+
+void Attack( Critter& cr, Critter& attacker )
+{
+    NpcPlane@ plane = cr.GetCurPlane();
+    if( valid( plane ) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id )
+        return;
+
+
+    if( HAS_CHANCE( 25 ) ) // Say Attack
+        cr.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_ATTACK );
+
+
+    AttackCritter( cr, attacker );
+}
+
+void _BIdle( Critter& follower )
+{
+    Map@      map = follower.GetMap();
+    Location@ location = map.GetLocation();
+
+    if( Random( 0, ( 5000 / FOLLOWER_WAIT_NORMAL ) ) == 0 ) // Make action seem a bit less "mechanical"
+        ReloadWeapon( follower );
+
+    int      ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+    Critter@ master = GetCritter( ownerId );
+    if( !valid( master ) )
+    {
+        follower.Wait( FOLLOWER_WAIT_MASTER_OFFLINE );
+        return;
+    }
+
+    // If the critter is not following, no need to go further.
+    if( follower.FollowerVar[ FV_MODE ] != FOLLOWMODE_FOLLOW )
+    {
+        follower.Wait( FOLLOWER_WAIT_MANUAL_MODE );
+        return;
+    }
+
+    if( IsOnSameMap( master, follower ) && IsAwayFromMaster( master, follower ) )
+    {
+        GoToMaster( master, follower );
+        return;
+    }
+
+    if( Random( 0, 220 ) == 220 )                                               // Say Normal
+        follower.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_TALK );
+    else if( Random( 0, 320 ) == 320 )                                          // Say Rare
+        follower.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_TALK_RARE );
+    else if( follower.Stat[ ST_CURRENT_HP ] <= 170 && Random( 0, 100 ) == 100 ) // Say Rare
+        follower.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_NOT_OKAY );
+
+    if( follower.Stat[ ST_CURRENT_HP ] <= 170  && follower.Timeout[ TO_SK_FIRST_AID ] <= 0 )
+    {
+        if( HAS_CHANCE( 10 ) )
+            critter_use_skill( follower, SK_FIRST_AID, follower, null, null );
+    }
+    follower.Wait( FOLLOWER_WAIT_NORMAL );
+}
+
+int _BPlaneEnd( Critter& follower, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem )
+{
+    Map@      map = follower.GetMap();
+    Location@ location = map.GetLocation();
+
+    if( plane.Type == AI_PLANE_WALK && plane.Identifier == PLANE_FOLLOWER_GOTO_MASTER )
+    {
+        int      ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+        Critter@ master = GetCritter( ownerId );
+        if( valid( master ) && IsOnSameMap( master, follower ) && ( GetCrittersDistantion( master, follower ) > GetDistance( follower ) ) )
+        {
+            GoToMaster( master, follower );
+            return PLANE_DISCARD;
+        }
+    }
+    return PLANE_RUN_GLOBAL;
+}
+
+uint _CheckDistance( Critter& follower, int identifier, uint& rate )
+{
+    if( follower.IsDead() )
+    {
+        follower.EraseTimeEvents( CTE_BOYDDISTANCE );
+        return 0;
+    }
+    else
+    {
+
+        Map@      map = follower.GetMap();
+        Location@ location = map.GetLocation();
+        int       ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+        Critter@  master = GetCritter( ownerId );
+        NpcPlane@ plane = follower.GetCurPlane();
+
+
+        if( follower.Stat[ ST_CURRENT_HP ] <= 170  && follower.Timeout[ TO_SK_FIRST_AID ] <= 0 )
+        {
+            if( HAS_CHANCE( 10 ) )
+                critter_use_skill( follower, SK_FIRST_AID, follower, null, null );
+        }
+
+        if( IsOnSameMap( master, follower ) && GetCrittersDistantion( master, follower ) >= BOYD_LEASH && plane.Type != AI_PLANE_WALK )
+        {
+            follower.ErasePlane( AI_PLANE_ATTACK, true );
+            GoToMaster( master, follower );
+            return ( REAL_SECOND( 1 ) );
+        }
+        return ( REAL_SECOND( 1 ) );
+    }
+}
+
+
+void t_ghouls( Critter& player, Scenery& trigger, bool entered, uint8 dir, int spawnentire, int attackstep )
+{
+    Map@      map = player.GetMap();
+    Location@ location = map.GetLocation();
+    GameVar@  Attackstep = GetLocalVar( LLVAR_Value0, location.Id );
+
+    if( !player.IsPlayer() )
+    {
+        return;
+    }
+
+    if( Attackstep != attackstep )
+    {
+        return;
+    }
+
+    Attackstep += 1;
+    uint   entiresnum = map.CountEntire( spawnentire );
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  direct = 0;
+    uint   attackers = 0;
+    for( uint8 i = 0; i < entiresnum; i++ )
+    {
+        if( attackers >= entiresnum )
+            break;
+        if( map.GetEntireCoords( spawnentire, i, hexX, hexY, direct ) && AddAttacker( hexX, hexY, dir, map ) )
+            attackers++;
+    }
+
+    Critter@ boyd = map.GetNpc( BOYD, FIND_ALL | FIND_ONLY_NPC, 0 );
+    boyd.SayMsg( SAY_NORM_ON_HEAD, TEXTMSG_TEXT, BOYD_ENEMYWARNING );
+
+}
+
+
+bool AddAttacker( uint16 hexX, uint16 hexY, uint8 dir, Map& map )
+{
+
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+    {
+        return false;
+    }
+    Critter@ attacker = map.AddNpc( AttackerPids[ ( Random( 0, AttackerPids.length() - 1 ) ) ], hexX, hexY,   dir,    params, null, null );
+    if( !valid( attacker ) )
+        return false;
+    Item@ weapon = attacker.AddItem( WeaponPids[ Random( 0, WeaponPids.length() - 1 ) ], 1 );
+    _AttackerInit( attacker, true );
+    attacker.SetScript( "_AttackerInit" );
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+    Critter@[] deffenders;
+    map.GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, deffenders );
+    // AttackTargets(attacker, deffenders);
+    return true;
+}
+
+void _AttackerInit( Critter& attacker, bool firstTime )
+{
+    attacker.ShowCritterDist1 = 20;
+    attacker.SetEvent( CRITTER_EVENT_SHOW_CRITTER_1, "_GhoulShow" );
+    attacker.SetEvent( CRITTER_EVENT_DEAD, "_GhoulDead" );
+}
+
+void AttackTargets( Critter@ attacker, Critter@[] targets )
+{
+    for( uint i = 0; i < targets.length(); i++ )
+    {
+        AddAttackPlane( attacker, Random( AI_PLANE_ATTACK_PRIORITY, AI_PLANE_ATTACK_PRIORITY + 20 ), targets[ i ], true );
+        attacker.AddEnemyInStack( targets[ i ].Id );
+    }
+}
+
+void _GhoulShow( Critter& npc, Critter& cr )
+{
+    if( cr.IsPlayer() || cr.StatBase[ ST_NPC_ROLE ] == BOYD && !npc.CheckEnemyInStack( cr.Id ) )
+    {
+        npc.AddEnemyInStack( cr.Id );
+        AddAttackPlane( npc, Random( AI_PLANE_ATTACK_PRIORITY, AI_PLANE_ATTACK_PRIORITY + 20 ), cr, true );
+    }
+}
+
+
+void _GhoulDead( Critter& mob, Critter@ killer )
+{
+    mob.ClearEnemyStack();
+}
+
+void t_boydtalk( Critter& player, Scenery& trigger, bool entered, uint8 dir, int step )
+{
+    Map@      map = player.GetMap();
+    Location@ location = map.GetLocation();
+    GameVar@  talkstep = GetLocalVar( LVAR_q_aviator_step, player.Id );
+    int       ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+
+    if( !player.IsPlayer() )
+    {
+        return;
+    }
+
+    if( talkstep != step )
+    {
+        return;
+    }
+
+
+    Critter@ boyd = map.GetNpc( BOYD, FIND_ALL | FIND_ONLY_NPC, 0 );
+    boyd.SayMsg( SAY_NORM, TEXTMSG_TEXT, ( 70580 + step ) );
+    talkstep += 1;
+}

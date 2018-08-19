@@ -1,0 +1,96 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 1 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 1 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_GUNS_AND_BULLETS + 1 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_DEANS_ELECTRONICS + 1 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 3000 R _script economy_dialogs@r_TakeCaps 1 3000 R _item p PID_BIG_BOOK_OF_SCIENCE + 1 #
+4 3040 D _script economy_dialogs@d_IsEnoughCaps 1 4000 R _script economy_dialogs@r_TakeCaps 1 4000 R _item p PID_SCOUT_HANDBOOK + 1 #
+4 3050 D _script economy_dialogs@d_IsEnoughCaps 1 4000 R _script economy_dialogs@r_TakeCaps 1 4000 R _item p PID_FIRST_AID_BOOK + 1 #
+0 3060 @
+4 4000 None 1 #
+3 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Book Merchant}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Hello and welcome  to San Francisco Bookstore! Ready to dive in the world of knowledge? Huh? Speak up!}
+{2010}{}{Yeah, yeah, I want to buy some books.@@Um, yeah... I want to buy books.}
+{2020}{}{Erm, that enthusiasm... Bye.@@Whatever. I gotta go.}
+{3000}{}{Sure! All books for mere @lex book3_price@ caps! Ah, except First Aid and Outdoorsman. They cost @lex book4_price@ caps each.}
+{3010}{}{Small Guns book please. Need to shoot somebody.@@Small Guns book please. My aim sucks brahmin balls.@@There is this one guy that pisses me off... Give me one Small Guns book.}
+{3020}{}{I like to tinker with stuff. Give me the Repair Book.@@Give me one Repair book. I heard that after reading it, one guy built a Vertibird out of three rocks and one old shovel.}
+{3030}{}{Okay, I'll buy the Science book then.@@Okay, I'll buy the Science book. I need to learn about quantum physics so I can disassemble dildos.}
+{3040}{}{I want to know more about survival. I'll buy the Outdoorsman book.}
+{3050}{}{I want to become a doctor someday. I'll take the First Aid book.@@I'll take the First Aid book. I'm in need of bringing myself back from the brink of death only by using my hands frequently.}
+{3060}{}{Maybe later, Bye.@@Not now, bye.@@Gotta go.@@I need to go, sorry.}
+{4000}{}{Here you go! Anything else?@@Okay, here you go. Need anything else?}
+{4010}{}{Yeah, show me your selection of books again.@@Yeah, show what you've got again.}
+{4020}{}{I've got what I came for. Bye@@No, that's enough. Bye.}
+
+[russ]
+{100}{}{Продавец книг}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Здравствуйте и добро пожаловать в книжный магазин Сан-Франциско!}
+{2010}{}{Я хочу купить книги.}
+{2020}{}{Эмм... Пока.}
+{3000}{}{Конечно! Все книги по @lex book3_price@ крышек! Кроме книг по Скитальцу и Первой помощи. Эти по @lex book4_price@.}
+{3010}{}{Я куплю про легкое оружие.}
+{3020}{}{Я возьму про ремонт.}
+{3030}{}{Пожалуй возьму научную книгу.}
+{3040}{}{Покупаю по Скитальцу.}
+{3050}{}{Беру книгу про Первую Помощь.}
+{3060}{}{Может быть, позже, пока.}
+{4000}{}{Получите! Что-нибудь еще?}
+{4010}{}{Да, покажи что ещё есть.}
+{4020}{}{Нет, этого достаточно. Пока.}
+
+[pols]
+{100}{}{Sprzedawca książek}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Witaj w moim sklepie z książkami! Jesteś @sex@||spragniony|spragniona| wiedzy? To miejsce w sam raz dla ciebie! Mam tu wszystkie rodzaje książek, jakie jesteś w stanie sobie wyobrazić! Śmiało, wejdź, rozjerzyj się!}
+{2010}{}{Chcę kupić parę książek.}
+{2020}{}{Nie ma to jak entuzjastyczne przyjęcie. Nie przepadam za namolnymi sprzedawcami, czas na mnie.}
+{3000}{}{Jasne! Wszystkie książki za jedyne @lex book3_price@ kapsli! No, może poza książkami o sztuce przetrwania i pierwszej pomocy, te są za @lex book4_price@. Ale to i tak tanio!}
+{3010}{}{Daj mi Spluwy i Kulki. Mam cela jak baba z wesela.}
+{3020}{}{Naprawianie, część trzecia. Ta o GacMyverze budującym Vertibirda z trzech kamieni i starej łopaty.}
+{3030}{}{Okey, wezmę tą o naukach ścisłych. Poczytam o fizyce kwantowej, żeby być lepszym w rozkładaniu wibratorów na części.}
+{3040}{}{Wezmę tą o sztuce przetrwania. Nazywam się Gear Brylls, i chcę pokazać ludziom jak przetrwać w najcięższych warunkach na Ziemi.}
+{3050}{}{Daj mi o pierwszej pomocy. Często zdarza mi się powracać z krawędzi śmierci używając gołych rąk.}
+{3060}{}{Tanio? Jaaasne. Idę stąd.}
+{4000}{}{Proszę bardzo! Coś jeszcze?}
+{4010}{}{Tak, potrzebuję więcej wiedzy.}
+{4020}{}{Na razie wystarczy. Do widzenia.}
+
+[ptbr]
+{100}{}{Vendedor de livros}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Olá! Seja @sex@||bem-vindo|bem-vinda| a Loja de Livros de São Francisco! Pronto para mergulhar no mundo do conhecimento, hein? Pode falar!}
+{2010}{}{É... É! Quero comprar uns livros.@@Um, é... eu quero comprar uns livros.}
+{2020}{}{Nossa... quanto entusiasmo... Fui.}
+{3000}{}{Ótimo! Qualquer livro por apenas @lex book3_price@ tampinhas! Ah claro, exceto para livros de assuntos de primeiros-socorros ou sobrevivência, que custam @lex book4_price@ tampinhas cada.}
+{3010}{}{Livros de armas leves por favor. Preciso atirar em alguém.}
+{3020}{}{Eu quero mexer com bugigangas. Me dê um livro de reparos.}
+{3030}{}{Certo, quero comprar livros de assuntos científicos.}
+{3040}{}{Eu quero saber mais sobre sobrevivência.}
+{3050}{}{Quero me tornar um médico um dia. Quero livros de primeiros-socorros.}
+{3060}{}{Talvez depois. Obrigado.}
+{4000}{}{Aqui estão! Algo a mais?}
+{4010}{}{Sim, deixe-me ver mais livros.}
+{4020}{}{Era só isso o que eu queria mesmo. Obrigado. Até mais.@@Não, era só isso mesmo. Obrigado.}
+

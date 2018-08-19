@@ -1,0 +1,199 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_adytum_well = 6 #
+8 1020 D _var p q_adytum_well = 7 #
+9 1030 D _var p q_adytum_well = 10 #
+11 1040 D _var p q_adytum_well = 31 #
+13 1050 @
+2 2000 None 0 #
+3 2010 #
+65507 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+65507 3020 @
+4 4000 None 0 #
+5 4010 #
+6 4020 #
+7 4030 #
+65507 4040 @
+5 5000 None 0 #
+0 5010 R _var p q_adytum_well = 7 R _script dialog@r_ShowQuestMessage 1 9317 @
+6 6000 None 0 #
+0 6010 R _var p q_adytum_well = 7 R _script dialog@r_ShowQuestMessage 1 9317 @
+7 7000 None 0 #
+0 7010 R _var p q_adytum_well = 7 R _script dialog@r_ShowQuestMessage 1 9317 @
+8 8000 None 0 @
+9 9000 economy_dialogs@dlg_PreparePrice 0 #
+10 9010 R _var p q_adytum_well = 11 R _script economy_dialogs@r_GiveCaps 1 3000 R _var p q_adytum_farm_creation = 1 #
+10 9020 R _var p q_adytum_well = 11 R _param p ST_EXPERIENCE + 5000 R _var p q_adytum_farm_creation = 1 @
+10 10000 None 0 #
+0 10010 R _script dialog@r_ShowQuestMessage 1 9317 @
+11 11000 None 0 #
+12 11010 R _param p ST_EXPERIENCE + 3000 R _var p q_adytum_well = 32 R _var p q_adytum_farm_creation = 1 @
+12 12000 None 0 #
+0 12010 R _script dialog@r_ShowQuestMessage 1 9317 @
+13 13000 None 0 &
+
+[engl]
+{100}{}{Jeremy}
+{200}{}{You see: Jeremy}
+{1000}{}{Predialogue installations}
+{1010}{}{Var 6}
+{1020}{}{Var7}
+{1030}{}{Var10}
+{1040}{}{Var31}
+{1050}{}{Other}
+{2000}{}{Yes? What do you need?@@Yeah? What?@@What do you want?}
+{2010}{}{Hey, nice water reservoir you have there. Makes farming in a desolate ruins quite easy, huh?}
+{2020}{}{Start praying, my friend. Start praying. [Attack.]}
+{2030}{}{Just passing through.@@I'm just wandering about.@@Nothing.}
+{3000}{}{Well... yeah.. We found a water source not far away, and we used the old pump system to connect to it. Works like a charm.}
+{3010}{}{Oh really? There's just this little problem, you're using Adytum's water source.@@You know you connected to Adytum's only water source?}
+{3020}{}{[Attack.] Too bad you won't be using it anymore.@@[Attack.] Adytum's residents don't like people stealing their water. Prepare to die.}
+{4000}{}{What? I didn't know, I swear! Besides, I've got my own family to feed and to take care of! Who says their claim on that water is better than ours?@@[His face becomes pale.] What? I didn't know that! Please, don't harm us. I've got a family, and even now we're barely managing to get by!}
+{4010}{}{So that's your excuse? You're pathetic. I'm going to disable the pump. You won't get any more water.}
+{4020}{}{Maybe we could make an arrangement that would be profitable for both of us. I could tell Pestis there is more than one connection to the water source, and that it is buried deep underground, so nothing can be done about it. You get your water, and I get paid.}
+{4030}{}{Why don't you just come to some sort of agreement with Adytum?}
+{4040}{}{[Attack.] I don't like thieves. I think I'll just put you out of your misery.@@[Attack.] This is boring. I think I'll kill you all instead.}
+{5000}{}{Please... don't. Just... Please. I'll pay you if you do it the other way. You won't regret it.}
+{5010}{}{I'll think about it. Bye.@@Maybe.@@We'll see.}
+{6000}{}{I knew you were a resourceful fella. But you will need to destroy the pump controls, so no one will be able to change the flow again.}
+{6010}{}{Yeah, right.@@Sure thing. See you.@@Yeah, see you later, you sly dog.}
+{7000}{}{Maybe... though... I don't know... You could set the pump flow to something like half, and then we could pay for the water with our crops... or what's left of them. I don't really like this deal, but...  You can't always get what you want, heh...}
+{7010}{}{Right. I'll talk to Pestis after I set up the pump.@@All right. I'll set the pump and then I'll talk to Pestis.}
+{8000}{}{I see you haven't decided yet. Come back when this business is finished.}
+{9000}{}{God thank you my @sex@|boy||girl|, you're a lifesaver! I've got some caps for your trouble.}
+{9010}{}{Right... [Take @lex q_adytum_well@ caps.]}
+{9020}{}{What? Naah, I just did it for the fun! Those Adytum jerks can rot, for all I care. [Gain 5000 exp.]}
+{10000}{}{All right. Thanks again. So... Are we done? You won't ever come back to this place?}
+{10010}{}{Yeah, we're done, Jeremy. Goodbye.@@I suppose we're done. Goodbye, Jeremy.@@Yeah, we're done. I won't come here again.}
+{11000}{}{You're back! What did they say?@@So... what did they say?}
+{11010}{}{They agreed, you will share the water from now on. And, like you said, you're obliged to pay them with your crops. I would stick to this deal if I were you.}
+{12000}{}{That's great! Of course we will... Thank you, thank you very much!}
+{12010}{}{Don't mention it. Goodbye, Jeremy.@@Yeah, no problem. Goodbye, Jeremy.}
+{13000}{}{I've got nothing more to say.@@I'm not going to talk to you.}
+
+[russ]
+{100}{}{Jeremy}
+{200}{}{You see: Jeremy}
+{1000}{}{Predialogue installations}
+{1010}{}{Var 6}
+{1020}{}{Var7}
+{1030}{}{Var10}
+{1040}{}{Var31}
+{1050}{}{Other}
+{2000}{}{Yes? What do you need?}
+{2010}{}{I've seen nice water reservoir you have there, nice farm also in middle of desolated town, how come?}
+{2020}{}{Start praying my friend. Start praying. [Attack]}
+{2030}{}{Nothing, Be right back.}
+{3000}{}{Well, we've found water source not far away, and we used pre war pump system to connect it. Works like a charm.}
+{3010}{}{Have you knew that this water source was already used and you people cut whole town from it?}
+{3020}{}{THAT'S SOMEONE'S ELSE WATER YOU SCUM [Attack]}
+{4000}{}{What? No! Well, maybe? What will you do? You won't kill us? We have families and farm to take care!}
+{4010}{}{Hmm, I can disable the pump and you won't get no more water. Take that as punishiment for stealing.}
+{4020}{}{Hmm, I can tell Pestis that nothing can be done about it. You get the water, and I get paid.}
+{4030}{}{Hmm, I think you people and town of Adytum could come to some agreement, what do you think?}
+{4040}{}{Hmm, I'll just fuck you people up. [Attack]}
+{5000}{}{Please. Think about it when you get to the pump. I'll pay you if you do it the other way. Destroy the panel. You won't regret it.}
+{5010}{}{I'll think about it. Bye.}
+{6000}{}{Good idea, though saying this is not enough, you need to destroy control panel on the pump, Without it there is no way to shut down the flow.}
+{6010}{}{Sure thing. See you.}
+{7000}{}{Well, I think we could. That's good idea, Set the pump power at 50% and tell townsmen that we will pay for it in crops. It's a win win situation.}
+{7010}{}{I'll talk to Pestis after I set up the pump. I'm glad that we could come to an agreement.}
+{8000}{}{Yes? You didn't do the job yet, we will talk after.}
+{9000}{}{God thank you my @sex@|boy||girl|, you're a lifesaver! What do you want as payment? I could give you some stuff we found in a hospital nearby, or maybe you prefer caps?}
+{9010}{}{I'll take the cash. [Take @lex q_adytum_well@ caps.]@@I prefer cash. [Take @lex q_adytum_well@ caps.]@@I'm kinda broke, so I'll take the caps.[Take @lex q_adytum_well@ caps.]}
+{9020}{}{What? Naah, I just did it for the fun of it. Those Adytum jerks can burn in the sun. [Earn 5000 exp.]}
+{10000}{}{All right. Thanks again. So... Are we done? You won't ever come back to this place?}
+{10010}{}{Yeah, we're done, Jeremy. Goodbye.@@I suppose we're done. Goodbye, Jeremy.@@Yeah, we're done. I won't come here again.}
+{11000}{}{You're back! What did they say?@@So... what did they say?}
+{11010}{}{They agreed, ypu will share the water from now on. And, like you said, you're obliged to pay them with your crops. I would stick to this deal if I were you.}
+{12000}{}{That's great! Of course we will... Thank you, thank you very much!}
+{12010}{}{Don't mention it. Goodbye, Jeremy. @@Yeah, no problem. Goodbye, Jeremy.}
+{13000}{}{I've got nothing more to say.@@I'm not going to talk to you.}
+
+[pols]
+{100}{}{Jeremy}
+{200}{}{Widzisz Jeremy'ego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Var 6}
+{1020}{}{Var7}
+{1030}{}{Var10}
+{1040}{}{Var31}
+{1050}{}{Other}
+{2000}{}{Tak? O co chodzi?}
+{2010}{}{@sex@|Zauważyłem||Zauważyłam|, że macie tutaj śliczny zbiornik wody, do tego przytulna faremka w środku ruin miasta... Jak to możliwe?}
+{2020}{}{Zacznij się modlić, czas zobaczyć się z aniołkami. [Zaatakuj.]}
+{2030}{}{Nic takiego, zaraz wracam.}
+{3000}{}{Cóż, znaleźliśmy niedaleko źródło wody i użyliśmy przedwojennego systemu wodociągów, aby się podłączyć. Śmiga jak marzenie.}
+{3010}{}{Czy wiesz, że to źródło wody było używane, a wy odcięliście od niego całe miasto?}
+{3020}{}{Ta woda należy do kogoś innego, gnojku. Nadszedł czas zapłaty. [Zaatakuj.]}
+{4000}{}{Co? Niemożliwe! Hm, chociaż może? Co masz zamiar z tym zrobić? Nie zabijesz nas przecież, mamy rodziny, farmy do utrzymania...}
+{4010}{}{Hm, mogę wyłączyć pompy i odciąć was od tej wody. Odbierz to jako karę za kradzież.}
+{4020}{}{Hm, powiem Pestisowi, że nic więcej nie da się z tym zrobić. Macie swoją wodę, a ja dostaję zapłatę.}
+{4030}{}{Hm, myślę, że możecie się jakoś porozumieć z Adytum, co o tym sądzisz?}
+{4040}{}{Hm, po prostu was porozwalam. [Zaatakuj.]}
+{5000}{}{Proszę. Pomyśl o tym, kiedy dojdziesz do pompy. Zniszcz panel, nie pożałujesz tego.}
+{5010}{}{Przemyślę to. Do widzenia.}
+{6000}{}{Dobry pomysł, ale nie aby zablokować przepływ, musisz zniszczyć panel kontrolny pompy.}
+{6010}{}{Jasne. Do zobaczenia.}
+{7000}{}{Cóż, myślę, że da się to zrobić. To dobry pomysł, ustaw panel kontrolny pompy na 50% i powiedz ludziom z miasta, że odpłacimy się w naszych zbiorach. Wszyscy będą zadowoleni.}
+{7010}{}{Porozmawiam z Pestisem po tym, kiedy ustawię pompy. Cieszę się, że doszliśmy do porozumienia.}
+{8000}{}{Tak? Nie @sex@|skończyłeś||skończyłaś| jeszcze roboty, porozmawiamy potem.}
+{9000}{}{Bóg zapłać, moje dziecko. Jak możemy ci się odwdzięczyć? Jeśli chcesz, oddamy ci nasze zapasy medykamentów? A może po prostu dać ci kapsle?}
+{9010}{}{Wezmę kapsle. (@lex q_adytum_well@ kapsli)}
+{9020}{}{Co? Nie, @sex@|zrobiłem||zrobiłam| to dla waszych ludzi. Niech te dupki z Adytum idą się bujać. (5,000 doświadczenia)}
+{10000}{}{W porządku. Dzięki ci, dzięki ci jeszcze raz. Jeśli już skończyliśmy, możemy się umówić, że nigdy już tutaj nie wrócisz?}
+{10010}{}{Ta, do widzenia.}
+{11000}{}{I..? Co powiedzieli?}
+{11010}{}{Zgodzili się, woda płynie, a wy dajecie im część swoich zbiorów. Wszyscy są zadowoleni, tak jak powiedziałeś.}
+{12000}{}{Doskonale, wielkie dzięki. @sex@|Spadłeś||Spadłaś| tutaj jak anioł z niebios, moje dziecko.}
+{12010}{}{To była czysta przyjemność. Do widzenia.}
+{13000}{}{I've got nothing more to say.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Var 6}
+{1020}{}{Var7}
+{1030}{}{Var10}
+{1040}{}{Var31}
+{1050}{}{Other}
+{2000}{}{Yes? What do you need?@@Yeah? What?@@What do you want?}
+{2010}{}{Hey, nice water reservoir you have there. Makes farming in a desolate ruins quite easy, huh?}
+{2020}{}{Start praying, my friend. Start praying. [Attack.]}
+{2030}{}{Just passing through.@@I'm just wandering about.@@Nothing.}
+{3000}{}{Well... yeah.. We found a water source not far away, and we used the old pump system to connect to it. Works like a charm.}
+{3010}{}{Oh really? There's just this little problem, you're using Adytum's water source.@@You know you connected to Adytum's only water source?}
+{3020}{}{[Attack.] Too bad you won't be using it anymore.@@[Attack.] Adytum's residents don't like people stealing their water. Prepare to die.}
+{4000}{}{What? I didn't know, I swear! Besides, I've got my own family to feed and to take care of! Who says their claim on that water is better than ours?@@[His face becomes pale.] What? I didn't know that! Please, don't harm us. I've got a family, and even now we're barely managing to get by!}
+{4010}{}{So that's your excuse? You're pathetic. I'm going to disable the pump. You won't get any more water.}
+{4020}{}{Maybe we could make an arrangement that would be profitable for both of us. I could tell Pestis there is more than one connection to the water source, and that it is buried deep underground, so nothing can be done about it. You get your water, and I get paid.}
+{4030}{}{Why don't you just come to some sort of agreement with Adytum?}
+{4040}{}{[Attack.] I don't like thieves. I think I'll just put you out of your misery.@@[Attack.] This is boring. I think I'll kill you all instead.}
+{5000}{}{Please... don't. Just... Please. I'll pay you if you do it the other way. You won't regret it.}
+{5010}{}{I'll think about it. Bye.@@Maybe.@@We'll see.}
+{6000}{}{I knew you were a resourceful fella. But you will need to destroy the pump controls, so no one will be able to change the flow again.}
+{6010}{}{Yeah, right.@@Sure thing. See you.@@Yeah, see you later, you sly dog.}
+{7000}{}{Maybe... though... I don't know... You could set the pump flow to something like half, and then we could pay for the water with our crops... or what's left of them. I don't really like this deal, but...  You can't always get what you want, heh...}
+{7010}{}{Right. I'll talk to Pestis after I set up the pump.@@All right. I'll set the pump and then I'll talk to Pestis.}
+{8000}{}{I see you haven't decided yet. Come back when this business is finished.}
+{9000}{}{God thank you my @sex@|boy||girl|, you're a lifesaver! I've got some caps for your trouble.}
+{9010}{}{Right... [Take @lex q_adytum_well@ caps.]}
+{9020}{}{What? Naah, I just did it for the fun! Those Adytum jerks can rot, for all I care. [Gain 5000 exp.]}
+{10000}{}{All right. Thanks again. So... Are we done? You won't ever come back to this place?}
+{10010}{}{Yeah, we're done, Jeremy. Goodbye.@@I suppose we're done. Goodbye, Jeremy.@@Yeah, we're done. I won't come here again.}
+{11000}{}{You're back! What did they say?@@So... what did they say?}
+{11010}{}{They agreed, you will share the water from now on. And, like you said, you're obliged to pay them with your crops. I would stick to this deal if I were you.}
+{12000}{}{That's great! Of course we will... Thank you, thank you very much!}
+{12010}{}{Don't mention it. Goodbye, Jeremy.@@Yeah, no problem. Goodbye, Jeremy.}
+{13000}{}{I've got nothing more to say.@@I'm not going to talk to you.}
+

@@ -1,0 +1,187 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 @
+4 2000 None 0 #
+5 2010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+7 2020 #
+11 2030 #
+0 2040 D _script tc_dialogs@d_CanTakeOver 0  R _script tc@r_StartTc 0  #
+0 2050 @
+5 3000 None 0 #
+7 3010 #
+7 3020 #
+0 3030 @
+6 4000 None 0 #
+4 4010 #
+0 4020 @
+7 5000 None 0 #
+6 5010 #
+8 5020 #
+4 5030 #
+0 5040 @
+8 6000 None 0 #
+9 6010 @
+9 7000 None 0 #
+10 7010 @
+10 8000 None 0 #
+11 8010 #
+4 8020 #
+0 8030 @
+11 9000 None 0 #
+4 9010 #
+0 9020 &
+
+[engl]
+{100}{}{Marcus}
+{110}{}{Avatar_marcus.png}
+{200}{}{You see: Marcus.}
+{210}{}{You see Marcus, sheriff of Broken Hills.}
+{210}{}{You see a burly old mutant with a weary look on his face. He still looks vigorous and tough though.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{What do you want, human?}
+{2010}{}{Who are you?}
+{2020}{}{What's the story with this place?}
+{2030}{}{Why aren't you mutants attacking me?}
+{2040}{}{Shut up, from now this city belongs to us.}
+{2050}{}{Bye.}
+{3000}{}{I'm Marcus, helped build the place. Now I'm sheriff.}
+{3010}{}{You helped build this place? That must have been a long time ago...}
+{3020}{}{Bullshit. How could you have been around that long?}
+{3030}{}{Bye.}
+{4000}{}{Right. Me and a human named Jacob built this place around that old bank about 60 years ago. Anyone's welcome here, long as they keep the peace.}
+{4010}{}{Great. I have more questions.}
+{4020}{}{Fair enough. Bye.}
+{5000}{}{Long story. Want it short or the whole thing?}
+{5010}{}{Give me the short version.}
+{5020}{}{Hell, I'm not too busy. Let's hear it all.}
+{5030}{}{Neither. I have more questions.}
+{5040}{}{Neither. See ya.}
+{6000}{}{Right...After the Master and the vats were destroyed, I wandered a bit. No place to go. One day got attacked by this fool wearin' power armor.}
+{6010}{}{Really?}
+{7000}{}{That was Jacob, from the Brotherhood of Steel. He'd sworn some oath to destroy muties. We tussled for a while - probably a day or two. After a while, we just started laughing. What was the point?}
+{7010}{}{So why did they set up here?}
+{8000}{}{Uranium mine. I knew there was one around from old maps. Now anybody's welcome here - long as they act right. Others might not think much of us, but nobody's more free than we are. There ya go.}
+{8010}{}{What, you're not killing humans anymore?}
+{8020}{}{I had some more questions.}
+{8030}{}{Thanks. There I go. Bye.}
+{9000}{}{I'm not gonna argue with you, but the fact some mutants are not mindless killers can't be beaten. You are safe in Broken Hills, I assure you.}
+{9010}{}{Yah. I had some more questions.}
+{9020}{}{Oh. My mistake. Well, thanks. Bye.}
+
+[russ]
+{100}{}{Маркус}
+{200}{}{Вы видите грузного старого мутанта.}
+{210}{}{Вы видите шерифа Брокен Хиллс .}
+{210}{}{Вы видите грузного старого мутанта с усталым выражением лица. Тем не менее он по прежнему выглядит величественно и внушительно.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Normal}
+{2000}{}{Что тебе нужно, человек?}
+{2010}{}{Кто вы?}
+{2020}{}{Какова история этого города?}
+{2030}{}{Почему вы, мутанты, не нападаете на меня?}
+{2040}{}{Заткнись животное, теперь этот город пренадлежит нам!}
+{2050}{}{Пока.}
+{3000}{}{Я Маркус. Я помогал строить этот город. Теперь я шериф.}
+{3010}{}{Ты помогал строить этот город? Сколько же лет назад это было?}
+{3020}{}{Чушь собачья. Как это тебе удалось так хорошо сохраниться с тех времен?}
+{3030}{}{Пока.}
+{4000}{}{Ну хорошо. Я и человек по имени Джейкоб построили этот город вокруг вон того старого банка около 60 лет назад. Теперь мы рады видеть каждого, если он не нарушает порядок.}
+{4010}{}{Отлично. У меня есть еще вопросы.}
+{4020}{}{Что ж, по крайней мере, честно. Пока.}
+{5000}{}{Это долгая история. Хочешь, чтобы я тебе рассказал ее в подробностях или вкратце?}
+{5010}{}{Если можно, покороче.}
+{5020}{}{Да хрен с ним, у меня не слишком много дел. Давай, рассказывай всю.}
+{5030}{}{Вообще не стоит. У меня есть другие вопросы.}
+{5040}{}{Не стоит. Увидимся.}
+{6000}{}{Ну... после того, как Создатель и Чаны были уничтожены, я отправился куда глаза глядят. Мне некуда было идти. Однажды на меня напал какой-то идиот в силовой броне.}
+{6010}{}{Правда?}
+{7000}{}{Идиота звали Джейкоб, он был из Братства Стали. Он дал клятву уничтожать мутантов. Мы немного с ним подрались - день или два, по-моему. В какой-то момент мы не выдержали и давай ржать. И чего мы не поделили?}
+{7010}{}{А почему вы остановились здесь?}
+{8000}{}{Урановая шахта. Я знал, что она должна быть где-то здесь - посмотрел по старым картам. Теперь сюда может прийти кто угодно - и жить здесь мирно, пока не нарушает законов. Другие, может быть, не очень-то хорошего мнения о нас, но мы свободны как никто другой. Так-то.}
+{8010}{}{Что, то есть вы больше не убиваете людей?}
+{8020}{}{У меня есть другие вопросы.}
+{8030}{}{Спасибо. Ну, мне пора. Пока.}
+{9000}{}{Из какой дыры ты вылез? Мутанты и люди живут в мире и согласии уже очень давно.}
+{9010}{}{Отлично. У меня есть еще вопросы.}
+{9020}{}{О, должно быть, я ошибся. Что ж, спасибо. До встречи.}
+
+[pols]
+{100}{}{Marcus}
+{110}{}{Avatar_marcus.png}
+{200}{}{Widzisz potężnego, starzejącego się mutanta.}
+{210}{}{Widzisz szeryfa Broken Hills.}
+{210}{}{Widzisz potężnego, starzejącego się mutanta o zmęczonym wyrazie twarzy. Wciąż jednak wygląda zdrowo i solidnie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{Czego sobie życzysz, człowieku?}
+{2010}{}{Kim jesteś?}
+{2020}{}{Jaka historia kryje się za tym miejscem?}
+{2030}{}{Dlaczego wy, mutanty, mnie nie atakujecie?}
+{2040}{}{Zamknij mordę, od teraz to miasto należy do nas.}
+{2050}{}{Do widzenia.}
+{3000}{}{Jestem Marcus. Pomogłem zbudować to miejsce. Teraz jestem szeryfem.}
+{3010}{}{Pomogłeś zbudować to miejsce? To musiało być dawno temu...}
+{3020}{}{Gówno prawda. Jak mógłbyś żyć tak długo?}
+{3030}{}{Do zobaczenia.}
+{4000}{}{W porządku. Ja i człowiek imieniem Jacob wybudowaliśmy to miejsce wokół tego starego banku około 60 lat temu. Każdy jest witany z otwartymi ramionami, jeżeli tylko nie narusza naszego spokoju...}
+{4010}{}{Wspaniale. Mam inne pytania.}
+{4020}{}{Uczciwie. Do zobaczenia.}
+{5000}{}{Długa historia. Chcesz długą, czy krótką wersję?}
+{5010}{}{Krótką.}
+{5020}{}{Cholera, nie mam dużo do roboty. Opowiedz mi wszystko.}
+{5030}{}{Żadnej z nich. Mam inne pytania.}
+{5040}{}{Ani tej, ani tej. Do zobaczenia.}
+{6000}{}{W porządku... Po tym, jak Mistrz i kadzie zostały zniszczone, trochę wędrowałem. Nie miałem gdzie się udać. Pewnego dnia zaatakował mnie ten głupiec w pancerzu wspomaganym.}
+{6010}{}{Naprawdę?}
+{7000}{}{To był Jacob, z Bractwa Stali. Złożył jakąś przysięgę, że zniszczy mutków. Walczyliśmy przez pewien czas - prawdopodobnie dzień lub dwa. Po pewnym czasie zaczęliśmy się po prostu śmiać. Jaki był w tym sens?}
+{7010}{}{A więc osiedliliście się tutaj. Dlaczego?}
+{8000}{}{Kopalnia uranu. Ze starych map wiedziałem, że jest tutaj taka w okolicy. Teraz wszyscy są ciepło witani - tak długo, jak postępują praworządnie. Inni mogą myśleć o nas niewiele, ale nikt nie jest od nas bardziej wolny. Oto cała historia.}
+{8010}{}{Co, już nie zabijacie ludzi?}
+{8020}{}{Mam więcej pytań.}
+{8030}{}{Dzięki. Idę już. Do widzenia.}
+{9000}{}{Ach, z jakiej zapyziałej wiochy pochodzisz? Mutki i normalni zawarli pokój już dawno temu. W Broken Hills możesz czuć się bezpiecznie, zapewniam cię.}
+{9010}{}{Taa, w porządku. Mam więcej pytań.}
+{9020}{}{Och. Mój błąd. Cóż, dzięki. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Normal}
+{2000}{}{What do you want, human?}
+{2010}{}{Who are you?}
+{2020}{}{What's the story with this place?}
+{2030}{}{Why aren't you mutants attacking me?}
+{2040}{}{Shut up, from now this city belongs to us.}
+{2050}{}{Bye.}
+{3000}{}{I'm Marcus, helped build the place. Now I'm sheriff.}
+{3010}{}{You helped build this place? That must have been a long time ago...}
+{3020}{}{Bullshit. How could you have been around that long?}
+{3030}{}{Bye.}
+{4000}{}{Right. Me and a human named Jacob built this place around that old bank about 60 years ago. Anyone's welcome here, long as they keep the peace.}
+{4010}{}{Great. I have more questions.}
+{4020}{}{Fair enough. Bye.}
+{5000}{}{Long story. Want it short or the whole thing?}
+{5010}{}{Give me the short version.}
+{5020}{}{Hell, I'm not too busy. Let's hear it all.}
+{5030}{}{Neither. I have more questions.}
+{5040}{}{Neither. See ya.}
+{6000}{}{Right...After the Master and the vats were destroyed, I wandered a bit. No place to go. One day got attacked by this fool wearin' power armor.}
+{6010}{}{Really?}
+{7000}{}{That was Jacob, from the Brotherhood of Steel. He'd sworn some oath to destroy muties. We tussled for a while - probably a day or two. After a while, we just started laughing. What was the point?}
+{7010}{}{So why did they set up here?}
+{8000}{}{Uranium mine. I knew there was one around from old maps. Now anybody's welcome here - long as they act right. Others might not think much of us, but nobody's more free than we are. There ya go.}
+{8010}{}{What, you're not killing humans anymore?}
+{8020}{}{I had some more questions.}
+{8030}{}{Thanks. There I go. Bye.}
+{9000}{}{I'm not gonna argue with you, but the fact some mutants are not mindless killers can't be beaten. You are safe in Broken Hills, I assure you.}
+{9010}{}{Yah. I had some more questions.}
+{9020}{}{Oh. My mistake. Well, thanks. Bye.}
+

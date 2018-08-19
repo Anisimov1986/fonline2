@@ -1,0 +1,52 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _param p TRAIT_SKILLED = 1 #
+2 1020 D _param p TRAIT_SKILLED = 0 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Resident}
+{200}{}{You see: Boneyard resident.}
+{210}{}{This person seems to be one of the few people still living in the Boneyard area.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not mutant}
+{2000}{}{I don't have time for this.@@Well, look what the Boneyard dragged in.@@I need some cash. Got any?@@What's that smell?@@Life's hard these days.@@Whatever, get lost.@@This place ain't really that safe.@@Whatever.@@Get lost.@@Yes?@@Got a smoke?@@Heard some rumors about the Brotherhood goin' to war...@@Where the fuck is that stupid dog?@@Hi.@@I hope I can get outta this shithole someday.@@Hey, don't point that thing into my face, I ain't looking for trouble.@@This ain't a place for you, stranger.@@Those Blades make me nervous.@@You want something?@@I don't have the time.@@I've got mugged by one of the Blades once.@@If you're lookin' for work, go the Gecko Express office.@@I've been to the Hub once.@@I don't like those Blades.@@What's up?@@Yeah?@@Another crappy day in this crappy bumhole...@@Get outta my way.@@I don't aprreciate the way you look at me.@@It's good that those Blades are in charge. Too bad charge a lot for their protection.@@I heard Regulators are staging something big.@@I don't like them Blades bein' in charge.@@The Blades must have some sorta deal with the Gun Runners.@@I'm kinda stuck in here.@@Boneyard ain't the best place to live you know.@@This place sucks.@@Stop wasting my time.@@Yeah, whatever.@@Got any beer?@@Spare some change?@@Those Blades make me nervous... don't even wanna know how it was like back when Regulators were in charge.@@Go away.@@If you're lookin' for some weaponry, check the Gun Runners.@@I heard Pestis needs some muscle.}
+{3000}{}{I won't talk to you, mutant.@@Get lost before the Blades start shootin'.@@Go away, mutant!@@Friggin' mutant...@@I have better things to do than talking to you, mutant.@@Get lost, mutie.@@Get the fuck outta my face, you stinky pile of mutated flesh!@@This ain't a place for you mutie.@@Go back to those mutie-lovers in the Hub.@@I don't think the Blades will tolerate your being here, mutant.@@Fuck off, mutie.}
+
+[russ]
+{100}{}{Горожанин}
+{200}{}{Вы видите: жителя Бониярда.}
+{210}{}{Похоже это один из немногих кто еще живет в Бониярде.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{Reply.}
+{2000}{}{У меня нет времени болтать.@@Да, посмотрите. кого несет в Бониярд...@@Мне бабки нужны. У тебя есть?@@Чем воняет?@@Тяжёлая нынче жизнь пошла.@@Мне плевать. проваливай.@@Это место не безопасно.@@Мне плевать.@@Отвали.@@Да?@@Есть закурить?@@Я слышал Братство собирается воевать...@@Что это за тупая собака?@@Привет.@@Надеюсь, я онажды выберусь из этой дыры.@@Эй, не наводи ствол мне в лицо. Мне проблемы не нужны.@@Тебе здесь не место, странник.@@Лезвия меня нервируют.@@Тебе что-то надо?@@У меня нет времени.@@Как-то раз меня грабанули Лезвия.@@Если ищешь работу - загляни в офис Гекко Экспресс.@@Как-то раз я был в Хабе.@@Не нравятся мне эти Лезвия...@@Как дела?@@Да?@@Ещё один дерьмовый день в этой дерьмовой дыре.@@Уйди с дороги.@@Мне не нравится как ты на меня смотришь.@@Хорошо, что Лезвия у руля. Плохо что берут много за своё покровительство.@@Я слышал регуляторы готовят что то серьёзное.@@Мне не нравится что Лезвия тут главные.@@Должно быть у Лезвий какая то договорённость с Оружейниками.@@Я тут застрял... или что то вроде того.@@Бониярд не лучшее место для жизни, знаешь...@@Хреновое тут местечко.@@Хватит отнимать моё время.@@Да, да.. мне плевать.@@Пивка не найдётся?@@Слушай, подкинь мелочи, а?@@Напрягают меня эт лезвия... даже знать не хочу что было когда всем заправляли Регуляторы.@@Уходи.@@Если ты ищешь вооружение - зайди к Оружейникам в Крепость.@@Я слышал Пестису нужен человек.}
+{3000}{}{Я не буду говорить с тобой, мутант.@@Проваливай, пока Лезвия не начали стрелять.@@Уходи, мутант!@@Урод ты, мути.@@У меня есть более важные дела чем разговор с мутантом.@@Проваливай, мути.@@Убирайся с глаз моих, вонючая куча мутировавших органов.@@Здесь не место для мутанта.@@Возвращайся к своим любителям мутантов в Хаб.@@Я не думаю что лезвия будут терпеть здесь мутанта.@@Отвали, мути.}
+
+[pols]
+{100}{}{Mieszkaniec}
+{200}{}{Widzisz mieszkańca tego miasta.}
+{210}{}{Zwykłt mieszczanin, jak większość ludzi tutaj.}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{Reply.}
+{2000}{}{Jak żyć?@@Patrzcie no, co tu pustynia przywiała.@@Jestem z miasta, to widać.@@Co tak śmierdzi?@@Życie jest ciężkie ostatnimi czasy.@@Oddech mojego kota pachnie jak żarcie dla kotów. Interesujące, prawda?@@Chyba się stąd wyprowadzę, okolica robi się coraz mniej bezpieczna.@@Cześć.@@Słucham?@@To prawda, że Bractwo Stali idzie na wojnę z Enklawą?@@Chyba kupię sobie psa.@@Co słychać chłopaki w wielkim świecie?@@Ale jesteś śmiesznie ubrany. Zajebałeś to z pomocy dla powodzian?@@Hej, nie wymachuj tym przed moimi oczami - nie szukam kłopotów.@@Jesteś żołnierzem?@@Przydałoby się trochę polotu i finezji w tym smutnym jak pizda mieście. Nie jest tak?@@Witaj!@@Wczoraj żołnierze postrzelili mojego przyjaciela, leży teraz w szpitalu.@@Codziennie do przychodni zgłasza się kilku rannych obywateli miasta.}
+{3000}{}{Jak żyć?@@Patrzcie no, co tu pustynia przywiała.@@Jestem z miasta, to widać.@@Co tak śmierdzi?@@Życie jest ciężkie ostatnimi czasy.@@Oddech mojego kota pachnie jak żarcie dla kotów. Interesujące, prawda?@@Chyba się stąd wyprowadzę, okolica robi się coraz mniej bezpieczna.@@Cześć.@@Słucham?@@To prawda, że Bractwo Stali idzie na wojnę z Enklawą?@@Chyba kupię sobie psa.@@Co słychać chłopaki w wielkim świecie?@@Ale jesteś śmiesznie ubrany. Zajebałeś to z pomocy dla powodzian?@@Hej, nie wymachuj tym przed moimi oczami - nie szukam kłopotów.@@Jesteś żołnierzem?@@Przydałoby się trochę polotu i finezji w tym smutnym jak pizda mieście. Nie jest tak?@@Witaj.@Wczoraj żołnierze postrzelili mojego przyjaciela, leży teraz w szpitalu.@@Codziennie do przychodni zgłasza się kilku rannych obywateli miasta.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{mutant}
+{1020}{}{not mutant}
+{2000}{}{I don't have time for this.@@Well, look what the Boneyard dragged in.@@I need some cash. Got any?@@What's that smell?@@Life's hard these days.@@Whatever, get lost.@@This place ain't really that safe.@@Whatever.@@Get lost.@@Yes?@@Got a smoke?@@Heard some rumors about the Brotherhood goin' to war...@@Where the fuck is that stupid dog?@@Hi.@@I hope I can get outta this shithole someday.@@Hey, don't point that thing into my face, I ain't looking for trouble.@@This ain't a place for you, stranger.@@Those Blades make me nervous.@@You want something?@@I don't have the time.@@I've got mugged by one of the Blades once.@@If you're lookin' for work, go the Gecko Express office.@@I've been to the Hub once.@@I don't like those Blades.@@What's up?@@Yeah?@@Another crappy day in this crappy bumhole...@@Get outta my way.@@I don't aprreciate the way you look at me.@@It's good that those Blades are in charge. Too bad charge a lot for their protection.@@I heard Regulators are staging something big.@@I don't like them Blades bein' in charge.@@The Blades must have some sorta deal with the Gun Runners.@@I'm kinda stuck in here.@@Boneyard ain't the best place to live you know.@@This place sucks.@@Stop wasting my time.@@Yeah, whatever.@@Got any beer?@@Spare some change?@@Those Blades make me nervous... don't even wanna know how it was like back when Regulators were in charge.@@Go away.@@If you're lookin' for some weaponry, check the Gun Runners.@@I heard Pestis needs some muscle.}
+{3000}{}{I won't talk to you, mutant.@@Get lost before the Blades start shootin'.@@Go away, mutant!@@Friggin' mutant...@@I have better things to do than talking to you, mutant.@@Get lost, mutie.@@Get the fuck outta my face, you stinky pile of mutated flesh!@@This ain't a place for you mutie.@@Go back to those mutie-lovers in the Hub.@@I don't think the Blades will tolerate your being here, mutant.@@Fuck off, mutie.}
+

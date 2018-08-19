@@ -1,0 +1,43 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Gangster}
+{200}{}{You see Lara's gang member.}
+{210}{}{Quite surprisingly, this person seems to be a member of Lara's gang.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{You lookin' to join up?@@Talk to Lara.@@If you want something, talk to Lara?@@What do you want?@@Got a smoke?@@You here to see Lara?}
+
+[russ]
+{100}{}{Гангстер}
+{200}{}{Вы видите: бандита.}
+{210}{}{Он, кажется, член банды Лары.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Хочешь присоединится?@@Вы должно быть пришли, чтобы встретится с Ларой.@@Как дела?@@Тебе стоит поговорить с Ларой.@@Привет.}
+
+[pols]
+{100}{}{Gangster}
+{200}{}{Widzisz gangstera.}
+{210}{}{Wygląda na członka gangu Lary.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Chcesz do nas dołączyć??@@Jesteś tu, aby spotkać się z Larą?@@Jak leci?@@Rozmawiaj z Larą.@@Hi.@@Cześć.}
+
+[ptbr]
+{100}{}{Gângster}
+{200}{}{Você vê um membro da gangue da Lara.}
+{210}{}{Surpreendentemente, esta pessoa aparenta ser da gangue da Lara.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Tá afim de entrar?@@Vai lá falar com a Lara.@@Se tá querendo alguma coisa, vai falar com a Lara@@Quê que tu quer?@@Tem um cigarro aê?@@Tá aqui pra falar com a Lara?}

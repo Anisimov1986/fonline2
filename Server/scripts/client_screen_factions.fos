@@ -1,0 +1,730 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "buffer_h.fos"
+
+#define STATE_DEFAULT  		( 0 )
+#define STATE_LIST     		( 1 )
+#define STATE_FACTION_INFO 	( 2 )
+#define STATE_MANAGE	 	( 3 )
+#define STATE_PLAYER_INFO	( 4 )
+#define STATE_RATING        ( 5 )
+
+#define BUTTON 					# (num, pos)	(Button(num, pos))
+
+#define ACTION_CREATE 		( 0 )
+#define ACTION_INVITE 		( 1 )
+#define ACTION_RESIGN 		( 2 )
+#define ACTION_LIST	  		( 3 )
+#define ACTION_BACK	  		( 4 )
+#define ACTION_KICK	  		( 5 )
+#define ACTION_FACTION_INFO	( 6 )
+#define ACTION_MANAGE		( 7 )
+#define ACTION_MEMBER_INFO	( 8 )
+#define ACTION_PROMOTE	  	( 9 )
+#define ACTION_DEMOTE	  	( 10 )
+#define ACTION_MESSAGE	  	( 11 )
+#define ACTION_ALLY	  	    ( 12 )
+#define ACTION_ENEMY	  	( 13 )
+#define ACTION_DELETE       ( 14 )
+#define ACTION_CLAIM        ( 15 )
+#define ACTION_NEUTRAL      ( 16 )
+#define ACTION_RATING       ( 17 )
+
+#define	TEXT_CR_FACTION_NAME 	# (num, pos) (Text_Faction_Name(num, pos))
+#define TEXT_CR_PLAYER_NAME		# (num, pos) (Text_Player_Name(num, pos))
+#define TEXT_CR_PLAYER_RANK		# (num, pos) (Text_Player_Rank(num, pos))
+#define	TEXT_CR_FACTION_RANK 	# (chosen, pos) (Text_Faction_Rank(chosen, pos))
+#define	TEXT_CUSTOM_STR		 	# (str, pos) (Text_Custom_Str(str, pos))
+#define	TEXT_CUSTOM_STR_PLUS	# (str, str2, pos) (Text_Custom_Str_Plus(str, str2, pos))
+#define	TEXT_CUSTOM		 	    # (str, pos) (Text_Custom(str, pos))
+#define TEXT_FACTION_LIST 		(Show_Faction_List())
+#define TEXT_MEMBER_LIST 		# (num)		(Show_Member_List(num))
+#define TEXT_LABEL				# (num)    	(TextLabel(num))
+
+#define STR_FACTION_RANK		# (num)      ( 1006100 + ( num ) )
+#define STR_BUTTON_NAME			# (num)      ( 1006010 + ( num ) )
+
+array<string> factions;
+array<string> members;
+array<int> ranks;
+array<uint> icons;
+array<array<uint>> ally;
+array<array<uint>> enemy;
+array<int> scores;
+int State=STATE_LIST;
+int SelectedFaction=0;
+int SelectedPlayer=0;
+int	posX=0;
+int posY=0;
+uint Width=0;
+uint Height=0;
+uint Step=0;
+uint ListIndex = 0;
+bool endlist = false;
+void ReceiveFactionData( int, int, int, string@, int[]@ data )
+{
+    factions.resize(0);
+    Buffer@ buff = NewBuffer( data );
+    buff >> factions >> members >> ranks;
+	if (GUI_GetActiveScreen()==CLIENT_SCREEN_FACTION)
+		RefreshFactionScreen();
+    LoadSprites();
+}
+
+void ReceiveRelationsData( int, int, int, string@, int[]@ data )
+{
+    ally.resize(0);
+    enemy.resize(0);
+    Buffer@ buff = NewBuffer( data );
+    buff >> ally >> enemy;
+}
+
+void ReceiveScoresData( int, int, int, string@, int[]@ data )
+{
+    scores.resize(0);
+    scores = data;
+}
+
+
+
+string[] GetFactionData()
+{
+	return factions;
+}
+
+string GetFactionName(uint num)
+{
+	if (factions.length()>num && factions[num]!="")
+		return factions[num];
+	else
+		return "";
+}
+
+class Buttons : IGUIElementCallbackMouseClick//, IGUIElementCallbackMouseOver
+{
+	int id;
+	int num;
+	Buttons(uint id, uint num)
+	{
+		this.id=id;
+		this.num=num;
+	}
+/*
+    void OnMouseOver(int id)
+    {
+        Message("over");
+    }
+*/
+    void OnMouseClick(int mm, int click)
+    {
+		if(click == MOUSE_CLICK_WHEEL_DOWN)
+			MoveDown();
+		if(click == MOUSE_CLICK_WHEEL_UP)
+			MoveUp();
+		//Message("id "+id+" num "+num);
+		if(click != MOUSE_CLICK_LEFT)
+			return;
+		ListIndex=0;
+		switch( id )
+		{
+		case ACTION_CREATE:
+			Action(ACTION_CREATE);
+			break;
+		case ACTION_INVITE:
+			Action(ACTION_INVITE);
+			break;
+		case ACTION_RESIGN:
+			State=STATE_LIST;
+			Action(ACTION_RESIGN);
+			RefreshFactionScreen();
+			break;
+		case ACTION_BACK:
+			State=STATE_LIST;
+			RefreshFactionScreen();
+			break;
+		case ACTION_MANAGE:
+			State=STATE_MANAGE;
+			RefreshFactionScreen();
+			break;
+		case ACTION_KICK:
+			State=STATE_LIST;
+			Action(ACTION_KICK);
+			RefreshFactionScreen();
+			break;	
+		case ACTION_FACTION_INFO:
+			State=STATE_FACTION_INFO;
+			SelectedFaction=num;
+			RefreshFactionScreen();
+			break;
+		case ACTION_MEMBER_INFO:
+			State=STATE_PLAYER_INFO;
+			SelectedPlayer=num;
+			RefreshFactionScreen();
+			break;
+		case ACTION_PROMOTE:
+			Action(ACTION_PROMOTE);
+			RefreshFactionScreen();
+			break;
+		case ACTION_DEMOTE:
+			Action(ACTION_DEMOTE);
+			RefreshFactionScreen();
+			break;
+		case ACTION_MESSAGE:
+			Action(ACTION_MESSAGE);
+			break;
+        case ACTION_ALLY:
+            Action(ACTION_ALLY);
+            break;
+        case ACTION_ENEMY:
+            Action(ACTION_ENEMY);
+            break;
+        case ACTION_NEUTRAL:
+            Action(ACTION_NEUTRAL);
+            break;
+        case ACTION_DELETE:
+            Action(ACTION_DELETE);
+            break;
+        case ACTION_CLAIM:
+            Action(ACTION_CLAIM);
+            RefreshFactionScreen();
+            break;
+        case ACTION_RATING:
+            State=STATE_RATING;
+            RefreshFactionScreen();
+            break;    
+		}		
+    }
+}
+
+void InitFactionScreen()
+{	
+	GUI_CreateScreen(CLIENT_SCREEN_FACTION,GetIfaceIniStr("FactionMainPic"))
+		.CloseOnMiss(true)
+		.AutoCursor(true,CURSOR_DEFAULT);
+		
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "lscover.frm", PT_ART_INTRFACE, 340, 40);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 360, 50);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 480, 50);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 360, 80);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 480, 80);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 360, 110);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 480, 110);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 360, 140);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 480, 140);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 360, 170);
+	GUI_AddImage(CLIENT_SCREEN_FACTION, "donebox.frm", PT_ART_INTRFACE, 480, 170);
+	
+	GetMainTextWindow();
+	
+}
+
+void OpenFactionScreen()
+{
+	if (GUI_GetActiveScreen()==CLIENT_SCREEN_FACTION)
+	{
+		HideScreen(CLIENT_SCREEN_FACTION,0,0,0);
+	}
+	else
+	{
+		State=STATE_LIST;
+		SelectedFaction=0;
+		SelectedPlayer=0;
+		ListIndex=0;
+		Clean_Screen();
+		RenderScreen();
+		ShowScreen(CLIENT_SCREEN_FACTION,0,0,0);
+	}
+}
+
+void RefreshFactionScreen()
+{
+	HideScreen(CLIENT_SCREEN_FACTION,0,0,0);
+	Clean_Screen();
+	RenderScreen();
+	ShowScreen(CLIENT_SCREEN_FACTION,0,0,0);
+}
+
+void TextLabel(int str)
+{
+	GUI_AddText(CLIENT_SCREEN_FACTION)
+	.Position("FactionLabel")
+	.TextOptions(FONT_BIG,COLOR_SAND, FT_CENTERX)
+	.Text(GetMsgStr( TEXTMSG_GAME, str ));
+}
+void Action(int action)
+{
+	CritterCl@ chosen = GetChosen();
+	if( !valid( chosen ))
+		return;
+	switch( action )
+    {
+		case ACTION_CREATE:
+			if (FACTION_NONE(chosen) && have_caps(chosen))
+				RunServerScriptUnsafe("faction_unsafe@unsafe_create_faction", 0, 0, 0, null, null); 
+			break;
+		case ACTION_INVITE:
+			if (FACTION_MANAGER(chosen))
+				RunServerScriptUnsafe("faction_unsafe@unsafe_invite_to_faction", 0, 0, 0, null, null); 
+			break;
+		case ACTION_RESIGN:
+			if (not FACTION_NONE(chosen) && not FACTION_LEADER(chosen))
+				RunServerScriptUnsafe("faction_unsafe@unsafe_resign_from_faction", 0, 0, 0, null, null);
+			break;
+		case ACTION_KICK:
+			if (FACTION_MANAGER(chosen))
+				RunServerScriptUnsafe("faction_unsafe@unsafe_kick_from_faction", 0, 0, 0, members[SelectedPlayer], null); 
+			break;
+		case ACTION_PROMOTE:
+			if (FACTION_LEADER(chosen))
+				RunServerScriptUnsafe("faction_unsafe@unsafe_change_faction_rank", 1, 0, 0, members[SelectedPlayer], null); 
+			break;
+		case ACTION_DEMOTE:
+			if (FACTION_LEADER(chosen))
+				RunServerScriptUnsafe("faction_unsafe@unsafe_change_faction_rank", -1, 0, 0, members[SelectedPlayer], null); 
+			break;
+        case ACTION_CLAIM:
+            if (FACTION_LEADER(chosen))
+                RunServerScriptUnsafe("faction_unsafe@unsafe_claim_faction", 0, 0, 0, members[SelectedPlayer], null); 
+            break;
+		case ACTION_MESSAGE:
+			if (FACTION_MANAGER(chosen))
+				RunServerScriptUnsafe("faction_unsafe@unsafe_SendFactionMessageSimple", 0, 0, 0, null, null); 
+			break;
+        case ACTION_DELETE:
+            if (FACTION_LEADER(chosen))
+                RunServerScriptUnsafe("faction_unsafe@unsafe_delete_faction", 0, 0, 0, null, null); 
+            break;
+        case ACTION_ALLY:    
+            if (FACTION_LEADER(chosen))
+                RunServerScriptUnsafe("faction_unsafe@unsafe_change_faction_relation", SelectedFaction, 1, 0, null, null); 
+            break;   
+        case ACTION_ENEMY:
+            if (FACTION_LEADER(chosen))
+                RunServerScriptUnsafe("faction_unsafe@unsafe_change_faction_relation", SelectedFaction, -1, 0, null, null); 
+            break;
+        case ACTION_NEUTRAL:
+            if (FACTION_LEADER(chosen))
+                RunServerScriptUnsafe("faction_unsafe@unsafe_change_faction_relation", SelectedFaction, 0, 0, null, null); 
+            break;
+
+	}
+}
+
+bool have_caps(CritterCl& chosen)
+{
+	if (chosen.CountItem(41)>=500000)
+		return true;
+	Message("Creating faction cost 500.000 caps.");
+	return false;
+}
+
+void Clean_Screen()
+{
+	CleanScreen(CLIENT_SCREEN_FACTION,11);
+}
+
+void RenderScreen()
+{
+	CritterCl@ chosen = GetChosen();
+	if( !valid( chosen ) )
+		return;
+	if(factions.length()>0)
+	{
+		if (State==STATE_PLAYER_INFO)
+		{
+			TEXT_LABEL(1006003);
+			TEXT_CR_PLAYER_NAME(SelectedPlayer,0);
+			TEXT_CR_PLAYER_RANK(SelectedPlayer,1);
+			BUTTON(ACTION_BACK,0);
+			if (FACTION_MANAGER(chosen))
+			{
+				BUTTON(ACTION_KICK,1);
+				BUTTON(ACTION_PROMOTE,2);
+				BUTTON(ACTION_DEMOTE,3);
+                if (FACTION_LEADER(chosen))
+                    BUTTON(ACTION_CLAIM,4);
+			}
+			return;
+		}
+		if (State==STATE_FACTION_INFO)
+		{
+            TEXT_LABEL(1006002);
+			TEXT_CR_FACTION_NAME(SelectedFaction,0);
+            if (factions.length>0)
+            {
+                uint index=2;
+                if (scores.length()>uint(SelectedFaction))
+                {
+                    index++;
+                    TEXT_CUSTOM_STR_PLUS(1006053, scores[SelectedFaction], 1);
+                } 
+                bool allyes=false;
+                bool enemyes=false;
+                if (ally.length()>uint(SelectedFaction))
+                {
+                    for (uint i=0 + ListIndex; i<ally[SelectedFaction].length();i++)
+                    {
+                        if (factions.length()>ally[SelectedFaction][i])
+                        {
+                            allyes=true;
+                            //TEXT_CUSTOM(factions[ally[SelectedFaction][i]],++index);
+                            Text_Custom1(ally[SelectedFaction][i],++index);
+                        }
+                    }
+                    if (allyes)
+                    {
+                        TEXT_CUSTOM_STR(1006022,2);
+                        index+=2;
+                    }
+                }
+                
+                uint index2=index;
+                
+                if (enemy.length()>uint(SelectedFaction))
+                {
+                    
+                    for (uint i=0 + ListIndex; i<enemy[SelectedFaction].length();i++)
+                    {
+                        if (factions.length()>enemy[SelectedFaction][i])
+                        {
+                            enemyes=true;
+                            //TEXT_CUSTOM(factions[enemy[SelectedFaction][i]],++index);
+                            Text_Custom1(enemy[SelectedFaction][i],++index);
+                        }
+                    }
+                    if (enemyes)
+                        TEXT_CUSTOM_STR(1006023,index2);
+                }
+                //Epic crap code, dont look at it, i said dont look!
+                //AAAHHH! I LOOK!
+                if (index > 36)
+                    endlist=true;
+                else
+                    endlist=false;    
+                
+                
+            }
+            
+			BUTTON(ACTION_BACK,0);
+            
+            if (FACTION_LEADER(chosen)  && !SAME_FACTION3(chosen,SelectedFaction))
+            {
+                BUTTON(ACTION_ALLY,1);
+				BUTTON(ACTION_ENEMY,2);
+                BUTTON(ACTION_NEUTRAL,3);
+            }
+			return;
+		}
+		if (State==STATE_LIST)
+		{
+			TEXT_LABEL(1006001);
+			TEXT_FACTION_LIST;
+			if (FACTION_NONE(chosen))
+			{
+				BUTTON(ACTION_CREATE,0);
+			}
+			else
+			{
+				BUTTON(ACTION_MANAGE,0);
+			}
+            BUTTON(ACTION_RATING,2);
+			return;
+		}
+		if (State==STATE_MANAGE)
+		{
+			TEXT_LABEL(1006002);
+			TEXT_CR_FACTION_NAME(chosen.Param[MAIN_FACTION],0);
+			TEXT_CR_FACTION_RANK(chosen,1);
+			TEXT_CUSTOM_STR(1006052,3);
+			TEXT_MEMBER_LIST(4);
+			if (FACTION_MANAGER(chosen))
+			{
+				BUTTON(ACTION_INVITE,0);
+				BUTTON(ACTION_BACK,1);
+				BUTTON(ACTION_MESSAGE,2);
+			}
+			else
+				BUTTON(ACTION_BACK,1);
+			if (FACTION_LEADER(chosen))
+            {
+                BUTTON(ACTION_DELETE,5);
+            }
+            else
+				BUTTON(ACTION_RESIGN,5);
+                
+		}
+        if (State==STATE_RATING)
+        {
+            TEXT_LABEL(1006004);
+            TEXT_FACTION_LIST;
+            BUTTON(ACTION_BACK,0);
+        }
+	}
+}
+
+void Button(int action,int pos)
+{
+	Buttons b(action,0);
+	GUI_AddButton(CLIENT_SCREEN_FACTION)
+	.Position("FactionButton"+pos)
+	.CallbackMouseClick(b)
+    //.CallbackMouseOver(b)
+	.Text(GetMsgStr( TEXTMSG_GAME, STR_BUTTON_NAME(action)),FONT_FAT,COLOR_SAND,COLOR_GREEN, FT_CENTERX);
+}
+
+void Text_Faction_Name(int num, int pos)
+{
+	GUI_AddText(CLIENT_SCREEN_FACTION)
+	.Position(posX,posY+Step*pos)
+	.TextBoxSize(230, 10)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1006050 )+": "+factions[num]);
+}
+
+void Text_Player_Name(int num, int pos)
+{
+	GUI_AddText(CLIENT_SCREEN_FACTION)
+	.Position(posX,posY+Step*pos)
+	.TextBoxSize(230, 10)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1006050 )+": "+members[num]);
+}
+
+void Text_Player_Rank(int num, int pos)
+{
+	GUI_AddText(CLIENT_SCREEN_FACTION)
+	.Position(posX,posY+Step*pos)
+	.TextBoxSize(230, 10)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1006051 )+": "+(GetMsgStr( TEXTMSG_GAME,STR_FACTION_RANK(ranks[num]))));
+}
+
+void Text_Custom_Str_Plus(int str, int str2, int pos)
+{
+	GUI_AddText(CLIENT_SCREEN_FACTION)
+	.Position(posX,posY+Step*pos)
+	.TextBoxSize(230, 10)
+	.Text(GetMsgStr( TEXTMSG_GAME, str )+": "+str2);
+}
+
+void Text_Custom_Str(int str, int pos)
+{
+	GUI_AddText(CLIENT_SCREEN_FACTION)
+	.Position(posX,posY+Step*pos)
+	.TextBoxSize(230, 10)
+	.Text(GetMsgStr( TEXTMSG_GAME, str ));
+}
+
+void Text_Custom1(int i, int pos)
+{
+	if (posY+Step*pos > posY + Height)
+		return;
+        
+    Buttons b(ACTION_FACTION_INFO,i);
+	GUI_AddButton(CLIENT_SCREEN_FACTION)
+	.Position(posX,posY+Step*pos)
+	.ClickableZone(Width,Step)
+	.CallbackMouseClick(b)
+	.Text(""+factions[i], FONT_FALLOUT, COLOR_TEXT, COLOR_RED, 0);    
+}
+
+
+void Text_Custom(string str, int pos)
+{
+	if (posY+Step*pos > posY + Height)
+		return;
+        
+    GUI_AddText(CLIENT_SCREEN_FACTION)
+    .Position(posX,posY+Step*pos)
+    .TextBoxSize(230, 10)
+    .Text(str);
+}
+
+void Text_Faction_Rank(CritterCl& cr, int pos)
+{			
+	GUI_AddText(CLIENT_SCREEN_FACTION)
+	.Position(posX,posY+Step*pos)
+	.TextBoxSize(200, 10)
+	.Text(GetMsgStr( TEXTMSG_GAME, 1006051 )+": "+(GetMsgStr( TEXTMSG_GAME,STR_FACTION_RANK(cr.Param[MAIN_FACTION_RANK]))));
+}
+
+void Show_Faction_List()
+{
+	uint j=0;
+    
+    array<string> factions_tmp;
+    if (State==STATE_RATING && scores.length() == factions.length())
+    {
+        array<int> scores_tmp = scores;
+        array<int> scores_tmp2 = scores;
+        scores_tmp.sortDesc();
+        factions_tmp.insertLast("");
+        for (uint i=0; i<scores_tmp.length(); i++)
+        {
+            if (scores_tmp[i]>0 && factions[scores_tmp2.find(scores_tmp[i])]!="")
+            {
+                factions_tmp.insertLast(factions[scores_tmp2.find(scores_tmp[i])]);
+                scores_tmp2[scores_tmp2.find(scores_tmp[i])]=0;
+            }
+        }
+        for (uint i=0; i<scores.length(); i++)
+        {
+            if (scores[i]==0 && factions[i]!="")
+                factions_tmp.insertLast(factions[i]);     
+        }
+    }
+    else
+        factions_tmp=factions;
+    
+	for (uint i=0 + ListIndex; i<factions_tmp.length(); i++)
+	{
+		if (factions_tmp[i]!="")
+		{
+			if (posY+Step*j > posY + Height)
+				return;
+            
+            uint num=i;
+            if (State==STATE_RATING)
+                num=factions.find(factions_tmp[i]);
+            Buttons b(ACTION_FACTION_INFO,num);
+			GUI_AddButton(CLIENT_SCREEN_FACTION)
+			.Position(posX,posY+Step*j)
+			.ClickableZone(Width,Step)
+			.CallbackMouseClick(b)
+			.Text((i+") "+factions_tmp[i]), FONT_FALLOUT, COLOR_TEXT, COLOR_RED, 0);
+			j++;
+		}
+	}
+}
+
+void Show_Member_List(uint j)
+{
+	for (uint i=0  + ListIndex; i<members.length(); i++)
+	{
+		if (members[i]!="")
+		{
+			if (posY+Step*j > posY + Height)
+				return;
+			Buttons b(ACTION_MEMBER_INFO,i);
+			GUI_AddButton(CLIENT_SCREEN_FACTION)
+			.Position(posX,posY+Step*j)
+			.ClickableZone(Width,Step)
+			.CallbackMouseClick(b)
+			.Text(((i+1)+") "+members[i]), FONT_FALLOUT, COLOR_TEXT, COLOR_RED, 0);
+			j++;
+		}
+	}
+}
+	
+
+void GetMainTextWindow()
+{
+		string@ str=GetIfaceIniStr("FactionMainText");
+		if(@str==null || str=="") return;
+
+		string@[]@ valuesStr=splitEx(str," ");
+		if(valuesStr.length()!=5) return;
+
+		int[] values(5);
+		for(int i=0;i<5;i++)
+			if(not StrToInt(valuesStr[i],values[i])) return;
+
+		posX=values[0];
+		posY=values[1];
+		Width=values[2]-values[0]+1;
+		Height=values[3]-values[1]+1;
+		Step = values [4];
+}
+
+void MoveUp()
+{
+	if (State != STATE_LIST && State !=STATE_MANAGE && State!=STATE_FACTION_INFO && State!=STATE_RATING)
+		return;
+	if (ListIndex > 0)
+	{
+		ListIndex--;
+		RefreshFactionScreen();
+	}
+}
+
+void MoveDown()
+{
+	if (State == STATE_LIST || State==STATE_RATING)
+	{
+		if (ListIndex+Height/Step>=factions.length())
+			return;
+	}
+	else if (State == STATE_MANAGE)
+	{
+		if (ListIndex-3+Height/Step>=members.length())
+			return;
+	}
+	else if (State == STATE_FACTION_INFO)
+    {
+        if (!endlist)
+            return;
+    }
+    else
+		return;
+	ListIndex++;
+	RefreshFactionScreen();
+}
+
+void LoadSprites()
+{
+    CritterCl@ chosen = GetChosen();
+    if (!valid(chosen))
+        return;
+    if (icons.length()<factions.length())
+    {
+        for (uint i=icons.length(); i<factions.length(); i++)
+            icons.insertLast(LoadSprite( "faction_icon"+i+".png", PT_ART_INTRFACE ));
+    }
+}
+
+void DrawIcons()
+{
+    if (!__ShowPlayerNames)
+        return;
+    CritterCl@ chosen = GetChosen();
+    if (!valid(chosen) || !FLAG( chosen.Param[ CR_CONFIG_FLAGS ], CR_CFG_FACTION_ICONS ) || __GmapActive || GetCurrentMapPid() == 0)
+        return;
+    CritterCl@[] players;
+    GetCritters( 0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, players );
+    for( uint i = 0; i < players.length(); i++ )
+    {
+        CritterCl@ cr = players[ i ];
+        if (!valid(cr) || cr.Param[MAIN_FACTION]==0)
+            continue;
+        if (FLAG( cr.Param[ CR_FLAGS1 ], CR_NO_NAME )  && !FLAG( chosen.Param[ CR_FLAGS1 ], CR_GM ) && !SAME_FACTION( chosen, cr ))
+            continue;
+        if (icons.length()>uint(cr.Param[MAIN_FACTION]))
+            DrawIcon( cr );
+    }
+    players.resize(0);  
+}
+
+
+void DrawIcon(CritterCl& cr)
+{
+    uint spriteId=icons[cr.Param[MAIN_FACTION]];
+    if(  spriteId <= 0 )
+        return;
+    int x = 0;
+    int y = 0;
+    if (GetNameTextInfo( cr, x, y ))
+    {
+        int lines=0;
+        int w=0;
+        int h=0;
+        string name=cr.Name;
+        if (_CritIsOffline(cr))
+            name+=__PlayerOffAppendix;
+        GetTextInfo( name, 200, 70,-1, FT_CENTERX | FT_BOTTOM | FT_BORDERED, w, h, lines );
+        x += 100 - ( w / 2 );
+        y += 70 - h;
+
+        if (x>0 && y>0 && x<__ScreenWidth && y<__ScreenHeight)
+            DrawSprite (spriteId, -1, x-18, y-4, 16, 16, false, true, 0) ;
+    }
+}

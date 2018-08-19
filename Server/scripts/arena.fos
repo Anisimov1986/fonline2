@@ -1,0 +1,84 @@
+#include "_macros.fos"
+
+void lobbytp( Critter& player, int , int , int )
+{
+	Location@ loc = GetLocation( CreateLocation(LOCATION_T_LOBBY, player.WorldX, player.WorldY, null) );
+	if(!valid(loc))
+		return;
+	Map@ map = loc.GetMapByIndex( 0 );
+	if( valid(map) )
+	{
+	    array<Critter@> crGroup = { player };
+	    uint cLen = 1;
+		cLen += player.GetFollowGroup( FIND_ALL, crGroup );
+
+	    for( uint c=0; c<cLen; c++ )
+	    {
+		crGroup[c].TransitToMap( map.Id, 0, true );
+	    }
+	}
+	loc.AutoGarbage = true;
+}
+
+void arenatp( Critter& player, int mapPid, int team, int skip )
+{
+   Map@ map = ::GetMapByPid( mapPid, skip );
+	if( valid(map) )
+	{
+	    array<Critter@> crGroup = { player };
+	    uint cLen = 1;
+		cLen += player.GetFollowGroup( FIND_ALL, crGroup );
+
+	    for( uint c=0; c<cLen; c++ )
+	    {
+		crGroup[c].TransitToMap( map.Id, team, true );
+		crGroup[c].ParamBase[PVPTEAM] = team;
+	    }
+	}
+}
+
+
+
+void Cageson( Critter& player, int arena, int, int )
+{
+	Map@ map = GetMapByPid(arena,0);
+	if (!valid(map))	
+		return;
+	uint entiresnum = map.CountEntire(983);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(983, i, hexX, hexY))
+		{
+			Item@ cage = map.AddItem( hexX, hexY, Random(9840,9845), 1 );
+			if (!valid(cage))
+				continue;
+		}
+	}
+}
+
+
+void Cagesoff( Critter& player, int arena, int, int )
+{
+	Map@ map = GetMapByPid(arena,0);
+	if (!valid(map))	
+		return;
+	uint entiresnum = map.CountEntire(983);
+	uint16 hexX=0;
+	uint16 hexY=0;
+	for (uint8 i=0; i<entiresnum;i++)
+	{
+		if (map.GetEntireCoords(983, i, hexX, hexY))
+		{
+			Item@[] items;
+			map.GetItems( hexX, hexY, items );
+			for (uint8 j=0; j<items.length();j++)
+			{
+				if (items[j].GetType() == ITEM_TYPE_MISC)
+				DeleteItem(items[j]);
+			}
+
+		}
+	}
+}

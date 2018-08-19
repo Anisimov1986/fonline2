@@ -1,0 +1,190 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _param p PE_GECKO_SKINNING = 0 #
+7 2020 #
+0 2030 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+6 5010 D _script economy_dialogs@d_IsEnoughCaps 1 600 R _script economy_dialogs@r_TakeCaps 1 600 R _param p PE_GECKO_SKINNING + 1 #
+0 5020 @
+6 6000 None 0 #
+0 6010 @
+7 7000 economy_dialogs@dlg_PreparePrice 0 #
+8 7010 #
+9 7020 #
+0 7030 @
+8 8000 None 0 #
+11 8010 D _item p PID_GECKO_PELT } 1 R _script economy_dialogs@r_GiveCaps 1 40 R _item p PID_GECKO_PELT - 1 #
+11 8020 D _item p PID_GECKO_PELT } 5 R _script economy_dialogs@r_GiveCaps 1 200 R _item p PID_GECKO_PELT - 5 #
+11 8030 D _item p PID_GECKO_PELT } 10 R _script economy_dialogs@r_GiveCaps 1 400 R _item p PID_GECKO_PELT - 10 #
+0 8040 @
+9 9000 None 0 #
+11 9010 D _item p PID_GOLDEN_GECKO_PELT } 1 R _item p PID_GOLDEN_GECKO_PELT - 1 R _script economy_dialogs@r_GiveCaps 1 80 #
+11 9020 D _item p PID_GOLDEN_GECKO_PELT } 5 R _item p PID_GOLDEN_GECKO_PELT - 5 R _script economy_dialogs@r_GiveCaps 1 400 #
+11 9030 D _item p PID_GOLDEN_GECKO_PELT } 10 R _item p PID_GOLDEN_GECKO_PELT - 10 R _script economy_dialogs@r_GiveCaps 1 800 #
+0 9040 @
+11 10000 None 0 #
+0 10010 &
+
+[engl]
+{100}{}{Trapper Gorn}
+{200}{}{You see a dusty aged man dressed in leather armor.}
+{210}{}{You see Gorn, one of the Crimson Caravaneers.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hey kiddo, you need somethin' from an ole' trapper?}
+{2010}{}{A trapper you say? Can you teach me anything?}
+{2020}{}{Are you by chance buying gecko pelts?@@Are you buying gecko pelts?@@I heard you buy gecko pelts.}
+{2030}{}{No, nothing. Bye.}
+{3000}{}{Well, why the hell not, I can teach you how to skin those damn biters, you're in for it kiddo?}
+{3010}{}{Biters? You mean geckos?}
+{3020}{}{Erm, biters? I don't believe in those zombie tales. Bye.}
+{4000}{}{Yeah yeah, dat lil' shits. They're all over the goddamn wasteland, and they're a fuckin' pain in the ass. So... You wannna to to learn how to deal with'em with profit?}
+{4010}{}{Yeah, sure. Teach me all you know.}
+{4020}{}{Hmm, maybe some other time.}
+{5000}{}{Ok, but it ain't free kiddo. @lex skinning_price@.}
+{5010}{}{(Gain perk: Gecko Skinning) Shut up and take my money!}
+{5020}{}{Damn, I don't have enough cash. I'll come back later.}
+{6000}{}{If you say so. First, you've gotta make a cut here... [Gorn teaches you how to skin geckos.] Okay kiddo, here you go. Say hello to those biters from old Gorn.}
+{6010}{}{You bet I will! Thanks, and see you.}
+{7000}{}{Yeah, sure. I'll give you @lex silver_pelt_reward@ caps for silver and @lex golden_pelt_reward@ caps for golden gecko pelts.@@You heard good. @lex silver_pelt_reward@ caps for silver and @lex golden_pelt_reward@ for the golden ones. Got any?}
+{7010}{}{I have silver gecko pelts for sale.@@I've got some silver gecko pelts.@@I've got the silver ones.}
+{7020}{}{I want to sell golden gecko pelts.@@I've got golden gecko pelts.@@I have golden gecko pelts.}
+{7030}{}{Very well. Maybe I'll come visit you when I get some of those. Bye for now.}
+{8000}{}{Allrighty, how many do you got?}
+{8010}{}{One...@@I've got one.@@Only one.@@Just one.}
+{8020}{}{I've got five.@@I have five of those.@@I have five.}
+{8030}{}{I managed to gather ten.@@Got ten.@@I have ten.@@Ten.}
+{8040}{}{Shit, I don't have enough right now. I'll come back later.@@Ah, I forgot to take them with me, sorry.}
+{9000}{}{Well, how many?@@Right. How many then?@@Okay, how many?}
+{9010}{}{One...@@I've got one.@@Only one.@@Just one.@@One.}
+{9020}{}{Got five here.@@I've got five.@@I have five of those.@@I have five.}
+{9030}{}{Ten.@@I managed to gather ten.@@Got ten.@@I have ten.@@Ten.}
+{9040}{}{Crap, I don't have enough right now. Be back later.@@Shit, I don't have enough right now. I'll be back later.@@Ah, I forgot to take them with me, sorry.}
+{10000}{}{Good, here's the dough.@@Perfect. Take the caps.@@Here's your cash.}
+{10010}{}{Okay, goodbye, Gorn.@@Okay, be seein' you.@@Thanks! Bye.}
+
+[russ]
+{100}{}{Траппер Горн}
+{200}{}{Вы видите: одного из кримсон каравана.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Эй малыш, нужно что-то от старого охотника?}
+{2010}{}{Охотник? Можете ли вы научить меня чему-нибудь?}
+{2020}{}{Вы покупаете шкурки геккона ?}
+{2030}{}{Нет, ничего. До свидания.}
+{3000}{}{Черт, а почему бы и нет, я могу научить тебя снимать шкуры с этих проклятых кусачек, ты в деле малыш?}
+{3010}{}{Кусачки? Вы имеете в виду гекконов?}
+{3020}{}{Я передумал, пока.}
+{4000}{}{Да, да, эти маленькие ублюдки. Они водятся по всей пустоши. Так что? Хочешь научится снимать с них шкуры?}
+{4010}{}{Да! Научите меня всему что вы знаете!}
+{4020}{}{Я должен идти. Может быть, в следующий раз.}
+{5000}{}{Хорошо, но не бесплатно малыш. @lex skinning_price@ крышек.}
+{5010}{}{[Скорняк] Возьми мои деньги скорее!}
+{5020}{}{У меня нет достаточно денег прямо сейчас. Я зайду позже.}
+{6000}{}{[Горн учит вас как снимать шкуру с гекконов.]}
+{6010}{}{Спасибо Горн!  Увидимся!}
+{7000}{}{Да, когда я путешествую я всегда собирают их и продаю дубильщику. Ну, я могу продать и твои, если хочешь. Я дам тебе @lex silver_pelt_reward@ крышек за шкуру серебряного и @lex golden_pelt_reward@ крышек за шкуру золотого.}
+{7010}{}{Я хочу продать шкуру серебряного.}
+{7020}{}{Я хочу продать шкуру золотого.}
+{7030}{}{Очень хорошо. Когда у меня будут шкуры я их вам принесу.}
+{8000}{}{Хорошо, сколько шкур ты хочешь продать?}
+{8010}{}{Одну.}
+{8020}{}{Пять.}
+{8030}{}{Десяток.}
+{8040}{}{Ну, у меня нет сейчас на это времени. Увидимся позже.}
+{9000}{}{Хорошо, сколько шкур ты хочешь продать?}
+{9010}{}{Одну.}
+{9020}{}{Пять.}
+{9030}{}{Десяток.}
+{9040}{}{Ну, у меня нет сейчас на это времени. Увидимся позже.}
+{10000}{}{Отлично. Вот твои деньги.}
+{10010}{}{Спасибо. Пока.}
+
+[pols]
+{100}{}{Traper Gorn}
+{200}{}{Widzisz trapera Gorna, jednego z najemników Karmazynowej Karawany.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Siema @sex@|kolego, chciałeś||paniusiu, chciałaś| coś od starego trapera?}
+{2010}{}{Trapera? O, może mógłbyś mnie czegoś nauczyć?}
+{2020}{}{Nie skupujesz przypadkiem skór gekonów?}
+{2030}{}{Nie.}
+{3000}{}{Pewnie że mógłbym. Na przykład skórowania, można na tym nieźle zarobić.}
+{3010}{}{Naprawdę?}
+{3020}{}{Chyba jednak zrezygnuję, na razie.}
+{4000}{}{Tak jest, z ich skór robi się ubrania i pancerze. Zapotrzebowanie jest duże, mało kto nie ma na sobie przynajmniej jednego ciucha zrobionego z gekonowej skóry. Większość handlarzy je skupuje, zresztą, ja też. Mam swoje dojścia do odpowiednich kupców... [Uśmiecha się chytrze.] No to jak? Nauczyć cię?}
+{4010}{}{Pewnie!}
+{4020}{}{Może kiedy indziej, muszę już iść.}
+{5000}{}{Dobra, ale za nie myślisz chyba że za darmo? @lex skinning_price@ kapsli z góry, @sex@|kolego||paniusiu|.}
+{5010}{}{(Perk: Patroszenie gekonów) Nie ma sprawy, zabierajmy się do nauki!}
+{5020}{}{Nie mam tyle przy sobie. Może wpadnę kiedy indziej.}
+{6000}{}{W porządku... Na poczatek musisz nauczyć się trzymać nóż... o... tak. Dobrze, nacięcie zaczynasz od tej strony... [Gorn jest dobrym nauczycielem. Mija niewiele czasu a zaczyna ci się wydawać, że @sex@|urodziłeś||urodziłaś| się, aby skórować gekony.] To by było na tyle. @sex@|Zadowolony||Zadowolona|?}
+{6010}{}{@sex@|Pewnie! Na razie, Gorn!||Jasne. Powiem Ci Gorn, wiesz jak zadowolić kobietę... Trzymaj się.|}
+{7000}{}{Tak, skupuję. A masz jakieś? Czterdzieści kapsli za srebrne i osiemdziesiąt za złote.}
+{7010}{}{Mam skóry ze srebrnych gekonów.}
+{7020}{}{Mam skóry ze złotych gekonów.}
+{7030}{}{Dobra, jak będę miał jakieś to wpadnę do ciebie. Na razie.}
+{8000}{}{Ile srebrnych chcesz sprzedać?}
+{8010}{}{Jedną.}
+{8020}{}{Pięć.}
+{8030}{}{Dziesięć.}
+{8040}{}{Ups, pomyliło mi się. Może innym razem.}
+{9000}{}{W porządku, ile chcesz sprzedać tych złotych?}
+{9010}{}{Jedną.}
+{9020}{}{Pięć.}
+{9030}{}{Dziesięć.}
+{9040}{}{Coś mi się przywidziało. Przyjdę później.}
+{10000}{}{Świetnie. Masz, tu są twoje kapsle.}
+{10010}{}{Dzięki, Gorn. Trzymaj się.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hey kiddo, you need somethin' from an ole' trapper?}
+{2010}{}{A trapper you say? Can you teach me anything?}
+{2020}{}{Are you by chance buying gecko pelts?@@Are you buying gecko pelts?@@I heard you buy gecko pelts.}
+{2030}{}{No, nothing. Bye.}
+{3000}{}{Well, why the hell not, I can teach you how to skin those damn biters, you're in for it kiddo?}
+{3010}{}{Biters? You mean geckos?}
+{3020}{}{Erm, biters? I don't believe in those zombie tales. Bye.}
+{4000}{}{Yeah yeah, dat lil' shits. They're all over the goddamn wasteland, and they're a fuckin' pain in the ass. So... You wannna to to learn how to deal with'em with profit?}
+{4010}{}{Yeah, sure. Teach me all you know.}
+{4020}{}{Hmm, maybe some other time.}
+{5000}{}{Ok, but it ain't free kiddo. @lex skinning_price@.}
+{5010}{}{(Gain perk: Gecko Skinning) Shut up and take my money!}
+{5020}{}{Damn, I don't have enough cash. I'll come back later.}
+{6000}{}{If you say so. First, you've gotta make a cut here... [Gorn teaches you how to skin geckos.] Okay kiddo, here you go. Say hello to those biters from old Gorn.}
+{6010}{}{You bet I will! Thanks, and see you.}
+{7000}{}{Yeah, sure. I'll give you @lex silver_pelt_reward@ caps for silver and @lex golden_pelt_reward@ caps for golden gecko pelts.@@You heard good. @lex silver_pelt_reward@ caps for silver and @lex golden_pelt_reward@ for the golden ones. Got any?}
+{7010}{}{I have silver gecko pelts for sale.@@I've got some silver gecko pelts.@@I've got the silver ones.}
+{7020}{}{I want to sell golden gecko pelts.@@I've got golden gecko pelts.@@I have golden gecko pelts.}
+{7030}{}{Very well. Maybe I'll come visit you when I get some of those. Bye for now.}
+{8000}{}{Allrighty, how many do you got?}
+{8010}{}{One...@@I've got one.@@Only one.@@Just one.}
+{8020}{}{I've got five.@@I have five of those.@@I have five.}
+{8030}{}{I managed to gather ten.@@Got ten.@@I have ten.@@Ten.}
+{8040}{}{Shit, I don't have enough right now. I'll come back later.@@Ah, I forgot to take them with me, sorry.}
+{9000}{}{Well, how many?@@Right. How many then?@@Okay, how many?}
+{9010}{}{One...@@I've got one.@@Only one.@@Just one.@@One.}
+{9020}{}{Got five here.@@I've got five.@@I have five of those.@@I have five.}
+{9030}{}{Ten.@@I managed to gather ten.@@Got ten.@@I have ten.@@Ten.}
+{9040}{}{Crap, I don't have enough right now. Be back later.@@Shit, I don't have enough right now. I'll be back later.@@Ah, I forgot to take them with me, sorry.}
+{10000}{}{Good, here's the dough.@@Perfect. Take the caps.@@Here's your cash.}
+{10010}{}{Okay, goodbye, Gorn.@@Okay, be seein' you.@@Thanks! Bye.}
+

@@ -1,0 +1,27 @@
+#include "_defines.fos"
+#include "_npc_roles.fos"
+
+import void _InitHelplessCitizen(Critter& npc, bool firstTime) from "town_critters";
+import void _InitBrahmin(Critter& critter, bool firstTime) from "town_critters";
+
+
+void _MapInit( Map& map, bool firstTime )
+{
+	Critter@[] critters;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, critters);
+	
+	for (uint i = 0; i < critters.length(); i++)
+	{
+		Critter@ critter = critters[i];
+		
+		switch(critter.Stat[ST_NPC_ROLE])
+		{
+			case ROLE_HELPLESS_CITIZEN:
+				_InitHelplessCitizen(critter, firstTime);
+				break;
+			case ROLE_PEN_BRAHMIN:
+				_InitBrahmin(critter, firstTime);
+				break;
+		}
+	}
+}

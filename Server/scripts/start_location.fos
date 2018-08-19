@@ -1,0 +1,244 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "time.fos"
+#include "mapdata_h.fos"
+
+#define START_LOC			(251)
+
+bool Create_Start(Critter & player)
+{	
+	Location @ location = GetLocation(CreateLocation(START_LOC, Random(1145,1315), Random(1270,1370),null));
+	if(!valid(location)) 
+		return false;
+	GameVar @ start_location = GetLocalVar(LVAR_start_location, player.Id);
+	start_location=location.Id;
+	location.Color=COLOR_SAFE;
+	SetRootMapData(location, MAP_DATA_TENT_OWNER, player.Id);
+	CreateTimeEvent(__FullSecond+REAL_DAY(7),"e_GarbageStartLoc",location.Id,true);
+	player.SetKnownLoc( true, location.Id );
+	Map @ map = location.GetMapByIndex( 0 ); 
+	int crType = 1;
+	if (player.Trait[ TRAIT_MUTATED ] != 0)
+		crType = CRTYPE_MUTANT_REGULAR;
+	else
+		crType = ( player.Stat[ ST_GENDER ] == GENDER_MALE ? CRTYPE_DW_LEATHER_JACKET_M : CRTYPE_DW_LEATHER_JACKET_F );
+	player.StatBase[ ST_BASE_CRTYPE ] = crType;
+	player.ChangeCrType( crType );
+	player.TransitToMap( map.Id, 242 );
+	Replicate(player,map);
+	return true;
+}
+
+void Replicate(Critter& player, Map& map)
+{
+	player.ToKnockout( KNOCKOUT_ANIM2_DEFAULT( true ), 0, player.HexX, player.HexY );
+	player.StatBase[ ST_CURRENT_AP ] = -2000;
+}
+
+bool d_Location_Owner(Critter& player, Critter@ npc)
+{
+	return (Is_Location_Owner(player));
+}
+
+bool d_Not_Location_Owner(Critter& player, Critter@ npc)
+{
+	return (!Is_Location_Owner(player));
+}
+
+bool Is_Location_Owner(Critter& player)
+{
+	Map@ map = player.GetMap();
+	if (valid (map) && GetRootMapData(map, MAP_DATA_TENT_OWNER) == int(player.Id))
+		return true;
+	return false;
+}
+
+void r_TentQuestFinished(Critter& cr, Critter@ npc)
+{
+	Map@ map = cr.GetMap();
+	if (valid (map))
+		SetRootMapData(map,MAP_DATA_TENT_KENNY_QUEST, 1);
+}
+
+void t_DialogTeacher( Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+	if (!player.IsPlayer())
+        return;
+    
+    GameVar@ main_quest = GetLocalVar(LVAR_main_quest,player.Id);
+	if ( entered  && main_quest == 0 )
+	{
+		Map @ map = player.GetMap();   
+		Critter@ teacher = map.GetCritter(74, 67);
+		if (valid(teacher))
+		{
+			player.Wait(1);
+			RunDialog(player, teacher, false);
+		
+		main_quest=1;
+		}
+	}
+}
+
+uint e_GarbageStartLoc(uint[]@ values)
+{
+	Location @ loc = GetLocation(values[0]);
+	if (valid(loc))
+	{
+		Map@ map = loc.GetMapByIndex( 0 );
+		if (valid(map))
+		{
+			Critter@[] critters;
+			map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, critters);
+			for (uint i= 0; i < critters.length() ;i++)
+			{
+				if (critters[i].Stat[ST_TEAM_ID]==40)
+					DeleteNpc(critters[i]);
+			}
+		}
+		if (loc.GetProtoId()==251)
+		{
+			int caveid = GetRootMapData(loc, MAP_DATA_START_LOC_CHILD);
+			if (caveid > 0)
+			{
+				Location@ caveloc = GetLocation(caveid);
+				if (valid(caveloc) && caveloc.GetProtoId()==252)
+				{
+					DeleteLocation(caveloc.Id);
+					SetRootMapData(loc, MAP_DATA_START_LOC_CHILD, -1);
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+void _TeacherInit( Critter& teacher, bool firstTime )
+{
+	teacher.StatBase[ ST_REPLICATION_TIME ]   = REPLICATION_DELETE;
+	teacher.StatBase[ ST_KILL_EXPERIENCE ] = 0;
+	teacher.SetEvent( CRITTER_EVENT_DEAD, "_Teacher_Dead");
+}
+
+void _Teacher_Dead( Critter& teacher, Critter@ killer )
+{
+	Map@ map = teacher.GetMap();
+	if (valid (map))
+		SetRootMapData(map,MAP_DATA_TENT_KENNY_QUEST, 1);
+	if (valid(killer))
+		killer.StatBase[ ST_KARMA ] -= 100;
+}
+
+void t_TeleportToCave( Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+    if(!player.IsPlayer())
+        return;
+    
+    Map@ map = player.GetMap();
+	if (!valid(map))
+		return;
+		
+	Location@ loc = map.GetLocation();
+	if (loc.GetProtoId()==250)
+	{
+		Map@ cavemap = loc.GetMapByIndex(1);
+		if (!valid(cavemap))
+			return;
+		player.TransitToMap(cavemap.Id, 0);
+		return;
+	}
+	
+	GameVar@ q_start_radcave = GetLocalVar(LVAR_q_start_radcave,player.Id);
+	if(!valid(q_start_radcave) || q_start_radcave != 1)
+		return;
+	
+	int CaveStatus = GetRootMapData(map, MAP_DATA_START_LOC_CHILD);
+	if (CaveStatus==-1)
+		return;
+
+	else if (CaveStatus>0)
+	{
+		Location@ caveloc = GetLocation(CaveStatus);
+		if(!valid(caveloc))
+			return;
+		Map@ cavemap = caveloc.GetMapByIndex(0);
+		if (!valid(cavemap))
+			return;
+
+		player.TransitToMap(cavemap.Id, 0);
+	}
+	else if (CaveStatus==0)
+	{
+		Location@ caveloc = GetLocation(CreateLocation(START_LOC+1, player.WorldX, player.WorldY,null));
+		if (!valid(caveloc))
+			return;
+
+		Map@ cavemap = caveloc.GetMapByIndex(0);
+		if (!valid(cavemap))
+			return;
+
+		SetRootMapData(map, MAP_DATA_START_LOC_CHILD, caveloc.Id);
+		SetRootMapData(caveloc, MAP_DATA_START_LOC_CHILD, loc.Id);
+		player.TransitToMap(cavemap.Id, 0);
+	}
+}
+
+void t_TeleportFromCave( Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+	Map@ map = player.GetMap();
+	if (!valid(map))
+		return;
+		
+	Location@ loc = map.GetLocation();
+	if (loc.GetProtoId()==250)
+	{
+		Map@ cavemap = loc.GetMapByIndex(0);
+		if (!valid(cavemap))
+			return;
+		player.TransitToMap(cavemap.Id, 2);
+		return;
+	}	
+	int tentlocid = GetRootMapData(map, MAP_DATA_START_LOC_CHILD);
+	if (tentlocid ==0)
+		return;
+	Location@ tentloc = GetLocation(tentlocid);
+	if (valid(tentloc) && tentloc.IsTent())
+	{
+		Map@ tentmap = tentloc.GetMapByIndex(0);
+		if (!valid(tentmap))
+			return;
+		player.TransitToMap(tentmap.Id, 2);
+	}
+}
+
+void DeleteCave( Critter& player, Critter@ npc )
+{
+	Map@ map = player.GetMap();
+	if (!valid(map))
+	return;
+	Location@ loc = map.GetLocation();
+	if (loc.GetProtoId()==251)
+	{
+		int caveid = GetRootMapData(loc, MAP_DATA_START_LOC_CHILD);
+		if (caveid>0)
+		{
+			Location@ caveloc = GetLocation(caveid);
+			if (valid(caveloc) && caveloc.GetProtoId()==252)
+			{
+				DeleteLocation(caveloc.Id);
+				SetRootMapData(map, MAP_DATA_START_LOC_CHILD, -1);
+			}
+		}
+	}
+}
+
+void _StartMapInit( Map& map, bool firstTime )
+{
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_MapIn");
+}
+
+void _MapIn(Map& map, Critter& cr)
+{
+	if (cr.IsPlayer())
+		map.SetData( MAP_DATA_LASTENTERED, __FullSecond );
+}

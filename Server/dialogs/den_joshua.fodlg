@@ -1,0 +1,242 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+10 2030 D _var p q_den_joshuacards = 1 D _item p PID_RED_GLOW_KEYCARD } 1 D or D _var p q_den_joshuacards = 1 D _item p PID_YELLOW_GLOW_KEYCARD } 1 #
+0 2040 @
+3 3000 None 0 #
+5 3010 #
+4 3020 #
+6 3030 D _var p q_den_joshuacards = 0 R _var p q_den_joshuacards = 1 @
+4 4000 None 0 #
+7 4010 #
+0 4020 @
+5 5000 None 0 #
+7 5010 #
+0 5020 @
+6 6000 None 0 #
+8 6010 #
+9 6020 #
+7 6030 #
+0 6040 @
+7 7000 None 0 #
+3 7010 #
+4 7020 #
+10 7030 D _var p q_den_joshuacards = 1 D _item p PID_RED_GLOW_KEYCARD } 1 D or D _var p q_den_joshuacards = 1 D _item p PID_YELLOW_GLOW_KEYCARD } 1 #
+0 7040 @
+8 8000 None 0 #
+9 8010 #
+7 8020 #
+0 8030 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+11 10010 #
+7 10020 #
+0 10030 @
+11 11000 None 0 #
+11 11010 D _item p PID_YELLOW_GLOW_KEYCARD } 1 R _param p ST_EXPERIENCE + 100 R _script economy_dialogs@r_GiveCaps 1 200 R _item p PID_YELLOW_GLOW_KEYCARD - 1 #
+11 11020 D _item p PID_RED_GLOW_KEYCARD } 1 R _param p ST_EXPERIENCE + 150 R _script economy_dialogs@r_GiveCaps 1 300 R _item p PID_RED_GLOW_KEYCARD - 1 #
+9 11030 #
+7 11040 #
+0 11050 &
+
+[engl]
+{100}{}{Joshua}
+{200}{}{You see a man dressed in a shiny metal armor.}
+{210}{}{You see Joshua.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Greetings, @pname@.}
+{2010}{}{How do you know my name, stranger?}
+{2020}{}{Hi. Who are you?}
+{2030}{}{I've brought you that access card from the Glow. Wanto to take a look?}
+{2040}{}{Hello. Just passing by, see you later.}
+{3000}{}{Your activity has been noticed by some important people. You would be surprised how fast news spread. But remember, you're you're just a small fish in the ocean full of sharks.}
+{3010}{}{What do you mean?}
+{3020}{}{Who are you?}
+{3030}{}{When the seagulls follow the boat, it's because they think fish will be thrown out into the sea.}
+{4000}{}{My name is Joshua. What I am doing here is not of your concern.}
+{4010}{}{Well, fine. Can I ask you another question?}
+{4020}{}{Fine. Sorry for asking. Bye.}
+{5000}{}{You are a new piece on the chessboard, and you still neither know the rules of the game, nor have decided the side which you wanna play on.}
+{5010}{}{I've got to learn how to play chess someday, you've got that right. Can I ask you something else?}
+{5020}{}{Sorry pal, but your informers were wrong. I'm not a chess player, never been one. If I'll find someone who'll want to play with you, I'll let you know. Good bye.}
+{6000}{}{Well... [Scratches his head.] Sure, I couldn't say it better. You know, I've got a task for someone as clever as you. If you happen to visit the ruins of the Ancient Order, bring me any access card you'll find there. For you they will be of no use, but for the story's very different for us.}
+{6010}{}{'Ruins of the Ancient Order'?}
+{6020}{}{"Us"? What "us" are you talking about?}
+{6030}{}{I'll remember that. Can I ask you another question?}
+{6040}{}{Fine. I've got to go now, take care.}
+{7000}{}{Of course you can, @pname@. What would you like to know?}
+{7010}{}{How do you know my name?}
+{7020}{}{Once again, who are you?}
+{7030}{}{I've brought you that access card from The Glow. Would you like to have a look?}
+{7040}{}{Nothing, I'm leaving right now. Goodbye.}
+{8000}{}{The ruins, commonly know as 'the Glow'. You will find it far, far in the south-east.}
+{8010}{}{What 'us' were you talking about?}
+{8020}{}{I'll to find them, If I ever venture there that is. Now, can I ask you some other question?}
+{8030}{}{I forgot to extinguish the fire at my camp, really got to go. Bye.}
+{9000}{}{Did I say anything like that? I doubt it. You had to mishear something. [He gets a bit nervous.] Well, you better should be going. *Really*.}
+{9010}{}{Fine, fine. Goodbye, pal.}
+{10000}{}{Very well, thank you. [Examines the keycard.] Yes, that's a legitimate artifact from the Ancient Order ruins! I'll pay 200 caps for yellow and 300 caps for a red one.}
+{10010}{}{No shit. Really, for this useless piece of plastic?}
+{10020}{}{Can I ask you some questions first?}
+{10030}{}{Artifact? Then I shouldn't sell it just for a few caps, man. Goodbye.}
+{11000}{}{For you that's a rubbish, for us - holy relic. So?}
+{11010}{}{Here you go, a yellow access card.@@I've got a yellow access card.@@I've found a yellow access card.@@Here's a yellow access card I found.}
+{11020}{}{Take this red access card.@@How about this red access card I found?@@Here's a red access card.}
+{11030}{}{What 'us' are you talking about?}
+{11040}{}{Wait a second. Can I ask you some questions?}
+{11050}{}{I'd love to, but... Well, not now. Goodbye, Joshua.}
+
+[russ]
+{100}{}{Джошуа}
+{200}{}{Вы видете человека в блестящей металлической броне.}
+{210}{}{Вы видете Джошуа.}
+{1000}{}{первоначальные установки}
+{1010}{}{Ответ}
+{2000}{}{Приветствую, @pname@.}
+{2010}{}{Как ты узнал мое имя, незнакомец?}
+{2020}{}{Привет. Кто ты?}
+{2030}{}{Я привез тебя ту самую карту доступа в Глоу. Не хочешь взглянуть?}
+{2040}{}{Привет. Просто проходил мимо, увидимся.}
+{3000}{}{На твои действия обратили внимание кое-какие важные люди, ты удивишься, если узаешь с какой скоростью распространяются новости. Смотри не забывай, ты всего лишь маленькая рыбешка в океане полном акул.}
+{3010}{}{Что ты имеешь ввиду?}
+{3020}{}{Ты кто?}
+{3030}{}{Когда чайки следуют за кораблем, они ждут, что им бросят рыбы.}
+{4000}{}{Меня зовут Джошуа. И не твоего ума дело, что я здесь делаю.}
+{4010}{}{Ладно. могу я задать еще один вопрос?}
+{4020}{}{Здорово, извини что спросил.}
+{5000}{}{Ты новая фигура на шахматной доске, но до сих пор не знаешь ни правил игры, ни стороны, на которой играть.}
+{5010}{}{Когда-нибудь я еще научусь играть в шахматы, ты прав. Могу я спросить тебя еще кое о чем?}
+{5020}{}{Прости дружище, но твои информаторы врут. Я в шахматы не играю и никогда не играл. Если я когда-нибудь встречу того, кто захочет с тобой сыграть, я тебе сообщу. Счастливо оставаться.}
+{6000}{}{Хорошо... [Чешет затылок.] как бы это объяснить по лучше. Ты знаешь, у меня есть одно задание для такого умника как ты. Если ты когда-нибудь вдруг окажешься у руин Древнего порядка, принеси мне любую карту доступа какую там найдешь. Тебе они ни к чему, а нам важны для истории.}
+{6010}{}{'Руины Древнего порядка'?}
+{6020}{}{"Нас"? О каких нас ты сейчас говоришь?}
+{6030}{}{Да-да я помню. Могу я спросить еще одну вещь?}
+{6040}{}{Ладно. Ме пора идти уже, буть осторожен.}
+{7000}{}{Конечно задавай, @pname@. Что бы ты хотел узнать?}
+{7010}{}{Как ты узнал мое имя?}
+{7020}{}{Спрошу еще раз, так кто ты?}
+{7030}{}{Я привез тебе эту карточку доступа из Глоу. Хочешь взглянуть?}
+{7040}{}{Ничего, мне уже пора. Пока.}
+{8000}{}{Эти руины в простонародье более известны как Глоу. Они расположены далеко-далеко отсюда на юго-востоке.}
+{8010}{}{Что ты имеешь ввиду под словом "Мы"?}
+{8020}{}{Постараюсь найти, если когда-нибудь решусь туда отправиться. Я могу задать еще пару вопросов?}
+{8030}{}{Ээ, я кажется забыл погасить огонь возле палатки, правда мне пора. Пока.}
+{9000}{}{Разве я сказал что-то подобное? Сомневаюсь, кажется ты меня не расслышал. [Он начинает немного нервничать.] Ладно, вобще то тебе уже пора. *Серьезно*.}
+{9010}{}{Ладно, ладно уже ухожу. Пока, приятель.}
+{10000}{}{Неплохо, спасибо. [Проверяет ключ-карту.] это и правда настоящий артефакт из руин Древнего порядка! Я заплачу тебе 200 капсов за желтую и 300 за красную.}
+{10010}{}{Серьезно? За этот бесполезный кусок пластика?}
+{10020}{}{Могу я сперва задать пару вопросов?}
+{10030}{}{Артефакт? Тогда мне пожалуй не стоит продавать его за такие гроши. До свидания.}
+{11000}{}{Для тебя это всего лишь мусор, для нас - священная реликвия. Ты уверен?}
+{11010}{}{Вот держи, желтая карта.@@У меня есть желтая ключ-карта.@@Я нашел желтую ключ-карту.@@Вот, я нашел желтую ключ-карту.}
+{11020}{}{Вот держи, красная ключ-карта.@@Как насчет вот этой красной ключ-карты, что я нашел?@@Вот, красная ключ-карта.}
+{11030}{}{Каких это "мы" ты имеешь ввиду?}
+{11040}{}{Погоди секунду. Могу я задать еще вопрос?}
+{11050}{}{Я б хотел, но... Ладно, не сейчас. Пока, Джошуа.}
+
+[pols]
+{100}{}{Joshua}
+{200}{}{You see a man dressed in a shiny metal armor.}
+{210}{}{You see Joshua.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Greetings, @pname@.}
+{2010}{}{How do you know my name, stranger?}
+{2020}{}{Hi. Who are you?}
+{2030}{}{I've brought you that access card from the Glow. Wanto to take a look?}
+{2040}{}{Hello. Just passing by, see you later.}
+{3000}{}{Your activity has been noticed by some important people. You would be surprised how fast news spread. But remember, you're you're just a small fish in the ocean full of sharks.}
+{3010}{}{What do you mean?}
+{3020}{}{Who are you?}
+{3030}{}{When the seagulls follow the boat, it's because they think fish will be thrown out into the sea.}
+{4000}{}{My name is Joshua. What I am doing here is not of your concern.}
+{4010}{}{Well, fine. Can I ask you another question?}
+{4020}{}{Fine. Sorry for asking. Bye.}
+{5000}{}{You are a new piece on the chessboard, and you still neither know the rules of the game, nor have decided the side which you wanna play on.}
+{5010}{}{I've got to learn how to play chess someday, you've got that right. Can I ask you something else?}
+{5020}{}{Sorry pal, but your informers were wrong. I'm not a chess player, never been one. If I'll find someone who'll want to play with you, I'll let you know. Good bye.}
+{6000}{}{Well... [Scratches his head.] Sure, I couldn't say it better. You know, I've got a task for someone as clever as you. If you happen to visit the ruins of the Ancient Order, bring me any access card you'll find there. For you they will be of no use, but for the story's very different for us.}
+{6010}{}{'Ruins of the Ancient Order'?}
+{6020}{}{"Us"? What "us" are you talking about?}
+{6030}{}{I'll remember that. Can I ask you another question?}
+{6040}{}{Fine. I've got to go now, take care.}
+{7000}{}{Of course you can, @pname@. What would you like to know?}
+{7010}{}{How do you know my name?}
+{7020}{}{Once again, who are you?}
+{7030}{}{I've brought you that access card from The Glow. Would you like to have a look?}
+{7040}{}{Nothing, I'm leaving right now. Goodbye.}
+{8000}{}{The ruins, commonly know as 'the Glow'. You will find it far, far in the south-east.}
+{8010}{}{What 'us' were you talking about?}
+{8020}{}{I'll to find them, If I ever venture there that is. Now, can I ask you some other question?}
+{8030}{}{I forgot to extinguish the fire at my camp, really got to go. Bye.}
+{9000}{}{Did I say anything like that? I doubt it. You had to mishear something. [He gets a bit nervous.] Well, you better should be going. *Really*.}
+{9010}{}{Fine, fine. Goodbye, pal.}
+{10000}{}{Very well, thank you. [Examines the keycard.] Yes, that's a legitimate artifact from the Ancient Order ruins! I'll pay 200 caps for yellow and 300 caps for a red one.}
+{10010}{}{No shit. Really, for this useless piece of plastic?}
+{10020}{}{Can I ask you some questions first?}
+{10030}{}{Artifact? Then I shouldn't sell it just for a few caps, man. Goodbye.}
+{11000}{}{For you that's a rubbish, for us - holy relic. So?}
+{11010}{}{Here you go, a yellow access card.@@I've got a yellow access card.@@I've found a yellow access card.@@Here's a yellow access card I found.}
+{11020}{}{Take this red access card.@@How about this red access card I found?@@Here's a red access card.}
+{11030}{}{What 'us' are you talking about?}
+{11040}{}{Wait a second. Can I ask you some questions?}
+{11050}{}{I'd love to, but... Well, not now. Goodbye, Joshua.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Greetings, @pname@.}
+{2010}{}{How do you know my name, stranger?}
+{2020}{}{Hi. Who are you?}
+{2030}{}{I've brought you that access card from the Glow. Wanto to take a look?}
+{2040}{}{Hello. Just passing by, see you later.}
+{3000}{}{Your activity has been noticed by some important people. You would be surprised how fast news spread. But remember, you're you're just a small fish in the ocean full of sharks.}
+{3010}{}{What do you mean?}
+{3020}{}{Who are you?}
+{3030}{}{When the seagulls follow the boat, it's because they think fish will be thrown out into the sea.}
+{4000}{}{My name is Joshua. What I am doing here is not of your concern.}
+{4010}{}{Well, fine. Can I ask you another question?}
+{4020}{}{Fine. Sorry for asking. Bye.}
+{5000}{}{You are a new piece on the chessboard, and you still neither know the rules of the game, nor have decided the side which you wanna play on.}
+{5010}{}{I've got to learn how to play chess someday, you've got that right. Can I ask you something else?}
+{5020}{}{Sorry pal, but your informers were wrong. I'm not a chess player, never been one. If I'll find someone who'll want to play with you, I'll let you know. Good bye.}
+{6000}{}{Well... [Scratches his head.] Sure, I couldn't say it better. You know, I've got a task for someone as clever as you. If you happen to visit the ruins of the Ancient Order, bring me any access card you'll find there. For you they will be of no use, but for the story's very different for us.}
+{6010}{}{'Ruins of the Ancient Order'?}
+{6020}{}{"Us"? What "us" are you talking about?}
+{6030}{}{I'll remember that. Can I ask you another question?}
+{6040}{}{Fine. I've got to go now, take care.}
+{7000}{}{Of course you can, @pname@. What would you like to know?}
+{7010}{}{How do you know my name?}
+{7020}{}{Once again, who are you?}
+{7030}{}{I've brought you that access card from The Glow. Would you like to have a look?}
+{7040}{}{Nothing, I'm leaving right now. Goodbye.}
+{8000}{}{The ruins, commonly know as 'the Glow'. You will find it far, far in the south-east.}
+{8010}{}{What 'us' were you talking about?}
+{8020}{}{I'll to find them, If I ever venture there that is. Now, can I ask you some other question?}
+{8030}{}{I forgot to extinguish the fire at my camp, really got to go. Bye.}
+{9000}{}{Did I say anything like that? I doubt it. You had to mishear something. [He gets a bit nervous.] Well, you better should be going. *Really*.}
+{9010}{}{Fine, fine. Goodbye, pal.}
+{10000}{}{Very well, thank you. [Examines the keycard.] Yes, that's a legitimate artifact from the Ancient Order ruins! I'll pay 200 caps for yellow and 300 caps for a red one.}
+{10010}{}{No shit. Really, for this useless piece of plastic?}
+{10020}{}{Can I ask you some questions first?}
+{10030}{}{Artifact? Then I shouldn't sell it just for a few caps, man. Goodbye.}
+{11000}{}{For you that's a rubbish, for us - holy relic. So?}
+{11010}{}{Here you go, a yellow access card.@@I've got a yellow access card.@@I've found a yellow access card.@@Here's a yellow access card I found.}
+{11020}{}{Take this red access card.@@How about this red access card I found?@@Here's a red access card.}
+{11030}{}{What 'us' are you talking about?}
+{11040}{}{Wait a second. Can I ask you some questions?}
+{11050}{}{I'd love to, but... Well, not now. Goodbye, Joshua.}
+

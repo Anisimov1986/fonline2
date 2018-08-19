@@ -1,0 +1,301 @@
+import void SpawnTraps(Map& map, int xStart, int yStart, int pid, uint minRadius, uint maxRadius) from "encounter_containers";
+import bool _SetDoorTrap( Item& door, uint trapPid, bool noLoot ) from "trap";
+import uint ExitMapDir(uint locationId, uint exitIdx) from "random_dungeon";
+import void TransitToDungeon(Critter& critter, int dungeonId, uint mapDir, uint delay) from "random_dungeon";
+
+
+const uint[] horizontalContainerPids = {PID_FOOTLOCKER_CLEAN_LEFT, PID_FOOTLOCKER_CLEAN_LEFT, PID_FOOTLOCKER_CLEAN_LEFT, PID_FOOTLOCKER_RUSTY_LEFT, 
+			PID_FOOTLOCKER_RUSTY_LEFT, PID_FOOTLOCKER_RUSTY_LEFT, PID_SM_LT_AMMO_CRATE, PID_SM_LT_AMMO_CRATE, PID_SM_LT_AMMO_CRATE,
+			PID_BOX_1, PID_BOX_3, PID_BOX_5, PID_BOX_6, PID_BOX_7};
+const uint[] verticalContainerPids = {PID_FOOTLOCKER_CLEAN_RIGHT, PID_FOOTLOCKER_CLEAN_RIGHT, PID_FOOTLOCKER_CLEAN_RIGHT, PID_FOOTLOCKER_RUSTY_RIGHT, 
+			PID_FOOTLOCKER_RUSTY_RIGHT, PID_FOOTLOCKER_RUSTY_RIGHT, PID_SM_RT_AMMO_CRATE, PID_SM_RT_AMMO_CRATE, PID_SM_RT_AMMO_CRATE,
+			PID_BOX_1, PID_BOX_3, PID_BOX_5, PID_BOX_6, PID_BOX_7};
+const uint[] trapPids = { PID_MOLOTOV_COCKTAIL, PID_FRAG_GRENADE, PID_PLASMA_GRENADE };
+
+			
+class LootContainer : RandomMapFeature
+{
+	private int entire;
+	private bool lockContainer = true;
+	
+	LootContainer(int entire)
+	{
+		this.entire = entire;
+	}
+	
+	LootContainer(int entire, bool lockContainer)
+	{
+		this.entire = entire;
+		this.lockContainer = lockContainer;
+	}
+
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		int entireCountH = map.CountEntire(entire);
+		int entireCountV = map.CountEntire(entire + 1);
+		int entireCount, entireSpawn, containerPid;
+		uint16 entireX = 0, entireY = 0;
+		
+		if (Random(0, entireCountH + entireCountV - 1) < entireCountH)
+		{
+			entireSpawn = entire;
+			entireCount = entireCountH;
+			containerPid = horizontalContainerPids[Random(0, horizontalContainerPids.length() - 1)];
+		}
+		else
+		{
+			entireSpawn = entire + 1;
+			entireCount = entireCountV;
+			containerPid = verticalContainerPids[Random(0, verticalContainerPids.length() - 1)];			
+		}
+		
+		map.GetEntireCoords(entireSpawn, Random(0, entireCount - 1), entireX, entireY);
+
+		//Log("Loot container " + entireX + " " + entireY + " " + entireSpawn);
+		Item@ container = map.AddItem(entireX, entireY, containerPid, 1);
+		container.Val2 = 1;
+		
+		if (lockContainer)
+		{
+			container.LockerId = Random(1, 1000);
+			
+			if (HAS_CHANCE(90))
+			{
+				container.LockerComplexity = Random(10, 20);
+			}
+			else
+			{
+				container.LockerComplexity = Random(20, 40);
+			}
+		}
+		
+		if (context.GetTrapPid() != 0 && HAS_CHANCE(40))
+		{
+			SpawnTraps(map, entireX, entireY, context.GetTrapPid(), 2, 3);
+		}
+		
+		if (HAS_CHANCE(40))
+		{
+			_SetDoorTrap(container, trapPids[Random(0, trapPids.length() - 1)], true);
+		}
+		
+		context.AddLoot(container, LOOT_TYPE_REGULAR, 0, 97);
+	}
+}
+
+
+class Traps : RandomMapFeature
+{
+	private int entire;
+	
+	Traps(int entire)
+	{
+		this.entire = entire;
+	}
+
+	void Render(Map@ map, RandomMapContext@ context)
+	{	
+		if (context.GetTrapPid() == 0)
+		{
+			return;
+		}
+		
+		int spawnChance = 95;
+		
+		if (HAS_CHANCE(20))
+		{
+			spawnChance = 60;
+		}
+		
+		uint16 entireX = 0, entireY = 0;
+		int entireCount = map.CountEntire(entire);
+		
+		for (int i = 0 ; i < entireCount ; i++)
+		{
+			if (HAS_CHANCE(spawnChance))
+			{
+				map.GetEntireCoords(entire, i, entireX, entireY);
+				Item @trap = map.AddItem(entireX, entireY, context.GetTrapPid(), 1);
+				UNSETFLAG(trap.Flags, ITEM_CAN_PICKUP);		
+			}
+		}
+	}
+}
+
+
+const uint[] wallPids = { PID_FENCE_HS, PID_FENCE_H1, PID_FENCE_H2, PID_FENCE_HE, PID_FENCE_HD,
+		PID_FENCE_VS, PID_FENCE_V1, PID_FENCE_V2, PID_FENCE_VE, PID_FENCE_VD};
+const uint[] containerPids = {PID_SM_RT_AMMO_CRATE, PID_SM_RT_AMMO_CRATE, PID_SM_RT_AMMO_CRATE,
+			PID_SM_LT_AMMO_CRATE, PID_SM_LT_AMMO_CRATE, PID_SM_LT_AMMO_CRATE, PID_BOX_2, PID_BOX_3, PID_BOX_6, PID_BOX_7};
+
+class Storage : RandomMapFeature
+{
+	private int fenceEntire;
+	private int containerEntire;
+	private bool spawnFence = true;
+	private bool lockContainers = true;
+	
+	Storage(int fenceEntire, int containerEntire)
+	{
+		this.fenceEntire = fenceEntire;
+		this.containerEntire = containerEntire;
+	}
+	
+	Storage(int fenceEntire, int containerEntire, bool spawnFence, bool lockContainers)
+	{
+		this.fenceEntire = fenceEntire;
+		this.containerEntire = containerEntire;
+		this.spawnFence = spawnFence;
+		this.lockContainers = lockContainers;
+	}
+
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		if (spawnFence)
+		{
+			SpawnFence(map, fenceEntire);
+		}
+		SpawnAmmoContainers(map, context, fenceEntire);
+	}
+	
+	void SpawnAmmoContainers(Map@ map, RandomMapContext@ context, int entire)
+	{
+		int entireCount = map.CountEntire(containerEntire);
+		int containerPid = containerPids[Random(0, containerPids.length() - 1)];
+		uint16 entireX = 0, entireY = 0;
+			
+		for (int i = 0 ; i < entireCount ; i++)
+		{
+			map.GetEntireCoords(containerEntire, i, entireX, entireY);
+			Item@ container = map.AddItem(entireX, entireY, containerPid, 1);
+			container.Val2 = 1;
+			
+			if (lockContainers)
+			{
+				container.LockerId = Random(1, 1000);
+				container.LockerComplexity = Random(10, 20);
+			}
+				
+			if (HAS_CHANCE(50))
+			{
+				context.AddLoot(container, LOOT_TYPE_REGULAR, 50, 100);
+			}
+			else
+			{
+				context.AddLoot(container, LOOT_TYPE_STORAGE, 0, 100);
+			}
+		}
+	}
+	
+	void SpawnFence(Map@ map, int entire)
+	{
+		int offset = entire % 10 == 0 ? 0 : 5;
+		uint16 entireX = 0, entireY = 0;
+		
+		for (int i = 0 ; i < 5 ; i++)
+		{
+			int entireCount = map.CountEntire(entire + i);
+			
+			for (int j = 0 ; j < entireCount ; j++)
+			{
+				map.GetEntireCoords(entire + i, j, entireX, entireY);
+				Item @item = map.AddItem(entireX, entireY, wallPids[i + offset], 1);
+				
+				if ((i + offset) % 5 == 4)
+				{
+					if (HAS_CHANCE(10))
+					{
+						item.LockerComplexity = Random(10, 20);
+					}
+					else
+					{
+						item.LockerComplexity = Random(20, 40);
+					}
+					
+					if (HAS_CHANCE(75))
+					{
+						_SetDoorTrap(item, trapPids[Random(0, trapPids.length() - 1)], true);
+					}
+					
+					item.LockerId = Random(1, 1000);
+					item.Val1 = 1;
+					item.Val2 = 1;
+					
+					if ((i + offset) % 10 == 4)
+					{
+						map.MoveHexByDir(entireX, entireY, 1, 1);
+						Item @blocker = map.AddItem(entireX, entireY, PID_DOOR_BLOCKER, 1);
+						UNSETFLAG( blocker.Flags, ITEM_NO_BLOCK );
+						SETFLAG( blocker.Flags, ITEM_SHOOT_THRU );
+					}
+					else if ((i + offset) % 10 == 9)
+					{
+						map.MoveHexByDir(entireX, entireY, 4, 1);
+						Item @blocker = map.AddItem(entireX, entireY, PID_DOOR_BLOCKER, 1);
+						UNSETFLAG( blocker.Flags, ITEM_NO_BLOCK );
+						SETFLAG( blocker.Flags, ITEM_SHOOT_THRU );
+					}
+				}
+			}
+		}
+	}
+}
+
+class DungeonPortal : RandomMapFeature
+{
+	private int firstEntire, lastEntire, dungeonId;
+	bool down;
+	
+	DungeonPortal(int firstEntire, int lastEntire, int dungeonId, bool down)
+	{
+		this.firstEntire = firstEntire;
+		this.lastEntire = lastEntire;
+		this.dungeonId = dungeonId;
+		this.down = down;
+	}
+
+	void Render(Map@ map, RandomMapContext@ context)
+	{
+		int entire = Random(firstEntire, lastEntire);
+		uint16 entireX = 0, entireY = 0;
+		
+		if (map.GetEntireCoords(entire, 0, entireX, entireY))
+		{
+			Item @item = map.AddItem(entireX, entireY, down ? PID_LADDER_DOWN : PID_LADDER_UP, 1);
+			item.SetScript("_PortalInit");
+			item.Val0 = dungeonId;
+			item.Val1 = entire - firstEntire;
+			item.Val2 = down ? 1 : 0;
+		}
+	}
+}
+
+void _PortalInit( Item& item, bool firstTime )
+{
+    item.SetEvent( ITEM_EVENT_SKILL, "_PortalSkill" );
+}
+
+bool _PortalSkill(Item& item, Critter& critter, int skill)
+{
+    if (critter.IsPlayer())
+    {
+		Map@ map = GetMap(item.MapId);
+		
+		if (!valid(map))
+		{
+			return true;
+		}
+		
+		Location@ location = map.GetLocation();
+		
+		if (!valid(location))
+		{
+			return true;
+		}
+	
+		critter.Animate(0, item.Val2 == 1 ? ANIM2_PICKUP : ANIM2_CLIMBING, item, true, false);	
+		TransitToDungeon(critter, item.Val0, ExitMapDir(location.Id, item.Val1), REAL_MS(200));
+    }
+
+    return true;
+}

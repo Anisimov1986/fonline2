@@ -1,0 +1,192 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+3 1020 @
+2 2000 None 0 #
+5 2010 #
+0 2020 @
+3 3000 None 0 #
+5 3010 #
+0 3020 @
+5 4000 None 0 #
+8 4010 D _item p PID_BOTTLE_CAPS > 4 R _item p PID_BOOZE + 1 R _item p PID_BOTTLE_CAPS - 5 #
+7 4020 #
+6 4030 #
+10 4040 D _item p PID_BOTTLE_CAPS < 5 #
+0 4050 @
+6 5000 None 0 #
+5 5010 #
+11 5020 #
+0 5030 @
+7 6000 None 0 #
+5 6010 D _item p PID_BOTTLE_CAPS > 4 #
+11 6020 #
+0 6030 @
+8 7000 None 0 #
+11 7010 #
+0 7020 @
+10 8000 None 0 #
+11 8010 #
+0 8020 @
+11 9000 None 0 #
+7 9010 #
+5 9020 #
+0 9030 &
+
+[engl]
+{100}{}{Becky}
+{200}{}{You see an attractive young woman.}
+{210}{}{You see Rebecca.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{1020}{}{Ciaeii}
+{2000}{}{Hi there, I'm Rebecca. Can I get you something to drink? I'm sure you're thirsty after your trip through the wastes.}
+{2010}{}{I need a drink.}
+{2020}{}{Nothing. Bye.}
+{3000}{}{Hi! Glad you came back. Any questions or are you here for some fine whiskey?@@Really glad to see you. What's up? Need something?@@Hope everything's going well for my favorite customer! What can we do for you today?@@Hello!@@Always nice to see you again.@@Hi! You care for a drink? Finest whiskey in the land!@@Hi there!@@It's you! I thought so. How about a drink, my honey?@@You back for some of Rebecca's great entertainment or the world famous whiskey?@@Welcome back to Rebecca's Bar and Casino. How can I help you?@@Hello. How can we help you?@@Something for you today? How about a drink?@@Would you care for a drink today, or perhaps something else?@@How can I be of service?@@Greetings. What can we get you?@@Need something?@@Nice to see you again. How can I help you today?}
+{3010}{}{I need a drink.}
+{3020}{}{Nothing, bye.}
+{4000}{}{Whiskey is my specialty. It's almost a tradition in the Dyer family. I charge the low, low price of only $5.@@Drinks are still $5, and the Dyer family makes the best darn drinks in the whole world.}
+{4010}{}{I'll take a drink.}
+{4020}{}{Why are your drinks so cheap?}
+{4030}{}{Dyer?}
+{4040}{}{I'm a little short on cash. How about one on the house?}
+{4050}{}{Bye.}
+{5000}{}{Oh, that's the family name. The name Dyer has been in the bar business for a long time - prewar times, of course.@@As I said, it's my family name. There used to be Dyer pubs, saloons or something, all over the world.}
+{5010}{}{I'll take a drink.}
+{5020}{}{Can I ask another question?}
+{5030}{}{Bye.}
+{6000}{}{Sorry, it's a trade secret. Plus, I don't really know you that well. I wouldn't want Frankie finding out. He's enough trouble as it is.  Did you still want one? They really hit the spot.}
+{6010}{}{Sure. I'll have one.}
+{6020}{}{Can I ask another question?}
+{6030}{}{Okay, thanks.}
+{7000}{}{There you are. Thank you very much.}
+{7010}{}{Thanks. Can I ask you a question?}
+{7020}{}{Okay, thanks.}
+{8000}{}{Sorry, I can't run a bar like that.}
+{8010}{}{Worth a try. Could I ask you a question?}
+{8020}{}{Too bad. Bye.}
+{9000}{}{I'll help if I can.@@Of course, don't be silly.@@Anything. Now what was it?@@I'll do my best to help you out. What did you need to know?@@Ask away.}
+{9010}{}{Why are your drinks so cheap?}
+{9020}{}{I need a drink.}
+{9030}{}{Bye.}
+
+[russ]
+{100}{}{Бекки}
+{200}{}{Вы видите очень привлекательную молодуя леди.}
+{210}{}{Вы видите Ребекку.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{1020}{}{Ciaeii}
+{2000}{}{Добрый день! Я Бекки, могу я предложить вам чего-нибудь выпить?}
+{2010}{}{Да я бы не отказался}
+{2020}{}{Ничего не надо, я уже ухожу.}
+{3000}{}{Привет! Рада, что вы вернулись. Какие-то вопросы или ты пришел просто выпить?@@Действительно рада видеть вас. В чем дело? Что-то нужно?}
+{3010}{}{Мне бы выпить.}
+{3020}{}{Ничего не надо, я уже ухожу.}
+{4000}{}{Виски это моя специальность. Это почти традиция в семье Дайер. Цена всего $5.@@Напитки все еще $5, и семья Дайер делает лучшие крепкие напитки во всем мире.}
+{4010}{}{Я возьму выпивки.}
+{4020}{}{Почему ваши напитки такие дешевые?}
+{4030}{}{Дайер?}
+{4040}{}{Я оставил кошелек дома, может пойдем выпьем у меня?}
+{4050}{}{Пока.}
+{5000}{}{О, это фамилия. Дайер содержали сеть баров, это было до войны конечно.}
+{5010}{}{Я бы выпил.}
+{5020}{}{Могу ли я задать еще один вопрос ?}
+{5030}{}{Пока.}
+{6000}{}{Простите, это коммерческая тайна. Налить вам выпить?}
+{6010}{}{Да, пожалуйста.}
+{6020}{}{Могу ли я задать еще один вопрос ?}
+{6030}{}{Пожалуй мне уже хватит.}
+{7000}{}{[протягивает вам стопку]Вот возьмите.}
+{7010}{}{Спасибо. Могу я задать вам вопрос?}
+{7020}{}{Отлично, это то что нужно.}
+{8000}{}{Я не занимаюсь такими вещами.}
+{8010}{}{Стоило попробовать. Могу ли я задать вам вопрос ?}
+{8020}{}{Жаль. Пока.}
+{9000}{}{Помогу, чем смогу.@@Конечно, не говори глупостей.@@Все что угодно.@@Спрашивай.}
+{9010}{}{Почему ваши напитки такие дешевые?}
+{9020}{}{Мне бы выпить.}
+{9030}{}{Пока.}
+
+[pols]
+{100}{}{Becky}
+{200}{}{Widzisz bardzo atrakcyjną, młodą kobietę.}
+{210}{}{Widzisz Rebekę.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{1020}{}{Ciaeii}
+{2000}{}{Cześć, jestem Rebeka. Napijesz się czegoś? Po podróży przez Pustkowia na pewno chce ci się pić..}
+{2010}{}{Hm, muszę się napić.}
+{2020}{}{Nic takiego. Do widzenia.}
+{3000}{}{Cześć! Fajnie, że jesteś z powrotem. Jakieś pytania, czy nalewać whiskey?@@Naprawdę miło cię widzieć. Co tam? Potrzebujesz czegoś?@@Mam nadzieję, że mój ulubiony klient ma się dobrze! Co mogę dziś dla ciebie zrobić?@@Cześć!@@Zawsze miło cię witać z powrotem.@@Cześć! Napijesz się? Najlepsza whiskey w kraju!@@O, to ty! Tak myślałam. Napijesz się, skarbie?@@Witaj.Czym mogę służyć?}
+{3010}{}{Muszę się napić.}
+{3020}{}{Nic takiego. Do widzenia.}
+{4000}{}{Whiskey to moja specjalność. To prawie tradycja rodziny Dyerów. Szklanka kosztuje zaledwie, jedyne 5 kapsli.@@Whiskey kosztuje tylko $5, a rodzina Dyerów wciąż serwuje najlepszą na całym Pustkowiach.}
+{4010}{}{Poproszę szklaneczkę.}
+{4020}{}{Dlaczego twoja whiskey jest taka tania?}
+{4030}{}{Dyerów?}
+{4040}{}{W tym momencie, nie mam zbyt wiele kasy. Może kolejka na koszt firmy?}
+{4050}{}{Do widzenia.}
+{5000}{}{Och, to moje nazwisko. Dyerowie siedzą w tym interesie od długiego czasu - sprzed wojny, oczywiście.@@Tak brzmi moje nazwisko. Przed wojną na całym świecie istniały puby, saloony czy coś takiego imienia Dyerów.}
+{5010}{}{Poproszę szklaneczkę.}
+{5020}{}{Mogę zadać inne pytanie?}
+{5030}{}{Do widzenia.}
+{6000}{}{Przykro mi, to tajemnica handlowa. Ponadto, nie znam cię zbyt dobrze. Nie chciałabym, żeby Frankie się dowiedział. I tak przysparza kłopotów pod dostatkiem. Dalej chcesz kolejkę? Ta whiskey naprawdę daje kopa.}
+{6010}{}{Jasne. Poproszę szklaneczkę.}
+{6020}{}{Mogę zadać inne pytanie?}
+{6030}{}{OK, dzięki.}
+{7000}{}{Proszę bardzo. Bardzo dziękuję.}
+{7010}{}{Dzięki. Mogę zadać ci pytanie?}
+{7020}{}{OK, dzięki.}
+{8000}{}{Przykro mi, nie mogę tak prowadzić baru.}
+{8010}{}{Warto było spróbować. Mogę zadać ci pytanie?}
+{8020}{}{Szkoda. Do widzenia.}
+{9000}{}{Pomogę, jeśli będę w stanie.@@Oczywiście, głupie pytanie.@@Cokolwiek. O co chodzi?@@Pytaj śmiało.}
+{9010}{}{Dlaczego twoja whiskey jest taka tania?}
+{9020}{}{Hm, muszę się napić.}
+{9030}{}{Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{1020}{}{Ciaeii}
+{2000}{}{Hi there, I'm Rebecca. Can I get you something to drink? I'm sure you're thirsty after your trip through the wastes.}
+{2010}{}{I need a drink.}
+{2020}{}{Nothing. Bye.}
+{3000}{}{Hi! Glad you came back. Any questions or are you here for some fine whiskey?@@Really glad to see you. What's up? Need something?@@Hope everything's going well for my favorite customer! What can we do for you today?@@Hello!@@Always nice to see you again.@@Hi! You care for a drink? Finest whiskey in the land!@@Hi there!@@It's you! I thought so. How about a drink, my honey?@@You back for some of Rebecca's great entertainment or the world famous whiskey?@@Welcome back to Rebecca's Bar and Casino. How can I help you?@@Hello. How can we help you?@@Something for you today? How about a drink?@@Would you care for a drink today, or perhaps something else?@@How can I be of service?@@Greetings. What can we get you?@@Need something?@@Nice to see you again. How can I help you today?}
+{3010}{}{I need a drink.}
+{3020}{}{Nothing, bye.}
+{4000}{}{Whiskey is my specialty. It's almost a tradition in the Dyer family. I charge the low, low price of only $5.@@Drinks are still $5, and the Dyer family makes the best darn drinks in the whole world.}
+{4010}{}{I'll take a drink.}
+{4020}{}{Why are your drinks so cheap?}
+{4030}{}{Dyer?}
+{4040}{}{I'm a little short on cash. How about one on the house?}
+{4050}{}{Bye.}
+{5000}{}{Oh, that's the family name. The name Dyer has been in the bar business for a long time - prewar times, of course.@@As I said, it's my family name. There used to be Dyer pubs, saloons or something, all over the world.}
+{5010}{}{I'll take a drink.}
+{5020}{}{Can I ask another question?}
+{5030}{}{Bye.}
+{6000}{}{Sorry, it's a trade secret. Plus, I don't really know you that well. I wouldn't want Frankie finding out. He's enough trouble as it is.  Did you still want one? They really hit the spot.}
+{6010}{}{Sure. I'll have one.}
+{6020}{}{Can I ask another question?}
+{6030}{}{Okay, thanks.}
+{7000}{}{There you are. Thank you very much.}
+{7010}{}{Thanks. Can I ask you a question?}
+{7020}{}{Okay, thanks.}
+{8000}{}{Sorry, I can't run a bar like that.}
+{8010}{}{Worth a try. Could I ask you a question?}
+{8020}{}{Too bad. Bye.}
+{9000}{}{I'll help if I can.@@Of course, don't be silly.@@Anything. Now what was it?@@I'll do my best to help you out. What did you need to know?@@Ask away.}
+{9010}{}{Why are your drinks so cheap?}
+{9020}{}{I need a drink.}
+{9030}{}{Bye.}
+

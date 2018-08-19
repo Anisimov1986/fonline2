@@ -1,0 +1,253 @@
+#include "_macros.fos"
+#include "utils_for_array.fos"
+
+#ifdef __CLIENT
+/*
+uint BuyItemTraderId;
+uint16[] BuyItemPids;
+
+void SetBuyItems(int buyItemsTraderId, int, int, string@, int[]@ buyItemPids)
+{
+	if(!valid(buyItemPids))
+		@buyItemPids = int[](0);
+	
+	BuyItemTraderId = buyItemsTraderId;
+	BuyItemPids.resize(0);
+	for (uint i = 0; i < buyItemPids.length(); i++)
+		BuyItemPids.insertLast(buyItemPids[i]);
+}
+*/
+uint CustomCostsTraderId;
+dictionary ProtoCustomCosts;
+
+void SetCustomCosts(int customCostsTraderId, int, int, string@, int[]@ protoCustomCosts)
+{
+	if(!valid(protoCustomCosts))
+		return;
+	if(protoCustomCosts.length() % 2 != 0)
+		return;
+	
+	CustomCostsTraderId = customCostsTraderId;
+	ProtoCustomCosts.deleteAll();
+	for (uint i = 0; i < protoCustomCosts.length(); i+=2)
+		ProtoCustomCosts.set(""+protoCustomCosts[i], protoCustomCosts[i+1]);
+}
+
+int GetCustomCost(ItemCl& item, CritterCl& chosen, CritterCl& npc, bool sell)
+{
+	if(!ProtoCustomCosts.exists(""+item.GetProtoId()))
+		return -1;
+	
+	uint cost = 0;
+	ProtoCustomCosts.get(""+item.GetProtoId(), cost);
+	return cost;
+}
+
+uint item_cost( ItemCl& item, CritterCl& chosen, CritterCl& npc, bool sell )
+{
+	if(sell && npc.Mode[MODE_BARTER_ONLY_CASH] > 0 && item.GetProtoId() != PID_BOTTLE_CAPS)
+		return 0;
+		
+	if(item.GetProtoId() == PID_BOTTLE_CAPS)
+		return 1;
+	/*	
+	if(npc.Id == BuyItemTraderId && sell && !Present(item.GetProtoId(), BuyItemPids))
+		return 0; //trader does not accept item
+	*/
+	bool ignoreSkill = false;
+	uint rawCost = item.Proto.Cost;
+	if(npc.Id == CustomCostsTraderId)
+	{
+		int customCost = GetCustomCost(item, chosen, npc, sell);
+		if(customCost != -1)
+		{
+			ignoreSkill = true;
+			rawCost = customCost;
+		}
+	}
+	
+	int deterioriation = -1;
+	if(item.IsDeteriorable())
+	{
+		deterioriation = item.Deterioration * 100 / MAX_DETERIORATION;
+		deterioriation = ITEM_PERCENT(item, deterioriation);
+	}
+	
+	if(item.GetType() == ITEM_TYPE_WEAPON && item.AmmoPid != 0 && item.AmmoPid != 65535 && item.AmmoCount > 0 && !ignoreSkill)
+	{
+		ProtoItem@ Ammo = GetProtoItem(item.AmmoPid);
+		if (valid(Ammo))
+		{
+			return GetCost(rawCost, chosen.Skill[SK_BARTER], 
+			npc.Param[SK_BARTER], deterioriation, sell)+GetCost(Ammo.Cost, chosen.Skill[SK_BARTER], 
+			npc.Param[SK_BARTER], -1, sell)*item.AmmoCount;
+		}
+		else
+		{
+			return GetCost(rawCost, chosen.Skill[SK_BARTER], 
+				npc.Param[SK_BARTER], deterioriation, sell);
+		}
+	}
+	else
+	{
+		return GetCost(rawCost, ignoreSkill ? 0 : chosen.Skill[SK_BARTER], 
+			ignoreSkill ? 0 : npc.Param[SK_BARTER], deterioriation, sell);
+	}
+}
+
+#endif
+
+uint GetCost(uint rawCost, uint playerBarterSkill, uint npcBarterSkill, int deterioriation, bool sell)
+{
+	uint cost = rawCost;
+
+	if(deterioriation != -1)
+		cost *= CLAMP(deterioriation, 0, 100)/ float(100);
+	int skillDiff = int(npcBarterSkill) - int(playerBarterSkill);
+	skillDiff = CLAMP(skillDiff, 0, 300);
+	if(sell)
+	{
+		cost -= (cost * skillDiff)/ float(500);
+	}
+	else
+	{	 
+		cost += (cost * skillDiff) / float(400);
+	}
+	return cost == 0 && rawCost > 0 ? 1 : cost;
+}
+
+#ifdef __SERVER
+#include "_msgstr.fos"
+
+import int GetCustomCost(Critter& shopkeeper, Item& item) from "shopkeeper";
+import bool ShopkeeperAccepts(Critter& shopkeeper, Critter& player, Item@[]& buyItems, Item@[]& saleItems) from "shopkeeper";
+import void CollectShopkeeperTax(Critter& npc, Critter& player, int amount) from "shopkeeper";
+import bool TraderAccepts(Critter& npc, Critter& player, Item@[]& saleItems, uint[]& saleItemsCount, uint[]& saleItemsCost, Item@[]& buyItems, uint[]& buyItemsCount, uint[]& buyItemsCost) from "trader";
+import void RiseBarter(Critter& cr, int num) from "stdlib";
+
+uint item_cost( Item& item, Critter& cr, Critter& npc, bool sell )
+{
+	if(sell && npc.Mode[MODE_BARTER_ONLY_CASH] > 0 && item.GetProtoId() != PID_BOTTLE_CAPS)
+		return 0;
+		
+	if(item.GetProtoId() == PID_BOTTLE_CAPS)
+		return 1;
+	
+	bool ignoreSkill = false;
+	uint rawCost = item.Proto.Cost;
+	int customCost = GetCustomCost(npc, item);
+	if(customCost != -1)
+	{
+		rawCost = customCost;
+		ignoreSkill = true;
+	}
+	
+	int deterioriation = -1;
+	if(item.IsDeteriorable())
+	{
+		deterioriation = item.Deterioration * 100 / MAX_DETERIORATION;
+		deterioriation = ITEM_PERCENT(item, deterioriation);
+	}
+	if(item.GetType() == ITEM_TYPE_WEAPON && item.AmmoPid != 0 && item.AmmoPid != 65535 && item.AmmoCount > 0 && !ignoreSkill)
+	{
+		ProtoItem@ Ammo = GetProtoItem(item.AmmoPid);
+		if (valid(Ammo))
+		{
+			return GetCost(rawCost, cr.Skill[SK_BARTER], 
+			npc.Param[SK_BARTER], deterioriation, sell)+GetCost(Ammo.Cost, cr.Skill[SK_BARTER], 
+			npc.Param[SK_BARTER], -1, sell)*item.AmmoCount;
+		}
+		else
+		{
+			return GetCost(rawCost, cr.Skill[SK_BARTER], 
+				npc.Skill[SK_BARTER], deterioriation, sell);
+		}
+	}
+	else
+	{
+		return GetCost(rawCost, ignoreSkill ? 0 : cr.Skill[SK_BARTER], 
+			ignoreSkill ? 0 : npc.Skill[SK_BARTER], deterioriation, sell);
+	}
+}
+
+bool items_barter( Item@[]& saleItems, uint[]& saleItemsCount, Item@[]& buyItems, uint[]& buyItemsCount, Critter& player, Critter& npc )
+{
+	if(!ShopkeeperAccepts(npc, player, buyItems, saleItems))
+		return false;
+	
+	if( npc.Mode[ MODE_BARTER_ONLY_CASH ] > 0 )
+    {
+        for( uint i = 0, j = saleItems.length(); i < j; i++ )
+        {
+            Item@ item = saleItems[ i ];
+            if( valid( item ) && item.GetProtoId() != PID_BOTTLE_CAPS )
+            {
+                npc.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_BARTER_ONLY_CASH );
+                npc.SayMsg( SAY_DIALOG, TEXTMSG_GAME, STR_BARTER_ONLY_CASH );
+                return false;
+            }
+        }
+    }
+
+    uint[] saleItemsCost = GetCosts(saleItems, player, npc, true);
+    uint[] buyItemsCost = GetCosts(buyItems, player, npc, false);
+    if(!TraderAccepts(npc, player, saleItems, saleItemsCount, saleItemsCost, buyItems, buyItemsCount, buyItemsCost))
+		return false;
+	
+	if(_IsTrader(npc) && player.Param[SK_BARTER]<200)
+    {
+		int profitsale = 0;
+		int profitbuy = 0;
+		int barterbonus = 0;
+		for(uint i = 0; i < saleItems.length(); i++)
+        {
+			//Log("Sell Real Cost "+ saleItemsCost[i] * saleItemsCount[i]);
+			//Log("Sell Proto Cost "+saleItems[i].Proto.Cost* saleItemsCount[i]);
+			profitsale += (saleItems[i].Proto.Cost - saleItemsCost[i]) * saleItemsCount[i];
+		}
+		for(uint i = 0; i < buyItems.length(); i++)
+        {
+			//Log("Buy Real Cost >"+buyItemsCost[i] * buyItemsCount[i]);
+			//Log("Buy Proto Cost "+buyItems[i].Proto.Cost * buyItemsCount[i]);
+			profitbuy += (buyItemsCost[i] - buyItems[i].Proto.Cost) * buyItemsCount[i];
+        }
+		barterbonus = CLAMP(MAX(profitsale,profitbuy),0,10000);
+		if ( barterbonus>0 )
+		{
+			barterbonus/=1000;
+			if ( barterbonus>0 )
+				RiseBarter(player,barterbonus);
+		//Log("profitsale=" +profitsale);
+		//Log("profitbuy=" +profitbuy);
+		}
+	}
+	
+	//Shopkeeper tax
+	int tax = 0;
+	for(uint i = 0; i < saleItems.length(); i++)
+		if (valid(saleItems[i]) && saleItems[i].GetProtoId() == PID_BOTTLE_CAPS)
+			tax += saleItemsCount[i];
+	
+	for(uint i = 0; i < buyItems.length(); i++)
+		if (valid(buyItems[i]) && buyItems[i].GetProtoId() == PID_BOTTLE_CAPS)
+			tax -= buyItemsCount[i];
+	
+	if (tax < 0)
+		tax = 0;
+			
+	CollectShopkeeperTax(npc, player, tax);
+	
+    return true;
+}
+
+uint[] GetCosts(Item@[] items, Critter& player, Critter& npc, bool sell)
+{
+	uint[] costs;
+	for (uint i = 0; i < items.length(); i++)
+		if(valid(items[i]))
+			costs.insertLast(item_cost(items[i], player, npc, sell));
+		else
+			costs.insertLast(0);
+	return costs;
+}
+#endif

@@ -1,0 +1,87 @@
+//Hex attack - server side
+//Author - binyan
+//version 0.8
+
+#include "_macros.fos"
+#include "utils_for_array.fos"
+#include "_msgstr.fos"
+
+const uint16[] Pids_HexShoot = { PID_ROCKET_LAUNCHER, PID_PLASMA_GRENADE , PID_PULSE_GRENADE, PID_FRAG_GRENADE, PID_MOLOTOV_COCKTAIL, PID_ACTIVE_DYNAMITE};
+const uint16[] Pids_HexShoot_2nd = { PID_PLASMA_GRENADE , PID_PULSE_GRENADE, PID_FRAG_GRENADE, PID_MOLOTOV_COCKTAIL};
+
+import void CombatAttack(Critter& cr, Critter@ target, ProtoItem& weapon, uint8 weaponMode, ProtoItem@ ammo, uint16 hexX, uint16 hexY, bool is2nd) from "combat";
+
+void unsafe_hex_attack(Critter& player, int hexX, int hexY, int , string@ , int[]@ )
+{
+	if(player.IsBusy())
+		return;
+
+	Map@ map = player.GetMap();
+
+	if(map is null)
+		return;
+	Item@[] realweapon; 
+	player.GetItems(SLOT_HAND1, realweapon); 
+	bool is2nd=false;
+	if(realweapon.length()<1 || (realweapon[0] is null) || !Present( realweapon[0].GetProtoId(), Pids_HexShoot ))
+	{
+		realweapon.resize(0);
+		player.GetItems(SLOT_HAND2, realweapon); 
+		if(realweapon.length()<1 || (realweapon[0] is null) || !Present( realweapon[0].GetProtoId(), Pids_HexShoot_2nd ))
+			return;
+		is2nd=true;
+	}
+	uint8 mode = realweapon[0].Mode;
+	ProtoItem@ weapon = GetProtoItem(realweapon[0].GetProtoId()); 
+	ProtoItem@ ammo;
+	 
+	uint16 toHx = uint16(hexX), toHy = uint16(hexY);
+	int dist=GetDistantion(player.HexX,  player.HexY, hexX, hexY);
+	map.GetHexCoord( player.HexX,  player.HexY, toHx, toHy,  0.0f, dist);
+	if((hexX!=toHx)||(hexY!=toHy))
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_COMBAT, 104); 
+		return;
+	}
+	bool isRocket=(realweapon[0].AmmoPid == PID_EXPLOSIVE_ROCKET) || (realweapon[0].AmmoPid == PID_ROCKET_AP) || (realweapon[0].AmmoPid == PID_ROBO_ROCKET_AMMO);
+	if(_WeaponSkill(weapon,mode)!=SK_THROWING && !isRocket)
+		return;	
+	if (isRocket && (player.Damage[DAMAGE_RIGHT_ARM]!=0 || player.Damage[DAMAGE_LEFT_ARM]!=0))
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_COMBAT, STR_COMBAT_NEED_DMG_ARM); 
+		return;
+	}
+			
+	int wpnMaxDist=GetAttackDistantion(player,realweapon[0],mode);
+	//if(_WeaponSkill(weapon,mode)==SK_THROWING)wpnMaxDist = MIN( wpnMaxDist, 3 * MIN( int(10), player.Stat[ ST_STRENGTH ])) + 3 * player.Perk[ PE_HEAVE_HO ];
+	
+	if (dist>wpnMaxDist)
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_COMBAT, 102);
+		return;
+    }
+	if(player.Stat[ST_CURRENT_AP] < (GetUseApCost(player,realweapon[0],mode)))
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_COMBAT , 110 ,"$points"+(GetUseApCost(player,realweapon[0],mode)));
+		return;
+	}
+	GameVar @ cooldown = GetLocalVar( LVAR_hex_cooldown, player.Id );
+	if( __FullSecond < uint( cooldown.GetValue() ) )return;
+	cooldown=__FullSecond + REAL_SECOND(1);
+	
+	if(weapon.Weapon_MaxAmmoCount>0)
+	{	  
+	    if(realweapon[0].AmmoCount==0)
+		{
+			return;
+		}
+		else
+		{
+			@ammo = GetProtoItem(realweapon[0].AmmoPid);
+		}
+	}
+	Critter@ target = map.GetCritter(hexX, hexY);
+	player.Wait( __Breaktime );
+	player.StatBase[ST_CURRENT_AP]-=(GetUseApCost(player,realweapon[0],mode))*100;
+	CombatAttack(player, target, weapon, mode, ammo, hexX, hexY,is2nd);
+}

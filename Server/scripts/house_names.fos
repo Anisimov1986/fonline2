@@ -1,0 +1,83 @@
+#include "_maps.fos"
+#include "economy_h.fos"
+
+HouseName@[] houseNames = {
+	HouseName(MAP_hub, 288, 158, "Mainroad Small House", 80000),
+	HouseName(MAP_hub, 288, 127, "Mainroad Large House", 160000),
+	HouseName(MAP_hub, 310, 93, "North Entrance House", 90000),
+	HouseName(MAP_hub, 228, 249, "Oldtown Road Building Abandoned Store", 80000),
+	HouseName(MAP_hub, 386, 263, "Heights Villa", 300000),
+	HouseName(MAP_hub, 438, 249, "Heights Big House", 160000),
+	HouseName(MAP_hub, 442, 267, "Heights Large House", 200000),
+	HouseName(MAP_hub_oldtown, 128, 97, "Oldtown Small House", 60000),
+	HouseName(MAP_hub_oldtown, 108, 79, "Oldtown Warehouse No. 1", 100000),
+	HouseName(MAP_hub_oldtown, 64, 81, "Oldtown Warehouse No. 2", 90000),
+	HouseName(MAP_hub_oldtown, 112, 113, "Oldtown Warehouse No. 3", 100000),
+	HouseName(MAP_hub_watermerchants, 40, 40, "Watermerchants North Entrance House", 170000),
+	HouseName(MAP_hub_watermerchants, 84, 78, "Watermerchants Medium House No. 1", 120000),
+	HouseName(MAP_hub_watermerchants, 96, 90, "Watermerchants Medium House No. 2", 120000),
+	HouseName(MAP_hub_watermerchants, 70, 88, "Watermerchants Big house", 190000),
+	HouseName(MAP_ncr_bazaar, 130, 223, "Shady Sands Villa Near Statue", 500000),
+	HouseName(MAP_vcity, 113, 215, "Citizen House No. 1", 120000),
+	HouseName(MAP_vcity, 116, 161, "Citizen House No. 2", 120000),
+	HouseName(MAP_vcity, 115, 137, "Citizen House No. 3", 120000),
+	HouseName(MAP_vcity, 92, 122, "Citizen Small House No. 1", 70000),
+	HouseName(MAP_vcity, 71, 117, "Citizen Small House No. 2", 60000),
+	HouseName(MAP_vcity, 67, 101, "Citizen House No. 4", 110000),
+	HouseName(MAP_vcity, 48, 95, "Citizen House No. 5", 140000),
+	HouseName(MAP_hub, 326, 139, "Mainroad Northern Ground Floor Flat", 80000),
+	HouseName(MAP_hub, 326, 145, "Mainroad Southern Ground Floor Flat", 80000),
+	HouseName(MAP_hub_flats, 326, 139, "Mainroad Building Northern First Floor Flat", 75000),
+	HouseName(MAP_hub_flats, 326, 145, "Mainroad Building Southern First Floor Flat", 75000),
+	HouseName(MAP_hub_flats, 246, 179, "Mainroad Building Northern Second Floor Flat", 70000),
+	HouseName(MAP_hub_flats, 246, 185, "Mainroad Building Southern Second Floor Flat", 70000),
+	HouseName(MAP_hub_flats, 160, 222, "Mainroad Building Third Floor Suite", 140000),
+	HouseName(MAP_hub_flats, 402, 255, "Oldtown Road Building Eastern First Floor Flat", 75000),
+	HouseName(MAP_hub_flats, 386, 250, "Oldtown Road Building Western First Floor Flat", 75000),
+	HouseName(MAP_hub_flats, 321, 296, "Oldtown Road Building Eastern Second Floor Flat", 70000),
+	HouseName(MAP_hub_flats, 305, 291, "Oldtown Road Building Western Second Floor Flat", 70000),
+	HouseName(MAP_hub_flats, 227, 331, "Oldtown Road Building Third Floor Apartment", 140000)
+	};
+
+
+
+string@ GetHouseName(uint map, uint16 doorX, uint16 doorY)
+{
+	for (uint i = 0; i < houseNames.length(); i++)
+	{
+		HouseName@ houseName = houseNames[i];
+		if(houseName.Map == map && houseName.DoorX == doorX && houseName.DoorY == doorY)
+			return houseName.Name+" - "+houseName.Cost;
+	}
+	
+	return null;
+}
+
+uint GetHousePrice(uint map, uint16 doorX, uint16 doorY)
+{
+	for (uint i = 0; i < houseNames.length(); i++)
+	{
+		HouseName@ houseName = houseNames[i];
+		if(houseName.Map == map && houseName.DoorX == doorX && houseName.DoorY == doorY)
+			return PriceMod(houseName.Cost);
+	}
+	return 0;
+}
+
+class HouseName
+{
+	uint Map;
+	uint DoorX;
+	uint DoorY;
+	string Name;
+	uint Cost;
+	
+	HouseName(uint map, uint16 doorX, uint16 doorY, string name,uint cost)
+	{
+		Map = map;
+		DoorX = doorX;
+		DoorY = doorY;
+		Name = name;
+		Cost = cost;
+	}
+}

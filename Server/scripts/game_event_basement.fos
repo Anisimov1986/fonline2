@@ -1,0 +1,576 @@
+#include "entire_h.fos"
+
+#include "_maps.fos"
+#include "_itempid.fos"
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_common_critters.fos" 
+#include "game_event_common_loot.fos"
+#include "game_event_common_worldmap.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos" 
+
+#define EVENT_DURATION                  (REAL_MINUTE(15))
+#define GOSSIP_DELAY                    (REAL_MINUTE(3))
+#define GOSSIP_DURATION                 (REAL_MINUTE(11))
+#define SIGHT_RANGE                     (25)
+#define GANG_BASEMENT_EVENT_ID          (59)
+#define PUNKER_BASEMENT_EVENT_ID        (60)
+#define RAIDER_BASEMENT_EVENT_ID        (61)
+
+#define ROLE_SCAVENGER                  (288100)
+#define ROLE_CHEMIST                    (288101)
+
+import void SpawnEventFlares(Map& map, uint entire) from "game_event_utils";
+import void SpawnMinesLowQuantity(Map& map, uint entire, uint entireFillRatio, bool noLoot) from "game_event_utils";
+import void RemoveEventFlares(Map& map) from "game_event_utils";
+import int GetNextTime(uint Id) from "game_events";
+import Location@+ GetNearestVisibleLocation(uint x, uint y) from "game_event_utils";
+import double CountAliveCrittersPercent(Map &map) from "game_event_utils";
+
+// Scavengers initialization
+int[] scavengerParams = {ST_REPLICATION_TIME, -1, ST_BAG_ID, BAG_WEAKSHIT}; 		
+int[] scavengerPids = {NPC_PID_SCAV1, NPC_PID_SCAV2, NPC_PID_SCAV3, NPC_PID_SCAV4, NPC_PID_SCAV5};
+CritterTemplate scavengerCritterTemplate = CritterTemplate(scavengerPids, ROLE_SCAVENGER)
+		.SetStartEntire(ENTIRE_EVENT_DEFENDER_SPAWN)
+		.SetCritterParams(scavengerParams);				
+
+// Chemist
+int[] chemistParams = {ST_REPLICATION_TIME, -1, ST_BAG_ID, BAG_CHILD}; 		
+int[] chemistPids = {989};
+CritterTemplate chemistCritterTemplate = CritterTemplate(chemistPids, ROLE_CHEMIST)
+		.SetStartEntire(ENTIRE_EVENT_DEFENDER_SPAWN)
+		.SetCritterParams(chemistParams)
+		.SetAttachEventManager(true);
+CritterEventsManager chemistCritterEvents = CritterEventsManager(ROLE_CHEMIST)
+	.When(CritterAttacked())
+		.Execute(RunAway());		
+		
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + GANG_BASEMENT_EVENT_ID, BasementEvent(GANG_BASEMENT_EVENT_ID)
+		.AddGroupId(GROUP_Gang)
+		.AddLocationPid(TERRAIN_City, LOCATION_EventBasementC1)
+		.AddWorldMapArea(costalCityArea)
+		.SetEnemy(ROLE_GANG)
+		.AddTableLoot(PID_MENTATS, 1, 2, 0.2)
+		.AddTableLoot(PID_SUPER_STIMPAK, 1, 2, 0.2)
+		.AddTableLoot(PID_BUFFOUT, 1, 2, 0.2)
+		.AddTableLoot(PID_PSYCHO, 1, 2, 0.1)
+		.AddTableLoot(PID_JET, 1, 2, 0.2)
+		.AddTableLoot(PID_RAD_X, 1, 2, 0.2)
+		.AddTableLoot(PID_RADAWAY, 1, 2, 0.2)
+		.AddTableLoot(PID_RADAWAY, 1, 2, 0.2)
+		.AddTableLoot(PID_BROC_FLOWER, 1, 4, 0.5)
+		.AddTableLoot(PID_XANDER_ROOT, 1, 4, 0.5)
+		.AddTableLoot(PID_HYPODERMIC_NEEDLE, 1, 4, 0.5)
+		.AddTableLoot(PID_MUTATED_FRUIT, 1, 4, 0.5)
+		.AddTableLoot(PID_CHEMICAL_COMPONENTS, 1, 4, 0.5)
+		.AddTableLoot(PID_ROENTGEN_RUM, 1, 4, 0.5)
+		.AddTableLoot(PID_GAMMA_GULP_BEER, 1, 4, 0.5)
+		.AddDrugsLoot(PID_MENTATS, 5, 20)
+		.AddDrugsLoot(PID_SUPER_STIMPAK, 5, 20)
+		.AddDrugsLoot(PID_BUFFOUT, 5, 20)
+		.AddDrugsLoot(PID_PSYCHO, 2, 10)
+		.AddDrugsLoot(PID_JET, 5, 20)
+		.AddDrugsLoot(PID_RAD_X, 5, 20)
+		.AddDrugsLoot(PID_RADAWAY, 5, 20)
+		.AddAmmoLoot(PID_FRAG_GRENADE, 4, 8)
+		.AddAmmoLoot(PID_PLASMA_GRENADE, 4, 8)
+		.AddAmmoLoot(PID_10MM_AP, 250, 550)
+		.AddAmmoLoot(PID_5MM_AP, 250, 550)
+		.AddAmmoLoot(PID_SHOTGUN_SHELLS, 150, 250)
+		.AddAmmoLoot(PID_44_FMJ_MAGNUM, 250, 350)
+		.AddAmmoLoot(PID_223_FMJ, 150, 250)
+		.AddAmmoLoot(PID_14MM_AP, 150, 250)
+		.AddAmmoLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddAmmoLoot(commonL2Loot)		
+		.AddOtherLoot(PID_BOTTLE_CAPS, 1250, 1750)
+		.AddOtherLoot(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 0.2)
+		.AddOtherLoot(PID_DEANS_ELECTRONICS, 1, 1, 0.2)
+		.AddOtherLoot(PID_FIRST_AID_BOOK, 1, 1, 0.2)
+		.AddOtherLoot(PID_LOCKPICKS, 0, 1)
+		.AddOtherLoot(commonRareLoot)	
+	);
+	
+	events.set("" + PUNKER_BASEMENT_EVENT_ID, BasementEvent(PUNKER_BASEMENT_EVENT_ID)
+		.AddGroupId(GROUP_Punkers)
+		.AddLocationPid(TERRAIN_City, LOCATION_EventBasementC1)
+		.AddWorldMapArea(costalCityArea)
+		.SetEnemy(ROLE_PUNKER)
+		.AddTableLoot(PID_MENTATS, 1, 2, 0.2)
+		.AddTableLoot(PID_SUPER_STIMPAK, 1, 2, 0.2)
+		.AddTableLoot(PID_BUFFOUT, 1, 2, 0.2)
+		.AddTableLoot(PID_PSYCHO, 1, 2, 0.1)
+		.AddTableLoot(PID_JET, 1, 2, 0.2)
+		.AddTableLoot(PID_RAD_X, 1, 2, 0.2)
+		.AddTableLoot(PID_RADAWAY, 1, 2, 0.2)
+		.AddTableLoot(PID_RADAWAY, 1, 2, 0.2)
+		.AddTableLoot(PID_BROC_FLOWER, 1, 4, 0.5)
+		.AddTableLoot(PID_XANDER_ROOT, 1, 4, 0.5)
+		.AddTableLoot(PID_HYPODERMIC_NEEDLE, 1, 4, 0.5)
+		.AddTableLoot(PID_MUTATED_FRUIT, 1, 4, 0.5)
+		.AddTableLoot(PID_CHEMICAL_COMPONENTS, 1, 4, 0.5)
+		.AddTableLoot(PID_ROENTGEN_RUM, 1, 4, 0.5)
+		.AddTableLoot(PID_GAMMA_GULP_BEER, 1, 4, 0.5)
+		.AddDrugsLoot(PID_MENTATS, 5, 20)
+		.AddDrugsLoot(PID_SUPER_STIMPAK, 5, 20)
+		.AddDrugsLoot(PID_BUFFOUT, 5, 20)
+		.AddDrugsLoot(PID_PSYCHO, 2, 10)
+		.AddDrugsLoot(PID_JET, 5, 20)
+		.AddDrugsLoot(PID_RAD_X, 5, 20)
+		.AddDrugsLoot(PID_RADAWAY, 5, 20)
+		.AddAmmoLoot(PID_FRAG_GRENADE, 4, 8)
+		.AddAmmoLoot(PID_PLASMA_GRENADE, 4, 8)
+		.AddAmmoLoot(PID_10MM_AP, 250, 550)
+		.AddAmmoLoot(PID_5MM_AP, 250, 550)
+		.AddAmmoLoot(PID_SHOTGUN_SHELLS, 150, 250)
+		.AddAmmoLoot(PID_44_FMJ_MAGNUM, 250, 350)
+		.AddAmmoLoot(PID_223_FMJ, 150, 250)
+		.AddAmmoLoot(PID_14MM_AP, 150, 250)
+		.AddAmmoLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddAmmoLoot(commonL3Loot)	
+		.AddOtherLoot(PID_BOTTLE_CAPS, 1250, 1750)
+		.AddOtherLoot(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 0.2)
+		.AddOtherLoot(PID_DEANS_ELECTRONICS, 1, 1, 0.2)
+		.AddOtherLoot(PID_FIRST_AID_BOOK, 1, 1, 0.2)
+		.AddOtherLoot(PID_LOCKPICKS, 0, 1)
+		.AddOtherLoot(commonRareLoot)	
+	);
+	
+	events.set("" + RAIDER_BASEMENT_EVENT_ID, BasementEvent(RAIDER_BASEMENT_EVENT_ID)
+		.AddGroupId(GROUP_Raiders_Metal_Armor)
+		.AddGroupId(GROUP_Raiders_Weak)
+		.AddLocationPid(TERRAIN_City, LOCATION_EventBasementC1)
+		.SetEnemy(ROLE_RAIDER)
+		.AddTableLoot(PID_MENTATS, 1, 2, 0.2)
+		.AddTableLoot(PID_SUPER_STIMPAK, 1, 2, 0.2)
+		.AddTableLoot(PID_BUFFOUT, 1, 2, 0.2)
+		.AddTableLoot(PID_PSYCHO, 1, 2, 0.1)
+		.AddTableLoot(PID_JET, 1, 2, 0.2)
+		.AddTableLoot(PID_RAD_X, 1, 2, 0.2)
+		.AddTableLoot(PID_RADAWAY, 1, 2, 0.2)
+		.AddTableLoot(PID_RADAWAY, 1, 2, 0.2)
+		.AddTableLoot(PID_BROC_FLOWER, 1, 4, 0.5)
+		.AddTableLoot(PID_XANDER_ROOT, 1, 4, 0.5)
+		.AddTableLoot(PID_HYPODERMIC_NEEDLE, 1, 4, 0.5)
+		.AddTableLoot(PID_MUTATED_FRUIT, 1, 4, 0.5)
+		.AddTableLoot(PID_CHEMICAL_COMPONENTS, 1, 4, 0.5)
+		.AddTableLoot(PID_ROENTGEN_RUM, 1, 4, 0.5)
+		.AddTableLoot(PID_GAMMA_GULP_BEER, 1, 4, 0.5)
+		.AddDrugsLoot(PID_MENTATS, 5, 20)
+		.AddDrugsLoot(PID_SUPER_STIMPAK, 5, 20)
+		.AddDrugsLoot(PID_BUFFOUT, 5, 20)
+		.AddDrugsLoot(PID_PSYCHO, 2, 10)
+		.AddDrugsLoot(PID_JET, 5, 20)
+		.AddDrugsLoot(PID_RAD_X, 5, 20)
+		.AddDrugsLoot(PID_RADAWAY, 5, 20)
+		.AddAmmoLoot(PID_FRAG_GRENADE, 4, 8)
+		.AddAmmoLoot(PID_PLASMA_GRENADE, 4, 8)
+		.AddAmmoLoot(PID_10MM_AP, 250, 550)
+		.AddAmmoLoot(PID_5MM_AP, 250, 550)
+		.AddAmmoLoot(PID_SHOTGUN_SHELLS, 150, 250)
+		.AddAmmoLoot(PID_44_FMJ_MAGNUM, 250, 350)
+		.AddAmmoLoot(PID_223_FMJ, 150, 250)
+		.AddAmmoLoot(PID_14MM_AP, 150, 250)
+		.AddAmmoLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddAmmoLoot(commonL3Loot)	
+		.AddOtherLoot(PID_BOTTLE_CAPS, 1250, 1750)
+		.AddOtherLoot(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 0.2)
+		.AddOtherLoot(PID_DEANS_ELECTRONICS, 1, 1, 0.2)
+		.AddOtherLoot(PID_FIRST_AID_BOOK, 1, 1, 0.2)
+		.AddOtherLoot(PID_LOCKPICKS, 0, 1)
+		.AddOtherLoot(commonRareLoot)	
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	BasementEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+		
+		uint[] values = {id};
+		CreateTimeEvent(__FullSecond + EVENT_DURATION, "e_event_stop", values, true);
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	BasementEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start( Critter& cr, int id, int , int)
+{
+	event_start(id);
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class BasementEvent
+{	
+	private int eventId, enemyRole;
+	private HybridLocationGenerator hybridLocationGenerator;
+	private AutoLootGenerator autoDrugsLootGenerator, autoAmmoLootGenerator, autoOtherLootGenerator, autoTableLootGenerator;
+	
+	BasementEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	BasementEvent@ AddGroupId(uint groupId)
+	{
+		hybridLocationGenerator.AddGroupId(groupId);
+		return @this;
+	}
+	
+	BasementEvent@ AddLocationPid(uint terrainType, uint locationPid)
+	{
+		hybridLocationGenerator.AddLocationPid(terrainType, locationPid);
+		return @this;
+	}
+	
+	BasementEvent@ AddWorldMapArea(WorldMapArea& worldMapArea)
+	{
+		hybridLocationGenerator.AddWorldMapArea(worldMapArea);
+		return @this;
+	}
+	
+	BasementEvent@ SetEnemy(int enemyRole)
+	{
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		critterTemplate.SetShowCritterDist1(SIGHT_RANGE);
+	
+		this.enemyRole = enemyRole;
+		return @this;
+	}
+	
+	BasementEvent@ AddDrugsLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoDrugsLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	BasementEvent@ AddDrugsLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoDrugsLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+		
+	BasementEvent@ AddDrugsLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoDrugsLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+
+	BasementEvent@ AddAmmoLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoAmmoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	BasementEvent@ AddAmmoLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoAmmoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+		
+	BasementEvent@ AddAmmoLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoAmmoLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	BasementEvent@ AddOtherLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoOtherLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	BasementEvent@ AddOtherLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoOtherLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+		
+	BasementEvent@ AddOtherLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoOtherLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	BasementEvent@ AddTableLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoTableLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	BasementEvent@ AddTableLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoTableLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+		
+	BasementEvent@ AddTableLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoTableLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+	
+	bool IsEventMap(Map& map)
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		return autoLocation.IsLocationMap(map);
+	}
+	
+	void StartEvent()
+	{	
+		AutoLocation autoLocation = AutoLocation(eventId);
+		Location @location = autoLocation.Create(hybridLocationGenerator);
+		if (!valid(location))
+		{
+			return;
+		}
+		
+		location.Visible = true;
+		location.AutoGarbage = false;
+		location.Color = COLOR_RED;
+	
+		Map @mapOut = location.GetMapByIndex(0); 
+		if (!valid(mapOut)) 
+		{
+			autoLocation.Delete();
+			return;
+		}
+		
+		Map @mapIn = location.GetMapByIndex(1); 
+		if (!valid(mapIn)) 
+		{
+			autoLocation.Delete();
+			return;
+		}
+		
+		SpawnMinesLowQuantity(mapOut, ENTIRE_EVENT_MINE_SPAWN, 95, true);
+		SpawnEventFlares(mapOut, ENTIRE_EVENT_FLARE_SPAWN);
+		AddEnemies(mapOut);
+		AddScavengers(mapOut);
+				
+		SpawnMinesLowQuantity(mapIn, ENTIRE_EVENT_MINE_SPAWN, 75, true);
+		AddChemists(mapIn);
+		AddEnemies(mapIn);
+		AddBasementLoot(mapIn);
+		
+		mapIn.SetScript("_MapInit");
+		
+		InitializeGossip(location);
+	}
+	
+	void InitializeGossip(Location &location)
+	{		
+		Location @townLocation = GetNearestVisibleLocation(location.WorldX, location.WorldY);
+		if (!valid(townLocation)) 
+		{
+			return;
+		}
+		
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		int critterPid = critterTemplate.GetCritterPids()[0];
+		
+		GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, GOSSIP_DURATION);
+		gossipDefinition.SetGossipId(eventId);
+		gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+		gossipDefinition.SetDelay(GOSSIP_DELAY);
+		gossipDefinition.SetSourceLocationId(location.Id);
+		gossipDefinition.SetMsgId(STR_BASEMENT_EVENT_GOSSIP_LOC);
+		gossipDefinition.SetSourceMsgId(STR_BASEMENT_EVENT_GOSSIP_NO_LOC);
+		gossipDefinition.SetLexems("$locationname" + "@msg GM " + STR_LOC_NAME(townLocation.GetProtoId()) + "@"
+				+ "$crittername" + "@msg DLG " + STR_NPC_PROTO_NAME(critterPid) + "@");
+		StartGossip(gossipDefinition);
+	}
+	
+	void StopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+		
+		autoLocation.Delete();
+		
+		Location @location = autoLocation.GetLocation();
+		
+		location.Visible = false;
+		location.AutoGarbage = true;
+		location.Update();
+	
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			return;
+		}
+	
+		RemoveEventFlares(map);
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+	}
+	
+	private void AddBasementLoot(Map& map)
+	{
+		autoTableLootGenerator.SpawnLootToContainers(map, 10, false, false);
+		autoDrugsLootGenerator.SpawnLootToContainers(map, 11, false, true);
+		autoAmmoLootGenerator.SpawnLootToContainers(map, 12, false, true);
+		autoOtherLootGenerator.SpawnLootToContainers(map, 13, false, true);
+	}
+	
+	private void AddScavengers(Map& map)
+	{
+		int scavengersCount = map.CountEntire(scavengerCritterTemplate.GetStartEntire());
+	
+		for (int i = 0; i < scavengersCount; i++)
+		{
+			Critter@ critter = scavengerCritterTemplate.Spawn(map);
+		}
+		
+		scavengerCritterTemplate.ToDeadAll(map, ANIM2_DEAD_EXPLODE);
+	}
+	
+	private void AddChemists(Map& map)
+	{
+		int chemistsCount = map.CountEntire(chemistCritterTemplate.GetStartEntire());
+	
+		for (int i = 0; i < chemistsCount; i++)
+		{
+			Critter@ critter = chemistCritterTemplate.Spawn(map);
+		}
+	}
+	
+	private void AddEnemies(Map& map)
+	{		
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		int enemyCount = 0.75 * map.CountEntire(critterTemplate.GetStartEntire());
+		
+		for (int i = 0; i < enemyCount; i++)
+		{
+			critterTemplate.Spawn(map);
+		}
+	}
+	
+	void TryStopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+	
+		Location @location = autoLocation.GetLocation();
+		Map @mapIn = location.GetMapByIndex(1);
+
+		if (!valid(mapIn)) 
+		{
+			return;
+		}
+		
+		if (CountAliveCrittersPercent(mapIn) < 0.25)
+		{
+			StopEvent();
+		}
+	}
+}
+
+BasementEvent@ findEvent(Map& map)
+{
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	string@[] keys;
+	events.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		BasementEvent @event;
+		
+		if (events.get(keys[i], @event) && event.IsEventMap(map))
+		{
+			return event;
+		}
+	}
+	
+	return null;
+}
+
+void _MapInit(Map& map, bool firstTime)
+{
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_MapCritterOut");
+}
+
+void _MapCritterOut(Map& map, Critter& cr)
+{
+	BasementEvent @event = findEvent(map);
+	if (valid(event))
+	{
+		event.TryStopEvent();
+	}
+}

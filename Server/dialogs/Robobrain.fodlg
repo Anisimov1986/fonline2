@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Robobrain}
+{200}{}{You see: Robobrain.}
+{210}{}{ }
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Combat sequence initiated.}
+
+[russ]
+{100}{}{Робомозг}
+{200}{}{ }
+{210}{}{ }
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Боевой протокол инициализирован.}
+
+[pols]
+{100}{}{Android}
+{200}{}{ }
+{210}{}{ }
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Tryb bojowy uruchomiony.}
+
+[ptbr]
+{100}{}{Cérebrobô}
+{200}{}{Você vê: Cérebrobô.}
+{210}{}{ }
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Sequência de combate iniciada.}
+

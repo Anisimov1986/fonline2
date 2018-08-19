@@ -1,0 +1,364 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+17 1010 D _param p TRAIT_SKILLED = 1 #
+14 1020 D _param p MAIN_FACTION = 1 D or D _param p MAIN_FACTION = 2 D or D _param p MAIN_FACTION = 4 D or D _param p MAIN_FACTION } 5 #
+15 1030 D _var p encside = 20 #
+23 1040 D _var p encside = 21 D or D _var p encside = 22 #
+4 1050 D _var p encside = 1 #
+7 1060 D _var p encside = 3 #
+9 1070 D _var p encside = 5 #
+11 1080 D _var p encside = 7 R _var p encside = 8 R _script dialog@r_ShowLocation 1 15 #
+12 1090 D _var p encside = 8 R _script dialog@r_ShowLocation 1 15 #
+2 1100 D _var p encside = 0 #
+16 1110 @
+2 2000 None 0 #
+3 2010 D _var p TEMP_LOCK = 1 #
+0 2020 #
+25 2030 @
+3 3000 None 0 #
+4 3010 R _var p encside = 1 #
+13 3020 @
+4 4000 None 0 #
+5 4010 R _var p encside = 2 R _var p bosside = 20 #
+13 4020 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+0 6010 R _script dialog@r_ShowQuestMessage 1 9335 @
+7 7000 None 0 #
+8 7010 R _var p encside = 4 R _script quest@r_CreateLocationZone 3 9313 11 11 #
+18 7020 @
+8 8000 None 0 #
+20 8010 @
+9 9000 None 0 #
+10 9010 R _var p encside = 6 R _script quest@r_CreateLocationZone 3 9312 7 14 R _param p ST_EXPERIENCE + 4000 @
+10 10000 None 0 #
+22 10010 @
+11 11000 None 0 #
+0 11010 R _script dialog@r_ShowQuestMessage 1 9335 R _param p ST_EXPERIENCE + 8000 R _item p PID_ENCLAVE_ARMOR + 1 @
+12 12000 None 0 #
+25 12010 #
+0 12020 @
+13 13000 None 0 @
+14 14000 None 0 @
+15 15000 None 0 #
+25 15010 #
+0 15020 @
+16 16000 None 0 @
+17 17000 None 0 #
+25 17010 #
+0 17020 @
+18 18000 None 0 @
+20 19000 None 0 #
+21 19010 @
+21 20000 None 0 #
+0 20010 R _script dialog@r_ShowQuestMessage 1 9335 @
+22 21000 None 0 #
+0 21010 R _script dialog@r_ShowQuestMessage 1 9335 @
+23 22000 None 0 #
+24 22010 D _var p encside = 21 R _var p encside = 4 R _script quest@r_CreateLocationZone 3 9313 11 11 #
+24 22020 D _var p encside = 22 R _var p encside = 6 R _script quest@r_CreateLocationZone 3 9312 7 14 #
+0 22030 @
+24 23000 None 0 #
+0 23010 @
+25 24000 economy_dialogs@dlg_PreparePrice 0 #
+0 24010 D _script economy_dialogs@d_IsEnoughCaps 1 200000 R _script economy_dialogs@r_TakeCaps 1 200000 R _item p PID_MAP_ENCBUNKER + 1 #
+0 24020 &
+
+[engl]
+{100}{}{Robed Figure}
+{200}{}{You see: a robed man.}
+{210}{}{The shadow of the robes' hood makes this man's face hardly visible.}
+{240}{}{You see the body of some unknown person.}
+{250}{}{You see the body of some unknown person.}
+{260}{}{You see a dismembered corpse of some stranger.}
+{270}{}{You see a dismembered corpse of some unknown person, it's horrible.}
+{1000}{}{Initial preferences}
+{1010}{}{Mutant}
+{1020}{}{Already faction}
+{1030}{}{inbos}
+{1040}{}{lost locations of missions 2 or 3}
+{1050}{}{talked}
+{1060}{}{glowdone}
+{1070}{}{village killled}
+{1080}{}{outpost data}
+{1090}{}{12}
+{1100}{}{-}
+{1110}{}{Report to me when you're done.}
+{2000}{}{What are doing here, stranger? There's nothing here, besides this old gas station.@@Hello stranger. I'm sorry, but If you're looking for fuel, you should look somewhere else. I just live here, this gas station has been closed a long time ago.@@Please, leave this place. I wish to live in peace.}
+{2010}{}{Really? That's funny, because I was told a certain individual here could help me join the Enclave.@@I don't believe you. I was told I could find an Enclave contact here.}
+{2020}{}{I was just wandering around. Goodbye.@@All right, I'm leaving.@@Okay, I'm gone.@@Yeah, later.}
+{2030}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{3000}{}{Aaah... that changes things. My name is Chris. Since you already know of this place I think you've been deemed trustworthy by our other operatives... You want to join? Good... But you will have to prove yourself first. [He smiles at you, but the smile is strange and somewhat cold.]}
+{3010}{}{All right. What do you need me to do?@@Okay, what do I need to do?@@I'm all ears.@@I'm listening.}
+{3020}{}{On second thought...@@Just a moment, be right back.@@I think it's not the best idea after all.}
+{4000}{}{I need to check something first. Nothing serious, just a simple test. Give me your Pip-Boy for a moment.@@All right... I need to check something first. Give me your Pip-Boy, just for a moment.@@Good! I will need you to give me your Pip-Boy for a moment. I promise not to break it. [He smiles.]}
+{4010}{}{Sure, take it. (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)@@All right, take it.  (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)@@Okay, here you go. (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)@@No problem, take it. (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)}
+{4020}{}{What? No!@@No way.@@I'm not going to part with my Pip Boy, no way!@@I'm not giving you anything.}
+{5000}{}{Ah, yes... @pname@, is it? [He pulls out some strange device from his robes, connects it to your Pip-Boy and types some commands.] I'm done. You're now connected to the Enclave tracking system. It's just for your safety, we want to know where our operatives are, and what they are doing. I also made a small adjustment to the interface, so it will keep monitoring your brain and heart, and your speech. We've got people monitoring those readouts from all our field operatives, but of course they don't check all of it all the time. Still, should you decide to betray us... Well, let's just say I wouldn't recommend it. [He makes an innocent smile.]}
+{5010}{}{You're telling me you have your operatives under permament surveillance?@@You are spying on your own operatives?@@You don't even trust your own operatives?}
+{6000}{}{[For a moment, you get a glimpse of anger in his voice, but it last only a couple of seconds.] It's not like that. We're not spying, we're just... collecting information. It's only for your and our safety, as I said. But, let's move to the task at hand. [He smiles at you with his empty smile again.] Your first test will require you to explore a place called the Glow. There, you will have to find a working Supercomputer, don't ask me how does it look, because I don't know. When you find it, connect your Pip-Boy and our technicians will do the rest. Be warned though, this place is heavily irradiated, so prepare yourself accordingly before venturing there.}
+{6010}{}{That was fast. Well, I better get going then.@@All right. I'm moving out.@@Understood. I will be back soon.}
+{7000}{}{Well, well, if it isn't our brave @pname@... I got radioed about your success. Good job, good job indeed. But let's not waste time for pleasantries. I recon you're ready for another task?}
+{7010}{}{Yes, I am ready.@@Of course.@@I was born ready.@@Sure, what do I need to do this time, Chris?}
+{7020}{}{Not yet, I need to restock. But I'll be back in no time.@@Not really, I need to replenish my supplies. I will be back shortly.@@I've got to check up some of my gear, I'll be back before you know it.}
+{8000}{}{All right. About your new task... You will need to go a tribal village. It is located near the old California State Route 12, here, I'll mark it for you. [He marks the location on your Pip-Boy.] Our ears in the Brotherhood told us they sent some envoys there, probably for recruiting purposes, but we're not quite sure. But... their mission didin't go exactly as it was planned...}
+{8010}{}{Continue.@@Go on, Chris.@@Go on.@@I'm listening, Chris.}
+{9000}{}{I got message from the head of the clean-up team. Good job, @pname@. Don't feel sorry for those bastards, they've got what was coming for them. Our men secured the Scribe's body, and managed to get to his ID system.}
+{9010}{}{ID system? What for?@@ID system?@@What's that?}
+{10000}{}{Patience, @pname@, patience... You see, this gets us to your next assignment. You will use the Scribe's identity to salvage data from a certain Brotherhood outpost we recently discovered... Here is the location. [He marks the location on your Pip-Boy.] }
+{10010}{}{Any details?@@Anything more you could say about this mission?}
+{11000}{}{You came back... In one piece. [He laugs unpleasantly.] Good. You did a fine job, I'm really pleased with you. I think you're trustworthy enough to be allowed acces to our facility north of here. It's a Vertibird refuelling station, which houses a small garrison, so it's pretty safe. For the moment, it is our largest installation on the mainland... Head there and report to the Commander. You will be shown around. It was good working with you, @pname.@. Or, should I say, Recruit @pname@. Take this armor, and get going. [He gives you his cold smile again.]}
+{11010}{}{Thanks, Chris.@@It was good working with you too, Chris.@@Okay, I'll be leaving now. Take care, Chris.}
+{12000}{}{Ah, look who's back! I'm sorry, but as you know, I'm tasked with training the new arrivals, so I'm really busy now.@@Helle there, @pname@, I'm busy now. Come back later if you wish to talk.}
+{12010}{}{Wait... Hey Chris, you tend to know everything, Say... Do you have any intel on Enclave pre war bunkers? I could use one...}
+{12020}{}{Allright, i am leaving.}
+{13000}{}{Then go fuck yourself, and don't waste my time again!@@Get the fuck outta here, you idiot.@@Then get lost!@@Then don't waste my time and get your ass outta here!}
+{14000}{}{I don't have time for you.@@I'm busy, don't bother me.@@Go pester someone else.@@I've got things to do.@@Leave this place, stranger.}
+{15000}{}{Look who's here... I'm sorry, but I don't socialize with the members of the Brotherhood. Surprised? I am a man full of surprises... Now get lost.@@Get lost, Brotherhood dog.@@Get lost, Brotherhood lapdog.}
+{15010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{15020}{}{Allright, i am leaving.}
+{16000}{}{Report to me when you're done.@@Complete your task and report to me.@@Any progress? Don't make me wait too long, @pname@.}
+{17000}{}{You piece of shit! Leave this place!@@Get the fuck out, you mutant abomination!@@Get the fuck outta here, you fucking monster!@@Get away from me, you heap of mutated flesh!}
+{17010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{17020}{}{Allright, i am leaving.}
+{18000}{}{All right, but don't take too long.@@I understand. Come back when you're done.@@Right. Come back when you're finished.}
+{19000}{}{Well, the Brotherhood are our enemies, but I really wouldn't wish anyone to end up like those two men they sent there. The tribals mutilated, ate and finally killed those poor bastards. In that order. We know it because the one of them managed to send a transmission to Lost Hills before... those savages started to deal with him.}
+{19010}{}{Gruesome.@@Whoa, that's bad.@@Tough luck.@@No shit...}
+{20000}{}{Yes... Anyway. Those old farts from Lost Hills are now discussing how this situation should be dealt with... Meanwhile, we'll not be wasting time like this. [He grins.] We need the body of the Scribe. Or, what is left of it... You will go there, and secure it. Oh, and one more thing, should the tribals be aggressive... you know what to do, @pname@. Our clean-up team will arrive later and take care of the rest.}
+{20010}{}{Yeah, I do. I'll be leaving at once.@@They will get what they deserve.@@All right, I am leaving now.}
+{21000}{}{Well, the place was abandoned in a rush, we don't yet know why... But it is protected by defence towers. And, since the towers still have power, we suspect it is higly probable that the whole installation is online. If so, we could get some info on similar outposts in the region. Once you get inside, find a terminal and download the data. Any questions?}
+{21010}{}{No, I guess not. I'll be heading there at once.@@No, I think I'm ready to go there now.@@No, Chris, I'm leaving at once.}
+{22000}{}{You're back... what's the status on your mission?@@You back already. What news do you bring me?@@You're back... I need to hear your report.}
+{22010}{}{Chris, I can't find that village, maybe I got the coordinastes wrong...@@Chris, I can't get to that village. You're sure you gave me the right coordinates?}
+{22020}{}{Chris, I think I got lost...Could you give me the coordinates again?@@I can't find that goddamn installation. Could you give me the coords again, Chris?}
+{22030}{}{Nothing to report yet, Chris.@@I'm getting prepped for the mission. I will be back soon.}
+{23000}{}{Well, I can't say that I'm pleased with this.. But the mission is the most important thing now. Here are the coordinates, don't dissappoint me again.@@You dissapoint me... very much. I hope this is the last time. Here. [He gives you the coordinates again.]}
+{23010}{}{Understood, I am moving out at once.@@It won't happen again, Chris, I am moving out now.@@All right, this won't happen again, I promise. I'll go there now.}
+{24000}{}{Well, there aren't that many now, most of them have turned into ruins. I know a few locations but you will need to pay me @lex base5_price@ caps for this.}
+{24010}{}{Allright, i'll take it. [Buy the map]}
+{24020}{}{I'll think about it.}
+
+[russ]
+{100}{}{Stranger}
+{200}{}{You see a stranger.}
+{210}{}{You see some person that looks strange to you.}
+{240}{}{You see the body of some unknown person.}
+{250}{}{You see the body of some unknown person.}
+{260}{}{You see a dismembered corpse of some stranger.}
+{270}{}{You see a dismembered corpse of some unknown person, it's horrible.}
+{1000}{}{Initial preferences}
+{1010}{}{Mutant}
+{1020}{}{Already faction}
+{1030}{}{inbos}
+{1040}{}{lost locations of missions 2 or 3}
+{1050}{}{inbos}
+{1060}{}{glowdone}
+{1070}{}{village killled}
+{1080}{}{outpost data}
+{1090}{}{12}
+{1100}{}{-}
+{1110}{}{Report to me when you're done.}
+{2000}{}{Ah, hello stranger. Sorry but I have no more fuel to sell. Please leave this area.}
+{2010}{}{I was told I would meet someone here that could help me join the Enclave.}
+{2020}{}{I was just wandering around. Goodbye.}
+{2030}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{3000}{}{Hmm... I suppose that if you know of my affiliation with the Enclave,  then under our new policy you can become a recruit of the Enclave. But you will need to complete three tasks first.}
+{3010}{}{Very well, what do I need to do?}
+{3020}{}{Thanks but I think i'll pass.}
+{4000}{}{First task is very simple, this will decide if you're worthy of becoming one of us, and if you're not a spy. Just show me your pip-boy for a moment.}
+{4010}{}{OK, take it. [Choose enclave side, remove possibility of joining Brotherhood of Steel]}
+{4020}{}{What? No!}
+{5000}{}{Here you go. You are now connected to the Enclave tracking system. If you try to betray us the pip-boy will deal a deadly shock to your neural system and fry you up. Yes, you're like a slave to us now.}
+{5010}{}{Looks like I have no choice anymore, what do I need to do?}
+{6000}{}{Your first mission is to visit place called Glow, we have information about working computer there. You need to connect your pip-boy to it and our technicians will do the rest. You will encounter some problems on the way, but nothing hard for a soldier.}
+{6010}{}{Very well, i'll head there.}
+{7000}{}{Good job, the technicians informed me that you did well. Are you ready for your next task?}
+{7010}{}{Yes, I am ready.}
+{7020}{}{Not yet, i will restock and come back.}
+{8000}{}{Very well, because of atomic holocaust we have some impure wild tribal villages, you will be sent to one for two things. First one is to perform a cleanup, second one is to secure the body of fallen brotherhood scribe. Can you believe those idiots tried to communicate with them? The tribals are not friendly and will try to murder you on sight. Good luck, soldier.}
+{8010}{}{Right, On it.}
+{9000}{}{Ah, good job soldier. The field report said many nice things about you. The scribe's pip-boy was carefully checked and we can now use it to install ID system on your pip boy.}
+{9010}{}{ID system? What for?}
+{10000}{}{What for? The third task will not be a walk in the park. You will use Scribe's identity to get closer to one of the hidden brotherhood outposts. Inside you will change the turret system to attack the brotherhood soldiers. This is almost a suicide mission, and it will decide if you will become one of us, or another decaying body in the wastes.}
+{10010}{}{I'll head there right now, Wish me luck.}
+{11000}{}{Ah, you did well. Welcome in Enclave! Not far from here there is our land base, head there, just don't expect to be welcomed with open hands, you will get a bunk assigned to you, go on recruit!}
+{11010}{}{Awesome! I can't wait to start kicking some more brotherhood ass!}
+{12000}{}{Please go now, You could scare the new recruits...}
+{12010}{}{Wait... Hey Chris, you tend to know everything, Say... Do you have any intel on Enclave pre war bunkers? I could use one...}
+{12020}{}{Allright, i am leaving.}
+{13000}{}{Then go fuck yourself.}
+{14000}{}{You are already in faction.}
+{15000}{}{I don't have anything to say to you, Spy.}
+{15010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{15020}{}{Allright, i am leaving.}
+{16000}{}{Report to me when you're done.}
+{17000}{}{You piece of shit! Leave this place!}
+{17010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{17020}{}{Allright, i am leaving.}
+{18000}{}{All right, but don't take too long.@@I understand. Come back when you're done.}
+{19000}{}{Well, the Brotherhood are our enemies, but I really wouldn't wish anyone to end up like those two men they sent there. The tribals killed them, and mutilated their bodies. We know it because one of the man managed to send a transmission to Lost Hills before they... started to deal with him. }
+{19010}{}{Gruesome.@@Whoa, that's bad.@@Tough luck.@@No shit.}
+{20000}{}{Yeah... Anyway. Those old farts from Lost Hills are now discussing how this situation should be dealt with... Meanwhile, we'll not waste time like this. We need to secure the body of the Scribe. Or, what is left of it... }
+{20010}{}{Yeah, I do. I'll be leaving at once.@@They will get what they deserve.@@I will show them we're not like those pussies from the Brotherhood.I am going there now.}
+{21000}{}{Patience, @pname@, patience... You see, this gets us to your next assignment. You will use the Scribe's identity to salvage data from a certain Brotherhood outpost we recently discovered.. The place was abandoned in a rush, we don't yet know why, but it is still protected by defence towers. And, since the towers still have power, we suspect it is higly probable that the whole installation is online. If so, we could get some info on similar outposts in the region. So, once you get inside, find a terminal and download the data. Any questions?}
+{21010}{}{No, I guess not. I'll be heading there at once.@@No, I think I'm ready to go there now.}
+{22000}{}{Well, I can't say that I'm pleased with this.. But the mission is the most important thing now. Here are the coordinates, don't dissapoint me again.}
+{22010}{}{Chris, I can't find that village, maybe I got the coordinastes wrong...@@Chris, I can't get to that village. You're sure you gave me the right coordinates?}
+{22020}{}{Chris, I think I got lost...Could you give me the coordinates again?@@I can't find that goddamn installation. Could you give me the coords again, Chris?}
+{22030}{}{Nothing to report yet, Chris.@@I'm getting prepped for the mission. I will be back soon.}
+{23000}{}{Well, I can't say that I'm pleased with this.. But the mission is the most important thing now. Here are the coordinates, don't dissapoint me again.}
+{23010}{}{Understood, I am moving out at once.@@It won't happen again, Chris, I am moving out now.@@All right, this won't happen again, I promise. I'll go there now.}
+{24000}{}{Well, there aren't that many now, most of them have turned into ruins. I know a few locations but you will need to pay me @lex base5_price@ caps for this.}
+{24010}{}{Allright, i'll take it. [Buy the map]}
+{24020}{}{I'll think about it.}
+
+[pols]
+{100}{}{Podejrzany człowiek}
+{200}{}{Widzisz podejrzanie wyglądającą osobę.}
+{210}{}{Widzisz dziwnie wyglądającego człowieka.}
+{240}{}{Widzisz ciało człowieka.}
+{250}{}{Widzisz zwłoki.}
+{260}{}{Widzisz rozszarpane zwłoki jakiegoś człowieka.}
+{270}{}{Widzisz rozszarpane zwłoki.}
+{1000}{}{Initial preferences}
+{1010}{}{Mutant}
+{1020}{}{Already faction}
+{1030}{}{inbos}
+{1040}{}{lost locations of missions 2 or 3}
+{1050}{}{inbos}
+{1060}{}{glowdone}
+{1070}{}{village killled}
+{1080}{}{outpost data}
+{1090}{}{12}
+{1100}{}{-}
+{1110}{}{Report to me when you're done.}
+{2000}{}{Ah, hello stranger. Sorry but I have no more fuel to sell. Please leave this area.}
+{2010}{}{I was told I would meet someone here that could help me join the Enclave.}
+{2020}{}{I was just wandering around. Goodbye.}
+{2030}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{3000}{}{Hmm... I suppose that if you know of my affiliation with the Enclave,  then under our new policy you can become a recruit of the Enclave. But you will need to complete three tasks first.}
+{3010}{}{Very well, what do I need to do?}
+{3020}{}{Thanks but I think i'll pass.}
+{4000}{}{First task is very simple, this will decide if you're worthy of becoming one of us, and if you're not a spy. Just show me your pip-boy for a moment.}
+{4010}{}{OK, take it. [Choose enclave side, remove possibility of joining Brotherhood of Steel]}
+{4020}{}{What? No!}
+{5000}{}{Here you go. You are now connected to the Enclave tracking system. If you try to betray us the pip-boy will deal a deadly shock to your neural system and fry you up. Yes, you're like a slave to us now.}
+{5010}{}{Looks like I have no choice anymore, what do I need to do?}
+{6000}{}{Your first mission is to visit place called Glow, we have information about working computer there. You need to connect your pip-boy to it and our technicians will do the rest. You will encounter some problems on the way, but nothing hard for a soldier.}
+{6010}{}{Very well, i'll head there.}
+{7000}{}{Good job, the technicians informed me that you did well. Are you ready for your next task?}
+{7010}{}{Yes, I am ready.}
+{7020}{}{Not yet, i will restock and come back.}
+{8000}{}{Very well, because of atomic holocaust we have some impure wild tribal villages, you will be sent to one for two things. First one is to perform a cleanup, second one is to secure the body of fallen brotherhood scribe. Can you believe those idiots tried to communicate with them? The tribals are not friendly and will try to murder you on sight. Good luck, soldier.}
+{8010}{}{Right, On it.}
+{9000}{}{Ah, good job soldier. The field report said many nice things about you. The scribe's pip-boy was carefully checked and we can now use it to install ID system on your pip boy.}
+{9010}{}{ID system? What for?}
+{10000}{}{What for? The third task will not be a walk in the park. You will use Scribe's identity to get closer to one of the hidden brotherhood outposts. Inside you will change the turret system to attack the brotherhood soldiers. This is almost a suicide mission, and it will decide if you will become one of us, or another decaying body in the wastes.}
+{10010}{}{I'll head there right now, Wish me luck.}
+{11000}{}{Ah, you did well. Welcome in Enclave! Not far from here there is our land base, head there, just don't expect to be welcomed with open hands, you will get a bunk assigned to you, go on recruit!}
+{11010}{}{Awesome! I can't wait to start kicking some more brotherhood ass!}
+{12000}{}{Please go now, You could scare the new recruits...}
+{12010}{}{Wait... Hey Chris, you tend to know everything, Say... Do you have any intel on Enclave pre war bunkers? I could use one...}
+{12020}{}{Allright, i am leaving.}
+{13000}{}{Then go fuck yourself.}
+{14000}{}{You are already in faction.}
+{15000}{}{I don't have anything to say to you, Spy.}
+{15010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{15020}{}{Allright, i am leaving.}
+{16000}{}{Report to me when you're done.}
+{17000}{}{You piece of shit! Leave this place!}
+{17010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{17020}{}{Allright, i am leaving.}
+{18000}{}{All right, but don't take too long.@@I understand. Come back when you're done.}
+{19000}{}{Well, the Brotherhood are our enemies, but I really wouldn't wish anyone to end up like those two men they sent there. The tribals killed them, and mutilated their bodies. We know it because one of the man managed to send a transmission to Lost Hills before they... started to deal with him. }
+{19010}{}{Gruesome.@@Whoa, that's bad.@@Tough luck.@@No shit.}
+{20000}{}{Yeah... Anyway. Those old farts from Lost Hills are now discussing how this situation should be dealt with... Meanwhile, we'll not waste time like this. We need to secure the body of the Scribe. Or, what is left of it... }
+{20010}{}{Yeah, I do. I'll be leaving at once.@@They will get what they deserve.@@I will show them we're not like those pussies from the Brotherhood.I am going there now.}
+{21000}{}{Patience, @pname@, patience... You see, this gets us to your next assignment. You will use the Scribe's identity to salvage data from a certain Brotherhood outpost we recently discovered.. The place was abandoned in a rush, we don't yet know why, but it is still protected by defence towers. And, since the towers still have power, we suspect it is higly probable that the whole installation is online. If so, we could get some info on similar outposts in the region. So, once you get inside, find a terminal and download the data. Any questions?}
+{21010}{}{No, I guess not. I'll be heading there at once.@@No, I think I'm ready to go there now.}
+{22000}{}{Well, I can't say that I'm pleased with this.. But the mission is the most important thing now. Here are the coordinates, don't dissapoint me again.}
+{22010}{}{Chris, I can't find that village, maybe I got the coordinastes wrong...@@Chris, I can't get to that village. You're sure you gave me the right coordinates?}
+{22020}{}{Chris, I think I got lost...Could you give me the coordinates again?@@I can't find that goddamn installation. Could you give me the coords again, Chris?}
+{22030}{}{Nothing to report yet, Chris.@@I'm getting prepped for the mission. I will be back soon.}
+{23000}{}{Well, I can't say that I'm pleased with this.. But the mission is the most important thing now. Here are the coordinates, don't dissapoint me again.}
+{23010}{}{Understood, I am moving out at once.@@It won't happen again, Chris, I am moving out now.@@All right, this won't happen again, I promise. I'll go there now.}
+{24000}{}{Well, there aren't that many now, most of them have turned into ruins. I know a few locations but you will need to pay me @lex base5_price@ caps for this.}
+{24010}{}{Allright, i'll take it. [Buy the map]}
+{24020}{}{I'll think about it.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Mutant}
+{1020}{}{Already faction}
+{1030}{}{inbos}
+{1040}{}{lost locations of missions 2 or 3}
+{1050}{}{talked}
+{1060}{}{glowdone}
+{1070}{}{village killled}
+{1080}{}{outpost data}
+{1090}{}{12}
+{1100}{}{-}
+{1110}{}{Report to me when you're done.}
+{2000}{}{What are doing here, stranger? There's nothing here, besides this old gas station.@@Hello stranger. I'm sorry, but If you're looking for fuel, you should look somewhere else. I just live here, this gas station has been closed a long time ago.@@Please, leave this place. I wish to live in peace.}
+{2010}{}{Really? That's funny, because I was told a certain individual here could help me join the Enclave.@@I don't believe you. I was told I could find an Enclave contact here.}
+{2020}{}{I was just wandering around. Goodbye.@@All right, I'm leaving.@@Okay, I'm gone.@@Yeah, later.}
+{2030}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{3000}{}{Aaah... that changes things. My name is Chris. Since you already know of this place I think you've been deemed trustworthy by our other operatives... You want to join? Good... But you will have to prove yourself first. [He smiles at you, but the smile is strange and somewhat cold.]}
+{3010}{}{All right. What do you need me to do?@@Okay, what do I need to do?@@I'm all ears.@@I'm listening.}
+{3020}{}{On second thought...@@Just a moment, be right back.@@I think it's not the best idea after all.}
+{4000}{}{I need to check something first. Nothing serious, just a simple test. Give me your Pip-Boy for a moment.@@All right... I need to check something first. Give me your Pip-Boy, just for a moment.@@Good! I will need you to give me your Pip-Boy for a moment. I promise not to break it. [He smiles.]}
+{4010}{}{Sure, take it. (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)@@All right, take it.  (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)@@Okay, here you go. (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)@@No problem, take it. (Choose Enclave side, remove possibility of joining the Brotherhood of Steel.)}
+{4020}{}{What? No!@@No way.@@I'm not going to part with my Pip Boy, no way!@@I'm not giving you anything.}
+{5000}{}{Ah, yes... @pname@, is it? [He pulls out some strange device from his robes, connects it to your Pip-Boy and types some commands.] I'm done. You're now connected to the Enclave tracking system. It's just for your safety, we want to know where our operatives are, and what they are doing. I also made a small adjustment to the interface, so it will keep monitoring your brain and heart, and your speech. We've got people monitoring those readouts from all our field operatives, but of course they don't check all of it all the time. Still, should you decide to betray us... Well, let's just say I wouldn't recommend it. [He makes an innocent smile.]}
+{5010}{}{You're telling me you have your operatives under permament surveillance?@@You are spying on your own operatives?@@You don't even trust your own operatives?}
+{6000}{}{[For a moment, you get a glimpse of anger in his voice, but it last only a couple of seconds.] It's not like that. We're not spying, we're just... collecting information. It's only for your and our safety, as I said. But, let's move to the task at hand. [He smiles at you with his empty smile again.] Your first test will require you to explore a place called the Glow. There, you will have to find a working Supercomputer, don't ask me how does it look, because I don't know. When you find it, connect your Pip-Boy and our technicians will do the rest. Be warned though, this place is heavily irradiated, so prepare yourself accordingly before venturing there.}
+{6010}{}{That was fast. Well, I better get going then.@@All right. I'm moving out.@@Understood. I will be back soon.}
+{7000}{}{Well, well, if it isn't our brave @pname@... I got radioed about your success. Good job, good job indeed. But let's not waste time for pleasantries. I recon you're ready for another task?}
+{7010}{}{Yes, I am ready.@@Of course.@@I was born ready.@@Sure, what do I need to do this time, Chris?}
+{7020}{}{Not yet, I need to restock. But I'll be back in no time.@@Not really, I need to replenish my supplies. I will be back shortly.@@I've got to check up some of my gear, I'll be back before you know it.}
+{8000}{}{All right. About your new task... You will need to go a tribal village. It is located near the old California State Route 12, here, I'll mark it for you. [He marks the location on your Pip-Boy.] Our ears in the Brotherhood told us they sent some envoys there, probably for recruiting purposes, but we're not quite sure. But... their mission didin't go exactly as it was planned...}
+{8010}{}{Continue.@@Go on, Chris.@@Go on.@@I'm listening, Chris.}
+{9000}{}{I got message from the head of the clean-up team. Good job, @pname@. Don't feel sorry for those bastards, they've got what was coming for them. Our men secured the Scribe's body, and managed to get to his ID system.}
+{9010}{}{ID system? What for?@@ID system?@@What's that?}
+{10000}{}{Patience, @pname@, patience... You see, this gets us to your next assignment. You will use the Scribe's identity to salvage data from a certain Brotherhood outpost we recently discovered... Here is the location. [He marks the location on your Pip-Boy.] }
+{10010}{}{Any details?@@Anything more you could say about this mission?}
+{11000}{}{You came back... In one piece. [He laugs unpleasantly.] Good. You did a fine job, I'm really pleased with you. I think you're trustworthy enough to be allowed acces to our facility north of here. It's a Vertibird refuelling station, which houses a small garrison, so it's pretty safe. For the moment, it is our largest installation on the mainland... Head there and report to the Commander. You will be shown around. It was good working with you, @pname.@. Or, should I say, Recruit @pname@. Take this armor, and get going. [He gives you his cold smile again.]}
+{11010}{}{Thanks, Chris.@@It was good working with you too, Chris.@@Okay, I'll be leaving now. Take care, Chris.}
+{12000}{}{Ah, look who's back! I'm sorry, but as you know, I'm tasked with training the new arrivals, so I'm really busy now.@@Helle there, @pname@, I'm busy now. Come back later if you wish to talk.}
+{12010}{}{Wait... Hey Chris, you tend to know everything, Say... Do you have any intel on Enclave pre war bunkers? I could use one...}
+{12020}{}{Allright, i am leaving.}
+{13000}{}{Then go fuck yourself, and don't waste my time again!@@Get the fuck outta here, you idiot.@@Then get lost!@@Then don't waste my time and get your ass outta here!}
+{14000}{}{I don't have time for you.@@I'm busy, don't bother me.@@Go pester someone else.@@I've got things to do.@@Leave this place, stranger.}
+{15000}{}{Look who's here... I'm sorry, but I don't socialize with the members of the Brotherhood. Surprised? I am a man full of surprises... Now get lost.@@Get lost, Brotherhood dog.@@Get lost, Brotherhood lapdog.}
+{15010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{15020}{}{Allright, i am leaving.}
+{16000}{}{Report to me when you're done.@@Complete your task and report to me.@@Any progress? Don't make me wait too long, @pname@.}
+{17000}{}{You piece of shit! Leave this place!@@Get the fuck out, you mutant abomination!@@Get the fuck outta here, you fucking monster!@@Get away from me, you heap of mutated flesh!}
+{17010}{}{Someone have told me that you're selling some ruined bunkers. I am interested...}
+{17020}{}{Allright, i am leaving.}
+{18000}{}{All right, but don't take too long.@@I understand. Come back when you're done.@@Right. Come back when you're finished.}
+{19000}{}{Well, the Brotherhood are our enemies, but I really wouldn't wish anyone to end up like those two men they sent there. The tribals mutilated, ate and finally killed those poor bastards. In that order. We know it because the one of them managed to send a transmission to Lost Hills before... those savages started to deal with him.}
+{19010}{}{Gruesome.@@Whoa, that's bad.@@Tough luck.@@No shit...}
+{20000}{}{Yes... Anyway. Those old farts from Lost Hills are now discussing how this situation should be dealt with... Meanwhile, we'll not be wasting time like this. [He grins.] We need the body of the Scribe. Or, what is left of it... You will go there, and secure it. Oh, and one more thing, should the tribals be aggressive... you know what to do, @pname@. Our clean-up team will arrive later and take care of the rest.}
+{20010}{}{Yeah, I do. I'll be leaving at once.@@They will get what they deserve.@@All right, I am leaving now.}
+{21000}{}{Well, the place was abandoned in a rush, we don't yet know why... But it is protected by defence towers. And, since the towers still have power, we suspect it is higly probable that the whole installation is online. If so, we could get some info on similar outposts in the region. Once you get inside, find a terminal and download the data. Any questions?}
+{21010}{}{No, I guess not. I'll be heading there at once.@@No, I think I'm ready to go there now.@@No, Chris, I'm leaving at once.}
+{22000}{}{You're back... what's the status on your mission?@@You back already. What news do you bring me?@@You're back... I need to hear your report.}
+{22010}{}{Chris, I can't find that village, maybe I got the coordinastes wrong...@@Chris, I can't get to that village. You're sure you gave me the right coordinates?}
+{22020}{}{Chris, I think I got lost...Could you give me the coordinates again?@@I can't find that goddamn installation. Could you give me the coords again, Chris?}
+{22030}{}{Nothing to report yet, Chris.@@I'm getting prepped for the mission. I will be back soon.}
+{23000}{}{Well, I can't say that I'm pleased with this.. But the mission is the most important thing now. Here are the coordinates, don't dissappoint me again.@@You dissapoint me... very much. I hope this is the last time. Here. [He gives you the coordinates again.]}
+{23010}{}{Understood, I am moving out at once.@@It won't happen again, Chris, I am moving out now.@@All right, this won't happen again, I promise. I'll go there now.}
+{24000}{}{Well, there aren't that many now, most of them have turned into ruins. I know a few locations but you will need to pay me @lex base5_price@ caps for this.}
+{24010}{}{Allright, i'll take it. [Buy the map]}
+{24020}{}{I'll think about it.}
+

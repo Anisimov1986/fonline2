@@ -1,0 +1,96 @@
+#include "_macros.fos"
+#include "_teams.fos"
+#include "npc_common_h.fos"
+
+#define TeamId               StatBase[ ST_TEAM_ID ]
+#define SAME_TEAM # (cr,attacker) (cr.TeamId==attacker.TeamId)
+
+void GuardInit(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		uint16[] weaponPids = {PID_GUARD_RIFLE , PID_GUARD_PISTOL};
+		InitGuard(npc,weaponPids);
+	}
+	AttackAttacker(npc);
+}
+
+void GuardInitP(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		uint16[] weaponPids = {PID_YK42B_PULSE_RIFLE,PID_YK32_PULSE_PISTOL};
+		InitGuard(npc,weaponPids);
+	}
+	AttackAttacker(npc);
+}
+
+void GuardInitB(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		uint16[] weaponPids = {PID_M60,PID_XL70E3};
+		InitGuard(npc,weaponPids);
+	}
+	AttackAttacker(npc);	
+}
+
+void AttackAttacker(Critter& npc)
+{
+	npc.SetEvent(CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked");
+}
+
+void _SomeoneAttacked(Critter& cr, Critter& attacked, Critter& attacker)
+{
+	if(attacker.Id == cr.Id)
+        return;
+	if (SAME_TEAM(cr,attacker))
+		return;
+	Attack(cr,attacker);
+}
+
+
+void Attack(Critter& cr, Critter& attacker)
+{
+	NpcPlane@ plane = cr.GetCurPlane();
+    if(valid(plane) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id)
+		return;
+	AttackCritter( cr, attacker ); 
+}
+
+void InitGuard(Critter& npc,uint16[] weaponPids)
+{	
+	npc.StatBase[ST_TEAM_ID] = TEAM_Respawn;
+	npc.StatBase[ST_DIALOG_ID] = 1919;
+	npc.StatBase[ST_CRITICAL_CHANCE] = 100;
+	_CritSetMode(npc, MODE_NO_DROP);
+	_CritSetMode(npc, MODE_NO_KNOCK);
+	_CritSetMode(npc, MODE_NO_LOOSE_LIMBS);
+	_CritSetMode(npc, MODE_NO_ENEMY_STACK);	
+	_CritSetMode(npc, MODE_NO_LOOT);
+	_CritSetMode(npc, MODE_NO_STEAL);
+	_CritSetMode(npc, MODE_UNLIMITED_AMMO);
+	_CritSetMode(npc, MODE_INVULNERABLE);
+	
+	
+    
+    
+    
+    
+	
+	
+	for( uint i = 0; i < weaponPids.length(); i++ )
+	{
+		ProtoItem@ weapon = GetProtoItem (weaponPids[i]);
+		if( npc.IsAnim1( weapon.Weapon_Anim1 ) )
+		{	
+			Item@ item = npc.AddItem(weaponPids[i], 1);
+			if(valid(item))
+			{
+				npc.SetFavoriteItem(SLOT_HAND1, item.GetProtoId());
+				npc.MoveItem(item.Id, 1, SLOT_HAND1);
+			}
+			return;
+		}
+	}
+}

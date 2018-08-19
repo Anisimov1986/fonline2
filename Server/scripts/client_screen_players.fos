@@ -1,0 +1,384 @@
+#include "_client_defines.fos"
+#include "client_gui_h.fos"
+
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "buffer_h.fos"
+#define STEP (12)
+array<uint> ids;
+array<string> players;
+array<uint16> locations;
+array<uint> maps;
+array<uint8> conds;
+array<uint16> worldX;
+array<uint16> worldY;
+array<uint> ips;
+array<bool> online;
+array<int> uids;
+bool filteralts=false;
+bool filteruids=false;
+uint ListIndex = 0;
+bool init = false;
+
+IGUIElementCheckBoxOpt@[] OptionState;
+class Buttons : IGUIElementCallbackMouseClick
+{
+	uint8 type;
+	uint id;
+	Buttons(uint8 type, uint id )
+	{
+		this.type=type;
+		this.id=id;
+		
+		
+	}
+	void OnMouseClick(int mm, int click)
+    {
+		if(click == MOUSE_CLICK_WHEEL_DOWN)
+			MoveDown();
+		if(click == MOUSE_CLICK_WHEEL_UP)
+			MoveUp();
+		if( click != MOUSE_CLICK_LEFT)
+			return;
+		if (type == 0)
+		{
+			switch(id)
+			{
+				case 0:
+					RunServerScript(__ScriptStr+"@SendPlayersData", 0, 0, 0, null, null); 
+					break;
+				case 1:
+					RunServerScript(__ScriptStr+"@SendPlayersData", 1, 0, 0, null, null); 
+					break;
+			}
+		}
+		else if (type==1)
+		{
+				RunServerScript(__ScriptStr+"@TeleportToPlayerId", ids[id], 0, 0, null, null); 
+		}
+	}
+}
+
+class CheckBox : IGUIElementCallbackMouseClick
+{
+	int id;
+	CheckBox(uint id)
+	{
+		this.id=id;
+	}
+	
+	
+	void OnMouseClick(int mm, int click)
+	{
+		if(click==MOUSE_CLICK_LEFT)
+		{
+			if (id==0)
+			{
+				filteralts=!filteralts;
+				filteruids=false;
+				OptionState[1].setState(false);
+			}
+			else if (id==1)
+			{
+				filteruids=!filteruids;
+				filteralts=false;
+				OptionState[0].setState(false);
+			}
+			ListIndex=0;	
+			RefreshPlayersScreen();
+		}
+	}
+}
+
+void InitPlayersScreen()
+{
+	if (init)
+		return;
+	OptionState.resize(2);	
+	GUI_CreateScreen(CLIENT_SCREEN_PLAYERS,"players.png")
+	.CloseOnMiss(true)
+	.AutoCursor(true,CURSOR_DEFAULT);
+
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(0,2).TextBoxSize(80, 10)
+		.Text("Player List",FONT_FALLOUT,COLOR_SAND,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(194,2).TextBoxSize(150, 10)
+		.Text("Filter     IP       UID",FONT_FALLOUT,COLOR_SAND,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(450,2).TextBoxSize(80, 10)
+		.Text("All players",FONT_FALLOUT,COLOR_SAND,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(550,2).TextBoxSize(80, 10)
+		.Text("This location",FONT_FALLOUT,COLOR_SAND,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+		
+	GUI_AddImage(CLIENT_SCREEN_PLAYERS, "vertical.png", PT_ART_INTRFACE, 45, 15);
+	GUI_AddImage(CLIENT_SCREEN_PLAYERS, "vertical.png", PT_ART_INTRFACE, 190, 15);
+	GUI_AddImage(CLIENT_SCREEN_PLAYERS, "vertical.png", PT_ART_INTRFACE, 340, 15);
+	GUI_AddImage(CLIENT_SCREEN_PLAYERS, "vertical.png", PT_ART_INTRFACE, 410, 15);
+	GUI_AddImage(CLIENT_SCREEN_PLAYERS, "vertical.png", PT_ART_INTRFACE, 468, 15);
+	GUI_AddImage(CLIENT_SCREEN_PLAYERS, "horizontal.png", PT_ART_INTRFACE, 0, 15);	
+	GUI_AddImage(CLIENT_SCREEN_PLAYERS, "horizontal.png", PT_ART_INTRFACE, 0, 31);
+
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(15, 20).Text("ID",FONT_FALLOUT,COLOR_TEXT,0,FT_BORDERED);
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(100, 20).Text("NAME",FONT_FALLOUT,COLOR_TEXT,0,FT_BORDERED);
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).TextBoxSize(60, 10).Position(235, 20).Text("LOCATION",FONT_FALLOUT,COLOR_TEXT,0,FT_BORDERED);
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(365, 20).Text("MAP",FONT_FALLOUT,COLOR_TEXT,0,FT_BORDERED);
+	GUI_AddText(CLIENT_SCREEN_PLAYERS).Position(422, 20).Text("COND",FONT_FALLOUT,COLOR_TEXT,0,FT_BORDERED);
+	
+	Buttons b(0,0);
+	GUI_AddButton(CLIENT_SCREEN_PLAYERS)
+	.Position(440,1)
+	.CallbackMouseClick(b)
+	.UpPic("di_rdbt2.frm")
+	.DownPic("di_rdbt1.frm");
+
+	Buttons b1(0,1);
+	GUI_AddButton(CLIENT_SCREEN_PLAYERS)
+	.Position(535,1)
+	.CallbackMouseClick(b1)
+	.UpPic("di_rdbt2.frm")
+	.DownPic("di_rdbt1.frm");
+	
+	CheckBox buttonFilter(0);
+	@OptionState[0]=GUI_AddCheckBox(CLIENT_SCREEN_PLAYERS)
+	.Position(280,1)
+	.CallbackMouseClick(buttonFilter)
+	.UnCheckedPic("prfxout.frm")
+	.CheckedPic("prfxin.frm");
+	
+	CheckBox buttonFilter1(1);
+	@OptionState[1]=GUI_AddCheckBox(CLIENT_SCREEN_PLAYERS)
+	.Position(330,1)
+	.CallbackMouseClick(buttonFilter1)
+	.UnCheckedPic("prfxout.frm")
+	.CheckedPic("prfxin.frm");
+	
+	
+	
+	
+	init = true;
+}
+
+
+void ShowPlayersScreen()
+{
+	if (!init)
+		return;
+
+	if (GUI_GetActiveScreen()==CLIENT_SCREEN_PLAYERS)
+		HideScreen(CLIENT_SCREEN_PLAYERS,0,0,0);
+	else
+	{
+		ListIndex=0;
+		Clean_Screen();
+		RenderScreen();
+		ShowScreen(CLIENT_SCREEN_PLAYERS,0,0,0);
+	}
+}
+
+void init_player_screen( int, int, int, string@, int[]@ data )
+{
+	InitPlayersScreen();
+}
+
+void ReceivePlayerData( int, int, int, string@, int[]@ data )
+{
+    Buffer@ buff = NewBuffer( data );
+    buff >> ids >> players >> locations >> maps >> conds >> worldX >> worldY >> ips >> online >> uids;
+	if (GUI_GetActiveScreen()==CLIENT_SCREEN_PLAYERS)
+		RefreshPlayersScreen();
+}
+
+void RefreshPlayersScreen()
+{
+	HideScreen(CLIENT_SCREEN_PLAYERS,0,0,0);
+	Clean_Screen();
+	RenderScreen();
+	ShowScreen(CLIENT_SCREEN_PLAYERS,0,0,0);
+}
+
+void Clean_Screen()
+{
+	CleanScreen(CLIENT_SCREEN_PLAYERS,20);
+}
+
+void RenderScreen()
+{
+	if (filteralts || filteruids)
+	{
+		uint v=0;
+		array<int>     checkedIp;             // Already checked IPs
+		bool            nothingFound = true;   // No alts found
+		for(uint p = 0 + ListIndex, q = ids.length(); p < q; p++)
+		{
+	
+			int ip = (filteralts) ? ips[p] : uids[p];
+			bool checkAlts = true;
+			for(uint i = 0, j = checkedIp.length; i < j; i++)
+			{
+				if(ip == checkedIp[i])     // This IP was already checked
+				{
+					checkAlts = false;
+					break;
+				}
+			}
+			if(checkAlts)
+			{
+				checkedIp.insertLast(ip);
+				bool foundAlts = false;
+				for(uint i = p + 1 ; i < ids.length() && v < 40; i++)
+				{
+					if( (filteralts ? int(ips[i]) : uids[i]) == ip)
+					{
+						if(!foundAlts)
+						{
+							foundAlts = true;
+							ShowIds(p,v);
+							ShowPlayers(p,v);
+							ShowLocations(p,v);
+							ShowMaps(p,v);
+							ShowConds(p,v);
+							ShowIp(p,v);
+							v++;
+						}
+						ShowIds(i,v);
+						ShowPlayers(i,v);
+						ShowLocations(i,v);
+						ShowMaps(i,v);
+						ShowConds(i,v);
+						ShowIp(i,v);
+						v++;
+	
+						nothingFound = false;
+					}
+				}
+				if (!nothingFound)
+						GUI_AddImage(CLIENT_SCREEN_PLAYERS, "horizontal.png", PT_ART_INTRFACE, 0, 43+(v-1)*STEP);
+			}
+		}
+	}
+	else
+	{
+		for (uint i=0 + ListIndex, j=0; i<ids.length() && j<40 ;i++)
+		{
+			GUI_AddImage(CLIENT_SCREEN_PLAYERS, "horizontal.png", PT_ART_INTRFACE, 0, 43+j*STEP);
+			ShowIds(i,j);
+			ShowPlayers(i,j);
+			ShowLocations(i,j);
+			ShowMaps(i,j);
+			ShowConds(i,j);
+			ShowIp(i,j);
+			j++;
+		}
+	}
+}
+
+void ShowIds(uint i,uint j)
+{
+	GUI_AddText(CLIENT_SCREEN_PLAYERS)
+	.Position(0,32+j*STEP)
+	.Text(""+ids[i],FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+}
+
+void ShowPlayers(uint i,uint j)
+{
+	Buttons b2(1,i);
+	GUI_AddButton(CLIENT_SCREEN_PLAYERS)
+	.CallbackMouseClick(b2)
+	.Position(45,32+j*STEP,160,10)
+	.Text(""+players[i],FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+}
+
+void ShowLocations(uint i,uint j)
+{
+	string location="";
+	if (maps[i]==0 && locations[i]>0)
+	{
+		location="Over "; 
+	}
+	if (locations[i]==0)
+		location="World Map";
+	else	
+		location+=GetMsgStr( TEXTMSG_GM, STR_GM_NAME(locations[i]));
+	GUI_AddText(CLIENT_SCREEN_PLAYERS)
+	.Position(195,32+j*STEP)
+	.TextBoxSize(140, 10)
+	.Text(location,FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+}
+
+void ShowMaps(uint i,uint j)
+{
+	if (maps[i]==0)
+	{
+		GUI_AddText(CLIENT_SCREEN_PLAYERS)
+		.Position(325,32+j*STEP)
+		.TextBoxSize(100, 10)
+		.Text(+worldX[i]+","+worldY[i],FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+	}
+	else
+	{
+		GUI_AddText(CLIENT_SCREEN_PLAYERS)
+		.Position(350,32+j*STEP)
+		.Text(""+maps[i],FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+	}
+}
+
+void ShowConds(uint i,uint j)
+{
+	GUI_AddText(CLIENT_SCREEN_PLAYERS)
+	.Position(410,32+j*STEP)
+	.TextBoxSize(65, 10)
+	.Text(GetCond(conds[i])+""+(online[i] ?  "" : "[off]"),FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+}
+
+void ShowIp(uint i,uint j)
+{
+	GUI_AddText(CLIENT_SCREEN_PLAYERS)
+	.Position(450,32+j*STEP)
+	.TextBoxSize(230, 10)
+	.Text(IpToString(ips[i])+" "+uids[i],FONT_FALLOUT,COLOR_TEXT,0,FT_CENTERX|FT_CENTERY|FT_BORDERED);
+}
+
+string GetCond(uint8 cond)
+{
+	switch( cond )
+	{
+		case COND_LIFE:
+			return "Life";
+		case COND_KNOCKOUT:
+			return "KO";
+		case COND_DEAD:
+			return "Dead";
+	}
+	return "Unknown";
+}
+
+string IpToString(uint ip)
+{
+    if(ip > 0)
+    {
+        string result = "";
+
+        for(uint i = 0; i < 4; i++)
+            result += (i == 0 ? "" : ".") + ((ip >> (i * 8)) & 0xFF);
+
+        return(result);
+    }
+    else
+        return("0.0.0.0");
+}
+
+void MoveUp()
+{
+	if (ListIndex > 0)
+	{
+		ListIndex--;
+		RefreshPlayersScreen();
+	}
+}
+
+void MoveDown()
+{
+	if (ListIndex+40>=ids.length())
+		return;
+	
+	ListIndex++;
+	RefreshPlayersScreen();
+}

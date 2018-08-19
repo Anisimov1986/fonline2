@@ -1,0 +1,209 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+30 1010 D _var p name_mem_player_npc = 0 D _var p name_mem_npc_player = 2 D _item p PID_ADVANCED_POWER_ARMOR_MK2 < 1 D or D _var p name_mem_player_npc = 0 D _var p name_mem_npc_player = 2 D _item p PID_ADVANCED_POWER_ARMOR < 1 D or D _var p name_mem_player_npc = 0 D _var p name_mem_npc_player = 2 D _item p PID_ENCLAVE_ARMOR < 1 R _var p name_mem_player_npc = 1 #
+31 1020 D _item p PID_ENCLAVE_ARMOR } 1 D _var p name_mem_player_npc = 0 D or D _var p name_mem_npc_player = 3 D _var p name_mem_player_npc = 0 R _var p name_mem_npc_player = 3 R _var p name_mem_player_npc = 1 #
+32 1030 D _item p PID_ADVANCED_POWER_ARMOR_MK2 } 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR } 1 D _var p name_mem_player_npc = 0 D or D _var p name_mem_npc_player = 4 D _var p name_mem_player_npc = 0 R _var p name_mem_npc_player = 4 R _var p name_mem_player_npc = 1 #
+2 1040 D _var p name_mem_npc_player = 0 D _item p PID_ENCLAVE_ARMOR < 1 D or D _var p name_mem_npc_player = 0 D _item p PID_ADVANCED_POWER_ARMOR < 1 D or D _var p name_mem_npc_player = 0 D _item p PID_ADVANCED_POWER_ARMOR_MK2 < 1 R _script dialog@r_Wait 0  @
+2 2000 Attack 0 #
+65507 2010 R _script dialog@r_AttackGroup 1 207 #
+5 2020 R _script dialog@r_NodeChancePercent 3 30 6 3 #
+4 2030 D _param p ST_INTELLECT > 5 R _script dialog@r_NodeChancePercent 3 90 4 7 #
+9 2040 D _param p SK_SCIENCE } 90 D or D _param p SK_REPAIR } 90 R _script dialog@r_NodeChancePercent 3 90 9 5 #
+10 2050 D _item p PID_BOTTLE_CAPS } 1000 @
+3 3000 Attack 0 #
+65507 3010 R _script dialog@r_AttackGroup 1 207 @
+4 4000 None 0 #
+3 4010 R _script dialog@r_AttackGroup 1 207 #
+0 4020 R _var p name_mem_npc_player = 4 @
+5 5000 Attack 0 #
+65507 5010 R _script dialog@r_AttackGroup 1 207 #
+3 5020 R _script dialog@r_NodeChancePercent 3 20 6 3 @
+6 6000 None 0 #
+0 6010 R _var p name_mem_npc_player = 2 @
+7 7000 Attack 0 #
+65507 7010 R _script dialog@r_AttackGroup 1 207 #
+3 7020 R _script dialog@r_NodeChancePercent 3 50 8 3 @
+8 8000 None 0 #
+0 8010 R _var p name_mem_npc_player = 4 @
+9 9000 None 0 #
+0 9010 R _var p name_mem_npc_player = 3 @
+10 10000 None 0 #
+65507 10010 R _script dialog@r_AttackGroup 1 207 #
+0 10020 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _var p name_mem_npc_player = 2 @
+30 11000 None 0 @
+31 12000 None 0 @
+32 13000 None 0 @
+33 14000 Attack 0 @
+34 15000 None 0 &
+
+[engl]
+{100}{}{Enclave Trooper}
+{200}{}{You see: Enclave Trooper}
+{210}{}{You see a person dressed in an Enclave variant of Combat Armor.}
+{1000}{}{Initial preferences}
+{1010}{}{Floater when talked out succesful (technician or a bribe),without eca or epa
+}
+{1020}{}{Player has ECA or result of dialog (enginner/technician)}
+{1030}{}{Player has APA or talked out as an intelligence officer}
+{1040}{}{Question if guard sees player 1st time, without eca or epa}
+{2000}{}{What the fuck are you doing here?@@What the fuck? Who are you?@@Who the hell are you? And where is your uniform?@@What are you doing here? How did you even get here?@@What the hell, who are you?@@Wha- What are you doing here?@@Who the fuck are you?@@This is a restricted area, what are you doing here?@@The fuck, who the hell are you?@@What are you doing here?}
+{2010}{}{[Attack.] I came to blow up this pretty base of yours.@@[Attack.] Nice camouflage, dude, but it won't help you when this whole fuckin' base is gonna blow up.@@[Attack.] I came to fuck your ass up.@@[Attack.] You're all going to die, wimps.@@[Attack.] You're going to hell, I'm afraid.@@[Attack.] That's none of your concern. And oh, this base is toast.@@[Attack.] Time to die, Enclave scum!@@[Attack.] All you need to know is that you're gonna be dead in five seconds.@@[Attack.] Hi. I'm gonna get medieval on your asses.@@[Attack.] Well hello there, Mr. Dead Man.}
+{2020}{}{I'm just... looking around.@@I'm just... sightseeing.@@I'm just admiring your little installation.@@I don't know, I think I'm lost.@@Can you direct me to the supply boats?@@I'm just admiring your outfit.@@None of your business.@@I don't have time for this.@@I'm wondering if you could direct me to the pier.@@I don't have time for this.@@You know... just admiring the sights.}
+{2030}{}{I'm here on the president's special order, and you won't be addressing me like that, recruit!@@I'm with the Intelligence Division, we're conducting an assessment of your preparedness in case of an outside intrusion. Now, if you'll please step aside and let me do my work...@@Shut your fuckin' mouth, recruit, you're addressing a member of the Intelligence Department!@@I'm under the Intelligence Department's jurisdiction, and you will not, I repeat, will *not* address me like that, recruit!@@Who are you to interrupt me in my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.@@The guys from maintenance sent me.@@I'm from maintenance.@@I'm a replacement for the engineer that drowned recently.}
+{2050}{}{Oh, you know, no one that should be of your interest... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when no one is looking.]@@Hold your horses there, soldier. [Lower your voice.] I might have some interesting opportunity for you...}
+{3000}{}{Really? How curious. You're not supposed to be here. Oh well, I guess it don't matter since you're already dead.@@No shit. Get ready to meet your maker, idiot.@@You're going to die, right now.@@Now that's a bold move, stranger. Too bad you're gonna die.@@Hmmm, let me see. Ah yes, now I remember. They said not to let any unauthorized personnel in here. I guess that's about you. Get ready to meet your God.@@No kiddin'! Too bad you're going to die.@@I hope that you know that we've got orders to kill any trespassers. No? Oh well...@@Nice one. I hope you don't take it personally, but I'm gonna have to kill you.}
+{3010}{}{So much for quiet entry...@@Well, at least I gave it a try...@@Now the fun part starts.@@Well, let's get it on then.@@Bite me!@@We'll see who gets out of this alive...@@So much for the stealthy approach...}
+{4000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didn't know... I'm very sorry Sir, this won't happen again!}
+{4010}{}{On second thought... That was a lie. I came to fuck your shit up.@@Nah, I'm just kidding.@@Haha, gotcha!@@I lied. Hehe.@@Man, you're so naive...@@What if I told you I just made that all up?@@Hahaha, shit, you Enclave guys are soo dumb!@@I'm just fucking with you, I made it up. And you're going to die.@@That was a joke. Too bad you ain't gonna live long enough to laugh about it.}
+{4020}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{5000}{}{May I see your ID then?@@I'm gonna have to ask you for an ID.@@Let me see your ID.@@Show me your ID then.@@I'm gonna need to see some ID.@@Show me your ID then.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID.}
+{5010}{}{[Attack] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{5020}{}{I seem to have... misplaced it.@@I've lost it, sorry.@@I don't have it.@@Sorry, I don't have it on me right now.@@I left it in my desk.@@I left it somewhere, and I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it.}
+{6000}{}{Oh, fuck this. Just get your ass outta here.@@Hmm, okay, just get your ass outta here before someone sees us.@@Damn, get your ass outta here before Sarge sees us.@@All right, I think I believe you. For now. Now get the fuck outta here.@@Okay, just get lost before someone else notices.}
+{6010}{}{Okay, thanks.@@I won't forget this.@@Thanks!@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.}
+{7000}{}{May I see your ID then, Sir?@@I'm gonna have to ask you for an ID, Sir.@@Let me see your ID, please.@@Show me your credentials then, Sir.@@I'm gonna need to see some ID, Sir.@@Show me your ID then, Sir.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID, Sir.}
+{7010}{}{[Attack.] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{7020}{}{I seem to have... misplaced it.@@I lost it, sorry.@@I don't have it.@@Sorry, I don't have it with me right now.@@I left it in my desk.@@I left it somewhere, but I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it..}
+{8000}{}{Okay Sir, just try to remember to have it on you next time.@@All right, Sir, just don't wander around without ID.@@Okay Sir, I'm gonna leave you to your work.}
+{8010}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{9000}{}{Hmmm, okay. Just don't wander around too much, Sarge doesn't like it.@@Right, get your ass moving then.@@Okay, just don't take too long.@@Right, now move your ass.@@Get going then!}
+{9010}{}{Okay, thanks.@@Yeah, I'm going.@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.@@Yeah, yeah, you grunts are such a pain in the ass.@@Yeah, I'm gone.}
+{10000}{}{All right. Gimme those, and get lost.@@Whoa. Give me that shit and don't show yourself here anymore.@@What? You suggest that I... ah, fuck it, I'll take those. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost!}
+{10010}{}{[Attack.] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{10020}{}{Sure thing, there. [Hand over a thousand caps.] @@Yeah, sure... [Hand over a thousand caps.] @@You've made the best deal of your life. [Hand over a thousand caps.] @@Yeah, take these. [Hand over a thousand caps.] }
+{11000}{}{Get your ass outta here before Sarge sees you.@@Get lost, or we're both gonna be in a world of shit.@@Move your ass, I don't wanna be seen talking to you.@@Fuck off, if some grunt sees us, we're screwed.@@Get your fuckin' ass to the armory and put on your uniform!@@You're still here? Get the fuck out before the Corporal sees us.@@Get the hell away from here.@@Get lost before some high-up sees us.}
+{12000}{}{I don't have the time for your shit right now.@@Yeah?@@What?@@I'm busy.@@Fuck off.@@Sarge said we'll be on a clean'n'sweep today...@@Screwbie.@@This is my rifle, this is my gun...@@...There are many rifles like it but this one is mine...@@Watch out for Sarge, he's in a shitty mood today.@@I heard that Command is sending us east.@@Boy I'm glad I'm stationed here.@@Been on a supply mission in San Fran recently, what a clusterfuck.@@I heard we lost a Vertie recently.@@Shut your mouth, Sarge's gonna fuck us up.@@What are you doin' here?@@You from Intelligence?@@Those tech boys sure know how to piss me off.@@I hope I'll get to be in a scout team someday.@@No time for a combat jack, fuck.@@Damn this duty is killin' me.}
+{13000}{}{Yes, sir?@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@I'm on my duty, Sir.@@Good day to you, Sir.@@I won't bother you again, Sir.}
+{14000}{}{We've got an intruder here! Sound the alarm!@@Intruder! Sound the alarm!@@Kill the intruder!@@Watch out, we've got a spy here!@@A spy, shoot!@@Shoot the spy!@@Kill the trespasser now!}
+{15000}{}{Error.}
+
+[russ]
+{100}{}{Enclave Trooper}
+{200}{}{You see: Enclave Trooper}
+{210}{}{You see a person dressed in an Enclave variant of Combat Armor.}
+{1000}{}{Initial preferences}
+{1010}{}{x2}
+{1020}{}{Player has ECA or result of dialog (enginner/technician)}
+{1030}{}{Player has APA}
+{1040}{}{Floater}
+{2000}{}{What the fuck are you doing here?@@What the fuck? Who are you?@@Who the hell are you? And where is your uniform?@@What are you doing here? How did you even get here?@@What the hell, who are you?@@Wha- What are you doing here?@@Who the fuck are you?@@This is a restricted area, what are you doing here?@@The fuck, who the hell are you?@@What are you doing here?}
+{2010}{}{I came to blow up this pretty base of yours.@@Nice camouflage, dude, but it won't help you when this all fuckin' base is gonna blow.@@I came to fuck your ass up.@@You're all going to die, wimps.@@You're going to hell, I'm afraid.@@This base is toast.}
+{2020}{}{I'm just... looking around.@@I'm sightseeing.@@I'm just admiring your little installation.@@I don't know, I think I'm lost.@@Can you direct me to the supply boats?@@I'm just admiring your outfit.@@None of your business.@@Fuck off.@@Screw you, wimp.@@I don't have time for this.}
+{2030}{}{I'm here on the presiden't special order, and you won't be addresing me like that, recruit!@@I'm with the Intelligence Division, we're running a routine check up of your preparedness in case of outside intrusion.Now, if you please step aside and let me do my work...@@Shut your fuckin mouth, recruit, you're adressing a member of the Intelligence Department!@@I'm under Intelligence Department's jurisdiction, and you will not, I repeat, will not adress me like that, recruit!@@Who are you to interrupt me in my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.}
+{2050}{}{Um, you know, no one that should be of your interest... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when  no one is looking.]@@Hold your horses there, soldier. [Lower your voice.] I might have some interesting opportuinity for you...}
+{3000}{}{Na nananananannanananna kupaaaa!}
+{3010}{}{So much for quiet entry...@@Well, at least I gave it a try...@@Now the fun part starts.@@Well, let's get it on then.@@Bite me!@@We'll see who gets out of this alive...}
+{4000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didin't know... I'm very sorry Sir, this won't happen again!}
+{4010}{}{On second thought... I that was a lie. I came to fuck your shit up.@@Nah, I'm just kidding.@@Haha, gotcha!@@I lied. Hehe.@@Man, you're so naive...@@What if I told I've just made it all up?@@Hahaha, no shit, you Enclave guys are soo dumb!@@I'm just fucking with you, I've made this up. And you're going to die.@@That was a joke. Too bad you' ain't gonna live long enough to laugh about it.}
+{4020}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{5000}{}{My I see your credentials then?@@I'm gonna have to ask you for an ID.@@Let me see your ID, please.@@Show me your credentials then.@@I'm gonna need to see some ID.@@Show me your ID then.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID.}
+{5010}{}{[Attack] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{5020}{}{I seem to... misplaced it.@@I've lost it, sorry.@@I don't have it.@@Sorry, I don't have it me right now.@@I left it in my desk.@@I've left it somewhere, and I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it.}
+{6000}{}{Strange... somehow, I believe you.@@Hmm, okay, just get your ass outta here before someone sees us.@@Damn, get your ass outta here before Sarge sees us.@@All right, I think I believe you. For now. Now get the fuck outta here.@@Okay, just get lost before someone else notices.}
+{6010}{}{Okay, thanks.@@I won't forget this.@@Thanks!@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.}
+{7000}{}{My I see your credentials then?@@I'm gonna have to ask you for an ID.@@Let me see your ID, please.@@Show me your credentials then.@@I'm gonna need to see some ID.@@Show me your ID then.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID.}
+{7010}{}{[Attack] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{7020}{}{I seem to... misplaced it.@@I've lost it, sorry.@@I don't have it.@@Sorry, I don't have it me right now.@@I left it in my desk.@@I've left it somewhere, and I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it..}
+{8000}{}{Okay Sir, just try to remember to have it on you next time.@@All right, Sir, just don't wander around without ID.@@Okay Sir, I'm gonna leave you to your work.}
+{8010}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{9000}{}{Hmmm, okay. Just don't wander around too much, Sarge doesn't like it.@@Right, get your ass moving then.@@Okay, just don't take too long.@@Right, now move your ass.@@Get going then!}
+{9010}{}{Okay, thanks.@@Yeah, I'm going.@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.@@Yeah, yeah, you grunts are such a pain in the ass.@@Yeah, I'm gone.}
+{10000}{}{Wha-. Fuck. Gimme this, and get lost.@@Whoa. Give me this shit and don't show yourself here anymore.@@What? You suggest that I... ah, fuck it, I'll take those. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost.}
+{10010}{}{[Attack.] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{10020}{}{Sure thing, there.[Hand over a thousand caps.] @@Yeah, sure... [Hand over a thousand caps.] @@You've made the best deal of your life. [Hand over a thousand caps.] @@Yeah, take those. [Hand over a thousand caps.] }
+{11000}{}{I don't have the time for your shit now.@@Yeah?@@What?@@I'm busy.@@Fuck off.@@What are you doing without your uniform?@@Get lost, or we're both gonna be in a world of trouble.@@Sarge said we'll be on a clean'n'sweep today...@@Screwbie.@@This is my rifle, this is my gun...@@...There are many rifles like it but this one is mine...@@Watch out for sarge, he's in a shitty mood today.@@I heard the Command is sending us east.@@Boy I'm glad I'm stationed here.@@Been on a supply mission in San Fran recently, what a clusterfuck.@@I heard we lost a Vertie recently.@@Shut your mouth, Sarge's gonna fuck us up.@@Where the fuck is your uniform?@@What are you doin' here?@@You from Intelligence?@@Those tech boys sure know how to piss me off.@@I hope I'll get to be in a scout team someday.@@No time for a combat jack, fuck.@@Damn this duty is killin' me.}
+{12000}{}{I don't have the time for your shit now.@@Yeah?@@What?@@I'm busy.@@Fuck off.@@What are you doing without your uniform?@@Get lost, or we're both gonna be in a world of trouble.@@Sarge said we'll be on a clean'n'sweep today...@@Screwbie.@@This is my rifle, this is my gun...@@...There are many rifles like it but this one is mine...@@Watch out for sarge, he's in a shitty mood today.@@I heard the Command is sending us east.@@Boy I'm glad I'm stationed here.@@Been on a supply mission in San Fran recently, what a clusterfuck.@@I heard we lost a Vertie recently.@@Shut your mouth, Sarge's gonna fuck us up.@@Where the fuck is your uniform?@@What are you doin' here?@@You from Intelligence?@@Those tech boys sure know how to piss me off.@@I hope I'll get to be in a scout team someday.@@No time for a combat jack, fuck.@@Damn this duty is killin' me.}
+{13000}{}{Yes, sir?@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@I'm on my duty, Sir.@@Good day to you, Sir.@@I won't bother you again, Sir.}
+{14000}{}{We've got an intruder here! Sound the alarm!@@Intruder, kill him!@@Kill the intruder!@@Watch out, we've got a spy here!@@A spy, kill him!@@}
+{15000}{}{Error.}
+
+[pols]
+{100}{}{Enclave Trooper}
+{200}{}{You see: Enclave Trooper}
+{210}{}{You see a person dressed in an Enclave variant of Combat Armor.}
+{1000}{}{Initial preferences}
+{1010}{}{x2}
+{1020}{}{Player has ECA or result of dialog (enginner/technician)}
+{1030}{}{Player has APA}
+{1040}{}{Floater}
+{2000}{}{What the fuck are you doing here?@@What the fuck? Who are you?@@Who the hell are you? And where is your uniform?@@What are you doing here? How did you even get here?@@What the hell, who are you?@@Wha- What are you doing here?@@Who the fuck are you?@@This is a restricted area, what are you doing here?@@The fuck, who the hell are you?@@What are you doing here?}
+{2010}{}{I came to blow up this pretty base of yours.@@Nice camouflage, dude, but it won't help you when this all fuckin' base is gonna blow.@@I came to fuck your ass up.@@You're all going to die, wimps.@@You're going to hell, I'm afraid.@@This base is toast.}
+{2020}{}{I'm just... looking around.@@I'm sightseeing.@@I'm just admiring your little installation.@@I don't know, I think I'm lost.@@Can you direct me to the supply boats?@@I'm just admiring your outfit.@@None of your business.@@Fuck off.@@Screw you, wimp.@@I don't have time for this.}
+{2030}{}{I'm here on the presiden't special order, and you won't be addresing me like that, recruit!@@I'm with the Intelligence Division, we're running a routine check up of your preparedness in case of outside intrusion.Now, if you please step aside and let me do my work...@@Shut your fuckin mouth, recruit, you're adressing a member of the Intelligence Department!@@I'm under Intelligence Department's jurisdiction, and you will not, I repeat, will not adress me like that, recruit!@@Who are you to interrupt me in my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.}
+{2050}{}{Um, you know, no one that should be of your interest... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when  no one is looking.]@@Hold your horses there, soldier. [Lower your voice.] I might have some interesting opportuinity for you...}
+{3000}{}{Na nananananannanananna kupaaaa!}
+{3010}{}{So much for quiet entry...@@Well, at least I gave it a try...@@Now the fun part starts.@@Well, let's get it on then.@@Bite me!@@We'll see who gets out of this alive...}
+{4000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didin't know... I'm very sorry Sir, this won't happen again!}
+{4010}{}{On second thought... I that was a lie. I came to fuck your shit up.@@Nah, I'm just kidding.@@Haha, gotcha!@@I lied. Hehe.@@Man, you're so naive...@@What if I told I've just made it all up?@@Hahaha, no shit, you Enclave guys are soo dumb!@@I'm just fucking with you, I've made this up. And you're going to die.@@That was a joke. Too bad you' ain't gonna live long enough to laugh about it.}
+{4020}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{5000}{}{My I see your credentials then?@@I'm gonna have to ask you for an ID.@@Let me see your ID, please.@@Show me your credentials then.@@I'm gonna need to see some ID.@@Show me your ID then.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID.}
+{5010}{}{[Attack] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{5020}{}{I seem to... misplaced it.@@I've lost it, sorry.@@I don't have it.@@Sorry, I don't have it me right now.@@I left it in my desk.@@I've left it somewhere, and I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it.}
+{6000}{}{Strange... somehow, I believe you.@@Hmm, okay, just get your ass outta here before someone sees us.@@Damn, get your ass outta here before Sarge sees us.@@All right, I think I believe you. For now. Now get the fuck outta here.@@Okay, just get lost before someone else notices.}
+{6010}{}{Okay, thanks.@@I won't forget this.@@Thanks!@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.}
+{7000}{}{My I see your credentials then?@@I'm gonna have to ask you for an ID.@@Let me see your ID, please.@@Show me your credentials then.@@I'm gonna need to see some ID.@@Show me your ID then.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID.}
+{7010}{}{[Attack] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{7020}{}{I seem to... misplaced it.@@I've lost it, sorry.@@I don't have it.@@Sorry, I don't have it me right now.@@I left it in my desk.@@I've left it somewhere, and I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it..}
+{8000}{}{Okay Sir, just try to remember to have it on you next time.@@All right, Sir, just don't wander around without ID.@@Okay Sir, I'm gonna leave you to your work.}
+{8010}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{9000}{}{Hmmm, okay. Just don't wander around too much, Sarge doesn't like it.@@Right, get your ass moving then.@@Okay, just don't take too long.@@Right, now move your ass.@@Get going then!}
+{9010}{}{Okay, thanks.@@Yeah, I'm going.@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.@@Yeah, yeah, you grunts are such a pain in the ass.@@Yeah, I'm gone.}
+{10000}{}{Wha-. Fuck. Gimme this, and get lost.@@Whoa. Give me this shit and don't show yourself here anymore.@@What? You suggest that I... ah, fuck it, I'll take those. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost.}
+{10010}{}{[Attack.] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{10020}{}{Sure thing, there.[Hand over a thousand caps.] @@Yeah, sure... [Hand over a thousand caps.] @@You've made the best deal of your life. [Hand over a thousand caps.] @@Yeah, take those. [Hand over a thousand caps.] }
+{11000}{}{I don't have the time for your shit now.@@Yeah?@@What?@@I'm busy.@@Fuck off.@@What are you doing without your uniform?@@Get lost, or we're both gonna be in a world of trouble.@@Sarge said we'll be on a clean'n'sweep today...@@Screwbie.@@This is my rifle, this is my gun...@@...There are many rifles like it but this one is mine...@@Watch out for sarge, he's in a shitty mood today.@@I heard the Command is sending us east.@@Boy I'm glad I'm stationed here.@@Been on a supply mission in San Fran recently, what a clusterfuck.@@I heard we lost a Vertie recently.@@Shut your mouth, Sarge's gonna fuck us up.@@Where the fuck is your uniform?@@What are you doin' here?@@You from Intelligence?@@Those tech boys sure know how to piss me off.@@I hope I'll get to be in a scout team someday.@@No time for a combat jack, fuck.@@Damn this duty is killin' me.}
+{12000}{}{I don't have the time for your shit now.@@Yeah?@@What?@@I'm busy.@@Fuck off.@@What are you doing without your uniform?@@Get lost, or we're both gonna be in a world of trouble.@@Sarge said we'll be on a clean'n'sweep today...@@Screwbie.@@This is my rifle, this is my gun...@@...There are many rifles like it but this one is mine...@@Watch out for sarge, he's in a shitty mood today.@@I heard the Command is sending us east.@@Boy I'm glad I'm stationed here.@@Been on a supply mission in San Fran recently, what a clusterfuck.@@I heard we lost a Vertie recently.@@Shut your mouth, Sarge's gonna fuck us up.@@Where the fuck is your uniform?@@What are you doin' here?@@You from Intelligence?@@Those tech boys sure know how to piss me off.@@I hope I'll get to be in a scout team someday.@@No time for a combat jack, fuck.@@Damn this duty is killin' me.}
+{13000}{}{Yes, sir?@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@I'm on my duty, Sir.@@Good day to you, Sir.@@I won't bother you again, Sir.}
+{14000}{}{We've got an intruder here! Sound the alarm!@@Intruder, kill him!@@Kill the intruder!@@Watch out, we've got a spy here!@@A spy, kill him!@@}
+{15000}{}{Error.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Floater when talked out succesful (technician or a bribe),without eca or epa
+}
+{1020}{}{Player has ECA or result of dialog (enginner/technician)}
+{1030}{}{Player has APA or talked out as an intelligence officer}
+{1040}{}{Question if guard sees player 1st time, without eca or epa}
+{2000}{}{What the fuck are you doing here?@@What the fuck? Who are you?@@Who the hell are you? And where is your uniform?@@What are you doing here? How did you even get here?@@What the hell, who are you?@@Wha- What are you doing here?@@Who the fuck are you?@@This is a restricted area, what are you doing here?@@The fuck, who the hell are you?@@What are you doing here?}
+{2010}{}{[Attack.] I came to blow up this pretty base of yours.@@[Attack.] Nice camouflage, dude, but it won't help you when this whole fuckin' base is gonna blow up.@@[Attack.] I came to fuck your ass up.@@[Attack.] You're all going to die, wimps.@@[Attack.] You're going to hell, I'm afraid.@@[Attack.] That's none of your concern. And oh, this base is toast.@@[Attack.] Time to die, Enclave scum!@@[Attack.] All you need to know is that you're gonna be dead in five seconds.@@[Attack.] Hi. I'm gonna get medieval on your asses.@@[Attack.] Well hello there, Mr. Dead Man.}
+{2020}{}{I'm just... looking around.@@I'm just... sightseeing.@@I'm just admiring your little installation.@@I don't know, I think I'm lost.@@Can you direct me to the supply boats?@@I'm just admiring your outfit.@@None of your business.@@I don't have time for this.@@I'm wondering if you could direct me to the pier.@@I don't have time for this.@@You know... just admiring the sights.}
+{2030}{}{I'm here on the president's special order, and you won't be addressing me like that, recruit!@@I'm with the Intelligence Division, we're conducting an assessment of your preparedness in case of an outside intrusion. Now, if you'll please step aside and let me do my work...@@Shut your fuckin' mouth, recruit, you're addressing a member of the Intelligence Department!@@I'm under the Intelligence Department's jurisdiction, and you will not, I repeat, will *not* address me like that, recruit!@@Who are you to interrupt me in my work? You want me to report you to your superior?}
+{2040}{}{I'm a technician, just arrived here.@@I'm from the maintenance crew.@@I'm a technician, I was told to check out some of your computers.@@I'm from maintenance, I was told to check some stuff.@@The guys from maintenance sent me.@@I'm from maintenance.@@I'm a replacement for the engineer that drowned recently.}
+{2050}{}{Oh, you know, no one that should be of your interest... [Flash a bag of caps.]@@Why are you so upset? Maybe... [Lower your voice.] A few caps could cheer you up?@@I see you're not paid properly. Otherwise you wouldn't be so upset. [Show him a bag of caps when no one is looking.]@@Hold your horses there, soldier. [Lower your voice.] I might have some interesting opportunity for you...}
+{3000}{}{Really? How curious. You're not supposed to be here. Oh well, I guess it don't matter since you're already dead.@@No shit. Get ready to meet your maker, idiot.@@You're going to die, right now.@@Now that's a bold move, stranger. Too bad you're gonna die.@@Hmmm, let me see. Ah yes, now I remember. They said not to let any unauthorized personnel in here. I guess that's about you. Get ready to meet your God.@@No kiddin'! Too bad you're going to die.@@I hope that you know that we've got orders to kill any trespassers. No? Oh well...@@Nice one. I hope you don't take it personally, but I'm gonna have to kill you.}
+{3010}{}{So much for quiet entry...@@Well, at least I gave it a try...@@Now the fun part starts.@@Well, let's get it on then.@@Bite me!@@We'll see who gets out of this alive...@@So much for the stealthy approach...}
+{4000}{}{I'm... I'm very sorry, Sir. I won't be disturbing you no more.@@My apologies, Sir!@@Crap, I'm very sorry, Sir! This won't happen again!@@I never intended to upset you, Sir! I just do what I'm ordered, Sir.@@Oh fuck... I mean... I'm very sorry, Sir, it won't happen again, Sir!@@I didn't know... I'm very sorry Sir, this won't happen again!}
+{4010}{}{On second thought... That was a lie. I came to fuck your shit up.@@Nah, I'm just kidding.@@Haha, gotcha!@@I lied. Hehe.@@Man, you're so naive...@@What if I told you I just made that all up?@@Hahaha, shit, you Enclave guys are soo dumb!@@I'm just fucking with you, I made it up. And you're going to die.@@That was a joke. Too bad you ain't gonna live long enough to laugh about it.}
+{4020}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{5000}{}{May I see your ID then?@@I'm gonna have to ask you for an ID.@@Let me see your ID.@@Show me your ID then.@@I'm gonna need to see some ID.@@Show me your ID then.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID.}
+{5010}{}{[Attack] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{5020}{}{I seem to have... misplaced it.@@I've lost it, sorry.@@I don't have it.@@Sorry, I don't have it on me right now.@@I left it in my desk.@@I left it somewhere, and I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it.}
+{6000}{}{Oh, fuck this. Just get your ass outta here.@@Hmm, okay, just get your ass outta here before someone sees us.@@Damn, get your ass outta here before Sarge sees us.@@All right, I think I believe you. For now. Now get the fuck outta here.@@Okay, just get lost before someone else notices.}
+{6010}{}{Okay, thanks.@@I won't forget this.@@Thanks!@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.}
+{7000}{}{May I see your ID then, Sir?@@I'm gonna have to ask you for an ID, Sir.@@Let me see your ID, please.@@Show me your credentials then, Sir.@@I'm gonna need to see some ID, Sir.@@Show me your ID then, Sir.@@I'm sorry, but I'm going to need to see some ID.@@Show me your ID, Sir.}
+{7010}{}{[Attack.] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{7020}{}{I seem to have... misplaced it.@@I lost it, sorry.@@I don't have it.@@Sorry, I don't have it with me right now.@@I left it in my desk.@@I left it somewhere, but I don't remember where, sorry.@@Damn, I forgot it, again...@@I forgot where I put it again, damn it..}
+{8000}{}{Okay Sir, just try to remember to have it on you next time.@@All right, Sir, just don't wander around without ID.@@Okay Sir, I'm gonna leave you to your work.}
+{8010}{}{Good. Now get your ass outta my way, soldier.@@Good, now get the fuck outta my face.@@Yeah, just don't bother me again, soldier.@@You're lucky I'm in a good mood today.@@This better be the last time.@@Just don't waste my time again, you hear?@@I hope I won't be pestered by you again, soldier. Dismissed.}
+{9000}{}{Hmmm, okay. Just don't wander around too much, Sarge doesn't like it.@@Right, get your ass moving then.@@Okay, just don't take too long.@@Right, now move your ass.@@Get going then!}
+{9010}{}{Okay, thanks.@@Yeah, I'm going.@@I'll be going right now.@@I'm going now.@@Sure, you won't see me again.@@Yeah, yeah, you grunts are such a pain in the ass.@@Yeah, I'm gone.}
+{10000}{}{All right. Gimme those, and get lost.@@Whoa. Give me that shit and don't show yourself here anymore.@@What? You suggest that I... ah, fuck it, I'll take those. Now get going.@@Okay, just be quiet about this.@@Right, I'll take those, now get lost!}
+{10010}{}{[Attack.] Ah, fuck it. Prepare to die!@@[Attack.] Fuck this. Time to die, Enclave scum!@@[Attack.] All right, you win. Now, time to die!@@[Attack.] And I thought this was gonna be easy... Prepare yourself!}
+{10020}{}{Sure thing, there. [Hand over a thousand caps.] @@Yeah, sure... [Hand over a thousand caps.] @@You've made the best deal of your life. [Hand over a thousand caps.] @@Yeah, take these. [Hand over a thousand caps.] }
+{11000}{}{Get your ass outta here before Sarge sees you.@@Get lost, or we're both gonna be in a world of shit.@@Move your ass, I don't wanna be seen talking to you.@@Fuck off, if some grunt sees us, we're screwed.@@Get your fuckin' ass to the armory and put on your uniform!@@You're still here? Get the fuck out before the Corporal sees us.@@Get the hell away from here.@@Get lost before some high-up sees us.}
+{12000}{}{I don't have the time for your shit right now.@@Yeah?@@What?@@I'm busy.@@Fuck off.@@Sarge said we'll be on a clean'n'sweep today...@@Screwbie.@@This is my rifle, this is my gun...@@...There are many rifles like it but this one is mine...@@Watch out for Sarge, he's in a shitty mood today.@@I heard that Command is sending us east.@@Boy I'm glad I'm stationed here.@@Been on a supply mission in San Fran recently, what a clusterfuck.@@I heard we lost a Vertie recently.@@Shut your mouth, Sarge's gonna fuck us up.@@What are you doin' here?@@You from Intelligence?@@Those tech boys sure know how to piss me off.@@I hope I'll get to be in a scout team someday.@@No time for a combat jack, fuck.@@Damn this duty is killin' me.}
+{13000}{}{Yes, sir?@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@I'm on my duty, Sir.@@Good day to you, Sir.@@I won't bother you again, Sir.}
+{14000}{}{We've got an intruder here! Sound the alarm!@@Intruder! Sound the alarm!@@Kill the intruder!@@Watch out, we've got a spy here!@@A spy, shoot!@@Shoot the spy!@@Kill the trespasser now!}
+{15000}{}{Error.}
+

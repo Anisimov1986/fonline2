@@ -1,0 +1,101 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos" 
+
+import int GetNextTime(uint Id) from "game_events";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+
+const int[] eventId = {12, 13, 14, 15, 67};
+const int[] gossipMsgIds = {STR_CARAVAN1_EVENT_GOSSIP, STR_CARAVAN2_EVENT_GOSSIP, STR_CARAVAN3_EVENT_GOSSIP, STR_CARAVAN4_EVENT_GOSSIP, STR_CARAVAN5_EVENT_GOSSIP};
+const int[] eventDurationMin = {10, 20, 20, 30, 10};
+const string[] eventMsg = {
+	"Hub and NCR signed urgent delivery contract - extra manpower needed.  [Caravan's guards are paid 50% extra cash and experience.] Time left:",
+	"Hub and Vault City signed urgent delivery contract - extra manpower needed.  [Caravan's guards are paid 50% extra cash and experience.] Time left:",
+	"Hub and San Francisco signed urgent delivery contract - extra manpower needed.  [Caravan's guards are paid 50% extra cash and experience.] Time left:",
+	"Far Go Traders signed urgent delivery contract - extra manpower needed.  [Caravan's guards are paid 50% extra cash and experience.] Time left:",
+	"NCR and Vault City signed urgent delivery contract - extra manpower needed.  [Caravan's guards are paid 50% extra cash and experience.] Time left:",
+};
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	string message;
+	int duration;
+	uint gossipMsgId;
+
+	for (uint i = 0; i < eventId.length(); i++)
+	{
+		if (id == eventId[i]) 
+		{
+			message = eventMsg[i];
+			duration = REAL_MINUTE(eventDurationMin[i]);
+			gossipMsgId = gossipMsgIds[i];
+		}
+	}
+
+	InitializeGossip(id, gossipMsgId, duration);
+	AddNewMessage(message, duration, 1, COLOR_GREEN, true, id);
+}
+
+void InitializeGossip(int id, uint gossipMsgId, int duration)
+{
+	if (gossipMsgId > 0)
+	{			
+		GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, duration);
+		gossipDefinition.SetGossipId(id);
+		gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+		gossipDefinition.SetMsgId(gossipMsgId);
+		StartGossip(gossipDefinition);
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	StopGossip(values[0], GOSSIP_SCOPE_EVENT);
+	RemoveMessageByEvent(values[0]);
+	
+	return 0;
+}
+
+void event_start( Critter& cr, int id, int , int)
+{
+	event_start(id);
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	e_event_stop(null);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}

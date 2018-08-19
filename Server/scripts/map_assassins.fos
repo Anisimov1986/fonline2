@@ -1,0 +1,260 @@
+#include "_macros.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "npc_common_h.fos"
+#include "_ai.fos"
+#include "utils_h.fos"
+#include "polygon_h.fos"
+
+import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
+
+int[] npcParams =
+{
+    SK_SMALL_GUNS, 200,
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, ST_DIALOG_ID, 0, MODE_NO_TALK, 1,  ST_KILL_EXPERIENCE, 0, ST_BAG_ID, 0,
+    ST_REPLICATION_TIME, -1, ST_TEAM_ID, 500
+};
+
+int[] npcParamsWatchman =
+{
+    SK_SMALL_GUNS, 200, ST_BONUS_LOOK, 999,
+    MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, ST_DIALOG_ID, 0, MODE_NO_TALK, 1,  ST_KILL_EXPERIENCE, 0, ST_BAG_ID, 0,
+    ST_REPLICATION_TIME, -1, ST_TEAM_ID, 500
+};
+
+void _MapInit( Map& map, bool )
+{
+    map.SetEvent( MAP_EVENT_CRITTER_DEAD, "CritterKilled" );
+    map.SetEvent( MAP_EVENT_IN_CRITTER, "_CrIn" );
+    map.SetEvent( MAP_EVENT_OUT_CRITTER, "_CrOut" );
+
+    mapSetup( map );
+}
+
+void mapSetup( Map& map )
+{
+    Location@ location = map.GetLocation();
+
+    GameVar@  npcCount = GetLocalVar( LLVAR_Value0, location.Id );
+
+    Critter@  watcher = map.AddNpc( 94, 0, 0,        0, npcParamsWatchman, null, "map_assassins@InitWatchman" );
+
+    spawn( map );
+}
+
+void spawn( Map& map )
+{
+    if( !valid( map ) )
+        return;
+
+    uint          entiresnum = map.CountEntire( 0 );
+    uint16        hexX = 0;
+    uint16        hexY = 0;
+    uint8         dir = 0;
+    uint          attackers = 0;
+
+    array< uint > entiresarray;
+    for( uint i = 0, j = entiresnum; i < j; i++ )
+    {
+        entiresarray.insertLast( i );
+    }
+
+    for( uint i = 0, j = entiresarray.length(); i < j; i++ )
+    {
+        if( attackers >= 20 )
+            break;
+
+        uint randomentire = entiresarray[ Random( 0, entiresarray.length() - 1 ) ];
+        if( map.GetEntireCoords( 0, randomentire, hexX, hexY, dir ) && AddAttacker( hexX, hexY, dir, map ) )
+            attackers++;
+    }
+}
+
+bool AddAttacker( uint16 hexX, uint16 hexY, uint8 dir, Map& map )
+{
+    if( !GetFreeHex( map, 1, hexX, hexY ) )
+        return false;
+
+    Critter@ attacker = map.AddNpc( Random( 1120, 1121 ), hexX, hexY,  dir, npcParams, null, "map_assassins@NPCInit" );
+    if( !valid( attacker ) )
+        return false;
+
+    array< Item@ > items;
+    attacker.GetItems( -1, items );
+    DeleteItems( items );
+
+    Item@ weapon = attacker.AddItem( PID_223_PISTOL, 1 );
+    attacker.SetFavoriteItem( SLOT_HAND1, weapon.GetProtoId() );
+
+    return true;
+}
+
+void NPCInit( Critter& npc, bool firstTime )
+{
+    npc.SetEvent( CRITTER_EVENT_IDLE, "_RandomPatrol" );
+    npc.SetEvent( CRITTER_EVENT_ATTACKED, "_OnAttacked" );
+}
+
+void _Idle( Critter& npc )
+{
+    npc.Wait( Random( 3000, 15000 ) );
+}
+
+void InitWatchman( Critter& npc, bool firstTime )
+{
+    npc.SetEvent( CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked" );
+}
+
+void _SomeoneAttacked( Critter& cr, Critter& attacked, Critter& attacker )
+{
+    if( attacker.Id == cr.Id )
+        return;
+    if( attacker.Id == attacked.Id )
+        return;
+    if( attacker.IsNpc() )
+        return;
+    if( attacked.IsNpc() )
+    {
+        attacked.ToDead( ANIM2_DEAD_BLOODY_SINGLE, null );
+        ShotFail( attacker );
+        Log( "Attacked NPC" );
+        return;
+
+    }
+}
+
+bool _OnAttacked( Critter& npc, Critter& attacker )
+{
+    return true;
+}
+
+void CritterKilled( Map& map, Critter& cr, Critter@ killer )
+{
+    if( !cr.IsPlayer() )
+        return;
+
+    if( valid( killer ) )
+    {}
+}
+
+void SomeoneAttacks( Critter& cr, Critter& fromCr, Critter& target )
+{}
+
+void _CrOut( Map& map, Critter& cr )
+{
+    if( !cr.IsPlayer() )
+        return;
+    if( FLAG( cr.ParamBase[ CR_FLAGS1 ], CR_NO_NAME ) )
+        UNSETFLAG( cr.ParamBase[ CR_FLAGS1 ], CR_NO_NAME );
+    if( cr.Param[ PE_AIMBUFF ] != 0 )
+        cr.ParamBase[ PE_AIMBUFF ] = 0;
+    if( cr.Param[ PE_BUFF1 ] != 0 )
+        cr.ParamBase[ PE_BUFF1 ] = 0;
+}
+
+void _CrIn( Map& map, Critter& cr )
+{
+    if( !cr.IsPlayer() )
+        return;
+    if( !FLAG( cr.ParamBase[ CR_FLAGS1 ], CR_NO_NAME ) )
+        SETFLAG( cr.ParamBase[ CR_FLAGS1 ], CR_NO_NAME );
+
+
+    cr.ParamBase[ PE_AIMBUFF ] = 1;
+    // cr.ModeBase[MODE_NO_WALK]=1;
+    // cr.ModeBase[MODE_NO_RUN]=1;
+
+    // Give gun
+    Item@ weapon = cr.AddItem( PID_223_PISTOL, 1 );
+    cr.MoveItem( weapon.Id, 1, SLOT_HAND1 );
+    weapon.AmmoCount = 1;
+}
+
+void CheckPlayers( Map& map, Critter& cr )
+{
+    if( !cr.IsPlayer() )
+        return;
+
+    return;
+}
+
+#define CTE_GUNCD       ( 900 )
+#define CTE_NAMESHOW    ( 901 )
+
+void ShotFail( Critter& cr )
+{
+    Item@ item = cr.GetItem( 0, SLOT_HAND1 );
+    cr.AddTimeEvent( "cte_ShotFail", REAL_SECOND( 5 ), CTE_GUNCD );
+    Log( "Punished" );
+}
+
+uint cte_ShotFail( Critter& cr, int identifier, uint& rate )
+{
+    cr.EraseTimeEvents( CTE_GUNCD );
+    Item@ item = cr.GetItem( 0, SLOT_HAND1 );
+    int   rounds = item.AmmoCount;
+    Log( "Should Be 0. Round: " + rounds );
+    item.AmmoCount + 1;
+    rounds = item.AmmoCount;
+    Log( "Givenback. Round: " + rounds );
+    return 0;
+}
+
+void _RandomPatrol( Critter& cr )
+{
+
+    Map@   map = cr.GetMap();
+    uint16 hexX = 0;
+    uint16 hexY = 0;
+    uint8  dir = 0;
+    uint   mapId;
+    uint16 hx = 0;
+    uint16 hy = 0;
+    cr.GetHomePos( mapId, hx, hy, dir );
+    if( hx != cr.HexX || hy != cr.HexY )
+    {
+        cr.Say( SAY_NORM_ON_HEAD, "On Road Already." );
+        return;
+    }
+    else if( Random( 0, 1 ) == 0 )
+    {
+        cr.Say( SAY_NORM_ON_HEAD, "Staying." );
+        cr.Wait( Random( 500, 20000 ) );
+        return;
+    }
+
+    uint          entiresnum = map.CountEntire( 0 );
+    array< uint > entiresarray;
+    for( uint i = 0, j = entiresnum; i < j; i++ )
+    {
+        entiresarray.insertLast( i );
+    }
+
+    bool run;
+
+    if( Random( 0, 1 ) == 0 )
+        run = true;
+    else
+        run = false;
+
+    for( uint i = 0, j = entiresarray.length(); i < j; i++ )
+    {
+        uint randomentire = entiresarray[ Random( 0, entiresarray.length() - 1 ) ];
+        if( map.GetEntireCoords( 0, randomentire, hexX, hexY, dir ) )
+        {
+            hexX += Random( -3, 3 );
+            hexY += Random( -3, 3 );
+            if( GetFreeHex( map, 1, hexX, hexY ) )
+            {
+                AddWalkPlane( cr, AI_PLANE_WALK_PRIORITY, hexX, hexY, dir, run, 0 );
+                cr.SetHomePos( hexX, hexY, dir );
+                cr.Say( SAY_NORM_ON_HEAD, "Moving. Running? " + run );
+                return;
+            }
+        }
+    }
+
+
+    // notginh
+    Log( "Tits" );
+}

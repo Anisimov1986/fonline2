@@ -1,0 +1,64 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _script caravan_fo2@d_CaravanMember 0  #
+3 1020 D _script caravan_fo2@d_NotCaravanMember 0  @
+2 2000 None 0 #
+0 2010 D _script caravan_fo2@d_HasNoEnemy 0  R _script caravan_fo2@r_ContinueCaravan 0  #
+0 2020 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Caravan Leader}
+{200}{}{You see: Caravan Leader.}
+{210}{}{This man, dressed in a custom-made combat armor seems to be a skilled veteran of many caravan runs.}
+{1000}{}{Predialogue installations}
+{1010}{}{Member}
+{1020}{}{Not Member}
+{2000}{}{You done?@@You finished fucking around?@@Ready to go?@@You gonna move your ass or what?@@We goin' or what?@@You wanna go now?@@Ready to shake some dust?@@We rollin'?@@Ready?@@Got your shit together? Ready to go?@@Are you goin' or not?}
+{2010}{}{Yeah, let's go.@@Right, let's move.@@Yep, let's roll.@@Yeah, I'm ready to go.@@Yeah.@@Right, let's get going.}
+{2020}{}{Not yet.}
+{3000}{}{Who the hell are you?}
+
+[russ]
+{100}{}{Чак Ли}
+{200}{}{Вы видите : Чак Ли}
+{210}{}{Чак Ли}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{Not Member}
+{2000}{}{Чего тебе?}
+{2010}{}{Пора идти дальше.}
+{2020}{}{Ничего.}
+{3000}{}{Ты еще что за хрен?}
+
+[pols]
+{100}{}{Szef Karawany}
+{200}{}{Widzisz Szefa Karawany}
+{210}{}{Widzisz Szefa karawany, kiedyś znanego jako Chuck Lee.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{1020}{}{Not Member}
+{2000}{}{@sex@|Skończyłeś||Skończyłaś|?@@Wystarczy już tego bimbania się.@@Jesteś gotów do drogi?@@Ruszysz dupsko, czy chcesz dostać kopa?@@Idziemy czy co?@@Zdecydowałeś się wreszcie dokąd chcesz iść?@@Czy to możliwe, że chodzimy w kółko?@@Cyngiel mnie świerzbi, ciebie nie?@@Jedziemy wreszcie?@@Kurwa, ile jeszcze będziemy tu siedzieć?@@Weź się do kupy i jedźmy wreszcie!}
+{2010}{}{Ruszajmy.}
+{2020}{}{Nieważne.}
+{3000}{}{Kim ty kurwa jesteś?}
+
+[ptbr]
+{100}{}{Líder da caravana}
+{200}{}{Você vê o líder da caravana.}
+{210}{}{Este homem, vestido em uma armadura de combate personalizada parace ser um veterano habilidoso de muitas caravanas.}
+{1000}{}{Predialogue installations}
+{1010}{}{Member}
+{1020}{}{Not Member}
+{2000}{}{Já terminou?@@Terminou de perambular por aí?@@Pronto pra ir?@@Tu vai com a gente ou tá difícil?@@Estamos indo ou tá difícil?@@Quer ir agora?@@Tá pronto pra levantar poeira?@@Tamo indo?@@Pronto?@@Pegou suas tralhas? Pronto para ir?@@Tu vai ou não?}
+{2010}{}{É, vamos lá.@@Certo, vamos andando.@@É, vamos indo.@@É, tou @sex@|pronto||pronta| para ir.@@Tá.@@Aham, vamos indo.}
+{2020}{}{Ainda não.}
+{3000}{}{De onde é que foi que tu apareceu?}
+

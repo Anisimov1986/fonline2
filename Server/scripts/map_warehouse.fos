@@ -1,0 +1,125 @@
+// Experimental evil npc random patrol script 
+
+#include "_macros.fos"
+#include "_npc_pids.fos"
+
+#define ENTIRE_HEX (99)
+#define CHANCE_TO_PATROL (20)
+#define ROLE_PATROLNPC   (2)
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import void AddAchievement(Critter& cr, uint achievement) from "achievements";
+import void ChangeFactionScore(uint faction, int score) from "faction_core";
+
+const uint16[] NpcForInit = {NPC_PID_SmToughDeathclaw,NPC_PID_SmDeathclaw,663,664};
+
+void _WarehouseInit( Map& map, bool firstTime )
+{
+    if( firstTime )
+    {
+		for (uint i=0; i<NpcForInit.length();i++)
+		{
+			Critter@[] critters;
+			if (map.GetCritters( NpcForInit[i], FIND_LIFE_AND_KO | FIND_ONLY_NPC, critters ) > 0 )
+			{
+				for (uint j=0; j<critters.length();j++)
+				{
+					critters[j].SetScript( "_NpcInit" );
+					//critters[j].SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_DeathShowCritter" );
+					//critters[j].SetEvent( CRITTER_EVENT_IDLE, "_RandomPatrol" );
+					//critters[j].StatBase[ ST_REPLICATION_TIME ]=5;
+				}
+			}
+		}
+		uint entiresnum = map.CountEntire(99);
+		if (entiresnum>58)
+			Log("Warehouse init error");
+		uint16 hexX=0;
+		uint16 hexY=0;
+		for (uint8 i=0; i<entiresnum;i++)
+		{
+			map.GetEntireCoords (ENTIRE_HEX, i, hexX, hexY);
+			//GetEntireCoords (uint8 entire, uint8 num, uint16 &hexX, uint16 &hexY)
+			Critter@ cr = map.GetCritter(hexX, hexY);
+			if (valid(cr))
+			{
+				cr.SetHomePos (hexX, hexY, Random(0,5));
+				map.SetData(i,1);
+			}
+		
+		}
+	}
+}
+
+void _NpcInit( Critter& cr, bool firstTime )
+{
+	cr.StatBase[ ST_REPLICATION_TIME ]=15;
+	cr.SetBagRefreshTime(10);
+	cr.SetEvent( CRITTER_EVENT_SHOW_CRITTER, "_DeathShowCritter" );
+	if (cr.StatBase[ ST_NPC_ROLE ] == ROLE_PATROLNPC)
+		cr.SetEvent( CRITTER_EVENT_IDLE, "_RandomPatrol" );
+    if( cr.GetProtoId() == 663) 
+    {
+        cr.StatBase[ ST_WALK_TIME ] =140; 
+        cr.SetEvent( CRITTER_EVENT_DEAD, "_MotherDeath" );
+    }
+}
+
+// CRITTER_EVENT_DEAD
+void _MotherDeath( Critter& npc, Critter@ killer )
+{
+    if (!valid(killer))
+		return;
+	AddAchievement(killer,PE_ACHIEV_DC_MOTHER_KILLED);
+    if (killer.Param[MAIN_FACTION]!=0)
+        ChangeFactionScore(killer.Param[MAIN_FACTION], 100);
+}
+
+void _DeathShowCritter( Critter& deathclaw, Critter& cr )
+{
+    if( cr.IsPlayer() )
+    {
+		deathclaw.AddEnemyInStack( cr.Id );
+        AddAttackPlane( deathclaw, 0, cr );
+    }
+}
+
+void _RandomPatrol ( Critter& cr )
+{	
+
+	//cr.Say( SAY_NORM_ON_HEAD , "Idling" );
+	if (Random (1,100) < CHANCE_TO_PATROL )
+	{
+		Map@ map = cr.GetMap();
+		uint entiresnum = map.CountEntire(99);
+		uint16 hexX=0;
+		uint16 hexY=0;
+		uint mapId;
+		uint8 dir;
+		cr.GetHomePos (mapId , hexX, hexY, dir);
+		//Log("HomePos="+hexX+","+hexY);
+		uint8[] entires;
+		for (uint8 i=0; i<entiresnum;i++)
+		{
+			uint16 hexX2=0;
+			uint16 hexY2=0;
+			map.GetEntireCoords (ENTIRE_HEX, i, hexX2, hexY2);
+			if (hexX==hexX2 && hexY==hexY2)
+			{
+				//Log("HomeEntireNum="+i);
+				map.SetData(i,0);
+				for (uint j=0; j<entiresnum;j++)
+				{
+					if (map.GetData(j)==0)
+						entires.insertLast( j );
+				}
+				uint8 newentire=entires[Random(0,entires.length()-1)];
+				//Log("NewPositionEntire"+newentire);
+				map.GetEntireCoords (ENTIRE_HEX, newentire, hexX, hexY);
+				map.SetData(newentire,1);
+				cr.SetHomePos (hexX, hexY, Random(0,5));
+				//Log("Heading to pos="+hexX+","+hexY);
+				return;
+			}
+		}
+	}
+}

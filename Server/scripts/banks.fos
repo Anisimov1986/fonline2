@@ -1,0 +1,191 @@
+#include "_macros.fos"
+#include "_dialogs.fos"
+#include "logging_h.fos"
+#include "serializator.fos"
+
+import string@ GetSafePlayerName(uint id) from "utils";
+
+#define MINIMAL_MONEY (100)
+
+#define FORCE_DIALOG_PAY_SELF          ( 3 )
+#define FORCE_DIALOG_PAY_OTHER_NEXT    ( 8 )
+
+#define FORCE_DIALOG_PAY_SELF          ( 3 )
+#define FORCE_DIALOG_PAY_OTHER_NEXT    ( 8 )
+
+#define STR_GENERIC_ERROR              ( DLGSTR( DIALOG_banker, 0 ) ) // Error. Please contact the support.
+#define STR_PLAYER_NOT_FOUND           ( DLGSTR( DIALOG_banker, 1 ) ) // Client not found. Perhaps you entered incorrect name or client is unreachable.
+#define STR_INVALID_MONEY_COUNT        ( DLGSTR( DIALOG_banker, 2 ) ) // Incorrect sum entered.
+#define STR_ZERO_MONEY_COUNT           ( DLGSTR( DIALOG_banker, 3 ) ) // Null value entered.
+#define STR_NEGATIVE_MONEY_COUNT       ( DLGSTR( DIALOG_banker, 4 ) ) // Negative summ entered.
+#define STR_NOT_ENAUGTH_MONEY          ( DLGSTR( DIALOG_banker, 5 ) ) // Not enough money to complete the operation.
+#define STR_ZERO_BALANCE               ( DLGSTR( DIALOG_banker, 6 ) ) // You have 0 balance. Operation could not be completed.
+#define STR_NEGATIVE_BALANCE           ( DLGSTR( DIALOG_banker, 7 ) ) // You have negative ballance. Operation could not be completed.
+#define STR_OPERATION_SUCCESS          ( DLGSTR( DIALOG_banker, 10 ) )// Operation completed successfully.
+#define STR_MINIMUM_MONEY          	   ( DLGSTR( DIALOG_banker, 11 ) )// Operation completed successfully.
+
+#define SEND_ERROR_RETURN              # ( cr, error )     { cr.SayMsg( SAY_DIALOG, TEXTMSG_DLG, error ); return; }
+#define SEND_ERROR_RETURN0             # ( cr, error )     { cr.SayMsg( SAY_DIALOG, TEXTMSG_DLG, error ); return 0; }
+
+# define _BankLog                      # (text) FLog(LOG_BANKS, text);
+
+void r_PaySelf( Critter& player, Critter@ terminal )
+{
+    GameVar@ var = GetLocalVar( LVAR_terminal_player_id, player.Id );
+    if( not valid( var ) )
+        SEND_ERROR_RETURN( player, STR_GENERIC_ERROR );
+    var = player.Id;
+}
+
+uint dlg_ChoosePlayer( Critter& player, Critter@ terminal, string@ playerName )
+{
+    if( not IS_DIALOG_SAY_MODE( playerName ) )
+        return 0;
+
+    GameVar@ var = GetLocalVar( LVAR_terminal_player_id, player.Id );
+    if( not valid( var ) )
+        SEND_ERROR_RETURN0( player, STR_GENERIC_ERROR );
+    var = 0;
+
+    uint playerId = GetPlayerId( playerName );
+    if(playerId == 0)
+        SEND_ERROR_RETURN0( player, STR_PLAYER_NOT_FOUND );
+
+    var = playerId;
+    if( playerId == player.Id )
+        return FORCE_DIALOG_PAY_SELF;
+    return FORCE_DIALOG_PAY_OTHER_NEXT;
+}
+
+void dlg_TransferReal( Critter& player, Critter@ terminal, string@ moneyCount )
+{
+    if( not IS_DIALOG_SAY_MODE( moneyCount ) )
+        return;
+    TransferMoney( player, moneyCount, true );
+}
+
+void dlg_TransferVirtual( Critter& player, Critter@ terminal, string@ moneyCount )
+{
+    if( not IS_DIALOG_SAY_MODE( moneyCount ) )
+        return;
+    TransferMoney( player, moneyCount, false );
+}
+
+uint dlg_TakeMoney( Critter& player, Critter@ terminal, string@ moneyCount )
+{
+	if( not IS_DIALOG_SAY_MODE( moneyCount ) )
+	{
+		if( IS_DIALOG_GENERATED( moneyCount ) )
+		{
+			if (player.Stat[ ST_REPLICATION_MONEY ]>=100)
+				moneyCount += "$money" + int(player.Stat[ ST_REPLICATION_MONEY ] - player.Stat[ ST_REPLICATION_MONEY ] * 5 / float(100));
+			else 
+				moneyCount += "$money" + 0;
+		}
+        return 0;
+	}
+    if( player.StatBase[ ST_REPLICATION_MONEY ] == 0 )
+        SEND_ERROR_RETURN0( player, STR_ZERO_BALANCE );
+    if( player.StatBase[ ST_REPLICATION_MONEY ] < 0 )
+        SEND_ERROR_RETURN0( player, STR_NEGATIVE_BALANCE );
+    int money = 0;
+	int moneywithfee = 0;
+    if( not StrToInt( moneyCount, money ) )
+        SEND_ERROR_RETURN0( player, STR_INVALID_MONEY_COUNT );
+	if( money < MINIMAL_MONEY )
+		SEND_ERROR_RETURN0( player, STR_MINIMUM_MONEY );
+    if( money == 0 )
+        SEND_ERROR_RETURN0( player, STR_ZERO_MONEY_COUNT );
+    if( money < 0 )
+        SEND_ERROR_RETURN0( player, STR_NEGATIVE_MONEY_COUNT );
+	moneywithfee = money * 100 / float(95);
+	if( moneywithfee < money )
+		SEND_ERROR_RETURN0( player, STR_GENERIC_ERROR );
+    if( moneywithfee > player.StatBase[ ST_REPLICATION_MONEY ] )
+        SEND_ERROR_RETURN0( player, STR_NOT_ENAUGTH_MONEY );
+	if (!ChangeBalnce(player.Id, -moneywithfee))
+		SEND_ERROR_RETURN0( player, STR_GENERIC_ERROR );
+    _CritAddItem( player, PID_BOTTLE_CAPS, money );
+	_BankLog("Bank give " +money+ " caps to player "+player.Name+ " (" + player.Id + ")");
+    player.SayMsg( SAY_DIALOG, TEXTMSG_TEXT, STR_OPERATION_SUCCESS );
+	return 6;
+}
+
+void TransferMoney( Critter@ player, string@ moneyCount, bool forReal )
+{
+    // Get money to transfer.
+    int money = 0;
+    if( not StrToInt( moneyCount, money ) )
+        SEND_ERROR_RETURN( player, STR_INVALID_MONEY_COUNT );
+    if( money == 0 )
+        SEND_ERROR_RETURN( player, STR_ZERO_MONEY_COUNT );
+    if( money < 0 )
+        SEND_ERROR_RETURN( player, STR_NEGATIVE_MONEY_COUNT );
+
+    // Get stored critter.
+    GameVar@ var = GetLocalVar( LVAR_terminal_player_id, player.Id );
+    if( not valid( var ) )
+        SEND_ERROR_RETURN( player, STR_GENERIC_ERROR );
+		
+	uint playerId = var.GetValue();
+    if(playerId == 0)	
+        SEND_ERROR_RETURN( player, STR_PLAYER_NOT_FOUND );
+	if( money < MINIMAL_MONEY )
+		SEND_ERROR_RETURN( player, STR_MINIMUM_MONEY );
+    // Transfer money.
+    if( forReal )
+    {
+        if( uint( money ) > _CritCountItem( player, PID_BOTTLE_CAPS ) )
+            SEND_ERROR_RETURN( player, STR_NOT_ENAUGTH_MONEY );
+        _CritDeleteItem( player, PID_BOTTLE_CAPS, money );
+		_BankLog("Bank take " +money+ " caps from player "+player.Name+ " (" + player.Id + ")");
+    }
+    else
+    {
+        if( money > player.StatBase[ ST_REPLICATION_MONEY ] )
+            SEND_ERROR_RETURN( player, STR_NOT_ENAUGTH_MONEY );
+		if (!ChangeBalnce(player.Id, -money))
+			SEND_ERROR_RETURN( player, STR_GENERIC_ERROR );
+    }
+
+	if (!ChangeBalnce(playerId, +money))
+		SEND_ERROR_RETURN( player, STR_GENERIC_ERROR );
+    player.SayMsg( SAY_DIALOG, TEXTMSG_TEXT, STR_OPERATION_SUCCESS );
+}
+
+void UpdateBankAccountInfo(Critter& cr)
+{
+	cr.StatBase[ ST_REPLICATION_MONEY ] = GetBalance(cr.Id);
+}
+
+uint GetBalance(int id)
+{
+	int balance=0;
+	Serializator billing;
+	if (billing.Load( "PLAYER"+id+"BANK" ))
+		billing.Get(balance);
+	return balance;
+}
+
+bool ChangeBalnce(int id , int money)
+{
+    int balance = GetBalance(id) + money;
+	if (balance < 0)
+	{
+		Log("Bank balance of critter " +id+ "below zero " +balance);
+		return false;
+	}
+	SetBalnce(id, balance);
+    _BankLog("Bank balance changed: " +money+ " for player " +GetSafePlayerName(id)+ " (" + id + ") End balance is: "+balance);
+	return true;
+}
+
+void SetBalnce(int id , int balance)
+{
+    Serializator billing;
+    billing.Set( balance );
+    billing.Save( "PLAYER"+id+"BANK" );
+	Critter@ cr = GetCritter( id );
+	if(valid(cr) && cr.IsPlayer())
+		cr.StatBase[ ST_REPLICATION_MONEY ] = balance;
+}

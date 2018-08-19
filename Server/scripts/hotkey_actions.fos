@@ -1,0 +1,215 @@
+#include "_client_defines.fos"
+#include "_defines.fos"
+#include "_macros.fos"
+
+void LootAll()
+{
+    if( __ConsoleActive  )
+        return;
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() || chosen.Stat[ ST_CURRENT_AP ] < 4 )
+        return;
+    RunServerScriptUnsafe( "unsafe@unsafe_LootAll", 0, 0, 0, null, null );
+}
+
+void DropAll( int dropwm )
+{
+    if( __ConsoleActive  )
+        return;
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() || chosen.ItemsCount() == 0  || chosen.Stat[ ST_CURRENT_AP ] < 4 )
+        return;
+    RunServerScriptUnsafe( "unsafe@unsafe_DropAll", dropwm, 0, 0, null, null );
+}
+
+void RefreshFov()
+{
+    if( __ConsoleActive  )
+        return;
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() )
+        return;
+    RunServerScriptUnsafe( "test@unsafe_RefreshVisible", 0, 0, 0, null, null );
+}
+
+void Reload( uint8 slot )
+{
+    if( __ConsoleActive || slot < SLOT_HAND1 || slot > SLOT_HAND2 )
+        return;
+
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() )
+        return;
+
+    ItemCl@ item = chosen.GetItem( 0, slot );
+    if( !valid( item ) )
+        return;
+
+    if( item.Proto.Type == ITEM_TYPE_WEAPON && item.AmmoCount < item.Proto.Weapon_MaxAmmoCount )
+    {
+        if( slot == SLOT_HAND1 )
+        {
+            uint mode = item.Mode;
+            RunServerScriptUnsafe( "unsafe@unsafe_WeaponMode", mode, 0, 0, "", null );
+            SetLastMode( mode );
+        }
+
+        array< uint > action = { CHOSEN_USE_ITEM, item.Id, 0, TARGET_SELF_ITEM, 0, ITEM_MODE_RELOAD, 0 };
+        SetChosenActions( action );
+    }
+}
+
+void UseSkill( int skill )
+{
+    if( __ConsoleActive || skill < SK_SMALL_GUNS || skill > SK_OUTDOORSMAN )
+        return;
+
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() )
+        return;
+
+    array< uint > action = { CHOSEN_USE_SKL_ON_CRITTER, skill, chosen.Id, 0, 0, 0, 0 };
+    SetChosenActions( action );
+}
+
+void UseItemSlot( int slot )
+{
+	if( __ConsoleActive )
+        return;
+	if (slot<1 || slot>2)
+		return;
+
+	CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() )
+        return;
+
+    ItemCl@ item = chosen.GetItem( 0, slot );
+    if( !valid( item ) )
+        return;
+		
+	array< uint > action = { CHOSEN_USE_ITEM, item.Id, 0, 0, 0, ITEM_MODE_USE, 0 };
+    SetChosenActions( action );
+}
+
+void UseItem( uint16 pid )
+{
+    if( __ConsoleActive )
+        return;
+
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() )
+        return;
+
+    ItemCl@ item = chosen.GetItem( pid, -1 );
+    if( !valid( item ) )
+        return;
+
+    if( ( pid == PID_STIMPAK && pid == PID_SUPER_STIMPAK ) && chosen.Timeout[ TO_MEDICATION ] > 0 )
+    {
+        Message( "You can't use stims so often" );
+        return;
+    }
+
+    array< uint > action = { CHOSEN_USE_ITEM, item.Id, 0, 0, 0, ITEM_MODE_USE, 0 };
+    SetChosenActions( action );
+}
+
+uint16 CursorObject=0;
+void UseObject( uint16 pid )
+{
+    if (GUI_GetActiveScreen() != CLIENT_MAIN_SCREEN_GAME)
+        return;
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() )
+        return;
+    
+    ItemCl@ item = chosen.GetItem( pid, -1 );
+    if( !valid( item ) )
+        return;
+    ChangeCursor( CURSOR_USE_OBJECT );
+    CursorObject=pid;
+}
+
+void UseItemOn(uint CrId)
+{
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() || CursorObject==0)
+        return;
+    
+    ItemCl@ item = chosen.GetItem( CursorObject, -1 );
+    if( !valid( item ) )
+        return;
+    array< uint > action = { CHOSEN_USE_ITEM, item.Id, 0, TARGET_CRITTER, CrId, ITEM_MODE_USE, 0 };
+    SetChosenActions( action ); 
+}
+
+bool EndTurnBasedTurn()
+{
+    if( __ConsoleActive == true )
+        return false;
+
+    CritterCl@ chosen = GetChosen();
+    if( valid( chosen ) && chosen.IsTurnBasedTurn() )
+    {
+        RunServerScriptUnsafe( "combat@unsafe_EndTurnBasedTurn", 0, 0, 0, null, null );
+        return true;
+    }
+
+    return false;
+}
+
+bool EndTurnBasedCombat()
+{
+    if( __ConsoleActive == true )
+        return false;
+
+    CritterCl@ chosen = GetChosen();
+    if( valid( chosen ) && chosen.IsTurnBasedTurn() )
+    {
+        RunServerScriptUnsafe( "combat@unsafe_EndTurnBasedCombat", 0, 0, 0, null, null );
+        return true;
+    }
+
+    return false;
+}
+
+void ShowGroundPickUpScreen()
+{
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() )
+        return;
+
+    RunServerScriptUnsafe( "item@unsafe_GroundPickUp", 0, 0, 0, null, null );
+}
+
+void TryLootBody()
+{
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) || !chosen.IsLife() || GetCurrentMapPid() == 0 )
+        return;
+
+    array< CritterCl@ > critters;
+    if( GetCrittersHex( chosen.HexX, chosen.HexY, 0, FIND_DEAD | FIND_ALL, critters ) < 2 )
+        return;
+
+    array< uint > action = { CHOSEN_PICK_CRIT, critters[ 1 ].Id, 0, 0, 0, 0, 0 };
+    SetChosenActions( action );
+}
+
+void LocalizationInfo()
+{
+    CritterCl@ chosen = GetChosen();
+    if( !valid( chosen ) )
+        return;
+
+    if( GetCurrentMapPid() == 0 )
+    {
+        Message( GetMsgStr( TEXTMSG_GAME, STR_GMAP_CUR_ZONE_INFO2 ) + " " + ( __GmapGroupCurX / 60 ) + " : " + ( __GmapGroupCurY / 60 ) );
+        Message( GetMsgStr( TEXTMSG_GAME, STR_GMAP_CUR_ZONE_INFO ) + " " + __GmapGroupCurX  + " : " + __GmapGroupCurY );
+    }
+    else
+    {
+        Message( GetMsgStr( TEXTMSG_GAME, STR_GMAP_CUR_ZONE_INFO2 ) + " " + ( chosen.Param[ WORLDX ] / 60 ) + " : " + ( chosen.Param[ WORLDY ] / 60 ) );
+        Message( GetMsgStr( TEXTMSG_GAME, STR_GMAP_CUR_ZONE_INFO ) + " " + chosen.Param[ WORLDX ]  + " : " + chosen.Param[ WORLDY ] );
+    }
+}

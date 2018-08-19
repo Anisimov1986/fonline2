@@ -1,0 +1,236 @@
+// Author: cvet
+#include "_defines.fos"
+#include "_client_defines.fos"
+
+#include "_macros.fos"
+#define NAMES_FILE_NAME    "NameColorizing.txt"
+#define COLOR_TOKEN        "@"
+#define NAME_TOKEN         ">"
+
+class Record
+{
+    string NameStr;
+    uint   NameColor;
+    uint   ContourColor;
+}
+Record[] Records;
+dictionary colors;
+void InitNameColorizing() // Export
+{
+    Records.resize( 0 );
+	colors.deleteAll();
+    file f;
+    if( f.open( NAMES_FILE_NAME, "r" ) == 0 )
+    {
+        // Parse colors
+        while( not f.isEndOfFile() )
+        {
+            if( f.readWord() == COLOR_TOKEN )
+            {
+                string@ colorName = f.readWord();
+                int     r = f.readNumber();
+                int     g = f.readNumber();
+                int     b = f.readNumber();
+
+                // Change & to space
+                for( uint i = 0, j = colorName.length(); i < j; i++ )
+                    if( colorName[ i ] == "&" )
+                        colorName[ i ] = " ";
+                // Store
+                colors.set( colorName, uint( COLOR_RGB( r, g, b ) ) );
+            }
+        }
+
+        // Parse names
+        f.setPos( 0 );
+        while( not f.isEndOfFile() )
+        {
+            if( f.readWord() == NAME_TOKEN )
+            {
+                Records.grow( 1 );
+                Record@ r = Records.last();
+
+                r.NameStr = strlwr( f.readWord() );
+				for( uint i = 0, j = r.NameStr.length(); i < j; i++ )
+                    if( r.NameStr[ i ] == "&" )
+                        r.NameStr[ i ] = " ";
+                r.NameColor = GetColor( colors, f.readWord(), COLOR_CRITTER_NAME );
+                r.ContourColor = GetColor( colors, f.readWord(), COLOR_CONTOUR_YELLOW );
+            }
+        }
+	f.close();
+    }
+}
+
+bool TryColorizeCritter( CritterCl& cr ) // Export
+{
+    if( not cr.IsPlayer() || Records.length() == 0 )
+        return false;
+
+    string@ crName = strlwr( cr.Name );
+    for( uint i = 0, j = Records.length(); i < j; i++ )
+    {
+        Record@ r = Records[ i ];
+        if( CompareName( crName, r.NameStr ) )
+        {
+            cr.NameColor = r.NameColor;
+            cr.ContourColor = r.ContourColor;
+            return true;
+        }
+    }
+    return false;
+}
+
+uint GetColor( dictionary& dict, string& colorName, uint defaultColor )
+{
+    uint color;
+    if( not dict.get( colorName, color ) )
+        color = defaultColor;
+    return color;
+}
+
+uint GetFactionColor( string& colorName, uint defaultColor )
+{
+    uint color;
+    if( not colors.get( colorName, color ) )
+        color = defaultColor;
+    return color;
+}
+
+bool CompareName( string& crName, string& nameStr )
+{
+    uint l = 0;
+    uint r = 0;
+    uint lLen = crName.length();
+    uint rLen = nameStr.length();
+    while( r < rLen && l < lLen )
+    {
+        string@ lC = crName[ l ];
+        string@ rC = nameStr[ r ];
+
+        if( rC == "*" )
+        {
+            // Skip some letters
+            for( r++; r < rLen; r++ )
+                if( nameStr[ r ] != "*" && nameStr[ r ] != "?" )
+                    break;
+            if( r >= rLen )
+                return true;
+            rC = nameStr[ r ];
+
+            for( l++; l < lLen; l++ )
+                if( crName[ l ] == rC )
+                    break;
+            if( l >= lLen )
+                return false;
+        }
+        else if( rC == "?" )
+        {
+            // Skip one letter
+        }
+        else if( lC != rC )
+        {
+            // Different symbols
+            return false;
+        }
+
+        l++;
+        r++;
+    }
+
+    if( l < lLen || r < rLen )
+        return false;
+    return true;
+}
+
+bool CheckCritter( string@ name ) // Export
+{
+	string@ crName = strlwr( name );
+    for( uint i = 0, j = Records.length(); i < j; i++ )
+    {
+        Record@ r = Records[ i ];
+        if( CompareName( crName, r.NameStr ) )
+            return true;
+    }
+    return false;
+}
+
+void AddCritter(int color , int crId, int, string@ name, int[]@)
+{
+	if (CheckCritter( name ))
+	{
+		RemoveCritter( name );
+		InitNameColorizing();
+		CritterCl@ cr = GetCritter( crId );
+		if( valid( cr ))
+		{
+			cr.NameColor = COLOR_CRITTER_NAME;
+			cr.ContourColor = COLOR_CONTOUR_YELLOW;
+		}
+		return;
+	}
+	for( uint i = 0; i < name.length(); i++ )
+	{
+		if (name[i]==" ")
+			name[i]="&";
+	}
+	file f;
+    if( f.open( NAMES_FILE_NAME, "a" ) == 0 )
+    {
+		string newline = "\n";
+		if( OperatingSystem() == OS_WINDOWS )
+			newline = "\r\n";
+
+		if (color==1)
+			f.writeString(newline+">   "+name+"     NameGreen         ContourGreen");
+		else if (color==2)
+			f.writeString(newline+">   "+name+"     NameRed           ContourRed");
+		f.close();
+		InitNameColorizing();
+		CritterCl@ cr = GetCritter( crId );
+		if( valid( cr ))
+			TryColorizeCritter( cr );
+	}
+}
+
+void RemoveCritter(string@ name)
+{
+	for( uint i = 0; i < name.length();i++ )
+	{
+        if( name[ i ] == " " )
+			name[ i ] = "&";
+	}
+	file f;
+	string[] str();
+	uint linetocut;
+    if( f.open( NAMES_FILE_NAME, "r" ) == 0 )
+    {
+		string line;
+		uint i=0;
+		while( not f.isEndOfFile() )
+		{	
+			str.resize(str.length()+1);
+			f.readLine(line);
+			string@[]@ elements;
+			@elements = splitEx(line, " ");
+			for (uint z=0;z<elements.length();z++)
+			{
+				if (elements[0]==">" && elements[z]==name)
+					linetocut=i;
+			}
+			str[i]+=line;
+			i++;
+		}
+	f.close();
+	}
+	if( f.open( NAMES_FILE_NAME, "w" ) == 0 )
+    {
+		for (uint i=0;i<str.length();i++)
+		{
+			if (i!=linetocut)
+				f.writeString(str[i]);
+		}
+	f.close();
+	}
+	str.resize(0);
+}

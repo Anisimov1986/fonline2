@@ -1,0 +1,108 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 R _script dialog@Type 0  #
+4 3020 R _script dialog@Type 0  #
+5 3030 D _item p PID_GLOW_HOLO = 1 R _item p PID_GLOW_HOLO - 1 R _item p PID_GLOW_HOLO_ANTIEXPLOIT + 1 #
+0 3040 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+0 5010 &
+
+[engl]
+{100}{}{Network Hub Terminal}
+{200}{}{You see a Network Hub Terminal.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Detected humanoid life-form.
+Sleep Mode deactivated...}
+{2010}{}{[Log In].}
+{2020}{}{[Log Off].}
+{3000}{}{Authorisation required. Input password:}
+{3010}{}{Admin1.@@Admin123.@@Admin.@@Admin99}
+{3020}{}{Qwerty.@@Azerty.@@1234.@@12345}
+{3030}{}{[Connect Holodisk]}
+{3040}{}{Log Off}
+{4000}{}{Warning! Unauthorised logging attempt. Executing emergency system shutdown...}
+{4010}{}{Damn...@@Crap.@@That's just my luck.}
+{5000}{}{[Letters and numbers start flowing down on the screen like a waterfall... and after few seconds all fades to black.]}
+{5010}{}{[Plug out the holodisk.] I hope it worked...@@[Plug out the holodisk.] I hope it works.@@[Plug out the holodisk.] Okay...}
+
+[russ]
+{100}{}{Network Hub Terminal}
+{200}{}{You see a Network Hub Terminal.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Detected humanoid life-form.
+Sleep Mode deactivated...}
+{2010}{}{[Log In].}
+{2020}{}{[Log Off].}
+{3000}{}{Authorisation required. Enter password:
+
+********
+}
+{3010}{}{[Type password:] "admin1".@@[Type password:] "admin123".@@[Type password:] "admin123".@@[Type password:] "admin99".}
+{3020}{}{[Type password:] "qwerty".@@[Type password:] "azerty".@@[Type password:] "1234".@@[Type password:] "12345".}
+{3030}{}{[Connect Holodisk]}
+{3040}{}{Log Off}
+{4000}{}{Warning! Unauthorised logging attempt. Executing emergency system shutdown...}
+{4010}{}{Damn...@@Crap.@@That's just my luck.}
+{5000}{}{[Letters and numbers start flowing down on the screen like a waterfall... and after few seconds all fades to black.]}
+{5010}{}{[Plug out the holodisk.] I hope it worked...@@[Plug out the holodisk.] I hope it works.@@[Plug out the holodisk.] Okay...}
+
+[pols]
+{100}{}{Network Hub Terminal}
+{200}{}{You see a Network Hub Terminal.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Detected humanoid life-form.
+Sleep Mode deactivated...}
+{2010}{}{[Log In].}
+{2020}{}{[Log Off].}
+{3000}{}{Authorisation required. Enter password:
+
+********
+}
+{3010}{}{[Type password:] "admin1".@@[Type password:] "admin123".@@[Type password:] "admin123".@@[Type password:] "admin99".}
+{3020}{}{[Type password:] "qwerty".@@[Type password:] "azerty".@@[Type password:] "1234".@@[Type password:] "12345".}
+{3030}{}{[Connect Holodisk]}
+{3040}{}{Log Off}
+{4000}{}{Warning! Unauthorised logging attempt. Executing emergency system shutdown...}
+{4010}{}{Damn...@@Crap.@@That's just my luck.}
+{5000}{}{[Letters and numbers start flowing down on the screen like a waterfall... and after few seconds all fades to black.]}
+{5010}{}{[Plug out the holodisk.] I hope it worked...@@[Plug out the holodisk.] I hope it works.@@[Plug out the holodisk.] Okay...}
+
+[ptbr]
+{100}{}{Terminal do Roteador de Rede}
+{200}{}{Você vê um terminal do roteador de rede.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{2000}{}{Forma de vida humanóide detectada.
+Sleep Mode desativado...}
+{2010}{}{[Logar].}
+{2020}{}{[Deslogar].}
+{3000}{}{Requer autenticação. Digite a senha:
+
+********
+}
+{3010}{}{[Digite a senha:] "admin1".@@[Digite a senha:] "admin123".@@[Digite a senha:] "admin123".@@[Digite a senha:] "admin99".}
+{3020}{}{[Digite a senha:] "qwerty".@@[Digite a senha:] "azerty".@@[Digite a senha:] "1234".@@[Digite a senha:] "12345".}
+{3030}{}{[Conecta o holodisco]}
+{3040}{}{Deslogar}
+{4000}{}{Aviso! Tentativa de log in não-autorizada. A executar desligamento de emergencia do sistema...}
+{4010}{}{Droga...@@Merda.@@Eu... @sex@|sortudo||sortuda| como sempre.}
+{5000}{}{[Letras e números começam a cair da tela como em uma cachoeira... e depois de alguns segudos tudo fica preto.]}
+{5010}{}{[Remove o holodisco.] Tomara que tenha funcionado...@@[Remove o holodisco.] Tomara que funcione.@@[Retira o plug do holodisco.] Certo...}
+

@@ -1,0 +1,1240 @@
+#ifndef __CRITTER_EVENTS_MANAGER__
+#define __CRITTER_EVENTS_MANAGER__
+
+#include "_defines.fos"
+#include "_macros.fos"
+
+
+////////////////
+//Core classes//
+////////////////
+
+class CritterEventWrapper
+{
+	private CritterEvent@ critterEvent;
+	private Command@[] commands;
+	
+	
+	CritterEventWrapper(CritterEvent& critterEvent)
+	{
+		@this.critterEvent = critterEvent;
+	}
+
+	CritterEvent@ GetCritterEvent()
+	{
+		return critterEvent;
+	}
+	
+	void AddCommand(Command& command)
+	{
+		commands.insertLast(command);
+	}
+	
+	void ExecuteCommands(Critter& critter, Critter@ commandTarget)
+	{
+		for (uint i = 0; i < commands.length(); i++)
+		{
+			commands[i].Execute(critter, commandTarget);
+		}
+	}
+}
+
+
+class CritterEventsTemplate
+{
+	private CritterEventWrapper[] critterEvents;
+	
+	
+	CritterEventsTemplate@ WhenT(CritterEvent@ event)
+	{
+		critterEvents.insertLast(CritterEventWrapper(event));
+		
+		return @this;
+	}
+
+	CritterEventsTemplate@ ExecuteT(Command@ command)
+	{
+		critterEvents[critterEvents.length() - 1].AddCommand(command);
+		
+		return @this;
+	}
+	
+	CritterEventsTemplate@ AddT(CritterEventsTemplate& critterEventsTemplate)
+	{
+		for (uint i = 0; i < critterEventsTemplate.critterEvents.length(); i++)
+		{
+			critterEvents.insertLast(critterEventsTemplate.critterEvents[i]);
+		}
+		
+		return @this;
+	}
+}
+
+
+class CritterEventsManager : CritterEventsTemplate
+{
+	private int role;
+	
+	CritterEventsManager(int role)
+	{
+		this.role = role;
+		
+		critterEventsManagerMap.set("" + role, @this);
+	}
+	
+	CritterEventsManager@ When(CritterEvent@ event)
+	{
+		WhenT(event);
+		
+		return @this;
+	}
+
+	CritterEventsManager@ Execute(Command@ command)
+	{
+		ExecuteT(command);
+		
+		return @this;
+	}
+	
+	CritterEventsManager@ Add(CritterEventsTemplate& critterEventsTemplate)
+	{
+		AddT(critterEventsTemplate);
+		
+		return @this;
+	}
+		
+	void AttachCritter(Critter& critter, bool firstTime)
+	{
+		if (!valid(critter))
+		{
+			Log("Invalid critter, attach failed");
+			return;
+		}
+	
+		//Attach events
+		bool existsIdleEvent = false;
+		bool existsShowCritterEvent = false;
+		bool existsShow1CritterEvent = false;
+		bool existsShow2CritterEvent = false;
+		bool existsShow3CritterEvent = false;
+		bool existsHideCritterEvent = false;
+		bool existsAttackEvent = false;
+		bool existsAttackedEvent = false;
+		bool existsDeadEvent = false;
+		bool existsMessageEvent = false;
+		bool existsSeeSomeoneAttackEvent = false;
+		bool existsSeeSomeoneDeadEvent = false;
+		bool existsSeeSomeoneAttackedEvent = false;
+		bool existsSeeSomeoneStealingEvent = false;
+		bool existsSeeSomeoneUseSkillEvent = false;
+		bool existsPlaneBeginEvent = false;
+		bool existsPlaneRunEvent = false;
+		bool existsPlaneEndEvent = false;
+		bool existsFinishEvent = false;
+		bool existsRespawnEvent = false;
+
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			IdleEvent@ eventIdle = cast<IdleEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsIdleEvent && valid(eventIdle))
+			{
+				critter.SetEvent(CRITTER_EVENT_IDLE, "__Idle");
+				existsIdleEvent = true;
+			}
+	
+			ShowCritterEvent@ eventShowCritter = cast<ShowCritterEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsShowCritterEvent && valid(eventShowCritter))
+			{
+				critter.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "__ShowCritter");
+				existsShowCritterEvent = true;
+			}
+			
+			Show1CritterEvent@ eventShow1Critter = cast<Show1CritterEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsShow1CritterEvent && valid(eventShow1Critter))
+			{
+				critter.SetEvent(CRITTER_EVENT_SHOW_CRITTER_1, "__Show1Critter");
+				existsShow1CritterEvent = true;
+			}
+			
+			Show2CritterEvent@ eventShow2Critter = cast<Show2CritterEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsShow2CritterEvent && valid(eventShow2Critter))
+			{
+				critter.SetEvent(CRITTER_EVENT_SHOW_CRITTER_2, "__Show2Critter");
+				existsShow2CritterEvent = true;
+			}
+			
+			Show3CritterEvent@ eventShow3Critter = cast<Show3CritterEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsShow3CritterEvent && valid(eventShow3Critter))
+			{
+				critter.SetEvent(CRITTER_EVENT_SHOW_CRITTER_3, "__Show3Critter");
+				existsShow3CritterEvent = true;
+			}
+			
+			HideCritterEvent@ eventHideCritter = cast<HideCritterEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsHideCritterEvent && valid(eventHideCritter))
+			{
+				critter.SetEvent(CRITTER_EVENT_HIDE_CRITTER, "__HideCritter");
+				existsHideCritterEvent = true;
+			}
+	
+			AttackEvent@ eventAttack = cast<AttackEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsAttackEvent && valid(eventAttack))
+			{
+				critter.SetEvent(CRITTER_EVENT_ATTACK, "__Attack");
+				existsAttackEvent = true;
+			}
+			
+			AttackedEvent@ eventAttacked = cast<AttackedEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsAttackedEvent && valid(eventAttacked))
+			{
+				critter.SetEvent(CRITTER_EVENT_ATTACKED, "__Attacked");
+				existsAttackedEvent = true;
+			}
+			
+			DeadEvent@ eventDead = cast<DeadEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsDeadEvent && valid(eventDead))
+			{
+				critter.SetEvent(CRITTER_EVENT_DEAD, "__Dead");
+				existsDeadEvent = true;
+			}
+			
+			FinishEvent@ eventFinish = cast<FinishEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsFinishEvent && valid(eventFinish))
+			{
+				critter.SetEvent(CRITTER_EVENT_FINISH, "__Finish");
+				existsFinishEvent = true;
+			}
+			
+			MessageEvent@ eventMessage = cast<MessageEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsMessageEvent && valid(eventMessage))
+			{
+				critter.SetEvent(CRITTER_EVENT_MESSAGE, "__Message");
+				existsMessageEvent = true;
+			}
+			
+			SeeSomeoneAttackEvent@ eventSeeSomeoneAttack = cast<SeeSomeoneAttackEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsSeeSomeoneAttackEvent && valid(eventSeeSomeoneAttack))
+			{
+				critter.SetEvent(CRITTER_EVENT_SMTH_ATTACK, "__SeeSomeoneAttack");
+				existsSeeSomeoneAttackEvent = true;
+			}
+			
+			SeeSomeoneDeadEvent@ eventSeeSomeoneDeadEvent = cast<SeeSomeoneDeadEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsSeeSomeoneDeadEvent && valid(eventSeeSomeoneDeadEvent))
+			{
+				critter.SetEvent(CRITTER_EVENT_SMTH_DEAD, "__SeeSomeoneDead");
+				existsSeeSomeoneDeadEvent = true;
+			}
+			
+			SeeSomeoneAttackedEvent@ eventSeeSomeoneAttacked = cast<SeeSomeoneAttackedEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsSeeSomeoneAttackedEvent && valid(eventSeeSomeoneAttacked))
+			{
+				critter.SetEvent(CRITTER_EVENT_SMTH_ATTACKED, "__SeeSomeoneAttacked");
+				existsSeeSomeoneAttackedEvent = true;
+			}
+			
+			SeeSomeoneStealingEvent@ eventSeeSomeoneStealingEvent = cast<SeeSomeoneStealingEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsSeeSomeoneStealingEvent && valid(eventSeeSomeoneStealingEvent))
+			{
+				critter.SetEvent(CRITTER_EVENT_SMTH_STEALING, "__SeeSomeoneStealing");
+				existsSeeSomeoneStealingEvent = true;
+			}
+
+			SeeSomeoneUseSkillEvent@ eventSeeSomeoneUseSkillEvent = cast<SeeSomeoneUseSkillEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsSeeSomeoneUseSkillEvent && valid(eventSeeSomeoneUseSkillEvent))
+			{
+				critter.SetEvent(CRITTER_EVENT_SMTH_USE_SKILL, "__SeeSomeoneUseSkill");
+				existsSeeSomeoneUseSkillEvent = true;
+			}
+			
+			PlaneBeginEvent@ eventPlaneBegin = cast<PlaneBeginEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsPlaneBeginEvent && valid(eventPlaneBegin))
+			{
+				critter.SetEvent(CRITTER_EVENT_SMTH_USE_SKILL, "__SeeSomeoneUseSkill");
+				existsPlaneBeginEvent = true;
+			}
+			
+			PlaneRunEvent@ eventPlaneRun = cast<PlaneRunEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsPlaneRunEvent && valid(eventPlaneRun))
+			{
+				critter.SetEvent(CRITTER_EVENT_PLANE_RUN, "__PlaneRun");
+				existsPlaneRunEvent = true;
+			}
+
+			PlaneEndEvent@ eventPlaneEnd = cast<PlaneEndEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsPlaneEndEvent && valid(eventPlaneEnd))
+			{
+				critter.SetEvent(CRITTER_EVENT_PLANE_END, "__PlaneEnd");
+				existsPlaneEndEvent = true;
+			}
+			
+			RespawnEvent@ eventRespawn = cast<RespawnEvent>(critterEvents[i].GetCritterEvent());
+			if (!existsRespawnEvent && valid(eventRespawn))
+			{
+				critter.SetEvent(CRITTER_EVENT_RESPAWN, "__Respawn");
+				existsRespawnEvent = true;
+			}
+		}
+		
+		//Initialize event
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			InitializeEvent@ event = cast<InitializeEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Initialize(critter, firstTime, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+		
+		//Set role
+		if (critter.StatBase[ST_NPC_ROLE] != role)
+		{
+			critter.StatBase[ST_NPC_ROLE] = role;
+		}
+	}
+	
+	void Idle(Critter& critter)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			IdleEvent@ event = cast<IdleEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Idle(critter, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void ShowCritter(Critter& critter, Critter& showCritter)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			ShowCritterEvent@ event = cast<ShowCritterEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.ShowCritter(critter, showCritter, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void Show1Critter(Critter& critter, Critter& showCritter)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			Show1CritterEvent@ event = cast<Show1CritterEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Show1Critter(critter, showCritter, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void Show2Critter(Critter& critter, Critter& showCritter)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			Show2CritterEvent@ event = cast<Show2CritterEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Show2Critter(critter, showCritter, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void Show3Critter(Critter& critter, Critter& showCritter)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			Show3CritterEvent@ event = cast<Show3CritterEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Show3Critter(critter, showCritter, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void HideCritter(Critter& critter, Critter& hideCritter)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			HideCritterEvent@ event = cast<HideCritterEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.HideCritter(critter, hideCritter, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	bool Attack(Critter& critter, Critter& target)
+	{
+		bool result = false;
+	
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			AttackEvent@ event = cast<AttackEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				bool res = event.Attack(critter, target, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+				
+				if (res != false)
+				{
+					result = res;
+				}
+			}
+		}
+	
+		return result;
+	}
+	
+	bool Attacked(Critter& critter, Critter& attacker)
+	{
+		bool result = false;
+	
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			AttackedEvent@ event = cast<AttackedEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				bool res = event.Attacked(critter, attacker, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+				
+				if (res != false)
+				{
+					result = res;
+				}
+			}
+		}
+	
+		return result;
+	}
+	
+	void Dead(Critter& critter, Critter@ killer)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			DeadEvent@ event = cast<DeadEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Dead(critter, killer, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void Message(Critter& critter, Critter& messenger, int message, int value)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			MessageEvent@ event = cast<MessageEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Message(critter, messenger, message, value, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void SeeSomeoneAttack(Critter& critter, Critter& attacker, Critter& attacked)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			SeeSomeoneAttackEvent@ event = cast<SeeSomeoneAttackEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.SeeSomeoneAttack(critter, attacker, attacked, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void SeeSomeoneDead(Critter& critter, Critter& killed, Critter@ killer)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			SeeSomeoneDeadEvent@ event = cast<SeeSomeoneDeadEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.SeeSomeoneDead(critter, killed, killer, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void SeeSomeoneAttacked(Critter& critter, Critter& attacked, Critter& attacker)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			SeeSomeoneAttackedEvent@ event = cast<SeeSomeoneAttackedEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.SeeSomeoneAttacked(critter, attacked, attacker, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void SeeSomeoneStealing(Critter& critter, Critter& victim, Critter& thief, bool success, Item& item, uint count)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			SeeSomeoneStealingEvent@ event = cast<SeeSomeoneStealingEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.SeeSomeoneStealing(critter, victim, thief, success, item, count, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}
+	}
+	
+	void SeeSomeoneUseSkill(Critter& critter, Critter& skillCritter, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			SeeSomeoneUseSkillEvent@ event = cast<SeeSomeoneUseSkillEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.SeeSomeoneUseSkill(critter, skillCritter, skill, onCritter, onItem, onScenery, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}	
+	}
+	
+	int PlaneBegin(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+	{
+		int result = PLANE_RUN_GLOBAL;
+	
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			PlaneBeginEvent@ event = cast<PlaneBeginEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				int res = event.PlaneBegin(critter, plane, reason, someCr, someItem, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+								
+				if (res != PLANE_RUN_GLOBAL)
+				{
+					result = res;
+				}
+			}
+		}
+	
+		return result;
+	}
+	
+	int PlaneRun(Critter& critter, NpcPlane& plane, int reason, uint& result0, uint& result1, uint& result2)
+	{
+		int result = PLANE_RUN_GLOBAL;
+	
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			PlaneRunEvent@ event = cast<PlaneRunEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				int res = event.PlaneRun(critter, plane, reason, result0, result1, result2, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+				
+				if (res != PLANE_RUN_GLOBAL)
+				{
+					result = res;
+				}
+			}
+		}
+	
+		return result;
+	}
+	
+	int PlaneEnd(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+	{
+		int result = PLANE_RUN_GLOBAL;
+	
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			PlaneEndEvent@ event = cast<PlaneEndEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				int res = event.PlaneEnd(critter, plane, reason, someCr, someItem, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+				
+				if (res != PLANE_RUN_GLOBAL)
+				{
+					result = res;
+				}
+			}
+		}
+	
+		return result;
+	}
+	
+	void Finish(Critter& critter, bool deleted)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			FinishEvent@ event = cast<FinishEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Finish(critter, deleted, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}	
+	}
+	
+	void Respawn(Critter& critter)
+	{
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			RespawnEvent@ event = cast<RespawnEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				event.Respawn(critter, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+			}
+		}	
+	}
+	
+	uint CTETimeout(Critter& critter, int identifier, uint& rate)
+	{
+		uint result = 0;
+	
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			CTETimeoutEvent@ event = cast<CTETimeoutEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				Critter@ eventTarget = null;
+				
+				int res = event.CTETimeout(critter, identifier, rate, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+				
+				if (res != 0)
+				{
+					result = res;
+				}
+			}
+		}
+	
+		return result;	
+	}
+	
+	uint Timeout(Critter& critter, int identifier, Critter@ eventTarget, array<uint>@ values)
+	{
+		uint result = 0;
+	
+		for (uint i = 0; i < critterEvents.length(); i++)
+		{
+			TimeoutEvent@ event = cast<TimeoutEvent>(critterEvents[i].GetCritterEvent());
+			if (valid(event))
+			{
+				bool processCommands = false;
+				
+				int res = event.Timeout(critter, identifier, values, processCommands, eventTarget);
+			
+				if (processCommands)
+				{
+					critterEvents[i].ExecuteCommands(critter, eventTarget);
+				}
+				
+				if (res != 0)
+				{
+					result = res;
+				}
+			}
+		}
+	
+		return result;	
+	}
+}
+
+
+interface CritterEvent
+{
+}
+
+
+interface Command
+{
+	void Execute(Critter& critter, Critter@ commandTarget);
+}
+
+
+interface CommandPredicate
+{
+	bool Test(Critter& critter, Critter@ commandTarget);
+}
+
+
+interface IdleEvent : CritterEvent
+{
+	void Idle(Critter& critter, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface ShowCritterEvent : CritterEvent
+{
+	void ShowCritter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface Show1CritterEvent : CritterEvent
+{
+	void Show1Critter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface Show2CritterEvent : CritterEvent
+{
+	void Show2Critter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface Show3CritterEvent : CritterEvent
+{
+	void Show3Critter(Critter& critter, Critter& showCritter, bool& processCommands, Critter@& commandTarget);
+}
+
+	
+interface HideCritterEvent : CritterEvent
+{
+	void HideCritter(Critter& critter, Critter& hideCritter, bool& processCommands, Critter@& commandTarget);
+}
+
+	
+interface AttackEvent : CritterEvent
+{
+	bool Attack(Critter& critter, Critter& target, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface AttackedEvent : CritterEvent
+{
+	bool Attacked(Critter& critter, Critter& attacker, bool& processCommands, Critter@& commandTarget);
+}
+
+	
+interface DeadEvent : CritterEvent
+{
+	void Dead(Critter& critter, Critter@ killer, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface MessageEvent : CritterEvent
+{
+	void Message(Critter& critter, Critter& messenger, int message, int value, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface SeeSomeoneAttackEvent : CritterEvent
+{
+	void SeeSomeoneAttack(Critter& critter, Critter& attacker, Critter& attacked, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface SeeSomeoneDeadEvent : CritterEvent
+{
+	void SeeSomeoneDead(Critter& critter, Critter& killed, Critter@ killer, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface SeeSomeoneAttackedEvent : CritterEvent
+{
+	void SeeSomeoneAttacked(Critter& critter, Critter& attacked, Critter& attacker, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface SeeSomeoneStealingEvent : CritterEvent
+{
+	void SeeSomeoneStealing(Critter& critter, Critter& victim, Critter& thief, bool success, Item& item, uint count, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface SeeSomeoneUseSkillEvent : CritterEvent
+{
+	void SeeSomeoneUseSkill(Critter& critter, Critter& skillCritter, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface PlaneBeginEvent : CritterEvent
+{
+	int PlaneBegin(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface PlaneRunEvent : CritterEvent
+{
+	int PlaneRun(Critter& critter, NpcPlane& plane, int reason, uint& result0, uint& result1, uint& result2, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface PlaneEndEvent : CritterEvent
+{
+	int PlaneEnd(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface FinishEvent : CritterEvent
+{
+	void Finish(Critter& critter, bool deleted, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface RespawnEvent : CritterEvent
+{
+	void Respawn(Critter& critter, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface CTETimeoutEvent : CritterEvent
+{
+	uint CTETimeout(Critter& critter, int identifier, uint& rate, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface TimeoutEvent : CritterEvent
+{
+	uint Timeout(Critter& critter, int identifier, array<uint>@ values, bool& processCommands, Critter@& commandTarget);
+}
+
+
+interface InitializeEvent : CritterEvent
+{
+	void Initialize(Critter& critter, bool firstTime, bool& processCommands, Critter@& commandTarget);
+}
+
+
+//////////////////////////////////////
+//Map Role ==>> CritterEventsManager//
+//////////////////////////////////////
+
+dictionary critterEventsManagerMap;
+
+CritterEventsManager@ GetCritterEventsManager(Critter& critter) 
+{
+	CritterEventsManager @critterEventsManager;
+	
+	critterEventsManagerMap.get("" + critter.Stat[ST_NPC_ROLE], @critterEventsManager);
+	
+	return critterEventsManager;
+}
+
+CritterEventsManager@ GetCritterEventsManager(int role) 
+{
+	CritterEventsManager @critterEventsManager;
+	
+	critterEventsManagerMap.get("" + role, @critterEventsManager);
+	
+	return critterEventsManager;
+}
+
+/////////////////
+//Event handles//
+/////////////////
+
+void __Idle(Critter& critter)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Idle(critter);
+	}
+}
+
+void __Finish(Critter& critter, bool deleted)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Finish(critter, deleted);
+	}
+}
+
+int __PlaneBegin(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		return critterEventsManager.PlaneBegin(critter, plane, reason, someCr, someItem);
+	}
+
+	return PLANE_RUN_GLOBAL;
+}
+
+int __PlaneRun(Critter& critter, NpcPlane& plane, int reason, uint& result0, uint& result1, uint& result2)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		return critterEventsManager.PlaneRun(critter, plane, reason, result0, result1, result2);
+	}
+
+	return PLANE_RUN_GLOBAL;
+}
+ 
+int __PlaneEnd(Critter& critter, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		return critterEventsManager.PlaneEnd(critter, plane, reason, someCr, someItem);
+	}
+
+	return PLANE_RUN_GLOBAL;
+}
+
+void __SeeSomeoneAttack(Critter& critter, Critter& attacker, Critter& attacked)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.SeeSomeoneAttack(critter, attacker, attacked);
+	}
+}
+
+void __SeeSomeoneDead(Critter& critter, Critter& killed, Critter@ killer)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.SeeSomeoneDead(critter, killed, killer);
+	}
+}
+
+void __SeeSomeoneAttacked(Critter& critter, Critter& attacked, Critter& attacker)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.SeeSomeoneAttacked(critter, attacked, attacker);
+	}
+}
+
+void __SeeSomeoneStealing(Critter& critter, Critter& victim, Critter& thief, bool success, Item& item, uint count)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.SeeSomeoneStealing(critter, victim, thief, success, item, count);
+	}
+}
+
+void __ShowCritter(Critter& critter, Critter& showCritter)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.ShowCritter(critter, showCritter);
+	}
+}
+
+void __Show1Critter(Critter& critter, Critter& showCritter)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Show1Critter(critter, showCritter);
+	}
+}
+
+void __Show2Critter(Critter& critter, Critter& showCritter)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Show2Critter(critter, showCritter);
+	}
+}
+
+void __Show3Critter(Critter& critter, Critter& showCritter)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Show3Critter(critter, showCritter);
+	}
+}
+
+void __HideCritter(Critter& critter, Critter& hideCritter)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.HideCritter(critter, hideCritter);
+	}
+}
+
+bool __Attack(Critter& critter, Critter& target)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		return critterEventsManager.Attack(critter, target);
+	}
+	
+	return false;
+}
+
+bool __Attacked(Critter& critter, Critter& attacker)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		return critterEventsManager.Attacked(critter, attacker);
+	}
+	
+	return false;
+}
+
+void __Dead(Critter& critter, Critter@ killer)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Dead(critter, killer);
+	}
+}
+
+void __Message(Critter& critter, Critter& messenger, int message, int value)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Message(critter, messenger, message, value);
+	}
+}
+
+void __Respawn(Critter& critter)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.Respawn(critter);
+	}
+}
+
+void __SeeSomeoneUseSkill(Critter& critter, Critter& skillCritter, int skill, Critter@ onCritter, Item@ onItem, Scenery@ onScenery)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.SeeSomeoneUseSkill(critter, skillCritter, skill, onCritter, onItem, onScenery);
+	}
+}
+
+
+uint __CTETimeout(Critter& critter, int identifier, uint& rate)
+{
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		return critterEventsManager.CTETimeout(critter, identifier, rate);
+	}
+	
+	return 0;
+}
+
+
+uint __Timeout(array<uint>@ values)
+{
+	if (values.length() < 3) 
+	{
+		return 0;
+	}
+
+	Critter@ critter = GetCritter(values[0]);
+	Critter@ eventTarget = GetCritter(values[2]);
+	
+	if (!valid(critter))
+	{
+		return 0;
+	}
+
+	CritterEventsManager @critterEventsManager = GetCritterEventsManager(critter);
+		
+	if (valid(critterEventsManager))
+	{
+		return critterEventsManager.Timeout(critter, values[1], eventTarget, values);
+	}
+	
+	return 0;
+}
+
+#endif

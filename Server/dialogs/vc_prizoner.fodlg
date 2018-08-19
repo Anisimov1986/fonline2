@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Vault City Servant}
+{200}{}{You see: one of Vault City's many servants.}
+{210}{}{One of Vault City's servants. They don't call them slaves here, but it's hard to see what the difference is. They will not make eye contact with you, no matter how long you stare.}
+{1000}{}{Predialogue installations}
+{1010}{}{Default}
+{2000}{}{We shouldn't be talking.@@Does my master know you are talking to me?@@No, I love it here, really!@@I'm so thankful I was taken from my family and brought here.@@Hi.@@Hello.@@Hey.@@What's up?@@Don't get me in trouble.@@My brother tried to escape from here. He made it about six steps past the front gate.@@Please talk to my master first.@@One day I'll become a citizen.@@I was born down in Junktown.@@I watched my whole family get killed.@@Please don't talk to me!@@The citizens say we aren't slaves. What a relief.@@I haven't seen my family in years. I've forgotten what they look like.@@Yes, I'm happy here! Who told you to ask?@@I don't know how much longer I'll last.@@The water tastes funny here.@@I miss Shady Sands.@@I'd still rather be here than the Hub.@@Why are you talking to me?@@Just ignore me like everyone else.@@The wasteland is harsh.@@Lots of caravans come through here.@@I'm free to leave any time they want me to.@@I was a doctor before they brought me here.@@It's not easy being a servant, but we do important work.@@How are you?@@Have you even been down south?@@You look like you've seen a lot of action.@@Don't hurt me.@@We shouldn't talk.@@Leave me be.@@Leave me to my work.@@My feet hurt.@@I'm so tired.@@I can't talk now.}
+
+[russ]
+{100}{}{Пленник}
+{200}{}{Вы видите пленника.}
+{210}{}{Вы видите пленника из внешнего мира.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Ох, в последний раз я нарушаю комендантский час.@@Лучше проходи мимо, дружище. Если увидят, что мы разговариваем, нам обоим мало не покажется.@@Проклятый Баркус, засадил меня сюда. Когда я до него доберусь...@@Еще неделя и назад, в Центр Распределения...@@Лучше бы мне никогда не приходить в Город Убежища... "свободный город". Оборжаться.}
+
+[pols]
+{100}{}{Więzień}
+{200}{}{Widzisz więźnia.}
+{210}{}{Widzisz więźnia ze świata zewnętrznego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Default}
+{2000}{}{Cóż, to ostatni raz kiedy omijam godzinę policyjną.@@Kolejny tydzień i znów wracam do Centrum Przydzielania Służących...@@Lepiej się odsuń, @sex@|kolego||koleżanko|. Zobaczą, jak rozmawiamy, to zgotują nam piekło.@@Cholerny Barkus, wpakował mnie tu. Kiedyś się do niego dobiorę...@@Chciałbym nigdy nie przyjechać do Kryptopolis. "Wolne" miasto, też mi żart.@@Przynajmniej żarcie nie jest tak paskudne.}
+
+[ptbr]
+{100}{}{Prisioneiro}
+{200}{}{Você vê um prisioneiro.}
+{210}{}{Você vê um prisioneiro, alguém que não é da Cidade do Abrigo. Provavelmente um viajante.}
+{1000}{}{Predialogue installations}
+{1010}{}{Default}
+{2000}{}{É, acho que na próxima eu não vou ignorar o toque de recolher.@@Outra semana aqui e volto pro Centro de Alocação...@@Melhor continuar andando colega. Se eles verem a gente conversando vai ficar feio pra ti e pra mim.@@Barkus foi filho da puta... me colocando aqui! Quando eu por a mãos nele...@@Até hoje me arrependo de ter vindo para a Cidade do Abrigo. Cidade "livre"... pff... piada.@@Pelo menos a comida não é ruim.}
+

@@ -1,0 +1,143 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _script quest_caravan_box@d_IsOngoing 0  #
+2 1020 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+20 1030 @
+20 2000 None 0 #
+3 2010 D _script quest_caravan_box@d_NotStarted 0  D _script quest@quest_checkcd 1 9306 #
+0 2020 #
+0 2030 @
+2 3000 None 0 #
+3 3010 D _script quest_caravan_box@d_NotStarted 0  D _script quest@quest_checkcd 1 9306 #
+0 3020 @
+3 4000 None 0 #
+0 4010 R _script quest_caravan_box@r_StartQuest 0  #
+0 4020 @
+4 5000 None 0 #
+5 5010 D _script quest_caravan_box@d_IsDone 0  R _script quest_caravan_box@r_CompleteQuest 0  R _script quest@quest_setcd 2 9306 30 R _script karma@r_AddKarma 1 1 R _script dialog@r_PackRat 0  #
+6 5020 @
+5 6000 None 0 #
+0 6010 @
+6 7000 None 0 #
+0 7010 @
+7 8000 None 0 #
+0 8010 &
+
+[engl]
+{100}{}{Caravan Packer}
+{200}{}{You see: Caravan packer.}
+{210}{}{He seems to be pretty busy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{What now? I am busy.}
+{2010}{}{Is there any work to be done?}
+{2020}{}{Just looking around, thanks.}
+{2030}{}{So am I, you filth!}
+{3000}{}{Don't you see I'm busy?}
+{3010}{}{Do you have some work for me?}
+{3020}{}{I'm just looking around, thanks and bye.}
+{4000}{}{Yeah, I need ya to help me unload some boxes from this cart. Think you could take 10 boxes and drop them where the others are?}
+{4010}{}{Sure, it's as good as done.}
+{4020}{}{No way, you loser!}
+{5000}{}{Are you done?}
+{5010}{}{Yes, finished the last box right now.}
+{5020}{}{Not yet.}
+{6000}{}{Good, here is your pay, 300 caps, and don't you go spend it all on hookers. I mite have more work for you later if you're still in need of caps.}
+{6010}{}{Thanks.}
+{7000}{}{Then hurry your ass up, I don't have the whole day!}
+{7010}{}{Yeah, yeah...}
+{8000}{}{Not now, come back later.}
+{8010}{}{Okay.}
+
+[russ]
+{100}{}{Грузчик}
+{200}{}{Вы видите человека отвечающего за разгрузку караванов.}
+{210}{}{Он выглядит очень занятым.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{Что ещё? Я занят.}
+{2010}{}{У тебя не найдется работы для меня?}
+{2020}{}{Я просто осматриваюсь, извините.}
+{2030}{}{Я тоже, ну ты и козел!}
+{3000}{}{Не видишь, я занят?}
+{3010}{}{У тебя не найдется работы для меня?}
+{3020}{}{Я просто осматриваюсь, извините.}
+{4000}{}{Хмм, ты можешь помочь мне разгрузить повозку. Возьми десять коробок и отнеси к остальным.}
+{4010}{}{Конечно, я мигом.}
+{4020}{}{Ни за что, ну ты и неудачник!}
+{5000}{}{Ты закончил с коробками?}
+{5010}{}{Да, отнес последнюю коробку только что.}
+{5020}{}{Пока нет.}
+{6000}{}{Молодец, отлично поработал, вот тебе 300 крышек. Караваны постоянно прибывают, так что если тебе нужны будут деньги я буду всегда рад твоей помощи.}
+{6010}{}{Спасибо.}
+{7000}{}{Тогда пошевеливайся, я ну буду ждать целый день.}
+{7010}{}{Да, да ...}
+{8000}{}{Пока нет, зайди попозже.}
+{8010}{}{Хорошо.}
+
+[pols]
+{100}{}{Tragarz}
+{200}{}{Widzisz tragarza karawany.}
+{210}{}{Ten człowiek wygląda na dość zajętego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{Nie widzisz że jestem zajęty? Czego?}
+{2010}{}{Nie miałbyś dla mnie jakiejś roboty?}
+{2020}{}{Spokojnie, tylko się rozglądam.}
+{2030}{}{Gówna psiego.}
+{3000}{}{Co chcesz? Zajęty jestem.}
+{3010}{}{Szukam pracy.}
+{3020}{}{Nic.}
+{4000}{}{Mam coś. Tylko się sprężaj. Widzisz te pudła? Przenieś je tam gdzie leży reszta. Dzięsięć pudeł wystarczy.}
+{4010}{}{Dobra.}
+{4020}{}{Nic z tego, sam sobie je noś.}
+{5000}{}{Już? Skończone?}
+{5010}{}{Ta, już po robocie.}
+{5020}{}{Chwila, moment, jeszcze nie.}
+{6000}{}{Nie dało się szybciej? Dobra, masz tu trzysta kapsli, tylko nie przechlej wszystkiego od razu. Niedługo będzie następna dostawa, jak chcesz sobie dorobić to się odezwij.}
+{6010}{}{Dobra.}
+{7000}{}{No to rusz dupę! Ile jeszcze jeszcze będziesz się z tym pierdolić?}
+{7010}{}{Dobra, dobra, już idę...}
+{8000}{}{Na razie nie ma roboty, przyjdź później.}
+{8010}{}{Dobra.}
+
+[ptbr]
+{100}{}{Estivador da caravana}
+{200}{}{Você vê o estivador da caravana.}
+{210}{}{Ele parece estar bastante ocupado.}
+{1000}{}{Predialogue installations}
+{1010}{}{Got the unloading job.}
+{1020}{}{We are talking the first time.}
+{1030}{}{We talked already.}
+{2000}{}{O que é? Tô ocupado.}
+{2010}{}{Tem alguma coisa por se fazer?}
+{2020}{}{Só tou dando uma olhada, @sex@|obrigado||obrigada|.}
+{2030}{}{Eu também estou, seu otário!}
+{3000}{}{Não tá vendo que tou ocupado?}
+{3010}{}{Tem algum trabalho pra mim?}
+{3020}{}{Eu só tou dando uma olhada, tchau e @sex@|obrigado||obrigada|.}
+{4000}{}{É, preciso que me ajude tirando as caixas daquele vagão ali. Acha que pode tirar 10 caixas e colocar onde as outras tão?}
+{4010}{}{Tá bem.}
+{4020}{}{Sem condições!}
+{5000}{}{Terminou?}
+{5010}{}{Sim, acabei de tirar a última caixa agora mesmo.}
+{5020}{}{Ainda não.}
+{6000}{}{Bom, tá aqui o dinheiro, 300 tampas, e não gaste tudo com putas. Talvez eu tenha mais trabalho depois se tiver interessado em mais tampinhas.}
+{6010}{}{Valeu.}
+{7000}{}{Então deixa de preguiça que eu não tenho o dia inteiro!}
+{7010}{}{Tá... tá...}
+{8000}{}{Agora não, vem depois.}
+{8010}{}{Tá.}

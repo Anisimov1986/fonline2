@@ -1,0 +1,42 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Caravaneer}
+{200}{}{You see: Caravaneer.}
+{210}{}{You see: Caravaneer.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{They don't pay us shit.@@Fuck, I am so thirsty...@@I need a drink.@@What?@@I don't like the looks of you. Get lost.@@Today's going to be a long day...@@I really don't want to work today.@@I didin't sign up for this shit!@@Got a smoke?@@We just got back.@@Got a light?@@Yeah?}
+
+[russ]
+{100}{}{Караванщик}
+{200}{}{Вы видите караванщика.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Будем надеятся, что продадим весь товар.@@Ну и жажда у меня пробудилась.@@Сегодня будет длинный день!@@Мне сегодня совсем не хочется работать.@@Да, сегодня было жарко.@@Извини, но мы только что вернулись с маршрута.}
+
+[pols]
+{100}{}{Członek karawany}
+{200}{}{Widzisz jednego z członków karawany.}
+{210}{}{Widzisz jednego z członków karawany.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{Mam nadzieję, że wszystko sprzedamy.@@Stary, ale chce mi się pić.@@Przed nami ciężki dzień roboty!@@Cholera, naprawdę nie chce mi się dzisiaj pracować.@@Dzisiaj było cholernie gorąco.@@Przykro mi, właśnie wracamy z trasy.}
+
+[ptbr]
+{100}{}{Caravaneiro}
+{200}{}{Você vê um caravaneiro.}
+{210}{}{Você vê uma caravaneiro.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{Eles não pagam merda nenhuma.@@Porra, tô com tanta sede...@@Tô precisando de uma bebida.@@Quê que tu qué?@@Não gosto de ti. Cai fora.@@Hoje o dia vai ser longo...@@Não não queria trabalhar hoje.@@Eu não me candidatei pra esta merda!@@Tem cigarro?@@Acabamos de voltar.@@Tem fogo?@@Hã?}

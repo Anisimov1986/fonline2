@@ -1,0 +1,50 @@
+#include "utils_for_array.fos"
+#include "_macros.fos"
+#include "serializator.fos"
+
+#define NEWS_VERSION	(20)
+void ReadNews()
+{
+	int news=0;
+	Serializator news_number;
+	if(news_number.Load("NEWS"))
+		news_number.Get(news);
+	if (NEWS_VERSION > news)
+	{
+		news = NEWS_VERSION;
+		news_number.Set(news).Save("NEWS");
+		if (IsAnyData("PLAYERNEWS"))
+			EraseAnyData("PLAYERNEWS");
+	}
+}
+void SendNews( Critter& player )
+{
+	if (!valid(player)|| NEWS_VERSION==0)
+		return;
+	if (!IsAnyData("PLAYERNEWS"))
+	{
+		uint []PLAYERS;
+		PLAYERS.insertLast(player.Id);
+		SetAnyData("PLAYERNEWS", PLAYERS);
+		PLAYERS.resize(0);
+	}
+	else
+	{
+		uint []PLAYERS;
+		GetAnyData("PLAYERNEWS", PLAYERS); //reading player list
+		if (Present(player.Id,PLAYERS))
+			return;
+		PLAYERS.insertLast(player.Id); //adding this player to list
+		SetAnyData("PLAYERNEWS", PLAYERS); //saving player list
+		PLAYERS.resize(0);
+	}
+	CreateTimeEvent(__FullSecond+REAL_SECOND(7), "e_DelayedNewsToClient", player.Id, false);
+}
+
+uint e_DelayedNewsToClient(uint[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(valid(cr) && cr.IsPlayer())
+		cr.RunClientScript("client_screen_news@ShowNewsScreen", 1, 0, 0, null, null);
+	return 0;
+}

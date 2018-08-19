@@ -1,0 +1,106 @@
+/**
+ * Created: 5.7.2012
+ * Author: mikewall
+ */
+
+#include "_macros.fos"
+#include "container_item_respawn_init.fos"
+
+ContainerSpawnInfo@[]@ ContainerSpawnInfos;
+array<uint> RespawnContainers;
+
+//used in mapper
+void _RespawnInit(Item& item, bool firstTime)
+{
+	if(item.GetType() != ITEM_TYPE_CONTAINER)
+	{
+		Log("Warning: Trying to initialize random item spawning in other than container type.");
+		return;
+	}
+	if(item.Val0 == 0)
+	{
+		Log("Warning: Please specify Value0 for random item spawning as ID of defined spawning info.");
+		return;
+	}
+	
+	ContainerSpawnInfo@ info = GetSpawnInfo(item.Val0);
+	if(!valid(info))
+	{
+		Log("Warning: No container spawn info found for ID = " + item.Val0);
+		return;
+	}
+    if (RespawnContainers.find(item.Id)>=0)
+        return;
+    RespawnContainers.insertLast(item.Id);
+}
+
+bool TryPreSpawnItems(Critter& cr, Item& container)
+{
+    if (RespawnContainers.find(container.Id)<0)
+        return false;
+ 
+    if (container.Val6!=0 && container.Val6>int(__FullSecond))
+        return false;
+
+    ContainerSpawnInfo@ spawnInfo = GetSpawnInfo(container.Val0);
+    if(!valid(spawnInfo))
+        return false;
+    spawnInfo.AddItemsToContainer(container);
+    array<uint> values={cr.Id,container.Id};
+    CreateTimeEvent(__FullSecond + REAL_SECOND(0.5), "e_showContainer", values, false);
+    container.Val6=__FullSecond+spawnInfo.GetRespawnTime();
+    return true;
+}
+
+void TryPreLock(Item& container)
+{
+    if (RespawnContainers.find(container.Id)<0)
+        return;
+    if (container.Val6!=0 && container.Val6>int(__FullSecond))
+        return;
+    ContainerSpawnInfo@ spawnInfo = GetSpawnInfo(container.Val0);
+    if(!valid(spawnInfo))
+        return;    
+    LockContainer(spawnInfo, container);
+}
+
+uint e_showContainer(uint[]@ values)
+{
+    Item@ locker = GetItem(values[1]);
+    if(!valid(locker))
+		return 0;
+    Critter@ cr = GetCritter(values[0]);
+    if(!valid(cr))
+		return 0;
+    cr.ShowContainer( null, locker, locker.Proto.GroundLevel ? TRANSFER_HEX_CONT_DOWN : TRANSFER_HEX_CONT_UP );
+    return 0;
+}
+
+void LockContainer(ContainerSpawnInfo@ spawnInfo, Item@ container)
+{
+	if(container.LockerId != 0)
+		return;
+	uint complexity = spawnInfo.GetLockerComplexity();
+	if(complexity == 0)
+		return;
+		
+	container.LockerId = Random(1, 1000);
+	container.LockerComplexity = complexity;
+}
+
+ContainerSpawnInfo@ GetSpawnInfo(uint id)
+{
+	if(!valid(ContainerSpawnInfos))
+		@ContainerSpawnInfos = CreateContainerSpawnInfos();
+	
+	for (uint i = 0; i < ContainerSpawnInfos.length(); i++)
+		if(ContainerSpawnInfos[i].Id == id)
+			return ContainerSpawnInfos[i];
+	return null;
+}
+
+//Deprecated
+uint e_SpawnContainerItems(uint[]@ values)
+{
+    return 0;
+}

@@ -1,0 +1,1305 @@
+#ifndef _ADMIN_
+#define _ADMIN_
+#include "_macros.fos"
+#include "_ai.fos"
+#include "npc_ai.fos"
+#include "admin_h.fos"
+#include "stdlib_h.fos"
+#include "buffer_h.fos"
+#include "strtoint_h.fos"
+
+#include "utils_h.fos"
+#include "logging_h.fos"
+
+import int GetOffenceLevel(Critter& critter) from "critter_offence";
+import void SetOffenceLevel(Critter& critter, int level) from "critter_offence";
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, int minHp, bool run ) from "npc_planes";
+import void AddNewMessage( string text,int time, int showtimer, uint color) from "stocmessages";
+import void RemoveDeadBlocker( Critter& cr ) from "main";
+
+
+void initpanel(Critter& cr, int , int ,int )
+{
+    if(cr.GetAccess() != ACCESS_ADMIN)
+        return;
+    cr.RunClientScript( "client_screen_admin_panel@SetScriptStr", 0, 0, 0, "devXpanel", null );
+    cr.RunClientScript( "client_screen_players@init_player_screen", 0, 0, 0, null, null );
+}
+
+ 
+void unsafe_RequestAdminActions(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request Admin Panel " + GetIP( critter.GetIp() ));
+    if(critter.GetAccess() != ACCESS_ADMIN)
+        return;
+    
+    string@ menuItems = "";
+    
+        if(critter.GetAccess() == ACCESS_ADMIN)
+        {
+    switch(actionType)
+    {
+        case ACTION_TYPE_CRITTER:
+            menuItems += "Critter menu:devXpanel@ShowCritterMenu;";
+            break;
+        case ACTION_TYPE_ITEM:
+            menuItems += "Item menu:devXpanel@ShowItemMenu;";
+            break;
+        case ACTION_TYPE_HEX:
+            menuItems += "Map menu:devXpanel@ShowMapMenu;";
+            menuItems += "Add NPC:devXpanel@AddNpc;";
+            menuItems += "Move here:devXpanel@MoveTo;";
+            menuItems += "Teleport player:devXpanel@TeleportPlayer;";
+            break;
+    }
+    
+    menuItems += "Teleport to player:devXpanel@TeleportToPlayer;";
+    menuItems += "Server message:devXpanel@ServerMessage;";
+	menuItems += "NPC Menu:devXpanel@ShowNPCMenu;";
+    //menuItems += "Event Menu:devXpanel@QuickCommand;";
+    menuItems += "Event Menu:devXpanel@ShowEventMenu;";
+    }
+    
+    ShowAdminMenu(critter, actionType, menuItems, values);
+    
+}
+
+void ShowAdminMenu(Critter& critter, int actionType, string menuItems, int[] values)
+{
+    if(menuItems.length() > 0)
+		critter.RunClientScript("client_screen_admin_panel@ShowMenu", actionType, 0, 0, menuItems, values);
+}
+
+void ShowCritterMenu(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	string@ menuItems = "";
+	if(cr.IsDead())
+	{
+		menuItems += "Revive:devXpanel@Revive;";
+	}
+	else
+	{
+		menuItems += "Heal:devXpanel@Heal;";
+		menuItems += "Knock out:devXpanel@KnockOut;";
+		menuItems += "Kill:devXpanel@Kill;";
+	}
+	
+	if(cr.IsPlayer())
+	{
+		menuItems += "To Prison:devXpanel@ToPrison;";
+		menuItems += "Change Skin:devXpanel@unsafe_ChangeCrType;";
+		menuItems += "Show ID:devXpanel@ShowID;";
+	}
+	menuItems += "Say:devXpanel@Say;";
+	menuItems += "Add item:devXpanel@AddItem;";
+	menuItems += "Show inventory:devXpanel@ShowInventory;";
+	menuItems += "Set param:devXpanel@SetParam;";
+	menuItems += "Set offence:devXpanel@SetOffence;";
+	menuItems += "Guard attack:devXpanel@GuardAttack;";
+	
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+
+void ShowCritterMenuModerator(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	string@ menuItems = "";
+	if(cr.IsDead())
+	{
+		menuItems += "Revive:devXpanel@Revive;";
+	}
+	else
+	{
+		menuItems += "Heal:devXpanel@Heal;";
+		menuItems += "Knock out:devXpanel@KnockOut;";
+		menuItems += "Kill:devXpanel@Kill;";
+	}
+	if(cr.IsPlayer())
+	{
+		menuItems += "To Prison:devXpanel@ToPrison;";
+		menuItems += "Change Skin:devXpanel@unsafe_ChangeCrType;";
+		menuItems += "Show ID:devXpanel@ShowID;";
+	}
+	menuItems += "Show inventory:devXpanel@ShowInventory;";
+	menuItems += "Set offence:devXpanel@SetOffence;";
+	menuItems += "Guard attack:devXpanel@GuardAttack;";
+	
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+void ShowItemMenu(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_ITEM)
+		return;
+		
+	string@ menuItems = "";
+
+	menuItems += "Delete:devXpanel@DeleteItem;";
+	menuItems += "Duplicate:devXpanel@DuplicateItem;";
+	menuItems += "Show script id:devXpanel@ShowScriptId;";
+	
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+void ShowMapMenu(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_HEX)
+		return;
+		
+	string@ menuItems = "";
+
+	menuItems += "Delete location:devXpanel@DeleteLocation;";
+	menuItems += "Set real-time:devXpanel@SetTurnBasedAvailability$0;";
+	menuItems += "Set turn-based:devXpanel@SetTurnBasedAvailability$1;";
+	menuItems += "Remove all items:devXpanel@RemoveAllItems;";
+	menuItems += "Transit to map:devXpanel@TransitToMap;";
+	menuItems += "Drop planes:devXpanel@DropPlanes;";
+	
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+void DeleteLocation(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	critter.ShowScreen(SCREEN_DIALOGBOX, 2, "answer_DeleteLocation");
+	critter.Say(SAY_DIALOGBOX_TEXT, "Are you sure?");
+	critter.Say(SAY_DIALOGBOX_BUTTON(0), "yes");
+	critter.Say(SAY_DIALOGBOX_BUTTON(1), "no");
+}
+
+void answer_DeleteLocation(Critter& critter, uint answerI, string&)
+{
+	if(answerI != 0)
+		return;
+		
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return;
+		
+	Location@ location = map.GetLocation();
+	if(!valid(location))
+		return;
+		
+	DeleteLocation(location.Id);
+}
+
+void SetTurnBasedAvailability(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return;
+	
+	map.SetTurnBasedAvailability(values[0] > 0);
+}
+
+void TransitToMap(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	ShowSayScreen(critter, true, true, "Map ID:", "", "devXpanel@unsafe_TransitToMap", values);
+}
+
+void unsafe_TransitToMap(Critter& critter, int, int, int, string@ answer, int[]@)
+{
+    FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request TransitToMap " + GetIP( critter.GetIp() ));    
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+		
+	int mapId = 0;
+	if(!StrToInt(answer, mapId) || mapId <= 0)
+		return;
+	Map@ map = GetMap(mapId);
+	if(!valid(map))
+		return;
+		
+	critter.TransitToMap(map.Id, 0);
+}
+
+void DeleteItem(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_ITEM)
+		return;
+		
+	Item@ item = GetItem(values[0]);
+	if(!valid(item))
+		return;
+		
+	DeleteItem(item);
+}
+void ShowScriptId(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_ITEM)
+		return;
+		
+	Item@ item = GetItem(values[0]);
+	if(!valid(item))
+		return;
+		
+	critter.Say(SAY_NETMSG,"Script ID "+item.GetScriptId());
+}
+
+
+void DuplicateItem(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_ITEM)
+		return;
+		
+	Item@ item = GetItem(values[0]);
+	if(!valid(item))
+		return;
+		
+	ShowSayScreen(critter, true, true, "How many?", "1", "devXpanel@unsafe_DuplicateItemAnswer", values);
+}
+
+void unsafe_DuplicateItemAnswer(Critter& critter, int, int, int, string@ duplicateCount, int[]@ values)
+{
+    FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request DuplicateItemAnswer " + GetIP( critter.GetIp() ));    
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+    
+	int count = 0;
+	if(!StrToInt(duplicateCount, count) || count < 0)
+		return;
+	
+	Item@ item = GetItem(values[0]);
+	if(!valid(item))
+		return;
+	
+	uint16 hexX = 0;
+    uint16 hexY = 0;
+    Map@ map = item.GetMapPosition(hexX, hexY);
+	if(!valid(map))
+		return;
+		
+	for (uint i = 0; i < uint(count); i++)
+		map.AddItem(hexX, hexY, item.GetProtoId(), item.GetCount());
+}
+
+void MoveTo(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_HEX)
+		return;
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return;
+	
+	critter.TransitToMap(map.Id, values[0], values[1], critter.Dir);
+}
+
+void RemoveAllItems(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_HEX)
+		return;
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return;
+	
+	Item@[] items;
+	map.GetItemsByType(ITEM_TYPE_ARMOR, items);
+	map.GetItemsByType(ITEM_TYPE_DRUG, items);
+	map.GetItemsByType(ITEM_TYPE_WEAPON, items);
+	map.GetItemsByType(ITEM_TYPE_AMMO, items);
+	map.GetItemsByType(ITEM_TYPE_MISC, items);
+		DeleteItems(items);
+}
+
+void DropPlanes(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType == ACTION_TYPE_HEX && values.length() == 2
+		|| actionType == ACTION_TYPE_CRITTER && values.length() == 1)
+	{
+		string@ menuItems = "";
+	
+		menuItems += "Attack:devXpanel@DropPlanes$" + AI_PLANE_ATTACK + ";";
+		menuItems += "Walk:devXpanel@DropPlanes$" + AI_PLANE_WALK + ";";
+		menuItems += "Pick:devXpanel@DropPlanes$" + AI_PLANE_PICK + ";";
+		menuItems += "Misc:devXpanel@DropPlanes$" + AI_PLANE_MISC + ";";
+		
+		ShowAdminMenu(critter, actionType, menuItems, values);
+	}
+	else if(actionType == ACTION_TYPE_HEX)
+	{
+		Map@ map = critter.GetMap();
+		if(!valid(map))
+			return;
+		
+		Critter@[] critters;
+		map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, critters);
+		for (uint i = 0; i < critters.length(); i++)
+			critters[i].ErasePlane(values[2], true);
+	}
+	else if(actionType == ACTION_TYPE_CRITTER)
+	{
+		Critter@ cr = GetCritter(values[0]);
+		if(!valid(cr) || !cr.IsNpc())
+			return;
+		cr.ErasePlane(values[1], true);
+	}
+}
+
+void TeleportToPlayer(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	ShowSayScreen(critter, false, true, "Player name", "", "devXpanel@unsafe_TeleportToPlayerAnswer", values);
+}
+
+void unsafe_TeleportToPlayerAnswer(Critter& critter, int, int, int, string@ playerName, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request TeleportToPlayerAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+         
+	uint playerId = GetPlayerId(playerName);
+	if(playerId == 0)
+	{
+		if( !StrToInt( playerName, playerId ))
+		{
+		critter.Say( SAY_NETMSG, "something wrong" );
+		return;
+		}
+	}
+	Critter@ player = GetCritter(playerId);
+	if(!valid(player))
+		return;
+	
+	Map@ map = player.GetMap();
+	if(valid(map))
+	{
+		critter.TransitToMap(map.Id, player.HexX, player.HexY, player.Dir);	
+		return;
+	}
+	else
+	{
+		//world map
+		critter.TransitToGlobalGroup(player.Id);
+	}
+}
+
+void TeleportPlayer(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_HEX)
+		return;
+	ShowSayScreen(critter, false, true, "Player name", "", "devXpanel@unsafe_TeleportPlayerAnswer", values);
+}
+
+void unsafe_TeleportPlayerAnswer(Critter& critter, int, int, int, string@ playerName, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request TeleportPlayerAnswer " + GetIP( critter.GetIp() ));     
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+     
+	uint playerId = GetPlayerId(playerName);
+	if(playerId == 0)
+	{
+		if( !StrToInt( playerName, playerId ))
+		{
+		critter.Say( SAY_NETMSG, "something wrong" );
+		return;
+		}
+	}
+	Critter@ player = GetCritter(playerId);
+	if(!valid(player))
+		return;
+	
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return;
+	
+	player.TransitToMap(map.Id, values[0], values[1], player.Dir);
+}
+
+void TeleportToPlayerId(Critter& cr, int playerId, int, int, string@, array<int>@)
+{
+	if(cr.GetAccess() != ACCESS_ADMIN)
+		return;
+	if(playerId == 0 || cr.Id == uint(playerId))
+		return;
+	Critter@ player = GetCritter(playerId);
+	if(!valid(player))
+		return;
+	
+	Map@ map = player.GetMap();
+	if(valid(map))
+	{
+		cr.TransitToMap(map.Id, player.HexX, player.HexY, player.Dir);	
+		return;
+	}
+	else
+	{
+		cr.TransitToGlobalGroup(player.Id);
+	}
+}
+
+
+void Heal(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	cr.StatBase[ST_CURRENT_HP] = cr.Stat[ST_MAX_LIFE];
+}
+
+
+void Kill(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	cr.ToDead(ANIM2_DEAD_BURST, null);
+}
+
+void KnockOut(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	uint16 hexX = cr.HexX;
+	uint16 hexY = cr.HexY;
+	cr.GetMap().MoveHexByDir(hexX, hexY, (cr.Dir + 3) % 6, 1);
+	
+	cr.ToKnockout(KNOCKOUT_ANIM2_DEFAULT(true), 5, hexX, hexY);
+}
+
+void Revive(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+		
+	RemoveDeadBlocker( cr );
+	cr.ToLife();
+	HealCritter( cr );
+	cr.RefreshVisible();
+}
+
+void DeleteNpc(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr) || !cr.IsNpc())
+		return;
+	
+	DeleteNpc(cr);
+}
+
+void AddNpc(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_HEX)
+		return;
+
+	ShowSayScreen(critter, true, true, "Npc PID", "", "devXpanel@unsafe_NpcPidAnswer", values);
+}
+
+void unsafe_NpcPidAnswer(Critter& critter, int, int, int, string@ npcPid, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request NpcPidAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int value = 0;
+	if(!StrToInt(npcPid, value))
+		return;
+	
+	values.insertLast(value);	
+	ShowSayScreen(critter, false, true, "Script", "", "devXpanel@unsafe_AddNpcAnswer", values);
+}
+
+void unsafe_AddNpcAnswer(Critter& critter, int, int, int, string@ script, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request AddNpcAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return;
+	if(valid(script) && script.length() == 0)
+		@script = null;
+	
+	map.AddNpc(values[2], values[0], values[1], (critter.Dir + 3) % 6, null, null, script);
+}
+
+void Say(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, false, "Say", "", "devXpanel@unsafe_SayAnswer", values);
+}
+
+void unsafe_SayAnswer(Critter& critter, int, int, int, string@ message, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request SayAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr) || !valid(message))
+		return;
+	
+	cr.Say(SAY_NORM, message);
+}
+
+void AddItem(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, true, true, "Item PID", "", "devXpanel@unsafe_PidAnswer", values);
+}
+
+void unsafe_PidAnswer(Critter& critter, int, int, int, string@ pid, int[]@ values)
+{
+    FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request unsafe_PidAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int value = 0;
+	if(!StrToInt(pid, value))
+		return;
+	
+	values.insertLast(value);	
+	ShowSayScreen(critter, true, true, "Count", "1", "devXpanel@unsafe_PidCountAnswer", values);
+}
+
+void unsafe_PidCountAnswer(Critter& critter, int, int, int, string@ count, int[]@ values)
+{
+    FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request unsafe_PidCountAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int value = 0;
+	if(!StrToInt(count, value))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.AddItem(values[1], value);
+}
+
+void ShowInventory(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+		
+	critter.ShowContainer(cr, null, TRANSFER_FAR_CRIT);
+}
+
+void ServerMessage(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	ShowSayScreen(critter, false, false, "Server message", "", "devXpanel@unsafe_ServerMessageAnswer", values);
+}
+
+void unsafe_ServerMessageAnswer(Critter& critter, int, int, int, string@ message, int[]@)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request ServerMessageAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	AddNewMessage(message,REAL_SECOND(30),0,COLOR_WHITE);	
+}
+
+void RunPool(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	ShowSayScreen(critter, false, true, "Options (separated by ';')", "", "devXpanel@unsafe_RunPoolAnswer", values);
+}
+
+void unsafe_RunPoolAnswer(Critter& critter, int, int, int, string@ message, int[]@)
+{
+}
+
+void SetScript(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, true, "Script", "", "devXpanel@unsafe_ScriptSet", values);
+}
+
+void unsafe_ScriptSet(Critter& critter, int, int, int, string@ script, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request ScriptSet " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	if (cr.SetScript(script))
+		critter.Say( SAY_NETMSG, "Script " +script+ " set");
+}
+
+void ChangeDir(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	if (cr.Dir==5)
+		cr.SetHomePos( cr.HexX , cr.HexY,0 );
+	else
+		cr.SetHomePos( cr.HexX , cr.HexY, cr.Dir+1 );
+}
+
+void ToPrison(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	Map@ map = ::GetMapByPid( 442, 0 );
+    if( valid( map ) )
+    {
+        cr.TransitToMap( map.Id, 0 );
+    }
+}
+
+void SetParam(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, true, true, "Param", "", "devXpanel@unsafe_ParamAnswer", values);
+}
+
+void unsafe_ParamAnswer(Critter& critter, int, int, int, string@ param, int[]@ values)
+{
+	FLog( LOG_GM, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request ParamAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+
+	int value = 0;
+	if(!StrToInt(param, value))
+		return;
+	
+	values.insertLast(value);
+	ShowSayScreen(critter, true, true, "Value", ""+cr.ParamBase[value], "devXpanel@unsafe_SetParamAnswer", values);
+}
+
+void unsafe_SetParamAnswer(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+	FLog( LOG_GM, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request SetParamAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[values[1]] = val;
+}
+
+void SetOffence(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	ShowSayScreen(critter, true, true, "Offence", "" + GetOffenceLevel(cr), "devXpanel@unsafe_SetOffenceAnswer", values);	
+}
+
+void unsafe_SetOffenceAnswer(Critter& critter, int, int, int, string@ offence, int[]@ values)
+{
+	FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request SetOffenceAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(offence, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	SetOffenceLevel(cr, val);
+}
+
+void GuardAttack(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+
+	Map@ map = critter.GetMap();
+	if(!valid(map))
+		return;
+	Critter@[] npcs;
+	map.GetCritters(0, FIND_LIFE | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		Critter@ guard = npcs[i];
+		if(guard.IsSee(critter) && guard.Stat[ST_AI_ID] == AIPACKET_GENERAL_TOWN_GUARDS)
+			AddAttackPlane(guard, 0, cr, AI_MIN_HP(guard.Stat[ST_AI_ID]), true);
+	}
+}
+
+void ShowEventMenu(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+		
+	string@ menuItems = "";
+
+	menuItems += "Hunger Games Event:devXpanel@ShowEvent3Menu;";
+	
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+void ShowEvent3Menu(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+		
+	string@ menuItems = "";
+
+	menuItems += "Start HG Event:event_hungergames@event_start;";
+	menuItems += "Spawn Monsters:event_hungergames@event_monsters;";
+	menuItems += "Kill Monsters:event_hungergames@event_killmonsters;";
+	menuItems += "Speed up Event:event_hungergames@event_SpeedUp;";
+	menuItems += "Respawn Loot:event_hungergames@event_RespawnLockers;";
+	menuItems += "Finish Event:event_hungergames@event_finish;";
+	menuItems += "Cleanup Event:event_hungergames@event_cleanup;";
+	
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+// NPC info's
+void ShowNPCMenu(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	string@ menuItems = "";
+	
+	if(actionType == ACTION_TYPE_CRITTER)
+	{
+	menuItems += "NPC Info:devXpanel@NpcInfo;";
+	menuItems += "NPC Settings:devXpanel@NpcSettings;";
+	}
+
+	if(actionType == ACTION_TYPE_HEX)
+	{
+	//menuItems += "Spawn NPC:devXpanel@Bag;";
+	}	
+	
+	//menuItems += "Spawn NPC Setup:devXpanel@Bag;";
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+
+void NpcSettings(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	string@ menuItems = "";
+	
+	if(actionType == ACTION_TYPE_CRITTER)
+	{
+	menuItems += "Set Dialog:devXpanel@SetDialog;";
+	menuItems += "Set AI:devXpanel@SetAI;";
+	menuItems += "Set Bag:devXpanel@SetBag;";
+	menuItems += "Set Team:devXpanel@SetTeam;";
+	menuItems += "Set Role:devXpanel@SetRole;";
+	menuItems += "Replication:devXpanel@SetReplication;";
+	menuItems += "Delete Npc:devXpanel@DeleteNpc;";
+	menuItems += "Drop planes:devXpanel@DropPlanes;";
+	menuItems += "Set script:devXpanel@SetScript;";
+	menuItems += "Change direction:devXpanel@ChangeDir;";
+	}
+
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+
+void NpcInfo(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	critter.Say(SAY_NETMSG, "|" + COLOR_ORANGE
+				    + cr.Name + " \n "
+					+ "Dialog: " + cr.ParamBase[ST_DIALOG_ID] + " \n "
+					+ "AI: " + cr.ParamBase[ST_AI_ID] + " \n "
+					+ "Bag: " + cr.ParamBase[ST_BAG_ID] + " \n "
+					+ "Team: " + cr.ParamBase[ST_TEAM_ID] + " \n "
+					+ "Role: " + cr.ParamBase[ST_NPC_ROLE] + " \n "
+					+ "Repl: " + cr.ParamBase[ST_REPLICATION_TIME] + " \n "
+					+ "Script: " + cr.GetScriptId()
+				);
+}
+
+void SetDialog(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, true, "Number", "", "devXpanel@unsafe_SetDialog", values);
+}
+
+void unsafe_SetDialog(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_DIALOG_ID] = val;
+	critter.Say( SAY_NETMSG, "Sucessfully set to: " + val);
+}
+
+void SetAI(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, true, "Number", "", "devXpanel@unsafe_SetAI", values);
+}
+
+void unsafe_SetAI(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_AI_ID] = val;
+	critter.Say( SAY_NETMSG, "Sucessfully set to: " + val);
+}
+
+void SetBag(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, true, "Number", "", "devXpanel@unsafe_SetBag", values);
+}
+
+void unsafe_SetBag(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_BAG_ID] = val;
+	critter.Say( SAY_NETMSG, "Sucessfully set to: " + val);
+}
+
+void SetTeam(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, true, "Number", "", "devXpanel@unsafe_SetTeam", values);
+}
+
+void unsafe_SetTeam(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_TEAM_ID] = val;
+	critter.Say( SAY_NETMSG, "Sucessfully set to: " + val);
+}
+
+void SetRole(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, true, "Number", "", "devXpanel@unsafe_SetRole", values);
+}
+
+void unsafe_SetRole(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_NPC_ROLE] = val;
+	critter.Say( SAY_NETMSG, "Sucessfully set to: " + val);
+}
+
+void SetReplication(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	string@ menuItems = "";
+	
+	if(actionType == ACTION_TYPE_CRITTER)
+	{
+	menuItems += "Default:devXpanel@ReplDefault;";
+	menuItems += "Never:devXpanel@ReplNever;";
+	menuItems += "Delete:devXpanel@ReplDelete;";
+	menuItems += "Fast Delete:devXpanel@ReplDeleteFast;";
+	menuItems += "Number:devXpanel@ReplSet;";
+	}
+
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+void ReplDefault(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_REPLICATION_TIME] = REPLICATION_DEFAULT;
+}
+
+void ReplNever(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_REPLICATION_TIME] = REPLICATION_NEVER;
+}
+
+void ReplDelete(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_REPLICATION_TIME] = REPLICATION_DELETE;
+}
+
+void ReplDeleteFast(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_REPLICATION_TIME] = REPLICATION_DELETE_FAST;
+}
+
+void ReplSet(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+
+	ShowSayScreen(critter, false, true, "Number", "", "devXpanel@unsafe_ReplSet", values);
+}
+
+void unsafe_ReplSet(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_REPLICATION_TIME] = val;
+	critter.Say( SAY_NETMSG, "Sucessfully set to: " + val);
+}
+
+void QuickCommand(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_HEX)
+		return;
+		
+	string@ menuItems = "";
+	menuItems += "NPC Info:devXpanel@NpcInfo;";
+	menuItems += "NPC Info:devXpanel@RespawnMode;";
+
+	ShowAdminMenu(critter, actionType, menuItems, values);
+}
+
+void unsafe_QuickCommand(Critter& critter, int, int, int, string@ value, int[]@ values)
+{
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+	int val = 0;
+	if(!StrToInt(value, val))
+		return;
+		
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	cr.ParamBase[ST_REPLICATION_TIME] = val;
+	critter.Say( SAY_NETMSG, "Sucessfully set to: " + val);
+}
+
+void unsafe_ChangeCrType(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+    FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request ChangeCrType " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+
+    ShowSayScreen(critter, false, true, "crType", "", "devXpanel@unsafe_ChangeCrTypeAnswer", values);
+}
+
+void unsafe_ChangeCrTypeAnswer(Critter& critter, int, int, int, string@ crType, int[]@ values)
+{
+    FLog( LOG_SUSPECT, critter.Name + " (" + critter.Id + ") access level " + critter.GetAccess() + " request ChangeCrTypeAnswer " + GetIP( critter.GetIp() )); 
+    if(critter.GetAccess() != ACCESS_ADMIN)
+		return;
+    Critter@ cr = GetCritter(values[0]);
+	uint skinnumber = 0;
+    if( !StrToInt( crType, skinnumber ))
+    {
+        cr.Say( SAY_NETMSG, "something wrong" );
+        return;
+    }
+	cr.ChangeCrType(skinnumber);
+	
+    Item@ armor = cr.GetItem(0, SLOT_ARMOR);
+
+    if(valid(armor))
+        cr.MoveItem(armor.Id, 0, SLOT_INV);
+
+    if(cr.ChangeCrType(skinnumber))
+        cr.ParamBase[ST_BASE_CRTYPE] = skinnumber;
+
+    if(valid(armor))
+        cr.MoveItem(armor.Id, 0, SLOT_ARMOR);
+}
+
+void ShowID(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	if(actionType != ACTION_TYPE_CRITTER)
+		return;
+	Critter@ cr = GetCritter(values[0]);
+	if(!valid(cr))
+		return;
+	
+	critter.Say(SAY_NETMSG, "|" + COLOR_ORANGE + " Player: " + cr.Name  + ", Id: " + cr.Id);
+}
+
+void ExecAltsCommand(Critter& player , int location, int optOffline, int)
+{
+    uint optLocation = location;
+    //cheatGetOption(command, optLocation, "-l");
+
+    //bool optOffline = false;
+    //cheatGetOption(command, optOffline, "-o");
+
+    array<Critter@> players;
+    uint            num = GetAllPlayers(players);
+    uint            totalNum = 0;
+
+    array<uint>     checkedIp;             // Already checked IPs
+    bool            nothingFound = true;   // No alts found
+	if (optLocation>0)
+	{
+		Map@ crmap = player.GetMap();
+		
+		if (valid(crmap))
+			optLocation = crmap.GetLocation().Id;
+		
+	}
+    if(optLocation == 0)
+        player.Say(SAY_NETMSG, "Possible multilogs:");
+    else
+        player.Say(SAY_NETMSG, "Possible multilogs in location " + optLocation + ":");
+
+    for(uint p = 0, q = num; p < q; p++)
+    {
+        if(optLocation > 0)
+        {
+            Map@ map = players[p].GetMap();
+            if(valid(map))
+            {
+                Location@ loc = map.GetLocation();
+                if(loc.Id != optLocation)
+                    continue;
+            }
+            else
+                continue;
+        }
+
+        totalNum += 1;
+
+        uint ip = players[p].GetIp();
+        bool checkAlts = true;
+        for(uint i = 0, j = checkedIp.length; i < j; i++)
+        {
+            if(ip == checkedIp[i])     // This IP was already checked
+            {
+                checkAlts = false;
+                break;
+            }
+        }
+        if(checkAlts)
+        {
+            checkedIp.insertLast(ip);
+            bool foundAlts = false;
+            for(uint i = p + 1; i < num; i++)
+            {
+                if(optLocation > 0)
+                {
+                    Map@ map = players[i].GetMap();
+                    if(valid(map))
+                    {
+                        Location@ loc = map.GetLocation();
+                        if(loc.Id != optLocation)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+
+                if(optOffline==1 && _CritIsOffline(players[i]))
+                    continue;
+
+                if(players[i].GetIp() == ip)
+                {
+                    if(!foundAlts)
+                    {
+                        foundAlts = true;
+                        player.Say(SAY_NETMSG, "|0x009900 IP: " + IpToString(ip));
+                        if(_CritIsOffline(players[p]))
+                            player.Say(SAY_NETMSG, "|0x999999     " + players[p].Name + " (" + players[p].Id + ") " + GetPosition(players[p]) + " [off]");
+                        else
+                            player.Say(SAY_NETMSG, "    " + players[p].Name + " (" + players[p].Id + ") " + GetPosition(players[p]));
+                    }
+                    if(_CritIsOffline(players[i]))
+                        player.Say(SAY_NETMSG, "|0x999999     " + players[i].Name + " (" + players[i].Id + ") " + GetPosition(players[i]) + " [off]");
+                    else
+                        player.Say(SAY_NETMSG, "    " + players[i].Name + " (" + players[i].Id + ") " + GetPosition(players[i]));
+                    nothingFound = false;
+                }
+            }
+        }
+    }
+    if(nothingFound)
+        player.Say(SAY_NETMSG, "    None.");
+
+    player.Say(SAY_NETMSG, "Number of characters: " + totalNum);
+    if(totalNum > 0)
+    {
+        player.Say(SAY_NETMSG, "Number of unique IPs: " + checkedIp.length() + " (" + ((checkedIp.length() * 100) / totalNum) + "%)");
+    }
+
+}
+
+string GetPosition(Critter& cr)
+{
+	uint mapId = cr.GetMapId();
+	if (mapId>0)
+		return "in map"+mapId+" loc "+cr.GetMap().GetLocation().Id ;
+	Location@[] locations;
+	if (GetLocations(cr.WorldX, cr.WorldY, 0, locations )>0)
+		return "WM over loc "+locations[0].Id;	
+	return "WM "+cr.WorldX+" "+cr.WorldY;	
+
+}
+
+string IpToString(uint ip)
+{
+    if(ip > 0)
+    {
+        string result = "";
+
+        for(uint i = 0; i < 4; i++)
+            result += (i == 0 ? "" : ".") + ((ip >> (i * 8)) & 0xFF);
+
+        return(result);
+    }
+    else
+        return("0.0.0.0");
+}
+
+void SendPlayersData(Critter& cr, int type, int, int, string@, array<int>@)
+{
+	Map@ crmap = cr.GetMap();
+	
+	array<uint> ids;
+	array<string> players;
+	array<uint16> locations;
+	array<uint> maps;
+	array<uint8> conds;
+	array<uint16> worldX;
+	array<uint16> worldY;
+	array<uint> ips;
+	array<bool> online;
+	array<int> uids;
+	
+	Buffer@ buff = NewBuffer();
+
+	Critter@[] critters;
+	GetAllPlayers(critters);
+	for (uint i=0, k=critters.length(); i<k ; i++)
+	{
+		Map@ map = critters[i].GetMap();
+		if (valid(map))
+		{
+			Location@ loc = map.GetLocation();
+			if ((type == 1) && (valid(crmap)) && (crmap.GetLocation().Id != loc.Id))
+				continue;
+			locations.insertLast(loc.GetProtoId());
+			maps.insertLast(critters[i].GetMap().Id);
+			worldX.insertLast(0);
+			worldY.insertLast(0);
+		}
+		else
+		{
+			Location@[] overlocations;
+			if (GetVisibleLocations( critters[i].WorldX, critters[i].WorldY, 0, critters[i], null ) != 0 && GetLocations(critters[i].WorldX, critters[i].WorldY, 0, overlocations )!=0)
+				locations.insertLast(overlocations[0].GetProtoId());	
+			else
+				locations.insertLast(0);
+			maps.insertLast(0);
+			worldX.insertLast(critters[i].WorldX);
+			worldY.insertLast(critters[i].WorldY);
+		}
+		ids.insertLast(critters[i].Id);
+		players.insertLast(GetSafePlayerName(critters[i].Id));
+		conds.insertLast(critters[i].Cond);
+		ips.insertLast(critters[i].GetIp());
+		uids.insertLast(critters[i].GetUID(0));
+		if(_CritIsOffline(critters[i]))
+			online.insertLast(false);
+		else
+			online.insertLast(true);
+			
+	}
+	buff << ids << players << locations << maps << conds << worldX << worldY << ips << online << uids;
+	cr.RunClientScript( "client_screen_players@ReceivePlayerData", 0, 0, 0, null, buff.AsInt32() );
+}
+#endif

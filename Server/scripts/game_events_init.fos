@@ -1,0 +1,146 @@
+#define EVENT_SF_BOAT                  ( 1 )
+#define EVENT_NR_KHANS                 ( 2 )
+#define EVENT_NR_WRIGHT                ( 3 )
+#define EVENT_NR_BISHOP                ( 4 )
+#define EVENT_NR_BISHOP_W1             ( 5 )
+#define EVENT_NR_RENESCO_SALE          ( 6 )
+#define EVENT_CATHEDRAL                ( 7 )
+#define EVENT_SF_MUTANTS               ( 8 )
+#define EVENT_SF_MUTANTS_W1            ( 9 )
+#define EVENT_SF_MUTANTS_W2            ( 10 )
+#define EVENT_SF_MUTANTS_W3            ( 11 )
+#define EVENT_CARAVAN_NCR              ( 12 )
+#define EVENT_CARAVAN_VC               ( 13 )
+#define EVENT_CARAVAN_SF               ( 14 )
+#define EVENT_CARAVAN_FAR_GO           ( 15 )
+#define EVENT_KEVLAR_TRANSPORT         ( 16 )
+#define EVENT_STEEL_TRANSPORT          ( 17 )
+#define EVENT_URANIUM_TRANSPORT        ( 18 )
+#define EVENT_NR_ARMS_SALE             ( 19 )
+#define EVENT_SF_BOOK_SALE             ( 20 )
+#define EVENT_SF_FUNG_SALE             ( 21 )
+#define EVENT_BANDITS_BROKEN_CAR       ( 22 )
+#define EVENT_ROBBERS_BROKEN_CAR       ( 23 )
+#define EVENT_HIGHWAYMENS_BROKEN_CAR   ( 24 )
+#define EVENT_RAIDERS_BROKEN_CAR       ( 25 )
+#define EVENT_ROGUES_BROKEN_CAR        ( 26 )
+#define EVENT_KHANS_BROKEN_CAR         ( 27 )
+#define EVENT_REGULATORS_BROKEN_CAR    ( 28 )
+#define EVENT_GLOW_MINEFIELD           ( 29 )
+#define EVENT_SIERRA_MINEFIELD         ( 30 )
+#define EVENT_ARES_MINEFIELD           ( 31 )
+#define EVENT_DESERT_MINEFIELD         ( 32 )
+#define EVENT_BANDITS_HUNTER_CAMP      ( 33 )
+#define EVENT_ROBBERS_HUNTER_CAMP      ( 34 )
+#define EVENT_HIGHWAYMEN_HUNTER_CAMP   ( 35 )
+#define EVENT_GANG_HUNTER_CAMP         ( 36 )
+#define EVENT_RAIDER_HUNTER_CAMP       ( 37 )
+#define EVENT_BANDITS_CAVE             ( 38 )
+#define EVENT_ROBBERS_CAVE             ( 39 )
+#define EVENT_HIGHWAYMEN_CAVE          ( 40 )
+#define EVENT_GANG_CAVE                ( 41 )
+#define EVENT_RAIDER_CAVE              ( 42 )
+#define EVENT_LOCKER                   ( 43 )
+#define EVENT_FARMER_MINIQUEST         ( 44 )
+#define EVENT_GUARD_MINIQUEST          ( 45 )
+#define EVENT_ALCO_MINIQUEST           ( 46 )
+#define EVENT_CHILD_MINIQUEST          ( 47 )
+#define EVENT_PROSTITUTE_MINIQUEST     ( 48 )
+#define EVENT_GUARD2_MINIQUEST         ( 49 )
+#define EVENT_CITIZEN_MINISALE         ( 50 )
+#define EVENT_DRUG_DEALER_MINISALE     ( 51 )
+#define EVENT_SF_CH_SUPPLIES_MINISALE  ( 52 )
+#define EVENT_SF_ET_SUPPLIES_MINISALE  ( 53 )
+#define EVENT_REDD_SUPPLIES_MINISALE   ( 54 )
+#define EVENT_GECKO_SUPPLIES_MINISALE  ( 55 )
+#define EVENT_BH_SUPPLIES_MINISALE     ( 56 )
+#define EVENT_GAMBLER_OPPORTUNITY      ( 57 )
+#define EVENT_PROSTITUTE_OPPORTUNITY   ( 58 )
+#define EVENT_GANG_BASEMENT            ( 59 )
+#define EVENT_PUNKER_BASEMENT          ( 60 )
+#define EVENT_RAIDER_BASEMENT          ( 61 )
+#define EVENT_HIGHWAYMEN_RAIDERS_CAMP  ( 62 )
+#define EVENT_GANG_RAIDERS_CAMP        ( 63 )
+#define EVENT_RAIDER_RAIDERS_CAMP      ( 64 )
+#define EVENT_ROGUES_RAIDERS_CAMP      ( 65 )
+#define EVENT_KHANS_RAIDERS_CAMP       ( 66 )
+#define EVENT_CARAVAN_NCR_VC           ( 67 )
+#define EVENT_NCR_BANK		           ( 68 )
+#define EVENT_FIRE_GECKO               ( 69 )
+#define RESERVED_NR_5_VS_5             ( 70 )
+#define RESERVED_SIERRA_CAVES          ( 71 )
+#define EVENT_FIRE_GECKO_MINIQUEST     ( 72 )
+#define EVENT_BP1_MINIQUEST            ( 73 )
+#define EVENT_BP2_MINIQUEST            ( 74 )
+#define EVENT_BP3_MINIQUEST            ( 75 )
+#define EVENT_BP4_MINIQUEST            ( 76 )
+
+DefineEvent(EVENT_SF_BOAT,                    REAL_MINUTE(480),  REAL_MINUTE(720),  "game_event_sf_boat@e_event_start");
+DefineEvent(EVENT_NR_KHANS,                   REAL_MINUTE(360),  REAL_MINUTE(600),  "game_event_nr_khans@e_event_start");
+DefineEvent(EVENT_NR_WRIGHT,                  REAL_HOUR(9),      REAL_HOUR(15),     "game_event_wright@e_event_start");
+DefineEvent(EVENT_NR_BISHOP,                  REAL_HOUR(9),      REAL_HOUR(15),     "game_event_bishop_attacks_mordino@e_event_start");
+DefineEvent(EVENT_NR_RENESCO_SALE,            REAL_HOUR(9),      REAL_HOUR(15),     "game_event_sale@e_event_start");
+DefineEvent(EVENT_CATHEDRAL,                  REAL_MINUTE(480),  REAL_MINUTE(720),  "game_event_cathedral@e_event_start");
+DefineEvent(EVENT_SF_MUTANTS,                 REAL_MINUTE(600),  REAL_MINUTE(900),  "game_event_mutants_attacks_sf@e_event_start");
+DefineEvent(EVENT_CARAVAN_NCR,                REAL_HOUR(6),      REAL_HOUR(12),     "game_event_caravan@e_event_start");
+DefineEvent(EVENT_CARAVAN_VC,                 REAL_HOUR(6),      REAL_HOUR(12),     "game_event_caravan@e_event_start");
+DefineEvent(EVENT_CARAVAN_SF,                 REAL_HOUR(6),      REAL_HOUR(12),     "game_event_caravan@e_event_start");
+DefineEvent(EVENT_CARAVAN_FAR_GO,             REAL_HOUR(6),      REAL_HOUR(12),     "game_event_caravan@e_event_start");
+DefineEvent(EVENT_KEVLAR_TRANSPORT,           REAL_HOUR(9),      REAL_HOUR(15),     "game_event_resource_transport@e_event_start");
+DefineEvent(EVENT_STEEL_TRANSPORT,            REAL_HOUR(9),      REAL_HOUR(15),     "game_event_resource_transport@e_event_start");
+DefineEvent(EVENT_URANIUM_TRANSPORT,          REAL_HOUR(9),      REAL_HOUR(15),     "game_event_resource_transport@e_event_start");
+DefineEvent(EVENT_NR_ARMS_SALE,               REAL_HOUR(9),      REAL_HOUR(15),     "game_event_sale@e_event_start");
+DefineEvent(EVENT_SF_BOOK_SALE,               REAL_HOUR(9),      REAL_HOUR(15),     "game_event_sale@e_event_start");
+DefineEvent(EVENT_SF_FUNG_SALE,               REAL_HOUR(9),      REAL_HOUR(15),     "game_event_sale@e_event_start");
+DefineEvent(EVENT_BANDITS_BROKEN_CAR,         REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_broken_car@e_event_start");
+DefineEvent(EVENT_ROBBERS_BROKEN_CAR,         REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_broken_car@e_event_start");
+DefineEvent(EVENT_HIGHWAYMENS_BROKEN_CAR,     REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_broken_car@e_event_start");
+DefineEvent(EVENT_RAIDERS_BROKEN_CAR,         REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_broken_car@e_event_start");
+DefineEvent(EVENT_ROGUES_BROKEN_CAR,          REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_broken_car@e_event_start");
+DefineEvent(EVENT_KHANS_BROKEN_CAR,           REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_broken_car@e_event_start");
+DefineEvent(EVENT_REGULATORS_BROKEN_CAR,      REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_broken_car@e_event_start");
+DefineEvent(EVENT_GLOW_MINEFIELD,             REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_minefield@e_event_start");
+DefineEvent(EVENT_SIERRA_MINEFIELD,           REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_minefield@e_event_start");
+DefineEvent(EVENT_ARES_MINEFIELD,             REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_minefield@e_event_start");
+DefineEvent(EVENT_DESERT_MINEFIELD,           REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_minefield@e_event_start");
+DefineEvent(EVENT_BANDITS_HUNTER_CAMP,        REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_hunter_camp@e_event_start");
+DefineEvent(EVENT_ROBBERS_HUNTER_CAMP,        REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_hunter_camp@e_event_start");
+DefineEvent(EVENT_HIGHWAYMEN_HUNTER_CAMP,     REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_hunter_camp@e_event_start");
+DefineEvent(EVENT_GANG_HUNTER_CAMP,           REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_hunter_camp@e_event_start");
+DefineEvent(EVENT_RAIDER_HUNTER_CAMP,         REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_hunter_camp@e_event_start");
+DefineEvent(EVENT_BANDITS_CAVE,               REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_cave@e_event_start");
+DefineEvent(EVENT_ROBBERS_CAVE,               REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_cave@e_event_start");
+DefineEvent(EVENT_HIGHWAYMEN_CAVE,            REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_cave@e_event_start");
+DefineEvent(EVENT_GANG_CAVE,                  REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_cave@e_event_start");
+DefineEvent(EVENT_RAIDER_CAVE,                REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_cave@e_event_start");
+DefineEvent(EVENT_LOCKER,                     REAL_MINUTE(90),   REAL_MINUTE(180),  "game_event_locker@e_event_start");
+DefineEvent(EVENT_FARMER_MINIQUEST,           REAL_MINUTE(40),   REAL_MINUTE(60),   "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_GUARD_MINIQUEST,            REAL_MINUTE(40),   REAL_MINUTE(60),   "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_ALCO_MINIQUEST,             REAL_MINUTE(40),   REAL_MINUTE(60),   "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_CHILD_MINIQUEST,            REAL_MINUTE(40),   REAL_MINUTE(60),   "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_PROSTITUTE_MINIQUEST,       REAL_MINUTE(40),   REAL_MINUTE(60),   "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_GUARD2_MINIQUEST,           REAL_MINUTE(40),   REAL_MINUTE(60),   "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_CITIZEN_MINISALE,           REAL_MINUTE(20),   REAL_MINUTE(40),   "game_event_minisale@e_event_start",                      "game_event_minisale@e_event_init");
+DefineEvent(EVENT_DRUG_DEALER_MINISALE,       REAL_MINUTE(20),   REAL_MINUTE(40),   "game_event_minisale@e_event_start",                      "game_event_minisale@e_event_init");
+DefineEvent(EVENT_SF_CH_SUPPLIES_MINISALE,    REAL_MINUTE(60),   REAL_MINUTE(90),   "game_event_minisale@e_event_start",                      "game_event_minisale@e_event_init");
+DefineEvent(EVENT_SF_ET_SUPPLIES_MINISALE,    REAL_MINUTE(60),   REAL_MINUTE(90),   "game_event_minisale@e_event_start",                      "game_event_minisale@e_event_init");
+DefineEvent(EVENT_REDD_SUPPLIES_MINISALE,     REAL_MINUTE(60),   REAL_MINUTE(90),   "game_event_minisale@e_event_start",                      "game_event_minisale@e_event_init");
+DefineEvent(EVENT_GECKO_SUPPLIES_MINISALE,    REAL_MINUTE(60),   REAL_MINUTE(90),   "game_event_minisale@e_event_start",                      "game_event_minisale@e_event_init");
+DefineEvent(EVENT_BH_SUPPLIES_MINISALE,       REAL_MINUTE(60),   REAL_MINUTE(90),   "game_event_minisale@e_event_start",                      "game_event_minisale@e_event_init");
+DefineEvent(EVENT_GAMBLER_OPPORTUNITY,        REAL_MINUTE(60),   REAL_MINUTE(90),   "game_event_opportunity@e_event_start",                   "game_event_opportunity@e_event_init");
+DefineEvent(EVENT_PROSTITUTE_OPPORTUNITY,     REAL_MINUTE(60),   REAL_MINUTE(90),   "game_event_opportunity@e_event_start",                   "game_event_opportunity@e_event_init");
+DefineEvent(EVENT_GANG_BASEMENT,              REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_basement@e_event_start");
+DefineEvent(EVENT_PUNKER_BASEMENT,            REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_basement@e_event_start");
+DefineEvent(EVENT_RAIDER_BASEMENT,            REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_basement@e_event_start");
+DefineEvent(EVENT_HIGHWAYMEN_RAIDERS_CAMP,    REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_raiders_camp@e_event_start");
+DefineEvent(EVENT_GANG_RAIDERS_CAMP,          REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_raiders_camp@e_event_start");
+DefineEvent(EVENT_RAIDER_RAIDERS_CAMP,        REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_raiders_camp@e_event_start");
+DefineEvent(EVENT_ROGUES_RAIDERS_CAMP,        REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_raiders_camp@e_event_start");
+DefineEvent(EVENT_KHANS_RAIDERS_CAMP,         REAL_MINUTE(120),  REAL_MINUTE(240),  "game_event_raiders_camp@e_event_start");
+DefineEvent(EVENT_CARAVAN_NCR_VC,             REAL_HOUR(6),      REAL_HOUR(12),     "game_event_caravan@e_event_start");
+DefineEvent(EVENT_FIRE_GECKO,             	  REAL_HOUR(12),     REAL_HOUR(36),     "game_event_generic_var@e_event_start");
+DefineEvent(EVENT_FIRE_GECKO_MINIQUEST,       REAL_MINUTE(90),   REAL_MINUTE(270),  "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_BP1_MINIQUEST,              REAL_MINUTE(40),   REAL_MINUTE(60),   "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_BP2_MINIQUEST,              REAL_MINUTE(80),   REAL_MINUTE(120),  "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_BP3_MINIQUEST,              REAL_MINUTE(120),  REAL_MINUTE(180),  "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");
+DefineEvent(EVENT_BP4_MINIQUEST,              REAL_MINUTE(160),  REAL_MINUTE(240),  "game_event_miniquest@e_event_start",                     "game_event_miniquest@e_event_init");

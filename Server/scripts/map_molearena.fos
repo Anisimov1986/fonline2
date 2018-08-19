@@ -1,0 +1,391 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "npc_common_h.fos"
+#include "custom_data_h.fos"
+#include "strtoint_h.fos"
+
+#define ROLE_MOLE1		( 801 )
+#define ROLE_MOLE2		( 802 )
+
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import void AddNewMapMessage( string text,int time, int showtimer, uint color, uint mapId) from "stocmessages";
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import void AddAttackProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+import void ShowSayScreen(Critter& critter, bool onlyNumbers, bool closeOnDone, string title, string initialText, string answerScript, int[]@ values) from "stdlib";
+
+#define		MOLE_ATTACK_PROTECTION		(ATTACK_PROTECTION_SINGLE_SHOT | ATTACK_PROTECTION_BURST | ATTACK_PROTECTION_GRENADE | ATTACK_PROTECTION_EXPLODE | ATTACK_PROTECTION_FLAME | ATTACK_PROTECTION_THROWING | ATTACK_PROTECTION_HEX_ATTACK)
+
+
+int[] mole1params = { ST_REPLICATION_TIME, -1, ST_NPC_ROLE, ROLE_MOLE1 };
+
+int[] mole2params = { ST_REPLICATION_TIME, -1, ST_NPC_ROLE, ROLE_MOLE2 };
+
+
+void _MapInit(Map& map, bool)
+{
+    map.SetEvent(MAP_EVENT_OUT_CRITTER, "_CrOut");
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_CrIn");
+	
+	GameVar@ Bet_Status = GetGlobalVar(GVAR_MB_BetStatus);
+	GameVar@ Bet_Winner = GetGlobalVar(GVAR_MB_BetWinner);
+		Bet_Winner = 0;
+		Bet_Status = 0;
+		DeleteMole(null);
+}
+
+void _CrIn(Map& map,Critter& cr)
+{
+    GameVar@ Bet_Status = GetGlobalVar( GVAR_MB_BetStatus );
+    if( Bet_Status == 0 )
+		BetPhase();
+	cr.ModeBase[ MODE_NO_PVP ] = 1;
+	cr.ModeBase[ MODE_NO_STEAL ] = 1;
+}
+
+void BetPhase()
+{
+	Map@ map = GetMapByPid(MAP_hub_molearena,0);
+	if (!valid(map))
+		return;
+		
+    GameVar@ Bet_Status = GetGlobalVar( GVAR_MB_BetStatus );
+    if( Bet_Status != 0 )
+        return;
+	
+	Bet_Status = 1;	
+	AddNewMapMessage( "Please place your bets, next fight will start in:",REAL_SECOND(25), 1, COLOR_WHITE, map.Id);
+	CreateTimeEvent(__FullSecond+REAL_SECOND(25), "ma_begin", 0, true);
+}
+
+void _CrOut(Map& map,Critter& cr)
+{
+	GameVar@ Bet_Amount = GetLocalVar( LVAR_MB_BetAmount, cr.Id );
+	GameVar@ Bet_Side = GetLocalVar( LVAR_MB_BetSide, cr.Id );
+	if( !cr.IsPlayer() )
+		return;
+ 
+    cr.ModeBase[ MODE_NO_PVP ] = 0;
+	cr.ModeBase[ MODE_NO_STEAL ] = 0;  
+    
+	if(  Bet_Amount == 0 && Bet_Side == 0)
+		return;
+		
+	if (GetGlobalVar(GVAR_MB_BetStatus)==1)
+    {
+		cr.AddItem(PID_BOTTLE_CAPS, GetLvar(cr, LVAR_MB_BetAmount));
+		cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You have left the arena during the betting phase. Your bet is refunded." );
+	}
+	else
+		cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You have left the arena after the betting phase, your bet is lost." );
+
+    Bet_Amount = 0;
+	Bet_Side = 0;
+		
+}
+
+uint ma_begin(array<uint>@ values)
+{		
+	Map@ map = GetMapByPid(MAP_hub_molearena,0);
+	if (!valid(map))
+		return 0;
+		
+	DeleteMole(null);
+	GameVar@ Bet_Status = GetGlobalVar( GVAR_MB_BetStatus );
+	AddNewMapMessage( "The fight begins!",REAL_SECOND(5), 0, COLOR_RED, map.Id);
+
+
+		Bet_Status = 2;	
+		Critter@ mole1 = map.AddNpc(829, 72, 37, 2, mole1params, null, "map_molearena@_MoleInit");
+		Critter@ mole2 = map.AddNpc(829, 72, 95, 5, mole2params, null, "map_molearena@_MoleInit");
+	
+	ShoutingStairs();
+	return 0;
+}
+
+void _MoleInit(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		AddAttackProtection(npc, npc, MOLE_ATTACK_PROTECTION);	
+		npc.SetHomePos( 72 , 66,0 );
+		
+		npc.StatBase[ST_STRENGTH] = Random(5,10);
+		npc.StatBase[ST_MELEE_DAMAGE_EXT] = Random(0,10);
+		npc.StatBase[ST_MAX_LIFE] += Random(0,20);
+		npc.StatBase[ST_CURRENT_HP] = npc.Stat[ST_MAX_LIFE];
+		npc.StatBase[ST_ACTION_POINTS_EXT] = Random(0,5);
+		npc.StatBase[ST_NORMAL_ABSORB_EXT] = Random(0,5);
+		npc.StatBase[ST_NORMAL_RESIST_EXT] = Random(10,30);
+		npc.StatBase[ST_CRITICAL_CHANCE_EXT] = Random(30,60);
+		npc.StatBase[ST_WALK_TIME] = Random(200,250);
+	}
+	
+	npc.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_OnShow");
+	npc.SetEvent( CRITTER_EVENT_DEAD, "_Death" );
+	
+
+}
+
+void _OnShow(Critter& mole, Critter& enemy)
+{
+	if (mole.Stat[ST_NPC_ROLE] == ROLE_MOLE2 && enemy.Stat[ST_NPC_ROLE] == ROLE_MOLE1)
+	Attack(enemy,mole);
+	
+	if (mole.Stat[ST_NPC_ROLE] == ROLE_MOLE1 && enemy.Stat[ST_NPC_ROLE] == ROLE_MOLE2)
+	Attack(enemy,mole);
+}
+
+void _Death(Critter& mole, Critter@ enemy)
+{
+	GameVar@ Bet_Winner = GetGlobalVar( GVAR_MB_BetWinner );
+	
+	Map@ map = GetMapByPid(MAP_hub_molearena,0);
+    if(!valid(map))
+       return;
+	
+    if (mole.Stat[ST_NPC_ROLE] == ROLE_MOLE1)
+	{
+		Bet_Winner = 2;
+		enemy.SetHomePos( 72 , 95,0 );
+		AddNewMapMessage( "The second molerat won!",REAL_SECOND(5), 0, COLOR_WHITE, map.Id);
+
+	}
+	
+	if (mole.Stat[ST_NPC_ROLE] == ROLE_MOLE2)
+	{
+		Bet_Winner = 1;
+		enemy.SetHomePos( 72 , 37,0 );
+		AddNewMapMessage( "The first molerat won!",REAL_SECOND(5), 0, COLOR_WHITE, map.Id);
+
+	}
+		ShoutingStairs();
+		GivePrize();
+
+}
+
+
+
+void Attack(Critter& cr, Critter& attacker)
+{
+	NpcPlane@ plane = cr.GetCurPlane();
+    if(valid(plane) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id)
+		return;
+	AttackCritter( cr, attacker ); 
+}
+
+void GivePrize()
+{
+	GameVar@ Bet_Status = GetGlobalVar(GVAR_MB_BetStatus);
+	GameVar@ Bet_Winner = GetGlobalVar(GVAR_MB_BetWinner);
+	
+	Map@ map = GetMapByPid(MAP_hub_molearena,0);
+    if(!valid(map))
+       return;
+	
+	Critter@[] gamblers;
+	uint len = map.GetCritters(0, FIND_LIFE | FIND_ONLY_PLAYERS, gamblers);
+	
+	for (uint i = 0; i < len; i++)
+	{
+		uint Bet_Side = GetLvar(gamblers[i],LVAR_MB_BetSide);
+		uint Bet_Amount = GetLvar(gamblers[i],LVAR_MB_BetAmount);
+		
+		if(Bet_Side ==  Bet_Winner)
+		{
+			gamblers[i].Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Your molerat won! You get your bet plus a 50% winner reward. Your Gambling skill rises." );
+			gamblers[i].AddItem(PID_BOTTLE_CAPS, (Bet_Amount + Bet_Amount/2));
+			gamblers[i].StatBase[ ST_EXPERIENCE ] += 300;
+			
+			if(gamblers[i].Param[SK_GAMBLING] < 300)
+				gamblers[i].ParamBase[ SK_GAMBLING ] += 1;
+			
+			
+			string action = "";
+				action = "Wins " + (Bet_Amount + Bet_Amount/2) + " caps.";
+				VerboseAction( gamblers[i], action );
+		
+		}
+		
+		SetLvar(gamblers[i], LVAR_MB_BetAmount, 0);
+		SetLvar(gamblers[i], LVAR_MB_BetSide, 0);
+	}
+	
+	    Bet_Winner = 0;
+		Bet_Status = 0;
+		
+			BetPhase();
+}
+
+uint DeleteMole(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_hub_molearena,0);
+	if (!valid(map))
+		return 0;
+	array<Critter@> npcs;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+	for (uint i = 0; i < npcs.length(); i++)
+	{
+		if( npcs[i].GetProtoId() == 829 )
+			DeleteNpc(npcs[i]);
+	}
+	return 0;
+}
+
+void unsafe_VoteOn1(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{	
+	/*			
+		if (GetGlobalVar(GVAR_MB_BetStatus)!=1)
+		{
+		critter.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You can only bet in bet phase." );
+		return;
+		}
+		
+			if(  GetLocalVar( LVAR_MB_BetAmount, critter.Id ) != 0 && GetLocalVar( LVAR_MB_BetSide, critter.Id ) != 0)
+		{
+		critter.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You have already placed your bet." );
+		return;
+		}
+		
+    critter.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Choose your bet. Minimum bet is 500, Maximum is " + critter.Param[SK_GAMBLING]*100 + " (Depending on Gambling skill)." );
+	ShowSayScreen(critter, true, true, "Choose your bet. Minimum bet is 500, Maximum is " + critter.Param[SK_GAMBLING]*100 + ".","", "map_molearena@unsafe_VoteOn1Answer", values);
+    */
+}
+
+void unsafe_VoteOn1Answer(Critter& cr, int, int, int, string@ bet, int[]@)
+{
+	/*
+    uint moneyon = 0;
+    if( !StrToInt( bet, moneyon ))
+    {
+        cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" No bet placed. Or something went wrong." );
+        return;
+    }
+
+	if (GetGlobalVar(GVAR_MB_BetStatus)!=1)
+		{
+		cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You can only bet in betting phase." );
+		return;
+		}
+	
+	if(moneyon <= 499)
+    {
+        cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Your bet is too low" );
+        return;
+    }
+	
+	uint maxbext = cr.Param[SK_GAMBLING]*100;
+	if(moneyon > maxbext)
+    {
+       cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Your bet is too high" );
+        return;
+    }
+	
+	if( _CritCountItem( cr, PID_BOTTLE_CAPS ) < moneyon )
+	{
+        cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You don't have enough caps." );
+        return;	
+    }
+	    cr.DeleteItem( PID_BOTTLE_CAPS, moneyon );
+		SetLvar(cr, LVAR_MB_BetAmount, moneyon);
+		SetLvar(cr, LVAR_MB_BetSide, 1);
+		cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Bet placed on the first molerat." );
+
+		string action = "";
+		action = "Bets " + moneyon + " caps on first molerat.";	
+
+		VerboseAction( cr, action );
+    */
+}
+
+
+void unsafe_VoteOn2(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+/*				
+		if (GetGlobalVar(GVAR_MB_BetStatus)!=1)
+		{
+		critter.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You can only bet in betting phase." );
+		return;
+		}
+		
+			if(  GetLocalVar( LVAR_MB_BetAmount, critter.Id ) != 0 && GetLocalVar( LVAR_MB_BetSide, critter.Id ) != 0)
+		{
+		critter.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You have already placed your bet." );
+		return;
+		}
+    critter.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Choose your bet. Minimum bet is 500, Maximum is " + critter.Param[SK_GAMBLING]*100 + " (Depending on Gambling skill)." );
+	ShowSayScreen(critter, true, true, "Choose your bet.","", "map_molearena@unsafe_VoteOn2Answer", values);
+*/
+}
+
+void unsafe_VoteOn2Answer(Critter& cr, int, int, int, string@ bet, int[]@)
+{
+	/*
+    uint moneyon = 0;
+    if( !StrToInt( bet, moneyon ))
+    {
+        cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" No bet placed. Or something went wrong." );
+        return;
+    }
+
+	if (GetGlobalVar(GVAR_MB_BetStatus)!=1)
+		{
+		cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You can only bet in betting phase." );
+		return;
+		}
+	
+	if(moneyon <= 499)
+    {
+        cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Your bet is too low" );
+        return;
+    }
+	uint maxbext = cr.Param[SK_GAMBLING]*100;
+	if(moneyon > maxbext)
+    {
+       cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Your bet is too high" );
+        return;
+    }
+	if( _CritCountItem( cr, PID_BOTTLE_CAPS ) < moneyon )
+	{
+        cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" You don't have enough caps." );
+        return;	
+    }
+	    cr.DeleteItem( PID_BOTTLE_CAPS, moneyon );
+		SetLvar(cr, LVAR_MB_BetAmount, moneyon);
+		SetLvar(cr, LVAR_MB_BetSide, 2);
+		cr.Say( SAY_NETMSG, "|"+COLOR_FACTION_OWN+" Bet placed on the second molerat." );
+
+		
+		string action = "";
+		action = "Bets " + moneyon + " caps on second molerat.";	
+
+		VerboseAction( cr, action );
+    */
+}
+
+void ShoutingStairs()
+{
+	GameVar@ Bet_Status = GetGlobalVar(GVAR_MB_BetStatus);
+	GameVar@ Bet_Winner = GetGlobalVar(GVAR_MB_BetWinner);
+	
+	Map@ map = GetMapByPid( MAP_hub, 0 );
+	if( !valid(map) )
+	    return;
+
+	string action = "";
+	action = "Shout";
+	
+	if (GetGlobalVar(GVAR_MB_BetStatus)==2 )
+	action = "The fight begins!";
+	if (GetGlobalVar(GVAR_MB_BetStatus)==2 && GetGlobalVar(GVAR_MB_BetWinner)==1)
+	action = "The first molerat won! \n Please place your bets, next fight will start in 25 seconds!";
+	if (GetGlobalVar(GVAR_MB_BetStatus)==2 && GetGlobalVar(GVAR_MB_BetWinner)==2)
+	action = "The second molerat won! \n Please place your bets, next fight will start in 25 seconds!";
+	
+	map.SetText( 345, 317, COLOR_GRAY, action );
+	map.SetText( 327, 317, COLOR_GRAY, action );
+}

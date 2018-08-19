@@ -1,0 +1,48 @@
+// Author: [SoT]Skycast
+// Light version
+#include "_macros.fos"
+#define TOWN_NEEDED_NUM_FOR_TC                (4)
+
+import bool IsControllingTown(Critter& player) from "tc";
+import bool IsTcTimerHere(Critter& cr) from "tc";
+import uint GetNearMembers(Critter& player) from "tc";
+
+bool d_IsNotControllingTown(Critter& player, Critter@ npc)
+{
+    return(!IsControllingTown(player));
+}
+
+bool d_IsControllingTown(Critter& player, Critter@ npc)
+{
+    return(IsControllingTown(player));
+}
+
+bool d_FactionMember(Critter& player, Critter@ npc)
+{
+    if (player.Param[MAIN_FACTION]!=0)
+		return true;
+	return false;
+}
+
+bool d_CanTakeOver(Critter& player, Critter@ npc)
+{
+	if (player.Param[MAIN_FACTION]==0)
+		return false;
+	if (IsControllingTown(player))
+		return false;
+	if (IsTcTimerHere(player))
+		return false;
+    return true;
+}
+
+bool d_Enough_players(Critter& player, Critter@ npc)
+{
+	if (GetNearMembers(player)>=TOWN_NEEDED_NUM_FOR_TC)
+		return true;
+	return false;
+}
+	
+	
+
+
+

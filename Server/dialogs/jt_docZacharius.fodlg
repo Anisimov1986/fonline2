@@ -1,0 +1,400 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+6 1020 @
+2 2000 None 0 #
+3 2010 #
+4 2020 #
+65506 2030 #
+0 2040 @
+3 3000 None 0 #
+4 3010 #
+65506 3020 #
+11 3030 D _var p jt_docZachrepetable = 0 D _var p jt_docZachKylee = 0 #
+7 3040 D _var p jt_docZachstory = 0 #
+0 3050 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+5 4010 D _script economy_dialogs@d_IsEnoughCaps 1 300 R _script dialog@r_DropPoison 0  R _script dialog@r_DropRadiation 0  R _param p DAMAGE_EYE = 0 R _param p DAMAGE_RIGHT_ARM = 0 R _param p DAMAGE_LEFT_ARM = 0 R _param p DAMAGE_RIGHT_LEG = 0 R _param p DAMAGE_LEFT_LEG = 0 R _param p ST_CURRENT_HP + 500 R _script economy_dialogs@r_TakeCaps 1 300 #
+3 4020 #
+0 4030 @
+5 5000 None 0 #
+3 5010 #
+0 5020 @
+6 6000 None 0 #
+65506 6010 #
+4 6020 #
+20 6030 D _param p ADDICTION_BUFFOUT ! 0 D or D _param p ADDICTION_PSYCHO ! 0 D or D _param p ADDICTION_JET ! 0 #
+15 6040 D _var p jt_docZachrepetable = 1 D _var p jt_docZachKylee = 0 R _var p jt_docZachKylee = 1 #
+17 6050 D _var p jt_docZachKylee = 1 D _item p PID_HEART_PILLS } 1 R _var p jt_docZachKylee = 2 R _item p PID_HEART_PILLS - 1 R _script economy_dialogs@r_GiveCaps 1 200 R _param p ST_EXPERIENCE + 1200 #
+16 6060 D _var p jt_docZachKylee = 1 D _var p jt_docZachrepetable = 0 R _var p jt_docZachrepetable = 1 #
+7 6070 D _var p jt_docZachstory = 0 #
+11 6080 D _var p jt_docZachrepetable = 0 D _var p jt_docZachKylee = 0 #
+18 6090 D _item p PID_SCORPION_TAIL } 5 D _script quest@quest_checkcd 1 9018 D _var p jt_docZachrepetable > 0 #
+0 6100 @
+7 7000 None 0 #
+8 7010 #
+3 7020 @
+8 8000 None 0 #
+9 8010 @
+9 9000 None 0 #
+10 9010 R _var p jt_docZachstory = 1 @
+10 10000 None 0 #
+3 10010 #
+0 10020 @
+11 11000 None 0 #
+12 11010 R _var p jt_docZachrepetable = 1 R _var p jt_docZachKylee = 1 #
+15 11020 R _var p jt_docZachKylee = 1 #
+16 11030 R _var p jt_docZachrepetable = 1 #
+3 11040 #
+0 11050 @
+12 12000 None 0 #
+13 12010 @
+13 13000 None 0 #
+14 13010 #
+3 13020 #
+0 13030 @
+14 14000 None 0 #
+3 14010 #
+0 14020 R _script dialog@r_ShowQuestMessage 1 9019 @
+15 15000 None 0 #
+0 15010 R _script dialog@r_ShowQuestMessage 1 9019 @
+16 16000 None 0 #
+3 16010 #
+0 16020 @
+17 17000 None 0 #
+3 17010 #
+0 17020 R _script dialog@r_ShowQuestMessage 1 9019 @
+18 18000 None 0 #
+19 18010 R _item p PID_SCORPION_TAIL - 5 R _item p PID_ANTIDOTE + 1 R _script quest@quest_setcd 2 9018 122 R _param p ST_EXPERIENCE + 750 R _var p jt_docZachrepetable = 2 R _script economy_dialogs@r_GiveCaps 1 200 R _script karma@r_AddKarma 1 20 #
+0 18020 @
+19 19000 None 0 #
+0 19010 @
+20 20000 economy_dialogs@dlg_PreparePrice 0 #
+21 20010 D _script economy_dialogs@d_IsEnoughCaps 1 450 R _script economy_dialogs@r_TakeCaps 1 450 R _script dialog@r_DropDrugs 0  #
+0 20020 @
+21 21000 None 0 #
+0 21010 &
+
+[engl]
+{100}{}{Doctor Zacharius}
+{200}{}{You see: an old man wearing dusty glasses.}
+{210}{}{He seems to be pretty busy examining some old pills.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{Welcome to Junktown clinic. The name's Zacharius, folks around here just call me Zach. I attend to injuries - unless you have some missing limbs, I can fix it. If you're interested in trade, then there's always something we lack that you might have. Now, is there anyhing I can help you with? [He keeps rotating a scalpel between his fingers, waiting for your response.]}
+{2010}{}{Hello, I'm @pname@. I just want to talk.@@I just came to talk.}
+{2020}{}{Doc... I could use your help.@@I could use your help, Doc.@@I need some help, Doc.@@I need help, Doc.}
+{2030}{}{Let's barter.@@Let's trade.@@Let me see your medical supplies.@@Want to trade?}
+{2040}{}{Just passing through.@@Wrong door, sorry.@@Just looking around, don't mind me.}
+{3000}{}{All right. I'm listening. It's not like someone is currently dying on my table...}
+{3010}{}{I need some your medical expertise.@@Could you take a look at me? I think I'm hurt.@@Could you patch me up, Doc?@@I need help, Doc.}
+{3020}{}{Let's barter.@@Let's trade.@@Let me see your medical supplies.@@Want to trade?@@Got anything interesting for sale?}
+{3030}{}{You must have some work I could do.@@Actually, I was looking for work.@@Got any work?@@I'm looking for work.}
+{3040}{}{How did you become a doctor here in Junktown?@@How come this sinkhole even has a doctor?@@How did you end up here? There's plenty of better places where your skills would be appreciated.}
+{3050}{}{Actually, nevermind. I need to go.@@Nevermind.@@Nevermind, I need to go.}
+{4000}{}{All right... A Full inspection will cost @lex heal2_price@ caps. Don't get me wrong - this is a infirmary and everything, but we don't practice charity here.@@350 caps upfront and I'll get you fixed in no time.@@Right, I'll can take a look... For 350 caps.}
+{4010}{}{Okay.@@Do it.@@Yeah, yeah, just fix me.}
+{4020}{}{On second thought, I just wanted to talk.@@Nevermind, I don't have the cash. Can we just talk instead?}
+{4030}{}{Nevermind.@@Too steep for me.@@I can't afford this.}
+{5000}{}{There, all done. Your good to go, stiches are in place and wounds are sterilized. Just don't touch them for a couple of days, otherwise you'll be back here with a serious infection.@@All right, you're as good as new.@@Okay... we're done. Good as new.}
+{5010}{}{Thanks. Can we talk for a moment?@@Thank you. There was also something I wanted to talk to you about...@@Thanks! I wanted to ask you some questions.}
+{5020}{}{Nice work, Doc. I'll be leaving now.@@Thanks, Doc. I'll be going.@@Okay, I think I need to get going.@@Thanks, and goodbye.}
+{6000}{}{Hello again. What do you need this time?@@Welcome back, need anything?@@Oh, it's you. What's up?@@Hello again, do you want something from me?}
+{6010}{}{Let's barter.@@Let's trade.@@Let me see your medical supplies.@@Want to trade?@@Got anything interesting for sale?@@Got any stims for sale?}
+{6020}{}{I need some your medical expertise.@@Could you take a look at me? I think I'm hurt.@@Could you patch me up, Doc?@@I need help, Doc.}
+{6030}{}{Can you do something about my addictions?@@I got hooked on this shit... Can you help me out?}
+{6040}{}{You were saying something about finding... heart pills? I could do that for you.@@You wanted me to find some heart pills, right?}
+{6050}{}{I think I've found some heart pills, at least that's what is written on the bottle. [Hand over the drug.]}
+{6060}{}{About these radscorpion tails... I can look for them.@@I could search for those Radscorpion tails if you still want them.}
+{6070}{}{How exactly did you became a doctor?@@How did you become a doctor here in Junktown?@@How come this sinkhole even has a doctor?@@How did you end up here? There's plenty of better places where your skills would be appreciated.}
+{6080}{}{You must have some work I could do.@@Actually, I was looking for work.@@Got any work?@@I'm looking for work.}
+{6090}{}{I've got some radscorpion tails.@@I've got those tails you wanted.}
+{6100}{}{No, not really.@@Just came to say hello. Later, Zach.@@Just passing through.@@No, thanks.}
+{7000}{}{Nothing really special about it... I was just passing by Junktown few years ago, when I've left Brotherhood of Steel. I've quickly noticed that I'm quite needed here, because of my skills of course. Besides, I needed to settle down somewhere anyway... Age takes it's toll, you know.}
+{7010}{}{Wait, you were in the Brootherhood of Steel?}
+{7020}{}{Interesting, but I'd like to ask you something else.}
+{8000}{}{They took me in a very long time ago. I always had a talent for treating wounds, and that made me a good recruit. I've received proper training and served as a field medic.}
+{8010}{}{And you've left? Can you just leave Brotherhood of Steel like that?}
+{9000}{}{I had my reasons, military type of life just didn't cut for me. I never did have the opportunity to work myself up the ladder as a scribe. It took me some serious favors to get written out of their ranks, normally it doesn't happen just like that.}
+{9010}{}{So, that means you deserted them. Isn't that a punishable offense? What if they find you here?}
+{10000}{}{Correct, I admit that I deserted them. But I don't have any regrets, besides, they won't even look for me. Technically, I was never enlisted in Brotherhood of Steel, you know, favors, paperwork. Even if, by some crazy coincidence, I did meet members from my old unit... it's been years... I doubt anyone would remember me. Leave the past in the past.}
+{10010}{}{Thanks for the story, Zach. I'd like to ask you something else.}
+{10020}{}{Well, that's quite of a past. I need to go.@@That quite a story. Thanks for sharing it. I got to go now.@@Thanks for the tale, I better get going.}
+{11000}{}{There are some things that you could do for me. One thing would be to find some heart pills for Kylee. She's got this condition, you know... Also, I'm in need of regular supplies of radscorpion tails.}
+{11010}{}{I think I can manage both of these tasks.@@I can do both.@@No problem, I can do both.}
+{11020}{}{I could get that medicine.@@I could look for those pills.}
+{11030}{}{Radscorpion tails, huh? Seems simple enough.@@I can look for those tails.@@Getting those tails seems simple enough.}
+{11040}{}{On second thought... Let me ask you something else.@@Nevermind that. I wanted to talk to you about something else though.@@Maybe another time. Can we change the subject?}
+{11050}{}{Nevermind, I need to go anyway.@@I need to go, sorry.}
+{12000}{}{Great! Unfortunately, I can't tell you exactly where to look for these heart pills. Well, I would start with checking various clinics in the wasteland. Once you find them, bring them to me for testing - I need to verify whether it's not some buffout! [Laughs.] Otherwise, a hell of heart pills those would be, eh?}
+{12010}{}{Go on.@@I'm listening.@@Go on, Doc.}
+{13000}{}{Ripping tails from radscorpions is easy. Well, once they're dead. [He chuckles.] Watch out for their stings - hurts like hell and then the poison kicks in, nasty stuff. Most common injury I treat are wounds caused by those bastards. Anyway, five tails will do just fine. Is everything clear?}
+{13010}{}{About those heart pills... Is there any more advice you can give me on where to find them?@@Any idea where I should look for those pills?@@Any hint where I should go look for those pills?}
+{13020}{}{Yeah, but there was something else I wanted to ask you.}
+{13030}{}{Pretty much, yeah. I guess I'll go now.@@Clear. I better get going.@@Clear as sky. Later, Doc.}
+{14000}{}{This matter is not so urgent, I still have enough to supply Kylee for quite some time... But they're slowly running out, and you're not the only one who's looking for this medicine. It's a specialized type of drug, it was quite common in pre-war hospitals. Unfortunately, that means this stuff is scarce. Hospitals and clinics are long picked clean, trying to find more in those places would be simply a waste of time. I wish I could tell you more, but I can't.}
+{14010}{}{Okay, I see. I've got other questions though.@@Right. There was something else I wanted to talk about.@@I get it. Can we talk about something else?}
+{14020}{}{I see. See you later, Doc.@@Okay, will try to find them. See you around, Doc.}
+{15000}{}{Great. Unfortunately, I can't tell you exactly where to look for them. But you could try checking clinics in other towns, maybe someone still some left. Once you find them, bring them to me for testing - I need to verify whether it's not some Buffout or something! [Laughs.] Otherwise, a hell of heart pills those would be, eh?}
+{15010}{}{I see. See you later, Doc.@@Okay, will try to find them. See you around, Doc.}
+{16000}{}{Ripping tails from radscorpions is easy. Well, once they're dead. [He chuckles.] Watch out for their stings - hurts like hell and then the poison kicks in, nasty stuff. Most common injury I treat are wounds caused by those bastardsAnyway, five tails will do just fine. Is everything clear?}
+{16010}{}{Okay, I see. I've got other questions though.@@Right. There was something else I wanted to talk about.@@I get it. Can we talk about something else?@@Yeah. Can we change the subject?}
+{16020}{}{Yeah, I'll go now.@@Okay, I need to get going. See you later, Doc.}
+{17000}{}{[He takes the bottle and sniffs carefully, then takes out one pill and examines it under the light.] Hmm, doesn't seem like any typical drug, I need to do some tests to be sure... But since they're in a legitimate container and you're not screwing with me... [He chuckles.] I guess that these will do.}
+{17010}{}{Okay, no problem. I'd like to ask you something else.@@Good. I wanted to talk to you about something else.@@Care to talk about something else?}
+{17020}{}{Always happy to help. Not that it was that much of an effort anyway.}
+{18000}{}{Good, good!. Let me take a look at those stings.@@Good job, let me check if they're all fine.@@Okay, but let me check them first.}
+{18010}{}{Sure, here they are.@@Sure, do what you have to do.@@No problem, here.@@Okay, take them.}
+{18020}{}{You know, I kinda... have to leave. Be right back.@@Sorry, be right back!}
+{19000}{}{Good quality. I'd even say, impressive. Come back after a day, I'll be able to pay for more of these.@@They seem fine. Here's you pay.@@Okay, not very impressive, but I will make do with what I have. Here's your pay.@@All right, they seem good enough. Here's your pay.}
+{19010}{}{Thanks. I'll come back later.@@Okay, see you round, Doc.}
+{20000}{}{Sure I can, if you used some drugs and are still suffering from their side effects, that's something I can take care of. But that will cost you, @lex heal_drugs_price@ caps.@@@lex heal_drugs_price@ caps upfront. I don't really like junkheads, but I'll help you.}
+{20010}{}{Okay! Here, take the money and fix me up.@@All right, just fix me up already.}
+{20020}{}{Nevermind.@@I think I can't afford this now.@@On second thought, I think I'll go now.}
+{21000}{}{There, good as new. Just don't use that crap anymore, it's bad for you, as you can see.@@All right, you should feel better now.@@Here, you're starting to look better already. }
+{21010}{}{Thanks. I will go now.@@Thanks Doc, you're a lifesaver. Goodbye.@@Okay, thanks. }
+
+[russ]
+{100}{}{Doc Zacharius}
+{200}{}{You see: an old man wearing glasses heavily beared.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{[A bearded, aging man with spectacles, in a lab coat covered with stains of blood acknowledges you.] Welcome to Junktown Hospital, my name's Zacharius. Folks around here just call me Doc or Zach. I attend to injuries - unless you have some missing limbs, I can fix it. If your interested in trade, then there's always something we lack that you might have, so feel free to inquire about exchanging goods. Is there anything I can help you with? [He's rotating a scalpel between his fingers, waiting for your response.]}
+{2010}{}{Hello. My name's @pname@. I just wanted to talk.}
+{2020}{}{Doc... I'm messed up pretty bad and could use your help.}
+{2030}{}{Let's barter.}
+{2040}{}{I think I'm in the wrong place.}
+{3000}{}{Mmm, I'm listening. I don't have all day to chat, but I presume taking a five from work would be relaxing, it is not like someone is currently dying on any table.}
+{3010}{}{I need urgent medical attention!}
+{3020}{}{I want to see what do you have in stock.}
+{3030}{}{You must have some work I could do.}
+{3040}{}{How did you become a doctor here in Junktown?}
+{3050}{}{Nothing, bye.}
+{4000}{}{[Raises an eyebrow, observing your appearance] Just calm down, a full inspection will cost @lex heal2_price@ caps. Don't get me wrong - this is a hospital and everything, but we don't practice charity here.}
+{4010}{}{I understand that and I really need you take a look at me. [Hand over the money.]}
+{4020}{}{On a different note, I have some questions.}
+{4030}{}{Nevermind.}
+{5000}{}{There, all done. Your good to go, stiches are in place and wounds are sterilized. Just don't try to remove them for a few days, otherwise you'll be back on my table with some serious fever due to infection.}
+{5010}{}{Sure. There's something else I wanted from you.}
+{5020}{}{Nice work. I'll be leaving.}
+{6000}{}{I'm here, do you require my service?}
+{6010}{}{Let's make some trade happen.}
+{6020}{}{Yes, I'm injured and in need of immediate medical attention.}
+{6030}{}{Can you do something about my addictions?}
+{6040}{}{You were saying something about finding... heart pills? Sure, I could do that for you.}
+{6050}{}{I think I've found some heart pills, at least that's what is written on the bottle. [Hand over the drug.]}
+{6060}{}{About these radscorpion tails... I decided that I can do that for you.}
+{6070}{}{How exactly did you became a doctor?}
+{6080}{}{You must have some work I could do.}
+{6090}{}{I've gathered some radscorpion tails.}
+{6100}{}{No, not really.}
+{7000}{}{Nothing really special about it... I was just passing by Junktown few years ago, when I've left Brotherhood of Steel. I've quickly noticed that I'm quite useful here due to my skills. Anyway, I needed to settle down somewhere... Age takes it's toll.}
+{7010}{}{Wait, you were in the Brootherhood of Steel?}
+{7020}{}{Interesting, but I'd like to ask you something else.}
+{8000}{}{They took me in a very long time ago. I always had a talent for treating wounds, what made me a good recruit. I've received proper training and served as a field medic.}
+{8010}{}{And you've left? Can you just leave Brotherhood of Steel like that?}
+{9000}{}{I had my reasons, military type of life just didn't cut for me. I never did have the opportunity to work myself up as a scribe. It took me some serious favors to get enlisted out of their ranks, normally it doesn't happen just like that.}
+{9010}{}{So, that means you deserted them. Isn't that a punishable offense? What if they find you here?}
+{10000}{}{Correct, I admit that I deserted them with no regrets, but they won't look for me. Technically, I was never enlisted in Brotherhood of Steel, favors, paperwork. Even if I did met members from my old unit, it's been years... I doubt anyone would remember me. The past is the past, enough talk about this subject.}
+{10010}{}{Thanks for the story, I'd like to ask something else.}
+{10020}{}{Well, that's quite of a past. I need to disappear.}
+{11000}{}{Your right, there are some things that you could do for me. One thing would be to find some heart pills for Kylee. She's got this condition, you know... Also, I'm in need of regular supplies of radscorpion tails.}
+{11010}{}{I think I can manage both of these tasks.}
+{11020}{}{I could get that medicine for you and Kylee.}
+{11030}{}{Radscorpion tails - sounds simple enough.}
+{11040}{}{Nothing that I had in mind. Though I might need something else from you.}
+{11050}{}{Not now, I have to go. Later.}
+{12000}{}{Great! Unfortunately, I can't tell you exactly where to look for these heart pills. Well, I would start with checking various clinics in the wasteland. Once you find them, bring them to me for testing - I need to verify whether it's not some buffout! [Laughs.] Otherwise, a hell of heart pills those would be, eh?}
+{12010}{}{[Listen.]}
+{13000}{}{Ripping tails from radscorpions is easy. Well, once they're dead. [Smiles.] Watch out for their stings - hurts like hell and then poison kicks in, nasty stuff. Most common injury I treat are wounds from these bastards. Having you on my table is not the goal here, do you copy? I don't care how you obtain them, and in return I'll give you some payment and an antidote or two. Five tails will do just fine. I hope everything's clear?}
+{13010}{}{About those heart pills... Is there any more advice you can give me where to find them?}
+{13020}{}{Sure, but there's still something I'd want from you.}
+{13030}{}{Pretty much, yeah. I guess I'll move on.}
+{14000}{}{This matter is not so urgent, I still have enough to supply Kylee for quite some time... But they're slowly running out, and you're not the only one who's looking for this medicine. Specialized type of drug, scavenged from pre-war hospitals mostly. Meaning that stuff isn't produced anymore and is scarce. Hospitals and Clinics are long gone picked clean, trying to find more in them is simply pushing your luck. I can't tell you anything more.}
+{14010}{}{Questions! More questions, please.}
+{14020}{}{I see, well okay then.}
+{15000}{}{Great! Unfortunately, I can't tell you exactly where to look for these heart pills. Well, I would start with checking various clinics in the wasteland. Once you find them, bring them to me for testing - I need to verify whether it's not some buffout! [Laughs.] Otherwise, a hell of heart pills those would be, eh?}
+{15010}{}{I see, well - okay then. Bye, Doc.}
+{16000}{}{Ripping tails from radscorpions is easy. Well, once they're dead. [Smiles.] Watch out for their stings - hurts like hell and then poison kicks in, nasty stuff. Most common injury I treat are wounds from these bastards. Having you on my table is not the goal here, do you copy? I don't care how you obtain them, and in return I'll give you some payment and an antidote or two. Five tails will do just fine. I hope everything's clear?}
+{16010}{}{Sure. There's still something I'd want from you.}
+{16020}{}{Pretty much, yeah. I guess I'll move on.}
+{17000}{}{[He takes the bottle and sniffs carefully, then takes out one pill and examines it under the light.] ...Hmm, doesn't seem like any typical drug, I need to do some tests to be sure... But since they're in a legitimate container and presumably you're not fucking with me... [He chuckles.] Good job, thanks.}
+{17010}{}{Nice, no problem. I'd like to ask you something else.}
+{17020}{}{I'm happy to help. Wasn't too much of effort, anyway.}
+{18000}{}{You did? Oh, excellent. Give them to me please, I want to take a look.}
+{18010}{}{Sure, here they are.}
+{18020}{}{You know, I kinda... have to leave. Be right back.}
+{19000}{}{Good quality. I'd even say, impressive. Come back after a day, I'll be able to pay for more of these.}
+{19010}{}{Alright, I might visit you some other time, then. See you.}
+{20000}{}{Sure I can, if you used some drugs and are still suffering from the side effects, that's something I can take care of. That will cost you exactly @lex heal_drugs_price@ caps.}
+{20010}{}{Nice! Here, take the money and fix me up.}
+{20020}{}{I need to go, see you later.}
+{21000}{}{There, you should feel fresh and new, like you never used any of that shit before. Just try to avoid drugs in the future, alright? They can really mess you up, you've seen that.}
+{21010}{}{Thanks, Doc. Sure, I'll try.}
+
+[pols]
+{100}{}{Doktor Zacharius}
+{200}{}{Widzisz starszego, brodatego mężczyznę w poplamionym krwią fartuchu lekarskim. Na jego nosie spoczywają znoszone okulary.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{Witaj w szpitalu w Złomowie! Jestem doktor Zacharius, możesz mi mówić Zach. W razie potrzeby mogę cię w miarę poskładać do kupy, o ile nie @sex@|straciłeś||straciłaś| jakiejś kończyny. Jeśli chcesz coś kupić albo się wymienić, nie krępuj się. Skoro powitanie mamy już za sobą, w czym mogę ci pomóc? [Doktor obraca powoli skalpel w swojej ręce, oczekując na twoją odpowiedź.]}
+{2010}{}{Miło mi, jestem @pname@. @sex@|Chciałem||Chciałam| tylko porozmawiać.}
+{2020}{}{Trochę mnie pokiereszowało, potrzebuję twojej pomocy.}
+{2030}{}{@sex@|Chciałbym||Chciałabym| coś kupić.}
+{2040}{}{Chyba @sex@|pomyliłem||pomyliłam| budynki.}
+{3000}{}{Dobrze, ale tylko chwilę. Zresztą, nie kroję teraz nikogo, więc możemy pogadać nawet trochę dłużej. O czym @sex@|chciałeś||chciałaś| rozmawiać?}
+{3010}{}{Potrzebuję twojej pomocy, doktorze!}
+{3020}{}{Masz coś ciekawego na wymianę?}
+{3030}{}{Nie masz może jakiejś roboty dla mnie?}
+{3040}{}{Od jak dawna jesteś tutaj doktorem?}
+{3050}{}{W sumie to jednak o niczym. Na razie.}
+{4000}{}{[Jego brwi unoszą się nieznacznie.] Spokojnie, spokojnie. Hmmm... to będzie kosztować. @lex heal2_price@ kapsli. Nie patrz się tak, to jest szpital, ale ja tego nie robię charytatywnie. Z czegoś trzeba żyć.}
+{4010}{}{Rozumiem, doktorze. Naprawdę potrzebuję twojej pomocy.}
+{4020}{}{Aha. @sex@|Miałbym||Miałabym| parę pytań.}
+{4030}{}{Że ile? Nie stać mnie.}
+{5000}{}{No, już po wszystkim. Wszystkie szwy są na miejscu, rany są oczyszczone. Nie forsuj się za bardzo przez parę dni, bo znowu tutaj wylądujesz, w jeszcze gorszym stanie.}
+{5010}{}{Jasne, doktorze. Jeszcze jedno...}
+{5020}{}{Świetnie. Czas już na mnie, doktorze.}
+{6000}{}{Witaj ponownie. Potrzebna ci moja pomoc?}
+{6010}{}{Mogę zajrzeć co masz na stanie?}
+{6020}{}{Tak doktorze, i to szybko!}
+{6030}{}{Chyba @sex@|uzależniłem||uzależniłam| się od jakiegoś świństwa. Mógłbyś coś z tym zrobić?}
+{6040}{}{Mówiłeś coś o... pigułkach na serce? @sex@|Mógłbym||Mogłabym| ich poszukać.}
+{6050}{}{Chyba @sex@|znalazłem||znalazłam| pigułki, których szukałeś... albo przynajmniej tak jest napisane na tej buteleczce.}
+{6060}{}{Ja w sprawie tych ogonów radskorpionów. Mogę ich poszukać.}
+{6070}{}{Ciekawi mnie, jak zostałeś lekarzem?}
+{6080}{}{Nie miałbyś dla mnie jakiejś pracy?}
+{6090}{}{Mam ogony radskorpionów.}
+{6100}{}{Nie, nie jest.}
+{7000}{}{Nic nadzwyczajnego. Gdy opuściłem Bractwo zmierzałem na wschód... no i siłą rzeczy, Złomowo było po drodze. Szybko się okazało że jestem tu potrzebny, ciężko teraz o lekarzy, takich prawdziwych, a nie jakieś znachorstwo z wiejskiej chaty. Poza tym, w moim wieku trzeba gdzieś osiąść na stałe, starość nie radość...}
+{7010}{}{Bractwo? Mówisz o Bractwie Stali?}
+{7020}{}{Ciekawe, ale @sex@|miałbym||miałabym| kilka innych pytań, jeśli pozwolisz.}
+{8000}{}{Tak. To było bardzo dawno temu. Zawsze miałem dryg to leczenia, tylko dzięki temu mnie przyjęli. W Bractwie zawsze brakowało siły żywej, no i trzeba im przyznać, że dbają o życie ludzkie, przynajmniej jeśli chodzi o ich szeregi. W każdym razie, potem dostałem prawdziwe szkolenie medyczne i po paru latach zostałem lekarzem polowym. Ot, cała historia.}
+{8010}{}{No ale jak i czemu odszedłeś? To w ogóle można tak po prostu opuścić Bractwo?}
+{9000}{}{Nie, nie można, chyba że masz ochotę stanąć przed plutonem egzekucyjnym. Tyle że ja nigdy nie byłem oficjalnie w rejestrach. Nie powiem, sporo mnie to kosztowało wysiłku, łapówek i kombinowania z papierami... No ale, to stare dzieje. A dlaczego? Żołnierskie życie to jednak nie moja rzecz, tylko że do tego wniosku doszedłem, niestety, po latach. A wtedy już było za późno żeby zostać skrybą.}
+{9010}{}{Czyli... zdezerterowałeś? Nie boisz się że kiedyś któryś z patroli cię tu znajdzie?}
+{10000}{}{Tak, zdezerterowałem. I wcale tego nie żałuję. I nie, nie boję się, bo nie będą mnie szukać, mówiłem ci, że nie ma mnie w rejestrach. A nawet jeśli by przyszli tu ludzie z mojej dawnej jednostki, to i tak by mnie nie poznali. Minęło tyle lat... To już przeszłość, zostawmy ten temat.}
+{10010}{}{Dzięki za opowieść, Zach. @sex@|Chciałbym||Chciałabym| cię jeszcze o coś spytać.}
+{10020}{}{Faktycznie, nie ma to jak człowiek z przeszłością. Znikam.}
+{11000}{}{Znalazłoby się coś. Nawet kilka spraw. Potrzebuję pigułki na serce. Kylee, nie wiem czy ją znasz, ma wrodzoną wadę, nie będę się zagłębiał w szczegóły. W każdym razie, potrzebuje ich, jeśli ma żyć przez następne paręnaście lat. Poza tym, przydadzą mi się ogony radskorpionów. Z zawartej w nich trucizny łatwo wyizolować antidotum, na które ciągle jest zapotrzebowanie. @sex@|Sam||Sama| pewnie wiesz, ile tego cholerstwa jest na Pustkowiach.}
+{11010}{}{Mogę się zająć i tym, i tym.}
+{11020}{}{Myślę, że mogę poszukać tych pigułek.}
+{11030}{}{Chyba najmniej namęczę się przy tych radskorpionach.}
+{11040}{}{Nie tak to sobie @sex@|wyobrażałem||wyobrażałam|. @sex@|Mógłbym||Mogłabym| cię spytać o coś jeszcze?}
+{11050}{}{Nie mam teraz czasu, muszę już iść.}
+{12000}{}{W porządku. Nie wiem dokładnie gdzie znaleźć te pigułki, porozglądaj się po szpitalach w innych osadach, porozmawiaj z lekarzami, ktoś powinien coś wiedzieć. Jeśli znajdziesz cokolwiek, przynieś je do mnie, trzeba będzie je sprawdzić zanim je podam Kylee.}
+{12010}{}{Mhm...}
+{13000}{}{Ogony z radskorpionów łatwo wyrwać... kiedy już je zabijesz. Uważaj na ich truciznę, jest naprawdę niebezpieczna. Jak już mówiłem, zatrucie ich jadem to chyba najczęstsza dolegliwość którą tutaj leczę, więc bądź tak @sex@|dobry||dobra| i wróć w jednym kawałku, wystarczy mi pacjentów. Przynieś mi... pięć chyba wystarczy. Dostaniesz swoją dolę i trochę antidotum, tak na przyszłość. Wszystko jasne?}
+{13010}{}{Odnośnie tych pigułek, nie masz pomysłu gdzie konkretnie @sex@||miałbym|miałabym| ich zacząć szukać?}
+{13020}{}{Mhm. Jeszcze jedno...}
+{13030}{}{Jak słońce Pustkowi. Będę się zbierać.}
+{14000}{}{Niezbyt. Co prawda, nie jest jakaś bardzo pilna sprawa; mam ich jeszcze trochę na zapasie, ale niewiele. Na pewno nie tylko Kylee ma tą wadę serca i na pewno nie tylko ty będziesz ich @sex@|szukał||szukała|. Daruj sobie szpitale przed wojny, one już dawno zostały ogołocone z wszystkiego, co miało jakiekolwiek zastosowanie medyczne. To tyle, co mogę ci w tym temacie poradzić.}
+{14010}{}{@sex@|Miałbym||Miałabym| jeszcze kilka pytań.}
+{14020}{}{Rozumiem.}
+{15000}{}{Dobrze. Niestety nie wiem nic konkretnego, rozejrzyj się po szpitalach w innych osadach, porozmawiaj z lekarzami, ktoś powinien coś wiedzieć. Jeśli znajdziesz cokolwiek, przynieś je do mnie, trzeba będzie je sprawdzić zanim je podam Kylee.}
+{15010}{}{Odnośnie pigułek na serce, nie wiesz może gdzie @sex@|mógłbym||mogłabym| ich zacząć szukać?}
+{16000}{}{Ogony z radskorpionów łatwo wyrwać... jak już są martwe. Uważaj na ich truciznę, jest naprawdę groźna. Zatrucie ich jadem to chyba najczęstsza dolegliwość którą tutaj leczę, więc bądź tak @sex@|uprzejmy||uprzejma| i nie nafaszeruj się nią, wystarczy mi pacjentów. Przynieś mi pięć ogonów. Dostaniesz swoją działkę, do tego trochę antidotum. Wszystko jasne?}
+{16010}{}{Tak, ale @sex@|chciałbym||chciałabym| cię jeszcze o coś zapytać.}
+{16020}{}{Jasne, doktorze. Czas już na mnie.}
+{17000}{}{[Zach bierze od ciebie butelkę, przystawia do światła, wącha zawartość... Wygląda to na poważne testy medyczne.] Hmm, wygląda na to, że @sex@|znalazłeś||znalazłaś| to, co trzeba. Muszę jeszcze zrobić parę testów żeby być pewnym, ale są w oryginalnym opakowaniu, poza tym, nie @sex@|zrobiłbyś||zrobiłabyś| mi takiego numeru, co? [Śmieje się.] Dobra robota.}
+{17010}{}{Nie ma sprawy. Mam do ciebie jeszcze inny interes...}
+{17020}{}{Wiem. Chociaż, w sumie to nie @sex@|napracowałem||napracowałam| się przy tym specjalnie...}
+{18000}{}{Naprawdę? Świetnie! Pokaż mi je, muszę się im dokładnie przyjrzeć.}
+{18010}{}{Jasne, trzymaj.}
+{18020}{}{Cholera, @sex@|pomyliłem||pomyliłam| je z Wygrzewem. Zaraz wrócę.}
+{19000}{}{Patrzcie, nawet są w miarę nienaruszone. Wróć za jakiś czas, będę potrzebował następnej partii.}
+{19010}{}{Dobrze, to wpadnę niebawem. Na razie.}
+{20000}{}{Mogę. To nie jest nawet nic trudnego. @lex heal_drugs_price@ i będzie po problemie.}
+{20010}{}{Dobrze, bierz kaplse i bierz się do roboty, bo mnie już skręca.}
+{20020}{}{Chyba jednak nie czuję się aż tak źle.}
+{21000}{}{No, jak nowo @sex@|narodzony||narodzona|, nie? Tak na przyszłość, unikaj tych wynalazków, nie służą ci za bardzo.}
+{21010}{}{Dzięki doktorze, postaram się.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Player not familiar with npc.}
+{1020}{}{Player is familiar with npc.}
+{2000}{}{Welcome to Junktown clinic. The name's Zacharius, folks around here just call me Zach. I attend to injuries - unless you have some missing limbs, I can fix it. If you're interested in trade, then there's always something we lack that you might have. Now, is there anyhing I can help you with? [He keeps rotating a scalpel between his fingers, waiting for your response.]}
+{2010}{}{Hello, I'm @pname@. I just want to talk.@@I just came to talk.}
+{2020}{}{Doc... I could use your help.@@I could use your help, Doc.@@I need some help, Doc.@@I need help, Doc.}
+{2030}{}{Let's barter.@@Let's trade.@@Let me see your medical supplies.@@Want to trade?}
+{2040}{}{Just passing through.@@Wrong door, sorry.@@Just looking around, don't mind me.}
+{3000}{}{All right. I'm listening. It's not like someone is currently dying on my table...}
+{3010}{}{I need some your medical expertise.@@Could you take a look at me? I think I'm hurt.@@Could you patch me up, Doc?@@I need help, Doc.}
+{3020}{}{Let's barter.@@Let's trade.@@Let me see your medical supplies.@@Want to trade?@@Got anything interesting for sale?}
+{3030}{}{You must have some work I could do.@@Actually, I was looking for work.@@Got any work?@@I'm looking for work.}
+{3040}{}{How did you become a doctor here in Junktown?@@How come this sinkhole even has a doctor?@@How did you end up here? There's plenty of better places where your skills would be appreciated.}
+{3050}{}{Actually, nevermind. I need to go.@@Nevermind.@@Nevermind, I need to go.}
+{4000}{}{All right... A Full inspection will cost @lex heal2_price@ caps. Don't get me wrong - this is a infirmary and everything, but we don't practice charity here.@@350 caps upfront and I'll get you fixed in no time.@@Right, I'll can take a look... For 350 caps.}
+{4010}{}{Okay.@@Do it.@@Yeah, yeah, just fix me.}
+{4020}{}{On second thought, I just wanted to talk.@@Nevermind, I don't have the cash. Can we just talk instead?}
+{4030}{}{Nevermind.@@Too steep for me.@@I can't afford this.}
+{5000}{}{There, all done. Your good to go, stiches are in place and wounds are sterilized. Just don't touch them for a couple of days, otherwise you'll be back here with a serious infection.@@All right, you're as good as new.@@Okay... we're done. Good as new.}
+{5010}{}{Thanks. Can we talk for a moment?@@Thank you. There was also something I wanted to talk to you about...@@Thanks! I wanted to ask you some questions.}
+{5020}{}{Nice work, Doc. I'll be leaving now.@@Thanks, Doc. I'll be going.@@Okay, I think I need to get going.@@Thanks, and goodbye.}
+{6000}{}{Hello again. What do you need this time?@@Welcome back, need anything?@@Oh, it's you. What's up?@@Hello again, do you want something from me?}
+{6010}{}{Let's barter.@@Let's trade.@@Let me see your medical supplies.@@Want to trade?@@Got anything interesting for sale?@@Got any stims for sale?}
+{6020}{}{I need some your medical expertise.@@Could you take a look at me? I think I'm hurt.@@Could you patch me up, Doc?@@I need help, Doc.}
+{6030}{}{Can you do something about my addictions?@@I got hooked on this shit... Can you help me out?}
+{6040}{}{You were saying something about finding... heart pills? I could do that for you.@@You wanted me to find some heart pills, right?}
+{6050}{}{I think I've found some heart pills, at least that's what is written on the bottle. [Hand over the drug.]}
+{6060}{}{About these radscorpion tails... I can look for them.@@I could search for those Radscorpion tails if you still want them.}
+{6070}{}{How exactly did you became a doctor?@@How did you become a doctor here in Junktown?@@How come this sinkhole even has a doctor?@@How did you end up here? There's plenty of better places where your skills would be appreciated.}
+{6080}{}{You must have some work I could do.@@Actually, I was looking for work.@@Got any work?@@I'm looking for work.}
+{6090}{}{I've got some radscorpion tails.@@I've got those tails you wanted.}
+{6100}{}{No, not really.@@Just came to say hello. Later, Zach.@@Just passing through.@@No, thanks.}
+{7000}{}{Nothing really special about it... I was just passing by Junktown few years ago, when I've left Brotherhood of Steel. I've quickly noticed that I'm quite needed here, because of my skills of course. Besides, I needed to settle down somewhere anyway... Age takes it's toll, you know.}
+{7010}{}{Wait, you were in the Brootherhood of Steel?}
+{7020}{}{Interesting, but I'd like to ask you something else.}
+{8000}{}{They took me in a very long time ago. I always had a talent for treating wounds, and that made me a good recruit. I've received proper training and served as a field medic.}
+{8010}{}{And you've left? Can you just leave Brotherhood of Steel like that?}
+{9000}{}{I had my reasons, military type of life just didn't cut for me. I never did have the opportunity to work myself up the ladder as a scribe. It took me some serious favors to get written out of their ranks, normally it doesn't happen just like that.}
+{9010}{}{So, that means you deserted them. Isn't that a punishable offense? What if they find you here?}
+{10000}{}{Correct, I admit that I deserted them. But I don't have any regrets, besides, they won't even look for me. Technically, I was never enlisted in Brotherhood of Steel, you know, favors, paperwork. Even if, by some crazy coincidence, I did meet members from my old unit... it's been years... I doubt anyone would remember me. Leave the past in the past.}
+{10010}{}{Thanks for the story, Zach. I'd like to ask you something else.}
+{10020}{}{Well, that's quite of a past. I need to go.@@That quite a story. Thanks for sharing it. I got to go now.@@Thanks for the tale, I better get going.}
+{11000}{}{There are some things that you could do for me. One thing would be to find some heart pills for Kylee. She's got this condition, you know... Also, I'm in need of regular supplies of radscorpion tails.}
+{11010}{}{I think I can manage both of these tasks.@@I can do both.@@No problem, I can do both.}
+{11020}{}{I could get that medicine.@@I could look for those pills.}
+{11030}{}{Radscorpion tails, huh? Seems simple enough.@@I can look for those tails.@@Getting those tails seems simple enough.}
+{11040}{}{On second thought... Let me ask you something else.@@Nevermind that. I wanted to talk to you about something else though.@@Maybe another time. Can we change the subject?}
+{11050}{}{Nevermind, I need to go anyway.@@I need to go, sorry.}
+{12000}{}{Great! Unfortunately, I can't tell you exactly where to look for these heart pills. Well, I would start with checking various clinics in the wasteland. Once you find them, bring them to me for testing - I need to verify whether it's not some buffout! [Laughs.] Otherwise, a hell of heart pills those would be, eh?}
+{12010}{}{Go on.@@I'm listening.@@Go on, Doc.}
+{13000}{}{Ripping tails from radscorpions is easy. Well, once they're dead. [He chuckles.] Watch out for their stings - hurts like hell and then the poison kicks in, nasty stuff. Most common injury I treat are wounds caused by those bastards. Anyway, five tails will do just fine. Is everything clear?}
+{13010}{}{About those heart pills... Is there any more advice you can give me on where to find them?@@Any idea where I should look for those pills?@@Any hint where I should go look for those pills?}
+{13020}{}{Yeah, but there was something else I wanted to ask you.}
+{13030}{}{Pretty much, yeah. I guess I'll go now.@@Clear. I better get going.@@Clear as sky. Later, Doc.}
+{14000}{}{This matter is not so urgent, I still have enough to supply Kylee for quite some time... But they're slowly running out, and you're not the only one who's looking for this medicine. It's a specialized type of drug, it was quite common in pre-war hospitals. Unfortunately, that means this stuff is scarce. Hospitals and clinics are long picked clean, trying to find more in those places would be simply a waste of time. I wish I could tell you more, but I can't.}
+{14010}{}{Okay, I see. I've got other questions though.@@Right. There was something else I wanted to talk about.@@I get it. Can we talk about something else?}
+{14020}{}{I see. See you later, Doc.@@Okay, will try to find them. See you around, Doc.}
+{15000}{}{Great. Unfortunately, I can't tell you exactly where to look for them. But you could try checking clinics in other towns, maybe someone still some left. Once you find them, bring them to me for testing - I need to verify whether it's not some Buffout or something! [Laughs.] Otherwise, a hell of heart pills those would be, eh?}
+{15010}{}{I see. See you later, Doc.@@Okay, will try to find them. See you around, Doc.}
+{16000}{}{Ripping tails from radscorpions is easy. Well, once they're dead. [He chuckles.] Watch out for their stings - hurts like hell and then the poison kicks in, nasty stuff. Most common injury I treat are wounds caused by those bastardsAnyway, five tails will do just fine. Is everything clear?}
+{16010}{}{Okay, I see. I've got other questions though.@@Right. There was something else I wanted to talk about.@@I get it. Can we talk about something else?@@Yeah. Can we change the subject?}
+{16020}{}{Yeah, I'll go now.@@Okay, I need to get going. See you later, Doc.}
+{17000}{}{[He takes the bottle and sniffs carefully, then takes out one pill and examines it under the light.] Hmm, doesn't seem like any typical drug, I need to do some tests to be sure... But since they're in a legitimate container and you're not screwing with me... [He chuckles.] I guess that these will do.}
+{17010}{}{Okay, no problem. I'd like to ask you something else.@@Good. I wanted to talk to you about something else.@@Care to talk about something else?}
+{17020}{}{Always happy to help. Not that it was that much of an effort anyway.}
+{18000}{}{Good, good!. Let me take a look at those stings.@@Good job, let me check if they're all fine.@@Okay, but let me check them first.}
+{18010}{}{Sure, here they are.@@Sure, do what you have to do.@@No problem, here.@@Okay, take them.}
+{18020}{}{You know, I kinda... have to leave. Be right back.@@Sorry, be right back!}
+{19000}{}{Good quality. I'd even say, impressive. Come back after a day, I'll be able to pay for more of these.@@They seem fine. Here's you pay.@@Okay, not very impressive, but I will make do with what I have. Here's your pay.@@All right, they seem good enough. Here's your pay.}
+{19010}{}{Thanks. I'll come back later.@@Okay, see you round, Doc.}
+{20000}{}{Sure I can, if you used some drugs and are still suffering from their side effects, that's something I can take care of. But that will cost you, @lex heal_drugs_price@ caps.@@@lex heal_drugs_price@ caps upfront. I don't really like junkheads, but I'll help you.}
+{20010}{}{Okay! Here, take the money and fix me up.@@All right, just fix me up already.}
+{20020}{}{Nevermind.@@I think I can't afford this now.@@On second thought, I think I'll go now.}
+{21000}{}{There, good as new. Just don't use that crap anymore, it's bad for you, as you can see.@@All right, you should feel better now.@@Here, you're starting to look better already. }
+{21010}{}{Thanks. I will go now.@@Thanks Doc, you're a lifesaver. Goodbye.@@Okay, thanks. }
+

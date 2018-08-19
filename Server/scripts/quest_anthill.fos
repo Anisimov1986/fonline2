@@ -1,0 +1,163 @@
+#include "critter_wave.fos"
+#include "entire_h.fos"
+#include "_defines.fos"
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+
+#include "mapdata_h.fos"
+#include "_ai.fos"
+//ANTHILL
+#define ROLE_ANTS                       (288000)
+#define START_DELAY                     (REAL_MINUTE(1))
+#define WAVE_TIME                       (REAL_SECOND(20))
+#define WAVE_COUNT                      (2)
+#define WAVE_SIZE                       (5)
+#define BASE_PAY                        (150)
+
+import void AddNewMapMessage( string text,int time, int showtimer, uint color, uint mapId) from "stocmessages";
+
+// Ants initialization
+int[] antParams = {ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_Bandit, MODE_NO_LOOT, 1, MODE_NO_DROP, 1, ST_KILL_EXPERIENCE, 30, ST_MELEE_DAMAGE , 1}; 		
+int[] antPids = {NPC_PID_Ant};
+CritterTemplate antCritterTemplate = CritterTemplate(antPids, ROLE_ANTS)
+		.SetStartEntire(ENTIRE_EVENT_MOB_SPAWN)
+		.SetHomeEntire(ENTIRE_EVENT_MOB_HOME)
+		.SetCritterParams(antParams)
+		.SetShowCritterDist1(120)
+		.SetAttachEventManager(true);
+CritterEventsManager antCritterEvents = CritterEventsManager(ROLE_ANTS)
+	.When(PlayerShown1())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 20, AI_PLANE_ATTACK_PRIORITY + 26))
+	.When(CritterAttacked())
+		.Execute(Attack(AI_PLANE_ATTACK_PRIORITY + 30, AI_PLANE_ATTACK_PRIORITY + 35));			
+		
+void _MapInit(Map& map, bool firstTime)
+{	
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "Death");
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "Enter");
+}
+
+uint e_StartWave(uint[]@ values2)
+{
+	CritterWave(values2[0], ROLE_ANTS)
+		.SetCrittersPerWave(values2[1], values2[1])
+		.SetWaveCountDown(values2[2])
+		.SetWaveTimeout(WAVE_TIME)
+		.Start();
+		
+	return 0;
+}
+
+void Death(Map& map, Critter& cr, Critter@ killer)
+{	
+	Location@ location = map.GetLocation();
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+	CheckQuestState(map);	
+}
+
+void Enter(Map& map, Critter& cr)
+{
+	Location@ location = map.GetLocation();
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+
+	if( !cr.IsPlayer() )
+		return;
+		
+	if( WAVE_STATE != 0 )
+		return;
+	
+	WAVE_STATE = 1;
+	uint[] values = {map.Id};
+	CreateTimeEvent(__FullSecond + REAL_SECOND(5), "Start", values, true);
+}
+
+uint Start(uint[]@ values)
+{
+	Map@ map = GetMap(values[0]);
+	Location@ location = map.GetLocation();
+	
+	location.AutoGarbage = true;
+	GameVar@ WAVE_SIZEMULT = GetLocalVar( LLVAR_Value0, location.Id );
+	GameVar@ WAVE_COUNTMULT = GetLocalVar( LLVAR_Value1, location.Id );
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+	
+	//Wave amount multiplier
+	int playersamount = map.GetCritters(0, FIND_LIFE | FIND_ONLY_PLAYERS , null);
+	
+	WAVE_SIZEMULT = WAVE_SIZE + (playersamount * 1);
+	WAVE_COUNTMULT = WAVE_COUNT + (playersamount * 2);
+	//End of Wave amount multiplier
+
+	AddNewMapMessage( "The Ants will start walking out in:",REAL_SECOND(60), 1, COLOR_ORANGE, map.Id);
+
+	uint[] values2 = {map.Id, WAVE_SIZEMULT.GetValue(), WAVE_COUNTMULT.GetValue()};
+	CreateTimeEvent(__FullSecond + START_DELAY, "e_StartWave", values2, true);
+	
+	return 0;
+}
+
+void CheckQuestState(Map& map)
+{
+	Location@ location = map.GetLocation();
+	
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+	
+	
+	if( WAVE_STATE == 3 )
+		return;
+        
+    GameVar@ WAVE_SIZEMULT = GetLocalVar( LLVAR_Value0, location.Id );
+	GameVar@ WAVE_COUNTMULT = GetLocalVar( LLVAR_Value1, location.Id );    
+
+	if (WAVE_COUNTMULT * WAVE_SIZEMULT == int (map.GetNpcCount(ROLE_ANTS, FIND_DEAD | FIND_ONLY_NPC)))
+	{
+		WAVE_STATE = 3;
+			Critter@[] players;
+			map.GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, players );
+			for( uint i = 0, j = players.length(); i < j; i++ )
+			{
+				players[ i ].StatBase[ ST_EXPERIENCE ] += 800;
+			}
+		int ownerId = GetRootMapData( location, MAP_DATA_QUEST_OWNER );
+		Critter@ LocOwner = GetCritter(ownerId);
+		int QuestPay = (BASE_PAY * WAVE_COUNTMULT.GetValue());
+		AddNewMapMessage( "There are no more ants. The anthill is cleared out. The leader of the group will get " + QuestPay + " caps.",REAL_SECOND(10), 0, COLOR_WHITE, map.Id);	
+		LocOwner.AddItem(PID_BOTTLE_CAPS, QuestPay);
+		LocOwner.Say( SAY_NETMSG, "|"+COLOR_WHITE+" It's done. You have gained " + QuestPay + " caps for defense as a leader of the group.");
+	}
+}
+
+
+void exit(Critter& player, Scenery& trigger, bool entered, uint8 dir)
+{
+    if( !player.IsPlayer() )
+        return;
+
+	Map@ map = player.GetMap();
+    if (!valid(map))
+        return;
+        
+    Location@ location =  map.GetLocation();
+	
+	GameVar@ WAVE_STATE = GetLocalVar( LLVAR_Value3, location.Id );
+	
+	if( WAVE_STATE != 3 )
+	{
+		player.Say(SAY_NETMSG, "You need to finish defense before you will head back to junktown.");
+		return;
+	}
+	
+	Map@ tpmap = GetMapByPid( MAP_junktown, 0 );
+    if( valid(tpmap) )
+	{
+		array<Critter@> crits;
+		uint n = map.GetCritters(0, FIND_LIFE | FIND_ONLY_PLAYERS, crits);
+		for(uint i = 0; i < n; i++)
+			if(crits[i].Timeout[TO_BATTLE] == 0 )
+				crits[i].TransitToMap(tpmap.Id, 0);
+	}	
+}
+
+

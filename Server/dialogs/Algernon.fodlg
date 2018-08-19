@@ -1,0 +1,169 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+9 2010 #
+12 2020 D _param p SK_REPAIR < 130 #
+11 2030 D _var p name_mem_player_npc = 1 D _param p PE_PROF_GUNSMITH = 2 D _script economy_dialogs@d_IsEnoughCaps 1 6000 R _script economy_dialogs@r_TakeCaps 1 6000 R _param p PE_PROF_GUNSMITH = 3 R _var p prof_gunsmith = 8 R _param p ST_EXPERIENCE + 1500 #
+10 2040 D _var p name_mem_player_npc = 1 D _param p PE_PROF_GUNSMITH = 1 D _script economy_dialogs@d_IsEnoughCaps 1 6000 #
+3 2050 D _var p name_mem_player_npc = 0 D _param p PE_PROF_GUNSMITH ! 0 D _param p SK_REPAIR } 130 #
+0 2060 @
+3 3000 None 0 #
+4 3010 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 @
+7 7000 economy_dialogs@dlg_PreparePrice 0 #
+8 7010 R _var p prof_gunsmith = 7 @
+8 8000 economy_dialogs@dlg_PreparePrice 0 #
+0 8010 R _var p name_mem_player_npc = 1 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 #
+0 11010 @
+12 12000 None 0 &
+
+[engl]
+{100}{}{Algernon}
+{200}{}{You see an old, withered man dressed in greased workclothes.}
+{210}{}{You see: Algernon, New Reno Arms gunsmith.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Pew pew pew! Take cover! Bang! You're dead! [Stops shouting.] What?}
+{2010}{}{Bang! Bang! Man down! Weeeheee!}
+{2020}{}{I want to learn your profession.}
+{2030}{}{(Profession: Gunsmith level 3.) I have what you need, here.}
+{2040}{}{I have what you need, here.}
+{2050}{}{Whoa, so many pew pews here. Do you know how to make ones?}
+{2060}{}{Dead man walking away, bye.}
+{3000}{}{What?}
+{3010}{}{Fucking hell! Me. Want. Make. Pew. Pew. New. Give. Monnies. }
+{4000}{}{Ooooh, monnies. I like monnies, buying more pew pews. @lex prof3_price@ monnies you bring. And shiny blue pew pew. }
+{4010}{}{Fuck no, what? What blue pew pew?}
+{5000}{}{Actually forget the pew. You look dumb enough to get one.}
+{5010}{}{Wh- ?}
+{6000}{}{Surprised? I have to pretend I'm an idiot with mad gunsmith skill, therefore I can live here peacefully and spend days with my beloved guns. And this fellow up there leaves me alone as long as I provide him with new stuff he can sell for shitloads of cash. }
+{6010}{}{But, but...}
+{7000}{}{Don't bother telling this to him, he won't believe you. Pew pew! Bang! You're dead again! See?}
+{7010}{}{Uh, right. So @lex prof3_price@ caps and this XL something? }
+{8000}{}{Dude, not "something", stay focused. It's a hi-tech rifle, not some zip gun for fuck's sake. Yeah, bring @lex prof3_price@ caps to me, then we will talk more. [Raises his voice.] Bang! Pew pew! Woohoo!}
+{8010}{}{Riiiight, bye.}
+{9000}{}{Not funny, you dead, not me! Pew pew! Pew!}
+{9010}{}{I've had enough of this, screw you, weirdo.}
+{10000}{}{No you don't. Go learn something useful first. Bang! Taka-taka-taka! }
+{10010}{}{Sheeesh. Bye.}
+{11000}{}{Finally. Come closer. [Waits a while.] Now give it to me. [He takes the rifle in his hands.] Isn't she a beauty? Take a look at those materials! And this technology! Oh, you are still here? Just kiddin', let's do this, gangsta... [Many, many "bangs!" and "pews!" later you seem get the hang of it...] So... questions? No? Great, now if you excuse me...}
+{11010}{}{Thanks a lot. Freak...}
+{12000}{}{You do not know all you need. Come back when you're more skilled. (Required skill: Repair 130%.}
+
+[russ]
+{100}{}{Элджернон}
+{200}{}{Вы видите: Элджернона, оружейника Нью-Рено.}
+{210}{}{Вы видите: Элджернона, оружейника Нью-Рено.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Пиф Паф! В укрытие! Бах! Ты убит! [прекращает кричать] Что?}
+{2010}{}{Бах! Бах! У нас потери, у нас потери! Уииииии!}
+{2020}{}{Я хочу выучить вашу профессию.}
+{2030}{}{[Профессия оружейника уровень 3] У меня есть все, что нужно, с собой.}
+{2040}{}{У меня есть все, что нужно, с собой.}
+{2050}{}{Ого, столько разных пушек здесь. Вы знаете, как делать новое оружие?}
+{2060}{}{Мертвец уходит прочь, до свидания.}
+{3000}{}{Что?}
+{3010}{}{Черт побери. Я. Хотеть. Делать. Пиф-Паф. Новое. Давать. Деньги. }
+{4000}{}{Оооо, деньги. Я люблю деньги, покупать больше Пиф-Паф. @lex prof3_price@ денег ты принести. И еще блестящуу синюю пиф-пафку. }
+{4010}{}{Бляяя, что еще за синия пиф-пафка?}
+{5000}{}{Называется XL70E3, эксперементально оружие времен войны. Изготовлено из высококачественных композитных материалов. Очень легкая при такой высокой скорострельности и точности. Калибр 5 мм, 12 пуль в очереди, 60 пуль в обойме. Весит примерно 9 фунтов. Ладно забудь, обойдусь.}
+{5010}{}{Чтооооо?}
+{6000}{}{Удивлен? Я должен делать вид, что я безумный идиот оружейник, поэтому я могу тихо жить тут наедине с моим оружием. Я снабжаю их оружием а они оставляют меня в покое.}
+{6010}{}{Но, но ...}
+{7000}{}{Даже и не думайте им рассказать, вам никто не поверит. Пиф-Паф! Бах! Ты снова мертв! Видите?}
+{7010}{}{Я все понял. С меня @lex prof3_price@ монет? }
+{8000}{}{Повторяю еще раз, @lex prof3_price@ крышек, тогда будем разговаривать. [переходит на крик] Бах! Пиф-Паф! Ууууххххууууу!}
+{8010}{}{Мдаааа, пока.}
+{9000}{}{Не смешно, ты убит, а не я! Пиф-Паф! Паф!}
+{9010}{}{С меня достаточно, пошел ты.}
+{10000}{}{Нет не все. Ты не достаточно образован. Бах! Тах-тах-тах! [Требуется Профессия оружейника уровень 2]}
+{10010}{}{Блииин. Пока.}
+{11000}{}{Наконец-то. Подойди ближе. [ждет некоторое время] Теперь давай дегьги. [забирает деньги]. О, ты все еще здесь? Шучу, ну давай приступим... [обучает вас процессу производства оружия] ... так, вопросы? Нет? Отлично, на этом все...}
+{11010}{}{Спасибо большое.}
+{12000}{}{Вы для этого не подходите, вам нужно тренировать свое мастерство в области ремонта. [Требуется ремонт 130]}
+
+[pols]
+{100}{}{Algernon}
+{200}{}{Widzisz Algernona.}
+{210}{}{Widzisz Algernona, rusznikarza.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Pif Paf! Pif Paf! Padnij! Bang! Nie żyjesz! [Przestaje na chwilę.] Czego?}
+{2010}{}{Bang! Bang! Mamy rannego! Łaaaaaaa!}
+{2020}{}{I want to learn your proffession...}
+{2030}{}{(Profesja: Rusznikarz, poziom 3.) Mam to, co chciałeś.}
+{2040}{}{@sex@|Przyniosłem||Przyniosłam| to, co mi kazałeś.}
+{2050}{}{Kurde, tyle pukawek... Wiesz jak robić nowe?}
+{2060}{}{Jasne, dziadku. Sanitariusze zaraz się zajmą martwymi. Na razie.}
+{3000}{}{Co?}
+{3010}{}{Kurwa mać. Ja. Chcę. Robić. Nowe. Pukawki. Pif. Paf. Nowe. Zapłacić. Forsę.}
+{4000}{}{Ahaaaa, forsę. Lubię forsę, nowe pukawki. Przynieś @lex prof3_price@ kapsli. I nowiutką niebieską pukawkę.}
+{4010}{}{Że co? Jaką niebieską pukawkę?}
+{5000}{}{Nieważne}
+{5010}{}{O żesz w mordę...}
+{6000}{}{@sex@|Zaskoczony||Zaskoczona|? Rusz trochę głową. Muszę udawać świra, żeby ten pajac na górze nie zawracał mi dupy. A żeby mi nie zawracał dupy, muszę mu co jakiś czas wyrychtować parę gównianych pukawek, które on sprzedaje jeszcze większym pajacom za zajebistą kasę.}
+{6010}{}{Ale zaraz...}
+{7000}{}{Nawet nie próbuj mu na mnie donieść, i tak ci nie uwierzy. Pif Paf! Znowu nie żyjesz! Widzisz?}
+{7010}{}{Um... jasne. @lex prof3_price@ kapsli...}
+{8000}{}{Przynieś go i do tego @lex prof3_price@, to pogadamy. [Algernon podnosi głos.] Pif! Paf! Bang! Jeeeeee!}
+{8010}{}{Jaaaaasne. Na razie.}
+{9000}{}{To ja cię zabiłem, nie oszukuj! Bang, bang!}
+{9010}{}{Starczy już tego, spadam stąd.}
+{10000}{}{Gówno prawda. Bang! Taka-taka-taka-taka!}
+{10010}{}{Ja pierdolę.}
+{11000}{}{No wreszcie. Podejdź no tu. Dawaj ten karabin! Zobacz, jaki piękny! Zobacz na te materiały! I to wykończenie! Dobra, bierzmy się do roboty... [Wiele Pifów, Pafów i Bangów później...] No, chyba już to ogarniasz. Jakieś pytania? Świetnie, bo i tak nie mam na nie czasu. A teraz, wybacz... Pif! Paf! Bang!}
+{11010}{}{Dzięki... Świrze.}
+{12000}{}{Że jak? Wróć, jak już będziesz ogarniał temat, nie zawracaj mi teraz dupy. Bang! Pif! Paf! (Wymagana umiejętność: Naprawa 130%.)}
+
+[ptbr]
+{100}{}{Barbosa}
+{200}{}{Você vê um homeme velho e magro, vestindo roupas encebadas.}
+{210}{}{Você vê: Barbosa, o armeiro de Nova Reno.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Pou pou pou! Se escondam! Bang! Você tá morto! [Para de gritar.] O quê?}
+{2010}{}{Bang! Bang! Homem caído! Ieeeheeei!}
+{2020}{}{Eu quero aprender sua profissão.}
+{2030}{}{(Profissão: Armeiro nível 3.) Eu trouxe o que tu precisa. Tá aqui.}
+{2040}{}{Eu tenho o que tu precisa, aqui.}
+{2050}{}{Nossa, tantos pous pous aqui. Sabe construí-las?}
+{2060}{}{Homem morto indo embora, até.}
+{3000}{}{O quê?}
+{3010}{}{Que porra! Mim. Querer. Fazer. Pou. Pou. Nova. Dou. Dinhêro. }
+{4000}{}{Aaaaah, dinhêro. Eu gosto de dinheiro, pra comprar mais pou pous. @lex prof3_price@ dinhêro tem que trazer. E pou pou azul brilhante. }
+{4010}{}{É o quê? Que pou pou azul?}
+{5000}{}{Chamada XL70E3, era uma arma experimental no tempo da guerra. Feita principalmente de polímeros de alta resistência, a arma é praticamente indestrutível. É leve, rápida, precisa e pode ser desmontada sem uso de nenhuma ferramenta. Usa 5 mm, modo tiro único ou burst, 12 projéteis por burst, 60 balas por carregador. Pesa aproximadamente 4 Kg. Do caralho!}
+{5010}{}{O qu- ?}
+{6000}{}{Haha! Desculpa o susto, eu tenho que fingir ser imbecil com loucas habilidades com armas que assim eu posso viver em paz com minhas amadas. E aquele cara ali em cima me deixa em paz enquanto eu tiver coisas novas que ele pode vender por kilos de grana. }
+{6010}{}{Mas, mas...}
+{7000}{}{Nem precisa contar isso pra ele, ele não vai acreditar em ti. Pou! Pou! Morreu de novo! Tá vendo?}
+{7010}{}{Um, certo. Então @lex prof3_price@ tampinhas e essa XL alguma coisa? }
+{8000}{}{Cara, "alguma coisa" não, se liga. A gente tá falando de um rifle top, não é qualquer pistolinha caseira não. Então, é isso aí... 6000 tampas e uma XL70E3, daí a gente continua a conversa. [Eleva o tom de voz.] Bang! Pou pou! Uhuuul!}
+{8010}{}{Ceeeeerto, tchau.}
+{9000}{}{Não teve graça, você morto, não eu! Pou pou! Pou!}
+{9010}{}{Já cansei dessa merda, seu doente.}
+{10000}{}{Não tu não vai, não. Vá aprender algo de útil primeiro. Pei! Taka-taka-taka! }
+{10010}{}{Ufa. Tchau.}
+{11000}{}{Finalmente. Chega junto. [Espera um instante.] Agora me passa as coisas. [Ele pega o rifle em suas mãos.] Ela não é linda? Dá uma olhada nestes materiais! E nesta tecnologia! Ah, pode nos deixar a sós? Tô brincando, bora começar, mafioso... [Muitos "bangs!" e "pêis!" depois você parece entender a coisa...] Então... dúvidas? Não? Ótimo, agora se você me der licença...}
+{11010}{}{Valeu. Doidão...}
+{12000}{}{Tu não sabe tudo o que precisa. Volta quando tiver mais jeito pra coisa. (Requer 130% de nível em Reparos.}
+

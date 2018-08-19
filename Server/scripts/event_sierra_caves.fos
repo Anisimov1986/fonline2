@@ -1,0 +1,813 @@
+#include "_maps.fos"
+#include "_dialogs.fos"
+#include "_defines.fos"
+#include "_colors.fos"
+#include "_time.fos"
+#include "_macros.fos"
+#include "utils_h.fos"
+#include "logging_h.fos"
+
+import void AddNewMessage(string text, int time, int showtimer, uint color, bool eventtimer, uint eventid) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import void TransitToDungeonImmediate(Critter& critter, int dungeonId, uint mapDir, bool withGroup) from "random_dungeon";
+import void FindPlayersInDungeon(int dungeonId, Critter@[]& players) from "random_dungeon";
+import void SetLocked(uint locationId) from "random_dungeon";
+import bool IsLocked(uint locationId) from "random_dungeon";
+import uint16 GetRareItemPidForTree(int treeIndex) from "blueprints";
+import uint16 GetTopBlueprintPidForTree(int treeIndex) from "blueprints";
+import void RemoveDeadBlocker( Critter& cr ) from "main";
+ 
+#define ROLE_MANAGER		         (290000)
+#define EVENT_ID                     (71)
+#define TB_DUNGEON_ID                (3)
+#define RT_DUNGEON_ID                (4)
+#define TB_PROGRESSION_TIME          (REAL_MINUTE(15))  
+#define RT_PROGRESSION_TIME          (REAL_MINUTE(8))  
+#define _ADK_EVENT_SC_TB             ("EVENT_SC_TB")
+#define _ADK_EVENT_SC_START          ("EVENT_SC_START")
+#define _ADK_EVENT_SC_COUNT          ("EVENT_SC_COUNT")
+#define _ADK_EVENT_SC_TIMER1_ID      ("EVENT_SC_TIMER1_ID")
+#define _ADK_EVENT_SC_TIMER2_ID      ("EVENT_SC_TIMER2_ID")
+#define _ADK_EVENT_SC_WAIT_TIME_MIN  ("EVENT_SC_WAIT_TIME_MIN")
+#define _ADK_EVENT_SC_TWO_ROUNDS     ("EVENT_SC_TWO_ROUNDS")
+
+int[] managerParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK ,10, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+		ST_BONUS_LOOK, 100, ST_DIALOG_ID, DIALOG_sc_event_manager, ST_REPLICATION_TIME, 1, ST_MELEE_DAMAGE_EXT, 800, ST_NPC_ROLE, ROLE_MANAGER};	
+
+void start_event(Critter& critter, int tb, int waitTimeMin, int twoRoundsMode)
+{
+	start_event(tb, waitTimeMin, twoRoundsMode);
+}		
+		
+void start_event(int tb, int waitTimeMin, int twoRoundsMode)
+{
+	SpawnEventManagers();
+	SpawnLobby();
+	SaveAnyData(waitTimeMin, _ADK_EVENT_SC_WAIT_TIME_MIN);
+	SaveAnyData(tb, _ADK_EVENT_SC_TB);
+	SaveAnyData(twoRoundsMode, _ADK_EVENT_SC_TWO_ROUNDS);
+	SaveAnyData(0, _ADK_EVENT_SC_COUNT);
+	
+	if (waitTimeMin <= 0)
+	{
+		waitTimeMin = 15;
+	}
+	
+	AddNewMessage("Hunger Games Cave Edition event will start soon [Combat mode: " + (tb > 0 ? "TB" : "RT") + "]. Head to Vault City and talk to event manager, time till beginning:", REAL_MINUTE(waitTimeMin), 1, COLOR_ORANGE, true, EVENT_ID);
+	uint timerId = CreateTimeEvent(__FullSecond + REAL_MINUTE(waitTimeMin), "e_eventStart", 0, true);
+	SaveAnyData(timerId, _ADK_EVENT_SC_TIMER1_ID);
+}
+
+void stop_event(Critter& critter, int, int, int)
+{
+	uint timer1Id = GetAnyData(_ADK_EVENT_SC_TIMER1_ID);
+	bool tbMode = GetAnyData(_ADK_EVENT_SC_TB) > 0;
+	Critter@[] players;
+	
+	FindPlayersInDungeon(tbMode ? TB_DUNGEON_ID : RT_DUNGEON_ID, players);
+	
+	DeleteLobby();
+	DeleteEventManagers();
+	
+	for (uint i = 0; i < players.length(); i++)
+	{
+		if (players[i].GetAccess() != ACCESS_CLIENT)
+		{
+			continue;
+		}
+		
+		players[i].ToDead((players[i].IsKnockout() && players[i].Anim2Knockout == ANIM2_KNOCK_FRONT) ? ANIM2_DEAD_FRONT : ANIM2_DEAD_BACK, null);
+	}
+
+	EraseAnyData(_ADK_EVENT_SC_TIMER1_ID);
+	EraseTimeEvent(timer1Id);
+	RemoveMessageByEvent(EVENT_ID);
+	CloseEvent();
+}
+
+int GetSCEventProgress()
+{
+	bool tbMode = GetAnyData(_ADK_EVENT_SC_TB) > 0;
+	uint startTime = GetAnyData(_ADK_EVENT_SC_START);
+	int tierTime = tbMode ? TB_PROGRESSION_TIME : RT_PROGRESSION_TIME;
+	
+	if (startTime == 0)
+	{
+		return 0;
+	}
+	
+	return (__FullSecond - startTime) * 10 / tierTime;
+}
+
+void check_winner(Critter& critter, int, int, int)
+{
+	FindAndProcessWinner();
+}
+
+void check_counter(Critter& critter, int repair, int, int)
+{
+	Critter@[] players;
+	bool tbMode = GetAnyData(_ADK_EVENT_SC_TB) > 0;
+	uint count = 0;
+	FindPlayersInDungeon(tbMode ? TB_DUNGEON_ID : RT_DUNGEON_ID, players);
+	
+	for (uint i = 0; i < players.length(); i++)
+	{
+		if (players[i].IsLife() && players[i].GetAccess() == ACCESS_CLIENT)
+		{
+			count++;
+		}
+	}
+	
+	critter.Say(SAY_NETMSG, "Counter " + GetAnyData(_ADK_EVENT_SC_COUNT) + ", number of players " + count);
+	
+	if (repair > 0)
+	{
+		SaveAnyData(count, _ADK_EVENT_SC_COUNT);
+		critter.Say(SAY_NETMSG, "After reapair: counter " + GetAnyData(_ADK_EVENT_SC_COUNT) + ", number of players: " + count);
+	}
+}
+
+uint e_eventStart(array<uint>@ values)
+{
+	DeleteEventManagers();
+	uint timerId = CreateTimeEvent(__FullSecond, "e_transitPlayersToArena", 0, true);
+	SaveAnyData(timerId, _ADK_EVENT_SC_TIMER1_ID);	
+	SaveAnyData(__FullSecond, _ADK_EVENT_SC_START);
+	return 0;
+}
+
+void ProcessKilledCritter(uint playerId)
+{
+	int playersCount = GetAnyData(_ADK_EVENT_SC_COUNT) - 1;
+	
+	if (playersCount < 0)
+	{
+		return;
+	}
+	
+	SaveAnyData(playersCount, _ADK_EVENT_SC_COUNT);
+	
+	ProcessWinners(playerId, playersCount);
+	TryToLockFinalLocation();
+	
+	if (playersCount == 1)
+	{
+		FindAndProcessWinner();
+		
+		//Second round
+		if (GetAnyData(_ADK_EVENT_SC_TWO_ROUNDS) > 0)
+		{		
+			uint[] values = {GetAnyData(_ADK_EVENT_SC_TB), GetAnyData(_ADK_EVENT_SC_WAIT_TIME_MIN)};
+			uint timerId = CreateTimeEvent(__FullSecond + REAL_MINUTE(2), "e_nextRound", values, true);
+			SaveAnyData(timerId, _ADK_EVENT_SC_TIMER1_ID);
+		}
+		
+		CloseEvent();
+	}
+}
+
+uint e_nextRound(array<uint>@ values)
+{
+	if (values.length() != 2)
+	{
+		return 0;
+	}
+
+	start_event(values[0] == 0 ? 1 : 0, values[1], 0);
+	EraseAnyData(_ADK_EVENT_SC_TIMER1_ID);
+	
+	return 0;
+}
+
+void TryToLockFinalLocation()
+{
+	bool tbMode = GetAnyData(_ADK_EVENT_SC_TB) > 0;
+	int playersCount = GetAnyData(_ADK_EVENT_SC_COUNT);
+	
+	if (playersCount > 10 || playersCount <= 1) 
+	{
+		return;
+	}
+
+	Critter@[] players;
+	FindPlayersInDungeon(tbMode ? TB_DUNGEON_ID : RT_DUNGEON_ID, players);
+	
+	uint mapId = 0;
+	for (uint i = 0; i < players.length(); i++)
+	{
+		if (players[i].GetAccess() != ACCESS_CLIENT)
+		{
+			continue;
+		}
+		
+		if (players[i].IsDead())
+		{
+			continue;
+		}
+		
+		if (mapId == 0)
+		{
+			mapId = players[i].GetMapId();
+		}
+		else if (players[i].GetMapId() != mapId)
+		{
+			return;
+		}
+	}
+	
+	Map@ map = GetMap(mapId);
+	
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	Location@ location = map.GetLocation();
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	if (!IsLocked(location.Id))
+	{
+		SetLocked(location.Id);
+		AddNewMessage("Hunger Games Arena: all players entered final location. Location's exits are blocked. ", REAL_SECOND(10), 0, COLOR_ORANGE, true, EVENT_ID);
+	}
+}
+
+void FindAndProcessWinner()
+{
+	Critter@[] players;
+	Critter@ winner;
+	bool tbMode = GetAnyData(_ADK_EVENT_SC_TB) > 0;
+	uint count = 0;
+	FindPlayersInDungeon(tbMode ? TB_DUNGEON_ID : RT_DUNGEON_ID, players);
+	
+	for (uint i = 0; i < players.length(); i++)
+	{
+		if (players[i].GetAccess() == ACCESS_CLIENT && players[i].IsLife())
+		{
+			count++;
+			@winner = players[i];
+		}
+	}
+	
+	if (count == 1)
+	{	
+		if (!valid(winner))
+		{
+			return;
+		}
+		
+		uint timerId = CreateTimeEvent(__FullSecond + REAL_SECOND(66), "e_showWinner", winner.Id, true);
+		SaveAnyData(timerId, _ADK_EVENT_SC_TIMER1_ID);
+		LogWinner(winner.Id, 1);	
+		ProcessWinners(winner.Id, 0);
+	}
+}
+
+uint e_showWinner(array<uint>@ values)
+{
+	if (values.length() != 1)
+	{
+		return 0;
+	}
+
+	AddNewMessage("Hunger Games Arena: " + GetPlayerName(values[0]) + " has won 1st place.", REAL_SECOND(45), 0, COLOR_ORANGE, true, EVENT_ID);
+	EraseAnyData(_ADK_EVENT_SC_TIMER1_ID);
+	
+	return 0;
+}
+
+void ProcessWinners(uint playerId, int playersCount)
+{
+	uint[] values = {playerId, playersCount};
+	CreateTimeEvent(__FullSecond + REAL_SECOND(55), "e_ProcessWinners", values, true);
+}
+
+uint e_ProcessWinners(uint[]@ values)
+{
+	if (values.length() != 2)
+	{
+		return 0;
+	}
+	
+	int playerId = values[0];
+	int playersCount = values[1];
+	
+	ShowPlayerCounter(playersCount, playerId);
+	Critter@ player = GetCritter(playerId);
+	
+	if (!valid(player))
+	{
+		return 0;
+	}
+	
+	//Clear inventory
+	Item@ armorItem = player.GetItem(0, SLOT_ARMOR);
+    if (valid(armorItem))
+	{
+        player.MoveItem(armorItem.Id, 0, SLOT_INV);
+	}
+
+	Item@ hand1Item = player.GetItem(0, SLOT_HAND1);
+    if (valid(hand1Item))
+	{
+        player.MoveItem(hand1Item.Id, 0, SLOT_INV);
+	}
+	
+	Item@ hand2Item = player.GetItem(0, SLOT_HAND2);
+    if (valid(hand2Item))
+	{
+        player.MoveItem(hand2Item.Id, 0, SLOT_INV);
+	}
+	
+	Item@[] items;
+	player.GetItems(-1, items);
+	Map@ dropMap = player.GetMap();
+	
+	if(valid(dropMap))
+	{
+		MoveItems(items, dropMap, player.HexX, player.HexY);
+	}
+	else
+	{
+		DeleteItems(items);
+	}
+
+	//Add prize
+	if (playersCount == 2)
+	{
+		Item @item = player.AddItem(PID_SAND_CROBE, 1);
+		player.MoveItem(item.Id, 1, SLOT_ARMOR);
+	}
+	else if (playersCount == 1)
+	{
+		Item @robe = player.AddItem(PID_BLUE_CROBE, 1);
+		player.MoveItem(robe.Id, 1, SLOT_ARMOR);
+		Item @weapon = player.AddItem(GetRareItemPidForTree(GetTreeIndexForPlayer(player)), 1);
+		player.MoveItem(weapon.Id, 1, SLOT_HAND1);
+	}
+	else if (playersCount == 0)
+	{
+		Item @robe = player.AddItem(PID_RED_CROBE, 1);
+		player.MoveItem(robe.Id, 1, SLOT_ARMOR);
+		Item @weapon = player.AddItem(GetRareItemPidForTree(GetTreeIndexForPlayer(player)), 1);
+		player.MoveItem(weapon.Id, 1, SLOT_HAND1);
+		uint16 bpPid = GetTopBlueprintPidForTree(GetTreeIndexForPlayer(player));
+		if (bpPid > 0)
+		{
+			Item @bp = player.AddItem(bpPid, 1);
+			player.MoveItem(bp.Id, 1, SLOT_HAND2);
+		}
+	}
+	else if (playersCount < 10)
+	{
+		Item @item = player.AddItem(PID_SAND_ROBE, 1);
+		player.MoveItem(item.Id, 1, SLOT_ARMOR);
+	}
+	
+	//Teleport to VC
+	if (playersCount < 10)
+	{
+		if (player.IsDead())
+		{		
+			RemoveDeadBlocker(player);
+		}
+	
+		TeleportWinnerToVC(player);	
+	
+		if (player.IsDead())
+		{		
+			player.ToLife();
+		}
+	
+		player.StatBase[ST_CURRENT_HP] = player.Stat[ST_MAX_LIFE];
+		player.TimeoutBase[TO_REPLICATION] = 0;
+
+	}
+	
+	return 0;
+}
+
+int GetTreeIndexForPlayer(Critter& player)
+{
+	if (player.SkillBase[SK_ENERGY_WEAPONS] > 175)
+	{
+		return 3;
+	}
+	else if (player.SkillBase[SK_BIG_GUNS] > 175)
+	{
+		return 2;
+	}
+	else if (player.SkillBase[SK_SMALL_GUNS] > 175)
+	{
+		return 1;
+	}
+	else if (player.SkillBase[SK_UNARMED] > 175)
+	{
+		return 4;
+	}
+
+	return 1;
+}
+
+void TeleportWinnerToVC(Critter& player)
+{
+	Map@ map = GetMapByPid(MAP_vcity, 0);
+	
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	for (uint i = 0; i < 50; i++)
+	{
+		uint16 x = Random(94, 100);
+		uint16 y = Random(269, 276);
+		
+		if (map.IsHexPassed(x, y) && player.TransitToMap(map.Id, x, y, Random(0, 5), false))
+		{
+			break;
+		}
+	}
+}
+
+void CloseEvent()
+{
+	uint timer2Id = GetAnyData(_ADK_EVENT_SC_TIMER2_ID);
+
+	EraseAnyData(_ADK_EVENT_SC_TIMER2_ID);
+	EraseTimeEvent(timer2Id);
+
+	EraseAnyData(_ADK_EVENT_SC_COUNT);
+	EraseAnyData(_ADK_EVENT_SC_TB);
+	EraseAnyData(_ADK_EVENT_SC_TWO_ROUNDS);
+	EraseAnyData(_ADK_EVENT_SC_WAIT_TIME_MIN);
+	EraseAnyData(_ADK_EVENT_SC_START);
+}
+
+void ShowPlayerCounter(int count, uint playerId)
+{
+	if (count > 200)
+	{
+		if (count % 50 == 0)
+		{
+			ShowPlayerCounterMessage(count, playerId);
+		}
+	}
+	else if (count > 100)
+	{
+		if (count % 25 == 0)
+		{
+			ShowPlayerCounterMessage(count, playerId);
+		}
+	}
+	else if (count > 50)
+	{
+		if (count % 10 == 0)
+		{
+			ShowPlayerCounterMessage(count, playerId);
+		}
+	}
+	else if (count > 10)
+	{
+		if (count % 5 == 0)
+		{
+			ShowPlayerCounterMessage(count, playerId);
+		}
+	}
+	else if (count > 0)
+	{
+		ShowPlayerCounterMessage(count, playerId);
+	}
+}
+
+void ShowPlayerCounterMessage(int count, uint playerId)
+{
+	if (count >= 10)
+	{
+		AddNewMessage("Hunger Games Arena: " + count + " players alive.", REAL_SECOND(10), 0, COLOR_ORANGE, true, EVENT_ID);
+	}
+	else
+	{
+		int place = count + 1;
+		string sufix = "";
+		
+		if (place == 1)
+		{
+			sufix = "st";
+		}
+		else if (place == 2)
+		{
+			sufix = "nd";
+		}
+		else if (place == 3)
+		{
+			sufix = "rd";
+		}
+		else if (place > 3)
+		{
+			sufix = "th";
+		}
+		
+		AddNewMessage("Hunger Games Arena: " + GetPlayerName(playerId) + " has won " + place + sufix + " place.", REAL_SECOND(10), 0, COLOR_ORANGE, true, EVENT_ID);
+		LogWinner(playerId, place);
+	}
+}
+
+void LogWinner(uint playerId, int place)
+{
+	FLog(LOG_EVENT_WINNERS, "Hunger Caves - place:" + place + ", playerName:" + GetPlayerName(playerId) + ", playerId:" + playerId);	
+}
+
+void SpawnEventManagers()
+{
+	Map@ map = GetMapByPid(MAP_vcity, 0);
+	
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	map.AddNpc( 94, 100, 269,	0,	managerParams, null, null);
+	map.AddNpc( 94, 100, 276,	0,	managerParams, null, null);
+	map.AddNpc( 94,  94, 269,	3,	managerParams, null, null);
+	map.AddNpc( 94,  94, 276,	3,	managerParams, null, null);
+}
+
+void DeleteEventManagers()
+{
+	Map@ map = GetMapByPid(MAP_vcity, 0);
+	
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	Critter@ critter = null;
+	int skipCount = 0;
+	
+	do 
+	{
+		@critter = map.GetNpc(ROLE_MANAGER, FIND_ALL | FIND_ONLY_NPC, skipCount++);
+		if (valid(critter))
+		{
+			DeleteNpc(critter);
+		}
+	}
+	while (valid(critter));
+}
+
+void SpawnLobby()
+{
+	Location@ vcityLocation = GetLocationByPid(LOCATION_VaultCity, 0);
+
+	if (!valid(vcityLocation))
+	{
+		return;
+	}
+	
+	CreateLocation(LOCATION_SierraCavesEventLobby, vcityLocation.WorldX, vcityLocation.WorldY, null);
+	
+	Location@ location = GetLocationByPid(LOCATION_SierraCavesEventLobby, 0);
+	
+	if (!valid(location))
+	{
+		return;
+	}
+
+	Map@ map = location.GetMapByIndex(0);
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	map.SetScript("_MapLobbyInit");
+}
+
+void DeleteLobby()
+{
+	Location@ location = GetLocationByPid(LOCATION_SierraCavesEventLobby, 0);
+	
+	if (!valid(location))
+	{
+		return;
+	}
+	
+	DeleteLocation(location.Id);
+}
+
+void _MapLobbyInit(Map& map, bool)
+{
+    map.SetEvent(MAP_EVENT_OUT_CRITTER, "_LobbyCritterOut");
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_LobbyCritterIn");
+}
+
+void _LobbyCritterIn(Map& map, Critter& critter)
+{
+	if (critter.GetAccess() == ACCESS_CLIENT)
+	{
+		critter.ModeBase[ MODE_NO_PVP ] = 1;
+		critter.ModeBase[ MODE_NO_STEAL ] = 1;
+	}
+}
+
+void _LobbyCritterOut(Map& map, Critter& critter)
+{
+	if (critter.GetAccess() == ACCESS_CLIENT)
+	{
+		critter.ModeBase[ MODE_NO_PVP ] = 0;
+		critter.ModeBase[ MODE_NO_STEAL ] = 0;
+	}
+}
+
+void r_teleportToLobby(Critter& player, Critter@ npc)
+{
+	Location@ location = GetLocationByPid(LOCATION_SierraCavesEventLobby, 0);
+	
+	if (!valid(location))
+	{
+		return;
+	}
+
+	Map@ map = location.GetMapByIndex(0);
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	player.TransitToMap(map.Id, 0);
+}
+
+uint e_transitPlayersToArena(uint[]@ values)
+{
+	bool tbMode = GetAnyData(_ADK_EVENT_SC_TB) > 0;
+	Map@ map = GetMapByPid(MAP_SierraCavesEventLobby, 0);
+	
+	if (!valid(map))
+	{
+		EraseAnyData(_ADK_EVENT_SC_TIMER1_ID);
+		return 0;
+	}
+
+	Critter@[] critters;
+	uint crittersCount = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_ALL, critters);
+	uint offset = Random(0, crittersCount -1);
+	uint count = 0;
+	
+	if (crittersCount > 0)
+	{
+		for(uint i = 0; i < 10 && count < 3 && i < crittersCount; i++)
+		{
+			Critter@ critter = critters[(i + offset) % crittersCount];
+		
+			if (critter.GetAccess() == ACCESS_CLIENT)
+			{
+				critter.TimeoutBase[TO_BATTLE] = 0;
+				TransitToDungeonImmediate(critter, tbMode ? TB_DUNGEON_ID : RT_DUNGEON_ID, Random(0, 3), false);
+				critter.SetEvent(CRITTER_EVENT_DEAD, "_CritterDeadInDungeonLoc");
+				SaveAnyData(GetAnyData(_ADK_EVENT_SC_COUNT) + 1, _ADK_EVENT_SC_COUNT);
+
+				count++;
+			}
+		}
+	}
+	
+	if (count > 0)
+	{
+		return REAL_MS(200);
+	}
+	else
+	{
+		AddNewMessage("Let the Hunger Games begin!", REAL_SECOND(10), 0, COLOR_ORANGE, true, EVENT_ID);
+		AddNewMessage("Hunger Games Arena: " + GetAnyData(_ADK_EVENT_SC_COUNT) + " players alive.", REAL_SECOND(10), 0, COLOR_ORANGE, true, EVENT_ID);
+		DeleteLobby();
+		EraseAnyData(_ADK_EVENT_SC_TIMER1_ID);
+		uint timerId = CreateTimeEvent(__FullSecond, "e_showProgression", 1, true);
+		SaveAnyData(timerId, _ADK_EVENT_SC_TIMER2_ID);
+		return 0;
+	}
+}
+
+uint e_showProgression(array<uint>@ values)
+{
+	if (values.length() != 1)
+	{
+		return 0;
+	}
+	
+	int tier = values[0];
+	bool tbMode = GetAnyData(_ADK_EVENT_SC_TB) > 0;
+	
+	AddNewMessage("Hunger Games Arena: Tier " + tier + (tier == 4 ? " (rare)" : "") + " unlocked.", REAL_SECOND(10), 0, COLOR_ORANGE, true, EVENT_ID);
+	
+	if (tier < 4)
+	{
+		uint timerId = CreateTimeEvent(__FullSecond + (tbMode ? TB_PROGRESSION_TIME : RT_PROGRESSION_TIME), "e_showProgression", tier + 1, true);
+		SaveAnyData(timerId, _ADK_EVENT_SC_TIMER2_ID);
+	}
+	else 
+	{
+		EraseAnyData(_ADK_EVENT_SC_TIMER2_ID);
+	}
+	
+	return 0;
+}
+
+void _CritterDeadInDungeonLoc(Critter& player, Critter@ killer)
+{
+	ProcessKilledCritter(player.Id);
+}
+
+uint _CritterLeftDungeonLoc(uint[]@ values)
+{
+	if (values.length() != 2)
+	{
+		return 0;
+	}
+	
+	int dungeonId = values[0];
+	int playerId = values[1];
+	
+	Critter@ player = GetCritter(playerId);
+
+	if (!valid(player))
+	{
+		return 0;
+	}
+	
+	if (player.GetAccess() != ACCESS_CLIENT)
+	{
+		return 0;
+	}
+	
+	Map@ map = player.GetMap();
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return 0;
+	}
+	
+	if (!location.IsDungeon())
+	{
+		int playersCount = GetAnyData(_ADK_EVENT_SC_COUNT) - 1;
+		if (playersCount == 1)
+		{
+			FindAndProcessWinner();
+		}
+	
+		player.SetEvent(CRITTER_EVENT_DEAD, "");
+		return 0;
+	}
+	
+	return 0;
+}
+
+uint _CritterEnteredDungeonLoc(uint[]@ values)
+{
+	if (values.length() != 2)
+	{
+		return 0;
+	}
+	
+	int dungeonId = values[0];
+	int playerId = values[1];
+	
+	Critter@ player = GetCritter(playerId);
+	
+	if (player.GetAccess() != ACCESS_CLIENT)
+	{
+		return 0;
+	}
+	
+	Map@ map = player.GetMap();
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return 0;
+	}
+
+	Location@ locationLobby = GetLocationByPid(LOCATION_SierraCavesEventLobby, 0);
+	if (!valid(locationLobby))
+	{
+		TryToLockFinalLocation();
+	}
+	
+	return 0;
+}

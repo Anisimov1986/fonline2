@@ -1,0 +1,41 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Jeremy}
+{200}{}{You see: a Guard.}
+{210}{}{He is constantly staring at the nurse standing beside him.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{If only Jenna would notice me...@@ I've heard about this Lavender Flower. Maybe she'd like it?@@Don't stare at her, that's my girl!}
+
+[russ]
+{100}{}{Джереми}
+{200}{}{Вы видите : охранника который пялится на медсестру стоящую неподалеку.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Если бы только Дженна заметила меня * вздох *@@Я слышал об этом лавандовом цветке, который бы помог мне завоевать ее.}
+
+[pols]
+{100}{}{Jeremy}
+{200}{}{Widzisz strażnika, który uporczywie wpatruje się w stojącą obok pielęgniarkę. Zapewne bliska jest mu idea ponownego zaludnienia kontynentu.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Gdybym tylko przestał być dla niej niewidzialny...@@Może ten "Kwiat Lawendy", pomógłby mi ją zdobyć?@@Psst! Nie zasłaniaj mi jej, kiedy będziesz z nią @sex@|rozmawiał||rozmawiała|, dobra?}
+
+[ptbr]
+{100}{}{Jeremias}
+{200}{}{Você vê um guarda que estranhamente encara uma enfermeira próxima dele.}
+{1000}{}{Predialogue installations}
+{1010}{}{Floater}
+{2000}{}{Se apenas Joana me desse atenção *aapfhhh....*@@ Eu ouvi falar de um Flor de Lavanda que com certeza ganharia ela para mim.@@*psiu* Se for falar com a Joana, fala com ela de uma forma que ela olhe na minha direção.}
+

@@ -1,0 +1,114 @@
+[comment]
+- Couldn't enter caps ID for healing.
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+8 2010 D _var p q_christopher_meds = 1 R _var p q_christopher_meds + 1 R _item p PID_HEART_PILLS + 1 #
+6 2020 #
+7 2030 D _item p PID_BECKY_BOOK } 1 R _item p PID_BECKY_BOOK - 1 R _script economy_dialogs@r_GiveCaps 1 250 #
+9 2040 D _var p q_christopher_meds = 2 D _item p PID_HEART_PILLS = 0 #
+0 2050 @
+6 3000 economy_dialogs@dlg_PreparePrice 0 #
+2 3010 #
+0 3020 @
+7 4000 None 0 #
+0 4010 @
+8 5000 None 0 #
+0 5010 @
+9 6000 None 0 #
+0 6010 #
+0 6020 D _item p PID_BOTTLE_CAPS } 150 R _item p PID_BOTTLE_CAPS - 150 R _item p PID_HEART_PILLS + 1 &
+
+[engl]
+{100}{}{Annie}
+{200}{}{You see: Annie the doctor.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hello there my child. I'm Annie, the town doctor. What can I do for you?@@Hello there, I'm the doctor around these parts. What can I do for you?}
+{2010}{}{I need certain pills for Christopher.@@Christopher needs some pills for his illness. Do you have anything that might help him?}
+{2020}{}{Got any job?@@I'm looking for a job.@@I need a job, got something for me?}
+{2030}{}{I've got a book for you.@@I've found that book you wanted.@@I've got this book you wanted, Annie.}
+{2040}{}{Annie, I'm so sorry, but I've lost Christopher's Pills! Can I get more?}
+{2050}{}{Sorry, wrong place wrong time. Bye.@@Nevermind.@@Just looking around.@@Don't mind me, I'm just wandering about.}
+{3000}{}{A job? Not really... but... wait. I might have a small task for someone like you. You see, I like to read romances. All these shed-a-tear stories, when he loves her, she cheats him, and everything ends bad... [She sighs.] You know what books I'm talking about, don't you? So... if you ever find any book from "Lavender Flower" series, please bring them to me, I'd be very grateful... And could pay you a little, let's say... @lex annie_book_reward@ caps for one book.}
+{3010}{}{Uh, no thanks. Can I ask you something else?}
+{3020}{}{I'll try to find some. See you soon.}
+{4000}{}{Excellent! Here are your caps, as I promised. Now, if you'll excuse me... I've got a book to read. [She smiles broadly.]}
+{4010}{}{Yeah, thanks. Have fun and goodbye.@@Thanks. Have fun.@@Okay, thanks. }
+{5000}{}{Christopher? I've been telling him many times to not eat all these unhealthy things, but well, men are all alike. They know better and don't listen to any advice, and then we have what we have. All right, here, take these medicines to him, remind him also that he should finally pay me for last week. }
+{5010}{}{Will do. Thanks Annie.@@Okay, I will. Thanks Annie.}
+{6000}{}{[She sighs, then pulls out some pills.] How can you be so careless, to lose something like that? I can give you some more, but this time you'll have to pay for these ones. It will cost you 150 caps. Try not to lose these ones as well.}
+{6010}{}{Ehh... sorry I'm a bit short, I'll be right back.}
+{6020}{}{Fine, here. 150 caps. Don't worry Annie, this time they will not leave my sight.}
+
+[russ]
+{100}{}{Энни}
+{200}{}{Вы видите: Энни}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Здравствуй дитя мое. Я Энни, городской доктор. Что я могу сделать для вас?}
+{2010}{}{Мне нужны лекарства для Кристофера.}
+{2020}{}{Работы не найдется?}
+{2030}{}{У меня есть книга для вас.}
+{2040}{}{Я потерял лекарство для Кристофера! Вы можете дать мне еще?}
+{2050}{}{Я уже ухожу. До свидания.}
+{3000}{}{Работы? Вообще-то нет, но раз уж вы спросили... Ну, немного стыдно признаться, но мне очень нравится читать романы. Все эти душещипательные истории, когда он любит ее, она его обманывает, и все кончается плохо. [вздыхает] Да, так что если вы найдете книги из серии "Лавандовый Цветок" , пожалуйста, принесите их мне, Я буду благодарна ... И заплачу вам @lex annie_book_reward@ крышек.}
+{3010}{}{Э-э, нет, спасибо. Могу ли я спросить у вас кое-что еще?}
+{3020}{}{Я постараюсь найти. До скорого.}
+{4000}{}{Отлично! Вот ваша награда. Теперь, если вы меня извините ...}
+{4010}{}{Удачи и до свидания.}
+{5000}{}{Кристофер? Сколько раз я ему говорила не есть что попало, мужчины все одинаковые. Они знают лучше и не слушают хороших советов, и тогда случается то что случается. Хорошо, вот лекарства для него, и напомни ему оплать счет за прошлую неделю.}
+{5010}{}{Будет сделано. Спасибо Энни.}
+{6000}{}{[Она вздыхает, а затем вытаскивает какие-то таблетки.] Как ты можешь быть таким беспечным, и потерять что-то подобное? Я могу дать тебе еще, но на этот раз, придется заплатить. Это будет тебе стоить 150 монет. Постарайся не потерять и эти.}
+{6010}{}{Я забыл дома кошелек, скоро вернусь.}
+{6020}{}{Хорошо. Здесь 150 крышек. Не волнуйтесь Энни, на этот раз я не буду сводить с них взгляд.}
+
+[pols]
+{100}{}{Annie}
+{200}{}{Widzisz Annie.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Witaj, moje dziecko. Jestem Annie, miejscowy lekarz. Co mogę dla ciebie zrobić?}
+{2010}{}{Potrzebuję pewnych pigułek dla Christophera.}
+{2020}{}{Czy nie potrzebujesz może kogoś do pracy?}
+{2030}{}{Mam dla ciebie książkę.}
+{2040}{}{@sex@|Zgubiłem||Zgubiłam| pigułki Christophera! Mogę dostać więcej?}
+{2050}{}{Przykro mi, to nie ten czas ani miejsce. Do widzenia.}
+{3000}{}{Praca? Właściwie nie, ale jeśli pytasz... Cóż, nieco wstyd się przyznać, ale naprawdę uwielbiam czytać romanse. Te wszystkie wyciskające łzy opowieści w których on ją kocha, ona go zdradza i wszystko kończy się źle... [Wzdycha.] Tak, jeśli @sex@|znalazłbyś||znalazłabyś| cokolwiek z serii "Kwiat lawendy", proszę, przynieś to do mnie. Będę szalenie wdzięczna... I zapłacę @lex annie_book_reward@ kapsli.}
+{3010}{}{Och, nie, dzięki. Mogę spytać o coś jeszcze?}
+{3020}{}{Postaram się coś znaleźć. Do zobaczenia niebawem.}
+{4000}{}{Doskonale! Proszę, to w ramach nagrody. Teraz, jeśli wybaczysz...}
+{4010}{}{Baw się dobrze, do zobaczenia.}
+{5000}{}{Christopher? Tyle razy mu mówiłam, żeby przestał jeść niezdrowe rzeczy - ale wiesz, jacy są faceci. Zawsze wiedzą lepiej i nie słuchają dobrych porad, a potem kończy się to jak się kończy. W porządku, proszę, weź dla niego te lekarstwa, przypomnij mu też żeby wreszcie mi zapłacił za ostatni tydzień.}
+{5010}{}{Zrobię to. Dzięki, Annie.}
+{6000}{}{Wzdycha, po czym wyciąga kilka pigułek.] Jak możesz być tak @sex@|roztrzepany||roztrzepana|? Mogę ci dać więcej, ale tym razem będziesz @sex@|musiał||musiała| zapłacić 150 kapsli. Tylko tych też nie zgub!}
+{6010}{}{Ech... Przykro mi, ale nie mam przy sobie gotówki. Zaraz wrócę.}
+{6020}{}{Jasne, proszę. 150 kapsli. Nie martw się, Annie, tym razem nie spuszczę z nich oczu.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hello there my child. I'm Annie, the town doctor. What can I do for you?@@Hello there, I'm the doctor around these parts. What can I do for you?}
+{2010}{}{I need certain pills for Christopher.@@Christopher needs some pills for his illness. Do you have anything that might help him?}
+{2020}{}{Got any job?@@I'm looking for a job.@@I need a job, got something for me?}
+{2030}{}{I've got a book for you.@@I've found that book you wanted.@@I've got this book you wanted, Annie.}
+{2040}{}{Annie, I'm so sorry, but I've lost Christopher's Pills! Can I get more?}
+{2050}{}{Sorry, wrong place wrong time. Bye.@@Nevermind.@@Just looking around.@@Don't mind me, I'm just wandering about.}
+{3000}{}{A job? Not really... but... wait. I might have a small task for someone like you. You see, I like to read romances. All these shed-a-tear stories, when he loves her, she cheats him, and everything ends bad... [She sighs.] You know what books I'm talking about, don't you? So... if you ever find any book from "Lavender Flower" series, please bring them to me, I'd be very grateful... And could pay you a little, let's say... @lex annie_book_reward@ caps for one book.}
+{3010}{}{Uh, no thanks. Can I ask you something else?}
+{3020}{}{I'll try to find some. See you soon.}
+{4000}{}{Excellent! Here are your caps, as I promised. Now, if you'll excuse me... I've got a book to read. [She smiles broadly.]}
+{4010}{}{Yeah, thanks. Have fun and goodbye.@@Thanks. Have fun.@@Okay, thanks. }
+{5000}{}{Christopher? I've been telling him many times to not eat all these unhealthy things, but well, men are all alike. They know better and don't listen to any advice, and then we have what we have. All right, here, take these medicines to him, remind him also that he should finally pay me for last week. }
+{5010}{}{Will do. Thanks Annie.@@Okay, I will. Thanks Annie.}
+{6000}{}{[She sighs, then pulls out some pills.] How can you be so careless, to lose something like that? I can give you some more, but this time you'll have to pay for these ones. It will cost you 150 caps. Try not to lose these ones as well.}
+{6010}{}{Ehh... sorry I'm a bit short, I'll be right back.}
+{6020}{}{Fine, here. 150 caps. Don't worry Annie, this time they will not leave my sight.}
+

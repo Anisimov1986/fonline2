@@ -1,0 +1,243 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+12 1010 D _var n name_mem_npc_player = 1 #
+2 1020 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 @
+2 2000 None 0 #
+3 2010 #
+6 2020 #
+7 2030 #
+0 2040 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 None 0 #
+12 5010 #
+0 5020 @
+6 6000 None 0 #
+12 6010 #
+9 6020 #
+10 6030 #
+11 6040 #
+0 6050 @
+7 7000 None 0 #
+12 7010 #
+0 7020 @
+9 8000 None 0 #
+11 8010 #
+10 8020 #
+12 8030 @
+10 9000 None 0 #
+9 9010 #
+11 9020 #
+12 9030 @
+11 10000 None 0 #
+9 10010 #
+10 10020 #
+12 10030 @
+12 11000 None 0 #
+3 11010 #
+6 11020 #
+7 11030 #
+0 11040 &
+
+[engl]
+{100}{}{James}
+{200}{}{You see a burly, thick-set man with short, bushy hair.}
+{210}{}{You see James Hoffy, the caravan master.}
+{1000}{}{Predialogue options}
+{1010}{}{Ciaeii}
+{1020}{}{Not familiar}
+{2000}{}{Hello there, I'm James Hoffy. But usually people call me Jimmy. I organize the caravans around here.}
+{2010}{}{Are there any caravans ready to go out now?}
+{2020}{}{Where do the caravans from Redding usually go?}
+{2030}{}{Hear any news around town lately?}
+{2040}{}{I was just looking around, Jimmy. Thanks. Goodbye.}
+{3000}{}{That I don't know. You'd have to ask the caravan drivers. You can usually find a caravan here on the 1st, 11th, and 21st of each month. Real neat and tidy that way. You see here, this is the way it works: When a caravan's in town and looking for help, the caravan master has his tent set up here just south of my castle. Real neat and tidy that way.}
+{3010}{}{Your castle? What do you mean?}
+{3020}{}{I see. I guess I'll talk to them, then. Thanks. Goodbye.}
+{4000}{}{What else is a man's home? Sheesh, were you brought up in a tent or something?}
+{4010}{}{Actually... Nah, you wouldn't believe me anyway.}
+{4020}{}{I've heard enough from you, damn bigot. Goodbye.}
+{5000}{}{Oh, yeah. Well, I guess that explains things, then. A lot of things. Heh, heh.}
+{5010}{}{Just what are you implying? Forget it, let me ask you something else.}
+{5020}{}{No it doesn't! Goodbye.}
+{6000}{}{We run caravans all over the frickin' place. Let me tell you: We've got gold ore going out to Vault City, we've got some going out to New Reno (ooh-la-la, if ya know what I mean), and we've even got some going to those prissy bastards in the NCR.}
+{6010}{}{Let me ask you something else.}
+{6020}{}{What can you tell me about Vault City?}
+{6030}{}{What can you tell me about New Reno?}
+{6040}{}{What can you tell me about the NCR?}
+{6050}{}{Ok. Bye.}
+{7000}{}{There's not a lot of news these days. Ordinary things - the mine, caravans and all that kind.}
+{7010}{}{Can I ask you something else?}
+{7020}{}{Yeah. Okay, I'll go.}
+{8000}{}{Vault City (Jimmy spits disdainfully). Yeah, I'll tell you about those sons-of-bitches. Fucking bastards are too good for the rest of us. They only trade medicine to us because they need our gold. Otherwise they'd just let us all rot. I wouldn't spend too much time there, kid. But if you want to see it, Ben Wade heads out from here on the 1st of every month.}
+{8010}{}{What can you tell me about the NCR?}
+{8020}{}{What can you tell me about New Reno?}
+{8030}{}{Thanks. Let me ask you about something else.}
+{9000}{}{Now that's a town. Just make sure you keep your wits about you and your gun handy. Lots of fighting going on there. If those families ever worked together on something, then New Reno'd really be a power to be reckoned with. The way it is though…Pffft. You want to get there, join up with Savinelli - he leaves here on the 21st of each month.}
+{9010}{}{What can you tell me about Vault City?}
+{9020}{}{What can you tell me about the NCR?}
+{9030}{}{Thanks. Let me ask you about something else.}
+{10000}{}{The New California Republic is just full of self-righteous sons-of-bitches. They've got everything down their way all straightened out all right. A little too straight. They're as self righteous a bunch as you could ever meet. Stanwell runs a caravan from here to the NCR on the 11th of each month.}
+{10010}{}{What can you tell me about Vault City?}
+{10020}{}{What can you tell me about New Reno?}
+{10030}{}{Thanks. Let me ask you about something else.}
+{11000}{}{What do ya want, Pally?}
+{11010}{}{Are there any caravans ready to go out now?}
+{11020}{}{Where do the caravans from Redding usually go?}
+{11030}{}{Hear any news around town lately?}
+{11040}{}{Nothing, bye.}
+
+[russ]
+{100}{}{Джеймс}
+{200}{}{Вы видите большого, толстого мужчину с короткими, буйными волосами.}
+{210}{}{Вы видите Джеймса Xоффи, хозяина каравана.}
+{210}{}{Вы видите рубцеватого, выглядящего сильным мужчину с оценивающим взглядом.}
+{1000}{}{Predialogue options}
+{1010}{}{Ciaeii}
+{1020}{}{Not familiar}
+{2000}{}{Привет, я Джеймс Хоффи. Но обычно меня зовут Джимми. Я заведую караванами, которые уходят из реддинга.}
+{2010}{}{Сейчас какие-нибудь караваны готовятся к отходу?}
+{2020}{}{Куда обычно уходят караваны из Реддинга?}
+{2030}{}{Что нового в городе?}
+{2040}{}{Просто осматриваюсь, Джимми. Спасибо, до свидания.}
+{3000}{}{Этого я не знаю. Поспрашивай караванщиков. Обычно караваны уходят от сюда 1-го, 11-го и 21-го числа каждого месяца. Все налажено, как часы. Видишь ли, вот как оно устроено: когда в городе находится караван, которому нужны люди, начальник каравана ставит палатку здесь, прямо к югу от моей крепости. Все налажено, как часы.}
+{3010}{}{Твоя крепость? Что ты имеешь в виду?}
+{3020}{}{Понятно. Тогда, наверное, я поговорю с ними. Спасибо, до свидания.}
+{4000}{}{Как же, мой дом - как там говорят? Пхе, тебя что, в палатке воспитывали?}
+{4010}{}{Вообще-то да.}
+{4020}{}{Все, я тебя наслушался, узколобый. До свидания.}
+{5000}{}{Ах, да. Тогда это многое объясняет. Хе-хе.}
+{5010}{}{Теперь, когда мы это выяснили, позволь задать тебе еще несколько вопросов.}
+{5020}{}{Ну да, а ты как думал. До свидания.}
+{6000}{}{Мы водим караваны по всей этой богом забытой пустыне. Вот что я тебе скажу: Мы отправляем золотую руду в Город Убежище, еще часть руды идет в Нью Рено (о-ля-ля, если ты понимаешь о чем я говорю), и даже эти ханжи из нкр у нас ее покупают.}
+{6010}{}{Позволь мне спросить у тебя еще кое-что.}
+{6020}{}{Что вы можете рассказать мне о Городе-Убежище?}
+{6030}{}{Что вы можете рассказать мне о Нью-Рено?}
+{6040}{}{Что вы можете рассказать мне о НКР?}
+{6050}{}{Все ясно. Пока.}
+{7000}{}{Последнее время новостей мало, по-моему. Обычное дело - шахты, караваны и все такое.}
+{7010}{}{Можно я еще спрошу.}
+{7020}{}{Ага. Ладно, я пойду.}
+{8000}{}{Город-Убежище (Джимми презрительно плюет). Да, я расскажу вам о этих сукиных сыновьях. Эти ублюдки слишком хороши для нас. Они только продают нам медицинские товары, потому что они нуждаются в нашем золоте. В противном случае они бы оставили нас гнить. Я бы не тратить слишком много времени там, парень.}
+{8010}{}{Что вы можете рассказать мне о НКР?}
+{8020}{}{Что вы можете рассказать мне о Нью-Рено?}
+{8030}{}{Спасибо. У меня есть еще вопрос.}
+{9000}{}{Теперь это город. Просто убедитесь, что вы держите ваш пистолет под рукой. Там идет постоянная война. Если бы все эти семьи работали бы вместе то с властью Нью-Рено пришлось бы ститаться. Так оно и есть, хотя...}
+{9010}{}{Что вы можете рассказать мне о Городе-Убежище?}
+{9020}{}{Что вы можете рассказать мне о НКР?}
+{9030}{}{Спасибо. У меня есть еще вопрос.}
+{10000}{}{Новая Калифорнийская Республика просто сборище самодовольных сукиных сыновей. Они делают все по своему.}
+{10010}{}{Что вы можете рассказать мне о Городе-Убежище?}
+{10020}{}{Что вы можете рассказать мне о Нью-Рено?}
+{10030}{}{Спасибо. У меня есть еще вопрос.}
+{11000}{}{Что еще приятель?}
+{11010}{}{Сейчас какие-нибудь караваны готовятся к отходу?}
+{11020}{}{Куда обычно уходят караваны из Реддинга?}
+{11030}{}{Что нового в городе?}
+{11040}{}{Ничего. Пока}
+
+[pols]
+{100}{}{James}
+{200}{}{Widzisz krępego, krótkowłosego mężczyznę.}
+{210}{}{Widzisz Jamesa Hoffyego, zarządcę karawan.}
+{1000}{}{Predialogue options}
+{1010}{}{Ciaeii}
+{1020}{}{Not familiar}
+{2000}{}{Witaj, nazywam się James Hoffy, znajomi mówią na mnie Jimmy. Odpowiadam za tutejsze karawany.}
+{2010}{}{Czy jest jakaś karawana, z którą mogę się teraz zabrać?}
+{2020}{}{Dokąd zmierzają karawany z Redding?}
+{2030}{}{Jak leci, James?}
+{2040}{}{Tylko się rozglądam, James, dzięki. I do widzenia.}
+{3000}{}{A wiesz, w sumie to nie mam pojęcia, spytaj prowadzących konkretne karawany. Zazwyczaj któraś zatrzymuje się tutaj pierwszego, jedenastego i dwudziestego pierwszego dnia miesiąca. Jeśli akurat kogoś szukają, rozbijają namiot niedaleko mojej fortecy.}
+{3010}{}{Fortecy?}
+{3020}{}{Rozumiem. W takim razie pogadam z nimi. Dzięki.}
+{4000}{}{Mój dom to moja forteca, tak? @sex@|Wychowałeś||Wychowałaś| się w jakimś wigwamie czy co?}
+{4010}{}{Zasadniczo, tak.}
+{4020}{}{Już się @sex@|nasłuchałem||nasłuchałam|, starczy. Do widzenia.}
+{5000}{}{Aha, to sporo tłumaczy, heheheh.}
+{5010}{}{Skoro już to mamy za sobą, może zadam ci jeszcze parę pytań?}
+{5020}{}{Tak, pewnie że tak. Na razie.}
+{6000}{}{Karawany przemierzają prawie że całe cholerne pustkowia. Niektóre wywożą złoto do zasranego Kryptopolis, inne do Nowego Reno, jeszcze inne nawet do tych nadętych buców z RNK.}
+{6010}{}{Aha. Mam jeszcze parę pytań...}
+{6020}{}{Co wiesz o Kryptopolis?}
+{6030}{}{Nowe Reno? Co wiesz o tym miejscu?}
+{6040}{}{RNK?}
+{6050}{}{Jasne. Czas na mnie.}
+{7000}{}{Niewiele się tutaj ostatnio dzieje. Nic nadzwyczjnego, kopalnie, karawany, w sumie tyle.}
+{7010}{}{Mogę spytać o coś innego?}
+{7020}{}{Mhm. Muszę spadać.}
+{8000}{}{Kryptopolis... [Jimmy spluwa z pogardą.] Te skurwiele myślą że, są lepsi od wszystkich. Handlują z nami tylko dlatego że mamy złoto, inaczej chuja byśmy mieli. Nie zabawiaj tam więcej niż musisz. No ale jeśli koniecznie musisz się tam udać, Ben Wade zazwyczaj wyrusza do nich pierwszego.}
+{8010}{}{Co możesz mi powiedzieć o RNK?}
+{8020}{}{Nowe Reno?}
+{8030}{}{Dzięki. Mam jeszcze kilka pytań.}
+{9000}{}{To jest dopiero miejsce... Dobrze mieć łeb na karku i gnata pod ręką, sporo tam mordobicia i innych tego typu atrakcji. To miasto mogło by znaczyć dużo na pustkowiach, gdyby tamtejsze gangi zamiast tłuc się między sobą zaczęły współpracować. A że jest jak jest... Chcesz tam wpaść, pogadaj z Savinellim, około dwudziestego pierwszego każdego miesiąca.}
+{9010}{}{Kryptopolis?}
+{9020}{}{RNK? Jak tam jest?}
+{9030}{}{Dzięki. Mogę zadać jeszcze parę pytań?}
+{10000}{}{RNK, czyli najjaśniejsza, pierdolona ich kurwa mać, Republika Nowej Kalifornii, ze stolicą w Shady Sands. Przemądrzałe dupki, wszystkich by chcieli ustawiać, a nie każdemu to pasuje. Mi na przykład nie. Bardziej nadętych pajaców nie spotkasz. Stanwell wyrusza do nich jedenastego.}
+{10010}{}{Co wiesz o Kryptopolis?}
+{10020}{}{Nowe Reno? Warto tam wpaść?}
+{10030}{}{Dzięki, ale mam jeszcze jedno pytanie...}
+{11000}{}{Czego chcesz, @sex@|kolego||kobieto|?}
+{11010}{}{Wyruszają teraz jakieś karawany?}
+{11020}{}{Gdzie zazwyczaj zmierzają karawany z Redding?}
+{11030}{}{Jakieś wieści?}
+{11040}{}{W sumie to nic, na razie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue options}
+{1010}{}{Ciaeii}
+{1020}{}{Not familiar}
+{2000}{}{Hello there, I'm James Hoffy. But usually people call me Jimmy. I organize the caravans around here.}
+{2010}{}{Are there any caravans ready to go out now?}
+{2020}{}{Where do the caravans from Redding usually go?}
+{2030}{}{Hear any news around town lately?}
+{2040}{}{I was just looking around, Jimmy. Thanks. Goodbye.}
+{3000}{}{That I don't know. You'd have to ask the caravan drivers. You can usually find a caravan here on the 1st, 11th, and 21st of each month. Real neat and tidy that way. You see here, this is the way it works: When a caravan's in town and looking for help, the caravan master has his tent set up here just south of my castle. Real neat and tidy that way.}
+{3010}{}{Your castle? What do you mean?}
+{3020}{}{I see. I guess I'll talk to them, then. Thanks. Goodbye.}
+{4000}{}{What else is a man's home? Sheesh, were you brought up in a tent or something?}
+{4010}{}{Actually... Nah, you wouldn't believe me anyway.}
+{4020}{}{I've heard enough from you, damn bigot. Goodbye.}
+{5000}{}{Oh, yeah. Well, I guess that explains things, then. A lot of things. Heh, heh.}
+{5010}{}{Just what are you implying? Forget it, let me ask you something else.}
+{5020}{}{No it doesn't! Goodbye.}
+{6000}{}{We run caravans all over the frickin' place. Let me tell you: We've got gold ore going out to Vault City, we've got some going out to New Reno (ooh-la-la, if ya know what I mean), and we've even got some going to those prissy bastards in the NCR.}
+{6010}{}{Let me ask you something else.}
+{6020}{}{What can you tell me about Vault City?}
+{6030}{}{What can you tell me about New Reno?}
+{6040}{}{What can you tell me about the NCR?}
+{6050}{}{Ok. Bye.}
+{7000}{}{There's not a lot of news these days. Ordinary things - the mine, caravans and all that kind.}
+{7010}{}{Can I ask you something else?}
+{7020}{}{Yeah. Okay, I'll go.}
+{8000}{}{Vault City (Jimmy spits disdainfully). Yeah, I'll tell you about those sons-of-bitches. Fucking bastards are too good for the rest of us. They only trade medicine to us because they need our gold. Otherwise they'd just let us all rot. I wouldn't spend too much time there, kid. But if you want to see it, Ben Wade heads out from here on the 1st of every month.}
+{8010}{}{What can you tell me about the NCR?}
+{8020}{}{What can you tell me about New Reno?}
+{8030}{}{Thanks. Let me ask you about something else.}
+{9000}{}{Now that's a town. Just make sure you keep your wits about you and your gun handy. Lots of fighting going on there. If those families ever worked together on something, then New Reno'd really be a power to be reckoned with. The way it is though…Pffft. You want to get there, join up with Savinelli - he leaves here on the 21st of each month.}
+{9010}{}{What can you tell me about Vault City?}
+{9020}{}{What can you tell me about the NCR?}
+{9030}{}{Thanks. Let me ask you about something else.}
+{10000}{}{The New California Republic is just full of self-righteous sons-of-bitches. They've got everything down their way all straightened out all right. A little too straight. They're as self righteous a bunch as you could ever meet. Stanwell runs a caravan from here to the NCR on the 11th of each month.}
+{10010}{}{What can you tell me about Vault City?}
+{10020}{}{What can you tell me about New Reno?}
+{10030}{}{Thanks. Let me ask you about something else.}
+{11000}{}{What do ya want, Pally?}
+{11010}{}{Are there any caravans ready to go out now?}
+{11020}{}{Where do the caravans from Redding usually go?}
+{11030}{}{Hear any news around town lately?}
+{11040}{}{Nothing, bye.}
+

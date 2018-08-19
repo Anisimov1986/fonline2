@@ -1,0 +1,65 @@
+// author: [SoT]Skycast
+#include "client_gui_h.fos"
+#include "_defines.fos"
+#include "_macros.fos"
+IGUIElementTextOpt@ ammoCountText;
+
+void InitAmmoCountScreen() 
+{
+	@ammoCountText = GUI_AddText(CLIENT_MAIN_SCREEN_GAME)
+		.Position("IntAmmoCountText")
+		.TextOptions(FONT_SPECIAL, COLOR_TEXT)
+		.Visible(false);
+}
+
+void ShowHideAmmoCountScreen() 
+{
+	ammoCountText.Visible(!ammoCountText.isVisible());
+}
+
+void UpdateAmmoCountScreen() 
+{
+	ammoCountText.Visible(false);
+	if (!__GameBar) 
+		return;
+	CritterCl @chosen =  GetChosen();
+	if(@chosen == null)
+		return;
+	uint8      mode = 0;
+    ProtoItem@ weapon = chosen.GetSlotProto( SLOT_HAND1, mode );
+	if(valid(weapon) && !weapon.Stackable && weapon.Type == ITEM_TYPE_WEAPON) 
+	{
+		if (weapon.Weapon_Caliber > 0)
+		{
+			uint ammoCount=0;
+			ItemCl@[] ammo;
+			for( uint i = 0, j = chosen.GetItemsByType( ITEM_TYPE_AMMO, ammo ); i < j; i++ )
+			{
+				if( ammo[ i ].Proto.Ammo_Caliber == weapon.Weapon_Caliber )
+					ammoCount+=ammo[ i ].GetCount();
+			}
+			uint shotammo    = _WeaponRound( weapon, _WeaponModeUse( mode ) );
+			if (shotammo == 1 && shotammo * 10 > ammoCount)
+				ammoCountText.TextColor(COLOR_RED);
+			else if (shotammo > 1 && shotammo * 4 > ammoCount)
+				ammoCountText.TextColor(COLOR_RED);
+			else 
+				ammoCountText.TextColor(COLOR_YELLOW);
+			if(ammoCount > 99) 
+			{
+				ammoCountText.setText("		" + ammoCount);
+				ammoCountText.Visible(true);
+			} 
+			else if(ammoCount > 9) 
+			{
+				ammoCountText.setText("		0" + ammoCount);
+				ammoCountText.Visible(true);
+			}
+			else if(ammoCount > 0) 
+			{
+				ammoCountText.setText("		00" + ammoCount);
+				ammoCountText.Visible(true);
+			}
+		}
+	}
+}

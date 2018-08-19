@@ -1,0 +1,486 @@
+#include "entire_h.fos"
+
+#include "_maps.fos"
+#include "_itempid.fos"
+#include "_npc_pids.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "game_event_class_utils.fos"
+#include "game_event_common_critters.fos" 
+#include "game_event_common_loot.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos" 
+
+#define EVENT_DURATION                  (REAL_MINUTE(10))
+#define GOSSIP_DELAY                    (REAL_MINUTE(3))
+#define GOSSIP_DURATION                 (REAL_MINUTE(6))
+#define SIGHT_RANGE                     (40)
+#define BANDITS_HUNTER_CAMP_EVENT_ID    (33)
+#define ROBBERS_HUNTER_CAMP_EVENT_ID    (34)
+#define HIGHWAYMEN_HUNTER_CAMP_EVENT_ID (35)
+#define GANG_HUNTER_CAMP_EVENT_ID       (36)
+#define RAIDER_HUNTER_CAMP_EVENT_ID     (37)
+
+#define ROLE_HUNTER                     (288100)
+
+import void SpawnEventFlares(Map& map, uint entire) from "game_event_utils";
+import void RemoveEventFlares(Map& map) from "game_event_utils";
+import int GetNextTime(uint Id) from "game_events";
+import Location@+ GetNearestVisibleLocation(uint x, uint y) from "game_event_utils";
+import double CountAliveCrittersPercent(Map &map) from "game_event_utils";
+
+// Hunters initialization
+int[] hunterParams = {ST_REPLICATION_TIME, -1, ST_BAG_ID, BAG_HUNT}; 		
+int[] hunterPids = {NPC_PID_HUNT1, NPC_PID_HUNT2, NPC_PID_HUNT3};
+CritterTemplate hunterCritterTemplate = CritterTemplate(hunterPids, ROLE_HUNTER)
+		.SetStartEntire(ENTIRE_EVENT_DEFENDER_SPAWN)
+		.SetCritterParams(hunterParams);		
+
+		
+dictionary @events;
+void initEvents()
+{
+	@events = dictionary();
+	
+	events.set("" + BANDITS_HUNTER_CAMP_EVENT_ID, HunterCampEvent(BANDITS_HUNTER_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_BanditsVS)
+		.AddGroupId(GROUP_Bandits)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM1)
+		.SetEnemy(ROLE_BANDIT, 3)
+		.AddLoot(PID_GECKO_PELT, 4, 6)
+		.AddLoot(PID_GOLDEN_GECKO_PELT, 2, 4)
+		.AddLoot(PID_BRAHMIN_SKIN, 2, 4)
+		.AddLoot(PID_FIRE_GECKO_PELT, 0, 1)
+		.AddLoot(PID_ROPE, 1, 3)
+		.AddLoot(PID_METAL_TRASH, 4, 6)
+		.AddLoot(PID_CORD, 1, 3)
+		.AddLoot(PID_GUNPOWDER, 4, 6)
+		.AddLoot(PID_SHOTGUN_SHELLS, 50, 150)
+		.AddLoot(PID_223_FMJ, 50, 150)
+		.AddLoot(PID_STIMPAK, 1, 3)
+		.AddLoot(PID_NUKA_COLA, 1, 2)
+		.AddLoot(PID_CIGARETTES, 1, 2)
+		.AddLoot(PID_BOTTLE_CAPS, 250, 750)
+		.AddLoot(commonRareLoot)
+		.AddLoot(commonL1Loot)
+	);
+	
+	events.set("" + ROBBERS_HUNTER_CAMP_EVENT_ID, HunterCampEvent(ROBBERS_HUNTER_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Robbers)
+		.AddGroupId(GROUP_RobbersVS)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM1)
+		.SetEnemy(ROLE_ROBBER, 4)
+		.AddLoot(PID_GECKO_PELT, 5, 7)
+		.AddLoot(PID_GOLDEN_GECKO_PELT, 3, 5)
+		.AddLoot(PID_BRAHMIN_SKIN, 3, 5)
+		.AddLoot(PID_FIRE_GECKO_PELT, 0, 1)
+		.AddLoot(PID_ROPE, 2, 4)
+		.AddLoot(PID_METAL_TRASH, 5, 7)
+		.AddLoot(PID_CORD, 2, 4)
+		.AddLoot(PID_GUNPOWDER, 5, 7)
+		.AddLoot(PID_SHOTGUN_SHELLS, 100, 200)
+		.AddLoot(PID_223_FMJ, 100, 200)
+		.AddLoot(PID_STIMPAK, 2, 4)
+		.AddLoot(PID_NUKA_COLA, 2, 3)
+		.AddLoot(PID_CIGARETTES, 2, 3)
+		.AddLoot(PID_BOTTLE_CAPS, 250, 750)
+		.AddLoot(commonRareLoot)
+		.AddLoot(commonL1Loot)		
+	);
+	
+	events.set("" + HIGHWAYMEN_HUNTER_CAMP_EVENT_ID, HunterCampEvent(HIGHWAYMEN_HUNTER_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Highwaymen)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM1)
+		.SetEnemy(ROLE_HIGHWAYMEN, 5)
+		.AddLoot(PID_GECKO_PELT, 6, 8)
+		.AddLoot(PID_GOLDEN_GECKO_PELT, 8, 10)
+		.AddLoot(PID_BRAHMIN_SKIN, 5, 7)
+		.AddLoot(PID_FIRE_GECKO_PELT, 8, 10)
+		.AddLoot(PID_ROPE, 3, 5)
+		.AddLoot(PID_METAL_TRASH, 8, 10)
+		.AddLoot(PID_CORD, 6, 8)
+		.AddLoot(PID_GUNPOWDER, 8, 10)
+		.AddLoot(PID_SHOTGUN_SHELLS, 50, 100)
+		.AddLoot(PID_223_FMJ, 300, 400)
+		.AddLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddLoot(PID_NUKA_COLA, 8, 10)
+		.AddLoot(PID_CIGARETTES, 8, 10)
+		.AddLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddLoot(commonRareLoot)
+		.AddLoot(commonL3Loot)
+	);
+	
+	events.set("" + GANG_HUNTER_CAMP_EVENT_ID, HunterCampEvent(GANG_HUNTER_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Gang)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM1)
+		.SetEnemy(ROLE_GANG, 6)
+		.AddLoot(PID_GECKO_PELT, 6, 8)
+		.AddLoot(PID_GOLDEN_GECKO_PELT, 8, 10)
+		.AddLoot(PID_BRAHMIN_SKIN, 5, 7)
+		.AddLoot(PID_FIRE_GECKO_PELT, 8, 10)
+		.AddLoot(PID_ROPE, 3, 5)
+		.AddLoot(PID_METAL_TRASH, 8, 10)
+		.AddLoot(PID_CORD, 6, 8)
+		.AddLoot(PID_GUNPOWDER, 8, 10)
+		.AddLoot(PID_SHOTGUN_SHELLS, 50, 100)
+		.AddLoot(PID_223_FMJ, 300, 400)
+		.AddLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddLoot(PID_NUKA_COLA, 8, 10)
+		.AddLoot(PID_CIGARETTES, 8, 10)
+		.AddLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddLoot(commonRareLoot)
+		.AddLoot(commonL2Loot)
+	);
+	
+	events.set("" + RAIDER_HUNTER_CAMP_EVENT_ID, HunterCampEvent(RAIDER_HUNTER_CAMP_EVENT_ID)
+		.AddGroupId(GROUP_Raiders_Metal_Armor)
+		.AddGroupId(GROUP_Raiders_Weak)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD1)
+		.AddLocationPid(TERRAIN_Desert, LOCATION_EventHunterCampD2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM2)
+		.AddLocationPid(TERRAIN_Mountain, LOCATION_EventHunterCampM1)
+		.SetEnemy(ROLE_RAIDER, 7)
+		.AddLoot(PID_GECKO_PELT, 6, 8)
+		.AddLoot(PID_GOLDEN_GECKO_PELT, 8, 10)
+		.AddLoot(PID_BRAHMIN_SKIN, 5, 7)
+		.AddLoot(PID_FIRE_GECKO_PELT, 8, 10)
+		.AddLoot(PID_ROPE, 3, 5)
+		.AddLoot(PID_METAL_TRASH, 8, 10)
+		.AddLoot(PID_CORD, 6, 8)
+		.AddLoot(PID_GUNPOWDER, 8, 10)
+		.AddLoot(PID_SHOTGUN_SHELLS, 50, 100)
+		.AddLoot(PID_223_FMJ, 300, 400)
+		.AddLoot(PID_SUPER_STIMPAK, 2, 4)
+		.AddLoot(PID_NUKA_COLA, 8, 10)
+		.AddLoot(PID_CIGARETTES, 8, 10)
+		.AddLoot(PID_BOTTLE_CAPS, 750, 1250)
+		.AddLoot(commonRareLoot)
+		.AddLoot(commonL3Loot)
+	);
+}
+
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);	
+	return GetNextTime(values[0]);
+}
+
+void event_start(int id) 
+{
+	HunterCampEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + id, @event))
+	{
+		event.StartEvent();
+		
+		uint[] values = {id};
+		CreateTimeEvent(__FullSecond + EVENT_DURATION, "e_event_stop", values, true);
+	}
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	HunterCampEvent @event;
+		
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	if (events.get("" + values[0], @event))
+	{
+		event.StopEvent();
+	}
+	
+	return 0;
+}
+
+void event_start( Critter& cr, int id, int , int)
+{
+	event_start(id);
+}
+
+void event_stop( Critter& cr, int id, int , int)
+{
+	uint[] values = {id};
+	e_event_stop(values);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(values[0]);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	array<uint> v(values.length);
+	
+	for (uint i = 0; i < values.length(); i++)
+	{
+		v[i] = values[i];
+	}
+	
+	e_event_stop(v);
+}
+
+
+class HunterCampEvent
+{	
+	private int eventId, enemyRole, enemyCount;
+	private AutoLootGenerator autoLootGenerator;
+	private WorldMapLocationGenerator worldMapLocationGenerator;
+
+	
+	HunterCampEvent(int eventId)
+	{
+		this.eventId = eventId;
+	}
+	
+	HunterCampEvent@ AddGroupId(uint groupId)
+	{
+		worldMapLocationGenerator.AddGroupId(groupId);
+		return @this;
+	}
+	
+	HunterCampEvent@ AddLocationPid(uint terrainType, uint locationPid)
+	{
+		worldMapLocationGenerator.AddLocationPid(terrainType, locationPid);
+		return @this;
+	}
+	
+	HunterCampEvent@ SetEnemy(int enemyRole, int enemyCount)
+	{
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		critterTemplate.SetShowCritterDist1(SIGHT_RANGE);
+	
+		this.enemyRole = enemyRole;
+		this.enemyCount = enemyCount;
+		return @this;
+	}
+	
+	HunterCampEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity);
+		return @this;
+	}
+	
+	HunterCampEvent@ AddLoot(int lootPid, int lootMinQuantity, int lootMaxQuantity, double probability)
+	{
+		autoLootGenerator.AddLoot(lootPid, lootMinQuantity, lootMaxQuantity, probability);
+		return @this;
+	}
+		
+	HunterCampEvent@ AddLoot(AutoLootGenerator& autoLootGenerator)
+	{
+		this.autoLootGenerator.AddLoot(autoLootGenerator);
+		return @this;
+	}
+		
+	bool IsEventMap(Map& map)
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		return autoLocation.IsLocationMap(map);
+	}
+	
+	void StartEvent()
+	{	
+		AutoLocation autoLocation = AutoLocation(eventId);
+		Location @location = autoLocation.Create(worldMapLocationGenerator);
+		
+		if (!valid(location))
+		{
+			return;
+		}
+		
+		location.Visible = true;
+		location.AutoGarbage = false;
+		location.Color = COLOR_RED;
+	
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			autoLocation.Delete();
+			return;
+		}
+		
+		AddEnemies(map);
+		AddLootToChest(map);
+		AddHunters(map);
+		map.SetScript("_MapInit");
+
+		SpawnEventFlares(map, ENTIRE_EVENT_FLARE_SPAWN);
+		InitializeGossip(location);
+	}
+	
+	void InitializeGossip(Location &location)
+	{		
+		Location @townLocation = GetNearestVisibleLocation(location.WorldX, location.WorldY);
+		if (!valid(townLocation)) 
+		{
+			return;
+		}
+		
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		int critterPid = critterTemplate.GetCritterPids()[0];
+		
+		GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, GOSSIP_DURATION);
+		gossipDefinition.SetGossipId(eventId);
+		gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+		gossipDefinition.SetDelay(GOSSIP_DELAY);
+		gossipDefinition.SetSourceLocationId(location.Id);
+		gossipDefinition.SetMsgId(STR_HUNTER_CAMP_EVENT_GOSSIP_LOC);
+		gossipDefinition.SetSourceMsgId(STR_HUNTER_CAMP_EVENT_GOSSIP_NO_LOC);
+		gossipDefinition.SetLexems("$locationname" + "@msg GM " + STR_LOC_NAME(townLocation.GetProtoId()) + "@"
+				+ "$crittername" + "@msg DLG " + STR_NPC_PROTO_NAME(critterPid) + "@");
+		StartGossip(gossipDefinition);
+	}
+	
+	void StopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+	
+		autoLocation.Delete();
+		
+		Location @location = autoLocation.GetLocation();
+		
+		location.Visible = false;
+		location.AutoGarbage = true;
+		location.Update();
+	
+		Map @map = location.GetMapByIndex(0); 
+		if (!valid(map)) 
+		{
+			return;
+		}
+	
+		RemoveEventFlares(map);
+		
+		StopGossip(eventId, GOSSIP_SCOPE_EVENT);
+	}
+	
+	private void AddLootToChest(Map& map)
+	{
+		autoLootGenerator.SpawnLootToContainers(map, 10, true, true);
+	}
+	
+	private void AddHunters(Map& map)
+	{
+		uint[] animations = {ANIM2_DEAD_PRONE_FRONT, ANIM2_DEAD_PRONE_BACK, ANIM2_DEAD_FRONT, ANIM2_DEAD_BACK, ANIM2_DEAD_BLOODY_SINGLE, ANIM2_DEAD_BLOODY_BURST};
+		int maxHuntersCount = map.CountEntire(ENTIRE_EVENT_DEFENDER_SPAWN);
+		int huntersCount = Random(enemyCount * 0.3, enemyCount * 0.9);
+		
+		if (huntersCount < 2)
+		{
+			huntersCount = 2;
+		}
+		
+		if (huntersCount > maxHuntersCount)
+		{
+			huntersCount = maxHuntersCount;
+		}
+	
+		for (int i = 0; i < huntersCount; i++)
+		{
+			Critter@ critter = hunterCritterTemplate.Spawn(map);
+		}
+		
+		hunterCritterTemplate.ToDeadAll(map, animations);
+	}
+	
+	private void AddEnemies(Map& map)
+	{		
+		CritterTemplate@ critterTemplate = GetCritterTemplate(enemyRole);
+		
+		for (int i = 0; i < enemyCount; i++)
+		{
+			critterTemplate.Spawn(map);
+		}
+	}
+	
+	void TryStopEvent()
+	{
+		AutoLocation autoLocation = AutoLocation(eventId);
+		if (!autoLocation.IsCreated())
+		{
+			return;
+		}
+	
+		Location @location = autoLocation.GetLocation();
+		Map @map = location.GetMapByIndex(0);
+
+		if (!valid(map)) 
+		{
+			return;
+		}
+		
+		if (CountAliveCrittersPercent(map) < 0.25)
+		{
+			StopEvent();
+		}
+	}
+}
+
+HunterCampEvent@ findEvent(Map& map)
+{
+	if (!valid(events))
+	{
+		initEvents();
+	}
+	
+	string@[] keys;
+	events.keys(keys);
+
+	for (uint i = 0; i < keys.length(); i++)
+	{
+		HunterCampEvent @event;
+		
+		if (events.get(keys[i], @event) && event.IsEventMap(map))
+		{
+			return event;
+		}
+	}
+	
+	return null;
+}
+
+void _MapInit(Map& map, bool firstTime)
+{
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_MapCritterOut");
+}
+
+void _MapCritterOut(Map& map, Critter& cr)
+{
+	HunterCampEvent @event = findEvent(map);
+	if (valid(event))
+	{
+		event.TryStopEvent();
+	}
+}

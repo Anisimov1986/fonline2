@@ -1,0 +1,249 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+7 2010 #
+3 2020 #
+4 2030 #
+0 2040 @
+3 3000 None 0 #
+6 3010 D _item p PID_BOTTLE_CAPS } 200 R _item p PID_BOTTLE_CAPS - 200 R _item p PID_NUKA_COLA + 1 R _script map_ncr@r_NCRProfit 1 20 #
+6 3020 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_NUKA_COLA + 5 R _script map_ncr@r_NCRProfit 1 100 #
+6 3030 D _item p PID_BOTTLE_CAPS } 2000 R _item p PID_BOTTLE_CAPS - 2000 R _item p PID_NUKA_COLA + 10 R _script map_ncr@r_NCRProfit 1 200 #
+2 3040 @
+4 4000 None 0 #
+6 4010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_CIGARETTES + 1 R _script map_ncr@r_NCRProfit 1 10 #
+6 4020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_BOTTLE_CAPS - 500 R _item p PID_CIGARETTES + 5 R _script map_ncr@r_NCRProfit 1 50 #
+6 4030 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_CIGARETTES + 10 R _script map_ncr@r_NCRProfit 1 100 #
+2 4040 @
+6 5000 None 0 #
+2 5010 #
+0 5020 @
+7 6000 None 0 #
+10 6010 #
+11 6020 #
+8 6030 #
+9 6040 @
+8 7000 None 0 #
+6 7010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_GAMMA_GULP_BEER + 1 R _script map_ncr@r_NCRProfit 1 10 #
+6 7020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_BOTTLE_CAPS - 500 R _item p PID_GAMMA_GULP_BEER + 5 R _script map_ncr@r_NCRProfit 1 50 #
+6 7030 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_GAMMA_GULP_BEER + 10 R _script map_ncr@r_NCRProfit 1 100 #
+2 7040 @
+9 8000 None 0 #
+6 8010 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_ROENTGEN_RUM + 1 R _script map_ncr@r_NCRProfit 1 10 #
+6 8020 D _item p PID_BOTTLE_CAPS } 500 R _item p PID_BOTTLE_CAPS - 500 R _item p PID_ROENTGEN_RUM + 5 R _script map_ncr@r_NCRProfit 1 50 #
+6 8030 D _item p PID_BOTTLE_CAPS } 1000 R _item p PID_BOTTLE_CAPS - 1000 R _item p PID_ROENTGEN_RUM + 10 R _script map_ncr@r_NCRProfit 1 100 #
+2 8040 @
+10 9000 None 0 #
+6 9010 D _item p PID_BOTTLE_CAPS } 5 R _item p PID_BOTTLE_CAPS - 5 R _item p PID_BEER + 1 R _script map_ncr@r_NCRProfit 1 1 #
+6 9020 D _item p PID_BOTTLE_CAPS } 25 R _item p PID_BOTTLE_CAPS - 25 R _item p PID_BEER + 5 R _script map_ncr@r_NCRProfit 1 3 #
+6 9030 D _item p PID_BOTTLE_CAPS } 50 R _item p PID_BOTTLE_CAPS - 50 R _item p PID_BEER + 10 R _script map_ncr@r_NCRProfit 1 10 #
+2 9040 @
+11 10000 None 0 #
+6 10010 D _item p PID_BOTTLE_CAPS } 10 R _item p PID_BOTTLE_CAPS - 10 R _item p PID_BOOZE + 1 R _script map_ncr@r_NCRProfit 1 1 #
+6 10020 D _item p PID_BOTTLE_CAPS } 50 R _item p PID_BOTTLE_CAPS - 50 R _item p PID_BOOZE + 5 R _script map_ncr@r_NCRProfit 1 5 #
+6 10030 D _item p PID_BOTTLE_CAPS } 100 R _item p PID_BOTTLE_CAPS - 100 R _item p PID_BOOZE + 10 R _script map_ncr@r_NCRProfit 1 10 #
+2 10040 &
+
+[engl]
+{100}{}{Bartender}
+{200}{}{You see: Bartender.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, welcome to my Bar.@@ Well, well. What did the desert drag in now?@@A customer! Do you want a drink?@@Did you come here to get drunk or stare like an idiot?.@@Only the finest beverages which you won't find anywhere else in the wasteland!@@Hard day, eh?@@What's your poison?}
+{2010}{}{Give me something to drink.}
+{2020}{}{Got a Nuka-Cola?@@Got a Nuka?@@Do you have Nuka-Cola?}
+{2030}{}{Got any cigs?@@Got smokes?@@Got any smokes?}
+{2040}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] I think i ...hic... go home maybe.}
+{3000}{}{Sure, how many? 200 caps per bottle.@@Yeah, I've got those. One hundred caps per bottle.}
+{3010}{}{Just one.@@I need one.@@I'll take one.}
+{3020}{}{Five will be good.@@Give me five.@@I want five.}
+{3030}{}{Ten , I need to stock up.@@Give me ten.@@I'm kinda thirsty, give me ten.@@I want ten.}
+{3040}{}{I changed my mind, sorry.@@Nevermind that.}
+{4000}{}{Sure, how much do you need? One pack for a hundred caps.@@Yep, got those. One hundred for a pack.}
+{4010}{}{Just one.@@I need one.@@I'll take one.@@Then I'll take one.}
+{4020}{}{Five is okay I guess.@@I want five.@@Throw me five.}
+{4030}{}{Ten.@@Give me ten.@@I want ten.@@I need ten.}
+{4040}{}{Nevermind.@@Actually I wanted something else...}
+{5000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{5010}{}{Thank's. I need something more.}
+{5020}{}{Awesome, bye.}
+{6000}{}{Yeah, Regular beer is five caps, booze costs ten. I also have Gamma Gulp and Roentgen Rum, those are for a hundred caps. So, Which one do you want?}
+{6010}{}{Beer.}
+{6020}{}{Booze.}
+{6030}{}{Gamma Gulp Beer.}
+{6040}{}{Roentgen Rum.}
+{7000}{}{Sure, how much do you need? One bottle for 100 caps.}
+{7010}{}{Just one.}
+{7020}{}{Five will be good.}
+{7030}{}{Ten , I need to stock up.}
+{7040}{}{Naah I changed my mind.}
+{8000}{}{Sure, how much do you need? One bootle is for 100 caps.}
+{8010}{}{Just one.}
+{8020}{}{Five will be good.}
+{8030}{}{Ten , I need to stock up.}
+{8040}{}{Naah I changed my mind.}
+{9000}{}{Sure, how much do you need? One beer is for 5 caps.}
+{9010}{}{Just one.}
+{9020}{}{Five will be good.}
+{9030}{}{Ten , I need to stock up.}
+{9040}{}{Naah I changed my mind.}
+{10000}{}{Sure, how much do you need? One bootle is for 10 caps.}
+{10010}{}{Just one.}
+{10020}{}{Five will be good.}
+{10030}{}{Ten , I need to stock up.}
+{10040}{}{Naah I changed my mind.}
+
+[russ]
+{100}{}{Бармен}
+{200}{}{Вы видите туповатого парня, протирающего стакан.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Привет , добро пожаловать в мой бар ..@@Ну и кого тут опять пустошь принесла?@@О клиент! как насчет выпить?@@Ты сюда пишел, чтобы напиться или смотреть?.@@Только лучшие напитки, таких вы не найдете больше нигде в пустоши!@@Тяжелый денек?@@Привет путник, выпить или поговорить?}
+{2010}{}{Налей мне чего-нибудь.}
+{2020}{}{Есть Нюка-Кола?}
+{2030}{}{Есть сигареты?}
+{2040}{}{[Уйти] Пожалуй я пойду.@@[Уйти] Пока.@@[Уйти] Мне пора.@@[Уйти] Пожалуй мне уже хватит..ик.}
+{3000}{}{Конечно, сколько вам нужно? Одна бутылка 200 крышек.}
+{3010}{}{Только одну.}
+{3020}{}{Взьму пяток.}
+{3030}{}{Десять, нужно пополнить запасы.}
+{3040}{}{Я передумал.}
+{4000}{}{Конечно, сколько вам нужно? Одна пачка 100 крышек.}
+{4010}{}{Только одну.}
+{4020}{}{Пять будет в самый раз.}
+{4030}{}{Десять, возьму прозапас.}
+{4040}{}{Я передумал.}
+{5000}{}{Хорошо, вот получите.}
+{5010}{}{Спасибо. Мне нужно кое-что еще.}
+{5020}{}{Отлично, пока.}
+{6000}{}{Да, обычное пиво по 5, самогон по 10. Есть ещё Гамма глоток и Рентген-ром за 100. что предпочитаете?}
+{6010}{}{Пиво.}
+{6020}{}{Самогон.}
+{6030}{}{Гамма глоток.}
+{6040}{}{Рентген-ром.}
+{7000}{}{Конечно, сколько вам нужно? Одна бутылка 100 крышек.}
+{7010}{}{Только одну.}
+{7020}{}{Взьму пяток.}
+{7030}{}{Пожалуй десять в самый раз.}
+{7040}{}{Нее, я передумал.}
+{8000}{}{Конечно, сколько вам нужно? Одна бутылка 100 крышек.}
+{8010}{}{Одну.}
+{8020}{}{Пять будет в самый раз.}
+{8030}{}{Десяток дай, я шикую.}
+{8040}{}{Нее, я передумал.}
+{9000}{}{Конечно, сколько вам нужно? Одна бутылка 5 крышек.}
+{9010}{}{Одну.}
+{9020}{}{Пять будет в самый раз.}
+{9030}{}{Возьму десять.}
+{9040}{}{Нее, я передумал.}
+{10000}{}{Конечно, сколько вам нужно? Одна бутылка 10 крышек.}
+{10010}{}{Одну.}
+{10020}{}{Пять будет в самый раз.}
+{10030}{}{Возьму десять.}
+{10040}{}{Нее, я передумал.}
+
+[pols]
+{100}{}{Barman}
+{200}{}{Widzisz barmana.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Cześć, witam w mojej knajpie.@@ Nonono, co tutaj przywiało z pustyni?@O, klient! Czego się napijesz?@@Chcesz się napić, czy tylko stać i gapić się w sufit?@@Najlepsze trunki, nie do dostania nigdzie indziej!@@Ciężki dzień, co?@@A może papieroska?@@Napijesz się czegoś, czy może chcesz tylko pogadać?}
+{2010}{}{Daj mi coś do picia.}
+{2020}{}{Masz Nuka-Colę?}
+{2030}{}{Masz może papierosy?}
+{2040}{}{[Odejdź.] To ja już pójdę.@@Pa.@@[Odejdź.] Do zobaczenia kiedy indziej.@@[Odejdź.] Muszę już iść.@@[Odejdź.] Idę już.@@[Odejdź.] Muszę lecieć gdzie indziej.@@[Odejdź.] Dzięki, pa.@@Wychodzę.@@[Odejdź.] Idę do domu, trzymaj się.}
+{3000}{}{Świetnie, ile butelek? Jedna kosztuje 200 kapsli.}
+{3010}{}{Tylko jedną.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Dziesięć, muszę zrobić drobne zapasy.}
+{3040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{4000}{}{Świetnie, ile paczek? Jedna kosztuje 100 kapsli.}
+{4010}{}{Tylko jedną.}
+{4020}{}{Pięć wystarczy.}
+{4030}{}{Dziesięć, muszę zrobić drobne zapasy.}
+{4040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{5000}{}{Proszę bardzo.}
+{5010}{}{Dzięki. Potrzebuję jeszcze czegoś innego.}
+{5020}{}{Świetnie, trzymaj się.}
+{6000}{}{Taa, zwykłe piwo kosztuje piątaka, a wódka dychę. Gamma Gulp i Rum Roentgena kosztują po stówce. Co podać?}
+{6010}{}{Normalnego browara.}
+{6020}{}{Wódeczkę.}
+{6030}{}{Piwo, Gamma Gulp.}
+{6040}{}{Rum Roentgena.}
+{7000}{}{Świetnie, ile butelek? Jedna kosztuje 100 kapsli.}
+{7010}{}{Tylko jedną.}
+{7020}{}{Pięć wystarczy.}
+{7030}{}{Dziesięć, muszę zrobić drobne zapasy.}
+{7040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{8000}{}{Świetnie, ile butelek? Jedna kosztuje 100 kapsli.}
+{8010}{}{Tylko jedną.}
+{8020}{}{Pięć wystarczy.}
+{8030}{}{Dziesięć, muszę zrobić drobne zapasy.}
+{8040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{9000}{}{Świetnie, ile butelek? Jedna kosztuje 5 kapsli.}
+{9010}{}{Tylko jedną.}
+{9020}{}{Pięć wystarczy.}
+{9030}{}{Dziesięć, muszę zrobić drobne zapasy.}
+{9040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+{10000}{}{Świetnie, ile butelek? Jedna kosztuje 10 kapsli.}
+{10010}{}{Tylko jedną.}
+{10020}{}{Pięć wystarczy.}
+{10030}{}{Dziesięć, muszę zrobić drobne zapasy.}
+{10040}{}{Ach, właściwie to @sex@|zmieniłem||zmieniłam| zdanie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, welcome to my Bar.@@ Well, well. What did the desert drag in now?@@A customer! Do you want a drink?@@Did you come here to get drunk or stare like an idiot?.@@Only the finest beverages which you won't find anywhere else in the wasteland!@@Hard day, eh?@@What's your poison?}
+{2010}{}{Give me something to drink.}
+{2020}{}{Got a Nuka-Cola?@@Got a Nuka?@@Do you have Nuka-Cola?}
+{2030}{}{Got any cigs?@@Got smokes?@@Got any smokes?}
+{2040}{}{[Leave] I will go now.@@Bye.@@[Leave] See you some other time.@@[Leave] I'm going take my leave.@@[Leave] I will go.@@[Leave] I have to be somwhere else.@@[Leave]Thank's, bye.@@I'm leaving.@@[Leave] Whatever.@@[Leave] See you.@@[Leave] I think i ...hic... go home maybe.}
+{3000}{}{Sure, how many? 200 caps per bottle.@@Yeah, I've got those. One hundred caps per bottle.}
+{3010}{}{Just one.@@I need one.@@I'll take one.}
+{3020}{}{Five will be good.@@Give me five.@@I want five.}
+{3030}{}{Ten , I need to stock up.@@Give me ten.@@I'm kinda thirsty, give me ten.@@I want ten.}
+{3040}{}{I changed my mind, sorry.@@Nevermind that.}
+{4000}{}{Sure, how much do you need? One pack for a hundred caps.@@Yep, got those. One hundred for a pack.}
+{4010}{}{Just one.@@I need one.@@I'll take one.@@Then I'll take one.}
+{4020}{}{Five is okay I guess.@@I want five.@@Throw me five.}
+{4030}{}{Ten.@@Give me ten.@@I want ten.@@I need ten.}
+{4040}{}{Nevermind.@@Actually I wanted something else...}
+{5000}{}{Very well, here you go.@@Okay, there you go.@@There you are.}
+{5010}{}{Thank's. I need something more.}
+{5020}{}{Awesome, bye.}
+{6000}{}{Yeah, Regular beer is five caps, booze costs ten. I also have Gamma Gulp and Roentgen Rum, those are for a hundred caps. So, Which one do you want?}
+{6010}{}{Beer.}
+{6020}{}{Booze.}
+{6030}{}{Gamma Gulp Beer.}
+{6040}{}{Roentgen Rum.}
+{7000}{}{Sure, how much do you need? One bottle for 100 caps.}
+{7010}{}{Just one.}
+{7020}{}{Five will be good.}
+{7030}{}{Ten , I need to stock up.}
+{7040}{}{Naah I changed my mind.}
+{8000}{}{Sure, how much do you need? One bootle is for 100 caps.}
+{8010}{}{Just one.}
+{8020}{}{Five will be good.}
+{8030}{}{Ten , I need to stock up.}
+{8040}{}{Naah I changed my mind.}
+{9000}{}{Sure, how much do you need? One beer is for 5 caps.}
+{9010}{}{Just one.}
+{9020}{}{Five will be good.}
+{9030}{}{Ten , I need to stock up.}
+{9040}{}{Naah I changed my mind.}
+{10000}{}{Sure, how much do you need? One bootle is for 10 caps.}
+{10010}{}{Just one.}
+{10020}{}{Five will be good.}
+{10030}{}{Ten , I need to stock up.}
+{10040}{}{Naah I changed my mind.}
+

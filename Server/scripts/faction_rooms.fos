@@ -1,0 +1,294 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "serializator.fos"
+
+FactionRoom@[] FactionRooms;
+
+FactionRoom@[] GetMapFactionRooms(Map@ map)
+{
+	FactionRoom@[] factionRooms;
+	if(!valid(map))
+		return factionRooms;
+	
+	for (uint i = 0; i < FactionRooms.length(); i++)
+	{
+		FactionRoom@ factionRoom = FactionRooms[i];
+		if(factionRoom.IsOnMap(map))
+			factionRooms.insertLast(factionRoom);
+	}
+	
+	return factionRooms;
+}
+
+FactionRoom@ GetFactionRoom(Critter& tenant)
+{
+	FactionRoom@[] factionRooms = GetMapFactionRooms(tenant.GetMap());
+	for (uint i = 0; i < factionRooms.length(); i++)
+		if(factionRooms[i].IsTenant(tenant))
+			return @factionRooms[i];
+			
+	return null;
+}
+
+FactionRoom@ GetFactionRoom(Item& door)
+{
+	for (uint i = 0; i < FactionRooms.length(); i++)
+		if(FactionRooms[i].IsDoor(door))
+			return @FactionRooms[i];
+	
+	return null;
+}
+
+void InitRoomDoorIn(Item& door, bool)
+{
+	if(door.GetType() != ITEM_TYPE_DOOR)
+		return;
+	uint16 hexX = 0, hexY = 0;
+	Map@ map = door.GetMapPosition(hexX, hexY);
+	if(!valid(map))
+		return;
+	
+	FactionRooms.insertLast(FactionRoom(door, door.Val0/*GetFactionRoomLocation(map)*/, DEFAULT_FACTIONROOM_ENTIRE));
+
+	door.SetEvent(ITEM_EVENT_SKILL, "_FactionRoomIn");
+}
+
+uint GetFactionRoomLocation(Map& hotelMap)
+{
+	switch(hotelMap.GetProtoId())
+	{
+		case MAP_ncr_bazaar:
+			return 403;
+	}
+	return 0;
+}
+
+bool _FactionRoomIn(Item& door, Critter& cr, int skill)
+{
+	if(cr.Timeout[TO_BATTLE] > 0)
+	{
+		cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70309);
+		return true;
+	}
+	if (!FactionMap(cr,door))
+	{
+		cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70347);
+		return true;
+	}
+	
+	FactionRoom@ factionRoom = GetFactionRoom(door);
+	if(!valid(factionRoom))
+	{
+		Log("<Error: no hotel room found for door: "+door.Id+">");
+		return true;
+	}
+	if(!factionRoom.IsTenant(cr))
+	{
+		//cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70304);
+		Log("Room Error");
+		return true;
+	}
+	if(!factionRoom.GoIn(cr))
+		Log("Entering hotel room failed: door="+door.Id+", critter="+cr.Id);
+	
+	return true;
+}
+
+void InitRoomDoorOut(Item& door, bool)
+{
+	if(door.GetType() != ITEM_TYPE_DOOR)
+		return;
+		
+	door.SetEvent(ITEM_EVENT_SKILL, "_FactionRoomOut");
+}
+
+bool _FactionRoomOut(Item& door, Critter& cr, int skill)
+{
+	Map@ map = cr.GetMap();
+	if(!valid(map))
+		return true;
+	
+	@map = GetFactionMap(map);
+	if(!valid(map))
+		return true;
+		
+	cr.TransitToMap(map.Id, door.Val0);
+	
+	return true;
+}
+
+Map@ GetFactionMap(Map& hotelRoomMap)
+{
+	switch(hotelRoomMap.GetProtoId())
+	{
+		case 602:
+			return GetMapByPid(MAP_navarro_base, 0);
+		case 603:
+			return GetMapByPid(MAP_BOS_entrance, 0);
+			
+			
+		case 604:
+			return GetMapByPid(MAP_ncr_bazaar, 0);
+		case 605:
+			return GetMapByPid(MAP_ncr_bazaar, 0);
+
+		case 606:
+			return GetMapByPid(MAP_junktown, 0);
+			
+	}
+	return null;
+}
+
+bool FactionMap(Critter& cr, Item& door)
+{
+	if (cr.FACTION == 6 && door.Val0 == 403 )
+		return true;
+	if (cr.FACTION == 5 && door.Val0 == 404 )
+		return true;
+	if (cr.FACTION == 2 && door.Val0 == 402 )
+		return true;
+	if (cr.FACTION == 3 && door.Val0 == 405 )
+		return true;
+	if (cr.FACTION == 1 && door.Val0 == 406 )
+		return true;
+	return false;
+}
+
+class FactionRoom
+{
+	#define _GetKey		("FactionRoom_"+DoorMap+"_"+DoorX+"_"+DoorY)
+	
+	private uint DoorMap;
+	private uint DoorX;
+	private uint DoorY;
+	private uint16 FactionRoomLocationPid;
+	private uint FactionRoomEntire;
+	private uint[] Tenants;
+	private uint[] FactionRoomMaps;
+	
+	FactionRoom(Item& door, uint16 factionRoomLocationPid, uint factionRoomEntire)
+	{
+		uint16 hexX = 0, hexY = 0;
+		Map@ map = door.GetMapPosition(hexX, hexY);
+		if(!valid(map))
+			return;
+		DoorMap = map.GetProtoId();
+		DoorX = door.HexX;
+		DoorY = door.HexY;
+		FactionRoomLocationPid = factionRoomLocationPid;
+		FactionRoomEntire = factionRoomEntire;
+		Load();
+	}
+	
+	void Load()
+	{
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+			return;
+		
+		serializator.Get(Tenants);
+		serializator.Get(FactionRoomMaps);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(Tenants);
+		serializator.Set(FactionRoomMaps);
+		
+		serializator.Save(_GetKey);
+	}
+	
+	uint GetDoorX() {return DoorX;}
+	
+	uint GetDoorY() {return DoorY;}
+	
+	bool IsOnMap(Map& map)
+	{
+		return DoorMap == map.GetProtoId();
+	}
+	
+	bool IsDoor(Item& door)
+	{
+		uint16 hexX = 0, hexY = 0;
+		Map@ map = door.GetMapPosition(hexX, hexY);
+		if(!valid(map))
+			return false;
+		
+		return map.GetProtoId() == DoorMap && hexX == DoorX && hexY == DoorY;
+	}
+	
+	bool IsTenant(Critter& critter)
+	{
+		Map@ map = critter.GetMap();
+		if(!valid(map) || map.GetProtoId() != DoorMap)
+			return false;
+		
+		for (uint i = 0; i < Tenants.length(); i++)
+			if(critter.Id == Tenants[i])
+				return true;
+		SetTenancy(critter);
+		return true;
+	}
+	
+	uint GetTenantCount()
+	{
+		return Tenants.length();
+	}
+	
+	void SetTenancy(Critter& tenant)
+	{
+		Map@ map = tenant.GetMap();
+		if(!valid(map))
+			return;
+		
+		uint factionRoomMapId = CreateFactionRoomMap(tenant);
+		if(factionRoomMapId == 0)
+		{
+			Log("<Error: cannot create map for hotel room: "+FactionRoomLocationPid+">");
+			return;
+		}
+		Tenants.insertLast(tenant.Id);
+		FactionRoomMaps.insertLast(factionRoomMapId);
+		Log("Tenancy set for door: "+DoorX+", "+DoorY);
+		Save();
+	}
+	
+	private uint CreateFactionRoomMap(Critter& tenant)
+	{
+		uint locationId = CreateLocation(FactionRoomLocationPid, tenant.WorldX, tenant.WorldY, null);
+		if(locationId == 0)
+			return 0;
+		Location@ location = GetLocation(locationId);
+		if(!valid(location))
+			return 0;
+			
+		Map@ map = location.GetMapByIndex(0);
+		if(!valid(map))
+			return 0;
+			
+		return map.Id;
+	}
+	
+	bool GoIn(Critter& tenant)
+	{
+		if(!IsTenant(tenant))
+			return false;
+		Map@ map = tenant.GetMap();
+		if(!valid(map))
+			return false;
+		
+		for (uint i = 0; i < Tenants.length(); i++)
+			if(Tenants[i] == tenant.Id)
+			{
+				Map@ factionRoomMap = GetMap(FactionRoomMaps[i]);
+				if(!valid(factionRoomMap))
+					return false;
+				tenant.TransitToMap(factionRoomMap.Id, FactionRoomEntire);
+			}
+		
+		return true;
+	}
+	
+}

@@ -1,0 +1,282 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+21 1010 D _var p q_hub_drifters } 4 #
+2 1020 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+3 1030 D _var p name_mem_npc_player = 1 #
+7 1040 D _var p name_mem_npc_player = 2 #
+12 1050 D _var p name_mem_npc_player = 3 #
+13 1060 D _var p name_mem_npc_player = 4 @
+2 2000 None 0 #
+65507 2010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+4 2020 @
+3 3000 None 0 #
+4 3010 #
+65507 3020 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 @
+4 4000 None 0 #
+65507 4010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+5 4020 @
+5 5000 None 0 #
+65507 5010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+6 5020 @
+6 6000 None 0 #
+65507 6010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+7 6020 R _var p name_mem_npc_player = 2 @
+7 7000 None 0 #
+65507 7010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+8 7020 D _item p PID_BOTTLE_CAPS } 1500 D _var p name_mem_npc_player < 3 #
+20 7030 D _param p SK_SMALL_GUNS } 160 D or D _param p SK_BIG_GUNS } 160 D or D _param p SK_ENERGY_WEAPONS } 160 R _var p name_mem_npc_player = 4 #
+20 7040 D _param p ST_STRENGTH } 7 R _var p name_mem_npc_player = 4 @
+8 8000 None 0 #
+65507 8010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+9 8020 D _param p SK_BARTER } 80 R _item p PID_BOTTLE_CAPS - 500 R _var p name_mem_npc_player = 3 #
+10 8030 D _param p SK_BARTER { 79 R _item p PID_BOTTLE_CAPS - 1000 R _var p name_mem_npc_player = 3 @
+9 9000 None 0 #
+65507 9010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+11 9020 R _item p PID_BOTTLE_CAPS - 500 R _var p name_mem_npc_player = 4 @
+10 10000 None 0 #
+65507 10010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+11 10020 R _item p PID_BOTTLE_CAPS - 500 R _var p name_mem_npc_player = 4 @
+11 11000 None 0 #
+0 11010 R _var p q_hub_drifters = 4 R _script dialog@r_ShowQuestMessage 1 9325 R _script dialog@r_GarbageLocation 0  #
+65507 11020 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 @
+12 12000 None 0 #
+65507 12010 R _script dialog@r_AttackGroup 1 207 R _script dialog@r_MakeAggresive 1 207 #
+11 12020 D _item p PID_BOTTLE_CAPS } 500 R _var p name_mem_npc_player = 4 R _item p PID_BOTTLE_CAPS - 500 #
+20 12030 D _param p SK_SMALL_GUNS } 160 D or D _param p SK_BIG_GUNS } 160 D or D _param p SK_ENERGY_WEAPONS } 160 R _var p name_mem_npc_player = 4 #
+20 12040 D _param p ST_STRENGTH } 7 R _var p name_mem_npc_player = 4 @
+13 13000 None 0 #
+0 13010 R _var p q_hub_drifters = 4 R _script dialog@r_GarbageLocation 0  @
+20 14000 None 0 #
+0 14010 R _var p q_hub_drifters = 4 R _script dialog@r_ShowQuestMessage 1 9325 R _script dialog@r_GarbageLocation 0  #
+65507 14020 R _script dialog@r_MakeAggresive 1 207 R _script dialog@r_AttackGroup 1 207 @
+21 15000 None 0 &
+
+[engl]
+{100}{}{Drifters' leader}
+{200}{}{You see the drifters' leader.}
+{210}{}{He's looking at you with distrust and carefully observing your every step.}
+{1000}{}{Predialogue installations}
+{1010}{}{Finished}
+{1020}{}{first met}
+{1030}{}{player known}
+{1040}{}{dialog interrupted before choosing peaceful option}
+{1050}{}{barter not finished (paid 500 or 1000 caps)}
+{1060}{}{Peaceful resolution done, but not finished dialog}
+{2000}{}{Stop right there! What do you want from us? That fucker Jack sent you? We don't want any violence, but we will shoot if you come closer!}
+{2010}{}{Yes, he sent me. You had your chance to go peacefully... Now you'll go violently, straight to the afterlife. Prepare to die, scum! [Attack.]}
+{2020}{}{Yes, he did. Now, I strongly suggest you reconsider the proposal and leave his property.@@Whoa, calm down. Yeah, I was tasked with persuading you to leave his property.}
+{3000}{}{What?@@What Do you want?@@What now?}
+{3010}{}{Jack wants you out of his warehouse.@@Jack wants you to leave his warehouse.}
+{3020}{}{[Attack.] I'm gonna remove you from this warehouse, permanently! @@[Attack.] You're all going to die!}
+{4000}{}{No way, @sex@|man||gal|. We're not leaving this place. Besides, who told you it's his property? It's ours, 'cause we were here first. We even began to settle here, as you can see.}
+{4010}{}{Since you put it that way, I have no other choice but to kill you all. [Attack].}
+{4020}{}{I saw his ownership papers and they seemed legit. He got them from the Council of Hub. And so, I believe you are indeed squatting on his property.}
+{5000}{}{Hey, hey, not so fast. And how far does that Council of yours authority stretch? We're miles from there. They can go issue orders to the families of New Reno, for all I care. Besides, no stupid, arbitrary law will keep us from settling where we want to. We're free people, you know? Free people!}
+{5010}{}{I see that reasoning with you is pointless. Get ready to face some frontier justice, hobo! [Attack.]}
+{5020}{}{Even if there's some truth in your words, Jack still has the same right to use the warehouse as you have. And from what he's told me, he paid you to leave this place. You took the caps and still didn't move out.}
+{6000}{}{What? He told you that? What a cheap, lying bastard! We took no caps from that fucker, he didn't offer us anything, he just shouted and threatened us.}
+{6010}{}{This conversation serves no purpose anymore. You're all dead anyway. [Attack.]}
+{6020}{}{Still, it's word against word. Is there really no way I can convince you to leave this place?}
+{7000}{}{I think we are wasting time here.}
+{7010}{}{Time's not the only thing that's gonna get wasted here. [Attack.]}
+{7020}{}{How about some more caps? Maybe if I got a bit more, you could afford to settle in some other place nearby.}
+{7030}{}{I am a firearms expert, and I can see you pussies are no match for me. And I haven't had a good fight since yesterday, so... [Start to draw your weapon slowly.]}
+{7040}{}{[Flex your muscles.] See that? You want to taste some of me, or will you get the hell outta this warehouse?}
+{8000}{}{Really? [His eyes widen a bit.] And what sum are we talking about?}
+{8010}{}{The sum of all your fears, dirty squatter. [Attack.]}
+{8020}{}{How about 500 caps? You've already got a lot of money from Jack.}
+{8030}{}{Maybe... a thousand caps?}
+{9000}{}{I guess you're right. I'll take these. [He takes the caps.] But that still isn't enough. We need at least another 500 caps to get on the road again. Sorry. [He gives you a nasty smile.]}
+{9010}{}{What the fuck? You're gonna regret this! [Attack.]}
+{9020}{}{Shit, Jack was right. I never should have trusted you people. But what the hell, take them. [Hand him another 500 caps.] Will you leave?}
+{10000}{}{Right. I'll take these. [He takes the caps.] But that still won't be enough. We need... at least another five hundred to get on the road again. Sorry. [He grins].}
+{10010}{}{What? You'll fucking regret this! [Attack.]}
+{10020}{}{Jack was right. I never should have trusted you people. Damn, take them. [Give him another 500 caps.] You're gonna leave this place or what?}
+{11000}{}{Yeah, sure! It was nice doin' business with you. [He smiles broadly.] We'll be leaving soon, and we don't want to be disturbed when we pack stuff from that warehouse. We will keep our end of the bargain, but don't try to stop us now.}
+{11010}{}{You were not supposed to take... Ah, fuck it, Just get the fuck out of my face before I change my mind. [Leave.]}
+{11020}{}{[Attack.] What? You won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{12000}{}{Don't think we'll be leaving with this paltry amount. You want us gone, gimme five hundred caps.}
+{12010}{}{No way, hobo, you're not getting anything more from me. [Attack.]}
+{12020}{}{All right, have it your way. [Give him 500 caps.] Are we done?}
+{12030}{}{This has gone too far. Get the fuck out or I'll shoot you all, I swear! [Draw your gun but don't fire... yet.]}
+{12040}{}{[Flex your muscles.] Fuck this shit! See that? You want to taste some of me, or will get the fuck outta here?!}
+{13000}{}{Yeah, yeah, we'll leaving, I swear. You can relax now, @sex@|man||woman|. Leave us.}
+{13010}{}{Good. Get going before I change my mind.}
+{14000}{}{[He looks pretty scared]. All right, all right, calm down! Just calm down, @sex@|man||woman|! We will leave soon, just let us get ready for the road and get that stuff from the warehouse...}
+{14010}{}{Yeah, leave before I change my mind.}
+{14020}{}{[Attack.] No fucking way, you won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{15000}{}{Stop looking at me like that. One big fuckin Mr. Sarcastic...}
+
+[russ]
+{100}{}{Drifters' leader}
+{200}{}{You see the drifters' leader.}
+{210}{}{He's looking at you with distrust and carefully observing your every step.}
+{1000}{}{Predialogue installations}
+{1010}{}{Finished}
+{1020}{}{first met}
+{1030}{}{player known}
+{1040}{}{dialog interrupted before choosing peaceful option}
+{1050}{}{barter not finished (paid 500 or 1000 caps)}
+{1060}{}{Peaceful resolution done, but not finished dialog}
+{2000}{}{Stop right there! What do you want from us? That fucker Jack sent you?}
+{2010}{}{Yes, he sent me. You had your chance to go peacufully... Now you'll go violently, straight to the afterlife. Prepare to die, scum! [Attack.]}
+{2020}{}{Yes, he did. Now, I strongly suggest you reconsider the proposal and leave his property.}
+{3000}{}{What?}
+{3010}{}{Jack sent me. He wants you out of his warehouse.}
+{3020}{}{I'm gonna remove you from this warehouse, permamently! [Attack.]}
+{4000}{}{No way, @sex@|man||gal|. We're not leaving this place. Besides, who told you it's his property? It's ours, cos we were here first.}
+{4010}{}{Since you put it that way, I have no other choice but to kill you all. [Attack].}
+{4020}{}{I saw his ownership papers and they seemed legit. He got them from the Council of Hub. And so, I believe you are indeed squatting on his property.}
+{5000}{}{Hey, hey, not so fast. And how far does that Council's of yours authority stretch? We're miles from there. They can even issue orders to the families of New Reno, for all I care. Besides, no stupid, arbitrary law will keep us from settling where we want to. We're free people, you know? Free people!}
+{5010}{}{I see that reasoning with you is pointless. Get ready to face some frontier justice, hobo!}
+{5020}{}{Even if there's some truth in your words, Jack still has the same right to use that warehouse as you have. And from what he had told me, he paid you to leave this place. You took the caps and still didin't move out.}
+{6000}{}{What? He told you that? What a cheap, lying bastard! We took no caps from that fucker, he didin't offer us anything, just shouted and threatened us.}
+{6010}{}{This conversation serves no purpose anymore. You're all dead anyway. [Attack.]}
+{6020}{}{Still, it is a word against word. Is there really no way I can convince you to leave this place?}
+{7000}{}{I think we are wasting time here.}
+{7010}{}{Time's not the only thing that's gonna get wasted here. [Attack.]}
+{7020}{}{How about some more caps? Maybe if I got a bit more, you could afford to settle in some other place nearby.}
+{7030}{}{I am a firearms expert, and I can see you pussies are no match for me. And I haven't had a good fight since yesterday, so... [Start to draw your weapons slowly from holster.]}
+{7040}{}{[Flex your muscles.] See that? You want to taste some of me, or will get the hell outta this warehouse?}
+{8000}{}{Really? [His eyes widen a bit.] And what sum are we talking about?}
+{8010}{}{The sum of all your fears, dirty squatter. [Attack.]}
+{8020}{}{How about 500 caps? You've already got a lot of money from Jack.}
+{8030}{}{Maybe... a thousand caps?}
+{9000}{}{I guess you're right. I'll take these. [He takes the caps.] But that still isn't enough. We need at least another 500 caps to get on the road again. Sorry. [He gives you a nasty smile.]}
+{9010}{}{What the fuck? You're gonna regret this! [Attack.]}
+{9020}{}{Shit, Jack was right. I never should have trusted you people. But what the hell, take them. [Hand him another 500 caps.] Will you leave?}
+{10000}{}{Right. I'll take these. [He takes the caps.] But that still won't be enough. We need... at least another five hundred to get on the road again. Sorry. [He grins].}
+{10010}{}{What? You'll fucking regret this! [Attack.]}
+{10020}{}{Jack was right. I never should have trusted you people. Damn, take them. [Give him another 500 caps.] You're gonna leave this place or what?}
+{11000}{}{Yeah, sure! In fact, we'll be leaving right now. It was nice doin' business with you. [He smiles broadly.]}
+{11010}{}{Yeah, just great. Get the fuck outta my face before I change my mind. [Leave.]}
+{11020}{}{[Attack.] You won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{12000}{}{Don't think we'll be leaving with this paltry amount. You want us gone, gimme five hundred caps.}
+{12010}{}{No way, hobo, you're not getting anything more from me. [Attack.]}
+{12020}{}{All right, have it your way. [Give him 500 caps.] Are we done?}
+{12030}{}{This has gone too far. Get the fuck out or I'll shoot you all, I swear! [Draw your gun but don't fire... yet.]}
+{12040}{}{[Flex your muscles.] Fuck this shit! See that? You want to taste some of me, or will get the fuck outta here?!}
+{13000}{}{Yeah, yeah, we'll leaving, I swear. You can relax now, @sex@|man||woman|.}
+{13010}{}{Good. Get going before I change my mind.}
+{14000}{}{[He looks pretty scared]. All right, all right, calm down! We're leaving right now. Just calm down, @sex@|man||woman|!}
+{14010}{}{Yeah, leave before I change my mind.}
+{14020}{}{[Attack.] You won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{15000}{}{Stop looking at me like that. One big fuckin Mr. Sarcastic...}
+
+[pols]
+{100}{}{Drifters' leader}
+{200}{}{You see the drifters' leader.}
+{210}{}{He's looking at you with distrust and carefully observing your every step.}
+{1000}{}{Predialogue installations}
+{1010}{}{Finished}
+{1020}{}{first met}
+{1030}{}{player known}
+{1040}{}{dialog interrupted before choosing peaceful option}
+{1050}{}{barter not finished (paid 500 or 1000 caps)}
+{1060}{}{Peaceful resolution done, but not finished dialog}
+{2000}{}{Stop right there! What do you want from us? That fucker Jack sent you?}
+{2010}{}{Yes, he sent me. You had your chance to go peacufully... Now you'll go violently, straight to the afterlife. Prepare to die, scum! [Attack.]}
+{2020}{}{Yes, he did. Now, I strongly suggest you reconsider the proposal and leave his property.}
+{3000}{}{What?}
+{3010}{}{Jack sent me. He wants you out of his warehouse.}
+{3020}{}{I'm gonna remove you from this warehouse, permamently! [Attack.]}
+{4000}{}{No way, @sex@|man||gal|. We're not leaving this place. Besides, who told you it's his property? It's ours, cos we were here first.}
+{4010}{}{Since you put it that way, I have no other choice but to kill you all. [Attack].}
+{4020}{}{I saw his ownership papers and they seemed legit. He got them from the Council of Hub. And so, I believe you are indeed squatting on his property.}
+{5000}{}{Hey, hey, not so fast. And how far does that Council's of yours authority stretch? We're miles from there. They can even issue orders to the families of New Reno, for all I care. Besides, no stupid, arbitrary law will keep us from settling where we want to. We're free people, you know? Free people!}
+{5010}{}{I see that reasoning with you is pointless. Get ready to face some frontier justice, hobo!}
+{5020}{}{Even if there's some truth in your words, Jack still has the same right to use that warehouse as you have. And from what he had told me, he paid you to leave this place. You took the caps and still didin't move out.}
+{6000}{}{What? He told you that? What a cheap, lying bastard! We took no caps from that fucker, he didin't offer us anything, just shouted and threatened us.}
+{6010}{}{This conversation serves no purpose anymore. You're all dead anyway. [Attack.]}
+{6020}{}{Still, it is a word against word. Is there really no way I can convince you to leave this place?}
+{7000}{}{I think we are wasting time here.}
+{7010}{}{Time's not the only thing that's gonna get wasted here. [Attack.]}
+{7020}{}{How about some more caps? Maybe if I got a bit more, you could afford to settle in some other place nearby.}
+{7030}{}{I am a firearms expert, and I can see you pussies are no match for me. And I haven't had a good fight since yesterday, so... [Start to draw your weapons slowly from holster.]}
+{7040}{}{[Flex your muscles.] See that? You want to taste some of me, or will get the hell outta this warehouse?}
+{8000}{}{Really? [His eyes widen a bit.] And what sum are we talking about?}
+{8010}{}{The sum of all your fears, dirty squatter. [Attack.]}
+{8020}{}{How about 500 caps? You've already got a lot of money from Jack.}
+{8030}{}{Maybe... a thousand caps?}
+{9000}{}{I guess you're right. I'll take these. [He takes the caps.] But that still isn't enough. We need at least another 500 caps to get on the road again. Sorry. [He gives you a nasty smile.]}
+{9010}{}{What the fuck? You're gonna regret this! [Attack.]}
+{9020}{}{Shit, Jack was right. I never should have trusted you people. But what the hell, take them. [Hand him another 500 caps.] Will you leave?}
+{10000}{}{Right. I'll take these. [He takes the caps.] But that still won't be enough. We need... at least another five hundred to get on the road again. Sorry. [He grins].}
+{10010}{}{What? You'll fucking regret this! [Attack.]}
+{10020}{}{Jack was right. I never should have trusted you people. Damn, take them. [Give him another 500 caps.] You're gonna leave this place or what?}
+{11000}{}{Yeah, sure! In fact, we'll be leaving right now. It was nice doin' business with you. [He smiles broadly.]}
+{11010}{}{Yeah, just great. Get the fuck outta my face before I change my mind. [Leave.]}
+{11020}{}{[Attack.] You won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{12000}{}{Don't think we'll be leaving with this paltry amount. You want us gone, gimme five hundred caps.}
+{12010}{}{No way, hobo, you're not getting anything more from me. [Attack.]}
+{12020}{}{All right, have it your way. [Give him 500 caps.] Are we done?}
+{12030}{}{This has gone too far. Get the fuck out or I'll shoot you all, I swear! [Draw your gun but don't fire... yet.]}
+{12040}{}{[Flex your muscles.] Fuck this shit! See that? You want to taste some of me, or will get the fuck outta here?!}
+{13000}{}{Yeah, yeah, we'll leaving, I swear. You can relax now, @sex@|man||woman|.}
+{13010}{}{Good. Get going before I change my mind.}
+{14000}{}{[He looks pretty scared]. All right, all right, calm down! We're leaving right now. Just calm down, @sex@|man||woman|!}
+{14010}{}{Yeah, leave before I change my mind.}
+{14020}{}{[Attack.] You won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{15000}{}{Stop looking at me like that. One big fuckin Mr. Sarcastic...}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Finished}
+{1020}{}{first met}
+{1030}{}{player known}
+{1040}{}{dialog interrupted before choosing peaceful option}
+{1050}{}{barter not finished (paid 500 or 1000 caps)}
+{1060}{}{Peaceful resolution done, but not finished dialog}
+{2000}{}{Stop right there! What do you want from us? That fucker Jack sent you? We don't want any violence, but we will shoot if you come closer!}
+{2010}{}{Yes, he sent me. You had your chance to go peacefully... Now you'll go violently, straight to the afterlife. Prepare to die, scum! [Attack.]}
+{2020}{}{Yes, he did. Now, I strongly suggest you reconsider the proposal and leave his property.@@Whoa, calm down. Yeah, I was tasked with persuading you to leave his property.}
+{3000}{}{What?@@What Do you want?@@What now?}
+{3010}{}{Jack wants you out of his warehouse.@@Jack wants you to leave his warehouse.}
+{3020}{}{[Attack.] I'm gonna remove you from this warehouse, permanently! @@[Attack.] You're all going to die!}
+{4000}{}{No way, @sex@|man||gal|. We're not leaving this place. Besides, who told you it's his property? It's ours, 'cause we were here first. We even began to settle here, as you can see.}
+{4010}{}{Since you put it that way, I have no other choice but to kill you all. [Attack].}
+{4020}{}{I saw his ownership papers and they seemed legit. He got them from the Council of Hub. And so, I believe you are indeed squatting on his property.}
+{5000}{}{Hey, hey, not so fast. And how far does that Council of yours authority stretch? We're miles from there. They can go issue orders to the families of New Reno, for all I care. Besides, no stupid, arbitrary law will keep us from settling where we want to. We're free people, you know? Free people!}
+{5010}{}{I see that reasoning with you is pointless. Get ready to face some frontier justice, hobo! [Attack.]}
+{5020}{}{Even if there's some truth in your words, Jack still has the same right to use the warehouse as you have. And from what he's told me, he paid you to leave this place. You took the caps and still didn't move out.}
+{6000}{}{What? He told you that? What a cheap, lying bastard! We took no caps from that fucker, he didn't offer us anything, he just shouted and threatened us.}
+{6010}{}{This conversation serves no purpose anymore. You're all dead anyway. [Attack.]}
+{6020}{}{Still, it's word against word. Is there really no way I can convince you to leave this place?}
+{7000}{}{I think we are wasting time here.}
+{7010}{}{Time's not the only thing that's gonna get wasted here. [Attack.]}
+{7020}{}{How about some more caps? Maybe if I got a bit more, you could afford to settle in some other place nearby.}
+{7030}{}{I am a firearms expert, and I can see you pussies are no match for me. And I haven't had a good fight since yesterday, so... [Start to draw your weapon slowly.]}
+{7040}{}{[Flex your muscles.] See that? You want to taste some of me, or will you get the hell outta this warehouse?}
+{8000}{}{Really? [His eyes widen a bit.] And what sum are we talking about?}
+{8010}{}{The sum of all your fears, dirty squatter. [Attack.]}
+{8020}{}{How about 500 caps? You've already got a lot of money from Jack.}
+{8030}{}{Maybe... a thousand caps?}
+{9000}{}{I guess you're right. I'll take these. [He takes the caps.] But that still isn't enough. We need at least another 500 caps to get on the road again. Sorry. [He gives you a nasty smile.]}
+{9010}{}{What the fuck? You're gonna regret this! [Attack.]}
+{9020}{}{Shit, Jack was right. I never should have trusted you people. But what the hell, take them. [Hand him another 500 caps.] Will you leave?}
+{10000}{}{Right. I'll take these. [He takes the caps.] But that still won't be enough. We need... at least another five hundred to get on the road again. Sorry. [He grins].}
+{10010}{}{What? You'll fucking regret this! [Attack.]}
+{10020}{}{Jack was right. I never should have trusted you people. Damn, take them. [Give him another 500 caps.] You're gonna leave this place or what?}
+{11000}{}{Yeah, sure! It was nice doin' business with you. [He smiles broadly.] We'll be leaving soon, and we don't want to be disturbed when we pack stuff from that warehouse. We will keep our end of the bargain, but don't try to stop us now.}
+{11010}{}{You were not supposed to take... Ah, fuck it, Just get the fuck out of my face before I change my mind. [Leave.]}
+{11020}{}{[Attack.] What? You won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{12000}{}{Don't think we'll be leaving with this paltry amount. You want us gone, gimme five hundred caps.}
+{12010}{}{No way, hobo, you're not getting anything more from me. [Attack.]}
+{12020}{}{All right, have it your way. [Give him 500 caps.] Are we done?}
+{12030}{}{This has gone too far. Get the fuck out or I'll shoot you all, I swear! [Draw your gun but don't fire... yet.]}
+{12040}{}{[Flex your muscles.] Fuck this shit! See that? You want to taste some of me, or will get the fuck outta here?!}
+{13000}{}{Yeah, yeah, we'll leaving, I swear. You can relax now, @sex@|man||woman|. Leave us.}
+{13010}{}{Good. Get going before I change my mind.}
+{14000}{}{[He looks pretty scared]. All right, all right, calm down! Just calm down, @sex@|man||woman|! We will leave soon, just let us get ready for the road and get that stuff from the warehouse...}
+{14010}{}{Yeah, leave before I change my mind.}
+{14020}{}{[Attack.] No fucking way, you won't take anything from that warehouse!@@[Attack.] No way, you're not taking any shit from that warehouse with you! Prepare to die!}
+{15000}{}{Stop looking at me like that. One big fuckin Mr. Sarcastic...}
+

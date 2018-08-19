@@ -1,0 +1,71 @@
+#include "_defines.fos"
+#include "_npc_roles.fos"
+#include "_teams.fos"
+#include "_dialogs.fos"
+#include "_itempid.fos"
+
+import void _InitHelplessCitizen(Critter& npc, bool firstTime) from "town_critters";
+import void _InitBrahmin(Critter& critter, bool firstTime) from "town_critters";
+
+
+#define	MESSAGE_REINFORCEMENTS	(1999)
+
+void _MapInit( Map& map, bool firstTime )
+{
+	Critter@[] critters;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, critters);
+	
+	for (uint i = 0; i < critters.length(); i++)
+	{
+		Critter@ critter = critters[i];
+		
+		switch(critter.Stat[ST_NPC_ROLE])
+		{
+			case ROLE_METZGER_GUARD:
+				_InitMetzgerGuard(critter, firstTime);
+				break;
+			case ROLE_HELPLESS_CITIZEN:
+				_InitHelplessCitizen(critter, firstTime);
+				break;
+			case ROLE_PEN_BRAHMIN:
+				_InitBrahmin(critter, firstTime);
+				break;
+		}
+	}
+}
+
+void _InitMetzger(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		npc.StatBase[ST_DIALOG_ID] = DIALOG_metzger;
+		npc.StatBase[ST_TEAM_ID] = TEAM_Slaver;
+		npc.StatBase[ST_MAX_LIFE] = 350;
+		npc.StatBase[ST_CURRENT_HP] = npc.Stat[ST_MAX_LIFE];
+		npc.SkillBase[SK_SMALL_GUNS] = 200;
+		npc.SkillBase[SK_UNARMED] = 200;
+		npc.ModeBase[MODE_NO_STEAL] = 1;
+		npc.ModeBase[MODE_NO_LOOT] = 1;
+		npc.ModeBase[MODE_NO_DROP] = 1;
+		npc.ModeBase[MODE_UNLIMITED_AMMO] = 1;
+		npc.AddItem(PID_HK_CAWS, 1);
+		npc.SetFavoriteItem(SLOT_HAND1, PID_HK_CAWS);
+	}
+}
+
+void _InitMetzgerGuard(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		npc.StatBase[ST_DIALOG_ID] = DIALOG_all_metzgers_guard;
+		npc.StatBase[ST_TEAM_ID] = TEAM_Slaver;
+		npc.StatBase[ST_MAX_LIFE] = 270;
+		npc.StatBase[ST_CURRENT_HP] = npc.Stat[ST_MAX_LIFE];
+		npc.SkillBase[SK_SMALL_GUNS] = 200;
+		npc.SkillBase[SK_UNARMED] = 200;
+		npc.ModeBase[MODE_NO_STEAL] = 1;
+		npc.ModeBase[MODE_NO_LOOT] = 1;
+		npc.AddItem(PID_10MM_SMG, 1);
+		npc.SetFavoriteItem(SLOT_HAND1, PID_10MM_SMG);
+	}
+}

@@ -1,0 +1,74 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_adytum_well = 4 R _var p q_adytum_well = 5 R _param p ST_EXPERIENCE + 250 R _script dialog@r_ShowQuestMessage 1 9317 #
+3 1020 D _var p q_adytum_well = 7 @
+2 2000 None 0 @
+3 3000 None 0 #
+0 3010 R _var p q_adytum_well = 10 R _param p ST_EXPERIENCE + 1500 R _script dialog@r_ShowQuestMessage 1 9317 #
+0 3020 R _param p ST_EXPERIENCE + 1500 R _var p q_adytum_well = 30 R _script dialog@r_ShowQuestMessage 1 9317 #
+0 3030 R _param p ST_EXPERIENCE + 1500 R _var p q_adytum_well = 20 R _script dialog@r_ShowQuestMessage 1 9317 #
+0 3040 &
+
+[engl]
+{100}{}{Control panel}
+{200}{}{A panel controlling the water flow.}
+{210}{}{A panel controlling the water flow.}
+{1000}{}{Predialogue installations}
+{1010}{}{Pump from well checked}
+{1020}{}{Decision}
+{2000}{}{ }
+{3000}{}{[You see the control panel in front of you. What do you want to do?]}
+{3010}{}{[Break the panel so it stays at full power and couldn't be disabled, which will supply only farm.]}
+{3020}{}{[Set the power to 50% to supply both locations with water.]}
+{3030}{}{[Turn off the pump flow, so the Adytum will be the only place getting water.]}
+{3040}{}{[Leave it for now.]}
+
+[russ]
+{100}{}{Панель Управления}
+{200}{}{Панель управляет потоком воды.}
+{210}{}{Панель управляет потоком воды.}
+{1000}{}{Predialogue installations}
+{1010}{}{Pump from well checked}
+{1020}{}{Decision}
+{2000}{}{ }
+{3000}{}{Перед вами панель управления. Что вы хотите сделать?}
+{3010}{}{Оставить как есть. Снабжаться будет только ферма. Испортить панель, так что без полной замены оборудования дело уже не исправить.}
+{3020}{}{Распределить воду поровну между обоими локациями.}
+{3030}{}{Перекрыть воду ферме, совсем. Вся вода останется здесь.}
+{3040}{}{Уйти.}
+
+[pols]
+{100}{}{Panel kontrolny}
+{200}{}{Panel kontrolujący przepływ wody.}
+{210}{}{Panel kontrolujący przepływ wody.}
+{1000}{}{Predialogue installations}
+{1010}{}{Pump from well checked}
+{1020}{}{Decision}
+{2000}{}{ }
+{3000}{}{[Widzisz przed sobą panel kontrolny. Co chcesz zrobić?]}
+{3010}{}{[Rozbij panel aby pozostawić przepływ wody na pełnej mocy, bez możliwości jego wyłączenia. W ten sposób, zasilana będzie jedynie farma.]}
+{3020}{}{[Ustaw moc na 50%, aby zasilać oba miejsca połową zasobów wody.]}
+{3030}{}{[Wyłącz zasilanie, aby odciąć farmę i przekierować cały przepływ do Adytum.]}
+{3040}{}{[Nie ruszaj panelu i odejdź.]}
+
+[ptbr]
+{100}{}{Painel de controle}
+{200}{}{Um painel a controlar a distribuição de água.}
+{210}{}{Um painel a controlar a distribuição de água.}
+{1000}{}{Predialogue installations}
+{1010}{}{Pump from well checked}
+{1020}{}{Decision}
+{2000}{}{ }
+{3000}{}{[Você vê um painel de controle em frente de você. O que você vai fazer?]}
+{3010}{}{[Quebra o painel então permanecerá a funcionar em capacidade máxima e não poderá ser desativado, suprindo apenas a fazenda.]}
+{3020}{}{[Ajusta o fluxo de 50% para ambos os locais com água.]}
+{3030}{}{[Desativa a bomba então Adytum será o único lugar a ter água.]}
+{3040}{}{[Deixa como está por enquanto.]}
+

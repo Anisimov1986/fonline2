@@ -1,0 +1,134 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _param p ST_BASE_CRTYPE = 125 D or D _param p ST_BASE_CRTYPE = 13 D or D _param p ST_BASE_CRTYPE = 108 #
+0 2020 #
+6 2030 D _param p ST_GENDER = 0 D _param p TRAIT_SKILLED = 0 R _script dialog@r_ChangeCrType 1 13 #
+6 2040 D _param p ST_GENDER = 1 D _param p TRAIT_SKILLED = 0 R _script dialog@r_ChangeCrType 1 6 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 100 D _param p ST_BASE_CRTYPE ! 125 R _script economy_dialogs@r_TakeCaps 1 100 R _script dialog@r_ChangeCrType 1 125 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 100 D _param p ST_BASE_CRTYPE ! 13 R _script economy_dialogs@r_TakeCaps 1 100 R _script dialog@r_ChangeCrType 1 13 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 100 D _param p ST_BASE_CRTYPE ! 108 R _script economy_dialogs@r_TakeCaps 1 100 R _script dialog@r_ChangeCrType 1 108 #
+0 3040 D _script economy_dialogs@d_IsEnoughCaps 1 100 #
+0 3050 D _script economy_dialogs@d_IsNotEnoughCaps 1 100 @
+4 4000 None 0 #
+0 4010 #
+0 4020 #
+3 4030 #
+3 4040 #
+0 4050 @
+5 5000 None 0 @
+6 6000 None 0 &
+
+[engl]
+{100}{}{Barber}
+{200}{}{You see: Local barber.}
+{210}{}{You see a barber. After closer examination of this person's hairdo, you start having second thoughts about getting a new haircut here.}
+{1000}{}{Predialogue installations}
+{1010}{}{Male}
+{2000}{}{Hi, there. May I help you?}
+{2010}{}{Can you do something with my hair? I just don't like it anymore.}
+{2020}{}{Uh, nothing, I guess.}
+{2030}{}{Reset my skin.}
+{2040}{}{Reset my skin.}
+{3000}{}{And what you want your head to look like?}
+{3010}{}{@@Get rid of this hair once and for all. I wanna be bald! [@lex barber_price@ caps.]@@ All badasses seem to be bald. And I sure do consider myself a badass! [100 caps.]@@Shave it all. I want people to see the shape of my skull. [100 caps.]}
+{3020}{}{I want an ordinary haircut, I'm no freak. [@lex barber_price@ caps.]@@Normal hair will do just fine. [@lex barber_price@ caps.]@@Casual, short haircut, please. [100 caps.]}
+{3030}{}{I would like to try long hair. [@lex barber_price@ caps.]@@I wanna feel the wind in my hair. Do your magic, make it long! [@lex barber_price@ caps.]}
+{3040}{}{I don't wanna my hair to end up like yours. I'm leaving.@@Ah, maybe some other time.@@On second thought... [Go away.]}
+{3050}{}{Ah shit, I don't have the caps. I'll be back later.}
+{4000}{}{Okay, you're set!@@Allright, done. What do you think?@@Here you go.@@Like it?}
+{4010}{}{It's okay.@@I've seen better, but it'll do.@@Cool. Thanks!}
+{4020}{}{The fuck!? It looks like shit. But I wanna keep it.}
+{4030}{}{No, I don't really like it. I want something else.}
+{4040}{}{[You look into the mirror and gaze upon your new look with disgust.] ...Seriously? Fix this shit, now!}
+{4050}{}{Thanks, looks great.}
+{5000}{}{Sorry, but I can't offer you any services at the moment.}
+{6000}{}{Here you go.}
+
+[russ]
+{100}{}{Парикмахер}
+{200}{}{Местный парикмахер.}
+{210}{}{Вы видите местного парикмахера. Надеюсь он может сделать нормальную стрижку, а не такую как сделал себе.}
+{1000}{}{Predialogue installations}
+{1010}{}{Male}
+{2000}{}{Привет. Могу я вам помочь ?}
+{2010}{}{Вы можете сделать что-то с моими волосами ? Хочу поменять стиль.}
+{2020}{}{Ничем не могу вам помочь.}
+{2030}{}{Я хочу вернуть свой первоначальный облик.}
+{2040}{}{Я хочу вернуть свой первоначальный облик.}
+{3000}{}{Как хотите постричься?}
+{3010}{}{Сбрейте все это. Я хочу , чтобы люди видели форму моего черепа. [@lex barber_price@ монет]}
+{3020}{}{Хочу короткую стрижку. [@lex barber_price@ монет]}
+{3030}{}{Я хотел бы попробовать длинные волосы. [@lex barber_price@ монет]}
+{3040}{}{Ах нет , а ничего. [Уйти]}
+{3050}{}{У меня сейчас нет денег. Я вернусь позже.}
+{4000}{}{Все готово, нравится?}
+{4010}{}{Круто. Спасибо, брат.}
+{4020}{}{Черт! Дерьмово выглядит . Ладно сойдет.}
+{4030}{}{Нет, так не пойдет. Давай попробуем дгурую.}
+{4040}{}{[Вы смотрите в зеркало и начинаете плакать]...исправьте это, пожалуйста.}
+{4050}{}{Спасибо, отлично смотрится.}
+{5000}{}{Я сожалею , но я ничего не могу предложить вам сейчас.}
+{6000}{}{Все готово.}
+
+[pols]
+{100}{}{Fryzjer}
+{200}{}{Miejscowy fryzjer.}
+{210}{}{Widzisz miejscowego fryzjera. Masz nadzieję, że strzyże dużo lepiej, niż ktoś ostrzygł jego samego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Male}
+{2000}{}{Cześć. W czym mogę pomóc?}
+{2010}{}{@sex@|Chciałbym||Chciałabym| zmienić fryzurę.}
+{2020}{}{Hm, właściwie, to w niczym.}
+{2030}{}{Reset my skin.}
+{2040}{}{Reset my skin.}
+{3000}{}{Jaką nową fryzurę sobie życzysz?}
+{3010}{}{Ostrzyż mnie do zera. Chcę, żeby ludzie widzieli kształt mojej czaszki. [Zapłać @lex barber_price@ kapsli.]}
+{3020}{}{Zwykła, krótka fryzura. [Zapłać @lex barber_price@ kapsli.]}
+{3030}{}{Fajnie byłoby zobaczyć się w długich włosach. [Zapłać @lex barber_price@ kapsli.]}
+{3040}{}{Ach, właściwie to już nieważne. [Odejdź.]}
+{3050}{}{Cholera, nie mam przy sobie kapsli. Wrócę potem.}
+{4000}{}{OK, zrobione. Jak się podoba?}
+{4010}{}{Kozacko. Dzięki!}
+{4020}{}{Co to kurwa ma być!? Wygląda tragicznie. Ale dobra, niech zostanie.}
+{4030}{}{Hm, nie do końca o to mi chodziło. Chcę inną fryzurę.}
+{4040}{}{[Patrzysz w lustro i zaczynasz płakać.] ...napraw to, proszę.}
+{4050}{}{Dzięki, wygląda świetnie.}
+{5000}{}{Przykro mi, ale w tej chwili nie mogę ci zaoferować moich usług.}
+{6000}{}{Here you go.}
+
+[ptbr]
+{100}{}{Cabeleireiro}
+{200}{}{Você vê um cabeleireiro.}
+{210}{}{Você vê um cabeleireiro. Depois de uma olhada com mais calma, você se pega pensando se realmente valeria a pena cortar o cabelo aqui.}
+{1000}{}{Predialogue installations}
+{1010}{}{Male}
+{2000}{}{Oi. Posso lhe ajudar?}
+{2010}{}{Opa. Queria cortar meu cabelo.}
+{2020}{}{Um, não, eu acho.}
+{2030}{}{Deixa o cabelo como era no início.}
+{2040}{}{Deixe o cabelo como era no início.}
+{3000}{}{E que estilo você quer?}
+{3010}{}{@@Tira todo esse cabelo. Pode tirar. Eu quero ficar careca! [@lex barber_price@ caps.]@@ Todos os fodões parecem ser carecas. Certamente vai ficar bem em mim! [100 caps.]@@Raspa tudo. Eu quero que vejam meu crânio. [100 caps.]}
+{3020}{}{Ah, eu quero um corte normal. [@lex barber_price@ caps.]@@Um corte normal e só. [@lex barber_price@ caps.]@@Um... cabelo curto, estilo casual por favor. [100 caps.]}
+{3030}{}{Eu queria tentar um cabelão. [@lex barber_price@ caps.]@@Eu quero sentir o vento nos meus cabelos. Faz tua mágica aí, quero ele grande! [@lex barber_price@ caps.]}
+{3040}{}{Eu não quero que meu cabelo fique igual ao teu. Fui.@@Ah, depois venho aqui.@@Hm, deixa eu pensar... [Vai embora.]}
+{3050}{}{Ah merda, eu não tenho grana. Volto depois.}
+{4000}{}{Certo, tá pronto!@@Tudo bem, terminei. O que achou?@@Tá aqui.@@Gostou?}
+{4010}{}{Tá bom.@@Tava esperando outra coisa mas tá bom assim mesmo.@@Do caralho. Valeu!}
+{4020}{}{Que porra!? Tá uma bosta. Mas vou ficar com ele assim mesmo.}
+{4030}{}{Gostei não. Conserta ele aí...}
+{4040}{}{[Você olha no espelho e olha seu novo visual com nojo.] ...Sério? Conserta essa merda, agora!}
+{4050}{}{Brigado, tá bom.}
+{5000}{}{Desculpa mas não posso te atender agora.}
+{6000}{}{Tá aqui.}
+

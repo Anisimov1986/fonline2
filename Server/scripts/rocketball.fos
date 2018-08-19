@@ -1,0 +1,347 @@
+#include "_macros.fos"
+#include "polygon_h.fos"
+
+#define ROLE_BALL ( 290001 )
+
+import void AddNewMapMessage( string text,int time, int showtimer, uint color, uint mapId) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+
+uint ballHitTimer;
+
+int[] ballParams = { MODE_NO_ENEMY_STACK, 1, MODE_NO_HOME, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_INVULNERABLE, 1,
+ST_NPC_ROLE, ROLE_BALL};
+
+array<uint16> goal_area_1 =
+{
+    124, 97,
+    120, 97,
+    120, 102,
+    124, 102
+};
+
+array<uint16> goal_area_2 =
+{
+    88, 97,
+    84, 97,
+    84, 102,
+    88, 102
+};
+IPolygon@   goal_1;
+IPolygon@   goal_2;
+
+void _MapInit( Map& map, bool firstTime )
+{
+    @goal_1 = NewPolygon();
+    goal_1.AddVertices(goal_area_1);
+    @goal_2 = NewPolygon();
+    goal_2.AddVertices(goal_area_2);
+
+    map.SetEvent(MAP_EVENT_OUT_CRITTER, "_CrOut");
+    map.SetEvent(MAP_EVENT_IN_CRITTER, "_CrIn");
+}
+
+void _GuardInit( Critter& critter, bool firstTime )
+{
+    critter.ModeBase[MODE_NO_KNOCK] = 1;
+    critter.ModeBase[MODE_NO_DROP] = 1;
+    critter.ModeBase[MODE_NO_ENEMY_STACK] = 1;
+    critter.StatBase[ST_KILL_EXPERIENCE] = 0;
+    critter.ModeBase[MODE_NO_LOOT] = 1;
+    critter.ModeBase[MODE_NO_STEAL] = 1;
+    critter.ModeBase[MODE_UNLIMITED_AMMO] = 1;
+    critter.ModeBase[ MODE_NO_BARTER ] = 1;
+	
+    critter.ModeBase[MODE_INVULNERABLE] = 1;
+    critter.ParamBase[ST_AI_ID] = 0;
+    critter.ParamBase[ST_TEAM_ID] = 4;
+    critter.StatBase[ST_BAG_ID] = 0;
+    critter.SetEvent(CRITTER_EVENT_ATTACKED,   "_Attacked");
+    
+	Item@[] items;
+	critter.GetItemsByType( ITEM_TYPE_WEAPON, items );
+	for( uint e = 0, j = items.length(); e < j; e++ )
+		DeleteItem( items[ e ] );
+			
+    uint16[] weaponPids = { PID_GUARD_RIFLE , PID_GUARD_PISTOL };
+    Item@ item = critter.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+    if(valid(item))
+    {
+        critter.SetFavoriteItem(SLOT_HAND1, item.GetProtoId());
+        critter.MoveItem(item.Id, 1, SLOT_HAND1);
+    }
+}
+
+bool _Attacked( Critter& follower, Critter& attacker )
+{
+    if ( attacker.Param[PVPTEAM] == 0)
+        return false;
+    
+    return true;
+}
+
+void start( Critter& cr, int scoreCap, int , int )
+{
+	Map@ map = GetMapByPid(MAP_Rocketball,0);
+	if (!valid(map))
+            return;
+        
+        Location@ location = map.GetLocation();
+        GameVar@ isStarted = GetLocalVar(LLVAR_Value0, location.Id);
+        GameVar@ team1score = GetLocalVar(LLVAR_Value1, location.Id);
+        GameVar@ team2score = GetLocalVar(LLVAR_Value2, location.Id);
+        GameVar@ scoreCapVar = GetLocalVar(LLVAR_Value3, location.Id);
+        
+        isStarted = 1;
+        team1score = 0;
+        team2score = 0;
+        scoreCapVar = scoreCap;
+        
+	AddNewMapMessage( "Game until " + scoreCapVar.GetValue() + " points. Start in: " ,REAL_SECOND(5), 1 , COLOR_RED, map.Id );
+        removeBall();
+        CreateTimeEvent(__FullSecond+REAL_SECOND(5), "e_event_spawnBall", 0, true);
+}
+
+uint e_event_spawnBall( array<uint>@ values )
+{
+    Map@ map = GetMapByPid( MAP_Rocketball, 0 );
+    Critter@ ball = map.AddNpc( 828, 104, 99, 3, ballParams, null, null);
+
+    map.SetText( 104, 99, COLOR_GREEN, "!! GO !!" );
+    ball.SetEvent(CRITTER_EVENT_ATTACKED, "_BallHit");
+    
+    return 0;
+}
+
+void SpawnBall()
+{
+	Map@ map = GetMapByPid( MAP_Rocketball, 0 );
+	Critter@ ball = map.AddNpc( 828, 104, 99, 3, ballParams, null, null);
+        
+        ball.SetEvent(CRITTER_EVENT_ATTACKED, "_BallHit");
+}
+
+bool _BallHit ( Critter& ball, Critter& attacker )
+{
+    uint[] values = { ball.Id };
+
+    uint duration = 0;
+    uint[] values1;
+    
+    if( GetTimeEvent( ballHitTimer, duration, values1 ) )
+        return true;
+    else
+        ballHitTimer = CreateTimeEvent(__FullSecond+REAL_SECOND(0.6), "e_event_ballcheck", values, true);
+    
+    return true;
+}
+
+uint e_event_ballcheck(array<uint>@ values)
+{
+    Map@ map = GetMapByPid( MAP_Rocketball, 0 );
+    if( !valid( map ) )
+        return 0;
+        
+    Location@ location = map.GetLocation();
+
+    GameVar@ isStarted = GetLocalVar(LLVAR_Value0, location.Id);
+    if( isStarted == 0 )
+        return 0;
+    
+    GameVar@ team1score = GetLocalVar(LLVAR_Value1, location.Id);
+    GameVar@ team2score = GetLocalVar(LLVAR_Value2, location.Id);
+    
+    Critter@ ball = GetCritter(values[0]);
+     
+    if (goal_1.IsWithin(ball))
+    {
+        map.SetText( 121, 99, COLOR_RED, "!! GOAL !!" );
+        team1score += 1;
+        map.SetText( 104, 99, COLOR_LBLUE, "Blue Team: " + team1score.GetValue() + " - |" + COLOR_RED + " - " + team2score.GetValue() + " : Red Team" );
+        ball.TransitToMap( map.Id, 104, 99, 3 );
+    }
+    else if (goal_2.IsWithin(ball))
+    {
+        map.SetText( 86, 99, COLOR_RED, "!! GOAL !!" );
+        team2score += 1;
+        map.SetText( 104, 99, COLOR_LBLUE, "Blue Team: " + team1score.GetValue() + " - |" + COLOR_RED + " - " + team2score.GetValue() + " : Red Team" );
+        ball.TransitToMap( map.Id, 104, 99, 3 );
+    }
+    
+    
+    checkScore( map );
+    
+    return 0;
+}
+
+void checkScore ( Map& map )
+{
+    Location@ location = map.GetLocation();
+    
+    GameVar@ isStarted = GetLocalVar(LLVAR_Value0, location.Id);
+    GameVar@ team1score = GetLocalVar(LLVAR_Value1, location.Id);
+    GameVar@ team2score = GetLocalVar(LLVAR_Value2, location.Id);
+    GameVar@ scoreCap = GetLocalVar(LLVAR_Value3, location.Id);
+    
+    if( team1score == scoreCap )
+    {
+        removeBall();
+        isStarted = 0;
+        AddNewMapMessage( "Blue Team won the game" ,REAL_SECOND(10), 0 , COLOR_LBLUE, map.Id );
+        
+    }
+    else if( team2score == scoreCap )
+    {
+        removeBall();
+        isStarted = 0;
+        AddNewMapMessage( "Red Team won the game" ,REAL_SECOND(10), 0 , COLOR_RED, map.Id );
+    }
+}
+
+void removeBall()
+{
+    Map@ map = GetMapByPid( MAP_Rocketball, 0 );
+    if( !valid( map ) )
+        return;
+  
+    array<Critter@> npcs;
+    map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, npcs);
+    for (uint i = 0; i < npcs.length(); i++)
+    {
+        if(npcs[i].Stat[ST_NPC_ROLE] == ROLE_BALL)
+            DeleteNpc(npcs[i]);
+    }
+    return;
+}
+
+void _CrOut(Map& map, Critter& cr)
+{
+    if( !cr.IsPlayer() )
+        return;
+    if ( cr.Param[PE_AIMBUFF] != 0)
+        cr.ParamBase[PE_AIMBUFF]=0;
+    if ( cr.Param[PE_LOOK_BONUS] != 0)
+        cr.ParamBase[PE_LOOK_BONUS]=0;
+    if ( cr.Mode[MODE_NO_PVP] != 0)
+        cr.ModeBase[MODE_NO_PVP]=0;
+    if ( cr.Mode[MODE_NO_STEAL] != 0)
+        cr.ModeBase[MODE_NO_STEAL]=0;
+    if ( cr.Param[PVPTEAM] != 0)
+        cr.ParamBase[PVPTEAM] = 0;
+    if ( cr.Mode[MODE_UNLIMITED_AMMO] != 0)
+        cr.ModeBase[MODE_UNLIMITED_AMMO] = 0;
+}
+
+void _CrIn(Map& map,Critter& cr)
+{
+    if( !cr.IsPlayer() )
+        return;
+    cr.ParamBase[PE_AIMBUFF]=1;
+    cr.ParamBase[PE_LOOK_BONUS]=1;
+    cr.ModeBase[MODE_NO_PVP]=1;
+    cr.ModeBase[MODE_NO_STEAL]=1;
+}
+
+void clean ( Critter& cr, int, int , int )
+{
+    resetPlayers(); 
+}
+
+void preparePlayer ( Critter& player, Scenery& trigger, bool entered, uint8 dir, int HexX, int HexY )
+{
+    if(!player.IsPlayer())
+        return;
+    
+    Map@ map = player.GetMap();
+    if ( valid(map) && map.IsHexPassed( HexX, HexY ) )
+    {
+        if(dir == 4 || dir == 5 || dir == 0)
+        {
+            player.TransitToHex( HexX, HexY, 2);
+            player.ParamBase[PVPTEAM] = 1;
+            Item@ armor = player.AddItem( PID_RED_ROBE , 1 );
+            if( valid(armor) )
+                player.MoveItem( armor.Id, 1, SLOT_ARMOR );
+        }
+        else if(dir == 1 || dir ==  2 || dir == 3 )
+        {
+            player.TransitToHex( HexX, HexY, 5);
+            player.ParamBase[PVPTEAM] = 2;
+            Item@ armor = player.AddItem( PID_BLUE_ROBE , 1 );
+            if( valid(armor) )
+                player.MoveItem( armor.Id, 1, SLOT_ARMOR );
+        }
+        
+        player.ModeBase[MODE_UNLIMITED_AMMO]=1;
+        
+        Item@ hand1Item = player.GetItem(0, SLOT_HAND1);
+        if (valid(hand1Item))
+            player.MoveItem(hand1Item.Id, 0, SLOT_INV);
+        
+        Item@ item = player.AddItem( PID_ROCKET_LAUNCHER , 1);
+           if(valid(item))
+               player.MoveItem(item.Id, 1, SLOT_HAND1);
+    }
+}
+
+void preparePlayerGoalie ( Critter& player, Scenery& trigger, bool entered, uint8 dir, int HexX, int HexY, int team )
+{
+    if(!player.IsPlayer())
+        return;
+    
+    Map@ map = player.GetMap();
+    if ( valid(map) && map.IsHexPassed( HexX, HexY ) )
+    {
+        if( team == 1 )
+        {
+            player.TransitToHex( HexX, HexY, 0);
+            player.ParamBase[PVPTEAM] = 1;
+            
+            Item@ armor = player.AddItem( PID_RED_ROBE , 1 );
+            if( valid(armor) )
+                player.MoveItem( armor.Id, 1, SLOT_ARMOR );
+        }
+        else if( team == 2 )
+        {
+            player.TransitToHex( HexX, HexY, 3);
+            player.ParamBase[PVPTEAM] = 2;
+            
+            Item@ armor = player.AddItem( PID_BLUE_ROBE , 1 );
+            if( valid(armor) )
+                player.MoveItem( armor.Id, 1, SLOT_ARMOR );
+        }
+        player.ModeBase[MODE_UNLIMITED_AMMO]=1;
+        
+        Item@ hand1Item = player.GetItem(0, SLOT_HAND1);
+        if (valid(hand1Item))
+            player.MoveItem(hand1Item.Id, 0, SLOT_INV);
+         
+        Item@ item = player.AddItem( PID_COMBAT_SHOTGUN , 1);
+        if( valid(item) )
+            player.MoveItem(item.Id, 1, SLOT_HAND1);
+    }
+}
+
+void resetPlayers ()
+{
+    Map@ map = GetMapByPid( MAP_Rocketball, 0 );
+    array<Critter@> crits;
+    uint n = map.GetCritters(0, FIND_ALL | FIND_ONLY_PLAYERS, crits);
+    for(uint i = 0; i < n; i++)
+    {
+        if( crits[i].Param[PVPTEAM] != 0 )
+        {
+            crits[i].ParamBase[PVPTEAM] = 0;
+            crits[i].TransitToMap( map.Id, 30 );
+            
+            Item@[] items;
+            crits[i].GetItemsByType( ITEM_TYPE_WEAPON, items );
+            for( uint e = 0, j = items.length(); e < j; e++ )
+                DeleteItem( items[ e ] );
+            
+            Item@[] armor;
+            crits[i].GetItemsByType( ITEM_TYPE_ARMOR, armor );
+            for( uint a = 0, j = armor.length(); a < j; a++ )
+                DeleteItem( armor[ a ] );
+        }
+    }
+}

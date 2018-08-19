@@ -1,0 +1,101 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc = 0 #
+0 2020 #
+6 2030 D _var p name_mem_player_npc = 1 D _script economy_dialogs@d_IsEnoughCaps 1 80000 R _script economy_dialogs@r_TakeCaps 1 80000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_CAVE + 1 R _script tc@r_AddFeeToLocker 1 4000 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 R _var p name_mem_player_npc + 1 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+0 5010 #
+0 5020 #
+6 5030 D _script economy_dialogs@d_IsEnoughCaps 1 80000 R _script economy_dialogs@r_TakeCaps 1 80000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_CAVE + 1 @
+6 6000 None 0 #
+0 6010 &
+
+[engl]
+{100}{}{Mel}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Human!? Human!? Oh no, you no bad human. Me like good human.}
+{2010}{}{Excuse me, good human?@@Good human?@@What?}
+{2020}{}{You seem a little slow, I'll just be going now. See ya pal.@@Whatever.@@I don't have time for this shit.}
+{2030}{}{I'm back Mel. And look, shiny caps!}
+{3000}{}{Yes! You good human! Me, big strong mutant. Name is Mel. We make bad humans go boom, with blood! Hahahahahaha!}
+{3010}{}{Uh... right. Who are these bad humans?}
+{4000}{}{Bad humans sleep in dark cave! Bad humans hurt good humans. Bad humans hurt me. Me hurt bad humans! Bad human wear black shirt and hold tiny gun. We destroy bad humans in cave, now cave is empty.}
+{4010}{}{Oh! Raiders. Do you have a map to the cave? I need a place to crash.}
+{5000}{}{Map to cave right here. Boss said no give to other people. I give you map if you give me caps. [He scratches his head in attempt of thinking] say 80,000?}
+{5010}{}{Yikes! I'll be right back. Riiiiight back, okay?}
+{5020}{}{Nopey, Nopey. Understand? You make bad price. Me go now!}
+{5030}{}{At that price? Here you go, I'd really like to have a cave.}
+{6000}{}{Ooooooooh, Monies! Thank you, you very very good human. Mel go buy bigger gun now! Hehe.}
+{6010}{}{Sure...take it easy okay?}
+
+[russ]
+{100}{}{Мэл}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Человек? ЧЕЛОВЕК? О, нет, вы не плохой человека. Моя любит хороший человеки.}
+{2010}{}{Простите, хороший человек?}
+{2020}{}{Похоже ты совсем тормоз, я пожалуй пойду.}
+{2030}{}{Я вернулся Мел. И смотри, блестящие крышечки!}
+{3000}{}{Да! Вы хороший человек! Моя, большой сильный мутанта. Моя зовут Мел. Мы делаем плохие люди бум!,бум с кровью! Ахахахахаха!}
+{3010}{}{Э-э ... понятно. Что это за "плохие люди"?}
+{4000}{}{Плохие люди спать в темной пещере! Плохие люди делают больно хорошие люди. Плохие люди делать мне больно. А потом я делать больно плохие люди! Плохие люди в черных куртках с маленькими пистолетиками. Мы сломать плохие люди, совсем сломать, теперь никого в пещера.}
+{4010}{}{О! Рейдеры. У вас есть карта расположения этой пещеры? Мне как раз нужно укрытие.}
+{5000}{}{Карта к пещере у меня прямо здесь. Босс сказал не давать никому. Я даю вам карта, если вы дадите мне крышечки. [Он чешет затылок] скажем @lex base6_price@ крышечек?}
+{5010}{}{Я сейчас вернусь. Сейчааааас вернусь, хорошо?}
+{5020}{}{Неет, Неееет. Понял? Вы делать плохая цена. Моя уходить! Тьфу уже и сам начал говорить как дебил.}
+{5030}{}{И всего-то? Вот тебе крышки, гони карту.}
+{6000}{}{Oooooooo, Деньги! Спасибо, вы очень, очень хороший человек. Мел пойти купить большую пушку прямо сейчас. Ахахахаха.}
+{6010}{}{Конечно...успокойся ладно?}
+
+[pols]
+{100}{}{Mel}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Człowiek!? CZŁOWIEK!? O, nie, ty nie zły człowiek. Ja lubić dobry człowiek.}
+{2010}{}{Przepraszam, dobry człowiek?}
+{2020}{}{Wydajesz się nieco tępy, już sobie pójdę. Na razie, kolego.}
+{2030}{}{Jestem z powrotem, Mel. Spójrz, błyszczące kapsle!}
+{3000}{}{Tak! Ty dobry człowiek! Ja, ja być duży SILNY mutant. Imię mam Mel. Złym człowiekom my robimy bum, i oni też bum, z krwią! Hahahahahahaha!}
+{3010}{}{Uch... w porządku. Kim są ci "źli ludzie"?}
+{4000}{}{Złe człowieki spać w ciemnej jaskini! One robić krzywda dobre ludzie, one robić krzywda mnie, ja robić krzywda złe człowieki! One ubierać czarne koszule i trzymać malutkie spluwy. My zniszczyć źli ludzie w jaskinia, jaskinia teraz być pusta.}
+{4010}{}{error}
+{5000}{}{Mapa do jaskinia być tutaj. Szef mówić: "Nie dawaj mapa innym ludziom!", ale ja dać ci mapa jak ty dać kapsle. [Drapie się po głowie próbując myśleć.] Dużo kapsle, @lex base6_price@?}
+{5010}{}{Jasne! Zaraz wracam. Z-a-r-a-z wracam, w porządku?}
+{5020}{}{Nie, n-i-e. Rozumiesz? Ty dać zła cena, ja teraz iść.}
+{5030}{}{Za taką cenę? Proszę, naprawdę chcę mieć tę jaskinię.}
+{6000}{}{Ooooooooch, pieniążki! Dziękuję, ty być bardzo, BARDZO dobry człowiek. Mel teraz kupić większa spluwa! Hehehehehehe-e-e.}
+{6010}{}{Jasne... Tylko spokojnie, dobra?}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Human!? Human!? Oh no, you no bad human. Me like good human.}
+{2010}{}{Excuse me, good human?@@Good human?@@What?}
+{2020}{}{You seem a little slow, I'll just be going now. See ya pal.@@Whatever.@@I don't have time for this shit.}
+{2030}{}{I'm back Mel. And look, shiny caps!}
+{3000}{}{Yes! You good human! Me, big strong mutant. Name is Mel. We make bad humans go boom, with blood! Hahahahahaha!}
+{3010}{}{Uh... right. Who are these bad humans?}
+{4000}{}{Bad humans sleep in dark cave! Bad humans hurt good humans. Bad humans hurt me. Me hurt bad humans! Bad human wear black shirt and hold tiny gun. We destroy bad humans in cave, now cave is empty.}
+{4010}{}{Oh! Raiders. Do you have a map to the cave? I need a place to crash.}
+{5000}{}{Map to cave right here. Boss said no give to other people. I give you map if you give me caps. [He scratches his head in attempt of thinking] say 80,000?}
+{5010}{}{Yikes! I'll be right back. Riiiiight back, okay?}
+{5020}{}{Nopey, Nopey. Understand? You make bad price. Me go now!}
+{5030}{}{At that price? Here you go, I'd really like to have a cave.}
+{6000}{}{Ooooooooh, Monies! Thank you, you very very good human. Mel go buy bigger gun now! Hehe.}
+{6010}{}{Sure...take it easy okay?}
+

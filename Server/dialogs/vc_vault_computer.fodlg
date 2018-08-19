@@ -1,0 +1,956 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 R _script dialog@Type 0  #
+60 2020 D _item p PID_SE_BOS_HOLODISK } 1 D _var p q_finderskeepers < 3 R _script dialog@Type 0  #
+4 2030 D _var p q_start_questcaravan = 5 R _script dialog@Type 0  #
+0 2040 R _script dialog@Type 0  @
+3 3000 None 0 #
+0 3010 R _script dialog@Type 0  @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+0 6020 @
+7 7000 None 0 #
+8 7010 #
+0 7020 @
+8 8000 None 0 #
+9 8010 #
+0 8020 @
+9 9000 None 0 #
+10 9010 #
+0 9020 @
+10 10000 None 0 #
+11 10010 #
+0 10020 @
+11 11000 None 0 #
+12 11010 #
+0 11020 @
+12 12000 None 0 #
+13 12010 #
+0 12020 @
+13 13000 None 0 #
+14 13010 #
+0 13020 @
+14 14000 None 0 #
+0 14010 #
+15 14020 @
+15 15000 None 0 #
+16 15010 #
+0 15020 @
+16 16000 None 0 #
+17 16010 #
+0 16020 @
+17 17000 None 0 #
+18 17010 #
+0 17020 @
+18 18000 None 0 #
+0 18010 #
+19 18020 @
+19 19000 None 0 #
+20 19010 #
+0 19020 @
+20 20000 None 0 #
+21 20010 #
+0 20020 @
+21 21000 None 0 #
+0 21010 #
+22 21020 @
+22 22000 None 0 #
+23 22010 #
+0 22020 @
+23 23000 None 0 #
+24 23010 #
+0 23020 @
+24 24000 None 0 #
+25 24010 #
+0 24020 @
+25 25000 None 0 #
+26 25010 #
+0 25020 @
+26 26000 None 0 #
+0 26010 #
+27 26020 @
+27 27000 None 0 #
+28 27010 #
+0 27020 @
+28 28000 None 0 #
+0 28010 #
+29 28020 @
+29 29000 None 0 #
+30 29010 #
+0 29020 @
+30 30000 None 0 #
+31 30010 #
+0 30020 @
+31 31000 None 0 #
+0 31010 #
+32 31020 @
+32 32000 None 0 #
+33 32010 #
+0 32020 @
+33 33000 None 0 #
+34 33010 #
+0 33020 @
+34 34000 None 0 #
+35 34010 #
+0 34020 @
+35 35000 None 0 #
+36 35010 #
+0 35020 @
+36 36000 None 0 #
+0 36010 #
+37 36020 @
+37 37000 None 0 #
+0 37010 #
+38 37020 @
+38 38000 None 0 #
+39 38010 #
+0 38020 @
+39 39000 None 0 #
+0 39010 #
+40 39020 @
+40 40000 None 0 #
+0 40010 #
+41 40020 @
+41 41000 None 0 #
+42 41010 #
+0 41020 @
+42 42000 None 0 #
+43 42010 #
+0 42020 @
+43 43000 None 0 #
+0 43010 #
+44 43020 @
+44 44000 None 0 #
+0 44010 #
+45 44020 @
+45 45000 None 0 #
+0 45010 #
+46 45020 @
+46 46000 None 0 #
+0 46010 #
+47 46020 @
+47 47000 None 0 #
+48 47010 #
+0 47020 @
+48 48000 None 0 #
+0 48010 #
+49 48020 @
+49 49000 None 0 #
+50 49010 #
+0 49020 @
+50 50000 None 0 #
+50 50010 #
+51 50020 R _var p q_start_questcaravan = 6 R _param p ST_EXPERIENCE + 2000 R _script dialog@r_HoloNotice 1 94 R _script quest@r_CreateLocationZone 3 9303 19 17 #
+0 50030 @
+51 51000 None 0 #
+0 51010 R _script dialog@r_ShowQuestMessage 1 9311 @
+60 52000 None 0 #
+61 52010 #
+0 52020 @
+61 53000 None 0 #
+0 53010 #
+62 53020 @
+62 54000 None 0 #
+63 54010 #
+0 54020 @
+63 55000 None 0 #
+0 55010 #
+64 55020 @
+64 56000 None 0 #
+0 56010 #
+65 56020 @
+65 57000 None 0 #
+66 57010 #
+0 57020 @
+66 58000 None 0 #
+0 58010 #
+67 58020 @
+67 59000 None 0 #
+68 59010 #
+0 59020 @
+68 60000 None 0 #
+69 60010 R _var p q_finderskeepers = 3 R _var p q_finders_check = 1 R _param p ST_EXPERIENCE + 1500 #
+0 60020 @
+69 61000 None 0 #
+0 61010 R _script dialog@r_ShowQuestMessage 1 9630 &
+
+[engl]
+{100}{}{Vault 8 main computer}
+{200}{}{Main computer of that Vault.}
+{210}{}{Main computer of Vault 8. Extremely advanced technology, great computing power.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{Welcome to Vault-Tec Vault Mainframe terminal.
+Input command:}
+{2010}{}{[Browse the database.]}
+{2020}{}{[Plug in the holodisk you found at the ransacked Brotherhood bunker and try to read the contents.]}
+{2030}{}{[Connect your PipBoy to the terminal and start deciphering the raider holodisk.]}
+{2040}{}{Log off.@@Log out.@@Log off.}
+{3000}{}{[No authorization to browse the database. System shutdown.]}
+{3010}{}{Log off.@@Log out.@@Log off.}
+{4000}{}{[Work in progress... 3%]}
+{4010}{}{[Wait.]}
+{4020}{}{[Leave.]}
+{5000}{}{[Work in progress... 5%]}
+{5010}{}{[Wait.]}
+{5020}{}{[Leave.]}
+{6000}{}{[Work in progress... 6%]}
+{6010}{}{[Wait.]}
+{6020}{}{[Leave.]}
+{7000}{}{[Work in progress... 9%]}
+{7010}{}{[Wait.]}
+{7020}{}{[Leave.]}
+{8000}{}{[Work in progress... 10%]}
+{8010}{}{[Wait.]}
+{8020}{}{[Leave.]}
+{9000}{}{[Work in progress... 13%]}
+{9010}{}{[Wait.]}
+{9020}{}{[Leave.]}
+{10000}{}{[Work in progress... 18%]}
+{10010}{}{[Wait.]}
+{10020}{}{[Leave.]}
+{11000}{}{[Work in progress... 21%]}
+{11010}{}{[Wait.]}
+{11020}{}{[Leave.]}
+{12000}{}{[Work in progress... 23%]}
+{12010}{}{[Wait.]}
+{12020}{}{[Leave.]}
+{13000}{}{[Work in progress... 26%]}
+{13010}{}{[Wait.]}
+{13020}{}{[Leave.]}
+{14000}{}{[Work in progress... 31%]}
+{14010}{}{[Leave.]}
+{14020}{}{[Wait.]}
+{15000}{}{[Work in progress... 32%]}
+{15010}{}{[Wait.]}
+{15020}{}{[Leave.]}
+{16000}{}{[Work in progress... 39%]}
+{16010}{}{[Wait.]}
+{16020}{}{[Leave.]}
+{17000}{}{[Work in progress... 46%]}
+{17010}{}{[Wait.]}
+{17020}{}{[Leave.]}
+{18000}{}{[Work in progress... 53%]}
+{18010}{}{[Leave.]}
+{18020}{}{[Wait.]}
+{19000}{}{[Work in progress... 54%]}
+{19010}{}{[Wait.]}
+{19020}{}{[Leave.]}
+{20000}{}{[Work in progress... 61%]}
+{20010}{}{[Wait.]}
+{20020}{}{[Leave.]}
+{21000}{}{[Work in progress... 68%]}
+{21010}{}{[Leave.]}
+{21020}{}{[Wait.]}
+{22000}{}{[Work in progress... 72%]}
+{22010}{}{[Wait.]}
+{22020}{}{[Leave.]}
+{23000}{}{[Work in progress... 75%]}
+{23010}{}{[Wait.]}
+{23020}{}{[Leave.]}
+{24000}{}{[Work in progress... 79%]}
+{24010}{}{[Wait.]}
+{24020}{}{[Leave.]}
+{25000}{}{[Work in progress... 82%]}
+{25010}{}{[Wait.]}
+{25020}{}{[Leave.]}
+{26000}{}{[Work in progress... 88%]}
+{26010}{}{[Leave.]}
+{26020}{}{[Wait.]}
+{27000}{}{[Work in progress... 91%]}
+{27010}{}{[Wait.]}
+{27020}{}{[Leave.]}
+{28000}{}{[Work in progress... 93%]}
+{28010}{}{[Leave.]}
+{28020}{}{[Wait.]}
+{29000}{}{[Work in progress... 94%]}
+{29010}{}{[Wait.]}
+{29020}{}{[Leave.]}
+{30000}{}{[Work in progress... 97%]}
+{30010}{}{[Wait.]}
+{30020}{}{[Leave.]}
+{31000}{}{[Work in progress... 97%]}
+{31010}{}{[Leave.]}
+{31020}{}{[Wait.]}
+{32000}{}{[Work in progress... 97%]}
+{32010}{}{[Wait.]}
+{32020}{}{[Leave.]}
+{33000}{}{[Work in progress... 98%]}
+{33010}{}{[Wait.]}
+{33020}{}{[Leave.]}
+{34000}{}{[Work in progress... 98%]}
+{34010}{}{[Wait.]}
+{34020}{}{[Leave.]}
+{35000}{}{[Work in progress... 98%]}
+{35010}{}{[Wait.]}
+{35020}{}{[Leave.]}
+{36000}{}{[Work in progress... 98%]}
+{36010}{}{[Leave.]}
+{36020}{}{[Wait.]}
+{37000}{}{[Work in progress... 98%]}
+{37010}{}{[Leave.]}
+{37020}{}{[Wait.]}
+{38000}{}{[Work in progress... 98%]}
+{38010}{}{[Wait.]}
+{38020}{}{[Leave.]}
+{39000}{}{[Work in progress... 99%]}
+{39010}{}{[Leave.]}
+{39020}{}{[Wait.]}
+{40000}{}{[Work in progress... 99%]}
+{40010}{}{[Leave.]}
+{40020}{}{[Wait.]}
+{41000}{}{[Work in progress... 99%]}
+{41010}{}{[Wait.]}
+{41020}{}{[Leave.]}
+{42000}{}{[Work in progress... 99%]}
+{42010}{}{[Wait.]}
+{42020}{}{[Leave.]}
+{43000}{}{[Work in progress... 99%]}
+{43010}{}{[Leave.]}
+{43020}{}{[Wait.]}
+{44000}{}{[Work in progress... 99%]}
+{44010}{}{[Leave.]}
+{44020}{}{[Wait.]}
+{45000}{}{[Work in progress... 99%]}
+{45010}{}{[Leave.]}
+{45020}{}{[Wait.]}
+{46000}{}{[Work in progress... 99%]}
+{46010}{}{[Leave.]}
+{46020}{}{[Wait.]}
+{47000}{}{[Work in progress... 99%]}
+{47010}{}{[Wait.]}
+{47020}{}{[Leave.]}
+{48000}{}{[Work in progress... 99%]}
+{48010}{}{[Leave.]}
+{48020}{}{[Wait.]}
+{49000}{}{[Work in progress... 99%]}
+{49010}{}{[Wait.]}
+{49020}{}{[Leave.]}
+{50000}{}{[Work in progress... 99%]}
+{50010}{}{[Wait.]}
+{50020}{}{Fuck it! [Kick the computer.]}
+{50030}{}{[Leave.]}
+{51000}{}{[Deciphering finished.]}
+{51010}{}{Yeah, finally. [Leave.]}
+{52000}{}{[Work in progress... 3%]}
+{52010}{}{[Wait.]}
+{52020}{}{[Leave.]}
+{53000}{}{[Work in progress... 8%]}
+{53010}{}{[Leave.]}
+{53020}{}{[Wait]}
+{54000}{}{[Work in progress... 15%]}
+{54010}{}{[Wait]}
+{54020}{}{[Leave.]}
+{55000}{}{[Work in progress... 21%]}
+{55010}{}{[Leave.]}
+{55020}{}{[Wait]}
+{56000}{}{[Work in progress... 34%]}
+{56010}{}{[Leave.]}
+{56020}{}{[Wait]}
+{57000}{}{[Work in progress... 43%]}
+{57010}{}{[Wait]}
+{57020}{}{[Leave.]}
+{58000}{}{[Work in progress... 57%]}
+{58010}{}{[Leave.]}
+{58020}{}{[Wait]}
+{59000}{}{[Work in progress... 66%]}
+{59010}{}{[Wait]}
+{59020}{}{[Leave.]}
+{60000}{}{Unknown error. Unable to read holodisk. }
+{60010}{}{[Attempt to view the already loaded contents.]@@[Try to open the already loaded content.]}
+{60020}{}{Fucking piece of crap!@@Fuck [Kick the terminal.]@@Just my fucking luck.@@Fuck!@@Crap.}
+{61000}{}{[Large portion of the data is corrupted, and only the beginning of the file is readable.]
+Confidential. Brotherhood of Steel Headquarters, Lost Hills
+Paladin Hewson, the construction of the123sdhSHDdF377ddas planned. Scheduled radioder433kfdnrmitter assembly in 3 to 4 days. Forwd894IJMxDksng existing bunker network coordinates data to the next shift in 6 days. Unable to consd845df5532tact bunker No. 8 in Mariposa SE zo499aSS.58jjdUhsY8731wr3.
+Unexpected end of file.
+}
+{61010}{}{Hmm...@@I see...@@Interesting...}
+
+[russ]
+{100}{}{Главный компьютер Убежища 8}
+{200}{}{Главный компьютер убежища.}
+{210}{}{Главный компьютер убежища 8. Особо продвинутые технологии, огромная вычислительная мощность.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[Вы смотрите на сверкающий экран компьютера.]}
+{2010}{}{[Просмотр базы данных.]}
+{2020}{}{Подключить голодиск из разграбленного бункера Братства Стали.}
+{2030}{}{[Подключить Пип-Бой к терминалу, запустить процедуру расшифровки.]}
+{2040}{}{[Уйти.]}
+{3000}{}{[Нет допуска. Отключение системы.]}
+{3010}{}{[Уйти.]}
+{4000}{}{[Выполнено... 3%]}
+{4010}{}{[Ждать.]}
+{4020}{}{[Уйти.]}
+{5000}{}{[Выполнено... 5%]}
+{5010}{}{[Ждать.]}
+{5020}{}{[Уйти.]}
+{6000}{}{[Выполнено... 6%]}
+{6010}{}{[Ждать.]}
+{6020}{}{[Уйти.]}
+{7000}{}{[Выполнено... 9%]}
+{7010}{}{[Ждать.]}
+{7020}{}{[Уйти.]}
+{8000}{}{[Выполнено... 10%]}
+{8010}{}{[Ждать.]}
+{8020}{}{[Уйти.]}
+{9000}{}{[Выполнено... 13%]}
+{9010}{}{[Ждать.]}
+{9020}{}{[Уйти.]}
+{10000}{}{[Выполнено... 18%]}
+{10010}{}{[Ждать.]}
+{10020}{}{[Уйти.]}
+{11000}{}{[Выполнено... 21%]}
+{11010}{}{[Ждать.]}
+{11020}{}{[Уйти.]}
+{12000}{}{[Выполнено... 23%]}
+{12010}{}{[Ждать.]}
+{12020}{}{[Уйти.]}
+{13000}{}{[Выполнено... 26%]}
+{13010}{}{[Ждать.]}
+{13020}{}{[Уйти.]}
+{14000}{}{[Выполнено... 31%]}
+{14010}{}{[Уйти.]}
+{14020}{}{[Ждать.]}
+{15000}{}{[Выполнено... 32%]}
+{15010}{}{[Ждать.]}
+{15020}{}{[Уйти.]}
+{16000}{}{[Выполнено... 39%]}
+{16010}{}{[Ждать.]}
+{16020}{}{[Уйти.]}
+{17000}{}{[Выполнено... 46%]}
+{17010}{}{[Ждать.]}
+{17020}{}{[Уйти.]}
+{18000}{}{[Выполнено... 53%]}
+{18010}{}{[Уйти.]}
+{18020}{}{[Ждать.]}
+{19000}{}{[Выполнено... 54%]}
+{19010}{}{[Ждать.]}
+{19020}{}{[Уйти.]}
+{20000}{}{[Выполнено... 61%]}
+{20010}{}{[Ждать.]}
+{20020}{}{[Уйти.]}
+{21000}{}{[Выполнено... 68%]}
+{21010}{}{[Уйти.]}
+{21020}{}{[Ждать.]}
+{22000}{}{[Выполнено... 72%]}
+{22010}{}{[Ждать]}
+{22020}{}{[Уйти.]}
+{23000}{}{[Выполнено... 75%]}
+{23010}{}{[Ждать.]}
+{23020}{}{[Уйти.]}
+{24000}{}{[Выполнено... 79%]}
+{24010}{}{[Ждать.]}
+{24020}{}{[Уйти.]}
+{25000}{}{[Выполнено... 82%]}
+{25010}{}{[Ждать.]}
+{25020}{}{[Уйти.]}
+{26000}{}{[Выполнено... 88%]}
+{26010}{}{[Уйти.]}
+{26020}{}{[Ждать.]}
+{27000}{}{[Выполнено... 91%]}
+{27010}{}{[Ждать.]}
+{27020}{}{[Уйти.]}
+{28000}{}{[Выполнено... 93%]}
+{28010}{}{[Уйти.]}
+{28020}{}{[Ждать.]}
+{29000}{}{[Выполнено... 94%]}
+{29010}{}{[Ждать.]}
+{29020}{}{[Уйти.]}
+{30000}{}{[Выполнено... 97%]}
+{30010}{}{[Ждать.]}
+{30020}{}{[Уйти.]}
+{31000}{}{[Выполнено... 97%]}
+{31010}{}{[Уйти.]}
+{31020}{}{[Ждать.]}
+{32000}{}{[Выполнено... 97%]}
+{32010}{}{[Ждать.]}
+{32020}{}{[Уйти.]}
+{33000}{}{[Выполнено... 98%]}
+{33010}{}{[Ждать.]}
+{33020}{}{[Уйти.]}
+{34000}{}{[Выполнено... 98%]}
+{34010}{}{[Ждать.]}
+{34020}{}{[Уйти.]}
+{35000}{}{[Выполнено... 98%]}
+{35010}{}{[Ждать.]}
+{35020}{}{[Уйти.]}
+{36000}{}{[Выполнено... 98%]}
+{36010}{}{[Уйти.]}
+{36020}{}{[Ждать.]}
+{37000}{}{[Выполнено... 98%]}
+{37010}{}{[Уйти.]}
+{37020}{}{[Ждать.]}
+{38000}{}{[Выполнено... 98%]}
+{38010}{}{[Ждать.]}
+{38020}{}{[Уйти.]}
+{39000}{}{[Выполнено... 99%]}
+{39010}{}{[Уйти.]}
+{39020}{}{[Ждать.]}
+{40000}{}{[Выполнено... 99%]}
+{40010}{}{[Уйти.]}
+{40020}{}{[Ждать.]}
+{41000}{}{[Выполнено... 99%]}
+{41010}{}{[Ждать.]}
+{41020}{}{[Уйти.]}
+{42000}{}{[Выполнено... 99%]}
+{42010}{}{[Ждать.]}
+{42020}{}{[Уйти.]}
+{43000}{}{[Выполнено... 99%]}
+{43010}{}{[Уйти.]}
+{43020}{}{[Ждать.]}
+{44000}{}{[Выполнено... 99%]}
+{44010}{}{[Уйти.]}
+{44020}{}{[Ждать.]}
+{45000}{}{[Выполнено... 99%]}
+{45010}{}{[Уйти.]}
+{45020}{}{[Ждать.]}
+{46000}{}{[Выполнено... 99%]}
+{46010}{}{[Уйти.]}
+{46020}{}{[Ждать.]}
+{47000}{}{[Выполнено... 99%]}
+{47010}{}{[Ждать.]}
+{47020}{}{[Уйти.]}
+{48000}{}{[Выполнено... 99%]}
+{48010}{}{[Уйти.]}
+{48020}{}{[Ждать.]}
+{49000}{}{[Выполнено... 99%]}
+{49010}{}{[Ждать.]}
+{49020}{}{[Уйти.]}
+{50000}{}{[Выполнено... 99%]}
+{50010}{}{[Ждать.]}
+{50020}{}{Да пошел ты! [Хорошенько ударить по компьютеру.]}
+{50030}{}{[Уйти.]}
+{51000}{}{[Расшифровка завершена.]}
+{51010}{}{Ну наконец-то. [уйти.]}
+{52000}{}{[Выполнено... 3%]}
+{52010}{}{[Ждать.]}
+{52020}{}{[Уйти.]}
+{53000}{}{[Выполнено... 8%]}
+{53010}{}{[Уйти.]}
+{53020}{}{[Ждать]}
+{54000}{}{[Выполнено... 15%]}
+{54010}{}{[Ждать]}
+{54020}{}{[Уйти.]}
+{55000}{}{[Выполнено... 21%]}
+{55010}{}{[Уйти.]}
+{55020}{}{[Ждать]}
+{56000}{}{[Выполнено... 34%]}
+{56010}{}{[Уйти.]}
+{56020}{}{[Ждать]}
+{57000}{}{[Выполнено... 43%]}
+{57010}{}{[Ждать]}
+{57020}{}{[Уйти.]}
+{58000}{}{[Выполнено... 57%]}
+{58010}{}{[Уйти.]}
+{58020}{}{[Ждать]}
+{59000}{}{[Выполнено... 66%]}
+{59010}{}{[Ждать]}
+{59020}{}{[Уйти.]}
+{60000}{}{[Выполнено... 71%]}
+{60010}{}{[Попробовать просмотреть расшифрованные данные.]@@[Попробовать открыть расшифрованную информацию.]}
+{60020}{}{Гребаный кусок дерьма!@@Блядь [Ударить по терминалу.]@@Я чертовски везуч.@@}
+{61000}{}{[Большая часть данных повреждена, читается лишь начало файла.]
+Секретно. Штаб-квартира Братства Стали. Лост Хиллс писец Хендрик, строительство 123sdhSHDdF377ddas запланировано.
+radioder433kfdnrmitter будет готов в течение 3-4 дней. Forwd894IJMxDksng существующая сеть передачи данных для следующего сдвига на 6 дней. 
+Unable to consd845df5532tact бункер 8 на Марипозе SE zo499aSS.58jjdUhsY8731wr3.
+Внезапный конец файла.
+}
+{61010}{}{Не особо помогло.@@Вижу...@@Интересно...}
+
+[pols]
+{100}{}{Główny komputer Krypty 8}
+{200}{}{Komputer kierujący całą tą Kryptą.}
+{210}{}{Główny komputer Krypty 8. Niezwykle zaawansowana technologia, potężna moc obliczeniowa.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[Wpatrujesz się w lśniący ekran monitora.]}
+{2010}{}{[Przeszukaj bazę danych.]}
+{2020}{}{Plug in the holodisk you found at the ransacked Brotherhood bunker.}
+{2030}{}{[Podłącz swojego PipBoya do terminala i rozpocznij sekwencję deszyfryzacji.]}
+{2040}{}{[Odejdź.]}
+{3000}{}{[Odmowa dostępu do bazy danych - brak autoryzacji. Następuje wyłączenie systemu.]}
+{3010}{}{[Odejdź.]}
+{4000}{}{[Deszyfryzacja w toku... 3%]}
+{4010}{}{[Czekaj.]}
+{4020}{}{[Odejdź.]}
+{5000}{}{[Deszyfryzacja w toku... 5%]}
+{5010}{}{[Czekaj.]}
+{5020}{}{[Odejdź.]}
+{6000}{}{[Deszyfryzacja w toku... 6%]}
+{6010}{}{[Czekaj.]}
+{6020}{}{[Odejdź.]}
+{7000}{}{Proszę mi wybaczyć, ale nie rozmawiam z mediami.}
+{7010}{}{[Czekaj.]}
+{7020}{}{[Odejdź.]}
+{8000}{}{[Deszyfryzacja w toku... 10%]}
+{8010}{}{[Czekaj.]}
+{8020}{}{To przez tą pieprzoną Radę, hm?}
+{9000}{}{[Deszyfryzacja w toku... 13%]}
+{9010}{}{[Czekaj.]}
+{9020}{}{[Odejdź.]}
+{10000}{}{O co chodzi, @sex@|kolego||koleżanko|?}
+{10010}{}{Tylko się rozglądam. Jestem @pname@, jestem tu pierwszy raz. Mógłbyś mi trochę opowiedzieć o tym mieście?}
+{10020}{}{[Odejdź.]}
+{11000}{}{[Deszyfryzacja w toku... 21%]}
+{11010}{}{Co przez to rozumiesz?}
+{11020}{}{[Odejdź.]}
+{12000}{}{[Deszyfryzacja w toku... 23%]}
+{12010}{}{[Czekaj.]}
+{12020}{}{[Odejdź.]}
+{13000}{}{[Deszyfryzacja w toku... 26%]}
+{13010}{}{[Czekaj.]}
+{13020}{}{[Odejdź.]}
+{14000}{}{[Deszyfryzacja w toku... 31%]}
+{14010}{}{[Odejdź.]}
+{14020}{}{[Czekaj.]}
+{15000}{}{[Deszyfryzacja w toku... 32%]}
+{15010}{}{[Czekaj.]}
+{15020}{}{[Odejdź.]}
+{16000}{}{[Deszyfryzacja w toku... 39%]}
+{16010}{}{[Czekaj.]}
+{16020}{}{[Odejdź.]}
+{17000}{}{[Deszyfryzacja w toku... 46%]}
+{17010}{}{[Czekaj.]}
+{17020}{}{[Odejdź.]}
+{18000}{}{[Deszyfryzacja w toku... 53%]}
+{18010}{}{[Odejdź.]}
+{18020}{}{[Czekaj.]}
+{19000}{}{[Deszyfryzacja w toku... 54%]}
+{19010}{}{[Czekaj.]}
+{19020}{}{[Odejdź.]}
+{20000}{}{[Deszyfryzacja w toku... 61%]}
+{20010}{}{[Czekaj.]}
+{20020}{}{[Odejdź.]}
+{21000}{}{[Deszyfryzacja w toku... 68%]}
+{21010}{}{[Odejdź.]}
+{21020}{}{[Czekaj.]}
+{22000}{}{[Deszyfryzacja w toku... 72%]}
+{22010}{}{[Czekaj.]}
+{22020}{}{[Odejdź.]}
+{23000}{}{[Deszyfryzacja w toku... 75%]}
+{23010}{}{[Czekaj.]}
+{23020}{}{[Odejdź.]}
+{24000}{}{[Deszyfryzacja w toku... 79%]}
+{24010}{}{[Czekaj.]}
+{24020}{}{[Odejdź.]}
+{25000}{}{[Deszyfryzacja w toku... 82%]}
+{25010}{}{[Czekaj.]}
+{25020}{}{[Odejdź.]}
+{26000}{}{[Deszyfryzacja w toku... 88%]}
+{26010}{}{[Odejdź.]}
+{26020}{}{[Czekaj.]}
+{27000}{}{[Deszyfryzacja w toku... 91%]}
+{27010}{}{[Czekaj.]}
+{27020}{}{[Odejdź.]}
+{28000}{}{[Deszyfryzacja w toku... 93%]}
+{28010}{}{[Odejdź.]}
+{28020}{}{[Czekaj.]}
+{29000}{}{[Deszyfryzacja w toku... 94%]}
+{29010}{}{[Czekaj.]}
+{29020}{}{[Odejdź.]}
+{30000}{}{[Deszyfryzacja w toku... 97%]}
+{30010}{}{[Czekaj.]}
+{30020}{}{[Odejdź.]}
+{31000}{}{[Deszyfryzacja w toku... 97%]}
+{31010}{}{[Odejdź.]}
+{31020}{}{[Czekaj.]}
+{32000}{}{[Deszyfryzacja w toku... 97%]}
+{32010}{}{[Czekaj.]}
+{32020}{}{[Odejdź.]}
+{33000}{}{[Deszyfryzacja w toku... 98%]}
+{33010}{}{[Czekaj.]}
+{33020}{}{[Odejdź.]}
+{34000}{}{[Deszyfryzacja w toku... 98%]}
+{34010}{}{[Czekaj.]}
+{34020}{}{[Odejdź.]}
+{35000}{}{[Deszyfryzacja w toku... 98%]}
+{35010}{}{[Czekaj.]}
+{35020}{}{[Odejdź.]}
+{36000}{}{[Deszyfryzacja w toku... 98%]}
+{36010}{}{[Odejdź.]}
+{36020}{}{[Czekaj.]}
+{37000}{}{[Deszyfryzacja w toku... 98%]}
+{37010}{}{[Odejdź.]}
+{37020}{}{[Czekaj.]}
+{38000}{}{[Deszyfryzacja w toku... 98%]}
+{38010}{}{[Czekaj.]}
+{38020}{}{[Odejdź.]}
+{39000}{}{[Deszyfryzacja w toku... 99%]}
+{39010}{}{[Odejdź.]}
+{39020}{}{[Czekaj.]}
+{40000}{}{[Deszyfryzacja w toku... 99%]}
+{40010}{}{[Odejdź.]}
+{40020}{}{[Czekaj.]}
+{41000}{}{[Deszyfryzacja w toku... 99%]}
+{41010}{}{[Czekaj.]}
+{41020}{}{[Odejdź.]}
+{42000}{}{[Deszyfryzacja w toku... 99%]}
+{42010}{}{[Czekaj.]}
+{42020}{}{[Odejdź.]}
+{43000}{}{[Deszyfryzacja w toku... 99%]}
+{43010}{}{[Odejdź.]}
+{43020}{}{[Czekaj.]}
+{44000}{}{[Deszyfryzacja w toku... 99%]}
+{44010}{}{[Odejdź.]}
+{44020}{}{[Czekaj.]}
+{45000}{}{[Deszyfryzacja w toku... 99%]}
+{45010}{}{[Odejdź.]}
+{45020}{}{[Czekaj.]}
+{46000}{}{[Deszyfryzacja w toku... 99%]}
+{46010}{}{[Odejdź.]}
+{46020}{}{[Czekaj.]}
+{47000}{}{[Deszyfryzacja w toku... 99%]}
+{47010}{}{[Czekaj.]}
+{47020}{}{[Odejdź.]}
+{48000}{}{[Deszyfryzacja w toku... 99%]}
+{48010}{}{[Odejdź.]}
+{48020}{}{[Czekaj.]}
+{49000}{}{[Deszyfryzacja w toku... 99%]}
+{49010}{}{[Czekaj.]}
+{49020}{}{[Odejdź.]}
+{50000}{}{[Deszyfryzacja w toku... 99%]}
+{50010}{}{[Czekaj.]}
+{50020}{}{Pierdolę to! [Kopnij w komputer.]}
+{50030}{}{[Odejdź.]}
+{51000}{}{[Deszyfryzacja zakończona.]}
+{51010}{}{No, nareszcie. [Odejdź.]}
+{52000}{}{[Work in progress... 3%]}
+{52010}{}{[Wait.]}
+{52020}{}{[Leave.]}
+{53000}{}{[Work in progress... 8%]}
+{53010}{}{[Leave.]}
+{53020}{}{[Wait]}
+{54000}{}{[Work in progress... 15%]}
+{54010}{}{[Wait]}
+{54020}{}{[Leave.]}
+{55000}{}{[Work in progress... 21%]}
+{55010}{}{[Leave.]}
+{55020}{}{[Wait]}
+{56000}{}{[Work in progress... 34%]}
+{56010}{}{[Leave.]}
+{56020}{}{[Wait]}
+{57000}{}{[Work in progress... 43%]}
+{57010}{}{[Wait]}
+{57020}{}{[Leave.]}
+{58000}{}{[Work in progress... 57%]}
+{58010}{}{[Leave.]}
+{58020}{}{[Wait]}
+{59000}{}{[Work in progress... 66%]}
+{59010}{}{[Wait]}
+{59020}{}{[Leave.]}
+{60000}{}{[Work in progress... 71%]}
+{60010}{}{[Attempt to view the already loaded contents.]@@[Try to open the already loaded content.]}
+{60020}{}{Fucking piece of crap!@@Fuck [Kick the terminal.]@@Just my fucking luck.@@}
+{61000}{}{[Large portion of the data is corrupted, only the beginning of the file is readable.]
+Confidential. Brotherhood of Steel Headquarters, Lost Hills
+Scribe Kendrick, the construction of the123sdhSHDdF377ddas planned. Scheduled radioder433kfdnrmitter assembly in 3 to 4 days. Forwd894IJMxDksng existing network data to the next shift in 6 days. Unable to consd845df5532tact bunker No. 8 in Mariposa SE zo499aSS.58jjdUhsY8731wr3.
+Unexpected end of file.
+}
+{61010}{}{That didin't help much.@@I see...@@Interesting...}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{Welcome to Vault-Tec Vault Mainframe terminal.
+Input command:}
+{2010}{}{[Browse the database.]}
+{2020}{}{[Plug in the holodisk you found at the ransacked Brotherhood bunker and try to read the contents.]}
+{2030}{}{[Connect your PipBoy to the terminal and start deciphering the raider holodisk.]}
+{2040}{}{Log off.@@Log out.@@Log off.}
+{3000}{}{[No authorization to browse the database. System shutdown.]}
+{3010}{}{Log off.@@Log out.@@Log off.}
+{4000}{}{[Work in progress... 3%]}
+{4010}{}{[Wait.]}
+{4020}{}{[Leave.]}
+{5000}{}{[Work in progress... 5%]}
+{5010}{}{[Wait.]}
+{5020}{}{[Leave.]}
+{6000}{}{[Work in progress... 6%]}
+{6010}{}{[Wait.]}
+{6020}{}{[Leave.]}
+{7000}{}{[Work in progress... 9%]}
+{7010}{}{[Wait.]}
+{7020}{}{[Leave.]}
+{8000}{}{[Work in progress... 10%]}
+{8010}{}{[Wait.]}
+{8020}{}{[Leave.]}
+{9000}{}{[Work in progress... 13%]}
+{9010}{}{[Wait.]}
+{9020}{}{[Leave.]}
+{10000}{}{[Work in progress... 18%]}
+{10010}{}{[Wait.]}
+{10020}{}{[Leave.]}
+{11000}{}{[Work in progress... 21%]}
+{11010}{}{[Wait.]}
+{11020}{}{[Leave.]}
+{12000}{}{[Work in progress... 23%]}
+{12010}{}{[Wait.]}
+{12020}{}{[Leave.]}
+{13000}{}{[Work in progress... 26%]}
+{13010}{}{[Wait.]}
+{13020}{}{[Leave.]}
+{14000}{}{[Work in progress... 31%]}
+{14010}{}{[Leave.]}
+{14020}{}{[Wait.]}
+{15000}{}{[Work in progress... 32%]}
+{15010}{}{[Wait.]}
+{15020}{}{[Leave.]}
+{16000}{}{[Work in progress... 39%]}
+{16010}{}{[Wait.]}
+{16020}{}{[Leave.]}
+{17000}{}{[Work in progress... 46%]}
+{17010}{}{[Wait.]}
+{17020}{}{[Leave.]}
+{18000}{}{[Work in progress... 53%]}
+{18010}{}{[Leave.]}
+{18020}{}{[Wait.]}
+{19000}{}{[Work in progress... 54%]}
+{19010}{}{[Wait.]}
+{19020}{}{[Leave.]}
+{20000}{}{[Work in progress... 61%]}
+{20010}{}{[Wait.]}
+{20020}{}{[Leave.]}
+{21000}{}{[Work in progress... 68%]}
+{21010}{}{[Leave.]}
+{21020}{}{[Wait.]}
+{22000}{}{[Work in progress... 72%]}
+{22010}{}{[Wait.]}
+{22020}{}{[Leave.]}
+{23000}{}{[Work in progress... 75%]}
+{23010}{}{[Wait.]}
+{23020}{}{[Leave.]}
+{24000}{}{[Work in progress... 79%]}
+{24010}{}{[Wait.]}
+{24020}{}{[Leave.]}
+{25000}{}{[Work in progress... 82%]}
+{25010}{}{[Wait.]}
+{25020}{}{[Leave.]}
+{26000}{}{[Work in progress... 88%]}
+{26010}{}{[Leave.]}
+{26020}{}{[Wait.]}
+{27000}{}{[Work in progress... 91%]}
+{27010}{}{[Wait.]}
+{27020}{}{[Leave.]}
+{28000}{}{[Work in progress... 93%]}
+{28010}{}{[Leave.]}
+{28020}{}{[Wait.]}
+{29000}{}{[Work in progress... 94%]}
+{29010}{}{[Wait.]}
+{29020}{}{[Leave.]}
+{30000}{}{[Work in progress... 97%]}
+{30010}{}{[Wait.]}
+{30020}{}{[Leave.]}
+{31000}{}{[Work in progress... 97%]}
+{31010}{}{[Leave.]}
+{31020}{}{[Wait.]}
+{32000}{}{[Work in progress... 97%]}
+{32010}{}{[Wait.]}
+{32020}{}{[Leave.]}
+{33000}{}{[Work in progress... 98%]}
+{33010}{}{[Wait.]}
+{33020}{}{[Leave.]}
+{34000}{}{[Work in progress... 98%]}
+{34010}{}{[Wait.]}
+{34020}{}{[Leave.]}
+{35000}{}{[Work in progress... 98%]}
+{35010}{}{[Wait.]}
+{35020}{}{[Leave.]}
+{36000}{}{[Work in progress... 98%]}
+{36010}{}{[Leave.]}
+{36020}{}{[Wait.]}
+{37000}{}{[Work in progress... 98%]}
+{37010}{}{[Leave.]}
+{37020}{}{[Wait.]}
+{38000}{}{[Work in progress... 98%]}
+{38010}{}{[Wait.]}
+{38020}{}{[Leave.]}
+{39000}{}{[Work in progress... 99%]}
+{39010}{}{[Leave.]}
+{39020}{}{[Wait.]}
+{40000}{}{[Work in progress... 99%]}
+{40010}{}{[Leave.]}
+{40020}{}{[Wait.]}
+{41000}{}{[Work in progress... 99%]}
+{41010}{}{[Wait.]}
+{41020}{}{[Leave.]}
+{42000}{}{[Work in progress... 99%]}
+{42010}{}{[Wait.]}
+{42020}{}{[Leave.]}
+{43000}{}{[Work in progress... 99%]}
+{43010}{}{[Leave.]}
+{43020}{}{[Wait.]}
+{44000}{}{[Work in progress... 99%]}
+{44010}{}{[Leave.]}
+{44020}{}{[Wait.]}
+{45000}{}{[Work in progress... 99%]}
+{45010}{}{[Leave.]}
+{45020}{}{[Wait.]}
+{46000}{}{[Work in progress... 99%]}
+{46010}{}{[Leave.]}
+{46020}{}{[Wait.]}
+{47000}{}{[Work in progress... 99%]}
+{47010}{}{[Wait.]}
+{47020}{}{[Leave.]}
+{48000}{}{[Work in progress... 99%]}
+{48010}{}{[Leave.]}
+{48020}{}{[Wait.]}
+{49000}{}{[Work in progress... 99%]}
+{49010}{}{[Wait.]}
+{49020}{}{[Leave.]}
+{50000}{}{[Work in progress... 99%]}
+{50010}{}{[Wait.]}
+{50020}{}{Fuck it! [Kick the computer.]}
+{50030}{}{[Leave.]}
+{51000}{}{[Deciphering finished.]}
+{51010}{}{Yeah, finally. [Leave.]}
+{52000}{}{[Work in progress... 3%]}
+{52010}{}{[Wait.]}
+{52020}{}{[Leave.]}
+{53000}{}{[Work in progress... 8%]}
+{53010}{}{[Leave.]}
+{53020}{}{[Wait]}
+{54000}{}{[Work in progress... 15%]}
+{54010}{}{[Wait]}
+{54020}{}{[Leave.]}
+{55000}{}{[Work in progress... 21%]}
+{55010}{}{[Leave.]}
+{55020}{}{[Wait]}
+{56000}{}{[Work in progress... 34%]}
+{56010}{}{[Leave.]}
+{56020}{}{[Wait]}
+{57000}{}{[Work in progress... 43%]}
+{57010}{}{[Wait]}
+{57020}{}{[Leave.]}
+{58000}{}{[Work in progress... 57%]}
+{58010}{}{[Leave.]}
+{58020}{}{[Wait]}
+{59000}{}{[Work in progress... 66%]}
+{59010}{}{[Wait]}
+{59020}{}{[Leave.]}
+{60000}{}{Unknown error. Unable to read holodisk. }
+{60010}{}{[Attempt to view the already loaded contents.]@@[Try to open the already loaded content.]}
+{60020}{}{Fucking piece of crap!@@Fuck [Kick the terminal.]@@Just my fucking luck.@@Fuck!@@Crap.}
+{61000}{}{[Large portion of the data is corrupted, and only the beginning of the file is readable.]
+Confidential. Brotherhood of Steel Headquarters, Lost Hills
+Paladin Hewson, the construction of the123sdhSHDdF377ddas planned. Scheduled radioder433kfdnrmitter assembly in 3 to 4 days. Forwd894IJMxDksng existing bunker network coordinates data to the next shift in 6 days. Unable to consd845df5532tact bunker No. 8 in Mariposa SE zo499aSS.58jjdUhsY8731wr3.
+Unexpected end of file.
+}
+{61010}{}{Hmm...@@I see...@@Interesting...}
+

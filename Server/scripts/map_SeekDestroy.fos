@@ -1,0 +1,126 @@
+#include "_macros.fos"
+
+#include "event_hungergames.fos"
+
+
+
+void _MapInit(Map& map, bool)
+{
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "CritterKilled");
+    map.SetEvent(MAP_EVENT_OUT_CRITTER, "CheckPlayers");
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_CrIn");
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_CrIn");
+}
+
+void InitWatchman(Critter& cr)
+{
+	cr.SetEvent(CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked");
+}
+
+void _SomeoneAttacked(Critter& cr, Critter& attacked, Critter& attacker)
+{
+	if(attacker.Id == cr.Id)
+        return;
+	if(attacker.Id == attacked.Id)
+        return;
+	if (attacker.IsNpc())
+		return;
+	if (attacked.IsNpc())
+	{
+		attacked.ToDead( anim2, null );
+		ShotFail(cr);
+		return;
+	}
+
+}
+
+void CritterKilled(Map& map, Critter& cr, Critter@ killer)
+{
+	if( !cr.IsPlayer() )
+	return;
+	
+	if (valid(killer))
+    {
+	
+    }
+}
+
+void SomeoneAttacks(Critter& cr, Critter& fromCr, Critter& target)
+{
+
+
+}
+
+void _CrIn(Map& map,Critter& cr)
+{
+	if( !cr.IsPlayer() )
+		return;
+	//if (!FLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME))
+	//	SETFLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME); //Nobody cares, just creates problems for real solo players.
+	if( cr.GetAccess() == ACCESS_CLIENT )
+	{
+		// Store stats that can change for safety check.
+	    GameVar@ SafeVar1 = GetLocalVar( LVAR_SD_Safety1, cr.Id );
+	    GameVar@ SafeVar2 = GetLocalVar( LVAR_SD_Safety2, cr.Id );
+		GameVar@ SafeVar3 = GetLocalVar( LVAR_SD_Safety3, cr.Id );
+		GameVar@ SafeVar4 = GetLocalVar( LVAR_SD_Safety4, cr.Id );
+		GameVar@ SafeVar5 = GetLocalVar( LVAR_SD_Safety5, cr.Id );
+		GameVar@ SafeVar6 = GetLocalVar( LVAR_SD_Safety6, cr.Id );
+		GameVar@ SafeVar7 = GetLocalVar( LVAR_SD_Safety7, cr.Id );
+		GameVar@ SafeVar8 = GetLocalVar( LVAR_SD_Safety8, cr.Id );
+		GameVar@ SafeVar9 = GetLocalVar( LVAR_SD_Safety9, cr.Id );
+		GameVar@ SafeVar10 = GetLocalVar( LVAR_SD_Safety10, cr.Id );
+		
+	cr.ModeBase[MODE_NO_WALK]=1;
+	cr.ModeBase[MODE_NO_RUN]=1;
+	}
+	
+
+}
+
+void CheckPlayers(Map& map,Critter& cr)
+{
+	if( !cr.IsPlayer() )
+		return;
+	//if (FLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME))
+	//	UNSETFLAG(cr.ParamBase[CR_FLAGS1], CR_NO_NAME);
+
+	cr.ModeBase[MODE_NO_WALK]=0;
+	cr.ModeBase[MODE_NO_RUN]=0;
+	
+	if(map.GetNpcCount(ROLE_FINISHER, FIND_ONLY_NPC | FIND_ALL) != 0)
+		return;
+	
+	Critter@[] critters;
+	uint players= 0;
+	uint playernum = map.GetCritters(0, FIND_ONLY_PLAYERS | FIND_LIFE_AND_KO, critters);
+	for( uint c=0; c<playernum; c++ )
+	{
+		if( critters[c].GetAccess() == ACCESS_CLIENT )
+			players++;
+	}
+	if( players == 1 )
+	{
+		AddNewMapMessage( "Only one survivor remaining! The event is finished. Winner should head to the middle of arena." ,REAL_SECOND(10), 0 , COLOR_ORANGE, map.Id);
+        
+        GameVar@ KillCount = GetGlobalVar(GVAR_HG_Killcount); //Auto Container spawn per 15 kills.
+        KillCount = 0;
+		event_completed();
+	}
+	return;
+}
+
+#define CTE_GUNCD ( 900 )
+#define CTE_NAMESHOW ( 901 )
+
+void ShotFail( Critter& cr )
+{
+	cr.AddTimeEvent( "cte_ShotFail", REAL_MINUTE( 1 ), CTE_GUNCD );
+}
+
+uint cte_ShotFail( Critter& cr, int identifier, uint& rate )
+{
+        cr.EraseTimeEvents( CTE_GUNCD );
+		return 0;
+}
+

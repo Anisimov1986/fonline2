@@ -1,0 +1,42 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Modoc Resident}
+{200}{}{You see: a Modoc resident.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{I sure hope it rains soon.@@Our crops are dying from lack of water.@@Even the wells have gone dry.@@Not a cloud in the sky.@@I'm thinking of moving away from here.@@Modoc used to be a prosperous farming community.@@Life in Modoc is slow. Just the way I like it.}
+
+[russ]
+{100}{}{Житель}
+{200}{}{Горожанин Модока.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Очень надеюсь, что скоро пойдет дождь.@@Наши посевы гибнут от засухи.@@Даже колодцы пересохли.@@На небе ни облачка.@@Я подумываю о том, чтобы уехать отсюда.@@Раньше Модок был процветающим фермерским сообществом.@@Жизнь в Модоке течет неторопливо. Как раз так, как мне нравится.@@Ты еще не слышал? Они нашли какого-то идиота, который согласился отправиться на Ферму ужасов и выяснил, в чем там дело.@@Мне приходилось быть на Ферме ужасов. Страшно!@@Лучше всего на Ферму ужасов ходить днем.@@Раньше на Ферме ужасов жил Карл.}
+
+[pols]
+{100}{}{Mieszkaniec}
+{200}{}{Mieszkaniec Modoc.}
+{210}{}{Widzisz mieszkańca Modoc.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Mam nadzieję, że wkrótce spadnie deszcz.@@Nasze uprawy umierają z braku wody.@@Nawet studnie wyschły.@@Nawet najmniejszej chmurki na niebie.@@Zastanawiam się, czy się stąd nie wyprowadzić.@@Modoc było kiedyś kwitnącą społecznością rolniczą.@@Życie w Modoc biegnie powoli. Dokładnie tak, jak lubię.}
+
+[ptbr]
+{100}{}{Morador}
+{200}{}{Um morador de Modoc.}
+{210}{}{Você vê um morador de Modoc.}
+{1000}{}{Predialogue installations}
+{1010}{}{Known}
+{2000}{}{Tomara que chova logo.@@Com a falta d'água perdi meu gado, morreu de sede, meu alazão.@@As plantações da gente tão morrendo porque não chove.@@Até os poços já secaram.@@Não tem uma nuvem sequer no céu.@@Eu acho que vou abandonar minha fazenda e tentar a vida em outro canto.@@Modoc antigamente era uma comunidade de fazendeiros que tinha tudo para dar certo.@@A vida em Modoc é devegar. Do jeito que eu gosto.}
+

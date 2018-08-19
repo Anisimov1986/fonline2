@@ -1,0 +1,137 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+4 2020 D _var p q_molerats = 0 D _script quest@quest_checkcd 1 9324 D _param p ST_LEVEL } 5 #
+8 2030 D _script quest@quest_checkcd 1 9324 D _var p q_molerats = 1 #
+7 2040 D _var p q_molerats = 2 R _var p q_molerats = 0 R _param p ST_EXPERIENCE + 2000 R _script economy_dialogs@r_GiveCaps 1 500 R _script karma@r_AddKarma 1 100 #
+0 2050 @
+3 3000 None 0 #
+4 3010 D _var p q_molerats = 0 D _script quest@quest_checkcd 1 9324 #
+0 3020 @
+4 4000 None 0 #
+5 4010 R _var p q_molerats = 1 R _script quest@r_CreateLocationZone 3 9307 22 18 R _script quest@quest_setcd 2 9324 310 #
+0 4020 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+0 6010 R _script dialog@r_ShowQuestMessage 1 9323 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+0 8010 R _script quest@r_CreateLocationZone 3 9307 22 18 R _script quest@quest_setcd 2 9324 310 R _script dialog@r_ShowQuestMessage 1 9323 &
+
+[engl]
+{100}{}{Warren}
+{200}{}{You see: Warren.}
+{210}{}{Dirty farmer with a typical, idiotic look.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[He smiles idiotically.] Yeah, what'cha want to know?}
+{2010}{}{Who are you?}
+{2020}{}{Would you have any job for me?}
+{2030}{}{I could not find your farm, can you tell me it's location again?}
+{2040}{}{I've killed all the molerats on your fields.}
+{2050}{}{I don't want anything actually, just passing by.}
+{3000}{}{Name's Warren, a farmer down here. Nuthin' special, but I don't complain. The only problem are them fuckin' molerats.}
+{3010}{}{Molerats?}
+{3020}{}{Hold on, is it lunch time already? Wow, I gotta go. See ya!}
+{4000}{}{[Warren winces with disgust.] Yeah, molerats. They keep diggin' in our fields, and fuckers are really tough - killed a couple of guys tryin' to protect their land in last weeks. You seem to know how to handle a gun, maybe you'd like to help us? (The location will become visible for you and everyone nearby, who's tagged you.)}
+{4010}{}{Yeah, sure. I hope that you've got some reward prepared already.}
+{4020}{}{I'm not sure, well, maybe later. Bye.}
+{5000}{}{Of course we have, @sex@|mister||ma'am|. These fields are everythin' for us, if nobody will clean 'em up - we'll die from hunger.}
+{5010}{}{I see. Well, show me where are these fields and I'm on my way.}
+{6000}{}{Great, thanks. You have to go... well, there. [Points a direction with his finger.] You won't miss it, if you'll go straight.}
+{6010}{}{Fine. Be right back, goodbye.}
+{7000}{}{[He is beaming with joy.] Yay, that's great! Thanks a lot, @sex@|mister||ma'am|. Here, take this as a reward from all of us. You probably saved our lives!}
+{7010}{}{Yeah, fine, great. Glad that I could help, goodbye.}
+{8000}{}{Ah... But you will deal with them? Please tell me that you will!}
+{8010}{}{Yes i will, just show me location.}
+
+[russ]
+{100}{}{Warren}
+{200}{}{You see: Warren.}
+{210}{}{Dirty farmer with a typical, idiotic look.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[He smiles idiotically.] Yeah, what'cha want to know?}
+{2010}{}{Who are you?}
+{2020}{}{Would you have any job for me?}
+{2030}{}{I could not find your farm, can you tell me it's location again?}
+{2040}{}{I've killed all the molerats on your fields.}
+{2050}{}{I don't want anything actually, just passing by.}
+{3000}{}{Name's Warren, a farmer down here. Nuthin' special, but I don't complain. The only problem are them fuckin' molerats.}
+{3010}{}{Molerats?}
+{3020}{}{Hold on, is it lunch time already? Wow, I gotta go. See ya!}
+{4000}{}{[Warren winces with disgust.] Yeah, molerats. They keep diggin' in our fields, and fuckers are really tough - killed a couple of guys tryin' to protect their land in last weeks. You seem to know how to handle a gun, maybe you'd like to help us? (The location will become visible for you and everyone nearby, who's tagged you.)}
+{4010}{}{Yeah, sure. I hope that you've got some reward prepared already.}
+{4020}{}{I'm not sure, well, maybe later. Bye.}
+{5000}{}{Of course we have, @sex@|mister||ma'am|. These fields are everythin' for us, if nobody will clean 'em up - we'll die from hunger.}
+{5010}{}{I see. Well, show me where are these fields and I'm on my way.}
+{6000}{}{Great, thanks. You have to go... well, there. [Points a direction with his finger.] You won't miss it, if you'll go straight.}
+{6010}{}{Fine. Be right back, goodbye.}
+{7000}{}{[He is beaming with joy.] Yay, that's great! Thanks a lot, @sex@|mister||ma'am|. Here, take this as a reward from all of us. You probably saved our lives!}
+{7010}{}{Yeah, fine, great. Glad that I could help, goodbye.}
+{8000}{}{Ah... But you will deal with them? Please tell me that you will!}
+{8010}{}{Yes i will, just show me location.}
+
+[pols]
+{100}{}{Warren}
+{200}{}{Widzisz Warrena.}
+{210}{}{Brudny farmer z typowym, kretyńskim wyrazem twarzy.}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[Uśmiecha się idiotycznie.] Ta, co chcesz wiedzieć?}
+{2010}{}{Kim jesteś?}
+{2020}{}{Masz może dla mnie jakąś robotę?}
+{2030}{}{I could not find your farm, can you tell me it's location again?}
+{2040}{}{@sex@|Oczyściłem||Oczyściłam| twoje pole z kretoszczurów.}
+{2050}{}{Nic takiego, tylko przechodzę. Do widzenia.}
+{3000}{}{Jestem Warren, farmer. Nic szczególnego, ale nie narzekam - hehe, he. Jedyny problem, jaki mam, to te pieprzone kretoszczury.}
+{3010}{}{Kretoszczury?}
+{3020}{}{Kurczę, Warren, miło się gadało - ale @sex@|zostawiłem||zostawiłam| iguany na grillu w namiocie. Muszę lecieć, pa.}
+{4000}{}{[Warren krzywi się z wyraźnym obrzydzeniem.] Tja, kretoszczury. Skubańce ciągle wykopują nam dziury w polach, a są cholernie twarde - już kilku gości rozszarpały, kiedy próbowali je wygonić. Wyglądasz na kogoś, kto potrafi się obchodzić ze spluwą, może @sex@|chciałbyś||chciałabyś| nam pomóc? (They keep diggin' in our fields, and fuckers are really tough - killed a couple of guys tryin' to protect their land in last weeks. You seem to know how to handle a gun, maybe you'd like to help us? (Lokacja zostanie ujawniona tobie i wszystkim osobom w pobliżu, które cię otagowały.)}
+{4010}{}{Tak, jasne. Mam nadzieję, że już czeka na mnie jakaś porządna nagroda.}
+{4020}{}{Hm, @sex@|musiałbym||musiałabym| o tym pomyśleć... Cóż, może potem. Do widzenia.}
+{5000}{}{Ależ oczywiście, @sex@|szefie||szefowo|. Te pola to dla nas wszystko, jeśli ktoś nie przegoni tych zasrańców - umrzemy z głodu!}
+{5010}{}{Mhm, rozumiem. Dobra, pokaż mi gdzie są te pola i ruszam do dzieła.}
+{6000}{}{Świetnie, dzięki. Musisz iść... no, tam. [Wskazuje kierunek ręką.] Idź prosto, a na pewno trafisz.}
+{6010}{}{W porządku. Zaraz wracam, do zobaczenia.}
+{7000}{}{[Wybucha radością.] Ojej, fantastycznie! Wielkie dzięki, @sex@|szefie||szefowo|. Proszę, oto drobna nagroda od nas wszystkich. Prawdopodobnie ratujesz nam życie!}
+{7010}{}{Ta, w porządku, świetnie. Cieszę się, że @sex@|mogłem||mogłam| pomóc, do widzenia.}
+{8000}{}{Ah... But you will deal with them? Please tell me that you will!}
+{8010}{}{Yes i will, just show me location.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{...}
+{2000}{}{[He smiles idiotically.] Yeah, what'cha want to know?}
+{2010}{}{Who are you?}
+{2020}{}{Would you have any job for me?}
+{2030}{}{I could not find your farm, can you tell me it's location again?}
+{2040}{}{I've killed all the molerats on your fields.}
+{2050}{}{I don't want anything actually, just passing by.}
+{3000}{}{Name's Warren, a farmer down here. Nuthin' special, but I don't complain. The only problem are them fuckin' molerats.}
+{3010}{}{Molerats?}
+{3020}{}{Hold on, is it lunch time already? Wow, I gotta go. See ya!}
+{4000}{}{[Warren winces with disgust.] Yeah, molerats. They keep diggin' in our fields, and fuckers are really tough - killed a couple of guys tryin' to protect their land in last weeks. You seem to know how to handle a gun, maybe you'd like to help us? (The location will become visible for you and everyone nearby, who's tagged you.)}
+{4010}{}{Yeah, sure. I hope that you've got some reward prepared already.}
+{4020}{}{I'm not sure, well, maybe later. Bye.}
+{5000}{}{Of course we have, @sex@|mister||ma'am|. These fields are everythin' for us, if nobody will clean 'em up - we'll die from hunger.}
+{5010}{}{I see. Well, show me where are these fields and I'm on my way.}
+{6000}{}{Great, thanks. You have to go... well, there. [Points a direction with his finger.] You won't miss it, if you'll go straight.}
+{6010}{}{Fine. Be right back, goodbye.}
+{7000}{}{[He is beaming with joy.] Yay, that's great! Thanks a lot, @sex@|mister||ma'am|. Here, take this as a reward from all of us. You probably saved our lives!}
+{7010}{}{Yeah, fine, great. Glad that I could help, goodbye.}
+{8000}{}{Ah... But you will deal with them? Please tell me that you will!}
+{8010}{}{Yes i will, just show me location.}
+

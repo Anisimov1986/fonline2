@@ -1,0 +1,52 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+0 2020 &
+
+[engl]
+{100}{}{Caravan Leader}
+{200}{}{You see: Caravan Leader.}
+{210}{}{You see a middle aged man, the leader of the caravan.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, it's nice to see some new face across this cursed wasteland. We are, as you probably guessed one of many caravans roaming thru this dry land. Our brahmins are carrying valuable resources. Feel free to check them out, maybe We could have some deal ?@@[He follows you with his eyes as you come in and approach him] Don't try anything funny, okay? We are well armed and numerous! Be quick, check my stock and lets carry on, it's not safe to stay here for many longer.@@ Well well, what the desert dragged in? [He rubs his hands together] Go ahead, don't be shy my merchandise doesn't bite.@@A customer! Please take a look at what i have to offer! My loot is of good quality. Resources needed by any shop, or craftman!@@Are you looking for some, fine metal parts or gunpowder? Maybe some electronic pre-war technology or valuable herbs? In that case i think it's your lucky day. Be quick, we won't gona spend much time here.@@Only the finest stock you'll not find anywhere in the wasteland! Take a look what suits you best.@@If anyone can recognize the best opportunity to obtain and acquire quality material, without any question it's you. Take your time, look at my wares!@@Welcome stranger, I would gladly do business with you. Of course, we can make do without any unnecessary issues. Guards are watching, remember that.@@Welcome to and meet my boys [He points on a bunch of guards armed to the teeth.] and my humble supply caravan, don't be afraid to ... you know feel the weight of anything you desire. [...He points out his inventory...]@@No small talk, let's get down to business if you wish to, otherwise [...He points on the horizon.]. I'm sure we will come to some understanding, won't we?@@Welcome wastelander, keep your arms to yourself and don't damage any of my items, unless you wanna buy them first, heh. Interested in trading?}
+{2010}{}{Sure, let's do business.@@Sure, let's do business.@@Yes, let's trade.@@I will keep that in mind. What do you have?@@Show me what you got.@@Show me what you got.@@I want to purchase something.@@Let's trade then.@@Let's trade.@@Let's trade.@@Let's see what you have.@@What do you have to offer?@@Show me your product.@@Let's do business.}
+{2020}{}{I don't want to trade.@@Not now.@@Bye.@@See you some other time.@@I'm going to take my leave.@@I will go now.@@I have to be somewhere else.@@I need something else.@@This isn't what I was looking for.@@I'm leaving.@@Whatever.@@See you.}
+
+[russ]
+{100}{}{Торговец}
+{200}{}{Вы видите торговца.}
+{210}{}{Вы видите торговца.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{---}
+{2000}{}{Приветствую, всегда приятно встретить новые лица в этой забытой богом пустощи. Мы, как ты уже, наверное, понял  - один из многих караванов, которые шатаются по этой пустой земле. Брамины полны полезных вещей. Можешь свободно выбирать, возможно, мы сможем договориться ?@@[Он пристально следит за тем, как вы подходите к нему] Только без фокусов, договорились ? У моих ребят куча пушек и они не постесняются пустить их в дело! Ну, давай быстрее, осмотри мой багаж и мы продолжим путь, здесь не очень-то безопасно стоять так долго.@@ Так-так, ну и что тут к нам из пустоши выползло ? [он трет свои руки] Давай, не стесняйся, мой товар тебя не укусит.@@ О, Клиент! Милости прощу - к нашему шалашу, взгляни на мой товар. Товар отличного качества. Полезные вещички, востребованные в любом магазине, или у любого мастера!@@Тебе нужен добротный металл или порох ? Может нужны до-военные электро-технологии или полезные травы ? В таком случае, это твой счастливый день. Решайся быстрее, время - деньги.@@Только самые качественные товары, ты таких не сыщешь во всей пустощи! Глянь и выбери то, что тебе нужно больше всего.@@ Если кто-нибудь и поймет, какая возможность ему представляется, то безусловно это - ты. Успевай, не прозевай ! Да, это сделка века !.@@ Добро пожаловать, путник, я с удовольствием покажу тебе свой товар. Разумеется, мы сделаем это спокойно, без лишних движений. Стражники всегда на готове, намек понятен ?.@@ Добро пожаловать, познакомься с моими ребятками[он указывает на вооруженных до зубов охранников] и погляди на мой скромный караван, не бойся...выбирай то, что тебе под душе или то, что ты сможешь унести.[...он показывает вам свой товар...]@@Давай сразу, без лишних слов, перейдем к делу, если ты не возражаешь, в противном случае можешь валить [...он указывает в сторону горизонта...]. Я уверен, мы поняли друг друга, не так ли ?@@ Приветствую, странник, товар трогать - запрещено, разрешается только смотреть, конечно же, если ты не хочешь заплатить за это. Ну что-ж, давай поторгуем-с ?}
+{2010}{}{Давай посмотрим что у тебя есть.@@Ближе к делу.@@Давай уже торговать.@@Я здесь для того чтобы заниматся бизнесом, давай уже приступим.@@Что у тебя есть на обмен?}
+{2020}{}{Я передумал.@@Не сейчас.@@Пока.@@Как нибудь в другой раз.@@Мне уже пора.}
+
+[pols]
+{100}{}{Dowódca Karawany}
+{200}{}{Widzisz handlarza w średnim wieku.}
+{210}{}{Widzisz handlarza w średnim wieku.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Witaj, miło zobaczyć nową twarz wśród tych przeklętych pustkowi. Należymy, jak już się pewnie zorientowałeś, do jednej z wielu karawan podróżujących przez te suche pustkowia. Nasze braminy są załadowane cennymi surowcami. Jeśli jesteś zainteresowany to je obejrzyj, może nawet coś pohandlujemy ?@@[Podąża za tobą wzrokiem jak się do niego zbliżasz]Nie próbuj niczego głupiego, rozumiesz? Jak widzisz jest nas trochę i mamy dobre giwery! Śpiesz się, sprawdź czy coś cię interesuje i ruszajmy w swoją stronę, przesiadywanie tutaj to średni pomysł.@@Nonono, co tutaj przywiało z pustyni... [Zaciera ręce.] Słucham, w czym mogę pomóc?@@O, klient! Proszę, spójrz na moją ofertę. Posiadam materiały dobrej jakości, potrzebne przez każdego rzemieślnika czy sklep!@@Masz zamiar coś kupić? W takim razie, to twój szczęśliwy dzień.@@Najlepszy towar na całym pustkowiach! Proszę, rozejrzyj się.@@Wyglądasz na osobę, która potrafi docenić doskonałą jakość oraz okazyjne ceny.@@Witaj, nieznajomy. Możemy pohandlować bez niepotrzebnych niemiłych sytuacji - strażnicy wszystko obserwują.@@Nie jestem w nastroju na pogawędki. Kupujesz coś, czy ruszamy dalej?@@Witaj, wędrowcze. Staraj się nic nie uszkodzić, inaczej będziesz @sex@|musiał||musiała| za to zapłacić. To jak, pohandlujemy?}
+{2010}{}{Jasne, handlujmy.@@Pewnie, przejdźmy do interesów.@@Co ciekawego możesz mi zaoferować?@@Pokaż, co masz na sprzedaż.@@Hm, @sex@|chciałbym||chciałabym| coś kupić.@@Interesuje mnie kilka rzeczy z twojego asortymentu.@@Zobaczmy, co tam masz.@@Co masz do zaoferowania?@@Pokaż mi swoje produkty.}
+{2020}{}{Nie chcę handlować.@@Nie teraz.@@Do widzenia.@@[Wyjdź.] Może innym razem.@@To ja już sobie pójdę.@@Po tym, co tutaj @sex@|zobaczyłem||zobaczyłam|, nie wiem czy @sex@|chciałbym||chciałabym| z tobą ubić muchę w kiblu.@@Potrzebuję czegoś innego.@@[Wyjdź.] Muszę już iść.@@[Wyjdź.] Nie tego @sex@|szukałem||szukałam|.@@Dzięki - ale nie.@@Wychodzę.@@[Wyjdź.] Do zobaczenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Hello, it's nice to see some new face across this cursed wasteland. We are, as you probably guessed one of many caravans roaming thru this dry land. Our brahmins are carrying valuable resources. Feel free to check them out, maybe We could have some deal ?@@[He follows you with his eyes as you come in and approach him] Don't try anything funny, okay? We are well armed and numerous! Be quick, check my stock and lets carry on, it's not safe to stay here for many longer.@@ Well well, what the desert dragged in? [He rubs his hands together] Go ahead, don't be shy my merchandise doesn't bite.@@A customer! Please take a look at what i have to offer! My loot is of good quality. Resources needed by any shop, or craftman!@@Are you looking for some, fine metal parts or gunpowder? Maybe some electronic pre-war technology or valuable herbs? In that case i think it's your lucky day. Be quick, we won't gona spend much time here.@@Only the finest stock you'll not find anywhere in the wasteland! Take a look what suits you best.@@If anyone can recognize the best opportunity to obtain and acquire quality material, without any question it's you. Take your time, look at my wares!@@Welcome stranger, I would gladly do business with you. Of course, we can make do without any unnecessary issues. Guards are watching, remember that.@@Welcome to and meet my boys [He points on a bunch of guards armed to the teeth.] and my humble supply caravan, don't be afraid to ... you know feel the weight of anything you desire. [...He points out his inventory...]@@No small talk, let's get down to business if you wish to, otherwise [...He points on the horizon.]. I'm sure we will come to some understanding, won't we?@@Welcome wastelander, keep your arms to yourself and don't damage any of my items, unless you wanna buy them first, heh. Interested in trading?}
+{2010}{}{Sure, let's do business.@@Sure, let's do business.@@Yes, let's trade.@@I will keep that in mind. What do you have?@@Show me what you got.@@Show me what you got.@@I want to purchase something.@@Let's trade then.@@Let's trade.@@Let's trade.@@Let's see what you have.@@What do you have to offer?@@Show me your product.@@Let's do business.}
+{2020}{}{I don't want to trade.@@Not now.@@Bye.@@See you some other time.@@I'm going to take my leave.@@I will go now.@@I have to be somewhere else.@@I need something else.@@This isn't what I was looking for.@@I'm leaving.@@Whatever.@@See you.}
+

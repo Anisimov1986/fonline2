@@ -1,0 +1,272 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+6 1010 D _var n name_mem_npc_player = 0 D _param p ST_GENDER = 0 R _var p name_mem_npc_player = 1 #
+17 1020 D _var n name_mem_npc_player = 1 @
+6 2000 None 0 #
+11 2010 #
+9 2020 #
+0 2030 @
+9 3000 None 0 #
+10 3010 #
+0 3020 @
+10 4000 None 0 #
+11 4010 #
+11 4020 #
+0 4030 @
+11 5000 None 0 #
+16 5010 #
+14 5020 #
+15 5030 #
+9 5040 #
+12 5050 #
+18 5060 @
+12 6000 None 0 #
+11 6010 #
+0 6020 @
+14 7000 None 0 #
+20 7010 D _item p PID_BOTTLE_CAPS > 54 R _item p PID_BOTTLE_CAPS - 55 #
+19 7020 D _item p PID_BOTTLE_CAPS < 55 #
+11 7030 #
+0 7040 @
+15 8000 None 0 #
+20 8010 D _item p PID_BOTTLE_CAPS > 124 R _item p PID_BOTTLE_CAPS - 125 #
+19 8020 D _item p PID_BOTTLE_CAPS < 125 #
+11 8030 #
+0 8040 @
+16 9000 None 0 #
+20 9010 D _item p PID_BOTTLE_CAPS > 14 R _item p PID_BOTTLE_CAPS - 15 #
+19 9020 D _item p PID_BOTTLE_CAPS < 15 #
+11 9030 #
+0 9040 @
+17 10000 None 0 #
+11 10010 #
+18 10020 #
+0 10030 @
+18 11000 None 0 #
+11 11010 #
+0 11020 @
+19 12000 None 0 #
+0 12010 @
+20 13000 None 0 &
+
+[engl]
+{100}{}{Sally}
+{200}{}{You see a plump, older woman with a large nose.}
+{210}{}{You see Big Nose Sally, the owner of the Bathhouse.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown man}
+{1020}{}{Known}
+{2000}{}{My name's Sally Dunton, but mostly they call me Big Nose Sally. I'm the owner of this here bathhouse. We have a whole hassleful of special, attended baths for you to pick from.}
+{2010}{}{What kind of special, attended baths do you have here?}
+{2020}{}{Gee, Miss Sally, I just wanted a regular bath. You don't have a bubble bath, do you?}
+{2030}{}{I think I've changed my mind; I may try back later.}
+{3000}{}{If you just want an unattended bath, you might try the Golden Gecko or the Buckner House. But I doubt that you'll find that as enjoyable.}
+{3010}{}{I was just kidding; I'd like a special bath.}
+{3020}{}{Thanks, Miss Big Nose. I'll try that instead. Good-bye.}
+{4000}{}{The special baths that we have available vary in cost by the amount of time that the gal spends with you, and any special services that you take advantage of.}
+{4010}{}{You mean I get to be with a real-live girl? Sign me up!}
+{4020}{}{I think that the appearance of the attendant better figure into the cost, too.}
+{4030}{}{I don't think I'm ready for this; I better go.}
+{5000}{}{The baths that we have available are: a Wash Cloth Hand Wipe, a brief Full Body Wash, and, lastly, the Round-the-World Full Squeaky Clean Servicing, offered by the beautiful and talented Jenny, recently trained at the finest house in the Den.}
+{5010}{}{I think I can get by with the Hand Wipe; how much is that?}
+{5020}{}{Sounds like quite a fella, Bob, but I've got some other questions.}
+{5030}{}{Beautiful and talented? I've got to hear more about the Round-the-World Full Squeaky Clean Wash.}
+{5040}{}{I don't think I'm ready to take a bath with someone else watching; I'm going to leave.}
+{5050}{}{Can I mix and match the different types of baths?}
+{5060}{}{What about getting a discount on those baths?}
+{6000}{}{No, you have to choose one at a time, but you can always come back for more -- usually after a brief rest.}
+{6010}{}{Tell me the different types of bath again.}
+{6020}{}{If I can't make my own combinations, I don't even want a bath; I'm outta here.}
+{7000}{}{I think any of our girls would be happy to give you a full body wash; I just better watch the time to make sure it's a brief one (chuckle). The Brief Full Body Wash will cost you $55.}
+{7010}{}{That sounds like fun. Here's my $55.}
+{7020}{}{Sorry, don't think I can afford that.}
+{7030}{}{Hmm, what are the other choices again?}
+{7040}{}{Thanks, but I think that I'll save my money for now.}
+{8000}{}{Well I'm sure that your Round-the-World trip Servicing with beautiful Jenny will be an experience that you'll savor for quite a while. A real bargain at only $125.}
+{8010}{}{I can't wait to enjoy Jenny's special talents. Here's my $125.}
+{8020}{}{I don't think I have that much on me.}
+{8030}{}{Maybe I should hear about the other bath choices again.}
+{8040}{}{I don't think that I'll ever need $125 worth of cleaning. I'm going to leave before I get myself into trouble.}
+{9000}{}{Well, for an attractive individual like yourself that would only cost $15.}
+{9010}{}{$15? That's a bargain; I'll take it.}
+{9020}{}{Sorry, I don't think I have $15.}
+{9030}{}{Hmm, tell me about the other types of baths again.}
+{9040}{}{Maybe I don't need this right now. I'm leaving.}
+{10000}{}{Back again, huh? A lot of folks just can't seem to get clean enough.}
+{10010}{}{Tell me the types of bath that you have again.}
+{10020}{}{Do I get a return customer discount?}
+{10030}{}{I'm just looking around this time; I don't need a bath.}
+{11000}{}{Well now, it wouldn't be fair to discount any of our services. My gals are well worth what they charge.}
+{11010}{}{I guess that's fair enough. Tell me what baths you have available.}
+{11020}{}{Well, if I can't get a discount, I'm leaving.}
+{12000}{}{It seems as though your eyes are bigger than your budget. Perhaps you'd like to try a cheaper washing.}
+{12010}{}{Yeah, maybe. Bye.}
+{13000}{}{Best money you ever spent!}
+
+[russ]
+{100}{}{Салли}
+{200}{}{Вы видите полную пожилую женщину с большим носом.}
+{210}{}{Вы видите Большеносую Салли, владелицу Банного Домика.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown man}
+{1020}{}{Known}
+{2000}{}{Мое имя Салли Дантон, но чаще меня зовут Большеносая Салли. Я владелица этого банного домика. У нас есть из чего выбрать.}
+{2010}{}{Какие особенные ванные у вас есть?}
+{2020}{}{Нее, Мисс Салли, мне нужна обычная ванная. У вас же нет пузырьковой, не так ли?}
+{2030}{}{Мне кажется, я передумал. Вернусь попозже.}
+{3000}{}{Если вам нужна ванная без обслуги, идите в Золотой Гекко или в Дом Бакнера. Но не думаю, что там приятнее.}
+{3010}{}{Я пошутил, мне нравятся особенные ванные.}
+{3020}{}{Спасибо, мисс Большой Нос. Я лучше там попробую. До свидания.}
+{4000}{}{Специальные ванные различаются по цене из-зи количества времени, которое девушка с вами проводит, и видов услуг, которыми вы воспользуетесь.}
+{4010}{}{Вы имеете в виду, что я буду с настоящей, живой девушкой? Я согласен!}
+{4020}{}{Внешность прислужницы лучше тоже включить в цену.}
+{4030}{}{Не думаю, что готов к этому. Я лучше пойду.}
+{5000}{}{Вот различные виды ванн: Микрованночка, Обтирочная, быстрая Помывка Целиком, и, наконец, Полная и Всесторонний банный сервис, предоставляемый красивой и талантливой Дженни, недавно обученной в лучшем доме Дэна.}
+{5010}{}{Что еще за микрованночка?}
+{5020}{}{Мне больше подойдет Полная Помывка. Сколько это будет стоить?}
+{5030}{}{Красивая и талантливая? Мне нужно побольше об этом узнать.}
+{5040}{}{Мне не нужны посторонние, когда я моюсь. Я пойду.}
+{5050}{}{А я не могу сразу все попробовать?}
+{5060}{}{А как насчет скидок?}
+{6000}{}{Нет. Вам нужно выбрать только одну за раз. Но вы всегда можете вернуться. Обычно, после небольшого отдыха.}
+{6010}{}{Перечислите ка мне типы ванн снова.}
+{6020}{}{Если я не могу сделать собственную программу, то даже не хочу пробовать. Я пошел.}
+{7000}{}{Думаю, любая из наших девушек захочет вас искупать полностью. Я лучше послежу за временем, чтобы убедиться, что ванная была по укороченной пролграмме. Ванная по укороченной программе обойдется вам в 55 баксов.}
+{7010}{}{Это смешная цифра. Вот вам 55 долларов.}
+{7020}{}{К сожалению, не думаю, что могу себе это позволить.}
+{7030}{}{Xмм... А какие вы говорите еще бывают ванные?}
+{7040}{}{Спасибо, я лучше поэкономлю деньги.}
+{8000}{}{Я уверена, что ваше Кругосветное Путешествие с прекрасной Дженни запомнится вам надолго. Цена - 125 долларов.}
+{8010}{}{Не могу дождаться момента, чтобы попасть к Дженни. Вот мои 125 баксов.}
+{8020}{}{Я не думаю, что у меня так денег с собой.}
+{8030}{}{Может, мне еще чего-нибудь понравится. Могу я узнать поподробнее.}
+{8040}{}{Мне кажется, что 125 за ванную слишком много. Я пожалуй пойду, пока у меня не начались неприятности.}
+{9000}{}{За каких-то 15 баксов вы получите небольшую помывку руками.}
+{9010}{}{Всего 15? Давайте попробуем.}
+{9020}{}{К сожалению, я не думаю, что у меня есть $15.}
+{9030}{}{Повторите, какие у вас еще ванны есть?}
+{9040}{}{Извините, мне пора.}
+{10000}{}{Опять вернулся? Много парней по-моему все никак не отмоются.}
+{10010}{}{Расскажите о видах ваших услуг снова.}
+{10020}{}{На меня не распространяется скидка, как постоянному клиенту?}
+{10030}{}{Я просто осматриваюсь. Мне не нужна ванная.}
+{11000}{}{Было бы не справедливым брать меньше, мои девочки достойны тех денег, которые вы за них платите.}
+{11010}{}{Думаю, что честно. Что сейчас у вас есть?}
+{11020}{}{Ну если нет скидок, тогда я пошел.}
+{12000}{}{У вас нет денег, так что возвращайтесь, когда сможете заплатить.@@Кажется, что твои глаза гораздо больше, чем твой бюджет. Лучше тебе попробовать более дешевое мытье.}
+{12010}{}{Я еще вернусь.}
+{13000}{}{Большое спасибо за пользование нашими услугами. Девушка вас ждет.}
+
+[pols]
+{100}{}{Sally}
+{200}{}{Widzisz pulchną, starszą kobietę o bardzo dużym nosie.}
+{210}{}{Widzisz Wielkonosą Sally, właścicielkę Łaźni.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown man}
+{1020}{}{Known}
+{2000}{}{Nazywam się Sally Dunton, ale ludzie mówią na mnie Wielkonosa Sally. Jestem właścicielką tej Łaźni. Mamy tu szeroki asortyment wszelakiej maści kąpieli specjalnych.}
+{2010}{}{Jakie wszelakiej maści kąpiele specjalne oferujecie?}
+{2020}{}{Ojej, panno Sally, ja szukam takiej zwykłej kąpieli... No, w ostateczności może być z bąbelkami.}
+{2030}{}{Chyba na razie zrezygnuję. Może innym razem...}
+{3000}{}{Jeśli chcesz się wykąpać bez asysty kąpielowych, zajrzyj do Złotego Gekona lub do Bucknerów. Nie obiecuj sobie jednak zbyt wiele.}
+{3010}{}{Dziękuję, panno Wielkonosa. Tak zrobię. Do widzenia.}
+{3020}{}{To był tylko żart. Chętnie wezmę "specjalną" kąpiel.}
+{4000}{}{Nasze specjalne kąpiele różnią się cenami, w zależności od czasu, jaki spędzi z tobą kąpielowa i specjalnych usług, które ma ci świadczyć.}
+{4010}{}{To znaczy, że będzie tam ze mną prawdziwa, żywa dziewczyna? Biorę!}
+{4020}{}{Jak na mój gust, to wygląd kąpielowej też nie powinien być bez znaczenia.}
+{4030}{}{Może innym razem. Muszę już iść.}
+{5000}{}{Oferujemy następujące rodzaje kąpieli specjalnych: Ręczne Namydlanie, Szybki Prysznic, i - na koniec - Długa Wszechstronna Królewska Kąpiel z Natryskiem, doglądana przez naszą śliczną i utalentowaną Jenny, świeżo po szkoleniu w jednym z najlepszych domów w Norze.}
+{5010}{}{Chyba wystarczy mi Ręczne Namydlanie. Ile to kosztuje?}
+{5020}{}{Brzmi nieźle, ale mam kilka innych pytań.}
+{5030}{}{Śliczna i utalentowana? Opowiedz mi coś jeszcze o tej Długiej Wszechstronnej Królewskiej Kąpieli z Natryskiem.}
+{5040}{}{Jakoś nie mogę się oswoić z myślą o kąpieli przy obcej osobie. Lepiej już sobie pójdę.}
+{5050}{}{Czy rodzaje kąpieli można ze sobą łączyć?}
+{5060}{}{Oferujecie jakieś zniżki?}
+{6000}{}{Nie, możesz wybrać tylko jedną kąpiel na raz, choć oczywiście nikt nie broni ci wrócić później i wypróbować innej. Doradzam też chwilkę odpoczynku pomiędzy kąpielami.}
+{6010}{}{Opowiedz mi jeszcze raz o różnych rodzajach kąpieli specjalnych.}
+{6020}{}{Jeśli nie mogę zażyczyć sobie żadnych kombinacji, to chyba jednak zrezygnuję. Do widzenia.}
+{7000}{}{Myślę, że każda z naszych dziewcząt chętnie wzięła by z tobą prysznic. Tylko postaraj się, żeby rzeczywiście był szybki... [Chichocze.] Szybki Prysznic kosztuje 55 kapsli.}
+{7010}{}{Brzmi zachęcająco. Oto pieniądze. [Wręczasz kapsle.]}
+{7020}{}{Przepraszam, ale niestety w tej chwili nie mogę pozwolić sobie na taki wydatek.}
+{7030}{}{Hmm, a co jeszcze oferujecie?}
+{7040}{}{Dzięki, ale te pieniądze mogą mi się jeszcze przydać.}
+{8000}{}{Gwarantuję ci, że nasza Długa Wszechstronna Królewska Kąpiel z Natryskiem w towarzystwie ślicznej Jenny przypadnie ci do gustu. I to za jedyne 125 kapsli!}
+{8010}{}{Nie mogę się już doczekać na popis umiejętności Jenny. Proszę, oto 125 kapsli.}
+{8020}{}{Nie mam tylu pieniędzy.}
+{8030}{}{Może jednak zdecyduję się na inną kąpiel. Możesz mi przypomnieć waszą ofertę?}
+{8040}{}{125 kapsli za kąpiel to jak dla mnie stanowczo za dużo. Nie mogę sobie pozwolić na takie wydatki. Do widzenia.}
+{9000}{}{Cóż, dla tak atrakcyjnej osoby jak ty cena wynosi jedyne 15 kapsli.}
+{9010}{}{15 kapsli? Niezła okazja, umowa stoi.}
+{9020}{}{Przykro mi, nie mam tylu pieniędzy.}
+{9030}{}{Hmm, Opowiedz mi jeszcze raz o różnych rodzajach kąpieli specjalnych.}
+{9040}{}{Chyba w tej chwili nie potrzebuję kąpieli aż tak bardzo. Do widzenia.}
+{10000}{}{Znowu tutaj? Niektórzy nigdy nie mają dość kąpieli.}
+{10010}{}{Tym razem tylko się rozglądam. Nie potrzebuję kąpieli}
+{10020}{}{Opowiedz mi jeszcze raz o waszej ofercie.}
+{10030}{}{Dostanę zniżkę dla stałych klientów?}
+{11000}{}{Obawiam się, że nie. Nasze ceny i tak nie są wygórowane, jeśli weźmiesz pod uwagę umiejętności naszych dziewcząt.}
+{11010}{}{To chyba uczciwe. Jakie rodzaje kąpieli oferujecie?}
+{11020}{}{Cóż, jeśli nie oferujecie zniżek, to chyba jednak zrezygnuję.}
+{12000}{}{Wygląda na to, że twoje oczka są większe niż stan konta. Może skusisz się na jakąś tańszą kąpiel?}
+{12010}{}{Taa, może. Do widzenia.}
+{13000}{}{Najlepiej wydane pieniądze w życiu!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown man}
+{1020}{}{Known}
+{2000}{}{My name's Sally Dunton, but mostly they call me Big Nose Sally. I'm the owner of this here bathhouse. We have a whole hassleful of special, attended baths for you to pick from.}
+{2010}{}{What kind of special, attended baths do you have here?}
+{2020}{}{Gee, Miss Sally, I just wanted a regular bath. You don't have a bubble bath, do you?}
+{2030}{}{I think I've changed my mind; I may try back later.}
+{3000}{}{If you just want an unattended bath, you might try the Golden Gecko or the Buckner House. But I doubt that you'll find that as enjoyable.}
+{3010}{}{I was just kidding; I'd like a special bath.}
+{3020}{}{Thanks, Miss Big Nose. I'll try that instead. Good-bye.}
+{4000}{}{The special baths that we have available vary in cost by the amount of time that the gal spends with you, and any special services that you take advantage of.}
+{4010}{}{You mean I get to be with a real-live girl? Sign me up!}
+{4020}{}{I think that the appearance of the attendant better figure into the cost, too.}
+{4030}{}{I don't think I'm ready for this; I better go.}
+{5000}{}{The baths that we have available are: a Wash Cloth Hand Wipe, a brief Full Body Wash, and, lastly, the Round-the-World Full Squeaky Clean Servicing, offered by the beautiful and talented Jenny, recently trained at the finest house in the Den.}
+{5010}{}{I think I can get by with the Hand Wipe; how much is that?}
+{5020}{}{Sounds like quite a fella, Bob, but I've got some other questions.}
+{5030}{}{Beautiful and talented? I've got to hear more about the Round-the-World Full Squeaky Clean Wash.}
+{5040}{}{I don't think I'm ready to take a bath with someone else watching; I'm going to leave.}
+{5050}{}{Can I mix and match the different types of baths?}
+{5060}{}{What about getting a discount on those baths?}
+{6000}{}{No, you have to choose one at a time, but you can always come back for more -- usually after a brief rest.}
+{6010}{}{Tell me the different types of bath again.}
+{6020}{}{If I can't make my own combinations, I don't even want a bath; I'm outta here.}
+{7000}{}{I think any of our girls would be happy to give you a full body wash; I just better watch the time to make sure it's a brief one (chuckle). The Brief Full Body Wash will cost you $55.}
+{7010}{}{That sounds like fun. Here's my $55.}
+{7020}{}{Sorry, don't think I can afford that.}
+{7030}{}{Hmm, what are the other choices again?}
+{7040}{}{Thanks, but I think that I'll save my money for now.}
+{8000}{}{Well I'm sure that your Round-the-World trip Servicing with beautiful Jenny will be an experience that you'll savor for quite a while. A real bargain at only $125.}
+{8010}{}{I can't wait to enjoy Jenny's special talents. Here's my $125.}
+{8020}{}{I don't think I have that much on me.}
+{8030}{}{Maybe I should hear about the other bath choices again.}
+{8040}{}{I don't think that I'll ever need $125 worth of cleaning. I'm going to leave before I get myself into trouble.}
+{9000}{}{Well, for an attractive individual like yourself that would only cost $15.}
+{9010}{}{$15? That's a bargain; I'll take it.}
+{9020}{}{Sorry, I don't think I have $15.}
+{9030}{}{Hmm, tell me about the other types of baths again.}
+{9040}{}{Maybe I don't need this right now. I'm leaving.}
+{10000}{}{Back again, huh? A lot of folks just can't seem to get clean enough.}
+{10010}{}{Tell me the types of bath that you have again.}
+{10020}{}{Do I get a return customer discount?}
+{10030}{}{I'm just looking around this time; I don't need a bath.}
+{11000}{}{Well now, it wouldn't be fair to discount any of our services. My gals are well worth what they charge.}
+{11010}{}{I guess that's fair enough. Tell me what baths you have available.}
+{11020}{}{Well, if I can't get a discount, I'm leaving.}
+{12000}{}{It seems as though your eyes are bigger than your budget. Perhaps you'd like to try a cheaper washing.}
+{12010}{}{Yeah, maybe. Bye.}
+{13000}{}{Best money you ever spent!}
+

@@ -1,0 +1,63 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_loon_jt = 0 D _param p ST_LEVEL } 6 R _var p q_loon_jt = 1 #
+3 1020 D _param p ST_LEVEL { 5 #
+4 1030 D _var p q_loon_jt } 1 @
+2 2000 None 0 #
+0 2010 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Depressed Man}
+{200}{}{You see: sad man.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{[He looks at you in depression] If you want some good jet, find a man named Loon, and tell him "Thirty-six buckets on a blue moon." You did not hear this from me.}
+{2010}{}{Wha- Ok then.}
+{3000}{}{Pfft! You look like you can't even handle youself in a city. Come back to me when you've become a little stronger. Otherwise I don't want to talk to you.}
+{4000}{}{Just...go.}
+
+[russ]
+{100}{}{Грустный человек}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{[Выглядит угрюмо] Если хочешь улётного джета, найди Луна и скажи пароль: "36 ведер голубой луны ." Я ничего не  говорил.}
+{2010}{}{Ух.. ок.}
+{3000}{}{Пфф..! Ты не способен даже постоять за себя. Возвращайся, когда от тебя будет толк. А пока нам не о чем говорить.}
+{4000}{}{Уйти.}
+
+[pols]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{[He looks at you in depression] If you want some good jet, find a man named Loon, and tell him "Thirty-six buckets on a blue moon." You did not hear this from me.}
+{2010}{}{Wha- Ok then.}
+{3000}{}{Pfft! You look like you can't even handle youself in a city. Come back to me when you've become a little stronger. Otherwise I don't want to talk to you.}
+{4000}{}{Just...go.}
+
+[ptbr]
+{100}{}{Homem depressivo}
+{200}{}{Você vê um homem depressivo.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{1030}{}{ }
+{2000}{}{[Ele olha para você depressivamente] Se tu quiser um jet bom, procura um cara chamado Loon e diga "Trinta e seis baldes na lua azul". Você não ouviu isso de mim.}
+{2010}{}{O q- tá bem.}
+{3000}{}{Pff! Parece que nem consegue sobreviver numa cidade. Só fale comigo de novo quando estiver melhor se não nem venha falar comigo.}
+{4000}{}{Só... vai embora.}
+

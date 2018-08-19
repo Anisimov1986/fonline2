@@ -1,0 +1,107 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+11 1010 D _var p name_mem_player_npc = 1 R _var p name_mem_player_npc = 2 #
+10 1020 D _item p PID_ADVANCED_POWER_ARMOR_MK2 } 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR } 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ENCLAVE_ARMOR } 1 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 4 #
+2 1030 D _item p PID_ENCLAVE_ARMOR < 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR < 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR_MK2 < 1 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 1 R _script dialog@r_Wait 0  @
+2 2000 None 0 #
+3 2010 #
+4 2020 @
+3 3000 None 0 #
+5 3010 #
+4 3020 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+4 5010 @
+10 6000 None 0 @
+11 7000 None 0 &
+
+[engl]
+{100}{}{Trader}
+{200}{}{You see: Trader}
+{210}{}{You see an old man dressed in sagging clothes. He looks at you with a smile.}
+{1000}{}{Initial preferences}
+{1010}{}{Floater when talked.}
+{1020}{}{Player has APA or ECA}
+{1030}{}{Dialog without APA or ECA}
+{2000}{}{Hi there. I never seen you in these parts, @sex@|fella||girl|. I'm Nathan, a travelling merchant, and this is my camp. What are you doin' here?}
+{2010}{}{I don't know, I'm just wandering about... is there anything interesting here?@@I'm just exploring the city. Anything of interest here?}
+{2020}{}{Just passing through.@@Just passing through, gotta go.@@I need to go, sorry.}
+{3000}{}{No, nothing really. Just an old abandoned pier, some wrecks... and my stuff of course. Sadly I can't really trade with you now, cos I'm in the middle of re-arranging the wares. Come back later maybe?}
+{3010}{}{Uh huh. But who's that dead guy over there?@@Yeah, but what's that dead guy doing here?}
+{3020}{}{I see. See you round, Nathan. @@Maybe I will.@@Okay, see you round, Nathan.@@Okay, goodbye then.}
+{4000}{}{Oh yeah, one more thing. I like to keep it private here. So don't be snooping around my wares... My guards have itchy fingers, If you know what I mean. See you later.}
+{4010}{}{Yeah, sure.@@I understand. Goodbye.@@Okay, see you round, Nathan.@@Okay, goodbye then.@@Right. Take care.}
+{5000}{}{Oh, him? Just some Raider who got sticky fingers and poked around too much. My guards take care of such people with ease. Anything else?}
+{5010}{}{You sure know how to handle things, Nathan. See you around.@@Well, he got what he deserved... Goodbye, Nathan.@@I see. Take care, Nathan.@@I see. I need to go.}
+{6000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We haven't spotted any intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no trespassers sighted yet.@@Nothing to report, Sir.}
+{7000}{}{I'm busy, please come back later.@@I'm sorry, but I've got things to do.@@I need to take care of some things, come back later.@@Please, I'm really busy. Come back later.}
+
+[russ]
+{100}{}{Trader}
+{200}{}{You see: Trader}
+{210}{}{You see an old man dressed in sagging clothes. He looks at you with a smile.}
+{1000}{}{Initial preferences}
+{1010}{}{Floater when talked.}
+{1020}{}{Player has APA or ECA}
+{1030}{}{Dialog without APA or ECA}
+{2000}{}{Hi there. I never seen you in these parts, @sex@|fella||girl|. I'm Nathan, a travelling merchant, and this is my camp. What are you doin' here?}
+{2010}{}{I don't know, I'm just wandering about... is there anything interesting here?@@I'm just exploring the city. Anything of interest here?}
+{2020}{}{Just passing through.@@Just passing through, gotta go.@@I need to go, sorry.}
+{3000}{}{No, nothing really. Just an old abaonded pier, some wrecks... and my stuff of course. Sadly I can't really trade with you now, cos I'm in the middle of re-arranging the wares. Come back later maybe?}
+{3010}{}{Uhuh. But who's that dead guy over there?@@Yeah, but what's that dead guy doing here?}
+{3020}{}{I see. See you round, Nathan. @@Maybe I will.@@Okay, see you round, Nathan.@@Okay, goodbye then.}
+{4000}{}{Oh yeah, one more thing. I like to keep it private here. So don't be snooping around my wares... My guards have itchy fingers, If you know what I mean. See you later.}
+{4010}{}{Yeah, sure.@@I understand. Goodbye.@@Okay, see you round, Nathan.@@Okay, goodbye then.@@Right. Take care.}
+{5000}{}{Oh, he? Just some Raider who got sticky fingers, and poked around too much. My guards take care of such people with ease. Anything else?}
+{5010}{}{You sure know how to handle things, Nathan. See you around.@@Well, he got what he deserved... Goodbye, Nathan.@@I see. Take care, Nathan.@@I see. I need to go.}
+{6000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We've spotted no intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no tresspassers sighted yet.@@Nothing to report yet, Sir.}
+{7000}{}{I'm busy, please come back later.@@I'm sorry, but I've got things to do.@@I need to take of some things, come back later.@@Please, I'm really busy. Come back later.}
+
+[pols]
+{100}{}{Trader}
+{200}{}{You see: Trader}
+{210}{}{You see an old man dressed in sagging clothes. He looks at you with a smile.}
+{1000}{}{Initial preferences}
+{1010}{}{Floater when talked.}
+{1020}{}{Player has APA or ECA}
+{1030}{}{Dialog without APA or ECA}
+{2000}{}{Hi there. I never seen you in these parts, @sex@|fella||girl|. I'm Nathan, a travelling merchant, and this is my camp. What are you doin' here?}
+{2010}{}{I don't know, I'm just wandering about... is there anything interesting here?@@I'm just exploring the city. Anything of interest here?}
+{2020}{}{Just passing through.@@Just passing through, gotta go.@@I need to go, sorry.}
+{3000}{}{No, nothing really. Just an old abaonded pier, some wrecks... and my stuff of course. Sadly I can't really trade with you now, cos I'm in the middle of re-arranging the wares. Come back later maybe?}
+{3010}{}{Uhuh. But who's that dead guy over there?@@Yeah, but what's that dead guy doing here?}
+{3020}{}{I see. See you round, Nathan. @@Maybe I will.@@Okay, see you round, Nathan.@@Okay, goodbye then.}
+{4000}{}{Oh yeah, one more thing. I like to keep it private here. So don't be snooping around my wares... My guards have itchy fingers, If you know what I mean. See you later.}
+{4010}{}{Yeah, sure.@@I understand. Goodbye.@@Okay, see you round, Nathan.@@Okay, goodbye then.@@Right. Take care.}
+{5000}{}{Oh, he? Just some Raider who got sticky fingers, and poked around too much. My guards take care of such people with ease. Anything else?}
+{5010}{}{You sure know how to handle things, Nathan. See you around.@@Well, he got what he deserved... Goodbye, Nathan.@@I see. Take care, Nathan.@@I see. I need to go.}
+{6000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We've spotted no intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no tresspassers sighted yet.@@Nothing to report yet, Sir.}
+{7000}{}{I'm busy, please come back later.@@I'm sorry, but I've got things to do.@@I need to take of some things, come back later.@@Please, I'm really busy. Come back later.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Floater when talked.}
+{1020}{}{Player has APA or ECA}
+{1030}{}{Dialog without APA or ECA}
+{2000}{}{Hi there. I never seen you in these parts, @sex@|fella||girl|. I'm Nathan, a travelling merchant, and this is my camp. What are you doin' here?}
+{2010}{}{I don't know, I'm just wandering about... is there anything interesting here?@@I'm just exploring the city. Anything of interest here?}
+{2020}{}{Just passing through.@@Just passing through, gotta go.@@I need to go, sorry.}
+{3000}{}{No, nothing really. Just an old abandoned pier, some wrecks... and my stuff of course. Sadly I can't really trade with you now, cos I'm in the middle of re-arranging the wares. Come back later maybe?}
+{3010}{}{Uh huh. But who's that dead guy over there?@@Yeah, but what's that dead guy doing here?}
+{3020}{}{I see. See you round, Nathan. @@Maybe I will.@@Okay, see you round, Nathan.@@Okay, goodbye then.}
+{4000}{}{Oh yeah, one more thing. I like to keep it private here. So don't be snooping around my wares... My guards have itchy fingers, If you know what I mean. See you later.}
+{4010}{}{Yeah, sure.@@I understand. Goodbye.@@Okay, see you round, Nathan.@@Okay, goodbye then.@@Right. Take care.}
+{5000}{}{Oh, him? Just some Raider who got sticky fingers and poked around too much. My guards take care of such people with ease. Anything else?}
+{5010}{}{You sure know how to handle things, Nathan. See you around.@@Well, he got what he deserved... Goodbye, Nathan.@@I see. Take care, Nathan.@@I see. I need to go.}
+{6000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We haven't spotted any intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no trespassers sighted yet.@@Nothing to report, Sir.}
+{7000}{}{I'm busy, please come back later.@@I'm sorry, but I've got things to do.@@I need to take care of some things, come back later.@@Please, I'm really busy. Come back later.}
+

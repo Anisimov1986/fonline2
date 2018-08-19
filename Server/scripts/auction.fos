@@ -1,0 +1,453 @@
+// Auction by [SoT]Skycast
+// Classes sux bcause native arrays faster AKA endian code
+
+#include "_macros.fos"
+#include "buffer_h.fos"
+#include "utils_h.fos"
+#include "logging_h.fos"
+#include "auction_h.fos"
+#include "lexems_h.fos"
+#include "strtoint.fos"
+
+#define _AucKey_lastAuctionIndex ("AUCTION_lastAuctionIndex")
+#define _AucKey_AuctionIndex     ("AUCTION_AuctionIndex")
+#define _AucKey_ItemId           ("AUCTION_ItemId")
+#define _AucKey_ItemProtoId      ("AUCTION_ItemProtoId")
+#define _AucKey_Count            ("AUCTION_Count")
+#define _AucKey_Cost             ("AUCTION_Cost")
+#define _AucKey_Val4             ("AUCTION_Val4")
+#define _AucKey_Val5             ("AUCTION_Val5")
+#define _AucKey_Val6             ("AUCTION_Val6")
+#define _AucKey_Val7             ("AUCTION_Val7")
+#define _AucKey_Val8             ("AUCTION_Val8")
+#define _AucKey_Val9             ("AUCTION_Val9")
+#define _AucKey_TimeStamp        ("AUCTION_TimeStamp")
+#define _AucKey_OwnerId          ("AUCTION_OwnerId")
+#define _AucKey_ItemColor        ("AUCTION_ItemColor")
+
+#define ENTIRE_LOCKER            (789)  
+#define AUCTION_LOCKER           (PID_FLOOR_SAFE)       
+
+import bool ChangeBalnce(int id , int money) from "banks";
+
+
+uint lastAuctionIndex = 0;
+array<uint> AuctionIndex; //send
+array<uint> ItemId;  // local
+array<uint> ItemProtoId;//send
+array<uint> Count; //send
+array<uint> Cost;  //send
+array<uint> Val4; //send
+array<uint> Val5; //send
+array<uint> Val6; //send
+array<uint> Val7; //send
+array<uint> Val8; //send
+array<uint> Val9; //send
+array<uint> TimeStamp; // local
+array<uint> OwnerId; // local
+array<uint> ItemColor; // send
+
+bool AuctionActive = false;
+
+uint AucContainerId = 0;
+
+void AuctionSystemStart()
+{
+    AuctionSystemSave();
+    AuctionSystemLoad();
+    Log("lastAuctionIndex="+lastAuctionIndex);
+    Log("AuctionIndex.length="+AuctionIndex.length());
+    
+    
+    Map@ map = GetMapByPid(MAP_Auction, 0);
+    if (!valid(map))
+    {
+        Location@ loc = GetLocation( CreateLocation (LOCATION_Auction, 890, 1727, null) );
+        @map = GetMapByPid(MAP_Auction, 0);
+        if (!valid(loc) || !valid(map))
+        {
+            Log("Auction Initialization Fail: cant find/create loc");
+            return;
+        }
+    }
+    //
+    //GetItem (uint16 hexX, uint16 hexY, uint16 protoId)
+    uint16 hexX=0, hexY=0;
+    if (!map.GetEntireCoords(ENTIRE_LOCKER, 0, hexX, hexY))
+    {
+        Log("Auction Initialization Fail: no locker entire");
+        return;
+    }    
+    Item@ item = map.GetItem(hexX, hexY, AUCTION_LOCKER);
+    if (!valid(item) || item.GetType() != ITEM_TYPE_CONTAINER)
+    {
+        @item = map.AddItem(hexX, hexY, AUCTION_LOCKER, 1);
+        if (!valid(item) || item.GetType() != ITEM_TYPE_CONTAINER)
+        {
+            Log("Auction Initialization Fail: cant find/create locker or locker is not locker");
+            return;
+        }
+    } 
+    AucContainerId = item.Id;
+    AuctionActive = true;
+}
+
+
+
+
+void AuctionSystemSave()
+{
+    if ( lastAuctionIndex == 0 )
+        return;
+    SaveAnyData(lastAuctionIndex, _AucKey_lastAuctionIndex);
+
+    array<uint> values;
+    values=AuctionIndex;
+    SetAnyData(_AucKey_AuctionIndex,values);
+    values=ItemId;
+    SetAnyData(_AucKey_ItemId,values);
+    values=ItemProtoId;
+    SetAnyData(_AucKey_ItemProtoId,values);
+    values=Count;
+    SetAnyData(_AucKey_Count,values);
+    values=Cost;
+    SetAnyData(_AucKey_Cost,values);
+    values=Val4;
+    SetAnyData(_AucKey_Val4,values);
+    values=Val5;
+    SetAnyData(_AucKey_Val5,values);
+    values=Val6;
+    SetAnyData(_AucKey_Val6,values);
+    values=Val7;
+    SetAnyData(_AucKey_Val7,values);
+    values=Val8;
+    SetAnyData(_AucKey_Val8,values);
+    values=Val9;
+    SetAnyData(_AucKey_Val9,values);
+    values=TimeStamp;
+    SetAnyData(_AucKey_TimeStamp,values);
+    values=OwnerId;
+    SetAnyData(_AucKey_OwnerId,values);
+    values=ItemColor;
+    SetAnyData(_AucKey_ItemColor,values);
+}
+
+void AuctionSystemLoad()
+{
+    if (!IsAnyData(_AucKey_lastAuctionIndex))
+        return;
+
+    lastAuctionIndex = GetAnyData(_AucKey_lastAuctionIndex);
+    
+    if (lastAuctionIndex==0)
+        return;
+
+    AuctionIndex=GetAnyDataArray(_AucKey_AuctionIndex);
+    ItemId=GetAnyDataArray(_AucKey_ItemId);
+    ItemProtoId=GetAnyDataArray(_AucKey_ItemProtoId);
+    Count=GetAnyDataArray(_AucKey_Count);
+    Cost=GetAnyDataArray(_AucKey_Cost);
+    Val4=GetAnyDataArray(_AucKey_Val4);
+    Val5=GetAnyDataArray(_AucKey_Val5);
+    Val6=GetAnyDataArray(_AucKey_Val6);
+    Val7=GetAnyDataArray(_AucKey_Val7);
+    Val8=GetAnyDataArray(_AucKey_Val8);
+    Val9=GetAnyDataArray(_AucKey_Val9);
+    TimeStamp=GetAnyDataArray(_AucKey_TimeStamp);
+    OwnerId=GetAnyDataArray(_AucKey_OwnerId);
+    ItemColor=GetAnyDataArray(_AucKey_ItemColor);
+}
+
+
+bool PayMoney(Critter& cr, int cost)
+{
+    if (cost <=0)
+        return false;
+    int CrMoney = cr.CountItem(PID_BOTTLE_CAPS);
+    int TotalMoney = cr.Param[ST_REPLICATION_MONEY]+CrMoney;
+    if (cost>TotalMoney)
+    {
+        cr.Say(SAY_NETMSG, "No money - no honey");
+        FLog( LOG_AUCTION, ",ALARM_SELL_OR_BUY_WITHOUT_MONEY," + cr.Id + "," + cr.Name + ","+cost);
+        return false;
+    }
+    if (CrMoney >= cost)   
+        cr.DeleteItem( PID_BOTTLE_CAPS, cost );
+    else
+    {
+        cr.DeleteItem( PID_BOTTLE_CAPS, CrMoney );
+        cost -= CrMoney;
+        if (cost<=0)
+            return false;
+        if (!ChangeBalnce(cr.Id , -cost))
+            return false;
+    }
+    return true;
+
+}
+
+void unsafe_SellItem(Critter& cr, int itemId, int cost, int, string@ , int[]@ )
+{
+    Item@ Container = GetItem(AucContainerId);
+    if (!AuctionActive || !valid(Container))
+    {
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70425);
+        return;
+    }
+    
+    Item@ item = cr.GetItemById(itemId);
+    if (!valid(item) || auction_itemtypes.find(item.GetType())<0 || cost <=0 || ItemId.find(item.Id)>=0)
+        return;
+        
+    if (auction_forbidden.find(item.GetType())>=0)  
+    {
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70436);
+        return;
+    }
+        
+    if (item.IsDeteriorable())
+    {
+        if (item.Deterioration>=100)
+        {
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70426);
+            return;
+        }
+        if (item.BrokenFlags>0)
+        {
+            cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70427);
+            return;
+        }
+    }  
+
+    if( item.GetProtoId() == PID_FALLOUT_2_HINTBOOK && item.Val1 > 0)
+    {
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70428);
+        return;
+    }
+ 
+    int price = cost * item.GetCount() * 0.1;
+
+    if (!PayMoney(cr, price))
+        return;
+    FLog( LOG_AUCTION, ",SELL," + cr.Id + "," + cr.Name + ","+item.Id+","+item.GetProtoId()+","+item.GetCount()+","+cost);
+    AddItemToAuc(cr, item, cost, item.GetCount());
+}
+void unsafe_BuyItem(Critter& cr, int indexId, int , int, string@ , int[]@ )
+{
+    Item@ Container = GetItem(AucContainerId);
+    if (!AuctionActive || !valid(Container))
+    {
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70425);
+        return;
+    }
+    
+    int arrayIndex = AuctionIndex.find(indexId);
+    if (arrayIndex<0)
+    {
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70429);
+        SendAuctionData(cr);
+        return;
+    }
+   
+    ProtoItem@ proto = GetProtoItem(ItemProtoId[arrayIndex]);
+    if (!valid(proto))
+        return;
+
+    Item@ item;
+    if (proto.Stackable)
+        @item = Container.GetItem(proto.ProtoId, 0);
+    else
+        @item = GetItem(ItemId[arrayIndex]);
+    
+    if (!valid(item) || item.ContainerId != Container.Id)
+    {
+        cr.Say(SAY_NETMSG, "Something wrong.");
+        return;
+    }
+    int cost = Cost[arrayIndex] * Count[arrayIndex];
+    Critter@ owner = GetCritter(OwnerId[arrayIndex]);
+    if (valid(owner) && owner.Id == cr.Id)
+    {
+        FLog( LOG_AUCTION, ",TAKEBACK," + cr.Id + "," + cr.Name + ","+item.Id+","+proto.ProtoId+","+Count[arrayIndex]+","+cost);
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70439);
+        BuyItemFromAuc(cr, item, arrayIndex);
+        return;
+    }
+    if (!PayMoney(cr, cost))
+    {
+        cr.Say(SAY_NETMSG, "Something wrong.");
+        return;
+    }
+    ChangeBalnce(OwnerId[arrayIndex], cost);
+
+    if (valid(owner))
+        owner.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70434);
+
+    FLog( LOG_AUCTION, ",BUY," + cr.Id + "," + cr.Name + ","+item.Id+","+proto.ProtoId+","+Count[arrayIndex]+","+cost);
+    cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70433);
+    BuyItemFromAuc(cr, item, arrayIndex);
+}
+
+void BuyItemFromAuc(Critter& cr, Item& item, int arrayIndex)
+{
+    MoveItem (item, Count[arrayIndex], cr);
+    AuctionIndex.removeAt(arrayIndex);
+    ItemId.removeAt(arrayIndex);
+    ItemProtoId.removeAt(arrayIndex);
+    Count.removeAt(arrayIndex);
+    Cost.removeAt(arrayIndex);
+    Val4.removeAt(arrayIndex);
+    Val5.removeAt(arrayIndex);
+    Val6.removeAt(arrayIndex);
+    Val7.removeAt(arrayIndex);
+    Val8.removeAt(arrayIndex);
+    Val9.removeAt(arrayIndex);
+    TimeStamp.removeAt(arrayIndex);
+    OwnerId.removeAt(arrayIndex);
+    ItemColor.removeAt(arrayIndex);
+    SendAuctionData(cr);
+    AuctionSystemSave();
+}
+
+#pragma bindfunc "uint NativeStrToUint(string& str) -> fonline_test.dll NativeStrToUint"
+void AddItemToAuc(Critter& cr, Item& item, uint cost, uint count)
+{
+    Item@ Container = GetItem(AucContainerId);
+    if (!valid(Container))
+        return;
+ 
+    ItemProtoId.insertLast(item.GetProtoId());
+    Cost.insertLast(cost);
+    Count.insertLast(count);
+    ItemId.insertLast(item.Id);
+    Val4.insertLast(item.Val4);
+    Val6.insertLast(item.Val6);
+    Val7.insertLast(item.Val7);
+    Val8.insertLast(item.Val8);
+    Val9.insertLast(item.Val9);
+    TimeStamp.insertLast(__FullSecond);
+    OwnerId.insertLast(cr.Id);
+    bool colorSet=false;
+    if (IsLexem(item, "$statsname"))
+    {
+        string lexem = GetLexem(item, "$statsname");
+        if (lexem.length()>0)
+        {
+            string color = substring( lexem, 1 ,  lexem.length());
+            uint coloruint = NativeStrToUint(color);
+            if (coloruint>0)
+            {
+                ItemColor.insertLast(coloruint);
+                colorSet=true;
+            }
+        }
+    }
+    if (!colorSet)
+        ItemColor.insertLast(0);
+
+    if( item.GetProtoId() == PID_FALLOUT_2_HINTBOOK )
+        Val5.insertLast(item.Val2);
+    else
+        Val5.insertLast(item.Val5);
+    
+    lastAuctionIndex++;
+    AuctionIndex.insertLast(lastAuctionIndex);
+    cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70435);
+    MoveItem(item, count, Container, 0);
+    cr.RunClientScript( "client_screen_auction_sell@AuctionSellOpen", 0, 0, 0, null, null );
+    AuctionSystemSave();
+}
+
+
+void SendAuctionData(Critter& cr)
+{
+    if (!AuctionActive)
+    {
+        cr.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, 70425);
+        return;
+    }
+	Buffer@ buff = NewBuffer();
+    buff << AuctionIndex;
+    buff << ItemProtoId;//send
+    buff << Count; //send
+    buff << Cost;  //send
+    buff << Val4; //send
+    buff << Val5; //send
+    buff << Val6; //send
+    buff << Val7; //send
+    buff << Val8; //send
+    buff << Val9; //send
+    buff << ItemColor; //send
+    buff << OwnerId;
+    cr.RunClientScript( "client_screen_auction@ReceiveAuctionData", 0, 0, 0, null, buff.AsInt32() );
+    
+}
+
+void test(Critter& cr, int , int ,int )
+{
+    SendAuctionData(cr);
+}
+
+void r_UseAuction( Critter& cr, Critter@ npc )
+{
+    SendAuctionData(cr);
+}
+
+void disable(Critter& cr, int , int ,int )
+{
+    AuctionActive=false;
+}
+
+void enable(Critter& cr, int , int ,int )
+{
+    AuctionActive=true;
+}
+
+void PatchAuction(Critter& cr, int , int ,int )
+{
+    if (ItemColor.length() > 0)
+        ItemColor.resize(0);    
+    
+    for (uint i=0; i < ItemId.length();i++)
+    {
+        ProtoItem@ proto = GetProtoItem(ItemProtoId[i]);
+        if (!valid(proto) || proto.Stackable)
+        {
+            ItemColor.insertLast(0);
+            continue;
+        }
+        if (proto.Type!=ITEM_TYPE_ARMOR && proto.Type!=ITEM_TYPE_WEAPON)
+        {
+            ItemColor.insertLast(0);
+            continue;
+        }
+        Item@ item = GetItem(ItemId[i]);
+        if (!valid(item))
+        {
+            ItemColor.insertLast(0);
+            continue;
+        }
+        if (IsLexem(item, "$statsname"))
+        {
+            string lexem = GetLexem(item, "$statsname");
+            if (lexem.length()>0)
+            {
+                string color = substring( lexem, 1 ,  lexem.length());
+                uint coloruint = NativeStrToUint(color);
+                if (coloruint>0)
+                {
+                    ItemColor.insertLast(coloruint);
+                    continue;
+                }
+            }
+        }
+        ItemColor.insertLast(0);
+    }
+    if (ItemColor.length()==ItemId.length())
+        AuctionSystemSave();
+    else
+        Log("Auction patch colors error");
+}
+
+
+

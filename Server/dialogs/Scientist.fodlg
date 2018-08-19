@@ -1,0 +1,101 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 D _item p PID_EPART_1 } 1 R _item p PID_EPART_1 - 1 R _script economy_dialogs@r_GiveCaps 1 900 #
+4 3020 D _item p PID_EPART_2 } 1 R _item p PID_EPART_2 - 1 R _script economy_dialogs@r_GiveCaps 1 900 #
+4 3030 D _item p PID_EPART_3 } 1 R _item p PID_EPART_3 - 1 R _script economy_dialogs@r_GiveCaps 1 900 #
+4 3040 D _item p PID_EPART_4 } 1 R _item p PID_EPART_4 - 1 R _script economy_dialogs@r_GiveCaps 1 900 #
+4 3050 D _item p PID_EPART_5 } 1 R _item p PID_EPART_5 - 1 R _script economy_dialogs@r_GiveCaps 1 900 #
+0 3060 @
+4 4000 None 0 #
+3 4010 #
+0 4020 &
+
+[engl]
+{100}{}{Scientist}
+{200}{}{You see: one of the Shi scientists.}
+{210}{}{The man seems to be pretty busy with some calculations.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{What do you want, wairen?@@You disturb me, wairen.@@This better be important, shengren.@@I'm kind of busy, is this really important?@@Shengren, I'm very busy.}
+{2010}{}{I've found some Pre-War relics, thought you might be interested.@@I've got some Pre-War stuff you might be interested in.@@I've found some Pre-War parts... Interested in buing?}
+{2020}{}{Uh, wrong person. Bye.@@Just passing by.@@Just passing through.@@Nevermind.}
+{3000}{}{All right, let me see them.@@Okay, let me take a look...@@Okay, I will take a look.}
+{3010}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3020}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3030}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3040}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3050}{}{Look at this. I've never seen anything like that.@@Do you know what this is?@@I've found it in some ruins.@@I have no idea what this thing is suposed to do.@@Well, I found this... thing.}
+{3060}{}{Well, maybe later. Bye.@@Nevermind.@@Gotta go.@@I've got to go.@@Maybe another time.}
+{4000}{}{Okay, I'll take it. Now, can you please let me do my work?@@Okay, I'll take it. Here's you pay.@@I'll take it. Here are your caps.}
+{4010}{}{I have more.@@That's not all I have found.@@I've got more.@@I've found more.@@There's more.}
+{4020}{}{Thank you.@@Pleasure doing business with you.@@Okay, bye.@@Goodbye.@@See you later.@@I will get going then.}
+
+[russ]
+{100}{}{Ученый}
+{200}{}{Вы видите: одного из ученых Ши.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Да? Что вам нужно?}
+{2010}{}{У меня есть интересные штуковины с собой. Хотите их увидеть?}
+{2020}{}{Ой, я обознался. Пока.}
+{3000}{}{Ах, очень хорошо. Дайте мне посмотреть!}
+{3010}{}{Вот эта штука...}
+{3020}{}{Вот эта штука...}
+{3030}{}{Вот эта штука...}
+{3040}{}{Вот эта штука...}
+{3050}{}{Вот эта штука...}
+{3060}{}{В другой раз. Пока}
+{4000}{}{Я покупаю ее у вас! Вам все равно без надобности, вот возьмите деньги.}
+{4010}{}{У меня есть еще!}
+{4020}{}{Спасибо. До встречи.}
+
+[pols]
+{100}{}{Naukowiec}
+{200}{}{Widzisz jednego z naukowców Shi.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Tak? Czego ci potrzeba?}
+{2010}{}{Mam pewien interesujący, naukowy przedmiot. Chciałbyś rzucić na to okiem?}
+{2020}{}{Uch, nie ta osoba. Do widzenia.}
+{3000}{}{Ach, oczywiście. Spójrzmy! Jeśli wciąż działa, zapłata się należy.}
+{3010}{}{Oto ten przedmiot...}
+{3020}{}{Oto ten przedmiot...}
+{3030}{}{Oto ten przedmiot...}
+{3040}{}{Oto ten przedmiot...}
+{3050}{}{Oto ten przedmiot...}
+{3060}{}{Cóż, może potem. Do widzenia.}
+{4000}{}{Biorę! Dla ciebie nie stanowi żadnego pożytku. Oto twoja zapłata, teraz pozwól mi pracować!}
+{4010}{}{Mam więcej!}
+{4020}{}{Pięknie dziękuję. Do widzenia.}
+
+[ptbr]
+{100}{}{Cientista}
+{200}{}{Você vê um dos cientistas Shi.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Sim, o quê que tu quer?}
+{2010}{}{Eu tenho algumas tralhinhas científicas aqui. Quer dar uma olhada nelas?}
+{2020}{}{Um, pessoa errada. Tchau.}
+{3000}{}{Ah, muito bem. Deixe-me ver! Se ainda funcionar, eu pago 2600 tampinhas.}
+{3010}{}{Eu tenho esta coisinha...}
+{3020}{}{Eu tenho esta coisinha...}
+{3030}{}{Eu tenho esta coisinha...}
+{3040}{}{Eu tenho esta coisinha...}
+{3050}{}{Eu tenho esta coisinha...}
+{3060}{}{Bem, talvez depois. Tchau.}
+{4000}{}{Eu vou levar! Não tem utilidade alguma para você! Aqui está o pagamento! Agora deixe-me trabalhar!}
+{4010}{}{Eu tenho mais!}
+{4020}{}{Ótimo. Valeu.}
+

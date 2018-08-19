@@ -1,0 +1,558 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+10 1010 R _script personal_base@r_CheckifAutorised 0  @
+2 2000 None 0 #
+3 2010 D _script personal_base@d_IsNotFactionBase 0  R _script dialog@Type 0  #
+4 2020 D _script personal_base@d_IsNotFactionBase 0  R _script dialog@Type 0  #
+11 2030 D _script personal_base@d_IsNotFactionBase 0  R _script dialog@Type 0  #
+12 2040 D _script personal_base@d_IsNotFactionBase 0  R _script dialog@Type 0  #
+6 2050 R _script personal_base@r_ShowMembers 0  R _script dialog@Type 0  #
+14 2060 R _script dialog@Type 0  #
+21 2070 D _script personal_base@d_CanConnectToFaction 0  R _script dialog@Type 0  #
+22 2080 D _script personal_base@d_CanDisconnectFromFaction 0  R _script dialog@Type 0  #
+18 2090 D _script dialog@d_GarbageOff 0  R _script dialog@Type 0  #
+20 2100 D _script dialog@d_GarbageOn 0  R _script dialog@r_GarbageCancel 0  R _script dialog@Type 0  #
+0 2110 R _script dialog@Type 0  @
+3 3000 personal_base@d_AddPlayer 0 #
+2 3010 R _script dialog@Type 0  #
+0 3020 R _script dialog@Type 0  @
+4 4000 personal_base@d_DelPlayer 0 #
+2 4010 R _script dialog@Type 0  #
+0 4020 R _script dialog@Type 0  @
+5 5000 None 1 #
+2 5010 R _script dialog@Type 0  #
+0 5020 R _script dialog@Type 0  @
+6 6000 None 1 #
+2 6010 R _script dialog@Type 0  #
+0 6020 R _script dialog@Type 0  @
+7 7000 None 1 @
+8 8000 None 0 #
+2 8010 R _script dialog@Type 0  #
+0 8020 R _script dialog@Type 0  @
+9 9000 None 0 #
+2 9010 R _script dialog@Type 0  #
+0 9020 R _script dialog@Type 0  @
+10 10000 None 1 #
+0 10010 @
+11 11000 personal_base@d_PromotePlayer 0 #
+2 11010 R _script dialog@Type 0  #
+0 11020 R _script dialog@Type 0  @
+12 12000 personal_base@d_DemotePlayer 0 #
+2 12010 R _script dialog@Type 0  #
+0 12020 R _script dialog@Type 0  @
+13 13000 None 0 #
+2 13010 R _script dialog@Type 0  #
+0 13020 R _script dialog@Type 0  @
+14 14000 personal_base@dlg_BaseColor 0 #
+15 14010 R _script dialog@Type 0  #
+16 14020 R _script dialog@Type 0  #
+17 14030 R _script dialog@Type 0  #
+14 14040 R _script personal_base@r_AddRed 1 0 R _script personal_base@r_AddBlue 1 0 R _script personal_base@r_AddGreen 1 0 R _script dialog@Type 0  #
+2 14050 R _script dialog@Type 0  @
+15 15000 personal_base@dlg_BaseColor 0 #
+15 15010 R _script personal_base@r_AddRed 1 15 R _script dialog@Type 0  #
+15 15020 R _script personal_base@r_AddRed 1 10 R _script dialog@Type 0  #
+15 15030 R _script personal_base@r_AddRed 1 5 R _script dialog@Type 0  #
+15 15040 R _script personal_base@r_AddRed 1 1 R _script dialog@Type 0  #
+15 15050 R _script personal_base@r_AddRed 1 0 R _script dialog@Type 0  #
+15 15060 R _script personal_base@r_AddRed 1 -1 R _script dialog@Type 0  #
+15 15070 R _script personal_base@r_AddRed 1 -5 R _script dialog@Type 0  #
+15 15080 R _script personal_base@r_AddRed 1 -10 R _script dialog@Type 0  #
+15 15090 R _script personal_base@r_AddRed 1 -15 R _script dialog@Type 0  #
+14 15100 @
+16 16000 personal_base@dlg_BaseColor 0 #
+16 16010 R _script personal_base@r_AddGreen 1 15 R _script dialog@Type 0  #
+16 16020 R _script personal_base@r_AddGreen 1 10 R _script dialog@Type 0  #
+16 16030 R _script personal_base@r_AddGreen 1 5 R _script dialog@Type 0  #
+16 16040 R _script personal_base@r_AddGreen 1 1 R _script dialog@Type 0  #
+16 16050 R _script personal_base@r_AddGreen 1 0 R _script dialog@Type 0  #
+16 16060 R _script personal_base@r_AddGreen 1 -1 R _script dialog@Type 0  #
+16 16070 R _script personal_base@r_AddGreen 1 -5 R _script dialog@Type 0  #
+16 16080 R _script personal_base@r_AddGreen 1 -10 R _script dialog@Type 0  #
+16 16090 R _script personal_base@r_AddGreen 1 -15 R _script dialog@Type 0  #
+14 16100 R _script dialog@Type 0  @
+17 17000 personal_base@dlg_BaseColor 0 #
+17 17010 R _script personal_base@r_AddBlue 1 15 R _script dialog@Type 0  #
+17 17020 R _script personal_base@r_AddBlue 1 10 R _script dialog@Type 0  #
+17 17030 R _script personal_base@r_AddBlue 1 5 R _script dialog@Type 0  #
+17 17040 R _script personal_base@r_AddBlue 1 1 R _script dialog@Type 0  #
+17 17050 R _script personal_base@r_AddBlue 1 0 R _script dialog@Type 0  #
+17 17060 R _script personal_base@r_AddBlue 1 -1 R _script dialog@Type 0  #
+17 17070 R _script personal_base@r_AddBlue 1 -5 R _script dialog@Type 0  #
+17 17080 R _script personal_base@r_AddBlue 1 -10 R _script dialog@Type 0  #
+17 17090 R _script personal_base@r_AddBlue 1 -15 R _script dialog@Type 0  #
+14 17100 R _script dialog@Type 0  @
+18 18000 None 0 #
+19 18010 R _script dialog@r_GarbageLocation 0  R _script dialog@Type 0  #
+2 18020 R _script dialog@Type 0  #
+0 18030 R _script dialog@Type 0  @
+19 19000 None 0 #
+2 19010 R _script dialog@Type 0  #
+0 19020 R _script dialog@Type 0  @
+20 20000 None 0 #
+2 20010 R _script dialog@Type 0  #
+0 20020 R _script dialog@Type 0  @
+21 21000 None 0 #
+21 21010 R _script dialog@Type 0  R _script personal_base@r_ConnectToFaction 1 0 #
+0 21020 R _script dialog@Type 0  @
+22 22000 None 0 #
+22 22010 R _script dialog@Type 0  R _script personal_base@r_DisconnectFromFaction 1 0 #
+0 22020 R _script dialog@Type 0  &
+
+[engl]
+{100}{}{Terminal}
+{200}{}{Old personal computer.}
+{210}{}{Old personal computer.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Stand by... Recognition systems initialized. @pname@, you are authorized to you use this terminal. Please input command. *beep*}
+{2010}{}{Add new member.}
+{2020}{}{Resign player.}
+{2030}{}{Promote member.}
+{2040}{}{Demote member.}
+{2050}{}{Show Members}
+{2060}{}{Choose Base Color on Worldmap}
+{2070}{}{Connect base to faction databse.}
+{2080}{}{Disconnect base from faction databse.}
+{2090}{}{Delete the base.}
+{2100}{}{Cancel Base deletion.}
+{2110}{}{[Log off terminal.]}
+{3000}{}{*Memory module is now loaded - specify authorization access* (Use 'say' and write name or id) to add a new member to the base.) }
+{3010}{}{[Back to main menu.]}
+{3020}{}{[Log off terminal.]@@[Log off.]}
+{4000}{}{*Accessing database - stand by - input authorization access to remove permissions* (Use 'say' and write name or id) to remove a player from the base.}
+{4010}{}{[Back to main menu.]}
+{4020}{}{]Log off terminal.]}
+{5000}{}{This input either does not exist or isn't present. (Player does not exist.)}
+{5010}{}{[Back to main menu.]}
+{5020}{}{[Log off.]}
+{6000}{}{Operation is successful.}
+{6010}{}{[Back to main menu.]}
+{6020}{}{[Log off terminal.]}
+{7000}{}{Authorization failure - detected hostile units in this complex. Defense systems are ready, prepare... Fatal error1101010AFave a nice day.}
+{8000}{}{Error - Selected person is already a member.}
+{8010}{}{[Back to main menu.]}
+{8020}{}{[Log off terminal.]}
+{9000}{}{Error. Selected person is not a member.}
+{9010}{}{[Back to main menu.]}
+{9020}{}{[Log off terminal.]}
+{10000}{}{Critical Error.}
+{10010}{}{Damn!@@Fuck.@@Crap.}
+{11000}{}{*Management interface loaded* (Use 'say' and write name or id) to promote a member.}
+{11010}{}{[Back to main menu.]}
+{11020}{}{[Log off terminal.]}
+{12000}{}{*Management interface loaded* (Use 'say' and write name or id) to demote a member.}
+{12010}{}{[Back to main menu.]}
+{12020}{}{[Log out.]}
+{13000}{}{Error. Unable to promote or demote a member.}
+{13010}{}{[Back to main menu.]}
+{13020}{}{[Log off.]}
+{14000}{}{Set the color of the base.
+Current color in RGB: 
+RED: @lex redcolor@   BLUE: @lex bluecolor@   GREEN: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{14010}{}{Add Red}
+{14020}{}{Add Green}
+{14030}{}{Add Blue}
+{14040}{}{Reset Color.}
+{14050}{}{Go Back}
+{15000}{}{Choose how much red you want to add.
+Color of the base in RGB: 
+RED: @lex redcolor@   BLUE: @lex bluecolor@   GREEN: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{15010}{}{+15}
+{15020}{}{+10}
+{15030}{}{+5}
+{15040}{}{+1}
+{15050}{}{Reset.}
+{15060}{}{-1}
+{15070}{}{-5}
+{15080}{}{-10}
+{15090}{}{-15}
+{15100}{}{[Go back.]}
+{16000}{}{Choose how much green you want to add.
+Color of the base in RGB: 
+Red: @lex redcolor@   Blue: @lex bluecolor@   Green: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{16010}{}{+15}
+{16020}{}{+10}
+{16030}{}{+5}
+{16040}{}{+1}
+{16050}{}{Reset.}
+{16060}{}{-1}
+{16070}{}{-5}
+{16080}{}{-10}
+{16090}{}{-15}
+{16100}{}{[Go back.]}
+{17000}{}{Choose how much blue you want to add.
+Color of the base in RGB: 
+RED: @lex redcolor@   BLUE: @lex bluecolor@   GREEN: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{17010}{}{+15}
+{17020}{}{+10}
+{17030}{}{+5}
+{17040}{}{+1}
+{17050}{}{Reset.}
+{17060}{}{-1}
+{17070}{}{-5}
+{17080}{}{-10}
+{17090}{}{-15}
+{17100}{}{[Go back.]}
+{18000}{}{Warning! Are you sure you want to disable base tracking system and let the desert absorb it? (Location will be deleted after last player leaves the map!)}
+{18010}{}{[Agree]}
+{18020}{}{[Back to main menu.]}
+{18030}{}{[Log off terminal.]}
+{19000}{}{Location will be deleted after all players have left the location.}
+{19010}{}{[Back to main menu.]}
+{19020}{}{[Log off terminal.]}
+{20000}{}{Base deletion canceled.}
+{20010}{}{[Back to main menu.]}
+{20020}{}{[Log off terminal.]}
+{21000}{}{Base will be connected to your faction database, all non faction members will be removed and only faction officers will be able to access terminal. All faction member will see this base. Only faction officers will be able do disconnect base from faction database.}
+{21010}{}{[Execute opration]}
+{21020}{}{[Log off terminal]}
+{22000}{}{You going to disconnect base from faction database. All faction members except you, won't be able to access this base.}
+{22010}{}{[Execute opration]}
+{22020}{}{[Log off terminal]}
+
+[russ]
+{100}{}{Terminal}
+{200}{}{Old personal computer.}
+{210}{}{Old personal computer.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{*бззз* Инициализация ... Доступ получен. @pname@, вы авторизованы в системе, введите команду.}
+{2010}{}{Добавить игрока в список доступа.}
+{2020}{}{Удалить игрока из списка доступа.}
+{2030}{}{Повысить ранг доступа игрока.}
+{2040}{}{Понизить ранг доступа игрока.}
+{2050}{}{Список доступа базы.}
+{2060}{}{Настроить цвет отображения базы на глобальной карте.}
+{2070}{}{Внести в фракционную базу данных.}
+{2080}{}{Убрать из фракционной базы данных.}
+{2090}{}{Удалить базу.}
+{2100}{}{Отменить удаление базы.}
+{2110}{}{*выключить терминал*}
+{3000}{}{*Получен доступ к главной базе данных* (Введите имя или id игрока используя кнопку Say) чтобы добавить игрока на базу.}
+{3010}{}{Назад в главное меню.}
+{3020}{}{*выключить терминал*}
+{4000}{}{*Получен доступ к главной базе данных* (Введите имя или id игрока используя кнопку Say) чтобы удалить игрока из базы.}
+{4010}{}{Назад в главное меню.}
+{4020}{}{*выключить терминал*}
+{5000}{}{Данные в базе отсутствуют(Нет игрока с таким именем или id)}
+{5010}{}{Назад в главное меню.}
+{5020}{}{*выключить терминал*}
+{6000}{}{Операция выполнена успешно.}
+{6010}{}{Назад в главное меню.}
+{6020}{}{*выключить терминал*}
+{7000}{}{*бзз-бип* Ошибка доступа.}
+{8000}{}{*Ошибка* Игрок уже в списке доступа базы.}
+{8010}{}{Назад в главное меню.}
+{8020}{}{*выключить терминал*}
+{9000}{}{*Ошибка* Игрок не найден в списке доступа базы.}
+{9010}{}{Назад в главное меню.}
+{9020}{}{*выключить терминал*}
+{10000}{}{Критическая ошибка 010101010101010101101010110101}
+{10010}{}{Черт!}
+{11000}{}{*Управляющий интерфейс инициализирован* (Введите имя или id игрока используя кнопку Say) для повышения ранга игрока.}
+{11010}{}{Назад в главное меню.}
+{11020}{}{*выключить терминал*}
+{12000}{}{*Управляющий интерфейс инициализирован* (Введите имя или id игрока используя кнопку Say) для понижения ранга игрока.}
+{12010}{}{Назад в главное меню.}
+{12020}{}{*выключить терминал*}
+{13000}{}{*Ошибка* Невозможно повысить/понизить ранг игрока.}
+{13010}{}{Назад в главное меню.}
+{13020}{}{*выключить терминал*}
+{14000}{}{Настройки цвета отображения базы на глобальной  карте.
+RGB: 
+Красный: @lex redcolor@   Синий: @lex bluecolor@   Зеленый: @lex greencolor@  		
+Цвет базы:  @lex basecolor@}
+{14010}{}{Добавить Красного.}
+{14020}{}{Добавить Зеленого}
+{14030}{}{Добавить Синего.}
+{14040}{}{Сбросить цвет.}
+{14050}{}{Назад.}
+{15000}{}{Выберите количество единиц красного
+RGB: 
+Красный: @lex redcolor@   Синий: @lex bluecolor@   Зеленый: @lex greencolor@  				
+Цвет базы:  @lex basecolor@}
+{15010}{}{+15}
+{15020}{}{+10}
+{15030}{}{+5}
+{15040}{}{+1}
+{15050}{}{Сбросить.}
+{15060}{}{-1}
+{15070}{}{-5}
+{15080}{}{-10}
+{15090}{}{-15}
+{15100}{}{Назад.}
+{16000}{}{Выберите количество единиц зеленого
+RGB: 
+Красный: @lex redcolor@   Синий: @lex bluecolor@   Зеленый: @lex greencolor@  				
+Цвет базы:  @lex basecolor@}
+{16010}{}{+15}
+{16020}{}{+10}
+{16030}{}{+5}
+{16040}{}{+1}
+{16050}{}{Сбросить.}
+{16060}{}{-1}
+{16070}{}{-5}
+{16080}{}{-10}
+{16090}{}{-15}
+{16100}{}{Назад.}
+{17000}{}{Выберите количество единиц синего.
+RGB: 
+Красный: @lex redcolor@   Синий: @lex bluecolor@   Зеленый: @lex greencolor@  				
+Цвет базы:  @lex basecolor@}
+{17010}{}{+15}
+{17020}{}{+10}
+{17030}{}{+5}
+{17040}{}{+1}
+{17050}{}{Сбросить.}
+{17060}{}{-1}
+{17070}{}{-5}
+{17080}{}{-10}
+{17090}{}{-15}
+{17100}{}{Назад.}
+{18000}{}{ВНИМАНИЕ! Вы уверены что требуется отключить радио-маяк? [ Локация будет удалена после выхода с нее всех игроков.]}
+{18010}{}{ПОДТВЕРЖДАЮ}
+{18020}{}{Назад в главное меню.}
+{18030}{}{*выключить терминал*}
+{19000}{}{Локация будет удалена после выхода с нее всех игроков.}
+{19010}{}{Назад в главное меню.}
+{19020}{}{*выключить терминал*}
+{20000}{}{Удаление локации отменено.}
+{20010}{}{Назад в главное меню.}
+{20020}{}{*выключить терминал*}
+{21000}{}{База будет внесена в список баз вашей фракции. Все члены фракции, включая новых, будут видеть эту базу. Персонажи не входящий в вашу фракцию видеть эту базу не смогут, добавить их тоже будет не возможно. Только офицеры фракции смогут управлять этой базой.}
+{21010}{}{[Выполнить операцию]}
+{21020}{}{*выключить терминал*}
+{22000}{}{База будет удалена из списка баз вашей фракции. Никто кроме вас не будет видеть эту базу.}
+{22010}{}{[Выполнить операцию]}
+{22020}{}{*выключить терминал*}
+
+[pols]
+{100}{}{Terminal}
+{200}{}{Stary komputer.}
+{210}{}{Stary komputer.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{*bzzz* Stan gotowości... Systemy rozpoznawania zainicjowane. @pname@, posiadasz dostęp do tego terminala. Proszę wprowadzić komendę. *bip* Recognition systems initialized. @pname@, you are authorized to you use this terminal. Please input command. *bip*}
+{2010}{}{Dodaj nowego członka.}
+{2020}{}{Usuń członka.}
+{2030}{}{Promote member.}
+{2040}{}{Demote member.}
+{2050}{}{Show Members}
+{2060}{}{Choose Base Color on Worldmap}
+{2070}{}{Connect base to faction databse.}
+{2080}{}{Disconnect base from faction databse.}
+{2090}{}{Delete the base.}
+{2100}{}{Cancel Base deleting.}
+{2110}{}{*wyloguj się z terminala*}
+{3000}{}{*bip* Moduł pamięciowy wczytany. Proszę określić dostęp. (użyj "say" aby dodać nowego członka)}
+{3010}{}{Powrót do menu głównego.}
+{3020}{}{*wyloguj się z terminala*}
+{4000}{}{*bzzz* Wczytywanie bazy danych - stan gotowości - wprowadź dane, aby usunąć dostęp. (użyj "say" aby wyrzucić członka z bazy)}
+{4010}{}{Powrót do menu głównego.}
+{4020}{}{*wyloguj się z terminala*}
+{5000}{}{Wprowadzone dane nie istnieją bądź są nieaktu-u-u-ualne. *bz-i-bz* Błąd. (gracz nie istnieje bądź nie jest w grze)}
+{5010}{}{Powrót do menu głównego.}
+{5020}{}{*wyloguj się z terminala*}
+{6000}{}{Operacja powiodła się.}
+{6010}{}{Powrót do menu głównego.}
+{6020}{}{*wyloguj się z terminala*}
+{7000}{}{*bzip-bzzz* Błąd autoryzacji - wykryto wrogie jednostki w kompleksie. Systemy obronne włączone, przygotować się do walk-k-k... Błąd krytyczny1101010AFF99 *bzap* - Miłego dnia.}
+{8000}{}{Already Member}
+{8010}{}{Back to main menu.}
+{8020}{}{*log off terminal*}
+{9000}{}{Not a Member}
+{9010}{}{Back to main menu.}
+{9020}{}{*log off terminal*}
+{10000}{}{Błąd krytyczny 010101010101010101101010110101}
+{10010}{}{Cholera!}
+{11000}{}{Use say to promote player}
+{11010}{}{Back to main menu.}
+{11020}{}{*log off terminal*}
+{12000}{}{Use say to demote player}
+{12010}{}{Back to main menu.}
+{12020}{}{*log off terminal*}
+{13000}{}{Unable to promote/demote player.}
+{13010}{}{Back to main menu.}
+{13020}{}{*log off terminal*}
+{14000}{}{Set up the color of the base.}
+{14010}{}{Add Red}
+{14020}{}{Add Green}
+{14030}{}{Add Blue}
+{14040}{}{Reset Color.}
+{14050}{}{Go Back}
+{15000}{}{Choose How Much Red you want to Add}
+{15010}{}{+15}
+{15020}{}{+10}
+{15030}{}{+5}
+{15040}{}{+1}
+{15050}{}{Reset}
+{15060}{}{-1}
+{15070}{}{-5}
+{15080}{}{-10}
+{15090}{}{-15}
+{15100}{}{Go back}
+{16000}{}{Choose How Much Green  you want to Add}
+{16010}{}{+15}
+{16020}{}{+10}
+{16030}{}{+5}
+{16040}{}{+1}
+{16050}{}{Reset}
+{16060}{}{-1}
+{16070}{}{-5}
+{16080}{}{-10}
+{16090}{}{-15}
+{16100}{}{Go back}
+{17000}{}{Choose How Much Blue  you want to Add}
+{17010}{}{+15}
+{17020}{}{+10}
+{17030}{}{+5}
+{17040}{}{+1}
+{17050}{}{Reset}
+{17060}{}{-1}
+{17070}{}{-5}
+{17080}{}{-10}
+{17090}{}{-15}
+{17100}{}{Go back}
+{18000}{}{Warning! Are you sure you want to disable base tracking system and let the desert absorb it? [ Location gets deleted after no players are on the map.]}
+{18010}{}{AGREE}
+{18020}{}{Back to main menu.}
+{18030}{}{*log off terminal*}
+{19000}{}{Location will be deleted after all players will leave the location.}
+{19010}{}{Back to main menu.}
+{19020}{}{*log off terminal*}
+{20000}{}{Location removing canceled.}
+{20010}{}{Back to main menu.}
+{20020}{}{*log off terminal*}
+{21000}{}{Base will be connected to your faction database, all non faction members will be removed and only faction officers will be able to access terminal. All faction member will see this base. Only faction officers will be able do disconnect base from faction database.}
+{21010}{}{[Execute opration]}
+{21020}{}{[Log off terminal]}
+{22000}{}{You going to disconnect base from faction database. All faction members except you, won't be able to access this base.}
+{22010}{}{[Execute opration]}
+{22020}{}{[Log off terminal]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Stand by... Recognition systems initialized. @pname@, you are authorized to you use this terminal. Please input command. *beep*}
+{2010}{}{Add new member.}
+{2020}{}{Resign player.}
+{2030}{}{Promote member.}
+{2040}{}{Demote member.}
+{2050}{}{Show Members}
+{2060}{}{Choose Base Color on Worldmap}
+{2070}{}{Connect base to faction databse.}
+{2080}{}{Disconnect base from faction databse.}
+{2090}{}{Delete the base.}
+{2100}{}{Cancel Base deletion.}
+{2110}{}{[Log off terminal.]}
+{3000}{}{*Memory module is now loaded - specify authorization access* (Use 'say' and write name or id) to add a new member to the base.) }
+{3010}{}{[Back to main menu.]}
+{3020}{}{[Log off terminal.]@@[Log off.]}
+{4000}{}{*Accessing database - stand by - input authorization access to remove permissions* (Use 'say' and write name or id) to remove a player from the base.}
+{4010}{}{[Back to main menu.]}
+{4020}{}{]Log off terminal.]}
+{5000}{}{This input either does not exist or isn't present. (Player does not exist.)}
+{5010}{}{[Back to main menu.]}
+{5020}{}{[Log off.]}
+{6000}{}{Operation is successful.}
+{6010}{}{[Back to main menu.]}
+{6020}{}{[Log off terminal.]}
+{7000}{}{Authorization failure - detected hostile units in this complex. Defense systems are ready, prepare... Fatal error1101010AFave a nice day.}
+{8000}{}{Error - Selected person is already a member.}
+{8010}{}{[Back to main menu.]}
+{8020}{}{[Log off terminal.]}
+{9000}{}{Error. Selected person is not a member.}
+{9010}{}{[Back to main menu.]}
+{9020}{}{[Log off terminal.]}
+{10000}{}{Critical Error.}
+{10010}{}{Damn!@@Fuck.@@Crap.}
+{11000}{}{*Management interface loaded* (Use 'say' and write name or id) to promote a member.}
+{11010}{}{[Back to main menu.]}
+{11020}{}{[Log off terminal.]}
+{12000}{}{*Management interface loaded* (Use 'say' and write name or id) to demote a member.}
+{12010}{}{[Back to main menu.]}
+{12020}{}{[Log out.]}
+{13000}{}{Error. Unable to promote or demote a member.}
+{13010}{}{[Back to main menu.]}
+{13020}{}{[Log off.]}
+{14000}{}{Set the color of the base.
+Current color in RGB: 
+RED: @lex redcolor@   BLUE: @lex bluecolor@   GREEN: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{14010}{}{Add Red}
+{14020}{}{Add Green}
+{14030}{}{Add Blue}
+{14040}{}{Reset Color.}
+{14050}{}{Go Back}
+{15000}{}{Choose how much red you want to add.
+Color of the base in RGB: 
+RED: @lex redcolor@   BLUE: @lex bluecolor@   GREEN: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{15010}{}{+15}
+{15020}{}{+10}
+{15030}{}{+5}
+{15040}{}{+1}
+{15050}{}{Reset.}
+{15060}{}{-1}
+{15070}{}{-5}
+{15080}{}{-10}
+{15090}{}{-15}
+{15100}{}{[Go back.]}
+{16000}{}{Choose how much green you want to add.
+Color of the base in RGB: 
+Red: @lex redcolor@   Blue: @lex bluecolor@   Green: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{16010}{}{+15}
+{16020}{}{+10}
+{16030}{}{+5}
+{16040}{}{+1}
+{16050}{}{Reset.}
+{16060}{}{-1}
+{16070}{}{-5}
+{16080}{}{-10}
+{16090}{}{-15}
+{16100}{}{[Go back.]}
+{17000}{}{Choose how much blue you want to add.
+Color of the base in RGB: 
+RED: @lex redcolor@   BLUE: @lex bluecolor@   GREEN: @lex greencolor@  		
+Base color:  @lex basecolor@}
+{17010}{}{+15}
+{17020}{}{+10}
+{17030}{}{+5}
+{17040}{}{+1}
+{17050}{}{Reset.}
+{17060}{}{-1}
+{17070}{}{-5}
+{17080}{}{-10}
+{17090}{}{-15}
+{17100}{}{[Go back.]}
+{18000}{}{Warning! Are you sure you want to disable base tracking system and let the desert absorb it? (Location will be deleted after last player leaves the map!)}
+{18010}{}{[Agree]}
+{18020}{}{[Back to main menu.]}
+{18030}{}{[Log off terminal.]}
+{19000}{}{Location will be deleted after all players have left the location.}
+{19010}{}{[Back to main menu.]}
+{19020}{}{[Log off terminal.]}
+{20000}{}{Base deletion canceled.}
+{20010}{}{[Back to main menu.]}
+{20020}{}{[Log off terminal.]}
+{21000}{}{Base will be connected to your faction database, all non faction members will be removed and only faction officers will be able to access terminal. All faction member will see this base. Only faction officers will be able do disconnect base from faction database.}
+{21010}{}{[Execute opration]}
+{21020}{}{[Log off terminal]}
+{22000}{}{You going to disconnect base from faction database. All faction members except you, won't be able to access this base.}
+{22010}{}{[Execute opration]}
+{22020}{}{[Log off terminal]}
+

@@ -1,0 +1,46 @@
+#ifndef _BASE_DEFINES_
+#define _BASE_DEFINES_
+
+#include "_macros.fos"
+
+#define SIERRA_BASE			( 0 )
+#define MARIPOSA_BASE		( 1 )
+#define CATHEDRAL_BASE		( 2 )
+#define MAX_BASES			( 3 )
+
+#define ORG_ALL				( 0 )
+#define ORG_ENCLAVE			( 1 )
+#define ORG_BOS				( 2 )
+
+#define BASE_REFRESH_TIME	( REAL_MINUTE( Random( 25, 35 ) ) ) // 25-35 real minutes
+#define CAR_WAIT_TIME		( REAL_MINUTE( 1 ) )
+
+#define ENTIRE_SUPPLY_CAR		( 50 )
+
+#define ENTIRE_BASE_WAVE_SPAWN	( 159 )
+#define ENTIRE_BASE_WAVE_EXIT	( 0 )
+
+#define ROLE_BASE_ATTACKER		( 28822437 )
+#define ATTACKER_DELETE_DELAY	( REAL_SECOND( 15 ))
+
+#define CYCLE_START_DELAY	( REAL_MINUTE( 2 ) )
+#define CYCLE_DURATION		( REAL_MINUTE( 8 ) )
+
+#define ITEM_CYCLE_CHANCE_INCREMENT	( 0.5 )
+
+const int[] AttackerParams = { MODE_NO_LOOT, 1, MODE_NO_DROP, 1, MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, ST_CRITICAL_CHANCE, 16, PE_BETTER_CRITICALS , 1, MODE_UNLIMITED_AMMO, 1, ST_BONUS_LOOK, 1000, ST_NPC_ROLE, ROLE_BASE_ATTACKER, ST_REPLICATION_TIME, -1 };
+const       uint16[] BaseMaps = { MAP_sad_enter, MAP_mariposa_enter, MAP_cath_enter };
+const       uint[] TerminalMaps = { MAP_sad_level3, MAP_mariposa_level4, MAP_cath_level3 };
+const       uint[] GvarRule = { GVAR_base_sierra_rule, GVAR_base_mariposa_rule, GVAR_base_cathedral_rule };
+const       uint[] GvarOrg = { GVAR_base_sierra_org, GVAR_base_mariposa_org, GVAR_base_cathedral_org };
+const       uint[] GvarTimeEvent = { GVAR_base_sierra_time_event_id, GVAR_base_mariposa_time_event_id, GVAR_base_cathedral_time_event_id };
+const int[] ScoreCur = { SCORE_SIERRA_CUR, SCORE_MARIPOSA_CUR, SCORE_CATHEDRAL_CUR };
+const int[] ScoreBest = { SCORE_SIERRA_BEST, SCORE_MARIPOSA_BEST, SCORE_CATHEDRAL_BEST };
+const int[] ScoreOrg = { SCORE_SIERRA_ORG, SCORE_MARIPOSA_ORG, SCORE_CATHEDRAL_ORG };
+
+void Info(string@ message)
+{
+	Log(message);
+}
+
+#endif

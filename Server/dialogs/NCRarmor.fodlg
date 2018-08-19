@@ -1,0 +1,90 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _param p MAIN_FACTION = 6 D or D _param p MAIN_FACTION = 5 #
+5 1020 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _item p PID_COMBAT_ARMOR } 1 D _script economy_dialogs@d_IsEnoughCaps 1 500 R _script economy_dialogs@r_TakeCaps 1 500 R _script dialog@r_ChangeProto 2 17 9851 R _script dialog@r_FadeInOut 0  #
+4 3020 D _item p PID_COMBAT_ARMOR_MK_II } 1 D _script economy_dialogs@d_IsEnoughCaps 1 500 R _script economy_dialogs@r_TakeCaps 1 500 R _script dialog@r_ChangeProto 2 381 9852 R _script dialog@r_FadeInOut 0  #
+0 3030 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 &
+
+[engl]
+{100}{}{Quartermaster}
+{200}{}{You see: Quartermaster.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{1020}{}{Not ncr}
+{2000}{}{Hello there. What do you need?@@Need anything?@@What do you want?@@Yes?@@I'm listening.}
+{2010}{}{I would like to paint my armor in New California Republic colors.@@I want my armor repainted in NCR colors.}
+{2020}{}{Nothing, thanks. I was just walking by.@@Just passing by.@@Nevermind.@@I've gotta go.}
+{3000}{}{Well, for that you need to be an NCR member and pay me @lex armor_upgrade_price@ caps for the job. The armor's bonuses and deterioration will be preserved.}
+{3010}{}{No problem! Here is a Combat Armor and your payment.@@Okay, here's a Combat Armor and your caps.@@Right, here, take this Combat Armor and the caps.}
+{3020}{}{No problem! Here's a Combat Armor Mark II and your payment.@@All right, here's a Combat Armor Mark II and your payment.}
+{3030}{}{Oh, I understand. Bye then!@@Right. Goodbye.@@Okay, I'll see you later.@@Later.}
+{4000}{}{Very well, it's done, here you go.@@All right, here you go.@@Okay, here you go.}
+{4010}{}{Thanks! See you around.@@Thanks, see you.@@Thanks, I need to get going.}
+{5000}{}{Sorry, I can only do it for NCR citizens@@My services are only available to NCR citizens.}
+
+[russ]
+{100}{}{Quartermaster}
+{200}{}{You see Quartermaster.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{1020}{}{Not ncr}
+{2000}{}{Hello there. What do you need ?}
+{2010}{}{I would like to rebrand my armor into New California Republic colors.}
+{2020}{}{Ahh nothing, thanks. I was just walking bye.}
+{3000}{}{Well for that, you need to be NCR member and pay me @lex armor_upgrade_price@ caps for the job.}
+{3010}{}{No problem! This is the Combat Armor and your payment.}
+{3020}{}{No problem! This is the Combat Armor MkII and your payment.}
+{3030}{}{Ohh, I understand. Bye then!}
+{4000}{}{I have some of those already prepared on stock, here you go.}
+{4010}{}{Thanks! See you around!}
+{5000}{}{Sorry, i only do support NCR units.}
+
+[pols]
+{100}{}{Quartermaster}
+{200}{}{You see Quartermaster.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{1020}{}{Not ncr}
+{2000}{}{Hello there. What do you need ?}
+{2010}{}{I would like to rebrand my armor into New California Republic colors.}
+{2020}{}{Ahh nothing, thanks. I was just walking bye.}
+{3000}{}{Well for that, you need to be NCR member and pay me @lex armor_upgrade_price@ caps for the job.}
+{3010}{}{No problem! This is the Combat Armor and your payment.}
+{3020}{}{No problem! This is the Combat Armor MkII and your payment.}
+{3030}{}{Ohh, I understand. Bye then!}
+{4000}{}{I have some of those already prepared on stock, here you go.}
+{4010}{}{Thanks! See you around!}
+{5000}{}{Sorry, i only do support NCR units.}
+
+[ptbr]
+{100}{}{Superintendente}
+{200}{}{Você vê o superintendente.}
+{1000}{}{Initial preferences}
+{1010}{}{dupa slonia}
+{1020}{}{Not ncr}
+{2000}{}{Opa, tudo bom? Posso ajudar?}
+{2010}{}{Tudo sim, eu queria tingir minha armadura para as cores da República da Nova Califórnia.}
+{2020}{}{Ahh nada não, obrigado. Eu estava só dando uma olhada.}
+{3000}{}{Certo, mas para isso precisa ser membro da RNC e me pagar @lex armor_upgrade_price@ tampas para o trabalho. Os bônus e deterioração permanecerão. Não faço manuntenção.}
+{3010}{}{Sem problemas! Aqui tá a Armadura de Combate e o pagamento.}
+{3020}{}{Sem problemas! Aqui tá a Armadura de Combate Classe II e o pagamento.}
+{3030}{}{Ahh, entendi. Valeu!}
+{4000}{}{Pronto. Tá pronto, pega aí.}
+{4010}{}{Obrigado! Te vejo por aí!}
+{5000}{}{Desculpe-me, eu posso dar suporte a cidadãos da RNC.}
+

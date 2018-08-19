@@ -1,0 +1,59 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_npc_player = 0 #
+3 1020 D _var p name_mem_npc_player = 1 @
+2 2000 None 0 #
+0 2010 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Tribal}
+{200}{}{You see: Tribal.}
+{210}{}{This person's face shows only minor signs of intelligence, though the muscles make up for this somewhat.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{What do ya want?@@Do ya want anything?@@Ya?@@Me help ya anyhow?}
+{2010}{}{Nothing, I guess.}
+{3000}{}{Klamath is good for life.@@Me is happy here.@@Me fear slavers come.@@Are ya slaver?}
+
+[russ]
+{100}{}{Абориген}
+{200}{}{Один из Кламатских аборигенов.}
+{210}{}{Абориген. Он не выглядит очень умным, но его мышцы выдают в нем хорошего воина...Я думаю.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Чего тебе?@@Тебе что-то нужно?@@Да?@@Я погать тебе?}
+{2010}{}{I guess nothing.}
+{3000}{}{Мне нравится в Кламате.@@Моя хорошо тут.@@Моя боится работорговцев.@@Ты работорговца?}
+
+[pols]
+{100}{}{Dzikus}
+{200}{}{Jeden z tubylców zamieszkujących w Klamath.}
+{210}{}{Ten człowiek wygląda na dzikusa. Niezbyt inteligentny, ale wystarczająco silny.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Czego?@@Co chce?@@Taa?@@Hmmm?}
+{2010}{}{Chyba już nic, dzięki.}
+{3000}{}{Dobre życie być w Klamath.@@Mi być tu dobrze.@@Moja boi się, że łowcy znowu przyjść.@@Ty łowca?}
+
+[ptbr]
+{100}{}{Aborígene}
+{200}{}{Você vê um aborígene.}
+{210}{}{Essa pessoa tem cara de gente burra, embora os músculos compensem isso de alguma forma.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Quê que tu quer?@@Qué alguma coisa?@@Hã?@@Como eu te ajudo?}
+{2010}{}{Nada, eu acho.}
+{3000}{}{Klamath é bom para viver.@@Eu feliz aqui.@@Eu ter medo traficante escravos vir.@@Tu é traficante de escravos?}
+

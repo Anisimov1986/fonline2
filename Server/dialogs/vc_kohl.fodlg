@@ -1,0 +1,262 @@
+[comment]
+Only nodes number #100+ are added by myself, the rest is from F2
+Also, take a look at #12(100,102) - these are mine
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+12 3010 #
+4 3020 #
+0 3030 @
+4 4000 None 0 #
+5 4010 #
+7 4020 #
+12 4030 #
+0 4040 @
+5 5000 None 0 #
+6 5010 #
+12 5020 @
+6 6000 None 0 #
+12 6010 #
+0 6020 @
+7 7000 None 0 #
+8 7010 D _param p ST_INTELLECT < 6 #
+9 7020 D _param p ST_INTELLECT > 5 @
+8 8000 None 0 #
+10 8010 #
+12 8020 #
+0 8030 @
+9 9000 None 0 #
+11 9010 #
+0 9020 @
+10 10000 None 0 #
+12 10010 #
+0 10020 @
+11 11000 None 0 #
+12 11010 #
+0 11020 @
+12 12000 None 0 #
+3 12010 #
+13 12020 #
+0 12030 @
+13 13000 None 0 #
+14 13010 #
+0 13020 @
+14 14000 None 0 #
+6 14010 #
+0 14020 &
+
+[engl]
+{100}{}{Kohl}
+{200}{}{You see: Chief Librarian Kohl.}
+{210}{}{You see a gentle-looking man in a Vault City uniform.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Oh... hello! Was there something I could help you with?}
+{2010}{}{What is this place?}
+{2020}{}{Nothing. Sorry to disturb you.}
+{3000}{}{This is the Information Center for Vault City. Is this the place you were looking for?}
+{3010}{}{Yes, actually. I had some questions maybe you can answer.}
+{3020}{}{Information Center? Do you have any books or manuals?}
+{3030}{}{Not really. Sorry to disturb you.}
+{4000}{}{Unfortunately, our books have been transcribed into electronic format. The extras are being shipped to the Amenities Offices down the street. You might try there.}
+{4010}{}{Where are these electronically-formatted books stored?}
+{4020}{}{All the books are gone?}
+{4030}{}{Oh. I have a few questions...}
+{4040}{}{Maybe I'll check there, then.}
+{5000}{}{Hmm. Well, you know, the Central Computer down in the Vault might have some information about it. We keep most
+ of the older archives down there.}
+{5010}{}{How can I get down to the Vault?}
+{5020}{}{Can I ask you some other questions?}
+{6000}{}{Well, you are a Citizen of the City, aren't you? You are permitted to walk down there.}
+{6010}{}{Can I ask you some other questions?}
+{6020}{}{Thanks for the information.}
+{7000}{}{Yes, well, everything is being transcribed because... Hmm. This is a somewhat delicate matter, but I believe my post here in Vault City has become obsolete.}
+{7010}{}{Ob-so-lete? What do you mean?}
+{7020}{}{Obsolete?}
+{8000}{}{It means my post here is no longer necessary. It's all for the best.}
+{8010}{}{Are you sure?}
+{8020}{}{Oh. I had some other questions...}
+{8030}{}{Sorry to hear it. I have to go.}
+{9000}{}{They are discussing putting information terminals in every household. These new terminals would all be tied to the List Server and the Information Archives.
+ Then the Information Center... and I... will be unnecessary. It's all for the best, really.}
+{9010}{}{Oh. Well, I'm sorry to hear that all the books were transcribed. I'd much rather read a book than stare at a computer screen.}
+{9020}{}{Sorry to hear it. I have to go.}
+{10000}{}{Oh my, yes. The First Citizen is rarely wrong in such matters. Still, I will be sorry to leave this place. I heard they have a position waiting for me in the List Office.}
+{10010}{}{Oh. I had some other questions...}
+{10020}{}{Sorry to hear it. I have to go.}
+{11000}{}{That's how I feel as well! I have nothing against electronic format mind you, but there is a certain... solidity... in having a book in your hands and turning the pages one by one. Hmm. You know... I'd give you a book or two, if I had any here.}
+{11010}{}{Good to know it. I had some other questions...}
+{11020}{}{I see. Thanks anyway, I have to go now.}
+{12000}{}{Certainly. What questions did you have?}
+{12010}{}{Could you tell me once again what this place is?}
+{12020}{}{Do you know where I can find the Vault?}
+{12030}{}{Nevermind. Maybe we'll talk some other time.}
+{13000}{}{The Vault? Why, the entrance is just down the street... it's the large hole in the side of the mountain.}
+{13010}{}{Do you know of any other Vaults?}
+{13020}{}{Thanks for the information.}
+{14000}{}{Other Vaults? Hmm. No, not really. I know other Vaults were built, but we have never come across any of them. There may be some mention of them in the Central Computer in the Vault.}
+{14010}{}{How can I get down to the Vault?}
+{14020}{}{Thanks for the information.}
+
+[russ]
+{100}{}{Коль}
+{200}{}{Вы видите Главного Библиотекаря Коля.}
+{210}{}{Вы видите добродушного человека в униформе Убежища.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{О... Здравствуйте! Я могу вам чем-то помочь?}
+{2010}{}{Что это за место?}
+{2020}{}{Ничего. Извините за беспокойство.}
+{3000}{}{Это Информационный Центр Города Убежища. Вы его искали?}
+{3010}{}{Вообще-то да. У меня есть вопрос, на который вы, наверное, сможете ответить.}
+{3020}{}{Информационный Центр? Наверное, у вас есть книги или инструкции?}
+{3030}{}{Вообще-то нет. Извините.}
+{4000}{}{К несчастью, все наши книги сейчас переводятся в электронный формат. Остатки мы передали в Службу Обустройства, ниже по улице. Попробуйте спросить там.}
+{4010}{}{А где находятся эти книги в электронном формате?}
+{4020}{}{И все книжки пропали?}
+{4030}{}{О. У меня есть несколько вопросов...}
+{4040}{}{Что ж, тогда я загляну туда.}
+{5000}{}{Хмммм. Знаете, какая-то информация об этом может быть в Центральном компьютере Убежища. Там у нас большинство старых архивов.}
+{5010}{}{А как я могу попасть в Убежище?}
+{5020}{}{Можно задать вам еще несколько вопросов?}
+{6000}{}{Ну, для этого надо быть гражданином Города Убежища. Если хотите, можете сдать экзамен на гражданство... или еще лучше поговорите с Первой Гражданкой Линетт.}
+{6010}{}{Можно задать вам еще несколько вопросов?}
+{6020}{}{Спасибо за рассказ.}
+{7000}{}{Да, все переводится в электронный формат, потому что... Хммм. Это довольно деликатный вопрос, но я считаю, что моя должность здесь, в Городе Убежища, устарела.}
+{7010}{}{Устарела? Что ты имеешь в виду?}
+{7020}{}{Устарела?}
+{8000}{}{Это означает, что мой пост здесь больше не является необходимым. Это все к лучшему.}
+{8010}{}{Вы уверены?}
+{8020}{}{А. У меня есть еще вопросы...}
+{8030}{}{Грустно слышать это. Мне пора идти.}
+{9000}{}{Сейчас обсуждают возможность установить информационные терминалы в каждом доме. Эти терминалы будут связаны с Сервером Списков и с информационными архивами. Когда это будет сделано, информационный центр будет никому не нужен... и я вместе с ним. Это все к лучшему, правда.}
+{9010}{}{О. Что ж, грустно слышать, что все книги были оцифрованы. Я больше люблю читать книги, чем смотреть на экран компьютера.}
+{9020}{}{Грустно слышать это. Мне пора идти.}
+{10000}{}{Боже, да. Первая Гражданка редко ошибается в таких вещах. Но все равно, мне будет жаль покидать мой пост. Говорят, для меня уже приготовлено место в Службе Списков.}
+{10010}{}{А. У меня есть еще вопросы...}
+{10020}{}{Грустно слышать это. Мне пора идти.}
+{11000}{}{Ой, и у меня те же чувства! Я ничего не имею против электронного формата, поверьте, но есть нечто... весомое... в том, чтобы взять в руки книгу и одну за другой переворачивать страницы. Хммм. Знаете...}
+{11010}{}{А. У меня есть еще вопросы...}
+{11020}{}{Хмм. Мне пора идти.}
+{12000}{}{Конечно. Какие вопросы у вас есть?}
+{12010}{}{Могли бы вы рассказать мне еще раз, что это за место?}
+{12020}{}{Знаете ли вы, где я могу найти Убежище?}
+{12030}{}{Не берите в голову. Может быть, мы поговорим в другой раз.}
+{13000}{}{Убежище? Они ниже по улице...это большая пещера в горе.}
+{13010}{}{Вы знаете о других Убежищах?}
+{13020}{}{Спасибо за информацию.}
+{14000}{}{Другие Убежища? Хм. Нет, не совсем. Я знаю другие Убежища были построены, но мы никогда не сталкивались ни с одним из них. Может быть есть кикае-то упоминания о них в центральном компьютере нашего Убежища.}
+{14010}{}{А как я могу попасть в Убежище?}
+{14020}{}{Спасибо за информацию.}
+
+[pols]
+{100}{}{Kohl}
+{200}{}{Widzisz Głównego Bibliotekarza Kohla.}
+{210}{}{Widzisz elegancko wyglądającego mężczyznę w kombinezonie Kryptopolis.}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Och... Witam! Czy jest coś, w czym mógłbym @sex@|panu||pani| pomóc?}
+{2010}{}{Co to za miejsce?}
+{2020}{}{Nie. Przepraszam, że przeszkadzam.}
+{3000}{}{Oto Centrum Informacyjne Kryptopolis. Czy tego @sex@|pan szukał||pani szukała|?}
+{3010}{}{Tak. Mam kilka pytań, na które mógłbyś odpowiedzieć.}
+{3020}{}{Centrum Informacyjne? Macie jakieś książki albo poradniki?}
+{3030}{}{Nie. Przepraszam, że przeszkadzam.}
+{4000}{}{Niestety, nasze księgozbiory zostały przetranskrybowane w format elektroniczny. Przedruki są dystrybuowane w Biurze Zaopatrzeń. Może @sex@|pan||pani| spróbować tam.}
+{4010}{}{Gdzie są przechowywane te książki w elektronicznym formacie?}
+{4020}{}{Wszystkie książki przepadły?}
+{4030}{}{Och. Mam kilka pyań...}
+{4040}{}{Może sprawdzę tam, w takim razie.}
+{5000}{}{Hmmmm. Cóż, wie @sex@|pan||pani|, Centralny Komputer w Krypcie może posiadać pewne informacje na tem temat. Przechowywujemy tam większość starszych archiwów.}
+{5010}{}{Jak mogę się dostać do Krypty?}
+{5020}{}{Mogę zadać inne pytania?}
+{6000}{}{Cóż, jesteś Obywatelem Miasta, czyż nie? Masz prawo tam wejść.}
+{6010}{}{Mogę zadać inne pytania?}
+{6020}{}{Dzięki za informacje.}
+{7000}{}{Tak, cóż, wszystko jest transkrybowane ponieważ... hmm. To nieco delikatna sprawa, ale obawiam się, że moje stanowisko w Kryptopolis stało się zbędne.}
+{7010}{}{Zbędne? Co przez to rozumiesz?}
+{7020}{}{Zbędne?}
+{8000}{}{Oznacza to, że moje stanowisko nie jest już dłużej potrzebne. Tak będzie najlepiej.}
+{8010}{}{Jesteś pewien?}
+{8020}{}{Och. Mam inne pytania...}
+{8030}{}{Przykro to słyszeć. Muszę już iść.}
+{9000}{}{Obradują nad umieszczeniem terminali informacyjnych w każdym gospodarstwie domowym. Ten nowe terminale będą podłączone do Serwera Dyrektyw oraz Archiwum Informacji. Mimo, że obrady trwają latami, w końcu to uczynią. Wtedy Centrum Informacyjne... i ja... będą niepotrzebne. Tak będzie najlepiej, naprawdę.}
+{9010}{}{Och. Cóż, przykro mi słyszeć że wszystkie książki zostały przetranskrybowane. Dużo bardziej wolę czytać książkę niż gapić się w komputerowy ekran.}
+{9020}{}{Przykro to słyszeć. Muszę już iść.}
+{10000}{}{Och, racja. Pierwszy Obywatel rzadko myli się w takich sprawach. Lecz wciąż, będzie mi przykro opuścić to miejsce. Słyszałem, że czeka na mnie posada w Biurze Dyrektyw.}
+{10010}{}{Och. Mam inne pytania...}
+{10020}{}{Przykro to słyszeć. Muszę już iść.}
+{11000}{}{Czuję to samo! Nie mam nic przeciwko formatowi elektronicznemu, ale jest pewna... solidność... w trzymaniu książki w ręce i przewracaniu kartki za kartką. Hmmm. Wiesz... Dałbym ci książkę albo dwie, jeśli bym jakieś tu posiadał.}
+{11010}{}{Dobrze to słyszeć. Mam inne pytania...}
+{11020}{}{Rozumiem. Dzięki mimo wszystko, muszę już iść.}
+{12000}{}{Pewnie, słucham.}
+{12010}{}{Mógłbyś mi jeszcze raz powiedzieć, co to za miejsce?}
+{12020}{}{Czy wiesz, gdzie mogę znaleźć Kryptę?}
+{12030}{}{Nieważne. Może porozmawiamy kiedy indziej.}
+{13000}{}{Krypta? Wejście jest niedaleko... Wielka dziura w ścianie góry.}
+{13010}{}{Czy słyszałeś o innych Kryptach?}
+{13020}{}{Dzięki za informacje.}
+{14000}{}{Inne Krypty? Hmmm. Nie, naprawdę nie. Wiem, że były wybudowane, ale nigdy się z żadną nie spotkałem. Być może, będzie o nich jakaś wzmianka w Centralnym Komputerze Krypty.}
+{14010}{}{Jak mogę się dostać do Krypty?}
+{14020}{}{Dzięki za informacje.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{-}
+{2000}{}{Oh... hello! Was there something I could help you with?}
+{2010}{}{What is this place?}
+{2020}{}{Nothing. Sorry to disturb you.}
+{3000}{}{This is the Information Center for Vault City. Is this the place you were looking for?}
+{3010}{}{Yes, actually. I had some questions maybe you can answer.}
+{3020}{}{Information Center? Do you have any books or manuals?}
+{3030}{}{Not really. Sorry to disturb you.}
+{4000}{}{Unfortunately, our books have been transcribed into electronic format. The extras are being shipped to the Amenities Offices down the street. You might try there.}
+{4010}{}{Where are these electronically-formatted books stored?}
+{4020}{}{All the books are gone?}
+{4030}{}{Oh. I have a few questions...}
+{4040}{}{Maybe I'll check there, then.}
+{5000}{}{Hmm. Well, you know, the Central Computer down in the Vault might have some information about it. We keep most
+ of the older archives down there.}
+{5010}{}{How can I get down to the Vault?}
+{5020}{}{Can I ask you some other questions?}
+{6000}{}{Well, you are a Citizen of the City, aren't you? You are permitted to walk down there.}
+{6010}{}{Can I ask you some other questions?}
+{6020}{}{Thanks for the information.}
+{7000}{}{Yes, well, everything is being transcribed because... Hmm. This is a somewhat delicate matter, but I believe my post here in Vault City has become obsolete.}
+{7010}{}{Ob-so-lete? What do you mean?}
+{7020}{}{Obsolete?}
+{8000}{}{It means my post here is no longer necessary. It's all for the best.}
+{8010}{}{Are you sure?}
+{8020}{}{Oh. I had some other questions...}
+{8030}{}{Sorry to hear it. I have to go.}
+{9000}{}{They are discussing putting information terminals in every household. These new terminals would all be tied to the List Server and the Information Archives.
+ Then the Information Center... and I... will be unnecessary. It's all for the best, really.}
+{9010}{}{Oh. Well, I'm sorry to hear that all the books were transcribed. I'd much rather read a book than stare at a computer screen.}
+{9020}{}{Sorry to hear it. I have to go.}
+{10000}{}{Oh my, yes. The First Citizen is rarely wrong in such matters. Still, I will be sorry to leave this place. I heard they have a position waiting for me in the List Office.}
+{10010}{}{Oh. I had some other questions...}
+{10020}{}{Sorry to hear it. I have to go.}
+{11000}{}{That's how I feel as well! I have nothing against electronic format mind you, but there is a certain... solidity... in having a book in your hands and turning the pages one by one. Hmm. You know... I'd give you a book or two, if I had any here.}
+{11010}{}{Good to know it. I had some other questions...}
+{11020}{}{I see. Thanks anyway, I have to go now.}
+{12000}{}{Certainly. What questions did you have?}
+{12010}{}{Could you tell me once again what this place is?}
+{12020}{}{Do you know where I can find the Vault?}
+{12030}{}{Nevermind. Maybe we'll talk some other time.}
+{13000}{}{The Vault? Why, the entrance is just down the street... it's the large hole in the side of the mountain.}
+{13010}{}{Do you know of any other Vaults?}
+{13020}{}{Thanks for the information.}
+{14000}{}{Other Vaults? Hmm. No, not really. I know other Vaults were built, but we have never come across any of them. There may be some mention of them in the Central Computer in the Vault.}
+{14010}{}{How can I get down to the Vault?}
+{14020}{}{Thanks for the information.}
+

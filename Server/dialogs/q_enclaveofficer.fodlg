@@ -1,0 +1,222 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+16 1010 D _var p q_start_questcaravan = 10 #
+18 1020 D _var p q_start_questcaravan = 9 #
+19 1030 D _var p q_start_questcaravan = 8 #
+2 1040 D _var p q_start_questcaravan = 7 #
+16 1050 D _var p q_start_questcaravan < 7 @
+2 2000 None 0 #
+14 2010 D _param p ST_INTELLECT { 6 #
+10 2020 D _param p ST_LEVEL < 10 #
+11 2030 D _param p ST_INTELLECT > 6 @
+4 3000 None 0 #
+5 3010 @
+5 4000 None 0 #
+6 4010 @
+6 5000 None 0 #
+7 5010 @
+7 6000 None 0 #
+17 6010 D _var p q_start_questcaravan = 7 R _var p q_start_questcaravan = 9 R _script economy_dialogs@r_GiveCaps 1 8000 R _param p ST_EXPERIENCE + 7500 R _script dialog@r_HoloRemove 1 93 R _script dialog@r_HoloRemove 1 94 R _script dialog@r_HoloRemove 1 95 R _script dialog@r_HoloRemove 1 96 R _script dialog@r_ShowLocation 1 16 @
+10 7000 None 0 #
+0 7010 @
+11 8000 None 0 #
+14 8010 D _param p ST_INTELLECT < 7 #
+12 8020 D _param p ST_INTELLECT } 7 @
+12 9000 None 0 #
+4 9010 D _param p ST_INTELLECT } 8 #
+13 9020 D _param p ST_INTELLECT < 8 @
+13 10000 None 0 #
+14 10010 @
+14 11000 None 0 #
+15 11010 @
+15 12000 None 0 #
+19 12010 D _var p q_start_questcaravan = 7 R _var p q_start_questcaravan = 8 R _script economy_dialogs@r_GiveCaps 1 6000 R _param p ST_EXPERIENCE + 7500 R _script dialog@r_HoloRemove 1 93 R _script dialog@r_HoloRemove 1 94 R _script dialog@r_HoloRemove 1 95 R _script dialog@r_HoloRemove 1 96 R _script dialog@r_ShowLocation 1 16 @
+16 13000 None 0 @
+17 14000 None 0 #
+17 14010 @
+18 15000 None 0 #
+0 15010 R _script dialog@r_ShowQuestMessage 1 9311 R _script dialog@r_ShowLocation 1 16 @
+19 16000 None 0 #
+0 16010 R _script dialog@r_ShowQuestMessage 1 9311 R _script dialog@r_ShowLocation 1 16 &
+
+[engl]
+{100}{}{Enclave Officer}
+{200}{}{Enclave officer.}
+{210}{}{You see a tall, middle-aged man clad in some strange kind of combat armor. Judging from the markings, he's probably an officer of some sort.}
+{1000}{}{Predialogue installations}
+{1010}{}{holodisk given to kenny}
+{1020}{}{Int8 outcome}
+{1030}{}{Normal outcome}
+{1040}{}{ }
+{1050}{}{ }
+{2000}{}{[The officer steps forward, and shouts loudly.] Halt! Do not come any closer! How did you find this place?! State your business now, civilian!}
+{2010}{}{Erm... I accidentally stumbled upon this data during my travels... [Show him the data you collected from the deceased Raiders' leader.]}
+{2020}{}{Easy there, I don't want any trouble, I just got lost. I'll be going now. }
+{2030}{}{I don't have to answer your questions, grunt. }
+{3000}{}{You're from the Intelligence Department? [His face pales very quickly.]  I... we... have been waiting for the package, but no one showed up. I thought...}
+{3010}{}{It's *us* who do the thinking, you do the dirty work. And you failed miserably. How long did you wait? Did you report the delay?}
+{4000}{}{[He looks at you angrily, yet fearfully.] No Sir, I...}
+{4010}{}{Oh, shut up, I don't want to hear your excuses, so don't make me report this incompetence. Now, to the point...}
+{5000}{}{[The officer's lips start shaking.] Yes, Sir. You have the package, I assume?}
+{5010}{}{Yes, I have it. Ready to take it over from here? You know how important these are, right?}
+{6000}{}{Yes I do, Sir. [He slowly approaches you, takes out a holodisk and a bag of bottlecaps.] Here's the informant's payment, I suppose it should go back to the Department's operational fund... But hell, you know best, Sir. May I move the data now?}
+{6010}{}{Yes, you may. [You let the officer download the Oil Rig plans to his holodisk. He then proceeds to delete the data from your Pip-Boy.] Now get going, soldier, you're far from home. }
+{7000}{}{Hmmm... maybe you're right. You don't seem to be of any threat. Go, now, before I change my mind.}
+{7010}{}{Okay, I'm going.}
+{8000}{}{[The officer starts shouting again.] You're not going anywhere, you moron! You think I'm blind? Even a kid could see that you're here by no mistake. Now, I want answers! How did you find us? What are you doing here?!}
+{8010}{}{Alright, okay, sheesh. I found this data while traversing the Wastes, the coordinates to this place were uploaded too. [Show him the data you collected from the deceased Raiders' leader.]}
+{8020}{}{I'm just checking your alertness. Also, you might have been a Brotherhood spy, sent to intercept me...}
+{9000}{}{[He looks at you surprised.] Brotherhood spy? Really? And how would a Brotherhood spy have access to a team of Powered Scouts and A Vertibird?}
+{9010}{}{He would, because there was an attack on one of the southern patrols at Seventeen Thirty-Six Zulu yesterday. They were on a sweep mission and were ambushed. We got two men KIA, three wounded, three armors and a Vertibird missing. But what do you know, right? You're just grunts. Lucky for you *the* Department has ears all over the Wasteland...}
+{9020}{}{He... well... The Brotherhood has access to all kinds of high tech-stuff, right?}
+{10000}{}{[His face reddens.] Do you think I'm stupid? Don't you  mock me, you piece'o'shit! Answer now, or we'll blow your sorry ass sky high! What are you doing here?!}
+{10010}{}{Okay, okay, I just found this data during my time in the Wastes... The coordinates were also there.}
+{11000}{}{Holy fuck, I can't believe it! This is the package we've been waiting for! [He grabs your arm.] Where did you find it? And how? Tell me!}
+{11010}{}{[Tell him the whole story.]}
+{12000}{}{Now, that's some tale... Well, I guess it doesn't matter who delivers the plans, does it? There was also some payment for the man, but, since he's dead there's no way I can give it to him, can I? But hey, don't you worry, it won't get wasted. [He smiles greedily.] Since it's my lucky day, I'll share some of the payment with you. Now, give me that Pip Boy!}
+{12010}{}{[Give him the Pip-Boy and let him move the Oil Rig plans to his holodisk.] Okay... }
+{13000}{}{What are you doing here? Get lost!}
+{14000}{}{Uh... Sir?}
+{14010}{}{Yes? What is it? }
+{15000}{}{I have been also ordered to direct any encountered field operatives to our new mainland base. You probably know its location already, but they made it very clear that everyone must pass first the checkpoint and have their clearance validated. It's located north of San Francisco, here, let me mark it. [He marks the location on your Pip-Boy.] Goodbye, Sir.}
+{15010}{}{Goodbye.}
+{16000}{}{Say... I think Command could use someone like you. You got us out of a serious clusterfuck... And, ever since the new policy was enacted, they ain't very picky about the recruits. So, if you think you're up to it, head to the gas station north of San Fran. There you will get directions. Go now.}
+{16010}{}{Uhm, okay.}
+
+[russ]
+{100}{}{Enclave Officer}
+{200}{}{Enclave officer.}
+{210}{}{You see a tall, middle-aged man clad in some strange kind of combat armor. Judging from the markings, he's probably an officer of some sort.,.}
+{1000}{}{Predialogue installations}
+{1010}{}{holodisk given to kenny}
+{1020}{}{ }
+{1030}{}{ }
+{1040}{}{ }
+{1050}{}{Goodbye.}
+{2000}{}{[The officer steps forward, and shouts loudly.] Halt! Don't come any closer! How did you find this place?! State your business now, civillian!}
+{2010}{}{Erm... I accidentally stumbled upon this data during my travels... [Show him the data you collected from the deceased Raiders' leader.]}
+{2020}{}{Easy there, I want no trouble, I just got lost. I'll be going now. }
+{2030}{}{I don't have to answer your questions, grunt. }
+{3000}{}{You're from the Intelligence Department? [His face pales very quickly.]  I... we... have been waiting for the package, but no one showed up. I thought...}
+{3010}{}{It's *us* who do the thinking, you do the dirty work. And you fail miserably. How long did you wait? Did you report the delay?}
+{4000}{}{[He looks at you angrily, yet fearfully.] No Sir, I...}
+{4010}{}{Oh, shut up, I don't want to hear your excuses, so don't make me report this incompetence. Now, to the point...}
+{5000}{}{[The officer's lips start shaking.] Yes, Sir, you have the package, as I assume?}
+{5010}{}{Yes, I have it. Ready to make take it over from here? You know how important these are, right?}
+{6000}{}{Yes I do, Sir. [He slowly approaches you, takes out a holodisk and a bag of bottlecaps.] Here's the informant's payment, I suppose it should go back to the Department's operational fund... But hell, you know best, Sir. May I move the data now?}
+{6010}{}{Yes, you may. [You let the officer download the Oil Rig plans to his holodisk. He then proceeds to delete the data from your Pip-Boy.] Now, get going, soldier, you're far from home. [Leave.]}
+{7000}{}{Hmmm... maybe you're right. You don't seem to be of any threat. Go, now, before I change my mind.}
+{7010}{}{Okay, I'm going.}
+{8000}{}{[The officer starts shouting again.] You're not going anywhere, you moron! You think I'm blind? Even a kid could see that you're here by no mistake. Now, I want answers! How did you find us? What are you doing here?!}
+{8010}{}{Allright, okay, sheesh. I found this data while traversing the Wastes, the coordinates to this place were uploaded too. [Show him the data you collected from the deceased Raiders' leader.]}
+{8020}{}{Easy there, I'm just checking your alertness. You might have been a Brotherhood spy, sent to intercept me...}
+{9000}{}{[He looks at you surprised.] Brotherhood spy? Really? And how would a Brotherhood spy have acces to a team of Powered Scouts and A Vertibird?}
+{9010}{}{He would, because there was an attack on one of the southern patrols at Seventeen Thirty-Six Uniform yesterday. They've been on a sweep mission, and got ambushed. We got two men KIA, three wounded and a Vertibird missing. But what do you know, right? You're just grunts. Lucky for you *the* Department has ears all over the Wasteland...}
+{9020}{}{He... well... The Brotherhood has access to all kinds of high tech-stuff, right?}
+{10000}{}{[His face reddens.] Do you think I'm stupid? Don't you  mock me, you piece'o'shit! Answer now, or we'll blow your sorry ass sky high! What are you doing here?!}
+{10010}{}{Okay, okay I just found this data during my time in the Wastes... The coordinates were also there.}
+{11000}{}{Holy fuck, I can't believe it! This is the package we've been waiting for! [He grabs your arm.] Where did you find it? And how? Tell me!}
+{11010}{}{[Tell him the whole story.]}
+{12000}{}{Now, that's some tale... Well, I guess it doesn't matter who delivers the plans, does it? There was also some payment for the man, but, since he's dead there's no way I can give it to him right? But hey, don't you worry, it won't get wasted. [He smiles greedily.] Since it's my lucky day, I'll share some of the payment with you. Now, give me that Pip Boy and get lost!}
+{12010}{}{[Give him the Pip-Boy and let him move the Oil Rig plans to his holodisk.] Okay... Thanks, I'll be leaving now.}
+{13000}{}{What are you doing here, civillian? Get lost!}
+{14000}{}{Dialog text}
+{14010}{}{Yes? What is it? }
+{15000}{}{Well, I have been also ordered to direct any Intelligence operatives I may encounter to our new mainland base. You probably know  its location already, but they made it very clear that all have to pass the checkpoint first and get their clearance validated. It's located north of San Francisco, here, let me mark it. [He marks the location on your Pip-Boy.] Goodbye, sir.}
+{15010}{}{Goodbye.}
+{16000}{}{ }
+{16010}{}{Uhm, okay.}
+
+[pols]
+{100}{}{Oficer Enklawy}
+{200}{}{Oficer Enklawy.}
+{210}{}{Widzisz wysokiego, szpakowatego mężczyznę w sile wieku ubranego w dziwny rodzaj Pancerza Bojowego. Wygląda na oficera dowodzącego tym oddziałem.}
+{1000}{}{Predialogue installations}
+{1010}{}{holodisk given to kenny}
+{1020}{}{ }
+{1030}{}{ }
+{1040}{}{ }
+{1050}{}{Goodbye.}
+{2000}{}{[Oficer występuje na przód i głośno zakrzykuje.] Stać! Ani kroku dalej! Co tutaj robisz i jak @sex@|znalaześ||znalazaś| to miejsce?!}
+{2010}{}{Ekhem... ja... @sex@|znalazłem||znalazłam| to coś... przypadkiem i... [Pokaż mu plany skopiowane od przywódcy Najeźdców.]}
+{2020}{}{Spokojnie, nie chcę kłopotów, po prostu się @sex@|zgubiłem||zgubiłam|. Już mnie nie ma.}
+{2030}{}{Nie muszę odpowiadać na twoje pytania, trepie.}
+{3000}{}{Jesteś z Departamentu Wywiadu?? [Jego twarz szybko traci barwy.] Ja... my... czekaliśmy na przesyłkę, ale nikt się nie pojawił. Myślałem...]}
+{3010}{}{Nie jesteś od myślenia, tylko od brudnej roboty. Zresztą, ona też nie za dobrze ci wychodzi. Ile czekaliście? Przesłałeś meldunek o opóźnieniu?}
+{4000}{}{[Przerażenie w jego oczach miesza się z wściekłością.] Nie, to znaczy... miałem...}
+{4010}{}{Nie mam zamiaru słuchać twoich wymówek. Stul pysk albo zastanowię się nad wysłaniem górze odpowiedniego raportu. A teraz, do rzeczy...}
+{5000}{}{[Usta oficer zaczynają drżeć.] Tak jest! Rozumiem że ma @sex@|pan||pani| te przesyłkę?}
+{5010}{}{Tak, mam je. Gotowy na transfer? Wiesz jak ważne są te plany, prawda?}
+{6000}{}{Tak jest, proszę @sex@|pana||pani|! [Oficer powoli podchodzi do ciebie i wyciąga holodysk wraz z sakiewką kapsli.] Proszę, ta zapłata miała być dla kontaktu, ale @sex@|pana||pani| obecność każe mi przypuszczać że już się nie pojawi... Przypuszczam, że ta kwota pewnie wróci do Funduszu Operacyjnego, ale... co ja tam wiem. Czy mogę już przenieść dane z @sex@|pańskiego||pani| Pip-Boya?}
+{6010}{}{Tak, możesz, żołnierzu. [Podajesz oficerowi Pip-Boya. W mgnieniu oka dane zostają przekopiowane do jego holodysku, a twoja kopia zostaje wymazana.] W porządku? No, to odlatujcie stąd, jesteście daleko od domu. [Odejdź.]}
+{7000}{}{Hmmm... może i ci uwierzę... Nie wyglądasz na zbyt @sex@|groźnego||groźną|. Spieprzaj stąd, zanim zmienię zdanie.}
+{7010}{}{W porządku, już znikam.}
+{8000}{}{[Oficer jeszcze bardziej zdziera gardło.] Nigdzie kurwa nie pójdziesz, @sex@|debilu||kretynko|! Myślisz że jestem ślepy? Nawet szczeniak zauważyłby, że nie jesteś tu przypadkiem. Odpowiadaj! Co tutaj robisz? Jak nas @sex@|znalazłeś||znalazłaś|?!}
+{8010}{}{No dobra, dobra, nie musisz się tak drzeć. Znalazłem te plany... przypadkiem, koordynaty były dołączone do danych... [Pokaż mu dane z Pip-Boya które skopiowałeś od przywódcy Najeźdźców.]}
+{8020}{}{Tylko sprawdzam twoją czujność. Poza tym, możesz być szpiegem Bractwa, przysłanym żeby mnie przechwycić...}
+{9000}{}{[Wygląda na zaskoczonego, ale szybko odzyskuje rezon.] Szpiegiem Bractwa? Ciekawe. A jakim cudem szpieg Bractwa miałby dostęp do drużyny zwiadowców w Pancerzach Wspomaganych, nie mówiąc już o Lataczu?}
+{9010}{}{A widzisz, tak się składa że wczoraj o 17:36 czasu Uniform straciliśmy kontakt z jedną z drużyn zwiadowców. Kiedy druga drużyna tam dotarła, doliczyliśmy się dwóch zabitych, trzech rannych, do tego ukradziono trzy zbroje i Latacza. Jak się później okazało, nasi ludzie zostali wciągnięci w zasadzkę przez silny oddział Bractwa. Ale co ty wiesz, trepie? Zawsze kończy się tak, że my z Departamentu musimy sprzątać wasze gówno.}
+{9020}{}{Bractwo ma dostęp... do całej masy różnych technologi, prawda?}
+{10000}{}{[Jego twarz robi się czerwona.] Ja pierdolę, masz mnie za idiotę? Nie rób sobie ze mnie jaj, @sex@|jebany wypierdku||jebana pizdo|! Odpowiadaj albo usmażymy cię żywcem!}
+{10010}{}{Dobra, dobra, nie gorączkuj się... Znalazłem to... przypadkiem, podczas moich podróży. Koordynaty zaprowadziły mnie tutaj [Pokaż mu dane z Pip-Boya].}
+{11000}{}{O żesz kurwa, nie wierzę! To jest nasza przesyłka! [Chwyta cię za ramię] Jak je @sex@|znalazłeś||znalazłaś|? I gdzie?! Gadaj!}
+{11010}{}{[Opowiedz mu całą historię.]}
+{12000}{}{No no no, ale opowieść... "przypadkiem" tak? Chociaż, w sumie to nie ważne, istotne jest to że mamy te pierdolone plany. Nasz człowiek u tych bandziorów miał otrzymać zapłatę, ale skoro jest martwy to nie przyda mu się na wiele. [Usmiecha się chytrze.] Ale w sumie, @sex@|uratowałeś||uratowałaś| też moją dupę, więc podzielę się z tobą... A teraz dawaj tego Pip-Boya i znikaj!}
+{12010}{}{[Pozwój mu przenieść dane z twojego Pip-Boya na jego holodysk.] W porządku... dzięki. Chyba. Już znikam!}
+{13000}{}{Co tu robisz, spieprzaj stąd!}
+{14000}{}{Uh... Sir?}
+{14010}{}{Yes? What is it? }
+{15000}{}{Well, I have been also ordered to direct any Intelligence operatives I may encounter to our new mainland base. You probably know  its location already, but they made it very clear that all have to pass the checkpoint first and get their clearance validated. It's located north of San Francisco, here, let me mark it. [He marks the location on your Pip-Boy.] Goodbye, sir.}
+{15010}{}{Goodbye.}
+{16000}{}{Say... I think the Command could use someone like you. You got us out from a serious clusterfuck... And, ever since the new policy was enacted, they ain't very picky about the recruits. So, if you think you're up to it, head to the gas station north of San Fran. There you will get directions. Go now.}
+{16010}{}{Uhm, okay.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{holodisk given to kenny}
+{1020}{}{Int8 outcome}
+{1030}{}{Normal outcome}
+{1040}{}{ }
+{1050}{}{ }
+{2000}{}{[The officer steps forward, and shouts loudly.] Halt! Do not come any closer! How did you find this place?! State your business now, civilian!}
+{2010}{}{Erm... I accidentally stumbled upon this data during my travels... [Show him the data you collected from the deceased Raiders' leader.]}
+{2020}{}{Easy there, I don't want any trouble, I just got lost. I'll be going now. }
+{2030}{}{I don't have to answer your questions, grunt. }
+{3000}{}{You're from the Intelligence Department? [His face pales very quickly.]  I... we... have been waiting for the package, but no one showed up. I thought...}
+{3010}{}{It's *us* who do the thinking, you do the dirty work. And you failed miserably. How long did you wait? Did you report the delay?}
+{4000}{}{[He looks at you angrily, yet fearfully.] No Sir, I...}
+{4010}{}{Oh, shut up, I don't want to hear your excuses, so don't make me report this incompetence. Now, to the point...}
+{5000}{}{[The officer's lips start shaking.] Yes, Sir. You have the package, I assume?}
+{5010}{}{Yes, I have it. Ready to take it over from here? You know how important these are, right?}
+{6000}{}{Yes I do, Sir. [He slowly approaches you, takes out a holodisk and a bag of bottlecaps.] Here's the informant's payment, I suppose it should go back to the Department's operational fund... But hell, you know best, Sir. May I move the data now?}
+{6010}{}{Yes, you may. [You let the officer download the Oil Rig plans to his holodisk. He then proceeds to delete the data from your Pip-Boy.] Now get going, soldier, you're far from home. }
+{7000}{}{Hmmm... maybe you're right. You don't seem to be of any threat. Go, now, before I change my mind.}
+{7010}{}{Okay, I'm going.}
+{8000}{}{[The officer starts shouting again.] You're not going anywhere, you moron! You think I'm blind? Even a kid could see that you're here by no mistake. Now, I want answers! How did you find us? What are you doing here?!}
+{8010}{}{Alright, okay, sheesh. I found this data while traversing the Wastes, the coordinates to this place were uploaded too. [Show him the data you collected from the deceased Raiders' leader.]}
+{8020}{}{I'm just checking your alertness. Also, you might have been a Brotherhood spy, sent to intercept me...}
+{9000}{}{[He looks at you surprised.] Brotherhood spy? Really? And how would a Brotherhood spy have access to a team of Powered Scouts and A Vertibird?}
+{9010}{}{He would, because there was an attack on one of the southern patrols at Seventeen Thirty-Six Zulu yesterday. They were on a sweep mission and were ambushed. We got two men KIA, three wounded, three armors and a Vertibird missing. But what do you know, right? You're just grunts. Lucky for you *the* Department has ears all over the Wasteland...}
+{9020}{}{He... well... The Brotherhood has access to all kinds of high tech-stuff, right?}
+{10000}{}{[His face reddens.] Do you think I'm stupid? Don't you  mock me, you piece'o'shit! Answer now, or we'll blow your sorry ass sky high! What are you doing here?!}
+{10010}{}{Okay, okay, I just found this data during my time in the Wastes... The coordinates were also there.}
+{11000}{}{Holy fuck, I can't believe it! This is the package we've been waiting for! [He grabs your arm.] Where did you find it? And how? Tell me!}
+{11010}{}{[Tell him the whole story.]}
+{12000}{}{Now, that's some tale... Well, I guess it doesn't matter who delivers the plans, does it? There was also some payment for the man, but, since he's dead there's no way I can give it to him, can I? But hey, don't you worry, it won't get wasted. [He smiles greedily.] Since it's my lucky day, I'll share some of the payment with you. Now, give me that Pip Boy!}
+{12010}{}{[Give him the Pip-Boy and let him move the Oil Rig plans to his holodisk.] Okay... }
+{13000}{}{What are you doing here? Get lost!}
+{14000}{}{Uh... Sir?}
+{14010}{}{Yes? What is it? }
+{15000}{}{I have been also ordered to direct any encountered field operatives to our new mainland base. You probably know its location already, but they made it very clear that everyone must pass first the checkpoint and have their clearance validated. It's located north of San Francisco, here, let me mark it. [He marks the location on your Pip-Boy.] Goodbye, Sir.}
+{15010}{}{Goodbye.}
+{16000}{}{Say... I think Command could use someone like you. You got us out of a serious clusterfuck... And, ever since the new policy was enacted, they ain't very picky about the recruits. So, if you think you're up to it, head to the gas station north of San Fran. There you will get directions. Go now.}
+{16010}{}{Uhm, okay.}
+

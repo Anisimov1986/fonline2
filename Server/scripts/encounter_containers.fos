@@ -1,0 +1,350 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "utils_h.fos"
+#include "rare_loot_queue_h.fos"
+
+import uint16 GetRandomBlueprintPid() from "blueprints";
+import bool _SetDoorTrap( Item& door, uint trapPid, bool noLoot ) from "trap";
+import void FillBagAllowRare( Item@ locker, uint16[]& pids,double chance, uint min, uint max  ) from "utils";
+import void FillBagAllowRare( Item@ locker, uint16 pid,double chance, uint min, uint max  ) from "utils";
+
+void AddEncounterContainers(Map@ map, array<Critter@>@ critters)
+{
+	Entire@[] entires = FindContainerEntire(map);
+	
+	for (uint i = 0; i < entires.length(); i++)
+	{
+		Item@ container = SpawnContainer(map, entires[i]);
+		
+		if(!valid(container))
+		{
+			return;
+		}
+		
+		AddLoot(map, container);
+		AddTraps(map, container, entires[i]);
+		TrapContainers(map, container, entires[i]);
+	}
+}
+
+Entire@[] FindContainerEntire(Map& map)
+{
+	Entire[] entires;
+	Entire@[] results;
+	
+	//Prepare entires info
+	if (HAS_CHANCE(75))
+	{
+		ParseEntires(map, entires, ENTIRE_ENC_CONT_H);
+		ParseEntires(map, entires, ENTIRE_ENC_CONT_V);	
+	}
+	
+	if (HAS_CHANCE(6.66))
+	{ 
+		ParseEntires(map, entires, ENTIRE_ENC_GRAVE);
+	}
+	
+	//Generate entires
+	if(entires.length() > 0)
+	{
+		int entireIndex1 = -1, entireIndex2 = -1, entireIndex3 = -1, entireIndex4 = -1;  
+		
+		entireIndex1 = Random(0, entires.length() - 1);	
+		results.insertLast(@entires[entireIndex1]);
+		
+		if (HAS_CHANCE(33))
+		{
+			entireIndex2 = Random(0, entires.length() - 1);
+			if (entireIndex2 != entireIndex1)
+			{
+				results.insertLast(@entires[entireIndex2]);
+			}
+		}
+		
+		if (HAS_CHANCE(1))
+		{
+			entireIndex3 = Random(0, entires.length() - 1);
+			if (entireIndex3 != entireIndex1 && entireIndex3 != entireIndex2)
+			{
+				results.insertLast(@entires[entireIndex3]);
+			}
+		}
+		
+		if (HAS_CHANCE(0.03))
+		{
+			entireIndex4 = Random(0, entires.length() - 1);
+			if (entireIndex4 != entireIndex1 && entireIndex4 != entireIndex2 && entireIndex4 != entireIndex3)
+			{
+				results.insertLast(@entires[entireIndex4]);
+			}
+		}
+	}
+		
+	return results;
+}
+
+Item@ SpawnContainer(Map& map, Entire& entire)
+{
+	uint containerPid = GenerateContainerPid(entire.Number);
+	
+	if(containerPid == 0)
+	{
+		return null;
+	}
+
+	Item@ container = map.AddItem(entire.HexX, entire.HexY, containerPid, 1);
+	
+	if (LockContainer(entire.Number))
+	{
+		container.LockerId = Random(1, 1000);
+		container.LockerComplexity = Random(10, 20);
+	}
+	
+	return container;
+}
+
+uint[] horizontalContainerPids = {PID_ICE_CHEST_LEFT, PID_FOOTLOCKER_CLEAN_LEFT, PID_FOOTLOCKER_RUSTY_LEFT, PID_CHEST, PID_SM_LT_AMMO_CRATE};
+uint[] verticalContainerPids = {PID_ICE_CHEST_RIGHT, PID_FOOTLOCKER_CLEAN_RIGHT, PID_FOOTLOCKER_CLEAN_RIGHT, PID_SM_RT_AMMO_CRATE};
+uint[] gravePids = {PID_GRAVESITE_1, PID_GRAVESITE_2, PID_GRAVESITE_3, PID_GRAVESITE_4};
+
+uint GenerateContainerPid(uint entireNumber)
+{
+    switch(entireNumber)
+    {
+    case ENTIRE_ENC_CONT_H:
+        return horizontalContainerPids[Random(0, horizontalContainerPids.length() - 1)];
+		
+    case ENTIRE_ENC_CONT_V:
+        return verticalContainerPids[Random(0, verticalContainerPids.length() - 1)];
+		
+	case ENTIRE_ENC_GRAVE:
+        return gravePids[Random(0, gravePids.length() - 1)];
+    }
+    return 0;
+}
+
+bool LockContainer(uint entireNumber)
+{
+	if (entireNumber == ENTIRE_ENC_CONT_H || entireNumber == ENTIRE_ENC_CONT_V)
+	{
+		return true;
+	}	
+	
+    return false;
+}
+
+uint16[] Pids_TreasureLow = {PID_BPACK_TENT, PID_LIGHTER, PID_10MM_SMG, PID_GREASE_GUN, PID_SCOPED_HUNTING_RIFLE, PID_44_MAGNUM_SPEEDLOADER, PID_SAWED_OFF_SHOTGUN, PID_FRAG_GRENADE, PID_COMBAT_KNIFE, PID_LEATHER_ARMOR, PID_METAL_ARMOR, PID_PURPLE_ROBE, PID_DESERT_EAGLE_EXT_MAG};
+uint16[] Pids_TreasureMid = {PID_GUNS_AND_BULLETS, PID_SCOUT_HANDBOOK, PID_FIRST_AID_BOOK, PID_DEANS_ELECTRONICS, PID_BIG_BOOK_OF_SCIENCE, PID_SHOVEL, PID_DOCTORS_BAG, PID_RIPPER, PID_PLASMA_GRENADE, PID_PLASMA_PISTOL_EXT_CART, PID_LASER_RIFLE_EXT_CAP, PID_IMPROVED_FLAMETHROWER, PID_COMBAT_SHOTGUN, PID_METAL_ARMOR_MK_II, PID_14MM_PISTOL, PID_NEEDLER_PISTOL, PID_223_PISTOL, PID_ASSAULT_RIFLE_EXT_MAG};
+uint16[] Pids_TreasureHigh = {PID_NECKLACE, PID_MAGIC_8_BALL, PID_GOLD_LOCKET, PID_FUZZY_PAINTING, PID_DAISIES, PID_MIRROR_SHADES, PID_SPECTACLES ,PID_HEART_PILLS, PID_MARKED_DECK_OF_CARDS, PID_DECK_OF_CARDS, PID_LOADED_DICE, PID_DICE, PID_COSMETIC_CASE, PID_RED_CONDOM, PID_GREEN_CONDOM, PID_BLUE_CONDOM, PID_MOTION_SENSOR, PID_STEALTH_BOY, PID_GEIGER_COUNTER, PID_BIO_GEL, PID_ELEC_LOCKPICK_MKII, PID_ELECTRONIC_LOCKPICKS, PID_SUPER_TOOL_KIT, PID_GOLD_TOOTH, PID_YELLOW_PASS_KEY, PID_BLUE_PASS_KEY, PID_RED_PASS_KEY, PID_COOKIE, PID_HYPO, PID_JET_ANTIDOTE, PID_PLATED_BOXING_GLOVES, PID_BOXING_GLOVES, PID_SUPER_CATTLE_PROD, PID_WAKIZASHI_BLADE, PID_ELI_KNIFE, PID_LOUISVILLE_SLUGGER, PID_YK32_PULSE_PISTOL, PID_SOLAR_SCORCHER, PID_PANCOR_JACKHAMMER, PID_HK_P90C, PID_SNIPER_RIFLE, PID_BLACK_ROBE, PID_COMBAT_ARMOR, PID_COMBAT_ARMOR_MK_II, PID_MINIGUN, PID_MEGA_POWER_FIST, PID_PLASMA_RIFLE, PID_LIGHT_SUPPORT_WEAPON, PID_AVENGER_MINIGUN, PID_XL70E3};
+uint16[] Pids_Lockpicks = {PID_LOCKPICKS, PID_LOCKPICKS, PID_LOCKPICKS, PID_EXP_LOCKPICK_SET};
+uint16[] Pids_Ammo = {PID_7_62MM_AMMO, PID_5MM_AP, PID_14MM_AP, PID_SMALL_ENERGY_CELL, PID_223_FMJ, PID_SHOTGUN_SHELLS, PID_SHOTGUN_SHELLS, PID_SHOTGUN_SHELLS, PID_SHOTGUN_SHELLS, PID_45_CALIBER_AMMO, PID_SMALL_ENERGY_CELL, PID_10MM_JHP, PID_10MM_JHP, PID_10MM_JHP};
+uint16[] Pids_Drugs = {PID_JET, PID_BUFFOUT, PID_MENTATS, PID_SUPER_STIMPAK, PID_RAD_X, PID_RADAWAY, PID_JET, PID_BUFFOUT, PID_MENTATS, PID_SUPER_STIMPAK, PID_RAD_X, PID_RADAWAY, PID_PSYCHO};
+uint16[] Pids_Blueprints = {BLUEPRINT_LEVEL1, BLUEPRINT_LEVEL2, BLUEPRINT_LEVEL3};
+uint16[] Pids_Recipies = {PID_PLASMA_RIFLE_RECIPE, PID_PLASMA_GRENADE_RECIPE, PID_AVENGER_MINIGUN_RECIPE,
+		PID_SNIPER_RIFLE_RECIPE, PID_XL70E3_RECIPE, PID_HK_P90C_RECIPE, PID_HUBOLOGIST_ROBE_RECIPE, PID_LASER_RIFLE_EXT_CAP_RECIPE,
+		PID_LIGHT_SUPPORT_WEAPON_RECIPE};
+
+void AddLoot(Map& map, Item& container)
+{
+	if (IsTopLootArea(map))
+	{
+		FillBagAllowRare(container, Pids_TreasureLow, 30, 1, 1);
+		FillBagAllowRare(container, Pids_TreasureLow, 20, 1, 1);
+		FillBagAllowRare(container, Pids_TreasureLow, 10, 1, 1);
+		FillBagAllowRare(container, Pids_TreasureMid, 10, 1, 1);
+		FillBagAllowRare(container, Pids_TreasureMid, 5, 1, 1);
+		FillBagAllowRare(container, Pids_TreasureHigh, 2, 1, 1);
+		FillBagAllowRare(container, Pids_Drugs, 3, 3, 3);
+		FillBagAllowRare(container, Pids_Ammo, 5, 100, 300);
+		FillBag(container, Pids_Lockpicks, 5, 1, 1);
+		FillBagAllowRare(container, PID_2MM_EC_AMMO, 1, 12, 24);
+		FillBagAllowRare(container, PID_BOTTLE_CAPS, 95, 30, 180);
+		FillBagAllowRare(container, PID_SUPER_STIMPAK, 10, 2, 4);
+		FillBag(container, Pids_Blueprints, 50, 1, 1);
+		FillBag(container, Pids_Recipies, 50, 1, 1);
+	}
+	else
+	{
+		FillBag(container, Pids_TreasureLow, 25, 1, 1);
+		FillBag(container, Pids_TreasureMid, 5, 1, 1);
+		FillBag(container, Pids_TreasureHigh, 1, 1, 1);
+		FillBag(container, Pids_Drugs, 2, 1, 1);
+		FillBag(container, Pids_Ammo, 5, 20, 100);
+		FillBag(container, Pids_Lockpicks, 1, 1, 1);
+		FillBag(container, PID_2MM_EC_AMMO, 1, 6, 12);
+		FillBag(container, PID_BOTTLE_CAPS, 95, 20, 120);
+		FillBag(container, PID_STIMPAK, 5, 1, 4);
+		FillBag(container, Pids_Blueprints, 20, 1, 1);
+		FillBag(container, Pids_Recipies, 20, 1, 1);
+	}
+}
+
+bool IsTopLootArea(Map& map)
+{
+	Location@ location = map.GetLocation();
+	
+	if (!valid(location))
+	{
+		return false;
+	}
+
+	int x = location.WorldX;
+	int y = location.WorldY;
+
+	return x >= 360 && y >= 840 && x < 480 && y < 900;
+}
+
+void AddTraps(Map& map, Item& container, Entire& entire)
+{
+	if (entire.Number != ENTIRE_ENC_CONT_H && entire.Number != ENTIRE_ENC_CONT_V)
+	{
+		return;
+	}
+	
+	if (IsTopLootArea(map))
+	{
+		if (HAS_CHANCE( 12 ))
+		{
+			SpawnTraps(map, container.HexX, container.HexY, PID_BEAR_TRAP, 3, 6);
+		} 
+		else if (HAS_CHANCE( 12 ))
+		{
+			SpawnTraps(map, container.HexX, container.HexY, PID_ACTIVE_MINE, 3, 6);
+		}
+	}
+	else 
+	{
+		if (HAS_CHANCE( 2 ))
+		{
+			SpawnTraps(map, container.HexX, container.HexY, PID_BEAR_TRAP, 3, 6);
+		} 
+		else if (HAS_CHANCE( 2 ))
+		{
+			SpawnTraps(map, container.HexX, container.HexY, PID_ACTIVE_MINE, 3, 6);
+		}
+	}
+}
+
+const uint[] Pids_Traps = { PID_MOLOTOV_COCKTAIL, PID_FRAG_GRENADE, PID_PLASMA_GRENADE };
+
+void TrapContainers(Map& map, Item& container, Entire& entire)
+{
+	if (entire.Number != ENTIRE_ENC_CONT_H && entire.Number != ENTIRE_ENC_CONT_V)
+	{
+		return;
+	}
+	
+	if (IsTopLootArea(map))
+	{
+		if (HAS_CHANCE( 12 ))
+		{
+			_SetDoorTrap(container, Pids_Traps[Random(0, Pids_Traps.length() - 1)], true);
+		}
+	}
+	else 
+	{
+		if (HAS_CHANCE( 2 ))
+		{
+			_SetDoorTrap(container, Pids_Traps[Random(0, Pids_Traps.length() - 1)], true);
+		}
+	}
+}
+
+void SpawnTraps(Map& map, int xStart, int yStart, int pid, uint minRadius, uint maxRadius)
+{
+	uint startIdx = 0, radius = Random(minRadius, maxRadius);
+	int[] xStack = {xStart}, yStack = {yStart}, cntStack = {radius};
+	dictionary visited = dictionary();
+	int spawnRate = 100 - (radius - 2) * 10;
+	
+
+	while (xStack.length() > startIdx)
+	{
+		//Remove last element from stack
+		int x = xStack[startIdx];
+		int y = yStack[startIdx];
+		int cnt = cntStack[startIdx];
+		
+		startIdx++;
+		
+		//Check if node valid
+		if (visited.exists("" + x + "," + y))
+		{
+			continue;
+		}
+		
+		if(!map.IsHexPassed(x, y))
+		{
+			continue;
+		}
+		
+		//Mark visited and spawn mine
+		visited.set("" + x + "," + y, "");
+		
+		if ((x != xStart || y != yStart) && Random(1, 100) <= spawnRate)
+		{
+			Item @trap = map.AddItem(x, y, pid, 1);
+			
+			if (!valid(trap))
+			{
+				continue;
+			}
+			
+			UNSETFLAG(trap.Flags, ITEM_CAN_PICKUP);				
+		}
+		
+		//Add next nodes to stack
+		cnt--;
+		if (Random(1, 100) <= 10)
+		{
+			continue;
+		}
+
+		if (cnt > 0)
+		{
+			uint16 hexX, hexY;
+		
+			hexX = x;
+			hexY = y;
+			map.MoveHexByDir(hexX, hexY, 0, 1);
+			xStack.insertLast(hexX);
+			yStack.insertLast(hexY);
+			cntStack.insertLast(cnt);
+			
+			hexX = x;
+			hexY = y;
+			map.MoveHexByDir(hexX, hexY, 1, 1);
+			xStack.insertLast(hexX);
+			yStack.insertLast(hexY);
+			cntStack.insertLast(cnt);
+
+			hexX = x;
+			hexY = y;			
+			map.MoveHexByDir(hexX, hexY, 2, 1);
+			xStack.insertLast(hexX);
+			yStack.insertLast(hexY);
+			cntStack.insertLast(cnt);
+
+			hexX = x;
+			hexY = y;			
+			map.MoveHexByDir(hexX, hexY, 3, 1);
+			xStack.insertLast(hexX);
+			yStack.insertLast(hexY);
+			cntStack.insertLast(cnt);
+			
+			hexX = x;
+			hexY = y;			
+			map.MoveHexByDir(hexX, hexY, 4, 1);
+			xStack.insertLast(hexX);
+			yStack.insertLast(hexY);
+			cntStack.insertLast(cnt);
+			
+			hexX = x;
+			hexY = y;			
+			map.MoveHexByDir(hexX, hexY, 5, 1);
+			xStack.insertLast(hexX);
+			yStack.insertLast(hexY);
+			cntStack.insertLast(cnt);
+		}
+	}
+}

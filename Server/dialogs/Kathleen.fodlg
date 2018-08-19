@@ -1,0 +1,125 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 D _var p name_mem_player_npc = 0 #
+6 2030 #
+0 2040 #
+7 2050 D _var p name_mem_player_npc = 1 D _script economy_dialogs@d_IsEnoughCaps 1 30000 R _script economy_dialogs@r_TakeCaps 1 30000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_SHELTER + 1 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 @
+5 5000 economy_dialogs@dlg_PreparePrice 0 #
+0 5010 R _var p name_mem_player_npc + 1 #
+0 5020 #
+7 5030 D _script economy_dialogs@d_IsEnoughCaps 1 30000 R _script economy_dialogs@r_TakeCaps 1 30000 R _var p name_mem_player_npc = 0 R _item p PID_BASEMAP_SHELTER + 1 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 &
+
+[engl]
+{100}{}{Kathleen}
+{200}{}{You see: Kathleen}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Yeah? What do you need, stranger?@@Yeah?@@What?@@I'm listening.}
+{2010}{}{I'd like to trade.@@Want to barter?@@Got anything for barter?@@Interested in trade?}
+{2020}{}{I'd like to ask something.@@I've got questions.}
+{2030}{}{I'd like to have a piss, so I've entered this place.}
+{2040}{}{Never mind, later!@@Shit, I need to go now.@@Gotta go, catch you later.}
+{2050}{}{I have what you need to share some knowledge with me.@@I've got what you wanted.}
+{3000}{}{Go on, spit it out!@@All right, go on.@@Yeah, yeah, just be quick about it.}
+{3010}{}{Who are you?@@Erm.. who are you?}
+{4000}{}{I'm Kathleen, a professional scavenger. I wander around Boneyard, trying to find something valuable and not get myself killed while doing so.}
+{4010}{}{So you probably know a lot of good places to hide?}
+{5000}{}{Sure I do, I know a lot of abandoned shelters that still might have some use. But knowledge is a rare commodity these days, so if you want me to tell you anything more, prepare @lex base1_price@ caps.}
+{5010}{}{Okay, I'll be back.@@Fine, I'll get the cash.@@Interesting... I will get back to you.}
+{5020}{}{Screw you, greedy bitch. Bye.}
+{5030}{}{I've got the cash. Here you go.@@It so happens I've got the caps. Here, take them.}
+{6000}{}{You're in the wrong neighborhood, motherfucker! Get out, now!@@Get the fuck out of my face.@@Get lost, you moron.}
+{6010}{}{All right, all right, looks like pissing pisses you off.}
+{7000}{}{Okay, here's a map to and old shelter I found recently. You should have no problem in finding it. Take care.}
+{7010}{}{You too, Kathleen. Bye.@@Okay, thanks.@@Okay, bye.@@Right, you too.}
+
+[russ]
+{100}{}{Кэтлин}
+{200}{}{Вы видите: Кэтлин}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Да? Чего тебе, незнакомец?}
+{2010}{}{Я хотел бы, торговать.}
+{2020}{}{Я хотел кое-что спросить.}
+{2030}{}{Я зашел поссать.}
+{2040}{}{Ничего, пока!}
+{2050}{}{Я собрал деньги за обещанную информацию.}
+{3000}{}{Давай, выкладывай!}
+{3010}{}{Чем ты занимаешся?}
+{4000}{}{Я Кэтлин, исследователь. Я исследую территорию вокруг Бониярда, пытаюсь обнаружить что-нибудь интересное.}
+{4010}{}{Значит вы должны знать какое-нибудь хорошее место для убижища.}
+{5000}{}{Конечно, я знаю много заброшенных убежищ, которые до сих пор можно использовать. Но информация стоит денег, готовь @lex base1_price@ крышек.}
+{5010}{}{Я обдумаю и вернусь. Пока.}
+{5020}{}{Пошла ты, сука жадная. Пока.}
+{5030}{}{На самом деле, я могу получить мою информацию прямо сейчас! Вот, держи.}
+{6000}{}{Ты выбрал не то место, ублюдок! Выметайся сейчас же.}
+{6010}{}{Хорошо, ухожу. Уже и пошутить нельзя.}
+{7000}{}{Ну и хорошо, вот тебе карта этого места. Береги себя незнакомец.}
+{7010}{}{Ты тоже себя береги. Пока.}
+
+[pols]
+{100}{}{Kathleen}
+{200}{}{Widzisz Kathleen.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Tja? Czego chcesz, @sex@|nieznajomy||nieznajoma|?}
+{2010}{}{@sex@|Chciałbym||Chciałabym| pohandlować.}
+{2020}{}{@sex@|Chciałbym||Chciałabym| o coś spytać.}
+{2030}{}{@sex@|Chciałbym||Chciałabym| się odlać, więc jestem tutaj.}
+{2040}{}{Nieważne, na razie!}
+{2050}{}{Mam to, czego potrzebujesz, aby podzielić się ze mną swoją wiedzą.}
+{3000}{}{No dalej, wypluj to!}
+{3010}{}{Kim jesteś?}
+{4000}{}{Jestem Kathleen, zbieraczka. Szwędam się dookoła Gruzów, próbując znaleźć coś wartościowego i przetrwać.}
+{4010}{}{W takim razie przypuszczam, że znasz mnóstwo dobrych miejsc na kryjówkę?}
+{5000}{}{Jasne że znam, znam mnóstwo opuszczonych kryjówek które wciąż mogłyby być użyteczne. Ale taka wiedza jest w dzisiejszych czasach towarem, więc jeśli mam ci powiedzieć cokolwiek więcej - przygotuj @lex base1_price@ kapsli.}
+{5010}{}{Wrócę, mój głód wiedzy jest silny. Do widzenia.}
+{5020}{}{Pieprz się, chciwa suko. Na razie.}
+{5030}{}{Właściwie, chcę odebrać swoją wiedzę w tej chwili! Proszę bardzo.}
+{6000}{}{Jesteś w złej dzielnicy, kurwo! Wypierdalaj, ale już!}
+{6010}{}{W porządku, w porządku. Idę się odlać, bo nie mogę na to patrzeć.}
+{7000}{}{Hoho, wygląda na to, że naprawdę potrzebujesz schronienia. W porządku, oto mapa tego miejsca. Trzymaj się!}
+{7010}{}{Ty też, Kathleen. Cześć.}
+
+[ptbr]
+{100}{}{Kathiúcia}
+{200}{}{Você vê: Kathiúcia}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Oi? O que tu precisa, forasteiro?}
+{2010}{}{Eu queria comprar umas coisas.}
+{2020}{}{Eu queria perguntar umas coisas.}
+{2030}{}{Eu queria dar uma mijada, então eu entrei nesse lugar.}
+{2040}{}{Nem pensar, tchau!}
+{2050}{}{Eu tenho o que tu precisa para compartilhar algum conhecimento comigo.}
+{3000}{}{Vai, fala!}
+{3010}{}{Quem é tu?}
+{4000}{}{Eu sou Kathiúcia, catadora de lixo. Eu estou vasculhando ao redor de Ossuário, vendo se encontro algumas coisa valiosa e sobrevivendo.}
+{4010}{}{Então provavelmente tu sabe muitas coisas sobre esconder algo em um lugar bom?}
+{5000}{}{Claro que sim, eu conheço vários locais abandonados e abrigos que ninguém mais usa. Mas o conhecimento se tornou algo negociável nesses dias, então se tu quiser que eu diga algo, prepare @lex base1_price@ tampinhas.}
+{5010}{}{Eu voltarei, minha fome de conhecimento é maior do que eu. Tchau.}
+{5020}{}{Vai se foder, sua vadia interesseira. Falou.}
+{5030}{}{Na verdade, eu posso lhe dar essa informação agora mesmo! Vamos lá.}
+{6000}{}{Tá na vizinhaça errada, @sex@|seu filho||sua filha| de uma puta! Vaza, AGORA!}
+{6010}{}{Tudo bem, tudo bem, parece que qualquer coisa te irrita.}
+{7000}{}{Nossa, tu realmente precisa de abrigo ein. Tá certo, aqui está o mapa do lugar. Cuide-se, forasteiro!}
+{7010}{}{Tu também, Kathi. Falou.}
+

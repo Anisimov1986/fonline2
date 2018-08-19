@@ -1,0 +1,187 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 #
+7 1020 D _var p name_mem_player_npc = 1 D _param p PE_PROF_GUNSMITH = 0 #
+3 1030 D _var p name_mem_player_npc = 1 D _param p PE_PROF_GUNSMITH } 1 @
+2 2000 None 0 #
+11 2010 D _param p SK_REPAIR < 60 D _var p name_mem_player_npc = 1 #
+3 2020 D _param p PE_PROF_GUNSMITH = 0 D _param p SK_REPAIR } 60 #
+10 2030 D _param p PE_PROF_GUNSMITH = 1 R _var p prof_gunsmith = 3 #
+0 2040 @
+3 3000 None 0 #
+4 3010 D _param p PE_PROF_GUNSMITH < 1 #
+0 3020 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 R _var p prof_gunsmith = 1 R _var p name_mem_player_npc = 1 @
+6 6000 economy_dialogs@dlg_PreparePrice 0 #
+0 6010 R _var p name_mem_player_npc = 1 R _var p prof_gunsmith = 1 #
+0 6020 R _var p prof_gunsmith = 1 @
+7 7000 None 0 #
+8 7010 D _param p SK_REPAIR } 60 #
+11 7020 D _param p SK_REPAIR < 60 #
+6 7030 @
+8 8000 None 0 #
+9 8010 D _script economy_dialogs@d_IsEnoughCaps 1 2000 D _item p PID_HIGH_GRADE_STEEL } 1 R _script economy_dialogs@r_TakeCaps 1 2000 R _item p PID_HIGH_GRADE_STEEL - 1 R _param p PE_PROF_GUNSMITH = 1 R _var p prof_gunsmith = 2 R _param p ST_EXPERIENCE + 500 #
+0 8020 @
+9 9000 None 0 #
+10 9010 R _var p prof_gunsmith = 3 #
+0 9020 @
+10 10000 None 0 #
+0 10010 @
+11 11000 None 0 &
+
+[engl]
+{100}{}{Edward}
+{200}{}{You see: Edward.}
+{210}{}{You see Edward the gunsmith.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Deal}
+{1030}{}{After}
+{2000}{}{Good day there. My name is Edward. How can I help you?}
+{2010}{}{Could you teach me how to make guns?}
+{2020}{}{What do you do here?}
+{2030}{}{Edward tell me, is there somewhere a place where I could learn more about crafting weapons?}
+{2040}{}{I was just leaving, goodbye.}
+{3000}{}{Well, welcome to the Hub Steel Manufacture. People use to call it just "Manufacture". What we do here is metalurgical engrineering, processing and that kinda stuff. Mostly. How can I help you?}
+{3010}{}{Do you make weapons here?}
+{3020}{}{Goodbye.@@I've got to go.@@I need to go.}
+{4000}{}{Of course, small details are also within our reach. Why are you asking?}
+{4010}{}{I want to know how to make conventional weapons.}
+{5000}{}{Yyou are in the right place then. Let's see... Right, I can perform a basic gunsmith training with you, for a fee. }
+{5010}{}{And that fee would be...?@@How much?}
+{6000}{}{@lex prof1_price@ caps, but you'll also need some training material, one piece of High Grade Steel to be precise. Come back when you have all of these.}
+{6010}{}{Great, I'll be back shortly.@@Okay, I'll be back.@@Sure thing, I'll get back to you.}
+{6020}{}{Nah, that's too expensive. Bye.}
+{7000}{}{Good day again. How can I help you?}
+{7010}{}{I'd like to perform the basic gunsmith training. }
+{7020}{}{I'd like to perform the basic gunsmith training. }
+{7030}{}{Could you please repeat what I need for the training?}
+{8000}{}{Do you have all I've asked you?}
+{8010}{}{(Gunsmith profession level 1.) Yes, I do.@@(Gunsmith profession level 1.) Yeah, sure.}
+{8020}{}{Erm, no. Sorry. I'll be back later.@@No, I forgot something...@@Damn, I forgot all about it.}
+{9000}{}{Fine. Let's get started.First ... [Edward shows you how to make basic firearms.] I'm glad we I could teach you, friend. Use your knowledge for a good purpose.}
+{9010}{}{Thank you Edward. Tell me, is there some place where I could learn more?}
+{9020}{}{Thanks, bye.@@Thank you, and goodbye.@@Later, Edward.}
+{10000}{}{Hmm, you could ask in Broken Hills, we trade with them a lot. What was this guy's name, Zed? Zay? Zions? Whatever, ask some locals when you get there.}
+{10010}{}{Thanks.@@Thanks, Edward.@@Thank you, goodbye.}
+{11000}{}{You're not ready to do this. Come back with when you're skilled enough. (Required skill: Science 60%.)}
+
+[russ]
+{100}{}{Эдвард}
+{200}{}{Вы видите: Эдварда.}
+{210}{}{Вы видите: Эдварда, оружейника Хаба.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Deal}
+{1030}{}{After}
+{2000}{}{Добрый день. Чем я могу вам помочь?}
+{2010}{}{Я хочу выучить твою профессию...}
+{2020}{}{Что вы здесь делаете?}
+{2030}{}{Эдвард скажите мне, есть ли где-то место, где я могу узнать больше о разработке оружия?}
+{2040}{}{На самом деле я как раз собирался уходить, пока.}
+{3000}{}{Добро пожаловать в Крупнейшее Оружейное Производство Хаба, но люди говорят, просто "Производство". Мы занимаемся здесь металлургическим производством.}
+{3010}{}{Оружие вы тоже делаете?}
+{3020}{}{Эээ, понятно. Пока.}
+{4000}{}{Конечно, а почему вы спрашиваете?}
+{4010}{}{Я хочу знать, как делать оружие.}
+{5000}{}{Поянтно, вы пришли в нужное место. Я могу с вами провести базовый курс оружейника, за определенную плату.}
+{5010}{}{Сколько?}
+{6000}{}{@lex prof1_price@ крышек, но еще нужен будет материал для тренировки. Одна высококачественная сталь, этого должно быть достаточно. Приходите когда подготовите все это.}
+{6010}{}{Отлично, я скоро вернусь.}
+{6020}{}{Нет, это слишком дорого. Пока.}
+{7000}{}{Добрый день еще раз. Чем я могу вам помочь?}
+{7010}{}{Я хотел бы выполнить базовую подготовку оружейника.}
+{7020}{}{Я хотел бы выполнить базовую подготовку оружейника.}
+{7030}{}{Не могли бы вы повторить, что нужно принести?}
+{8000}{}{У вас есть все, что я просил?}
+{8010}{}{[Профессия: Оружейник(Оружие) уровень 1] Да, все здесь.}
+{8020}{}{Вообще-то нет ...}
+{9000}{}{Прекрасно. Давайте приступим. Сначала ... [он показывает вам основы] Я рад, что мы повстречались, друг. Я надеюсь, новые знания будут служить вам хорошо.}
+{9010}{}{Спасибо Эдвард. Скажите, есть ли где-то место, где я мог бы узнать больше об этом?}
+{9020}{}{Спасибо Эдвард. Пока.}
+{10000}{}{Вам нежно спросить в Брокен Хиллс. Мы много с ними торгуем. Там есть парень, Зед? Зай? Зионс? Неважно,  просто узнай у местных где оружейник.}
+{10010}{}{Спасибо, увидимся.}
+{11000}{}{Твоих навыков не достаточно. Приходи когда будешь знать больше. [Требуется ремонт 60]}
+
+[pols]
+{100}{}{Edward}
+{200}{}{Widzisz Edwarda.}
+{210}{}{Widzisz Edwarda, rusznikarza z Hub.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Deal}
+{1030}{}{After}
+{2000}{}{Witaj, @sex@|chciałeś||chciałaś| coś?}
+{2010}{}{Możesz mnie nauczyć rusznikastwa?}
+{2020}{}{Czym się zajmujesz?}
+{2030}{}{Znasz kogoś, kto mógłby mnie nauczyć więcej o wytwarzaniu broni?}
+{2040}{}{Właśnie wychodziłem.}
+{3000}{}{Witam w Zjednoczeniu Obronnym Hub. Zajmujemy się głównie metalurgią, przetwarzaniem i odzyskiem stali.}
+{3010}{}{Jack sent me. He wants you out of his warehouse.}
+{3020}{}{Rozumiem, na razie.}
+{4000}{}{Tak, zajmujemy się też takimi drobiazgami. A czemu pytasz?}
+{4010}{}{@sex@|Chciałbym||Chciałabym| się tego nauczyć. }
+{5000}{}{W porządku, nie ma sprawy. Mogę cię nauczyć podstaw rusznikarstwa, za drobną opłatą oczywiście.}
+{5010}{}{A jak "drobna" to będzie opłata?}
+{6000}{}{@lex prof1_price@ kapsli, do tego musisz przygotować materiały na szkolenie. Kawałek stali wysokiej jakości powinien wystrczyć. Jak będziesz miał wszystko, zaczniemy naukę.}
+{6010}{}{Świetnie, wrócę niebawem.}
+{6020}{}{Za drogo, może kiedy indziej.}
+{7000}{}{Witam ponownie. W czym mogę ci pomóc?}
+{7010}{}{@sex@|Chciałbym||Chciałabym| nauczyć się podstaw rusznikarstwa.}
+{7020}{}{@sex@|Chciałbym||Chciałabym| nauczyć się podstaw rusznikarstwa.}
+{7030}{}{Mógłbyś przypomnieć, co miałem przygotować?}
+{8000}{}{Czy masz wszystko, o co prosiłem?}
+{8010}{}{(Profesja: Rusznikarz, poziom 1.) Tak jest, proszę.}
+{8020}{}{Chyba czegoś @sex@|zapomniałem||zapomniałam|.}
+{9000}{}{Świetnie. No to zaczynajmy. Na początek, podstawy budowy. Rozkręć ten rewolwer... o tak. A potem... [Edward uczy cię podstaw rusznikarstwa.] To by było na tyle. Mam nadzieję, że zrobisz dobry użytek ze swojej wiedzy.}
+{9010}{}{Żebyś wiedział. A nie wiesz może gdzie mógłbym się nauczyć czegoś więcej o wytwarzaniu broni?}
+{9020}{}{Dzięki, Edward. Do zobaczenia.}
+{10000}{}{Hmm... Poszukaj w Broken Hills. Jest tam taki jeden facet, nie pamiętam dokładnie jak się nazywa, Zed, Zay, Zin... W każdym razie, spytaj kogoś na miejscu, powinni wiedzieć o kogo chodzi.}
+{10010}{}{Dzięki, do zobaczenia.}
+{11000}{}{Przykro mi, ale nie masz wystarczających umiejętności. Wróć jak będziesz miał odpowiednią wiedzę. (Wymagana umiejętność: Naprawa 60%.)}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Deal}
+{1030}{}{After}
+{2000}{}{Good day there. My name is Edward. How can I help you?}
+{2010}{}{Could you teach me how to make guns?}
+{2020}{}{What do you do here?}
+{2030}{}{Edward tell me, is there somewhere a place where I could learn more about crafting weapons?}
+{2040}{}{I was just leaving, goodbye.}
+{3000}{}{Well, welcome to the Hub Steel Manufacture. People use to call it just "Manufacture". What we do here is metalurgical engrineering, processing and that kinda stuff. Mostly. How can I help you?}
+{3010}{}{Do you make weapons here?}
+{3020}{}{Goodbye.@@I've got to go.@@I need to go.}
+{4000}{}{Of course, small details are also within our reach. Why are you asking?}
+{4010}{}{I want to know how to make conventional weapons.}
+{5000}{}{Yyou are in the right place then. Let's see... Right, I can perform a basic gunsmith training with you, for a fee. }
+{5010}{}{And that fee would be...?@@How much?}
+{6000}{}{@lex prof1_price@ caps, but you'll also need some training material, one piece of High Grade Steel to be precise. Come back when you have all of these.}
+{6010}{}{Great, I'll be back shortly.@@Okay, I'll be back.@@Sure thing, I'll get back to you.}
+{6020}{}{Nah, that's too expensive. Bye.}
+{7000}{}{Good day again. How can I help you?}
+{7010}{}{I'd like to perform the basic gunsmith training. }
+{7020}{}{I'd like to perform the basic gunsmith training. }
+{7030}{}{Could you please repeat what I need for the training?}
+{8000}{}{Do you have all I've asked you?}
+{8010}{}{(Gunsmith profession level 1.) Yes, I do.@@(Gunsmith profession level 1.) Yeah, sure.}
+{8020}{}{Erm, no. Sorry. I'll be back later.@@No, I forgot something...@@Damn, I forgot all about it.}
+{9000}{}{Fine. Let's get started.First ... [Edward shows you how to make basic firearms.] I'm glad we I could teach you, friend. Use your knowledge for a good purpose.}
+{9010}{}{Thank you Edward. Tell me, is there some place where I could learn more?}
+{9020}{}{Thanks, bye.@@Thank you, and goodbye.@@Later, Edward.}
+{10000}{}{Hmm, you could ask in Broken Hills, we trade with them a lot. What was this guy's name, Zed? Zay? Zions? Whatever, ask some locals when you get there.}
+{10010}{}{Thanks.@@Thanks, Edward.@@Thank you, goodbye.}
+{11000}{}{You're not ready to do this. Come back with when you're skilled enough. (Required skill: Science 60%.)}
+

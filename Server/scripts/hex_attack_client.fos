@@ -1,0 +1,140 @@
+//Hex attack - client side
+//Author - binyan
+//version 0.8
+
+#include "_macros.fos"
+#include "_itempid.fos"
+#include "utils_for_array.fos"
+import int to_hit( CritterCl& chosen, CritterCl& target, ProtoItem& weapon, uint8 weaponMode ) from "client_main";
+
+const uint16[] Pids_HexShoot = { PID_ROCKET_LAUNCHER, PID_PLASMA_GRENADE , PID_PULSE_GRENADE, PID_FRAG_GRENADE, PID_MOLOTOV_COCKTAIL, PID_ACTIVE_DYNAMITE};
+const uint16[] Pids_HexShoot_2nd = { PID_PLASMA_GRENADE , PID_PULSE_GRENADE, PID_FRAG_GRENADE, PID_MOLOTOV_COCKTAIL};
+int to_hit_hex()
+{
+	//Used only on empty hex for throwing weapon and rocket launchers
+	CritterCl@ chosen = GetChosen();
+	if (!chosen.IsLife()) 
+		return 0;
+
+	uint8 mode = 0;
+	ProtoItem@ weapon = chosen.GetSlotProto(SLOT_HAND1, mode);
+	ItemCl@ realWeapon=_CritGetItemHand(chosen);
+	if (!valid(weapon) || !valid(realWeapon) || !Present( realWeapon.GetProtoId(), Pids_HexShoot ))
+	{
+		@weapon = chosen.GetSlotProto(SLOT_HAND2, mode);
+		@realWeapon=_CritGetItemHandExt(chosen);
+		if (!valid(weapon) || !valid(realWeapon) || !Present( realWeapon.GetProtoId(), Pids_HexShoot_2nd ))
+			return 0;
+	}
+	uint skillNum=_WeaponSkill(weapon, mode);
+	int dmgType=_WeaponDmgType(weapon, mode);
+	
+	bool isFlareGun = false;
+	bool isRocket = false;
+	
+	isRocket=(realWeapon.AmmoPid == PID_EXPLOSIVE_ROCKET) || (realWeapon.AmmoPid == PID_ROCKET_AP) || (realWeapon.AmmoPid == PID_ROBO_ROCKET_AMMO);
+
+	if (skillNum != SK_THROWING && !isRocket)
+		return 0;
+
+	if (skillNum != SK_THROWING && realWeapon.AmmoCount==0)
+		return 0;
+		 
+	uint16 tx = 0, ty = 0;
+	GetMonitorHex(__MouseX, __MouseY, tx, ty);
+	if(tx==0&&ty==0)
+	   return 0;
+	   
+	int dist=0;
+	CritterCl@ target = GetMonitorCritter (__MouseX, __MouseY);
+	if (valid(target))
+		dist = GetCrittersDistantion( chosen, target );
+	else
+	{
+		dist = GetDistantion(chosen.HexX, chosen.HexY, tx, ty);
+		uint16 toHx = tx, toHy = ty;
+		GetHexCoord ( chosen.HexX,  chosen.HexY, toHx, toHy,  0.0f, dist);
+		if((tx!=toHx)||(ty!=toHy))
+			return 0;
+	}
+   
+    int wpnMaxDist=GetAttackDistantion(chosen,realWeapon,mode);
+    if (dist>wpnMaxDist) 
+		return 0;
+
+    int toHit=int(chosen.Skill[skillNum]);
+		toHit+= GetItem_Values(realWeapon, 2);
+    int weaponPerk=weapon.Weapon_Perk;
+    int blockers=0;
+
+
+    // Ranged attack modifiers
+    int distmod1 = 2; // Used for initial weapon bonus
+    int distmod2 = 0; // Minimal distance
+    if( weaponPerk == WEAPON_PERK_LONG_RANGE )
+        distmod1 = 4;
+    else if( weaponPerk == WEAPON_PERK_SCOPE_RANGE )
+    {
+        distmod1 = 5;
+        distmod2 = 8;
+    }
+	
+    int perception = chosen.Stat[ ST_PERCEPTION ];
+    int acc = dist;
+
+    if( dist < distmod2 )
+        acc += distmod2;
+    else
+    {
+        if( chosen.IsPlayer() )
+            acc -= ( perception - 2 ) * distmod1;               // we want to keep it, because fo2238 might use it to display NPCs chance (via possessing)
+        else
+            acc -= perception * distmod1;
+    }
+
+    if( -2 * perception > acc )
+        acc = -2 * perception;
+
+    acc -= 2 * chosen.Perk[ PE_SHARPSHOOTER ];
+
+    if( acc >= 0 )
+    {
+        if( chosen.Damage[ DAMAGE_EYE ] != 0 )
+            acc *= -12;
+        else
+            acc *= -4;
+    }
+    else
+        acc *= -4;
+	
+    toHit += acc;
+    
+	if (valid(target))
+		blockers = GetCrittersPath( chosen.HexX, chosen.HexY, target.HexX, target.HexY, 0.0f, dist, FIND_LIFE, null );
+	else
+		blockers=GetCrittersPath(chosen.HexX, chosen.HexY, tx, ty, 0.0f, dist, FIND_LIFE, null);
+    if(valid(target)&& !target.IsKnockout())
+            blockers--;
+	toHit-=10*blockers;
+    if( weaponPerk == WEAPON_PERK_ACCURATE )
+            toHit += 20;
+
+	if( valid( chosen ) && chosen.Perk[ PE_AIMBUFF ] != 0 ) 
+        toHit += 80;
+			
+	int acmod=0;
+	if(valid(target))
+		acmod=target.Stat[ ST_ARMOR_CLASS ];
+	ProtoItem@ ammo = GetProtoItem( realWeapon.AmmoPid );
+	if( valid( ammo ) )
+        acmod += ammo.Ammo_AcMod;
+	if( acmod > 0 )
+        toHit -= acmod;
+
+    if (chosen.Damage[DAMAGE_EYE]!=0) 
+		toHit-=25;
+    toHit=CLAMP(toHit,5,95);
+
+    return toHit;
+
+}

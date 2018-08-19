@@ -1,0 +1,87 @@
+#ifndef __RARE_LOOT_QUEUE__
+#define __RARE_LOOT_QUEUE__
+
+//Blueprints
+#define RLQ_ENCOUNTERS_CONTAINERS_BP_ALL              (2)
+
+#define RLQ_CAVE_BP_ALL                               (4)
+#define RLQ_EVENTS_BP_ALL                             (5)
+
+#define RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL1  (1)
+#define RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL2  (6)
+#define RLQ_ENCOUNTERS_CONTAINERS_TOP_LOOT_BP_LEVEL3  (7)
+
+#define RLQ_SIERRA_CAVES_L1_BP_LEVEL1                 (3)
+#define RLQ_SIERRA_CAVES_L1_BP_LEVEL2                 (9)
+#define RLQ_SIERRA_CAVES_L1_BP_LEVEL3                 (10)
+
+#define RLQ_SIERRA_CAVES_L2_BP_LEVEL2                 (36)
+#define RLQ_SIERRA_CAVES_L2_BP_LEVEL3                 (37)
+
+//T3 armors + recipies
+#define RLQ_T3_ARMORS1_SIERRA                         (12)
+#define RLQ_T3_ARMORS1_NECROPOLIS                     (13)
+#define RLQ_T3_ARMORS1_GLOW                           (14)
+#define RLQ_T3_ARMORS1_ARES                           (15)
+#define RLQ_T3_ARMORS1_MARIPOSA                       (16)
+#define RLQ_T3_ARMORS1_SF_TANKER                      (17)
+#define RLQ_T3_ARMORS1_WAREHOUSE                      (18)
+#define RLQ_T3_ARMORS1_SIERRA_CAVES                   (19)
+#define RLQ_T3_ARMORS1_ENC_TOP_LOOT_AREA              (20)
+#define RLQ_T3_ARMORS1_SHOPS                          (21)
+#define RLQ_T3_ARMORS1_NR_SF_SHOPS                    (22)
+#define RLQ_T3_ARMORS1_EVENTS                         (54)
+#define RLQ_T3_ARMORS1_DEFAULT                        (23)
+
+#define RLQ_T3_ARMORS2_SIERRA                         (24)
+#define RLQ_T3_ARMORS2_NECROPOLIS                     (25)
+#define RLQ_T3_ARMORS2_GLOW                           (26)
+#define RLQ_T3_ARMORS2_ARES                           (27)
+#define RLQ_T3_ARMORS2_MARIPOSA                       (28)
+#define RLQ_T3_ARMORS2_SF_TANKER                      (29)
+#define RLQ_T3_ARMORS2_WAREHOUSE                      (30)
+#define RLQ_T3_ARMORS2_SIERRA_CAVES                   (31)
+#define RLQ_T3_ARMORS2_ENC_TOP_LOOT_AREA              (32)
+#define RLQ_T3_ARMORS2_SHOPS                          (33)
+#define RLQ_T3_ARMORS2_NR_SF_SHOPS                    (34)
+#define RLQ_T3_ARMORS2_EVENTS                         (55)
+#define RLQ_T3_ARMORS2_DEFAULT                        (35)
+
+//T3 weapons + recipies
+#define RLQ_T3_WEAPONS1_SIERRA                        (42)
+#define RLQ_T3_WEAPONS1_NECROPOLIS                    (43)
+#define RLQ_T3_WEAPONS1_GLOW                          (44)
+#define RLQ_T3_WEAPONS1_ARES                          (45)
+#define RLQ_T3_WEAPONS1_MARIPOSA                      (46)
+#define RLQ_T3_WEAPONS1_SF_TANKER                     (47)
+#define RLQ_T3_WEAPONS1_WAREHOUSE                     (48)
+#define RLQ_T3_WEAPONS1_SIERRA_CAVES                  (49)
+#define RLQ_T3_WEAPONS1_ENC_TOP_LOOT_AREA             (50)
+#define RLQ_T3_WEAPONS1_SHOPS                         (51)
+#define RLQ_T3_WEAPONS1_NR_SF_SHOPS                   (52)
+#define RLQ_T3_WEAPONS1_EVENTS                        (56)
+#define RLQ_T3_WEAPONS1_DEFAULT                       (53)
+
+//T3 weapons2 + recipies
+#define RLQ_T3_WEAPONS2_SIERRA                        (57)
+#define RLQ_T3_WEAPONS2_NECROPOLIS                    (58)
+#define RLQ_T3_WEAPONS2_GLOW                          (59)
+#define RLQ_T3_WEAPONS2_ARES                          (60)
+#define RLQ_T3_WEAPONS2_MARIPOSA                      (61)
+#define RLQ_T3_WEAPONS2_SF_TANKER                     (62)
+#define RLQ_T3_WEAPONS2_WAREHOUSE                     (63)
+#define RLQ_T3_WEAPONS2_SIERRA_CAVES                  (64)
+#define RLQ_T3_WEAPONS2_ENC_TOP_LOOT_AREA             (65)
+#define RLQ_T3_WEAPONS2_SHOPS                         (66)
+#define RLQ_T3_WEAPONS2_NR_SF_SHOPS                   (67)
+#define RLQ_T3_WEAPONS2_EVENTS                        (68)
+#define RLQ_T3_WEAPONS2_DEFAULT                       (69)
+
+//Top loot
+#define RLQ_SIERRA_CAVES_L2_IMPLANTS                  (39)
+#define RLQ_SIERRA_CAVES_L2_T4_PARTS                  (40)
+#define RLQ_SIERRA_CAVES_L2_CLIFTONS_HOLO             (41)
+
+//Next id: 57
+
+#endif

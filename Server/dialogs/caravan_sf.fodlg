@@ -1,0 +1,237 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+5 1010 D _script caravan_fo2@d_HasPreparedCaravan 0  #
+2 1020 @
+2 2000 None 0 #
+10 2010 D _script caravan_fo2@d_HasNoPreparedCaravan 0  #
+6 2020 #
+7 2030 #
+8 2040 #
+0 2050 @
+4 3000 caravan_fo2@dlg_LoadAvailableFollowers 1 #
+4 3010 D _script caravan_fo2@d_IsAvailableFollowers 1 1 R _script caravan_fo2@r_KickFollower 1 0 #
+4 3020 D _script caravan_fo2@d_IsAvailableFollowers 1 2 R _script caravan_fo2@r_KickFollower 1 1 #
+4 3030 D _script caravan_fo2@d_IsAvailableFollowers 1 3 R _script caravan_fo2@r_KickFollower 1 2 #
+4 3040 D _script caravan_fo2@d_IsAvailableFollowers 1 4 R _script caravan_fo2@r_KickFollower 1 3 #
+4 3050 D _script caravan_fo2@d_IsAvailableFollowers 1 5 R _script caravan_fo2@r_KickFollower 1 4 #
+4 3060 D _script caravan_fo2@d_IsAvailableFollowers 1 6 R _script caravan_fo2@r_KickFollower 1 5 #
+4 3070 D _script caravan_fo2@d_IsAvailableFollowers 1 7 R _script caravan_fo2@r_KickFollower 1 6 #
+4 3080 D _script caravan_fo2@d_IsAvailableFollowers 1 8 R _script caravan_fo2@r_KickFollower 1 7 #
+4 3090 D _script caravan_fo2@d_IsAvailableFollowers 1 9 R _script caravan_fo2@r_KickFollower 1 8 #
+0 3100 R _script caravan_fo2@r_StartCaravan 0  #
+0 3110 @
+5 4000 None 0 #
+4 4010 R _script caravan_fo2@r_RefreshFollowersCaravan 0  #
+11 4020 #
+9 4030 R _script caravan_fo2@r_CancelCaravan 0  #
+0 4040 @
+6 5000 None 0 #
+0 5010 #
+2 5020 @
+7 6000 None 0 #
+0 6010 #
+2 6020 @
+8 7000 None 0 #
+2 7010 #
+0 7020 @
+9 8000 None 0 @
+10 9000 None 0 #
+5 9010 R _script caravan_fo2@r_PrepareCaravan 1 4 @
+11 10000 None 0 #
+5 10010 R _script caravan_fo2@r_SetCombatMode 1 2 #
+5 10020 R _script caravan_fo2@r_SetCombatMode 1 1 #
+5 10030 &
+
+[engl]
+{100}{}{Caravan Master.}
+{200}{}{You see: Caravan Master.}
+{210}{}{This man is dressed in a very freakish and chaotic fashion. He looks at you with his bored eyes.}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{Welcome to the... [Yawns.] Frisco-Hub Caravan. You lookin' for work?}
+{2010}{}{Yeah, I need some cash. Sign me up.@@Yeah, sign me up.@@Yeah.}
+{2020}{}{Any other destinations besides the Hub?@@Any other places besides the Hub?}
+{2030}{}{So, how's your job here? You seem pretty bored.@@It looks like you've got a very interesting job.}
+{2040}{}{You've got something to trade?}
+{2050}{}{Maybe later.@@Not now.}
+{3000}{}{Before we go, check list of caravan members. [Click on name to exclude player from caravan]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{All right, lets go.}
+{3110}{}{Just a minute!}
+{4000}{}{Okay, you're set. Ready to roll?@@Good, ready to go?@@Okay, ready to shake some dust?}
+{4010}{}{Yep, let's go.@@Yeah, I'm ready.@@Ready.@@I was born ready.}
+{4020}{}{I want to change combat mode.}
+{4030}{}{On second thought, I'm not coming with you.}
+{4040}{}{Just a moment...@@Just a sec, wait.}
+{5000}{}{Nope.@@No.}
+{5010}{}{Okay... thanks. I guess.}
+{5020}{}{Right. Can I ask you something?}
+{6000}{}{Yeah, it's a fuckin' bore, @sex@|man||girl|. I just sit all day and fill this friggin' paperwork. Nothing exciting, really. I think I should get back to field work, maybe... or maybe not.}
+{6010}{}{Well, that was curious. I'll leave you to your torment then.}
+{6020}{}{Let's get back to the caravan.}
+{7000}{}{No.@@Nope.}
+{7010}{}{Great. Can I ask you something else?}
+{7020}{}{Then why am I even talking to you? Later.}
+{8000}{}{Fine.@@Okay.}
+{9000}{}{Okay, as I said, this caravan heads back to the Hub. Interested?@@Allright, as I said, this caravan goes all the away back to the Hub. You in?}
+{9010}{}{Yep.}
+{10000}{}{Which one?}
+{10010}{}{Turn based.}
+{10020}{}{Real Time.}
+{10030}{}{[Back.]}
+
+[russ]
+{100}{}{Глава каравана}
+{200}{}{Вы видите: главного караванщика}
+{210}{}{Этот парень кажется главный в караване каравана.}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{Привет путник, я главный в караване. Вы выглядите опытным путешественником, у меня появилась идея. Готовы ли вы к главному путешествию в жизни?}
+{2010}{}{Это было бы здорово. Запишите меня .}
+{2020}{}{Ты водишь караваны только в Хаб? Как насчет Города убежища или Сан-Франциско?}
+{2030}{}{Быть за главного в караване, это сложно?}
+{2040}{}{Караван? Это значит, что вы торговцы не так ли? Давайте поторгуем.}
+{2050}{}{К сожалению, не интересует. До свидания.}
+{3000}{}{Вот состав нашего каравана.[нажмите на имя чтобы исключить игрока из каравана]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{Да все верно, отправляемся...}
+{3110}{}{Эээ, я вернусь позже.}
+{4000}{}{Все в порядке? Готовы к отправлению?}
+{4010}{}{Да, давайте отправлятся.}
+{4020}{}{Я хочу изменить тип боя на энкаунтерах.}
+{4030}{}{Я передумал, я не пойду с тобой.}
+{4040}{}{Эээ, я вернусь позже.}
+{5000}{}{Мне жаль, если мой маршрут не достаточно хорош для вас. Может кто-то другой согласится пойти с вами.}
+{5010}{}{Так и сделаю.}
+{5020}{}{Извините, могу я задать вопрос?}
+{6000}{}{Трудно быть лидером каравана. Нужно постоянно искать наемников и следить за ними. Искать товар. Еще и пустошь не место для праздных прогулок, рейдеры не дремлют.}
+{6010}{}{Звучит интересно. До свидания.}
+{6020}{}{Можно другой вопрос?}
+{7000}{}{Я похож на скучного кассира, который сидит за прилавком весь день?  Нет! Я путешественник.}
+{7010}{}{Хорошо, хорошо. Можно вопрос?}
+{7020}{}{А я так надеялся, ну ты и мудак.}
+{8000}{}{Тогда какого хрена ты тратишь мое время?}
+{9000}{}{Хорошо, куда отправимся?}
+{9010}{}{В Хаб.}
+{10000}{}{Какой тип боя вы хотите установить?}
+{10010}{}{Пошаговый.}
+{10020}{}{Реальное время.}
+{10030}{}{Не знаю.}
+
+[pols]
+{100}{}{Zarządca karawany}
+{200}{}{Widzisz zarządcę karawany.}
+{210}{}{Widzisz długowłosego mężczyznę ubranego w pancerz metalowy. Wygląda na znudzonego.}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{O, @sex@|następny||następna|... Niech zgadnę, chcesz dołączyć do karawany? Fascynujące... Jak chcesz zabrać się z tą karawaną do Hub podaj imię, muszę odwalać ciąglę tą papierkową robotę...}
+{2010}{}{@pname@.}
+{2020}{}{Nie wybieracie się nigdzie indziej?}
+{2030}{}{Ciekawa robota, co?}
+{2040}{}{Karawana? Masz jakieś towary na wymianę?}
+{2050}{}{Nie teraz, muszę już iść.}
+{3000}{}{Zanim wyruszymy, sprawdź liste strażników karawany. [Kliknij na nick aby wyłączyć gracza z karawany]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{W porządku, ruszamy!}
+{3110}{}{Chwileczkę...}
+{4000}{}{To co, będziecie się zbierać?}
+{4010}{}{Tak.}
+{4020}{}{Chcę zmienić tryb walki.}
+{4030}{}{@sex@|Rozmyśliłem||Rozmyśliłam| się, innym razem.}
+{4040}{}{Moment...}
+{5000}{}{Nie, zresztą po co? Za trasę w Hub wystarczająco dobrze płacą.}
+{5010}{}{Rozumiem. Do widzenia.}
+{5020}{}{W porządku, mogę spytać o coś innego?}
+{6000}{}{@sex@|Człowieku||Dziewczyno|, nuda taka że zdechnąć można. Niby nieźle idzie, ale brakuje mi tego dreszczyku emocji, kiedy sam jeszcze śmigałem w karawanach do Hubu i z powrotem. W sumie to mógłbym się tam wybrać nawet teraz... ale nie chce mi się za bardzo.}
+{6010}{}{Od dobrobytu może się w dupie poprzewracać. Na razie.}
+{6020}{}{Aha. Mam pytania...}
+{7000}{}{Nie, nie handluję rzeczami z karawan, to nie moja działka. Idź do miasta, rozejrzyj się po sklepach.}
+{7010}{}{W porządku. Może porozmawiamy o czym innym?}
+{7020}{}{Dobra.}
+{8000}{}{Dobra, wpadnij jeszcze kiedyś, nudno tu jak cholera.}
+{9000}{}{To co, wracamy do Hub?}
+{9010}{}{Tak jest, do Hub.}
+{10000}{}{Na jaki?}
+{10010}{}{Turowy.}
+{10020}{}{Czas rzeczywisty.}
+{10030}{}{Nieważne.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Prepared}
+{1020}{}{--}
+{2000}{}{Welcome to the... [Yawns.] Frisco-Hub Caravan. You lookin' for work?}
+{2010}{}{Yeah, I need some cash. Sign me up.@@Yeah, sign me up.@@Yeah.}
+{2020}{}{Any other destinations besides the Hub?@@Any other places besides the Hub?}
+{2030}{}{So, how's your job here? You seem pretty bored.@@It looks like you've got a very interesting job.}
+{2040}{}{You've got something to trade?}
+{2050}{}{Maybe later.@@Not now.}
+{3000}{}{Before we go, check list of caravan members. [Click on name to exclude player from caravan]}
+{3010}{}{@lex follower0@}
+{3020}{}{@lex follower1@}
+{3030}{}{@lex follower2@}
+{3040}{}{@lex follower3@}
+{3050}{}{@lex follower4@}
+{3060}{}{@lex follower5@}
+{3070}{}{@lex follower6@}
+{3080}{}{@lex follower7@}
+{3090}{}{@lex follower8@}
+{3100}{}{All right, lets go.}
+{3110}{}{Just a minute!}
+{4000}{}{Okay, you're set. Ready to roll?@@Good, ready to go?@@Okay, ready to shake some dust?}
+{4010}{}{Yep, let's go.@@Yeah, I'm ready.@@Ready.@@I was born ready.}
+{4020}{}{I want to change combat mode.}
+{4030}{}{On second thought, I'm not coming with you.}
+{4040}{}{Just a moment...@@Just a sec, wait.}
+{5000}{}{Nope.@@No.}
+{5010}{}{Okay... thanks. I guess.}
+{5020}{}{Right. Can I ask you something?}
+{6000}{}{Yeah, it's a fuckin' bore, @sex@|man||girl|. I just sit all day and fill this friggin' paperwork. Nothing exciting, really. I think I should get back to field work, maybe... or maybe not.}
+{6010}{}{Well, that was curious. I'll leave you to your torment then.}
+{6020}{}{Let's get back to the caravan.}
+{7000}{}{No.@@Nope.}
+{7010}{}{Great. Can I ask you something else?}
+{7020}{}{Then why am I even talking to you? Later.}
+{8000}{}{Fine.@@Okay.}
+{9000}{}{Okay, as I said, this caravan heads back to the Hub. Interested?@@Allright, as I said, this caravan goes all the away back to the Hub. You in?}
+{9010}{}{Yep.}
+{10000}{}{Which one?}
+{10010}{}{Turn based.}
+{10020}{}{Real Time.}
+{10030}{}{[Back.]}
+

@@ -1,0 +1,1560 @@
+/**
+ * Created: 5.7.2012
+ * Author: mikewall
+ */
+ 
+#include "_time.fos"
+#include "_itempid.fos"
+#include "loot_items.fos"
+#include "_macros.fos"
+
+import void GenerateStats(Item& item) from "custom_items";
+import bool IsItemAviable(ProtoItem@ proto) from "blueprints";
+import uint16 GetAviableItem(uint16 pid, bool allowrare) from "blueprints";
+
+
+ContainerSpawnInfo@[] CreateContainerSpawnInfos()
+{
+	ContainerSpawnInfo@[] infos = {
+	
+		ContainerSpawnInfo(1, REAL_MINUTE(19), REAL_MINUTE(21), 0, 0, true) // Warehouse upper - 4,  Necro upper - 13   2    6, V15 level2  - 2, V15 level3 - 4-, 
+			//Misc
+			.AddSpawnItem(PID_BOTTLE_CAPS, 10, 3, 198)
+			.AddSpawnItem(PID_HYPODERMIC_NEEDLE, 1, 1, 3)
+			.AddSpawnItem(PID_ANTIDOTE, 1, 1, 2)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE, 1, 1, 1)
+			.AddSpawnItem(PID_IGUANA_ON_A_STICK, 1, 1, 1)
+			.AddSpawnItem(PID_MEAT_ON_A_STICK, 1, 1, 1)
+			.AddSpawnItem(PID_ROPE, 1, 1, 1)
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 1, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 1, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 1, 1, 1)
+			.AddSpawnItem(PID_BECKY_BOOK, 1, 1, 1)
+			.AddSpawnItem(PID_HEALING_POWDER, 5, 3, 5)
+			//Drugs
+			.AddSpawnItem(PID_STIMPAK, 10, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 1, 1, 1)
+			.AddSpawnItem(PID_NUKA_COLA, 1, 1, 1)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 1, 1, 1)
+			//Ammo
+			.AddSpawnItem(PID_MOLOTOV_COCKTAIL, 1, 1, 3)
+			.AddSpawnItem(PID_FRAG_GRENADE, 1, 1, 4)
+			.AddSpawnItem(PID_10MM_AP, 5, 13, 43)
+			.AddSpawnItem(PID_223_FMJ, 5, 16, 34)
+			.AddSpawnItem(PID_44_FMJ_MAGNUM, 5, 14, 38)
+			.AddSpawnItem(PID_5MM_AP, 5, 62, 101)
+			.AddSpawnItem(PID_FLAMETHROWER_FUEL, 5, 13, 28)
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 5, 13, 47)
+			//Weapon
+			.AddSpawnItem(PID_10MM_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_DESERT_EAGLE, 1, 1, 1)
+			.AddSpawnItem(PID_223_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_44_MAGNUM_REVOLVER, 1, 1, 1)
+			.AddSpawnItem(PID_HUNTING_RIFLE, 1, 1, 1)
+			.AddSpawnItem(PID_ASSAULT_RIFLE, 1, 1, 1)
+			.AddSpawnItem(PID_SHOTGUN, 1, 1, 1)
+			.AddSpawnItem(PID_10MM_SMG, 1, 1, 1)
+			.AddSpawnItem(PID_LASER_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_COMBAT_KNIFE, 1, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_LEATHER_JACKET, 1, 1, 1)
+			.AddSpawnItem(PID_LEATHER_ARMOR, 1, 1, 1)
+			.AddSpawnItem(PID_METAL_ARMOR, 1, 1, 1)
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 1, 1, 1)
+			//Rare
+			.AddSpawnItem(PID_PURPLE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_SAND_ROBE, 1, 1, 1)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 2, 1, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.6, 1, 1),
+		ContainerSpawnInfo(2, REAL_MINUTE(19), REAL_MINUTE(21), 0, 0, true) // Warehouse basement - 3, Mariposa enter - 1, sf tanker - 2, Ares level1 - 1
+			//Misc
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 1, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 1, 1, 1)
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 1, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 1, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 1, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 1, 1, 1)
+			.AddSpawnItem(PID_BOTTLE_CAPS, 10, 421, 862)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE, 1, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 5, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_CIGARETTES, 10, 4, 6)
+			.AddSpawnItem(PID_JET, 12, 4, 6)
+			.AddSpawnItem(PID_BUFFOUT, 12, 4, 6)
+			.AddSpawnItem(PID_PSYCHO, 12, 1, 2)
+			.AddSpawnItem(PID_NUKA_COLA, 10, 4, 6)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 10, 6, 8)
+			.AddSpawnItem(PID_STIMPAK, 1, 3, 6)
+			.AddSpawnItem(PID_MENTATS, 1, 1, 3)
+			//Ammo
+			.AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 1, 23, 38) 
+			.AddSpawnItem(PID_ROCKET_AP, 5, 4, 8)
+			.AddSpawnItem(PID_7_62MM_AMMO, 8, 81, 191)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)
+			.AddSpawnItem(PID_223_FMJ, 8, 81, 191)
+			.AddSpawnItem(PID_5MM_AP, 8, 240, 360)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_SG1, 3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_BG1, 1, 1, 1)
+			.AddSpawnItem(BLUEPRINT_EW1, 1, 1, 1)
+			.AddSpawnItem(BLUEPRINT_CC1, 3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_ARMOR1, 2, 1, 1)
+			.AddSpawnItem(BLUEPRINT_SG2, 3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_BG2, 1, 1, 1)
+			.AddSpawnItem(BLUEPRINT_EW2, 1, 1, 1)
+			.AddSpawnItem(BLUEPRINT_CC2, 3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_ARMOR2, 1, 1, 1)
+			.AddSpawnItem(BLUEPRINT_SG3, 3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_BG3, 1, 1, 1)
+			.AddSpawnItem(BLUEPRINT_EW3, 1, 1, 1)
+			.AddSpawnItem(BLUEPRINT_CC3, 3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_ARMOR3, 1, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 10, 1, 1)
+			.AddSpawnItem(PID_ROCKET_LAUNCHER, 5, 1, 1)
+			.AddSpawnItem(PID_223_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_M60, 5, 1, 1)
+			//T3.5 Recipe
+			.AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 40, 1, 3)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 5, 1, 1)
+			//Ready T3.5
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP, 2.5, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON, 2.5, 1, 1)
+			.AddSpawnItem(PID_AVENGER_MINIGUN, 2.5, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE, 2.5, 1, 1)
+			.AddSpawnItem(PID_HK_P90C, 2.5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR, 5, 1, 1)
+			//Rare
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+			.AddSpawnItem(PID_STEALTH_BOY, 0.5, 1, 1)
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_SOLAR_SCORCHER, 0.5, 1, 1)
+			.AddSpawnItem(PID_WAKIZASHI_BLADE, 0.5, 1, 1)
+			.AddSpawnItem(PID_HYPO, 0.5, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1),
+		ContainerSpawnInfo(3, REAL_MINUTE(29), REAL_MINUTE(41), 0, 0, true) // v15-3 1 skeleton
+			//Misc
+			.AddSpawnItem(PID_BOTTLE_CAPS, 20, 421, 862)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE, 5, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 3, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 3, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 3, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 3, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 3, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_CIGARETTES, 10, 4, 6)
+			.AddSpawnItem(PID_JET, 15, 4, 6)
+			.AddSpawnItem(PID_BUFFOUT, 15, 4, 6)
+			.AddSpawnItem(PID_PSYCHO, 15, 1, 2)
+			.AddSpawnItem(PID_NUKA_COLA, 10, 4, 6)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 15, 6, 8)
+			.AddSpawnItem(PID_STIMPAK, 1, 3, 6)
+			.AddSpawnItem(PID_MENTATS, 1, 1, 3)
+			//Ammo
+			.AddSpawnItem(PID_7_62MM_AMMO, 10, 81, 191)
+			.AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 1, 23, 38)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)
+			.AddSpawnItem(PID_223_FMJ, 10, 81, 191)
+			.AddSpawnItem(PID_5MM_AP, 10, 240, 360)
+			.AddSpawnItem(PID_ROCKET_AP, 10, 4, 8)
+			//Weapons
+			.AddSpawnItem(PID_223_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_M60, 5, 1, 1)
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_ROCKET_LAUNCHER, 5, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 5, 1, 1)
+			//T3.5 Recipe
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_RECIPE,10, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 10, 1, 1)
+			//Rare
+			.AddSpawnItem(PID_SOLAR_SCORCHER, 0.5, 1, 1)
+			.AddSpawnItem(PID_WAKIZASHI_BLADE, 0.5, 1, 1)
+			.AddSpawnItem(PID_HYPO, 0.5, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 1, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+			.AddSpawnItem(PID_STEALTH_BOY, 0.5, 1, 1)
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1),
+		ContainerSpawnInfo(4, REAL_MINUTE(19), REAL_MINUTE(21), 0, 10, true) // V15 level1 - 2, V15 level2 - 2, V15 level3 - 1
+			//Misc
+			.AddSpawnItem(PID_BOTTLE_CAPS, 10, 3, 198)
+			.AddSpawnItem(PID_ROPE, 1, 1, 1)
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_HYPODERMIC_NEEDLE, 1, 1, 3)
+			.AddSpawnItem(PID_ANTIDOTE, 1, 1, 2)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE, 1, 1, 1)
+			.AddSpawnItem(PID_HEALING_POWDER, 5, 3, 5)
+			.AddSpawnItem(PID_IGUANA_ON_A_STICK, 1, 1, 1)
+			.AddSpawnItem(PID_MEAT_ON_A_STICK, 1, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 1, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 1, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 1, 1, 1)
+			.AddSpawnItem(PID_BECKY_BOOK, 1, 1, 1)
+			//Ammo
+			.AddSpawnItem(PID_10MM_AP, 5, 13, 43)
+			.AddSpawnItem(PID_223_FMJ, 5, 16, 34)
+			.AddSpawnItem(PID_44_FMJ_MAGNUM, 5, 14, 38)
+			.AddSpawnItem(PID_5MM_AP, 5, 62, 101)
+			.AddSpawnItem(PID_MOLOTOV_COCKTAIL, 1, 1, 3)
+			.AddSpawnItem(PID_FRAG_GRENADE, 1, 1, 4)
+			.AddSpawnItem(PID_FLAMETHROWER_FUEL, 5, 13, 28)
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 5, 13, 47)			
+			//Drugs
+			.AddSpawnItem(PID_CIGARETTES, 10, 2, 4)
+			.AddSpawnItem(PID_JET, 12, 2, 3)
+			.AddSpawnItem(PID_JET_ANTIDOTE, 12, 2, 3)
+			.AddSpawnItem(PID_NUKA_COLA, 10, 4, 6)
+			.AddSpawnItem(PID_BUFFOUT, 12, 2, 3)
+			.AddSpawnItem(PID_STIMPAK, 10, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 1, 1, 1)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 10, 4, 6)
+			.AddSpawnItem(PID_PSYCHO, 12, 1, 2)
+			//Weapons
+			.AddSpawnItem(PID_10MM_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_DESERT_EAGLE, 1, 1, 1)
+			.AddSpawnItem(PID_223_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_44_MAGNUM_REVOLVER, 1, 1, 1)
+			.AddSpawnItem(PID_HUNTING_RIFLE, 1, 1, 1)
+			.AddSpawnItem(PID_ASSAULT_RIFLE, 1, 1, 1)
+			.AddSpawnItem(PID_SHOTGUN, 1, 1, 1)
+			.AddSpawnItem(PID_10MM_SMG, 1, 1, 1)
+			.AddSpawnItem(PID_LASER_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_COMBAT_KNIFE, 1, 1, 1)			
+			//Armors
+			.AddSpawnItem(PID_LEATHER_JACKET, 1, 1, 1)
+			.AddSpawnItem(PID_LEATHER_ARMOR, 1, 1, 1)	
+			.AddSpawnItem(PID_METAL_ARMOR, 1, 1, 1)
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 1, 1, 1)
+			//Recipe
+			.AddSpawnItem(PID_HUBOLOGIST_ROBE_RECIPE, 5, 1, 1)
+			//T3.5 Ready
+			.AddSpawnItem(PID_BLACK_ROBE, 1, 1, 1)
+			//Rare
+			.AddSpawnItem(PID_PURPLE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 1, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 0.3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.3, 1, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 0.3, 1, 1),
+		ContainerSpawnInfo(5, REAL_MINUTE(53), REAL_MINUTE(134), 0, 0, true) //Every town random lockers
+			//Misc
+			.AddSpawnItem(PID_BOTTLE_CAPS, 10, 3, 100)
+			.AddSpawnItem(PID_HYPODERMIC_NEEDLE, 0.5, 1, 1)
+			.AddSpawnItem(PID_ANTIDOTE, 0.5, 1, 1)
+			.AddSpawnItem(PID_HEALING_POWDER, 0.5, 1, 1)
+			.AddSpawnItem(PID_IGUANA_ON_A_STICK, 0.5, 1, 1)
+			.AddSpawnItem(PID_MEAT_ON_A_STICK, 0.5, 1, 1)
+			.AddSpawnItem(PID_ROPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_JUNK, 0.5, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_NUKA_COLA, 0.5, 1, 1)
+			.AddSpawnItem(PID_STIMPAK, 0.5, 1, 1)
+			.AddSpawnItem(PID_MENTATS, 0.5, 1, 1)
+			//Ammo
+			.AddSpawnItem(PID_MOLOTOV_COCKTAIL, 0.5, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_COMBAT_KNIFE, 0.5, 1, 1)
+			.AddSpawnItem(PID_10MM_PISTOL, 0.5, 1, 1)
+			.AddSpawnItem(PID_DESERT_EAGLE, 0.5, 1, 1)
+			.AddSpawnItem(PID_223_PISTOL, 0.5, 1, 1)
+			.AddSpawnItem(PID_44_MAGNUM_REVOLVER, 0.5, 1, 1)
+			.AddSpawnItem(PID_HUNTING_RIFLE, 0.5, 1, 1)
+			.AddSpawnItem(PID_SHOTGUN, 0.5, 1, 1)
+			.AddSpawnItem(PID_LASER_PISTOL, 0.5, 1, 1)
+			.AddSpawnItem(PID_BRASS_KNUCKLES, 0.5, 1, 1)
+			.AddSpawnItem(PID_CROWBAR, 0.5, 1, 1)
+			.AddSpawnItem(PID_KNIFE, 0.5, 1, 1)
+			.AddSpawnItem(PID_SLEDGEHAMMER, 0.5, 1, 1)
+			.AddSpawnItem(PID_SPEAR, 0.5, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_LEATHER_JACKET, 0.5, 1, 1),
+//GLOW START
+		ContainerSpawnInfo(6, REAL_MINUTE(31), REAL_MINUTE(41), 0, 0, true) // drugi low lvl 4 + karta red
+			//Misc
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_HUMAN_BRAIN, 0.5, 1, 1)
+			.AddSpawnItem(PID_CYBERNETIC_BRAIN, 0.5, 1, 1)			
+			.AddSpawnItem(PID_CHIMP_BRAIN, 2, 1, 1)
+			.AddSpawnItem(PID_ABNORMAL_BRAIN, 2, 1, 1)
+			.AddSpawnItem(PID_EYE, 3, 1, 1)
+			.AddSpawnItem(PID_MEDICAL_SUPPLIES, 3, 1, 1)
+			.AddSpawnItem(PID_BIO_GEL, 5, 1, 6)
+			.AddSpawnItem(PID_TANGLERS_HAND, 0.5, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_RED_GLOW_KEYCARD, 40, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)
+			.AddSpawnItem(PID_CHEMICAL_COMPONENTS, 10, 4, 8)
+			//Drugs
+			.AddSpawnItem(PID_STIMPAK, 5, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 5, 1, 2)
+			.AddSpawnItem(PID_ANTIDOTE, 5, 1, 3)
+			.AddSpawnItem(PID_NUKA_COLA, 10, 2, 4)
+			.AddSpawnItem(PID_CIGARETTES, 10, 2, 4)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 12, 4, 6)
+			.AddSpawnItem(PID_PSYCHO, 12, 1, 1)
+			.AddSpawnItem(PID_JET, 12, 2, 3)
+			.AddSpawnItem(PID_JET_ANTIDOTE, 12, 2, 3)
+			.AddSpawnItem(PID_BUFFOUT, 12, 2, 3)		
+			//Rare
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1),
+		ContainerSpawnInfo(7, REAL_MINUTE(31), REAL_MINUTE(41), 0, 10, true) // drugi high lvl 5 glow + level 1 sierra
+			//Misc
+			.AddSpawnItem(PID_ANTIDOTE, 5, 1, 3)
+			.AddSpawnItem(PID_DOCTORS_BAG, 10, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 10, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 15, 1, 1)
+			.AddSpawnItem(PID_CHEMICAL_COMPONENTS, 15, 6, 10)
+			//Drugs
+			.AddSpawnItem(PID_NUKA_COLA, 15, 4, 8)
+			.AddSpawnItem(PID_CIGARETTES, 15, 4, 8)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 50, 6, 12)
+			.AddSpawnItem(PID_PSYCHO, 40, 1, 2)
+			.AddSpawnItem(PID_JET, 40, 8, 12)
+			.AddSpawnItem(PID_JET_ANTIDOTE, 15, 3, 6)
+			.AddSpawnItem(PID_BUFFOUT, 40, 8, 12)
+			.AddSpawnItem(PID_STIMPAK, 15, 1, 6)
+			.AddSpawnItem(PID_MENTATS, 15, 1, 3)
+			//Rare
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1),
+		ContainerSpawnInfo(8, REAL_MINUTE(31), REAL_MINUTE(41), 0, 0, true) // mix lvl 1 + karta yellow
+			//Misc
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_5, 0.5, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 2, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 2, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 2, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 2, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)
+            .AddSpawnItem(PID_WRENCH, 5, 1, 1)
+			.AddSpawnItem(PID_MULTI_TOOL, 5, 1, 1)
+            .AddSpawnItem(PID_SUPER_TOOL_KIT, 0.5, 1, 1)
+			.AddSpawnItem(PID_OIL_CAN, 2, 1, 1)
+			.AddSpawnItem(PID_CHEMISTRY_MANUAL, 2, 1, 1)
+			.AddSpawnItem(PID_HEART_PILLS, 1, 1, 1)			
+			.AddSpawnItem(PID_EXP_LOCKPICK_SET, 10, 1, 1)
+			.AddSpawnItem(PID_YELLOW_GLOW_KEYCARD, 25, 1, 1)
+			//Drugs
+            .AddSpawnItem(PID_RADAWAY, 2, 1, 1)	
+            .AddSpawnItem(PID_RAD_X, 2, 1, 1)	
+			.AddSpawnItem(PID_STIMPAK, 10, 1, 3)
+			//Ammo
+			.AddSpawnItem(PID_14MM_AP, 3, 16, 28)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)			
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 5, 13, 47)			
+			//Weapons
+            .AddSpawnItem(PID_CROWBAR, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_KNIFE, 5, 1, 1)			
+			.AddSpawnItem(PID_ASSAULT_RIFLE_EXT_MAG, 1, 1, 1)
+			.AddSpawnItem(PID_NEEDLER_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 1, 1, 1)
+			.AddSpawnItem(PID_14MM_PISTOL, 3, 1, 1)
+			.AddSpawnItem(PID_PLASMA_PISTOL_EXT_CART, 1, 1, 1)
+			.AddSpawnItem(PID_MAGNETO_LASER_PISTOL, 1, 1, 1)			
+		    .AddSpawnItem(PID_LASER_PISTOL, 1, 1, 1)			
+			//Rare
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_RED_ROBE, 0.5, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 0.5, 1, 1)
+			.AddSpawnItem(PID_PURPLE_ROBE, 0.5, 1, 1)
+			.AddSpawnItem(PID_SAND_ROBE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+            .AddSpawnItem(PID_FLARE, 5, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 0.5, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1),
+		ContainerSpawnInfo(9, REAL_MINUTE(21), REAL_MINUTE(31), 0, 0, true) // glow lvl2 + karta yellow - 4lockers
+			//Misc
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_5, 0.5, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 2, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 2, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 2, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 2, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)			
+			.AddSpawnItem(PID_EXP_LOCKPICK_SET, 10, 1, 1)
+			.AddSpawnItem(PID_YELLOW_GLOW_KEYCARD, 50, 1, 1)
+			.AddSpawnItem(PID_MULTI_TOOL, 5, 1, 1)
+            .AddSpawnItem(PID_SUPER_TOOL_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_OIL_CAN, 2, 1, 1)
+			.AddSpawnItem(PID_CHEMISTRY_MANUAL, 2, 1, 1)
+			.AddSpawnItem(PID_HEART_PILLS, 1, 1, 1)	
+			.AddSpawnItem(PID_WRENCH, 5, 1, 1)
+			.AddSpawnItem(PID_FLARE, 5, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 5, 1, 1)
+			.AddSpawnItem(PID_TESLA_ARMOR, 1, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 0.5, 1, 1)	
+			.AddSpawnItem(PID_PLASMA_PISTOL_EXT_CART, 5, 1, 1)
+			.AddSpawnItem(PID_MAGNETO_LASER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 5, 1, 1)
+			.AddSpawnItem(PID_ASSAULT_RIFLE_EXT_MAG, 5, 1, 1)
+			.AddSpawnItem(PID_NEEDLER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_KNIFE, 5, 1, 1)
+            .AddSpawnItem(PID_CROWBAR, 5, 1, 1)			
+		    .AddSpawnItem(PID_LASER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 5, 1, 1)
+			.AddSpawnItem(PID_14MM_PISTOL, 3, 1, 1)
+			//T3.5
+			.AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 1, 1, 1)
+		    .AddSpawnItem(PID_XL70E3_RECIPE, 1, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 1, 1, 1)
+			//Drugs
+            .AddSpawnItem(PID_RADAWAY, 3, 1, 2)	
+            .AddSpawnItem(PID_RAD_X, 3, 1, 2)	
+			.AddSpawnItem(PID_STIMPAK, 10, 1, 3)
+			//Ammo
+            .AddSpawnItem(PID_14MM_AP, 3, 16, 28)
+            .AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 3, 16, 28)				
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)			
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 5, 13, 47)	
+			//Rare
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_PURPLE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_SAND_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 0.5, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1),
+		ContainerSpawnInfo(10, REAL_MINUTE(41), REAL_MINUTE(51), 0, 0, true) // glow6 - 4, glow3 - 2, sad2 - 2
+			//Misc
+            .AddSpawnItem(PID_ELOCK, 50, 1, 1)
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_5, 0.5, 1, 1)
+			.AddSpawnItem(PID_EXP_LOCKPICK_SET, 10, 1, 1)
+			.AddSpawnItem(PID_FLARE, 5, 1, 1)
+			.AddSpawnItem(PID_MULTI_TOOL, 5, 1, 1)
+            .AddSpawnItem(PID_SUPER_TOOL_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_OIL_CAN, 2, 1, 1)
+			.AddSpawnItem(PID_CHEMISTRY_MANUAL, 2, 1, 1)
+			.AddSpawnItem(PID_HEART_PILLS, 1, 1, 1)	
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 2, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 2, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 2, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 2, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)
+			//Ammo
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)
+            .AddSpawnItem(PID_14MM_AP, 3, 16, 28)
+            .AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 3, 16, 28)			
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 5, 13, 47)
+			//Weapons
+			.AddSpawnItem(PID_LASER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 0.5, 1, 1)
+			.AddSpawnItem(PID_PLASMA_PISTOL_EXT_CART, 5, 1, 1)
+			.AddSpawnItem(PID_MAGNETO_LASER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 5, 1, 1)
+			.AddSpawnItem(PID_ASSAULT_RIFLE_EXT_MAG, 5, 1, 1)
+			.AddSpawnItem(PID_NEEDLER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_KNIFE, 5, 1, 1)
+            .AddSpawnItem(PID_WRENCH, 5, 1, 1)
+            .AddSpawnItem(PID_CROWBAR, 5, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 5, 1, 1)
+			.AddSpawnItem(PID_14MM_PISTOL, 3, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_TESLA_ARMOR, 1, 1, 1)
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 5, 1, 1)
+			//T3.5 Recipe
+		    .AddSpawnItem(PID_XL70E3_RECIPE, 2, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 2, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 2, 1, 1)
+			//Drugs
+            .AddSpawnItem(PID_RADAWAY, 3, 1, 2)	
+            .AddSpawnItem(PID_RAD_X, 3, 1, 2)
+			.AddSpawnItem(PID_STIMPAK, 10, 1, 3)
+			//Rare
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_PURPLE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_SAND_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 0.5, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1),
+		ContainerSpawnInfo(11, REAL_MINUTE(41), REAL_MINUTE(51), 0, 0, true) // glow3 - 4, ares suerface - 11, ares level1 - 6, ares3 - 2
+            //Misc
+            .AddSpawnItem(PID_ELOCK, 50, 1, 1)
+            //Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 15, 1, 1)
+			.AddSpawnItem(PID_TESLA_ARMOR, 15, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 3, 1, 1)
+		    .AddSpawnItem(PID_ROCKET_LAUNCHER, 5, 1, 1)
+            .AddSpawnItem(PID_M60, 5, 1, 1)
+			//T3.5 Recipe
+            .AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 40, 1, 3)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 5, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 5, 1, 1)	
+			//Ammo
+            .AddSpawnItem(PID_FLAMETHROWER_FUEL_MK_II, 10, 20, 40)
+			.AddSpawnItem(PID_ROCKET_AP, 10, 6, 12)
+			.AddSpawnItem(PID_10MM_AP, 10, 200, 300)
+			.AddSpawnItem(PID_223_FMJ, 10, 200, 300)
+			.AddSpawnItem(PID_7_62MM_AMMO, 10, 200, 300)			
+            .AddSpawnItem(PID_5MM_AP, 20, 480, 1200)	
+			.AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 3, 16, 28)
+			//Resources
+            .AddSpawnItem(PID_ENERGY_TRANSFORMER, 5, 1, 6)		
+			.AddSpawnItem(PID_HIGH_GRADE_STEEL, 5, 1, 6)
+			.AddSpawnItem(PID_KEVLAR_POLYMER, 5, 1, 6)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 0.5, 1, 1)	
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.5, 1, 1)				
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 0.5, 1, 1)	, 	
+		ContainerSpawnInfo(12, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) //glow5 - 1 imba locker 
+		    //T4 Parts
+			.AddSpawnItem(PID_POWER_ARMOR_SHELL , 0.1, 1, 1)
+		    .AddSpawnItem(PID_HIFLO_HYDRAULIC, 0.1, 1, 1)
+		    .AddSpawnItem(PID_TECHNICAL_MANUAL, 0.1, 1, 1)
+			//T4 Ammo
+			.AddSpawnItem(PID_2MM_EC_AMMO, 20, 7, 13)
+			.AddSpawnItem(PID_50CAL, 40, 13, 27)
+			.AddSpawnItem(PID_4_7MM_CASELESS, 20, 13, 27)
+			//Rare
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 4),	
+		ContainerSpawnInfo(13, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) // glow5 - 2 special lockers 
+		    //Rare
+			.AddSpawnItem(PID_STEALTH_BOY, 25, 1, 1)
+		    .AddSpawnItem(PID_MOTION_SENSOR, 25, 1, 1)
+		    .AddSpawnItem(PID_GEIGER_COUNTER, 20, 1, 1)
+		    .AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 10, 1, 1)
+		    .AddSpawnItem(PID_HOLODISK, 30, 1, 1)
+			//T3.5
+			.AddSpawnItem(PID_BLACK_ROBE, 5, 1, 1)
+			//T3.5 Recipe
+			.AddSpawnItem(PID_HUBOLOGIST_ROBE_RECIPE, 20, 1, 1)
+			//Implants
+		    .AddSpawnItem(PID_IMPLANT_ACCURACY, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_DEFENCE, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MEDIC, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SPEED, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SURVIVOR, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MARKSMAN, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SCOUT, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENCHACEMENT, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENVIRONMENTAL, 0.1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_CHEMCONTROL, 0.1, 1, 1)
+			//Rare Bases
+		    .AddSpawnItem(PID_Rare_Base_Cave2, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Camp, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Scrapheap	, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Cave, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Depot, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Gasstation, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Tents, 1, 1, 1),
+		ContainerSpawnInfo(14, REAL_MINUTE(51), REAL_MINUTE(61), 0, 10, true) //  glow5 - 1 armor locker, Ares3 - 1 locker
+		    //Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 50, 1, 1)
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 50, 1, 1)
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 50, 1, 1)
+			.AddSpawnItem(PID_TESLA_ARMOR, 20, 1, 1)
+			.AddSpawnItem(PID_TESLA_ARMOR, 20, 1, 1)
+			//T3.5
+			.AddSpawnItem(PID_COMBAT_ARMOR, 20, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MK_II, 20, 1, 2)
+			//T3.5 Recipe
+			.AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 40, 1, 1)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 1, 1, 1)	
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 1, 1, 1)				
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 1, 1, 1),
+		ContainerSpawnInfo(15, REAL_MINUTE(51), REAL_MINUTE(61), 0, 10, true) //  glow5 - ammo locker, Ares1 - 1 locker
+			//Ammo
+			.AddSpawnItem(PID_5MM_AP, 60, 1200, 2000)
+			.AddSpawnItem(PID_7_62MM_AMMO, 60, 100, 300)
+			.AddSpawnItem(PID_10MM_AP, 60, 100, 300)
+			.AddSpawnItem(PID_14MM_AP, 60, 80, 160)
+			.AddSpawnItem(PID_223_FMJ, 60, 100, 300)
+			.AddSpawnItem(PID_SLUG_SHELLS, 60, 100, 200)
+			.AddSpawnItem(PID_ROCKET_AP, 60, 8, 22)
+			.AddSpawnItem(PID_FLAMETHROWER_FUEL_MK_II, 60, 25, 50)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 60, 60, 120)
+			.AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 60, 40, 80)
+			//Rare
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 6)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 3)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 3)
+			.AddSpawnItem(PID_MINE, 1, 1, 3)
+			//T3.5
+			.AddSpawnItem(PID_PLASMA_GRENADE, 20, 10, 30) 
+			//T3.5 Recipe
+            .AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 40, 1, 3) 
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 1, 1, 1)	
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 1, 1, 1)				
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 1, 1, 1),
+		ContainerSpawnInfo(16, REAL_MINUTE(51), REAL_MINUTE(61), 0, 10, true) // glow5 - 1 bg locker, Ares3 - 1
+			//Weapons
+			.AddSpawnItem(PID_M60, 60, 1, 2)
+			.AddSpawnItem(PID_IMPROVED_FLAMETHROWER, 60, 1, 2)
+			.AddSpawnItem(PID_ROCKET_LAUNCHER, 60, 1, 2)
+			//T3.5
+			.AddSpawnItem(PID_AVENGER_MINIGUN, 10, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON, 10, 1, 1)
+			//T3.5 Recipe
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 20, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 20, 1, 1)	
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 1, 1, 1)	
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 1, 1, 1)				
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 1, 1, 1),
+		ContainerSpawnInfo(17, REAL_MINUTE(51), REAL_MINUTE(61), 0, 10, true) //  glow5 - 1 sg locker
+			//T3.5
+			.AddSpawnItem(PID_HK_P90C, 10, 1, 1)
+			.AddSpawnItem(PID_XL70E3, 10, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE, 10, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_NEEDLER_PISTOL, 10, 1, 1)
+			.AddSpawnItem(PID_223_PISTOL, 60, 1, 1)
+			//T3.5 Recipe
+			.AddSpawnItem(PID_XL70E3_RECIPE, 20, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 20, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 20, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 20, 1, 1)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 1, 1, 1)	
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 1, 1, 1)				
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 1, 1, 1),
+		ContainerSpawnInfo(18, REAL_MINUTE(51), REAL_MINUTE(61), 0, 10, true) //  glow5 - 1 ew locker, ares3 - 1
+			//Weapons
+			.AddSpawnItem(PID_RIPPER, 60, 1, 2)
+			.AddSpawnItem(PID_SUPER_SLEDGE, 60, 1, 2)
+			.AddSpawnItem(PID_MEGA_POWER_FIST, 60, 1, 2)
+			.AddSpawnItem(PID_SUPER_CATTLE_PROD, 60, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE, 60, 1, 1)
+			//T3.5
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP, 10, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE, 10, 1, 1)	
+			//T3.5 Recipe
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 20, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 20, 1, 1)
+			//Rare
+			.AddSpawnItem(PID_LOUISVILLE_SLUGGER, 0.5, 1, 1)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL1, 1, 1, 1)	
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 1, 1, 1)				
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 1, 1, 1),
+//GLOW END
+		ContainerSpawnInfo(19, REAL_MINUTE(31), REAL_MINUTE(41), 0, 0, true) // Necro vault1 - 1
+			//Misc
+			.AddSpawnItem(PID_ANTIDOTE, 5, 1, 3)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_HUMAN_BRAIN, 0.5, 1, 1)
+			.AddSpawnItem(PID_CYBERNETIC_BRAIN, 0.5, 1, 1)			
+			.AddSpawnItem(PID_CHIMP_BRAIN, 2, 1, 1)
+			.AddSpawnItem(PID_ABNORMAL_BRAIN, 2, 1, 1)
+			.AddSpawnItem(PID_MEDICAL_SUPPLIES, 3, 1, 1)
+			.AddSpawnItem(PID_BIO_GEL, 5, 1, 6)
+			.AddSpawnItem(PID_TANGLERS_HAND, 0.5, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)
+			.AddSpawnItem(PID_CHEMICAL_COMPONENTS, 10, 4, 8)
+			//Drugs
+			.AddSpawnItem(PID_NUKA_COLA, 10, 2, 4)
+			.AddSpawnItem(PID_CIGARETTES, 10, 2, 4)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 12, 4, 6)
+			.AddSpawnItem(PID_PSYCHO, 12, 1, 1)
+			.AddSpawnItem(PID_JET, 12, 2, 3)
+			.AddSpawnItem(PID_JET_ANTIDOTE, 12, 2, 3)
+			.AddSpawnItem(PID_BUFFOUT, 12, 2, 3)
+			.AddSpawnItem(PID_STIMPAK, 5, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 5, 1, 2),
+		ContainerSpawnInfo(20, REAL_MINUTE(51), REAL_MINUTE(61), 0, 50, true) // Necro vault2 - 3
+			//Misc
+			.AddSpawnItem(PID_EXP_LOCKPICK_SET, 5, 1, 1)
+		    //Rare
+			.AddSpawnItem(PID_STEALTH_BOY, 20, 1, 3)
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 4)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 0.5, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 5, 1, 1)
+			//T3.5 Recipe
+            .AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 30, 1, 3)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 10, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 10, 1, 1)	
+			//T3.5
+			.AddSpawnItem(PID_COMBAT_ARMOR, 5, 1, 1)	
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.6, 1, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 0.6, 1, 1),
+		ContainerSpawnInfo(21, REAL_MINUTE(31), REAL_MINUTE(41), 0, 0, true) // Necro vault2 - 5
+			//Misc
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_EPART_5, 0.5, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 2, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 2, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 2, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 2, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)
+			.AddSpawnItem(PID_FLARE, 5, 1, 1)
+			.AddSpawnItem(PID_WRENCH, 5, 1, 1)
+			.AddSpawnItem(PID_MULTI_TOOL, 5, 1, 1)
+            .AddSpawnItem(PID_SUPER_TOOL_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_OIL_CAN, 2, 1, 1)
+			.AddSpawnItem(PID_CHEMISTRY_MANUAL, 2, 1, 1)
+			.AddSpawnItem(PID_HEART_PILLS, 1, 1, 1)
+			.AddSpawnItem(PID_EXP_LOCKPICK_SET, 10, 1, 1)
+			//Rare
+			.AddSpawnItem(PID_DYNAMITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 0.5, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1)
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_PURPLE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_SAND_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+			.AddSpawnItem(PID_SOLAR_SCORCHER, 0.5, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 5, 1, 1)
+			.AddSpawnItem(PID_TESLA_ARMOR, 1, 1, 1)
+			//T3.5
+			.AddSpawnItem(PID_COMBAT_ARMOR, 1, 1, 1)
+			.AddSpawnItem(PID_XL70E3, 1, 1, 1)
+			.AddSpawnItem(PID_HK_P90C, 1, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 0.5, 1, 1)	
+			.AddSpawnItem(PID_LASER_PISTOL, 5, 1, 1)
+            .AddSpawnItem(PID_14MM_PISTOL, 1, 1, 1) 						
+			.AddSpawnItem(PID_PLASMA_PISTOL_EXT_CART, 5, 1, 1)
+			.AddSpawnItem(PID_MAGNETO_LASER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 5, 1, 1)
+			.AddSpawnItem(PID_ASSAULT_RIFLE_EXT_MAG, 5, 1, 1)
+			.AddSpawnItem(PID_NEEDLER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_KNIFE, 5, 1, 1)
+            .AddSpawnItem(PID_CROWBAR, 5, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 5, 1, 1)
+			.AddSpawnItem(PID_14MM_PISTOL, 3, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_STIMPAK, 10, 1, 3)
+            .AddSpawnItem(PID_RADAWAY, 3, 1, 2)	
+            .AddSpawnItem(PID_RAD_X, 3, 1, 2)	
+			//Ammo
+            .AddSpawnItem(PID_14MM_AP, 3, 16, 28)
+            .AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 3, 16, 28)			
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)			
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 5, 13, 47),
+		ContainerSpawnInfo(22, REAL_MINUTE(21), REAL_MINUTE(31), 0, 0, true) // lockedshit, Necro Vault3 - 5 lockers vault room, 
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 10, 1, 2)
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 10, 1, 2)			
+			.AddSpawnItem(PID_TESLA_ARMOR, 10, 1, 2)
+			//Weapons
+			.AddSpawnItem(PID_14MM_PISTOL, 3, 1, 1)			
+			.AddSpawnItem(PID_PLASMA_PISTOL_EXT_CART, 5, 1, 1)
+			.AddSpawnItem(PID_MAGNETO_LASER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_FN_FAL, 5, 1, 1)
+			.AddSpawnItem(PID_ASSAULT_RIFLE_EXT_MAG, 5, 1, 1)
+			.AddSpawnItem(PID_NEEDLER_PISTOL, 5, 1, 1)
+		    .AddSpawnItem(PID_LASER_PISTOL, 5, 1, 1)
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 3, 1, 1)
+            .AddSpawnItem(PID_M60, 5, 1, 1)
+            .AddSpawnItem(PID_LASER_RIFLE_EXT_CAP, 5, 1, 1)			
+		    .AddSpawnItem(PID_ROCKET_LAUNCHER, 5, 1, 1)	
+			//T3.5
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON, 1, 1, 1)
+			.AddSpawnItem(PID_AVENGER_MINIGUN, 1, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE, 1, 1, 1)		
+		    .AddSpawnItem(PID_XL70E3, 1, 1, 1)
+			.AddSpawnItem(PID_HK_P90C, 1, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR, 2, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MK_II, 2, 1, 1)
+			//T3.5 Recipe
+            .AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 20, 1, 3)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 10, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 15, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 15, 1, 1)
+			//Ammo
+            .AddSpawnItem(PID_FLAMETHROWER_FUEL_MK_II, 10, 20, 40)
+			.AddSpawnItem(PID_ROCKET_AP, 10, 6, 12)
+			.AddSpawnItem(PID_10MM_AP, 10, 200, 300)
+			.AddSpawnItem(PID_223_FMJ, 10, 200, 300)
+			.AddSpawnItem(PID_7_62MM_AMMO, 10, 200, 300)			
+            .AddSpawnItem(PID_5MM_AP, 20, 480, 1200)	
+            .AddSpawnItem(PID_14MM_AP, 3, 16, 28)
+            .AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 3, 16, 28)
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 10, 13, 47)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 10, 60, 90)
+			//Resources
+            .AddSpawnItem(PID_ENERGY_TRANSFORMER, 5, 1, 6)		
+			.AddSpawnItem(PID_HIGH_GRADE_STEEL, 5, 1, 6)
+			.AddSpawnItem(PID_KEVLAR_POLYMER, 5, 1, 6)
+			//Rare
+			.AddSpawnItem(PID_FLARE_YELLOW, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 1, 1, 1)
+		    .AddSpawnItem(PID_STEALTH_BOY, 3, 1, 1)
+		    .AddSpawnItem(PID_MOTION_SENSOR, 2, 1, 1)
+		    .AddSpawnItem(PID_GEIGER_COUNTER, 2, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 1, 1, 1)
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 4)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.6, 1, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 0.6, 1, 1),			
+		ContainerSpawnInfo(23, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) // SIERRA2 IMBA BIG LOCKER - 7
+			//T4
+		    .AddSpawnItem(PID_PK12_GAUSS_PISTOL,5, 1, 1)
+		    .AddSpawnItem(PID_HK_G11E, 5, 1, 1)
+		    .AddSpawnItem(PID_M72_GAUSS_RIFLE, 5, 1, 1)
+		    .AddSpawnItem(PID_VINDICATOR_MINIGUN, 5, 1, 1)
+		    .AddSpawnItem(PID_BOZAR, 5, 1, 1)
+		    .AddSpawnItem(PID_GATLING_LASER, 5, 1, 1)
+		    .AddSpawnItem(PID_YK42B_PULSE_RIFLE, 5, 1, 1)			
+			.AddSpawnItem(PID_POWERED_ARMOR, 1, 1, 1)
+			//Rare
+			.AddSpawnItem(PID_MINE,40, 1, 2)
+			.AddSpawnItem(PID_DYNAMITE, 40, 1, 2)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES,40, 1, 2),
+		ContainerSpawnInfo(24, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) // SIERRA2 IMBA SMALL LOCKER -4
+			//T4 Ammo
+			.AddSpawnItem(PID_2MM_EC_AMMO, 40, 12, 36)
+			.AddSpawnItem(PID_4_7MM_CASELESS, 60, 260, 400)
+			//Ammo
+			.AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 40, 24, 48)
+			//Rare
+		    .AddSpawnItem(PID_GEIGER_COUNTER, 20, 1, 1)
+			.AddSpawnItem(PID_STEALTH_BOY, 40, 1, 1)
+		    .AddSpawnItem(PID_MOTION_SENSOR, 20, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 10, 1, 2)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 10, 1, 2)
+			.AddSpawnItem(PID_MINE, 10, 1, 2)
+			//Implants
+		    .AddSpawnItem(PID_IMPLANT_ACCURACY, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_DEFENCE, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MEDIC, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SPEED, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SURVIVOR, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MARKSMAN, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SCOUT, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENCHACEMENT, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENVIRONMENTAL, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_CHEMCONTROL, 1, 1, 1)
+			//Rare Bases
+		    .AddSpawnItem(PID_Rare_Base_Cave2, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Camp, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Scrapheap	, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Cave, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Depot, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Gasstation, 1, 1, 1)
+		    .AddSpawnItem(PID_Rare_Base_Tents, 1, 1, 1),
+		ContainerSpawnInfo(25, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) // SIERRA2 resources - 10
+			//Resources
+            .AddSpawnItem(PID_ENERGY_TRANSFORMER, 20, 1, 3)		
+			.AddSpawnItem(PID_HIGH_GRADE_STEEL, 20, 1, 3)
+			.AddSpawnItem(PID_CHEMICAL_COMPONENTS, 20, 1, 3)
+			.AddSpawnItem(PID_KEVLAR_POLYMER, 20, 1, 3),
+		ContainerSpawnInfo(26, REAL_MINUTE(51), REAL_MINUTE(61), 0, 10, true) //  SIERRA3 - 1
+			//Misc
+			.AddSpawnItem(PID_ANTIDOTE, 5, 1, 3)
+			.AddSpawnItem(PID_DOCTORS_BAG, 5, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 5, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 5, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_NUKA_COLA, 5, 1, 3)
+			.AddSpawnItem(PID_CIGARETTES, 5, 1, 3)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 50, 4, 6)
+			.AddSpawnItem(PID_JET, 5, 1, 3)
+			.AddSpawnItem(PID_BUFFOUT, 5, 1, 3)
+			.AddSpawnItem(PID_STIMPAK, 15, 1, 6)
+			.AddSpawnItem(PID_MENTATS, 5, 1, 3),
+		ContainerSpawnInfo(27, REAL_MINUTE(31), REAL_MINUTE(41), 0, 0, true) // SIERRA3  - 6, SIERRA4 - 2
+			//Misc
+			.AddSpawnItem(PID_ANTIDOTE, 5, 1, 3)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)
+			.AddSpawnItem(PID_DOCTORS_BAG, 2, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 2, 1, 1)		
+			//Drugs
+			.AddSpawnItem(PID_NUKA_COLA, 5, 1, 3)
+			.AddSpawnItem(PID_CIGARETTES, 5, 1, 3)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 5, 1, 3)
+			.AddSpawnItem(PID_JET, 5, 1, 1)
+			.AddSpawnItem(PID_BUFFOUT, 5, 1, 3)
+			.AddSpawnItem(PID_STIMPAK, 15, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 5, 1, 3)
+			//Ammo
+			.AddSpawnItem(PID_FLAMETHROWER_FUEL_MK_II, 10, 20, 40)
+			.AddSpawnItem(PID_10MM_AP, 10, 31, 62)
+			.AddSpawnItem(PID_223_FMJ, 10, 34, 63)
+			.AddSpawnItem(PID_7_62MM_AMMO, 10, 35, 74)			
+            .AddSpawnItem(PID_5MM_AP, 20, 81, 125)
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 10, 13, 47)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 10, 13, 31),
+		ContainerSpawnInfo(28, REAL_MINUTE(19), REAL_MINUTE(21), 0, 0, true) // mariposa outside - 2 lockers
+			//Misc
+			.AddSpawnItem(PID_BOTTLE_CAPS, 10, 421, 862)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE, 1, 1, 1)
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 1, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 1, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 1, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 1, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_JET, 15, 4, 6)
+			.AddSpawnItem(PID_BUFFOUT, 15, 4, 6)
+			.AddSpawnItem(PID_PSYCHO, 15, 1, 2)
+			.AddSpawnItem(PID_CIGARETTES, 10, 4, 6)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 20, 6, 8)
+			.AddSpawnItem(PID_NUKA_COLA, 10, 4, 6)
+			.AddSpawnItem(PID_STIMPAK, 1, 3, 6)
+			.AddSpawnItem(PID_MENTATS, 1, 1, 3)
+			//Weapons
+			.AddSpawnItem(PID_M60, 5, 1, 1)
+			.AddSpawnItem(PID_ROCKET_LAUNCHER, 5, 1, 1)
+			.AddSpawnItem(PID_223_PISTOL, 10, 1, 1)			
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 10, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 25, 1, 1)
+			//T3.5
+			.AddSpawnItem(PID_PLASMA_RIFLE, 2, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP, 2, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON, 2, 1, 1)
+			.AddSpawnItem(PID_AVENGER_MINIGUN, 2, 1, 1)	
+			.AddSpawnItem(PID_HK_P90C, 2, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR, 2, 1, 1)
+			//T3.5 Recipe
+            .AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 30, 1, 1)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 5, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 5, 1, 1)
+			//Ammo
+			.AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 1, 23, 38) 
+			.AddSpawnItem(PID_ROCKET_AP, 5, 4, 8)			
+			.AddSpawnItem(PID_7_62MM_AMMO, 8, 81, 191)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)			
+			.AddSpawnItem(PID_223_FMJ, 8, 81, 191)
+			.AddSpawnItem(PID_5MM_AP, 20, 240, 360)			
+			//Rare
+			.AddSpawnItem(PID_SOLAR_SCORCHER, 0.5, 1, 1)
+			.AddSpawnItem(PID_WAKIZASHI_BLADE, 0.5, 1, 1)
+			.AddSpawnItem(PID_HYPO, 1, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 1, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+			.AddSpawnItem(PID_STEALTH_BOY, 0.5, 1, 1)
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 4)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.2, 1, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 0.2, 1, 1),				
+		ContainerSpawnInfo(29, REAL_MINUTE(19), REAL_MINUTE(21), 0, 0, true) // sf tanker - 1 locker
+			//Misc
+			.AddSpawnItem(PID_BOTTLE_CAPS, 10, 421, 862)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE, 1, 1, 1)
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 1, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 1, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 1, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 1, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_CIGARETTES, 10, 4, 6)
+			.AddSpawnItem(PID_JET, 15, 4, 6)
+			.AddSpawnItem(PID_BUFFOUT, 15, 4, 6)
+			.AddSpawnItem(PID_PSYCHO, 15, 1, 2)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 20, 6, 8)
+			.AddSpawnItem(PID_NUKA_COLA, 10, 4, 6)
+			.AddSpawnItem(PID_STIMPAK, 1, 3, 6)
+			.AddSpawnItem(PID_MENTATS, 1, 1, 3)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 25, 1, 1)
+			
+			//T3.5 Recipe
+            .AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 30, 1, 3)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 10, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 10, 1, 1)
+			//T3.5
+			.AddSpawnItem(PID_AVENGER_MINIGUN, 5, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP, 5, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE, 5, 1, 1)
+			.AddSpawnItem(PID_HK_P90C, 5, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR, 8, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON, 5, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_223_PISTOL, 10, 1, 1)
+			.AddSpawnItem(PID_M60, 5, 1, 1)
+			.AddSpawnItem(PID_ROCKET_LAUNCHER, 5, 1, 1)
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 0.5, 1, 1)
+			//Ammo
+			.AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 1, 23, 38) 
+			.AddSpawnItem(PID_ROCKET_AP, 5, 4, 8)			
+			.AddSpawnItem(PID_7_62MM_AMMO, 8, 81, 191)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 5, 60, 90)			
+			.AddSpawnItem(PID_223_FMJ, 8, 81, 191)
+			.AddSpawnItem(PID_5MM_AP, 20, 240, 360)			
+			//Rare
+			.AddSpawnItem(PID_WAKIZASHI_BLADE, 0.5, 1, 1)
+			.AddSpawnItem(PID_SOLAR_SCORCHER, 0.5, 1, 1)
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 4)
+			.AddSpawnItem(PID_HYPO, 0.5, 1, 1)
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_LOCKPICKS, 1, 1, 1)
+			.AddSpawnItem(PID_ELEC_LOCKPICK_MKII, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_YELLOW, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_WHITE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_ORANGE, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_GREEN, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_RED, 0.5, 1, 1)
+			.AddSpawnItem(PID_FLARE_BLUE, 0.5, 1, 1)
+			.AddSpawnItem(PID_STEALTH_BOY, 0.5, 1, 1)
+			.AddSpawnItem(PID_RED_ROBE, 1, 1, 1)
+			.AddSpawnItem(PID_BLUE_ROBE, 1, 1, 1),
+		ContainerSpawnInfo(30, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) // SIERRA LEVEL 4 armory near access PC
+            //Ammo
+            .AddSpawnItem(PID_FLAMETHROWER_FUEL_MK_II, 10, 20, 40)
+			.AddSpawnItem(PID_ROCKET_AP, 10, 6, 12)
+			.AddSpawnItem(PID_10MM_AP, 10, 200, 300)
+			.AddSpawnItem(PID_223_FMJ, 10, 200, 300)
+			.AddSpawnItem(PID_7_62MM_AMMO, 10, 200, 300)			
+            .AddSpawnItem(PID_5MM_AP, 20, 480, 960)	
+            .AddSpawnItem(PID_HN_AP_NEEDLER_CARTRIDGE, 3, 16, 28)
+/*
+			//Weapons
+            .AddSpawnItem(PID_M60, 4, 1, 1)
+			.AddSpawnItem(PID_YK32_PULSE_PISTOL, 4, 0, 1)
+            .AddSpawnItem(PID_ROCKET_LAUNCHER, 4, 1, 1)
+			//Armors
+			.AddSpawnItem(PID_METAL_ARMOR_MK_II, 8, 1, 2)
+			.AddSpawnItem(PID_TESLA_ARMOR, 8, 1, 2)
+			//T3.5 Recipe
+            .AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 20, 1, 3)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 80, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 70, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 30, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 40, 1, 1)
+			//T3.5 			
+		    .AddSpawnItem(PID_XL70E3, 4, 1, 1)
+			.AddSpawnItem(PID_HK_P90C, 4, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON, 4, 1, 1)
+			.AddSpawnItem(PID_AVENGER_MINIGUN, 4, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR, 8, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MK_II, 8, 1, 1)			
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP, 4, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE, 4, 1, 1)
+			//Resources
+            .AddSpawnItem(PID_ENERGY_TRANSFORMER, 4, 1, 5)		
+			.AddSpawnItem(PID_HIGH_GRADE_STEEL, 4, 1, 5)
+			.AddSpawnItem(PID_KEVLAR_POLYMER, 4, 1, 5)
+*/		
+													,
+		ContainerSpawnInfo(31, REAL_MINUTE(31), REAL_MINUTE(41), 0, 0, true) // Sf tanker - 2 , Mariposa enter - 1, Ares level2 - 1
+			//Misc
+			.AddSpawnItem(PID_ANTIDOTE, 5, 1, 3)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 2, 1, 1)
+			.AddSpawnItem(PID_DOCTORS_BAG, 2, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 2, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_NUKA_COLA, 20, 1, 3)
+			.AddSpawnItem(PID_CIGARETTES, 20, 1, 3)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 20, 1, 3)
+			.AddSpawnItem(PID_PSYCHO, 20, 1, 1)
+			.AddSpawnItem(PID_JET, 20, 1, 1)
+			.AddSpawnItem(PID_BUFFOUT, 10, 1, 3)
+			.AddSpawnItem(PID_STIMPAK, 20, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 10, 1, 3)
+			//Ammo
+			.AddSpawnItem(PID_FLAMETHROWER_FUEL_MK_II, 10, 20, 40)
+			.AddSpawnItem(PID_10MM_AP, 10, 31, 62)
+			.AddSpawnItem(PID_223_FMJ, 10, 34, 63)
+			.AddSpawnItem(PID_7_62MM_AMMO, 10, 35, 74)			
+            .AddSpawnItem(PID_5MM_AP, 20, 81, 125)
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 10, 13, 47)
+			.AddSpawnItem(PID_MICRO_FUSION_CELL, 10, 13, 31)
+			//Blueprints
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.6, 1, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 0.6, 1, 1),
+		ContainerSpawnInfo(32, REAL_MINUTE(41), REAL_MINUTE(51), 0, 0, true) //  Ares level2 - 5, Ares level3 - 4
+			//Misc
+			.AddSpawnItem(PID_BOTTLE_CAPS, 10, 3, 198)
+			.AddSpawnItem(PID_HYPODERMIC_NEEDLE, 1, 1, 3)
+			.AddSpawnItem(PID_ANTIDOTE, 1, 1, 2)
+			.AddSpawnItem(PID_DOCTORS_BAG, 1, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_KIT, 1, 1, 1)
+			.AddSpawnItem(PID_FLARE, 1, 1, 1)
+			.AddSpawnItem(PID_HEALING_POWDER, 5, 3, 5)
+			.AddSpawnItem(PID_ROPE, 1, 1, 1)
+			.AddSpawnItem(PID_PREWAR_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_PREWAR_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_1, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_2, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_3, 0.5, 1, 1)
+			.AddSpawnItem(PID_MPART_4, 0.5, 1, 1)
+			.AddSpawnItem(PID_SCOUT_HANDBOOK, 10, 1, 1)
+			.AddSpawnItem(PID_GUNS_AND_BULLETS, 10, 1, 1)
+			.AddSpawnItem(PID_BIG_BOOK_OF_SCIENCE, 10, 1, 1)
+			.AddSpawnItem(PID_DEANS_ELECTRONICS, 10, 1, 1)
+			.AddSpawnItem(PID_FIRST_AID_BOOK, 10, 1, 1)
+			//Weapons
+			.AddSpawnItem(PID_10MM_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_DESERT_EAGLE, 1, 1, 1)
+			.AddSpawnItem(PID_223_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_44_MAGNUM_REVOLVER, 1, 1, 1)
+			.AddSpawnItem(PID_HUNTING_RIFLE, 1, 1, 1)
+			.AddSpawnItem(PID_ASSAULT_RIFLE, 1, 1, 1)
+			.AddSpawnItem(PID_SHOTGUN, 1, 1, 1)
+			.AddSpawnItem(PID_10MM_SMG, 1, 1, 1)
+			.AddSpawnItem(PID_LASER_PISTOL, 1, 1, 1)
+			.AddSpawnItem(PID_COMBAT_KNIFE, 1, 1, 1)
+			//Drugs
+			.AddSpawnItem(PID_SUPER_STIMPAK, 1, 1, 1)
+			.AddSpawnItem(PID_NUKA_COLA, 1, 1, 1)
+			.AddSpawnItem(PID_STIMPAK, 10, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 1, 1, 1)
+			//Ammo
+			.AddSpawnItem(PID_10MM_AP, 5, 13, 43)
+			.AddSpawnItem(PID_223_FMJ, 5, 16, 34)
+			.AddSpawnItem(PID_44_FMJ_MAGNUM, 5, 14, 38)
+			.AddSpawnItem(PID_5MM_AP, 5, 62, 101)
+			.AddSpawnItem(PID_FLAMETHROWER_FUEL, 5, 13, 28)
+			.AddSpawnItem(PID_SMALL_ENERGY_CELL, 5, 13, 47)			
+			.AddSpawnItem(PID_MOLOTOV_COCKTAIL, 1, 1, 3)
+			.AddSpawnItem(PID_FRAG_GRENADE, 1, 1, 4),
+		ContainerSpawnInfo(33, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) //  ARES imba locker 
+			//T3.5 Recipe
+			.AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 80, 1, 5)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 40, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 40, 1, 1)	
+			//T4 Parts
+			.AddSpawnItem(PID_GATLING_LASER_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_BOZAR_RECIPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_VINDICATOR_MINIGUN_RECIPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_HK_G11_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_HK_G11E_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_PPK12_GAUSS_PISTOL_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_M72_GAUSS_RIFLE_RECIPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_HIFLO_HYDRAULIC, 0.5, 1, 1)	
+			.AddSpawnItem(PID_EMISSION_CONCENTRATOR, 0.5, 1, 1)
+		    //T4 Ammo			
+			.AddSpawnItem(PID_2MM_EC_AMMO, 20, 7, 13)
+			.AddSpawnItem(PID_50CAL, 20, 13, 27)
+			.AddSpawnItem(PID_4_7MM_CASELESS, 20, 13, 27)
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 4)
+			//Rare
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			//Implants
+			.AddSpawnItem(PID_IMPLANT_ACCURACY, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_DEFENCE, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MEDIC, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SPEED, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SURVIVOR, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MARKSMAN, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SCOUT, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENCHACEMENT, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENVIRONMENTAL, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_CHEMCONTROL, 1, 1, 1),
+		ContainerSpawnInfo(34, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) //  MARIPOSA imba locker 
+			//T3.5 Recipe
+			.AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 80, 1, 5)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 40, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 40, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 40, 1, 1)	
+			//T4 Parts
+			.AddSpawnItem(PID_GATLING_LASER_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_BOZAR_RECIPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_VINDICATOR_MINIGUN_RECIPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_HK_G11_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_HK_G11E_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_PPK12_GAUSS_PISTOL_RECIPE, 0.5, 1, 1)
+		    .AddSpawnItem(PID_M72_GAUSS_RIFLE_RECIPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_YK42B_PULSE_RIFLE_RECIPE, 0.5, 1, 1)
+			.AddSpawnItem(PID_PARTICLE_ACCELERATOR, 3, 1, 1)
+		    .AddSpawnItem(PID_EMISSION_CONCENTRATOR, 3, 1, 1)
+			.AddSpawnItem(PID_TITANIUM_BARRELS, 3, 1, 1)
+			.AddSpawnItem(PID_RECOIL_COMPENSATOR, 3, 1, 1)
+		    .AddSpawnItem(PID_TELESCOPIC_SIGHTS, 3, 1, 1)
+		    .AddSpawnItem(PID_ROTARY_CHAMBER, 3, 1, 1)
+		    .AddSpawnItem(PID_BOLT_ASSIST, 3, 1, 1)
+			.AddSpawnItem(PID_ELECTRONIC_FIRE_MECHANISM , 3, 1, 1)	
+			.AddSpawnItem(PID_MACHINED_HIGH_GRADE_STEEL, 3, 1, 1)
+			.AddSpawnItem(PID_MICRO_FUSION_PACK, 3, 1, 1)
+		    .AddSpawnItem(PID_HIFLO_HYDRAULIC, 3, 1, 1)
+			.AddSpawnItem(PID_ADVANCED_POWER_ARMOR_SHELL, 2, 1, 1)
+			.AddSpawnItem(PID_IMPROVED_SERVOS, 3, 1, 1)
+		    //T4 Ammo			
+			.AddSpawnItem(PID_2MM_EC_AMMO, 20, 7, 13)
+			.AddSpawnItem(PID_50CAL, 20, 13, 27)
+			.AddSpawnItem(PID_4_7MM_CASELESS, 20, 13, 27)
+			.AddSpawnItem(PID_PULSE_GRENADE, 1, 1, 4)
+			//Rare
+			.AddSpawnItem(PID_DYNAMITE, 1, 1, 1)
+			.AddSpawnItem(PID_PLASTIC_EXPLOSIVES, 1, 1, 1)
+			.AddSpawnItem(PID_MINE, 1, 1, 1)
+			//Implants
+			.AddSpawnItem(PID_IMPLANT_ACCURACY, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_DEFENCE, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MEDIC, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SPEED, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SURVIVOR, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_MARKSMAN, 0.6, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_SCOUT, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENCHACEMENT, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENVIRONMENTAL, 1, 1, 1)
+		    .AddSpawnItem(PID_IMPLANT_CHEMCONTROL, 1, 1, 1),
+			ContainerSpawnInfo(35, REAL_MINUTE(51), REAL_MINUTE(61), 0, 0, true) // SIERRA2 resources - 10
+			//Resources
+            .AddSpawnItem(PID_ENERGY_TRANSFORMER, 20, 1, 3)		
+			.AddSpawnItem(PID_HIGH_GRADE_STEEL, 20, 1, 3)
+			.AddSpawnItem(PID_CHEMICAL_COMPONENTS, 20, 1, 3)
+			.AddSpawnItem(PID_KEVLAR_POLYMER, 20, 1, 3)
+			.AddSpawnItem(PID_PLASMA_GRENADE_RECIPE, 10, 1, 5)    			
+		    .AddSpawnItem(PID_AVENGER_MINIGUN_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_XL70E3_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_HK_P90C_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_PLASMA_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_SNIPER_RIFLE_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LASER_RIFLE_EXT_CAP_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 10, 1, 1)
+		    .AddSpawnItem(PID_COMBAT_ARMOR_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MARK_II_RECIPE, 10, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR, 10, 1, 1)
+			.AddSpawnItem(PID_COMBAT_ARMOR_MK_II, 10, 1, 1)
+			.AddSpawnItem(PID_NUKA_COLA, 20, 1, 3)
+			.AddSpawnItem(PID_CIGARETTES, 20, 1, 3)
+			.AddSpawnItem(PID_SUPER_STIMPAK, 20, 1, 3)
+			.AddSpawnItem(PID_PSYCHO, 20, 1, 1)
+			.AddSpawnItem(PID_JET, 20, 1, 1)
+			.AddSpawnItem(PID_BUFFOUT, 10, 1, 3)
+			.AddSpawnItem(PID_STIMPAK, 20, 1, 3)
+			.AddSpawnItem(PID_MENTATS, 10, 1, 3)
+			.AddSpawnItem(BLUEPRINT_LEVEL2, 0.6, 1, 1)
+			.AddSpawnItem(PID_GENERAL_CLIFTONS_HOLODISK, 0.1, 0, 1)
+						//T4 Ammo
+			.AddSpawnItem(PID_2MM_EC_AMMO, 5, 7, 13)
+			.AddSpawnItem(PID_50CAL, 5, 13, 27)
+			.AddSpawnItem(PID_4_7MM_CASELESS, 5, 13, 27)
+			.AddSpawnItem(PID_IMPLANT_ACCURACY, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_DEFENCE, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_MEDIC, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_SPEED, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_SURVIVOR, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_MARKSMAN, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_SCOUT, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENCHACEMENT, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_ENVIRONMENTAL, 0.1, 0, 1)
+		    .AddSpawnItem(PID_IMPLANT_CHEMCONTROL, 0.1, 0, 1)
+			.AddSpawnItem(BLUEPRINT_LEVEL3, 0.6, 1, 1)
+	};
+	return infos;
+}
+
+class ContainerSpawnInfo 
+{
+	uint Id;	//id of this spawn info (must be unique)
+	private uint MinRespawnTime; //min respawn time in seconds
+	private uint MaxRespawnTime; //man respawn time in seconds
+	private uint16 MinLockerComplexity; //min complexity for locker on container
+	private uint16 MaxLockerComplexity; //max complexity for locker on container
+	private bool ClearOnRefresh;
+	LootItem@[] SpawnItems; //items to be spawned
+		
+	ContainerSpawnInfo(uint id, uint minRespawnTime, uint maxRespawnTime, uint16 minLockerComplexity, uint16 maxLockerComplexity, bool clearOnRefresh) 
+	{
+		Id = id;
+		MinRespawnTime = minRespawnTime;
+		MaxRespawnTime = maxRespawnTime;
+		MinLockerComplexity = minLockerComplexity;
+		MaxLockerComplexity = maxLockerComplexity;
+		ClearOnRefresh = clearOnRefresh;
+	}
+	
+	ContainerSpawnInfo@ AddSpawnItem(uint16 itemPid, double chance, uint16 minCount, uint16 maxCount)
+	{
+		SpawnItems.insertLast(LootItem(itemPid, chance, minCount, maxCount));
+		return this;
+	}
+	
+	uint GetRespawnTime()
+	{
+		return Random(MinRespawnTime, MaxRespawnTime);
+	}
+	
+	uint GetLockerComplexity()
+	{
+		return Random(MinLockerComplexity, MaxLockerComplexity);
+	}
+	
+	void AddItemsToContainer(Item& container)
+	{
+		if(ClearOnRefresh)
+		{
+			Item@[] items;
+			container.GetItems(0, items);
+			DeleteItems(items);
+		}
+		
+		for (uint i = 0; i < SpawnItems.length(); i++)
+		{
+			LootItem@ spawnItem = SpawnItems[i];
+			if(spawnItem.IsChosen() && spawnItem.GetCount()> 0 )
+			{
+				ProtoItem@ ItemProto = GetProtoItem(spawnItem.ProtoId);
+				if (ItemProto.Stackable)
+				{
+					if (IsItemAviable(ItemProto))
+					{
+                        uint count = ProcessRareLootRules(spawnItem.ProtoId, container.MapId, spawnItem.GetCount());	
+						
+						if (count > 0)
+						{
+							container.AddItem(spawnItem.ProtoId, count, 0);
+						}
+					}
+				}
+				else
+				{
+					uint pid = GetAviableItem(spawnItem.ProtoId, true);
+					
+                    if (pid==0)
+                        continue;
+						
+					uint count = ProcessRareLootRules(pid, container.MapId, spawnItem.GetCount());	
+                    for (uint j = 0; j < count; j++)
+					{
+						Item@ advItem = container.AddItem(pid, 1, 0);
+						if (valid(advItem))
+						{
+							GenerateStats(advItem);
+						}
+					}
+				
+				}
+			}
+		}
+	}
+};

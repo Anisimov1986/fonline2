@@ -1,0 +1,351 @@
+/**
+ * Created: 10.7.2012
+ * Author: mikewall
+ */
+
+#include "_macros.fos"
+#include "entire.fos"
+#include "base_defines.fos"
+
+#define WAVE_ATTACKER_TYPE_ONLY_ONE	(1)
+#define WAVE_ATTACKER_TYPE_MIXED	(2)
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+
+class BaseWaveDefinition
+{
+	uint Base;
+	uint Org;
+	Cycle@[] Cycles;
+	
+	BaseWaveDefinition(uint base, uint org)
+	{
+		Base = base;
+		Org = org;
+	} 
+	
+	Cycle@ AddCycle()
+	{
+		Cycle@ cycle = Cycle(Cycles.length(), this);
+		Cycles.insertLast(cycle);
+		return cycle;
+	}
+	
+	Wave@ GetWave(uint16 cycleNumber, uint16 waveNumber)
+	{
+		Cycle@ cycle = GetCycle(cycleNumber);
+		return cycle is null ? null : cycle.GetWave(waveNumber);
+	}
+	
+	Cycle@ GetCycle(uint cycleNumber)
+	{
+		//if cycle is not defined return last
+		if(cycleNumber >= Cycles.length())
+		{
+			cycleNumber = Cycles.length() - 1;
+		}
+		return Cycles[cycleNumber];
+	}
+}
+
+class Cycle
+{
+	BaseWaveDefinition@ ParentBaseWaveDefinition;
+	uint16 Index;
+	Wave@[] Waves;
+	
+	Cycle(uint16 cycleIndex, BaseWaveDefinition@ parentBaseWaveDefinition)
+	{
+		Index = cycleIndex;
+		@ParentBaseWaveDefinition = parentBaseWaveDefinition;
+	}
+	
+	Wave@ AddWave(uint16 attackerCount, uint16 attackerType)
+	{
+		Wave@ wave = Wave(this, Waves.length(), attackerCount, attackerType);
+		Waves.insertLast(wave);
+		return wave;
+	}
+	
+	Wave@ GetWave(uint16 waveNumber)
+	{
+		//if wave is not defined, return last
+		if(waveNumber >= Waves.length())
+		{
+			waveNumber = Waves.length() - 1;
+		}
+		return Waves[waveNumber];
+	}
+	
+	uint[] CreateSpawnWavesEvents(Critter@ target, string eventName)
+	{
+		uint[] spawnWaveEvents;
+		uint cycleStartTime = __FullSecond;
+		for (uint i = 0; i < Waves.length(); i++)
+		{
+			uint spawnWave = Waves[i].CreateSpawnWaveEvent(cycleStartTime, target, eventName);
+			spawnWaveEvents.insertLast(spawnWave);
+		}
+		return spawnWaveEvents;
+	}
+}
+
+class Wave
+{
+	private Cycle@ ParentCycle;
+	uint16 Index;
+	
+	uint16 AttackerCount;
+	uint16 AttackerType;
+	AttackerDefinition@[] AttackerDefinitions;
+	
+	Wave(Cycle@ parentCycle, uint16 waveIndex, uint16 attackerCount, uint16 attackerType)
+	{
+		@ParentCycle = parentCycle;
+		Index = waveIndex;
+		AttackerCount = attackerCount;
+		AttackerType = attackerType;
+	}
+	
+	Wave@ AddAttackerDefinition(uint16 weaponPid, uint16 npcPid)
+	{
+		AttackerDefinitions.insertLast(AttackerDefinition(weaponPid, npcPid));
+		return this;
+	}
+	
+	Wave@ AddWave(uint16 waveNumber, uint16 attackerCount)
+	{
+		return ParentCycle.AddWave(waveNumber, attackerCount);
+	}
+	
+	Cycle@ AddCycle()
+	{
+		return ParentCycle.ParentBaseWaveDefinition.AddCycle();
+	}
+	
+	BaseWaveDefinition@ Finish()
+	{
+		return ParentCycle.ParentBaseWaveDefinition;
+	}
+	
+	/*
+	 * 1st wave at 1/[number_of_waves_in_cycle] of [cycle_duration]
+	 * 2nd wave at 2/[number_of_waves_in_cycle] of [cycle_duration]
+	 * ...
+	 * last wave at [cycle_duration] - 1 minutes
+	 */
+	uint GetStartTimeOffset()
+	{
+		if (ParentCycle.Index<4)
+		{
+			return isLast() 
+				? REAL_MINUTE(3) 
+				: (REAL_MINUTE(4) / ParentCycle.Waves.length()) * (Index + 1) + REAL_SECOND(Random(-20, 20));
+		}
+		else
+		{
+		return isLast() 
+				? CYCLE_DURATION - REAL_MINUTE(1) 
+				: (CYCLE_DURATION / ParentCycle.Waves.length()) * (Index + 1) + REAL_SECOND(Random(-20, 20));
+		}
+	}
+	
+	bool isLast()
+	{
+		return ParentCycle.Waves.length() - 1 == Index;
+	}
+	
+	uint CreateSpawnWaveEvent(uint cycleStartTime, Critter@ target, string eventName)
+	{
+		uint[] values = {ParentCycle.ParentBaseWaveDefinition.Base, ParentCycle.ParentBaseWaveDefinition.Org, target.Id, ParentCycle.Index, Index};
+		uint waveStartTime = cycleStartTime + GetStartTimeOffset();
+		
+		Info("Creating time event for cycle: "+ParentCycle.Index +" and wave: " + Index);
+		return CreateTimeEvent(waveStartTime, eventName, values, true);
+	}
+	
+	void SpawnWave(Map@ map, Critter@ target)
+	{
+		if(!valid(map))
+		{
+			return;
+		}
+		
+		Critter@[] attackers = AddWaveAttackers(map, target);
+		Critter@[] deffenders;
+		map.GetCritters(0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, deffenders);
+		
+		Info("Created "+attackers.length()+" attackers.");
+		Info("Found "+deffenders.length()+" deffenders.");
+		
+		for (uint j = 0; j < attackers.length(); j++)
+		{
+			AttackTargets(attackers[j], deffenders);
+		}
+	}
+		
+	private Critter@[] AddWaveAttackers(Map& map, Critter@ target)
+	{
+		Critter@[] attackers;
+		Entire[] entires;
+		ParseEntires(map, entires, ENTIRE_BASE_WAVE_SPAWN);
+		if(AttackerDefinitions.length() == 0 || entires.length() == 0)
+		{
+			Info("Cannot found any attacker definitions or spawn entires");
+			return attackers;
+		}
+		
+		Info("Defined "+AttackerCount+" attacker.");
+		Entire@ entire = entires[Random(0, entires.length() -1)];
+		if(AttackerType == WAVE_ATTACKER_TYPE_ONLY_ONE)
+		{
+			AttackerDefinition@ attackerDefinition = ChooseAttackerDefinition();
+			for (uint i = 0; i < AttackerCount; i++)
+			{
+				Critter@ attacker = AddAttacker(map, target, entire, attackerDefinition);
+				if(!valid(attacker))
+				{
+					Info("No attacker created.");
+					break;
+				}
+				attackers.insertLast(attacker);
+			}
+		}
+		else if(AttackerType == WAVE_ATTACKER_TYPE_MIXED)
+		{
+			for (uint i = 0; i < AttackerCount; i++)
+			{
+				Critter@ attacker = AddAttacker(map, target, entire, ChooseAttackerDefinition());
+				if(!valid(attacker))
+				{
+					Info("No attacker created.");
+					break;
+				}
+				attackers.insertLast(attacker);
+			}
+		}
+		
+		return attackers;
+	}
+	
+	private Critter@ AddAttacker(Map@ map, Critter@ target, Entire@ entire, AttackerDefinition@ attackerDefinition)
+	{
+		uint16 spawnHexX = entire.HexX;
+		uint16 spawnHexY = entire.HexY;
+		
+		if(!GetFreeHex(map, spawnHexX, spawnHexY, AttackerCount))
+		{
+			Info("Could not find spawn hex for attacker.");
+			return null;
+		}
+		
+		int[] params = AttackerParams;
+		Critter@ attacker = map.AddNpc(attackerDefinition.NPCPid, 
+			spawnHexX, spawnHexY,
+			GetDirection(spawnHexX, spawnHexY, target.HexX, target.HexY),
+			params, null, null);
+		if(!valid(attacker))
+		{
+			Info("Failed to add attacked on map");
+			return null;
+		}
+        attacker.ParamBase[VISION_LEVEL]=1;
+		attacker.StatBase[ST_MAX_LIFE]+=AttackerCount*5;
+		attacker.StatBase[ST_CURRENT_HP]+=AttackerCount*5;
+
+		for( uint i = ST_NORMAL_RESIST; i <= ST_EXPLODE_RESIST; i++ )
+			attacker.StatBase[i]+=AttackerCount;
+
+		for( uint i = ST_NORMAL_ABSORB; i <= ST_EXPLODE_ABSORB; i++ )
+			attacker.StatBase[i]+=AttackerCount;
+		
+		Item@ weapon = attacker.AddItem(attackerDefinition.WeaponPid, 1);
+		if (valid(weapon) && weapon.GetProtoId () == PID_ROCKET_LAUNCHER)
+			weapon.AmmoPid=PID_ROCKET_AP;
+		else if (valid(weapon) && weapon.GetProtoId () == PID_AVENGER_MINIGUN)
+			weapon.AmmoPid=PID_5MM_AP;
+			
+		attacker.SetFavoriteItem(SLOT_HAND1, attackerDefinition.WeaponPid);
+		attacker.SetEvent(CRITTER_EVENT_IDLE, "base_npc_wave@_AttackerIdle");
+		attacker.SetEvent(CRITTER_EVENT_DEAD, "base_npc_wave@_AttackerDied");
+		
+		return attacker;
+	}
+	
+	private bool GetFreeHex(Map@ map, uint16& spawnHexX, uint16& spawnHexY, uint16 radius)
+	{
+		if( spawnHexX == 0 || spawnHexY == 0 
+			|| spawnHexX >= ( map.GetWidth() - radius ) || spawnHexY >= ( map.GetHeight() - radius ) )
+			return false;    // Check borders
+		
+		int tryCount = 10;
+	    int xDelta = 0;
+	    int yDelta = 0;
+	
+	    for( int i = 0; i < tryCount; i++ )
+	    {
+	        xDelta = Random( 0, radius * 2 ) - radius;
+	        yDelta = Random( 0, radius * 2 ) - radius;
+	        if( map.IsHexPassed( spawnHexX + xDelta, spawnHexY + yDelta ) )
+	        {
+	            spawnHexX += xDelta;
+	            spawnHexY += yDelta;
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
+	private AttackerDefinition@ ChooseAttackerDefinition()
+	{
+		return AttackerDefinitions[Random(0, AttackerDefinitions.length() - 1)];
+	}
+}
+
+class AttackerDefinition
+{
+	uint16 WeaponPid;
+	uint16 NPCPid;
+	
+	AttackerDefinition(uint16 weaponPid, uint16 npcPid)
+	{
+		WeaponPid = weaponPid;
+		NPCPid = npcPid;
+	}
+}
+
+void AttackTargets(Critter@ attacker, Critter@[] targets) 
+{
+	for (uint i = 0; i < targets.length(); i++)
+	{
+		AddAttackPlane(attacker, Random(AI_PLANE_ATTACK_PRIORITY, AI_PLANE_ATTACK_PRIORITY + 20), targets[i], true);
+		attacker.AddEnemyInStack(targets[i].Id);
+	}
+}
+
+void _AttackerIdle(Critter& idler)
+{
+	Info("Attacker is idle: ");
+	
+	Map@ map = idler.GetMap();
+	Critter@[] deffenders;
+	map.GetCritters(0, FIND_LIFE_AND_KO | FIND_ONLY_PLAYERS, deffenders);
+	
+	AttackTargets(idler, deffenders);
+}
+
+void _AttackerDied(Critter& attacker, Critter@ killer)
+{
+	uint[] values = {attacker.Id};
+	CreateTimeEvent(__FullSecond + ATTACKER_DELETE_DELAY, "e_DeleteAttacker", values, true);
+}
+
+uint e_DeleteAttacker(uint[]@ values)
+{
+	Critter@ attacker = GetCritter(values[0]);
+	
+	if(valid(attacker))
+		DeleteNpc(attacker);
+		
+	return 0;
+}

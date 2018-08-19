@@ -1,0 +1,36 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 R _script map_outfit@r_setoutfit 0  @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Mannequin}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{ }
+
+[russ]
+{100}{}{Mannequin}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{ }
+
+[pols]
+{100}{}{Manekin}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{ }
+
+[ptbr]
+{100}{}{Manequim}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{ }
+

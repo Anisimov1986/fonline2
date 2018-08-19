@@ -1,0 +1,85 @@
+#include "_macros.fos"
+#include "logging_h.fos"
+#include "utils_h.fos"
+
+const uint16[] PVPTEAMLocs = {LOCATION_Golgotha, LOCATION_Highrise, LOCATION_Trainyard, LOCATION_Waterworks, LOCATION_Rocketball, LOCATION_T_ARENA1, LOCATION_T_ARENA1};
+const uint16[] AIMBUFFLocs = { LOCATION_Rocketball, LOCATION_bos_tutorial, LOCATION_Assasins};
+const uint16[] BUFF1Locs = { LOCATION_Rocketball, LOCATION_Assasins};
+
+const uint[]   Params =    {MODE_INVULNERABLE, ST_MAX_LIFE, INVIS_LEVEL, VISION_LEVEL, ST_LEVEL, ST_WALK_TIME, ST_CARRY_WEIGHT_EXT};
+const string[] Names =     {"MODE_INVULNERABLE", "ST_MAX_LIFE", "INVIS_LEVEL", "VISION_LEVEL", "ST_LEVEL", "ST_WALK_TIME", "ST_CARRY_WEIGHT_EXT"};
+const int16[]  Values =    {0, 550, 0, 0, 99, 0, 0};
+const bool[]   ResetVals = {true, false, true, true, false, true, false};
+
+void ValidatePlayer(Critter& cr)
+{
+	if (cr.GetAccess()>0)
+        FLog( LOG_GM, cr.Name + " (" + cr.Id + ") LOGIN WITH ABNORMAL STATS:  GetAccess " + cr.GetAccess() + " ip: " + GetIP( cr.GetIp() ));
+    
+    while (cr.ParamBase[ST_BONUS_LOOK]>=30)
+    {
+        cr.ParamBase[ST_BONUS_LOOK]-=30;
+        FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " FIXED BONUS LOOK "+cr.ParamBase[ST_BONUS_LOOK]+" ip: " + GetIP( cr.GetIp() ));    
+    }
+     
+    for (uint i = 0; i < Params.length(); i++) 
+    {
+        if (cr.Param[Params[i]]>Values[i])
+        {
+            FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " LOGIN WITH ABNORMAL STATS: " +Names[i]+ " "+cr.Param[Params[i]]+" ip: " + GetIP( cr.GetIp() )); 
+            if (ResetVals[i])
+                cr.ParamBase[Params[i]]=0;   
+        }
+    }
+        
+    Location@ loc = GetLocationOf( cr );
+    if( cr.Param[ST_BONUS_LOOK]>15 )
+    {
+        if (!valid(loc) || loc.GetProtoId() != LOCATION_Rocketball)
+            FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " LOGIN WITH ABNORMAL STATS: ST_BONUS_LOOK "+cr.Param[ST_BONUS_LOOK]+" ip: " + GetIP( cr.GetIp() ));
+    }
+    
+    if( cr.ParamBase[ PVPTEAM ] != 0 )
+    {
+        if (!valid(loc) || PVPTEAMLocs.find(loc.GetProtoId())<0)
+        {
+            cr.ParamBase[ PVPTEAM ] = 0;
+            FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " had wrong PVPTEAM ip: " + GetIP( cr.GetIp() ));
+        }
+    }
+    
+    if( cr.ModeBase[ MODE_UNLIMITED_AMMO ] != 0 )
+    {
+        if (!valid(loc) || loc.GetProtoId() != LOCATION_Rocketball)
+        {
+            cr.ModeBase[ MODE_UNLIMITED_AMMO ] = 0;
+            FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " had wrong MODE_UNLIMITED_AMMO ip: " + GetIP( cr.GetIp() ));
+        }
+    }
+
+    if(  cr.ModeBase[ MODE_NO_STEAL ] != 0 )
+    {
+        if (!valid(loc) || loc.GetProtoId() != LOCATION_Rocketball)
+        {
+            cr.ModeBase[ MODE_NO_STEAL ] = 0;
+            FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " had wrong MODE_NO_STEAL ip: " + GetIP( cr.GetIp() ));
+        }
+    }
+    
+    if(  cr.ParamBase[ PE_AIMBUFF ] != 0 )
+    {
+        if (!valid(loc) || AIMBUFFLocs.find(loc.GetProtoId())<0)
+        {
+            cr.ParamBase[ PE_AIMBUFF ] = 0;
+            FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " had wrong PE_AIMBUFF ip: " + GetIP( cr.GetIp() ));
+        }
+    }
+    if(  cr.ParamBase[ PE_BUFF1 ] != 0 )
+    {
+        if (!valid(loc) || BUFF1Locs.find(loc.GetProtoId())<0)
+        {
+            cr.ParamBase[ PE_BUFF1 ] = 0;
+            FLog( LOG_GM, cr.Name + " (" + cr.Id + ") acc lvl " + cr.GetAccess() + " had wrong PE_BUFF1 ip: " + GetIP( cr.GetIp() ));
+        }
+    }          
+}

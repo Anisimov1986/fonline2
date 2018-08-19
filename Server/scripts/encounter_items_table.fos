@@ -1,0 +1,79 @@
+#define ETYPE_ANY          ( 0 )  // Any enc
+#define ETYPE_MOUNTAINS    ( 1 )  // Mountains
+#define ETYPE_DESERT       ( 2 )  // Desert
+#define ETYPE_CAVERN       ( 3 )  // Cave
+#define ETYPE_CITY         ( 4 )  // City
+#define ETYPE_COAST        ( 5 )  // Coast
+#define ETYPE_OCEAN        ( 6 )  // Ocean
+#define ETYPE_DEFAULT      ( 7 )  // Not used
+
+#include "economy_h.fos"
+// Hex table
+const uint16[] gex_table =
+{
+    ENTIRE_RESOURCE_FLINT,ENTIRE_RESOURCE_ROCK,ENTIRE_RESOURCE_TOBACCO,ENTIRE_RESOURCE_XANDERROOT,ENTIRE_RESOURCE_BROCKFLOWER,ENTIRE_RESOURCE_FRUIT
+};
+
+const uint16[] items_table =
+{
+//  PID,               			EncType,                       Min,   			       Max,	                  Chance,   Entire
+	//Desert
+    PID_FLINT,                  ETYPE_DESERT,                   1,                      1,                      60,    ENTIRE_RESOURCE_FLINT,
+	PID_TOBACCO,                ETYPE_DESERT,                   1,                      1,                      25,    ENTIRE_RESOURCE_TOBACCO,
+	PID_XANDER_ROOT,            ETYPE_DESERT,                   1,                      1,                      23,    ENTIRE_RESOURCE_XANDERROOT,
+	PID_BROC_FLOWER,            ETYPE_DESERT,                   1,                      1,                      23,    ENTIRE_RESOURCE_BROCKFLOWER,
+	PID_MUTATED_FRUIT,          ETYPE_DESERT,                   1,                      1,                      53,    ENTIRE_RESOURCE_FRUIT,
+	
+	// Mountain and out caves
+    PID_FLINT,                  ETYPE_MOUNTAINS,                1,                      1,                      60,    ENTIRE_RESOURCE_FLINT,
+	PID_TOBACCO,                ETYPE_MOUNTAINS,                1,                      1,                      20,    ENTIRE_RESOURCE_TOBACCO,
+	PID_XANDER_ROOT,            ETYPE_MOUNTAINS,                1,                      1,                      23,    ENTIRE_RESOURCE_XANDERROOT,
+	PID_BROC_FLOWER,            ETYPE_MOUNTAINS,                1,                      1,                      23,    ENTIRE_RESOURCE_BROCKFLOWER,
+	PID_MUTATED_FRUIT,          ETYPE_MOUNTAINS,                1,                      1,                      53,    ENTIRE_RESOURCE_FRUIT,	
+	PID_ROCKMINERAL2,           ETYPE_MOUNTAINS,                3,                      5,                      70,    ENTIRE_RESOURCE_ROCK,
+	PID_ROCKMETAL2,             ETYPE_MOUNTAINS,                3,                      5,                      70,    ENTIRE_RESOURCE_ROCK,
+	
+	
+	//Cave
+	PID_FLINT,                  ETYPE_CAVERN,                   1,                      1,                      60,    ENTIRE_RESOURCE_FLINT,
+	PID_TOBACCO,                ETYPE_CAVERN,                   1,                      1,                      20,    ENTIRE_RESOURCE_TOBACCO,
+	PID_XANDER_ROOT,            ETYPE_CAVERN,                   1,                      1,                      23,    ENTIRE_RESOURCE_XANDERROOT,
+	PID_BROC_FLOWER,            ETYPE_CAVERN,                   1,                      1,                      23,    ENTIRE_RESOURCE_BROCKFLOWER,
+	PID_MUTATED_FRUIT,          ETYPE_CAVERN,                   1,                      1,                      43,    ENTIRE_RESOURCE_FRUIT,	
+	PID_ROCKMINERAL1,           ETYPE_CAVERN,                   4,                      6,                      60,    ENTIRE_RESOURCE_ROCK,
+	PID_ROCKMETAL1,             ETYPE_CAVERN,                   4,                      6,                      60,    ENTIRE_RESOURCE_ROCK,
+	
+};
+
+void AddLoot(Item@ locker)
+{
+	FillBag( locker, PID_BOTTLE_CAPS, 50, RewardMod(10), RewardMod(75) );
+	FillBag( locker, PID_NUKA_COLA, 4, RewardMod(1), RewardMod(2) );
+	FillBag( locker, PID_CIGARETTES, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_STIMPAK, 5, RewardMod(1), RewardMod(5) );
+	FillBag( locker, PID_GREEN_CONDOM, 1, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_BLUE_CONDOM, 1, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_RED_CONDOM, 1, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_CHEEZY_POOFS, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_BOX_OF_NOODLES, 10, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_FROZEN_DINNER, 10, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_HYPODERMIC_NEEDLE, 5, RewardMod(1), RewardMod(3) );
+	FillBag( locker, PID_MULTI_TOOL, 3, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_RUBBER_BOOTS, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_HOLODISK, 3, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_ROPE, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_BOTTLE_GLASS, 10, RewardMod(1), RewardMod(3) );
+	FillBag( locker, PID_WATER_FLASK, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_RADIO, 3, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_CATS_PAW, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_LIGHTER, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_FLARE, 3, RewardMod(1), RewardMod(2) );
+	FillBag( locker, PID_CROWBAR, 10, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_JUNK, 10, RewardMod(1), RewardMod(3) );
+	FillBag( locker, PID_CORD, 5, RewardMod(1), RewardMod(3) );
+	FillBag( locker, PID_TORN_PAPER, 10, RewardMod(1), RewardMod(5) );
+	FillBag( locker, PID_BPACK_TENT, 1, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_OIL_CAN, 5, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_LEATHER_JACKET, 3, RewardMod(1), RewardMod(1) );
+	FillBag( locker, PID_HEART_PILLS, 3, RewardMod(1), RewardMod(1) );
+}

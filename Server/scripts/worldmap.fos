@@ -1,0 +1,2204 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "_teams.fos"
+#include "_bags.fos"
+#include "worldmap_h.fos"
+#include "worldmap_data.fos"
+#include "utils_h.fos"
+
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import void GenerateItems( Map& map, Critter@[] @  grp ) from "encounter_items";
+import void GenerateItemsInLockers( Map& map ) from "encounter_items";
+import void GenerateCavernEncounter( Map@ map, Critter@[] @ critters ) from "cave_mobs";
+import uint DetermineAction2(uint faction1, uint faction2) from "faction";
+import void AddEncounterContainers(Map@ map, array<Critter@>@ critters) from "encounter_containers"; 
+#define TABLE_MAX	/* Internal usage */	( ZONE_COUNT_X * ZONE_COUNT_Y )
+                     
+                     
+                     
+class CCheck
+{
+    uint  Type;
+    uint  Index;
+    uint8 Operator;
+    int   Value;
+
+    CCheck()
+    {
+        Type = 0;
+        Index = 0;
+        Operator = 0;
+        Value = 0;
+    }
+
+    void Set( uint type, uint index, uint8 operator, int value )
+    {
+        Type = type;
+        Index = index;
+        Operator = operator;
+        Value = value;
+    }
+}
+
+class CEncounterPerk
+{
+    uint index;
+    uint level;
+    uint chance;
+
+    CEncounterPerk(uint index, uint level, uint chance)
+    {
+        this.index = index;
+        this.level = level;
+        this.chance = chance;
+    }
+};
+
+class CEncounterObject
+{
+    uint   						ObjectType;
+    uint16 						Pid;                 // Proto id
+    uint   						Dialog;
+	string 						Script;
+    uint   						Distance;      // Distance from players
+    uint 						Bag;
+    uint                     	NpcRole;
+    uint                     	TeamId;
+    array<CEncounterObject@> 	Childs;     // Items in inventory or container
+    array<CCheck>            	Checks;
+    // Only for critter
+    uint                     	Ratio;
+    bool                     	Dead;
+    // Only for item
+    uint 						Minimum;
+    uint 						Maximum;
+    uint 						Slot;
+	
+	array<CEncounterPerk>    	Perks;
+
+    CEncounterObject()
+    {
+        ObjectType 	= 0;
+        Pid 		= 0;
+		Dialog 		= 0;
+		Script 		= "";
+		Distance 	= 0;
+		Ratio 		= 0;
+        Bag 		= BAG_Empty;
+		NpcRole 	= 0;
+        Dead 		= false;
+        Minimum 	= 0;
+        Maximum 	= 0;
+        Slot 		= 0;
+        TeamId 		= 0;
+    }
+
+    CEncounterObject@ NewCheck( uint type, uint index, uint8 operator, int value )
+    {
+        Checks.grow( 1 );
+        Checks.last().Set( type, index, operator, value );
+        return this;
+    }
+    
+    CEncounterObject@ SetPid(uint16 pid)                            		{ Pid = pid; return this; }
+    CEncounterObject@ SetDialog(uint dialog)                        		{ Dialog = dialog; return this; }
+	CEncounterObject@ SetScript(string& script)                     		{ Script = script; return this; }	
+	CEncounterObject@ SetBag(uint bag)                              		{ Bag = bag; return this; }
+    CEncounterObject@ SetNpcRole(uint role)                         		{ NpcRole = role; return this; }
+	CEncounterObject@ SetTeamId(uint teamid)                        		{ TeamId = teamid; return this; }
+	
+    CEncounterObject@ SetDistance(uint distance)                       		{ Distance = distance; return this; }
+    CEncounterObject@ CheckRandom(int value)                           		{ NewCheck(CHECK_RANDOM, 0, 0, value); return this; }
+    CEncounterObject@ CheckParam( uint index, uint8 operator, int value )   { NewCheck( CHECK_PARAM, index, operator, value ); return this; }
+    CEncounterObject@ CheckParamAny( uint index, uint8 operator, int value ){ NewCheck( CHECK_PARAM_ANY, index, operator, value ); return this; }
+    CEncounterObject@ CheckLVar( uint index, uint8 operator, int value )    { NewCheck( CHECK_LVAR, index, operator, value ); return this; }
+    CEncounterObject@ CheckLVarAny( uint index, uint8 operator, int value ) { NewCheck( CHECK_LVAR_ANY, index, operator, value ); return this; }
+    CEncounterObject@ CheckGVar( uint index, uint8 operator, int value )	{ NewCheck( CHECK_GVAR, index, operator, value ); return this; }
+    CEncounterObject@ CheckHour( uint8 operator, int value )				{ NewCheck( CHECK_HOUR, 0, operator, value ); return this; }
+	CEncounterObject@ SetRatio(uint ratio)                             		{ Ratio = ratio; return this; }
+    CEncounterObject@ SetDead(bool dead)                               		{ Dead = dead; return this; }
+    CEncounterObject@ SetMinimum(uint minimum)                         		{ Minimum = minimum; return this; }
+    CEncounterObject@ SetMaximum(uint maximum)                         		{ Maximum = maximum; return this; }
+    CEncounterObject@ SetSlot(uint slot)                               		{ Slot = slot; return this; }
+
+    CEncounterObject@ AddItem( uint16 pid, uint min, uint max, uint slot )
+    {
+        CEncounterObject new_child;
+        Childs.insertLast( @new_child );
+        new_child.Pid = pid;
+        new_child.Minimum = min;
+        new_child.Maximum = max;
+        new_child.Slot = slot;
+        return this;
+    }
+    
+    CEncounterObject@ AddItem( uint16 pid, uint chance, uint min, uint max, uint slot )
+    {
+        CEncounterObject new_child;
+        Childs.insertLast( @new_child );
+        new_child.Pid = pid;
+        new_child.Minimum = min;
+        new_child.Maximum = max;
+        new_child.Slot = slot;
+        new_child.CheckRandom( chance );
+        return this;
+    }
+	
+	CEncounterObject@ AddPerk(uint index, uint level, uint chance)
+    {
+        CEncounterPerk@ perk = CEncounterPerk(index, level, chance);
+        this.Perks.insertLast(perk);
+        return this;
+    }
+}
+
+class CEncounterGroup
+{
+
+    uint Position;
+    uint TeamNum;
+    uint Spacing;
+    // distance from center of encounter
+    uint DistMin;
+    uint DistMax;
+	// denotes number of 'ratio' critters in group...some critters can be multiplied using those values
+    // using their Ratio(EncounterObject::Ratio) property. It's percentage. For example, radscorpion in Radscorpions group have ratio 100%
+    // so if RatioMin is equal to 1 and RatioMax is equal to 10 we will get Random(1,10) radscorpions
+    uint RatioMin;
+    uint RatioMax;
+	
+	uint VsMode;
+	uint Faction;
+	
+	// quantity ratio modifiers
+    float                   QuantityNight;
+    float                   QuantityDay;
+	
+    array<CEncounterObject> Objects;
+
+    CEncounterGroup()
+    {
+        TeamNum 	= 0;
+        Position 	= 0;
+        Spacing 	= 0;
+		// default values
+        DistMin = 7;
+        DistMax = 15;
+		// defaults, but should be set per group also
+        RatioMin 	= 1;
+        RatioMax 	= 3;
+		Faction		= 0;
+		
+		VsMode = VS_MODE_NONE;
+		
+		QuantityNight = QuantityDay  = 1.0f;
+    }
+	
+	uint GetModifiedQuantity(uint quantity)
+    {
+        //if(IsNight())
+        //    return QuantityNight * quantity;
+        //else
+            return QuantityDay * quantity;
+    }
+
+    CEncounterObject@ NewObject()
+    {
+        Objects.grow( 1 );
+        return Objects.last();
+    }
+
+    CEncounterObject@ AddCritter( uint16 pid )
+    {
+        CEncounterObject@ obj = NewObject();
+        obj.ObjectType = ENCOUNTER_OBJECT_CRITTER;
+        obj.Pid = pid;
+        return obj;
+    }
+
+    CEncounterObject@ AddItem( uint16 pid )
+    {
+        CEncounterObject@ obj = NewObject();
+        obj.ObjectType = ENCOUNTER_OBJECT_ITEM;
+        obj.Pid = pid;
+        return obj;
+    }
+}
+
+class CEncounter
+{
+    int           Difficulty;   // taken from zone
+    uint16        LocationPid;
+    bool          Special;
+    array<uint>   Groups;
+    array<uint>   Players;     // GROUP_Player(i) -> Players[i]
+    array<CCheck> Checks;
+    uint          Ratio;
+
+    CEncounter()
+    {
+        Difficulty = 0;
+        LocationPid = 0;
+        Special = false;
+        Ratio = 0;
+    }
+	
+	CEncounter@ SetLocationPid(uint16 locationPid)               		{ LocationPid = locationPid; return this; }
+    CEncounter@ SetSpecial(bool special)                         		{ Special = special; return this; }
+	
+    CEncounter@ AddGroup(uint group)
+    {
+		Groups.grow( 1 );
+        Groups.last() = group;
+        return this;
+    }
+	CEncounter@ AddPlayer(Critter& player)
+    {
+        AddGroup(GROUP_Player(int(player.Id)));
+        return this;
+    }
+	Critter@ GetPlayer(uint i)
+    {
+        return GetCritter(uint(-1) - Groups[i]);
+    }
+
+    CEncounter@ NewCheck( uint type, uint index, uint8 operator, int value )
+    {
+        Checks.grow( 1 );
+        Checks.last().Set( type, index, operator, value );
+        return this;
+    }
+    CEncounter@ CheckRandom( int value )    							{ NewCheck( CHECK_RANDOM, 0, 0, value ); return this; }
+    CEncounter@ CheckParam( uint index, uint8 operator, int value )    	{ NewCheck( CHECK_PARAM, index, operator, value ); return this; }
+    CEncounter@ CheckParamAny( uint index, uint8 operator, int value )  { NewCheck( CHECK_PARAM_ANY, index, operator, value ); return this; }
+    CEncounter@ CheckLVar( uint index, uint8 operator, int value )    	{ NewCheck( CHECK_LVAR, index, operator, value ); return this; }
+    CEncounter@ CheckLVarAny( uint index, uint8 operator, int value )   { NewCheck( CHECK_LVAR_ANY, index, operator, value ); return this; }
+    CEncounter@ CheckGVar( uint index, uint8 operator, int value )    	{ NewCheck( CHECK_GVAR, index, operator, value ); return this; }
+    CEncounter@ CheckHour( uint8 operator, int value )    				{ NewCheck( CHECK_HOUR, 0, operator, value ); return this;    }
+    CEncounter@ AssignLVar( uint index, uint8 operator, int value )    	{ NewCheck( ASSIGN_LVAR, index, operator, value ); return this; }
+	
+	int GenerateEncounterString(Critter& cr, string@ str, bool groupAdded, bool awareness)
+    {
+        int s = 0;
+        for(uint i = 0, j = groupAdded ? Groups.length() - 1 : Groups.length(); i < j; i++)
+        {
+            if(Groups[i] >= GROUP_MAX)               // players
+            {
+                Critter@ player = GetPlayer(i);
+                if(!valid(player) || player.Id == cr.Id)
+                    continue;
+                if(player.IsNpc())
+                    str += "$str" + (++s) + "caravan";
+                else if(awareness)
+                    str += "$str" + (++s) + "|0xff0000 " + player.Name;
+                else
+                    str += "$str" + (++s) + "|0xff0000 wastelander";
+            }
+            else
+            {
+                str += "$str" + (++s) + "@msg gm " + (20000000 + Groups[i]) + "@";
+            }
+            // in case the player logged out in the meantime. if player is invalid, use -1, since logged out player is not the one getting the string:
+            bool prelast = i + 2 == j && (Groups[i + 1] < GROUP_MAX || (Groups[i + 1] >= GROUP_MAX && getProbablyId(i + 1) != cr.Id));     // some other group, but not you
+            bool last = (i + 1 == j) || (i + 1 < j && Groups[i + 1] >= GROUP_MAX && getProbablyId(i + 1) == cr.Id);
+
+            if(last || s==9)
+                str += ".";
+            else if(prelast || s==8)
+                str += " and ";
+            else
+                str += ", ";
+            if (s >= 9)
+                return s;
+        }
+        return s;
+    }
+	
+	uint getProbablyId(uint i)     // helper
+    {
+        Critter@ probablyPlayer = GetPlayer(i);
+        return valid(probablyPlayer) ? probablyPlayer.Id : uint(-1);
+    }
+	
+	void Ask(int say, Critter@ leader)
+    {
+        string str;
+        int    s = GenerateEncounterString(leader, str, false, true);
+        leader.SayMsg(say, TEXTMSG_GM, 10000010 + s, str);
+    }
+	
+	void Say(Critter@ leader, Critter@ player)
+    {
+        if (player.IsNpc())
+            return;
+		string str;
+		if(Special)
+        {
+            str += "$str1@msg gm " + (((100 + LocationPid) * 1000) + 5) + "@";
+            player.SayMsg(SAY_NETMSG, TEXTMSG_GM, 10000000, str);
+        }
+		else
+		{
+			int s = GenerateEncounterString(leader, str, false, true);
+			player.SayMsg(SAY_NETMSG, TEXTMSG_GM, 10000000 + s, str);
+		}
+    }
+}
+
+class CZone
+{
+    array<uint>   Groups;
+	array<int>    Quantities;
+    //array<uint>   Flags;
+    // world coords
+    uint          x;
+    uint          y;
+    int           Difficulty;
+	array<uint16> LocationPids;
+    uint          Terrain;
+    //uint          Fill;
+	uint          MorningChance;
+    uint          AfternoonChance;
+    uint          NightChance;
+
+	CZone(uint x, uint y)
+    {
+        this.x 			= x;
+        this.y 			= y;
+        Difficulty 		= 0;
+        Terrain 		= 0;
+        MorningChance 	= 0;
+        AfternoonChance = 0;
+        NightChance 	= 0;
+    }
+	uint GetX() { return x; }
+    uint GetY() { return y; }
+	uint GetLocationPids(array<uint16>& pids)
+    {
+        for(uint i = 0, j = LocationPids.length(); i < j; i++)
+            pids.insertLast(LocationPids[i]);
+        return LocationPids.length();
+    }
+	
+	uint GetQuantity(uint group)
+    {
+        for(uint i = 0, j = Groups.length(); i < j; i++)
+            if(Groups[i] == group)
+                return Quantities[i];
+        return 0;
+    }
+	
+	uint GetTerrain()
+    {
+        return Terrain;
+    }
+	
+	void AddLocationPid(uint16 locationPid)
+    {
+        LocationPids.grow( 1 );
+        LocationPids.last() = locationPid;
+    }
+	
+	void ChooseGroups(Critter& leader, CEncounter& enc)
+    {
+		// filter out timeouted groups
+        array<uint> available;
+        int         available_sum = 0;
+        int         sum = 0;
+
+        for(uint i = 0, j = Groups.length(); i < j; i++)
+        {
+            if(Groups[i] >= EncounterGroups.length())
+                Log("FE: Incorrect group in zone: " + ZONE_X(leader.WorldX) + "," + ZONE_Y(leader.WorldY));
+            available.insertLast(i);
+			available_sum += GetQuantity(Groups[i]);
+            //available_sum += EncounterGroups[Groups[i]].GetModifiedQuantity(Quantities[i]);                 // instead of GetQuantity(i) to avoid loop-lookups
+			//sum += EncounterGroups[Groups[i]].GetModifiedQuantity(Quantities[i]);
+        }
+        int roll = Random(1, available_sum);
+        int v = 0;
+        int already = 0;
+        for(uint i = 0, j = available.length(); i < j; i++)
+        {
+			int  quantity = GetQuantity(Groups[available[i]]);
+            uint groupidx = Groups[available[i]];
+            v += quantity;
+            if(roll - v <= 0)
+            {
+				enc.AddGroup(groupidx);
+                already = i;
+				if (EncounterGroups[groupidx].VsMode != VS_MODE_ALLOW)
+				{
+					//Log("vs not allowed");
+					return;
+				}
+				//Log("vs allowed");
+                break;
+            }
+        }
+        // iterate through groups and try to combine them into some nicer encounter
+        for(int i = 0, j = available.length(); i < j; i++)
+        {
+            int  quantity = GetQuantity(Groups[available[i]]);
+            uint groupidx = Groups[available[i]];
+            if(i == already)
+                continue;
+            int  roll = Random(1, available_sum);
+            bool success = roll <= quantity;
+            if(success && EncounterGroups[groupidx].VsMode != VS_MODE_NEVER)
+			{
+				enc.AddGroup(groupidx);
+			}
+        }
+    }
+}
+
+CEncounterGroup[] EncounterGroups( GROUP_MAX );
+CZone@[]          Worldmap( ZONE_COUNT_X * ZONE_COUNT_Y );
+
+//
+// Zone
+//
+CZone@ SetZone( uint zx, uint zy, uint table, int difficulty, uint terrain, uint morningChance, uint afternoonChance, uint nightChance )
+{
+	CZone@ zone = Worldmap[zy * ZONE_COUNT_X + zx];
+    zone.Difficulty = difficulty;
+    zone.Terrain = terrain;
+    zone.MorningChance = morningChance;
+    zone.AfternoonChance = afternoonChance;
+    zone.NightChance = nightChance;
+    return zone;
+}
+
+CZone@ SetZone( uint zx, uint zy, uint table, int difficulty, uint terrain, uint chance )
+{
+    return SetZone( zx, zy, table, difficulty, terrain, chance, chance, chance );
+}
+
+//
+// Checks
+//
+
+bool CheckCompare( int val1, uint8 operator, int val2 )
+{
+    if( operator == '>' )
+        return val1 > val2;
+    if( operator == '<' )
+        return val1 < val2;
+    if( operator == '=' )
+        return val1 == val2;
+    Log( "Unknown operator." );
+    return false;
+}
+
+bool CheckCompareAnyParam( CCheck& check, Critter@[]& critters )
+{
+    for( uint i = 0, j = critters.length(); i < j; i++ )
+    {
+        if( CheckCompare( critters[ i ].Param[ check.Index ], check.Operator, check.Value ) )
+            return true;
+    }
+    return false;
+}
+
+bool CheckCompareAnyVar( CCheck& check, Critter@[]& critters )
+{
+    for( uint i = 0, j = critters.length(); i < j; i++ )
+    {
+        GameVar@ lvar = GetLocalVar( check.Index, critters[ i ].Id );
+        if( valid( lvar ) )
+        {
+            if( CheckCompare( lvar.GetValue(), check.Operator, check.Value ) )
+                return true;
+        }
+    }
+    return false;
+}
+
+void CheckAssignVar( GameVar& val1, uint8 operator, int val2 )
+{
+    if( operator == '=' )
+        val1 = val2;
+    else if( operator == '+' )
+        val1 += val2;
+    else if( operator == '-' )
+        val1 -= val2;
+    else if( operator == '*' )
+        val1 *= val2;
+    else if( operator == '/' )
+        val1 /= val2;
+    else
+        Log( "Unknown operator." );
+}
+
+bool CheckChecks( CCheck[]& checks, Critter@[]& critters )
+{
+    bool checkOk = false;
+    for( int i = 0, j = checks.length(); i < j; i++ )
+    {
+        CCheck@ check = checks[ i ];
+        switch( check.Type )
+        {
+	        case CHECK_RANDOM:
+	            if( Random( 1, 100 ) > check.Value )
+	                return false;
+	            break;
+	        case CHECK_HOUR:
+	            if( not CheckCompare( __Hour, check.Operator, check.Value ) )
+	                return false;
+	            break;
+	        case CHECK_PARAM:
+	            for( uint i = 0, j = critters.length(); i < j; i++ )
+	                if( not CheckCompare( critters[ i ].Param[ check.Index ], check.Operator, check.Value ) )
+	                    return false;
+	            break;
+	        case CHECK_PARAM_ANY:
+	            if( not CheckCompareAnyParam( check, critters ) )
+	                return false;
+	            break;
+	        case CHECK_LVAR:
+	            // Log("Checking var"+check.Index);
+	            for( uint i = 0, j = critters.length(); i < j; i++ )
+	            {
+	                GameVar@ lvar = GetLocalVar( check.Index, critters[ i ].Id );
+	                if( not valid( lvar ) )
+	                {
+	                    // Log("Local var not found.");
+	                    return false;
+	                }
+	                // Log("Var val"+lvar.GetValue()+"cr id");
+	                if( not CheckCompare( lvar.GetValue(), check.Operator, check.Value ) )
+	                    return false;
+	            }
+	            break;
+	        case CHECK_LVAR_ANY:
+	            if( not CheckCompareAnyVar( check, critters ) )
+	                return false;
+	            break;
+	        case CHECK_GVAR:
+	        {
+	            GameVar@ gvar = GetGlobalVar( check.Index );
+	            if( not valid( gvar ) )
+	            {
+	                // Log("Global var not found.");
+	                return false;
+	            }
+	            if( not CheckCompare( gvar.GetValue(), check.Operator, check.Value ) )
+	                return false;
+	        }
+	        break;
+	        default:
+	            continue;
+        }
+    }
+    return true;
+}
+
+void AssignChecks( CCheck[]& checks, Critter@[]& critters )
+{
+    for( int i = 0, j = checks.length(); i < j; i++ )
+    {
+        CCheck@ check = checks[ i ];
+        if( check.Type == ASSIGN_LVAR )
+        {
+            for( uint i = 0, j = critters.length(); i < j; i++ )
+            {
+                GameVar@ lvar = GetLocalVar( check.Index, critters[ i ].Id );
+                CheckAssignVar( lvar, check.Operator, check.Value );
+            }
+        }
+    }
+}
+
+//
+// Stored founded encounters
+//
+
+#define FOUNDED_ENCOUNTER_LIVE_TIME    ( REAL_MINUTE( 15 ) ) // 15 real minutes
+#define FACTION_NEUTRAL                 (0)
+#define FACTION_ALLY                    (1)
+#define FACTION_ENEMY                   (2)
+
+class CFoundedEncounter
+{
+    uint        Index;
+	
+    CEncounter@ Encounter;
+	CZone@      Zone;
+    bool        IsGenerated;
+    uint        FullSecond;
+    uint        PositionX;
+    uint        PositionY;
+    uint        OwnerId;
+    bool        OwnerGroup;
+    bool        TurnBased;
+    uint        LocationId;
+    uint16      StartHexX;
+    uint16      StartHexY;
+    array<bool> DirBusy;
+	array<bool> EntireBusy;
+	uint8       FirstDirIdx;   // for nicer placement
+    uint        AskChance;
+    array<uint> Actions;       // from*to*action
+	
+    CFoundedEncounter()
+    {
+        Index = 0;
+        @Encounter = null;
+		@Zone = null;
+        IsGenerated = false;
+        FullSecond = 0;
+        PositionX = 0;
+        PositionY = 0;
+        OwnerId = 0;
+        OwnerGroup = false;
+        TurnBased = false;
+        LocationId = 0;
+        StartHexX = 0;
+        StartHexY = 0;
+        DirBusy.resize( 6 );
+		for(uint i = 0; i < 6; i++)
+			DirBusy[i] = false;
+        FirstDirIdx = 0;
+    }
+	/**
+    * Determines action between 2 groups.
+    */
+    int DetermineAction(int gr1, int gr2)
+    {
+		//int status = GetGroupsStatus(gr2, gr1);
+		int status = FACTION_ENEMY;
+        switch(status)
+        {
+        case FACTION_NEUTRAL:
+            return ACTION_NONE;
+        case FACTION_ALLY:
+            return ACTION_NONE;
+        case FACTION_ENEMY:
+            return ACTION_FIGHTING;
+        }
+        return ACTION_FIGHTING;
+    }
+    /**
+     * Prepares actions for groups.
+     */
+    void PrepareActions()
+    {
+        for(uint i = 0, k = Encounter.Groups.length(); i < k; i++)
+        {
+            CEncounterGroup@ gr1;
+            if(Encounter.Groups[i] < GROUP_MAX)
+                @gr1 = EncounterGroups[Encounter.Groups[i]];
+            else
+                continue;                 // player
+            // get the opponents
+            for(uint j = 0, l = Encounter.Groups.length(); j < l; j++)
+            {
+                if(i == j)
+                    continue;
+                CEncounterGroup@ gr2;
+                if(Encounter.Groups[j] < GROUP_MAX)
+                    @gr2 = EncounterGroups[Encounter.Groups[j]];
+                Actions.insertLast(i);
+                Actions.insertLast(j);
+                if(valid(gr1) && gr1.TeamNum == 0)                   // mob
+                {
+                    //Log("Mob group id "+gr1.TeamNum+" so fighting");
+					Actions.insertLast(ACTION_FIGHTING);
+                }
+                else
+                {
+                    if(valid(gr1) && valid(gr2))
+                    {
+                        //int action = DetermineAction(GetGroupIndex(gr1.TeamNum), GetGroupIndex(gr2.TeamNum));
+						int action = DetermineAction2(gr1.Faction, gr2.Faction);
+                        Actions.insertLast(action);
+                    }
+                    else if(valid(gr1) && !valid(gr2))                       // group -> player
+                    {
+                        //Log("group id "+gr1.TeamNum+" vs Player");
+						// check reputation
+                        Critter@ leader = Encounter.GetPlayer(j);
+                        if(valid(leader))
+                        {
+                            //DPlayerLog(leader, "Checking your reputation with regard to group: " + GetGroupIndex(gr1.TeamNum) + " which is " + leader.Reputation[GetGroupIndex(gr1.TeamNum)]);
+                            //if(leader.Reputation[GetGroupIndex(gr1.TeamNum)] < __ReputationNeutral)
+							if(gr1.TeamNum != TEAM_Neutral)
+                            {
+                                Actions.insertLast(ACTION_FIGHTING);
+                            }
+                            else
+                            {
+                                Actions.insertLast(ACTION_NONE);
+                            }
+                        }
+                        else
+                            Actions.insertLast(ACTION_NONE);
+                    }
+                    else
+                        Actions.insertLast(ACTION_NONE);
+                }
+            }
+        }
+    }
+};
+
+array<CFoundedEncounter> FoundedEncounters(1000);
+uint FoundedEncountersLastIndex = 0;
+
+CFoundedEncounter@ CreateFoundedEncounter( uint x, uint y, CEncounter@ encounter, CZone@ zone, uint ownerId, bool ownerGroup )
+{
+    for( int i = 0, j = FoundedEncounters.length(); i < j; i++ )
+    {
+        CFoundedEncounter@ ge = FoundedEncounters[ i ];
+        if( ge.Index == 0 || __FullSecond - ge.FullSecond >= FOUNDED_ENCOUNTER_LIVE_TIME + REAL_MINUTE( 1 ) )
+        {
+            FoundedEncountersLastIndex++;
+            ge.Index = FoundedEncountersLastIndex;
+            @ge.Encounter = encounter;
+			@ge.Zone = zone;
+            ge.IsGenerated = false;
+            ge.FullSecond = __FullSecond;
+            ge.PositionX = x;
+            ge.PositionY = y;
+            ge.OwnerId = ownerId;
+            ge.OwnerGroup = ownerGroup;
+            ge.TurnBased = false;
+            ge.LocationId = 0;
+			ge.Actions.resize(0);
+            for( uint k = 0; k < 6; k++ )
+                ge.DirBusy[ k ] = false;
+			ge.FirstDirIdx = 0;
+            return ge;
+        }
+    }
+
+    // Grow buffer and refind
+    FoundedEncounters.resize( FoundedEncounters.length() * 2 );
+    return CreateFoundedEncounter( x, y, encounter, zone, ownerId, ownerGroup );
+}
+
+CFoundedEncounter@ GetFoundedEncounter( uint index )
+{
+    for( int i = 0, j = FoundedEncounters.length(); i < j; i++ )
+    {
+        CFoundedEncounter@ ge = FoundedEncounters[ i ];
+        if( ge.Index == index )
+            return ge;
+    }
+    return null;
+}
+
+uint FindNearWmGroups(Critter@[]& group, CZone@ zone, uint x, uint y)
+{
+    if ( Random(1,100) > EncChance(GetGroupMaxLevel(group)))
+        return 0;
+    Critter@ leader = group[ 0 ];
+    if (group.length()==1 && _CritHasNoItems(leader))
+        return 0;
+    
+    array<Critter@> critters;
+    uint count = GetGlobalMapCritters(leader.WorldX, leader.WorldY, ZONE_LENGTH / 2 , FIND_ALL, critters);
+    if (count != group.length())
+    {
+        for(uint i = 0; i < count; i++)
+        {
+            array<Critter@> othergroup = critters[i].GetGlobalGroup();
+            Critter@ otherleader = othergroup[0];
+            if (leader.Id != otherleader.Id && critters[i].Id==otherleader.Id)
+            {
+                if (othergroup.length()==1 && _CritHasNoItems(otherleader))
+                    continue;
+                
+                if( !IsCanBeMetOnWm(otherleader) || GetVisibleLocations( otherleader.WorldX, otherleader.WorldY, 0, otherleader, null ) != 0 )
+                    continue;
+
+                if (leader.Mode[ MODE_DEFAULT_COMBAT ]==COMBAT_MODE_REAL_TIME && otherleader.Mode[ MODE_DEFAULT_COMBAT ]==COMBAT_MODE_TURN_BASED)
+                    continue;
+                if (leader.Mode[ MODE_DEFAULT_COMBAT ]==COMBAT_MODE_TURN_BASED && otherleader.Mode[ MODE_DEFAULT_COMBAT ]==COMBAT_MODE_REAL_TIME)
+                    continue;
+
+                if ( Random(1,100) > EncChance(GetGroupMaxLevel(othergroup)))
+                    continue;
+
+                CFoundedEncounter@ fe = CreateFoundedEncounter( x, y, null, zone, leader.Id, group.length() > 1 );
+                if( not valid( fe ) )
+                    return 0;
+                
+                if (leader.Mode[ MODE_DEFAULT_COMBAT ]==COMBAT_MODE_TURN_BASED || otherleader.Mode[ MODE_DEFAULT_COMBAT ]==COMBAT_MODE_TURN_BASED)
+                    fe.TurnBased = true;
+                    
+                for( uint j = 0, k = othergroup.length(); j < k; j++ )
+                {
+                    if (othergroup[ j ].IsNpc())
+                        continue;
+                    othergroup[ j ].PlaySound("encounter.ogg", true);
+                    othergroup[ j ].Say( SAY_FLASH_WINDOW, "" );
+                    othergroup[ j ].SayMsg(SAY_NETMSG, TEXTMSG_GM, group.length()>1 ? 10000026 : 10000025, "$player" + GetSafePlayerName(leader.Id));
+                }
+                for( uint j = 0, k = group.length(); j < k; j++ )
+                {
+                    if (group[ j ].IsNpc())
+                        continue;
+                    group[ j ].SayMsg(SAY_NETMSG, TEXTMSG_GM, othergroup.length()>1 ? 10000026 : 10000025, "$player" + GetSafePlayerName(otherleader.Id));    
+                }
+
+                otherleader.ParamBase[DESCRIPTOR]=fe.Index;
+                return fe.Index;
+            }
+        }
+    }
+    return 0;
+}
+
+CFoundedEncounter@ GetNearFoundedEncounter( bool isWater, Critter@[] @ group, uint x, uint y, uint radius )
+{
+    if ( Random(1,100) > EncChance(GetGroupMaxLevel(group)) )
+        return null;
+    int combatMode = group[ 0 ].Mode[ MODE_DEFAULT_COMBAT ];
+    for( int i = 0, j = FoundedEncounters.length(); i < j; i++ )
+    {
+        CFoundedEncounter@ ge = FoundedEncounters[ i ];
+        if( ge.Index == 0 )
+            continue;
+        if( ge.TurnBased && combatMode == COMBAT_MODE_REAL_TIME )
+            continue;
+        if( not ge.TurnBased && combatMode == COMBAT_MODE_TURN_BASED )
+            continue;
+        if( __FullSecond - ge.FullSecond >= FOUNDED_ENCOUNTER_LIVE_TIME )
+            continue;
+        if( not ge.IsGenerated )
+            continue;
+        if( valid( ge.Encounter ) && ge.Encounter.Special)
+            continue;
+        if( uint( sqrt( float( POW2( ge.PositionX - x ) + POW2( ge.PositionY - y ) ) ) ) > radius )
+            continue;
+        if( group[ 0 ].Id == ge.OwnerId )
+            continue;
+		Location@ location = GetLocation( ge.LocationId );
+        if( not valid( location ))
+            continue;
+		if (location.Visible || (group[0].IsPlayer() && group[0].IsKnownLoc(true,location.Id)))
+			continue;
+
+		Map @[] maps;
+		location.GetMaps(maps);
+        if (valid(maps[0]))
+        {
+            if (maps[0].IsTurnBasedAvailability())
+            {
+                if (combatMode == COMBAT_MODE_REAL_TIME )
+                {
+                    Log("MAP is TB and Player Mode is RT!");
+                    continue;
+                }
+            }
+            else if (combatMode == COMBAT_MODE_TURN_BASED)
+            {
+                Log("MAP is RT and Player Mode is TB!");
+                continue;
+            }
+        }
+        
+        int maxlevel=0;
+        for(uint k=0; k<maps.length(); k++)
+		{
+			if (valid (maps[k]))
+			{
+				Critter@[] critters;
+				maps[k].GetCritters( 0, FIND_ALL | FIND_ONLY_PLAYERS, critters);
+				for(uint x=0; x<critters.length(); x++)
+				{
+					if (valid(critters[x]))
+					{
+						int level = critters[x].Stat[ ST_LEVEL ];
+						if (level >= 10)
+							return ge;
+						else if (level > maxlevel)
+							maxlevel = level;
+					}
+				}
+			}
+		}
+		if ( Random(1,100) > EncChance(maxlevel) )
+			return null;
+        return ge;
+    }
+    return null;
+}
+
+int EncChance(uint maxlevel)
+{
+	if (maxlevel <=5)
+		return 0;
+	else if (maxlevel == 6)
+		return 20;
+	else if (maxlevel == 7)
+		return 40;
+	else if (maxlevel == 8)
+		return 60;
+	else if (maxlevel == 9)
+		return 80;
+	else 
+		return 101;
+}
+
+uint GetFreeDir(array<bool>& dirBusy, uint8& inout firstDirIdx)
+{
+    // 0 - 3; 2 - 5; 1 - 4
+    uint[] dirs = { 0, 2, 1, 0, 2 };
+    if(firstDirIdx == 0)
+        firstDirIdx = Random(0, 2);
+    for(uint i = firstDirIdx; i < firstDirIdx + 3; i++)
+    {
+        int dir = dirs[i];
+        int opp = (dir + 3) % 6;
+
+        if(dirBusy[dir] && !dirBusy[opp])
+        {
+            // return opposite
+            dirBusy[opp] = true;
+            return opp;
+        }
+        else if(!dirBusy[dir] && !dirBusy[opp])
+        {
+            dirBusy[dir] = true;
+            return dir;
+        }
+    }
+
+    // every free/occupied
+    int dir = Random(0, 5);
+    dirBusy[dir] = true;
+    return dir;
+}
+
+uint GetFreeEntire(array<bool>& entireBusy)
+{
+	array<uint>  freeEntires;
+	for(uint i = 0; i < entireBusy.length(); i++)
+	{
+		if (!entireBusy[i])
+			freeEntires.insertLast(i);
+	}
+	
+	if (freeEntires.length>0)
+	{
+		uint freeEntireNum = Random(0,freeEntires.length()-1);
+		entireBusy[freeEntires[freeEntireNum]]=true;
+		return freeEntires[freeEntireNum];
+	}
+    return 0;
+}
+
+void RotatePosition( uint toDir, uint[]& positionsDirs )
+{
+    for( uint i = 1, j = positionsDirs.length(); i < j; i++ ) // Skip Steps
+    {
+        positionsDirs[ i ] += toDir;
+        if( positionsDirs[ i ] > 5 )
+            positionsDirs[ i ] -= 6;
+    }
+}
+
+void MovePositionPoint( Map& map, uint16& pointX, uint16& pointY, uint[]& positionDirs, uint pathIndex, uint count, uint spacing )
+{
+    uint steps = positionDirs[ 0 ];
+    uint pathLen = ( positionDirs.length() - 1 ) / 2;
+    count *= steps;
+    count %= pathLen;
+    if( steps > 1 )
+    {
+        for( uint i = 0; i < spacing; i++ )
+        {
+            for( uint j = 0; j < steps; j++ )
+            {
+                uint dir = positionDirs[ 1 + pathLen * pathIndex + count + j ];
+                map.MoveHexByDir( pointX, pointY, dir, 1 );
+            }
+        }
+    }
+    else
+    {
+        uint dir = positionDirs[ 1 + pathLen * pathIndex + count ];
+        map.MoveHexByDir( pointX, pointY, dir, spacing );
+    }
+}
+
+void ParseEncounterObject( CEncounterObject@ obj, Map@ map, uint16 posX, uint16 posY, uint8 reversDir, Critter@[]& crittersGrouop, uint teamId, uint faction )
+{
+    if( obj.ObjectType == ENCOUNTER_OBJECT_CRITTER )
+    {
+        //if( not map.IsHexPassed( posX, posY ) )
+        //    return;
+
+        if(obj.TeamId != 0)
+			teamId = obj.TeamId;
+
+		int[] items;
+        if( obj.Childs.length() > 0 )
+        {
+            for( uint i = 0, j = obj.Childs.length(); i < j; i++ )
+            {
+                CEncounterObject@ child = obj.Childs[ i ];
+                uint              count = Random( child.Minimum, child.Maximum );
+                if( count > 0 )
+                {
+                    items.insertLast( child.Pid );
+                    items.insertLast( count );
+                    items.insertLast( child.Slot );
+                }
+            }
+        }
+
+        //int[] params = { ENCOUNTER_CRITTER, 1, ST_DIALOG_ID, obj.DialogId, ST_BAG_ID, obj.Bag, ST_TEAM_ID, teamId, ST_REPLICATION_TIME, -1 };
+		int[] params = {  ST_DIALOG_ID, obj.Dialog, ST_BAG_ID, obj.Bag, ST_TEAM_ID, teamId + (TEAM_Mob0 - TEAM_Mob0_Worldmap), MAIN_FACTION, faction, ST_REPLICATION_TIME, -1};
+        Critter@ npc = map.AddNpc( obj.Pid, posX, posY, reversDir, params, items, null );
+        if( not valid( npc ) )
+            return;
+
+		if(obj.Script.length() > 0)
+			npc.SetScript(obj.Script);
+		
+		if(obj.Perks.length > 0)
+        {
+            for(uint i = 0; i < obj.Perks.length; i++)
+            {
+                if(obj.Perks[i].chance > uint(Random(0, 99)))
+                    npc.PerkBase[obj.Perks[i].index] = obj.Perks[i].level;
+            }
+        }
+		
+        if( obj.Dead )
+            npc.ToDead( Random( 0, 1 ) == 0 ? ANIM2_DEAD_FRONT : ANIM2_DEAD_BACK, null );
+        else
+            crittersGrouop.insertLast( @npc );
+    }
+    else if( obj.ObjectType == ENCOUNTER_OBJECT_ITEM )
+    {
+        Item@ item = map.AddItem( posX, posY, obj.Pid, 1 );
+        if( not valid( item ) )
+            return;
+
+        if( obj.Childs.length() > 0 && item.GetType() == ITEM_TYPE_CONTAINER )
+        {
+            for( uint i = 0, j = obj.Childs.length(); i < j; i++ )
+            {
+                CEncounterObject@ child = obj.Childs[ i ];
+                uint              count = Random( child.Minimum, child.Maximum );
+                if( count > 0 )
+                    item.AddItem( child.Pid, count, 0 );
+            }
+        }
+    }
+    else
+    {
+        Log( "Unknown object type<" + obj.ObjectType + ">." );
+    }
+}
+
+void ActionFighting( Critter@[]& npcL, Critter@[]& npcR )
+{
+    for( int i = 0, j = npcL.length(); i < j; i++ )
+    {
+        Critter@ nl = npcL[ i ];
+        bool     nlIsNpc = nl.IsNpc();
+        for( int k = 0, l = npcR.length(); k < l; k++ )
+        {
+            Critter@ nr = npcR[ k ];
+			uint pr = AI_PLANE_ATTACK_PRIORITY;
+            if( nlIsNpc )
+            {
+                //~ AddAttackPlane( nl, 0, nr );
+                AddAttackPlane(nl, Random(pr, pr + 20), nr);
+                nl.AddEnemyInStack( nr.Id );
+                nl.Wait( 8000 );
+            }
+            if( nr.IsNpc() )
+            {
+                //~ AddAttackPlane( nr, 0, nl );
+                AddAttackPlane(nr, Random(pr, pr + 20), nl);
+                nr.AddEnemyInStack( nl.Id );
+                nr.Wait( 8000 );
+            }
+        }
+    }
+}
+
+Map@ GenerateEncounter( CFoundedEncounter@ fe, Critter@[] @ critters )
+{
+    CEncounter@ encounter = fe.Encounter;
+    uint16      locPid = ( valid( encounter ) ? encounter.LocationPid : 0 );
+    if( locPid == 0 )
+        locPid = fe.Zone.LocationPids[ Random( 0, fe.Zone.LocationPids.length() - 1 ) ];
+
+    fe.LocationId = CreateLocation( locPid, fe.PositionX, fe.PositionY, null );
+    if( fe.LocationId == 0 )
+    {
+        Log( "CreateLocation fail, location pid<" + locPid + ">." );
+        return null;
+    }
+
+    Location@ location = GetLocation( fe.LocationId );
+    if( not valid( location ) )
+    {
+        Log( "GetLocation fail." );
+        return null;
+    }
+    // Генерация итемов на всех картах энкаунтера
+    for( uint i = 0, l = location.GetMapCount(); i < l; i++ )
+    {
+        Map@ m = location.GetMapByIndex( i );
+        if( valid( m ) )
+        {
+            GenerateItems( m, critters );
+			GenerateItemsInLockers( m );
+            if( i > 0 )
+            {
+                GenerateCavernEncounter( m, critters );
+            }
+        }
+    }
+
+    Map@ map = location.GetMapByIndex( 0 );
+    if( not valid( map ) )
+    {
+        Log( "GetMapByIndex fail." );
+        return null;
+    }
+	map.SetData(60, __FullSecond);
+
+    uint16 startX = 0, startY = 0;
+    if( not map.GetEntireCoords( 0, 0, startX, startY ) )
+    {
+        Log( "Default entire not found." );
+        return null;
+    }
+    fe.StartHexX = startX;
+    fe.StartHexY = startY;
+
+    if(!valid(encounter) || fe.Encounter.Special)       // Empty map or special
+    {
+        fe.IsGenerated = true;
+        return map;
+    }
+
+    Critter@ leader = critters[ 0 ];
+	uint     playerscount = 0;
+    for(uint i = 0, j = critters.length(); i < j; i++)
+        if(critters[i].IsPlayer() && critters[i].Stat[ST_LEVEL]>10)
+            playerscount++;
+	
+	if (playerscount<3)
+		playerscount=0;
+	// add player group
+	fe.Encounter.AddPlayer(leader);
+	array<array<Critter@> > crittersGroups(encounter.Groups.length());
+    for( uint i = 0, j = encounter.Groups.length(); i < j; i++ )
+    {
+        uint groupNum = encounter.Groups[ i ];
+
+        if(groupNum >= GROUP_MAX)
+        {
+            Critter@[] @ crGroup = crittersGroups[ i ];
+            crGroup.resize( critters.length() );
+            for( uint k = 0, l = critters.length(); k < l; k++ )
+                @crGroup[ k ] = critters[ k ];
+            continue;
+        }
+        CEncounterGroup@ 	group = EncounterGroups[ groupNum ];
+        uint				distance = Random(group.DistMin, group.DistMax);
+
+        uint teamId = group.TeamNum;
+        if(teamId == TEAM_Mob)
+            teamId = TEAM_Mob0_Worldmap + i;
+        else if(teamId == TEAM_Neutral)
+            teamId = TEAM_Neutral0_Worldmap + i;
+			
+		uint faction = group.Faction;
+
+        uint position = group.Position;
+        uint spacing = group.Spacing;
+//old ystem
+		array<uint> positionDirs = PositionDirs[position];
+        uint        steps = positionDirs[0];
+        uint        dirsCount = 0;
+
+        uint8        freeDir = GetFreeDir(fe.DirBusy, fe.FirstDirIdx);
+        if(freeDir != 0)
+            RotatePosition(freeDir, positionDirs);
+        uint8 reversDir = freeDir + 3;
+        if(reversDir > 5)
+            reversDir -= 6;	
+//
+		if (fe.EntireBusy.length()==0)
+		{
+			fe.EntireBusy.resize(map.CountEntire(ENTIRE_ENCOUNTER_NPC));
+			for(uint i = 0; i < fe.EntireBusy.length(); i++)
+				fe.EntireBusy[i]=false;
+		}
+		// Get start point for group
+		uint freeEntire= GetFreeEntire(fe.EntireBusy);
+        //uint8 reversDir = 0;
+        if (not map.GetEntireCoords( ENTIRE_ENCOUNTER_NPC, freeEntire, startX, startY, reversDir ))
+			Log("Error entire "+ENTIRE_ENCOUNTER_NPC+" on map pid "+map.GetProtoId());
+
+		
+        uint totalratio = 0;         // sum of all ratios, to make them normalised
+        for(uint k = 0, l = group.Objects.length(); k < l; k++)
+            totalratio += group.Objects[k].Ratio;
+
+        bool force = true;
+
+        for(uint k = 0, l = group.Objects.length(); k < l; k++)
+        {
+            CEncounterObject@ obj = group.Objects[k];
+
+            if(!CheckChecks(obj.Checks, critters))
+                continue;
+
+            uint otherDistance = obj.Distance;
+
+            uint ncount = 0;
+            uint count = 0;
+            if(obj.Ratio > 0)
+            {
+                for(uint rc = 0; rc < encounter.Ratio; rc++)
+                    count += Random(group.RatioMin+playerscount, group.RatioMax+playerscount);// encounter groud scaling
+
+                for(uint n = 0; n < count; n++)
+                    // ratio roll instead of obj.Ratio*ratio/100
+                    if(Random(1, totalratio) <= int(obj.Ratio))
+                        ncount++;
+            }
+            else
+                ncount = 1;
+
+            if(force && ncount == 0)
+            {
+                force = false;
+                ncount = 1;
+            }
+
+            uint16 oldPosX = startX, oldPosY = startY;
+            for(uint n = 0; n < ncount; n++)
+            {
+                uint16 posX, posY;
+                posX = startX + Random(-5, 5);
+                posY = startY + Random(-5, 5);
+////old ystem				
+				if (fe.EntireBusy.length()==0)
+					map.MoveHexByDir(posX, posY, freeDir, otherDistance > 0 ? otherDistance : distance);
+//
+                map.GetHexCoord(oldPosX, oldPosY, posX, posY, 0.0f, 0);            // Check for barrier
+                oldPosX = posX;
+                oldPosY = posY;
+
+                ParseEncounterObject(obj, map, posX, posY, reversDir, crittersGroups[i], teamId, faction);
+            }
+        }
+    }
+	
+	fe.PrepareActions();
+	
+	if(fe.Actions.length() % 3 == 0)
+    {
+        for(uint i = 0, j = fe.Actions.length(); i < j; i += 3)
+        {
+            uint fromGroup = fe.Actions[i];
+            uint toGroup = fe.Actions[i + 1];
+            uint action = fe.Actions[i + 2];
+            //Log("Action " + i + ": " + fromGroup + "->" + toGroup + "=" + action);
+            if(fromGroup < crittersGroups.length() && toGroup < crittersGroups.length())
+            {
+                if(action == ACTION_FIGHTING)
+                    ActionFighting(crittersGroups[fromGroup], crittersGroups[toGroup]);
+            }
+            else
+                Log("GE: Incorrect critter group: " + fromGroup + "->" + toGroup + " / " + crittersGroups.length());
+        }
+    }
+    else
+        Log("GE: Improper actions length");
+
+    /*
+    for (uint i = 0; i < crittersGroups.length(); i++)
+	{
+		Critter@[] crittersGroup = crittersGroups[i];
+		for (uint j = 0; j < crittersGroup.length(); j++)
+		{
+			Critter@ critter = crittersGroup[j];
+			if(!valid(critter) || !critterScripts.exists("" + critter.Id))
+				continue;
+			
+			string@ scriptName;
+			critterScripts.get("" + critter.Id, @scriptName);
+			
+			if(valid(scriptName))
+				critter.SetScript(scriptName);
+		}
+	}
+	*/
+	
+	AddEncounterContainers(map, critters);
+
+    fe.IsGenerated = true;
+    return map;
+}
+
+//
+// Imports
+//
+// void FindEncounter(Critter@[]@ critters, uint zx, uint zy) return foundedEncounterIndex
+// bool InviteToEncounter(uint foundedEncounterIndex, Critter@[]@ critters) invite critters to encounter
+// void WorldmapInit() call on start server
+
+/*const int[] ScanOffsX={-1,0,1,-1,0,1,-1,0,1};
+   const int[] ScanOffsY={-1,0,1,-1,0,1,-1,0,1};
+   void ScanZone(Critter& cr, uint zx, uint zy)
+   {
+        uint zoneX=cr.WorldX/__GlobalMapZoneLength;
+        uint zoneY=cr.WorldY/__GlobalMapZoneLength;
+
+        cr.SetFog(zoneX,zoneY,FOG_NONE);
+        cr.SetFog(zoneX-1,zoneY-1,FOG_SELF);
+        cr.SetFog(zoneX  ,zoneY-1,FOG_SELF);
+        cr.SetFog(zoneX+1,zoneY-1,FOG_SELF);
+        cr.SetFog(zoneX-1,zoneY  ,FOG_SELF);
+        cr.SetFog(zoneX+1,zoneY  ,FOG_SELF);
+        cr.SetFog(zoneX-1,zoneY+1,FOG_SELF);
+        cr.SetFog(zoneX  ,zoneY+1,FOG_SELF);
+        cr.SetFog(zoneX+1,zoneY+1,FOG_SELF);
+
+        for(int ox=-1;ox<2;ox++)
+        {
+                for(int oy=-1;oy<2;oy++)
+                {
+
+                }
+        }
+   }*/
+   
+#define _CheckSpecialEncounter    # (__loc, __condition, __result) if(__condition) { __result; return __loc; }
+int CheckSpecialEncounter(Critter@ leader, CZone@ zone)
+{
+    if (!valid(leader) || !leader.IsPlayer())
+		return 0;
+	// Not quest related
+	// Example
+	//    _CheckSpecialEncounter(LOCATION_Howitzer, (zone.Terrain == TERRAIN_Desert && () && (Random(1, 18000) == 1 && leader.Stat[ST_LEVEL] > Random(0, 23))), SetLvar(leader, LVAR_q_secret_howitzer, ELAPSED_TIME + REAL_HOUR(10))); 
+	//_CheckSpecialEncounter(LOCATION_SE_GasStation, ((uint(GetLvar(leader, LVAR_se_gasstation)) <= ELAPSED_TIME) && (Random(1, 1) == 1 && leader.Stat[ST_LEVEL] > 10)), SetLvar(leader, LVAR_se_gasstation, ELAPSED_TIME + REAL_HOUR(10)));                                          
+    _CheckSpecialEncounter(LOCATION_SE_NukaTruck, ((uint(GetLvar(leader, LVAR_se_nukatruck)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_nukatruck, 1));                                          
+    _CheckSpecialEncounter(LOCATION_SE_Saucer, ((uint(GetLvar(leader, LVAR_se_saucer)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_saucer, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Guardian, ((uint(GetLvar(leader, LVAR_se_guardian)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_guardian, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Tardis, ((uint(GetLvar(leader, LVAR_se_tardis)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_tardis, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Hospital, ((uint(GetLvar(leader, LVAR_se_hospital)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_hospital, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Watertower, ((uint(GetLvar(leader, LVAR_se_watertower)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_watertower, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Cave, ((uint(GetLvar(leader, LVAR_se_cave)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_cave, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Madmax, ((uint(GetLvar(leader, LVAR_se_madmax)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_madmax, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Warehouse, ((uint(GetLvar(leader, LVAR_se_warehouse)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_warehouse, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_RansackedBunker, ((uint(GetLvar(leader, LVAR_se_ransackedbunker)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_ransackedbunker, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_RaidedBunker, ((uint(GetLvar(leader, LVAR_se_raidedbunker)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_raidedbunker, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Head, ((uint(GetLvar(leader, LVAR_se_head)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_head, 1)); 
+    _CheckSpecialEncounter(LOCATION_SE_Village, ((uint(GetLvar(leader, LVAR_se_village)) == 0) && (Random(1, 25000) == 1)), SetLvar(leader, LVAR_se_village, 1)); 
+    return 0;
+}
+
+void FindEncounter( Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty )
+{
+    encounterDescriptor = 0;
+    waitForAnswer = false;
+
+    uint zx = x / ZONE_LENGTH;
+    uint zy = y / ZONE_LENGTH;
+    if( zx >= ZONE_COUNT_X || zy >= ZONE_COUNT_Y )
+    {
+        // Log("Invalid zones coordinates."); in faction mod size is greather than ZONE_COUNT_X, ZONE_COUNT_Y.
+        return;
+    }
+
+    bool isWater = ( GetGlobalMapRelief( x, y ) == 0 );
+    int  walkType = ( valid( car ) ? car.Proto.Car_MovementType : GM_WALK_GROUND );
+    bool walkWaterOrFly = ( walkType == GM_WALK_WATER || walkType == GM_WALK_FLY );
+    if( walkType == GM_WALK_GROUND && isWater )
+        return;
+
+    CZone@ zone = Worldmap[ zy * ZONE_COUNT_X + zx ];
+    if( not valid( zone ) )
+        return;
+    Critter@ leader = group[ 0 ];
+	uint     seLocPid = 0;
+    if (!valid(car))
+        seLocPid = CheckSpecialEncounter(leader, zone);
+    
+    // Create empty map
+    if( empty )
+    {
+		// Try find already founded encounter
+        CFoundedEncounter@ feAlready = GetNearFoundedEncounter(isWater, group, x, y, ZONE_LENGTH / 2);
+        if(valid(feAlready) && HAS_CHANCE(50))
+        {
+			waitForAnswer = false;
+			encounterDescriptor = feAlready.Index;
+            return;
+		}
+		
+		CEncounter@ enc = CEncounter();
+		if (HAS_CHANCE(25))
+		{
+			enc.Ratio = (group.length()>5 ? 2 : 1);
+			zone.ChooseGroups(leader, enc);
+		}
+		else
+			@enc = null;
+		CFoundedEncounter@ fe = CreateFoundedEncounter( x, y, @enc, zone, leader.Id, group.length() > 1 );
+		if( not valid( fe ) )
+			return;
+		waitForAnswer = false;
+		encounterDescriptor = fe.Index;
+		return;
+	}
+
+	if (seLocPid > 0)
+	{
+		CEncounter@ enc = CEncounter();
+        enc.LocationPid = seLocPid;
+        enc.Special = true;
+        CFoundedEncounter@ fe = CreateFoundedEncounter(x, y, @enc, zone, leader.Id, group.length() > 1);
+        if(!valid(fe))
+            return;
+        waitForAnswer = false;
+        encounterDescriptor = fe.Index;
+		for( uint i = 0, j = group.length(); i < j; i++ )
+        {
+			group[ i ].PlaySound("encounter.ogg", true);
+            group[ i ].Say( SAY_FLASH_WINDOW, "" );
+		}
+        return;
+	}
+    // Check chance
+    uint chance;
+    if( IS_MORNING( __Hour ) )
+        chance = zone.MorningChance;
+    if( IS_AFTERNOON( __Hour ) )
+        chance = zone.AfternoonChance;
+    else
+        chance = zone.NightChance;
+    if( uint( Random( 1, 100 ) ) > chance )
+        return;
+
+    // Try find already founded encounter
+    CFoundedEncounter@ feAlready = GetNearFoundedEncounter( isWater, group, x, y, ZONE_LENGTH / 2 );
+    if( valid( feAlready ) )
+    {
+        int outdoorsman = leader.Skill[ SK_OUTDOORSMAN ] + zone.Difficulty;
+        outdoorsman = CLAMP( outdoorsman, 6, 95 );
+        if( leader.IsPlayer() && (outdoorsman >= Random( 1, 100 ) || walkWaterOrFly) )
+        {
+            if (leader.Param[TRAVEL_MODE]==1)
+				return;
+			uint8 say = feAlready.TurnBased ? SAY_ENCOUNTER_TB : SAY_ENCOUNTER_RT;
+            if( valid( feAlready.Encounter ) )
+				feAlready.Encounter.Ask(say, leader);
+            else
+				leader.SayMsg(say, TEXTMSG_GM, feAlready.OwnerGroup ? STR_QUESTION_ONLY_PLAYERS : STR_QUESTION_ONLY_PLAYER,
+					"$player" + GetSafePlayerName(feAlready.OwnerId));
+            waitForAnswer = true;
+
+            if( not walkWaterOrFly )
+            {
+                if( leader.Skill[ SK_OUTDOORSMAN ] <= 95 )
+                    leader.StatBase[ ST_EXPERIENCE ] += 100 - leader.Skill[ SK_OUTDOORSMAN ] - zone.Difficulty;
+                else
+                    leader.StatBase[ ST_EXPERIENCE ] += 5 - zone.Difficulty;
+            }
+        }
+        
+
+        for( uint i = 0, j = group.length(); i < j; i++ )
+        {
+            if (group[ i ].IsNpc())
+                continue;
+            group[ i ].PlaySound("encounter.ogg", true);
+            group[ i ].Say( SAY_FLASH_WINDOW, "" );
+        }
+        encounterDescriptor = feAlready.Index;
+        return;
+    }
+    if (!valid(car) && HAS_CHANCE(5))
+    {
+        uint Descriptor = FindNearWmGroups(group, zone, x, y);
+        if (Descriptor>0)
+        {
+            waitForAnswer = false;
+            encounterDescriptor = Descriptor;
+            return;
+        }
+    }
+
+    // Try find new encounter
+	CEncounter@ encounters = CEncounter();
+	//enc.Ratio = MAX(1, len / 2);
+	encounters.Ratio = (group.length()>5 ? 2 : 1);
+	zone.ChooseGroups(leader, encounters);
+
+    // found something
+    if(encounters.Groups.length() > 0)
+    {
+        CFoundedEncounter@ fe = CreateFoundedEncounter(x, y, @encounters, zone, leader.Id, group.length() > 1);
+		
+		if(!valid(fe))
+			return;
+
+        int outdoorsman = leader.Skill[ SK_OUTDOORSMAN ] + zone.Difficulty;
+        outdoorsman = CLAMP( outdoorsman, 6, 95 );
+        if(leader.IsPlayer() && (outdoorsman >= Random( 1, 100 ) || walkWaterOrFly) )
+        {
+            if (leader.Param[TRAVEL_MODE]==1)
+				return;
+			//leader.SayMsg( SAY_ENCOUNTER_ANY, TEXTMSG_GM, STR_QUESTION, "$who @msg gm " + 100000 + "@" );
+			encounters.Ask(SAY_ENCOUNTER_ANY, leader);
+            waitForAnswer = true;
+
+            if( not walkWaterOrFly )
+            {
+                if( leader.Skill[ SK_OUTDOORSMAN ] <= 95 )
+                    leader.StatBase[ ST_EXPERIENCE ] += 100 - leader.Skill[ SK_OUTDOORSMAN ] - zone.Difficulty;
+                else
+                    leader.StatBase[ ST_EXPERIENCE ] += 5 - zone.Difficulty;
+            }
+        }
+
+        for( uint i = 0, j = group.length(); i < j; i++ )
+        {
+			group[ i ].PlaySound("encounter.ogg", true);
+            group[ i ].Say( SAY_FLASH_WINDOW, "" );
+		}
+        encounterDescriptor = fe.Index;
+    }
+}
+
+void InviteToEncounter( Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir )
+{
+    mapId = 0;
+
+    CFoundedEncounter@ fe = GetFoundedEncounter( encounterDescriptor );
+    if( not valid( fe ) )
+    {
+        Log( "GetFoundedEncounter fail." );
+        return;
+    }
+
+    bool isGenerated = fe.IsGenerated;
+    Map@ map = null;
+    if( isGenerated )
+    {
+        Location@ location = GetLocation( fe.LocationId );
+        if( not valid( location ) )
+        {
+            // Log("Location not found.");
+            return;
+        }
+
+        @map = location.GetMapByIndex( 0 );
+    }
+    else
+    {
+        @map = GenerateEncounter( fe, group );
+    }
+
+    if( not valid( map ) )
+    {
+        Log( "Map not found." );
+        return;
+    }
+
+    if( !isGenerated && (combatMode == COMBAT_MODE_TURN_BASED || fe.TurnBased) ) // || combatMode == COMBAT_MODE_ANY && Random(0,1) == 0 ))
+    {
+		Location@ location = map.GetLocation();
+		if(valid(location))
+		{
+			Map@[] maps;
+			location.GetMaps(maps);
+			for (uint i = 0; i < maps.length(); i++)
+				maps[i].SetTurnBasedAvailability(true);
+		}
+        fe.TurnBased = true;
+    }
+    
+    Critter@ leader = group[0];
+
+    mapId = map.Id;
+	uint8 entire = ENTIRE_DEFAULT;
+    if(!valid(car))
+    {
+		if (group.length()!=1)
+			entire = ENTIRE_ENCOUNTER_LOWPE;
+		else
+		{
+			if (leader.Stat[ST_PERCEPTION]<5)
+				entire = ENTIRE_ENCOUNTER_LOWPE;
+			else if (leader.Stat[ST_PERCEPTION]<8)
+				entire = ENTIRE_ENCOUNTER_MIDPE;
+			else
+				entire = ENTIRE_ENCOUNTER_HIPE;
+		}
+		
+		uint entiresnum = map.CountEntire(entire);
+		
+		if (entiresnum>0)
+		{
+			array<uint> entiresarray;
+			for(uint i = 0, j = entiresnum; i < j; i++)
+			{
+				entiresarray.insertLast(i);
+			}
+			bool foundspawn=false;
+			for(uint i = 0, j = entiresarray.length(); i < j; i++)
+			{
+				if (entiresarray.length()==0)
+					break;
+				uint randomentire = entiresarray[Random(0,entiresarray.length()-1)];
+				if (!map.GetEntireCoords( entire, randomentire , hexX, hexY, dir ))
+					continue;
+				if (map.GetCrittersHex( hexX, hexY, 20, FIND_LIFE_AND_KO | FIND_ALL, null )==0)
+				{
+					foundspawn=true;
+					break;
+				}
+				for(uint z = 0, k = entiresarray.length(); z < k; z++)
+					if (entiresarray[z]==randomentire)
+					{
+						entiresarray.removeAt(z);
+						i--;
+						break;
+					}
+			}
+			if (!foundspawn)
+				map.GetEntireCoords( entire, Random(0,entiresnum-1), hexX, hexY, dir );
+		}
+		else
+		{
+			if (valid(fe.Encounter) && !fe.Encounter.Special)
+                Log("Error entire "+entire+" on map pid "+map.GetProtoId());
+			hexX = fe.StartHexX;
+			hexY = fe.StartHexY;
+		}
+    }
+
+    if(valid(car))
+    {
+        hexX = uint16(-1);
+        hexY = uint16(-1);
+        OnCarGroupEnterLocation(group, car, map.GetLocation().Id);
+    }
+
+    if(valid(fe.Encounter))
+    {
+        // add player group if new
+        if(leader.Id != fe.OwnerId)
+            fe.Encounter.AddPlayer(leader);
+        for(uint i = 0, j = group.length(); i < j; i++)
+            fe.Encounter.Say(leader, group[i]);
+
+        AssignChecks( fe.Encounter.Checks, group );
+    }
+	else if (isGenerated)
+	{
+        for(uint i = 0, j = group.length(); i < j; i++)
+        {
+            if (group[i].IsPlayer())
+                group[i].SayMsg(SAY_NETMSG, TEXTMSG_GM, fe.OwnerGroup ? 10000026 : 10000025,"$player" + GetSafePlayerName(fe.OwnerId));
+        }
+	}
+}
+
+void OnCarGroupEnterLocation(array<Critter@>& group, Item& car, uint locId)
+{
+    for(uint i = 0, j = group.length(); i < j; i++)
+        if(group[i].IsPlayer())
+            group[i].SetKnownLoc(true, locId);
+}
+
+uint GetGlobalMapRelief( uint x, uint y )
+{
+    // Used low four bits of image
+    // Zero is water
+    return GetImageColor( IMAGE_RELIEF, x, y ) & 0xF;
+}
+
+#define GROUP_NPC_DATA_ITEM    ("0")
+#define GROUP_NPC_DATA_PERK    ("1")
+
+void LoadWorldmapGroups(string@ fileName)
+{
+    CEncounterGroup@ group;
+
+    file f;
+    //Log("Reading Groups");
+    if(f.open(fileName, "r") >= 0)
+    {
+        // Read the whole file into the string buffer
+        string str;
+        int    l = f.readString(f.getSize(), str);
+        f.close();
+
+        // now we need to process that whole string
+        array<string@>@ lines = split(str, "\n");
+        //Log("Read " + lines.length() + " lines");
+
+        /*
+
+                Example string:
+                GROUP_Raiders,1,5,2,3,0,0,1.00,1.00,7,15
+         *,36,63,mob@critter_init,50,0,-1,-1,0|0,122,1,1,1|0,121,10,25,0|0,40,0,1,0|1,PE_ACTION_BOY,327,1,100
+         *,33,63,mob@critter_init,45,0,-1,-1,0|0,7,1,1,1
+
+         */
+
+        int GroupIndex = -1;
+        for(uint i = 0; i < lines.length(); i++)
+        {
+            if(lines[i].length() < 5)
+            {
+                continue;
+            }
+
+            if(substring(lines[i], 0, 1) == "*")             // Npc data
+            {
+                array<string@>@ parts = split(lines[i], "|");
+                array<string@>@ param = split(parts[0], ",");
+
+                CEncounterObject@ cr;
+                int               crpid = 0;
+                int               dialog = 0;
+                int               ratio = 0;
+                int               armor = 0;
+                int               helmet = 0;
+                int               overridecrtype = 0;
+                int               bag = 0;
+                StrToInt(param[1], crpid);
+                StrToInt(param[2], dialog);
+                string script = param[3];
+                StrToInt(param[4], ratio);
+                string dead = param[5];
+                StrToInt(param[6], armor);
+                StrToInt(param[7], helmet);
+                StrToInt(param[8], overridecrtype);
+                stringReplaceText(param[9], "\r", "");
+                StrToInt(param[9], bag);
+                @cr = group.AddCritter(crpid).SetRatio(ratio).SetScript(script).SetDialog(dialog).SetBag(bag);
+                if(dead == "1")
+					@cr.SetDead(true);
+
+                for(uint y = 1; y < parts.length(); y++)
+                {
+                    array<string@>@ itemData = split(parts[y], ",");
+                    if(itemData.length < 1)
+                        continue;
+					/*
+                    if(itemData[0] == GROUP_NPC_DATA_ITEM)
+                    {
+                        // Log("parsing item @ " + i);
+                        int pid = 0;
+                        int min = 0;
+                        int max = 0;
+                        int slot = 0;
+                        StrToInt(itemData[1], pid);
+                        StrToInt(itemData[2], min);
+                        StrToInt(itemData[3], max);
+                        StrToInt(itemData[4], slot);
+                        cr.AddItem(pid, min, max, slot);
+                    }
+                    else */
+					if(itemData[0] == GROUP_NPC_DATA_PERK)
+                    {
+                        // Log("parsing perk @ " + i);
+                        int index  = 0;
+                        int level  = 0;
+                        int chance = 0;
+                        // itemData[1] contains define, used only by WE
+                        StrToInt(itemData[2], index);
+                        StrToInt(itemData[3], level);
+                        StrToInt(itemData[4], chance);
+                        cr.AddPerk(index, level, chance);
+                    }
+                }
+            }
+            else             // Group data
+            {
+                array<string@>@ params = split(lines[i], ",");
+
+                int   position = 0;
+                int   spacing = 0;
+                int   ratiomin = 0;
+                int   ratiomax = 0;
+                int   factionid = 0;
+                int   vsmode = 0;
+
+                float quantityday = 0.0;
+                float quantitynight = 0.0;
+
+                int   distmin = 0;
+                int   distmax = 0;
+
+                StrToInt(params[1], position);
+                StrToInt(params[2], spacing);
+
+                StrToInt(params[3], ratiomin);
+                StrToInt(params[4], ratiomax);
+                StrToInt(params[5], factionid);
+                StrToInt(params[6], vsmode);
+                StrToFloat(params[7], quantityday);
+                StrToFloat(params[8], quantitynight);
+                StrToInt(params[9], distmin);
+                StrToInt(params[10], distmax);
+
+                @group = @EncounterGroups[++GroupIndex];
+                group.Position = position;
+                group.Spacing = spacing;
+                group.RatioMin = ratiomin;
+                group.RatioMax = ratiomax;
+                group.QuantityDay = quantityday;
+                group.QuantityNight = quantitynight;
+                group.DistMin = distmin;
+                group.DistMax = distmax;
+				group.VsMode = vsmode;
+                if(factionid == -1)
+                    group.TeamNum = TEAM_Neutral;
+                else if(factionid > 0)
+				{
+                    group.Faction = factionid;
+					group.TeamNum = TEAM_Neutral;
+					//group.TeamNum = DetermineAgro(factionid);
+				}
+                else
+                    group.TeamNum = 0;                   // just mob
+            }
+        }
+    }
+}
+
+void WorldmapInit()
+{
+    LoadImage( IMAGE_RELIEF, "relief_tla.png", 1, PT_SERVER_MAPS );
+    for(uint i = 0, j = Worldmap.length(); i < j; i++)
+        @Worldmap[i] = CZone(i % ZONE_COUNT_X, i / ZONE_COUNT_X);
+	
+	// Groups be here
+    LoadWorldmapGroups("maps/groups.fowm");
+    Log("Encounter groups loaded.");
+ 
+	RecolorLocations();
+    Log("Locations Colored.");
+	
+    LoadWorldmapTables("maps/worldmap.focwm");
+    Log("Worldmap loaded.");
+    //LoadGroupsQuantities();
+}
+
+/**
+ * Loads the groups/quantities into the worldmap zones.
+ */
+/*
+void LoadGroupsQuantities()
+{
+    array<uint> data;
+    if(!IsAnyData("WorldmapGroups"))
+        return;
+    GetAnyData("WorldmapGroups", data);
+    uint idx = 0;     // zone idx
+    uint cur = 0;     // array position
+    uint len = data.length();
+    do
+    {
+        Worldmap[idx].Groups.resize(0);
+        Worldmap[idx].Quantities.resize(0);
+        for(uint i = 0, j = data[cur++]; i < j; i++)
+        {
+            Worldmap[idx].Groups.insertLast(data[cur++]);
+            Worldmap[idx].Quantities.insertLast(data[cur++]);
+        }
+        idx++;
+    }
+    while(cur < len);
+}
+*/
+
+/***********************************
+ **** EVENT COORDINATES FINDER *****
+ ***********************************/
+ 
+int[] coastEncounterPids = {LOCATION_CoastDesertEncounter1, LOCATION_CoastDesertEncounter2, LOCATION_CoastDesertEncounter3, LOCATION_CoastDesertEncounter4,
+		LOCATION_CoastCityEncounter1, LOCATION_CoastCityEncounter2, LOCATION_CoastCityEncounter3, LOCATION_CoastCityEncounter4};
+
+int[] desertEncounterPids = {LOCATION_DesertEncounter1, LOCATION_DesertEncounter2, LOCATION_DesertEncounter3, LOCATION_DesertEncounter4, LOCATION_DesertEncounter5,
+		LOCATION_DesertEncounter6, LOCATION_DesertEncounter7, LOCATION_DesertEncounter8, LOCATION_DesertEncounter9, LOCATION_DesertEncounter10,
+		LOCATION_DesertEncounter11, LOCATION_DesertEncounter12, LOCATION_DesertEncounter13, LOCATION_DesertEncounter14};		
+
+int[] cityEncounterPids = {LOCATION_CityEncounter1, LOCATION_CityEncounter2, LOCATION_CityEncounter3, LOCATION_CityEncounter4, LOCATION_CityEncounter5,
+		LOCATION_CityEncounter6, LOCATION_CityEncounter7, LOCATION_CityEncounter8, LOCATION_CityEncounter9, LOCATION_CityEncounter10,
+		LOCATION_CityEncounter11, LOCATION_CityEncounter12, LOCATION_CityEncounter13, LOCATION_CityEncounter14, LOCATION_CityEncounter15};
+	
+int[] mountainEncounterPids = {LOCATION_MountainEncounter1, LOCATION_MountainEncounter2, LOCATION_MountainEncounter3, LOCATION_MountainEncounter4,
+		LOCATION_MountainEncounter5, LOCATION_MountainEncounter6, LOCATION_MountainEncounter7, LOCATION_MountainEncounter8, LOCATION_MountainEncounter9,
+		LOCATION_MountainEncounter10, LOCATION_MountainEncounter11, LOCATION_MountainEncounter12, LOCATION_MountainEncounter13, LOCATION_MountainEncounter14,
+		LOCATION_MountainEncounter15, LOCATION_MountainEncounter16, LOCATION_MountainEncounter17, LOCATION_CavernEncounter0, LOCATION_CavernEncounter1,
+		LOCATION_CavernEncounter2, LOCATION_CavernEncounter3, LOCATION_CavernEncounter4, LOCATION_CavernEncounter5, LOCATION_Cavern0RandomDungeonEncounter,
+		LOCATION_Cavern1RandomDungeonEncounter, LOCATION_Cavern2RandomDungeonEncounter, LOCATION_Cavern3RandomDungeonEncounter, 
+		LOCATION_Cavern4RandomDungeonEncounter, LOCATION_Cavern5RandomDungeonEncounter};	
+
+uint[]@ townLocationsIds;
+
+uint[]@+ GetTownLocationIds()
+{
+	if (!valid(townLocationsIds))
+	{
+		@townLocationsIds = uint[](0);
+		
+		array<Location@> locations;
+		GetVisibleLocations(0, 0, 2 * ZONE_LENGTH * ZONE_COUNT_X, null, locations);
+	
+		for (uint i = 0; i < locations.length(); i++)
+		{
+			if (locations[i].IsTown() || (locations[i].IsDungeon() && !locations[i].IsEvent()) || locations[i].IsGuarded())
+			{
+				townLocationsIds.insertLast(locations[i].Id);
+			}
+		}
+	}
+	
+	return townLocationsIds;
+}
+
+dictionary @townZones;
+
+void InitializeTownZones()
+{
+	uint[]@ townLocationsIds = GetTownLocationIds();
+	
+	@townZones = dictionary();
+
+	for (uint i = 0; i < townLocationsIds.length(); i++)
+	{
+		Location@ location = GetLocation(townLocationsIds[i]);
+		
+		uint zoneX = location.WorldX / ZONE_LENGTH;
+		uint zoneY = location.WorldY / ZONE_LENGTH;
+		uint zoneIdx = zoneX + zoneY * ZONE_COUNT_X;
+		
+		townZones.set("" + zoneIdx, "");
+	}
+}
+
+bool IsTownZone(uint x, uint y)
+{
+	if (!valid(townZones))
+	{
+		InitializeTownZones();
+	}
+
+	uint zoneX = x / ZONE_LENGTH;
+	uint zoneY = y / ZONE_LENGTH;
+	uint zoneIdx = zoneX + zoneY * ZONE_COUNT_X;
+	
+	return townZones.exists("" + zoneIdx);
+}
+
+	
+void FindEventCoordinates(uint[]& encounterGroupIds, uint[]& allowedTerrainTypes, uint[]& forbiddenTerrainTypes, uint& x, uint& y, uint& terrainType, uint& area)
+{
+	dictionary allowedLocationPids = dictionary();
+	dictionary forbiddenLocationPids = dictionary();
+	dictionary encounterGroups = dictionary();
+	uint[] foundedWMIdxs = {}, foundedWMWeights = {}, foundedWMTerrainType = {};
+	uint foundedWMTotalWeight = 0;
+	
+	if (!valid(townZones))
+	{
+		InitializeTownZones();
+	}
+	
+	//Create groups dict
+	for (uint i = 0; i < encounterGroupIds.length(); i++)
+	{
+		encounterGroups.set("" + encounterGroupIds[i], "");
+	}
+
+	//Create locations dicts
+	for (uint i = 0; i < allowedTerrainTypes.length(); i++)
+	{
+		if (allowedTerrainTypes[i] == TERRAIN_Desert)
+		{
+			for (uint j = 0; j < desertEncounterPids.length(); j++)
+			{
+				allowedLocationPids.set("" + desertEncounterPids[j], TERRAIN_Desert);
+			}
+		}
+		else if (allowedTerrainTypes[i] == TERRAIN_Mountain)
+		{
+			for (uint j = 0; j < mountainEncounterPids.length(); j++)
+			{
+				allowedLocationPids.set("" + mountainEncounterPids[j], TERRAIN_Mountain);
+			}
+		}
+		else if (allowedTerrainTypes[i] == TERRAIN_City)
+		{
+			for (uint j = 0; j < cityEncounterPids.length(); j++)
+			{
+				allowedLocationPids.set("" + cityEncounterPids[j], TERRAIN_City);
+			}
+		}
+		else if (allowedTerrainTypes[i] == TERRAIN_Coast)
+		{
+			for (uint j = 0; j < coastEncounterPids.length(); j++)
+			{
+				allowedLocationPids.set("" + coastEncounterPids[j], TERRAIN_Coast);
+			}
+		}
+	}
+	
+	for (uint i = 0; i < forbiddenTerrainTypes.length(); i++)
+	{
+		if (forbiddenTerrainTypes[i] == TERRAIN_Desert)
+		{
+			for (uint j = 0; j < desertEncounterPids.length(); j++)
+			{
+				forbiddenLocationPids.set("" + desertEncounterPids[j], TERRAIN_Desert);
+			}
+		}
+		else if (forbiddenTerrainTypes[i] == TERRAIN_Mountain)
+		{
+			for (uint j = 0; j < mountainEncounterPids.length(); j++)
+			{
+				forbiddenLocationPids.set("" + mountainEncounterPids[j], TERRAIN_Mountain);
+			}
+		}
+		else if (forbiddenTerrainTypes[i] == TERRAIN_City)
+		{
+			for (uint j = 0; j < cityEncounterPids.length(); j++)
+			{
+				forbiddenLocationPids.set("" + cityEncounterPids[j], TERRAIN_City);
+			}
+		}
+		else if (forbiddenTerrainTypes[i] == TERRAIN_Coast)
+		{
+			for (uint j = 0; j < coastEncounterPids.length(); j++)
+			{
+				forbiddenLocationPids.set("" + coastEncounterPids[j], TERRAIN_Coast);
+			}
+		}
+	}
+	
+	//Find matching WM zones
+	area = 0;
+	for (uint i = 0; i  < ZONE_COUNT_X * ZONE_COUNT_Y; i++)
+	{
+		int weight = 0, totalWeight = 0;
+	
+		if (townZones.exists("" + i))
+		{
+			continue;
+		}
+	
+		for (uint j = 0; j < Worldmap[i].Groups.length(); j++)
+		{
+			totalWeight += Worldmap[i].Quantities[j];
+		
+			if (encounterGroups.exists("" + Worldmap[i].Groups[j]))
+			{
+				weight += Worldmap[i].Quantities[j];
+			}
+		}
+
+		if (weight == 0) 
+		{
+			continue;
+		}	
+		
+		bool locationFound = false;
+		uint terrainType = 0;
+		for (uint j = 0; j < Worldmap[i].LocationPids.length(); j++)
+		{
+			if (forbiddenLocationPids.exists("" + Worldmap[i].LocationPids[j]))
+			{
+				locationFound = false;
+				break;
+			}
+		
+			if (allowedLocationPids.exists("" + Worldmap[i].LocationPids[j]))
+			{
+				if (!locationFound || Random(0, 10) < 1)
+				{				
+					allowedLocationPids.get("" + Worldmap[i].LocationPids[j], terrainType);
+				}
+				locationFound = true;
+			}
+		}
+		
+		if (!locationFound) 
+		{
+			continue;
+		}
+		
+		uint weightPercent = (weight * 100) / totalWeight;
+		
+		if (weightPercent == 0)
+		{
+			weightPercent = 1;
+		}
+		
+		foundedWMIdxs.insertLast(i);
+		foundedWMWeights.insertLast(weightPercent);
+		foundedWMTerrainType.insertLast(terrainType);
+		foundedWMTotalWeight += (weightPercent);
+		area += ZONE_LENGTH * ZONE_LENGTH;
+	}
+		
+	//Compute random coordinates
+	uint randomWeight = Random(0, foundedWMTotalWeight - 1);
+	for (uint i = 0; i < foundedWMWeights.length(); i++)
+	{
+		if (foundedWMWeights[i] >= randomWeight)
+		{
+			uint zoneX = foundedWMIdxs[i] % ZONE_COUNT_X;
+			uint zoneY = foundedWMIdxs[i] / ZONE_COUNT_X;
+			uint ranomZoneCoords = Random(0, ZONE_LENGTH * ZONE_LENGTH - 1);
+			
+			x = zoneX * ZONE_LENGTH + ranomZoneCoords % ZONE_LENGTH;
+			y = zoneY * ZONE_LENGTH + ranomZoneCoords / ZONE_LENGTH;
+			terrainType = foundedWMTerrainType[i];
+			
+			return;
+		}
+		else
+		{
+			randomWeight -= foundedWMWeights[i];
+		}
+	}
+}
+
+
+void RecolorLocations()
+{
+    Location@[] locs;
+    ::GetAllLocations( 0, locs );
+    for( uint i = 0, j = locs.length(); i < j; i++ )
+    {
+        if (!valid(locs[i]))
+			continue;
+		
+		if (locs[i].IsDungeon()) //Dungeons
+			locs[i].Color=COLOR_DANGEROUS;
+		else if (locs[i].IsTown() && locs[i].IsGuarded()) //Guarded Towns
+			locs[i].Color=COLOR_SAFE;
+		else if (locs[i].IsTown() && !locs[i].IsGuarded()) // Not guarded Towns
+			locs[i].Color=COLOR_CAUTIOUS;
+    }
+}
+
+
+
+
+

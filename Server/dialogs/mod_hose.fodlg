@@ -1,0 +1,68 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _item p PID_BRASS_KNUCKLES = 1 R _item p PID_BRASS_KNUCKLES - 1 R _item p PID_SPIKED_KNUCKLES + 1 #
+0 2020 @
+3 3000 None 0 #
+0 3010 &
+
+[engl]
+{100}{}{Mook}
+{200}{}{It's that guy, Mook.}
+{210}{}{Mook, the local repairman.}
+{210}{}{You see Mook. He has a lovable quality you can't quite place.}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic}
+{2000}{}{Name's Mook. Modoc's repairman. You have any gear you want upgraded, give me a shout. I'll do it for free, I ain't got anything better to do.}
+{2010}{}{Could you upgrade these brass knuckles?}
+{2020}{}{Later, Mook.}
+{3000}{}{Sure, done. Here you go. Uh, enjoy.}
+{3010}{}{Thanks!}
+
+[russ]
+{100}{}{Мук}
+{200}{}{Это тот парень , Мук.}
+{210}{}{Мук, местный ремонтник .}
+{210}{}{Вы видите Мука.}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic}
+{2000}{}{Меня зовут Мук. Я техник в Модоке. Если вам нужно что-то улучшить зовите меня. Я делаю это бесплатно, все равно мне нечем заняться.}
+{2010}{}{Не могли бы вы улучшить мой кастет?}
+{2020}{}{Позже, Мук.}
+{3000}{}{Конечно, сделано. Вот, держи. Э-э, наслаждайся.}
+{3010}{}{Спасибо!}
+
+[pols]
+{100}{}{Mook}
+{200}{}{To ten facet, Mook.}
+{210}{}{Mook, miejscowy mechanik.}
+{210}{}{Widzisz Mooka.}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic}
+{2000}{}{Jestem Mook. Mechanik Modoc. Jeśli masz jakiś sprzęt, który chcesz ulepszyć, daj mi znać. Zrobię to za darmo, nie mam nic lepszego do roboty.}
+{2010}{}{Możesz ulepszyć ten kastet?}
+{2020}{}{Może potem, Mook.}
+{3000}{}{Jasne, zrobione. Proszę bardzo. Eee, miłej zabawy.}
+{3010}{}{Dzięki!}
+
+[ptbr]
+{100}{}{Assis}
+{200}{}{Esse é o cara, o Assis.}
+{210}{}{Assis, o mecânico da área.}
+{210}{}{Você vê o Assis. Ele tem uma aura amável. Você está @sex@|intoxicado||intoxicada| e não pode deixar o lugar.}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic}
+{2000}{}{Opa, sou o Assis. Conserto coisas aqui em Modoc. Se tiver algum equipamento para ser aprimorado, só falar. Eu faço de graça, eu não tenho nada melhor para fazer mesmo.}
+{2010}{}{Pode dar uma melhorada nesses socadores?}
+{2020}{}{Até depois, Assis.}
+{3000}{}{Claro, terminei. Pega.}
+{3010}{}{Valeu!}
+

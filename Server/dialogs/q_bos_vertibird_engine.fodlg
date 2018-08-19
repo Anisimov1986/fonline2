@@ -1,0 +1,97 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+6 1010 D _var p bosside = 10 D or D _var p bosside = 11 D or D _item p PID_VERTIBIRD_PARTS } 1 #
+2 1020 D _var p bosside = 9 @
+2 2000 None 0 #
+3 2010 D _param p SK_REPAIR < 80 R _var p bosside = 10 R _item p PID_VERTIBIRD_PARTS + 1 #
+4 2020 D _param p SK_REPAIR } 80 R _var p bosside = 11 R _item p PID_VERTIBIRD_PARTS + 1 #
+5 2030 D _item p PID_SUPER_TOOL_KIT } 1 D or D _item p PID_MULTI_TOOL } 1 R _var p bosside = 11 R _item p PID_VERTIBIRD_PARTS + 1 @
+3 3000 None 0 #
+0 3010 R _script dialog@r_ShowQuestMessage 1 9334 @
+4 4000 None 0 #
+0 4010 R _script dialog@r_ShowQuestMessage 1 9334 @
+5 5000 None 0 #
+0 5010 R _script dialog@r_ShowQuestMessage 1 9334 @
+6 6000 None 0 &
+
+[engl]
+{100}{}{Vertibird engine compartment}
+{200}{}{You see: Vertibird engine compartment.}
+{210}{}{You see: Vertibird engine compartment.}
+{1000}{}{Initial preferences}
+{1010}{}{Done}
+{1020}{}{Try}
+{2000}{}{[You can barely see the engine compartment through the thick smoke pouring out of the crashed hull of the Vertibird. As you struggle through the debris, you notice a hatch, and pry it open. The engine seems mostly intact, but significant skill will be required to extract the crucial parts without damaging them.]}
+{2010}{}{[Try to dismantle the engine and take out the crucial parts.] All right, let's see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2020}{}{[Try to dismantle the engine and take out the crucial parts.] All right, let's see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2030}{}{[Try to dismantle the engine using your tools and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Here goes nothing...@@[Try to dismantle the engine using your tools and take out the crucial parts.] I bet this is the way to do it.}
+{3000}{}{[Though dismantling a high-powered, turbojet Vertibird powerplant is no easy task, you manage to extract the parts from the engine.] }
+{3010}{}{Yeah, that's it.@@That wasn't so hard.@@That was easy.@@Fuck yeah!@@Time to get back to Lost Hills...}
+{4000}{}{[Though dismantling a high-powered, turbojet Vertibird powerplant is no easy task, you manage to extract the parts from the engine.] }
+{4010}{}{Yeah, that's it.@@That wasn't so hard.@@That was easy.@@Fuck yeah!@@Time to get back to Lost Hills...}
+{5000}{}{[Though dismantling a high-powered, turbojet Vertibird powerplant is no easy task, you manage to extract the parts from the engine.] }
+{5010}{}{I knew these would come in handy.@@Good thing I took those with me.}
+{6000}{}{[You have what you came for, it's pointless to do any more tinkering.]}
+
+[russ]
+{100}{}{Vertibird engine compartment}
+{200}{}{You see: Vertibird engine compartment.}
+{210}{}{You see: Vertibird engine compartment.}
+{1000}{}{Initial preferences}
+{1010}{}{Done}
+{1020}{}{Try}
+{2000}{}{[You can barely see the engine compartment through smoke coming from the crashed hull of the Vertibird. As you struggle through the debris, you notice a hatch, and then you pry it open. The engine seems mostly intact, but significiant skill will be required to extract the crucial parts without damaging them.]}
+{2010}{}{[Try to dismantle the engine and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2020}{}{[Try to dismantle the engine and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2030}{}{[Try to dismantle the engine using your tools and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Here goes nothing...@@[Try to dismantle the engine using your tools and take out the crucial parts.] I bet this is the way to do it.}
+{3000}{}{[Though you try to do your best, dismantling a high-powered, turbojet Vertibird powerplant is no easy task. You manage to take out some parts of the engine, but most of them are damaged by your inept tinkering.] }
+{3010}{}{Eh, damn it. I hope the Kendrick won't skin me alive me when I get back with those...@@Crap. I'm fucked. @@Darn.@@I'm fucked.}
+{4000}{}{[You skillfully extract the most important engine parts from the powerplant. You hope Scribe Kendrick will be satisfied with your efforts.]}
+{4010}{}{Yeah, that's it.@@That wasn't so hard.@@That was easy.@@Fuck yeah!@@Time to get back to Lost Hills...}
+{5000}{}{[You extract the most important engine parts from the powerplant. If it wasn't for your tools, you're not so sure you would've succeded.]}
+{5010}{}{I knew these would come in handy.@@Good thing I took those with me.}
+{6000}{}{[You have what you came for, it's pointless to do any more tinkering.]}
+
+[pols]
+{100}{}{Vertibird engine compartment}
+{200}{}{You see: Vertibird engine compartment.}
+{210}{}{You see: Vertibird engine compartment.}
+{1000}{}{Initial preferences}
+{1010}{}{Done}
+{1020}{}{Try}
+{2000}{}{[You can barely see the engine compartment through smoke coming from the crashed hull of the Vertibird. As you struggle through the debris, you notice a hatch, and then you pry it open. The engine seems mostly intact, but significiant skill will be required to extract the crucial parts without damaging them.]}
+{2010}{}{[Try to dismantle the engine and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2020}{}{[Try to dismantle the engine and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2030}{}{[Try to dismantle the engine using your tools and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Here goes nothing...@@[Try to dismantle the engine using your tools and take out the crucial parts.] I bet this is the way to do it.}
+{3000}{}{[Though you try to do your best, dismantling a high-powered, turbojet Vertibird powerplant is no easy task. You manage to take out some parts of the engine, but most of them are damaged by your inept tinkering.] }
+{3010}{}{Eh, damn it. I hope the Kendrick won't skin me alive me when I get back with those...@@Crap. I'm fucked. @@Darn.@@I'm fucked.}
+{4000}{}{[You skillfully extract the most important engine parts from the powerplant. You hope Scribe Kendrick will be satisfied with your efforts.]}
+{4010}{}{Yeah, that's it.@@That wasn't so hard.@@That was easy.@@Fuck yeah!@@Time to get back to Lost Hills...}
+{5000}{}{[You extract the most important engine parts from the powerplant. If it wasn't for your tools, you're not so sure you would've succeded.]}
+{5010}{}{I knew these would come in handy.@@Good thing I took those with me.}
+{6000}{}{[You have what you came for, it's pointless to do any more tinkering.]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{Done}
+{1020}{}{Try}
+{2000}{}{[You can barely see the engine compartment through the thick smoke pouring out of the crashed hull of the Vertibird. As you struggle through the debris, you notice a hatch, and pry it open. The engine seems mostly intact, but significant skill will be required to extract the crucial parts without damaging them.]}
+{2010}{}{[Try to dismantle the engine and take out the crucial parts.] All right, let's see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2020}{}{[Try to dismantle the engine and take out the crucial parts.] All right, let's see...@@[Try to dismantle the engine and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine and take out the crucial parts.] Here goes nothing. @@[Try to dismantle the engine and take out the crucial parts.] I bet this is the way to do it.}
+{2030}{}{[Try to dismantle the engine using your tools and take out the crucial parts.] All right, lets' see...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Hmm... I wonder what will happen if I pull this out...@@[Try to dismantle the engine using your tools and take out the crucial parts.] Here goes nothing...@@[Try to dismantle the engine using your tools and take out the crucial parts.] I bet this is the way to do it.}
+{3000}{}{[Though dismantling a high-powered, turbojet Vertibird powerplant is no easy task, you manage to extract the parts from the engine.] }
+{3010}{}{Yeah, that's it.@@That wasn't so hard.@@That was easy.@@Fuck yeah!@@Time to get back to Lost Hills...}
+{4000}{}{[Though dismantling a high-powered, turbojet Vertibird powerplant is no easy task, you manage to extract the parts from the engine.] }
+{4010}{}{Yeah, that's it.@@That wasn't so hard.@@That was easy.@@Fuck yeah!@@Time to get back to Lost Hills...}
+{5000}{}{[Though dismantling a high-powered, turbojet Vertibird powerplant is no easy task, you manage to extract the parts from the engine.] }
+{5010}{}{I knew these would come in handy.@@Good thing I took those with me.}
+{6000}{}{[You have what you came for, it's pointless to do any more tinkering.]}
+

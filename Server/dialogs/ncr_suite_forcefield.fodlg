@@ -1,0 +1,130 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _param p MAIN_FACTION = 5 D _param p MAIN_FACTION_RANK = 3 #
+4 1020 @
+2 2000 None 0 #
+3 2010 D _script dialog@d_IsDoorClosed 3 182 304 4777 R _script map_ncr@r_PresDoor 0  #
+3 2020 D _script dialog@d_IsDoorOpen 3 182 304 4777 R _script map_ncr@r_PresDoor 0  #
+5 2030 #
+6 2040 #
+9 2050 @
+3 3000 None 0 @
+4 4000 None 0 @
+5 5000 map_ncr@dlg_ResetKarma 0 #
+2 5010 @
+6 6000 map_ncr@dlg_GiveCitizenship 0 #
+2 6010 @
+7 7000 None 0 #
+2 7010 @
+8 8000 None 0 #
+2 8010 @
+9 9000 map_ncr@dlg_TakeCitizenship 0 #
+2 9010 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Choose command.}
+{2010}{}{Destabilize Suite Forcefield. [Make Passable]}
+{2020}{}{Stabilize Suite Forcefield. [Make Unpassable]}
+{2030}{}{Pardon person.}
+{2040}{}{Award citizenship.}
+{2050}{}{Take citizenship.}
+{3000}{}{Forcefield State Changed.}
+{4000}{}{Access Denied.}
+{5000}{}{Please use Say to write name of the player you want to reset ncr reputation.}
+{5010}{}{Go back.}
+{6000}{}{Please use Say to write name of the player you want to give Shady Sands citizenship.}
+{6010}{}{Go back.}
+{7000}{}{Success.}
+{7010}{}{Go back.}
+{8000}{}{Error.}
+{8010}{}{Go back.}
+{9000}{}{Please use Say to write name of the player you want to take away Shady Sands citizenship.}
+{9010}{}{Go back.}
+
+[russ]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{ }
+{2010}{}{Destabilize Suite Forcefield. [Make Passable]}
+{2020}{}{Stabilize Suite Forcefield. [Make Unpassable]}
+{2030}{}{Pardon person.}
+{2040}{}{Award citizenship.}
+{2050}{}{Take citizenship.}
+{3000}{}{Forcefield State Changed.}
+{4000}{}{Acess Denied.}
+{5000}{}{Please use Say to write name of the player you want to reset ncr reputation.}
+{5010}{}{Go back.}
+{6000}{}{Please use Say to write name of the player you want to give Shady Sands citizenship.}
+{6010}{}{Go back.}
+{7000}{}{Success.}
+{7010}{}{Go back.}
+{8000}{}{Error.}
+{8010}{}{Go back.}
+{9000}{}{Please use Say to write name of the player you want to take away Shady Sands citizenship.}
+{9010}{}{Go back.}
+
+[pols]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{ }
+{2010}{}{Destabilize Suite Forcefield. [Make Passable]}
+{2020}{}{Stabilize Suite Forcefield. [Make Unpassable]}
+{2030}{}{Pardon person.}
+{2040}{}{Award citizenship.}
+{2050}{}{Take citizenship.}
+{3000}{}{Forcefield State Changed.}
+{4000}{}{Acess Denied.}
+{5000}{}{Please use Say to write name of the player you want to reset ncr reputation.}
+{5010}{}{Go back.}
+{6000}{}{Please use Say to write name of the player you want to give Shady Sands citizenship.}
+{6010}{}{Go back.}
+{7000}{}{Success.}
+{7010}{}{Go back.}
+{8000}{}{Error.}
+{8010}{}{Go back.}
+{9000}{}{Please use Say to write name of the player you want to take away Shady Sands citizenship.}
+{9010}{}{Go back.}
+
+[ptbr]
+{100}{}{Terminal de acesso}
+{200}{}{Você vê terminal de acesso.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{ }
+{2010}{}{Desativa o campo de força. [Abre passagem]}
+{2020}{}{Ativa o campo de força. [Fecha passagem]}
+{2030}{}{Perdoa pessoa.}
+{2040}{}{Congratula o cidadão.}
+{2050}{}{Revogar cidadania.}
+{3000}{}{Estado do campo de força alterado.}
+{4000}{}{Acesso negado.}
+{5000}{}{Favor usar "Say"/"Falar" para gravar o nome do jogador cuja reputação RNC você deseja alterar.}
+{5010}{}{Voltar.}
+{6000}{}{Favor usar "Say"/"Falar" para gravar o nome do jogador que você deseja incluir como cidadão de Areia Negra.}
+{6010}{}{Voltar.}
+{7000}{}{Sucesso.}
+{7010}{}{Voltar.}
+{8000}{}{Erro.}
+{8010}{}{Voltar.}
+{9000}{}{Favor usar "Say"/"Falar" para gravar o nome do jogador cuja cidadania de Areia Negra você deseja remover.}
+{9010}{}{Go back.}
+

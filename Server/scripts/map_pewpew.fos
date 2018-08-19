@@ -1,0 +1,81 @@
+#include "_macros.fos"
+
+
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+
+
+void _MapInit(Map& map, bool firstTime )
+{
+	map.SetEvent(MAP_EVENT_CRITTER_DEAD, "PlayerKilled");
+    //map.SetEvent(MAP_EVENT_OUT_CRITTER, "CheckPlayers");
+	//map.SetEvent(MAP_EVENT_IN_CRITTER, "_CrIn");
+}
+
+void PlayerKilled(Map& map, Critter& cr, Critter@ killer)
+{
+	if( !cr.IsPlayer() )
+	return;
+	
+	if (valid(killer))
+		killer.StatBase[ ST_EXPERIENCE ]+=2000;
+}
+
+bool entrance_arena( Location& loc, Critter@[]& critters, uint8 entrance )
+{
+	if( entrance == 0 )
+	{
+		for (uint i = 0; i < critters.length(); i++)
+			if (!valid(critters[i]) || critters[i].Stat[ ST_LEVEL ] <= 26)
+			{
+				critters[i].SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70383 );
+				return false;
+			} 
+	}
+    return true;
+}
+
+
+void CheckPlayers(Map& map,Critter& cr)
+{
+	if( !cr.IsPlayer() )
+		return;
+}
+
+void Spawn(Critter& critter, int, int, int)
+{
+	Location@ loc = GetLocation( CreateLocation(LOCATION_MADNESS_PVP, 1221, 1471, null) );
+	loc.Visible=false;
+	loc.Color=COLOR_RED;
+	loc.Update();
+}
+
+
+void Hide(Critter& critter, int, int, int)
+{
+		Map@ map = GetMapByPid( MAP_MadnessArena, 0 );
+		Location @ loc = map.GetLocation();
+		if (valid(loc)) 
+		{
+			loc.Visible = false;
+			loc.Update();
+		}
+
+}
+
+void Show(Critter& critter, int, int, int)
+{
+		Map@ map = GetMapByPid( MAP_MadnessArena, 0 );
+		Location @ loc = map.GetLocation();
+		if (valid(loc)) 
+		{
+			loc.Visible = true;
+			loc.Update();
+			AddNewMessage( "Summertime Madness Arena Opened! It is located near hub and will stay open for few hours!",REAL_MINUTE(7), 0, COLOR_RED, true, 9321);
+		}
+
+}
+
+void CloseInfo(Critter& critter, int, int, int)
+{
+			AddNewMessage( "Summertime Madness Arena Is closing soon! Leave the Arena or die!",REAL_MINUTE(10), 1, COLOR_RED, true, 9321);
+}

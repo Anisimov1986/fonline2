@@ -1,0 +1,323 @@
+#ifndef __CRITTER_TEMPLATE__
+#define __CRITTER_TEMPLATE__
+
+#include "critter_events_basic.fos"
+#include "utils_h.fos"
+
+import void SetupItems(Critter& npc) from "encounter_npc";
+
+dictionary critterTemplateMap;
+
+class CritterTemplate
+{	
+	private int role, startEntire = -1, homeEntire = -1;
+	private int[] critterParams = {}, critterBags = {}, critterPids = {}, weaponPids = {};
+	private int showCritterDist1 = -1, showCritterDist2 = -1, showCritterDist3 = -1;
+	private bool attachEventManager = false, randomStartDir = false;
+		
+	CritterTemplate(int[] critterPids, int role)
+	{
+		this.critterPids = critterPids;
+		this.role = role;
+		
+		critterTemplateMap.set("" + role, @this);
+	}
+	
+	CritterTemplate(int critterPid, int role)
+	{
+		int[] critterPids = {critterPid};
+	
+		this.critterPids = critterPids;
+		this.role = role;
+		
+		critterTemplateMap.set("" + role, @this);
+	}
+	
+	CritterTemplate(CritterTemplate& critterTemplate, int newRole)
+	{
+		role = newRole;
+		
+		critterParams = critterTemplate.critterParams;
+		critterBags = critterTemplate.critterBags;
+		critterPids = critterTemplate.critterPids;
+		weaponPids = critterTemplate.weaponPids;
+		homeEntire = critterTemplate.homeEntire;
+		randomStartDir = critterTemplate.randomStartDir;
+		attachEventManager = critterTemplate.attachEventManager;
+		startEntire = critterTemplate.startEntire;
+		showCritterDist1 = critterTemplate.showCritterDist1;
+		showCritterDist2 = critterTemplate.showCritterDist2;
+		showCritterDist3 = critterTemplate.showCritterDist3;
+		
+		critterTemplateMap.set("" + newRole, @this);
+	}
+	
+	int[] GetCritterPids()
+	{
+		return critterPids;
+	}
+	
+	int GetStartEntire()
+	{
+		return startEntire;
+	}
+	
+	int GetRole()
+	{
+		return role;
+	}
+
+	CritterTemplate@ SetCritterParams(int[]& critterParams)
+	{
+		this.critterParams = critterParams;
+		return @this;
+	}
+	
+	CritterTemplate@ SetCritterBags(int[]& critterBags)
+	{
+		this.critterBags = critterBags;
+		return @this;
+	}
+	
+	CritterTemplate@ SetWeaponPids(int[] weaponPids)
+	{
+		this.weaponPids = weaponPids;
+		return @this;
+	}
+
+	CritterTemplate@ SetShowCritterDist1(int showCritterDist1)
+	{
+		this.showCritterDist1 = showCritterDist1;
+		return @this;
+	}
+	
+	CritterTemplate@ SetShowCritterDist2(int showCritterDist2)
+	{
+		this.showCritterDist2 = showCritterDist2;
+		return @this;
+	}
+
+	CritterTemplate@ SetShowCritterDist3(int showCritterDist3)
+	{
+		this.showCritterDist3 = showCritterDist3;
+		return @this;
+	}
+	
+	CritterTemplate@ SetHomeEntire(int homeEntire)
+	{
+		this.homeEntire = homeEntire;
+		return @this;
+	}
+	
+	CritterTemplate@ SetStartEntire(int startEntire)
+	{
+		this.startEntire = startEntire;
+		return @this;
+	}
+	
+	CritterTemplate@ SetAttachEventManager(bool attachEventManager)
+	{
+		this.attachEventManager = attachEventManager;
+		return @this;
+	}
+	
+	CritterTemplate@ SetRandomStartDir(bool randomStartDir)
+	{
+		this.randomStartDir = randomStartDir;
+		return @this;
+	}
+	
+	private bool GetRandomEntireCoords(Map& map, int entire, uint16& x, uint16& y, uint8& dir)
+	{
+		for (int i = 0; i < 20; i++)
+		{
+			int index = Random(0, map.CountEntire(entire) - 1);
+		
+			if (!map.GetEntireCoords(entire, index, x, y, dir))
+			{
+				return false;
+			}
+			
+			if (map.IsHexPassed(x, y))
+			{
+				return true;
+			}
+		}
+		
+		if (!map.GetEntireCoords(entire, Random(0, map.CountEntire(entire) - 1), x, y, dir))
+		{
+			return false;
+		}
+		
+		if(!GetFreeHex(map, 2, x, y))
+		{
+			return false;
+		}
+	
+		return true;
+	}
+	
+	void ToDeadAll(Map& map, uint anim)
+	{
+		uint[] anims = {anim};
+		ToDeadAll(map, anims);
+	}
+	
+	void ToDeadAll(Map& map, uint[] anims)
+	{
+		array<Critter@> critters;
+		map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, critters);
+		
+		for (uint i = 0; i < critters.length(); i++)
+		{
+			if(valid(critters[i]) && critters[i].Stat[ST_NPC_ROLE] == role) {
+				critters[i].ToDead(anims[Random(0, anims.length() - 1)], null);
+			}
+		}
+	}
+	
+	Critter@ Spawn(Map& map)
+	{
+		return Spawn(map, -1);
+	}
+	
+	Critter@ Spawn(Map& map, int overwriteStartEntire)
+	{
+		return Spawn(map, overwriteStartEntire, -1);
+	}
+	
+	Critter@ Spawn(Map& map, int overwriteStartEntire, int index)
+	{
+		uint16 startHexX = 0, startHexY = 0, homeHexX = 0, homeHexY = 0;
+		uint8 startDir = 0, homeDir = 0;
+		int critterPidIdx = Random(0, critterPids.length() - 1);
+		int[] critterParams = this.critterParams;
+		int spawnEntire = -1;
+		
+		if (overwriteStartEntire >= 0)
+		{
+			spawnEntire = overwriteStartEntire;
+		} 
+		else if (startEntire >= 0)
+		{
+			spawnEntire = startEntire;
+		}
+		else
+		{
+			//Log("Undefined spawn entire. Role: " + role);
+			return null;
+		}
+		
+		if (!valid(map))
+		{
+			return null;
+		}
+
+		if (!GetRandomEntireCoords(map, spawnEntire, startHexX, startHexY, startDir))
+		{
+			return null;
+		}
+		
+		critterParams.insertLast(ST_NPC_ROLE);
+		critterParams.insertLast(role);
+		
+		if (critterBags.length() == critterPids.length())
+		{
+			critterParams.insertLast(ST_BAG_ID);
+			critterParams.insertLast(critterBags[critterPidIdx]);
+		}
+		
+		if (randomStartDir)
+		{
+			startDir = Random(0, 5);
+		}
+		
+		Critter@ critter = map.AddNpc(critterPids[critterPidIdx], startHexX, startHexY, startDir, critterParams, null, null);
+		if (!valid(critter))
+		{
+			return null;
+		}
+		
+		if (homeEntire >= 0 && homeEntire != spawnEntire)
+		{
+			if (index != -1)
+			{
+				int entireCount = map.CountEntire(homeEntire);
+				
+				if (map.GetEntireCoords(homeEntire, index % entireCount, homeHexX, homeHexY, homeDir))
+				{
+					critter.SetHomePos(homeHexX, homeHexY, homeDir);
+				}
+			}
+			else
+			{
+				if (GetRandomEntireCoords(map, homeEntire, homeHexX, homeHexY, homeDir))
+				{
+					critter.SetHomePos(homeHexX, homeHexY, homeDir);
+				}
+			}
+		}
+		
+		if (weaponPids.length() > 0)
+		{
+			Item@ weapon = critter.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+		}
+		
+		SetupItems(critter);
+		
+		if (showCritterDist1 > 0)
+		{
+			critter.ShowCritterDist1 = showCritterDist1;
+		}
+		
+		if (showCritterDist2 > 0)
+		{
+			critter.ShowCritterDist2 = showCritterDist2;
+		}
+		
+		if (showCritterDist3 > 0)
+		{
+			critter.ShowCritterDist3 = showCritterDist3;
+		}
+		
+		if (attachEventManager)
+		{
+			critter.SetScript("_CritterTemplateInit");
+		}
+			
+		return critter;
+	}
+}
+
+
+void _CritterTemplateInit(Critter& critter, bool firstTime)
+{
+	CritterEventsManager@ critterEventsManager = GetCritterEventsManager(critter);
+	
+	if (valid(critterEventsManager))
+	{
+		critterEventsManager.AttachCritter(critter, firstTime);
+	}
+}
+
+
+CritterTemplate@ GetCritterTemplate(Critter& critter) 
+{
+	CritterTemplate @critterTemplate;
+	
+	critterTemplateMap.get("" + critter.Stat[ST_NPC_ROLE], @critterTemplate);
+	
+	return critterTemplate;
+}
+
+
+CritterTemplate@ GetCritterTemplate(int role) 
+{
+	CritterTemplate @critterTemplate;
+	
+	critterTemplateMap.get("" + role, @critterTemplate);
+	
+	return critterTemplate;
+}
+
+#endif

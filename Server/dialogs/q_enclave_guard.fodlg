@@ -1,0 +1,54 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+4 1010 D _item p PID_ADVANCED_POWER_ARMOR_MK2 } 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR } 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ENCLAVE_ARMOR } 1 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 2 #
+3 1020 D _item p PID_ENCLAVE_ARMOR < 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR < 1 D _var p name_mem_player_npc = 0 D or D _item p PID_ADVANCED_POWER_ARMOR_MK2 < 1 D _var p name_mem_player_npc = 0 R _var p name_mem_player_npc = 1 @
+3 2000 None 0 @
+4 3000 None 0 &
+
+[engl]
+{100}{}{Guard}
+{200}{}{You see: Guard}
+{210}{}{This person is keeping watch over this area.}
+{1000}{}{Initial preferences}
+{1010}{}{Player has APA or ECA}
+{1020}{}{floater without epa or eca}
+{2000}{}{I wouldn't be snooping around if I were you.@@You should leave if you know what's good for ya.@@You should leave.@@Don't be snoopin' around or you'll be sorry.@@Leave us alone, get lost.@@Take a hike.@@Go away, don't bother us.@@We're busy people, don't bother us.@@I would leave this place if I were you.@@Don't stay here for too long, we don't like people snooping around our wares.}
+{3000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We've spotted no intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no trespassers sighted yet.@@Nothing to report yet, Sir.}
+
+[russ]
+{100}{}{Guard}
+{200}{}{You see: Guard}
+{210}{}{This person is keeping watch over this area.}
+{1000}{}{Initial preferences}
+{1010}{}{Player has APA or ECA}
+{1020}{}{floater without epa or eca}
+{2000}{}{I wouldn't be snooping around if I were you.@@You should leave if you know what's good for ya.@@You should leave.@@Don't be snoopin' around or you'll be sorry.@@Leave us alone, get lost.@@Take a hike.@@Go away, don't bother us.@@We're busy people, don't bother us.@@I would leave this place if I were you.@@Don't stay here for too long, we don't like people snooping around our wares.}
+{3000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We've spotted no intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no tresspassers sighted yet.@@Nothing to report yet, Sir.}
+
+[pols]
+{100}{}{Guard}
+{200}{}{You see: Guard}
+{210}{}{This person is keeping watch over this area.}
+{1000}{}{Initial preferences}
+{1010}{}{Player has APA or ECA}
+{1020}{}{floater without epa or eca}
+{2000}{}{I wouldn't be snooping around if I were you.@@You should leave if you know what's good for ya.@@You should leave.@@Don't be snoopin' around or you'll be sorry.@@Leave us alone, get lost.@@Take a hike.@@Go away, don't bother us.@@We're busy people, don't bother us.@@I would leave this place if I were you.@@Don't stay here for too long, we don't like people snooping around our wares.}
+{3000}{}{All quiet here, sir.@@Nothing to report, Sir!@@On my duty, Sir!@@Nothing to report, Sir.@@We've spotted no intruders yet, sir.@@We're keeping our watch, Sir.@@Sir, no tresspassers sighted yet.@@Nothing to report yet, Sir.}
+
+[ptbr]
+{100}{}{Guarda}
+{200}{}{Você vê um guarda}
+{210}{}{Esta pessoa está mantendo a guarda da região.}
+{1000}{}{Initial preferences}
+{1010}{}{Player has APA or ECA}
+{1020}{}{floater without epa or eca}
+{2000}{}{Se eu fosse você eu ia embora, agora...@@Acho melhor ir embora antes que algo aconteça contigo.@@Não olha para trás, vá embora. Agora!@@Não fique bisbilhotando por aí vou vai se arrepender.@@Se manda.@@Vai embora.@@Eu deixaria este lugar se eu fosse você.@@Não fique aqui por muito tempo, não gostamos de pessoas bisbilhotando nossas propriedades.}
+{3000}{}{Tudo quieto aqui, Senhor.@@Nada para reportar, Senhor!@@Não encontramos nenhum intruso, Senhor.@@Estamos de guarda, Senhor.@@Senhor, nenhum forasteiro foi visto.@@Nada para reportar, ainda. Senhor.}
+

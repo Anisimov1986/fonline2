@@ -1,0 +1,94 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 1 #
+3 2010 D _item p PID_WM_HOLODISK } 1 D _var p q_necro_water = 1 #
+0 2020 @
+3 3000 None 1 #
+4 3010 R _script dialog@Type 0  #
+0 3020 @
+4 4000 None 1 #
+5 4010 D _item p PID_WM_HOLODISK = 1 R _var p q_necro_water = 2 R _item p PID_WM_HOLODISK - 1 R _script dialog@Type 0  #
+0 4020 R _script dialog@Type 0  @
+5 5000 None 1 #
+0 5010 R _script dialog@Type 0  &
+
+[engl]
+{100}{}{Terminal}
+{200}{}{You see: A dusty terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{Has card}
+{2000}{}{Welcome to Vault-Tec hydrophonics management terminal.
+Input command:}
+{2010}{}{[Insert Watermerchant holodisk.]}
+{2020}{}{[Log off.]@@[Log out.]@@[Logout.]}
+{3000}{}{A holodisk has been booted. Input command:}
+{3010}{}{Run automatic execution batch file.@@Run automatic execution file.}
+{3020}{}{[Log off.]@@[Log out.]@@[Logout.]}
+{4000}{}{Please confirm.@@Confirmation required.@@Confirm running unknown file.:
+{4010}
+{4010}{}{error}
+{4020}{}{[Abort.}
+{5000}{}{Batch file succesfully executed.}
+{5010}{}{[Log off.]@@[Log out.]@@[Logout.]}
+
+[russ]
+{100}{}{Терминал}
+{200}{}{Вы видите: пальный терминал.}
+{1000}{}{Predialogue installations}
+{1010}{}{Has card}
+{2000}{}{[Загрузка] Введите команду...}
+{2010}{}{[Вставить голодиск торговцев водой]}
+{2020}{}{[Отключиться]}
+{3000}{}{[Голодиск прочитан] Введите команду...}
+{3010}{}{[Ввод: Отправить воду на склад торговцев водой]}
+{3020}{}{[Отключиться]}
+{4000}{}{Вы уверены? Д/Н}
+{4010}{}{Д}
+{4020}{}{Н}
+{5000}{}{Вода была успешно отправлена на склад.}
+{5010}{}{[Отключиться]}
+
+[pols]
+{100}{}{Terminal}
+{200}{}{Widzisz stary, zakurzony terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{Has card}
+{2000}{}{[Terminal uruchamia się powoli.] Wprowadź komendę...}
+{2010}{}{[Włóż holotaśmę Kupców Wodnych.]}
+{2020}{}{[Wyloguj się.]}
+{3000}{}{Uruchamianie pliku wsadowego z holotaśmy... Ładowanie zakończone. Wprowadź komendę...}
+{3010}{}{[Wyślij wodę Kupcom Wodnym.]}
+{3020}{}{[Wyloguj się.]}
+{4000}{}{Wymagane potwierdzenie operacji. Naciśnij T aby kontynuować, N aby anulować. T/N?}
+{4010}{}{[T.]}
+{4020}{}{[N.]}
+{5000}{}{Operacja zakończona powodzeniem.}
+{5010}{}{[Wyloguj się.]}
+
+[ptbr]
+{100}{}{Terminal}
+{200}{}{Você vê um terminal empoeirado.}
+{1000}{}{Predialogue installations}
+{1010}{}{Has card}
+{2000}{}{Bem-vindo ao terminal de gerenciamento hídrico Vault-Tec.
+Inserir comando:}
+{2010}{}{[Inserir o holodisco dos mercadores de água.]}
+{2020}{}{[Deslogar.]}
+{3000}{}{Um holodisco foi iniciado. Inserir comando:}
+{3010}{}{Executar arquivo de script em lote de execução automática.}
+{3020}{}{[Deslogar.]}
+{4000}{}{Favor confirmar.@@Requer confirmação.@@Confirmar execução de arquivo desconhecido.:
+{4010}
+{4010}{}{erro}
+{4020}{}{[Abortar.}
+{5000}{}{Arquivo de execução em lote executado com sucesso.}
+{5010}{}{[Deslogar.}
+

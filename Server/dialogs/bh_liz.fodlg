@@ -1,0 +1,225 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+6 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+12 1020 @
+6 2000 None 0 #
+65506 2010 #
+10 2020 #
+13 2030 #
+0 2040 @
+10 3000 None 0 #
+12 3010 #
+0 3020 @
+12 4000 None 0 #
+13 4010 #
+65506 4020 #
+10 4030 #
+0 4040 @
+13 5000 None 0 #
+14 5010 #
+15 5020 #
+65507 5030 #
+16 5040 #
+0 5050 @
+14 6000 None 0 #
+0 6010 @
+15 7000 None 0 #
+17 7010 #
+18 7020 #
+19 7030 #
+0 7040 @
+16 8000 None 0 #
+15 8010 #
+17 8020 #
+17 8030 @
+17 9000 None 0 #
+0 9010 @
+18 10000 None 0 #
+12 10010 @
+19 11000 None 0 #
+0 11010 &
+
+[engl]
+{100}{}{Liz}
+{200}{}{You see: Liz.}
+{210}{}{You see Liz, the manager of the General Store.}
+{210}{}{You see a middle-aged woman whose scowl has eroded her face. She looks like one of those people who takes a perverse pleasure in living a hard life.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{1020}{}{Known}
+{2000}{}{Hi. I'm Liz. What do you want?}
+{2010}{}{I'd like to buy something.}
+{2020}{}{What can you tell me about this town?}
+{2030}{}{I want to kill something. What's around?}
+{2040}{}{Nothing.}
+{3000}{}{It's a boring little mining town filled with all sorts of undesirables. You want a guided tour, talk to Steve or someone.}
+{3010}{}{Wow, a crabby one. I have more questions.}
+{3020}{}{Okay. Bye.}
+{4000}{}{What is it this time?}
+{4010}{}{I want to kill something. What's around?}
+{4020}{}{I'd like to buy something.}
+{4030}{}{What can you tell me about this town?}
+{4040}{}{Nothing.}
+{5000}{}{What'd you have in mind for killing?}
+{5010}{}{Radscorpions, rats, that sort of thing.}
+{5020}{}{Oh, the occasional humanoid.}
+{5030}{}{You. Die, bitch.}
+{5040}{}{Bad guys.}
+{5050}{}{No one. Forget it.}
+{6000}{}{You might try the caves or the area near the homes. I understand there are plenty of pests there.}
+{6010}{}{Thanks. Bye.}
+{7000}{}{Humanoids, eh? Any humanoids in particular?}
+{7010}{}{Humans.}
+{7020}{}{Ghouls.}
+{7030}{}{Mutants.}
+{7040}{}{Just kidding.}
+{8000}{}{What's your definition of a bad guy?}
+{8010}{}{Anyone I don't like. Humanoids, mostly.}
+{8020}{}{Anyone who gets in my way.}
+{8030}{}{It's a pretty fluid definition.}
+{9000}{}{I don't support killin' in this store. Get out.}
+{9010}{}{Yeah, whatever. Bitch.}
+{10000}{}{Ghouls are useful slaves. They ain't got enough minds of their own to be people, but they ain't worth killin', either. I don't support the killin' of ghouls.}
+{10010}{}{Fine. I want something else.}
+{11000}{}{If you're really interested in killing mutants, maybe you ought to go out there and put a bullet in the Sheriff's head, instead of standing here talkin'.}
+{11010}{}{Fine, maybe I will.}
+
+[russ]
+{100}{}{Лиз}
+{200}{}{Вы видите сильно нахмурившуюся женщину.}
+{210}{}{Перед вами Лиз, хозяйка магазина.}
+{210}{}{Вы видите женщину средних лет с лицом, на котором залегли глубокие морщины от постоянно насупленного выражения. Похоже, она из тех людей, что находят в трудностях жизни своего рода извращенное удовольствие.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Тупой}
+{1020}{}{Ответ}
+{2000}{}{Привет. Я Лиз. Чем могу быть полезна?}
+{2010}{}{Я хочу что-нибудь купить.}
+{2020}{}{Расскажите мне о городе.}
+{2030}{}{Я бы замочил кого-нибудь, есть кто на примете?}
+{2040}{}{Ничего.}
+{3000}{}{Это скучный шахтерский городок, в котором можно найти все виды жизненных мерзостей. Если вам нужен экскурсовод, поговорите со Стивом или еще с кем-нибудь.}
+{3010}{}{Ух, какие нервы. У меня есть еще вопросы.}
+{3020}{}{Ладно. До свидания.}
+{4000}{}{Что на этот раз?}
+{4010}{}{Я бы замочил кого-нибудь, есть кто на примете?}
+{4020}{}{Я хочу что-нибудь купить.}
+{4030}{}{Расскажите мне о городе.}
+{4040}{}{Ничего.}
+{5000}{}{Кого вы имеете ввиду?}
+{5010}{}{Радскорпионы , крысы, или типа того.}
+{5020}{}{Да просто любого человека.}
+{5030}{}{Тебя, умри сука!}
+{5040}{}{Руки чешутся, я бы надрал задницу плохим парням.}
+{5050}{}{Да так, забудь.}
+{6000}{}{Я думаю в пещерах полно монстров.}
+{6010}{}{О отлично!}
+{7000}{}{Человека? А может мутанта или гуля?}
+{7010}{}{Человека.}
+{7020}{}{Гуля.}
+{7030}{}{Мутанта.}
+{7040}{}{Да я просто пошутил.}
+{8000}{}{И кто для тебя плохой парень?}
+{8010}{}{Любой человек который мне не понравится.}
+{8020}{}{Все.}
+{8030}{}{Помоему определения плохой достаточно.}
+{9000}{}{Я не одобряю насилие. Проваливай.}
+{9010}{}{Да и пошла ты пацифистка гребанная.}
+{10000}{}{Гули хорошие рабы. Они тупые но не заслуживают смерти. }
+{10010}{}{Ладно, У меня другой вопрос.}
+{11000}{}{Если ты такой крутой выйди на улицу и всади пулю в голову шерифу !}
+{11010}{}{Ну и ладно, может так и поступлю.}
+
+[pols]
+{100}{}{Liz}
+{200}{}{Widzisz kobietę z wiecznie wykrzywionym wyrazem twarzy.}
+{210}{}{Widzisz Liz, szefową Sklepu Wielobranżowego.}
+{210}{}{Widzisz kobietę w średnim wieku, na twarzy ma wyrytą wiecznie skrzywioną minę. Chyba należy do tych ludzi, którzy znajdują perwersyjną przyjemność w ciężkim życiu.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{1020}{}{Known}
+{2000}{}{Witaj, jestem Liz. Czego sobie życzysz?}
+{2010}{}{Chcę coś kupić.}
+{2020}{}{Co możesz mi powiedzieć o tym mieście?}
+{2030}{}{Chcę coś zabić. Jest coś w pobliżu?}
+{2040}{}{Nic takiego.}
+{3000}{}{To małe, nudne miasteczko górnicze pełne różnego rodzaju wyrzutków. Chcesz wycieczkę z przewodnikiem, pogadaj ze Stevem, albo kimś tam.}
+{3010}{}{O, jakie to żałosne. Mam kilka innych pytań.}
+{3020}{}{W porządku. Do zobaczenia.}
+{4000}{}{Co znowu?}
+{4010}{}{Chcę coś zabić. Jest coś w pobliżu?}
+{4020}{}{Chcę coś kupić.}
+{4030}{}{Co możesz mi powiedzieć o tym mieście?}
+{4040}{}{Nic takiego.}
+{5000}{}{Co konkretnie @sex@|chciałbyś||chciałabyś| zabić?}
+{5010}{}{Radskorpiony, szczury, tego typu plugastwo.}
+{5020}{}{Ach, okazyjnego humanoida.}
+{5030}{}{Ciebie. Giń, suko.}
+{5040}{}{Złych.}
+{5050}{}{Nikogo. Zapomnij o tym.}
+{6000}{}{Możesz spróbować w jaskiniach albo w pobliżu domów. Jestem pewna, że tam jest mnóstwo potworów.}
+{6010}{}{Dzięki. Do zobaczenia.}
+{7000}{}{Humanoidzi, co? Jakiś szczególny rodzaj humanoidów?}
+{7010}{}{Ludzie.}
+{7020}{}{Ghule.}
+{7030}{}{Mutanty.}
+{7040}{}{Tylko żartuję.}
+{8000}{}{Jaka jest twoja definicja złych?}
+{8010}{}{Ktokolwiek, kogo nie lubię. Głównie ludzie, i tym podobni.}
+{8020}{}{Ktokolwiek, kto wejdzie mi w drogę.}
+{8030}{}{To dość płynna definicja.}
+{9000}{}{Nie popieram zabijania w tym sklepie. Wynocha.}
+{9010}{}{Jasne. Suka.}
+{10000}{}{Ghule to pożyteczni niewolnicy. Nie mają na tyle własnego umysłu, aby być ludźmi, ale nie warto ich także zabijać. Nie popieram zabijania ghuli.}
+{10010}{}{Dobrze. Chcę czegoś innego.}
+{11000}{}{Jeśli naprawdę interesuje cię zabijanie mutantów, może @sex@|powinieneś||powinnaś| wyjść stąd i wpakować kulkę w łeb szeryfowi, zamiast stać tutaj i gadać.}
+{11010}{}{W porządku, przemyślę to.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{1020}{}{Known}
+{2000}{}{Hi. I'm Liz. What do you want?}
+{2010}{}{I'd like to buy something.}
+{2020}{}{What can you tell me about this town?}
+{2030}{}{I want to kill something. What's around?}
+{2040}{}{Nothing.}
+{3000}{}{It's a boring little mining town filled with all sorts of undesirables. You want a guided tour, talk to Steve or someone.}
+{3010}{}{Wow, a crabby one. I have more questions.}
+{3020}{}{Okay. Bye.}
+{4000}{}{What is it this time?}
+{4010}{}{I want to kill something. What's around?}
+{4020}{}{I'd like to buy something.}
+{4030}{}{What can you tell me about this town?}
+{4040}{}{Nothing.}
+{5000}{}{What'd you have in mind for killing?}
+{5010}{}{Radscorpions, rats, that sort of thing.}
+{5020}{}{Oh, the occasional humanoid.}
+{5030}{}{You. Die, bitch.}
+{5040}{}{Bad guys.}
+{5050}{}{No one. Forget it.}
+{6000}{}{You might try the caves or the area near the homes. I understand there are plenty of pests there.}
+{6010}{}{Thanks. Bye.}
+{7000}{}{Humanoids, eh? Any humanoids in particular?}
+{7010}{}{Humans.}
+{7020}{}{Ghouls.}
+{7030}{}{Mutants.}
+{7040}{}{Just kidding.}
+{8000}{}{What's your definition of a bad guy?}
+{8010}{}{Anyone I don't like. Humanoids, mostly.}
+{8020}{}{Anyone who gets in my way.}
+{8030}{}{It's a pretty fluid definition.}
+{9000}{}{I don't support killin' in this store. Get out.}
+{9010}{}{Yeah, whatever. Bitch.}
+{10000}{}{Ghouls are useful slaves. They ain't got enough minds of their own to be people, but they ain't worth killin', either. I don't support the killin' of ghouls.}
+{10010}{}{Fine. I want something else.}
+{11000}{}{If you're really interested in killing mutants, maybe you ought to go out there and put a bullet in the Sheriff's head, instead of standing here talkin'.}
+{11010}{}{Fine, maybe I will.}
+

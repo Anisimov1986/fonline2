@@ -1,0 +1,81 @@
+[comment]
+Aaoe eiiiaioa?ee / Your comments.
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+3 3010 D _script economy_dialogs@d_IsEnoughCaps 1 750 R _script economy_dialogs@r_TakeCaps 1 750 R _item p PID_KEVLAR_POLYMER + 1 R _script map_ncr@r_KevlarProfit 1 1 #
+3 3020 D _script economy_dialogs@d_IsEnoughCaps 1 3750 R _script economy_dialogs@r_TakeCaps 1 3750 R _item p PID_KEVLAR_POLYMER + 5 R _script map_ncr@r_KevlarProfit 1 5 #
+3 3030 D _script economy_dialogs@d_IsEnoughCaps 1 7500 R _script economy_dialogs@r_TakeCaps 1 7500 R _item p PID_KEVLAR_POLYMER + 10 R _script map_ncr@r_KevlarProfit 1 10 #
+0 3040 &
+
+[engl]
+{100}{}{Rangers Technician}
+{200}{}{You see: One of the NCR Rangers' Technicians}
+{210}{}{You see: One of the NCR Rangers' Technicians}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{What do you want?@@Yeah?@@What?@@I'm listening.@@What?@@Go on.}
+{2010}{}{Are you selling Kevlar Polymer?@@I heard you're selling Kevlar Polymer?@@Got any Kevlar Polymer?@@I heard you've got Kevlar Polymer for sale.}
+{2020}{}{Nevermind. Gotta go.@@Gotta go.@@Nevermind.@@I've got to get going.}
+{3000}{}{Yeah yeah, @lex kevlar_price@ caps per one. How many do you need?@@Yep. @lex kevlar_price@ caps per one. So, how many do you want?}
+{3010}{}{Just one.@@One.@@One is enough.@@I'll take one.}
+{3020}{}{Five is enough.@@Give me five.@@I need five.@@Five would be okay I guess.}
+{3030}{}{Give me ten, I've got the caps.@@Ten.@@I need ten.@@Give me ten.}
+{3040}{}{Maybe later. Bye.@@On second thought, I'll pass.@@Nevermind.@@Maybe later.@@I've changed my mind. See you later.}
+
+[russ]
+{100}{}{Рейнджер Техник}
+{200}{}{Вы видите: одного из техников рейнджеров НКР}
+{210}{}{Вы видите: одного из техников НКР. Он рейнжер.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Что вам нужно?}
+{2010}{}{Вы продаете кевлар?}
+{2020}{}{Ничего, просто мимо проходил.}
+{3000}{}{Да, по @lex kevlar_price@ монет за штуку. Сколько возьмете?}
+{3010}{}{Один.}
+{3020}{}{Пять.}
+{3030}{}{Штук десять.}
+{3040}{}{Мне не подходит. Пока.}
+
+[pols]
+{100}{}{Technik Strażników}
+{200}{}{Widzisz jednego z techników Strażników RNK.}
+{200}{}{Вы видите: Диану Колресс}
+{210}{}{Widzisz jednego z techników RNK. Jest Strażnikiem.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Czego potrzebujesz?}
+{2010}{}{Sprzedajesz może kevlar?}
+{2020}{}{Niczego, tylko przechodzę.}
+{3000}{}{Tak, @lex kevlar_price@ kapsli za sztukę. Ile potrzebujesz?}
+{3010}{}{Tylko jeden.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Daj dziesięć, mam pieniądze.}
+{3040}{}{Cóż, może potem. Na razie.}
+
+[ptbr]
+[engl]
+{100}{}{Técnico dos Patrulheiros}
+{200}{}{Você vê: Técnico dos Patrulheiros da RNC}
+{210}{}{Você vê: Técnico dos Patrulheiros da RNC}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{O que você quer?@@Fale.@@O que é?@@Estou ouvindo.@@O quê?@@Vai em frente.}
+{2010}{}{Você vende Polímero de Kevlar?@@Eu ouvi dizer que tu vende Polímero de Kevlar?@@Tem Polímero de Kevlar?@@Ouvir que tu tem Polímero de Kevlar para vender.}
+{2020}{}{Deixa para lá. Tenho que ir.@@Tenho que ir.@@Deixa pra lá.}
+{3000}{}{É... é, @lex kevlar_price@ tampinhas por um. Quantos você precisa?@@É. @lex kevlar_price@ tampinhas por unidade. Quanto vai levar?}
+{3010}{}{Só um.@@Um.@@Apenas um.@@Vou levar um.}
+{3020}{}{Me dá cinco.@@Cinco tá bom.@@Preciso de cinco.@@Acho que... vou levar cinco.}
+{3030}{}{Me dá dez.@@Dez unidades por favor...@@Quero dez.}
+{3040}{}{Talvez depois. Tchau.@@Pensando melhor, deixa pra depois.@@Deixa para lá.@@Talvez depois.@@Mudei de ideia. Volto depois.}
+

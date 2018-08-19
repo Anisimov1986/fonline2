@@ -1,0 +1,110 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+9 1010 @
+9 2000 None 0 #
+12 2010 #
+0 2020 @
+12 3000 None 0 #
+13 3010 #
+14 3020 #
+15 3030 #
+0 3040 @
+13 4000 None 0 #
+12 4010 @
+14 5000 None 0 #
+12 5010 @
+15 6000 None 0 #
+12 6010 &
+
+[engl]
+{100}{}{Lilly}
+{200}{}{You see: Lilly.}
+{240}{}{You see dead Lilly.}
+{260}{}{You see slain Lilly.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player unknown}
+{2000}{}{Good day, my name is Lilly. I don't think we've had a chance to meet before... Who are you and what are you doing here?}
+{2010}{}{Hello @nname@, I'm @pname@, glad to meet you. Say, I had some questions for you...}
+{2020}{}{Nothing, I was just leaving.}
+{3000}{}{Okay, I'm listening... but hurry up, I'm busy.}
+{3010}{}{Can you tell me a little about the history of Vault City?}
+{3020}{}{What's the purpose of this building?}
+{3030}{}{Why are there so many guards around here? And what's the deal with the computers?}
+{3040}{}{That's all for now. Bye.}
+{4000}{}{Well, the city was founded back in 2091 by the inhabitants of Vault 8 - that's the complex built into those rocks over there, on the opposite side of the city. The overseer of the vault ruled the city until 2101, when he retired and the Council was established. The head of the Council and the city is the First Citizen, currently First Citizen Lynette.}
+{4010}{}{Thanks. One more question, though...}
+{5000}{}{We are in the Vault City Headquarters right now. This building is the main base of our armed forces.}
+{5010}{}{I see. Tell me something else now...}
+{6000}{}{This building needs to be well-protected at all times}
+{6010}{}{Thanks for the info, but I've got another question...}
+
+[russ]
+{100}{}{Лилли}
+{200}{}{Вы видите Лилли.}
+{240}{}{Вы увидите мертвую Лилли.}
+{260}{}{Вы видите убитую Лилли.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player unknown}
+{2000}{}{Добрый день, меня зовут Лилли. Не думаю, что мы раньше встречались... Кто вы и что вы здесь делаете?}
+{2010}{}{Привет @nname@, я @pname@, рад познакомиться с вами. Я хотел бы кое-что узнать...}
+{2020}{}{Ничего, уже ухожу.}
+{3000}{}{Хорошо, я слушаю вас. Но давайте быстрее, я занята.}
+{3010}{}{Вы можете рассказать мне немного об истории Города Убежища?}
+{3020}{}{Что это за здание?}
+{3030}{}{Почему вокруг столько охраны? И что вы делаете со всеми этими компьютерами?}
+{3040}{}{Я передумал. До свидания.}
+{4000}{}{Ну, город был основан еще в 2091 выходцем из Убежища 8 - Это комплекс, построенный в этих скалах рядом с нами, на противоположной стороне города. Смотритель Убежища правил городом до 2101, когда он вышел в отставку был создан Совет. Главой Совета и города является первый гражданин, в настоящее время первый гражданин Линетт.}
+{4010}{}{Спасибо. Еще вопрос...}
+{5000}{}{Мы находимся в штаб-квартире Города Убежища. Это здание является основной базой наших вооруженных сил.}
+{5010}{}{Ясно. Скажи мне что-то другое, теперь...}
+{6000}{}{Это здание должен быть хорошо защищено всегда.}
+{6010}{}{Спасибо за информацию, но у меня еще один вопрос...}
+
+[pols]
+{100}{}{Lilly}
+{200}{}{Widzisz Lilly.}
+{240}{}{Widzisz martwą Lilly.}
+{260}{}{Widzisz zabitą Lilly.}
+{1000}{}{Predialogue installations}
+{1010}{}{Player unknown}
+{2000}{}{Dzień dobry, nazywam się Lilly. Nie przypominam sobie, abyśmy się już @sex@|spotkali||spotkały|... Kim jesteś, co tutaj robisz?}
+{2010}{}{Cześć @nname@, jestem @pname@, miło cię poznać. Powiedzmy, że mam do ciebie kilka pytań...}
+{2020}{}{Nic, właśnie wychodzę.}
+{3000}{}{OK, słucham... ale pospiesz się, jestem zajęta.}
+{3010}{}{Możesz mi opowiedzieć nieco o historii Kryptopolis?}
+{3020}{}{Jaką funkcję pełni ten budynek?}
+{3030}{}{Dlaczego dookoła jest tylu strażników? I o co chodzi z tymi wszystkimi komputerami?}
+{3040}{}{Na razie to wszystko. Do widzenia.}
+{4000}{}{Cóż, miasto zostało założone w roku 2091 przez mieszkańców Krypty 8 - to kompleks wbudowany w górę o tam, po przeciwnej stronie miasta. Nadzorca Krypty rządził miastem do roku 2101, kiedy przeszedł na emeryturę i założona została Rada. Głową Rady i miasta jest Pierwszy Obywatel, obecnie Pierwszy Obywatel Lynette.}
+{4010}{}{Dzięki. Jeszcze jedno pytanie...}
+{5000}{}{Jesteśmy teraz w Centrum Dowodzenia Kryptopolis. Ten budynek do główna baza naszych sił zbrojnych.}
+{5010}{}{Rozumiem. Opowiedz mi jeszcze o czymś innym...}
+{6000}{}{Ten budynek musi być dobrze strzeżony w każdym momencie.}
+{6010}{}{Dzięki za informacje, ale mam jeszcze inne pytanie...}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Player unknown}
+{2000}{}{Good day, my name is Lilly. I don't think we've had a chance to meet before... Who are you and what are you doing here?}
+{2010}{}{Hello @nname@, I'm @pname@, glad to meet you. Say, I had some questions for you...}
+{2020}{}{Nothing, I was just leaving.}
+{3000}{}{Okay, I'm listening... but hurry up, I'm busy.}
+{3010}{}{Can you tell me a little about the history of Vault City?}
+{3020}{}{What's the purpose of this building?}
+{3030}{}{Why are there so many guards around here? And what's the deal with the computers?}
+{3040}{}{That's all for now. Bye.}
+{4000}{}{Well, the city was founded back in 2091 by the inhabitants of Vault 8 - that's the complex built into those rocks over there, on the opposite side of the city. The overseer of the vault ruled the city until 2101, when he retired and the Council was established. The head of the Council and the city is the First Citizen, currently First Citizen Lynette.}
+{4010}{}{Thanks. One more question, though...}
+{5000}{}{We are in the Vault City Headquarters right now. This building is the main base of our armed forces.}
+{5010}{}{I see. Tell me something else now...}
+{6000}{}{This building needs to be well-protected at all times}
+{6010}{}{Thanks for the info, but I've got another question...}
+

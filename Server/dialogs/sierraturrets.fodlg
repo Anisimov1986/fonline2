@@ -1,0 +1,50 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _script quest@global_checkcd 1 9331 R _script map_sierra@r_KillTower 0  R _script quest@global_setcd 2 9331 60 #
+3 1020 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see: Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Turret Power temporarily disabled.}
+{3000}{}{[The switch seems to be locked in position.]}
+
+[russ]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Орудийные башни временно обесточены.}
+{3000}{}{*Похоже переключатель заблокирован*}
+
+[pols]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Turret Power temporary disabled.}
+{3000}{}{*Switch seems to be locked in position*}
+
+[ptbr]
+{100}{}{Terminal de acesso}
+{200}{}{Você vê o terminal de acesso.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{ }
+{2000}{}{Energia da Torre temporariamente desativada.}
+{3000}{}{*A alavanca parece estar travada na posição*}
+

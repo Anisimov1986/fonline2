@@ -1,0 +1,19 @@
+#include "_macros.fos"
+#include "utils_h.fos"
+#include "_msgstr.fos"
+
+void AddAchievement(Critter& cr, uint achievement)   // Export
+{
+	if(HaveAchievement(cr, achievement))
+		return;
+	cr.ParamBase[achievement]=1;
+	SpecialMessage(cr, 1007000, STR_PARAM_NAME_SHORT(achievement), TEXTMSG_GAME, COLOR_GREEN, COLOR_LGRAY);
+}
+
+bool HaveAchievement(Critter& cr, uint achievement)
+{
+	if (cr.Param[achievement] != 0)
+		return true;
+	return false;
+}
+

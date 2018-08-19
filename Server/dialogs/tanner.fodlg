@@ -1,0 +1,399 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+14 2030 D _var p mod_leehides = 0 #
+17 2040 D _var p TEMP_LOCK = 1 D _var p mod_leehides = 1 D _item p PID_BRAHMIN_SKIN > 9 R _item p PID_BRAHMIN_SKIN - 10 #
+20 2050 D _var p TEMP_LOCK = 1 D _var p mod_leehides = 2 D _script quest@quest_checkcd 1 9028 D _item p PID_BRAHMIN_SKIN > 9 R _script quest@quest_setcd 2 9028 244 R _item p PID_LEATHER_ARMOR + 1 R _item p PID_BRAHMIN_SKIN - 10 R _param p ST_EXPERIENCE + 900 R _script economy_dialogs@r_GiveCaps 1 80 #
+21 2060 D _var p TEMP_LOCK = 1 D _item p PID_LEATHER_ARMOR > 0 #
+13 2070 D _param p SK_REPAIR < 100 #
+8 2080 D _param p PE_PROF_ARMORER = 1 D _var p name_mem_player_npc = 0 D _param p SK_REPAIR } 100 #
+11 2090 D _var p name_mem_player_npc = 1 D _param p PE_PROF_ARMORER = 1 D _item p PID_KEVLAR_POLYMER } 4 D _script economy_dialogs@d_IsEnoughCaps 1 4000 D _item p PID_HIGH_GRADE_STEEL } 1 R _item p PID_KEVLAR_POLYMER - 4 R _script economy_dialogs@r_TakeCaps 1 4000 R _param p PE_PROF_ARMORER = 2 R _var p prof_armorer = 5 R _param p ST_EXPERIENCE + 1000 R _script tc@r_AddFeeToLocker 1 200 R _item p PID_HIGH_GRADE_STEEL - 1 #
+10 2100 D _var p name_mem_player_npc = 1 D _param p PE_PROF_ARMORER = 1 R _var p prof_armorer = 4 #
+12 2110 D _param p PE_PROF_ARMORER = 2 R _var p prof_armorer = 6 #
+0 2120 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 #
+5 3020 #
+6 3030 D _var p modoc_fire_gecko_event = 1 #
+0 3040 @
+4 4000 None 0 #
+7 4010 D _item p PID_GECKO_PELT } 1 R _item p PID_GECKO_PELT - 1 R _script economy_dialogs@r_GiveCaps 1 100 #
+7 4020 D _item p PID_GECKO_PELT } 5 R _item p PID_GECKO_PELT - 5 R _script economy_dialogs@r_GiveCaps 1 500 #
+7 4030 D _item p PID_GECKO_PELT } 10 R _item p PID_GECKO_PELT - 10 R _script economy_dialogs@r_GiveCaps 1 1000 #
+0 4040 @
+5 5000 None 0 #
+7 5010 D _item p PID_GOLDEN_GECKO_PELT } 1 R _item p PID_GOLDEN_GECKO_PELT - 1 R _script economy_dialogs@r_GiveCaps 1 200 #
+7 5020 D _item p PID_GOLDEN_GECKO_PELT } 5 R _item p PID_GOLDEN_GECKO_PELT - 5 R _script economy_dialogs@r_GiveCaps 1 1000 #
+7 5030 D _item p PID_GOLDEN_GECKO_PELT } 10 R _item p PID_GOLDEN_GECKO_PELT - 10 R _script economy_dialogs@r_GiveCaps 1 2000 #
+0 5040 @
+6 6000 None 0 #
+7 6010 D _var p modoc_fire_gecko_event = 1 D _item p PID_FIRE_GECKO_PELT } 1 R _item p PID_FIRE_GECKO_PELT - 1 R _script economy_dialogs@r_GiveCaps 1 350 #
+7 6020 D _var p modoc_fire_gecko_event = 1 D _item p PID_FIRE_GECKO_PELT } 5 R _item p PID_FIRE_GECKO_PELT - 5 R _script economy_dialogs@r_GiveCaps 1 1750 #
+7 6030 D _var p modoc_fire_gecko_event = 1 D _item p PID_FIRE_GECKO_PELT } 10 R _item p PID_FIRE_GECKO_PELT - 10 R _script economy_dialogs@r_GiveCaps 1 3500 #
+0 6040 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+9 8010 D _param p PE_PROF_ARMORER = 0 #
+10 8020 D _param p PE_PROF_ARMORER = 1 @
+9 9000 None 0 #
+0 9010 @
+10 10000 economy_dialogs@dlg_PreparePrice 0 #
+0 10010 R _var p name_mem_player_npc = 1 R _var p prof_armorer = 4 @
+11 11000 None 0 #
+0 11010 #
+12 11020 R _var p prof_armorer = 6 @
+12 12000 None 0 #
+0 12010 @
+13 13000 None 0 @
+14 14000 None 0 #
+15 14010 #
+0 14020 @
+15 15000 None 0 #
+16 15010 R _var p mod_leehides = 1 #
+2 15020 #
+0 15030 @
+16 16000 None 0 #
+0 16010 @
+17 17000 None 0 #
+18 17010 @
+18 18000 None 0 #
+19 18010 R _script economy_dialogs@r_GiveCaps 1 80 R _param p ST_EXPERIENCE + 900 R _item p PID_LEATHER_ARMOR_MK_II + 1 R _script quest@quest_setcd 2 9028 244 R _var p mod_leehides = 2 @
+19 19000 economy_dialogs@dlg_PreparePrice 0 #
+0 19010 @
+20 20000 None 0 #
+0 20010 @
+21 21000 economy_dialogs@dlg_PreparePrice 0 #
+22 21010 D _item p PID_LEATHER_ARMOR > 0 D _script economy_dialogs@d_IsEnoughCaps 1 150 R _item p PID_LEATHER_ARMOR_MK_II + 1 R _script economy_dialogs@r_TakeCaps 1 150 R _item p PID_LEATHER_ARMOR - 1 #
+22 21020 D _item p PID_LEATHER_ARMOR > 4 D _script economy_dialogs@d_IsEnoughCaps 1 750 R _item p PID_LEATHER_ARMOR_MK_II + 5 R _script economy_dialogs@r_TakeCaps 1 750 R _item p PID_LEATHER_ARMOR - 5 #
+2 21030 #
+0 21040 @
+22 22000 None 0 #
+21 22010 #
+0 22020 &
+
+[engl]
+{100}{}{Lee Balton}
+{200}{}{You see: Lee Balton}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Howdy ho, fella. You here to do business with the humble Lee Balton?}
+{2010}{}{Sure, let's do business.@@Sure, let's do business.@@Yes, let's trade.@@What do you have?@@Show me what you got.@@Show me what you got.@@I want to purchase something.@@Let's trade.@@Let's trade.@@Let's trade.@@Let's see what you have.}
+{2020}{}{I've heard you're buying gecko pelts.@@You buying gecko pelts?@@I heard you buy gecko pelts.@@I heard you need gecko pelts.}
+{2030}{}{Say, you got anything I could help you with?@@Anything I can help you with?}
+{2040}{}{I brought the brahmin hides.@@I've got the brahmin hides you wanted.@@I have the brahmin hides.}
+{2050}{}{Lee, I have more brahmin hides for you.@@Lee, I have more brahmin hides.@@I've got more brahmin hides.}
+{2060}{}{I have some leather armors, can you upgrade them?@@I have some armors that need upgrading.}
+{2070}{}{I want to learn your profession...@@I want to learn your trade.}
+{2080}{}{I came from the south, Jimmy told me to seek you out.}
+{2090}{}{(Armorer profession level 2) I've brought everything you asked for, will you teach me?}
+{2100}{}{Tell me again what I need to bring to learn the profession?@@Could you remind me what I was supposed to bring?}
+{2110}{}{Mister Lee. Say, do you know if there's any place or person who knows more than Pete and you about armor?}
+{2120}{}{Nothing. I must go now.@@Nothing.@@Nevermind.}
+{3000}{}{Yes, I am buying gecko pelts. I'll give you @lex silver_pelt_reward@ caps for Silver, @lex golden_pelt_reward@ caps for Golden and @lex fire_pelt_reward@ caps for those rare Fire ones.}
+{3010}{}{I want to sell you silver gecko pelts.}
+{3020}{}{I want to sell you golden gecko pelts.}
+{3030}{}{I want to sell you fire gecko pelts.}
+{3040}{}{Very well. I'll bring some pelts. Bye for now.}
+{4000}{}{Okay, how many silver gecko pelts do you want to sell?@@All right, how many?@@Okay, how many?@@How many do you want to sell?}
+{4010}{}{Just one.@@One.@@Only one.}
+{4020}{}{Five.@@I want to sell five.@@Five pelts.@@I'll sell five.}
+{4030}{}{I have ten.@@Ten.@@I want to sell ten pelts.@@Ten pelts.}
+{4040}{}{Well, I don't have enough right now. See you later.}
+{5000}{}{Okay, how many pelts you wanna sell?@@All right, how many?@@Okay, how many?@@How many do you want to sell?}
+{5010}{}{Just one.@@One.@@Only one.@@I only have one.}
+{5020}{}{Five.@@I want to sell five.@@Five pelts.@@I'll sell five.}
+{5030}{}{I have ten.@@Ten.@@I want to sell ten pelts.@@Ten pelts.}
+{5040}{}{Well, I don't have enough right now. See you later.@@I don't have enough right now. I'll be back}
+{6000}{}{Okay, how many fire gecko pelts do you want to sell?}
+{6010}{}{Just one.@@One.@@Only one.@@I only have one.}
+{6020}{}{Five.@@I want to sell five.@@Five pelts.@@I'll sell five.}
+{6030}{}{I have ten.@@Ten.@@I want to sell ten pelts.@@Ten pelts.}
+{6040}{}{Well, I don't have enough right now. See you later.@@I don't have enough pelts right now. Later, Lee.}
+{7000}{}{All right, here are your caps.@@Okay, here's your pay.@@All right, take those caps.}
+{7010}{}{I won't. Bye.@@Yeah, sure.@@Whatever.@@Yeah, right.@@Yeah, see you later.}
+{8000}{}{Well I'll be. Ol' Jimmy is still moving those clumsy legs of his?! Nice! Oh yeah, those were the days back then. Heh, if I could only tell you what he did that one time with a gecko when he was totally drunk. But I promised him I wouldn't tell anyone that he banged it, so I won't say a word. So, what are you up for?}
+{8010}{}{A gecko? That's disturbing. Anyway, Jim told me you can teach me more about making armor. }
+{8020}{}{A gecko? Wow. Anyway, Jim told me you can teach me more about making armor. }
+{9000}{}{But why haven't you asked Pete to show you the basics? How can I know you're able to understand the advanced stuff? Sorry, go see Pete first.}
+{9010}{}{Right, will do. Bye.@@Okay, bye.@@All right, bye.}
+{10000}{}{You are in the right place, my friend. To make sure you know all that's necessary, we're gonna need a high grade steel and four pieces of kevlar polymers. Non-negotiable, as these items will be used during the learning process. And speaking of expenses - @lex prof2_price@ caps is also needed, up front. Got it?}
+{10010}{}{Sure, I'll be back.@@Yeah, I'll be back.}
+{11000}{}{Great. Let's not waste any more time then. Put these gloves on, do they fit? Fine, now focus ... [he teaches you how to make advanced types of armor] ... and that's it. You learn pretty fast. }
+{11010}{}{Thanks, Lee.@@Thanks.@@Great, thanks.}
+{11020}{}{Thanks, Lee. Say, do you know if there's any place or person who knows even more than you and Pete about armor?}
+{12000}{}{From what I've heard, you can try south-west of here, in San Francisco. They do some hi-tech crap down there, so I'd check it out.}
+{12010}{}{Thanks again then. Bye.@@Thanks again. Goodbye.@@Okay, thanks. Goodbye, Lee.}
+{13000}{}{You do not know everything you need to know. Come back when you're more skilled.}
+{14000}{}{Yeah, there's always something. People coming in and out, selling gecko hides and that's it ... understand my problem?}
+{14010}{}{I suppose you need something else in order to run your tannery, right?}
+{14020}{}{I know what your problem is. You should probably clean this place so it doesn't smell like shit from a mile a way.}
+{15000}{}{Genius, that's right, I need brahmin hides quite a bit, so I'll make you an offer. You git me 10 hides, and I'll make something special from them and git you some caps. Whaddaya say?}
+{15010}{}{I will git - I mean get - you ten hides, in that case. You better make something good out of them.}
+{15020}{}{Can I ask something else? This is boring.}
+{15030}{}{No way, I will git away from here.@@No way.}
+{16000}{}{Oh I will, dontcha worry about that.}
+{16010}{}{Fine, I will go now.@@Okay, I will go now.@@Right, I've gotta get going now.}
+{17000}{}{Oh goody, now let's see what you got here. [he takes the hides in his hand and feels them, smells them and inspects them] Fine material, I can work with this.}
+{17010}{}{Hold on there, where's my reward? We had a deal, remember?}
+{18000}{}{Easy there,I keep my promises. You need to give me a sec to work. I'll sew you something nice that fits. [he takes a sewing kit, hides and some tools, sits down and starts ripping the hides apart]}
+{18010}{}{[Thirty minutes later...]}
+{19000}{}{[He hands you a Leather Armor Mark II.] I made some upgrades and made the leather armor thick, first times on the house. Keep bringing those hides, and from now on I'll provide a service to you to strengthen regular leather armors for @lex armor2_upgrade_price@ caps each.}
+{19010}{}{Neat, thanks. I will be sure drop by later with more hides.@@Great, thanks. I'll drop in when I have more hides.}
+{20000}{}{Great, I've already prepared something for you. [He hands you a bag of caps and a suit of leather armor.] Hope that's satisfying, you know the drill. Come back later with more.}
+{20010}{}{Pleasure doing business with you.@@Neat, pleasure doing business.@@Great, thanks.}
+{21000}{}{All right, that'll be @lex armor2_upgrade_price@ caps for each, how many you got?}
+{21010}{}{I have one.@@One.@@Just one.}
+{21020}{}{I have five.@@I've got five.@@Five is all I got.@@I have five.}
+{21030}{}{I wanted to ask you something else actually.@@There was something else...@@I want to ask you something else.}
+{21040}{}{Nevermind.@@Maybe another time.}
+{22000}{}{[He takes his tools and begins to tinker with the armor, and after some time calls you back.] Done, here you go. Anything else?}
+{22010}{}{I got more.@@I've got more.}
+{22020}{}{Thanks, I need to go now.@@Thanks, I will be going now.@@Okay, thanks. I gotta go.}
+
+[russ]
+{100}{}{Ли Балтон}
+{200}{}{Вы видите: Ли Балтона}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Какие дела приятель. Что тебе нужно от скромняги Ли Балтона?}
+{2010}{}{Покажи что у тебя есть в продаже.}
+{2020}{}{Я слышал, ты покупаешь шкурки гекконов.}
+{2030}{}{Есть работа?}
+{2040}{}{Я принес шкуры брамина.}
+{2050}{}{Ли, я принес еще шкур брамина.}
+{2060}{}{У меня есть несколько кожаных броней, можешь их улучшить?}
+{2070}{}{Я хочу изучить твою профессию...}
+{2080}{}{Я пришел с юга, Джимми сказал что ты сможешь мне помочь.}
+{2090}{}{[Профессия: Оружейник(Броня) уровень 2] Я принес все что нужно.}
+{2100}{}{Повтори еще раз, что нужно для обучения?}
+{2110}{}{Ли. Скажи, а у кого я могу узнать о самы передовых технология в области производства брони?}
+{2120}{}{Ничего. Уже ухожу.}
+{3000}{}{Да, я покупаю шкурки. Серебряных за @lex silver_pelt_reward@, золотых за @lex golden_pelt_reward@, огненных за @lex fire_pelt_reward@.}
+{3010}{}{Я хочу продать шкурки серебряных.}
+{3020}{}{Я хочу продать шкурки золотых.}
+{3030}{}{Я хочу продать шкурки огненных.}
+{3040}{}{Очень хорошо, как добуду шкурок, принесу.}
+{4000}{}{Сколько ты хочешь продать серебряных шкурок?}
+{4010}{}{Только одну.}
+{4020}{}{Пять.}
+{4030}{}{У меня есть десять.}
+{4040}{}{Ну у я просто узнавал, я не хочу ничего продавать сейчас. Пока.}
+{5000}{}{Сколько ты хочешь продать золотых  шкурок?}
+{5010}{}{Только одну.}
+{5020}{}{Пять.}
+{5030}{}{У меня есть десять.}
+{5040}{}{Ну у я просто узнавал, я не хочу ничего продавать сейчас. Пока.}
+{6000}{}{Сколько ты хочешь продать огненных шкурок?}
+{6010}{}{Только одну.}
+{6020}{}{Пять.}
+{6030}{}{У меня есть десять.}
+{6040}{}{Ну у я просто узнавал, я не хочу ничего продавать сейчас. Пока.}
+{7000}{}{Вот твои деньги. Не пропей все!}
+{7010}{}{Не пропью. Пока.}
+{8000}{}{Хееей, Джимми, жив курилка?! Прекрасно, вот были деньки. Так что же привело тебя ко мне?}
+{8010}{}{Джим сказал мне, что я смогу узнать у тебя много нового о производстве брони.}
+{8020}{}{Джим сказал мне, что я смогу узнать у тебя много нового о производстве брони.}
+{9000}{}{Почему же ты тогда не попросил Джима обучить тебя основам? Твоих знаний не хватает для начала занятий. [Требуется Профессия: Оружейник(Броня) уровень 1]}
+{9010}{}{Понятно, вернусь тогда к Джиму.}
+{10000}{}{Тогда ты пришел туда куда нужно. Для практики нам понадобится одна высококачественная сталь и четыре кевлара. Понадобится еще много всякой мелочи, так что захвати еще @lex prof2_price@ крышек. Понял?}
+{10010}{}{Конечно, я вернусь.}
+{11000}{}{Прекрасно. Тогда не будем терять время. [он обучает вас производству передовых типов брони] ... вот и все. Ты усваиваешь все очень быстро.}
+{11010}{}{Спасибо Ли.}
+{11020}{}{Спасибо Ли. Скажи а где я могу узнать, как делать самую лучшую броню?}
+{12000}{}{Из того, что я слышал, можешь попробовать отправится на юго-запад, в Сан-Франциско. Они делаю всякие высокотехнологичные штуки.}
+{12010}{}{Еще раз спасибо. Пока.}
+{13000}{}{Очень жаль но твоих знаний не достаточно. [Требуется ремонт 100]}
+{14000}{}{Да, всегда что-то есть, люди приходят и уходят, продают шкуры гекконов... понял?}
+{14010}{}{Я так понял, тебе нужно что-то помимо шкур гекконов?}
+{14020}{}{Я понял твою проблему, тебе нужно почистить это место чтобы не воняло на всю округу.}
+{15000}{}{Гениально, Мне нужны шкуры брамина, у меня есть к тебе предложение. Ты приносишь мне 10 шкур, Я даю тебе денег и делаю тебе из них что-нибудь интересное. Что скажешь?}
+{15010}{}{Согласен, я принесу тебе 10 шкур.}
+{15020}{}{Это скучно, у меня другой вопрос.}
+{15030}{}{Ни за что, я ухожу.}
+{16000}{}{Отлично, приступай скорее.}
+{16010}{}{Уже бегу.}
+{17000}{}{Ага, давай посмотрим, что тут у нас.. [он берет шкуры и начинает нюхать и ощупывать их] Это то что нужно!}
+{17010}{}{Погоди, а где моя награда? У нас был уговор!}
+{18000}{}{Полегче, я держу свое слово, просто подожди когда я закончу с нми работу.}
+{18010}{}{[Через тридцать минут]}
+{19000}{}{[он вручает вам Кожаную броню мод. II] Я сделал несколько улучшений и смотри что получилось! Приноси мне еще шкуры и специально для тебя я еще смогу улучшать обычную кожаную броню всего за @lex armor2_upgrade_price@ крышек.}
+{19010}{}{Очень хорошо, увидимся.}
+{20000}{}{Очень хорошо, я уже подготовил кое-что для тебя. Через некоторое время мне нужны будут еще шкуры.}
+{20010}{}{Приятно иметь с тобой дело ..}
+{21000}{}{Да, @lex armor2_upgrade_price@$ за каждый, приятель. Сколько у тебя?}
+{21010}{}{Одна.}
+{21020}{}{Пять штук.}
+{21030}{}{На самом деле у меня другой вопрос.}
+{21040}{}{Хм, я не взял с собой денег, вернусь позже.}
+{22000}{}{[Он берет свой инструмент и начинает возиться с броней]. Готово. Что-нибудь еще?}
+{22010}{}{У меня есть еще.}
+{22020}{}{Спасибо, мне нужно идти.}
+
+[pols]
+{100}{}{Lee Balton}
+{200}{}{Widzisz Lee Baltona, miejscowego garbarza.}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Uszanowanko, @sex@|miły panie||panienko|, w czym mogę pomóc?}
+{2010}{}{Mogę coś kupić?@@Co masz na stanie?@@Wymienimy się?@@Może mały handel?@@Pokaż mi swoje towary.@@Masz coś na sprzedaż?@@Pohandlujemy?@@Mam coś na sprzedaż.@@Muszę coś kupić.@@Masz coś ciekawego na sprzedaż?@@Chcę coś sprzedać.@@Chcę coś kupić.@@Pokaż mi, co masz na stanie.@@}
+{2020}{}{Podobno skupujesz skóry gekonów?}
+{2030}{}{Może masz jakąś robotę, w której mógłbym ci pomóc?}
+{2040}{}{Mam skóry z braminów.}
+{2050}{}{Lee, mam dla ciebie więcej skór z braminów.}
+{2060}{}{Mam pancerze skórzane, mógłbyś je ulepszyć?}
+{2070}{}{Mógłbyś mnie czegoś nauczyć?}
+{2080}{}{Mam do ciebie sprawę, przychodzę od Jimmy'ego.}
+{2090}{}{(Profesja: Zbrojmistrz, poziom 2.) Mam wszystko, czego ode mnie chciałeś.}
+{2100}{}{Możesz mi przypomnieć, co jest mi potrzebne do rozpoczęcia nauki?}
+{2110}{}{Czy wiesz może, gdzie mogę znaleźć kogoś, kto nauczy mnie więcej o wytwarzaniu pancerzy?}
+{2120}{}{Tak tylko sobie @sex@||przechodziłem||przechodziłam|.}
+{3000}{}{Ta jest @sex@|miły panie||panienko|, skupuję je. @lex silver_pelt_reward@ za srebrne,@lex golden_pelt_reward@ za złote, i @lex fire_pelt_reward@ za skóry z ognistych. To co tam masz dla mnie ciekawego?}
+{3010}{}{Skóry ze srebrnych gekonów.}
+{3020}{}{Mam skóry złotych gekonów.}
+{3030}{}{Zainteresują cię skóry z ognistych gekonów?}
+{3040}{}{W porządku. Przyjdę do ciebie jeśli będę jakieś miał.}
+{4000}{}{Pewno! Ile chcesz ich sprzedać?}
+{4010}{}{Tylko jedną.}
+{4020}{}{Hmm... pięć.}
+{4030}{}{Dziesięć.}
+{4040}{}{Coś mi się pomyliło, przyjdę później.}
+{5000}{}{W porządku, złote to dobry interesik. Ile opchniesz?}
+{5010}{}{Jedną.}
+{5020}{}{Mogę sprzedać pięć.}
+{5030}{}{Dziesięć, potrzebuję kasy.}
+{5040}{}{Szlag, zdawało mi się że mam je przy sobie. Zaraz wracam!}
+{6000}{}{Z ognistych? Niezły rarytas... Ile ich masz?}
+{6010}{}{Jedną.}
+{6020}{}{Udało mi się zdobyć pięć.}
+{6030}{}{Dziesięć!}
+{6040}{}{Cholera, nie mam tyle ile @sex@|myślałem||myślałam|... zaraz wrócę.}
+{7000}{}{Trzymaj, tu jest twoja forsa. Tylko nie przepij wszystkiego na raz!}
+{7010}{}{Postaram się. Na razie.}
+{8000}{}{No coś Ty? Stary Jimmy jeszcze powłóczy kulasami? @sex@|Człowieku, żebyś widział||Panienko, żebyś widziała|, jednego wieczorka wyszliśmy se z baru, @sex@|napierdoleni w trzy dupy||nawaleni, panienka wybaczy, jak świnie|... Kurde, zapomniałem, miałem nie rozpowiadać, jak to złapał i wyruchał gekona... no to już nie rozpowiadam. To z czym cię przysyła ten stary zbereźnik?}
+{8010}{}{Że on... Gekona? W mordę. Tak właściwie to powiedział, że Ty mógłbyś mnie nauczyć czegoś więcej o wytwarzaniu pancerzy.}
+{8020}{}{Gekona? Ja pierdolę... Tak właściwie to powiedział, że Ty mógłbyś mnie nauczyć czegoś więcej o wytwarzaniu pancerzy.}
+{9000}{}{No to skoro tam byłeś, czemu nie @sex@|poprosiłeś|||poprosiłaś| Pete'a, może nauczyłby cię podstaw? Nie zawracaj mi głowy, wróć jak będziesz @sex@|gotowy||gotowa|, nie wcześniej.}
+{9010}{}{W porządku, na razie}
+{10000}{}{No, to dobrze @sex@|trafiłeś|trafiłaś|. Do przyuczenia będzie potrzebny stal wysokiej jakości, cztery polimery kevlarowe i jakaś zapłata dla nauczyciela. @lex prof2_price@ kapsli powinny wystarczyć. Rozumiemy się?}
+{10010}{}{Pewnie, wrócę tu jeszcze.}
+{11000}{}{No w porząsiu, to nie traćmy już czasu. Załóż te rękawice, co? A teraz, skoncentruj się... [Lee uczy cię wielu przydatnych rzeczy związanych z wytwarzaniem i konstrukcją pancerzy.] ...a na koniec, mocujesz tu. Widzisz, jakie to proste?}
+{11010}{}{Tak... Dzięki, Lee.}
+{11020}{}{Dzięki za naukę. Znasz jeszcze może kogoś, kto zna się na pancerzach?}
+{12000}{}{Słyszałem że jest jeden koleś, który się w tym specjalizuje. Teraz podobno siedzi w San Francisco, ale nie wiem na stówę czy to pewne. W każdym razie, nie zaszkodzi Ci tam sprawdzić.}
+{12010}{}{W porządku, dzięki.}
+{13000}{}{Brakuje ci wiedzy... Wróć jak ogarniesz wszystko jak należy. (wymagana umiejętność: Naprawa 100%.)}
+{14000}{}{Ta... zawsze się coś znajdzie. Większość ludzi przyłazi tu ze skórami z gekonów, ciągle tylko srebrne, złote, srebrne, złote... Kumasz o co mi biega?}
+{14010}{}{Rozumiem, że potrzebujesz jeszcze czegoś do prowadzenia swojego warsztatu?}
+{14020}{}{Kumam. Skóry, które skupujesz są obsrane i wali tu jak w dupie u gekona.}
+{15000}{}{Patrzcie, jaśnie oświecony! Ta jest, potrzebuję skór z braminów... i to dużo. Mam dla ciebie propozycję, przynieś mi dziesięć, a zapłacę ci dobrze i dorzucę coś ekstra, tak na zachętę. Co Ty na to?}
+{15010}{}{No dobra... poszukam tych skór dla Ciebie, lepiej żeby to "coś ekstra" było naprawdę ekstra...}
+{15020}{}{To nie dla mnie, zbyt nudne.}
+{15030}{}{Nic z tego, spadam stąd.}
+{16000}{}{Spokojna głowa...}
+{16010}{}{Uhm. To na razie.}
+{17000}{}{O patrzcie, co ciekawego masz dla mnie? [Lee ogląda dokładnie każdą skórę z osobna.] No no, to jest całkiem niezłe... Dobre nawet. Nada się. Dzięki.}
+{17010}{}{Zaraz, zaraz! Nie zapomniałeś o czymś?}
+{18000}{}{Spokojniutko, nie zapomniałem. Musisz tylko trochę poczekać, w pięć minut tego nie zrobię...[Lee zabiera się do zszywania skór.]}
+{18010}{}{[Czekaj.]}
+{19000}{}{[Po jakichś trzydzestu minutach, Lee wręcza ci ulepszony pancerz skórzany.] No, już gotowe. Zrobiłem trochę ulepszeń w stosunku do zwykłego, masz go za darmo. Za następne będziesz musiał płacić @lex armor2_upgrade_price@ kapsli. Aha, i przynoś mi też te skóry braminów co jakiś czas, nigdy mi ich nie wystarcza...}
+{19010}{}{Świetnie, dzięki. Wpadnę jak będę miał więcej.}
+{20000}{}{No no, bardzo dobrze... Mam już coś przygotowane dla ciebie. [Podaje ci sakwę kapsli i pancerz skórzany.] @sex@|Zadowolony||Zadowolona|? No, to jak chcesz zarobić, to wpadnij za jakiś czas, wiesz co masz robić.}
+{20010}{}{Tak jest...}
+{21000}{}{W porządku, @lex armor2_upgrade_price@ za sztukę, ile tego masz?}
+{21010}{}{Jedną.}
+{21020}{}{@sex@|Przyniosłem||Przyniosłam| pięć.}
+{21030}{}{Tak właściwie to @ses@|chciałem|chciałam| spytać o coś innego...}
+{21040}{}{Nie mam tyle kapsli, wrócę później.}
+{22000}{}{[Lee zbiera narzędzia i rozpoczyna pracę. Po dłuższej chwili wzywa cię.] Trzymaj, już gotowe. Coś jeszcze?}
+{22010}{}{Mam więcej zbroi do przeróbki.}
+{22020}{}{Dzięki, to wszystko. Muszę się zbierać.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{---}
+{2000}{}{Howdy ho, fella. You here to do business with the humble Lee Balton?}
+{2010}{}{Sure, let's do business.@@Sure, let's do business.@@Yes, let's trade.@@What do you have?@@Show me what you got.@@Show me what you got.@@I want to purchase something.@@Let's trade.@@Let's trade.@@Let's trade.@@Let's see what you have.}
+{2020}{}{I've heard you're buying gecko pelts.@@You buying gecko pelts?@@I heard you buy gecko pelts.@@I heard you need gecko pelts.}
+{2030}{}{Say, you got anything I could help you with?@@Anything I can help you with?}
+{2040}{}{I brought the brahmin hides.@@I've got the brahmin hides you wanted.@@I have the brahmin hides.}
+{2050}{}{Lee, I have more brahmin hides for you.@@Lee, I have more brahmin hides.@@I've got more brahmin hides.}
+{2060}{}{I have some leather armors, can you upgrade them?@@I have some armors that need upgrading.}
+{2070}{}{I want to learn your profession...@@I want to learn your trade.}
+{2080}{}{I came from the south, Jimmy told me to seek you out.}
+{2090}{}{(Armorer profession level 2) I've brought everything you asked for, will you teach me?}
+{2100}{}{Tell me again what I need to bring to learn the profession?@@Could you remind me what I was supposed to bring?}
+{2110}{}{Mister Lee. Say, do you know if there's any place or person who knows more than Pete and you about armor?}
+{2120}{}{Nothing. I must go now.@@Nothing.@@Nevermind.}
+{3000}{}{Yes, I am buying gecko pelts. I'll give you @lex silver_pelt_reward@ caps for Silver, @lex golden_pelt_reward@ caps for Golden and @lex fire_pelt_reward@ caps for those rare Fire ones.}
+{3010}{}{I want to sell you silver gecko pelts.}
+{3020}{}{I want to sell you golden gecko pelts.}
+{3030}{}{I want to sell you fire gecko pelts.}
+{3040}{}{Very well. I'll bring some pelts. Bye for now.}
+{4000}{}{Okay, how many silver gecko pelts do you want to sell?@@All right, how many?@@Okay, how many?@@How many do you want to sell?}
+{4010}{}{Just one.@@One.@@Only one.}
+{4020}{}{Five.@@I want to sell five.@@Five pelts.@@I'll sell five.}
+{4030}{}{I have ten.@@Ten.@@I want to sell ten pelts.@@Ten pelts.}
+{4040}{}{Well, I don't have enough right now. See you later.}
+{5000}{}{Okay, how many pelts you wanna sell?@@All right, how many?@@Okay, how many?@@How many do you want to sell?}
+{5010}{}{Just one.@@One.@@Only one.@@I only have one.}
+{5020}{}{Five.@@I want to sell five.@@Five pelts.@@I'll sell five.}
+{5030}{}{I have ten.@@Ten.@@I want to sell ten pelts.@@Ten pelts.}
+{5040}{}{Well, I don't have enough right now. See you later.@@I don't have enough right now. I'll be back}
+{6000}{}{Okay, how many fire gecko pelts do you want to sell?}
+{6010}{}{Just one.@@One.@@Only one.@@I only have one.}
+{6020}{}{Five.@@I want to sell five.@@Five pelts.@@I'll sell five.}
+{6030}{}{I have ten.@@Ten.@@I want to sell ten pelts.@@Ten pelts.}
+{6040}{}{Well, I don't have enough right now. See you later.@@I don't have enough pelts right now. Later, Lee.}
+{7000}{}{All right, here are your caps.@@Okay, here's your pay.@@All right, take those caps.}
+{7010}{}{I won't. Bye.@@Yeah, sure.@@Whatever.@@Yeah, right.@@Yeah, see you later.}
+{8000}{}{Well I'll be. Ol' Jimmy is still moving those clumsy legs of his?! Nice! Oh yeah, those were the days back then. Heh, if I could only tell you what he did that one time with a gecko when he was totally drunk. But I promised him I wouldn't tell anyone that he banged it, so I won't say a word. So, what are you up for?}
+{8010}{}{A gecko? That's disturbing. Anyway, Jim told me you can teach me more about making armor. }
+{8020}{}{A gecko? Wow. Anyway, Jim told me you can teach me more about making armor. }
+{9000}{}{But why haven't you asked Pete to show you the basics? How can I know you're able to understand the advanced stuff? Sorry, go see Pete first.}
+{9010}{}{Right, will do. Bye.@@Okay, bye.@@All right, bye.}
+{10000}{}{You are in the right place, my friend. To make sure you know all that's necessary, we're gonna need a high grade steel and four pieces of kevlar polymers. Non-negotiable, as these items will be used during the learning process. And speaking of expenses - @lex prof2_price@ caps is also needed, up front. Got it?}
+{10010}{}{Sure, I'll be back.@@Yeah, I'll be back.}
+{11000}{}{Great. Let's not waste any more time then. Put these gloves on, do they fit? Fine, now focus ... [he teaches you how to make advanced types of armor] ... and that's it. You learn pretty fast. }
+{11010}{}{Thanks, Lee.@@Thanks.@@Great, thanks.}
+{11020}{}{Thanks, Lee. Say, do you know if there's any place or person who knows even more than you and Pete about armor?}
+{12000}{}{From what I've heard, you can try south-west of here, in San Francisco. They do some hi-tech crap down there, so I'd check it out.}
+{12010}{}{Thanks again then. Bye.@@Thanks again. Goodbye.@@Okay, thanks. Goodbye, Lee.}
+{13000}{}{You do not know everything you need to know. Come back when you're more skilled.}
+{14000}{}{Yeah, there's always something. People coming in and out, selling gecko hides and that's it ... understand my problem?}
+{14010}{}{I suppose you need something else in order to run your tannery, right?}
+{14020}{}{I know what your problem is. You should probably clean this place so it doesn't smell like shit from a mile a way.}
+{15000}{}{Genius, that's right, I need brahmin hides quite a bit, so I'll make you an offer. You git me 10 hides, and I'll make something special from them and git you some caps. Whaddaya say?}
+{15010}{}{I will git - I mean get - you ten hides, in that case. You better make something good out of them.}
+{15020}{}{Can I ask something else? This is boring.}
+{15030}{}{No way, I will git away from here.@@No way.}
+{16000}{}{Oh I will, dontcha worry about that.}
+{16010}{}{Fine, I will go now.@@Okay, I will go now.@@Right, I've gotta get going now.}
+{17000}{}{Oh goody, now let's see what you got here. [he takes the hides in his hand and feels them, smells them and inspects them] Fine material, I can work with this.}
+{17010}{}{Hold on there, where's my reward? We had a deal, remember?}
+{18000}{}{Easy there,I keep my promises. You need to give me a sec to work. I'll sew you something nice that fits. [he takes a sewing kit, hides and some tools, sits down and starts ripping the hides apart]}
+{18010}{}{[Thirty minutes later...]}
+{19000}{}{[He hands you a Leather Armor Mark II.] I made some upgrades and made the leather armor thick, first times on the house. Keep bringing those hides, and from now on I'll provide a service to you to strengthen regular leather armors for @lex armor2_upgrade_price@ caps each.}
+{19010}{}{Neat, thanks. I will be sure drop by later with more hides.@@Great, thanks. I'll drop in when I have more hides.}
+{20000}{}{Great, I've already prepared something for you. [He hands you a bag of caps and a suit of leather armor.] Hope that's satisfying, you know the drill. Come back later with more.}
+{20010}{}{Pleasure doing business with you.@@Neat, pleasure doing business.@@Great, thanks.}
+{21000}{}{All right, that'll be @lex armor2_upgrade_price@ caps for each, how many you got?}
+{21010}{}{I have one.@@One.@@Just one.}
+{21020}{}{I have five.@@I've got five.@@Five is all I got.@@I have five.}
+{21030}{}{I wanted to ask you something else actually.@@There was something else...@@I want to ask you something else.}
+{21040}{}{Nevermind.@@Maybe another time.}
+{22000}{}{[He takes his tools and begins to tinker with the armor, and after some time calls you back.] Done, here you go. Anything else?}
+{22010}{}{I got more.@@I've got more.}
+{22020}{}{Thanks, I need to go now.@@Thanks, I will be going now.@@Okay, thanks. I gotta go.}
+

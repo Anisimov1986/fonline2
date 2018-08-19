@@ -1,0 +1,67 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 game_event_miniquest@dlg_Prepare 0 #
+2 2010 D _script game_event_miniquest@d_NotHaveQuestTimeout 0  #
+0 2020 @
+2 3000 game_event_miniquest@dlg_Prepare 0 #
+0 3010 D _script game_event_miniquest@d_HaveQuestItem 0  D _script game_event_miniquest@d_NotHaveQuestTimeout 0  R _script game_event_miniquest@r_QuestFinished 0  R _script dialog@r_FadeInOut 0  #
+0 3020 &
+
+[engl]
+{100}{}{unused}
+{200}{}{unused}
+{210}{}{unused}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Hey @sex@|darling||honey|, want to buy some time with me?}
+{2010}{}{What can you do for me?}
+{2020}{}{I must be going now. Bye.}
+{3000}{}{Today I have promotion for @sex@|blow job||poon job|, only 500 caps.}
+{3010}{}{Ok baby, let's rock.}
+{3020}{}{Maybe I will come back later.}
+
+[russ]
+{100}{}{unused}
+{200}{}{unused}
+{210}{}{unused}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Привет @sex@|малыш||сладость моя|, хочешь провести немного времени со мной?}
+{2010}{}{И что ты можешь мне предложить?}
+{2020}{}{Мне пора, пока...}
+{3000}{}{Могу сделать @sex@|минет||тебе хорошо|, всего за 500 крышек...}
+{3010}{}{Давай зажжем, детка!}
+{3020}{}{Может я приду позже.}
+
+[pols]
+{100}{}{unused}
+{200}{}{unused}
+{210}{}{unused}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Hey @sex@|darling||honey|, want to buy some time with me?}
+{2010}{}{What can you do for me?}
+{2020}{}{I must be going now. Bye.}
+{3000}{}{Today I have promotion for @sex@|blow job||poon job|, only 500 caps.}
+{3010}{}{Ok baby, let's rock.}
+{3020}{}{Maybe I will come back later.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Hey @sex@|darling||honey|, want to buy some time with me?}
+{2010}{}{What can you do for me?}
+{2020}{}{I must be going now. Bye.}
+{3000}{}{Today I have promotion for @sex@|blow job||poon job|, only 500 caps.}
+{3010}{}{Ok baby, let's rock.}
+{3020}{}{Maybe I will come back later.}
+

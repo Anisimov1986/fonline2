@@ -1,0 +1,138 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+5 2020 #
+0 2030 @
+3 3000 None 0 #
+7 3010 #
+5 3020 #
+0 3030 @
+5 4000 None 0 #
+6 4010 #
+0 4020 @
+6 5000 None 0 #
+0 5010 @
+7 6000 economy_dialogs@dlg_PreparePrice 0 #
+8 6010 D _script economy_dialogs@d_IsEnoughCaps 1 900 R _item p PID_JET + 1 R _script economy_dialogs@r_TakeCaps 1 900 #
+5 6020 #
+0 6030 @
+8 7000 None 0 #
+0 7010 &
+
+[engl]
+{100}{}{Joey}
+{200}{}{You see a thug.}
+{210}{}{You see Joey.}
+{210}{}{This man doesn't look very friendly.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Hey, man, I'm Joey. What're you doin' on my turf?}
+{2010}{}{Maybe I'm looking for you.}
+{2020}{}{Looking for some information.}
+{2030}{}{Just leaving. Bye.}
+{3000}{}{Hey, I got some jet. This shit just arrived from Reno. Want some?@@Yeah, listen, I've got this fresh shit from Reno. Wanna try it?@@I've got new jet batch from Reno. Wanna give it a shot?}
+{3010}{}{How much?}
+{3020}{}{No, I want information.}
+{3030}{}{I have to go.}
+{4000}{}{What do you want?}
+{4010}{}{What's the deal with the old church?}
+{4020}{}{Um, never mind. See you around.}
+{5000}{}{The church? Metzger uses it as a warehouse. Don't ask me what he stores in there, I don't know, and I don't wanna know.}
+{5010}{}{OK, thanks. Bye.}
+{6000}{}{For you? @lex jet_price@ caps.}
+{6010}{}{Okay, I'll buy it.@@Okay, give it to me.@@I'll buy it.@@You've got yourself a deal.}
+{6020}{}{No, thanks, but I would like to ask you something.}
+{6030}{}{No, thanks. Bye.}
+{7000}{}{Pleasure doing business.@@You won't regret it.}
+{7010}{}{Yeah, right. Bye.}
+
+[russ]
+{100}{}{Джой}
+{200}{}{Вы видите разбойника.}
+{210}{}{Вы видите Джоя.}
+{210}{}{Он не выглядит очень дружелюбным.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Эй привет, что это ты тут делаешь?}
+{2010}{}{Да может быть тебя ищу.}
+{2020}{}{Мне нужны кое-какая информация.}
+{2030}{}{Ничего, просто проходил мимо.}
+{3000}{}{У меня есть хороший Джет, прямо из самого Нью-Рено. Интересует?}
+{3010}{}{Почем?}
+{3020}{}{Нет, мне нужна информация.}
+{3030}{}{Нет, это мне не нужно, мне вообще ничего от тебя не нужно. Пока!}
+{4000}{}{Чего тебе?}
+{4010}{}{В чем дело со старой церковью?}
+{4020}{}{Хм, не берите в голову. Увидимся.}
+{5000}{}{Церковь? Мецгер использует ее в качестве склада. Не спрашивайте меня, что он хранит там.}
+{5010}{}{Хорошо, спасибо. Пока.}
+{6000}{}{Только для тебя @lex jet_price@ крышек.}
+{6010}{}{Ладно, давай сюда эту дрянь.}
+{6020}{}{Нет, я лучше спрошу у тебя.}
+{6030}{}{Некогда мне торговаться, пора идти.}
+{7000}{}{Все в ажуре.}
+{7010}{}{Пока.}
+
+[pols]
+{100}{}{Joey}
+{200}{}{Widzisz podejrzanego zbira.}
+{210}{}{Widzisz Joeya.}
+{210}{}{Ten koleś nie wygląda zbyt przyjaźnie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Hej @sex@|koleś||koleżanko|, jestem Joey. Co cię tu przywiało?}
+{2010}{}{Może szukam ciebie?}
+{2020}{}{Szukam pewnych informacji.}
+{2030}{}{Właśnie sobie idę. Do widzenia.}
+{3000}{}{Hej, mam trochę Jetu. Świetny towar, prosto z Reno. Chcesz trochę?}
+{3010}{}{Po ile?}
+{3020}{}{Nie, szukam informacji.}
+{3030}{}{Muszę iść. Do widzenia.}
+{4000}{}{Czego chcesz?}
+{4010}{}{O cholerę chodzi z tym starym kościołem?}
+{4020}{}{Och, nieważne. Do zobaczenia.}
+{5000}{}{Kościół? Metzger używa go jako magazynu. Nie pytaj mnie, co on tam trzyma.}
+{5010}{}{OK, dzięki. Do widzenia.}
+{6000}{}{Dla ciebie, po $@lex jet_price@.}
+{6010}{}{OK, kupię.}
+{6020}{}{Nie, dzięki, ale chcę o coś spytać.}
+{6030}{}{Nie, dzięki. Do widzenia.}
+{7000}{}{Interesy z tobą to czysta przyjemność.}
+{7010}{}{Do zobaczenia.}
+
+[ptbr]
+{100}{}{Joel}
+{200}{}{Você vê um gangueiro.}
+{210}{}{Você vê o Joel.}
+{210}{}{Este homem não parece ser amigável.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Ei cara, sou o Joel. O que tu tá fazendo nas minhas área?}
+{2010}{}{Tava procurando por ti.}
+{2020}{}{Tava querendo me interar dumas paradas.}
+{2030}{}{Parei aqui nem sei como. Vou indo aê. Valeu.}
+{3000}{}{Ei, tou com Jet aqui. Acabou de chegar de Reno. Tá afim de dar um teco?@@Tou um carregamento que acabou de chegar de Reno. Quer tentar?@@Veio um lote lá de Reno. Tá afim?}
+{3010}{}{Quanto?}
+{3020}{}{Não, eu tou querendo me interar de umas paradas.}
+{3030}{}{Tenho que vazar.}
+{4000}{}{O que foi?}
+{4010}{}{Qual é a dessa igreja antiga?}
+{4020}{}{Um, nada não cara. Valeu aí. Falou.}
+{5000}{}{A igreja? O Magarefe usa como um armazém. Não me pergunte o que ele guarda aqui. Não sei e nem quero saber.}
+{5010}{}{Entendi. Valeu brother.}
+{6000}{}{Para ti? @lex jet_price@ tampinhas.}
+{6010}{}{Tá, eu quero.@@Passa aí.@@Manda um aí.}
+{6020}{}{Quero não, valeu. Mas eu queria te perguntar uma coisa.}
+{6030}{}{Quero não, valeu.}
+{7000}{}{Precisando é só chegar.}
+{7010}{}{Beleza. Valeu.}
+

@@ -1,0 +1,351 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var n name_mem_npc_player = 0 R _var n name_mem_npc_player = 1 #
+3 1020 @
+2 2000 None 0 #
+65506 2010 #
+4 2020 #
+0 2030 @
+3 3000 None 0 #
+65506 3010 #
+5 3020 #
+15 3030 D _var p q_hub_drifters = 1 #
+12 3040 D _var p q_hub_drifters = 2 #
+17 3050 D _var p q_hub_drifters = 3 D or D _var p q_hub_drifters = 4 D or D _var p q_hub_drifters = 5 #
+6 3060 D _var p q_hub_drifters < 3 #
+0 3070 @
+4 4000 None 0 #
+0 4010 @
+5 5000 None 0 #
+3 5010 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+0 6020 @
+7 7000 None 0 #
+8 7010 #
+0 7020 @
+8 8000 None 0 #
+65506 8010 #
+9 8020 D _var p q_hub_drifters = 0 #
+0 8030 @
+9 9000 None 0 #
+11 9010 D _param p ST_LEVEL } 8 R _var p q_hub_drifters = 2 #
+30 9020 D _param p ST_LEVEL < 8 R _var p q_hub_drifters = 1 @
+11 10000 None 0 #
+14 10010 R _var p q_hub_drifters = 2 #
+0 10020 R _var p q_hub_drifters = 2 @
+12 11000 None 0 #
+13 11010 R _var p q_hub_drifters = 2 #
+0 11020 R _var p q_hub_drifters = 2 @
+13 12000 None 0 #
+16 12010 R _var p q_hub_drifters = 3 R _script quest@r_CreateLocationCoord 3 9308 1270 1410 #
+0 12020 R _var p q_hub_drifters = 2 @
+14 13000 None 0 #
+16 13010 R _var p q_hub_drifters = 3 R _script quest@r_CreateLocationCoord 3 9308 1270 1410 #
+0 13020 R _var p q_hub_drifters = 2 @
+15 14000 None 0 #
+11 14010 D _param p ST_LEVEL } 8 #
+31 14020 D _param p ST_LEVEL < 8 #
+32 14030 @
+16 15000 None 0 #
+0 15010 R _script dialog@r_ShowQuestMessage 1 9325 @
+17 16000 None 0 #
+18 16010 D _var p q_hub_drifters = 4 R _var p q_hub_drifters = 6 R _script economy_dialogs@r_GiveCaps 1 2500 R _param p ST_EXPERIENCE + 3000 #
+19 16020 D _var p q_hub_drifters = 5 R _var p q_hub_drifters = 7 R _script economy_dialogs@r_GiveCaps 1 1500 R _param p ST_EXPERIENCE + 1500 R _param p ST_KARMA - 300 #
+32 16030 @
+18 17000 None 0 #
+0 17010 R _script dialog@r_ShowQuestMessage 1 9325 @
+19 18000 None 0 #
+0 18010 R _script dialog@r_ShowQuestMessage 1 9325 @
+30 19000 None 0 #
+0 19010 @
+31 20000 None 0 #
+0 20010 @
+32 21000 None 0 &
+
+[engl]
+{100}{}{Jack}
+{200}{}{You see Jack, the arms dealer.}
+{210}{}{He's wearing a rusty metal armor, and sports a fancy patch on his left eye.}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Welcome to One Eyed Jack's, da best place in da Hub when it comes to weapons. Feelin' unsecure? Got a neigbour problem? Or, just wanna fuck somebody up? Dis is da place to see. Now, you buyin' or wat?}
+{2010}{}{Buyin'. Show my what you have, Jack.@@Show me your guns, Jack.@@I'm buing. Show me your stuff.}
+{2020}{}{How did you lose that eye?}
+{2030}{}{Nice meeting you Jack, but I've got to be somewhere else.}
+{3000}{}{You again? What do ya want?@@What do you want?@@One Eyed Jack welcomes you, blah, blah...@@Whaddya want, @sex@|homie||baby|?}
+{3010}{}{Show me your guns, man.@@I want to trade.@@Let me take a look at your guns.@@Wanna trade?@@I want to trade.}
+{3020}{}{What's with that missing eye of yours?@@How did you lose that eye, Jack?}
+{3030}{}{About that job you mentioned before...}
+{3040}{}{I thought about that job you have for me. I think I'll do it.}
+{3050}{}{About that job of yours...}
+{3060}{}{I must say, you've got a rather impressing selection. Where do you get all this stuff?@@Nice stock. Where do you get all this stuff?@@I gotta admit, you've got some of the best guns in the Hub. How do you get all of that?}
+{3070}{}{Nothing, just passing by.}
+{4000}{}{My eye? Let's see...  Oh yea, just remembered, dat's none of your fuckin' biz I don't talk with strangers 'bout personal stuff. Get lost.}
+{4010}{}{Yeah, yeah. Sorry for asking, fucktard.@@Yeah, whatever.@@Whatever.}
+{5000}{}{Well, just a leftover from days lon' gone. I don't really wanna talk 'bout dat.}
+{5010}{}{All right Jack, let's change the subject.@@I see. Let's talk about something else then.}
+{5020}{}{As you wish. I've gotta go.@@Right. I need to go now.}
+{6000}{}{That's my little secret, mind you. And I'm not gonna share it with just anyone who comes by.}
+{6010}{}{Really? Can't you elaborate a bit more? Surely it wouldn't hurt anybody.}
+{6020}{}{All right, keep your secrets then. Bye.}
+{7000}{}{Yeah, sure. It wouldn't hurt anybody but me and my biz. Shit, actually the biz is pretty bad already...}
+{7010}{}{How so?}
+{7020}{}{I don't have the time for this.}
+{8000}{}{@sex@|Homie||Girl|, what da fuck with all the questions? It's just bad, the caravan biz is bad, lotta folks dyin', lotta caravan investments gone. And then, they skimp on guns, stupid fucks. More caravans get lost, more carvies die, dem companies get less caps, and shit goes in dis fuckin' circle. And so I end up with shitload of guns nobody's willing to buy. Now, ya want something or are ya just gonna waste more of my time with dis shit?}
+{8010}{}{No, I've heard enough. Hold your pants and show me your stuff.}
+{8020}{}{Some more, maybe. So that's the secret behind your bloated stock?}
+{8030}{}{I wasted enough of my time already. So no. And goodbye.}
+{9000}{}{Fuck, @sex@|man||girl|, yeah. I can't even get inta my bed, dis whole place is fuckin' flooded with dem guns. And I just lost my... Shit, wait a sec... I mite have a job for you, @sex@|nigga||baby|. You good at eviction biz?}
+{9010}{}{Depends on what do you mean by that, Jack.}
+{9020}{}{Eviction business? What do you mean?}
+{10000}{}{It's nothin' too hard. You see, I own a warehouse. Or, at least, I used to own it. And I mean, legally! Even got dem papers from da Council [He waves a small paper note with some government markings on it.] and dem papers say that I own dat warehouse. But, just my fuckin' luck, some drifters came there recently and won't move their asses outta my property, and I'm stuck with all those guns here in my shop. So, I need ya to make dem leave. Or leave dem dead, I don' giva fuck. I'll give ya good caps for da job. You in for it @sex@|bro||sis|? }
+{10010}{}{Is there anything more?}
+{10020}{}{I've got to think about that. We'll talk later, see you round.}
+{11000}{}{Rite. Good you've made up your mind, @sex@|nigga||girl|. As I said, just make those fuckers leave my goddamnmothafuckin' warehouse. By any means necessary.}
+{11010}{}{Isn't "evicting" them illegal? I mean, killing is a punishable crime in the Hub, right?}
+{11020}{}{I'm not really into violence, and it seems that it might come to that. I need to think about this. Be seein' you.}
+{12000}{}{Who cares? I've got fuckin' trespassers on my property! And I didin' say you have to kill them, I just said I didin' care how do you do it, @sex@|bro||sis|. Besides, you think I didin' try to reason with dem? I even left'em some caps and goods, but they were just fucking with me. So, you're in or out?}
+{12010}{}{Fine, I'll do it, Jack. I'll be back in no time. Where's that warehouse?}
+{12020}{}{This seems a bit too shady even for me. Goodbye.}
+{13000}{}{Just get dem outta dat warehouse. And watch out, don' trust anythin' they say. I tried to reason with dem, even paid dem to leave, but they just took the caps and laughed at me. So now I'm gonna give dem some nice example of frontier justice.}
+{13010}{}{All right Jack. Consider me in. Where's that warehouse of yours then?}
+{13020}{}{I need to think about this. See you.}
+{14000}{}{Yeah?}
+{14010}{}{I wanna do it. So what's this all about?}
+{14020}{}{I want do it. What are the details?}
+{14030}{}{Nothing really.}
+{15000}{}{Just a few miles east thru the oldtown. It sits besides a large, high building, you can almost see it from here. Can't miss it really.}
+{15010}{}{All right, I'll be going there now.}
+{16000}{}{Yeah, what about it?}
+{16010}{}{The drifters are gone, you're free to use your warehouse again, Jack.}
+{16020}{}{It's done. All of the trespassers have been, um, evicted. You didin't mention there would be children there, that will-}
+{16030}{}{Um, nothing really, I'm still on it.}
+{17000}{}{Really? And how did you make dem fucks leave? Oh, wait, don't wanna know anyway. Good job, @sex@|homie||girl|, good job, now I can store my shit in da safe place. Here's your pay, with a little bonus for making it clean. [He hands you a bag of caps.]. If ya lookin' for work, talk to my homie, Boyd. Last time I've seen him he was drinkin' at the Falcon. Now go, I've got a lotta work to do.}
+{17010}{}{Thanks, Jack. Goodbye.}
+{18000}{}{I don't wanna hear about this shit! What's done's done, as they say, rite? They should've left when I gave them da chance... Anyway, good job, @sex@|homie||girl|. You're one tough mothafucka. Here's your pay, [He hands you a bag of caps.]. If you're lookin' for more work, I mite say a good word about you to my homie Boyd. Last time I spoke to him, he was lookin' for some skilled person, and I think you are just dat person. He usually stays at the Falcon. Now get your ass outta here, I've got things needin' taken care of.
+}
+{18010}{}{Yeah... Thanks, I guess. See you round, Jack.}
+{19000}{}{Hmmm... [Looks at you carefully]...Nothing. At least not now. You don' seem to be tough enuff for dis. Come back later, when ya get da ropes.}
+{19010}{}{Get the... what? Ah, fuck, nevermind. I'll be back.}
+{20000}{}{I've told ya already, you're not up to it, not yet. Now scram, @sex@|nigga||bitch|!}
+{20010}{}{Yeah, yeah, whatever.}
+{21000}{}{So stop wastin' my time and get outta my fuckin' sight!}
+
+[russ]
+{100}{}{Jack}
+{200}{}{You see Jack, the arms dealer.}
+{210}{}{He's wearing a rusty metal armor, and sports a fancy patch on his left eye.}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Welcome to One Eyed Jack's, da best place in da Hub when it comes to weapons. Feelin' unsecure? Got a neigbour problem? Or, just wanna fuck somebody up? Dis is da place to see. Now, you buyin' or wat?}
+{2010}{}{Buyin'. Show my what you have, Jack.}
+{2020}{}{How did you lose that eye?}
+{2030}{}{Nice meeting you Jack, but I've got to be somewhere else.}
+{3000}{}{You again? What do ya want?@@What do you want?@@One Eyed Jack welcomes you, blah, blah...@@Whaddya want, @sex@|homie||baby|?}
+{3010}{}{Show me your guns, man.}
+{3020}{}{What's with that missing eye of yours?}
+{3030}{}{About that job you mentioned before...}
+{3040}{}{I thought about that job you have for me. I think I'll do it.}
+{3050}{}{About that job of yours...}
+{3060}{}{I must say, you've got a rather impressing selection. Where do you get all this stuff?@@Nice stock. Where do you get all this stuff?@@I gotta admit, you've got some of the best guns in the Hub. How do you get all of that?}
+{3070}{}{Nothing, just passing by.}
+{4000}{}{My eye? Let's see...  Oh yea, just remembered, dat's none of your fuckin' biz I don't talk with strangers 'bout personal stuff. Get lost.}
+{4010}{}{Yeah, yeah. Sorry for asking, fucktard.}
+{5000}{}{Well, just a leftover from days lon' gone. I don't really wanna talk 'bout dat.}
+{5010}{}{All right Jack, let's change the subject.}
+{5020}{}{As you wish. I've gotta go.}
+{6000}{}{That's my little secret, mind you. And I'm not gonna share it with just anyone who comes by.}
+{6010}{}{Really? Can't you elaborate a bit more? Surely it wouldn't hurt anybody.}
+{6020}{}{All right, keep your secrets then. Bye.}
+{7000}{}{Yeah, sure. It wouldn't hurt anybody but me and my biz. Shit, actually the biz is pretty bad already...}
+{7010}{}{How so?}
+{7020}{}{I don't have the time for this.}
+{8000}{}{@sex@|Homie||Girl|, what da fuck with all the questions? It's just bad, the caravan biz is bad, lotta folks dyin', lotta caravan investments gone. And then, they skimp on guns, stupid fucks. More caravans get lost, more carvies die, dem companies get less caps, and shit goes in dis fuckin' circle. And so I end up with shitload of guns nobody's willing to buy. Now, ya want something or are ya just gonna waste more of my time with dis shit?}
+{8010}{}{No, I've heard enough. Hold your pants and show me your stuff.}
+{8020}{}{Some more, maybe. So that's the secret behind your bloated stock?}
+{8030}{}{I wasted enough of my time already. So no. And goodbye.}
+{9000}{}{Fuck, @sex@|man||girl|, yeah. I can't even get inta my bed, dis whole place is fuckin' flooded with dem guns. And I just lost my... Shit, wait a sec... I mite have a job for you, @sex@|nigga||baby|. You good at eviction biz?}
+{9010}{}{Depends on what do you mean by that, Jack.}
+{9020}{}{Eviction business? What do you mean?}
+{10000}{}{It's nothin' too hard. You see, I own a warehouse. Or, at least, I used to own it. And I mean, legally! Even got dem papers from da Council [He waves a small paper note with some government markings on it.] and dem papers say that I own dat warehouse. But, just my fuckin' luck, some drifters came there recently and won't move their asses outta my property, and I'm stuck with all those guns here in my shop. So, I need ya to make dem leave. Or leave dem dead, I don' giva fuck. I'll give ya good caps for da job. You in for it @sex@|bro||sis|? }
+{10010}{}{Is there anything more?}
+{10020}{}{I've got to think about that. We'll talk later, see you round.}
+{11000}{}{Rite. Good you've made up your mind, @sex@|nigga||girl|. As I said, just make those fuckers leave my goddamnmothafuckin' warehouse. By any means necessary.}
+{11010}{}{Isn't "evicting" them illegal? I mean, killing is a punishable crime in the Hub, right?}
+{11020}{}{I'm not really into violence, and it seems that it might come to that. I need to think about this. Be seein' you.}
+{12000}{}{Who cares? I've got fuckin' trespassers on my property! And I didin' say you have to kill them, I just said I didin' care how do you do it, @sex@|bro||sis|. Besides, you think I didin' try to reason with dem? I even left'em some caps and goods, but they were just fucking with me. So, you're in or out?}
+{12010}{}{Fine, I'll do it, Jack. I'll be back in no time. Where's that warehouse?}
+{12020}{}{This seems a bit too shady even for me. Goodbye.}
+{13000}{}{Just get dem outta dat warehouse. And watch out, don' trust anythin' they say. I tried to reason with dem, even paid dem to leave, but they just took the caps and laughed at me. So now I'm gonna give dem some nice example of frontier justice.}
+{13010}{}{All right Jack. Consider me in. Where's that warehouse of yours then?}
+{13020}{}{I need to think about this. See you.}
+{14000}{}{Yeah?}
+{14010}{}{I wanna do it. So what's this all about?}
+{14020}{}{I want do it. What are the details?}
+{14030}{}{Nothing really.}
+{15000}{}{Just a few miles east thru the oldtown. It sits besides a large, high building, you can almost see it from here. Can't miss it really.}
+{15010}{}{All right, I'll be going there now.}
+{16000}{}{Yeah, what about it?}
+{16010}{}{The drifters are gone, you're free to use your warehouse again, Jack.}
+{16020}{}{It's done. All of the trespassers have been 'evicted'. You didin't mention there would be children there, that will...}
+{16030}{}{Um, nothing really, I'm still on it.}
+{17000}{}{Really? And how did you make dem fucks leave? Oh, wait, don't wanna know anyway. Good job, @sex@|homie||girl|, good job, now I can store my shit in da safe place. Here's your pay, [He hands you a bag of caps.]. If you're lookin' for more work, I mite say a good word about you to my homie in da Council. The name's Helms. Last time I spoke to him, he was lookin' for some skilled person, and I think you are just dat person he needs. Now go, I've got a lotta work to do.}
+{17010}{}{Thanks, Jack. Goodbye.}
+{18000}{}{I don't wanna hear about this shit! What's done's done, as they say, rite? They should've left when I gave them da chance... Anyway, good job, @sex@|homie||girl|. Here's your pay, [He hands you a bag of caps.]. If you're lookin' for more work, I mite say a good word about you to my homie in da Council. Helms is da name. Last time I spoke to him, he was lookin' for some skilled person, and I think you are just dat person. Now get your ass outta here, I've got things needin' taken care of.
+}
+{18010}{}{Yeah... Thanks, I guess. See you round, Jack.}
+{19000}{}{Hmmm... [Looks at you carefully]...Nothing. At least not now. You don' seem to be tough enuff for dis. Come back later, when ya get da ropes.}
+{19010}{}{Get the... what? Ah, fuck, nevermind. I'll be back.}
+{20000}{}{I've told ya already, you're not up to it, not yet. Now scram, @sex@|nigga||bitch|!}
+{20010}{}{Yeah, yeah, whatever.}
+{21000}{}{So stop wastin' my time and get outta my fuckin' sight!}
+
+[pols]
+{100}{}{Jack}
+{200}{}{You see Jack, the arms dealer.}
+{210}{}{He's wearing a rusty metal armor, and sports a fancy patch on his left eye.}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Welcome to One Eyed Jack's, da best place in da Hub when it comes to weapons. Feelin' unsecure? Got a neigbour problem? Or, just wanna fuck somebody up? Dis is da place to see. Now, you buyin' or wat?}
+{2010}{}{Buyin'. Show my what you have, Jack.}
+{2020}{}{How did you lose that eye?}
+{2030}{}{Nice meeting you Jack, but I've got to be somewhere else.}
+{3000}{}{You again? What do ya want?@@What do you want?@@One Eyed Jack welcomes you, blah, blah...@@Whaddya want, @sex@|homie||baby|?}
+{3010}{}{Show me your guns, man.}
+{3020}{}{What's with that missing eye of yours?}
+{3030}{}{About that job you mentioned before...}
+{3040}{}{I thought about that job you have for me. I think I'll do it.}
+{3050}{}{About that job of yours...}
+{3060}{}{I must say, you've got a rather impressing selection. Where do you get all this stuff?@@Nice stock. Where do you get all this stuff?@@I gotta admit, you've got some of the best guns in the Hub. How do you get all of that?}
+{3070}{}{Nothing, just passing by.}
+{4000}{}{My eye? Let's see...  Oh yea, just remembered, dat's none of your fuckin' biz I don't talk with strangers 'bout personal stuff. Get lost.}
+{4010}{}{Yeah, yeah. Sorry for asking, fucktard.}
+{5000}{}{Well, just a leftover from days lon' gone. I don't really wanna talk 'bout dat.}
+{5010}{}{All right Jack, let's change the subject.}
+{5020}{}{As you wish. I've gotta go.}
+{6000}{}{That's my little secret, mind you. And I'm not gonna share it with just anyone who comes by.}
+{6010}{}{Really? Can't you elaborate a bit more? Surely it wouldn't hurt anybody.}
+{6020}{}{All right, keep your secrets then. Bye.}
+{7000}{}{Yeah, sure. It wouldn't hurt anybody but me and my biz. Shit, actually the biz is pretty bad already...}
+{7010}{}{How so?}
+{7020}{}{I don't have the time for this.}
+{8000}{}{@sex@|Homie||Girl|, what da fuck with all the questions? It's just bad, the caravan biz is bad, lotta folks dyin', lotta caravan investments gone. And then, they skimp on guns, stupid fucks. More caravans get lost, more carvies die, dem companies get less caps, and shit goes in dis fuckin' circle. And so I end up with shitload of guns nobody's willing to buy. Now, ya want something or are ya just gonna waste more of my time with dis shit?}
+{8010}{}{No, I've heard enough. Hold your pants and show me your stuff.}
+{8020}{}{Some more, maybe. So that's the secret behind your bloated stock?}
+{8030}{}{I wasted enough of my time already. So no. And goodbye.}
+{9000}{}{Fuck, @sex@|man||girl|, yeah. I can't even get inta my bed, dis whole place is fuckin' flooded with dem guns. And I just lost my... Shit, wait a sec... I mite have a job for you, @sex@|nigga||baby|. You good at eviction biz?}
+{9010}{}{Depends on what do you mean by that, Jack.}
+{9020}{}{Eviction business? What do you mean?}
+{10000}{}{It's nothin' too hard. You see, I own a warehouse. Or, at least, I used to own it. And I mean, legally! Even got dem papers from da Council [He waves a small paper note with some government markings on it.] and dem papers say that I own dat warehouse. But, just my fuckin' luck, some drifters came there recently and won't move their asses outta my property, and I'm stuck with all those guns here in my shop. So, I need ya to make dem leave. Or leave dem dead, I don' giva fuck. I'll give ya good caps for da job. You in for it @sex@|bro||sis|? }
+{10010}{}{Is there anything more?}
+{10020}{}{I've got to think about that. We'll talk later, see you round.}
+{11000}{}{Rite. Good you've made up your mind, @sex@|nigga||girl|. As I said, just make those fuckers leave my goddamnmothafuckin' warehouse. By any means necessary.}
+{11010}{}{Isn't "evicting" them illegal? I mean, killing is a punishable crime in the Hub, right?}
+{11020}{}{I'm not really into violence, and it seems that it might come to that. I need to think about this. Be seein' you.}
+{12000}{}{Who cares? I've got fuckin' trespassers on my property! And I didin' say you have to kill them, I just said I didin' care how do you do it, @sex@|bro||sis|. Besides, you think I didin' try to reason with dem? I even left'em some caps and goods, but they were just fucking with me. So, you're in or out?}
+{12010}{}{Fine, I'll do it, Jack. I'll be back in no time. Where's that warehouse?}
+{12020}{}{This seems a bit too shady even for me. Goodbye.}
+{13000}{}{Just get dem outta dat warehouse. And watch out, don' trust anythin' they say. I tried to reason with dem, even paid dem to leave, but they just took the caps and laughed at me. So now I'm gonna give dem some nice example of frontier justice.}
+{13010}{}{All right Jack. Consider me in. Where's that warehouse of yours then?}
+{13020}{}{I need to think about this. See you.}
+{14000}{}{Yeah?}
+{14010}{}{I wanna do it. So what's this all about?}
+{14020}{}{I want do it. What are the details?}
+{14030}{}{Nothing really.}
+{15000}{}{Just a few miles east thru the oldtown. It sits besides a large, high building, you can almost see it from here. Can't miss it really.}
+{15010}{}{All right, I'll be going there now.}
+{16000}{}{Yeah, what about it?}
+{16010}{}{The drifters are gone, you're free to use your warehouse again, Jack.}
+{16020}{}{It's done. All of the trespassers have been 'evicted'. You didin't mention there would be children there, that will...}
+{16030}{}{Um, nothing really, I'm still on it.}
+{17000}{}{Really? And how did you make dem fucks leave? Oh, wait, don't wanna know anyway. Good job, @sex@|homie||girl|, good job, now I can store my shit in da safe place. Here's your pay, [He hands you a bag of caps.]. If you're lookin' for more work, I mite say a good word about you to my homie in da Council. The name's Helms. Last time I spoke to him, he was lookin' for some skilled person, and I think you are just dat person he needs. Now go, I've got a lotta work to do.}
+{17010}{}{Thanks, Jack. Goodbye.}
+{18000}{}{I don't wanna hear about this shit! As they say, what's done is done, rite? They should've left when I gave them da chance... Anyway, good job, @sex@|homie||girl|. Here's your pay, [He hands you a bag of caps.]. If you're lookin' for more work, I mite say a good word about you to my homie in da Council. Helms is da name. Last time I spoke to him, he was lookin' for some skilled person, and I think you are just dat person. Now get your ass outta here, I've got things needin' taken care of.
+}
+{18010}{}{Yeah... Thanks, I guess. See you round, Jack.}
+{19000}{}{Hmmm... [Looks at you carefully]...Nothing. At least not now. You don' seem to be tough enuff for dis. Come back later, when ya get da ropes.}
+{19010}{}{Get the... what? Ah, fuck, nevermind. I'll be back.}
+{20000}{}{I've told ya already, you're not up to it, not yet. Now scram, @sex@|nigga||bitch|!}
+{20010}{}{Yeah, yeah, whatever.}
+{21000}{}{So stop wastin' my time and get outta my fuckin' sight!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{first time met}
+{1020}{}{met before}
+{2000}{}{Welcome to One Eyed Jack's, da best place in da Hub when it comes to weapons. Feelin' unsecure? Got a neigbour problem? Or, just wanna fuck somebody up? Dis is da place to see. Now, you buyin' or wat?}
+{2010}{}{Buyin'. Show my what you have, Jack.@@Show me your guns, Jack.@@I'm buing. Show me your stuff.}
+{2020}{}{How did you lose that eye?}
+{2030}{}{Nice meeting you Jack, but I've got to be somewhere else.}
+{3000}{}{You again? What do ya want?@@What do you want?@@One Eyed Jack welcomes you, blah, blah...@@Whaddya want, @sex@|homie||baby|?}
+{3010}{}{Show me your guns, man.@@I want to trade.@@Let me take a look at your guns.@@Wanna trade?@@I want to trade.}
+{3020}{}{What's with that missing eye of yours?@@How did you lose that eye, Jack?}
+{3030}{}{About that job you mentioned before...}
+{3040}{}{I thought about that job you have for me. I think I'll do it.}
+{3050}{}{About that job of yours...}
+{3060}{}{I must say, you've got a rather impressing selection. Where do you get all this stuff?@@Nice stock. Where do you get all this stuff?@@I gotta admit, you've got some of the best guns in the Hub. How do you get all of that?}
+{3070}{}{Nothing, just passing by.}
+{4000}{}{My eye? Let's see...  Oh yea, just remembered, dat's none of your fuckin' biz I don't talk with strangers 'bout personal stuff. Get lost.}
+{4010}{}{Yeah, yeah. Sorry for asking, fucktard.@@Yeah, whatever.@@Whatever.}
+{5000}{}{Well, just a leftover from days lon' gone. I don't really wanna talk 'bout dat.}
+{5010}{}{All right Jack, let's change the subject.@@I see. Let's talk about something else then.}
+{5020}{}{As you wish. I've gotta go.@@Right. I need to go now.}
+{6000}{}{That's my little secret, mind you. And I'm not gonna share it with just anyone who comes by.}
+{6010}{}{Really? Can't you elaborate a bit more? Surely it wouldn't hurt anybody.}
+{6020}{}{All right, keep your secrets then. Bye.}
+{7000}{}{Yeah, sure. It wouldn't hurt anybody but me and my biz. Shit, actually the biz is pretty bad already...}
+{7010}{}{How so?}
+{7020}{}{I don't have the time for this.}
+{8000}{}{@sex@|Homie||Girl|, what da fuck with all the questions? It's just bad, the caravan biz is bad, lotta folks dyin', lotta caravan investments gone. And then, they skimp on guns, stupid fucks. More caravans get lost, more carvies die, dem companies get less caps, and shit goes in dis fuckin' circle. And so I end up with shitload of guns nobody's willing to buy. Now, ya want something or are ya just gonna waste more of my time with dis shit?}
+{8010}{}{No, I've heard enough. Hold your pants and show me your stuff.}
+{8020}{}{Some more, maybe. So that's the secret behind your bloated stock?}
+{8030}{}{I wasted enough of my time already. So no. And goodbye.}
+{9000}{}{Fuck, @sex@|man||girl|, yeah. I can't even get inta my bed, dis whole place is fuckin' flooded with dem guns. And I just lost my... Shit, wait a sec... I mite have a job for you, @sex@|nigga||baby|. You good at eviction biz?}
+{9010}{}{Depends on what do you mean by that, Jack.}
+{9020}{}{Eviction business? What do you mean?}
+{10000}{}{It's nothin' too hard. You see, I own a warehouse. Or, at least, I used to own it. And I mean, legally! Even got dem papers from da Council [He waves a small paper note with some government markings on it.] and dem papers say that I own dat warehouse. But, just my fuckin' luck, some drifters came there recently and won't move their asses outta my property, and I'm stuck with all those guns here in my shop. So, I need ya to make dem leave. Or leave dem dead, I don' giva fuck. I'll give ya good caps for da job. You in for it @sex@|bro||sis|? }
+{10010}{}{Is there anything more?}
+{10020}{}{I've got to think about that. We'll talk later, see you round.}
+{11000}{}{Rite. Good you've made up your mind, @sex@|nigga||girl|. As I said, just make those fuckers leave my goddamnmothafuckin' warehouse. By any means necessary.}
+{11010}{}{Isn't "evicting" them illegal? I mean, killing is a punishable crime in the Hub, right?}
+{11020}{}{I'm not really into violence, and it seems that it might come to that. I need to think about this. Be seein' you.}
+{12000}{}{Who cares? I've got fuckin' trespassers on my property! And I didin' say you have to kill them, I just said I didin' care how do you do it, @sex@|bro||sis|. Besides, you think I didin' try to reason with dem? I even left'em some caps and goods, but they were just fucking with me. So, you're in or out?}
+{12010}{}{Fine, I'll do it, Jack. I'll be back in no time. Where's that warehouse?}
+{12020}{}{This seems a bit too shady even for me. Goodbye.}
+{13000}{}{Just get dem outta dat warehouse. And watch out, don' trust anythin' they say. I tried to reason with dem, even paid dem to leave, but they just took the caps and laughed at me. So now I'm gonna give dem some nice example of frontier justice.}
+{13010}{}{All right Jack. Consider me in. Where's that warehouse of yours then?}
+{13020}{}{I need to think about this. See you.}
+{14000}{}{Yeah?}
+{14010}{}{I wanna do it. So what's this all about?}
+{14020}{}{I want do it. What are the details?}
+{14030}{}{Nothing really.}
+{15000}{}{Just a few miles east thru the oldtown. It sits besides a large, high building, you can almost see it from here. Can't miss it really.}
+{15010}{}{All right, I'll be going there now.}
+{16000}{}{Yeah, what about it?}
+{16010}{}{The drifters are gone, you're free to use your warehouse again, Jack.}
+{16020}{}{It's done. All of the trespassers have been, um, evicted. You didin't mention there would be children there, that will-}
+{16030}{}{Um, nothing really, I'm still on it.}
+{17000}{}{Really? And how did you make dem fucks leave? Oh, wait, don't wanna know anyway. Good job, @sex@|homie||girl|, good job, now I can store my shit in da safe place. Here's your pay, with a little bonus for making it clean. [He hands you a bag of caps.]. If ya lookin' for work, talk to my homie, Boyd. Last time I've seen him he was drinkin' at the Falcon. Now go, I've got a lotta work to do.}
+{17010}{}{Thanks, Jack. Goodbye.}
+{18000}{}{I don't wanna hear about this shit! What's done's done, as they say, rite? They should've left when I gave them da chance... Anyway, good job, @sex@|homie||girl|. You're one tough mothafucka. Here's your pay, [He hands you a bag of caps.]. If you're lookin' for more work, I mite say a good word about you to my homie Boyd. Last time I spoke to him, he was lookin' for some skilled person, and I think you are just dat person. He usually stays at the Falcon. Now get your ass outta here, I've got things needin' taken care of.
+}
+{18010}{}{Yeah... Thanks, I guess. See you round, Jack.}
+{19000}{}{Hmmm... [Looks at you carefully]...Nothing. At least not now. You don' seem to be tough enuff for dis. Come back later, when ya get da ropes.}
+{19010}{}{Get the... what? Ah, fuck, nevermind. I'll be back.}
+{20000}{}{I've told ya already, you're not up to it, not yet. Now scram, @sex@|nigga||bitch|!}
+{20010}{}{Yeah, yeah, whatever.}
+{21000}{}{So stop wastin' my time and get outta my fuckin' sight!}
+

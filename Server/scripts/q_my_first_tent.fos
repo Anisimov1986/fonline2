@@ -1,0 +1,101 @@
+#include "_macros.fos"
+#include "_npc_roles.fos"
+#include "critter_events_basic.fos"
+
+
+#define FOREST_BRAHMIN_HERDSMAN_LOCATION			(270)
+#define FOREST_BRAHMIN_HERDSMAN_LOCATION_KEEP_TIME	(REAL_DAY(3))
+#define	FOREST_BRAHMIN_HERDSMAN_LOCATION_MIN_X		(1200)
+#define	FOREST_BRAHMIN_HERDSMAN_LOCATION_MIN_Y		(1190)
+#define	FOREST_BRAHMIN_HERDSMAN_LOCATION_MAX_X		(1260)
+#define	FOREST_BRAHMIN_HERDSMAN_LOCATION_MAX_Y		(1200)
+
+#define SaveForestBrahminHerdsmanLocation	#(critter, values) (SetAnyData("FBH_" + critter.Id, values))
+#define LoadForestBrahminHerdsmanLocation	#(critter, values) (GetAnyData("FBH_" + critter.Id, values))
+#define EraseForestBrahminHerdsmanLocation	#(critterId) (EraseAnyData("FBH_" + critterId))
+
+
+CritterEventsManager frankie = CritterEventsManager(ROLE_Q_FIRST_TENT_FRANKIE)
+	.When(SeePlayerAttacking())     //Attack attackers 
+		.Execute(Attack())
+	.When(CritterDead())
+		.Execute(SetTargetLocalVar(LVAR_q_my_first_tent, 6));
+
+		
+CritterEventsManager frankieBrahmin = CritterEventsManager(ROLE_Q_FIRST_TENT_BRAHMIN)
+	.When(SeePlayerAttacking())     //Attack attackers 
+		.Execute(Attack())
+	.When(CritterDead())
+		.Execute(SetTargetLocalVar(LVAR_q_my_first_tent, 5));
+//Temporary optimalization		
+//	.When(CritterIdle())
+//		.Execute(LookAround());		
+		
+
+void _InitFrankie(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		npc.StatBase[ST_DIALOG_ID] = DIALOG_frankie;
+		npc.StatBase[ST_REPLICATION_TIME] = -1;
+	}
+
+	frankie.AttachCritter(npc, firstTime);
+}
+
+void _InitFrankiesBrahmin(Critter& npc, bool firstTime)
+{
+	if(firstTime)
+	{
+		npc.StatBase[ST_REPLICATION_TIME] = -1;
+	}
+
+	frankieBrahmin.AttachCritter(npc, firstTime);
+}
+
+void r_StartGetBagsSubQuest(Critter& master, Critter@ slave)
+{
+	uint locationId = CreateLocation(FOREST_BRAHMIN_HERDSMAN_LOCATION, 
+		Random(FOREST_BRAHMIN_HERDSMAN_LOCATION_MIN_X, FOREST_BRAHMIN_HERDSMAN_LOCATION_MAX_X), 
+		Random(FOREST_BRAHMIN_HERDSMAN_LOCATION_MIN_Y, FOREST_BRAHMIN_HERDSMAN_LOCATION_MAX_Y),
+		null);
+	if(locationId == 0)
+		return;
+	
+	master.SetKnownLoc(true, locationId);
+	uint[] eventValues = {locationId, master.Id};
+	uint eventId = CreateTimeEvent(__FullSecond + FOREST_BRAHMIN_HERDSMAN_LOCATION_KEEP_TIME, 
+		"e_FinishBrahminHerdsmanLocation", eventValues, true);
+	uint[] values = {locationId, eventId};
+	SaveForestBrahminHerdsmanLocation(master, values);
+}
+
+void r_FinishGetBagsSubQuest(Critter& master, Critter@ slave)
+{
+	uint[] values;
+	LoadForestBrahminHerdsmanLocation(master, values);
+	
+	if(!valid(values))
+		return;
+	DeleteLocation(values[0]);
+	EraseTimeEvent(values[1]);
+	EraseForestBrahminHerdsmanLocation(master.Id);
+}
+
+uint e_FinishBrahminHerdsmanLocation(uint[]@ values)
+{
+	uint locationId = values[0];
+	uint critterId = values[1];
+	Location@ location = GetLocation(locationId);
+	if(!valid(location))
+		return 0;
+	
+	DeleteLocation(locationId);
+	EraseForestBrahminHerdsmanLocation(critterId);
+	
+	GameVar@ var = GetLocalVar(LVAR_q_my_first_tent, critterId);
+	if(valid(var) && var == 3)
+		var = 2;
+	
+	return 0;
+}

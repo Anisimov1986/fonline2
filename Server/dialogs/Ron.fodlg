@@ -1,0 +1,94 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _var p name_mem_player_npc = 0 #
+0 2020 #
+5 2030 D _script economy_dialogs@d_IsEnoughCaps 1 100000 D _var p name_mem_player_npc = 1 R _var p name_mem_player_npc = 0 R _script economy_dialogs@r_TakeCaps 1 100000 R _item p PID_BASEMAP_RANCH + 1 R _script tc@r_AddFeeToLocker 1 5000 @
+3 3000 None 0 #
+4 3010 R _var p name_mem_player_npc + 1 @
+4 4000 economy_dialogs@dlg_PreparePrice 0 #
+0 4010 #
+0 4020 #
+5 4030 D _script economy_dialogs@d_IsEnoughCaps 1 100000 R _var p name_mem_player_npc = 0 R _script economy_dialogs@r_TakeCaps 1 100000 R _item p PID_BASEMAP_RANCH + 1 @
+5 5000 None 0 #
+0 5010 &
+
+[engl]
+{100}{}{Ron}
+{200}{}{You see: Ron}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{[Looks up at you with half closed eyes. Then his head lowers back down to the ground.] Oh...hello. What are you doing here?}
+{2010}{}{Umm... are you alright man?}
+{2020}{}{Oh, um. Sorry to bother you. Bye.}
+{2030}{}{Will this do? I have the caps right here.}
+{3000}{}{[His eyes are directed at you] Does it look like I'm "alright man" to you? No I don't think so. My wife's died, and my kids ran away. I just wish that I would die as well. I don't care, I don't even care about our farm... screw our family farm.}
+{3010}{}{What about this farm?}
+{4000}{}{[His hands hold up something, a map.] ...you see this? This is where our- well my farm is located. If you truly care about our farm, I can only care less of what will happen to it now. [A smirk slowly forms] I can give you the map...for a price. How does @lex base3_price@ caps sound? It's how much we paid for that damn land.}
+{4010}{}{Ohhh I see. This is just a scam! Well, screw you. I ain't buying it. Later!}
+{4020}{}{I see, well I'll talk to you soon. I need some more caps.}
+{4030}{}{Will this do? I have the caps right here.}
+{5000}{}{[Once the map leaves his hands, he clenches his fist tightly and tears ran down his cheeks.] W-What have I done...? Why....}
+{5010}{}{Right...[You slowly back away]@@No trade-backs!}
+
+[russ]
+{100}{}{Рон}
+{200}{}{Вы видите: Рон}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{О ... привет. Что ты здесь делаешь?}
+{2010}{}{Умм ... ты в порядке?}
+{2020}{}{О, мм. Извините, что беспокою вас. Пока.}
+{2030}{}{Ну что? Я принес деньги.}
+{3000}{}{Разве похоже, что со мной все нормально? Нет, я так не думаю. Моя жена умерла, и мои дети убежали. Мне только жаль, что я не умер. Мне все равно, мне даже уже плевать на нашу ферму...нашу семейную ферму.}
+{3010}{}{Что с этой фермой?}
+{4000}{}{[Его руки держат что-то, похожее на карту.] ... Вы видите это? Это мечто где наша фермы находится. Если бы вы могли позаботится об этой ферме, я бы мог продать ее вам. Как насчет @lex base3_price@ крышек? Столько мы заплатили за эту землю.}
+{4010}{}{Ооо. Это просто надувательство! Да, пошел ты. Я не буду покупать твою ферму.}
+{4020}{}{Понятно, я вернусь позже. Нужно собрать денег.}
+{4030}{}{И всего-то? У меня деньги с собой, давай карту.}
+{5000}{}{[когда карта переходит в ваши руки, Рона начинает дико трясти] Что я сделал...? Зачем...?}
+{5010}{}{Ну, я это, пошел...[Вы медленно отступаете]}
+
+[pols]
+{100}{}{Ron}
+{200}{}{Widzisz Rona.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{[Spogląda na ciebie na wpół przymrużonymi oczyma, po czym ponownie wbija wzrok w ziemię.] Och... cześć. Co tutaj robisz?}
+{2010}{}{Hmm... Wszystko w porządku, koleś?}
+{2020}{}{Och, hm. Przepraszam, że przeszkadzam. Na razie.}
+{2030}{}{Tyle starczy? Mam kapsle.}
+{3000}{}{[Patrzy na ciebie.] Czy wyglądam na "kolesia wszystko w porządku"? Nie wydaje mi się. Moja żona nie żyje, moje dzieci uciekły. Ja również chciałbym umrzeć. Nie dbam już o nic, nie dbam już nawet o naszą farmę... Pieprzyć naszą rodzinną farmę.}
+{3010}{}{What about this farm?}
+{4000}{}{[W ręce trzyma mapę.] ...widzisz to? Tutaj znajduje się nasza - właściwie, moja - farma. Jeśli będziesz potrafić o nią zadbać, ja będę dbał o nią jeszcze mniej. [Na jego twarzy pojawia się uśmieszek.] Mogę ci oddać tą mapę... za pewną cenę. Co powiesz na @lex base3_price@ kapsli? Tyle zapłaciliśmy za tą przeklętą ziemię.}
+{4010}{}{Och, rozumiem. To pieprzone oszustwo! Dobra, pierdol się. Idę stąd!}
+{4020}{}{Rozumiem, cóż, porozmawiamy potem. Potrzebuję nieco więcej kapsli.}
+{4030}{}{Tyle starczy? Mam kapsle.}
+{5000}{}{[Kiedy mapa zniknęła z jego ręki, zacisnął ją ciasno, a po jego policzkach zaczęły płynąć łzy.] C-Co ja zrobiłem... Dlaczego...}
+{5010}{}{W porządku... [Powoli odchodzisz.]}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{[Looks up at you with half closed eyes. Then his head lowers back down to the ground.] Oh...hello. What are you doing here?}
+{2010}{}{Umm... are you alright man?}
+{2020}{}{Oh, um. Sorry to bother you. Bye.}
+{2030}{}{Will this do? I have the caps right here.}
+{3000}{}{[His eyes are directed at you] Does it look like I'm "alright man" to you? No I don't think so. My wife's died, and my kids ran away. I just wish that I would die as well. I don't care, I don't even care about our farm... screw our family farm.}
+{3010}{}{What about this farm?}
+{4000}{}{[His hands hold up something, a map.] ...you see this? This is where our- well my farm is located. If you truly care about our farm, I can only care less of what will happen to it now. [A smirk slowly forms] I can give you the map...for a price. How does @lex base3_price@ caps sound? It's how much we paid for that damn land.}
+{4010}{}{Ohhh I see. This is just a scam! Well, screw you. I ain't buying it. Later!}
+{4020}{}{I see, well I'll talk to you soon. I need some more caps.}
+{4030}{}{Will this do? I have the caps right here.}
+{5000}{}{[Once the map leaves his hands, he clenches his fist tightly and tears ran down his cheeks.] W-What have I done...? Why....}
+{5010}{}{Right...[You slowly back away]@@No trade-backs!}
+

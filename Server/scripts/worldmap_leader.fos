@@ -1,0 +1,851 @@
+/**
+* Author: wladimiiir
+*/
+#include "_macros.fos"
+#include "worldmap_h.fos"
+#include "_npc_pids.fos"
+#include "serializator.fos"
+#include "npc_common_h.fos"
+import void FindEncounter(Critter@[]& group, Item@ car, uint x, uint y, uint& encounterDescriptor, bool& waitForAnswer, bool empty) from "worldmap";
+import void InviteToEncounter(Critter@[]& group, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir) from "worldmap";
+import bool IsTownZone(uint x, uint y) from "worldmap";
+
+/**
+* Entities
+*/
+funcdef void WorldmapLeaderAction(Critter& leader, Critter@[]@ playerGroup);
+
+dictionary WorldmapLeaderMap;
+
+class WorldmapLeader
+{
+	private uint NpcPid;
+	private uint BagId;
+	private uint[] RouteXs;
+	private uint[] RouteYs;
+	private uint8 CombatMode;
+	private uint[] MapItemPids;
+	private uint[] NpcFollowersPids;
+	private uint[] NpcFollowersBags;
+	private WorldmapLeaderAction@ EncountingEnemyAction;
+	private WorldmapLeaderAction@ ReadyToGoAction;
+	private WorldmapLeaderAction@ FinishAction;
+	private WorldmapLeaderAction@ CancelAction;
+	
+	WorldmapLeader(uint npcPid)
+	{
+		NpcPid = npcPid;
+		BagId = 0;
+		CombatMode = COMBAT_MODE_REAL_TIME;
+	}
+	
+	WorldmapLeader@ AddRoutePoint(uint routeX, uint routeY)
+	{
+		RouteXs.insertLast(routeX);
+		RouteYs.insertLast(routeY);
+		return @this;
+	}
+	
+	WorldmapLeader@ SetBag(uint bagId)
+	{
+		BagId = bagId;
+		return @this;
+	}
+	
+	WorldmapLeader@ SetCombatMode(uint8 mode)
+	{
+		CombatMode = mode;
+		return @this;
+	}
+	
+	WorldmapLeader@ AddMapItem(uint mapItemPid)
+	{
+		MapItemPids.insertLast(mapItemPid);
+		return @this;
+	}
+	
+	WorldmapLeader@ AddNpcFollower(uint followerPid, uint bagId)
+	{
+		NpcFollowersPids.insertLast(followerPid);
+		NpcFollowersBags.insertLast(bagId);
+		return @this;
+	}
+	
+	WorldmapLeader@ SetEncountingEnemyAction(WorldmapLeaderAction@ action)
+	{
+		@EncountingEnemyAction = action;
+		return @this;
+	}
+	
+	WorldmapLeader@ SetReadyToGoAction(WorldmapLeaderAction@ action)
+	{
+		@ReadyToGoAction = action;
+		return @this;
+	}
+	
+	WorldmapLeader@ SetFinishAction(WorldmapLeaderAction@ action)
+	{
+		@FinishAction = action;
+		return @this;
+	}
+	
+	WorldmapLeader@ SetCancelAction(WorldmapLeaderAction@ action)
+	{
+		@CancelAction = action;
+		return @this;
+	}
+	
+	WorldmapRoute@ CreateRoute(Critter& leader, Critter@[] playerGroup)
+	{
+		WorldmapRoute route(leader);
+		
+		route.AddFollowers(playerGroup);
+		for (uint i = 0; i < RouteXs.length(); i++)
+			route.AddRoutePoint(RouteXs[i], RouteYs[i]);
+			
+		return route;
+	}
+	
+	void RunEncountingEnemyAction(Critter& leader)
+	{
+		if(!valid(EncountingEnemyAction))
+			return;
+		
+		EncountingEnemyAction(leader, leader.GetGlobalGroup());
+	}
+	
+	void RunReadyToGoAction(Critter& leader)
+	{
+		if(!valid(ReadyToGoAction))
+			return;
+		
+		ReadyToGoAction(leader, leader.GetGlobalGroup());
+	}
+	
+	void RunFinishAction(Critter& leader)
+	{
+		if(!valid(FinishAction))
+			return;
+		
+		FinishAction(leader, leader.GetGlobalGroup());
+	}
+	
+	void RunCancelAction(Critter& leader)
+	{
+		if(!valid(CancelAction))
+			return;
+		
+		CancelAction(leader, leader.GetGlobalGroup());
+	}
+	
+	Item@[] AddMapItems(Map& map, Critter& leader)
+	{
+		Item@[] items;
+		uint16 hexX = leader.HexX;
+		uint16 hexY = leader.HexY;
+		map.MoveHexByDir(hexX, hexY, (leader.Dir + 3) % 6, 5);
+		
+		for (uint i = 0; i < MapItemPids.length(); i++)
+		{
+			if (!map.CheckPlaceForItem(hexX,hexY,MapItemPids[i]))
+                break;
+            Item@ item = map.AddItem(hexX, hexY, MapItemPids[i], 1);
+			if(valid(item))
+			{
+				items.insertLast(item);
+				map.MoveHexByDir(hexX, hexY, (leader.Dir + Random(2, 4)) % 6, Random(4, 6));
+			}
+		}
+		return items;
+	}
+	
+	void Start(Map& startMap, Critter@[] playerGroup, int combatMode = -1)
+	{
+		if(playerGroup.isEmpty())
+			return;
+		
+		Critter@ leader = startMap.AddNpc(NpcPid, playerGroup[0].HexX, playerGroup[0].HexY, 0, null, null, "InitWorldmapLeader");
+		if(!valid(leader))
+			return;
+		bool jt=false;	
+		for (uint i = 0; i < NpcFollowersPids.length(); i++) 
+		{
+			Critter@ guard = startMap.AddNpc(NpcFollowersPids[i], playerGroup[0].HexX, playerGroup[0].HexY, Random( 0, 5 ), null, null, "");
+			if (valid(guard))
+			{
+				if (NpcFollowersBags[i]!=0)
+					guard.StatBase[ST_BAG_ID] = NpcFollowersBags[i];
+				InitJtScout(guard);
+				playerGroup.insertLast(guard);
+				jt=true;//tmp
+			}
+		}
+		if (jt)
+			leader.ParamBase[MAIN_FACTION]=1;// tmp
+		leader.StatBase[ST_REPLICATION_TIME] = -1;
+		leader.StatBase[ ST_DIALOG_ID ]=68;
+		leader.PerkBase[ PE_MAGNETIC_PERSONALITY ] = 5;
+		if(BagId != 0)
+			leader.StatBase[ST_BAG_ID] = BagId;
+		leader.ModeBase[MODE_DEFAULT_COMBAT] = combatMode == -1 ? CombatMode : combatMode;
+		WorldmapLeaderMap.set("" + leader.Id, @this);
+		WorldmapRoute@ route = CreateRoute(leader, playerGroup);
+		route.GoToGlobal();
+	}
+}
+
+#define TeamId               StatBase[ ST_TEAM_ID ]
+#define SAME_TEAM # (cr,attacker) (cr.TeamId==attacker.TeamId)
+void InitJtScout(Critter& cr)
+{
+    cr.ParamBase[MAIN_FACTION]=1;// tmp
+	cr.SetEvent(CRITTER_EVENT_ATTACKED, "_JtOnAttacked");
+	cr.SetEvent(CRITTER_EVENT_SMTH_ATTACKED, "_SomeoneAttacked");
+}
+
+bool _JtOnAttacked(Critter& cr, Critter& attacker)
+{
+	if(attacker.Param[MAIN_FACTION]==1)
+	{
+		cr.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70382);
+		return true;
+	}
+	return false;
+}
+
+void _SomeoneAttacked(Critter& cr, Critter& attacked, Critter& attacker)
+{
+	if(attacker.Id == cr.Id)
+        return;
+	if(attacker.Id == attacked.Id)
+        return;
+	if (SAME_TEAM(cr,attacker))
+		return;
+	if (attacker.Param[MAIN_FACTION]== 1 )
+		return;
+	if (attacker.IsNpc())
+		return;
+	if (_IsAggressor(attacked))
+		return;
+	if (attacked.IsNpc())
+		return;
+	Attack(cr,attacker);
+}
+
+void Attack(Critter& cr, Critter& attacker)
+{
+	NpcPlane@ plane = cr.GetCurPlane();
+    if(valid(plane) && plane.Type == AI_PLANE_ATTACK && plane.Attack_TargId == attacker.Id)
+		return;
+	AttackCritter( cr, attacker ); 
+}
+
+#define	ROUTE_STATE_READY_TO_GO		(0)
+#define	ROUTE_STATE_TRAVELING		(1)
+#define	ROUTE_STATE_IN_ENCOUNTER	(2)
+#define	ROUTE_STATE_FINISHED		(3)
+#define	ROUTE_STATE_CANCELLED		(4)
+
+class WorldmapRoute
+{
+	#define _GetKey	("WorldmapRoute_" + Leader.Id)
+	
+	private Critter@ Leader;
+	private Critter@[] Followers;
+	private Item@[] MapItems;
+	private uint[] RouteXs;
+	private uint[] RouteYs;
+	private uint CurrentRoutePointIndex;
+	private uint8 State;
+	private uint nextX = 0, nextY = 0;
+	
+	WorldmapRoute(Critter& leader)
+	{
+		@Leader = leader;
+		CurrentRoutePointIndex = 0;
+		State = ROUTE_STATE_READY_TO_GO;
+		Load();
+	}
+	
+	private void Load()
+	{
+		Serializator serializator;
+		if(!serializator.Load(_GetKey))
+			return;
+		
+		uint size = 0;
+		serializator.Get(size);
+		for (uint i = 0; i < size; i++) 
+		{
+			uint critterId = 0;
+			serializator.Get(critterId);
+			Critter@ follower = GetCritter(critterId);
+			if(valid(follower))
+				Followers.insertLast(follower);
+		}
+		
+		serializator.Get(size);
+		for (uint i = 0; i < size; i++) 
+		{
+			uint routeX = 0;
+			uint routeY = 0;
+			serializator.Get(routeX);
+			serializator.Get(routeY);
+			RouteXs.insertLast(routeX);
+			RouteYs.insertLast(routeY);
+		}
+		
+		serializator.Get(size);
+		for (uint i = 0; i < size; i++) 
+		{
+			uint itemId = 0;
+			serializator.Get(itemId);
+			Item@ item = GetItem(itemId);
+			if(valid(item))
+				MapItems.insertLast(item);
+		}
+		serializator.Get(State);
+		serializator.Get(CurrentRoutePointIndex);
+		serializator.Get(nextX);
+		serializator.Get(nextY);
+	}
+	
+	private void Save()
+	{
+		Serializator serializator;
+		
+		serializator.Set(Followers.length());
+		for (uint i = 0; i < Followers.length(); i++)
+			serializator.Set(Followers[i].Id);
+		
+		serializator.Set(RouteXs.length());
+		for (uint i = 0; i < RouteXs.length(); i++)
+		{
+			serializator.Set(RouteXs[i]);
+			serializator.Set(RouteYs[i]);
+		}
+		
+		serializator.Set(MapItems.length());
+		for (uint i = 0; i < MapItems.length(); i++)
+			serializator.Set(MapItems[i].Id);
+			
+		serializator.Set(State);
+		serializator.Set(CurrentRoutePointIndex);
+		serializator.Set(nextX);
+		serializator.Set(nextY);
+		serializator.Save(_GetKey);
+	}
+	
+	private WorldmapLeader@ GetWorldmapLeader()
+	{
+		WorldmapLeader@ leader;
+		WorldmapLeaderMap.get("" + Leader.Id, @leader);
+		return leader;
+	}
+	
+	void AddRoutePoint(uint routeX, uint routeY)
+	{
+		RouteXs.insertLast(routeX);
+		RouteYs.insertLast(routeY);
+		Save();
+	}
+	
+	void AddFollowers(Critter@[] followers)
+	{
+		for (uint i = 0; i < followers.length(); i++)
+			Followers.insertLast(followers[i]);
+			
+		if(!followers.isEmpty())
+			Save();
+	}
+	
+	bool IsFollower(Critter& follower)
+	{
+		return Followers.find(follower) >= 0;
+	}
+	
+	void RemoveFollower(Critter& follower)
+	{
+		uint index = Followers.find(follower);
+		if(index >= 0)
+		{
+			Followers.removeAt(index);
+			Save();
+		}
+	}
+	
+	private void SetState(uint8 routeState)
+	{
+		State = routeState;
+		Save();
+	}
+	
+	uint8 GetState()
+	{
+		return State;
+	}
+	
+	bool HasEnded()
+	{
+		return CurrentRoutePointIndex >= RouteXs.length();
+	}
+	
+	void GoToGlobal()
+	{
+		bool removed = false;
+		for (uint i = 0; i < Followers.length(); i++)
+		{
+			Critter@ cr = Followers[i];
+			if (!valid(cr) 
+			|| (valid(cr) && cr.IsPlayer() && (!cr.IsLife() || !valid(cr.GetMap()) || cr.GetMap().Id != Leader.GetMap().Id || !Leader.IsSee(cr) || i>9))
+			|| (cr.IsNpc() && !cr.IsLife()))
+			{
+				//not on same map
+				Followers.removeAt(i);
+				i--;
+				removed = true;
+				continue;
+			}
+		}
+		if(removed)
+			Save();
+
+			
+		Leader.TransitToGlobal(Followers);
+		
+		if(!MapItems.isEmpty())
+		{
+			for (uint i = 0; i < MapItems.length(); i++)
+				DeleteItem(MapItems[i]);
+			MapItems.resize(0);
+			Save();
+		}
+	}
+	
+	private float sqDist(float x1, float y1, float x2, float y2)
+	{
+		float dx = abs(x1 - x2);
+		float dy = abs(y1 - y2);
+		
+		return dx > dy ? dx : dy;
+	}
+	
+	private float computeDeltaForRoutePoint(uint routePointIndex)
+	{
+		if (routePointIndex >= RouteXs.length()
+			|| IsTownZone(RouteXs[routePointIndex], RouteYs[routePointIndex]))
+		{
+			return 0;
+		}
+
+		float prevSqDist = routePointIndex > 0 ? sqDist(RouteXs[routePointIndex - 1], RouteYs[routePointIndex - 1], RouteXs[routePointIndex], RouteYs[routePointIndex]) : 3 * ZONE_LENGTH;
+		float nextSqDist = sqDist(RouteXs[routePointIndex + 1], RouteYs[routePointIndex + 1], RouteXs[routePointIndex], RouteYs[routePointIndex]);
+		float minDist = prevSqDist < nextSqDist ? prevSqDist : nextSqDist;
+		float result = 0.3 * minDist;
+	
+		return result < 3 * ZONE_LENGTH ? result : 3 * ZONE_LENGTH;
+	}
+	
+	private int rdRandom(int min, int max)
+	{
+		int roll = Random(0, 100);
+		int d6 = (max - min) / 6;
+		
+		if (roll < 40)
+		{
+			return Random(min, min + d6); 
+		}
+		else if (roll < 80)
+		{
+			return Random(max - d6, max); 
+		}
+		else if (roll < 90)
+		{
+			return Random(min + d6, (max + min) / 2); 
+		}
+		else
+		{
+			return Random((max + min) / 2, max - d6); 
+		}
+	}
+	
+	private void ComputeNextRoutePoint()
+	{
+		float currentDelta = computeDeltaForRoutePoint(CurrentRoutePointIndex);
+		float nextX = float(RouteXs[CurrentRoutePointIndex]) + rdRandom(-currentDelta, currentDelta);
+		float nextY = float(RouteYs[CurrentRoutePointIndex]) + rdRandom(-currentDelta, currentDelta);
+		
+		if (nextX < 0)
+		{
+			nextX = 0;
+		}
+		
+		if (nextY < 0)
+		{
+			nextY = 0;
+		}
+		
+		if (nextX >= ZONE_COUNT_X * ZONE_LENGTH)
+		{
+			nextX = ZONE_COUNT_X * ZONE_LENGTH - 1;
+		}
+	
+		if (nextY >= ZONE_COUNT_Y * ZONE_LENGTH)
+		{
+			nextY = ZONE_COUNT_Y * ZONE_LENGTH - 1;
+		}
+		
+		this.nextX = nextX;
+		this.nextY = nextY;
+	}
+	
+	bool SetNextRoutePoint(float x, float y, float& toX, float& toY)
+	{
+		if(HasEnded())
+			return false;
+			
+		if (nextX == 0 && nextY == 0)
+		{
+			ComputeNextRoutePoint();
+			Save();
+		}	
+		
+		if (uint(x) == nextX && uint(y) == nextY)
+		{
+			//go to next point
+			CurrentRoutePointIndex++;
+			
+			if(CurrentRoutePointIndex >= RouteXs.length())
+				return false;
+		
+			ComputeNextRoutePoint();
+			
+			Save();
+		}
+		
+		if(CurrentRoutePointIndex >= RouteXs.length())
+			return false;
+		
+		toX = float(nextX);
+		toY = float(nextY);
+		
+		return true;
+	}
+	
+	void EncountingEnemy()
+	{
+		SetState(ROUTE_STATE_IN_ENCOUNTER);
+
+		WorldmapLeader@ wmLeader = GetWorldmapLeader();
+		if(valid(wmLeader))
+			wmLeader.RunEncountingEnemyAction(Leader);
+	}
+	
+	void ReadyToGo()
+	{
+		SetState(ROUTE_STATE_READY_TO_GO);
+
+		WorldmapLeader@ wmLeader = GetWorldmapLeader();
+		if(valid(wmLeader))
+			wmLeader.RunReadyToGoAction(Leader);
+	}
+	
+	void InviteToMap(Map& map, uint16 hexX, uint16 hexY, uint8 dir)
+	{
+		Critter@[] group = Leader.GetGlobalGroup();
+		
+		for (uint i = 0; i < group.length(); i++)
+		{
+			group[i].TransitToMap(map.Id, hexX, hexY, dir);
+			if (group[i].IsNpc())
+				group[i].SetHomePos(group[i].HexX, group[i].HexY, group[i].Dir);
+		}
+
+		WorldmapLeader@ wmLeader = GetWorldmapLeader();
+		if(valid(wmLeader))
+		{
+			Item@[] mapItems = wmLeader.AddMapItems(map, Leader);
+			if(!mapItems.isEmpty())
+			{
+				for (uint i = 0; i < mapItems.length(); i++)
+					MapItems.insertLast(mapItems[i]);
+				Save();
+			}
+		}
+	}
+	
+	void Finish()
+	{
+		SetState(ROUTE_STATE_FINISHED);
+
+		WorldmapLeader@ wmLeader = GetWorldmapLeader();
+		if(valid(wmLeader))
+		{
+			wmLeader.RunFinishAction(Leader);
+			WorldmapLeaderMap.delete("" + Leader.Id);
+		}
+			
+		EraseAnyData(_GetKey);
+	}
+	
+	void Cancel()
+	{
+		SetState(ROUTE_STATE_CANCELLED);
+		
+		WorldmapLeader@ wmLeader = GetWorldmapLeader();
+		if(valid(wmLeader))
+		{
+			wmLeader.RunCancelAction(Leader);
+			WorldmapLeaderMap.delete("" + Leader.Id);
+		}
+		else
+		{
+			Critter@[]@ group = Leader.GetGlobalGroup();
+			for (uint i = 0; i < group.length(); i++)
+				if (valid(group[i]) && group[i].IsNpc())
+						DeleteNpc(group[i]);
+		}
+			
+		EraseAnyData(_GetKey);
+	}
+}
+
+/**
+* Init functions and events
+*/
+void InitWorldmapLeader(Critter& leader, bool)
+{
+	leader.StatBase[ST_CHARISMA] = 10;
+	SETFLAG( leader.ParamBase[CR_FLAGS1], NPC_FRIENDLY );
+	leader.SetEvent(CRITTER_EVENT_GLOBAL_PROCESS, "_LeaderOnGlobal");
+	leader.SetEvent(CRITTER_EVENT_GLOBAL_INVITE, "_LeaderOnInvite");
+    leader.SetEvent(CRITTER_EVENT_ATTACKED, "_LeaderOnAttacked");
+    leader.SetEvent(CRITTER_EVENT_DEAD, "_LeaderOnDead");
+    leader.SetEvent(CRITTER_EVENT_PLANE_BEGIN, "_LeaderOnPlaneBegin");
+    leader.SetEvent(CRITTER_EVENT_PLANE_END, "_LeaderOnPlaneEnd");
+}
+
+bool _LeaderOnGlobal(Critter& leader, int type, Item@ car, float& x, float& y, float& toX, float& toY, float& speed, uint& encounterDescriptor, bool& waitForAnswer)
+{
+	WorldmapRoute route(leader);
+	Critter@[]@ group = leader.GetGlobalGroup();
+	
+	if(type == GLOBAL_PROCESS_MOVE || type == GLOBAL_PROCESS_STOPPED || type == GLOBAL_PROCESS_NPC_IDLE)
+		if(!IsPlayerInGroup(group))
+	    {
+			route.Cancel();
+	        return true;
+	    }
+	
+	if(encounterDescriptor != 0)
+        return false;
+        
+    if(!route.SetNextRoutePoint(x, y, toX, toY))
+    {
+		route.Finish();
+		return true;
+	}
+	
+	if(type != GLOBAL_PROCESS_MOVE)
+	{
+		if(route.HasEnded())
+			route.Finish();
+		
+		speed = 10;
+		
+		return true;
+	}
+	
+	waitForAnswer = false;
+	return false;
+}	
+
+bool _LeaderOnInvite(Critter& leader, Item@ car, uint encounterDescriptor, int combatMode, uint& mapId, uint16& hexX, uint16& hexY, uint8& dir)
+{
+	WorldmapRoute route(leader);
+	if(route.HasEnded())
+		return false;
+	
+	Critter@[]@ group = leader.GetGlobalGroup();
+    InviteToEncounter(group, null, encounterDescriptor, combatMode, mapId, hexX, hexY, dir);
+    
+    Map@ map = GetMap(mapId);
+    if(!valid(map))
+		return true;
+		
+	route.InviteToMap(map, hexX, hexY, dir);
+	
+	return true;
+}
+
+int _LeaderOnPlaneBegin(Critter& leader, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+{
+	if(plane.Type == AI_PLANE_ATTACK)
+	{
+		WorldmapRoute route(leader);
+		if(!route.HasEnded())
+			route.EncountingEnemy();
+	}
+	
+	return PLANE_RUN_GLOBAL;
+}
+
+int _LeaderOnPlaneEnd(Critter& leader, NpcPlane& plane, int reason, Critter@ someCr, Item@ someItem)
+{
+	/*
+	if(plane.Type == AI_PLANE_ATTACK && HasNoEnemies(leader))
+	{
+		WorldmapRoute route(leader);
+		if(!route.HasEnded())
+			route.ReadyToGo();
+	}
+	*/
+	return PLANE_RUN_GLOBAL;
+}
+
+bool HasNoEnemies(Critter& npc)
+{
+	if(npc.GetPlanes(AI_PLANE_ATTACK, null) > 0)
+		return false;
+	
+	Map@ map = npc.GetMap();
+	if(!valid(map))
+		return true;
+		
+	Critter@[] critters;
+	map.GetCritters(0, FIND_LIFE_AND_KO, critters);
+	
+	for (uint i = 0; i < critters.length(); i++)
+		if(npc.CheckEnemyInStack(critters[i].Id))
+		{
+			//Log("Found enemy critter: " + critters[i].Id);
+			return false;
+		}
+			
+	return true;
+}
+
+void _LeaderOnDead(Critter& leader, Critter@ killer)
+{
+	WorldmapRoute route(leader);
+	if(!route.HasEnded())
+		route.Cancel();
+}
+
+bool _LeaderOnAttacked(Critter& leader, Critter& attacker)
+{
+	WorldmapRoute route(leader);
+	if(route.IsFollower(attacker))
+	{
+		leader.SayMsg(SAY_NORM_ON_HEAD, TEXTMSG_TEXT, 70382);
+		return true;
+	}
+	
+	return false;
+}
+
+bool IsPlayerInGroup(Critter@[]& group)
+{
+    for(uint i = 0; i < group.length(); i++)
+        if(group[i].IsPlayer())
+            return true;
+            
+    return false;
+}
+
+bool d_NotCaravanMember(Critter& player, Critter@ master)
+{
+	return !d_CaravanMember(player,master);
+}
+
+bool d_CaravanMember(Critter& player, Critter@ master)
+{
+	if (!valid(master) || !valid(player))
+		return false;
+	WorldmapRoute route(master);
+	if (!valid(route))
+		return false;
+	return route.IsFollower(player);
+}
+
+/*void Test(Critter& critter, int, int, int)
+{
+	WorldmapLeader@ leader = WorldmapLeader(NPC_PID_Claire)
+		.AddRoutePoint(704, 521)
+		.AddRoutePoint(758, 569)
+		.AddRoutePoint(704, 521)
+		.AddRoutePoint(758, 569)
+		.AddRoutePoint(704, 521)
+		.AddRoutePoint(758, 569)
+		.AddRoutePoint(704, 521)
+		.AddRoutePoint(758, 569)
+		.AddRoutePoint(704, 521)
+		.AddRoutePoint(758, 569)
+		.AddRoutePoint(704, 521)
+		.AddRoutePoint(758, 569)
+		.AddRoutePoint(704, 521)
+		.AddRoutePoint(758, 569)
+		.AddMapItem(PID_WAGON_RED)
+		.AddMapItem(PID_WAGON_GREY)
+		.SetReadyToGoAction(ScheduleToGlobal)
+		.SetEncountingEnemyAction(EnemyFound)
+		.SetCancelAction(DeleteLeader)
+		.SetFinishAction(GoToLocation);
+		
+	Critter@[] players = {critter};
+	leader.Start(critter.GetMap(), players);
+}*/
+
+#define	CTE_GO_TO_GLOBAL							(564616)
+
+void ScheduleToGlobal(Critter& leader, Critter@[]@ playerGroup)
+{
+	leader.SayMsg(SAY_NORM, TEXTMSG_TEXT , 70341);
+	WorldmapRoute route(leader);
+	if(!route.HasEnded())
+		route.GoToGlobal();
+	//leader.EraseTimeEvents(CTE_GO_TO_GLOBAL);
+	//leader.AddTimeEvent("cte_ToGlobal", 10, CTE_GO_TO_GLOBAL);
+}
+
+uint cte_ToGlobal(Critter& leader, int identifier, uint& rate)
+{
+	WorldmapRoute route(leader);
+	if(!route.HasEnded())
+		route.GoToGlobal();
+	return 0;
+}
+
+void EnemyFound(Critter& leader, Critter@[]@ playerGroup)
+{
+	//leader.EraseTimeEvents(CTE_GO_TO_GLOBAL);
+}
+
+void GoToLocation(Critter& leader, Critter@[]@ playerGroup)
+{
+	uint encounterDescriptor = 0;
+	bool waitForAnswer = false;
+
+	FindEncounter(playerGroup, null, leader.WorldX, leader.WorldY, encounterDescriptor, waitForAnswer, true);
+	if(encounterDescriptor != 0)
+	{
+		uint mapId = 0;
+		uint16 hexX = 0, hexY = 0;
+		uint8 dir = 0;
+		
+		InviteToEncounter(playerGroup, null, encounterDescriptor, leader.Mode[MODE_DEFAULT_COMBAT], mapId, hexX, hexY, dir);
+		
+		Map@ map = GetMap(mapId);
+		if(!valid(map))
+			return;
+			
+		for (uint i = 0; i < playerGroup.length(); i++)
+			playerGroup[i].TransitToMap(mapId, hexX, hexY, dir);
+	}
+}
+
+void DeleteLeader(Critter& leader, Critter@[]@ playerGroup)
+{
+	DeleteNpc(leader);
+}
+

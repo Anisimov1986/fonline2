@@ -1,0 +1,213 @@
+// Generic encounter npc script
+
+#include "_macros.fos"
+#include "_teams.fos"
+#include "_npc_roles.fos"
+#include "utils_h.fos"
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import void SetDeterioration( Item& item, int deteriorationProcent , int repairPool ) from "repair";
+import uint DetermineAction2(uint faction1, uint faction2) from "faction";
+
+#define MESSAGE_ATTACK_HIM     ( 31 )
+
+void _MobInit( Critter& npc, bool firstTime )
+{
+	if(firstTime)
+    {
+		npc.SetBagRefreshTime((uint(-1)));
+        npc.ModeBase[MODE_UNLIMITED_AMMO]=1;
+        SetupItems(npc);
+    }
+	
+	if (!NEUTRAL(npc))
+		npc.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_MobShow");
+	//else if (npc.FACTION>0)
+	//	npc.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_MobShow2");
+	npc.SetEvent(CRITTER_EVENT_ATTACKED, 		"_Attacked");
+	npc.SetEvent(CRITTER_EVENT_DEAD, 			"_MobDead");
+	npc.SetEvent(CRITTER_EVENT_STEALING, 		"_NpcStealing");
+	npc.SetEvent(CRITTER_EVENT_MESSAGE, 		"_NpcMessage");
+	npc.SetEvent(CRITTER_EVENT_SMTH_USE_ITEM,	"_NpcSmthUseItem" );
+    npc.SetEvent(CRITTER_EVENT_SMTH_DROP_ITEM,	"_NpcSmthDropItem" );
+}
+
+void _GuardInit( Critter& npc, bool firstTime )
+{
+	_MobInit( npc, firstTime );
+	npc.SetEvent(CRITTER_EVENT_SMTH_ATTACKED, 	"_SomeoneAttacked");
+	npc.SetEvent(CRITTER_EVENT_SHOW_CRITTER, "_MobShow2");
+}
+
+void _SomeoneAttacked(Critter& cr, Critter& attacked, Critter& attacker)
+{
+	// Zombie swarm.
+	if (attacker.Stat[ST_TEAM_ID] == TEAM_ZombieSwarm && cr.IsSee(attacker))
+	{
+		Attack(cr,attacker);
+		return;
+	}
+	if (attacked.Stat[ST_TEAM_ID] == TEAM_ZombieSwarm && cr.IsSee(attacked))
+	{
+		Attack(cr,attacked);
+		return;
+	}
+	
+	if(attacker.IsPlayer() && attacked.IsPlayer())
+    {
+		if (_IsNotEvil(attacked) && _IsNotAggressor(attacked))
+			Attack(cr,attacker);	
+	}
+}
+
+void SetupItems(Critter& npc)
+{
+	Item@[] items;
+	npc.GetItems( -1, items );
+	bool favrtAmmoSet = false;
+	bool favrtWpnSet  = false;
+	for( uint i = 0, j = items.length(); i < j; i++ )
+	{
+		SetDeterioration( items[ i ], Random( 0, 50 ), Random( 0, 30 ) );
+		if( items[ i ].GetType() == ITEM_TYPE_WEAPON && !favrtWpnSet )
+		{
+			npc.SetFavoriteItem( SLOT_HAND1, items[ i ].GetProtoId() );
+			npc.StatBase[ST_LAST_WEAPON_ID] = items[i].Id;
+			npc.StatBase[ST_LAST_WEAPON_USE] = 0;
+			favrtWpnSet = true;
+		}
+		/*
+		if(items[i].GetType() == ITEM_TYPE_AMMO && !favrtAmmoSet)
+		{
+			npc.SetFavoriteItem(SLOT_HAND2, items[i].GetProtoId());
+			favrtAmmoSet = true;
+			continue;
+		} 
+		*/
+	}
+}
+
+void _NpcSmthUseItem( Critter& npc, Critter& fromCr, Item& item, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
+{
+	CheckForbiddenItems(npc,fromCr,item);
+}
+
+void _NpcSmthDropItem( Critter& npc, Critter& fromCr, Item& item )
+{
+	CheckForbiddenItems(npc,fromCr,item);
+}
+
+void CheckForbiddenItems( Critter& npc, Critter& fromCr, Item& item )
+{
+    if( fromCr.IsPlayer() && npc.IsLife() )
+    {
+        uint pid = item.GetProtoId();
+        if( pid == PID_ACTIVE_PLASTIC_EXPLOSIVE || pid == PID_ACTIVE_MINE || pid == PID_ACTIVE_DYNAMITE )
+        {
+            AddAttackPlane( npc, 0, fromCr, __RunOnCombat );
+            npc.SendMessage( MESSAGE_ATTACK_HIM, fromCr.Id, MESSAGE_TO_ALL_ON_MAP );
+        }
+    }
+}
+
+
+
+void _NpcMessage( Critter& npc, Critter& fromCr, int message, int value )
+{
+    if( message == MESSAGE_ATTACK_HIM )
+    {
+        if( fromCr.Stat[ ST_TEAM_ID ] == npc.Stat[ ST_TEAM_ID ] && npc.IsLife() )
+        {
+            Critter@ target = GetCritter( value );
+			NpcPlane@[] planes;
+            if( valid( target ) && npc.GetPlanes(planes)==0)
+			{
+				if(IsCurrentEnemy(npc, target.Id))
+					return;
+				if(npc.Stat[ ST_TEAM_ID ] != target.Stat[ ST_TEAM_ID ])
+					AddAttackPlane( npc, 0, target, __RunOnCombat );
+			}
+        }
+    }
+}
+
+bool _Attacked( Critter& cr, Critter& attacker)
+{
+	cr.SendMessage( MESSAGE_ATTACK_HIM, attacker.Id, MESSAGE_TO_ALL_ON_MAP );
+	return false;
+}
+
+void _NpcStealing( Critter& npc, Critter& thief, bool success, Item& item, uint count )
+{
+    if( Random(1,2)==1 )
+    {
+        AddAttackPlane( npc, 0, thief, __RunOnCombat );
+        npc.SendMessage( MESSAGE_ATTACK_HIM, thief.Id, MESSAGE_TO_ALL_ON_MAP );
+    }
+}
+
+void _MobShow( Critter& mob, Critter& cr )
+{
+    if(IsCurrentEnemy(mob, cr.Id))
+		return;
+	Attack(mob,cr);
+}
+
+void _MobShow2( Critter& mob, Critter& cr )
+{
+	if(IsCurrentEnemy(mob, cr.Id))
+		return;
+	if(mob.FACTION>0 && SAME_FACTION(mob,cr))
+		return;
+	if(DetermineAction2(mob.FACTION,cr.FACTION)==ACTION_FIGHTING)
+	{
+		AttackDelayed(mob,cr);
+		return;
+	}
+	if(_IsEvil(cr))
+	{
+		AttackDelayed(mob,cr);
+		return;
+	}
+}
+
+void AttackDelayed( Critter& mob, Critter& cr )
+{
+	uint[] vals = { mob.Id, cr.Id };
+    CreateTimeEvent((__FullSecond + REAL_SECOND(5)), "e_DelayedAttackPlane", vals, false);
+}
+
+uint e_DelayedAttackPlane(array<uint>@ values)
+{
+    Critter@ mob = GetCritter(values[0]);
+    Critter@ cr = GetCritter(values[1]);
+
+    if(!valid(mob) || !valid(cr))
+        return 0;
+
+    Attack(mob, cr);
+    return 0;
+}
+
+void Attack( Critter& mob, Critter& cr )
+{
+	if( cr.Stat[ ST_TEAM_ID ] != mob.Stat[ ST_TEAM_ID ]  )
+    {
+		if(!mob.CheckEnemyInStack(cr.Id))
+		{
+			uint pr = AI_PLANE_ATTACK_PRIORITY;
+			mob.AddEnemyInStack( cr.Id );
+			AddAttackPlane( mob, Random(pr, pr + 20), cr , true );
+		}
+    }
+}
+
+void _MobDead(Critter& mob, Critter@ killer)
+{
+    if ( mob.Stat[ ST_BODY_TYPE ] == BT_MEN  ||  mob.Stat[ ST_BODY_TYPE ] == BT_WOMEN || mob.Stat[ ST_BODY_TYPE ] == BT_SUPER_MUTANT || mob.Stat[ ST_BODY_TYPE ] == BT_GHOUL)
+    {
+        if (HAS_CHANCE(1))
+            mob.AddItem (PID_TOXIC_MAP, 1);
+    }
+    mob.ClearEnemyStack();
+}

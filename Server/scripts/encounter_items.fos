@@ -1,0 +1,136 @@
+// Author: rifleman17
+#include "_macros.fos"
+#include "entire.fos"
+#include "utils_h.fos"
+#include "encounter_items_table.fos"
+#include "utils_for_array.fos"
+
+#define ENTIRE_ITEM      ( 0 )                                    // Гекс для расположения итема
+#define TABLE_COLUMNS    ( 6 )                                    // число колонок в таблице
+#define TABLE_ITEMS      ( items_table.length() / TABLE_COLUMNS ) // всего определений итемов
+
+#define MAX_TRIES        ( ETYPE_DEFAULT )                        // максимальное число попыток найти подходящую по типу энкаунтера строку в таблице итемов
+#define MIN_ITEMS        ( 0 )                                    // минимальное число итемов на энке
+#define MAX_ITEMS        ( 8 )                                    // Максимальное
+
+#define _GetType         # (idx)     ( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 1 ] )
+#define _GetPid          # (idx)     ( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 0 ] )
+#define _GetQty          # (idx)     ( Random( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 2 ], items_table[ TABLE_COLUMNS * ( 0 + idx ) + 3 ] ) )
+#define _GetChance       # (idx)     ( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 4 ] )
+#define _GetGex          # (idx)     ( items_table[ TABLE_COLUMNS * ( 0 + idx ) + 5 ] )
+#define _IsCave          # (mapPid)  ( mapPid == MAP_e_cave0_in || mapPid == MAP_e_cave1_in || mapPid == MAP_e_cave2_in || mapPid == MAP_e_cave3_in || mapPid == MAP_e_cave4_in || mapPid == MAP_e_cave5_in )
+
+// Фильтр таблицы по типу энка и гексу
+uint16[] @ GetItemsInfo( uint8 eType, uint8 hex )
+{
+    uint16[] infos;
+    for( uint16 i = 0; i < TABLE_ITEMS; i++ )
+    {
+        if( ( _GetType( i ) == eType || _GetType( i ) == ETYPE_ANY ) && _GetGex( i ) == hex )
+        {
+            // Log("eType:"+eType+"_GetType:"+_GetType(i));
+            infos.insertLast( i );
+        }
+    }
+
+    return infos;
+}
+
+uint8 GetEncounterType( Map& map )
+{
+    uint mapPid = map.GetProtoId();
+    // Log("mapPid"+mapPid);
+    if( _IsCave( mapPid ) )
+        return ETYPE_CAVERN;
+    // Log("not caverb");
+    Location @ loc = map.GetLocation();
+    if( !valid( loc ) )
+        return ETYPE_DEFAULT;
+    uint16 pid = loc.GetProtoId();
+    if( pid >= LOCATION_DesertEncounter1 && pid <= LOCATION_DesertEncounter14 )
+        return ETYPE_DESERT;
+    if( pid >= LOCATION_MountainEncounter1 && pid <= LOCATION_MountainEncounter14 )
+        return ETYPE_MOUNTAINS;
+    if( pid >= LOCATION_CavernEncounter0 && pid <= LOCATION_CavernEncounter5 )
+        return ETYPE_MOUNTAINS;
+    if( pid >= LOCATION_CityEncounter1 && pid <= LOCATION_CityEncounter15 )
+        return ETYPE_CITY;
+    if( pid >= LOCATION_CoastDesertEncounter1 && pid <= LOCATION_CoastCityEncounter4 )
+        return ETYPE_COAST;
+    if( pid >= LOCATION_OceanEncounter1 && pid <= LOCATION_OceanEncounter3 )
+        return ETYPE_OCEAN;
+
+    return ETYPE_DEFAULT;
+}
+
+void GenerateItems( Map& map, Critter @[] @  grp )
+{
+    uint8 mapType = GetEncounterType( map );
+    Entire[] entires;
+    for( uint i = 0, l = gex_table.length(); i < l; i++ )
+    {
+        ParseEntires( map, entires, gex_table[ i ] );
+    }
+    uint len = entires.length();
+    if( len == 0 )
+        return;
+
+	int  idx = 0;
+    bool found = false;
+    for( uint i = 0, l = entires.length(); i < l; i++ )
+    {
+        Entire @ hex = entires[ i ];
+        if( valid( hex ) )
+        {
+            uint16[] @ rows = GetItemsInfo( mapType, hex.Number );
+            if( rows.length() == 0 )
+                continue;
+
+            idx = rows[ Random( 0, rows.length() - 1 ) ];
+            if( idx < 0 )
+                continue;
+
+            if( Random( 1, 99 ) < _GetChance( idx ) )
+            {
+                Item@[] items;
+                if( map.GetItems( hex.HexX, hex.HexY, 2, 0, items ) > 0 )
+                {
+                    for( uint j = 0, l = items.length(); j < l; j++ )
+                    {
+                        if( items[ j ].GetType() == ITEM_TYPE_CONTAINER )
+                        {
+                            uint qty = _GetQty( idx );
+                            if( qty > 0 )
+                                items[ j ].AddItem( _GetPid( idx ), qty, 0 );
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if( !found )
+				{
+					if ( hex.Number == ENTIRE_RESOURCE_ROCK)
+					{
+						Item@ res = map.AddItem( hex.HexX, hex.HexY, _GetPid( idx ), 1 );
+						res.Val9=_GetQty( idx );
+					}
+					else 
+						map.AddItem( hex.HexX, hex.HexY, _GetPid( idx ), _GetQty( idx ) );
+				}
+                //Log("added items"+_GetPid(idx)+" x="+hex.HexX+" y="+hex.HexY +" eType"+hex.Number);
+                //Log("table len^"+items_table.length());
+            }
+        }
+    }
+}
+
+void GenerateItemsInLockers( Map& map )
+{
+	Item@[] containers;
+	map.GetItemsByType( ITEM_TYPE_CONTAINER, containers);
+	for (uint i=0; i<containers.length(); i++)
+	{
+		if (Random(1,5)==1)
+			AddLoot(containers[i]);
+	}
+}

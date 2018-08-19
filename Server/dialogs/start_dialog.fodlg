@@ -1,0 +1,382 @@
+[comment]
+
+
+[data]
+lang=engl pols russ ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p name_mem_player_npc = 0 D _script start_location@d_Location_Owner 0  #
+9 1020 D _var p name_mem_player_npc = 1 D _script start_location@d_Location_Owner 0  #
+10 1030 D _var p name_mem_player_npc = 2 D _script start_location@d_Location_Owner 0  #
+21 1040 D _var p name_mem_player_npc = 3 D _script start_location@d_Location_Owner 0  #
+50 1050 D _script start_location@d_Not_Location_Owner 0  @
+2 2000 None 0 #
+3 2010 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 #
+20 6020 R _var p name_mem_player_npc = 3 @
+7 7000 None 0 #
+8 7010 @
+8 8000 None 0 #
+9 8010 R _var p name_mem_player_npc = 1 @
+9 9000 None 0 #
+0 9010 #
+10 9020 D _item p PID_PRIMITIVE } 1 R _var p name_mem_player_npc = 2 @
+10 10000 None 0 #
+0 10010 #
+11 10020 D _item p PID_FIREWOOD } 1 R _var p name_mem_player_npc = 3 R _param p ST_EXPERIENCE + 250 R _item p PID_PICKAXE + 1 R _item p PID_FIREWOOD - 1 @
+11 11000 None 0 #
+12 11010 #
+13 11020 @
+12 12000 None 0 #
+13 12010 @
+13 13000 None 0 #
+20 13010 @
+20 14000 None 0 #
+0 14010 R _var p q_start_radcave = 1 R _script dialog@r_ShowQuestMessage 1 9312 @
+21 15000 None 0 #
+32 15010 #
+40 15020 D _var p Tut_Kenny = 0 #
+33 15030 D _var p q_start_questcaravan = 0 D _var p q_start_radcave = 2 #
+36 15040 D _var p q_start_questcaravan = 2 D _var p Tut_Kenny ! 0 R _script dialog@r_HoloNotice 1 95 #
+45 15050 D _var p q_start_questcaravan = 2 D _var p Tut_Kenny = 0 R _script dialog@r_HoloNotice 1 95 #
+35 15060 D _item p PID_STARTLOC_CLAW } 1 D _var p q_start_radcave = 1 R _item p PID_STARTLOC_CLAW - 1 R _item p PID_ANTIDOTE + 4 R _script economy_dialogs@r_GiveCaps 1 450 R _param p ST_EXPERIENCE + 500 R _var p q_start_radcave = 2 R _script start_location@DeleteCave 0  #
+0 15070 @
+32 16000 None 0 #
+0 16010 @
+33 17000 None 0 #
+34 17010 #
+0 17020 @
+34 18000 None 0 #
+0 18010 R _var p q_start_questcaravan = 1 R _script dialog@r_ShowQuestMessage 1 9311 R _script quest@r_CreateLocationZone 3 9302 18 22 @
+35 19000 None 0 #
+0 19010 R _script dialog@r_ShowQuestMessage 1 9312 @
+36 20000 None 0 #
+0 20010 R _var p q_start_questcaravan = 3 R _param p ST_EXPERIENCE + 800 R _script dialog@r_ShowQuestMessage 1 9311 R _script start_location@r_TentQuestFinished 0  R _script dialog@r_MoveNpc 3 116 65 4 R _script dialog@r_RunNpc 4 114 65 4 932 #
+37 20020 D _param p SK_SPEECH < 35 D or D _param p ST_CHARISMA < 6 #
+38 20030 D _param p SK_SPEECH } 35 D or D _param p ST_CHARISMA } 6 @
+37 21000 None 0 #
+0 21010 R _var p q_start_questcaravan = 3 R _param p ST_EXPERIENCE + 800 R _script dialog@r_ShowQuestMessage 1 9311 R _script start_location@r_TentQuestFinished 0  R _script dialog@r_MoveNpc 3 116 65 4 R _script dialog@r_RunNpc 4 114 65 4 932 @
+38 22000 None 0 #
+39 22010 @
+39 23000 None 0 #
+0 23010 R _var p q_start_questcaravan = 3 R _param p ST_EXPERIENCE + 1000 R _script dialog@r_ShowQuestMessage 1 9311 R _script start_location@r_TentQuestFinished 0  R _script dialog@r_MoveNpc 3 116 65 4 R _script dialog@r_RunNpc 4 114 65 4 932 @
+50 24000 None 0 @
+40 25000 None 0 #
+41 25010 @
+41 26000 None 0 #
+0 26010 R _script map_ktut@enterTut 0  #
+0 26020 @
+45 27000 None 0 #
+36 27010 #
+0 27020 &
+
+[engl]
+{100}{}{Kenny}
+{200}{}{This man seems to be very cautious, but appears friendly.}
+{1000}{}{Predialogue installations}
+{1010}{}{First talk}
+{1020}{}{Flint Tutorial}
+{1030}{}{Wood Tutorial}
+{1040}{}{Normal Kenny}
+{1050}{}{Not owner.}
+{2000}{}{Ah, you're awake, it's about time. How you feelin'? The name's Kenny.}
+{2010}{}{My head hurts like hell- Wait, what happened to me!?}
+{3000}{}{Seems like you were dead, or at least I thought you were at first. I noticed you were still moving, barely, so I dragged you here to my tent. You had some bullets in you too, just used my last first-aid kit to patch you up.}
+{3010}{}{Thanks Kenny...}
+{4000}{}{Ah, it was nothin'. I just need to go buy some more at the Hub. It's very close to here anyway.}
+{4010}{}{Do you know what happened to me?}
+{5000}{}{I'm sorry, but no. I found you lying out in the wasteland, bleeding to death in the sand. You had nothing on you, so it would seem you were looted as well.}
+{5010}{}{Perfect... What can I do now?}
+{6000}{}{If you need help with gathering materials and crafting, I can help you with that. Would you like me to help?}
+{6010}{}{Yes please! [Tutorial]}
+{6020}{}{No, I can handle myself. Thanks though. [Skip Tutorial]}
+{7000}{}{Always happy to help. Now, when you want materials, you'll need a tool that can harvest them. There is a tool that's simple to make that can harvest ore and wood, but it's very primitive and may break, even on the first use.}
+{7010}{}{How are primitive tools made?}
+{8000}{}{They're made out of "flint", which you can find anywhere in the wasteland. In our case, just search around here, they look like gray rocks on the ground.}
+{8010}{}{Alright...}
+{9000}{}{Your Pip-Boy comes with a "Fix-Boy", an application that's used to craft things. You'll need to find a workbench to craft most items, but simple items like the primitive tool can be crafted anywhere. To activate your "Fix-Boy", simply click on the "Fix" icon or press "F". In the list that comes up, find the "Primitive Tool" item and create one. Talk to me again when you have crafted the primitive tool.}
+{9010}{}{Understood.}
+{9020}{}{Is this correct?}
+{10000}{}{That's one nice primitive tool! Good job. Now, to test it out. See that tree over there? Use your primitive tool on it, and you'll receive some wood. Come back to me with the wood.}
+{10010}{}{Alright, give me a sec.}
+{10020}{}{Here's the wood.}
+{11000}{}{I see that you have the wood. If your primitive tool broke, that's okay, that's normal. You can usually find more than one flint. I'll just make you a pickaxe with this wood. }
+{11010}{}{What's the difference with a pickaxe?}
+{11020}{}{Thanks!}
+{12000}{}{What's the difference? The pickaxe can mine rocks to gather minerals or iron, but unlike the primitive tool, it won't break.}
+{12010}{}{Oh, I see,}
+{13000}{}{Here you go, a nice pickaxe for you. If you ever feel like making another pickaxe, it just takes one piece of junk and one piece wood, but it has to be crafted at a workbench. It's also a good weapon for weaker monsters, like radscorpions.}
+{13010}{}{I think I get this, we don't have to keep going.}
+{14000}{}{Understood. I'll be here for a while, one week or so. Remember to collect your stuff before I leave, or the sand will hide it away and you will never find it again. Say, would you do me a favor? [He points towards a dark cave north of the tent.] Inside that cave, there are some nasty radscropions. What I need you to do is kill them and bring me the claws of the biggest one. You can take all the time you need, but be careful - I've seen them dragging dead bodies into there from the wasteland.}
+{14010}{}{Not a problem. Thanks for the help. Goodbye.}
+{15000}{}{Good to see that you're still active. What can I do ya for?}
+{15010}{}{How long are you here for?}
+{15020}{}{[ Combat Tutorial ] Kenny, mind if I ask you something? You don't look like normal caravaneer to me.}
+{15030}{}{Kenny, I feel like I should repay you for all your help. Is there anything else I can help you with, aside from the claws?}
+{15040}{}{I found the caravan you were talking about. Everyone was dead. But I found this holodisk...}
+{15050}{}{I found the caravan you were talking about. Everyone was dead. But I found this holodisk...}
+{15060}{}{I killed the radscorpions in the cave. Here are the claws.}
+{15070}{}{Nothing else really. Goodbye.}
+{16000}{}{I'm only here for a week, I gotta keep moving, ya see. I'll let you use this tent for storage for a while.}
+{16010}{}{How nice of you. Goodbye.}
+{17000}{}{Now that ya mentioned it, there is this one thing. There was a caravan that I saw a while back. I helped them with directions and they told me they'd be back to give me a reward for the help. It's been five days now, and they still haven't returned... Just a bit worried about 'em, really.}
+{17010}{}{You want me to find them for you right? I can do that.}
+{17020}{}{Sorry, I'm a bit busy. Bye}
+{18000}{}{So you'll do it? Thank you so much. I'll even give you something for your trouble.}
+{18010}{}{Right, be right back.}
+{19000}{}{You got the claws? Finally. Oh, you need a reward... hang on. [He searches through a worn out, dusty backpack.] This is all I can really give you. Also take these antidote doses if you ever get poisoned. Seriously though, thanks a ton.}
+{19010}{}{No problem.}
+{20000}{}{They're all dead? T-That can't be...son of a- f-fine, it's okay. [He begins to sweat intensely.] This holodisk... It's encoded. There is a man in Vault City who can break this code. [He takes the holodisk, puts it in your PipBoy and enters some commands.] Now you don't have to carry it 'round all the time, the data is stored on your PipBoy. I need to hide out for a while. You should stay out of this, it's dangerous. You know what? I will leave you this tent. It's yours. See you some other time, maybe.}
+{20010}{}{Uh... Thanks.}
+{20020}{}{Did you know them?}
+{20030}{}{I bet they weren't just some random "caravan". Tell me about them.}
+{21000}{}{Just don't ask, please...}
+{21010}{}{Okay...}
+{22000}{}{Well, don't you have a way with words. How cute. Fine, those were my friends from the Crimson Caravan Company. They were heavily armed, too. No simple raider gang could defeat them... Stay out of this, or you'll get nothing but death.}
+{22010}{}{Has my amnesia got anything to do with it? Tell me.}
+{23000}{}{[He remains silent.]}
+{23010}{}{Fine... Don't.}
+{24000}{}{Hello.@@I hope you're a friend of that person I saved.@@Do you need something?@@Don't piss off.. Fuck off.@@Hey there.@@Howdy.@@I have nothing to say to you.}
+{25000}{}{Uh Well. Before I became one I've tried my ways in military, didn't like it much so I left.}
+{25010}{}{I understand, what was it like then?}
+{26000}{}{Hmm. Pretty simple... [ He begins to tell the story of his training ]}
+{26010}{}{[ BEGIN TUTORIAL ]}
+{26020}{}{Actually... I don't want to hear that. Goodbye.}
+{27000}{}{[ WARNING. PROGRESSING FURTHER WILL MAKE COMBAT TUTORIAL NO LONGER AVAILABLE ]}
+{27010}{}{Continue}
+{27020}{}{Exit}
+
+[pols]
+{100}{}{Kenny}
+{200}{}{Ten mężczyzna wygląda na jednocześnie bardzo uważnego i przyjacielskiego.}
+{1000}{}{Predialogue installations}
+{1010}{}{First talk}
+{1020}{}{Flint Tutorial}
+{1030}{}{Wood Tutorial}
+{1040}{}{Normal Kenny}
+{1050}{}{Not owner.}
+{2000}{}{Ach, @sex@|wstałeś||wstałaś| już? Najwyższy czas. Jak się czujesz? Jestem Kenny.}
+{2010}{}{Cholernie boli mnie głowa... Czekaj, co mi się w ogóle stało!?}
+{3000}{}{@sex@|Wyglądałeś na martwego||Wyglądałaś na martwą|, tak przynajmniej przez chwilę mi się zdawało. Na szczęście wyczułem puls, więc zaciągnąłem cię tutaj, do mojego namiotu. @sex@|Byłeś cały podziurawiony||Byłaś cała podziurawiona| nabojami, zużyłem na ciebie wszystkie swoje apteczki.}
+{3010}{}{Dzięki, Kenny...}
+{4000}{}{Nic nie szkodzi, i tak miałem kupić jeszcze kilka w Hubie. Zresztą, jesteśmy już całkiem niedaleko.}
+{4010}{}{Czy wiesz, co się ze mną stało?}
+{5000}{}{Przykro mi, ale nie. Znalazłem cię @sex@|leżącego||leżącą| na pustyni, prawdopodobnie @sex@|wykrwawiłbyś||wykrwawiłabyś| się na śmierć. Kieszenie @sex@|miałeś||miałaś| solidnie przetrzepane, wygląda na to, że zabrali ci wszystko.}
+{5010}{}{Och, wspaniale... Co mam teraz zrobić?}
+{6000}{}{Jeśli chcesz, mogę ci pomóc w zebraniu materiałów i złożeniu paru przydatnych gratów.}
+{6010}{}{Tak, poproszę! (Uaktywnij samouczek.)}
+{6020}{}{Nie, dam sobie radę. Mimo to, dziękuję. (Pomiń samouczek.)}
+{7000}{}{Pomogę ci z przyjemnością. Jeśli chcesz zebrać jakieś materiały, najpierw musisz znaleźć coś, czym je wydobędziesz. Najprostsze narzędzie, którym możesz wykopać nieco rudy albo ściąć drzewo, jest bardzo prymitywne - prawdopodobnie połamie się przy pierwszym użyciu.}
+{7010}{}{Jak się robi to prymitywne narzędzie?}
+{8000}{}{Potrzebujesz krzemienia, który możesz znaleźć wszędzie na pustkowiu. Poszukaj tu dookoła, to takie szare kamienie.}
+{8010}{}{W porządku...}
+{9000}{}{Twój Pip-Boy jest wyposażony w Fix-Boy'a - aplikację, dzięki której możesz tworzyć różne rzeczy. Na razie lista jest bardzo okrojona, ponieważ większość z nich możesz złożyć tylko w warsztacie wyposażonym w odpowiedni sprzęt. (Kliknij ikonę "Fix" albo po prostu wciśnij klawisz "F". Wybierz "prymitywne narzędzie" i zatwierdź wybór.) Wróć do mnie, kiedy już je sklecisz.}
+{9010}{}{Zrozumiano.}
+{9020}{}{Zgadza się?}
+{10000}{}{Śliczne przeprymitywne narządzie! Doskonała robota. Zobaczmy, jak sprawdzi się w akcji. Widzisz to drzewo? Użyj na nim swojego narzędzia i wróć do mnie, kiedy narąbiesz trochę drewna.}
+{10010}{}{W porządku, daj mi chwilkę.}
+{10020}{}{Oto i drewno.}
+{11000}{}{Widzę, świetnie. Jeśli twoje narzędzie pękło - spokojnie, to typowe. Zwykle znajdziesz więcej niż jeden krzemień. A z tego drewna zrobię ci porządny kilof.}
+{11010}{}{Jaka jest różnica między kilofem a prymitywnym narzędziem?}
+{11020}{}{Dzięki!}
+{12000}{}{Jaka jest różnica? Kilofem możesz rąbać skały, aby zebrać minerały bądź rudę do woli. Nigdy się nie złamie.}
+{12010}{}{Och, rozumiem.}
+{13000}{}{Proszę, oto kilof. Jeśli kiedyś @sex@|chciałbyś||chciałabyś| zrobić jeszcze jeden, po prostu weź nieco złomu i trochę drewna i skleć go w jakimś warsztacie. To również całkiem niezła broń... Hm, przynajmniej przeciwko szczurom czy radskorpionom.}
+{13010}{}{Chyba wszystko rozumiem, dzięki.}
+{14000}{}{Świetnie. Będę tu jeszcze przez chwilę, tydzień czy coś koło tego. Pamiętaj, żeby zabrać swoje rzeczy zanim odjadę - jeśli tego nie zrobisz, wszystko zasypie piasek i nigdy już ich nie odzyskasz. Jeśli @sex@|chciałbyś||chciałabyś| wyświadczyć mi drobną przysługę, może sprawdzisz, co tam się dzieje? [Wskazuje na ciemną jaskinię.] W środku siedzi chyba kilka wrednych radskorpionów. Idź tam, wybij je i przynieś mi szczypce największego z nich. Tylko uważaj, widziałem jak wciągają do środka martwe ciała...}
+{14010}{}{W porządku. Dzięki za pomoc. Do zobaczenia, Kenny.}
+{15000}{}{Miło widzieć, że wciąż sobie dobrze radzisz. Co mogę dla ciebie zrobić, @sex@|przyjacielu||kotku|?}
+{15010}{}{Jak długo tutaj będziesz?}
+{15020}{}{[ Combat Tutorial ] Kenny, mind if I ask you something? You don't look like normal caravaneer to me.}
+{15030}{}{Kenny, muszę odpłacić ci za twoją pomoc. Czy jest cokolwiek co mogę zrobić, oprócz tych szczypców radskorpiona?}
+{15040}{}{I found the caravan you were talking about. Everyone was dead. But I found this holodisk...}
+{15050}{}{@sex@|Znalazłem||Znalazłam| tą karawanę, o której mówiłeś. Wszyscy są martwi... Ale mam ten holodysk.}
+{15060}{}{@sex@|Zabiłem||Zabiłam| wszystkie radskorpiony w tej jaskini! Oto te szczypce.}
+{15070}{}{W sumie, to nic. Do zobaczenia, Kenny.}
+{16000}{}{Mówiłem ci już, że zatrzymuję się tutaj tylko na tydzień. Muszę ruszać w drogę, rozumiesz. Do tego czasu, możesz tutaj trzymać swoje rzeczy.}
+{16010}{}{Miło z twojej strony. Do zobaczenia.}
+{17000}{}{Hm, jeśli nalegasz... Jakiś czas temu napotkałem na karawanę, która nieco zgubiła się na pustkowiu. Pokazałem im prawidłową drogę, a oni przekazali mi, że wracając wrócą tutaj jakoś mi się odpłacić za pomoc. Minęło pięć dni i nie wracają, zaczynam się o nich naprawdę martwić.}
+{17010}{}{Chcesz, abym ich @sex@|znalazł||znalazła|? Nie ma problemu.}
+{17020}{}{Przykro mi, jestem nieco @sex@|zajęty||zajęta|. Do widzenia, Kenny.}
+{18000}{}{A więc zrobisz to? Wielkie dzięki. Wynagrodzę ci twój wysiłek, bez obaw.}
+{18010}{}{W porządku, zaraz wracam.}
+{19000}{}{Masz te szczypce? W końcu. Och, zasługujesz na nagrodę... poczekaj. [Przeszukuje swój zakurzony plecak.] To wszystko, co mogę ci dać, naprawdę. Weź też antidotum, jeśli te skurczybyki cię zatruły. Dzięki, naprawdę - wielkie dzięki.}
+{19010}{}{Nie ma problemu, przynamniej to mogłem zrobić.}
+{20000}{}{Wszyscy są... m-martwi? N-niemożliwe... Cholera. [Pot ścieka mu po czole, ręce zaczynają mu drżeć.] T-ten holodysk... Jest zakodowany. W Kryptopolis znajduje się człowiek, który jest w stanie go odszyfrować. [Wkłada holotaśmę do twojego PipBoy'a i wstukuje jakąś komendę.] Teraz nie musisz koniecznie tachać ze sobą tej holotaśmy, zgrałem dane na dysk twardy. Zająłbym się tym, a-ale... Nie mam na to czasu, muszę stąd odejść... Ty trzymaj się od tego z dala, ta sprawa robi się niebezpieczna... [Wzdycha.] Dziękuję za odszukanie ich. Muszę stąd odejść... Wiesz co? Zostawię ci ten namiot, do zobaczenia... kiedyś. Może.}
+{20010}{}{Uch... Dzięki.}
+{20020}{}{Znałeś ich?}
+{20030}{}{Założę się, że to nie była zwykła "karawana". Opowiedz mi o nich więcej.}
+{21000}{}{Nie pytaj, proszę.}
+{21010}{}{W porządku...}
+{22000}{}{Cóż, jak miło. W porządku, to byli moi przyjaciele z Karmazynowej Karawany. Ciężko uzbrojeni. Byle gang najeźdźców nie miałby z nimi żadnych szans... Zostaw tę sprawę w spokoju, @sex@|przyjacielu||kochanie|, możesz znaleźć jedynie pewną śmierć.}
+{22010}{}{Czy moja amnezja ma z tym coś wspólnego? Powiedz mi!}
+{23000}{}{[Kenny milczy.]}
+{23010}{}{Dobra... Nic nie mów.}
+{24000}{}{Cześć.@@Jesteś @sex@|przyjacielem||przyjaciółką| osoby, którą uratowałem?@@Potrzebujesz czegoś?@@Nie wkurzaj mojego psa...@@Cześć, co tam?@@Siemanko.@@Nie mam ci nic do powiedzenia, @sex@|nieznajomy||nieznajoma|.}
+{25000}{}{Uh Well. Before I became one I've tried my ways in military, didn't like it much so I left.}
+{25010}{}{I understand, what was it like then?}
+{26000}{}{Hmm. Pretty simple... [ He begins to tell the story of his training ]}
+{26010}{}{[ BEGIN TUTORIAL ]}
+{26020}{}{Actually... I don't want to hear that. Goodbye.}
+{27000}{}{[ WARNING. PROGRESSING FURTHER WILL MAKE COMBAT TUTORIAL NO LONGER AVAILABLE ]}
+{27010}{}{Continue}
+{27020}{}{Exit}
+
+[russ]
+{100}{}{Кенни}
+{200}{}{Этот человек кажется очень осторожным и дружелюбным.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{Первый разговор}
+{1020}{}{Обучение добыче кремня}
+{1030}{}{Обучение добыче дерева}
+{1040}{}{Обычный Кенни}
+{1050}{}{Невладелец.}
+{2000}{}{О, да ты проснулся, как раз самое время. Как себя чувствуешь? Кстати можешь звать меня Кенни.}
+{2010}{}{Голова просто трещит по швам - Погоди, что со мной произошло?!}
+{3000}{}{Я думал ты труп, на секунду точно был в этом уверен. Твое счастье, что подал признаки жизни, пришлось оттащить тебя в мою палатку. Похоже кто-то пытался превратить тебя в дуршлаг, пришлось использовать на тебя все бинты, что у меня были.}
+{3010}{}{Спасибо Кенни...}
+{4000}{}{Да ладно, я как раз шел в Хаб прикупить еще немножко. Мы как раз неподалеку.}
+{4010}{}{Так ты не знаешь как я тут очутился?}
+{5000}{}{Извини, но нет. Нашел тебя загорающим в пустоши в луже крови. Да, похоже тебя еще и обчистить успели.}
+{5010}{}{Совсем здорово...что же мне теперь делать?}
+{6000}{}{Если тебе нужна небольшая помощь в поисках ресурсов и создании предметов, я могу тебя с этим помочь. Помочь?}
+{6010}{}{Да, было бы неплохо! [Обучение]}
+{6020}{}{Да не, как-нибудь сам разберусь, но все равно спасибо. [Пропустить обучение]}
+{7000}{}{Всегда рад помочь. Итак, если захочешь добыть немного ресурсов, тебе понадобится инструмент для их сбора. Есть один очень простенький инструмент для добычи руды и дерева, правда он слишком примитивен и может сломаться при первой попытке.}
+{7010}{}{Как изготовить этот примитивный инструмент?}
+{8000}{}{Берешь кремень, он повсюду в пустоши валяется. Просто пойди посмотри тут вокруг, он выглядит как серенький камень.}
+{8010}{}{Хорошо...}
+{9000}{}{В твоем пип-бое есть раздел "Фикс бой", используемый для создания предметов, хотя сейчас список доступных для создания предметов и коротковат позже тебе понадобится таблица чтобы изучить их все. Чтобы активировать "Фикс-бой", просто надо нажать на иконку с надписью "Фикс" или для удобства нажать "F". Появится список предметов, найди в нем "Примитивный инструмент" и попробуй создать. Мы еще поговорим, когда создашь примитивный инструмент.}
+{9010}{}{Понятно.}
+{9020}{}{Ну как, у меня получилось?}
+{10000}{}{Вот он "примитивный инструмент"! Хорошая работа. Что ж пора его испытать. Так, ага! Видишь вон то дерево? Используй на него инструмент и соберешь немного дерева. Возвращайся, когда добудешь немного дерева.}
+{10010}{}{Хорошо, хорошо, дай мне секунду.}
+{10020}{}{Вот и дерево.}
+{11000}{}{Я смотрю нашел-таки немного дерева. Если примитивный инструмент вдруг сломался, не переживай, это нормально, бывает. Проблем с поиском кремня обычно не бывает. Сейчас смастерю тебе топор из твоего дерева. }
+{11010}{}{Что топор чем то отливается?}
+{11020}{}{Спасибо!}
+{12000}{}{В чем разница? Топором можно добывать минералы и железную руду безостановочно, не то что примитивным инструментом, просто он не сломается.}
+{12010}{}{Ага, я вижу,}
+{13000}{}{На держи, вот тебе отличный топор. Если когда-нибудь захочешь смастерить себе еще топор, для этого потребуется еще немного мусора и дерева. В принципе топор не такое уж плохое оружие особенно против небольших тварей, вроде радскорпионов.}
+{13010}{}{Все понятно, можешь не продолжать.}
+{14000}{}{Ладно. Я еще побуду здесь примерно с недельку. Не забудь собрать свои вещи перед моим уходом, а то заблудишься и больше не найдешь дороги. Кстати, не сделаешь мне одно одолжение, видишь вон ту пещеру? [Показывает в сторону темной пещеры] Там внутри несколько радскорпионов. Если тебя не затруднит, избавься от них и принеси мне клешни самого большого. Можешь заняться этим когда тебе будет удобно. Только будь осторожен, как то видит, что они тащат мертвые тела в свою пещеру.}
+{14010}{}{Не вопрос, спасибо за помощь. Увидимся.}
+{15000}{}{Приятно видеть тебя вновь живым и здоровым. Я еще чем-нибудь могу тебе помочь?}
+{15010}{}{Давно ты тут?}
+{15020}{}{[ Combat Tutorial ] Kenny, mind if I ask you something? You don't look like normal caravaneer to me.}
+{15030}{}{Кенни, ты многое для меня сделал. Как еще я могу тебе помочь?}
+{15040}{}{I found the caravan you were talking about. Everyone was dead. But I found this holodisk...}
+{15050}{}{Я нашел караванщиков, о которых ты говорил. Боюсь, что они все мертвы...Но я нашел-таки голодиск...}
+{15060}{}{Я убил всех радскорпионов в пещере! Вот клешни.}
+{15070}{}{Больше ничего. Счастливо.}
+{16000}{}{Я здесь всего на недельку, пора ехать дальше. Можешь пока попользоваться этой палаткой какое-то время.}
+{16010}{}{Очень мило с твоей стороны. Пока.}
+{17000}{}{Что ж раз ты сам предложил, есть у меня один интерес. Я тут показал дорогу одному заблудившемуся каравану и они пообещали мне хорошенько заплатить, как пойдут обратно. Уже 5 дней прошло а их все нет, немножко волнуюсь, если честно.}
+{17010}{}{Так ты хочешь, чтобы я их нашел? Попробую...}
+{17020}{}{Извини, я сейчас немного занят. Пока}
+{18000}{}{Итак ты сделал это? Огромное спасибо. Я даже немного компенсирую тебе потерянное время.}
+{18010}{}{Хорошо, скоро буду.}
+{19000}{}{Так ты принес клешни? Наконец то. Так, так, где же твоя награда... о нашел. [Ковыряется в пыльном рюкзаке] Это все, что я могу тебе дать, честно. Вот, возьми еще эти противоядия, если тебя успели отравить. Серьезно, огромное спасибо.}
+{19010}{}{Нет проблем.}
+{20000}{}{Что, они все мертвы? Н-не может быть...какого черта, а ладно все нормально. [Он начинает сильно волноваться.] Этот голодиск... Он закодирован... В Городе Убежище есть один человек, который может его взломать. [Он вставляет голодиск в ваш пип-бой и вводит какую-то команду.] Теперь тебе больше не придется таскать его за собой повсюду, информация записана на пип-бое. Сейчас мне некогда этим заниматься, придется мне пропасть на какое-то время... Ты, сынок, лучше не лезь, это опасно... Спасибо, что нашел их. Теперь мне надо уйти, и знаешь что? Я оставлю тебе эту палатку, еще увидимся. Может быть.}
+{20010}{}{Ух...спасибо}
+{20020}{}{Ты их знаешь?}
+{20030}{}{Похоже они были не просто "несколькими караванщиками", может расскажешь?.}
+{21000}{}{Просто не спрашивай, прошу...}
+{21010}{}{Ладно...}
+{22000}{}{Что больше не о чем поговорить. Очень мило. Хорошо, это были мои друзья из Кримсон Каравана. И они умели за себя постоять. Ни одна банда рейдеров не стала бы с ними связываться... Мой тебе совет, держись от этого подальше, а то все может плохо кончиться.}
+{22010}{}{Да ладно все-равно же у меня амнезия, разве нет? Расскажи.}
+{23000}{}{[Он хранит молчание.]}
+{23010}{}{Хорошо...не надо.}
+{24000}{}{Привет.@@Надеюсь, что ты друг человека, которого я спас.@@Тебе что-то нужно?@@...@@Эй там.@@Здорово.@@Мне нечего тебе сказать.}
+{25000}{}{Uh Well. Before I became one I've tried my ways in military, didn't like it much so I left.}
+{25010}{}{I understand, what was it like then?}
+{26000}{}{Hmm. Pretty simple... [ He begins to tell the story of his training ]}
+{26010}{}{[ BEGIN TUTORIAL ]}
+{26020}{}{Actually... I don't want to hear that. Goodbye.}
+{27000}{}{[ WARNING. PROGRESSING FURTHER WILL MAKE COMBAT TUTORIAL NO LONGER AVAILABLE ]}
+{27010}{}{Continue}
+{27020}{}{Exit}
+
+[ptbr]
+{100}{}{Kenny}
+{1000}{}{Predialogue installations}
+{1010}{}{First talk}
+{1020}{}{Flint Tutorial}
+{1030}{}{Wood Tutorial}
+{1040}{}{Normal Kenny}
+{1050}{}{Not owner.}
+{2000}{}{Ah, tu já acordou. Já tava na hora. Como tu tá se sentindo? Ah, meu nome é Kenny.}
+{2010}{}{Minha cabeça tá doendo pra cacete- espera, o quê que aconteceu!?}
+{3000}{}{Assim, parece que tu tinha morrido, pelo menos era o que eu pensei de primeira. Daí eu vi se mexer, se arrastando, aí eu te arrastei pra minha tenda. Te encontrei com algumas coroas de bala encravadas, usei meu último kit de primeiros socorros em ti.}
+{3010}{}{Valeu Kenny...}
+{4000}{}{Ah, nada não. Só preciso ir no Ponto Central pra comprar mais. É bem perto daqui, não vai dar trabalho não.}
+{4010}{}{Tu sabe o que aconteceu comigo?}
+{5000}{}{Sei não. Só te achei no chão, sangrando sem parar em cima da areia. Tu tava sem nada, então acho que te roubaram.}
+{5010}{}{Maravilha... e o que eu faço agora?}
+{6000}{}{Se precisar de ajuda em coletar materiais e criar utensílios, eu posso te ajudar. Quer que eu te ajude?}
+{6010}{}{Sim. [Tutorial]}
+{6020}{}{Não precisa, posso me virar. Obrigado de qualquer forma. [Pula Tutorial]}
+{7000}{}{Tá bom. Então... quando tu precisar de materiais, vai precisar de uma ferramenta ou outra pra extrair. Tem uma ferramenta que é bem simples e que serve para extrair minério e madeira, mas é bem simples e pode quebrar, mesmo no primeiro uso.}
+{7010}{}{Como monto essa ferramenta?}
+{8000}{}{Elas são feitas com um galho seco qualquer e Perdeneira. Você pode achar pederneira em qualquer lugar do deserto. Por aqui, por ser bem rochoso, deve ter muito. Dê uma olhada por aí.}
+{8010}{}{Tá certo...}
+{9000}{}{Seu Pip-Boy vem com um "Fix-Boy", um aplicativo que é usado para construir coisas. Você vai precisar encontrar uma bancada com ferramentas para criar a maioria dos equipamentos, mas ferramentas simples como o tacape podem ser feito em qualquer lugar. Para ativar seu "Fix-Boy", clica no botão "Fix" ali no painel ou pressione a tecla "F". Na lista que aparecer, procure o "Tacape" e e crie um. Vem falar comigo quando tiver montado um tacape.}
+{9010}{}{Tá certo.}
+{9020}{}{É desse jeito?}
+{10000}{}{Pronto! É isso aí! Agora, testa ele. Tá vendo aquela árvore ali? Usa o seu tacape nele e pega a madeira. Volta aqui com a madeira.}
+{10010}{}{Tá, daqui a pouco eu volto.}
+{10020}{}{Tá aqui a madeira.}
+{11000}{}{Tou vendo que tu já tá com madeira. Se seu tacape quebrou, tudo bem, isso é normal. Você pode encontrar mais pederneira por aí. Vou fazer uma picareta pra ti com essa madeira. }
+{11010}{}{Qual é a diverença de um tacape para uma picareta?}
+{11020}{}{Valeu!}
+{12000}{}{Ah, é que a picareta serve para minerar rochas para extrair minerais ou ferro, mas diferente do tacape, a picareta não quebra.}
+{12010}{}{Ah, entendi...}
+{13000}{}{Tá aqui, uma picareta pra ti. Se tu, sei lá, perder essa picareta e quiser fazer outra, é só catar peças de lixo no deserto. Sempre se acha alguma peça que sirva de cabeça, e madeira. Mas você vai precisar fazer em uma bancada com bons equipamentos. A picareta também serve como uma arma boa para matar radscorpiões ou formigas gigantes.}
+{13010}{}{Eu acho que entendi.}
+{14000}{}{Entendi. Vou ficar por aqui por uma semana ou duas. Lembre de pegar suas coisas antes de eu sair, se não o deserto vai engolir e você nunca mais vai ver suas coisas. Hum, pode me fazer um favor? [Ele aponta em direção a uma caverna, a nordeste da tenda.] Dentro daquela caverna, tem alguns radscorpiões. Preciso que tu mate eles e que traga as garras do maior deles. Só toma cuidado, eu os vi arrastando corpos de pessoas mortas para dentro da caverna. Acho que são fortes.}
+{14010}{}{Sem problema. Obrigado por ajudar. Até mais.}
+{15000}{}{Bom ver que você ainda está na ativa. Se veio aqui, é porque quer me dizer algo... pode falar.}
+{15010}{}{Por quanto tempo tu tá aqui?}
+{15020}{}{Kenny, eu sinto que devo retribuir por toda sua ajuda. Tem alguma coisa que eu possa fazer por você do que matar radscorpião?}
+{15030}{}{Achei a caravana que tu me disse. Todo mundo tinha morrido. Mas eu achei um holodisco...}
+{15040}{}{Eu matei os radscorpiões da caverna. Tá aqui as garras.}
+{15050}{}{Na verdade... nada não. Até mais.}
+{16000}{}{Eu tou aqui por uma semana, mas tenho que ir. Vou deixar tu com essa tenda para guardar suas coisas.}
+{16010}{}{Que legal da sua parte. Até mais.}
+{17000}{}{Agora que tu mencionou, tem uma coisa. Eu me encontrei com uma caravana um tempo destes. Eu os ajudei com direções e eles me disseram que iam dar uma recompensa. Já fazem cinco dias e eles ainda não voltaram... tou preocupado com eles.}
+{17010}{}{Quer que eu os encontre, não é? Vou lá fazer isso.}
+{17020}{}{Desculpa mas tou meio ocupado. Tchau.}
+{18000}{}{Então tu vai fazer isso por mim? Obrigado. Eu lhe dou algo depois para... vamo dizer, ressarcimento por qualquer confusão.}
+{18010}{}{Tá, volto já.}
+{19000}{}{Tu pegou as garras? Maravilha. Vou te dar isso aqui... espera. [Ele começa a procurar dentro de sua mochila desgastada e empoeirada.] Isso aqui é tudo que posso te dar. Também pega esses antídotos caso se envenene por algum bicho por aí. Sério, valeu mesmo.}
+{19010}{}{Sem problema.}
+{20000}{}{Eles tão mortos?? Puta que p- Aquele filho da p... tá, tá certo. [Ele começa a suar intensamente.] Este holodisco... tá criptografado. Tem um cara na Cidade do Abrigo que pode quebrar a codificação. [Ele pega o holodisco, coloca no seu Pip-Boy e digita alguns comandos.] Agora tu não precisa carregar esse Holodisco por aí toda hora, fiz um backup no seu PipBoy. Eu preciso me esconder por um tempo. Você devia ficar fora dessa... é perigoso. Faz o seguinte... te dou essa tenda. Pode ficar. Te vejo por aí.}
+{20010}{}{Um... @sex@|Obrigado||Obrigada|.}
+{20020}{}{Tu conhecia eles?}
+{20030}{}{Acho que eles eram apenas uma caravana qualquer. O que tu sabe sobre eles?}
+{21000}{}{Olha, acho melhor não lhe comprometer. Deixa essa parte pra lá...}
+{21010}{}{Tá...}
+{22000}{}{Olha, não sei falar com palavras. Assim, aqueles eram amigos da Companhia de Caravana Carmesim. Eles tinham armas bem pesadas. Um grupo de ladrões de estrada pé rapados não iam poder fazer aquilo... então, imaginando o pior... Melhor você ficar fora disso.}
+{22010}{}{Minha aminésia tem alguma coisa a ver com isso? Me diz!}
+{23000}{}{[He remains silent.]}
+{23010}{}{Fine... Don't.}
+{24000}{}{Hello.@@I hope you're a friend of that person I saved.@@Do you need something?@@Don't piss off.. Fuck off.@@Hey there.@@Howdy.@@I have nothing to say to you.}
+{25000}{}{Uh Well. Before I became one I've tried my ways in military, didn't like it much so I left.}
+{25010}{}{I understand, what was it like then?}
+{26000}{}{Hmm. Pretty simple... [ He begins to tell the story of his training ]}
+{26010}{}{[ BEGIN TUTORIAL ]}
+{26020}{}{Actually... I don't want to hear that. Goodbye.}
+{27000}{}{[ WARNING. PROGRESSING FURTHER WILL MAKE COMBAT TUTORIAL NO LONGER AVAILABLE ]}
+{27010}{}{Continue}
+{27020}{}{Exit}
+

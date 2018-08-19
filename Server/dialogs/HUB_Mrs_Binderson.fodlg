@@ -1,0 +1,114 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+65506 2010 #
+3 2020 #
+0 2030 #
+6 2040 D _item p PID_BECKY_BOOK } 1 R _item p PID_BECKY_BOOK - 1 R _param p ST_EXPERIENCE + 500 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+2 4010 #
+0 4020 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+2 6010 #
+0 6020 &
+
+[engl]
+{100}{}{Mrs. Binderson}
+{200}{}{You see: Mrs. Binderson, the bookshop owner.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Yes? May I help you?@@Can I help you, @sex@|mister||miss|?@@Hello there, need anything?@@Welcome to my bookshop. Need any help?}
+{2010}{}{I'd like to see your books selection.@@I'd like to browse the books you have.@@Can I see what books do you have now?@@}
+{2020}{}{Do you have anything from the "Lavender Flower" series?@@Got anything from the "Lavender Flower" series?@@I'm looking for any book from the "Lavender Flower" series. Do you have any of those?}
+{2030}{}{No, ma'am, not really. Goodbye.}
+{2040}{}{Iv'e found a "Lavender Flower" series book, here.@@I've found one of those "Lavender Flower" series books. Take it.}
+{3000}{}{"Lavender Flower"? [You feel like she is going to kill you with her stare.] Where did you get this title? Hell, it doesn't matter. If you ever, and I mean ever, find one of those... pieces, bring them to me.}
+{3010}{}{You seem to be very keen on obtaining them. Why?}
+{3020}{}{Okay, I will.@@Right, I will remember that.@@No problem, I will. See you later.@@Okay, I've got to go.}
+{4000}{}{Did you ever read one of those? I hope not... You will see when you bring any of those to me.}
+{4010}{}{Right. Let's talk about something else.@@Okay, another question then.}
+{4020}{}{Have it your way... I'll drop in if I ever find some. Goodbye.}
+{5000}{}{Mr Brick, you say. [her hands start to shake a bit] Here, take this and leave, please.}
+{5010}{}{Thank you ma'am.}
+{6000}{}{Oh my, good... Now give me that! [She snatches the book from your hand.] Now... burn! [She sets the book ablaze with a lighter, and then throws it into the nearest barrel.}
+{6010}{}{Uhm... quite a show, I must say. Can we walk about something else?@@Oh well. That's curious. Can we talk about something else?@@Burn motherf... Can I ask you something else?@@Right, nice. Can we talk about something else?}
+{6020}{}{Uhm... quite a show, Mrs. Binderson. I think I'll be going now.@@Okay... I will leave now.@@Right, I will leave before this bookshop burns to the ground.@@I will leave now, Mrs. Binderson.@@I think I need to be elsewhere.}
+
+[russ]
+{100}{}{Биндерсон}
+{200}{}{Вы видите: миссис Биндерсон.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Да? [Она смотрит на вас через очки с толстыми стеклами таким образом, что заставляет вас чувствовать себя виноватым снова, за все эти конфеты которые ты украл давно в детстве] Могу я вам помочь?}
+{2010}{}{Я хотел бы посмотреть вашу книжную секцию.}
+{2020}{}{У вас есть что-нибудь из серии "Лавандовый Цветок"}
+{2030}{}{Нет, мэм, не совсем. До свидания.}
+{2040}{}{Я принес оду из книг серии "Лавандовый Цветок".}
+{3000}{}{"Лавандовый Цветок"? [она почти убивает вас взглядом] Где вы взяли это название? Не имеет значения, на самом деле. Если вы когда-нибудь, найдете одну из этих...мерзостей, принесите ее сюда. Я заплачу вам за каждую отвратительную книгу.}
+{3010}{}{Вы, кажется, имеете что-то личное против этих книг.}
+{3020}{}{К вашим услугам мэм. Я вернусь.}
+{4000}{}{Личное? Не совсем, Я пытаюсь спасти мир даже от возможность чтения этих...бедствий человеческого рода. Что за ужасный ум может создать такие глупости?}
+{4010}{}{Я знаю, что некоторые могут, но у меня есть еще что спросить.}
+{4020}{}{Я знаю нескольких. Ну, я вернусь, когда я найду одну из этих книг. До свидания.}
+{5000}{}{Г-н Брик, вы говорите. [ее руки начинают немного дрожать] Вот, возьми это и уходи, пожалуйста.}
+{5010}{}{Спасибо мэм.}
+{6000}{}{Отлично! Давайте ее сюда. [Она открывает печь и кидает книгу в огонь. Вы можете поклястся что она тих напевает "горите ублюдки, горите", но это просто невозможно, не так ли?] Мир выглядит немного лучше теперь. Спасибо.}
+{6010}{}{Без проблем, мэм. Могу ли я спросить еще?}
+{6020}{}{Без проблем, мэм. Пока.}
+
+[pols]
+{100}{}{Binderson}
+{200}{}{Widzisz panią Binderson.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Tak? [Gapi się na ciebie przez swoje grube szkła w taki sposób, że czujesz się znów @sex@|winny||winna| z powodu tych wszystkich słodyczy które @sex@|ukradłeś||ukradłaś| dawno temu, będąc dzieckiem.] W czym mogę pomóc?}
+{2010}{}{@sex@|Chciałbym||Chciałabym| obejrzeć, jaki ma pani wybór książek.}
+{2020}{}{Czy ma pani coś z serii "Kwiat lawendy"?}
+{2030}{}{Nie, proszę pani. Dziękuję, do widzenia.}
+{2040}{}{@sex@|Znalazłem||Znalazłam| "Kwiat lawendy", o tutaj.}
+{3000}{}{"Kwiat lawendy"? [Prawie zabija cię wzrokiem.] Skąd to masz!? Właściwie, nieistotne. Jeżeli kiedykolwiek, gdziekolwiek znajdziesz jedno z tych... okropieństw, proszę - przynieś je do mnie. Zapłacę za każdy egzemplarz tego odrażającego bezguścia.}
+{3010}{}{Widzę, traktuje to pani osobiście.}
+{3020}{}{Do usług, proszę pani.}
+{4000}{}{Osobiście? Skądże, po prostu próbuję ocalić świat przed samą możliwością czytania tych... porażek rodzaju ludzkiego. Jakim ćwierćinteligentem trzeba być, aby stworzyć coś tak bezsensownego?}
+{4010}{}{Właściwie, znam kilku takich. Mam jeszcze inne pytania.}
+{4020}{}{Znalazłoby się kilku. Dobrze, wrócę kiedy coś znajdę. Do widzenia.}
+{5000}{}{Pan Brick, powiadasz... [Jej ręce zaczynają się nieco trząść.] Weź to i wyjdź, proszę.}
+{5010}{}{Dziękuję, proszę pani.}
+{6000}{}{Doskonale! Daj mi to, proszę. [Otwiera stojący niedaleko piec i wrzuca książkę w płomienie. @sex@|Mógłbyś||Mogłabyś| przysiąc, że słyszysz jak cichutko śpiewa "Jak ja was kurwy nienawidzę" - ale to chyba niemożliwe, czyż nie?] Świat stał się odrobinę lepszy. Dziękuję ci.}
+{6010}{}{Do usług, proszę pani. Mogę zapytać o coś jeszcze?}
+{6020}{}{Do usług, proszę pani. Do widzenia.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Yes? May I help you?@@Can I help you, @sex@|mister||miss|?@@Hello there, need anything?@@Welcome to my bookshop. Need any help?}
+{2010}{}{I'd like to see your books selection.@@I'd like to browse the books you have.@@Can I see what books do you have now?@@}
+{2020}{}{Do you have anything from the "Lavender Flower" series?@@Got anything from the "Lavender Flower" series?@@I'm looking for any book from the "Lavender Flower" series. Do you have any of those?}
+{2030}{}{No, ma'am, not really. Goodbye.}
+{2040}{}{Iv'e found a "Lavender Flower" series book, here.@@I've found one of those "Lavender Flower" series books. Take it.}
+{3000}{}{"Lavender Flower"? [You feel like she is going to kill you with her stare.] Where did you get this title? Hell, it doesn't matter. If you ever, and I mean ever, find one of those... pieces, bring them to me.}
+{3010}{}{You seem to be very keen on obtaining them. Why?}
+{3020}{}{Okay, I will.@@Right, I will remember that.@@No problem, I will. See you later.@@Okay, I've got to go.}
+{4000}{}{Did you ever read one of those? I hope not... You will see when you bring any of those to me.}
+{4010}{}{Right. Let's talk about something else.@@Okay, another question then.}
+{4020}{}{Have it your way... I'll drop in if I ever find some. Goodbye.}
+{5000}{}{Mr Brick, you say. [her hands start to shake a bit] Here, take this and leave, please.}
+{5010}{}{Thank you ma'am.}
+{6000}{}{Oh my, good... Now give me that! [She snatches the book from your hand.] Now... burn! [She sets the book ablaze with a lighter, and then throws it into the nearest barrel.}
+{6010}{}{Uhm... quite a show, I must say. Can we walk about something else?@@Oh well. That's curious. Can we talk about something else?@@Burn motherf... Can I ask you something else?@@Right, nice. Can we talk about something else?}
+{6020}{}{Uhm... quite a show, Mrs. Binderson. I think I'll be going now.@@Okay... I will leave now.@@Right, I will leave before this bookshop burns to the ground.@@I will leave now, Mrs. Binderson.@@I think I need to be elsewhere.}
+

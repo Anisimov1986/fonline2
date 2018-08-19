@@ -1,0 +1,197 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+10 1010 D _var p se_village_check = 1 #
+6 1020 D _var p se_village_check = 0 D _var p name_mem_player_npc = 3 R _script dialog@r_AttackGroup 1 207 #
+5 1030 D _var p se_village_check = 0 D _var p name_mem_player_npc = 2 R _var p name_mem_player_npc = 3 #
+4 1040 D _var p se_village_check = 0 D _var p name_mem_player_npc = 1 R _var p name_mem_player_npc = 2 #
+2 1050 D _var p name_mem_player_npc = 0 D _var p se_village_check = 0 @
+2 2000 None 0 #
+3 2010 R _var p name_mem_player_npc = 1 #
+0 2020 R _var p name_mem_player_npc = 1 @
+3 3000 None 0 @
+4 4000 None 0 @
+5 5000 None 0 @
+6 6000 None 0 @
+10 7000 Attack 0 #
+11 7010 @
+11 8000 Attack 0 #
+12 8010 D _param p MAIN_FACTION ! 2 #
+20 8020 D _param p MAIN_FACTION = 2 R _var p se_village_check = 2 @
+12 9000 Attack 0 #
+13 9010 @
+13 10000 None 0 #
+14 10010 @
+14 11000 Attack 0 #
+15 11010 @
+15 12000 Attack 0 #
+16 12010 @
+16 13000 Attack 0 #
+17 13010 @
+17 14000 Attack 0 #
+18 14010 R _script dialog@r_AttackGroup 1 207 R _var p se_village_check = 3 @
+18 15000 Attack 0 @
+20 16000 Attack 0 #
+21 16010 R _script dialog@r_AttackGroup 1 207 @
+21 17000 Attack 0 &
+
+[engl]
+{100}{}{Tribal Leader}
+{200}{}{You see: Tribal Leader}
+{210}{}{This old man seems to be the leader of this tribe. Despite his age, he seems to be in a very good shape. His looks are in contrast with the other villagers, revealing his origins are not tribal at all.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{attack}
+{1030}{}{2nd}
+{1040}{}{1st}
+{1050}{}{ }
+{2000}{}{You do not belong here. Leave us.@@Leave this place, now.@@I do not wish to talk to you, leave.}
+{2010}{}{Wait, who are you? What is this place? What did you do to those people there?@@Just a minute, who are you? What is this place? What happened to those people?}
+{2020}{}{Fine, as you wish.@@Yeah, yeah, I'm going.@@Whatever.@@Okay.@@Yeah, I'm going.}
+{3000}{}{This is none of your concern. Leave.@@I will not answer your questions. Leave.@@This does not concern you, leave.}
+{4000}{}{Leave.@@Go away now.@@I will not talk to you, leave.}
+{5000}{}{Leave now, we're done talking.}
+{6000}{}{You must be truly wishing to embrace the cold arms of death.}
+{7000}{}{Leave now.@@I do not wish to talk to you, stranger.}
+{7010}{}{What is the meaning of this? There is a Hummer and crates with the Brotherhood insignia  inside that shack! You don't like a tribal, you're from the Brotherhood aren't you?}
+{8000}{}{No, I'm not. I was a member of the Brotherhood, but that was a long time ago. Now I am the master of my own destiny.}
+{8010}{}{You left the Brotherhood?@@You left?}
+{8020}{}{You are a deserter. You will come with me back to Lost Hills. There is no leaving from the Brotherhood Of Steel...}
+{9000}{}{It was I who was left. They sent me and with some rookies on a pacification sortie, after some Scribes went missing during a diplomatic mission in a village in the mountains north of here. When we showed up, their warriors rushed at us. Of course, they had no chance and got slaughtered, only women and children remained.}
+{9010}{}{What happened then?@@So...?@@And?}
+{10000}{}{We saw what they did to those Scribes. I've seen many things in my life, but that... That was really something. Meanwhile, those under my command assumed the mission is over, and began to load our comrades bodies on the Hummer.}
+{10010}{}{Uh... And then what?@@Yeah... and?}
+{11000}{}{What do you think? I came over to the tent the remnant of the tribe ran to. And then I started shooting. My subordinates tried to stop me, but failed and got themselves killed.}
+{11010}{}{I don't believe this.@@No way.}
+{12000}{}{Believe what you want, that is the truth. I spared only the smallest of children, and took them with me. I knew my purpose, and the Brotherhood was too weak to further my ultimate goal.}
+{12010}{}{So, these people are those children? You're a murderer who wants to play God!}
+{13000}{}{No. You see, I had a dream. I watched a snail crawl along the edge of a straight razor. Crawling, slithering, along the edge of a straight razor... and surviving.}
+{13010}{}{What?@@What do you mean?@@I don't understand.}
+{14000}{}{I have seen horrors, horrors that you have never seen. But you have no right to call me a murderer. You have no right to judge me. It's impossible for words to describe what is necessary to those who do not know what horror means. Horror! Horror has a face, and you must make a friend of horror. Horror and moral terror are your friends. If they are not, then they are enemies to be feared. They are truly enemies. And now, you are going to meet them, as your enemies.}
+{14010}{}{You are insane.@@You have lost your mind.@@You are nuts.}
+{15000}{}{One person's insanity is another person's reality.@@In a mad world, only the mad are sane.}
+{16000}{}{I will not go anywhere, stranger. My ties with the Brotherhood are severed until the end days, and I will not heed their laws.@@I will not follow you anywhere, stranger. I am not going back to those weak-minded fools. Their laws do not concern my anymore.}
+{16010}{}{Then I will have to carry out the sentence myself. And the punishment for desertion is death...}
+{17000}{}{I admire your courage, but you will fail, stranger.}
+
+[russ]
+{100}{}{Tribal Leader}
+{200}{}{You see: Tribal Leader}
+{210}{}{This old man seems to be the leader of this tribe. Despite his age, he seems to be in a very good shape. His looks are in contrast with the other villagers, revealing his origins are not tribal at all.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{attack}
+{1030}{}{2nd}
+{1040}{}{1st}
+{1050}{}{ }
+{2000}{}{You do not belong here. Leave us.@@Leave this place, now.@@I do not wish to talk to you, leave.}
+{2010}{}{Wait, who are you? What is this place? What did you do to those people there?@@Just a minute, who are you? What is this place? What happened to those people?}
+{2020}{}{Fine, as you wish.@@Yeah, yeah, I'm going.@@Whatever.@@Okay.@@Yeah, I'm going.}
+{3000}{}{This is none of your concern. Leave.@@I will not answer your questions. Leave.@@This does not concern you, leave.}
+{4000}{}{Leave.@@Go away now.@@I will not talk to you, leave.}
+{5000}{}{Leave now, we're done talking.}
+{6000}{}{You must be truly wishing to embrace the cold arms of death.}
+{7000}{}{Leave now.@@I do not wish to talk to you, stranger.}
+{7010}{}{What is the meaning of this? There is a Hummer and crates with the Brotherhood insignia  inside that shack! You don't like a tribal... You're from the Brotherhood aren't you?}
+{8000}{}{No, I'm not. I was a member of the Brotherhood, but that was a long time ago. Now I am the master of my own destiny.}
+{8010}{}{You left the Brotherhood?@@You left?}
+{8020}{}{You are a deserter. You will come with me back to Lost Hills. There is no leaving from the Brotherhood Of Steel...}
+{9000}{}{It was I who was left. They sent me and with some rookies on a pacification sortie, after some Scribes went missing during a diplomatic mission in a village in the mountains north of here. When we showed up, their warriors rushed at us. Of course, they had no chance and got slaughtered, only women and children remained.}
+{9010}{}{What happened then?@@So...?@@And?}
+{10000}{}{We saw what they did to those Scribes. I've seen many things in my life, but that... That was really something. Meanwhile, those under my command assumed the mission is over, and began to load our comrades bodies on the Hummer.}
+{10010}{}{Uh... And then what?@@Yeah... and?}
+{11000}{}{What do you think? I came over to the tent the remnant of the tribe ran to. I looked in their faces, I could almost smell their fear. Then I did what had to be done. My subordinates tried to stop me, but failed, as anyone else who stood in my way.}
+{11010}{}{I don't believe this.@@No way.}
+{12000}{}{Believe what you want, that is the truth. I spared only the smallest of children, and took them with me. I managed to see through the night of terror, and set out to make my own destiny.}
+{12010}{}{So, these people are those children? You're a murderer who wants to play God!}
+{13000}{}{No. You see, I had a dream. I watched a snail crawl along the edge of a straight razor. Crawling, slithering, along the edge of a straight razor... and surviving.}
+{13010}{}{What?@@What do you mean?@@I don't understand.}
+{14000}{}{I have seen horrors, horrors that you have never seen. But you have no right to call me a murderer. You have no right to judge me. It's impossible for words to describe what is necessary to those who do not know what horror means. Horror! Horror has a face, and you must make a friend of horror. Horror and moral terror are your friends. If they are not, then they are enemies to be feared. They are truly enemies. And now, you are going to meet them, as your enemies.}
+{14010}{}{You are insane.@@You have lost your mind.@@You are nuts.}
+{15000}{}{So be it.}
+{16000}{}{I will not go anywhere, stranger. My ties with the Brotherhood are severed until the end days, and I will not heed their laws.@@I will not follow you anywhere, stranger. I am not going back to those weak-minded fools. Their laws do not concern my anymore.}
+{16010}{}{Then I will have to carry out the sentence myself. And the punishment for desertion is death...}
+{17000}{}{I appreciate your courage, but you will fail, stranger.}
+
+[pols]
+{100}{}{Tribal Leader}
+{200}{}{You see: Tribal Leader}
+{210}{}{This old man seems to be the leader of this tribe. Despite his age, he seems to be in a very good shape. His looks are in contrast with the other villagers, revealing his origins are not tribal at all.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{attack}
+{1030}{}{2nd}
+{1040}{}{1st}
+{1050}{}{ }
+{2000}{}{You do not belong here. Leave us.@@Leave this place, now.@@I do not wish to talk to you, leave.}
+{2010}{}{Wait, who are you? What is this place? What did you do to those people there?@@Just a minute, who are you? What is this place? What happened to those people?}
+{2020}{}{Fine, as you wish.@@Yeah, yeah, I'm going.@@Whatever.@@Okay.@@Yeah, I'm going.}
+{3000}{}{This is none of your concern. Leave.@@I will not answer your questions. Leave.@@This does not concern you, leave.}
+{4000}{}{Leave.@@Go away now.@@I will not talk to you, leave.}
+{5000}{}{Leave now, we're done talking.}
+{6000}{}{You must be truly wishing to embrace the cold arms of death.}
+{7000}{}{Leave now.@@I do not wish to talk to you, stranger.}
+{7010}{}{What is the meaning of this? There is a Hummer and crates with the Brotherhood insignia  inside that shack! You don't like a tribal, you're from the Brotherhood aren't you?}
+{8000}{}{No, I'm not. I was a member of the Brotherhood, but that was a long time ago. Now I am the master of my own destiny.}
+{8010}{}{You left the Brotherhood?@@You left?}
+{8020}{}{You are a deserter. You will come with me back to Lost Hills. There is no leaving from the Brotherhood Of Steel...}
+{9000}{}{It was I who was left. They sent me and with some rookies on a pacification sortie, after some Scribes went missing during a diplomatic mission in a village in the mountains north of here. When we showed up, their warriors rushed at us. Of course, they had no chance and got slaughtered, only women and children remained.}
+{9010}{}{What happened then?@@So...?@@And?}
+{10000}{}{We saw what they did to those Scribes. I've seen many things in my life, but that... That was really something. Meanwhile, those under my command assumed the mission is over, and began to load our comrades bodies on the Hummer.}
+{10010}{}{Uh... And then what?@@Yeah... and?}
+{11000}{}{What do you think? I came over to the tent the remnant of the tribe ran to. And then I started shooting. My subordinates tried to stop me, but failed and got themselves killed.}
+{11010}{}{I don't believe this.@@No way.}
+{12000}{}{Believe what you want, that is the truth. I spared only the smallest of children, and took them with me. I knew my purpose, and the Brotherhood was too weak to further my ultimate goal.}
+{12010}{}{So, these people are those children? You're a murderer who wants to play God!}
+{13000}{}{No. You see, I had a dream. I watched a snail crawl along the edge of a straight razor. Crawling, slithering, along the edge of a straight razor... and surviving.}
+{13010}{}{What?@@What do you mean?@@I don't understand.}
+{14000}{}{I have seen horrors, horrors that you have never seen. But you have no right to call me a murderer. You have no right to judge me. It's impossible for words to describe what is necessary to those who do not know what horror means. Horror! Horror has a face, and you must make a friend of horror. Horror and moral terror are your friends. If they are not, then they are enemies to be feared. They are truly enemies. And now, you are going to meet them, as your enemies.}
+{14010}{}{You are insane.@@You have lost your mind.@@You are nuts.}
+{15000}{}{So be it.}
+{16000}{}{I will not go anywhere, stranger. My ties with the Brotherhood are severed until the end days, and I will not heed their laws.@@I will not follow you anywhere, stranger. I am not going back to those weak-minded fools. Their laws do not concern my anymore.}
+{16010}{}{Then I will have to carry out the sentence myself. And the punishment for desertion is death.}
+{17000}{}{I appreciate your courage, but you will fail, stranger.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{1020}{}{attack}
+{1030}{}{2nd}
+{1040}{}{1st}
+{1050}{}{ }
+{2000}{}{You do not belong here. Leave us.@@Leave this place, now.@@I do not wish to talk to you, leave.}
+{2010}{}{Wait, who are you? What is this place? What did you do to those people there?@@Just a minute, who are you? What is this place? What happened to those people?}
+{2020}{}{Fine, as you wish.@@Yeah, yeah, I'm going.@@Whatever.@@Okay.@@Yeah, I'm going.}
+{3000}{}{This is none of your concern. Leave.@@I will not answer your questions. Leave.@@This does not concern you, leave.}
+{4000}{}{Leave.@@Go away now.@@I will not talk to you, leave.}
+{5000}{}{Leave now, we're done talking.}
+{6000}{}{You must be truly wishing to embrace the cold arms of death.}
+{7000}{}{Leave now.@@I do not wish to talk to you, stranger.}
+{7010}{}{What is the meaning of this? There is a Hummer and crates with the Brotherhood insignia  inside that shack! You don't like a tribal, you're from the Brotherhood aren't you?}
+{8000}{}{No, I'm not. I was a member of the Brotherhood, but that was a long time ago. Now I am the master of my own destiny.}
+{8010}{}{You left the Brotherhood?@@You left?}
+{8020}{}{You are a deserter. You will come with me back to Lost Hills. There is no leaving from the Brotherhood Of Steel...}
+{9000}{}{It was I who was left. They sent me and with some rookies on a pacification sortie, after some Scribes went missing during a diplomatic mission in a village in the mountains north of here. When we showed up, their warriors rushed at us. Of course, they had no chance and got slaughtered, only women and children remained.}
+{9010}{}{What happened then?@@So...?@@And?}
+{10000}{}{We saw what they did to those Scribes. I've seen many things in my life, but that... That was really something. Meanwhile, those under my command assumed the mission is over, and began to load our comrades bodies on the Hummer.}
+{10010}{}{Uh... And then what?@@Yeah... and?}
+{11000}{}{What do you think? I came over to the tent the remnant of the tribe ran to. And then I started shooting. My subordinates tried to stop me, but failed and got themselves killed.}
+{11010}{}{I don't believe this.@@No way.}
+{12000}{}{Believe what you want, that is the truth. I spared only the smallest of children, and took them with me. I knew my purpose, and the Brotherhood was too weak to further my ultimate goal.}
+{12010}{}{So, these people are those children? You're a murderer who wants to play God!}
+{13000}{}{No. You see, I had a dream. I watched a snail crawl along the edge of a straight razor. Crawling, slithering, along the edge of a straight razor... and surviving.}
+{13010}{}{What?@@What do you mean?@@I don't understand.}
+{14000}{}{I have seen horrors, horrors that you have never seen. But you have no right to call me a murderer. You have no right to judge me. It's impossible for words to describe what is necessary to those who do not know what horror means. Horror! Horror has a face, and you must make a friend of horror. Horror and moral terror are your friends. If they are not, then they are enemies to be feared. They are truly enemies. And now, you are going to meet them, as your enemies.}
+{14010}{}{You are insane.@@You have lost your mind.@@You are nuts.}
+{15000}{}{One person's insanity is another person's reality.@@In a mad world, only the mad are sane.}
+{16000}{}{I will not go anywhere, stranger. My ties with the Brotherhood are severed until the end days, and I will not heed their laws.@@I will not follow you anywhere, stranger. I am not going back to those weak-minded fools. Their laws do not concern my anymore.}
+{16010}{}{Then I will have to carry out the sentence myself. And the punishment for desertion is death...}
+{17000}{}{I admire your courage, but you will fail, stranger.}
+

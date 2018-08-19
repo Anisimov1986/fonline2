@@ -1,0 +1,154 @@
+[comment]
+- No demands entered here.
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_dan_bag } 4 #
+8 1020 D _var p q_dan_bag } 4 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 None 0 #
+4 3010 @
+4 4000 None 0 #
+5 4010 #
+6 4020 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+0 6010 @
+8 7000 None 0 #
+9 7010 #
+10 7020 #
+10 7030 @
+9 8000 None 0 #
+0 8010 @
+10 9000 None 0 #
+9 9010 #
+11 9020 @
+11 10000 None 0 #
+0 10010 &
+
+[engl]
+{100}{}{Brick}
+{200}{}{You see: Brick}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{[Brought in by dan]}
+{2000}{}{Hi there. Dan told me you are trustworthy. That's good, as we need someone like that. Oh, am I seeing your knees shaking?}
+{2010}{}{You won't scare me, go on with the business}
+{2020}{}{You're just seeing things. I've got to go.@@Nah, I just need to take a dump. Be right back.}
+{3000}{}{That's the spirit. Fine then, I need you to do some ... sensitive job. }
+{3010}{}{Go on...}
+{4000}{}{Here's the list of shopkeepers you have to visit and collect our ... payments from them. Don't let them sell you any shit, they owe me and they know it. Remember, do not try to fuck me, pal, neither even think of selling me to the cops. But why am I saying this to you, such a reasonable man won't do anything that stupid, right?}
+{4010}{}{You can count on me.@@Sure, you can count on me.@@No problem, a job is a job.}
+{4020}{}{Well, now if I know all of this...}
+{5000}{}{Good! Don't keep me waiting.}
+{5010}{}{Be right back mister Brick.}
+{6000}{}{What, you think you can threat us? What a dumbass you are. Dan! Help our guest to find a way out of here, please.}
+{6010}{}{Hey, just kidding!}
+{7000}{}{So you're back. How many did you collect?}
+{7010}{}{700 caps.}
+{7020}{}{350 caps}
+{7030}{}{Someone stole the money from me, really! He was tall, wearing a mask and ...}
+{8000}{}{Good. Here's your reward. We will let you know if we need you. That's it for now.}
+{8010}{}{Thanks, mister Brick. Goodbye.}
+{9000}{}{Are you trying to trick me, wise-ass?}
+{9010}{}{No, no, just a little joke, hehe, please forgive me. Here's your 700 caps mister Brick.}
+{9020}{}{How could I even dare? 350 caps is all I've got.}
+{10000}{}{Do you think I'm dumb? Dan! Dan!}
+{10010}{}{H-Hold on! Let's talk!}
+
+[russ]
+{100}{}{Брик}
+{200}{}{Вы видите: Брик}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{[Brought in by dan]}
+{2000}{}{Привет. Дэн сказал мне, тебе можно доверять.Это хорошо, так как нам нужен кто-то вроде тебя. О, я смотрю у тебя коленки трясутся?}
+{2010}{}{Тебе не напугать меня, давай перейдем к делу.}
+{2020}{}{Может быть, немного, я не должен был приходить сюда. Пока.}
+{3000}{}{Вот это дух. Отлично, мне нужно что бы ты выполнил кое-какую... деликатную работу.}
+{3010}{}{Продолжай...}
+{4000}{}{Вот список владельцев магазинов, тебе нужно их посетить и собрать с них... дань. И не позволяй им вешать тебе лапшу на уши. Не пытайся наебать меня, приятель, и даже не думай стукануть копам. Но зачем я это говорю, такой разумный парень как ты не будет этого делать, правда?}
+{4010}{}{Вы можете рассчитывать на меня.}
+{4020}{}{Ну, а теперь, когда я знаю все это...}
+{5000}{}{Хорошо! Не заставляй меня ждать.}
+{5010}{}{Уже приступаю, господин Брик.}
+{6000}{}{Что, ты думаешь, что можешь угрожать нам? Что за тупица. Дэн! Помоги нашему гостю найти выход отсюда, пожалуйста.}
+{6010}{}{Эй, да я просто пошутил!}
+{7000}{}{Быстро ты вернулся. Сколько собрал?}
+{7010}{}{700 крышек.}
+{7020}{}{350 крышек.}
+{7030}{}{Кто-то украл у меня деньги, правда! Он был высок, в маске и...}
+{8000}{}{Хорошо. Вот твоя награда. Мы дадим тебе знать, если ты нам будешь нужен. Это пока все.}
+{8010}{}{Спасибо, господин Брик. До свидания.}
+{9000}{}{Пытаешься надуть меня, умник?}
+{9010}{}{Нет, нет, просто шутка, хе-хе, пожалуйста, простите меня. Вот ваши 700 крышек господин Брик.}
+{9020}{}{Нет, я бы не осмелился, но 350 крышек это все что я собрал.}
+{10000}{}{Думаешь, я тупой? Дэн! Дэн!}
+{10010}{}{Подождите! Давайте поговорим!}
+
+[pols]
+{100}{}{Brick}
+{200}{}{Widzisz Bricka}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{[Przyprowadzony przez Dana.]}
+{2000}{}{Cześć. Dan powiedział mi, że można ci zaufać. To dobrze, bo potrzebujemy takiej osoby. Och, czyżby drżały ci kolana?}
+{2010}{}{Nie przestraszysz mnie. Przejdźmy do interesów.}
+{2020}{}{Może troszeczkę. Nie @sex@|powinienem||powinnam| tu przychodzić. Pa!}
+{3000}{}{No, lubię takie nastawienia. Dobrze, dobrze... Potrzebuję cię do pewnej... delikatnej roboty. }
+{3010}{}{Kontynuuj.}
+{4000}{}{Oto lista sprzedawców, których masz odwiedzić i zebrać od nich nasze... opłaty. Nie daj sobie wciskać żadnego gówna, są mi dłużni i dobrze o tym wiedzą. Pamiętaj, nie próbuj mnie wydymać, i nawet kurwa nie myśl o sprzedaniu mnie psom. Ale, po co to mówię - @sex@|taki rozsądny gość||taka rozsądna dziewczyna| nigdy nie @sex@|zrobiłby||zrobiłaby| czegoś tak głupiego, prawda?}
+{4010}{}{Możesz na mnie liczyć.}
+{4020}{}{Świetnie, jeśli @sex@|wiedziałbym||wiedziałabym|, o tym wszystkim...}
+{5000}{}{Dobrze! Nie każ mi czekać.}
+{5010}{}{Wrócę za niedługo, panie Brick.}
+{6000}{}{Co, myślisz że możesz nam grozić? @sex@|Idiota||Idiotka|! Dan! Pomóż naszemu gościowi znaleźć stąd wyjście, proszę.}
+{6010}{}{Hej, tylko @sex@|żartowałem||żartowałam|!}
+{7000}{}{No, więc jesteś z powrotem. Jak dużo @sex@|zebrałeś||zebrałaś|?}
+{7010}{}{700 kapsli.}
+{7020}{}{350 kapsli.}
+{7030}{}{Ktoś ukradł mi pieniądze, naprawdę! Był wysoki, miał maskę i...}
+{8000}{}{Dobrze. Oto twoja nagroda. Damy ci znać, kiedy znów będziemy cię potrzebować. Na teraz - to wszystko.}
+{8010}{}{Dziękuję, panie Brick. Do widzenia.}
+{9000}{}{Próbujesz mnie wykiwać, @sex@|spryciarzu||spryciaro|?}
+{9010}{}{Nie, nie - to tylko mały żarcik, hehe, proszę mi wybaczyć. Oto pańskie 700 kapsli, panie Brick.}
+{9020}{}{Nie @sex@|śmiałbym||śmiałabym|, panie Brick. 350 kapsli to wszystko, co @sex@|zebrałem||zebrałam|.}
+{10000}{}{Masz mnie za idiotę? Dan! Dan!}
+{10010}{}{P-p-poczekaj! Porozmawiajmy!}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{1020}{}{[Brought in by dan]}
+{2000}{}{Hi there. Dan told me you are trustworthy. That's good, as we need someone like that. Oh, am I seeing your knees shaking?}
+{2010}{}{You won't scare me, go on with the business}
+{2020}{}{You're just seeing things. I've got to go.@@Nah, I just need to take a dump. Be right back.}
+{3000}{}{That's the spirit. Fine then, I need you to do some ... sensitive job. }
+{3010}{}{Go on...}
+{4000}{}{Here's the list of shopkeepers you have to visit and collect our ... payments from them. Don't let them sell you any shit, they owe me and they know it. Remember, do not try to fuck me, pal, neither even think of selling me to the cops. But why am I saying this to you, such a reasonable man won't do anything that stupid, right?}
+{4010}{}{You can count on me.@@Sure, you can count on me.@@No problem, a job is a job.}
+{4020}{}{Well, now if I know all of this...}
+{5000}{}{Good! Don't keep me waiting.}
+{5010}{}{Be right back mister Brick.}
+{6000}{}{What, you think you can threat us? What a dumbass you are. Dan! Help our guest to find a way out of here, please.}
+{6010}{}{Hey, just kidding!}
+{7000}{}{So you're back. How many did you collect?}
+{7010}{}{700 caps.}
+{7020}{}{350 caps}
+{7030}{}{Someone stole the money from me, really! He was tall, wearing a mask and ...}
+{8000}{}{Good. Here's your reward. We will let you know if we need you. That's it for now.}
+{8010}{}{Thanks, mister Brick. Goodbye.}
+{9000}{}{Are you trying to trick me, wise-ass?}
+{9010}{}{No, no, just a little joke, hehe, please forgive me. Here's your 700 caps mister Brick.}
+{9020}{}{How could I even dare? 350 caps is all I've got.}
+{10000}{}{Do you think I'm dumb? Dan! Dan!}
+{10010}{}{H-Hold on! Let's talk!}
+

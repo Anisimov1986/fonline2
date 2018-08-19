@@ -1,0 +1,1045 @@
+﻿# Fonline2 Team
+
+# TODO:
+# Finish translation
+
+{10}{}{Test0}
+{11}{}{Test1}
+{12}{}{Test2}
+{13}{}{Test3}
+
+# NOT USED
+# Увеличение скила
+#
+{15}{}{Навык @lex skill@ увеличен на @lex value@ очков}
+
+# # NOT USED YET
+# Nuka-Cola machine
+#
+{100}{}{Você vê um dispensador de Nuka-cola. Você se pergunta se ainda funciona.}
+{101}{}{[tum tum cá...]}
+{102}{}{Você encontra uma garrafa bem antiga de Nuka-Cola.}
+{103}{}{Dooohhhh!}
+{104}{}{Você puxa uma garrafa de Nuka-Cola.}
+{105}{}{@lex name @ habilidosamente tira uma Nuka-Cola.}
+{106}{}{Esta dispensadora parece estar vazia.}
+
+
+# NOT USED YET
+# Sandbag. Barricades stuff.
+#
+{200}{}{Мешок порвался у вас в руках - его нельзя класть в этом месте.}
+{201}{}{В этом месте больше невозможно уложить ни одного мешка. }
+{202}{}{Вы развязали мешок и высыпали песок из него на землю.}
+
+{400}{}{Seu personagem com seu IP já encontra-se conectado ao servidor. Derrubando a conexão. Tente logar novamente.}
+{401}{}{Outra conexão vinda do mesmo IP está vindo. Deslogando.}
+#
+# Generic messages
+#
+
+{500}{}{Tirou @lex result@ no dado} # Dice
+{510}{}{Sim} # Magic ball
+{511}{}{Não} # Magic ball
+{520}{}{Se maqueou} # Cosmetic
+{530}{}{. Dá uma tragada .oO} # Cigarettes
+
+# NOT USED
+# Guarded item
+#
+
+{540}{}{Отойди оттуда, @lex pname@}
+{540}{}{Не вынуждай меня применить оружие, @lex pname@}
+{540}{}{Эй, @lex pname@! Чем это ты занимаешься? Убирайся}
+{540}{}{Не трогай это, @lex pname@}
+{540}{}{@lex pname@! Немедленно перестань}
+
+#
+# Verbose Actions
+#
+{600}{}{@lex color@ **injetou estimulante**}
+{601}{}{@lex color@ **injetou super estimulante**}
+{602}{}{@lex color@ **acendeu um cigarro**}
+{603}{}{@lex color@ **bebeu uma cerveja**}
+{604}{}{@lex color@ **bebeu uma nuka-cola**}
+{605}{}{@lex color@ **bebeu uma destilada**}
+{606}{}{@lex color@ **bebeu um rum**}
+{607}{}{@lex color@ **bebeu rot gut**}
+{608}{}{@lex color@ **inalou jet**}
+{609}{}{@lex color@ **injetou psycho**}
+{610}{}{@lex color@ **engoliu hipertrofiador**}
+{611}{}{@lex color@ **engoliu mentats**}
+{612}{}{@lex color@ **bebeu antitoxinas**}
+{613}{}{@lex color@ **usou pó cicatrizante**}
+{614}{}{@lex color@ **engoliu rad-x**}
+{615}{}{@lex color@ **injetou XôRad**}
+{616}{}{@lex color@ **bebeu antídoto**}
+{617}{}{@lex color@ **comeu um biscoito**}
+{618}{}{@lex color@ **comeu um espetinho**}
+{619}{}{@lex color@ **comeu uma fruta**}
+{620}{}{@lex color@ **comeu carne**}
+{621}{}{@lex color@ **comeu alguma coisa nojenta**}
+
+{650}{}{@lex color@ **injetou estimulante em @lex target@**}
+{651}{}{@lex color@ **injetou super estimulante em @lex target@**}
+{652}{}{@lex color@ **usou pó cicatrizante em @lex target@**}
+{653}{}{@lex color@ **usou rad-x em @lex target@**}
+{654}{}{@lex color@ **usou XôRad em @lex target@**}
+{655}{}{@lex color@ **dá antídoto para @lex target@**}
+
+#
+# ELOCK
+#
+{700}{}{O conteiner deve estar aberto para se armar a tranca.}
+{701}{}{Primeiramente, você deve por uma senha para sua tranca.}
+{702}{}{Você pode mudar senhas de trancas somente em sua base ou tenda.}
+{703}{}{Você mudou a senha da tranca com sucesso : @lex pass@.}
+{704}{}{Diz: "Insira 4 dígitos".}
+{705}{}{Você abriu a tranca usando a seguinte senha: @lex pass@.}
+{706}{}{Você removeu a tranca com sucesso.}
+{707}{}{Você não pode quebrar a tranca.}
+{708}{}{Você instalou com sucesso uma tranca com a senha : @lex pass@.}
+{709}{}{Você precisa tentar gazuar o veículo para remover a trava.}
+{710}{}{Você conseguiu desencriptar alguns números da senha: @lex pass@.}
+{711}{}{Você precisa ter a chave do carro para inserir uma senha.}
+{712}{}{Você está tentando travar um objeto que já tem tranca. Remova a tranca primeiro.}
+
+# NOT USED
+# Manufacture, Alcohol
+#
+# Use
+{1500}{}{The distillation device is out of order.}
+{1501}{}{Firewood needed.}
+{1502}{}{You watch as the firewood burns in the stove.}
+{1503}{}{There is a fresh-brewed beer in a tank!}
+{1504}{}{The tank with home-distilled alcohol is brimmed!}
+# Use empty bottles
+{1505}{}{You poured beer into the bottles.}
+{1506}{}{You poured alcohol into the bottles.}
+{1507}{}{You don't have enough bottles.}
+# Use firewood
+{1508}{}{This device is broken.}
+{1509}{}{Need more firewood. What you have is probably not enough.}
+{1510}{}{You don't know what ingredients to use and what the poportions are.}
+{1511}{}{You prepared and poured in the stuff. You lit a fire in the stove. Distillation has begun.}
+{1512}{}{You lit a fire in the stove and poured in the stuff. Home-distillated vodka is filling the tank.}
+{1513}{}{There is enough wood there already.} 
+{1514}{}{At first you have to pour out brewed beer.}
+{1515}{}{At first you have to pour out distilled vodka.}
+# To broke
+{1516}{}{You have just broken the brewerage device.}
+{1517}{}{You have just broken the distillating device.} 
+{1518}{}{The boiler did not withstand the pressure and exploded!}
+{1519}{}{Your eyes were splattered with boiling water.}
+# Repair
+{1520}{}{Looks like you need some details.}
+{1521}{}{You need tools to fix this.}
+{1522}{}{You have succesfully fixed the device.}
+{1523}{}{You have failed at repairing and broken some details.}
+# Science
+{1524}{}{Device can be adjusted, but you need a wrench or something like that.}
+{1525}{}{You broke your wrench. As well as the device.}
+{1526}{}{During adjustment you dismounted half of the device. Now you need to assemble it back somehow.}
+{1527}{}{You adjusted something carefully but it was useless.}
+{1528}{}{You have adjusted the brewerage device. Now you'll need much less firewood.}
+{1529}{}{You have adjusted the distillation device. Now you'll need much less firewood.}
+{1530}{}{You have failed to adjust the device. Luckily, nothing got broken.}
+# Scenery
+{1560}{}{Some cereals lay here. They are cleansed and dried.}
+{1561}{}{Fermentation of raw materials for alcohol takes place in these tanks.}
+
+# NOT USED
+# Casino
+#
+
+{2000}{}{*Ring-a-ling*}
+{2000}{}{*Zzzzzzz*}
+{2000}{}{*Bing*}
+{2000}{}{*Dingity-ding*}
+{2000}{}{*Ding*}
+{2000}{}{*Kaa-ching*}
+{2001}{}{The machine is out of money.}
+
+#
+# Car, car.fos
+#
+
+{2100}{}{Número: @lex number@. Combustível: @lex fuel@/@lex fuel_tank@. Avarias: @lex wear@%.}
+
+# NOT USED
+# Getting firewood from tree (use axe on tree)
+#
+
+{2200}{}{This is suitable tree. You could cut fide wood... if your hands were okay.}
+{2201}{}{You need to rest.}
+{2202}{}{You hit your hand instead of tree!}
+{2203}{}{You've cut some fire wood.}
+{2204}{}{You've cut some fire wood, but can't carry it all.}
+{2205}{}{You've cut some fire wood, but can't carry it at all.}
+
+# NOT USED
+# Klamath, Grazing Area, Dogs. Using in klam_cowboy.fos
+#
+
+{2500}{}{AAUU! AUU! AUU!}
+{2501}{}{Grrrrr!}
+{2502}{}{Grr! Au!}
+{2503}{}{Au!}
+{2504}{}{Au! Au!}
+{2505}{}{Au! Au! Au!}
+{2506}{}{Au!}
+{2507}{}{*funga*}
+
+# Resources system
+{3700}{}{Parece que não há nada mais de útil por aqui.}
+{3701}{}{Você não pode pegar mais nada.}
+{3702}{}{Você encontrou : @lex itemname@ - @lex count@.}
+{3703}{}{Você encontrou : @lex itemname@.}
+{3704}{}{Вы добыли немного дров}
+{3705}{}{шт}
+{3706}{}{кг}
+{3707}{}{Você não encontrou nada de útil.}
+
+# Magic Ball mesages
+# > 0 luck = 3899..3908
+# > 3 luck = 3899..3919
+# > 5 luck = 3899..3919
+# > 6 luck = 3899..3932
+# > 7 luck = 3899..3935
+# > 8 luck = 3899..3941
+# > 9 luck = 3899..3943
+{3899}{}{What kind of stupid question is that?}
+{3900}{}{Well, it could work.}
+{3901}{}{Nah, I don't think so.}
+{3902}{}{NO is my answer.}
+{3903}{}{Do not count on that.}
+{3904}{}{You can count on that.}
+{3905}{}{Ask again later.}
+{3906}{}{Most likely.}
+{3907}{}{Cant tell for sure right now.}
+{3908}{}{Yes.}
+{3909}{}{Yes. Of course.}
+{3910}{}{I probably shouldn't be telling you this yet.}
+{3911}{}{Without a doubt.}
+{3912}{}{Highly doubt that.}
+{3913}{}{Certainly.}
+{3914}{}{Concentrate and try again.}
+{3915}{}{Stars favour you.}
+{3916}{}{My sources say no.}
+{3917}{}{Affirmative.}
+{3918}{}{Answer uncertain, please try again.}
+{3919}{}{I think yes.}
+{3920}{}{Stop shaking me like that. It hurts!}
+{3921}{}{You have strong right hand, if you know what I mean.}
+{3922}{}{Next time you shake me, please wash your hands beforehand.}
+{3923}{}{Temporary out of service.}
+{3924}{}{Best fonline player is... Not you.}
+{3925}{}{Keep shaking me like that, and you will get in trouble.}
+{3926}{}{I don't feel so good.}
+{3927}{}{I feel sick.}
+{3928}{}{You have warm hands.}
+{3929}{}{No.}
+{3930}{}{Your score is 23 out of 100. You still have chance to walk away. And dont ask me what it means.}
+{3931}{}{If you believe my inner instinct, you will succeed. And if you do not believe - you wont. Sorry.}
+{3932}{}{If you find roboguard which attacked caravan...Ah forget, it is from other game.}
+{3933}{}{There is a guy, who sells GEKK. There is a chance at least.}
+{3934}{}{Good luck finding out where bum from NCR hides caps that she begged.}
+{3935}{}{If you think shaking this ball is gonna give you anything other then a sarcasting comment, you're right!}
+{3936}{}{Will you ever stop shaking me?}
+{3937}{}{Your Luck is high. Shake me, I might tell you something useful!}
+{3938}{}{You wont find anything of use on NCR billboard.}
+{3939}{}{How dumb can a guy get, to go around shaking balls?.}
+{3940}{}{Stop rubbing me!}
+{3941}{}{NO! NO! NO!}
+
+#
+# Brahmin dung
+#
+{4200}{}{Não importa o quanto você tente, você não pode limpar só com suas mãos. Agora você está fedendo.}
+{4201}{}{A dieta de brahmin estava rica em celulose.} # high doc or science
+{4202}{}{É, é legal brincar com isso.} # low doc or science
+{4203}{}{Opa, um campo minado?} # walked into the shit
+{4204}{}{Você tirou parte da merda com sua pá.}
+{4205}{}{Porra! Agora você tá fedendo MUITO.} # slipped on the shit
+{4206}{}{Os brahmins ao seu redor parecem agitados.} # brahmin got mad
+
+#
+# Brahmin Text
+#
+{4220}{}{Múú. Eu disse: múú.}
+
+# Forcefields
+{5300}{}{Você foi impelido pelo campo de força enfraquecido.}
+{5301}{}{Você foi impelido pelo campo de força.}
+{5302}{}{Você falhou em desativar o campo de força.}
+{5303}{}{Você desativou o campo de força.}
+{5304}{}{Você ativou o campo de força.}
+{5305}{}{Você destruiu o emissor de capo de força.}
+{5306}{}{Você não vê jeito de reutilizar o emissor.}
+{5307}{}{Você não vê jeito de utilizar o campo de força.}
+{5308}{}{Sim, há muita energia passando por isso. É melhor parar antes que a eletricidade faça seus olhos explodirem.}
+{5309}{}{Você falhou em fazer qualquer coisa de útil e tomou um choque de 50,000 V. Ao menos você não precisa mais se preocupar em se depilar.}
+{5310}{}{O campo de força está funcionando normalmente como antes.}
+{5311}{}{Você falhou em ativar o campo de força.}
+
+# Way blocking messages
+{70100}{}{Quero passar.@@Sai da frente.@@Sai do meio.}
+{70101}{}{@lex name@, para de fechar o caminho, se não eu atiro.@@@lex name@, sai do caminho se não atiro.}
+{70102}{}{Imbecil.@@Não vou fazer fácil da próxima vez.@@Idiota.@@E fique aí.}
+
+# Role messages
+{70110}{}{Ouvi dizer que gosta de ir para a cadeia.@@Então tu gosta de ficar na cadeia hein?@@Destino...cadeia@@Prepare-se porque tu tá indo para a cadeia.@@Espero que goste de locais apertados.@@Ouvi dizer que gosta de locais apertados.@@Tá, vamo indo.}
+{70111}{}{Certo, pode ir embora.@@Se manda.@@E não volte mais, @sex|seu||sua| bosta.@@Pode ir embora.@@E não volte mais.@@Da próxima vez, não vai sair tão rápido assim.}
+{70112}{}{Opa, o que tu tá fazendo aqui?!@@Sem entradinha por aqui!@@Porque tá andando assim suspeito?@@EI! Saia agora!@@Saia daqui ou então eu atiro.}
+{70113}{}{Ei, tu tem algo pra comer?@@Tem alguma comida para esse pobre coitado aqui?@@Tem algo pra comer?@@Com licença, tu tem comida para me dar?@@[olhar triste]@@[olhar muito triste]@@Pode me dar algo para comer?@@Tem algo para me dar para comer?@@Tem alguma coisa para comer?@@[olha para tu com um olhar tristonho]...comida?}
+{70114}{}{Seu porra!@@Quer mais? filho da puta! [sorriso]@@[balança a cabeça]@@[olha para você e cospe no chão]@@O que tá fazendo aqui?@@O que é?@@Vá embora.@@Sua bosta.@@Fela da puta[cof cof].}
+{70115}{}{Tu não é bem-vindo aqui!@@Sai daqui ou a gente começa a atirar!@@Se manda daqui ou vamos atirar!@@Tu não aprendeu? Sai daqui ou a gente atira!@@Melhor sair daqui.@@Tu de novo?! Que merda!@@Tu tem dez segundos para sair!@@Saia agora ou eu atiro!@@[aponta a arma dele para você] Vai ficar aqui mesmo?!@@[aponta a arma para você] Tu está indo embora, não é?}
+{70116}{}{Ei, Tu não pode fazer isso aqui.@@Se manda daqui com isso!@@Isso não é permitido aqui!}
+{70117}{}{Isso foi uma burrice, o que fez.@@@sex|Ladrão||Ladra| do caralho!@@Nada de roubar aqui!@@Nunca mais venha para cá para roubar.@@Fique com suas mãos no seu bolso!@@I have seen that!@@Now you are in trouble.@@You got yourself in trouble.}
+{70118}{}{Ei, não toque em nada!@@Não chegue perto!@@Pare de fazer isso ou eu atiro!}
+{70119}{}{Corre!@@Aaaaarr!@@Nãao!@@Nãaaaaao!@@Socorroo!@@Por favor, não me mate.@@Sou muito jovem para morrer agora!@@Foda-se, vou embora daqui!@@Aaaaaaaaa!@@Por favor, me poupe.@@Puta que pariu. Corre!@@Eita porra!@@Corre negada!}
+{70120}{}{Ei não toque em nada!@@Deixe o corpo onde está!@@Não encoste no corpo!@@Deixe os pertences no corpo!}
+{70121}{}{Tu não deveria estar aqui!@@Ei! O que tu tá fazendo aqui!?@@O quê?!}
+{70122}{}{Vai embora daqui! Esta área é privada.@@Dê meia-volta. Ou a gente atira.}
+{70123}{}{Isso aí é meu!@@Estou pegando as coisas do corpo.@@As coisas do corpo são minhas.@@Este corpo é meu.@@Esotu pegando as coisas do defunto!}
+{70124}{}{Isso foi burrice.@@Vai morrer!@@Pega!@@Perdeu @sex|playboy||princesa|.@@Sua bosta!@@ @sex|Filho||Filha| da puta!@@Seu pedaço de bosta!@@Imbecil!@@}
+{70125}{}{Chega mais, eu tenho um monte de coisa boa para  trocar.@@Diz aí, bora negociar?@@Quer negociar comigo?}
+{70126}{}{Guarde sua arma!@@Não chegue mais perto com a arma na mão!@@Sua arma, por favor.@@Guarde sua arma!}
+{70127}{}{Chegou perto demais.@@Entendi... agora tu vai morrer!@@Tu deveria ter ficado lá.}
+{70128}{}{Eu posso te ver!@@Nem tente isso aqui.@@Sem gaiatice.@@Sem truquezinho!}
+{70129}{}{Esta casa é chamada '@lex houseName@' e está disponível para venda.@@Esta está a venda. O nome dela é '@lex houseName@'.@@Temos uma livre aqui. '@lex houseName@'.@@'@lex houseName@' está  a venda.}
+{70130}{}{Esta casa está ocupada e pertence a @lex houseOwner@.@@Esta casa pertence a @lex houseOwner@.@@O dono da casa é @lex houseOwner@.}
+{70131}{}{E não quero mais seus pertences.@@Porque eu iria querer isso?!@@Apenas pegue suas coisas, tá?@@[balança a cabeça] Não, obrigado.}
+{70132}{}{Não tem tempo para vender as coisas? Eu posso fazer isso por ti.@@Procurando alguém para vender suas coisas? Eu tô aqui para isso.@@O jeito mais seguro de vender suas coisas, bem aqui!@@O melhor negociador do Deserto está livre para fechar acordo.@@O melhor negociador do Deserto está pronto para ser contratado!}
+{70133}{}{Chega mais, chega mais! Os melhores artigos para sobreviver no Deserto. Só as melhores coisas encontradas por @lex supplierName@.@@Só as melhores coisas que @lex supplierName@ tem podem ser encontradas aqui.@@Sabe quem tem os melhores equipamentos? Claro que  @lex supplierName@.@@@lex supplierName@ está me trazendo os melhores equipamentos do Deserto. Chega mais.}
+{70134}{}{Este á o seu quarto. Não quebre nada ou vai pagar extra.@@Aqui está o seu quarto. Aproveite a estadia.@@Aqui. Esse é o seu quarto. Não se esqueça de trancar a porta quando sair.}
+{70135}{}{Auu auu!@@Snif snif Grrr...@@Árr! Au au!}
+{70136}{}{Opa, oi! Tá gostando daqui ? Porque eu não.@@Vai fazer algo contra as regras por aqui? Dá para entender, pessoas fofinhas são sozinhas.@@Você é tão @sex|feio||feia|. Tão, mas tão Você é tão @sex|feio||feia|. Hahaha! Besteira, tô brincando - tu é legal.@@Parece ser um dia bonito hoje, não? É, até eu hoje tou com aquela sensação de querer matar coisas por aí.@@O Ponto Central. Tão... central. Pfft hahahaha! Tou morrendo de rir.@@Tu é muito ruim... em ser ruim. Te peguei, não foi?@@Não, nada de Zaroff por hoje... não pergunte de novo.@@ [Sussura.] Ei!... Eu... sou ... demais.@@Seja legal enquanto tiver por aqui ou então o ursinho vai ter uma conversinha contigo.}
+{70137}{}{Alguma coisa tá fedendo muito aqui, e eu tenho certeza que usei sabão... ah, é você...@@Melhor ir saindo ou meu Ursinho Lindo vai ficar com raiva. Aliás, melhor começara correr agora!@@Sabe o que eu mais amo do que Nuka-Cola? A possibilidade de você não existir.@@*sorri com ódio*}
+
+# Dialogs
+# "Everything is fine."
+{70201}{}{Tá tudo bem?@@Está tudo bem aí?@@Ei! Tudo bem contigo?@@Tá de boa aí?@@Tudo certo aí?@@Tá tudo nos conformes aí?@@Ou! Tá tudo bem aí contigo?}
+{70202}{}{sim, parece que tá.@@É, as coisas estão quietas.@@Tá, tá sim.@@Sem problemas por enquanto.@@Tudo normal.@@Tá sim.@@Nennhum problema até agora.}
+# "Any offenders?"
+{70211}{}{Viu algum imbecil por aí?@@Viu algum filho da puta da puta procurando problema?@@Precisando de ajuda com alguém?@@Algum arruaceiro?@@Viu alguém que precise de ajuda?}
+{70212}{}{Sim, vi @lex offender@ por aí.@@Procura por @lex offender@.@@Acho melhor ir ali falar com @lex offender@.@@Sim, eu acho que vi @lex offender@ passando por aí.@@@lex offender@}
+# "You are healed."
+{70215}{}{Pronto.@@Pronto, só tomar cuidado agora.Novo em folha.@@Você ficará bem.@@Você deve se sentir melhor agora.@@Não se preocupe. Vai dar certo.}
+{70216}{}{Valeu doutor.@@Obrigado.@@Valeu, bem melhor.@@Já tô me sentindo melhor.@@Obrigado doutor.@@Valeu.}
+
+# Informs
+{70301}{}{|0xEC6262 Você causou problemas na cidade. Os guardas vão lhe tratar com hostilidade. Melhor sair da cidade antes que eles comecem a atirar.}
+{70302}{}{|0xEC6262 Você vai para a cadeira por conta de suas ações.}
+{70303}{}{|0x3A7F31 Você foi liberado da cadeia. Tome cuidado com as coisas que faz.}
+{70304}{}{Você não pode entrar em uma casa que não lhe pertence.}
+{70305}{}{Jogador com tal nome não existe.}
+{70306}{}{Adicionado com sucesso.}
+{70307}{}{Removido com sucesso.}
+{70308}{}{Você não pode entrar na casa enquanto estiver em combate.}
+{70309}{}{Você não pode entrar enquanto estiver em combate.}
+{70310}{}{Você não mora aí.@@Este local parece não pertencer aí.@@Porta errada, acho.}
+{70311}{}{Os inimigos se alertaram. Eles estão indo a seu caminho.}
+{70312}{}{Espere mais ondas de inimigos.}
+{70313}{}{Sua localização já está visível.}
+{70314}{}{Tarde demais para buscar ajuda.}
+{70315}{}{Você não pode emitir sinais de localização de rádio deste lugar.}
+{70316}{}{Você terminou a escolta da caravana com sucesso.}
+{70317}{}{Você ganhou @lex experience@ pts. de experiência e @lex reward@ tampinhas.}
+{70318}{}{Você não pode jogar isso aqui.}
+{70319}{}{Você não pode usar estimulantes com tanta frequência.}
+{70320}{}{Você não pode usar estimulantes em outros com tanta frequência.}
+{70321}{}{Alguém está lhe seguindo. Tome cuidado.}
+{70322}{}{Certo}
+{70323}{}{Stealth Boy quebrou.}
+{70324}{}{Você vê fumaça saindo do sinalizador.}
+{70325}{}{Você não vê mais fumaça de sinalizador.}
+{70326}{}{Esta habilidade não pode ser utilizada em combate em turnos.}
+{70327}{}{Você não conseguiu consertar o gerador.}
+{70328}{}{Você consertou o gerador mas parece que não vai aguentar por muito tempo.}
+{70329}{}{O elevador parece estar sem energia.}
+{70330}{}{O mapa o leva você ainda mais adentro do deserto.}
+{70331}{}{Este jogador deve escolher você para você poder ir junto a caravana.}
+{70332}{}{Sem sentido de usar o sinalizador aqui.}
+{70333}{}{Não sobrou nada.}
+{70334}{}{Você  obteve minério.}
+{70335}{}{Você  obteve minério.}
+{70336}{}{Você  obteve madeira.}
+{70337}{}{|4291317840 Você não pode subir a habilidade para mais do que @lex skill@.}
+{70338}{}{|4291317840 Você não pode investir pontos de habilidade na habilidade de Negociação. Para aumentar esta habilidade, você precisa negociar mais.}
+{70339}{}{|4291317840 Você não pode investir pontos de habilidade na habilidade de Catador de Lixo. Para aumentar esta habilidade, você precisa catar mais.}
+{70340}{}{Você não pode usar os primeiros socorros em você mesmo em combate.}
+{70341}{}{Tamo indo embora. Arruma tuas coisas e fica perto!@@Tamo indo. Se liga!@@Tamo indo, presta atenção!@@Vamo embora, já deu a hora.@@A gente tá indo embora.@@A gente tá indo, presta atenção!@@.}
+{70342}{}{Você foi incapaz de obter algo.}
+{70343}{}{Você obteve alguns materiais.}
+{70344}{}{Você deve ter todos seus PAs para poder utilizar esta habilidade em combate com base em turno.}
+{70345}{}{Mapa mundi foi atualizado.}
+{70346}{}{Você já conhece este lugar.}
+{70347}{}{Você não pode entrar neste quarto, apenas os membros da facção são permitidos aqui.}
+{70348}{}{Você não pode ter mais tendas.}
+{70349}{}{O local que você estava não está mais disponível. O personagem que era dono foi deletado.}
+{70350}{}{Você deve ter uma bolsa de doutor ou paramédico para usar esta habilidade em combate em turnos.}
+{70351}{}{Seu idiota, você não pode jogar isso aí!}
+{70352}{}{Você levou todas as caixas, fale com o chefe estivador.}
+{70353}{}{Você já pegou uma caixa, você não pode carregar duas ao mesmo tempo.}
+{70354}{}{Você pegou uma caixa da carroceria da caravana.}
+{70355}{}{Não pegue nisso!}
+{70356}{}{Espaço utilizado}
+{70357}{}{Guardas podem perceber e tentar parar você se verem você tentar roubar o carro.}
+{70358}{}{Aviso}
+{70359}{}{Você deve escolher uma vantagem antes do próximo nível ou você irá perdê-lo permanentemente.}
+{70360}{}{Você não tem tampinha para lançar ao alto.}
+{70361}{}{Você não pode usar isso enquanto não tenha escolhido as vantagens.}
+{70362}{}{Você precisa gastar os pontos de habilidade primeiro.}
+{70363}{}{Você precisa estar no nível 1 para usar este item.}
+{70364}{}{Isto não é seu.}
+{70365}{}{Você não tem mais nada para aprender.}
+{70366}{}{Você plantou a bomba e armou o contador. O display mostra 00:00:30. Talvez seja sábio procurar abrigo.}
+{70367}{}{Você precisa ser o dono da base para colocar mobílias.}
+{70368}{}{Você não pode colocar mobílias na tenda de outra pessoa.}
+{70369}{}{Está muito próximo ao spawn de carro ou jogador. Você não pode colocar isto aqui.}
+{70370}{}{Suas botas de borracha começaram a derreter mas você conseguiu trocar por outras bem a tempo.}
+{70371}{}{Suas botas de borracha derreteram!}
+{70372}{}{|0xc80000 Gosma radioativa está lhe queimando.}
+{70373}{}{|0xc80000  *furtou* }
+{70374}{}{@lex name@ lhe curou @lex heal@ pontos de vida.}
+{70375}{}{@lex name@ lhe levantou de um nocaute.}
+{70376}{}{|4291317840 Você não precisa ter mais de 200% em habilidades de Combate.}
+{70377}{}{|4291317840 Você não precisa ter mais de 200% em habilidades de Escotismo.}
+{70378}{}{|4291317840 Você não precisa ter mais de 200% em habilidades de Reparo.}
+{70379}{}{|4291317840 Você não precisa ter mais de 200% em habilidades de Ciência.}
+{70380}{}{Você não pode desmanchar itens neste lugar.}
+{70381}{}{Um guarda foi morto em Areia Negra. A cidde pode estar sob ataque.}
+{70382}{}{Quê porra é essa que tu tá fazendo?}
+{70383}{}{Você e seus parceiros de time precisam ser nível 27 para entrar neste lugar esquecido por Deus.}
+{70384}{}{Todo o ar foi sifonado. Você começou a sufocar.}
+{70385}{}{Erro. Não dá para se mover para o local ordenado.}
+{70386}{}{O Operador abandonou o local. Retornando.}
+{70387}{}{Administradores da Base:}
+{70388}{}{Membros da base:}
+{70389}{}{Você não pode montar uma tenda aqui, tente em outro lugar.}
+{70390}{}{Sua facção está no controle desta cidade.}
+{70391}{}{A cidade lhe considera fraco e não quer sua proteção.}
+{70392}{}{Você não controla esta cidade.}
+{70393}{}{Somente líderes e oficiais podem usar este conteiner.}
+{70394}{}{Sua facção tem sistema de imposto. Todo o lucro da cidade é transferido ao Banco de Areia Negra.}
+{70395}{}{Você não pode tomar a cidade agora. Volte na hora: @lex tctime@.00 GMT+2.}
+{70396}{}{Você desarmou a armadilha com sucesso.}
+{70397}{}{Você acidentalmente gatilhou a armadilha.}
+{70398}{}{Você já está morto.}
+{70399}{}{Não desista!}
+{70400}{}{Zona: @lex x@ : @lex y@}
+{70401}{}{Coordenadas: @lex x@ : @lex y@}
+{70402}{}{Cores dos nomes atualizados.}
+{70403}{}{Lista de ignorados atualizados.}
+{70404}{}{Ligações atualizadas.}
+{70405}{}{Modo de combate mudou para combate em turnos.}
+{70406}{}{Modo de combate mudou para tempo real.}
+{70407}{}{Modo de combate mudou para "qualquer um".}
+{70408}{}{Você não pode ser Viciado e Resistente a Drogas ao mesmo tempo.}
+{70409}{}{[Cidadão]}
+{70410}{}{Stealth Boy ligado.}
+{70411}{}{Stealth Boy desligado.}
+{70412}{}{Sensor de movimento ligado.}
+{70413}{}{Sensor de movimento desligado.}
+{70414}{}{Sensor de movimento quebrou.}
+{70415}{}{Mas Senhor. Você já está na lista. Me procure amanhã.}
+{70416}{}{Pronto. Não esqueça de checar amanhã.}
+{70417}{}{Base conectada a facção. Use o gerenciador de facção.}
+{70418}{}{|4291317840 O arquivo data/data04.zip não foi encontrado. Execute FOUpdater.exe ou baixe o arquivo de http://forum.fonline2.com}
+{70419}{}{|4291317840 Você deve estar ao menos no nível 24 para fazer reroll.}
+{70420}{}{O preço de reroll para seu personagem é}
+{70421}{}{Você já tem a quantidade necessária de tampinhas, você está pronto para fazer o reroll.}
+{70422}{}{|4291317840 O arquivo data/faction_icons.zip não foi encontrado. Execute o FOUpdater.exe ou baixe o arquivo de http://forum.fonline2.com}
+{70423}{}{Você não pode levantar um contêiner com itens dentro.}
+{70424}{}{|4291317840 Arquivo data/data04.zip não foi encontrado ou está desatualizado. Execute o FOUpdater.exe ou baixe o arquivo de http://forum.fonline2.com}
+{70425}{}{Auction not working, try later.}
+{70426}{}{You can't put item to auction with deterioration more than 0.}
+{70427}{}{You can't put broken item to auction.}
+{70428}{}{You can't sell used hintbook.}
+{70429}{}{Item not exists. Probably someone bought it already.}
+{70430}{}{Not enough money to pay fee.}
+{70431}{}{Not enough money.}
+{70432}{}{|4291317840 File data/auction.zip not found or outdated. Run FOUpdater.exe or download file from http://forum.fonline2.com}
+{70433}{}{You successfully bought item.}
+{70434}{}{|4291317840 Someone bought your item on auction.}
+{70435}{}{You successfully put item on auction.}
+{70436}{}{This type of items not allowed on auction.}
+{70437}{}{|4291317840 File data/auction.zip outdated. Run FOUpdater.exe or download file from http://forum.fonline2.com}
+{70438}{}{The fee can not be 0, increase the price or amount.}
+{70439}{}{You took back item from auction.}
+{70440}{}{Now you know where is Toxic Caves, hurry up 4 days left.}
+{70441}{}{You can't enter location, player @lex name@ using fastrelog/duallog.}
+{70442}{}{You have free reroll.}
+
+#Aviator
+{70570}{}{Imagino como era antes da Guerra...@@Esse lugar tá uma bagunça.@@Eu com certeza aceitaria mais uma aguardente.@@Circulando.@@Quê que aconteceu aqui?@@Cara, aqui fede.@@Vamo embora.@@Até o Favelão cheira melhor que aqui.@@Queria saber o que atrai eles pra cá...@@Tou ouvindo eles se mexerem.@@Shh, ouviu isso?@@O que é uma escola?@@Melhor a gente andar se não vão nos cercar.@@Aqui tá pior que ninho de Iucapiã.@@Já foi a São Francisco? Te digo, aquele lugar é louco.@@O que é?@@Tô sentindo os fedorentos.@@Ouviu isso?@@Olha pronde anda.@@Eu queria tomar uma.@@Cuidado pronde vai.@@Fica de olho nos carniçais.@@Nunca mais vou pra Necropolis.@@Posso ouvir eles andando.}
+{70571}{}{Fui umas vezes pra São Francisco... pessoal engraçado.@@Tu conhece o Jack da Cidade Velha?@@Já foi em São Francisco?@@Todo esse tempo andando me deu sede de aguardente.@@Um dia eu fiquei tão bêbado que fui parar em Serra Quebrada.@@O que tu tá olhando? Fala logo!@@Eu vou tomar todas...@@Nunca mais vou beber e pilotar de novo.@@Ouvi dizer que os Lâminas pegam as kengas mais bonitas.@@Tem alguma coisa podre no Ponto Central...@@Eles não deveriam deixar nenhum daqueles porcos no Ponto Central.@@Odeio esses fedorentos.@@Cara, não dá vontade de vomitar com o cheiro desses carniçais?}
+{70572}{}{Porra, olha pra onde tu atira!@@Tá cego ou o quê?@@O quê que tu tá fazendo?@@Mas que porra? Tá cego?@@Porra! Olha pra onde tu tá atirando!}
+{70573}{}{Cuidado, tou escutando eles vindo.@@Eles tão vindo.@@Presta atenção, tou ouvindo eles vindo.@@Ouviu isso? Acho que tão chegando perto.@@Fica perto, eles tão chegando.@@Olha pra todo o lado pra não deixar eles encurralarem a gente.@@Os carniçal tão chegando junto.}
+{70574}{}{Se fudeu!@@Morre!@@Morreu!!@@Morre zumbi do caralho!}
+{70575}{}{Cara, não tou sentindo bem.@@Porra, tá foda aqui...@@Caralho!@@Já estive pior...@@Cara, num tô bem...}
+{70576}{}{Me cobre enquanto conserto isso!@@Segura eles!@@Me protege caralho!@@Não deixa eles chegarem perto!@@Não deixa eles chegarem perto da minha máquina!@@MMata eles porra!@@Mata esses filho da puta!@@Mata eles caralho! Mata eles!}
+{70577}{}{PRONTO CARALHO!}
+#Boyd Stepshouts
+{70580}{}{Chegamo. A gente tem que passar por aquela cerca e depois por aquele prédio grande para cima do telhado.}
+{70581}{}{Se a gente não fizer isso rápido os carniçais vão aparecer e vai aparecer em kilo. Bora.}
+{70582}{}{Merda, o elevador não tá funcionando daqui. A gente vai ter que subir de escada e ver se funciona no próximo andar.}
+{70583}{}{Porra, o elevador não tá funcionando daqui também. O gerador deve ter queimado. Vai lá ver o gerador.}
+{70584}{}{Vamo lá, minha parada pra voar tá bem perto.}
+{70585}{}{Alguma coisa não tá certa. Tá muito quieto...@@Tá quieto demais aqui...}
+
+#NCR
+{70590}{}{O Portão já está destruído.}
+{70591}{}{Você precisa de dinamite para detonar.}
+{70592}{}{Você precisa de pelo menos 5 bananas de dinamite.}
+{70593}{}{Você plantou a bomba. Vai explodir em um minuto.}
+{70594}{}{Você se tornou cidadão de Areia Negra.}
+{70595}{}{Você perdeu sua cidadania por conta de suas ações.}
+
+#Faction informs
+{70800}{}{|4291317840 Falha crítica. Reporte ao administrador.}
+{70801}{}{|4291317840 Jogador @lex str@ não existe.}
+{70802}{}{|4291317840 Parece que o jogador @lex str@ é VOCÊ.}
+{70803}{}{|4291317840 Jogador @lex str@ deve estar online.}
+{70804}{}{|4291317840 Jogador @lex str@ já é membro de uma facção.}
+{70805}{}{|4291317840 Jogador está ocupado, tente mais tarde.}
+{70806}{}{|4291317840 Você não pode banir @lex str@.}
+{70807}{}{|4291317840 Jogador @lex str@ foi banido da sua facção.}
+{70808}{}{|4291317840 Você foi banido da facção.}
+{70809}{}{|4291317840 Jogador @lex str@ não é membro da sua facção.}
+{70810}{}{|4291317840 Você não pode mudar o próprio rank.}
+{70811}{}{|4291317840 Operação não permitida.}
+{70812}{}{|4291317840 Você já é líder.}
+{70813}{}{|4291317840 Para criar uma facção é 500,000 tampinhas.}
+{70814}{}{|4291317840 Você uniu-se a facção @lex str@.}
+{70815}{}{|4291317840 Tarde demais.}
+{70816}{}{|4291317840 Símbolos inválidos no nome da facção.}
+{70817}{}{|4291317840 Você não pode usar espaço como o primeiro ou último símbolo para o nome da facção.}
+{70818}{}{|4291317840 Você não pode usar dois espaços consecutivos no nome da facção.}
+{70819}{}{|4291317840 Já existe uma facção com este nome.}
+{70820}{}{|4291317840 Tamanho mínimo do nome: @lex min@ ,tamanho máximo: @lex max@.}
+{70821}{}{|4291317840 Você foi convidado(a) para a facção @lex str@. Unir-se a eles?}
+{70822}{}{|4291317840 Você quer deletear a facção @lex str@. Tem certeza?}
+{70823}{}{|4291317840 A facção @lex str@ está lhe oferecendo uma aliança. Aceita?}
+
+#Location infos
+{71001}{}{Você está prestes a entrar em um lugar bastante perigoso. Tome cuidado. No momento que você entrar, não há volta...}
+
+# Smart cursor
+{72001}{}{Cortar madeira}
+{72002}{}{Minerar minérios}
+{72003}{}{Minerar ferro}
+{72004}{}{Limpar a merda}
+
+# Chat
+{72100}{}{Chat}
+{72101}{}{Pressione Ctrl + C para abrir o chat}
+
+# Prewipe
+
+{72200}{}{A Loucura do Pré-Apagão chegou. O deserto está ainda mais difícil. Mesmo as cidades mais seguras se tornaram zonas mortas infestadas com carniçais.}
+{72201}{}{O evento de Pré-Apagão está acontecendo agora.}
+{72202}{}{Obrugado por participar na nossa sessão.}
+{72203}{}{Tudo está morto ou morrendo.}
+{72204}{}{Visite o nosso fórum: forum.fonline2.com para mais informações.}
+
+# Gossips
+{73001}{}{Um fazendeiro de @lex locationname@ precisa de @lex itemname@. @@Um fazendeiro em @lex locationname@ tá precisando de @lex itemname@. @@Dizem que uns fazendeiros de @lex locationname@ tão precisando de ajuda se não vão perder tudo.}
+{73002}{}{Por favor ajudem nossos fazendeiros. Eles precisam de ajuda. @@Nossos fazendeiros precisam de @lex itemname@s. As pessoas não são tão prestativas como antes.}
+{73003}{}{Os guardas de @lex locationname@ precisam de @lex itemname@s. @@Os guardas de @lex locationname@ estão comprando armas. @@A defesa da região de @lex locationname@ tá com novos guardas. @@A defesa de @lex locationname@ tá treinando os novos guardas.}
+{73004}{}{Quem puder ajude os guardas daqui. @@Os guardas daqui precisam de @lex itemname@s. @@Os guardas tão precisando de @lex itemname@.}
+{73005}{}{@lex locationname@ só tem bêbados. @@ Os moradores de @lex locationname@ bebem muito @lex itemname@. @@ @lex locationname@ tá falindo por conta de bebida. Todo mundo lá só quer beber.}
+{73006}{}{Aquele cú de cana fica gritando pedindo @lex itemname@. Que idiota. @@ Aquele alcoólatra fica incomodando os viajantes pedindo @lex itemname@.}
+{73007}{}{Os pais de @lex locationname@ deviam prestar mais atenção nos filhos. @@ As crianças de @lex locationname@ vivem em grande pobreza. Eles ficam pedindo @lex itemname@s para quem passa. @@ Crianças tão morrendo de fome em @lex locationname@ .}
+{73008}{}{A gente precisa ajudar as crianças urgentemente. Elas estão morrendo de fome e os pais não se importam com elas. @@ Por favor, se tiver @lex itemname@ , dê a uma criança faminta.}
+{73009}{}{As melhores putas tão em @lex locationname@. @@ As kengas de @lex locationname@ sabem fazer o serviço. @@ @lex locationname@ é bom pra relaxar com uma kenga. }
+{73010}{}{As melhores putas do deserto !!! Só em @lex locationname@. @@ Visitem as nossas princesas, e a maioria delas não tem DSTs.}
+{73011}{}{Um morador de @lex locationname@ tá vendendo um monte de talha. @@ Os moradores de @lex locationname@ tão vendendo um monte de coisas.}
+{73012}{}{Ouvi dizer que tem alguém vendendo bons equipamentos. @@ Aquele cara daqui da cidade tá vendendo um monte de coisa boa.}
+{73013}{}{Tem um traficante vendendo droga barata em @lex locationname@. @@ Os traficantes de @lex locationname@ tão vendendo droga de boa qualidade. @@ Os traficantes de @lex locationname@ tão vendendo droga de qualidade.}
+{73014}{}{Pssst, ei! Fala com o brother ali que ele tem umas paradas baratas. @@ Os traficante tão vendendo bem barato aqui. De qualidade.}
+{73015}{}{Um cara em @lex locationname@ tá vendendo componentes químicos. @@ Um cara em @lex locationname@ tá vendendo componentes químicos em grande quantidade.}
+{73016}{}{Tem um grupo por aqui vendendo componentes químicos. @@ Psssssst. Se liga que tem um cara vendendo componentes químicos.}
+{73017}{}{Tem um cara vendendo transformador de energia barato em @lex locationname@. @@ Um cara em @lex locationname@ tá vendendo transformador de energia barato.}
+{73018}{}{Parece que tem um grupo vendendo mercadoria roubada aqui. @@ Psssssst. Acho que o cara ali tá vendendo transformador de energia.}
+{73019}{}{Um cara tá vendendo aço de alta qualidade em @lex locationname@. @@ Ouvi dizer que tão vendendo aço de alta qualidade em @lex locationname@ num preço amigo.}
+{73020}{}{Parece que tão vendendo aço de alta qualidade contrabandeado aqui. @@ Tem um grupo vendendo aço de alta qualidade contrabandeado.}
+{73021}{}{Tão vendendo kevlar barato em @lex locationname@. @@ Um cara em @lex locationname@ tá vendendo kevlar barato, acho que é mercadoria roubada.}
+{73022}{}{Tem alguém vendendo kevlar barato por aqui. O preço de mercado tá muito baixo. @@ Tem um grupo vendendo mercadoria roubada aqui.}
+{73023}{}{Tão vendendo urânio roubado em @lex locationname@. @@ Aquele cara de @lex locationname@ tá vendendo urânio.}
+{73024}{}{Tem alguém vendendo mercadoria roubada. A cidade tá muito movimentada. @@ Psiu, ei! Tem um cara bem ali vendendo urânio. Dá uma olhada lá.}
+{73025}{}{Dois catadores sumiram por @lex locationname@. @@ Tão falando por aí que acharam um baú estranho perto de @lex locationname@.}
+{73026}{}{Ruínas são meio perigosas por conta de todos os tipos de coisas que a gente encontra. @@ Tão falando que acharam umas ruínas de uma cidade antiga que tinha muito equipamento.}
+{73027}{}{Dois caçadores jovens sumiram perto de @lex locationname@. @@ Tão falando de uma caverna que fica perto de @lex locationname@. @@  Todo mundo tá falando de uma caverna perto de @lex locationname@ cheia de @lex crittername@. }
+{73028}{}{Dois caçadores experientes desapareceram perto daqui. @@ Tão falando de uma caverna de @lex crittername@s perto daqui.}
+{73029}{}{Um acampamento foi atacado perto de @lex locationname@. @@ Tão falando de um acampamento que foi invadido perto de @lex locationname@. @@  @lex crittername@s atacaram um campo de caçadores perto de @lex locationname@.}
+{73030}{}{Um acampamento de caçadores foi atacado perto daqui. @@ Aqui tá perigoso. Tão falando de um acampamento que foi invadido por um monte de @lex crittername@.}
+{73031}{}{Uma mina velha explodiu  perto de @lex locationname@. @@ O carro de um grupo de @lex crittername@s bateu de frente numa mina antiga perto de @lex locationname@.}
+{73032}{}{Um campo minado explodiu perto daqui. @@ Tome cuidado com um grupo de @lex crittername@ que ficou preso em um campo minado aqui perto.}
+{73033}{}{Um bando de @lex crittername@s tá pelas redondezas de @lex locationname@ com o carro quebrado.}
+{73034}{}{Um grupo de @lex crittername@ tão presos perto daqui com o carro quebrado.}
+{73035}{}{Despacharam drogas na farmácia do Renesco em Nova Reno. @@ Chegou um lote grande de drogas em Nova Reno. @@ Tão vendendo muita droga barata em Nova Reno. }
+{73036}{}{Chegou a pouco um monte de droga na loja do Renesco. @@ O Renesco tá com carregamento novo de drogas. @@ Renesco tá vendendo droga barata.}
+{73037}{}{Um carregamento de munição chegou na Armas de Nova Reno. @@ Tão vendendo munição barata em Nova Reno. @@ Tão vendendo muita munição barata em Nova Reno. @@ Armas de Nova Reno tá vendendo grande quantidade de munição a preço baixo. }
+{73038}{}{Um carregamento grande de munição chegou na cidade. @@ Tão vendendo munição barata na loja Armas de Nova Reno. @@ Armas de Nova Reno tá vendendo munição a preço baixo. }
+{73039}{}{Um carregamento de livros chegou em São Francisco. @@ Venda de livros em São Francisco. @@ Um vendedor de livros está com um carregamento novo em São Francisco. }
+{73040}{}{O transporte de livros chegou na loja de livros no Cargueiro. @@ Chegou livro novo na loja do Cargueiro.}
+{73041}{}{Um carregamento de drogas chegou na loja do Dr. Fung em São Francisco. @@ A loja de drogas do Dr. Fung tá com material novo. }
+{73042}{}{Chegou um monte de droga na loja do Dr. Fung. @@ Dr. Fung tá vendendo droga barata.}
+{73043}{}{Uma caravana levando kevlar para Gecko tá sob ataque. @@ Um grupo de Khans tá atacando uma caravana que transporta kevlar. @@ Uma caravana que tá transportando kevlar tá sob ataque dos Khans. Eles vão precisar de ajuda.}
+{73044}{}{Caravana levando ao de alta qualidade para Vermelheiro tá sendo atacada. @@ Ladrões de estrada tão atacando uma caravana de transporte de aço de alta qualidade.}
+{73045}{}{Grupo de transporte de urânio refinado para Serra Quebrada tá sob ataque pesado. @@ Ladrões tão roubando um carregamento de urânio refinado. @@ Uma caravana que tava levando urânio refinado para Serra Quebrada tá sendo atacada por vários ladrões.}
+{73046}{}{Ponto Central e a RNC assinaram um contrato de assistência de urgência - precisam de mais mão de obra. @@ As caravanas tão precisando de mais gente para ajudar nas rotas entre Ponto Central e RNC.}
+{73047}{}{Ponto Central e a Cidade do Abrigo assinaram um contrato de assistência de urgência - precisam de mais mão de obra. @@ As caravanas tão precisando de mais gente para ajudar nas rotas entre Ponto Central e Cidade do Abrigo.}
+{73048}{}{Ponto Central e São Francisco assinaram um contrato de assistência de urgência - precisam de mais mão de obra. @@ As caravanas tão precisando de mais gente para ajudar nas rotas entre Ponto Central e São Francisco.}
+{73049}{}{Os Mercadores VaiLonge assinaram um contrato de entrega urgente. Tão precisando de mais gente. @@ Cheque a rota da Companhia VaiLonge, eles tão contratando. @@ A Companhia VaiLonge tá abrindo oportunidade.}
+{73050}{}{Guerra em São Francisco. Super Mutantes estão invadindo a cidade. @@ Um bando de Super Mutantes invadiu São Francisco. @@ Disseram que Super Mutantes estão tentando invadir São Francisco e metade da população já morreu. @@ Tem uma horda de Super Mutantes tentando ganhar o controle de São Francisco e a Irmandade do Aço não faz nada. }
+{73051}{}{Por favor nos ajude. @@ Mutantes são muito fortes. @@ Quem vai expulsar estes mutantes? @@ Corre !!! @@ Foge daqui enquanto pode! }
+{73052}{}{Tem alguma coisa acontecendo na Catedral. @@ Um carregamento estranho chegou na Catedral. @@ Tá rolando uns rumores sobre fantasmas de Super Mutantes na Catedral.  }
+{73053}{}{O que esses caras tão fazendo aqui? @@ Pssssst, ei! Alguém tá falando que tem fantasmas por aqui. @@ Aquele cara em vestes parece suspeito. É assustador. }
+{73054}{}{Outra guerra de gangues em Nova Reno, como sempre! Vive morrendo gente de bala perdida.. @@ A família Bispo tá atacando a Mordino. @@ Melhor nem chegar perto. @@ Outra briga de mobs em Nova Reno. Quem paga o pato é quem tá perto. }
+{73055}{}{Esses caras da família Bispo são loucos. @@ Essa guerra de mobs vai arruinar os negócios na nossa cidade. @@ Os capangas da família Bispo tão afugentando os clientes da cidade. }
+{73056}{}{A família Wright está se equipando com armamento pesado. @@ A família Wright tá comprando todo o tipo de armamento. @@ a família Wright tá se preparando para guerra. Muita gente vai morrer. }
+{73057}{}{Os capangas da família Wright são instáveis. @@ A família Wright tá indo pra guerra. Mais imbecis pra destruir a nossa cidade. @@ A família Wright tá indo pra guerra, mais gente vai morrer.}
+{73058}{}{Khans tão comprando grande quantidade de drogas do Bispo. @@ Melhor ficar longe do Shark Club em Nova Reno. @@ Um comboio de Khans tá em Nova Reno. }
+{73059}{}{Esses Khans são doidos! @@ Esses Khans filhos da puta tão amedrontando os clientes. @@Um comboio de Khans chegou no Shark Club. @@ Já imagino o barulho de tiros daqui a pouco.}
+{73060}{}{Um comboio do Enclave chegou nas docas de São Francisco. @@ O Enclave chegou a São Francisco. @@ O Enclave chegou em São Francisco. }
+{73061}{}{Os Enclave matam todos que veem. @@ Se prepare para ver um banho de sangue. @@ Corre, os capangas do Enclave chegaram! }
+{73062}{}{Um jogador de @lex locationname@ ganhou um monte de dinheiro. @@ Tão dizendo por aí que dá pra ganhar um dinheirão no casino de @lex locationname@.}
+{73063}{}{Um viciado em aposta ganhou um dinheirão num casino. @@ Tão dizendo por aí que alguém ficou rico num casino.}
+{73064}{}{Uma garota sortuda de @lex locationname@ conheceu um cliente rico. @@ Tão dizendo por aí que uma prostituta de @lex locationname@ ganhou um monte de dinheiro. Adivinha como! }
+{73065}{}{Pssst, ei! Uma kenga ganhou um bolão de dinheiro dum cliente rico. @@ Uma das kengas aqui ganhou um dinheirão. Agora tou pensando no que ela deve ter feito pra ganhar esse dinheiro todo. }
+{73066}{}{Dois catadores desapareceram perto de @lex locationname@. @@ Tem alguma coisa estranha nas ruínas perto de  @lex locationname@. }
+{73067}{}{Ruínas são perigosas. Quando digo perigosas, eu digo, bem perigosas. Dois catadores não voltaram da viagem. @@ Psssssst, ei! Ouvi um rumor sobre um sótão velho nas ruínas da cidade. Sabe-se lá o que tem lá... }
+{73068}{}{Umas pessoas tiveram o azar de se esbarrar num acampamento de @lex crittername@s perto de @lex locationname@. @@ Tá todo mundo falando sobre os prisioneiros que morreram perto de @lex locationname@. @@ @lex crittername@s mataram pessoas perto de @lex locationname@.}
+{73069}{}{Umas pessoas tiveram o azar de se esbarrar num acampamento de @lex crittername@s perto daqui. @@ Tá todo mundo falando sobre os prisioneiros que morreram perto daqui. @@ @lex crittername@s mataram pessoas perto daqui.}
+{73070}{}{RNC e a Cidade do Abrigo assinaram um contrato de assistência de urgência - precisam de mais mão de obra. @@ As caravanas tão precisando de mais gente para ajudar nas rotas entre RNC e Cidade do Abrigo.}
+{73071}{}{Tão falando que o Curtume de Modoc tá precisando de pele de kalango-de-fogo. @@Tem um cara em Modoc que compra pele de kalango-de-fogo por um bom preço.@@Ouvi dizer que pele de kalango-de-fogo vende bem em Modoc.}
+{73072}{}{O nosso curtume precisa de mais pele de kalango-de-fogo. @@Procure o Lee se quiser vender couro de kalango.@@Lee tá procurando por pele de kalango-de-fogo, fala com ele se tu tiver para vender.}
+{73073}{}{Tão falando que o Curtume de Modoc tá precisando de pele de kalango-de-fogo. @@Tem um cara em Modoc que compra pele de kalango-de-fogo por um bom preço.@@Ouvi dizer que pele de kalango-de-fogo vende bem em Modoc.}
+{73074}{}{O nosso curtume precisa de mais pele de kalango-de-fogo. @@Procure o Lee se quiser vender couro de kalango.@@Lee tá procurando por pele de kalango-de-fogo, fala com ele se tu tiver para vender.}
+{73075}{}{Um morador de @lex locationname@ precisa de @lex itemname@. @@ Um abrigo pegou fogo em @lex locationname@. A pessoa precisa de @lex itemname@. @@Uma família perdeu a casa em @lex locationname@. Eles tão precisando de @lex itemname@}
+{73076}{}{Por favor ajude os nossos vizinhos. @@Uma pessoa precisa de @lex itemname@s. }
+
+
+# Random cave
+{74000}{}{Você passou através de uma caverna escura e perdeu-se no caminho.}
+{74001}{}{Esta caverna é muito escura, a luz atrás de você sumiu e agora você está nervoso sobre voltar. Você precisa de algum tempo para se recompor.}
+{74002}{}{Você percebe que esta passagem está bloqueada.}
+
+{99997}{}{Notícias}
+{99998}{}{Pressione Ctrl+N para ler as notícias}
+{99999}{}{|0x3cf800 Changelog 24.11.2014
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added second level to Sierra Caves Dungeon:
+Stronger npcs (geckos, wanamingos, centaurs, floaters, deathclaws, rogues, khans, ...)
+More traps.
+Higher chance to encounter players.
+Medium chance to unfair pvp (encounter stronger or weaker team)
+Enter to level 2 spawn randomly in level 1.
+No WM exits in level 2.
+Better loot (include implants (rare), T4 crafting parts (rare))
+
+|0xffff00 CHANGES:
+|0x8f6f00 Added preview and second entrance to Ares.
+Removed ability to loot boxes in Mariposa while guards alive.
+
+|0xc80000 FIXES:
+|0x8f6f00 Drug timers now correct while TB and after it.
+Ru dialog translations. (by Jester).
+}
+
+{100000}{}{|0x3cf800 Changelog 30.11.2014
+|0x00CC00 FEATURES: 
+|0x8f6f00 Logoff rules in Sierra Caves was changed. Logged off players will be teleported back to dungeon after logging in.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Sierra Caves L2 loot slightly boosted.
+No karma penalty for killing teammates or enemy faction members.
+Caps reward for metro defence quest temporary nerfed.
+
+|0xc80000 FIXES:
+|0x8f6f00 Hopefully fixed wrong combat type for encounters(enter tb encounters while set only rt and opposite).
+Fixed displaying wrong TB timeouts.
+Fixed grids in Sierra Caves maps.
+Fix for ares elevator on lvl 3.
+Random Fixes.
+}
+
+{100001}{}{|0x3cf800 Changelog 04.12.2014
+|0xffff00 CHANGES:
+|0x8f6f00 NCR forcefield state can be only changed by officers and cooldown removed.
+Sierra Caves L2 loot boosted.
+Elevators now can transport group up to 14 players.
+Changed TB turn sequence, now no ability to have 2 turns in row.
+Added/reajusted elevator spawns in ares and glow.
+
+|0xc80000 FIXES:
+|0x8f6f00 Camping places nerf for Metro defence quest map.
+Fixed wrong chance to hit displaying in client when aim set but char have trait fast shot.
+Fixed ability to pickup active flares and traps by Ctrl+L.
+Most probably fixed unlimited turns in TB.
+}
+
+{100002}{}{|0x3cf800 Changelog 11.12.2014
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added binds to use items from main hand and second hand (to use add use1hand=hotkey and use2hand=hotkey in hotkeys.ini file in Client folder)
+Added messages in chat when motion sensor or stealth boy on/off.
+Added General Cliftons holodisc(can be used for open armory on 2nd level) to Sierra Caves (L2, rare)
+
+|0xffff00 CHANGES:
+|0x8f6f00 Shopkeeper hiring changes:
+-Player will need to pay to get onto shopkeeper purchase list, caps are not refunded when player doesn't win shopkeeper.
+-In period of one day shopkeeper will choose one random person from the list and estabilish a contract for 7 days.
+
+|0xc80000 FIXES:
+|0x8f6f00 Map fixes.
+Ncr forcefield fix.
+Base terminals won't show errors instead of deleted players.
+Skin changing npc fix.
+Fix ai messages for mariposa mutants.
+Fixed bug when dead critters can transform loot to lower tier.
+}
+
+{100003}{}{|0x3cf800 Changelog 13.12.2014
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added two more binds for use superstim or regular stim on other players(to use add usestimon=hotkey and usesson=hotkey in hotkeys.ini file in Client folder)
+
+|0xc80000 FIXES:
+|0x8f6f00 HG cave event fixes.
+}
+
+{100004}{}{|0x3cf800 Changelog 16.12.2014
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added ability to connect base to faction:
+Only faction officers which are also base managers can connect base to faction.
+Only faction officers will be able to manage base.
+All non faction members will be resigned from base.
+All faction members will see base. Even which will be added later to faction.
+No ability to add non faction players to base.
+
+Only faction officers can disconnect base from faction.
+After disconnect only player which done this operation will see base.
+
+|0xc80000 FIXES:
+|0x8f6f00 Guards now will watch watermerchants 2nd for thiefs.
+HG cave event fixes.
+}
+
+{100005}{}{|0x3cf800 Changelog 25.12.2014
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added Fire Gecko miniquest event. Sometimes one of Modoc citizens wants to buy Fire Gecko Pelts (low quantity, ten pelts maximum). Event is terminated when first player finish quest.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Sierra Caves: increased spawn rate of implants and T4 parts.
+Sierra Caves event: Added winners to event messages.
+Sierra Caves event: Adjustments.
+Random dungeons: Fixed players spawning (teams will no longer spawn in already used exit)
+New Reno Wright Event: guards will shot thieves.
+~cuttheveis / ~suicide works with positive hp inside base or tent.
+T4 blueprints renamed in recipes, icon changed to different from blueprints.
+Metal Armor mk2 exp for craft changed to 360.
+Rebalanced loot ofr Sierra Base Control: more different loot added, including high tech.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed bug with bases when multiple connect/disconnect from/to faction can cause lost visibility of base.
+Fix for tb 0 turn hex shoting.
+Fix for no exp for killing npc on minievent maps.
+Random fixes.
+}
+
+{100006}{}{|0x3cf800 Changelog 28.12.2014
+|0xffff00 CHANGES:
+|0x8f6f00 Sierra Caves event: exit grids will be blocked when all participants are in one location (to speed up final fight).
+FN FAL dmg boosted to 25-33, range for burst decreased to 30, 30 ammo in clip instead of 20.
+Tesla has now 25 instead of 20 normal dmg resistance.
+MAmk1 has now 45 laser resistance.
+MAmk2 has now 55 laser resistance.
+}
+
+{100007}{}{|0x3cf800 Changelog 04.01.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added ability to repair armor on player by repair skill button, 8 + click on player.(working on self and on faction teammates)
+
+|0xffff00 CHANGES:
+|0x8f6f00 Removed ability to steal in guarded towns except Ncr.
+Town guards will give back loot only for good players (not for offenders). 
+Weapon changes:
+FNFAL burst damage decreased from 25-33 to 22-30.
+FNFAL burst range increased from 30 to 34.
+FNFAL single target range increased from 36 to 41.
+Assault Rifle(both types) burst damage decreased from 25-34 to 24-33.
+10mm SMG both damage increased from 15-21 to 16-22.
+M60 damage increased from 18-27 to 20-28.
+M60 now have weapon perk long range.
+H&K Caws changed to 17-31.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed bug in hungergames with wrong places when 2 players die in the same time.
+}
+
+{100008}{}{|0x3cf800 Changelog 18.01.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added new inventory actions, must be opened inventory and cursor must be in pointer type.
+Ctrl click on:
+Item in armor,main hand or second hand slots will cause moving item in inventory.
+Armor in inventory will cause wearing armor.
+Weapon in inventory will cause moving weapon in main hand.
+Not armor or weapon will cause moving item in second hand.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Masters Army appeared near Mariposa.
+Removed weapon drop crit effect in guarded towns except Ncr.
+Sierra Caves/Sierra Caves Event: go back timeout disabled when player entering existing location and TB combat is started.
+NR Wright Event: number of guards reduced to 4.
+StealthBoy deterioration speed now not depends from how much players see sneaker.
+Caravan routes between towns now a bit randomised.
+Super Sledge can be disassembled.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed miss sound for attack from 2nd hand.
+Fixed wrong price in dialog while selling prewar items.
+Fixed bug with inability to enter player encounters while doing caravan/patrol.
+Map fixes.
+Shopkeepers will never fight back.
+}
+
+{100009}{}{|0x3cf800 Changelog 25.01.2015
+|0x00CC00 Recently unlocked tech:
+|0x8f6f00 H&K CAWS, .223 Pistol, Needler Pistol, HK P90c
+Light Support Weapon
+Plasma Rifle
+Super Cattle Prod
+Combat Armor
+Psycho not in craft yet but already can be obtained in many places.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Sierra Caves Level 2: chance to enter location with players is now equal to level 1 (chance decreased)
+Sierra Caves Level 2: chance of unfair PvP (1 vs 3, 2 vs 3, 1 vs 2) decreased (but still possible)
+Farm defence and Metro defence quests reworked:
+-Removed exp. for killing mobs
+-Maximum quest reward (per player !!!) set to 20000 exp. and 2000 caps for Farm defence and 40000 exp. and 4000 caps for Metro defence.
+-Player has to survive to receive reward.
+-Reward depends on number of alive defenders and is recalculated at the end of every wave. So, if all defenders survive last wave player will receive maximum reward. If all defender die before first wave finish player receive no reward. 
+-Reward value will be shown to players at the end of every wave (map message).
+-Added randomized wave size.
+-Added defender autohealing.
+-Quest scaling adjusted.
+-Wave timeout & size adjusted, other minor adjustments.
+}
+
+{100010}{}{|0x3cf800 Changelog 01.02.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added blueprint buyout miniquest. Town citizens needs blueprints. You can sell 5 blueprints in row. Rewards:
+-Level 1 blueprints: 1000 exp. 500 caps per blueprint
+-Level 2 blueprints: 2000 exp. 1000 caps per blueprint
+-Level 3 blueprints: 3000 exp. 1500 caps per blueprint
+-Level 4 blueprints: 4000 exp. 2000 caps per blueprint
+
+|0xffff00 CHANGES:
+|0x8f6f00 Operations with containers will also desneak sneakers.
+Stepping on mine will stop char.
+Reroll price changed and now depends from char exp, formula is EXP/10 caps, also char must be at least level 24 to do reroll.
+Maximum reroll price is 485100 and minimum is 27600, you can check reroll price for your char by ~reroll command.
+Metro defence quest: blades will have sg weapons only, removed ability to run from defenders npc.
+Using hex shooting will force char to stop.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed wrong message when using antidote on someone.
+Other fixes.
+}
+
+{100011}{}{|0x3cf800 Changelog 09.02.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added tent terminal(campfire) with ability to delete tent(for tent owners) and to unsee tent(for tent members).
+Added ability to turn off autoreload by options.
+Added faction icons. If faction have icon it will be shown near faction member nickname.(faction leaders must post their icons in special topic on forum)
+Ability to turn on/off faction icons by options.(default is off)
+
+|0xffff00 CHANGES:
+|0x8f6f00 Farm defence: exp. reward buffed to 20000 + 500 * team size
+Metro defence: exp. reward buffed to 40000 + 1000 * team size
+Farm defence: peasants will spawn always inside farm
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed farm and metro defence quests.
+Furniture seller no more accepting stuff for caps.
+Map fixes.
+Other fixes and optimizations.
+}
+
+{100012}{}{|0x3cf800 Changelog 21.02.2015
+|4291317840 !RUN FOUpdater!
+
+|0x00CC00 FEATURES: 
+|0x8f6f00 If weapon in reload mode, pressing A button will change mode to attack.
+Implemented faction score system:
+Faction will gain score for killing enemy faction members(if his level bigger than 25), tc, sierra defence, doing dungeons.
+Faction will loose score for killing teammate or ally and when their members being killed by enemy faction members.
+Score and raiting listed in faction interface.
+
+Implemented electronic lock:
+Lock interface created by |4291317840 GZA
+|0x8f6f00 Added electronic lock item.
+Electronic lock yet can be set for containers in bases and tents(later for cars and etc).
+Electronic locks on bases and tents can't be lockpicked, only removed by lockpick skill by lock owner or base/tent manager.
+To open containers locked by such lock, player must enter password.
+Person who set lock don't need to enter password.
+To use this lock player must use it from inventory and set 4 digits as password, than he must use this lock on container.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Rised chance to spawn implant and t4 recipes in Ares.
+Sierra Caves Event: monsters will have 22 AP and will run faster.
+Sierra Caves Event: monsters will spawn a bit later.
+Temporary: Mutants in Ares see sneakers from max range. 
+
+|0xc80000 FIXES:
+|0x8f6f00 Most probably fixed tb issue in "i smell a rat" quest.
+Fixed some client crashes.
+Fixed inability to leave last perk till last level when using hint book.
+}
+
+{100013}{}{|0x3cf800 Changelog 02.03.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Ability to meet other players while travelling on wm:
+Only ability to meet player while moving, so staying on wm still safe.
+For checking ability to meet other players applied same rules as for finding encounter (combat mode and low chance for low levels)
+You can meet other players if they travelling near you in radius of half wm square and both of you not travelling by car.
+If you success in meeting other players encounter will be always forced.
+
+Electronic lock can be used to lock cars:
+To lock cars by elock you need to have key from that car and use elock on car.
+Locking car by eloc also will automatically elock car trunk.
+To remove elock from car you must be that guy who set elock or car must be on base/tent and you must be tent/base owner/manager.
+Removing elock from car will remove elock from trunk also.
+For lockpick of elock on car(if car not in base/tent) you need to have electronic lockpick. 
+Maximum needed skill is 150( 125 if you have electronic lockpick mk1 and 100 if mk2).
+After lockpicking you will see message in chat with digits which you decrypt from elock password.
+
+New collecting quest added. It is located in Vault city outskirts bar.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Enabled dog tag collector:
+You can give him dogtags like always for reward or bring him 100 dog tags, combat armor and 10k caps and your combat armor will be upgraded to ranger armor, all bonuses from ca will stay also.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed ability to gain/loose faction score on replication.
+}
+
+{100014}{}{|0x3cf800 Changelog 17.03.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Implemented auction:
+Player can access auction interface using dialog with FLC managers.
+Player can put unlimited amount of items to auction.
+Yet no ability to choose amount to sell/buy for stackable items.
+To put item on auction player must pay fee, which is 20% from total cost.
+To buy/sell item from auction player must have caps in inventory or on bank balance or mixed.
+Auction interface created by |4291317840 GZA.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Meeting other players while travelling on wm disabled for loners without any stuff in inventory.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed lockpicking cars with electronic locks. Now message with passcode will be displayed properly.
+Fixed healer perk. Now each perk level will always add 10hp at the end of healing calculation.
+}
+
+{100015}{}{|0x3cf800 Changelog 29.03.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added Toxic caves instanced dungeon:
+To find dungeon you must find toxic caves map which is randomly drop from encounter npc.
+After reading toxic caves map, will be created personal dungeon, select combat mode before reading map.
+Dungeon will dissapear after 4 days or if you will leave it or die in it.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Auction fee changed to 10%.
+Auction screen will reopen after buy item.
+Added item colors for uniq item to auction.
+Added ability to take back items from auction for owners.
+
+|0xc80000 FIXES:
+|0x8f6f00 Restricted ability to put few movable lockers in one hex.
+Some fixes for auction and other things.
+}
+
+{100016}{}{|0x3cf800 Changelog 17.04.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 EXP mod set to X 2, so you will get twice more EXP. 
+Event changes:
+Added t3 recipes to book sale events.
+Added hypo to drug sale events.
+Added chance to find t4 part or t4 recipe in car on convoy event.
+Added rare ammo to Reno ammo sale event.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Reworked item spawn system. ( item which are not looted by players wont reduce pools )
+Ca/Camk2 armor pool doubled. 
+Super Stims volume(not weight) reduced to zero so you can put em unlimited to lockers.
+
+|0xc80000 FIXES:
+|0x8f6f00 Map fixes.
+Random fixes.
+
+|0x00CC00 BLOG:
+|0x8f6f00 More events will be enabled in few days.
+Soon item pools will be readjusted once more.
+In few days tech robot will be finally polished and provided for test to few gangs.
+Mariposa will be finished and implemented very soon.
+}
+
+{100017}{}{|0x3cf800 Changelog 22.04.2015
+|0xffff00 CHANGES:
+|0x8f6f00 Enabled event "Enclave supply arrived in San Francisco docks" with rare loot such as Enclave Armors and t4 parts.
+Enabled event "Drug transaction between Khans and Bishop" with rare loot such as Hypo.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed item drop on ground when was killed by pulse/explosion in guarded town.
+}
+
+{100018}{}{|0x3cf800 Changelog 12.07.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Char Control system implemented: 
+Enabled for dugeons and unprotected towns.
+Removed ability to enter location using fastrelog/duallog.
+Abusing this system will lead to permaban for all chars and deleting bases.
+
+Added free reroll for all registered charactes because of changes in perks/traits.
+
+Randal from Vault City now selling base cleaner robot for 10k caps.
+
+Added new ingame language: Portuguese. Use FOConfigPT.exe to select language.
+
+|0xffff00 CHANGES:
+|0x8f6f00 Added NoLogOut param to SF tanker maps and all not guarded towns excluding NCR.
+Added extremely low chance to obtain t4 craft parts and implants from Toxic Caves.
+Ares: all guards now needs to be killed to be able to loot Commander's room lockers.
+Ares: added extra mine spawn hexes on the edge of grid to prevent the abuses of running near grid to vertibird avoiding all mutants.
+Elevators mechanics changed, now there is no thin places for abuses.
+Added good/rare loot to upper laser boxes on 2nd floor of sierra, you need to kill robots (only those outside armory room) to open them.
+
+Close Combat changes:
+Close Combat bonus speed working only if players BG,SG,EW skill is lesser than 100.
+HTH Evade perk gives now 10% less chance to hit you while using melee/hth (in both slots). Requirements:  BG,SG,EW skills not higher than 100, at least 200 Close Combat skill.
+Bonus HtH Damage perk gives now +10dmg and has only 1 level instead of 3.
+Bruiser trait gives now + 8dmg and +2st bonus (so combined its 10dmg) and - 30 crit chance penalty. (instead of -2ap)
+Super Sledge AP cost reduced to 3, +10 crit chance added by default.
+
+|0xc80000 FIXES:
+|0x8f6f00 Fixed ability to use elevator without waiting timeout.
+Fixed damage for Pulse Granades.
+Fixed problem with mutants in Mariposa entrance area, having no weapons.
+Sierra Caves: fixed teleporting when exists dungeon location without DungeonLocation object.
+Map fixes.
+Random fixes.
+}
+
+{100019}{}{|0x3cf800 Changelog 26.07.2015
+|0x00CC00 FEATURES: 
+|0x8f6f00 Added ability to mass decraft items from inventory or from ground:
+for inventory ~decraftinv and for hex under player ~decrafthex 
+or add hotkeys to hotkeys.ini decraftinv=hotkey and decrafthex=hotkey
+
+|0xc80000 FIXES:
+|0x8f6f00 Super Sledge crit chance bonus now working and displayed.
+}

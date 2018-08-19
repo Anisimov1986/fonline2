@@ -1,0 +1,65 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 @
+3 2000 None 0 #
+30 2010 #
+0 2020 @
+30 3000 None 0 #
+0 3010 #
+0 3020 &
+
+[engl]
+{100}{}{Roman}
+{200}{}{You see Roman, the Brahmin trader.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Hey you! Name's Roman. I'm cleaning up this brahmin pen here, come check back later, I might need your help.}
+{2010}{}{Your brahmin pen looks terrible. Don't you ever clean it?}
+{2020}{}{Nothing. Bye.@@Nevermind, bye.}
+{3000}{}{Yeah well, whatever. I'm opening for business later on to sort this mess.}
+{3010}{}{Alright!}
+{3020}{}{[Leave] I think I'll just pass...}
+
+[russ]
+{100}{}{Роман}
+{200}{}{Вы видите Роман, продавец браминов.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Эй ты! Меня зовут Роман. Я тут чищу загон, заходи позже, может понадобится твоя помощь.}
+{2010}{}{Этот загон выглядит ужасно. Ты хоть когда-нибудь чистил этот срач?}
+{2020}{}{Ничего. До свидания.}
+{3000}{}{Я собираюсь разобратся с этим дерьмом и начать новый бизнес.}
+{3010}{}{Хорошо!}
+{3020}{}{[Уйти] Я пожалуй пойду...}
+
+[pols]
+{100}{}{Roman}
+{200}{}{Widzisz Romana, sprzedawcę braminów.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Hej, ty! Jestem Roman. Właśnie czyszczę tę zagrodę, wpadnij potem, przyda mi się twoja pomoc.}
+{2010}{}{Ta zagroda wygląda okropnie. Sprzątałeś tu kiedykolwiek??}
+{2020}{}{Nieważne, do widzenia.}
+{3000}{}{Mam zamiar zająć się tym gównem i rozpocząć nowy biznes.}
+{3010}{}{W porządku!}
+{3020}{}{[Odejdź.] Chyba po prostu stąd pójdę...}
+
+[ptbr]
+{100}{}{Romão}
+{200}{}{Você vê o Româo, o vendedor de Brahmin.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Ei tu! Meu nome l Romão. Tou limpando esse curral aqui, mas vem aqui depois que eu talvez precise da tua ajuda.}
+{2010}{}{O curral tá imundo! Tu nunca limpa ele?}
+{2020}{}{Nada. Tchau.@@Nada não, deixa para lá. Fui.}
+{3000}{}{Ah, tanto faz. Tou abrindo um negócio no futuro para resolver esse tipo bagunça.}
+{3010}{}{Tá bem!}
+{3020}{}{[Sai] Eu acho que dessa vez não rola...}
+

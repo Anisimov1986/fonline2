@@ -1,0 +1,48 @@
+[comment]
+Ваши комментарии / Your comments.
+
+[data]
+lang=engl russ ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 D _script game_event_wright@d_IsReadyToTrade 0  @
+2 2000 None 0 #
+65506 2010 #
+0 2020 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Chriss Wright}
+{200}{}{You see a Chris Wright.}
+{210}{}{You see a Chris Wright.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{Would you like to barter?}
+{2010}{}{Let me see what you have.}
+{2020}{}{That's all for today.}
+{3000}{}{Guards! Get him!@@Rip his skin off!@@Thief! Thief!@@Guards! Shoot that bastard!}
+
+[russ]
+{100}{}{Chriss Wright}
+{200}{}{You see a Chris Wright.}
+{210}{}{You see a Chris Wright.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{---}
+{2000}{}{Желаете поторговаться?}
+{2010}{}{Что там у тебя есть?}
+{2020}{}{На сегодня хватит.}
+{3000}{}{Охрана! Взять его!@@Сдерите с него шкуру!@@Ах ты ворюга!@@Охрана пристрелите этого ублюдка!}
+
+[ptbr]
+{100}{}{Cris Wright}
+{200}{}{Você vê Cris Wright.}
+{210}{}{Você vê Cris Wright.}
+{1000}{}{Initial preferences}
+{1010}{}{---}
+{2000}{}{Quer fazer negócio?}
+{2010}{}{Vamos ver o que a gente pode negociar.@@Deixa eu ver o que tu tem.}
+{2020}{}{É isso.@@Pronto.}
+{3000}{}{Pega!@@Mata esse filho da puta!@@Pega Ladrão!@@Guardas! Atirem!}
+

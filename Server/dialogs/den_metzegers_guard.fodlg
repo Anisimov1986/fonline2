@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Metzger's Guard}
+{200}{}{You see one of the Metzger's Guards.}
+{210}{}{This man's stare is cold as iceean looking eyes, scars all over the face and a few teeth less than usually. Your average slaver.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not Slaver}
+{2000}{}{Walk on.@@Step aside.@@What are you doin' here?@@I don't see no tattoo on your face.@@Bitch.@@This ain't your kinda place, punk.@@Get lost, shitface.@@Yeah.@@Got a light?@@If you got business, talk to Metzger.@@Get off my face.@@Whatcha standin' here standing for?@@Get lost, wimp.@@Fuck off.@@Turn around and walk away.@@This ain't no place for pussies.@@Get lost.@@I need a drink.}
+
+[russ]
+{100}{}{Охранник Метзгера}
+{200}{}{Вы видите одного из охранников Метзгера.}
+{210}{}{Шрамы по всему лицу, на несколько зубов меньше, чем обычно. Обычный работорговец.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not Slaver}
+{2000}{}{Проходи, не задерживайся.@@Отвали.@@Я не вижу татуировки на твоем лице.@@Сука.@@Не смотри на меня урод@@Козел.@@Придурок.@@Педик.}
+
+[pols]
+{100}{}{Strażnik Metzgera}
+{200}{}{Widzisz jednego ze strażników Metzgera.}
+{210}{}{Wredne spojrzenie, szramy na całej twarzy, kilka zębów mniej niż zwykle. Typowy łowca niewolników.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not Slaver}
+{2000}{}{Ruszaj się.@@Zejdź mi z drogi.@@Nie zawaham się użyć tego gnata.@@Nie widzę tatuażu na twojej twarzy.@@Zmywaj się stąd, @sex@|frajerze||dziwko|.@@To nie jest miejsce dla ciebie, panienko.@@Patrz się w niebo, patrz się w ziemię, ale nie gap się na kurwa na mnie, @sex@|leszczu||suko|.@@Taaak.@@[Gapi się na ciebie.]@@Nie spierdol tego.@@[Patrzy na ciebie, na swoją spluwę, z powrotem na ciebie.]@@No i na chuj tu stoisz? Chcesz być łowcą niewolników czy co?@@Suka.@@Ścierwo.@@Ciota.@@Pizda.@@No, i co teraz zrobimy?}
+
+[ptbr]
+{{100}{}{Capanga}
+{200}{}{Você vê um dos capangas do Magarefe.}
+{210}{}{O olhar deste homem é frio e seco, tem cicatrizes por todo o rosto e menos dentes que o normal. Um escravizador qualquer.}
+{1000}{}{Predialogue installations}
+{1010}{}{Not Slaver}
+{2000}{}{Vai andando.@@Ei! Não precisa ficar tão perto.@@O que que tu tá fazendo aqui?@@Eu não vejo nenhuma tatuagem na sua cara.@@Puta.@@Aqui não é canto pra gente fracote.@@Sai fora, cara de merda.@@Fala.@@Tem isqueiro aí?@@Se tiver algum negócio, fala com o Metzger.@@Sai de frente de mim.@@O que tá fazendo parado aqui na minha frente?@@Se manda, imbecil.@@Cai fora.@@Dá a volta e cai fora.@@Isso não é lugar para formigas.@@Cai fora.@@Eu preciso tomar uma bebida.}
+

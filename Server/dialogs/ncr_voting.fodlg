@@ -1,0 +1,90 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _param p PE_NCR_CITIZENSHIP = 1 D _script quest@quest_checkcd 1 9725 #
+3 1020 D _param p PE_NCR_CITIZENSHIP = 1 #
+4 1030 @
+2 2000 map_ncr@dlg_Voting 0 #
+0 2010 D _script map_ncr@d_IsCandidateOnSpot 1 1 R _var p NCR_Candidate1Votes + 1 R _script quest@quest_setcd 2 9725 60 #
+0 2020 D _script map_ncr@d_IsCandidateOnSpot 1 2 R _var p NCR_Candidate2Votes + 1 R _script quest@quest_setcd 2 9725 60 #
+0 2030 D _script map_ncr@d_IsCandidateOnSpot 1 3 R _var p NCR_Candidate3Votes + 1 R _script quest@quest_setcd 2 9725 60 #
+0 2040 D _script map_ncr@d_IsCandidateOnSpot 1 4 R _var p NCR_Candidate4Votes + 1 R _script quest@quest_setcd 2 9725 60 #
+0 2050 D _script map_ncr@d_IsCandidateOnSpot 1 5 R _var p NCR_Candidate5Votes + 1 R _script quest@quest_setcd 2 9725 60 #
+0 2060 @
+3 3000 None 0 @
+4 4000 None 0 &
+
+[engl]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{Citizen}
+{1020}{}{cooldown}
+{1030}{}{Not citizen}
+{2000}{}{(For whom do you want to vote?)@@(Who do you want to vote for?)}
+{2010}{}{[Vote for @lex candidate1@.]}
+{2020}{}{[Vote for @lex candidate2@.] }
+{2030}{}{[Vote For @lex candidate3@.] }
+{2040}{}{[Vote For @lex candidate4@.] }
+{2050}{}{[Vote For @lex candidate5@.] }
+{2060}{}{[Step away from the booth.]@@[Step away.]@@I need to rethink this...@@I need to thin about this.}
+{3000}{}{(You have already voted for a candidate).@@(You have already voted).}
+{4000}{}{(You are not a citizen of NCR).}
+
+[russ]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{broken}
+{1020}{}{cooldown}
+{1030}{}{base}
+{2000}{}{Choose command.}
+{2010}{}{Vote For @lex candidate1@.}
+{2020}{}{Vote For @lex candidate1@.}
+{2030}{}{Vote For @lex candidate1@.}
+{2040}{}{Vote For @lex candidate1@.}
+{2050}{}{Vote For @lex candidate1@.}
+{2060}{}{Exit.}
+{3000}{}{Forcefield state changed.}
+{4000}{}{Access denied.}
+
+[pols]
+{100}{}{Access Terminal}
+{200}{}{You see Access Terminal.}
+{1000}{}{Predialogue installations}
+{1010}{}{broken}
+{1020}{}{cooldown}
+{1030}{}{base}
+{2000}{}{Choose command.}
+{2010}{}{Vote For @lex candidate1@.}
+{2020}{}{Vote For @lex candidate1@.}
+{2030}{}{Vote For @lex candidate1@.}
+{2040}{}{Vote For @lex candidate1@.}
+{2050}{}{Vote For @lex candidate1@.}
+{2060}{}{Exit.}
+{3000}{}{Forcefield State Changed.}
+{4000}{}{Access Denied.}
+
+[ptbr]
+{100}{}{Urna Eletrônica}
+{200}{}{Você vê um terminal de acesso rodando o programa de processo eleitoral.}
+{1000}{}{Predialogue installations}
+{1010}{}{Citizen}
+{1020}{}{cooldown}
+{1030}{}{Not citizen}
+{2000}{}{(Para quem você quer votar?)@@(Para quem vai o seu voto?)}
+{2010}{}{[Voto para o candidato @lex candidate1@.]}
+{2020}{}{[Voto para o candidato @lex candidate2@.] }
+{2030}{}{[Voto para o candidato @lex candidate3@.] }
+{2040}{}{[Voto para o candidato @lex candidate4@.] }
+{2050}{}{[Voto para o candidato @lex candidate5@.] }
+{2060}{}{[Distancia-se da cabine.]@@[Sai.]@@Eu preciso pensar novamente...@@Preciso pensar melhor.}
+{3000}{}{(Você já votou para um candidato).@@(Você já votou).}
+{4000}{}{(Você não é membro da RNC).}
+

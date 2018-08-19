@@ -1,0 +1,243 @@
+#include "_macros.fos"
+#include "entire_h.fos"
+#include "_npc_pids.fos"
+
+#include "pids_groups.fos"
+#include "utils_h.fos"
+#include "_teams.fos"
+#include "game_event_gossip_h.fos"
+#include "_msgstr.fos"
+#include "economy_h.fos"
+
+#define EVENT_ID            ( 3 )
+#define STEPS               ( 10 )
+#define STEP_DURATION_SEC	( 60 )
+#define NUMBER_OF_GUARDS    ( 4 )
+#define ROLE_TRADER         ( 288004 )
+#define ROLE_GUARD			( 216 )
+#define CAPS_MIN            ( 30000 )
+#define CAPS_MAX            ( 40000 )
+#define TRADER_BARTER       ( 200 )
+
+import int GetNextTime(uint Id) from "game_events";
+import void AddNewMessage( string text,int time, int showtimer, uint color, bool eventtimer,uint eventid) from "stocmessages";
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import bool IsEventTimer(uint town) from "stocmessages";
+import void RemoveMessageByEvent(uint id) from "stocmessages";
+import void _InitEventGuardEvents(Critter& critter, bool firstTime) from "town_critters";
+
+int[] guardParams = {MODE_NO_LOOT, 1, MODE_NO_DROP, 1,ST_LUCK, 10,
+		PE_BETTER_CRITICALS, 1, PE_BONUS_RATE_OF_FIRE, 1, PE_BONUS_RANGED_DAMAGE, 2,
+		MODE_NO_LOOSE_LIMBS, 1, MODE_NO_STEAL, 1, MODE_UNLIMITED_AMMO, 1, 
+		ST_BONUS_LOOK, 30, ST_NPC_ROLE, ROLE_GUARD, ST_REPLICATION_TIME, -1, ST_TEAM_ID, TEAM_WRIGHT};
+		
+const int[] weaponPids = {PID_GREASE_GUN, PID_DESERT_EAGLE, PID_44_MAGNUM_REVOLVER, PID_14MM_PISTOL };
+
+const int[] guardPids = {NPC_PID_WRIGHT_SON1, NPC_PID_WRIGHT_SON2, NPC_PID_WRIGHT_SON3, NPC_PID_WRIGHT_SON4};
+
+uint e_event_start(array<uint>@ values)
+{
+	if (values[0] == 0)
+	{
+		return 0;
+	}
+	
+	event_start(values[0]);
+	return GetNextTime(values[0]);
+}
+
+void event_start(uint id) 
+{
+	uint[] values = {STEPS - 1};
+	Map@ map = GetMapByPid(MAP_newr4, 0);
+	
+	if (!valid(map)) 
+	{
+		return;
+	}
+	
+	AddNewMessage("Wright's family is arming. Stay tuned.", REAL_SECOND(STEP_DURATION_SEC * STEPS), 1, COLOR_GREEN, true, EVENT_ID);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(STEP_DURATION_SEC), "e_event", values, true);
+	
+	uint entireSpawnNum = map.CountEntire(ENTIRE_EVENT_MOB_SPAWN);
+	uint16 hexX = 0;
+	uint16 hexY = 0;
+	uint8 dir = 0;
+
+	uint guards = 0;
+	for (uint8 i = 0; i < entireSpawnNum; i++)
+	{
+		if (guards >= NUMBER_OF_GUARDS)
+		{
+			break;
+		}
+		if (map.GetEntireCoords(ENTIRE_EVENT_MOB_SPAWN, i, hexX, hexY, dir)
+				&& AddGuard(hexX, hexY, dir))
+		{
+			guards++;
+		}
+	}
+	
+	InitializeGossip();
+}
+
+void InitializeGossip()
+{	
+	Location@ location = GetLocationByPid(LOCATION_NewReno, 0);
+	if (!valid(location)) 
+	{
+		return;
+	}
+	
+	GossipDefinition@ gossipDefinition = CreateGossipDefinition(GOSSIP_MEDIUM, REAL_SECOND(STEP_DURATION_SEC * STEPS));
+	gossipDefinition.SetGossipId(EVENT_ID);
+	gossipDefinition.SetScopeId(GOSSIP_SCOPE_EVENT);
+	gossipDefinition.SetSourceLocationId(location.Id);
+	gossipDefinition.SetMsgId(STR_WRIGHT_EVENT_GOSSIP_LOC);
+	gossipDefinition.SetSourceMsgId(STR_WRIGHT_EVENT_GOSSIP_NO_LOC);
+	StartGossip(gossipDefinition);
+}
+
+bool AddGuard(uint16 hexX, uint16 hexY, uint8 dir)
+{
+	Map@ map = GetMapByPid(MAP_newr4, 0);
+	if (!valid(map)) 
+	{
+		return false;
+	}
+	
+	if(!GetFreeHex(map, 1,hexX, hexY))
+	{
+		return false;
+	}
+
+	Critter@ guard = map.AddNpc(guardPids[(Random(0, guardPids.length() - 1))], hexX, hexY, dir, guardParams, null, null);
+	if (!valid(guard))
+	{
+		return false;
+	}
+	Item@ weapon = guard.AddItem(weaponPids[Random(0, weaponPids.length() - 1)], 1);
+	if (valid(weapon) && weapon.GetProtoId () == PID_ROCKET_LAUNCHER)
+	{
+		weapon.AmmoPid=PID_ROCKET_AP;
+	}
+	guard.SetFavoriteItem(SLOT_HAND1, weapon.GetProtoId ());
+	
+	_GuardInit(guard, true);
+	guard.SetScript("_GuardInit");
+	
+	StopGossip(EVENT_ID, GOSSIP_SCOPE_EVENT);
+	
+	return true;
+}
+
+void _GuardInit(Critter& guard, bool firstTime)
+{
+	_InitEventGuardEvents(guard, firstTime);
+}
+
+bool d_IsReadyToTrade(Critter& player, Critter@ npc)
+{
+	return IsEventTimer(EVENT_ID);
+}
+
+uint e_event(array<uint>@ values)
+{
+	uint countdown = values[0];
+	
+	if (countdown == STEPS - 1)
+	{
+		RemoveMessageByEvent(EVENT_ID);
+		AddNewMessage("Wright's family is arming. Chriss Wright is offering to buy all quantities of weapons.", REAL_SECOND(STEP_DURATION_SEC * (STEPS - 1)),
+				1, COLOR_GREEN, true, EVENT_ID);
+	}
+	
+	Map@ map = GetMapByPid(MAP_newr4, 0);
+	if (!valid(map)) 
+	{
+		return 0;
+	}
+	
+	if (countdown > 0)
+	{
+		uint[] newValues = {countdown - 1};
+		CreateTimeEvent(__FullSecond + REAL_SECOND(STEP_DURATION_SEC), "e_event", newValues, true);
+		
+		Critter@[] critters;
+		map.GetCritters(0, FIND_LIFE_AND_KO | FIND_ONLY_NPC, critters);
+		for (uint i = 0; i < critters.length(); i++)
+		{
+			if (critters[i].Stat[ST_NPC_ROLE] == ROLE_TRADER)
+			{
+				critters[i].AddItem(PID_BOTTLE_CAPS, RewardMod(Random(CAPS_MIN, CAPS_MAX) / (STEPS - 2)));
+			}
+		}
+	}
+	else
+	{
+		e_event_stop(values);
+	}
+	
+	return 0;
+}
+
+uint e_event_stop(array<uint>@ values)
+{
+	Map@ map = GetMapByPid(MAP_newr4, 0);
+	if (!valid(map)) 
+	{
+		return 0;
+	}
+
+	Critter@[] critters;
+	map.GetCritters(0, FIND_ALL | FIND_ONLY_NPC, critters);
+	for (uint i = 0; i < critters.length(); i++)
+	{
+		if (critters[i].Stat[ST_NPC_ROLE] == ROLE_TRADER)
+		{
+			Item@[] items;
+			critters[i].GetItems(SLOT_INV, items);
+			DeleteItems(items);
+		}
+		
+		if(critters[i].Stat[ST_NPC_ROLE] == ROLE_GUARD)
+		{
+			DeleteNpc(critters[i]);
+		}
+	}
+	
+	return 0;
+}
+
+void _ChrissInit(Critter& trader, bool firstTime)
+{
+	trader.StatBase[ST_TALK_DISTANCE] = 5;
+	trader.StatBase[ST_MAX_TALKERS] = 3;
+	trader.StatBase[ST_REPLICATION_TIME] = 0;
+	trader.SkillBase[SK_BARTER] = TRADER_BARTER;
+	trader.ModeBase[MODE_NO_BARTER] = 0;
+	trader.ModeBase[MODE_NO_DROP] = 1;
+	trader.ModeBase[MODE_NO_STEAL] = 1;
+	trader.ModeBase[MODE_NO_LOOT] = 1;
+	trader.ModeBase[MODE_NO_ENEMY_STACK] = 1;
+}
+
+void event_start( Critter& cr, int, int , int)
+{
+	event_start(EVENT_ID);
+}
+
+void event_stop( Critter& cr, int, int , int)
+{
+	e_event_stop(null);
+}
+
+void event_start(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	event_start(EVENT_ID);
+}
+
+void event_stop(Critter& critter, int actionType, int, int, string@, int[]@ values)
+{
+	e_event_stop(null);
+}

@@ -1,0 +1,120 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _script quest_5vs5@d_IsReadyForTeam2 1 1 #
+7 2020 D _script quest_5vs5@d_PlayerHaveBriefcase 0  R _script quest_5vs5@r_GiveBriefcaseToNpc 0  #
+0 2030 @
+3 3000 None 0 #
+4 3010 D _script quest_5vs5@d_IsReadyForTeam2 1 1 D _script quest_5vs5@d_IsValidTeam2 1 1 R _script quest_5vs5@r_Team2Join 2 1 2 #
+0 3020 @
+4 4000 None 0 #
+5 4010 D _script quest_5vs5@d_IsMember 1 1 #
+6 4020 D _script quest_5vs5@d_IsNotMember 1 1 @
+5 5000 None 0 #
+0 5010 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 &
+
+[engl]
+{100}{}{Bishop}
+{200}{}{You see Mr.Bishop.}
+{210}{}{You see a powerful-looking middle-aged man.}
+{210}{}{You see Mr. Bishop. He looks grim.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{What th --? Who are you and what the HELL do you want?}
+{2010}{}{I've heard you're looking for some guns.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I have been informed that Salvatore receives important message from some hi tech company... I want you to intercept this message they will be switching something. I need small team of max 5 people. Ofcourse... I need to be sure you won't run off with the package. So pay up 1000 caps}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{Allright. Let me check the location.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{(Bishop gives you coordinates of delivery location). Remember I will take your money if you lose delivery.}
+{5010}{}{Ok.}
+{6000}{}{Damn it. It's too late already. Get out of my room.}
+{6010}{}{Shit happens.}
+{7000}{}{Very well. Here's your pay, and come again. I might have something else for you later.}
+{7010}{}{No problem. Goodbye.}
+
+[russ]
+{100}{}{Bishop}
+{200}{}{You see Mr.Bishop.}
+{210}{}{You see a powerful-looking middle-aged man.}
+{210}{}{You see Mr. Bishop. He looks grim.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{What th --? Who are you and what the HELL do you want?}
+{2010}{}{I've heard you're looking for some guns.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I have been informed that Salvatore receives important message from some hi tech company... I want you to intercept this message they will be switching something. I need small team of max 5 people. Ofcourse... I need to be sure you won't run off with the package. So pay up 1000 caps}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{Allright. Let me check the location.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{(Bishop gives you coordinates of delivery location). Remember I will take your money if you lose delivery.}
+{5010}{}{Ok.}
+{6000}{}{Damn it. It's too late already. Get out of my room.}
+{6010}{}{Shit happens.}
+{7000}{}{Very well. Here's your pay, and come again. I might have something else for you later.}
+{7010}{}{No problem. Goodbye.}
+
+[pols]
+{100}{}{Bishop}
+{200}{}{You see Mr.Bishop.}
+{210}{}{You see a powerful-looking middle-aged man.}
+{210}{}{You see Mr. Bishop. He looks grim.}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{What th --? Who are you and what the HELL do you want?}
+{2010}{}{I've heard you're looking for some guns.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I have been informed that Salvatore receives important message from some hi tech company... I want you to intercept this message they will be switching something. I need small team of max 5 people. Ofcourse... I need to be sure you won't run off with the package. So pay up 1000 caps}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{Allright. Let me check the location.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{(Bishop gives you coordinates of delivery location). Remember I will take your money if you lose delivery.}
+{5010}{}{Ok.}
+{6000}{}{Damn it. It's too late already. Get out of my room.}
+{6010}{}{Shit happens.}
+{7000}{}{Very well. Here's your pay, and come again. I might have something else for you later.}
+{7010}{}{No problem. Goodbye.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{error}
+{2000}{}{What th --? Who are you and what the HELL do you want?}
+{2010}{}{I've heard you're looking for some guns.}
+{2020}{}{I've got Salvatore's delivery.}
+{2030}{}{Just looking around. Bye.}
+{3000}{}{I have been informed that Salvatore receives important message from some hi tech company... I want you to intercept this message they will be switching something. I need small team of max 5 people. Ofcourse... I need to be sure you won't run off with the package. So pay up 1000 caps}
+{3010}{}{I will take this job.}
+{3020}{}{Maybe not today.}
+{4000}{}{Allright. Let me check the location.}
+{4010}{}{Ok.}
+{4020}{}{Ok.}
+{5000}{}{(Bishop gives you coordinates of delivery location). Remember I will take your money if you lose delivery.}
+{5010}{}{Ok.}
+{6000}{}{Damn it. It's too late already. Get out of my room.}
+{6010}{}{Shit happens.}
+{7000}{}{Very well. Here's your pay, and come again. I might have something else for you later.}
+{7010}{}{No problem. Goodbye.}
+

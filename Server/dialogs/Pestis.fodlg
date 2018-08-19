@@ -1,0 +1,345 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 D _param p PE_GECKO_SKINNING = 0 #
+13 2020 D _var p q_adytum_well = 5 #
+15 2030 D _var p q_adytum_well = 20 #
+17 2040 D _var p q_adytum_well = 30 #
+12 2050 D _var p q_adytum_well = 3 #
+11 2060 D _var p q_adytum_well = 2 R _param p ST_EXPERIENCE + 1000 R _script economy_dialogs@r_GiveCaps 1 230 R _var p q_adytum_well = 3 #
+10 2070 D _var p q_adytum_well { 1 D _param p ST_LEVEL } 10 #
+19 2080 D _script quest@quest_checkcd 1 9320 D _var p q_deathclaws = 0 D _param p ST_LEVEL } 10 #
+21 2090 D _var p q_deathclaws = 2 R _var p q_deathclaws = 0 R _script karma@r_AddKarma 1 100 R _param p ST_EXPERIENCE + 8000 R _script economy_dialogs@r_GiveCaps 1 750 #
+20 2100 D _var p q_deathclaws = 1 D _script quest@quest_checkcd 1 9320 #
+0 2110 @
+3 3000 None 0 #
+4 3010 #
+0 3020 @
+4 4000 None 0 #
+5 4010 #
+0 4020 @
+5 5000 None 0 #
+6 5010 #
+0 5020 @
+6 6000 None 0 #
+7 6010 #
+0 6020 @
+7 7000 None 0 #
+8 7010 #
+0 7020 @
+8 8000 economy_dialogs@dlg_PreparePrice 0 #
+9 8010 D _script economy_dialogs@d_IsEnoughCaps 1 600 R _script economy_dialogs@r_TakeCaps 1 600 R _param p PE_GECKO_SKINNING + 1 #
+0 8020 @
+9 9000 None 0 #
+0 9010 @
+10 10000 None 0 #
+0 10010 R _var p q_adytum_well = 1 R _script dialog@r_ShowQuestMessage 1 9317 #
+0 10020 R _var p q_adytum_well = 1 R _script dialog@r_ShowQuestMessage 1 9317 @
+11 11000 None 0 #
+12 11010 #
+0 11020 R _script dialog@r_ShowQuestMessage 1 9317 @
+12 12000 None 0 #
+0 12010 R _script dialog@r_ShowQuestMessage 1 9317 #
+0 12020 R _script dialog@r_ShowQuestMessage 1 9317 @
+13 13000 None 0 #
+14 13010 R _var p q_adytum_well = 6 R _script economy_dialogs@r_GiveCaps 1 1500 R _script quest@r_CreateLocationZone 3 9301 19 25 @
+14 14000 None 0 #
+0 14010 R _script dialog@r_ShowQuestMessage 1 9317 @
+15 15000 economy_dialogs@dlg_PreparePrice 0 #
+16 15010 R _var p q_adytum_well = 21 R _script economy_dialogs@r_GiveCaps 1 3000 R _var p q_adytum_farm_creation = 1 #
+16 15020 R _var p q_adytum_well = 21 R _param p ST_EXPERIENCE + 5000 R _var p q_adytum_farm_creation = 1 @
+16 16000 None 0 #
+0 16010 R _script dialog@r_ShowQuestMessage 1 9317 @
+17 17000 None 0 #
+18 17010 D _param p TRAIT_SKILLED = 0 R _var p q_adytum_well = 31 R _script economy_dialogs@r_GiveCaps 1 3000 #
+18 17020 D _param p TRAIT_SKILLED = 1 R _var p q_adytum_well = 31 R _script economy_dialogs@r_GiveCaps 1 3000 @
+18 18000 None 0 #
+0 18010 R _script dialog@r_ShowQuestMessage 1 9317 @
+19 19000 None 0 #
+20 19010 #
+0 19020 @
+20 20000 None 0 #
+0 20010 R _var p q_deathclaws = 1 R _script quest@r_CreateLocationZone 3 9305 19 25 R _script dialog@r_ShowQuestMessage 1 9319 R _script quest@quest_setcd 2 9320 310 @
+21 21000 None 0 #
+0 21010 &
+
+[engl]
+{100}{}{Farmer Pestis}
+{200}{}{You see: a farmer with a troubled look on his face.}
+{210}{}{This man's clothes are ragged and dirty. He probably works a lot in the nearby fields.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hello there stranger. Want something from old Pestis?}
+{2010}{}{Hello, who are you?}
+{2020}{}{Say Pestis, are there any other places around which would need the water?}
+{2030}{}{The pump is no longer a problem, the water is slowly coming back.}
+{2040}{}{Hey Pestis, I came to agreement with the people from the farm.}
+{2050}{}{So the well is still not working, but why?}
+{2060}{}{The well is fixed.}
+{2070}{}{What happened with that well? It's not working.}
+{2080}{}{Do you have any work for me?}
+{2090}{}{I've killed those deathclaws, Pestis.}
+{2100}{}{Pestis, I can't find the cave, could you tell me where it is again?}
+{2110}{}{Oh, sorry, I forgot something. Bye.}
+{3000}{}{Now I'm only a farmer, I was hunter before that small gecko got me.}
+{3010}{}{Tell me more.}
+{3020}{}{Now ask me if I care. Bye.}
+{4000}{}{Well, I was hunting by myself out west. Spotted a pretty nice gecko family, I was pretty sure I could sneak around to a nearby ridge and get a good shot at them. But then...}
+{4010}{}{Then what?!@@Then what?! Tell me!@@Don't leave me in suspense! What happened next?}
+{4020}{}{But then I left before you could finish your boring story. Later.}
+{5000}{}{Slowly I snuck towards them, trying to get within range. I took just one step when I felt an indescribable pain in my right foot. When I looked down, I noticed a silver gecko with my boot in its mouth. That little fucker tore a piece of my foot off without me even noticing!}
+{5010}{}{Ouch, that's gotta hurt... Then what did you do?}
+{5020}{}{This is too much for me, I think I'm going to be sick...}
+{6000}{}{What did I do? I shot the small fucker, and killed his whole family. Then I took my trusty knife and skinned them all. Look, [He shows you a silver gecko skin.] I took a trophy, my last one.}
+{6010}{}{That all sounds awesome, can you teach me how to hunt and skin geckos?}
+{6020}{}{That's a very nice story you have there. Sadly, I really don't care. Bye.}
+{7000}{}{Well sure, I can teach you how to deal with them, then you could continue my life's work - the extermination of them squeaky little fucks from the wasteland.}
+{7010}{}{Let's do it.}
+{7020}{}{Nah. They sound kind of dangerous. I'll pass.}
+{8000}{}{Okay, but I won't do it for free. @lex skinning_price@ caps and we'll call it a day.}
+{8010}{}{(Gain Perk: Gecko Skinning.) Very well, it's worth it.}
+{8020}{}{Sorry, I don't have enough money, maybe another time.}
+{9000}{}{Okay, now watch and learn [He teaches you on his trophy how to properly skin geckos.]}
+{9010}{}{Thanks for your time, see you later.}
+{10000}{}{@sex@|Son||Girl|, if I knew how, it would already be fixed. If you have some idea of how to fix it, you're free to try.}
+{10010}{}{I'll see what I can do.}
+{10020}{}{That's not my job. Find someone else.}
+{11000}{}{Really? Thank you. Well. That doesn't change anything, But here's some pay for the job.}
+{11010}{}{What do you mean it doesn't change anything?}
+{11020}{}{Sure, thanks.}
+{12000}{}{The well is connected to cave, which is dry. You could check it out if you want. The only way I know is through the well. You will need a rope, though.}
+{12010}{}{Sure, I always loved spelunking.}
+{12020}{}{Nah, I've had enough.}
+{13000}{}{Well, there's a farm not too far from here in the ruins. Why do you ask?}
+{13010}{}{The source of the water is blocked by a pump. Someone is taking it for himself!}
+{14000}{}{What? They're stealing our water? You need to get there and solve it. They're located right here [He marks the location on your PipBoy.] Also, that could be useful. [He gives you some caps.]}
+{14010}{}{Ok, I'll see what I can do. With luck, there will be no need to get bloody.}
+{15000}{}{Awesome, thank you. Here's a small reward for your trouble, @lex q_adytum_well@ caps.}
+{15010}{}{I'll take the caps. [Take @lex q_adytum_well@ caps.]}
+{15020}{}{Nah, I don't want anything. Enjoy the water. [Earn 5000 exp.]}
+{16000}{}{Very well, thank you for solving this problem.}
+{16010}{}{Yeah, glad I could help.}
+{17000}{}{An agreement? Very interesting. Tell me more.}
+{17010}{}{I've set the power of the pump to 50%. It's enough to keep them supplied, and enough for you people to get your water back. In return for the water, they will give you a cut of their crops. What do you think?}
+{17020}{}{I've set the power of the pump to 50%. It's enough to keep them supplied, and enough for you people to get your water back. In return for the water, they will give you a cut of their crops. What do you think?}
+{18000}{}{It looks like you made the decision yourself. It's a good one, I can't deny it, so I agree. You solved the problem, so take this as payment. }
+{18010}{}{Very well, I'll tell them that.}
+{19000}{}{Yes, there is something. Our hunters have located ruins full of small deathclaws. They probably lost their mother and decided to take refuge there. If you'd kill them, we'd be very grateful - in a couple of months they could grow up and pose a serious danger. Well, they're quite tough even now... Will you help us? (The location will become visible for you and everyone nearby who has tagged you.)}
+{19010}{}{Sure. Where are those ruins?}
+{19020}{}{Well, I don't know. Maybe later... Goodbye.}
+{20000}{}{It's right here. [Points out a location on your PipBoy.] Come back to me after you've killed'em all.}
+{20010}{}{Yeah. I'll be back, Pestis.}
+{21000}{}{Really? Well done, @sex@|son||girl|. Here's your reward. If you hadn't done this, in a month's time we'd have to deal with a deadly pack of mature ones.}
+{21010}{}{Yeah, I see. Good thing I was here to help. Bye, take care.}
+
+[russ]
+{100}{}{Пестис}
+{200}{}{Вы видите : фермера с идиотским выражением на лице.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Новое лицо в городе. Добро пожаловать.}
+{2010}{}{Здравствуйте, вы кто?}
+{2020}{}{Скажите Пестис, есть ли еще места нуждающиеся в воде?}
+{2030}{}{Пестис друг мой, насос больше не проблема, вода медленно возвращаться.}
+{2040}{}{Эй Пестис, я пришел к соглашению с людьми, с фермы.}
+{2050}{}{Колодец все еще не работет, почему?}
+{2060}{}{Колодец починен.}
+{2070}{}{Что случилось с колодцем, почему он не работет?}
+{2080}{}{У Вас не найдется для меня работенки?}
+{2090}{}{Я убил этих смертокогтов, всех до единого.}
+{2100}{}{Пестис, я забыл где эта пещера.}
+{2110}{}{Ой, простите, я забыл кое-что. Пока.}
+{3000}{}{Теперь только фермер, был охотником но потом стрела попала мне в колено.}
+{3010}{}{Расскажи мне больше.}
+{3020}{}{Мне пора, пока.}
+{4000}{}{Ну, я охотился на западе. Выследил ??довольно хорошую семья гекконов, я был уверен, что смогу прокрасться на гору и подстрелить их. Но потом...}
+{4010}{}{Что потом?!}
+{4020}{}{А потом я ушел и не стал слушать этот бред.}
+{5000}{}{Я медленно крался к ним, и вдруг почувствовал невероятную боль в ноге. Когда я посмотрел вния, я увидел что моя нога во рту у маленького геккона, этот маленький ублюдок так быстро откусил кусок моей ноги, что я даже не успел заметить!}
+{5010}{}{Ой, должно быть было очень больно... И что ты сделал?}
+{5020}{}{Это уже слишком для меня, я ухожу...}
+{6000}{}{Что я сделал? Я прострелил бошку этому маленькому уродцу. Потом я достал нож и снял с него шкура. Смотри *Он показывает вам шкуру геккона* я взял трофей, последний.}
+{6010}{}{Это была захватывающая истори, можешь научить и меня обращаться с гекконами?}
+{6020}{}{Это очень хорошая история. К сожалению, не для меня, пока.}
+{7000}{}{Ну да, я могу научить вас, как обращаться с ними, по крайней мере вы можете занять мое место в истреблении этих тварей.}
+{7010}{}{Давайте приступим.}
+{7020}{}{Нее, это звучит довольно опасно.}
+{8000}{}{Конечно, @lex skinning_price@ монет. Деньги мне не помешают.}
+{8010}{}{[Скорняк] Очень хорошо, это того стоит.}
+{8020}{}{К сожалению, у меня нет достаточно денег, может быть, в другой раз.}
+{9000}{}{Хорошо, теперь смотри и учись (Он учит вас как правильно снимать шкуру с гекконов)}
+{9010}{}{Спасибо, увидимся позже.}
+{10000}{}{Если бы я только знал. Если у тебя есть идеи как его починить можешь попробовать.}
+{10010}{}{Я посмотрю, что можно сделать.}
+{10020}{}{Это не мое дело. Найдите кого-нибудь другого.}
+{11000}{}{Правда? Спасибо. Хотя конечно в итоге это ничего не меняет, на я заплачу тебе за работу.}
+{11010}{}{Что значите ничего не меняет?}
+{11020}{}{Конечно, спасибо.}
+{12000}{}{Колодец берет воду из подземной пещеры, но там нет воды, можешь проверить сам если хочешь. Но единственный способ попасть туда это спустится в колодец, тебе понадобится веревка.}
+{12010}{}{Конечно, я всегда любил спелеологию.}
+{12020}{}{Неее, с меня хватит.}
+{13000}{}{Ну, есть одна ферма недалеко отсюда в руинах, а почему вы спрашиваете?}
+{13010}{}{Кто-то выкачивает всю воду для себя.}
+{14000}{}{Что? Они воруют нашу воду? Вам нужно туда попасть и решить эту проблему. Вот, это может быть полезным. [Он дает вам броню]}
+{14010}{}{Хорошо, я посмотрю, что можно сделать, может быть удастся решить все без крови.}
+{15000}{}{Отлично. Что вы хотите в качестве оплаты? Я мог бы дать вам вещи или деньги. Что вы выбираете?}
+{15010}{}{Возьму деньгами. [ @lex q_adytum_well@ крышек.]}
+{15020}{}{Неее, мне ничего не нужно, наслаждайтесь водой. [ 5000 опыта.]}
+{16000}{}{Вот, пожалуйста, спасибо за решение проблемы.}
+{16010}{}{Да, рад, что смог помочь.}
+{17000}{}{Соглашение? Очень интересно. Расскажи мне больше.}
+{17010}{}{Я установил мощность насоса для 50% этого будет достаточно и вам и им. Они готовы платить за воду, что думаешь?}
+{17020}{}{Я установил мощность насоса для 50% этого будет достаточно и вам и им. Они готовы платить за воду, что думаешь?}
+{18000}{}{Похоже, что вы приняли решение самостоятельно. Во всяком случае, это хорошее решение, не могу не согласится. Вы решили проблему, поэтому примите это в качестве оплаты. [Он дает вам Боевую броню]. Передайте им что я согласен.}
+{18010}{}{Хорошо, я передам им.}
+{19000}{}{Пожалуй есть одно бело для тебя. Ниша охотники обнаружили пещеру полную смертокогтов. Там их целый выводок. Нужно поскорее от них избавится, иначе скоро они вырастут и тогда всем в округе придется туго. Хотя я они достаточно опасны уже сейчас... Поможешь? (Пещера будет обозначена на карте для вас и вашей группы.)}
+{19010}{}{Конечно, где эта пещера?}
+{19020}{}{Ну, не знаю. Может позже... Пока.}
+{20000}{}{Она находится вот тут. [Обозначает пещеру в вашем Пип-бое.] Возвращайся когда покончишь с ними.}
+{20010}{}{Да, до скорого, Пестис.}
+{21000}{}{Правда? Отлично. Вот твоя награда, ты нас очень выручил.}
+{21010}{}{Рад что смог помочь. Береги себя, пока.}
+
+[pols]
+{100}{}{Farmer Pestis}
+{200}{}{Widzisz farmera z idiotycznym wyrazem twarzy.}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{O, miło spotkać jakąś nieznajomą osobę. Witaj.}
+{2010}{}{Cześć, kim jesteś?}
+{2020}{}{Powiedz mi, czy są tu jakieś inne miejsca, w których mogą potrzebować wody?}
+{2030}{}{Pestis, przyjacielu, problem pompy jest już rozwiązany. Przepływ powoli wraca do normy.}
+{2040}{}{Hej Pestis, @sex@|doszedłem||doszłam| do porozumienia z ludźmi z farmy.}
+{2050}{}{Studnia wciąż nie działa, ale dlaczego?}
+{2060}{}{Studnia została naprawiona..}
+{2070}{}{Co się stało z tą studnią? Nie działa.}
+{2080}{}{Miałbyś może dla mnie jakąś robotę?}
+{2090}{}{@sex@|Zabiłem||Zabiłam| wszystkie Szpony Śmierci, możecie spać spokojnie.}
+{2100}{}{Pestis, i have lost the cave, could you tell me again where is it?}
+{2110}{}{Och przepraszam, @sex@|zapomniałem||zapomniałam| zgasić ogniska w namiocie. Do widzenia.}
+{3000}{}{Teraz jestem tylko farmerem, ale kiedyś byłem myśliwym.}
+{3010}{}{Opowiedz mi więcej.}
+{3020}{}{Właściwie, to gówno mnie to obchodzi. Do widzenia.}
+{4000}{}{Cóż, polowałem samotnie na zachodnich Pustkowiach. Zauważyłem milutką rodzinkę gekonów, byłem pewien że uda mi się zakraść na szczyt pobliskiego wzgórza, skąd miałbym dobrą pozycję do strzału. Ale wtedy...}
+{4010}{}{Wtedy co?!}
+{4020}{}{Ale wtedy ja sobie idę, a ty nie kończysz tej dennej historii. Trzymaj się, cześć.}
+{5000}{}{Powoli się do nich zakradałem, byłem już w zasięgu strzału. Podszedłem jeszcze krok naprzód, kiedy nagle jak mnie nie zacznie napierdalać prawa stopa! Patrzę na dół, a tam mały zasrany srebrny gekon z moim butem w zębach! Jebaniec odgryzł mi normalnie kawałek stopy!}
+{5010}{}{Ała... Co zrobiłeś?}
+{5020}{}{To dla mnie za dużo, już kręci mi się w głowie...}
+{6000}{}{Co zrobiłem? Zastrzeliłem skurwysyna, a potem całą rodzinkę zaalarmowanej rodzinki. Potem wziąłem mój stary, dobry nóż i wypatroszyłem je wszystkie. [Pokazuje ci starą skórę srebrnego gekona.] To moje trofeum, ostatnie w życiu.}
+{6010}{}{Brzmi kozacko, może jesteś w stanie nauczyć mnie tego i owego?}
+{6020}{}{Ciekawa historia. Przykro mi, ale muszę już iść. Do zobaczenia, Pestis.}
+{7000}{}{No jasne, mogę cię nauczyć całkiem sporo, zajmiesz moje miejsce jako postrach tych małych jebańców.}
+{7010}{}{Dobra, przejdźmy do konkretów.}
+{7020}{}{Nieee, to brzmi zbyt niebezpiecznie. Dziękuję.}
+{8000}{}{Jasne, @lex skinning_price@ kapsli się należy. Trza za coś żyć, c'nie?}
+{8010}{}{(Perk: Patroszenie gekonów) W porządku, opłaca się.}
+{8020}{}{Przykro mi, nie mam tylu pieniędzy. Może innym razem.}
+{9000}{}{Dobra, patrz i ucz się. [Na przykładzie swojego trofeum uczy cię, jak patroszyć gekony.]}
+{9010}{}{Dzięki za poświęcony czas, do zobaczenia.}
+{10000}{}{@sex@|Synu||Kotku|, gdybym wiedział, to bym ją naprawił. Jeśli masz jakiś pomysł, proszę bardzo, próbuj.}
+{10010}{}{Zobaczę, co da się zrobić.}
+{10020}{}{Mam lepsze rzeczy do roboty. Znajdź se kogoś innego, koleś.}
+{11000}{}{Naprawdę? Dzięki. Cóż. Nic to nie to zmienia, ale oto zapłata za twoją pracę.}
+{11010}{}{Co masz na myśli mówiąc, że nic to nie zmienia?}
+{11020}{}{Jasne, dzięki.}
+{12000}{}{Studnia jest połączona z jaskinią, która jest sucha, możesz sprawdzić jeśli chcesz. Jedyną drogą, którą znam, jest zejście w dół studni, będziesz jednak potrzebować liny.}
+{12010}{}{Jasne, grotołaztwo to moje drugie imię.}
+{12020}{}{Nieee, nie chce mi się.}
+{13000}{}{Cóż, niedaleko stąd, w ruinach, jest jedna farma. Dlaczego pytasz?}
+{13010}{}{Źródło wody jest zablokowane przez pompę. Ktoś zabiera wodę dla siebie.}
+{14000}{}{Co? Kradną naszą wodę? Musisz tam iść i rozwiązać z nimi tą sprawę... Są gdzieś tutaj. [Wskazuje ci lokację.] Weź też to, może się przydać. [Wręcza ci pancerz.]}
+{14010}{}{Dobra, zobaczę co da się zrobić... Może będę w stanie rozwiązać to bez przelewu krwi. A może nie?}
+{15000}{}{Świetnie, dzięki. Jaka forma zapłaty najbardziej ci odpowiada? Mogę dać ci trochę sprzętu albo kapsle. Co wybierasz?}
+{15010}{}{Wezmę kapsle. (@lex q_adytum_well@ kapsli)}
+{15020}{}{Nic od was nie chcę, cieszcie się wodą. (5,000 doświadczenia)}
+{16000}{}{Doskonale, dzięki za rozwiązanie tego problemu.}
+{16010}{}{Ta, cieszę się że @sex@|mogłem||mogłam| pomóc.}
+{17000}{}{Do porozumienia? Ciekawe... Opowiedz mi więcej.}
+{17010}{}{@sex@|Ustawiłem||Ustawiłam| poziom zasilania pompy na 50%. To wystarcza zarówno na ich, jak i na wasze potrzeby. Za wodę odpłacą się wam częścią swoich zbiorów. Co o tym sądzisz?}
+{17020}{}{I've setup power of the pump to 50% It's enough to keep them supplied, and enough for you people to get water back. For the water they get you will have a cut from their crops. What do you think?}
+{18000}{}{Wygląda na to, że @sex@|podjąłeś||podjęłaś| już decyzję w naszym imieniu. Nie mogę jednak zaprzeczyć, że podoba mi się to rozwiązanie, w porządku. Weź to jako zapłatę. [Wręcza ci pancerz bojowy.] I powiedz im, że się zgadzam.}
+{18010}{}{Świetnie, idę im to przekazać.}
+{19000}{}{Tak, znalazłoby się coś. Nasi łowcy zlokalizowali jaskinię pełną młodych Szponów Śmierci. Prawdopodobnie straciły matkę i postanowiły się tam schronić. Jeśli byś je @sex@|zabił||zabiła|, bylibyśmy bardzo wdzięczni - w trakcie kilku miesięcy mogą urosnąć, i wtedy dopiero będą stanowiły zagrożenie. Szczerze, to są cholernie twarde nawet teraz... Pomożesz nam? (Lokacja zostanie ujawniona tobie i wszystkim osobom w pobliżu, które cię otagowały.)}
+{19010}{}{Jasne. Gdzie jest ta jaskinia?}
+{19020}{}{Cóż, nie wiem. Może potem... Do widzenia, Pestis.}
+{20000}{}{Jest dokładnie... tutaj. [Wskazuje lokację na twoim PipBoy'u.] Wróć, kiedy już wszystkie zabijesz.}
+{20010}{}{Pewnie. Wrócę za niedługo, Pestis.}
+{21000}{}{Naprawdę? Dobra robota, @sex@|synu||kotku|. Proszę, oto twoja nagroda. Gdyby nie ty, lada chwila musielibyśmy uporać się z śmiercionośnym stadem dorosłych Szponów Śmierci.}
+{21010}{}{Mhm, rozumiem. Dobrze, że @sex@|byłem||byłam| w okolicy. Na razie, trzymaj się.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{ }
+{2000}{}{Hello there stranger. Want something from old Pestis?}
+{2010}{}{Hello, who are you?}
+{2020}{}{Say Pestis, are there any other places around which would need the water?}
+{2030}{}{The pump is no longer a problem, the water is slowly coming back.}
+{2040}{}{Hey Pestis, I came to agreement with the people from the farm.}
+{2050}{}{So the well is still not working, but why?}
+{2060}{}{The well is fixed.}
+{2070}{}{What happened with that well? It's not working.}
+{2080}{}{Do you have any work for me?}
+{2090}{}{I've killed those deathclaws, Pestis.}
+{2100}{}{Pestis, I can't find the cave, could you tell me where it is again?}
+{2110}{}{Oh, sorry, I forgot something. Bye.}
+{3000}{}{Now I'm only a farmer, I was hunter before that small gecko got me.}
+{3010}{}{Tell me more.}
+{3020}{}{Now ask me if I care. Bye.}
+{4000}{}{Well, I was hunting by myself out west. Spotted a pretty nice gecko family, I was pretty sure I could sneak around to a nearby ridge and get a good shot at them. But then...}
+{4010}{}{Then what?!@@Then what?! Tell me!@@Don't leave me in suspense! What happened next?}
+{4020}{}{But then I left before you could finish your boring story. Later.}
+{5000}{}{Slowly I snuck towards them, trying to get within range. I took just one step when I felt an indescribable pain in my right foot. When I looked down, I noticed a silver gecko with my boot in its mouth. That little fucker tore a piece of my foot off without me even noticing!}
+{5010}{}{Ouch, that's gotta hurt... Then what did you do?}
+{5020}{}{This is too much for me, I think I'm going to be sick...}
+{6000}{}{What did I do? I shot the small fucker, and killed his whole family. Then I took my trusty knife and skinned them all. Look, [He shows you a silver gecko skin.] I took a trophy, my last one.}
+{6010}{}{That all sounds awesome, can you teach me how to hunt and skin geckos?}
+{6020}{}{That's a very nice story you have there. Sadly, I really don't care. Bye.}
+{7000}{}{Well sure, I can teach you how to deal with them, then you could continue my life's work - the extermination of them squeaky little fucks from the wasteland.}
+{7010}{}{Let's do it.}
+{7020}{}{Nah. They sound kind of dangerous. I'll pass.}
+{8000}{}{Okay, but I won't do it for free. @lex skinning_price@ caps and we'll call it a day.}
+{8010}{}{(Gain Perk: Gecko Skinning.) Very well, it's worth it.}
+{8020}{}{Sorry, I don't have enough money, maybe another time.}
+{9000}{}{Okay, now watch and learn [He teaches you on his trophy how to properly skin geckos.]}
+{9010}{}{Thanks for your time, see you later.}
+{10000}{}{@sex@|Son||Girl|, if I knew how, it would already be fixed. If you have some idea of how to fix it, you're free to try.}
+{10010}{}{I'll see what I can do.}
+{10020}{}{That's not my job. Find someone else.}
+{11000}{}{Really? Thank you. Well. That doesn't change anything, But here's some pay for the job.}
+{11010}{}{What do you mean it doesn't change anything?}
+{11020}{}{Sure, thanks.}
+{12000}{}{The well is connected to cave, which is dry. You could check it out if you want. The only way I know is through the well. You will need a rope, though.}
+{12010}{}{Sure, I always loved spelunking.}
+{12020}{}{Nah, I've had enough.}
+{13000}{}{Well, there's a farm not too far from here in the ruins. Why do you ask?}
+{13010}{}{The source of the water is blocked by a pump. Someone is taking it for himself!}
+{14000}{}{What? They're stealing our water? You need to get there and solve it. They're located right here [He marks the location on your PipBoy.] Also, that could be useful. [He gives you some caps.]}
+{14010}{}{Ok, I'll see what I can do. With luck, there will be no need to get bloody.}
+{15000}{}{Awesome, thank you. Here's a small reward for your trouble, @lex q_adytum_well@ caps.}
+{15010}{}{I'll take the caps. [Take @lex q_adytum_well@ caps.]}
+{15020}{}{Nah, I don't want anything. Enjoy the water. [Earn 5000 exp.]}
+{16000}{}{Very well, thank you for solving this problem.}
+{16010}{}{Yeah, glad I could help.}
+{17000}{}{An agreement? Very interesting. Tell me more.}
+{17010}{}{I've set the power of the pump to 50%. It's enough to keep them supplied, and enough for you people to get your water back. In return for the water, they will give you a cut of their crops. What do you think?}
+{17020}{}{I've set the power of the pump to 50%. It's enough to keep them supplied, and enough for you people to get your water back. In return for the water, they will give you a cut of their crops. What do you think?}
+{18000}{}{It looks like you made the decision yourself. It's a good one, I can't deny it, so I agree. You solved the problem, so take this as payment. }
+{18010}{}{Very well, I'll tell them that.}
+{19000}{}{Yes, there is something. Our hunters have located ruins full of small deathclaws. They probably lost their mother and decided to take refuge there. If you'd kill them, we'd be very grateful - in a couple of months they could grow up and pose a serious danger. Well, they're quite tough even now... Will you help us? (The location will become visible for you and everyone nearby who has tagged you.)}
+{19010}{}{Sure. Where are those ruins?}
+{19020}{}{Well, I don't know. Maybe later... Goodbye.}
+{20000}{}{It's right here. [Points out a location on your PipBoy.] Come back to me after you've killed'em all.}
+{20010}{}{Yeah. I'll be back, Pestis.}
+{21000}{}{Really? Well done, @sex@|son||girl|. Here's your reward. If you hadn't done this, in a month's time we'd have to deal with a deadly pack of mature ones.}
+{21010}{}{Yeah, I see. Good thing I was here to help. Bye, take care.}
+

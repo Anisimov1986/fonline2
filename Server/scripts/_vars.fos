@@ -1,0 +1,2118 @@
+#ifndef __VARS__
+#define __VARS__
+/*************************************************************************************
+***  VARS  *****  COUNT: 00000302  ***************************************************
+*************************************************************************************/
+
+
+#define LVAR_bank_account                            (11)
+#define LLVAR_storehouse_cont_id                     (16)
+#define LLVAR_is_encounter                           (18)
+#define LLVAR_last_loot_transfer                     (19)
+#define LVAR_hell_visits                             (20)
+#define LLVAR_Value0                                 (30)
+#define LLVAR_Value1                                 (31)
+#define LLVAR_Value2                                 (32)
+#define LLVAR_Value3                                 (33)
+#define LLVAR_Value4                                 (34)
+#define LLVAR_Value5                                 (35)
+#define LLVAR_Value6                                 (36)
+#define LLVAR_Value7                                 (37)
+#define LLVAR_Value8                                 (38)
+#define LLVAR_Value9                                 (39)
+#define GVAR_base_sierra_rule                        (100)
+#define GVAR_base_mariposa_rule                      (101)
+#define GVAR_base_cathedral_rule                     (102)
+#define GVAR_base_sierra_org                         (103)
+#define GVAR_base_mariposa_org                       (104)
+#define GVAR_base_cathedral_org                      (105)
+#define GVAR_base_enclave_score                      (106)
+#define GVAR_base_bos_score                          (107)
+#define GVAR_base_sierra_time_event_id               (108)
+#define GVAR_base_mariposa_time_event_id             (109)
+#define GVAR_base_cathedral_time_event_id            (110)
+#define GVAR_tc_time_den                             (201)
+#define GVAR_tc_time_klamath                         (202)
+#define GVAR_tc_time_modoc                           (203)
+#define GVAR_tc_time_gecko                           (205)
+#define GVAR_tc_time_bh                              (206)
+#define GVAR_tc_time_redding                         (213)
+#define LVAR_se_gasstation                           (800)
+#define LVAR_se_nukatruck                            (801)
+#define LVAR_se_saucer                               (802)
+#define LVAR_se_guardian                             (803)
+#define LVAR_se_tardis                               (804)
+#define LVAR_se_hospital                             (805)
+#define LVAR_se_watertower                           (806)
+#define LVAR_se_cave                                 (807)
+#define LVAR_se_madmax                               (808)
+#define LVAR_se_warehouse                            (809)
+#define LVAR_se_ransackedbunker                      (810)
+#define LVAR_se_raidedbunker                         (811)
+#define LVAR_se_head                                 (812)
+#define LVAR_se_village                              (813)
+#define LVAR_main_faction                            (910)
+#define LVAR_main_faction_rank                       (911)
+#define UVAR_name_mem_player_npc                     (1000)
+#define UVAR_name_mem_npc_player                     (1001)
+#define LVAR_last_npc_dialog                         (1002)
+#define LVAR_q_necro_water                           (1200)
+#define GVAR_raiders_dead                            (1600)
+#define LMVAR_is_nopvp_map                           (1601)
+#define LVAR_q_arroyo_selma_caravan_escort           (1807)
+#define LVAR_q_arroyo_gayzum_caravan_escort          (1808)
+#define LVAR_q_arroyo_laumer_caravan_escort          (1809)
+#define GVAR_ge_repl_station_status                  (1825)
+#define LVAR_spawn_blocker                           (2000)
+#define UVAR_loyality                                (2010)
+#define UVAR_steal_exp_count                         (2011)
+#define UVAR_first_aid_count                         (2012)
+#define UVAR_kill_player                             (2013)
+#define UVAR_guarded_item_skill                      (2017)
+#define LVAR_karma_limit                             (2018)
+#define LVAR_karma_timeout                           (2019)
+#define LVAR_elock_timeout                           (2020)
+#define LVAR_flood_count                             (2021)
+#define UVAR_uniq_timeout                            (2031)
+#define LVAR_can_repair_weapons                      (2201)
+#define LVAR_can_repair_weapons_special              (2202)
+#define LVAR_can_repair_armour                       (2203)
+#define LVAR_can_repair_armour_special               (2204)
+#define UVAR_repair_complete_time                    (2205)
+#define UVAR_repair_item_pid                         (2206)
+#define LVAR_doughnuts_counter                       (2211)
+#define LVAR_terminal_player_id                      (3029)
+#define LVAR_nuke_stock                              (3052)
+#define LVAR_nuke_restock_time                       (3053)
+#define LLVAR_loc_delete_time                        (3313)
+#define LVAR_q_mod_farrel_ammiak                     (3316)
+#define LVAR_q_bh_kit_caravan_escort                 (3600)
+#define LVAR_bh_crv_reset_counter                    (3601)
+#define LVAR_common_crv_reset_counter                (3602)
+#define UVAR_selected_caravan                        (3603)
+#define LVAR_gm_help_timeout                         (4123)
+#define LVAR_q_ncr_redding_caravan_escort            (4244)
+#define LVAR_ncr_crv_reset_counter                   (4290)
+#define LVAR_q_ncr_hate_patrol                       (4292)
+#define GVAR_ncr_hate_patrol_timeout                 (4293)
+#define LVAR_q_redd_wade_caravan_escort              (4300)
+#define LVAR_q_redd_savinel_caravan_escort           (4301)
+#define LVAR_q_redd_stan_caravan_escort              (4302)
+#define LVAR_redd_crv_reset_counter                  (4304)
+#define LVAR_sf_recipe_plasmagrenades                (4425)
+#define LVAR_sf_recipe_supersledge                   (4426)
+#define LVAR_sf_chitin_armor_recipe_known            (4439)
+#define LVAR_nav_emp_rocket_recipe                   (4510)
+#define LVAR_arroyo_crv_reset_counter                (4708)
+#define LVAR_q_main_quest                            (5001)
+#define LVAR_q_main_char                             (5002)
+#define LVAR_q_chosen                                (5003)
+#define LMVAR_q_intro_initiated                      (5004)
+#define LMVAR_intro_doors_open                       (5005)
+#define LVAR_enc_loyality_hubologists                (5650)
+#define LVAR_enc_loyality_ncr                        (5651)
+#define LVAR_enc_loyality_vcity                      (5652)
+#define LVAR_enc_loyality_redding                    (5653)
+#define LVAR_enc_loyality_broken                     (5654)
+#define LVAR_enc_loyality_gecko                      (5655)
+#define LVAR_enc_loyality_arroyo                     (5656)
+#define LVAR_enc_loyality_klamath                    (5657)
+#define LVAR_enc_loyality_modoc                      (5658)
+#define LVAR_enc_loyality_den                        (5659)
+#define LVAR_enc_loyality_reno                       (5660)
+#define LVAR_enc_loyality_enclave                    (5661)
+#define LVAR_enc_loyality_sf                         (5662)
+#define LVAR_fixboy_power_armor                      (6000)
+#define LVAR_fixboy_700_nitro_express                (6001)
+#define LVAR_fixboy_ammo_press_operator              (6002)
+#define LVAR_fixboy_default                          (6003)
+#define LVAR_timeout                                 (6160)
+#define LVAR_timeout1                                (6161)
+#define LVAR_timeout2                                (6162)
+#define LVAR_timeout3                                (6163)
+#define LVAR_timeout4                                (6164)
+#define LVAR_timeout5                                (6165)
+#define LVAR_timeout6                                (6166)
+#define LVAR_timeout7                                (6167)
+#define LVAR_timeout8                                (6168)
+#define LVAR_timeout9                                (6169)
+#define LVAR_caravan_hub_to_vault_city               (7000)
+#define LVAR_q_robinwood                             (7327)
+#define LVAR_q_robinwood_locid                       (7328)
+#define LVAR_personal_base_id                        (8820)
+#define LVAR_q_vc_shrim_patrol                       (8826)
+#define LVAR_start_location                          (8827)
+#define LVAR_vc_dead_patrollers                      (8828)
+#define LVAR_tent_id                                 (8829)
+#define LLVAR_mapclosed                              (8830)
+#define LVAR_login                                   (8831)
+#define LVAR_main_quest                              (8832)
+#define LVAR_quest_cooldown                          (8833)
+#define LVAR_hex_cooldown                            (8834)
+#define LVAR_karma_daily_gain                        (8840)
+#define LVAR_karma_gain_last_time                    (8841)
+#define UVAR_karma_first_attack                      (8842)
+#define UVAR_karma_first_attack_location             (8843)
+#define LVAR_ron_winkley                             (9000)
+#define LVAR_q_my_first_tent                         (9001)
+#define LVAR_q_melsaks_revenge                       (9002)
+#define LVAR_melsak                                  (9003)
+#define LVAR_q_jt_pete_toolkit                       (9004)
+#define LVAR_q_marry_benjami                         (9005)
+#define LVAR_q_jt_margaret_pete                      (9006)
+#define LVAR_q_jt_mike_marry                         (9007)
+#define LVAR_q_jt_marry_e-parts                      (9008)
+#define LVAR_slayer_travel                           (9009)
+#define LVAR_jt_benjamikyleeq                        (9010)
+#define LVAR_jt_benjamikyleCD                        (9011)
+#define LVAR_jt_marryelectronicCD                    (9012)
+#define LVAR_jt_petejunkrepeatable                   (9013)
+#define LVAR_jt_petejunkrepeatableCD                 (9014)
+#define LVAR_jt_margaretfridge                       (9015)
+#define LVAR_jt_docZachstory                         (9016)
+#define LVAR_jt_docZachrepetable                     (9017)
+#define LVAR_jt_docZachrepetableCD                   (9018)
+#define LVAR_jt_docZachKylee                         (9019)
+#define LVAR_jt_joestinkerwaterbag                   (9020)
+#define LVAR_klam_aldomedicine                       (9021)
+#define LVAR_klam_aldomedicineCD                     (9022)
+#define LVAR_klam_bobwhiskey                         (9023)
+#define LVAR_klam_bobwhiskeyCD                       (9024)
+#define LVAR_klam_majdaskins                         (9025)
+#define LVAR_klam_majdaskinsCD                       (9026)
+#define LVAR_mod_leehides                            (9027)
+#define LVAR_mod_leehidesCD                          (9028)
+#define LVAR_jt_joestinkerwaterbagCD                 (9030)
+#define LVAR_prof_gunsmith                           (9031)
+#define LVAR_prof_armorer                            (9032)
+#define LVAR_prof_chemist                            (9033)
+#define LVAR_prof_energy                             (9034)
+#define LVAR_Cannibal                                (9100)
+#define LVAR_met_kenny                               (9101)
+#define LVAR_q_dan_bag                               (9102)
+#define LVAR_q_adam_beer                             (9104)
+#define LVAR_q_christopher_meds                      (9105)
+#define LVAR_q_giovanna_shovel                       (9106)
+#define LVAR_q_trout_condom                          (9107)
+#define LVAR_q_annie_book                            (9108)
+#define LVAR_q_far-go-traders_willy                  (9109)
+#define LVAR_q_far-go-traders_gecko                  (9110)
+#define LVAR_q_far-go-traders_klamath                (9111)
+#define LVAR_q_far-go-traders_den                    (9112)
+#define LVAR_q_far-go-traders_redding                (9113)
+#define LVAR_q_far-go-traders_modoc                  (9114)
+#define LVAR_q_fredric                               (9115)
+#define LVAR_q_iguana_bob                            (9116)
+#define LVAR_q_iguana_bobCD                          (9117)
+#define UVAR_q_box_unload_status                     (9301)
+#define UVAR_q_box_unload_count                      (9302)
+#define LVAR_q_box_lifting_cooldown                  (9303)
+#define UVAR_q_dung_cleaned                          (9304)
+#define LVAR_q_box_lifting_cooldown_junktown         (9305)
+#define LVAR_q_box_lifting_cooldown_adytum           (9306)
+#define LVAR_q_box_lifting_cooldown_vcity            (9307)
+#define LVAR_q_adytum_well_creation                  (9308)
+#define LVAR_q_adytum_farm_creation                  (9309)
+#define LVAR_q_start_questcaravan_creation           (9310)
+#define LVAR_q_start_questcaravan                    (9311)
+#define LVAR_q_start_radcave                         (9312)
+#define LVAR_q_vc_billpoofs                          (9313)
+#define LVAR_q_den_joshuacards                       (9314)
+#define LVAR_vc_vaultaccess                          (9315)
+#define LVAR_q_vc_mcclure                            (9316)
+#define LVAR_q_adytum_well                           (9317)
+#define LVAR_q_adytum_wellpump                       (9318)
+#define LVAR_q_deathclaws                            (9319)
+#define LVAR_q_deathclaws_cooldown                   (9320)
+#define LVAR_q_raiders                               (9321)
+#define LVAR_q_raiders_cooldown                      (9322)
+#define LVAR_q_molerats                              (9323)
+#define LVAR_q_molerats_cooldown                     (9324)
+#define LVAR_q_hub_drifters                          (9325)
+#define LVAR_hungergames_event_cooldown              (9326)
+#define LVAR_q_glow_ghouls                           (9327)
+#define LVAR_q_glow_ghouls_cooldown                  (9328)
+#define LVAR_chessgame                               (9329)
+#define GVAR_sierra_turrets                          (9330)
+#define GVAR_sierra_turrets_cooldown                 (9331)
+#define GVAR_sierra_turrets_hackerfaction            (9332)
+#define GVAR_sierra_robots                           (9333)
+#define LVAR_bosside                                 (9334)
+#define LVAR_encside                                 (9335)
+#define LVAR_JunktownDoor                            (9336)
+#define GVAR_JunktownDoor2                           (9337)
+#define GVAR_sierra_turrets_hackcd                   (9338)
+#define LVAR_Bos_Access_Level                        (9339)
+#define LVAR_scribe_door                             (9340)
+#define LVAR_armory_door                             (9341)
+#define LVAR_chessgameCD                             (9342)
+#define LVAR_q_loon_jt                               (9500)
+#define LVAR_q_storage_unit_jet                      (9501)
+#define LVAR_MB_BetSide                              (9601)
+#define LVAR_MB_BetAmount                            (9602)
+#define GVAR_MB_BetStatus                            (9603)
+#define GVAR_MB_BetWinner                            (9604)
+#define LVAR_MB_AmountCaught                         (9605)
+#define LVAR_Wave_Farm                               (9606)
+#define LVAR_q_aviator                               (9607)
+#define LVAR_Wave_Ants                               (9609)
+#define LVAR_Wave_Metro                              (9610)
+#define LVAR_Wave_Farm_cooldown                      (9611)
+#define LVAR_Wave_Ants_cooldown                      (9612)
+#define LVAR_Wave_Metro_cooldown                     (9613)
+#define GVAR_HG_Killcount                            (9614)
+#define LVAR_achiev_strongback                       (9620)
+#define LVAR_q_geckoex_failCD                        (9627)
+#define LVAR_q_finderskeepers                        (9630)
+#define LVAR_q_finders_check                         (9631)
+#define LVAR_se_head                                 (9632)
+#define LVAR_se_village_check                        (9633)
+#define LVAR_simulation_room                    	 (9634)
+#define LVAR_q_aviator_main                          (9701)
+#define LVAR_q_aviator_chek                          (9702)
+#define LVAR_q_aviator_step                          (9703)
+#define LVAR_q_geckoex_ncr                           (9705)
+#define LVAR_q_geckoex_adyt                          (9706)
+#define LVAR_q_geckoex_vc                            (9707)
+#define LVAR_q_geckoex_sf                            (9708)
+#define LVAR_q_geckoex_fail                          (9709)
+#define GVAR_NCR_Gate                                (9710)
+#define LVAR_NCR_Citizenship                         (9711)
+#define LVAR_NCR_CitizenshipCD                       (9712)
+#define GVAR_NCR_GuardsTier                          (9713)
+#define GVAR_NCR_Election                            (9714)
+#define GVAR_NCR_Candidate1                          (9715)
+#define GVAR_NCR_Candidate2                          (9716)
+#define GVAR_NCR_Candidate3                          (9717)
+#define GVAR_NCR_Candidate4                          (9718)
+#define GVAR_NCR_Candidate5                          (9719)
+#define GVAR_NCR_Candidate1Votes                     (9720)
+#define GVAR_NCR_Candidate2Votes                     (9721)
+#define GVAR_NCR_Candidate3Votes                     (9722)
+#define GVAR_NCR_Candidate4Votes                     (9723)
+#define GVAR_NCR_Candidate5Votes                     (9724)
+#define LVAR_NCR_VoteCD                              (9725)
+#define LVAR_achiev_pathfinder                       (9726)
+#define GVAR_TEMP_LOCK                               (9727)
+#define GVAR_CAR_STORE                               (9728)
+#define LVAR_TempleKeys                              (9729)
+#define LVAR_Tut_Kenny                               (9730)
+#define LVAR_Tut_Kenny_creation                  	 (9731)
+#define GVAR_PVP_PRICE                               (9732)
+#define LVAR_Sim_Kills			                  	 (9733)
+#define LVAR_event_mq_farmer                         (9800)
+#define LVAR_event_mq_guard                          (9801)
+#define LVAR_event_mq_alco                           (9802)
+#define LVAR_event_mq_child                          (9803)
+#define LVAR_event_mq_prostitute                     (9804)
+#define LVAR_event_mq_guard2                         (9805)
+#define LVAR_event_mq_fire_gecko                     (9806)
+#define LVAR_event_mq_bp1                            (9807)
+#define LVAR_event_mq_bp2                            (9808)
+#define LVAR_event_mq_bp3                            (9809)
+#define LVAR_event_mq_bp4                            (9810)
+#define GVAR_modoc_fire_gecko_event                  (9996)
+#define LVAR_has_shopkeeper                          (9997)
+#define GVAR_random_map_critter_level                (9998)
+#define LVAR_offence_level                           (9999)
+
+
+/*************************************************************************************
+	Id	Type	Name		Start	Min	Max	Flags
+**************************************************************************************
+$	11	1	bank_account	0	0	0	4
+**********
+bank account 
+**********
+
+$	16	3	storehouse_cont_id	0	0	0	4
+**********
+   локальная для локации используемой в скрипте game_event_storehouse.fos 
+ 
+   указывается Id контейнера, в который складываются вещи, собранные на энкаунтерах мобами 
+**********
+
+$	18	3	is_encounter	0	0	1	0
+**********
+   признак, локация - энкаунтер на глобале 
+**********
+
+$	19	3	last_loot_transfer	0	0	0	4
+**********
+   Время последней передачи предметов на территорию игровой карты Чистилища. 
+**********
+
+$	20	1	hell_visits	0	0	0	4
+**********
+   Количество посещений игроком Ада. 
+   Используется для воспроизведения ролика TheLifeAfterHell.avi. 
+**********
+
+$	30	3	Value0	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	31	3	Value1	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	32	3	Value2	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	33	3	Value3	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	34	3	Value4	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	35	3	Value5	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	36	3	Value6	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	37	3	Value7	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	38	3	Value8	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	39	3	Value9	0	0	0	4
+**********
+   Location Variables
+**********
+
+$	100	0	base_sierra_rule	0	0	0	4
+**********
+   Квест на удержание баз. 
+   Id руководителя базы Сиерра. 
+**********
+
+$	101	0	base_mariposa_rule	0	0	0	4
+**********
+   Квест на удержание баз. 
+   Id руководителя базы Марипоза. 
+**********
+
+$	102	0	base_cathedral_rule	0	0	0	4
+**********
+   Квест на удержание баз. 
+   Id руководителя базы Собор. 
+**********
+
+$	103	0	base_sierra_org	0	0	2	0
+**********
+   Квест на удержание баз. 
+   Принадлежность базы Сиерра к организации. 
+   0 - Никто 
+   1 - Анклав 
+   2 - БС 
+**********
+
+$	104	0	base_mariposa_org	0	0	2	0
+**********
+   Квест на удержание баз. 
+   Принадлежность базы Марипоза к организации. 
+   0 - Никто 
+   1 - Анклав 
+   2 - БС 
+**********
+
+$	105	0	base_cathedral_org	0	0	2	0
+**********
+   Квест на удержание баз. 
+   Принадлежность базы Собор к организации. 
+   0 - Никто 
+   1 - Анклав 
+   2 - БС 
+**********
+
+$	106	0	base_enclave_score	0	0	10000000	0
+**********
+   Очки Анклава. 
+**********
+
+$	107	0	base_bos_score	0	0	10000000	0
+**********
+   Квест на удержание баз. 
+   Очки Братства стали. 
+**********
+
+$	108	0	base_sierra_time_event_id	0	0	0	4
+**********
+   Текущий номер события приезда машины. 
+**********
+
+$	109	0	base_mariposa_time_event_id	0	0	0	4
+**********
+   Текущий номер события приезда машины. 
+**********
+
+$	110	0	base_cathedral_time_event_id	0	0	0	4
+**********
+   Текущий номер события приезда машины. 
+**********
+
+$	201	0	tc_time_den	22	0	24	0
+**********
+Time when tc den is aviable 
+**********
+
+$	202	0	tc_time_klamath	19	0	24	0
+**********
+Time when tc klamath is aviable 
+**********
+
+$	203	0	tc_time_modoc	15	0	24	0
+**********
+Time when tcmodoc is aviable 
+**********
+
+$	205	0	tc_time_gecko	11	0	24	0
+**********
+Time when tc gecko is aviable 
+**********
+
+$	206	0	tc_time_bh	20	0	24	0
+**********
+Time when tc bh is aviable 
+**********
+
+$	213	0	tc_time_redding	18	0	24	0
+**********
+Time when tc redding is aviable 
+**********
+
+$	800	1	LVAR_se_gasstation	0	0	0	4
+**********
+
+**********
+
+$	801	1	LVAR_se_nukatruck	0	0	0	4
+**********
+
+**********
+
+$	802	1	LVAR_se_saucer	0	0	0	4
+**********
+
+**********
+
+$	803	1	LVAR_se_guardian	0	0	0	4
+**********
+
+**********
+
+$	804	1	LVAR_se_tardis	0	0	0	4
+**********
+
+**********
+
+$	805	1	LVAR_se_hospital	0	0	0	4
+**********
+
+**********
+
+$	806	1	LVAR_se_watertower	0	0	0	4
+**********
+
+**********
+
+$	807	1	LVAR_se_cave	0	0	0	4
+**********
+
+**********
+
+$	808	1	LVAR_se_madmax	0	0	0	4
+**********
+
+**********
+
+$	809	1	LVAR_se_warehouse	0	0	0	4
+**********
+
+**********
+
+$	810	1	LVAR_se_ransackedbunker	0	0	0	4
+**********
+
+**********
+
+$	811	1	LVAR_se_raidedbunker	0	0	0	4
+**********
+
+**********
+
+$	812	1	LVAR_se_head	0	0	0	4
+**********
+
+**********
+
+$	813	1	LVAR_se_village	0	0	0	4
+**********
+
+**********
+
+$	910	1	main_faction	0	0	0	4
+**********
+cr param MAIN_FACTION
+**********
+
+$	911	1	main_faction_rank	0	0	0	4
+**********
+cr param MAIN_FACTION_RANK
+**********
+
+$	1000	2	name_mem_player_npc	0	0	99	4
+**********
+Unicum var for npc player pair 
+**********
+
+$	1001	2	name_mem_npc_player	0	0	99	4
+**********
+Unicum var for npc player pair 
+**********
+
+$	1002	1	last_npc_dialog	0	0	0	4
+**********
+   Используется в npc_dialog.fos 
+   указывает время последнего диалога между нпц 
+**********
+
+$	1200	1	q_necro_water	0	0	5	0
+**********
+Necropolis vault quest. 
+**********
+
+$	1600	0	raiders_dead	0	0	0	4
+**********
+   GVAR_RAIDERS_DEAD                       :=0;    //      (600) 
+   Поставил пока без ограничений. 
+**********
+
+$	1601	4	is_nopvp_map	0	0	1	0
+**********
+   Признак: на карте отключен пвп-режим 
+**********
+
+$	1807	1	q_arroyo_selma_caravan_escort	0	0	11	1
+**********
+   статус каравана Сэлмы 
+**********
+
+$	1808	1	q_arroyo_gayzum_caravan_escort	0	0	11	1
+**********
+   статус каравана Сэлмы 
+**********
+
+$	1809	1	q_arroyo_laumer_caravan_escort	0	0	11	1
+**********
+   статус каравана Сэлмы 
+**********
+
+$	1825	0	ge_repl_station_status	0	0	5	0
+**********
+   Статус события "Происшествие на репликаторе" 
+**********
+
+$	2000	1	spawn_blocker	0	0	0	4
+**********
+To store blocker id which spawn to invisible critter
+**********
+
+$	2010	2	loyality	5	0	10	0
+**********
+   Используется для того, чтобы определить отношение Нпц к Игроку, которое сложилось у него в последствии разговора с Игроком. 
+ 
+   5 это средняя лояльность. 0 - Нпц к Игроку наименее лоялен. 10 - наиболее. 
+ 
+   Не обязательно задействовать в диалоге все 11 состояний переменной. Можно ввести к примеру проверку только на <3 и >7 или <5 и >5, а можно и все 11 расписать. 
+**********
+
+$	2011	2	steal_exp_count	0	0	0	4
+**********
+   Для определения кол-ва раз даваемого опыта за кражу у нпц. 
+**********
+
+$	2012	2	first_aid_count	0	0	0	4
+**********
+   Для определения кол-ва раз даваемого опыта за лечение FirstAid. 
+**********
+
+$	2013	2	kill_player	0	0	0	4
+**********
+ 
+**********
+
+$	2017	2	guarded_item_skill	0	0	3	0
+**********
+   уникальная 
+   используется в скриптах для охраняемых предметов 
+   число попыток открыть дверь или поднять охраняемый предмет 
+   максимум 3 
+**********
+
+$	2018	1	karma_limit	0	0	0	4
+**********
+
+**********
+
+$	2019	1	karma_timeout	0	0	0	4
+**********
+
+**********
+
+$	2020	1	elock_timeout	0	0	0	4
+**********
+
+**********
+
+$	2021	1	flood_count	0	0	0	4
+**********
+
+**********
+
+$	2031	2	uniq_timeout	0	0	0	4
+**********
+   уникальный таймаут, используется в dialog.fos 
+**********
+
+$	2201	1	can_repair_weapons	0	0	1	0
+**********
+   Переменная для НПЦ - ремонтника. Признак - может ремонтировать обычное оружие. 
+**********
+
+$	2202	1	can_repair_weapons_special	0	0	1	0
+**********
+   Переменная для НПЦ - ремонтника. Признак - может ремонтировать специальное оружие. 
+**********
+
+$	2203	1	can_repair_armour	0	0	1	0
+**********
+   Переменная для НПЦ - ремонтника. Признак - может ремонтировать обычную броню. 
+**********
+
+$	2204	1	can_repair_armour_special	0	0	1	0
+**********
+   Переменная для НПЦ - ремонтника. Признак - может ремонтировать редкую броню. 
+**********
+
+$	2205	2	repair_complete_time	0	0	0	4
+**********
+   Переменная для НПЦ - ремонтника. Время в игровых секундах, когда будет готов ремонт 
+**********
+
+$	2206	2	repair_item_pid	0	0	0	4
+**********
+   Переменная для НПЦ - ремонтника. Код ремонтируемого предмета 
+**********
+
+$	2211	1	doughnuts_counter	0	0	20	0
+**********
+   счетчик съеденых пончиков 
+   при достижении максимума должен обнуляться 
+**********
+
+$	3029	1	terminal_player_id	0	0	0	4
+**********
+   Id криттера, счет которого пополняет игрок. 
+   Используется в скрипте repl_terminal. 
+**********
+
+$	3052	1	nuke_stock	0	0	0	4
+**********
+   локальная, число бутылок которые может "вытащить" игрок из автомата с нюко-колой 
+**********
+
+$	3053	1	nuke_restock_time	0	0	0	4
+**********
+   локальная, время следующего обновления запасов нюка колы для игрока 
+**********
+
+$	3313	3	loc_delete_time	0	0	0	4
+**********
+   локальная для локации, без границ 
+   игровая секунда, в которую карта должна быть удалена, проверки производятся с помощью MAP_LOOP 
+**********
+
+$	3316	1	q_mod_farrel_ammiak	0	0	2	1
+**********
+   1 - взят квест на аммиак 
+   2 - сдан хотя бы один раз ментат. 
+**********
+
+$	3600	1	q_bh_kit_caravan_escort	0	0	11	1
+**********
+ 
+   0) // не взят 
+   1) // взят квест 
+   2) // игрок присоединился к каравану и караван начал движение впервые 
+   3) // игрок напал на караванщиков или пытался ограбить 
+   4) // игрок покинул караван 
+   5) // игрок погиб во время каравана 
+   6) // убит проводник на энкаунтере 
+   7) // игрок убил проводника на энкаунтере 
+   8) // игрок довел караван до точки назначения впервые 
+   9) // игрок присоединился к каравану и караван начал движение в последующие разы 
+   10)  игрок довел караван до точки назначения повторно 
+   11)игрок сдал квест 
+**********
+
+$	3601	1	bh_crv_reset_counter	5	0	5	0
+**********
+   Счетчик "отмытых провалов" для квестов на сопровождение и охрану караванов. 
+ 
+   Счетчик для караванов Брокен Хиллс, используется, если не определен специальный. 
+ 
+   Локальная, максимум = 5 
+**********
+
+$	3602	1	common_crv_reset_counter	15	0	15	0
+**********
+   Счетчик "отмытых провалов" для квестов на сопровождение и охрану караванов. 
+ 
+   Счетчик по умолчанию, используется, если не определен специальный. 
+ 
+   Локальная, максимум = 15 
+**********
+
+$	3603	2	selected_caravan	0	0	0	4
+**********
+   Последний выбранный караван в диалоге с НПЦ-боссом каравана при "откупе" от провала квеста игроком 
+**********
+
+$	4123	1	gm_help_timeout	0	0	0	4
+**********
+
+**********
+
+$	4244	1	q_ncr_redding_caravan_escort	0	0	11	1
+**********
+ 
+   0) // не взят 
+   1) // взят квест 
+   2) // игрок присоединился к каравану и караван начал движение впервые 
+   3) // игрок напал на караванщиков или пытался ограбить 
+   4) // игрок покинул караван 
+   5) // игрок погиб во время каравана 
+   6) // убит проводник на энкаунтере 
+   7) // игрок убил проводника на энкаунтере 
+   8) // игрок довел караван до точки назначения впервые 
+   9) // игрок присоединился к каравану и караван начал движение в последующие разы 
+   10)  игрок довел караван до точки назначения повторно 
+   11)игрок сдал квест 
+ 
+**********
+
+$	4290	1	ncr_crv_reset_counter	5	0	5	0
+**********
+ 
+   Счетчик "отмытых провалов" для квестов на сопровождение и охрану караванов. 
+ 
+   Счетчик для караванов НКР 
+ 
+   Локальная, максимум = 5 
+**********
+
+$	4292	1	q_ncr_hate_patrol	0	0	11	1
+**********
+ 
+   q_ncr_hate_patrol 
+   квестовая, статус квеста "Патруль рейнджеров" 
+   максимум 11 
+ 
+ 
+   0) // не взят 
+   1) Вы записались в патруль рейнджеров. В 22:00 отправление. Сбор в казармах Рейнджеров в НКР. 
+   2) Вы в составе патрульного взвода рейнджеров. Начато движение. 
+   3) Провал: вы пытались ограбить или нападали на патрульных. 
+   4) Провал: вы самовольно покинули взвод патрульных. 
+   5) Вы погибли во время выполнения задания капрала Хейта. 
+   6) Капрал Хейт погиб на задании. 
+   7) Провал: Вы прикончили капрала Хейта. Лучше не показываться ему на глаза. 
+   8) Задание выполнено. Обратитесь к капралу Хейту за наградой. И поспешите, он не будет долго ждать. 
+   9) Еще один патруль. Удачи! 
+   10)Очередной патруль завершен. Обратитесь к капралу за наградой. 
+   11)Вы успешно выполнили задание капрала Хейта и получили награду. 
+**********
+
+$	4293	0	ncr_hate_patrol_timeout	0	0	0	4
+**********
+   таймаут на повторное взятие квеста патруль нкр 
+**********
+
+$	4300	1	q_redd_wade_caravan_escort	0	0	11	1
+**********
+   локальная 
+   квестовая 
+   максимум = 11 
+   статус квеста на сопровождение караванов для Бена Вейда (Реддинг-ВолтСити) 
+ 
+   опыт дается только за первое сопровождение 
+   в последующих - только деньги 
+ 
+   (1) взят квест 
+   (2) игрок присоединился к каравану и караван начал движение впервые 
+   (3) игрок напал на караванщиков или пытался ограбить 
+   (4) игрок покинул караван 
+   (5) игрок погиб во время каравана 
+   (6) убит проводник на энкаунтере 
+   (7) игрок убил проводника на энкаунтере 
+   (8) игрок довел караван до точки назначения впервые 
+   (9) игрок присоединился к каравану и караван начал движение в последующие разы 
+   (10) игрок довел караван до точки назначения в последующие разы 
+   (11) игрок сдал квест 
+**********
+
+$	4301	1	q_redd_savinel_caravan_escort	0	0	11	1
+**********
+ 
+   0) // не взят 
+   1) // взят квест 
+   2) // игрок присоединился к каравану и караван начал движение впервые 
+   3) // игрок напал на караванщиков или пытался ограбить 
+   4) // игрок покинул караван 
+   5) // игрок погиб во время каравана 
+   6) // убит проводник на энкаунтере 
+   7) // игрок убил проводника на энкаунтере 
+   8) // игрок довел караван до точки назначения впервые 
+   9) // игрок присоединился к каравану и караван начал движение в последующие разы 
+   10)  игрок довел караван до точки назначения повторно 
+   11)игрок сдал квест 
+**********
+
+$	4302	1	q_redd_stan_caravan_escort	0	0	11	1
+**********
+   локальная 
+   квестовая 
+   максимум = 11 
+   статус квеста на сопровождение караванов для Стенвелла (Реддинг-НКР) 
+ 
+   опыт дается только за первое сопровождение 
+   в последующих - только деньги 
+ 
+   (1)  взят квест 
+   (2)  игрок присоединился к каравану и караван начал движение впервые 
+   (3)  игрок напал на караванщиков или пытался ограбить 
+   (4)  игрок покинул караван 
+   (5)  игрок погиб во время каравана 
+   (6)  убит проводник на энкаунтере 
+   (7)  игрок убил проводника на энкаунтере 
+   (8)  игрок довел караван до точки назначения впервые 
+   (9)  игрок присоединился к каравану и караван начал движение в последующие разы 
+   (10) игрок довел караван до точки назначения в последующие разы 
+   (11) игрок сдал квест 
+**********
+
+$	4304	1	redd_crv_reset_counter	9	0	9	0
+**********
+   Счетчик "отмытых провалов" для квестов на сопровождение и охрану караванов. 
+ 
+   Счетчик для караванов Реддига 
+ 
+   Локальная, максимум = 9 
+**********
+
+$	4425	1	sf_recipe_plasmagrenades	0	0	1	0
+**********
+   доступен рецепт на производство плазменных гранат 
+   0 - нет 
+   1 - да 
+**********
+
+$	4426	1	sf_recipe_supersledge	0	0	1	0
+**********
+   доступен рецепт на производство супермолота 
+   0 - нет 
+   1 - да 
+**********
+
+$	4439	1	sf_chitin_armor_recipe_known	0	0	1	0
+**********
+   Локальная, признак, что игрок может производить хитиновую броню. 
+**********
+
+$	4510	1	nav_emp_rocket_recipe	0	0	1	0
+**********
+   Признак - игроку известен рецепт ЕМП гранат 
+ 
+ 
+**********
+
+$	4708	1	arroyo_crv_reset_counter	15	0	15	0
+**********
+   Счетчик "отмытых провалов" для квестов на сопровождение и охрану караванов. 
+ 
+   Счетчик для караванов Арройо 
+ 
+   Локальная, максимум = 15 
+**********
+
+$	5001	1	q_main_quest	0	0	20	1
+**********
+   q_main_quest (квестовая, локальная, №5001) 
+   0-20, старт 0. 
+ 
+   Значения соответствуют различным этапам сюжета. 
+   1 - Игрок получил задание - пройти инициацию 
+   2 - Игрок получил задание - найти избранного 
+   3 - игрок поговорил с Джонсоном в Реддинге, тот рассказал ему о том, что Избранный заинтересовался чипом хабологов 
+   4 - игрок проник на лабораторию хабологов и прочитал данные с компьютера 
+**********
+
+$	5002	1	q_main_char	0	0	4	1
+**********
+   q_main_char (локальная, №5002) 
+   0-4, старт 0. 
+ 
+   Указывает, у какого персонажа взят главный квест. 
+   1-Вик 
+   2-Кэссиди 
+   3-Сулик 
+   4-Мартин 
+**********
+
+$	5003	1	q_chosen	0	0	15	1
+**********
+   0 - Квест не взят 
+   1 - Вик дал наводку на Реддинг и могилу Догмита. 
+   2 - игрок поговорил с гробовщиком в Реддинге и узнал, что Избранный ушел с караваном. 
+   3 - игрок узнал у караванщика, что караван отправился в СФ. 
+   4 - игрок поговорил с раненым и выяснил, что нужно идти в Ден. 
+   5 - Игрок поговорил с Чарли. 
+   6 - игрок получил задание пройти испытание. 
+   7 - игрок прошёл испытание. 
+   8 - игрок получил голодиск. 
+   9- игрок пришел с голодиском к Вику. 
+   10- игрок отдал диск Вэл. 
+   11- игрок отдал инструменты Вэл. 
+   12- игрок забрал расшифрованную запись у Вэл. 
+**********
+
+$	5004	4	q_intro_initiated	0	0	1	0
+**********
+   Признак: игрок прошел обряд инициации с крутой анимацией и обзвучечкой 
+**********
+
+$	5005	4	intro_doors_open	0	0	1	0
+**********
+   Признак  - двери для игрока открыты (в  момент инициации) 
+**********
+
+$	5650	1	enc_loyality_hubologists	0	0	0	4
+**********
+   Реакция хабологов на энкаунтерах на игрока. 
+ 
+   0-2 - мирная. 
+   3 - агрессивная. 
+**********
+
+$	5651	1	enc_loyality_ncr	0	0	0	4
+**********
+   Реакция патрулей и караванов НКР на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5652	1	enc_loyality_vcity	0	0	0	4
+**********
+   Реакция патрулей и караванов ГУ на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5653	1	enc_loyality_redding	0	0	0	4
+**********
+   Реакция караванов Реддинга на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5654	1	enc_loyality_broken	0	0	0	4
+**********
+   Реакция патрулей БХ на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5655	1	enc_loyality_gecko	0	0	0	4
+**********
+   Реакция патрулей Гекко на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5656	1	enc_loyality_arroyo	0	0	0	4
+**********
+   Реакция патрулей Арройо на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5657	1	enc_loyality_klamath	0	0	0	4
+**********
+   Реакция трапперов и караванов Кламата на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5658	1	enc_loyality_modoc	0	0	0	4
+**********
+   Реакция караванов Модока на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5659	1	enc_loyality_den	0	0	0	4
+**********
+   Реакция караванов Дэна на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5660	1	enc_loyality_reno	0	0	0	4
+**********
+   Реакция караванов из Рено и мирной мафии на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5661	1	enc_loyality_enclave	0	0	0	4
+**********
+   Реакция патрулей Анклава на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	5662	1	enc_loyality_sf	0	0	0	4
+**********
+   Реакция караванов из Сан-Франциско на энкаунтерах на игрока. 
+ 
+   При убийстве нпц переменная растёт, после определённого порога они становятся агрессивными. 
+**********
+
+$	6000	1	fixboy_power_armor	0	0	1	0
+**********
+   Может ли игрок создавать Боевую броню. 
+   0 - нет, 
+   1 - да. 
+**********
+
+$	6001	1	fixboy_700_nitro_express	1	0	1	0
+**********
+   Может ли игрок создавать винтовку .700 калибра. 
+   0 - нет, 
+   1 - да. 
+**********
+
+$	6002	1	fixboy_ammo_press_operator	0	0	1	0
+**********
+   Может ли игрок управлять станком, производящим патроны. 
+   0 - нет, 
+   1 - да. 
+**********
+
+$	6003	1	fixboy_default	1	0	1	0
+**********
+   Проверка игрока на способность изготавливать вещи на стандартных станках. 
+   1 = да. 
+**********
+
+$	6160	1	timeout	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6161	1	timeout1	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6162	1	timeout2	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6163	1	timeout3	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6164	1	timeout4	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6165	1	timeout5	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6166	1	timeout6	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6167	1	timeout7	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6168	1	timeout8	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	6169	1	timeout9	0	0	0	4
+**********
+   TimeOut 
+**********
+
+$	7000	1	caravan_hub_to_vault_city	0	0	11	1
+**********
+ 
+**********
+
+  $             7327    1       q_robinwood     0       0       0       4
+**********
+   Variable for Robin Wood quest
+   0    not accepted
+        1       accepted/started
+        2       canceled
+        3       player helped to ambush caravan, caravan leader dead
+                dialog B) gang leader passed
+        4       player helped van to defend, caravan leader alive
+                dialog caravan leader passed
+        5       after ambush, no dialog was passed,
+                player got killed, exited or both leader dead
+        6       2nd part of Quest accepted/started
+        7       player failed to deliver items
+        8       player successfully delivered items
+        9       2nd part of quest fulfilled
+        10      player talked to gang leader
+**********
+ $              7328    1       q_robinwood_locid       0       0       0       4
+**********
+   location var for Robin Wood quest  
+**********
+
+$	8820	1	personal_base_id	0	0	0	4
+**********
+personal base id 
+**********
+
+$	8826	1	q_vc_shrim_patrol	0	0	11	1
+**********
+   квестовая, статус квеста "Патруль рейнджеров" 
+   максимум 11 
+ 
+ 
+   0) // не взят 
+   1) Вы записались в патруль рейнджеров. В 07:00 отправление. Сбор в казармах Гвардейцев ГУ. 
+   2) Вы в составе патрульного взвода гвардейцев. Начато движение. 
+   3) Провал: вы пытались ограбить или нападали на патрульных. 
+   4) Провал: вы самовольно покинули взвод патрульных. 
+   5) Вы погибли во время выполнения задания капрала Шрима. 
+   6) Капрал Шрим погиб на задании. 
+   7) Провал: Вы прикончили капрала Шрима. Лучше не показываться ему на глаза. 
+   8) Задание выполнено. Обратитесь к капитану Хартманну за наградой. И поспешите, он не будет долго ждать. 
+   9) Еще один патруль. Удачи! 
+   10)Очередной патруль завершен. Обратитесь к капитану за наградой. 
+   11)Вы успешно выполнили задание капрала Шрима и получили награду. 
+**********
+
+$	8827	1	start_location	0	0	0	4
+**********
+start loc 
+**********
+
+$	8828	1	vc_dead_patrollers	0	0	10	0
+**********
+   счетчик патрульных, погибших во время патрульного рейда 
+**********
+
+$	8829	1	tent_id	0	0	0	4
+**********
+   personal tent 
+**********
+
+$	8830	3	mapclosed	0	0	0	4
+**********
+   map callhelp state 
+**********
+
+$	8831	1	login	0	0	1	0
+**********
+0 Player just registered 
+1 Player already login 
+**********
+
+$	8832	1	main_quest	0	0	1	0
+**********
+start_location 
+0 dialog not finished 
+1 dialog finished 
+**********
+
+$	8833	1	quest_cooldown	0	0	0	4
+**********
+Quest cooldown time __Time+cd 
+**********
+
+$	8834	1	hex_cooldown	0	0	0	4
+**********
+cooldown time __Time+cd 
+**********
+
+$	8840	1	karma_daily_gain	0	0	0	4
+**********
+ 
+**********
+
+$	8841	1	karma_gain_last_time	0	0	0	4
+**********
+ 
+**********
+
+$	8842	2	karma_first_attack	0	0	0	4
+**********
+ 
+**********
+
+$	8843	2	karma_first_attack_location	0	0	0	4
+**********
+ 
+**********
+
+$	9000	1	ron_winkley	0	0	2	0
+**********
+ 
+**********
+
+$	9001	1	q_my_first_tent	0	0	9	1
+**********
+ 
+**********
+
+$	9002	1	q_melsaks_revenge	0	0	3	5
+**********
+ 
+**********
+
+$	9003	1	melsak	0	0	2	0
+**********
+ 
+**********
+
+$	9004	1	q_jt_pete_toolkit	0	0	3	5
+**********
+ 
+**********
+
+$	9005	1	q_marry_benjami	0	0	2	5
+**********
+ 
+**********
+
+$	9006	1	q_jt_margaret_pete	0	0	2	5
+**********
+ 
+**********
+
+$	9007	1	q_jt_mike_marry	0	0	0	5
+**********
+ 
+**********
+
+$	9008	1	q_jt_marry_e-parts	0	0	2	5
+**********
+ 
+**********
+
+$	9009	1	slayer_travel	0	0	0	4
+**********
+For traveling while looking for Slayer 
+**********
+
+$	9010	1	jt_benjamikyleeq	0	0	8	5
+**********
+ 
+**********
+
+$	9011	1	jt_benjamikyleCD	0	0	0	4
+**********
+ 
+**********
+
+$	9012	1	jt_marryelectronicCD	0	0	0	4
+**********
+ 
+**********
+
+$	9013	1	jt_petejunkrepeatable	0	0	3	0
+**********
+ 
+**********
+
+$	9014	1	jt_petejunkrepeatableCD	0	0	0	4
+**********
+ 
+**********
+
+$	9015	1	jt_margaretfridge	0	0	5	0
+**********
+ 
+**********
+
+$	9016	1	jt_docZachstory	0	0	1	0
+**********
+ 
+**********
+
+$	9017	1	jt_docZachrepetable	0	0	3	0
+**********
+ 
+**********
+
+$	9018	1	jt_docZachrepetableCD	0	0	0	4
+**********
+ 
+**********
+
+$	9019	1	jt_docZachKylee	0	0	3	0
+**********
+ 
+**********
+
+$	9020	1	jt_joestinkerwaterbag	0	0	3	0
+**********
+ 
+**********
+
+$	9021	1	klam_aldomedicine	0	0	3	0
+**********
+ 
+**********
+
+$	9022	1	klam_aldomedicineCD	0	0	0	4
+**********
+ 
+**********
+
+$	9023	1	klam_bobwhiskey	0	0	3	0
+**********
+ 
+**********
+
+$	9024	1	klam_bobwhiskeyCD	0	0	0	4
+**********
+ 
+**********
+
+$	9025	1	klam_majdaskins	0	0	3	0
+**********
+ 
+**********
+
+$	9026	1	klam_majdaskinsCD	0	0	0	4
+**********
+ 
+**********
+
+$	9027	1	mod_leehides	0	0	3	0
+**********
+ 
+**********
+
+$	9028	1	mod_leehidesCD	0	0	0	4
+**********
+ 
+**********
+
+$	9030	1	jt_joestinkerwaterbagCD	0	0	0	4
+**********
+ 
+**********
+
+$	9031	1	prof_gunsmith	0	0	8	0
+**********
+ 
+**********
+
+$	9032	1	prof_armorer	0	0	8	0
+**********
+ 
+**********
+
+$	9033	1	prof_chemist	0	0	8	0
+**********
+ 
+**********
+
+$	9034	1	prof_energy	0	0	8	0
+**********
+ 
+**********
+
+$	9100	1	Cannibal	0	0	3	0
+**********
+ 
+**********
+
+$	9101	1	met_kenny	0	0	2	0
+**********
+ 
+**********
+
+$	9102	1	q_dan_bag	0	0	3	0
+**********
+ 
+**********
+
+$	9104	1	q_adam_beer	0	0	3	0
+**********
+This quest is or getting beer for Adam. 
+**********
+
+$	9105	1	q_christopher_meds	0	0	4	0
+**********
+Quest to get Christopher's meds from annie. 
+**********
+
+$	9106	1	q_giovanna_shovel	0	0	2	0
+**********
+The repeatable quest to find shovels. 
+**********
+
+$	9107	1	q_trout_condom	0	0	2	0
+**********
+The repeatable quest to find condoms for trout. 
+**********
+
+$	9108	1	q_annie_book	0	0	3	0
+**********
+The quest for Annie's "Lavender Flower" 
+**********
+
+$	9109	1	q_far-go-traders_willy	0	0	7	0
+**********
+The quest for the play to go to each town to talk to the mayors/sheriffs. The next 5 vars are part of this quest. 
+**********
+
+$	9110	1	q_far-go-traders_gecko	0	0	1	0
+**********
+ 
+**********
+
+$	9111	1	q_far-go-traders_klamath	0	0	1	0
+**********
+ 
+**********
+
+$	9112	1	q_far-go-traders_den	0	0	1	0
+**********
+ 
+**********
+
+$	9113	1	q_far-go-traders_redding	0	0	1	0
+**********
+ 
+**********
+
+$	9114	1	q_far-go-traders_modoc	0	0	1	0
+**********
+ 
+**********
+
+$	9115	1	q_fredric	0	0	3	0
+**********
+ 
+**********
+
+$	9116	1	q_iguana_bob	0	0	5	0
+**********
+ 
+**********
+
+$	9117	1	q_iguana_bobCD	0	0	0	4
+**********
+ 
+**********
+
+$	9301	2	q_box_unload_status	0	0	0	4
+**********
+ 
+**********
+
+$	9302	2	q_box_unload_count	0	0	0	4
+**********
+ 
+**********
+
+$	9303	1	q_box_lifting_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9304	2	q_dung_cleaned	0	0	0	4
+**********
+ 
+**********
+
+$	9305	1	q_box_lifting_cooldown_junktown	0	0	0	4
+**********
+ 
+**********
+
+$	9306	1	q_box_lifting_cooldown_adytum	0	0	0	4
+**********
+ 
+**********
+
+$	9307	1	q_box_lifting_cooldown_vcity	0	0	0	4
+**********
+ 
+**********
+
+$	9308	1	q_adytum_well_creation	0	0	0	4
+**********
+ 
+**********
+
+$	9309	1	q_adytum_farm_creation	0	0	0	4
+**********
+ 
+**********
+
+$	9310	1	q_start_questcaravan_creation	0	0	0	4
+**********
+ 
+**********
+
+$	9311	1	q_start_questcaravan	0	0	0	5
+**********
+ 
+**********
+
+$	9312	1	q_start_radcave	0	0	0	5
+**********
+ 
+**********
+
+$	9313	1	q_vc_billpoofs	0	0	0	5
+**********
+ 
+**********
+
+$	9314	1	q_den_joshuacards	0	0	0	5
+**********
+ 
+**********
+
+$	9315	1	vc_vaultaccess	0	0	0	5
+**********
+ 
+**********
+
+$	9316	1	q_vc_mcclure	0	0	0	5
+**********
+ 
+**********
+
+$	9317	1	q_adytum_well	0	0	0	5
+**********
+ 
+**********
+
+$	9318	1	q_adytum_wellpump	0	0	0	5
+**********
+ 
+**********
+
+$	9319	1	q_deathclaws	0	0	0	5
+**********
+ 
+**********
+
+$	9320	1	q_deathclaws_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9321	1	q_raiders	0	0	0	5
+**********
+ 
+**********
+
+$	9322	1	q_raiders_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9323	1	q_molerats	0	0	0	5
+**********
+ 
+**********
+
+$	9324	1	q_molerats_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9325	1	q_hub_drifters	0	0	0	5
+**********
+ 
+**********
+
+$	9326	1	hungergames_event_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9327	1	q_glow_ghouls	0	0	0	5
+**********
+ 
+**********
+
+$	9328	1	q_glow_ghouls_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9329	1	chessgame	0	0	0	4
+**********
+ 
+**********
+
+$	9330	0	sierra_turrets	0	0	0	4
+**********
+ 
+**********
+
+$	9331	0	sierra_turrets_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9332	0	sierra_turrets_hackerfaction	0	0	0	4
+**********
+ 
+**********
+
+$	9333	0	sierra_robots	0	0	0	4
+**********
+ 
+**********
+
+$	9334	1	bosside	0	0	0	5
+**********
+ 
+**********
+
+$	9335	1	encside	0	0	0	5
+**********
+ 
+**********
+
+$	9336	1	JunktownDoor	0	0	0	4
+**********
+ 
+**********
+
+$	9337	0	JunktownDoor2	0	0	0	4
+**********
+ 
+**********
+
+$	9338	0	sierra_turrets_hackcd	0	0	0	4
+**********
+ 
+**********
+
+$	9339	1	Bos_Access_Level	0	0	0	4
+**********
+ 
+**********
+
+$	9340	1	scribe_door	0	0	0	4
+**********
+ 
+**********
+
+$	9341	1	armory_door	0	0	0	4
+**********
+ 
+**********
+
+$	9342	1	chessgameCD	0	0	0	4
+**********
+ 
+**********
+
+$	9500	1	q_loon_jt	0	0	5	0
+**********
+Used for Loon's jet quest.
+**********
+
+$	9501	1	q_storage_unit_jet	0	0	15	0
+**********
+
+**********
+
+$	9601	1	MB_BetSide	0	0	0	4
+**********
+ 
+**********
+
+$	9602	1	MB_BetAmount	0	0	0	4
+**********
+ 
+**********
+
+$	9603	0	MB_BetStatus	0	0	0	4
+**********
+ 
+**********
+
+$	9604	0	MB_BetWinner	0	0	0	4
+**********
+ 
+**********
+
+$	9605	1	MB_AmountCaught	0	0	0	4
+**********
+ 
+**********
+
+$	9606	1	Wave_Farm	0	0	0	4
+**********
+ 
+**********
+
+$	9607	1	q_aviator	0	0	0	4
+**********
+Aviator quest location
+**********
+
+$	9609	1	Wave_Ants	0	0	0	4
+**********
+ 
+**********
+
+$	9610	1	Wave_Metro	0	0	0	4
+**********
+ 
+**********
+
+$	9611	1	Wave_Farm_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9612	1	Wave_Ants_cooldown	0	0	0	4
+**********
+ 
+**********
+
+$	9613	1	Wave_Metro_cooldown	0	0	0	4
+**********
+ 
+**********
+
+
+$	9614	0	HG_Killcount	0	0	0	4
+**********
+ 
+**********
+
+
+$	9620	1	achiev_strongback	0	0	0	4
+**********
+ 
+**********
+
+$	9627	1	q_geckoex_failCD	0	0	0	4
+**********
+ 
+**********
+
+$	9630	1	q_finderskeepers	0	0	0	5
+**********
+ransacked bunker se miniquest var
+**********
+
+$	9631	1	q_finders_check	0	0	0	4
+**********
+ransacked bunker se miniquest support var
+**********
+
+$	9632	1	se_head	0	0	0	4
+**********
+stone head special enco var
+**********
+
+$	9633	1	se_village_check	0	0	0	4
+**********
+village special enco var
+**********
+
+$	9634	1	simulation_room	0	0	0	4
+**********
+
+**********
+
+$	9701	1	q_aviator_main	0	0	0	5
+**********
+Aviator quest boyd dlg var
+**********
+
+$	9702	1	q_aviator_chek	0	0	0	4
+**********
+Aviator quest generator part extraction checker
+**********
+
+$	9703	1	q_aviator_step	0	0	0	4
+**********
+trigger thingy
+**********
+
+$	9705	1	q_geckoex_ncr	0	0	0	5
+**********
+Gecko express delivery var ncr
+**********
+
+$	9706	1	q_geckoex_adyt	0	0	0	5
+**********
+Gecko express delivery var adytum
+**********
+
+$	9707	1	q_geckoex_vc	0	0	0	5
+**********
+Gecko express delivery var vc
+**********
+
+$	9708	1	q_geckoex_sf	0	0	0	5
+**********
+Gecko express delivery var sf
+**********
+
+$	9709	1	q_geckoex_fail	0	0	0	5
+**********
+Gecko express delivery fail counter
+**********
+
+$	9710	0	NCR_Gate	0	0	0	4
+**********
+
+**********
+
+$	9711	1	NCR_Citizenship	0	0	0	4
+**********
+
+**********
+
+$	9712	1	NCR_CitizenshipCD	0	0	0	4
+**********
+
+**********
+
+$	9713	0	NCR_GuardsTier	0	0	0	4
+**********
+
+**********
+
+$	9714	0	NCR_Election	0	0	0	4
+**********
+
+**********
+
+$	9715	0	NCR_Candidate1	0	0	0	4
+**********
+
+**********
+
+$	9716	0	NCR_Candidate2	0	0	0	4
+**********
+
+**********
+
+$	9717	0	NCR_Candidate3	0	0	0	4
+**********
+
+**********
+
+$	9718	0	NCR_Candidate4	0	0	0	4
+**********
+
+**********
+
+$	9719	0	NCR_Candidate5	0	0	0	4
+**********
+
+**********
+
+$	9720	0	NCR_Candidate1Votes	0	0	0	4
+**********
+
+**********
+
+$	9721	0	NCR_Candidate2Votes	0	0	0	4
+**********
+
+**********
+
+$	9722	0	NCR_Candidate3Votes	0	0	0	4
+**********
+
+**********
+
+$	9723	0	NCR_Candidate4Votes	0	0	0	4
+**********
+
+**********
+
+$	9724	0	NCR_Candidate5Votes	0	0	0	4
+**********
+
+**********
+
+$	9725	1	NCR_VoteCD	0	0	0	4
+**********
+
+**********
+
+$	9726	1	achiev_pathfinder	0	0	0	4
+**********
+
+**********
+
+$	9727	0	TEMP_LOCK	0	0	0	4
+**********
+
+**********
+
+$	9728	0	GVAR_CAR_STORE	0	0	0	4
+**********
+
+**********
+
+$	9729	1	TempleKeys	0	0	0	4
+**********
+ 
+**********
+
+$	9730	1	Tut_Kenny	0	0	0	4
+**********
+ 
+**********
+
+$	9731	1	Tut_Kenny_creation	0	0	0	4
+**********
+ 
+**********
+
+$	9732	0	PVP_PRICE	0	0	0	4
+**********
+
+**********
+
+$	9733	1	Sim_Kills	0	0	0	4
+**********
+
+**********
+
+$	9800	1	event_mq_farmer	0	0	0	4
+**********
+Used for famer miniquest timeout
+**********
+
+$	9801	1	event_mq_guard	0	0	0	4
+**********
+Used for guard miniquest timeout
+**********
+
+$	9802	1	event_mq_alco	0	0	0	4
+**********
+Used for alco miniquest timeout
+**********
+
+$	9803	1	event_mq_child	0	0	0	4
+**********
+Used for child miniquest timeout
+**********
+
+$	9804	1	event_mq_prostitute	0	0	0	4
+**********
+Used for prostitute miniquest timeout
+**********
+
+$	9805	1	event_mq_guard2	0	0	0	4
+**********
+Used for guard miniquest timeout
+**********
+
+$	9806	1	LVAR_event_mq_fire_gecko	0	0	0	4
+**********
+Used for fire gecko miniquest timeout
+**********
+
+$	9807	1	LVAR_event_mq_bp1	0	0	0	4
+**********
+Used for bp1 miniquest timeout
+**********
+
+$	9808	1	LVAR_event_mq_bp2	0	0	0	4
+**********
+Used for bp2 miniquest timeout
+**********
+
+$	9809	1	LVAR_event_mq_bp3	0	0	0	4
+**********
+Used for bp3 miniquest timeout
+**********
+
+$	9810	1	LVAR_event_mq_bp4	0	0	0	4
+**********
+Used for bp4 miniquest timeout
+**********
+
+$	9996	0	modoc_fire_gecko_event	0	0	1	0
+**********
+Modoc fire gecko event flag
+**********
+
+$	9997	1	has_shopkeeper	0	0	1	0
+**********
+Set to one if player has shopkeeper
+**********
+
+$	9998	0	random_map_critter_level	0	0	6	0
+**********
+Random map critter types.
+**********
+
+$	9999	1	offence_level	0	0	0	4
+**********
+Player offence level
+**********
+
+**************************************************************************************
+**************************************************************************************
+*************************************************************************************/
+#endif

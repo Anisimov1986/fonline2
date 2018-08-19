@@ -1,0 +1,44 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Guard}
+{200}{}{You see: Guard.}
+{210}{}{The guards eyes cautiously follow you as you move near.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Don't do anything stupid.@@I'm watching you... scum.@@No sudden moves.@@Fuck off.@@Keep moving, nothing to see here.@@I'm too old for this shit.@@I didin't sign up for this shit.@@Are you going to stare at me for a whole year?@@What?@@The fuck you want?@@Yeah?@@Mind your shit, and I'll mind mine.@@I don't have time to talk.@@Get moving.@@Get outta my sight.@@Get lost.@@Don't you have better things to do?@@They don't pay us shit.@@Got a smoke?@@I need a drink.@@Got a smoke?@@I don't have time for this shit.@@I'm watching you.@@Keep moving.@@Leave me alone.@@Go fuck yourself.@@The fuck you want? I'm busy.@@Go away.@@You're wasting my time.}
+
+[russ]
+{100}{}{Охранник}
+{200}{}{Вы видите охранника.}
+{210}{}{Вы видите профессионального охранника. Довольно крепкий парень. В любом случае не стоит попадаться ему под горячую руку.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{-}
+{2000}{}{Смотри тут особо не возникай, и все будут здоровы.@@Я смотрю за тобой.@@Не нарушай.@@Будешь воровать - убью на месте.@@Попробуй только пальцем тронь кого-нибудь!}
+
+[pols]
+{100}{}{Strażnik}
+{200}{}{Widzisz strażnika.}
+{210}{}{Widzisz profesjonalnego strażnika. Wydaje się być doskonale wyszkolony, lepiej nie robić żadnych problemów w jego okolicy.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Nie rób nic głupiego, a wszystko będzie OK.@@Obserwuję cię.@@Nie łam prawa.@@Jeśli spróbujesz kogoś okraść, ja tylko wykonam swoją robotę - rozumiesz?@@Nawet nie próbuj kogokolwiek okraść.@@Nawet nie myśl, że wykombinujesz coś chytrego.@@Idź dalej, nie ma tu nic ciekawego.@@Cholera, skończyła mi się guma do żucia.@@Od tej wojny wszystkim odbija, nigdy nie wiesz kiedy zaczną strzelać.@@Co, będziesz się tak na mnie gapił przez cały rok?@@Kiedyś byłem poszukiwaczem przygód, jak ty. Wtedy oberwałem laserem w kolano.@@Słucham?@@Przestrzegaj prawa, a nic ci się nie stanie.@@Kim ty w ogóle kurwa jesteś, pajacu?@@Roi się tu od złodziei, miej oczy dookoła głowy.@@Prawo to ja.}
+
+[ptbr]
+{100}{}{Guarda}
+{200}{}{Você vê um guarda.}
+{210}{}{Esta pessoa parece ser profissional. Talvez não seja interessante causar problemas enquanto ele estiver por perto.}
+{1000}{}{Initial preferences}
+{1010}{}{-}
+{2000}{}{Não faça nada de estúpido.@@Tou de olho... verme.@@Siga as regras.@@Nem cogite em pensar em roubar.@@Não tente colocar suas mãos em ninguém!@@Nem pense em dar uma de espertinho.@@Circulando... nada para se ver aqui.@@Estou velho demais para esta merda.@@Eu não me candidatei para essa merda.@@Eu queria ter mais chiclete.@@Esta guerra tá fazendo todo mundo ficar paranóico, você nunca sabe quando as balas começam a voar.@@Vai ficar aí me encarando mesmo?@@Quê?@@Quê que tu quer?@@Hein?@@Siga as regras e tudo ficará bem.@@Circulando...@@Sai da minha frente.@@Se manda.@@Não tem mais nada o que fazer?@@O salário é uma merda.@@Esse trabalho tá cada dia pior.@@Tô precisando de um drink.@@Tem cigarro?@@Não tenho tempo pra perder com isso.@@Tou de olho.@@Continua andando...}
+

@@ -1,0 +1,118 @@
+#include "_defines.fos"
+#include "_teams.fos"
+#include "custom_data_h.fos"
+
+
+import void AddSkillProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+import void RemoveSkillProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+import void AddAttackProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data";
+import void RemoveAttackProtection(Critter@ protector, Critter& critter, uint protectionFlags) from "custom_data"; 
+import void _InitGuardsDog(Critter& critter, int team, bool firstTime) from "town_critters";
+import void _InitGuardPatrol(Critter& critter, int team, bool firstTime) from "town_critters";
+import void _InitGuard(Critter& critter, int team, bool firstTime) from "town_critters";
+import void _InitCarParkGuard(Critter& critter, int team, bool firstTime) from "town_critters";
+import void _InitJailWardenAndNoobLaw(Critter& critter, int team, bool firstTime) from "town_critters";
+
+
+#define		JUNKTOWN_ATTACK_PROTECTION		(ATTACK_PROTECTION_BURST | ATTACK_PROTECTION_EXPLODE | ATTACK_PROTECTION_GRENADE | ATTACK_PROTECTION_HEX_ATTACK)
+#define		JUNKTOWN_SKILL_PROTECTION		(SKILL_PROTECTION_LOOT)
+#define		JUNKTOWN_CAR_PROTECTION			(SKILL_PROTECTION_LOCKPICK | SKILL_PROTECTION_USE_CAR)
+
+
+void _MapInit(Map& map, bool firstTime)
+{
+	Critter@[] critters;
+	map.GetCritters(0, FIND_ALL, critters);
+	
+	for (uint i = 0; i < critters.length(); i++)
+	{
+		Critter@ critter = critters[i];
+		AddAttackProtection(critter, critter, JUNKTOWN_ATTACK_PROTECTION);
+		AddSkillProtection(critter, critter, JUNKTOWN_SKILL_PROTECTION);
+	}
+	
+	map.SetEvent(MAP_EVENT_IN_CRITTER, "_CritterIn");
+	map.SetEvent(MAP_EVENT_OUT_CRITTER, "_CritterOut");
+}
+
+void _CritterIn(Map& map, Critter& critter)
+{
+	AddAttackProtection(critter, critter, JUNKTOWN_ATTACK_PROTECTION);
+	AddSkillProtection(critter, critter, JUNKTOWN_SKILL_PROTECTION);
+}
+
+void _CritterOut(Map& map, Critter& critter)
+{
+	RemoveAttackProtection(critter, critter, JUNKTOWN_ATTACK_PROTECTION);
+	RemoveSkillProtection(critter, critter, JUNKTOWN_SKILL_PROTECTION);
+}
+
+void _JailWardenInit(Critter& npc, bool firstTime)
+{
+	_InitJailWardenAndNoobLaw(npc, TEAM_Junktown, firstTime);
+}
+
+void _JuniorPatrolInit(Critter& npc, bool firstTime)
+{
+	_InitGuardPatrol(npc, TEAM_Junktown, firstTime);
+}
+
+void _SeniorPatrolInit(Critter& npc, bool firstTime)
+{
+	_InitGuardPatrol(npc, TEAM_Junktown, firstTime);
+}
+
+void _CarParkGuardInit(Critter& npc, bool firstTime)
+{
+	_InitCarParkGuard(npc, TEAM_Junktown, firstTime);
+}
+
+void _JailGuardInit(Critter& npc, bool firstTime)
+{
+	_InitGuard(npc, TEAM_Junktown, firstTime);
+}
+
+void _SeniorGuardInit(Critter& npc, bool firstTime)
+{
+	_InitGuard(npc, TEAM_Junktown, firstTime);
+}
+
+void _JuniorGuardInit(Critter& npc, bool firstTime)
+{
+	_InitGuard(npc, TEAM_Junktown, firstTime);
+}
+
+void GuardDogInit(Critter& npc, bool firstTime)
+{
+	_InitGuardsDog(npc, TEAM_Junktown, firstTime);
+}
+
+bool _JunktownguyBarter(Critter& npc, Critter& player, bool attach, uint barterCount)
+{
+	if(attach)
+	{	
+		if (player.Param[MAIN_FACTION]== 1 && player.Param[MAIN_FACTION_RANK]>= 2)
+			npc.StatBase[ST_FREE_BARTER_PLAYER] = player.Id;
+		else
+		{
+			npc.StatBase[ST_FREE_BARTER_PLAYER] = 0;
+		}
+
+	}
+		
+	return true;
+}
+
+void AddPatrolGuard(Critter& npc, int count, int, int)
+{
+	if(count == 0)
+		count = 1;
+		
+	for (uint i = 0; i < uint(count); i++)
+	{
+		Map@ map = npc.GetMap();
+		Critter@ critter = map.AddNpc(526, 214, 190, 1, null, null, "map_junktown@_SeniorPatrolInit");
+		//~ if(valid(critter))
+			//~ _SeniorPatrolInit(critter, true);
+	}
+}

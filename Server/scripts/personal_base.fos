@@ -1,0 +1,796 @@
+#include "_macros.fos"
+#include "entire.fos"
+#include "_msgstr.fos"
+#include "pdata_h.fos"
+#include "mapdata_h.fos"
+#include "utils_h.fos"
+
+#define _ADK_FACTION_BASES	# (i)		("FACTION" +i+ "BASES")
+#define _ADK_PLAYER_FBASES	# (i)		("PLAYER" +i+ "FBASES")
+
+import void MoveCars(Map& from, Map& to) from "car";
+import string GetFactionNameById (int id) from "faction_core";
+import uint[] GetOnlinePlayers(uint faction) from "faction_cache";
+
+
+import uint GetGlobalMapRelief( uint x, uint y ) from "worldmap";
+
+void _BaseMapInit( Item& item, bool firstTime )
+{
+ 	item.SetEvent( ITEM_EVENT_USE, "_BaseMapUse" );
+}
+
+bool _BaseMapUse( Item& item, Critter& cr, Critter@ onCritter, Item@ onItem, Scenery@ onScenery )
+{
+	if( not valid( onCritter ) && not valid( onItem ) && not valid( onScenery ) )
+	{
+		SetSetBase(cr,item);
+		return true;
+	}
+	return false;
+}
+
+void SetSetBase(Critter& player, Item& item)
+{
+	if (not valid(player) || !CheckBasePlace(player))
+		return;
+	
+	if (!valid(item))
+		return;
+		
+	Map @ oldmap = player.GetMap();
+	if(!valid(oldmap)) 
+		return;
+
+	Critter @[] Group;
+	Critter @ Leader = player.GetFollowLeader();
+	if(!valid(Leader)) 
+		@Leader = player;  // get group leader
+	Group.insertLast(@Leader);  // push him to array
+	Leader.GetFollowGroup(FIND_LIFE,Group);  // push other players to array
+	uint Location_name;
+	switch(item.GetProtoId())
+    {
+    case 670:     
+        Location_name=LOCATION_Personal_Base_Merchantestate;
+        break;
+    case 671:     
+        Location_name=LOCATION_Personal_Base_Smallhouse;
+        break;
+	case 672:     
+        Location_name=LOCATION_Personal_Base_Shack;
+        break;
+	case 673:     
+        Location_name=LOCATION_Personal_Base_Ranch;	
+        break;
+	case 674:     
+        Location_name=LOCATION_Personal_Base_Deserthouse;
+        break;
+	case 675:     
+        Location_name=LOCATION_Personal_Base_Camp;
+        break;
+	case 676:     
+        Location_name=LOCATION_Personal_Base_Shelter;
+        break;
+	case 677:     
+        Location_name=LOCATION_Personal_Base_Cave;
+        break;
+	case 678:     
+        Location_name=LOCATION_Personal_Base_Basement;
+        break;
+	case 9853:     
+        Location_name=LOCATION_Rare_Base_Scrapheap;
+        break;
+	case 9854:     
+        Location_name=LOCATION_Rare_Base_Cave;
+        break;
+	case 9855:     
+        Location_name=LOCATION_Rare_Base_Depot;
+        break;
+	case 9856:     
+        Location_name=LOCATION_Rare_Base_Gasstation;
+        break;
+	case 9857:     
+        Location_name=LOCATION_Rare_Base_Tents;
+        break;
+	case 9858:     
+        Location_name=LOCATION_Rare_Base_Cave2;
+        break;
+	case 9859:     
+        Location_name=LOCATION_Rare_Base_Camp;
+        break;
+	case 9862:     
+        Location_name=LOCATION_Personal_Base_Enc_Bunker;
+        break;
+	default:
+            return;
+	}
+	uint locationId = CreateLocation(Location_name, player.WorldX, player.WorldY,Group); // create our cave location
+	if(locationId==0) 
+		return; // if no success
+		
+	Location @ location = GetLocation(locationId);  // get loc by id
+	if(!valid(location)) 
+		return;  // check if valid
+		
+	location.AutoGarbage = false;  // set not to close if empty
+	//personal_base_id=locationId;  // save cave id to loc var
+	location.Color=0x700000FF;
+	location.Visible = false;  // set invisible for other players
+	location.Radius = 6;  // set small radius
+	
+	SetRootMapData(location,MAP_DATA_BASE_OWNER,player.Id);
+
+	AddToPersonalDataList( player, "visiblebases", location.Id );
+	AddToPersonalDataList( location, "basemanagers", player.Id );
+	
+	Map @ map = location.GetMapByIndex( 0 ); 
+	if( valid(Group) && valid(map))
+    {
+        MoveCars(oldmap,map);
+		//players teleport				
+		for(uint i=0; i<Group.length(); i++)
+        {
+            Group[i].TransitToMap(map.Id,0);
+        }
+	}
+    else
+	{
+		Log("FAIL GROUP PROCESSING WHILE BUILDING BASE");
+	}
+	DeleteItem( item );
+}
+
+	
+void answer_NEWBASE(Critter& player, uint answerI, string& answerS)
+{
+    if(answerI==0)
+	{
+		//SetSetBase(player);
+		GameVar @ personal_base_id = GetLocalVar(LVAR_personal_base_id, player.Id);  // get local var
+		if (personal_base_id.GetValue()!=0)  // check i already have some caves
+		{
+			Location @ baseloc = GetLocation(personal_base_id.GetValue()); // TODO: CHECK FOR RIGHT LOCATION
+			if (valid(baseloc)) DeleteLocation (baseloc.Id);  // if yes remove em
+			personal_base_id=0;
+		}
+	}
+}	
+
+bool CheckBasePlace(Critter& player)
+{
+	if (!valid(player)) 
+		return false;
+	
+	if( (valid(player)) && player.Timeout[ TO_BATTLE ] > 0 )
+    {
+        player.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        return false;
+    }
+
+	Map @ map = player.GetMap();
+	if(!valid(map)) 
+		return false;
+		
+	Location @ loc = map.GetLocation();  // get location id
+	if(!valid(loc)) 
+		return false;  
+		
+	uint locPid = loc.GetProtoId(); // get proto id of loc.
+	
+	if (locPid < LOCATION_ENCOUNTERS_START || locPid > LOCATION_ENCOUNTERS_END)
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_MAP_LEADS); 
+		return false;
+	}
+	Location@[] locations;
+	if (GetLocations(loc.WorldX,loc.WorldY,60, locations ) > 0 )
+	{
+		for( uint i = 0; i < locations.length(); i++ )
+		{
+			if (locations[i].Radius >= 12)
+			{
+				player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_MAP_LEADS); 
+				return false;
+			}
+		}
+	}
+	if (GetGlobalMapRelief( loc.WorldX, loc.WorldY ) == 0)
+	{
+		player.SayMsg(SAY_NETMSG, TEXTMSG_TEXT, STR_MAP_LEADS); 
+		return false;
+	}
+return true;
+}
+
+
+bool _InitPersonalBaseTerminal( Critter& player, Scenery& scenery, int skill, Item@ item )
+{
+    
+	if( skill == SKILL_PICK_ON_GROUND && not valid( item ) )
+    { 
+		Location@ loc = GetLocationOf(player);
+		if (!valid(loc) || !loc.IsBase())
+			return true;
+		RunDialog(player, DIALOG_personal_base_terminal2, scenery.HexX, scenery.HexY, false );
+	}	
+	return true;
+}
+
+//5 Critter not found
+//6 Operation succefull
+//7 Unautorised
+//8 Alreay member
+//9 Not member
+//10 Fatal error
+//11 Promote
+//12 Demote
+//13 Promote/Demote Error
+
+void r_ShowMembers(Critter& cr, Critter@ t)
+{
+	Location@ loc = GetLocationOf(cr);
+	if (!valid(loc))
+		return;
+	
+	int faction = GetRootMapData(loc,MAP_DATA_BASE_TYPE_FACTION);
+    if (faction!=0)
+    {
+		cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70417);
+        return;
+    }
+    array<uint> critters;
+	uint size = 0;
+	size = GetPersonalDataList( loc, "basemanagers", critters );
+	cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70387);
+	for( uint l=0; l<size; l++ )
+	{
+		string@ name = GetPlayerName(critters[l]);
+        if(valid(name))
+            cr.Say( SAY_NETMSG, name+" ("+critters[l]+")");
+	}
+	critters.resize(0);
+	size = GetPersonalDataList( loc, "basemembers", critters );
+	cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70388);
+	for( uint l=0; l<size; l++ )
+	{
+		string@ name = GetPlayerName(critters[l]);
+        if(valid(name))
+            cr.Say( SAY_NETMSG, name+" ("+critters[l]+")");
+	}
+}
+
+uint d_AddPlayer( Critter& player, Critter@ t, string@ name )
+{
+	if( not IS_DIALOG_SAY_MODE( name ) )
+        return 0;
+	Location@ loc = GetLocationOf(player);
+	if (!valid(loc) || !loc.IsBase() || IsFactionBase(loc))
+		return 10;
+	int crId = GetPlayerId(name);
+
+	if (crId == 0)
+    {
+		if (!StrToInt(name, crId))
+            return 5;
+    }
+	if (!IsInPersonalDataList(loc, "basemembers", crId ) && !IsInPersonalDataList(loc, "basemanagers", crId ))
+		AddToPersonalDataList(loc, "basemembers", crId );
+	else
+		return 8; // Already member
+	Critter@ cr = GetCritter(crId);
+	if (valid(cr))
+	{
+		cr.SetKnownLoc(true,loc.Id);
+		AddToPersonalDataList(crId, "visiblebases", loc.Id );
+	}
+	else
+	{
+		RemoveFromPersonalDataList(crId, "toinvisiblebases", loc.Id );
+		AddToPersonalDataList(crId, "tovisiblebases", loc.Id );
+	}
+	return 6;
+}
+
+void AddMyself( Critter& player, int , int, int)
+{
+    Location@ loc = GetLocationOf(player);
+	if (!valid(loc) || !loc.IsBase() || IsFactionBase(loc))
+		return;
+
+    if (!IsInPersonalDataList(loc, "basemembers", player.Id ) && !IsInPersonalDataList(loc, "basemanagers", player.Id ))
+		AddToPersonalDataList(loc, "basemanagers", player.Id );
+        
+	player.SetKnownLoc(true,loc.Id);
+	AddToPersonalDataList(player.Id, "visiblebases", loc.Id );
+}
+
+
+uint d_DelPlayer( Critter& player, Critter@ t, string@ name )
+{
+	if( not IS_DIALOG_SAY_MODE( name ) )
+        return 0;
+	Location@ loc = GetLocationOf(player);
+	if (!valid(loc) || !loc.IsBase() || IsFactionBase(loc))
+		return 10;
+	int crId = GetPlayerId(name);
+	if (crId == 0)
+    {
+		if (!StrToInt(name, crId))
+            return 5;
+    }
+	if (GetRootMapData(loc,MAP_DATA_BASE_OWNER)==int(crId))
+		return 10;	
+	if (IsInPersonalDataList(loc, "basemembers", crId )) 
+		RemoveFromPersonalDataList(loc, "basemembers", crId );
+	else if (IsInPersonalDataList(loc, "basemanagers", crId ))
+		RemoveFromPersonalDataList(loc, "basemanagers", crId );
+	else
+		return 9; // Not a member	
+
+	Critter@ cr = GetCritter(crId);
+	if (valid(cr))
+	{
+		cr.UnsetKnownLoc(true,loc.Id);
+		RemoveFromPersonalDataList(cr, "visiblebases", loc.Id );
+	}
+	else
+		AddToPersonalDataList(crId, "toinvisiblebases", loc.Id );
+	return 6;
+}
+
+uint d_PromotePlayer( Critter& player, Critter@ t, string@ name )
+{
+	if( not IS_DIALOG_SAY_MODE( name ) )
+        return 0;
+	Location@ loc = GetLocationOf(player);
+	if (!valid(loc) || !loc.IsBase() || IsFactionBase(loc))
+		return 10;
+	int crId = GetPlayerId(name);
+	if (crId == 0)
+    {
+		if (!StrToInt(name, crId))
+            return 5;
+    }
+	if (IsInPersonalDataList(loc, "basemembers", crId ))
+	{
+		RemoveFromPersonalDataList(loc, "basemembers", crId );
+		AddToPersonalDataList(loc, "basemanagers", crId );
+		return 6; //Done
+	}
+	else if (IsInPersonalDataList(loc, "basemanagers", crId ))
+		return 13; //Already manager
+	return 9; // Not a member
+}
+
+uint d_DemotePlayer( Critter& player, Critter@ t, string@ name )
+{
+	if( not IS_DIALOG_SAY_MODE( name ) )
+        return 0;
+	Location@ loc = GetLocationOf(player);
+	if (!valid(loc) || !loc.IsBase() || IsFactionBase(loc))
+		return 10;
+	int crId = GetPlayerId(name);
+    if (crId == 0)
+    {
+		if (!StrToInt(name, crId))
+            return 5;
+    }
+	if (GetRootMapData(loc,MAP_DATA_BASE_OWNER)==int(crId))
+		return 13;	
+
+	if (IsInPersonalDataList(loc, "basemanagers", crId ))
+	{
+		RemoveFromPersonalDataList(loc, "basemanagers", crId );
+		AddToPersonalDataList(loc, "basemembers", crId );
+		return 6; //Done
+	}
+	else if (IsInPersonalDataList(loc, "basemembers", crId ))
+		return 13; //Already member
+	return 9; // Not a member
+}
+
+void ValidateBases(Critter& cr)
+{
+	AddToBases(cr);
+	CleanUpBases(cr);
+	ProcessFactionBases(cr);
+	Location@ loc = GetLocationOf(cr);
+	if (valid(loc) && loc.IsBase())
+	{
+		int faction = GetRootMapData(loc,MAP_DATA_BASE_TYPE_FACTION);
+		if (faction !=0 && faction==cr.Param[MAIN_FACTION])
+			return;
+		uint locId = loc.Id;
+		array<uint> bases;
+		uint size = 0;
+	
+		size = GetPersonalDataList( cr, "visiblebases", bases );
+		
+		for( uint l=0; l<size; l++ )
+		{
+			if (locId==bases[l])
+				return;
+		}
+		cr.TransitToGlobal(false);
+	}
+}
+
+void AddToBases(Critter& cr)
+{
+	array<uint> bases;
+	uint size = 0;
+	
+	size = GetPersonalDataList( cr, "tovisiblebases", bases );
+	for( uint l=0; l<size; l++ )
+	{
+		uint locId = bases[l];
+		Location@ loc = GetLocation( locId );
+		if( !valid(loc) || loc.IsNotValid || !loc.IsBase())
+			continue;
+		AddToPersonalDataList( cr, "visiblebases", locId );
+		cr.SetKnownLoc(true,locId);
+	}
+	UnsetPersonalData(cr, "tovisiblebases");
+}
+
+void CleanUpBases(Critter& cr)
+{
+	array<uint> bases;
+	uint size = 0;
+	
+	size = GetPersonalDataList( cr, "toinvisiblebases", bases );
+	
+	for( uint l=0; l<size; l++ )
+	{
+		uint locId = bases[l];
+		RemoveFromPersonalDataList( cr, "visiblebases", locId );
+		Location@ loc = GetLocation( locId );
+		if( !valid(loc) || loc.IsNotValid || !loc.IsBase())
+			continue;
+		cr.UnsetKnownLoc(true,locId);
+	}
+	UnsetPersonalData(cr, "toinvisiblebases");
+}
+
+void ResetBaseVisibility(Critter& cr, int id,int ,int )
+{
+	Critter@ player = GetCritter(id);
+	if (!valid(player) || player.Param[MAIN_FACTION]<=0)
+		return;
+
+	if (IsAnyData(_ADK_PLAYER_FBASES(id)))
+		EraseAnyData(_ADK_PLAYER_FBASES(id));
+	ProcessFactionBases(player);
+}
+
+void ProcessFactionBases(Critter& cr)
+{
+	int faction = cr.Param[MAIN_FACTION];
+	if ( faction == 0 )
+	{
+		if (!IsAnyData(_ADK_PLAYER_FBASES(cr.Id)))
+			return;
+		array<uint> bases;
+		GetAnyData(_ADK_PLAYER_FBASES(cr.Id), bases);
+		for( uint i=0; i<bases.length(); i++ )
+		{
+			Location@ loc = GetLocation( bases[i] );
+			if( !valid(loc) || !loc.IsBase() )
+				continue;
+			cr.UnsetKnownLoc(true,bases[i]);
+		}
+		EraseAnyData(_ADK_PLAYER_FBASES(cr.Id));
+	}
+	else 
+	{
+		array<uint> bases;
+		GetAnyData(_ADK_FACTION_BASES(faction), bases);
+		array<uint> pbases;
+		GetAnyData(_ADK_PLAYER_FBASES(cr.Id), pbases);
+		for( uint i=0; i<pbases.length(); i++ )
+		{
+            if (bases.find(pbases[i])>=0)
+                continue;
+            Location@ loc = GetLocation( pbases[i] );
+            if( !valid(loc) || !loc.IsBase() )
+                continue;
+			if (cr.IsKnownLoc(true, pbases[i]))
+                cr.UnsetKnownLoc(true,pbases[i]);
+			pbases.removeAt(i);
+			i--;
+		}
+		for( uint i=0; i<bases.length(); i++ )
+		{
+            if (pbases.find(bases[i])>=0)
+                continue;
+            Location@ loc = GetLocation( bases[i] );
+            if( !valid(loc) || !loc.IsBase() )
+                continue;
+			if (!cr.IsKnownLoc(true, bases[i]))
+				cr.SetKnownLoc(true,bases[i]);	
+		}
+		if (bases.length>0)
+			SetAnyData(_ADK_PLAYER_FBASES(cr.Id), bases);
+		else if (pbases.length>0)
+			EraseAnyData(_ADK_PLAYER_FBASES(cr.Id));
+	}
+}
+
+bool IsBaseManager(Critter& cr)
+{
+    Location@ loc = GetLocationOf( cr );
+	if(!valid(loc) || !loc.IsBase()) 
+		return false; 
+	
+	if (IsInPersonalDataList(loc, "basemanagers", cr.Id ))
+		return true;
+	if (cr.Param[MAIN_FACTION]!=0 && cr.Param[MAIN_FACTION] == GetRootMapData(loc,MAP_DATA_BASE_TYPE_FACTION) && FACTION_MANAGER(cr))
+		return true;
+	return false;
+}
+
+uint r_CheckifAutorised( Critter& player, Critter@ terminal )
+{
+	Location@ loc = GetLocationOf( player );
+	if(!valid(loc) || !loc.IsBase()) 
+		return 10; 
+	
+	if (IsInPersonalDataList(loc, "basemanagers", player.Id ))
+		return 2;
+	if (player.Param[MAIN_FACTION]!=0 && player.Param[MAIN_FACTION] == GetRootMapData(loc,MAP_DATA_BASE_TYPE_FACTION) && FACTION_MANAGER(player))
+		return 2;
+	return 7;
+}
+
+bool d_CanConnectToFaction( Critter& player, Critter@ terminal )
+{
+	Location@ loc = GetLocationOf( player );
+	if(!valid(loc) || !loc.IsBase()) 
+		return false;
+	if (IsInPersonalDataList(loc, "basemanagers", player.Id ) && FACTION_MANAGER(player) && !IsFactionBase(loc))
+		return true;
+	return false;
+}
+
+bool d_CanDisconnectFromFaction( Critter& player, Critter@ terminal )
+{
+	Location@ loc = GetLocationOf( player );
+	if(!valid(loc) || !loc.IsBase()) 
+		return false;
+	if (IsFactionBase(loc) && (IsInPersonalDataList(loc, "basemanagers", player.Id ) || FACTION_MANAGER(player)))
+		return true;
+	return false;
+}
+
+uint r_ConnectToFaction( Critter& player, Critter@ t, int val )
+{
+	int faction = player.Param[ MAIN_FACTION ];
+	Location@ loc = GetLocationOf( player );
+	if(!valid(loc) || faction<=0 || !loc.IsBase() || IsFactionBase(loc)) 
+		return 10;
+	
+	uint[] bases;
+	if(IsAnyData(_ADK_FACTION_BASES(faction)))
+	{
+		GetAnyData(_ADK_FACTION_BASES(faction),bases);
+		if (bases.find(loc.Id)>=0)
+			return 10;
+	}
+	bases.insertLast(loc.Id);
+	SetAnyData(_ADK_FACTION_BASES(faction), bases);
+	SetRootMapData(loc, MAP_DATA_BASE_TYPE_FACTION, faction);
+	
+	array<uint> critters;
+	GetPersonalDataList( loc, "basemanagers", critters );
+	GetPersonalDataList( loc, "basemembers", critters );
+	UnsetPersonalData(loc, "basemanagers");
+	UnsetPersonalData(loc, "basemembers");
+	
+	for( uint i=0; i<critters.length(); i++ )
+	{
+		Critter@ cr = GetCritter(critters[i]);
+		string@ name = GetPlayerName(critters[i]);
+		if (valid(cr))
+		{
+			cr.UnsetKnownLoc(true,loc.Id);
+			RemoveFromPersonalDataList(cr, "visiblebases", loc.Id );
+			Location@ crloc = GetLocationOf(cr);
+			if (valid (crloc) && (crloc.Id==loc.Id) && cr.Id != player.Id)
+				cr.TransitToGlobal(false);
+		}
+		else if (valid(name))
+			AddToPersonalDataList(critters[i], "toinvisiblebases", loc.Id );
+	}
+	array<uint> players = GetOnlinePlayers(faction);
+	for( uint i=0; i<players.length(); i++ )
+	{
+		Critter@ cr = GetCritter(players[i]);
+		if (valid(cr))
+			ProcessFactionBases(cr);
+	}
+	return 6;
+	
+}
+
+uint r_DisconnectFromFaction( Critter& player, Critter@ t, int val )
+{
+	Location@ loc = GetLocationOf( player );
+	if(!valid(loc) || !loc.IsBase() || !IsFactionBase(loc)) 
+		return 10; 
+	int faction = GetRootMapData(loc,MAP_DATA_BASE_TYPE_FACTION);
+	if (faction == 0)
+		return 10; 
+
+	uint[] bases;	
+	if(IsAnyData(_ADK_FACTION_BASES(faction)))
+	{
+		GetAnyData(_ADK_FACTION_BASES(faction),bases);
+		if (bases.find(loc.Id)>=0)
+			bases.removeAt(bases.find(loc.Id));
+		if (bases.length()>0)
+			SetAnyData(_ADK_FACTION_BASES(faction), bases);
+		else
+			EraseAnyData(_ADK_FACTION_BASES(faction));
+	}
+	SetRootMapData(loc,MAP_DATA_BASE_TYPE_FACTION,0);	
+	
+	array<uint> players = GetOnlinePlayers(faction);
+	for( uint i=0; i<players.length(); i++ )
+	{
+		Critter@ cr = GetCritter(players[i]);
+		if (valid(cr))
+		{
+			ProcessFactionBases(cr);
+			Location@ crloc = GetLocationOf(cr);
+			if (valid (crloc) && (crloc.Id==loc.Id) && cr.Id != player.Id)
+				cr.TransitToGlobal(false);
+		}
+	}
+
+	if (!IsInPersonalDataList(loc, "basemanagers", player.Id ))
+	{
+		AddToPersonalDataList( loc, "basemanagers", player.Id );
+		player.SetKnownLoc(true,loc.Id);
+		AddToPersonalDataList(player.Id, "visiblebases", loc.Id );
+	}
+	
+	return 6;
+}
+
+bool d_IsFactionBase( Critter& player, Critter@ t )
+{
+	Location@ loc = GetLocationOf( player );
+	if(!valid(loc)|| !loc.IsBase()) 
+		return false;
+	return IsFactionBase(loc);
+}
+
+bool d_IsNotFactionBase( Critter& player, Critter@ t )
+{
+	Location@ loc = GetLocationOf( player );
+	if(!valid(loc)|| !loc.IsBase()) 
+		return false;
+	return !IsFactionBase(loc);
+}
+
+bool IsFactionBase(Location& loc)
+{
+	return (GetRootMapData(loc,MAP_DATA_BASE_TYPE_FACTION)!=0);
+}
+
+void dlg_BaseColor( Critter& player, Critter@ npc, string@ lexems )
+{    
+	if( not IS_DIALOG_GENERATED( lexems ) )
+        return;
+		
+	Location @ loc = GetLocationOf(player);
+	if(!valid(loc)) 
+		return; 
+		
+	uint color=loc.Color;
+    lexems += "$redcolor" + (GET_COLOR_R(color));
+    lexems += "$bluecolor" + (GET_COLOR_B(color));
+    lexems += "$greencolor" + (GET_COLOR_G(color));
+    lexems += "$basecolor" + "|" + loc.Color + " COLOR OF THE BASE";
+	
+}
+
+
+void ChangeColor(Critter& player, int r, int g, int b, bool absolut)
+{
+    Location @ loc = GetLocationOf(player);
+	if(!valid(loc)) 
+		return; 
+    uint color=loc.Color;
+    if (absolut)
+    {
+        if (r==0)
+            r = GET_COLOR_R(color);
+        if (g==0)
+            g = GET_COLOR_G(color);
+        if (b==0)
+            b = GET_COLOR_B(color);
+    }
+    else
+    {
+        r += GET_COLOR_R(color);
+        g += GET_COLOR_G(color);
+        b += GET_COLOR_B(color);
+    }
+    if (r == 0 && g == 0 && b == 0)
+        loc.Color=0x700000FF;
+    else
+        loc.Color=COLOR_RGBA( r,g,b, GET_COLOR_A(color));
+    loc.Update();
+}
+			
+void r_AddRed(Critter& player, Critter@ npc, int amount)
+{
+    ChangeColor(player,amount,0,0,false);
+}
+			
+void r_AddGreen(Critter& player, Critter@ npc, int amount)
+{
+    ChangeColor(player,0,amount,0,false);
+}
+	
+void r_AddBlue(Critter& player, Critter@ npc, int amount)
+{
+    ChangeColor(player,0,0,amount,false);
+}
+
+/* Template for setting colors manual by SAY
+uint dlg_SetRed( Critter& player, Critter@ terminal, string@ stringcolor )
+{
+    if( not IS_DIALOG_SAY_MODE( stringcolor ) )
+        return ?;
+        
+    int color = 0;
+    if( not StrToInt( stringcolor, color ) )
+         return ?;
+    color = CLAMP( color, 0, 255 );
+    ChangeColor(player,color,0,0,true);
+    return ?;
+}
+
+uint dlg_SetGreen( Critter& player, Critter@ terminal, string@ stringcolor )
+{
+    if( not IS_DIALOG_SAY_MODE( stringcolor ) )
+        return ?;
+        
+    int color = 0;
+    if( not StrToInt( stringcolor, color ) )
+         return ?;
+    color = CLAMP( color, 0, 255 );
+    ChangeColor(player,0,color,0,true);
+    return ?;
+}
+
+uint dlg_SetBlue( Critter& player, Critter@ terminal, string@ stringcolor )
+{
+    if( not IS_DIALOG_SAY_MODE( stringcolor ) )
+        return ?;
+        
+    int color = 0;
+    if( not StrToInt( stringcolor, color ) )
+         return ?;
+    color = CLAMP( color, 0, 255 );
+    ChangeColor(player,0,0,color,true);
+    return ?;
+}
+*/
+       
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			

@@ -1,0 +1,127 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 D _var p q_my_first_tent = 3 #
+3 1020 D _var p q_my_first_tent = 4 #
+4 1030 D _var p q_my_first_tent > 4 @
+2 2000 None 0 #
+5 2010 #
+0 2020 @
+3 3000 None 0 @
+4 4000 None 0 @
+5 5000 None 0 #
+6 5010 @
+6 6000 None 0 #
+7 6010 @
+7 7000 None 0 #
+8 7010 R _item p PID_EMPTY_WATER_BAG + 4 #
+9 7020 @
+8 8000 None 0 #
+0 8010 R _var p q_my_first_tent = 4 R _script dialog@r_ShowQuestMessage 1 9001 @
+9 9000 None 0 #
+8 9010 R _item p PID_EMPTY_WATER_BAG + 4 &
+
+[engl]
+{100}{}{Frankie}
+{200}{}{Brahmin herdsman, probably Frankie.}
+{210}{}{Dirty old herdsman doing nothing, just watching his brahmins.}
+{1000}{}{Predialogue installations}
+{1010}{}{I need water bags}
+{1020}{}{I got bags}
+{1030}{}{I killed his brahmin(s)}
+{2000}{}{Hey, what are you doing here? How did you even get here?}
+{2010}{}{Melsak sent me. He told me you should have had some water bags for him.}
+{2020}{}{Uh, nothing.}
+{3000}{}{Say hi to Melsak.@@See ya later.@@Bye.@@So long.@@So, maybe next time.@@I have some work here, if you don't mind.}
+{4000}{}{Get the fuck out of here.@@I don't wanna see you.@@You killed my moo-moos!@@Get out of my sight.@@Get the fuck out.@@Fuck off!}
+{5000}{}{Melsak? My good old friend Melsak? [He comes closer to you and whispers.] I don't really like him that sonuvabitch, just don't tell him that. [Loud laugh.] Nah, I am just kiddin'. Nice to see you around then, tell him I say hi.}
+{5010}{}{Wait, what about those bags?@@Hey, wait a second, what about the waterbags?@@Not so fast, you forgot about those bags.}
+{6000}{}{Oh, god. Okey, how much did he want?}
+{6010}{}{He told me you should give me ten bags.@@Ten, he said.@@He said ten.}
+{7000}{}{What?! Ten?! No fuckin' way. I can give you four, that's all I got.}
+{7010}{}{Four? But... All right. Give them to me.@@Only four? Damn... Hell, I'll take them anyway.}
+{7020}{}{What? Melsak wants ten. I am not leaving until you give me ten water bags.@@He said ten, and he was very precise about that.@@He said ten, and you're gonna give me ten, you hear?}
+{8000}{}{Okay then. [He gives you 4 Water Bags.]@@Right. [He gives you 4 Water Bags.]@@Here you go then. [He gives you 4 Water Bags.]}
+{8010}{}{Thanks. Bye.@@Uh, thanks. And goodbye.@@I'ts better than nothing... later, Frankie.}
+{9000}{}{Yeah, sure. Just wait here, I will cut some of those trees, make some spears, then l'll go hunt some brahmin and after that I will go to the town where I can get proper tools for making them water bags, while I leave my brahmins here, so they can be eaten by wolves or something... [Somehow, you sense irony in his voice.] ...And then I will give you your water bags. }
+{9010}{}{All right then. Give me what you have.@@Okay, I'll take those four then.@@Eh, you win. Give me those bags.}
+
+[russ]
+{100}{}{Фрэнки}
+{200}{}{Фрэнки, пастух.}
+{210}{}{Грязный старый пастух, он ничего не делает, просто наблюдает за его браминами.}
+{1000}{}{Predialogue installations}
+{1010}{}{I need water bags}
+{1020}{}{I got bags}
+{1030}{}{I killed his brahmin(s)}
+{2000}{}{Что ты здесь делаешь? Как ты вообще сюда попал?}
+{2010}{}{Мельсак послал меня. Он сказал мне, что у вас должно быть несколько бурдюков воды для него.}
+{2020}{}{Ну, ничего.}
+{3000}{}{Передай привет Мельсаку.@@Пока.}
+{4000}{}{Убирайся отсюда.@@Я не хочу видеть тебя.@@Ты убил мою прелесть.}
+{5000}{}{Мельсак? Мой старый друг Мельсак? [шепчет на ухо] Я не очень люблю его, но ты не говори ему. [громкий смех] Ахаха, я просто пошутил. Хорошо, передай ему привет от меня.}
+{5010}{}{Подождите, а как же вода?}
+{6000}{}{О, боже. Хорошо, сколько ему нужно?}
+{6010}{}{Он сказал мне, вы должны ему десять бурдюков.}
+{7000}{}{Что? Десять? Ни за что. Я могу дать только четыре, это все что у меня есть.}
+{7010}{}{Четыре? Но ... ладно. Давай сюда.}
+{7020}{}{Что? Мельсак сказал десять. Я не уйду отсюда пока не получу десять.}
+{8000}{}{Вот держи. [дает 4 бурдюка воды]}
+{8010}{}{Спасибо. Пока.}
+{9000}{}{Да конечно. Подожди тут, я пойду срублю дерево, сделаю несколько копий, потом пойду убью несколько диких браминов, из их шкуры сделаю бурдюки, потом... [да он похоже просто издевается] ...и потом я принесу тебе воду. }
+{9010}{}{Ладно. Давай сколько есть.}
+
+[pols]
+{100}{}{Frankie}
+{200}{}{Widzisz człowieka wypasającego braminy. To prawdopodobnie Frankie, o którym mówił Melsak.}
+{210}{}{Ten starszy człowiek wydaje się być całkowicie pochłonięty prokrastynacją.}
+{1000}{}{Predialogue installations}
+{1010}{}{I need water bags}
+{1020}{}{I got bags}
+{1030}{}{I killed his brahmin(s)}
+{2000}{}{Co tutaj robisz? Jak tu w ogóle @sex@|trafiłeś||trafiłaś|?}
+{2010}{}{To ty jesteś Frankie? Melsak mnie przysłał. Podobno masz dla niego bukłaki z wodą.}
+{2020}{}{Podziwiam krajobrazy.}
+{3000}{}{Pozdrów Melsaka ode mnie.@@Trzymaj się.@@Nara.@@Na razie.@@Do następnego razu.@@Nie widzisz że jestem zajęty?}
+{4000}{}{Wypierdalaj stąd!@@Zjeżdżaj.@@Zabiłeś moje braminy, skurwysynu!@@Won!}
+{5000}{}{Tak, to ja. Melsak? Mój stary kumpel Melsak? [Frankie podchodzi do ciebie bliżej.] Powiem ci, tak naprawdę to nie lubię tego pacana, tylko mu o tym nie mów! [Śmieje się.] Żartowałem. Miło cię poznać, pozdrów go ode mnie.}
+{5010}{}{Zaraz, co z tymi bukłakami?}
+{6000}{}{W mordę. A ile on chciał?}
+{6010}{}{Dziesięć.}
+{7000}{}{Że ile kurwa? Dziesięć? Nie ma mowy, mogę ci dać cztery, więcej zresztą i tak nie mam.}
+{7010}{}{Tylko cztery? Ale... no dobra, dawaj.}
+{7020}{}{Gówno mnie to obchodzi, Melsak chciał dziesięć.}
+{8000}{}{Dobra, trzymaj. [Frankie daje ci cztery bukłaki z wodą]}
+{8010}{}{Dzięki, na razie.}
+{9000}{}{Jasne, kurwa. Poczekaj no chwilę, wezmę tylko siekierę, zetnę drzewo, zrobię parę włóczni, zapoluję na dzikie braminy, zostawię moje stado same (a niech je wilki czy coś innego zeżre), pójdę do miasta po narzędzia i będziesz miał te swoje dziesięć bukłaków. To potrwa tylko chwilę. [Coś ci podpowiada, że Frankie nie mówi serio.]}
+{9010}{}{No dobra, niech ci będzie. Daj mi te cztery.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{I need water bags}
+{1020}{}{I got bags}
+{1030}{}{I killed his brahmin(s)}
+{2000}{}{Hey, what are you doing here? How did you even get here?}
+{2010}{}{Melsak sent me. He told me you should have had some water bags for him.}
+{2020}{}{Uh, nothing.}
+{3000}{}{Say hi to Melsak.@@See ya later.@@Bye.@@So long.@@So, maybe next time.@@I have some work here, if you don't mind.}
+{4000}{}{Get the fuck out of here.@@I don't wanna see you.@@You killed my moo-moos!@@Get out of my sight.@@Get the fuck out.@@Fuck off!}
+{5000}{}{Melsak? My good old friend Melsak? [He comes closer to you and whispers.] I don't really like him that sonuvabitch, just don't tell him that. [Loud laugh.] Nah, I am just kiddin'. Nice to see you around then, tell him I say hi.}
+{5010}{}{Wait, what about those bags?@@Hey, wait a second, what about the waterbags?@@Not so fast, you forgot about those bags.}
+{6000}{}{Oh, god. Okey, how much did he want?}
+{6010}{}{He told me you should give me ten bags.@@Ten, he said.@@He said ten.}
+{7000}{}{What?! Ten?! No fuckin' way. I can give you four, that's all I got.}
+{7010}{}{Four? But... All right. Give them to me.@@Only four? Damn... Hell, I'll take them anyway.}
+{7020}{}{What? Melsak wants ten. I am not leaving until you give me ten water bags.@@He said ten, and he was very precise about that.@@He said ten, and you're gonna give me ten, you hear?}
+{8000}{}{Okay then. [He gives you 4 Water Bags.]@@Right. [He gives you 4 Water Bags.]@@Here you go then. [He gives you 4 Water Bags.]}
+{8010}{}{Thanks. Bye.@@Uh, thanks. And goodbye.@@I'ts better than nothing... later, Frankie.}
+{9000}{}{Yeah, sure. Just wait here, I will cut some of those trees, make some spears, then l'll go hunt some brahmin and after that I will go to the town where I can get proper tools for making them water bags, while I leave my brahmins here, so they can be eaten by wolves or something... [Somehow, you sense irony in his voice.] ...And then I will give you your water bags. }
+{9010}{}{All right then. Give me what you have.@@Okay, I'll take those four then.@@Eh, you win. Give me those bags.}
+

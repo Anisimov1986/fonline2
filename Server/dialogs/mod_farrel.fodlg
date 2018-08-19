@@ -1,0 +1,79 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+4 2010 #
+3 2020 #
+0 2030 @
+3 3000 None 0 #
+2 3010 @
+4 4000 None 0 #
+2 4010 &
+
+[engl]
+{100}{}{Farrel}
+{200}{}{An old man. He makes a prune look fresh.}
+{210}{}{You hear the sound of dry twigs cracking every time he moves.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Good to see you, my dear fellow!}
+{2010}{}{What can you tell me about Modoc?}
+{2020}{}{What do you do around here?}
+{2030}{}{Goodbye!}
+{3000}{}{Well, mostly I putter around in the garden, trying to make those damn plants grow without water. I don't get up to much else these days, I'm afraid.}
+{3010}{}{I see.}
+{4000}{}{Modoc is a small community of farmers and ranchers. We supply most of the food for the surrounding towns and cities by trading our crops for various essentials. It's actually a very nice arrangement. However, this could all change with the drought. We can barely keep ourselves fed, let alone have surplus to trade.}
+{4010}{}{May I ask you something else?}
+
+[russ]
+{100}{}{Фаррел}
+{200}{}{Старый человек. Он старается выглядеть свежим.}
+{210}{}{Вы слышите звук сухих веточек, ломающихся при каждом его движении.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Привет, что хотите от старины Фаррела?}
+{2010}{}{Что ты можешь рассказать мне о Модоке?}
+{2020}{}{Чем ты здесь занимаешься?}
+{2030}{}{Ничего.}
+{3000}{}{Ну, я ухаживаю за садом, пытаюсь заставить эти проклятые растения расти без воды.}
+{3010}{}{Понятно.}
+{4000}{}{Модок - дыра на заднице вселенной. Неужели не заметно? Тут сплошь скотоводы, ранчеры и хреновы караванщики. Та ещё публика.}
+{4010}{}{Можно задать тебе еще несколько вопросов?}
+
+[pols]
+{100}{}{Farrel}
+{200}{}{Starszy mężczyzna. Suszona śliwka wygląda przy nim świeżutko.}
+{210}{}{Za każdym razem, gdy Farrel się porusza, słychać jak gdyby trzask łamanych gałęzi.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Miło cię widzieć, @sex@|mój drogi||moja droga|!}
+{2010}{}{Co możesz mi powiedzieć o Modoc?}
+{2020}{}{Właściwie czym się tutaj zajmujesz?}
+{2030}{}{Do widzenia!}
+{3000}{}{Cóż, przede wszystkim pracuję w ogrodzie, starając się zmusić te cholerne rośliny do rośnięcia bez wody. Poza tym, nie mam zbyt wiele do roboty.}
+{3010}{}{Rozumiem.}
+{4000}{}{Modoc jest małą wspólnotą farmerów i ranczerów. Zaopatrujemy w żywność otaczające nas miasta i miasteczka - za nasze ziarno dostajemy różne inne rzeczy. Jest to całkiem solidny układ. Jednak to wszystko może się zmienić przez tę suszę. Ledwie potrafimy wyżywić nasze rodziny, a co dopiero mówić o handlu.}
+{4010}{}{Mogę zapytać o coś innego?}
+
+[ptbr]
+{100}{}{Ferreira}
+{200}{}{Um velho. Ele faz uva-passas parecer fresca.}
+{210}{}{Você ouve o som de estalos de galhos toda vez que ele se move.}
+{1000}{}{Predialogue installations}
+{1010}{}{Answer text}
+{2000}{}{Bom vê-lo @sex@|meu caro||minha cara|!}
+{2010}{}{O que o senhor pode me falar sobre Modoc?}
+{2020}{}{O que o senhor faz por aqui?}
+{2030}{}{Até mais!}
+{3000}{}{Ah, geralmente eu fico dando voltas no jardim, tentando fazer essas malditas plantas crescerem sem água. Eu não tenho saído muito de casa, creio.}
+{3010}{}{Entendi.}
+{4000}{}{Modoc é uma pequena comunidade de fazendas e ranchos. A gente provê a maioria da comida das cidades arredores trocando por outras coisas. Na verdade o processo é bem simples. Ao menos era, tudo ficou meio que... complicado, com a seca. A gente mal tem para subsistência.}
+{4010}{}{Posso perguntar outra coisa?}
+

@@ -1,0 +1,70 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _param p TRAIT_SKILLED = 1 #
+2 1020 D _param p TRAIT_SKILLED = 0 @
+2 2000 None 0 @
+3 3000 None 0 &
+
+[engl]
+{100}{}{Vault City Citizen}
+{200}{}{You see: yet another snobby citizen of Vault City.}
+{210}{}{This person seems to have an air of superiority about them.}
+{210}{}{You see a citizen in a blue jumpsuit. His clothes look like those the vault dwellers wear, but without a number on his back.}
+{240}{}{You see a dead citizen.}
+{250}{}{You see a dead citizen from the Vault City.}
+{260}{}{You see a slain citizen.}
+{270}{}{You see a slain citizen from the Vault City.}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{normal}
+{2000}{}{What?@@Hi.@@You aren't from around here, are you?@@We don't take kindly to strangers here.@@Are you a citizen?@@We're safe within these walls.@@Did you come from the wasteland?@@You're creeping me out.@@Who are you, anyway?@@Are you applying to become a citizen?@@Vault City is the safest place in the wastes.@@I need more servants.@@One of my servants ran away. Tried to, anyway.@@I heard there was a big battle in Gecko recently.@@Go back to the desert, outworlder.@@Have you ever seen a mutant?@@Please be peaceful here.@@I've lived here my whole life.@@Why would we ever want to leave here?@@No, you can't have my jumpsuit.@@Don't mess around here, the guards are watching you.@@Have you seen the vault?@@I miss Cassidy.@@Who let you in here?@@Leave me alone.@@Don't talk to me.@@If you aren't a citizen, I've got nothing to say to you.@@The wasteland is full of scum, from the Hub swamp all the way up to Klamath.@@We're the last bastion of civilization in the wastes.@@Hello.@@Yes, what is it?@@What do you want?@@Good day.@@Respect our city.@@Are you my new servant?@@Seems as if they'll let anyone in the city nowadays...}
+{3000}{}{I can't believe McClure is allowing you greenskins to even step through the outer gates...@@Get the fuck outta here, mutant!@@McClure allowed you trash in, but I ain't gonna polish your shoes, mutant.@@Get lost, mutant!@@Bleh, get lost before I puke.@@Go back to whatever shithole you came from.@@Go back to those mutant lovers in the Hub or Shady Sands.@@Fucking mutant...@@Fucking mutant scum...@@Get the fuck outta my face, mutant.@@Fuck off, greenskin.@@You ain't welcome here, greenskin.}
+
+[russ]
+{100}{}{Гражданин}
+{200}{}{Вы видите Гражданина.}
+{210}{}{Вы видите гражданина Города Убежище.}
+{210}{}{Вы видите Гражданина в голубом трико. Одежда похожа на одежду Выходца из Убежища, только без цифры на спине.}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{-}
+{2000}{}{Привет, как я могу помочь?@@Какой прекрасный день, не так ли.@@Некоторые синтетические напитки здесь лучше избегать.@@Здравствуйте.@@Как жизнь?@@ Привет!}
+{3000}{}{Привет, как я могу помочь?@@Какой прекрасный день, не так ли.@@Некоторые синтетические напитки здесь лучше избегать.@@Здравствуйте.@@Как жизнь?@@ Привет!}
+
+[pols]
+{100}{}{Obywatel}
+{200}{}{Widzisz obywatela tego miasta.}
+{210}{}{Widzisz obywatela Kryptopolis.}
+{210}{}{Widzisz obywatela, ubranego w niebieski kombinezon. Jego ubranie wygląda tak jak te mieszkańców Krypt, ale bez numeru na plecach.}
+{240}{}{Widzisz martwego obywatela tego miasta.}
+{250}{}{Widzisz martwego obywatela Kryptopolis.}
+{260}{}{Widzisz zabitego obywatela tego miasta.}
+{270}{}{Widzisz zabitego obywatela Kryptopolis.}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{-}
+{2000}{}{Cześć, jak mogę ci pomóc?@@Jak mija ci dzień?@@Co ty tutaj?.. Hm? Nie przeszkadzaj mi.@@Ależ śliczny dzień, nieprawdaż?@@Niektórych syntetycznych napojów lepiej unikać.@@Cześć.@@Jak się masz?@@Cześć!@@Hej, czego ode mnie chcesz?}
+{3000}{}{Cześć, jak mogę ci pomóc?@@Jak mija ci dzień?@@Co ty tutaj?.. Hm? Nie przeszkadzaj mi.@@Ależ śliczny dzień, nieprawdaż?@@Niektórych syntetycznych napojów lepiej unikać.@@Cześć.@@Jak się masz?@@Cześć!@@Hej, czego ode mnie chcesz?}
+
+[ptbr]
+{100}{}{Cidadão da Cidade do Abrigo}
+{200}{}{Você vê: outro cidadão esnobe da Cidade do Abrigo.}
+{210}{}{Esta pessoa parece ter um ar de superioridade para com os outros.}
+{210}{}{Você vê um cidadão em traje azul. Suas roupas parecem com as que habitantes dos abrigos usam, mas sem o número nas costas.}
+{240}{}{Você vê um cidadão morto.}
+{250}{}{Você vê um cidadão da Cidade do Abrigo morto.}
+{260}{}{Você vê um cidadão assassinado.}
+{270}{}{Você vê um cidadão da cidade do Abrigo assassinado.}
+{1000}{}{Predialogue installations}
+{1010}{}{mutant}
+{1020}{}{normal}
+{2000}{}{Sim?@@Olá.@@Não és daqui?@@Não costumamos tratar forasteiros bem aqui.@@Você é um cidadão?@@Estamos a salvo dentre estas paredes.@@Veio do Deserto?@@Você me assusta.@@Quém é você mesmo?@@A Cidade do Abrigo é o local mais seguro do Deserto.@@Olá.@@Sim... o que deseja?@@O que quer?@@Bom dia.@@Respeite nossa cidade.@@Você é meu servo?@@Parece que deixam qualquer um entrar na cidade hoje em dia...}
+{3000}{}{Não acredito que McClure está a permitir entrada de verdinhos que nem você...@@Saia daqui, mutante!@@McClure permite que lixo que você entre, mas não irei corroborar com isto, mutante.@@Vá embora, mutante!@@Eca! Vai embora antes que eu vomite!.@@Volta pro esgoto que voltou.@@Volta para os amadores de mutantes no Ponto Central e Areia Negra.@@Malditos mutantes...@@Mutantes do meu nojo...@@Sai da minha frente, mutante.@@Some daqui, verdinho.@@Você não é bem-vindo aqui, mutante.}
+

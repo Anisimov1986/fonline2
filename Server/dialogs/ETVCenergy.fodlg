@@ -1,0 +1,89 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+0 2020 @
+3 3000 economy_dialogs@dlg_PreparePrice 0 #
+4 3010 D _script economy_dialogs@d_IsEnoughCaps 1 1500 R _script economy_dialogs@r_TakeCaps 1 1500 R _item p PID_ENERGY_TRANSFORMER + 1 #
+4 3020 D _script economy_dialogs@d_IsEnoughCaps 1 7500 R _script economy_dialogs@r_TakeCaps 1 7500 R _item p PID_ENERGY_TRANSFORMER + 5 #
+4 3030 D _script economy_dialogs@d_IsEnoughCaps 1 15000 R _script economy_dialogs@r_TakeCaps 1 15000 R _item p PID_ENERGY_TRANSFORMER + 10 #
+0 3040 @
+4 4000 None 0 #
+0 4010 &
+
+[engl]
+{100}{}{Vault City Engineer}
+{200}{}{You see: Vault City Engineer}
+{210}{}{You see a Vault City citizen: must be a local resident.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Yeah? What do you want?}
+{2010}{}{I've heard you are selling Energy Transformers.@@Someone told me you've got Energy Transformers for sale.@@I've heard you sell Energy Transformers.}
+{2020}{}{Nothing. Bye.@@Just passing by.}
+{3000}{}{Yes, I am. @lex entrans2_price@ caps per one. How much do you need?@@You heard right. @lex entrans2_price@ caps for one. Interested? How many then?}
+{3010}{}{Just one.@@One.@@I'll take one.@@I need one.@@Give me one.@@I think I need only one of those.}
+{3020}{}{Five is enough.@@Five would be good.@@I want five.@@I need five.@@Give me five.@@I need five of those.}
+{3030}{}{Give me ten, I have the money.@@Ten, I need to stock up.@@Ten, I need ten.@@I'll take ten of those.@@Give me... ten.@@I think I need ten.}
+{3040}{}{I'll pass. Bye.@@Not today.@@Maybe some other time.}
+{4000}{}{Here you go.@@There you are.@@Okay, take.@@We've got a deal.@@All right, there you go.@@Okay, here you go.@@You've got yourself a deal.}
+{4010}{}{Thank you. Bye.@@Thanks, I've got to go.@@Good, I need to be going now.@@Thanks.}
+
+[russ]
+{100}{}{Инженер Города Убежища}
+{200}{}{Вы видите: инженера}
+{210}{}{Вы видите: местного инженера.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Да? Чего тебе?}
+{2010}{}{Я слышал, вы продаете трансформаторы.}
+{2020}{}{Ничего, просто мимо проходил.}
+{3000}{}{Да. По @lex entrans2_price@ за штуку. Много нужно?}
+{3010}{}{Всего один.}
+{3020}{}{Штучек пять.}
+{3030}{}{Давай сразу десять, я при деньгах.}
+{3040}{}{Я передумал. Пока.}
+{4000}{}{Держи.}
+{4010}{}{О, спасибо. Ну я пошел.}
+
+[pols]
+{100}{}{Inżynier Kryptopolis}
+{200}{}{Widzisz inżyniera miasta Kryptopolis.}
+{210}{}{Widzisz obywatela Kryptopolis.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Tak? Czego chcesz?}
+{2010}{}{@sex@|Słyszałem||Słyszałam|, że sprzedajesz transformatory energii.}
+{2020}{}{Już nic, dzięki.}
+{3000}{}{Tak! @lex entrans2_price@ kapsli za sztukę. Ile potrzebujesz?}
+{3010}{}{Tylko jeden.}
+{3020}{}{Pięć wystarczy.}
+{3030}{}{Daj mi dziesięć, mam pieniądze.}
+{3040}{}{Jednak podziękuję. Na razie.}
+{4000}{}{Proszę bardzo.}
+{4010}{}{Dziękuję. Do zobaczenia.}
+
+[ptbr]
+{100}{}{Engenheira da Cidade do Abrigo}
+{200}{}{Você vê um engenheira da Cidade do Abrigo.}
+{210}{}{Você vê um cidadão da Cidade do Abrigo. Ela deve residir na cidade.}
+{1000}{}{Initial preferences}
+{1010}{}{Answer}
+{2000}{}{Oi? Quer alguma coisa?}
+{2010}{}{Fiquei sabendo que tá vendendo Transformador de Energia.@@Ainda tá vendendo Transformador de Energia.@@É aqui que vende Transformador de Energia?}
+{2020}{}{Nada não. Até.@@Só dando uma passada.}
+{3000}{}{É aqui mesmo. @lex entrans2_price@ tampas por um. Quer quantos?@@Vendo sim. @lex entrans2_price@ tampinhas por um. Quer quantos?}
+{3010}{}{Só um.@@Um.@@Eu quero um.@@Vou levar um.@@Me dê um.@@Acho que só preciso de um destes.}
+{3020}{}{Quero cinco.@@Tá bom cinco.@@Eu quero cinco.@@Me dá cinco.@@Me dá cinco desses.@@Hum... cinco.}
+{3030}{}{Me dá dez.@@Dez.@@Dez, quero dez.@@Vou querer dez.@@Me dá... dez!@@Acho que vou levar dez.}
+{3040}{}{Deixa pra próxima.@@Hoje não.@@Talvez outro dia.}
+{4000}{}{Aqui está.@@Tá aqui.@@Pronto, tá aqui.@@Pronto.@@Certo, tá aqui.@@Tá bem, tão aqui.}
+{4010}{}{ @sex@|Obrigado||Obrigada|. Até.@@ @sex@|Obrigado||Obrigada|. Tenho que ir.@@Bom, vou indo. @sex@|Obrigado||Obrigada|.@@ @sex@|Obrigado||Obrigada|.}
+

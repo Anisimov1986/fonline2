@@ -1,0 +1,1036 @@
+﻿# Fonline2 Team
+
+# TODO:
+# 1000 - 1530
+
+{10}{}{Test0}
+{11}{}{Test1}
+{12}{}{Test2}
+{13}{}{Test3}
+
+#
+# Увеличение скила
+#
+{15}{}{Навык @lex skill@ увеличен на @lex value@ очков}
+
+# # NOT USED YET
+# Nuka-Cola machine
+#
+{100}{}{You see a Nuka-Cola machine. You wonder if it still works.}
+{101}{}{[thunk thunk chaching... sheeew]}
+{102}{}{You get a not so fresh bottle of Nuka-Cola.}
+{103}{}{Dooohhhh!}
+{104}{}{You dodge the can of Nuka-Cola.}
+{105}{}{@lex name @ skillfully dodges a can of Nuka-Cola.}
+{106}{}{The machine seems to be out of stock.}
+
+
+# NOT USED YET
+# Sandbag. Barricades stuff.
+#
+{200}{}{Мешок порвался у вас в руках - его нельзя класть в этом месте.}
+{201}{}{В этом месте больше невозможно уложить ни одного мешка. }
+{202}{}{Вы развязали мешок и высыпали песок из него на землю.}
+
+#
+# Generic messages
+#
+{400}{}{Персонаж с этим именем и айпи адресом уже в игре. Сброс соединения, попробуйте зайти сейчас.}
+{401}{}{Входящее соединение с вашего айпи адреса, отключение.}
+
+{500}{}{Кинул кубик на @lex result@} # Dice
+{510}{}{Да} # Magic ball
+{511}{}{Нет} # Magic ball
+{520}{}{Preens @sex@|him||her|self} # Cosmetic
+{530}{}{. Затянулся сигаретой .oO} # Cigarettes
+
+# NOT USED
+# Guarded item
+#
+
+{540}{}{Отойди оттуда, @lex pname@}
+{540}{}{Не вынуждай меня применить оружие, @lex pname@}
+{540}{}{Эй, @lex pname@! Чем это ты занимаешься? Убирайся}
+{540}{}{Не трогай это, @lex pname@}
+{540}{}{@lex pname@! Немедленно перестань}
+
+#
+# Verbose Actions
+#
+{600}{}{@lex color@ **вводит стимулятор**}
+{601}{}{@lex color@ **вводит суперстимулятор**}
+{602}{}{@lex color@ **закуривает сигарету**}
+{603}{}{@lex color@ **пьет пиво**}
+{604}{}{@lex color@ **пьет нюка-колу**}
+{605}{}{@lex color@ **пьет самогон**}
+{606}{}{@lex color@ **пьет ром**}
+{607}{}{@lex color@ **пьет пойло**}
+{608}{}{@lex color@ **вдыхает джет**}
+{609}{}{@lex color@ **вводит психо**}
+{610}{}{@lex color@ **глотает баффаут**}
+{611}{}{@lex color@ **глотает ментат**}
+{612}{}{@lex color@ **пьет детоксин**}
+{613}{}{@lex color@ **исользует целебный порошок**}
+{614}{}{@lex color@ **глотает рад-х**}
+{615}{}{@lex color@ **вводит антирадин**}
+{616}{}{@lex color@ **пьет противоядье**}
+{617}{}{@lex color@ **ест печенье**}
+{618}{}{@lex color@ **ест iguana**}
+{619}{}{@lex color@ **ест фрукт**}
+{620}{}{@lex color@ **ест мясо**}
+{621}{}{@lex color@ **ест что-то отвратительное**}
+
+{650}{}{@lex color@ **применяет стимулятор на @lex target@**}
+{651}{}{@lex color@ **применяет суперстимулятор на @lex target@**}
+{652}{}{@lex color@ **применяет целебный порошок на @lex target@**}
+{653}{}{@lex color@ **применяет рад-х на @lex target@**}
+{654}{}{@lex color@ **применяет антирадин на @lex target@**}
+{655}{}{@lex color@ **применяет противоядье на @lex target@**}
+
+#
+# ELOCK
+#
+{700}{}{Контейнер должен быть открыт для установки замка.}
+{701}{}{Нужно сначала установить пароль на замке.}
+{702}{}{Можно установить замок только на своей палатке или базе.}
+{703}{}{Вы установили пароль на замок : @lex pass@.}
+{704}{}{Нужно ввести 4 цифры.}
+{705}{}{Вы открыли замок с паролем: @lex pass@.}
+{706}{}{Вы успешно сняли замок.}
+{707}{}{Этот замок не открыть.}
+{708}{}{Вы успешно установили замок с паролем: @lex pass@.}
+{709}{}{Нужно взломать машину чтобы открыть багажник.}
+{710}{}{Вам удалось расшифровать некоторые цифры пароля: @lex pass@.}
+{711}{}{Нужно иметь ключи от машины чтобы установить замок.}
+{712}{}{Вы пытаетесь установить замок туда где уже установлен другой замок.}
+
+# NOT USED
+# Manufacture, Alcohol
+#
+# Use
+{1500}{}{The distillation device is out of order.}
+{1501}{}{Firewood needed.}
+{1502}{}{You watch as the firewood burns in the stove.}
+{1503}{}{There is a fresh-brewed beer in a tank!}
+{1504}{}{The tank with home-distilled alcohol is brimmed!}
+# Use empty bottles
+{1505}{}{You poured beer into the bottles.}
+{1506}{}{You poured alcohol into the bottles.}
+{1507}{}{You don't have enough bottles.}
+# Use firewood
+{1508}{}{This device is broken.}
+{1509}{}{Need more firewood. What you have is probably not enough.}
+{1510}{}{You don't know what ingredients to use and what the poportions are.}
+{1511}{}{You prepared and poured in the stuff. You lit a fire in the stove. Distillation has begun.}
+{1512}{}{You lit a fire in the stove and poured in the stuff. Home-distillated vodka is filling the tank.}
+{1513}{}{There is enough wood there already.} 
+{1514}{}{At first you have to pour out brewed beer.}
+{1515}{}{At first you have to pour out distilled vodka.}
+# To broke
+{1516}{}{You have just broken the brewerage device.}
+{1517}{}{You have just broken the distillation device.} 
+{1518}{}{The boiler did not withstand the pressure and exploded!}
+{1519}{}{Your eyes were splattered with boiling water.}
+# Repair
+{1520}{}{Looks like you need some details.}
+{1521}{}{You need tools to fix this.}
+{1522}{}{You have successfully fixed the device.}
+{1523}{}{You have failed at repairing and broken some details.}
+# Science
+{1524}{}{Device can be adjusted, but you need a wrench or something like that.}
+{1525}{}{You broke your wrench. As well as the device.}
+{1526}{}{During adjustment you dismounted half of the device. Now you need to assemble it back somehow.}
+{1527}{}{You adjusted something carefully but it was useless.}
+{1528}{}{You have adjusted the brewerage device. Now you'll need much less firewood.}
+{1529}{}{You have adjusted the distillation device. Now you'll need much less firewood.}
+{1530}{}{You have failed to adjust the device. Luckily, nothing got broken.}
+# Scenery
+{1560}{}{Some cereals lay here. They are cleansed and dried.}
+{1561}{}{Fermentation of raw materials for alcohol takes place in these tanks.}
+
+# NOT USED
+# Casino
+#
+
+{2000}{}{*Ring-a-ling*}
+{2000}{}{*Zzzzzzz*}
+{2000}{}{*Bing*}
+{2000}{}{*Dingity-ding*}
+{2000}{}{*Ding*}
+{2000}{}{*Kaa-ching*}
+{2001}{}{The machine is out of money.}
+
+#
+# Car, car.fos
+#
+
+{2100}{}{Номер: @lex number@. Топливо: @lex fuel@/@lex fuel_tank@. Поломка: @lex wear@%.}
+
+# NOT USED
+# Getting firewood from tree (use axe on tree)
+#
+
+{2200}{}{This is suitable tree. You could cut fide wood... if your hands were okay.}
+{2201}{}{You need to rest.}
+{2202}{}{You hit your hand instead of tree!}
+{2203}{}{You've cut some fire wood.}
+{2204}{}{You've cut some fire wood, but can't carry it all.}
+{2205}{}{You've cut some fire wood, but can't carry it at all.}
+
+# NOT USED
+# Klamath, Grazing Area, Dogs. Using in klam_cowboy.fos
+#
+
+{2500}{}{Woooof! Woof! Woof!}
+{2501}{}{Grrrrr!}
+{2502}{}{Grr! Woof!}
+{2503}{}{Woof!}
+{2504}{}{Woof! Woof!}
+{2505}{}{Woof! Woof! Wooof!}
+{2506}{}{Wooooof!}
+{2507}{}{*whines*}
+
+# Resources system
+{3700}{}{Похоже тут не осталось ничего полезного}
+{3701}{}{Слишком тяжело}
+{3702}{}{Вы нашли : @lex itemname@ - @lex count@}
+{3703}{}{Вы нашли : @lex itemname@}
+{3704}{}{Вы добыли немного дров}
+{3705}{}{шт}
+{3706}{}{кг}
+{3707}{}{Вы не нашли ничего ценного}
+
+# Magic Ball mesages
+# > 0 luck = 3899..3908
+# > 3 luck = 3899..3919
+# > 5 luck = 3899..3919
+# > 6 luck = 3899..3932
+# > 7 luck = 3899..3935
+# > 8 luck = 3899..3941
+# > 9 luck = 3899..3943
+{3899}{}{Это что еще за идиотский вопрос?}
+{3900}{}{Перспективы хорошие.}
+{3901}{}{Перспективы не слишком хорошие.}
+{3902}{}{Мой ответ - нет.}
+{3903}{}{Не рассчитывайте на это.}
+{3904}{}{Можете рассчитывать на это.}
+{3905}{}{Спросите потом.}
+{3906}{}{Скорее всего.}
+{3907}{}{Сейчас невозможно сказать заранее.}
+{3908}{}{Да.}
+{3909}{}{Да. Несомненно.}
+{3910}{}{Лучше пока вам не говорить.}
+{3911}{}{Вне всякого сомнения.}
+{3912}{}{Очень сомнительно.}
+{3913}{}{Определенно так.}
+{3914}{}{Сосредоточьтесь и спросите снова.}
+{3915}{}{Знаки указывают, что да.}
+{3916}{}{Мои источники говорят, что нет.}
+{3917}{}{Несомненно.}
+{3918}{}{Ответ неясен, попробуйте еще раз.}
+{3919}{}{Как мне кажется, да.}
+{3920}{}{Хватит меня так трясти. Больно же!}
+{3921}{}{У вас сильная правая рука.}
+{3922}{}{Перед тем как снова меня трясти, прошу вас, вытрите руки.}
+{3923}{}{Временно не обслуживается.}
+{3924}{}{Лучший игрок в фонлайн это... Не ты.}
+{3925}{}{Будешь и дальше меня трясти, будут неприятности.}
+{3926}{}{Мне плохо.}
+{3927}{}{Меня тошнит.}
+{3928}{}{У тебя руки теплые.}
+{3929}{}{Нет.}
+{3930}{}{Ваш показатель - 23 из 100. У вас еще масса способов уйти. И не спрашивайте, что это значит.}
+{3931}{}{Если верить моему внутреннему чутью, у вас все получится. А если не верить - наоборот. Сожалею.}
+{3932}{}{Если вы встретите робота-стража, уничтожившего караван... забудь, это из другой игры.}
+{3933}{}{Один парень кое-где продает ГЕКК. Если, конечно, его еще никто не купил.}
+{3934}{}{Попробуйте проследить, куда нищенка из НКР прячет деньги, нажитые непосильным попрошайничеством.}
+{3935}{}{Если ты думаешь, что можно узнать что-то полезное тряся шар, то мне тебя жаль.}
+{3936}{}{Хватит меня так трясти.}
+{3937}{}{Ваша УДАЧА очень высока. Трясите меня, что-нибудь полезное расскажу!}
+{3938}{}{Среди объявлений на доске НКР вы не найдете ничего полезного.}
+{3939}{}{Как далеко дурак может зайти ходя по окоруге и тряся шар?}
+{3940}{}{Перестань меня тереть!}
+{3941}{}{Нет! Нет! И еще раз, нет!}
+
+#
+# Brahmin dung
+#
+{4200}{}{Как бы вы не старались, у вас не получается очистить это голыми руками.}
+{4201}{}{Похоже рацион этого брамины был богат клетчаткой.} # high doc or science
+{4202}{}{Да, прикольно с этим играть.} # low doc or science
+{4203}{}{Ой, это минное поле?} # walked into the shit
+{4204}{}{Вы убрали навоз с помощью лопаты.}
+{4205}{}{Вот дерьмо! Теперь вы действительно СИЛЬНО воняете.} # slipped on the shit
+{4206}{}{Брамины вокруг вас выглядят взволнованными.} # brahmin got mad
+
+#
+# Brahmin Text
+#
+{4220}{}{Муу. Муу я сказал.}
+
+# Урон от энергетических барьеров
+{5300}{}{Вы были оглушены слабым силовым полем.}
+{5301}{}{Вы были оглушены силовым полем.}
+{5302}{}{Вам не удалось отключить силовое поле.}
+{5303}{}{Вы отключили силовое поле.}
+{5304}{}{Вы включили силовое поле.}
+{5305}{}{Вы уничтожили эмиттер силового поля.}
+{5306}{}{Вы не видите смысла делать что-то с эмиттером.}
+{5307}{}{Вы не видите смысла делать что-то с силовым полем.}
+{5308}{}{Да тут похоже все под напряжением. Вы убираете руку.}
+{5309}{}{Это была плохая идея. Вас ударило разрядом в 100500 вольт.}
+{5310}{}{Похоже силовое поле не работает.}
+{5311}{}{Вам не удалось включить силовое поле.}
+
+# Way blocking messages
+{70100}{}{You better move.@@Stop blocking path.@@Don't stand there.}
+{70101}{}{@lex name@, stop blocking path for others, or you will be shot.@@@lex name@, you have last chance to move away or you will be shot.}
+{70102}{}{Finally, moron.@@I won't have mercy for you next time.@@Idiota.@@And stay there.}
+
+# Role messages
+{70110}{}{I heard you like jail.@@So you like jail, huh?@@Final destination...jail@@Strap yourself in, you are going to jail.@@I hope you like small places.@@I heard you like small places.@@OK, let's go.@@Who ordered jail here? You?@@And the prize for the winner is...jail.}
+{70111}{}{Allright, you are out of here now.@@You are free now.@@And don't come back, you punk.@@I am letting you go now.@@And I don't wanna see you again here.@@Next time, you won't get out so early.}
+{70112}{}{Stop doing that here!@@No sneaking allowed here!@@Stop sneaking, will ya?@@What? Are you hiding something?@@You there! Stop doing that!@@Stop sneaking around or I will shoot you.@@Hey, tell me one good reason why you are doing that.@@Tell me one good reason why you are still here.}
+{70113}{}{Hey, @sex@|mister||miss|. Do you have any food?@@Any food for poor child?@@A spare fruit, @sex@|mister|miss|?@@Excuse me @sex@|sir|madam|, do you have any food?@@[sad look]@@[very sad look]@@Any spare food?@@Hello @sex@|mister|madam|. Any spare fruit?@@Do you have any food, please?@@[looking at you with sad eyes]...food?@@Fruit, please. [sad eyes]}
+{70114}{}{Punk!@@You want more, scumbag? [evil smile]@@[shakes his head]@@[looks at you and spits on the ground]@@What do you do here?@@What do you want?@@Just get out of my sight@@Douchebag.@@Douche[cough]bag[cough].@@I am watching you!@@My eyes on you, punk!}
+{70115}{}{Hey you! You are not welcomed here!@@Get out or I'll shoot!@@Get the fuck out or I will shoot you!@@Didn't you have enough?! Get out or I'll shoot!@@You better get out of my sight.@@You again?! No way!@@You have three seconds to leave!@@Leave or be shot!@@[points his gun at you] Really?!@@[points his gun at you] You are leaving, aren't you?@@I am glad you stopped by, but you better leave. [you hear an irony in his voice]@@Get out of here, you punk!}
+{70116}{}{Hey! You can't have this here.@@Get out with that!@@That is not allowed here!}
+{70117}{}{That was very stupid of you.@@Fucking thief!@@No stealing here, you punk!@@Never steal again.@@Keep your sticky fingers in your pocket!@@I have seen that!@@Now you are in trouble.@@You got yourself in trouble.}
+{70118}{}{Hey! Don't touch that!@@Keep your hands off that!@@Stop doing that or I'll shoot!}
+{70119}{}{Ruuuun!@@Aaaaagh!@@Oh, noooo!@@Nooooooo!@@Heeeeeelp!@@Please, don't kill me.@@I am too young to die!@@Screw it, I am out of here!@@Aaaaaaaaagh!@@Please, have mercy.@@Oh my god. Run!@@Oh, shit!@@}
+{70120}{}{Hey! Don't touch @sex@|him||her|.@@Let that body be!@@Keep your hands of that body!@@Stop looting @sex@|him||her|.}
+{70121}{}{You are not supposed to be here!@@Hey! What are you doing here!?@@What?!}
+{70122}{}{Get out of here! This area is off-limits.@@Get out now! Or we will shoot.}
+{70123}{}{That one is mine!@@I'm taking @sex@|his||her| stuff.@@@sex@|His||Her| stuff is mine.@@I'm on @sex@|his||her| stuff.@@That body is mine.@@I'm looting @sex@|him||her|!}
+{70124}{}{That was very stupid.@@You are dead!@@Guys, get him!@@You have just made your final mistake.@@No, no, no, no.@@You piece of shit!@@You son of a bitch!@@You dirty shit!@@You stupid dick!@@You motherfucking shit!}
+{70125}{}{Come closer, I have some nice stuff to trade.@@Hello traveler. Wanna trade?@@Would you like to trade with me?@@Don't be scared. Wanna trade?}
+{70126}{}{Holster your weapon or stay there!@@Don't come closer with that!@@Your weapon, please.@@Put it away!}
+{70127}{}{That's too close.@@That's it! You're dead now!@@You should have stayed there.}
+{70128}{}{I can see you!@@Don't try it here.@@Don't try to sneak on me.@@No tricks!}
+{70129}{}{This house is called '@lex houseName@' and it is available for sale.@@This one is for sale and we call it '@lex houseName@'.@@Free one here. '@lex houseName@'.@@'@lex houseName@' is available for sale.}
+{70130}{}{This house is occupied and it belongs to @lex houseOwner@.@@This one belongs to @lex houseOwner@.@@Owner of this house is @lex houseOwner@.}
+{70131}{}{I don't want anymore of your items.@@Why would I take that?!@@Just take your stuff, okey?@@[shakes head] No, thanks.}
+{70132}{}{Нужно что-то продать? Я к вашим услугам.@@Есть вещи на продажу? Я к вашим услугам.@@Safe way how to sell your items to others. That's me!@@Лучший торговец в пустоши к вашим услугам.@@Сегодня удачный день для вас, наймите лучшего продавца в пустоши.}
+{70133}{}{Эй, подходите ближе, сегодня в продаже лучшие вещи от @lex supplierName@.@@Только сегодня самая выгодная цена от @lex supplierName@.@@У кого самые лучшие вещи? Конечно у @lex supplierName@.@@@lex supplierName@ мой поставщик. Подходите,выбирайте.}
+{70134}{}{This is your room. Don't break anything or you'll pay extra.@@Here is your room. Enjoy your stay.@@Here. This is your room. Make sure you lock the door when you are leaving.}
+{70135}{}{Woof woof!@Sniff sniff Grrr...@Arf! woof woof!}
+{70136}{}{Hey, hello! Having fun here? Pfft, because I'm not.@@Do you plan on disobeying rules here? That's okay, Cutie Pie gets lonely.@@You so ugly. So, so ugly. Hahah! Nah I'm just kidding you're cool.@@Seems like a beautiful day huh? Yep, even I feel like killing things.@@The Hub. So hubby. Pfft hahahah! Oh I crack myself up.@@You're such a loser...at being a loser. Got ya' didn't I?@@Nope, no Zaroff today...don't ask@@*wispers* Hey...I'm...awesome.@@Make sure you're nice here okay? Otherwise Cutie Pie will have a word with you.}
+{70137}{}{Something stinks, and I made sure I used soap. Oh, it's you...@@You better get out, or Cutie Pie will get angry. *gasps* uh oh, it's getting out of hand, you better run now!@@Do you know what I love better than Nuka-Cola? You not existing.@@*smiles angrily*}
+
+# Dialogs
+# "Everything is fine."
+{70201}{}{Everything is OK?@@Is everything okey?@@Hey, are you allright?@@Everything OK?@@Is everything fine?@@Everything fine?@@Are you allright?}
+{70202}{}{Yes, it seems okey.@@Yeah, it seems quiet.@@Yes, fine.@@No problems at all.@@Fine as always, heh.@@Sure it is.@@No disturbances so far.}
+# "Any offenders?"
+{70211}{}{Have you seen any scumbags around?@@Any troublesome scums around?@@Anyone for my attention?@@Any offenders lately?@@Did you see anyone for our attention?}
+{70212}{}{Yes, I have seen @lex offender@ around.@@Watch out for @lex offender@.@@You should have a look at @lex offender@.@@Yeah, I think I have seen @lex offender@ somewhere around.@@@lex offender@}
+# "You are healed."
+{70215}{}{There you go.@@Here. You should be fine now.@@Good as new.@@You will be fine.@@You should feel better now.@@Don't worry, you will live.}
+{70216}{}{Thanks, doc.@@Thank you.@@Thanks, much better.@@I already feel better.@@Thank you, doctor.@@Thanks, medic.}
+
+# Informs
+{70301}{}{|0xEC6262 Вы вызвали проблемы в городе. Охрана больше не даст вам спуску.}
+{70302}{}{|0xEC6262 Вы отправляетесь в тюрьму на некоторое время за свои проступки.}
+{70303}{}{|0x3A7F31 Вас выпустили из тюрьмы. Вы должны быть осторожнее в ваших поступках.}
+{70304}{}{Вы не можете войти в дом, поскольку он не принадлежит вам.}
+{70305}{}{Игрок с таким именем не существует.}
+{70306}{}{Успешно добавлен.}
+{70307}{}{Успешно удален.}
+{70308}{}{Вы не можете войти в дом, пока вы находитесь в бою.}
+{70309}{}{Вы не можете войти в комнату, пока вы находитесь в бою.}
+{70310}{}{Это не ваша комната.@@Эта комната не принадлежит вам.}
+{70311}{}{Враги был уведомлены. Они уже на пути сюда.}
+{70312}{}{Ожидайте еще врагов.}
+{70313}{}{Ваше местоположение уже налицо.}
+{70314}{}{Слишком поздно, чтобы позвать на помощь.}
+{70315}{}{Вы не можете посылать сигналы бедствия из этого места.}
+{70316}{}{Вы успешно сопроводили караван до конца маршрута.}
+{70317}{}{Вы получили @lex experience@ опыта и @lex reward@ крышек.}
+{70318}{}{Вы не можете выложить это здесь.}
+{70319}{}{Вы не можете использовать стимуляторы так часто.}
+{70320}{}{Вы не можете использовать стимуляторы на других так часто.}
+{70321}{}{Кто-то следует за вами. Будьте осторожны.}
+{70322}{}{Понятно}
+{70323}{}{Стелс-бой сломался.}
+{70324}{}{Вы видите дым, поднимающийся высоко над землей.}
+{70325}{}{Вы больше не видите дым.}
+{70326}{}{Это умение нельзя использовать во время пошагового боя.}
+{70327}{}{Ты не удалось починить генератор.}
+{70328}{}{Вы успешно отремонтировать генератор, но не похоже, что он продержится больше нескольких минут.}
+{70329}{}{Похоже нужно электричество чтобы лифт заработал.}
+{70330}{}{Карта ведет вас глубже в пустошь.}
+{70331}{}{Игрок должен следовать за вами, чтобы его можно было добавить в караван.}
+{70332}{}{Не имеет смысла использовать факел в этом месте.}
+{70333}{}{Тут больше ничего не осталось.}
+{70334}{}{Вы добыли минералы.}
+{70335}{}{Вы добыли руду.}
+{70336}{}{Вы добыли дерево.}
+{70337}{}{С вашим интеллектом вы не можете изучать навыки свыше @lex skill@.}
+{70338}{}{Вы не можете тратить очки на изучение навыка "торговля", для совершенствования этого навыка вам нужно больше торговать.}
+{70339}{}{Вы не можете тратить очки на изучение навыка "скавенжинг", для совершенствования этого навыка вам нужно собирать больше ресурсов в пустоши.}
+{70340}{}{Вы не можете оказать первую помощь самому себе в бою.}
+{70341}{}{Мы отправляемся. Приготовься и держись ближе ко мне!}
+{70342}{}{Вам не удалось ничего извлечь.}
+{70343}{}{Вам удалось получить некоторые материалы.}
+{70344}{}{Это умение требует все очки действия во время пошагового боя.}
+{70345}{}{Карта обновлена.}
+{70346}{}{Вам уже известно это место.}
+{70347}{}{Эти комнаты только для членов фракции.}
+{70348}{}{Вы не можете создать больше палаток.}
+{70349}{}{Локация более не доступна, хозяин локации удалил персонажа.}
+{70350}{}{Это умение требует сумку доктора или парамедика во время пошагового боя.}
+{70351}{}{Идиот, не смей бросать это тут!}
+{70352}{}{Вы выполнили задачу, поговорите с Грузчиком.}
+{70353}{}{Вы уже взяли коробку, вы не можете взять две сразу.}
+{70354}{}{Вы взяли коробку из повозки.}
+{70355}{}{Не трогай это.}
+{70356}{}{Места занято}
+{70357}{}{Вы не можете угнать машину на глазах у охраны.}
+{70358}{}{Внимание}
+{70359}{}{Вы должны выбрать перк до получения следующего уровня или он пропадет.}
+{70360}{}{У вас нет монеты.}
+{70361}{}{Нельзя использовать пока есть нераспределенные перки.}
+{70362}{}{Сначала распределите очки умений.}
+{70363}{}{Только персонаж первого уровня может использовать эту вещь.}
+{70364}{}{Эта вещь вам не принадлежит.}
+{70365}{}{Вам больше нечему учиться.}
+{70366}{}{Вы взвели бомбу и начался отсчет. Таймер показывает 30 секунд, похоже пора убираться отсюда.}
+{70367}{}{Вы должны быть управляющим этой базой чтобы распоряжаться мебелью.}
+{70368}{}{Вы не можете распоряжаться мебелью в чюжой палатке.}
+{70369}{}{Сюда положить нельзя. Слишком близко ко входу игроков и транспорта.}
+{70370}{}{Резиновые сапоги начали растворяться, но вы вовремя одели другую пару.}
+{70371}{}{Резиновые сапоги растворились!}
+{70372}{}{|0xc80000 Радиоактивная слизь обжигает вас.}
+{70373}{}{|0xc80000  *вор* }
+{70374}{}{@lex name@ полечил вас на @lex heal@ очков жизни.}
+{70375}{}{@lex name@ помог вам справится с нокаутом.}
+{70376}{}{|4291317840 Вам не потребует вольше чем 200% навыка Ближний Бой.}
+{70377}{}{|4291317840 Вам не потребует вольше чем 100% навыка Скиталец.}
+{70378}{}{|4291317840 Вам не потребует вольше чем 200% навыка Ремонт.}
+{70379}{}{|4291317840 Вам не потребует вольше чем 200% навыка Наука.}
+{70380}{}{Вы не можете разобрать этот предмет в электричествотом месте.}
+{70381}{}{Охранник был убит в НКР. Возможно кто-то напал на город.}
+{70382}{}{Ты вообще думаешь что ты делаешь?}
+{70383}{}{Вы и ваши товарищи должны быть не менее 27ого уровня, чтобы попасть в это богом забытое место.}
+{70384}{}{Воздух откачивается. Вы начинаете задыхаться.}
+{70385}{}{Ошибка. Движение к заданной точке невозможно.}
+{70386}{}{Оператор отменил току. Возвращаюсь.}
+{70387}{}{Менеджеры базы:}
+{70388}{}{Видящие базу:}
+{70389}{}{Вы не может поставить палатку тут, попробуйте другое место.}
+{70390}{}{Ваша фракция теперь контролирует этот город.}
+{70391}{}{Городские власти не впечатлены вашим количеством и не хотят вашей защиты}
+{70392}{}{Вы не состоите во фракции которая контролирует этот город.}
+{70393}{}{Только лидеры и офицеры могут открывать этот контейнер.}
+{70394}{}{Вся награда перечисляется в Банк НКР.}
+{70395}{}{Вы не можете захватить этот город сейчас. Возвращайтесь в @lex tctime@.00 GMT+2.}
+{70396}{}{Вы успешно обезвредили ловушку.}
+{70397}{}{При попытке обезвредить ловушку, вы случайно запустили её механизм.}
+{70398}{}{Вы уже мертвы.}
+{70399}{}{Не сдавайтесь!}
+{70400}{}{Зона: @lex x@ : @lex y@}
+{70401}{}{Координаты: @lex x@ : @lex y@}
+{70402}{}{Цвета имён обновлены.}
+{70403}{}{Игнор лист обновлен.}
+{70404}{}{Горячие клавиши обновлены.}
+{70405}{}{Режим боя изменен на пошаговый.}
+{70406}{}{Режим боя изменен на реальное время.}
+{70407}{}{Режим боя изменен на любой.}
+{70408}{}{Вы не можете одновременно выбрать Неустойчивость и Устойчиваость к химии.}
+{70409}{}{[Гражданин]}
+{70410}{}{Стелс-бой включен.}
+{70411}{}{Стелс-бой выключен.}
+{70412}{}{Сенсор движения включен.}
+{70413}{}{Сенсор движения выключен.}
+{70414}{}{Сенсор движения сломался.}
+{70415}{}{Ты уже в списке.}
+{70416}{}{Окей, я добавил тебя в список.}
+{70417}{}{База в режиме сопряжения с фракцией. Используйте фракционный интерфейс.}
+{70418}{}{|4291317840 Не найден файл data/data04.zip. Запустите FOUpdater.exe или скачайте обновление с http://forum.fonline2.com}
+{70419}{}{|4291317840 Ваш персонаж должен иметь как минимум уровень 24 для совершения рерола.}
+{70420}{}{Цена рерола для вашего персонажа}
+{70421}{}{В вашем инвентаре уже есть достаточная сумма, вы можете сделать рерол.}
+{70422}{}{|4291317840 Не найден файл  data/faction_icons.zip Запустите FOUpdater.exe или скачайте обновление с http://forum.fonline2.com}
+{70423}{}{Невозможно взять контейнер с предметами внутри.}
+{70424}{}{|4291317840 Не найден или устарел файл data/data04.zip. Запустите FOUpdater.exe или скачайте обновление с http://forum.fonline2.com}
+{70425}{}{Аукцион не работает, попробуйте позже.}
+{70426}{}{Нельзя продавать предмет с износом более 0.}
+{70427}{}{Нельзя продавать сломанный предмет.}
+{70428}{}{Невозможно продать использованную книгу секретов.}
+{70429}{}{Вещь не существует, возможно её уже кто-то купил.}
+{70430}{}{Недостаточно денег для оплаты налога.}
+{70431}{}{Недостаточно денег.}
+{70432}{}{|4291317840 Не найден или устарел файл data/auction.zip. Запустите FOUpdater.exe или скачайте обновление с http://forum.fonline2.com}
+{70433}{}{Вы успешно купили предмет.}
+{70434}{}{|4291317840 Кто-то выкупил ваш лот на аукционе.}
+{70435}{}{Вы успешно выставили предмет на продажу.}
+{70436}{}{Этот тип предметов нельзя выставить на продажу.}
+{70437}{}{|4291317840 Устарел файл data/auction.zip. Запустите FOUpdater.exe или скачайте обновление с http://forum.fonline2.com}
+{70438}{}{Налог не может быть равен 0, увеличьте цену или количество.}
+{70439}{}{Вы забрали предмет с аукциона.}
+{70440}{}{Теперь вы знаете где находятся Токсичные Пещеры, торопитесь, осталось 4 дня.}
+{70441}{}{Невозможно войти на локацию пока игрок @lex name@ использует фастрелог/дуаллог.}
+{70442}{}{У вас есть бесплатный реролл.}
+
+#Aviator
+{70570}{}{Wonder what it was like here before the War...@@Dayum, ain't this place a mess.@@I'd sure sip another Rut Gut.@@Keep movin'.@@I can smell dem fucks from a mile away.@@Wonder what happened here.@@Man, it sure stinks in 'ere.@@We shoulda get movin'.@@Even the Den brothels smell nicer than this.@@Wonder what draws them to this place...@@I can hear them movin'.@@Shh, did you hear that?@@What's a high school anyway?@@We shoulda keep movin' or they'll surround us.@@This place looks worse than a deathclaw nest.@@Ever been to San Fran? I tell ye, dat place is crazy.@@What are you lookin' at?@@I can smell dem stinkers.@@Did ya hear dat?@@Watch yer step.@@Time is nevah wasted when ya wasted all da time.@@I sure could use a drink.@@Careful where ya goin'.@@Watch out for dem ghouls.@@I'll nevah fly to Necropolis again.@@I can hear dem movin'.@@This place is creepy.@@Better check my shotty again.@@Hope this aulde pissacrap won't jamn again.@@This place gives me da creeps.@@Necropolis ain' no place for pussies.}
+{70571}{}{I've been to San Fran a coupla times... Funny people.@@You know that Jack fella from Oldtown?@@Ever been to San Fran?@@All this walkin' makes me thirsty for a Rut Gut.@@One day I got so drunk I ended up in Broken Hills.@@What the hell are ya lookin' at?@@I'm gonna get wasted... soon.@@I'll never drink'n'fly again.@@I hear dem Blades gots da hottest chicks ye can find.@@There's something rotten in the state of Hub...@@They shouldn' let any stinkers into the Hub.@@I hate'em fuckin' stinkers.@@Man, don't those ghouls make ye puke?}
+{70572}{}{Watch where ye hittin', bawbag!@@Ye blind or somethin'?@@What the fuck ye think yer doin'?@@What de fuck? Ye blind?@@Ye fuckin' snugger, watch where ye hittin'!@@Watch who ya hittin', dumbass!@@Fuck ya doin'?@@The fuck ya doin', bawbag?!@@The fuck ya doin?!}
+{70573}{}{Watch out, I can hear dem movin'.@@I hear dem stinkers movin'.@@Keep yer eyes peeled, I can hear dem movin'.@@Did ya hear dat?I think they're closin' in.@@Keep close, they're gettin' close.@@Eyes around yer head, they mite be tryin' to surround us.@@Keep yer arse close, dem ghouls are gettin' near us.@@Get ready, I can hear dem ghouls skulkin' about.@@Shhh, I can hear dem ghouls movin' about.@@Keep yer eyes open, I think they're gettin' closer.@@Dem stinkers are movin' watch out.}
+{70574}{}{Yer maw!@@Take dat, stinker!@@How's dat, ye stinkin' pissashit?@@How'd ye like dat, stinker?@@I'm gonna bust yer brains out, ghoulie!@@Die, fuckin' stinker!@@Up yer erse with it!@@How do ye like some lead in yer arse, stinker!@@Die, fuckin' rotbag!@@I'm gonna rip yer skull open!@@Yer not comin' outta dis alive, ghoulie!@@Yer gonna get your head smashed, stinker!@@Die, ye stinking pissashit!@@Get some, ghoul!@@Get some!@@Ye don't need yer brains anyway, ghoul...@@Gonna grind the fuck outta ye!@@I'm gonna beat ya so hard you're going to wish yer pa' had pulled out early!@@Who's next?@@How'd ye like some lead up yer arse?@@Enjoy this, stinker!@@I'm gonna hang yer skull over my bed!@@You don't really need that skull, don't ye?@@How about some lead in yer eyes, ghoul?@@Yer maw, ghoulie!@@Die!@@Time to die, ghoulie!@@Time to die, fuckin' stinker!@@I'll shower ye with lead, stinker!@@You like dat, huh?@@This is the day ye part with yer brains!@@I'll set the world free of yer stench, ghoul!@@Time to say goodbye, bawbag!@@Time to die, rotbag!@@Get ready to meet yer maker, rotbag!@@Taste dat lead, stinker!}
+{70575}{}{Dayum, I'm not feelin' so good.@@There goes meh rib...@@Fuck!@@I've been thru worse...@@Not feelin' so good, buddy...@@This is not the end of aulde Boyd yet...@@Nothin' a good aulde Boyd can't handle.@@Shit, my rib.@@Fuck, mah speen!@@I ain' feelin' so good...}
+{70576}{}{Keep'em away til' I fix dis!@@You've gotta hold dem back!@@Keep dem stinkers away!@@Don't let'em get close!@@Don't let'em near mah machine!@@Keep'em away!@@Don't let dem stinkers get near!@@Keep those ghouls away!@@Keep'em away as long as ye can!@@Don't let come close!@@Blast dem til' I'm done with dis!@@Kill'em, kill'em!@@Kill dem ghouls!@@Kill'em stinkers!}
+{70577}{}{BOYD ALL GHOULS DEAD MESSAGE, AND HE FIXED THE VEHICLE WILL BE SHOUT MESSAGE. only one text varation. <- preferably not longer than this.}
+#Boyd Stepshouts
+{70580}{}{We're here, friend. We've gotta go past da fence and then inside dat large building, up to da roof.}
+{70581}{}{Hurry up, dem ghouls gonna swarm our arses if we don' move fast.}
+{70582}{}{Fuck, the elevator's dead. Let's use the stairs and see if it will work there.}
+{70583}{}{Fuckin' crap, I hoped that elevator would work from this floor... The generator's probably fried, go check it.}
+{70584}{}{Let's go, my flyin' thingy is just a few corners away.}
+{70585}{}{Somethin' not rite, friend. It's too quiet...@@Somethin's not rite. It's way to quiet here...}
+
+#NCR
+{70590}{}{Ворота уже уничтожены.}
+{70591}{}{Вам нужен динамит чтобы это взорвать.}
+{70592}{}{Вам нужно как минимум 5 динамитных шашек.}
+{70593}{}{Вы заложили динам. Он взорвется через минуту.}
+{70594}{}{Вы стали гражданином Шэйди Сэндс.}
+{70595}{}{Вы потеряли гражданство Шэйди Сэндс из-за ваших выходок.}
+
+#Faction informs
+{70800}{}{|4291317840 Критическая ошибка. Сообщите администрации.}
+{70801}{}{|4291317840 Персонаж @lex str@ не существует.}
+{70802}{}{|4291317840 Похоже персонаж @lex str@ это ВЫ.}
+{70803}{}{|4291317840 Персонаж @lex str@ должен быть в игре.}
+{70804}{}{|4291317840 Персонаж @lex str@ уже член фракции.}
+{70805}{}{|4291317840 Персонаж занят, попробуйте позже.}
+{70806}{}{|4291317840 Вы не можете выгнать @lex str@.}
+{70807}{}{|4291317840 Персонаж @lex str@ исключен из вашей фракции.}
+{70808}{}{|4291317840 Вы больше не состоите во фракции.}
+{70809}{}{|4291317840 Персонаж @lex str@ не является членом вашей фракции.}
+{70810}{}{|4291317840 Вы не можете изменять свой ранг.}
+{70811}{}{|4291317840 Операция не разрешена.}
+{70812}{}{|4291317840 Вы уже лидер.}
+{70813}{}{|4291317840 Для создания фракции вам нужно иметь 500.000 крышек в инвентаре.}
+{70814}{}{|4291317840 Вы вступили во фракцию @lex str@.}
+{70815}{}{|4291317840 Слишком поздно.}
+{70816}{}{|4291317840 Недопустимые символы в имени фракции. Имя не может содержать русские буквы.}
+{70817}{}{|4291317840 Нельзя испольвать пробелы в начале и в конце имени фракции.}
+{70818}{}{|4291317840 Нельзя испольвать два пробела подряд в имени фракции.}
+{70819}{}{|4291317840 Фракция с таким именем уже существует.}
+{70820}{}{|4291317840 Минимально количество символов в имени фракции @lex min@ ,максимальное @lex max@.}
+{70821}{}{|4291317840 Вас пригласили во фракцию: @lex str@. Вступить?}
+{70822}{}{|4291317840 Вы хотите удалить фракцию @lex str@. Вы уверены?}
+{70823}{}{|4291317840 Фракция @lex str@ предлагает вам альянс. Согласится?}
+
+#Location infos
+{71001}{}{Вы находитесь на подходе к очень опасному месту... Как только вы войдете, уже не будет пути назад...}
+
+# Smart cursor
+{72001}{}{Добыть дерево}
+{72002}{}{Добыть минералы}
+{72003}{}{Добыть руду}
+{72004}{}{Убрать навоз}
+
+# Chat
+{72100}{}{Чат}
+{72101}{}{Нажмите Ctrl + C}
+
+# Prewipe
+
+{72200}{}{Pre-wipe madness came. Nowhere is safe. The safest town's are now dead zones full of ghouls.}
+{72201}{}{Pre-wipe event is happening right now.}
+{72202}{}{Thank you for participating in out test session, The wipe will happen and new session will start at evening of 25th October.}
+{72203}{}{Everything is dead or dying.}
+{72204}{}{Visit our forum: forum.fonline2.com for more information.}
+
+# Gossips
+{73001}{}{Один фермер на локации @lex locationname@ нуждается в @lex itemname@. @@Фермер на локации @lex locationname@ потерял свой последний экземпляр @lex itemname@. @@Люди говорят, что фермерам на локации @lex locationname@ потребуется некоторая помощь или они потеряют все, что нажили тяжелым трудом.}
+{73002}{}{Пожалуйста, помогите нашим бедным фермерам. Они отчаянно нуждаются в помощи. @@Наши фермеры нуждаются в большем количестве предметов @lex itemname@ без них они рано или поздно будут обречены. Никто другой не будет беспокоиться чтобы помочь им. Вы - их единственная надежда на спасение.}
+{73003}{}{Охранникам на локации @lex locationname@ требуется большее количество предметов @lex itemname@. @@Охранники на локации @lex locationname@ скупают все виды оружия. @@ У защитников города @lex locationname@ имеются новобранцы. @@ Охранники локации @lex locationname@ заняты тренировкой следующих поколений новобранцев.}
+{73004}{}{Пожалуйста, помогите нашей гвардии здесь. @@Наши защитники нуждаются в большом количестве предметов @lex itemname@. @@ Охранникам требуется большое количество предметов @lex itemname@ для тренировки из пушечного мяса закаленных бойцов, способных защищать граждан.}
+{73005}{}{На локации @lex locationname@ имеется проблема с пьянством. @@ Жители города @lex locationname@ выпивают слишком много спиртного @lex itemname@. @@ Кто-то должен решить их проблему с пьянством в городе @lex locationname@, потому что они разрушают все хозяйство из-за этой зависимости.}
+{73006}{}{Один пьяница нуждается в большем количестве выпивки @lex itemname@. Это печально. @@ Кто-то должен разобраться с этими любителями выпивать @lex itemname@,  иначе могут случиться ужасные вещи. Никто не сможет помочь им, если они окончательно слетят с катушек.}
+{73007}{}{Родители из локации @lex locationname@ должны позаботиться о своих детях. @@ Дети из локации @lex locationname@ живут в ужасной нищете. Они умоляют жителей пустоши, чтобы те дали им @lex itemname@ @@ Дети на локации @lex locationname@ умирают с голоду, не имея никого, кто мог бы им помочь. Похоже, что больше ни у кого в пустоши нет сердца. }
+{73008}{}{Пожалуйста, помогите детям, они голодны, а родители совершенно о них не заботятся. @@ Пожалуйста дайте @lex itemname@ каждому голодному ребенку. Начните строить лучший мир для будущих поколений и, возможно, они станут лучшими родителями для их собственных детей.}
+{73009}{}{Вы встретите лучших шлюх в местечке @lex locationname@. @@ Девочки из @lex locationname@ знают как сделать действительно хороший минет. @@ Вы должны посетить @lex locationname@, если вы хотите отдохнуть и хорошо развлечься. Все нужное вам уединение и удовольствие, находится прямо здесь. }
+{73010}{}{Лучшие шлюхи пустоши !!! Только в @lex locationname@. @@ Посетите этих шикарных девочек, они знают, как сделать вам лучший минет в пустоши, и большинство из них здоровы.}
+{73011}{}{Один гражданин из локации @lex locationname@ продает большое количество лишних вещей. @@ Гражданин из локации @lex locationname@ имеет множество ненужных вещей на продажу, и они уже расходятся довольно быстро.}
+{73012}{}{Я слышал, что кто-то распродает свои запасы. @@ Один из наших граждан недавно расчищал свой подвал. На данный момент он продает свои запасы и планирует продать все это по хорошей цене..}
+{73013}{}{Один наркоторговец продает недорогие наркотики на локации @lex locationname@. @@ Наркоторговцы с локации @lex locationname@ продают лучший товар в округе с непревзойденным качеством. @@ Наркоторговцы из локации @lex locationname@ предлагают лучшие цены для бедных, но все еще способных поймать кайф, наркоманов.}
+{73014}{}{Тссссс, ты можешь купить здесь лучшую наркоту. @@ Проверь наших торговцев наркотой. Наркотики здесь самые дешевые и всегда помогут почувствовать настоящий кайф.}
+{73015}{}{Черный рынок на локации @lex locationname@. Один парень продает химические компоненты. @@ Один парень на локации @lex locationname@ продает большое количество химических компонентов. Я очень сомневаюсь, что этот товар является легальным.}
+{73016}{}{Это неприятно, но иногда люди продают контрабанду согражданам. @@ Тсссс. Если вы действительно осторожны и умны, вы можете купить действительно дешевые химические компоненты...}
+{73017}{}{Проверьте черный рынок на локации @lex locationname@. Один парень продает энергетические трансформаторы.@@Один парень на локации @lex locationname@ продает довольно дорогие, но хорошие энергетические трансформаторы. Я действительно считаю, что он не должен продавать их, но, тем не менее, они в продаже.}
+{73018}{}{Это печально, но иногда граждане продают контрабанду.@@ Тссссс, если вы быстры и пройдете незамеченными, то сможете купить дешевые энергетические трансформаторы}
+{73019}{}{Черный рынок на локации @lex locationname@. Один парень продает высококачественную сталь. @@ Один парень на локации @lex locationname@ продает большое количество стали. Я не думаю, что он должен продавать их.}
+{73020}{}{Это не слишком хорошо для других, но иногда граждане продают контрабанду ради легких денег. @@ Тссссс. Если вы тихи и аккуратны, вы можете купить дешевую сталь.}
+{73021}{}{Подпольный рынок на локации @lex locationname@. Один парень продает кевлар. @@ Один парень на локации @lex locationname@ продает кевлар. Я думаю, что этот материал продается незаконно, только военные должны иметь к нему доступ.}
+{73022}{}{Это огорчает, но иногда граждане продают контрабанду ради выгоды. @@ Тсссссс. Если вы тихий и умный человек, то можете купить много хорошего и дешевого кевлара.}
+{73023}{}{Черный рынок на локации @lex locationname@. Один парень продает урановую руду. @@ Этот парень на локации @lex locationname@ продает урановую руду. Я думаю, эта штука запрещена для продажи гражданам.}
+{73024}{}{Это огорчает, но иногда люди продают нелегальный товар. @@ Тссссс. Если вы хитры и умеете держать рот на замке, то можете купить дешевой урановой руды.}
+{73025}{}{Два мусорщика пропали в районе локации @lex locationname@. @@ Люди говорят о каком-то странном сундуке в районе локации @lex locationname@. Возможно, было бы хорошей идеей пойти и проверить это.}
+{73026}{}{Руины довольно опасны со всеми монстрами, которые там живут. Два мусорщика не вернулись из их долгого изнурительного путешествия. @@ Тссссс. Люди рассказывают легенды о сокровищах, спрятанных в глубоких руинах города.}
+{73027}{}{Два молодых охотника потерялись в районе локации @lex locationname@. @@ Люди рассказывают о подозрительной пещере рядом с локацией @lex locationname@. @@  Люди рассказывают о @lex crittername@ пещере рядом с локацией @lex locationname@. Стоит быть крайне осторожным, так как заблудиться можно очень быстро. }
+{73028}{}{Два сильных охотника пропали не так далеко от нашего города. @@ В любом случае стоит быть осторожным. Люди говорят о принадлежащей @lex crittername@ пещере рядом с нашим городом. Они размножаются как сумасшедшие и, возможно, могут выжить нас в будущем.}
+{73029}{}{Охотничий лагерь атакован рядом с локацией @lex locationname@. @@ Люди рассказывают об атакованном лагере рядом с локацией @lex locationname@. @@  @lex crittername@ атаковали охотничий лагерь рядом с локацией @lex locationname@. Все охотники умирали ужасной и мучительной смертью, но, возможно, некоторые из них все же выжили. }
+{73030}{}{Охотничий лагерь атакован около нашего города. @@ Будьте осторожны. Люди говорят о @lex crittername@, которые атаковали лагерь возле нашего города. Пока нет известий о выживших после атаки. }
+{73031}{}{Взрыв на старом и разрушенном минном поле возле локации @lex locationname@. @@ @lex crittername@ машина проехала в центр проклятого минного поля возле локации @lex locationname@. @@ Патруль @lex crittername@ застрял на минном поле рядом с локацией @lex locationname@. Возможно, им требуется помощь чтобы выбраться оттуда, в противном случае их может ждать гибель. }
+{73032}{}{Взрыв на старом минном поле недалеко от нашего города. @@ Будьте осторожны и смотрите в оба. Люди говорят о патруле @lex crittername@ который застрял на минном поле рядом с нашим городом.}
+{73033}{}{Машина @lex crittername@ сломалась рядом с локацией @lex locationname@. @@ Патруль @lex crittername@ застрял рядом с локацией @lex locationname@. @@ Патруль @lex crittername@ имеет технические неполадки в их машине рядом с локацией @lex locationname@. @@ @lex crittername@ не могут поменять колесо и нуждаются в помощи. Их патруль застрял рядом с локацией @lex locationname@.}
+{73034}{}{Машина, принадлежащая @lex crittername@ сломалась недалеко от нашего славного города. @@ Будьте осторожны. Люди говорят о патруле @lex crittername@, который застрял возле нашего города. @@ У патруля @lex crittername@ проблемы с транспортом рядом с нашим городом, и они нуждаются в помощи прямо сейчас.}
+{73035}{}{Большая поставка наркотиков прибыла в магазин Ренеско в Нью-Рено. @@ Крупная продажа наркотиков в Нью-Рено. @@ Продажа наркотиков в магазине Ренеско в Нью-Рено по действительно выгодным ценам. }
+{73036}{}{Большая партия наркотиков прибыла в магазин Ренеско. @@ Крупная продажа наркотиков в магазине Ренеско. @@ Ренеско продает лучшие наркотики в пустоши по лучшим ценам. @@ Магазин Ренеско продает большое количество наркотиков. Самое время их заполучить. Я слышал, что наркоманы уже глубоко копаются в своих карманах в поисках денег. }
+{73037}{}{Большая партия патронов прибыла в New Reno Arms. @@ Патроны продаются в Нью-Рено. @@ Продажа патронов в New Reno Arms. Самое время пойти туда и запастись патронами. @@ New Reno Arms продает большое количество патронов по хорошим ценам. Путешественники со всех уголков пустоши захочтят запастись боеприпасами.}
+{73038}{}{В New Reno Arms прибыла внушительная партия патронов. @@ Продажа патронов в New Reno Arms. @@ New Reno Arms продает наибольшее количество патронов в пустоши. @@ New Reno Arms продает большое количество патронов за изрядное количество денег.}
+{73039}{}{Огромная партия книг прибыла в Сан-Франциско. @@ Продажа книг в Сан-Франциско. @@ Торговец книгами продает большое количество книг в Сан-Франциско. Уже не так много книг остается сегодня в продаже. }
+{73040}{}{Огромная партия книг прибыла в книжный магазин в танкере. @@ Продажа книг в книжном магазине не танкере. @@ Торговец книгами продает большое количество книг.}
+{73041}{}{Большая партия наркотиков прибыла в магазин доктора Фунга в Сан-Франциско. @@ Продажа наркотиков в Сан-Франциско. @@ Продажа наркотиков в магазине доктора Фунга в Сан-Франциско. }
+{73042}{}{Большая партия наркотиков прибыла в магазин доктора Фунга. @@ Продажа наркотиков в магазине доктора Фунга. @@ Доктор Фунг продает лучшие наркотики в пустоши. @@ В магазине доктора Фунга продается большое количество наркотиков.}
+{73043}{}{Атакован конвой, транспортирующий высококачественный кевлар в Гекко. @@ Рейдеры Хана атакуют конвой, перевозящий кевлар. @@ Караван, перевозящий кевлар, атакован большой группой свирепых рейдеров Хана и нуждается в помощи.}
+{73044}{}{Осажден конвой, транспортирующий высококачественную сталь в Реддинг. @@ Рейдеры атакуют конвой, перевозящий высококачественную сталь. @@ Караван, перевозящий высококачественную сталь, был атакован осатаневшими рейдерами, и вы должны прийти на помощь.}
+{73045}{}{Конвой, перевозящий обогащенную урановую руду в Броккен-Хиллз подвергается массированной атаке. @@ Бандиты атакуют конвой, перевозящий драгоценную обогащенную урановую руду. @@ Караван, перевозящий обогащенную урановую руду, атакован огромным количеством бандитов.}
+{73046}{}{Хаб и НКР подписали договор о взаимопомощи - требуется дополнительный личный состав. @@ Охранники караванов ведут набор сотрудников для проверки маршрутов между Хабом и НКР. @@ В эти дни выгодно быть охранником караванов. За маршруты между Хабом и НКР выплачиваются дополнительные 50%, и работа не требует больших усилий. Большинство людей проводят много времени в этих караванах, так как мало что может пойти не так. }
+{73047}{}{Хаб и Город-Убежище подписали договор о взаимопомощи - дополнительное охранники нужны немедленно! @@ Охранники караванов ведут набор сотрудников для проверки маршрутов между Хабом и Городом-Убежищем. @@ В эти дни выгодно быть охранником караванов. За маршруты между Хабом и Городом-Убежищем выплачиваются дополнительные 50%, это хорошая и выгодная работа.}
+{73048}{}{Хаб и Сан-Франциско подписали договор о взаимопомощи - требуется дополнительный личный состав. @@ Охранники караванов ведут набор сотрудников для проверки маршрутов между Хабом и Сан-Франциско. @@ В эти дни выгодно быть охранником караванов. За маршруты между Хабом и Сан-Франциско выплачиваются дополнительные 50%, но это по-прежнему опасный маршрут.}
+{73049}{}{Торговцы из каравана Фарго подписали договор о найме дополнительного сильного личного состава. @@ Охранники караванов ведут набор сотрудников для проверки маршрутов далеко идущих караванов. @@ В эти дни выгодно быть охранником караванов. За маршруты далеко идущих караванов выплачиваются дополнительные 50%.}
+{73050}{}{Война в Сан-Франциско, Супер Мутанты вторгаются в город! @@ Происходит вторжение Супер Мутантов в Сан-Франциско, лучше держитесь как можно дальше от этого города. @@ Супер Мутанты в Сан-Франциско. Более половины жителей мертвы и лежат на улицах. @@ Супер Мутанты в Сан-Франциско. Почему Братство Стали не посылает свои войска? Трупы лежат в городе. Все катится в пропасть, а Братство Стали просто наблюдает за этим из своего бункера. }
+{73051}{}{Пожалуйста, помогите нам ради любви к Богу! @@ Мутанты слишком сильны. @@ Кто сможет выбить этих мутантов? @@ Бегите !!! @@ Будьте осторожны, в наш город вторгаются мутанты. Никто не в силах остановить их. Они слишком сильные, и никто здесь не в силах их остановить. }
+{73052}{}{Что-то подозрительное происходит в соборе. @@ Подозрительный транспорт прибыл в Собор. @@ Есть слухи о Призраках Супер Мутантах в соборе, я думаю, что это просто сказки, но стоит проверить: вдруг там происходит что-то важное.  }
+{73053}{}{Эти парни, что они здесь делают? @@ Тсссс, кто-то рассказывал мне о призраках. @@ Этот человек в мантии выглядит подозрительно. Все это чертовски жутко. }
+{73054}{}{Очередная гангстерская война в Нью-Рено, как всегда. Было бы хорошей идеей держаться подальше от этого города. @@ Семья Бишопов атакует семью Мордино. @@ Лучше держаться подальше от казино в Нью-Рено. @@ Очередная война банд в Нью-Рено, и, как обычно, она закончится пролитой кровью с обеих сторон. }
+{73055}{}{Люди Бишопов сошли с ума. @@ Эта война банд разрушит торговлю в нашем городе. @@ Эти Бишопы распугивают клиентов во всем городе и заставляют весь город терять прибыль из-за того, что тупоголовые Бишопы решили начать гангстерскую войну. }
+{73056}{}{Семья Райт вооружается тяжелым вооружением. Будет разумным держаться подальше от Нью-Рено. @@ Семья Райт скупает все видя оружия. @@ Семья Райт вооружается. Я чую очередную гангстерскую войну в Нью-Рено в запахе смерти, витающем над городом.}
+{73057}{}{Парни Райта не спокойны. @@ Семья Райт вооружается. Еще одни придурки, готовые разрушить торговлю в нашем городе. @@ Семья Райт вооружается. Я ощущаю приближение еще одной гангстерской войны. Этих эгоистичных собак не волнует, сколько денег потеряют остальные.}
+{73058}{}{Ханы покупают большие партии наркотиков у Бишопов. @@ Будет разумным держаться подальше от Шарк-Клуба в Нью-Рено. @@ Транспорт Ханов прибыл в Нью-Рено. Похоже, Ханы объявили тревогу и будут стрелять в любого, кого увидят. }
+{73059}{}{Эти Ханы безумны. @@ Эти засранцы Ханы распугивают ценных клиентов. @@  Транспорт Ханов прибыл к Шарк-Клубу. Я уже слышу выстрелы. }
+{73060}{}{Снабжение Анклава прибыло на доки в Сан-Франциско. @@ Анклав прибыл в Сан-Франциско. Лучше держаться подальше от доков в городе. @@ Анклав прибыл в Сан-Франциско. Паладины Братства Стали, сидящие в своем бункере, похоже, слепы и не чешут свои задницы, чтобы остановить этих кретинов из Анклава.}
+{73061}{}{Эти Анклавовцы на взводе. @@ Эти ублюдки из Анклава убивают всех невинных путешественников на доках без причины, как, впрочем, и всегда. @@ Поставки Анклава с тяжеловооруженной охраной прибыли на доки. }
+{73062}{}{Один игрок с локации@lex locationname@ выиграл большие деньги. @@ Люди говорят, что можно выиграть целое состояние в казино на локации @lex locationname@.}
+{73063}{}{Один игрок выиграл большие деньги в казино. @@ Вы можете выиграть целое состояние в наших казино.}
+{73064}{}{Одна девушка с локации @lex locationname@ повстречала богатого клиента. @@ Люди говорят, что одна проститутка с локации @lex locationname@ сделал большие деньги. Догадываетесь, как? }
+{73065}{}{Тссссс. Одна девушка встретила богатого клиента и теперь имеет большие деньги. @@ Одна из наших девушек сделала большие деньги.}
+{73066}{}{Два мусорщика потерялись в районе локации @lex locationname@. @@ Что-то странное происходит в руинах рядом с локацией @lex locationname@.}
+{73067}{}{Руины опасны. Два мусорщика не вернулись из их путешествия. @@ Тссссс. Люди говорят о таинственном подвале в городских руинах.}
+{73068}{}{Несколько крестьян были убиты в ходе побега из лагеря @lex crittername@ рядом с локацией @lex locationname@. @@ Люди рассказывают о погибших заключенных возле локации @lex locationname@. @@ @lex crittername@ убили крестьян в лагере рядом с локацией @lex locationname@. }
+{73069}{}{Несколько крестьян были убиты в ходе побега из лагеря @lex crittername@ рядом с нашим городом. @@ Будьте осторожны. Люди рассказывают об убитых в лагере @lex crittername@ крестьянах.}
+{73070}{}{НКР и Город-Убежище подписали договор о взаимопомощи - дополнительное охранники нужны немедленно! @@ Охранники караванов ведут набор сотрудников для проверки маршрутов между НКР и Городом-Убежищем. @@ В эти дни выгодно быть охранником караванов. За маршруты между Хабом и Городом-Убежищем выплачиваются дополнительные 50%, и это хорошая и выгодная работа.}
+{73071}{}{Кожевенная лавке в Модоке требуются шкурки Огненных Гекко. @@ Один человек в Модоке похоже дает хорошую цену за шкурки Огненных Гекко..}
+{73072}{}{Нашей кожевенной лавке требуются шкурки Огненных Гекко. @@ Ли Балтон дает хорошую цену за шкурки Огненных Гекко.}
+{73073}{}{Я слышал в Модоке требуются шкурки Огненных Гекко. @@Один человек в Модоке похоже дает хорошую цену за шкурки Огненных Гекко.@@Я слышал Модок хорошее место для продажи шкурок Огненных Гекко.}
+{73074}{}{Один из наших горожан ищет шкурки Огненных Гекко. @@Один горожанин скупает шкурки Огненных Гекко, если у тебя есть на продажу, тебе стоит найти его.@@Я слышал кто-то в округе скупает шкурки Огненных Гекко.}
+{73075}{}{Один горожанин из @lex locationname@ разыскивает @lex itemname@. @@ У одно горожанина из @lex locationname@ сгорел дом, и теперь ему требуется @lex itemname@. @@Люди говорят что одному человеку из @lex locationname@ нужна помощь. Принесите ему @lex itemname@}
+{73076}{}{Пожалуйста, помогите нашим бедным гражданам, они отчаянно нуждаются в помощи. @@Одному горожанину нужны @lex itemname@, без них ему будет туго. Ему больше не на кого рассчитывать. }
+
+# Random cave
+{74000}{}{Вы проходили через темную пещеру и внезапно сбились с пути.}
+{74001}{}{Эта пещера очень темна, свет позади погас и теперь вы в панике думаете, как вернуться назад. Вам нужно некоторое время чтобы прийти в себя.}
+{74002}{}{Похоже тут нет прохода.}
+
+{99997}{}{Новости}
+{99998}{}{Нажмите Ctrl + N}
+{99999}{}{|0x3cf800 Обновление 24.11.2014
+|0x00CC00 Особенности:
+|0x8f6f00 Добавлен второй уровень для системы подземелий базы Сиерра:
+более сильные враги.
+больше ловушек.
+больше шанс встретить игроков.
+при входе на второй уровень есть возможность попасть в случайное место первого уровня.
+нет выходов на глобальную карту.
+более ценный лут (включай импланты (редко), материалы для крафта топ лута (редко)).
+
+|0xffff00 Изменения:
+|0x8f6f00 Для локации Арес добавлен еще один вход и превью.
+На базе Марипоза теперь невозможно открыть ящики пока мутанты живы.
+
+|0xc80000 Исправления:
+|0x8f6f00 Индикация таймаутов для препаратов больше не сбивается после пошага.
+Переводы диалогов. (от Jester).
+}
+
+{100000}{}{|0x3cf800 Обновление 30.11.2014
+|0x00CC00 Особенности: 
+|0x8f6f00 Теперь при выходе из игры в пещерах сиерры игрок будет попадать обратно в пещеру при входе в игру.
+
+|0xffff00 Изменения:
+|0x8f6f00 Увеличен лут на втором уровне пещер Сиерры.
+Уменьшение кармы не происходит при убийстве игроков своей фракции или фракции объявленной врагом вашей фракции.
+Награда в крышках временно уменьшена для квеста защита метро.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлено попадание в ошибочный тип боя(например попасть в тб энкаунтер при выбранном только РТ и наоборот)
+Исправления ошибочного отображения в клиенте таймаутов наркотиков в ТБ/после ТБ.
+Исправления гридов в пещерах Сиерры.
+Исправлен лифт на 3ем этаже Ареса.
+Разные исправления.
+}
+
+{100001}{}{|0x3cf800 Обновление 04.12.2014
+|0xffff00 Изменения:
+|0x8f6f00 Защитные поля НКР теперь могут быть использованы только офицерами, таймаут убран.
+На втором уровне пещер Сиерры улучшен лут.
+Лифты теперь могут одновременно перемещать группы до 14 человек включительно.
+Исправлена последовательность ходов в пошаговом бою для исключения возможности делать 2 хода подряд.
+Добавлены/доработанный гексы появления из лифтов для локаций Арес и Свечение.
+
+|0xc80000 Исправления:
+|0x8f6f00 В квесте Защита Метро немного доработана карта.
+Исправлено неверное отображения шанса попадания при включенном прицеливание по частям тела, когда у персонажа есть трейт Быстрый Стрелок.
+Исправлена возможность поднимать активированные ловушки и фонари через Ctrl+L.
+Скорее всего исправлен баг с бесконечными ходами в пошаговом бою.
+}
+
+{100002}{}{|0x3cf800 Обновление 11.12.2014
+|0x00CC00 Особенности: 
+|0x8f6f00 Добавлены бинды для использования предметов которые находятся в основной или не основной руке (добавить строку use1hand=hotkey и строку use2hand=hotkey в конец файла hotkeys.ini в папке с клиентом)
+Добавлены сообщения в чат при включении и выключении стелс боя и сенсора движения.
+Добавлен голодиск "General Cliftons holodisc"(используется для открытия оружейной комнаты на втором этаже базы сиерра) в пещеры сиерры (уровень 2, редкий)
+
+|0xffff00 Изменения:
+|0x8f6f00 Изменения в найме торговцев:
+-Если торговец свободен игрок может заплатить ему 10.000 крышек и будет внесен в лист ожидания.
+-Через день торговец случайным образом выберет игрока из списка с которым заключит контракт на 7 дней, далее продление как обычно.
+-Счастливчик через день станет нанимателем торговца автоматически даже если будет офлайн. Тем кому не повезло назад 10к не получат.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправления карт.
+Исправление силового поля в НКР.
+Терминалы на база будут показывать кроме имени еще ид игроков(для выписки игроков с длинными никами через ид) и не будут показывать эррор вместо удаленных игроков.
+Починен Нпс который меняет скины.
+Фикс мутантов марипозы которые считают что они роботы.
+Исправлен баг с даунгрейдом лута положенного в мертвого нпс.
+}
+
+{100003}{}{|0x3cf800 Обновление 13.12.2014
+|0x00CC00 Особенности: 
+|0x8f6f00 Добавлены бинды для использования стимулятора и суперстимулятора на других игроках(для использования нужно добавить строку usestimon=hotkey и строку usesson=hotkey в конец файла hotkeys.ini в папке с клиентом)
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправления в эвенте "Голодные игры в пещерах".
+}
+
+{100004}{}{|0x3cf800 Обновление 16.12.2014
+|0x00CC00 Особенности: 
+|0x8f6f00 Добавлена возможность подключить базу к фракции:
+Только офицеры фракции которые являются менеджерами базы могут выполнить подключение.
+Только офицеры фракции смогут управлять базой.
+Все персонажи не состоящие во фракции будут выписаны с базы.
+Все персонажи состоящие во фракции будут видеть базу, даже вновь добавленные.
+На базу подключенную ко фракции невозможно добавить не фракционных персонажей.
+
+Только офицеры фракции могут отсоединить базу от фракции.
+После отсоединения базы от фракции, только персонаж проделавший данную операцию, останется видеть эту базу.
+
+|0xc80000 Исправления:
+|0x8f6f00 Охрана на втором этаже локации "Торговцы Водой" будет смотреть за ворами.
+Исправления в эвенте "Голодные игры в пещерах".
+}
+
+{100005}{}{|0x3cf800 Обновление 25.12.2014
+|0x00CC00 Особенности: 
+|0x8f6f00 Добавлен мини квест в Модоке, иногда жителям можно будет продать несколько (до 10) шкур огненного ящера.
+
+|0xffff00 Изменения:
+|0x8f6f00 Пещеры сиерры: повышен шанс найти имплант и части для крафта топ лута.
+Эвент Пещеры сиерры: Добавлено сообщение о победителях.
+Эвент Пещеры сиерры: разные настройки.
+Пещеры сиерры: Исправление в использовании переходов.
+Нью Рено "Wright Event": охрана будет реагировать на воров.
+Команды ~cuttheveis / ~suicide теперь работают на базах и в палатках при очках жизни больше 0.
+Чертежи топ оружия теперь называются рецепты и их изображение отличается от чертежей.
+Опыт за крафт Металлической брони мод. II повышен до 360.
+Переработан лут в удержании базы Сиерра: добавлено много разного лута, в том числе высокотехнологичного.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлен баг с потерей видимости базы при многоразовом подключении/отключении базы от фракции.
+Исправлена возможность погексовой стрельбы и некоторых других действиях при входе на тб энкаунтер в чужой ход.
+За мобов на мини-эвент локациях опять будут давать опыт.
+Разные исправления.
+}
+
+{100006}{}{|0x3cf800 Обновление 28.12.2014
+|0xffff00 Изменения:
+|0x8f6f00 Эвент Пещеры сиерры: в случае присутствия всех участников эвента на одной карте, выходы с нее будут закрыты.
+FN FAL урон теперь 25-33, дальность 30, 30 патронов в обойме вместо 20.
+Броня Тесла, сопротивление к норме теперь 25 вместо 20.
+Металлическая броня, сопротивление к лазеру теперь 45.
+Металлическая броня мод. II, сопротивление к лазеру теперь 55.
+}
+
+{100007}{}{|0x3cf800 Обновление 04.01.2015
+|0x00CC00 Особенности: 
+|0x8f6f00 Добавлена возможность починки брони прямо на игроке через кнопку умения - ремонт, 8 + клик на игрока.(работает на себе и игроке из той же фракции)
+
+|0xffff00 Изменения:
+|0x8f6f00 Убрана возможность воровства и защищенных городах, кроме НКР.
+Охрана в защищенных городах будет возвращать лут только хорошим игрока (тем кто не совершил недавно нарушение). 
+Изменения в оружии:
+FNFAL урон очереди уменьшен с 25-33 до 22-30.
+FNFAL дальнобойность очереди увеличена с 30 до 34.
+FNFAL дальнобойность одиночного выстрела увеличена с 36 до 41.
+Assault Rifle(оба типа) урон очереди уменьшен с 25-34 до 24-33.
+10mm SMG урон обоих типов огня увеличен с 15-21 до 16-22.
+M60 урон увеличен с 18-27 до 20-28.
+M60 теперь имеет перк Дальнобойность.
+H&K Caws урон изменен на 17-31.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлен баг назначения не правильного места в рейтинге при одновременной смерти нескольких игроков в эвенте Голодные Игры.
+}
+
+{100008}{}{|0x3cf800 Обновление 18.01.2015
+|0x00CC00 Особенности:  
+|0x8f6f00 Добавлены новые хоткеи для работы с инвентарем, должен быть открыт инвента и курсор должен быть в виде указателя.
+Ctrl + клик на:
+Предмете в слоте броня, основная рука, вторая рука вызовет перемещение предмета в инвентарь.
+Броне в инвентаре, вызовет одевание брони.
+Оружии в инвентаре, вызовет одевание оружия в первую руку.
+Не броне или оружии, вызовет одевание предмета во вторую руку.
+
+|0xffff00 Изменения:
+|0x8f6f00 Армия Мастера замечена в окрестностях марипозы.
+Убрана возможность уронить оружие при крите по рукам в защищенных городах, кроме НКР.
+Пещеры Сиерры/Эвент Пещеры Сиерры: теперь при попадании на карту с текущим пошаговым боем можно сразу использовать ближайший выход.
+Нью Рено "Wright Event": количество охраны уменьшено до 4.
+На износ СтелсБоя теперь не влияет количество игроков видящих сникера.
+Караваны между городами теперь не всегда один и тот же.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлен звук промаха при использовании оружия из неактивной руки.
+Исправлена неправильная цена в диалоге о продаже "довоенных" предметов.
+Исправлен баг с невозможностью попасть в энкаунтеры с игроками при передвижении с караваном/патрулем.
+Исправления карт.
+Нанимаемые торговцы не будут отвечать на любые атаки включая подрыв.
+}
+
+{100009}{}{|0x3cf800 Обновление 25.01.2015
+|0x00CC00 Открытые технологии:
+|0x8f6f00 H&K CAWS, Пистолет калибра 0,223, Пистолет-инъектор, HK P90c
+Легкий пулемет
+Плазменное ружье
+Суперэлектрокнут
+Боевая Броня
+Психо не достуно для крафта, но уже появилось во многих местах.
+
+|0xffff00 Изменения:
+|0x8f6f00 Пещеры Сиерры Уровень 2: шанс встретить игроков теперь как на уровне 1 (уменьшен)
+Пещеры Сиерры Уровень 2: шанс на несправедливое PvP (1 vs 3, 2 vs 3, 1 vs 2) уменьшен.
+Квесты защита фермы и защита метро переработаны:
+-Убран опыт за убийство нпс
+-Максимальная награда (для каждого игрока) это 20000 опыта и 2000 крышек за защиту Фермы, 40000 опыта и 4000 крышек за защиту Метро.
+-Игрок должен выжить для получения награды.
+-Награда зависит от количества оставшихся в живых к концу каждой волны защитников-нпс. Если все защитники живы - награда максимальная, если все мертвы - награды нет. 
+-Размер награды будет оглашен игрокам в конце каждого раунда.
+-Добавлен элемент случайности при .
+-Добавлено автолечение защитников нпс.
+-Изменен скрипт расчета сложности квеста в зависимости от количества участников.
+-Время между волнами их размер изменены, разные другие изменения.
+}
+
+{100010}{}{|0x3cf800 Обновление 01.02.2015
+|0x00CC00 Особенности:
+|0x8f6f00 Добавлен миниквест по продаже чертежей(blueprints). Нпс в городах могут попросить принести им чертежи. Можно продать 5 чертежей за раз. Награда:
+-Чертеж уровень 1: 1000 опыта. 500  крышек.
+-Чертеж уровень 2: 2000 опыта. 1000 крышек.
+-Чертеж уровень 3: 3000 опыта. 1500 крышек.
+-Чертеж уровень 4: 4000 опыта. 2000 крышек.
+
+|0xffff00 Изменения:
+|0x8f6f00 Операции с контейнерами будут выводить из сника с большИм шансом.
+После подрыва на мине персонаж будет стоять на месте.
+Цена на рерол персонажа изменена и теперь зависит от опытности персонажа, формула Опыт/10 крышек, персонаж должен иметь как минимум уровень 24.
+Максимальная цена рерола теперь 485100 а минимальная 27600, можно проверить цену для персонажа через команду ~reroll.
+Квест защита метро: нпс защитники будут использовать только легкое оружие и не будут бегать.
+Использование погексовой стрельбы возможно на бегу и заставит персонажа остановится.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлено ошибочное сообщение при использовании противоядия на ком-то.
+Другие исправления.
+}
+
+{100011}{}{|0x3cf800 Обновление 09.02.2015
+|0x00CC00 Особенности:
+|0x8f6f00 В палатки добавлен терминал(костёр) с возможностью удаления палатки(для хозяев) и с возможностью "развидеть" палатку(для тех кто видит палатку).
+Добавлена опция включения/отключения авто перезарядки в игровые настройки.
+Добавлены фракционные иконки. Если игрок член фракции и фракция имеет иконку, она будет отображаться перед ником игрока.(лидеры фракций должны выложить иконки их фракций в специальную тему на форуме)
+Добавлена опция включения/отключения показа фракционных иконок в игровые настройки.(по-умолчанию выкл)
+
+|0xffff00 Изменения:
+|0x8f6f00 Защита фермы: опыт увеличен до (20000 + 500 * размер команды).
+Защита метро: опыт увеличен до (40000 + 1000 * размер команды).
+Защита фермы: крестьяне появляются всегда внутри фермы.
+
+|0xc80000 Исправления:
+|0x8f6f00 Починен квест защиты фермы и метро.
+Продавец мебели теперь не будет отдавать капсы за хлам.
+Исправления карт.
+Различные исправления и оптимизации.
+}
+
+{100012}{}{|0x3cf800 Обновление 21.02.2015
+|4291317840 !Запустите FOUpdater!
+
+|0x00CC00 Особенности:
+|0x8f6f00 Если оружие в режиме перезарядки, нажатие клавиши A сменит режим с перезарядки на атаку.
+Введена система рейтинга и очков фракций:
+Фракция получает очки за убийство членов враждебной фракции(если уровень жертвы более 25), контроль городов, защиту Сиерры, прохождение данжей.
+Фракция теряет очки за убийство сопартийца или союзника или когда член фракции был убит врагом фракции.
+Очки и рейтинг фракций можно посмотреть через фракционный интерфейс доступный по клавише "K".
+
+Введены цифровые замки:
+Создание интерфейса цифрового замка |4291317840 GZA
+|0x8f6f00 Добавлен предмет цифровой замок.
+Цифровой замок пока может быть установлен на контейнеры на базе или палатке(потом на машины и тд).
+Контейнеры закрытые цифровым замком на базах или палатках не могут быть взломанны, замок может быть снят только тем кто его установил или хозяином палатки или базы, для фракционных баз только лидером.
+Для открытия цифрового замка игрок должен ввести пароль в появившемся окне ввода пароля.
+Игрок установивший замок может открыть контейнер без ввода пароля.
+Для установки замка игрок должен использовать замок и далее в появившемся окне установить пароль, после этого замок можно использовать на открытый контейнер.
+
+|0xffff00 Изменения:
+|0x8f6f00 Увеличен шанс появления имплантов и т4 чертежей в Аресе.
+Эвент Пещеры Сиерры: монстры получат 22 ОД и бОльшую скорость перемещения.
+Эвент Пещеры Сиерры: монстры будут появляться чуть позже.
+Временно: На мутантов Ареса не влияет скрытность. 
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлено долгое ожидание в пошаге, во время квеста "i smell a rat".
+Исправлены некоторые вылеты клиента.
+Исправлена невозможность оставить последний перк "на потом" при прокачке используя хинтбук.
+}
+
+{100013}{}{|0x3cf800 Обновление 02.03.2015
+|0x00CC00 Особенности:
+|0x8f6f00 Добавлена возможность встречать игроков путешествующих по глобальной карте:
+Возможно встречать только движущихся игроков, просто стоять на глобе безопасно.
+Для проверки возможность встречи применяются те же правила как и при нахождении энкаунтеров (тип боя и уровни)
+Возможно встретить игроков которые перемещаются в радиусе пол клетки от вас.
+Игроки перемещающиеся на машинах не могут быть встречены.
+Если случилась встреча она всегда будет принудительной без возможности отказа.
+
+Цифровым замком можно закрывать машины:
+Для закрытия машин на замок нужно его использовать на машину и иметь ключи от этой машины.
+Закрытие машины на замок автоматически закроет и багажник.
+Удалить замок может только хозяин или если машина на базе/палатке то хозяин базы/палатки.
+Удаление замка с машины удалит и замок с багажника.
+Для взлома машины которая находится не на базе/палатке у вас должны быть электронные отмычки.
+Максимальное требуемое умение 150( 125 если отмычка мк1 или 100 если мк2).
+После применения взлома на машину в чате отобразится сообщение с цифрами которые вы смогли расшифровать.
+
+Добавлен новый квест по сдаче предметов. Расположен в баре во внешнем городе Города Убежища.
+
+|0xffff00 Изменения:
+|0x8f6f00 Включен квест "коллекционер" жетонов. 
+Можно как обычно сдавать ему жетоны за нарграду или можно принести сразу 100 жетонов, боевую броню и 10000 крышек, тогда он улучшит вашу броню до брони Рейнжеров, ресурс брони и бонусы на ней сохранятся.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлена возможность получать/терять очки фракции на репликации.
+}
+
+{100014}{}{|0x3cf800 Обновление 17.03.2015
+|0x00CC00 Особенности:
+|0x8f6f00 Введен аукцион:
+Игрок может получить доступ к аукциону через диалог с менеджерами банка FLC.
+Игрок может положить на продажу любое количество предметов.
+Пока нет возможность выбрать количество покупки/продажи для стекающихся предметами, продаются и покупаются все из пачки.
+Для того чтобы положить итем на аукцион игрок должен сразу заплатить налог в 20% от стоимости.
+Для покупки/продажи используются капсы из инвентаря или счет в банке или смешанно.
+Создание интерфейса аукциона: |4291317840 GZA.
+
+|0xffff00 Изменения:
+|0x8f6f00 Для игроков путешествующих в одиночку и без вещей отключены встречи с игроками путешествующими по глобальной карте.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлено отсутствие сообщения с паролем при взломе машин с цифровым замком.
+Исправлен перк Лечение. Теперь каждый уровень перка будет прибавлять 10хп к конечному лечению.
+}
+
+{100015}{}{|0x3cf800 Обновление 29.03.2015
+|0x00CC00 Особенности:
+|0x8f6f00 Добавлены Токсичные Пещеры:
+Для того чтобы найти локацию вы должны изучить карту которую можно найти у разных НПС на энкаунтерах.
+После прочтения карты будет создана персональная локация Токсичные Пещеры, будет установлен предпочтительный режим боя.
+Локация пропадет через 4 дня после прочтения карты или если все игроки покинут её или умрут на ней.
+
+|0xffff00 Изменения:
+|0x8f6f00 Снижен налог аукциона до 10%.
+Окно аукциона не будет закрыто после покупки одной вещи.
+Добавлены цвета для уникальных предметов.
+Добавлена возможность владельцам забрать вещи с аукциона.
+
+|0xc80000 Исправления:
+|0x8f6f00 Убрана возможность положить несколько контейнеров на один гекс.
+Разные исправления.
+}
+
+{100016}{}{|0x3cf800 Обновление 17.04.2015
+|0x00CC00 Особенности:
+|0x8f6f00 Получаемый опыт удвоен. 
+Изменения в эвентах:
+Добавлены тиер 3 чертежи в книжный эвент.
+Добавлены гипо в СФ и Рено эвент по продаже наркотиков.
+Появился шанс найти чертежи или детали топ вещей в машинах на эвенте конвой.
+Добавлены редкие патроны на эвент продажи патронов в Рено.
+
+|0xffff00 Изменения:
+|0x8f6f00 Переработана система спавна вещей. ( вещи которые не полутали игроки будут оставатся в пуле вещей )
+Пул вещей: Боевая броня и боевая броня мк2 увеличен в двое,а это значит что шансы найти эти вещи увеличились вдвое! 
+Объем СуперСтимуляторов уменьшен до 0 что позволит складывать их в ящики в любом количестве.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправления карт.
+Различные исправления.
+
+|0x00CC00 В разработке:
+|0x8f6f00 В ближайшие дни будут включены новые эвенты.
+Еще раз будет переработан пул вещей.
+В течении нескольких дней Робот уборщик будет доведен до ума и предоставлен некоторым фракциям на тест.
+Внутренности базы Марипоза будетут доступны через несколько дней.
+}
+
+{100017}{}{|0x3cf800 Обновление 22.04.2015
+|0xffff00 Изменения:
+|0x8f6f00 Включен эвент "Прибытие Анклава в доки Сан Франциско" с редким лутом: Броня Анклава и деталями топ вещей.
+Включен эвент "Сделка между Ханами и Бишопами в Нью Рено" с редким лутом: Гипо.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлено выпадение предметов на пол при убийстве некоторыми типами оружия в охраняемом городе.
+}
+
+{100018}{}{|0x3cf800 Обновление 12.07.2015
+|0x00CC00 Особенности: 
+Система контроля персонажей: 
+Работает для публичных пвп локаций - все данжи и города без охраны(кроме НКР).
+Пресекает возможность использовать фастрелог/дуаллог.
+Попытки обойти/нарушить сис-му будут сразу караться перманентным баном всех персонажей и удалением баз.
+
+Все ранее зарегистрированные персонажи получают бесплатный реролл.
+
+Рандал в Городе Убежище теперь продает роботов-уборщиков за 10.000 крышек.
+
+Добавлен перевод на португальский. Используйте FOConfigPT.exe для выбора этого языка.
+
+|0xffff00 Изменения:
+|0x8f6f00 Перк Доп. рукопашн. повр. теперь имеет только один ранг и прибавляет 10 урона. 
+Трейт Крушила теперь понижает шанс крита на 30 и не отнимает 2 Од.
+СуперКувалда получает дополнительные 10 единиц к шансу крита, затраты ОД снижаются до 3. 
+Изменения для перка Верткость: шанс попасть по вам снижается на 10% пока ваши руки пусты или в них метательное/рукопашное оружие и ваш навык + Легкое,Тяжелое,Энерго меньше 100. Требования 200 Ближнего боя.
+Бонус скорости от ближнего боя работает только если навык Легкое,Тяжелое,Энерго меньше 100.
+
+Переработаны лифты и пространство у лифтов для большинства карт..
+Теперь в Аресе нельзя открыть ящики пока живы НПС, для всех карт кроме поверхности.
+Добавлен спавн редкого лута на второй этаж сиерры(свержу за полем), нужно убить всех роботов(кроме тех которые в оружейной комнате) для того чтобы их открыть.
+
+|0xc80000 Исправления:
+|0x8f6f00 Исправлена возможность игнорировать таймаут лифта.
+Различные исправления.
+}
+
+{100019}{}{|0x3cf800 Обновление 26.07.2015
+|0x00CC00 Особенности:
+|0x8f6f00 Команда/хоткей для разбора всех вещей в инвентаре или под персонажем:
+для инвентаря ~decraftinv для гекса ~decrafthex 
+можно так же добавить хоткей в hotkeys.ini decraftinv=хоткей и decrafthex=хоткей
+
+|0xc80000 Исправления:
+|0x8f6f00 Бонус к шансу крита теперь работает на Супер Кувалде и пишется в описании и в хар-ках персонажа.
+}

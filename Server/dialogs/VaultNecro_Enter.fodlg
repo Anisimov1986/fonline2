@@ -1,0 +1,75 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+3 1010 @
+3 2000 None 0 #
+4 2010 D _item p PID_NECRO_CARD } 1 D _script dialog@d_IsDoorClosed 3 96 95 4760 R _item p PID_NECRO_CARD - 1 R _script dialog@r_OpenDoor 3 96 95 4760 R _script dialog@Type 0  #
+4 2020 D _item p PID_NECRO_CARD_ANTIEXPLOIT } 1 D _script dialog@d_IsDoorClosed 3 96 95 4760 R _item p PID_NECRO_CARD_ANTIEXPLOIT - 1 R _script dialog@r_OpenDoor 3 96 95 4760 R _script dialog@Type 0  #
+5 2030 D _param p SK_SCIENCE } 80 D or D _param p SK_REPAIR } 120 R _script dialog@Type 0  #
+0 2040 R _script dialog@Type 0  @
+4 3000 None 0 @
+5 4000 None 1 #
+0 4010 &
+
+[engl]
+{100}{}{VaultDoor PC}
+{200}{}{You see: The computer for the Vault Door}
+{1000}{}{Predialogue installations}
+{1010}{}{Has a card}
+{2000}{}{Warning. Detected lifeform with rad count below 8000 units. Closing Vault door...}
+{2010}{}{Input: Lift the lockdown. [Insert the keycard.]}
+{2020}{}{Input: Lift the lockdown. [Insert the keycard.]}
+{2030}{}{[Try to hack in.]@@[Hack in.]}
+{2040}{}{[Log off.]@@[Log out.]@@[Logout.]}
+{3000}{}{Lockdown temporarily lifted for 10 minutes. Vault door opening. Please stand by...}
+{4000}{}{Unauthorised access detected. Security protocols initiated.}
+{4010}{}{Fuck.@@Crap.@@Oh damn.@@Shit.@@Damn it.@@Darn...}
+
+[russ]
+{100}{}{Терминал убежища}
+{200}{}{Вы видите: терминал убежища.}
+{1000}{}{Predialogue installations}
+{1010}{}{Has a card}
+{2000}{}{ОШИБКА ОШИБКА! БЛОКИРОВКА ДВЕРИ!}
+{2010}{}{Вввод: Разблокировать дверь [Вы вставляете ключ-карту в прорезь]}
+{2020}{}{Вввод: Разблокировать дверь [Вы вставляете ключ-карту в прорезь]}
+{2030}{}{[Попытаться взломать]}
+{2040}{}{[Отлючиться]}
+{3000}{}{Блокировка двери снята на 10 минут. Открытие дверей. Пожалуйста подождите ....}
+{4000}{}{==Попытка не санкционированного доступа, запускаю протокол защиты убежища==}
+{4010}{}{Ой-ой-ой! Пора сваливать отсюда.}
+
+[pols]
+{100}{}{Terminal Krypty}
+{200}{}{Widzisz terminal obsługujący wejście do Krypty.}
+{1000}{}{Predialogue installations}
+{1010}{}{Has a card}
+{2000}{}{UWAGA! WYKRYTO ORGANIZM ŻYWY NIE WYKAZUJĄCY NAPROMIENIOWANIA WIĘKSZEGO NIŻ 18GY. DRZWI KRYPTY ZAMKNIĘTE.}
+{2010}{}{[Anuluj procedurę wkładając kartę magnetyczną.]}
+{2020}{}{[Anuluj procedurę wkładając kartę magnetyczną.]}
+{2030}{}{[Spróbuj złamać zabezpieczenia terminala.]}
+{2040}{}{[Wyloguj się.]}
+{3000}{}{PROCEDURA ZAMKNIĘCIA KRYPTY PRZERWANA PRZEZ UŻYTKOWNIKA. AWARYJNE ZAMKNIĘCIE ZOSTANIE URUCHOMIONE PONOWNIE ZA 10 MINUT. OTWIERANIE DRZWI KRYPTY, PROSZĘ CZEKAĆ...}
+{4000}{}{UWAGA! WYKRYTO PRÓBĘ NIEAUTORYZOWANEGO DOSTĘPU DO KONTA ADMINISTRATORA. INFORMACJA PRZEKAZANA DO WYDZIAŁU OCHRONY KRYPTY.}
+{4010}{}{Ojojoj, niedobrze. [Zresetuj terminal.]}
+
+[ptbr]
+{100}{}{Terminal do Portão do Abrigo}
+{200}{}{Você vê: O computador para o Portão do Abrigo}
+{1000}{}{Predialogue installations}
+{1010}{}{Has a card}
+{2000}{}{Aviso. Forma de vida detectada com contador de radiação abaixo de 8000 unidades. Fechando o portão do Abrigo...}
+{2010}{}{Slot: levanta a tampa. [Insere o cartão.]}
+{2020}{}{Slot: levanta a tampa. [Insere o cartão.]}
+{2030}{}{[Tenta hackear.]@@[Hackear.]}
+{2040}{}{[Deslogando.]}
+{3000}{}{Tranca temporariamente levantada por 10 minutos. Abrindo portão do Abrigo. Por favor aguarde...}
+{4000}{}{Acesso não autorizado detectado. Protocolo de segurança iniciado.}
+{4010}{}{Porra.@@Bostsa.@@Porcaria.@@Merda.@Droga.@@Porcaria.}
+

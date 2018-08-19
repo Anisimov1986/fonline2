@@ -1,0 +1,390 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+3 1010 D _var p name_mem_npc_player = 0 R _var p name_mem_npc_player = 1 #
+3 1020 D _var p name_mem_npc_player = 1 @
+3 2000 None 0 #
+6 2010 #
+5 2020 #
+13 2030 #
+0 2040 @
+4 3000 None 0 #
+6 3010 #
+0 3020 @
+5 4000 None 0 #
+7 4010 #
+13 4020 #
+0 4030 @
+6 5000 None 0 #
+8 5010 #
+0 5020 @
+7 6000 None 0 #
+16 6010 #
+13 6020 #
+0 6030 @
+8 7000 None 0 #
+9 7010 @
+9 8000 None 0 #
+10 8010 @
+10 9000 None 0 #
+12 9010 #
+13 9020 #
+0 9030 @
+12 10000 None 0 #
+14 10010 @
+13 11000 None 0 #
+15 11010 #
+5 11020 #
+7 11030 #
+17 11040 #
+0 11050 @
+14 12000 None 0 #
+13 12010 #
+0 12020 @
+15 13000 None 0 #
+7 13010 #
+13 13020 #
+0 13030 @
+16 14000 None 0 #
+13 14010 #
+0 14020 @
+17 15000 None 0 #
+18 15010 #
+19 15020 #
+20 15030 @
+18 16000 None 0 #
+23 16010 #
+13 16020 @
+19 17000 None 0 #
+13 17010 @
+20 18000 None 0 #
+21 18010 #
+22 18020 @
+21 19000 None 0 #
+13 19010 #
+0 19020 @
+22 20000 None 0 #
+0 20010 #
+0 20020 @
+23 21000 None 0 #
+24 21010 #
+13 21020 #
+0 21030 @
+24 22000 None 0 #
+13 22010 &
+
+[engl]
+{100}{}{Lumpy}
+{200}{}{You see a very glum-looking human.}
+{210}{}{You see Lumpy, Skeeter's friend and assistant.}
+{210}{}{You see a very thin, saggy-eyed, and unhappy-looking human.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there. My name's Lumpy.}
+{2010}{}{That's sort of an unusual name. How did you come by it?}
+{2020}{}{What do you do here?}
+{2030}{}{I had some questions for you, Lumpy.}
+{2040}{}{Nice meeting you. Bye.}
+{3000}{}{Well, my real name's John -- but everyone here just call me Lumpy.}
+{3010}{}{Why Lumpy?}
+{3020}{}{Well, who can blame them. Goodbye.}
+{4000}{}{I guard the brahmin or help Skeeter in his workshop.}
+{4010}{}{Who's Skeeter?}
+{4020}{}{Let me ask you something else.}
+{4030}{}{I think that's all I need to know for now. Goodbye, Lumpy.}
+{5000}{}{Well, it's sort of a joke. You see, they usually call people like you and me smoothskins. But I was treated so poorly by other smoothskins down in Vault City that everyone here figured that I must be more lumpy than they are.}
+{5010}{}{Why were you treated poorly in Vault City?}
+{5020}{}{That explains a lot. Goodbye.}
+{6000}{}{Well, Skeeter's sort of a mechanic. He'll take apart almost anything that you bring him. Gets most of them back together too, sooner or later. Sometimes things end up working better than they did before.}
+{6010}{}{Where can I find Skeeter?}
+{6020}{}{Interesting. Let me ask you something else.}
+{6030}{}{I guess that's all I need to know for now. Goodbye.}
+{7000}{}{Well, they said I wasn't human enough for them. I'm sorta radiation resistant — perfect for here. But they didn't like it. Treated me like dirt.}
+{7010}{}{Really?}
+{8000}{}{One day I just couldn't take it anymore. I figured that dying out in the Wastes was better than living with those assholes in Vault City.}
+{8010}{}{How'd you end up here, then?}
+{9000}{}{Well, a caravan from Broken Hills found me and brought me here. I've been here ever since. One thing about the ghouls here is that they care more about what kind of person you are inside. It's like a big family.}
+{9010}{}{Broken Hills? Where are those?}
+{9020}{}{Interesting. Let me ask you something else, though.}
+{9030}{}{It's great that you're happy here. Goodbye.}
+{10000}{}{Broken Hills is where we get all the uranium that we need for the atomic reactor from. From what I understand, the uranium is mined by mutants down there. But they have humans trade the stuff for them.}
+{10010}{}{Why do they have humans trade the stuff for them?}
+{11000}{}{What do you want to know?}
+{11010}{}{What's all that junk in the yard?}
+{11020}{}{What do you do here?}
+{11030}{}{Who's Skeeter?}
+{11040}{}{Anything unusual going on around here?}
+{11050}{}{Nothing, goodbye.}
+{12000}{}{Well, because they trade uranium to Vault City, too. Vault City treats anyone that's not a pure strain human just like lepers. So, Broken Hills uses human traders. Some guy named Chad, I think.}
+{12010}{}{Chad, huh? I'll keep that in mind. Let me ask you something else.}
+{12020}{}{I guess that's all I need to know for now. Goodbye.}
+{13000}{}{Well, some of this junk is left over from when they were building the reactor — before the war. The rest of this stuff? I just don't know. Skeeter collects all kinds of stuff.}
+{13010}{}{Who's Skeeter?}
+{13020}{}{Interesting. I have another question for you.}
+{13030}{}{I guess that's all I need to know. Goodbye.}
+{14000}{}{Well, Skeeter's usually in his workshop. Just south of the unfinished reactor. Can't almost never drag him out of there.}
+{14010}{}{I had something else I was wondering.}
+{14020}{}{Oh, thanks. Goodbye.}
+{15000}{}{Well, I mostly stick to my business, but sometimes I think I hear things late at night.}
+{15010}{}{Hear things? Like what?}
+{15020}{}{Aw, come on. You can tell me what you heard. I won't tell anybody.}
+{15030}{}{Me too, but I figure they're just voices inside my head.}
+{16000}{}{Well, I'm not sure, mind you. But I think I've heard people, at least I thought it was people. Coming and going from the reactor pit late at night.}
+{16010}{}{People? Every night?}
+{16020}{}{Interesting. Let me ask you something else.}
+{17000}{}{I can't tell you. People would think I'm nuts. Probably just the wind blowing through the junk, anyway.}
+{17010}{}{Okay. Let me ask you something else, then.}
+{18000}{}{(Looks closely into your eyes) You hear voices inside your head? Do they tell you how much better you are than everyone else? Do they tell you that someday people will kneel before your greatness? (smiles and nods)}
+{18010}{}{Uh, no. Not really.}
+{18020}{}{Uh, yeah. Sure I do. Doesn't everyone?}
+{19000}{}{Good thing. I was really beginning to worry about you.}
+{19010}{}{Well, thanks for your concern. Let me ask you some questions.}
+{19020}{}{Uh, yeah. Well, I think I need to be moving on. Goodbye.}
+{20000}{}{I kinda had you pegged for that type when I first saw you, but I wasn't sure. Get out of here, you frigging nutcase!}
+{20010}{}{Uh, yeah. Whatever. Goodbye.}
+{20020}{}{Well, one of us is a nutcase — I just think you're confused as to which one of us it is.}
+{21000}{}{Well, I don't know if they were people or what, but usually it's just every couple of nights. Noises coming and going from the reactor pit. I don't know what's going on, and I don't want to know, either.}
+{21010}{}{Isn't the reactor pit too radioactive for anything to live in it?}
+{21020}{}{Interesting. I had something else to ask.}
+{21030}{}{Thanks for the information. Goodbye.}
+{22000}{}{No, this part of the reactor wasn't completed when the war started.}
+{22010}{}{Oh, I see. Hmm, tell me something else, then.}
+
+[russ]
+{100}{}{Лумпи}
+{200}{}{Вы видите очень мрачного человека.}
+{210}{}{Вы видите Лумпи, друга и ассистента Скитера.}
+{210}{}{Вы видите очень худого, с пустыми глазами, человека, который выглядит очень несчастным.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Привет. Меня зовут Лумпи.}
+{2010}{}{А я @pname@. У тебя необычное имя. Как ты его получил?}
+{2020}{}{Что ты здесь делаешь?}
+{2030}{}{У меня есть несколько вопросов.}
+{2040}{}{Это здорово, Лумпи. Э, мне пора идти.}
+{3000}{}{Ну, мое настоящее имя Джон - но все зовут меня просто Лумпи.}
+{3010}{}{Почему Лумпи?}
+{3020}{}{Ну, кто их осудит. Пока.}
+{4000}{}{Я охраняю браминов или помогаю Скитеру в его мастерской.}
+{4010}{}{Кто такой Скитер?}
+{4020}{}{Позволь мне спросить еще кое-что.}
+{4030}{}{Похоже, я знаю теперь все что надо. Пока, Лумпи.}
+{5000}{}{Ну, это такая шутка. Знаешь ли, они обычно называют таких как ты или я гладкокожими. Но все другие Гладкокожие из Города Убежища относятся ко мне так плохо, что все считают, что я должен быть с более грубой кожей, чем они.}
+{5010}{}{Почему к тебе плохо относятся в Городе-Убежище?}
+{5020}{}{Это многое объясняет. Пока.}
+{6000}{}{Ну, Скитер - механик в некотором смысле. Он разберет практически все, что ты ему принесешь. Многое соберет обратно, рано или поздно. А иногда в конце концов вещи работают лучше, чем раньше. }
+{6010}{}{Где я могу найти Скитера?}
+{6020}{}{Интересно. Давай спрошу еще кое-что.}
+{6030}{}{Я думаю, это все что мне интересно узнать. Пока.}
+{7000}{}{Ну, они сказали что я недостаточно похож на человека для них. У меня некоторая сопротивляемость к радиации - очень полезно в этих местах. Но им это не понравилось. Они отнеслись ко мне как к грязи.}
+{7010}{}{Действительно?}
+{8000}{}{В один прекрасный день я больше не смог это выносить. Я понял, что умереть в пустынях будет лучше, чем жить вместе с этими уродами в Городе Убежище.}
+{8010}{}{Как ты здесь оказался?}
+{9000}{}{Ну, караван из Брокен Хиллс нашел меня и привел сюда. С тех пор я здесь. Все, что касается мертвяков в этих окрестностях, это то, что они очень интересуются, что ты за человек, что у тебя в душе. Это как в большой семье.}
+{9010}{}{Брокен Хиллс? Где это?}
+{9020}{}{Интересно. Давай еще кое-что спрошу.}
+{9030}{}{Здорово, что ты счастлив здесь. Пока.}
+{10000}{}{Брокен Хиллс там, где мы все получаем уран, который нужен нам для атомного реактора. Как я понимаю, уран добывается мутантами там, под землей. Но у них есть и люди, чтобы торговать всяким добром.}
+{10010}{}{Зачем им люди чтобы торговать?}
+{11000}{}{Что ты хочешь узнать?@@Какое любопытство! Ну, ладно. Что ты хочешь знать?}
+{11010}{}{Что это за развалины на дворе?}
+{11020}{}{Что ты делаешь тут?}
+{11030}{}{Кто такой Скитер?}
+{11040}{}{Что-нибудь необычное происходит тут?}
+{11050}{}{Ничего, до свидания.}
+{12000}{}{Ну, потому что они торгуют ураном с Городом Убежищем. А все из Города Убежища считают всех, что хоть чуть-чуть отличается от человека, - прокаженными. Так что Брокен Хиллс используют людей для торговли. Один человек по имени Чад, кажется.}
+{12010}{}{Чад, да? Я запомню. Дай спрошу еще кое-что.}
+{12020}{}{Думаю, это все что меня интересовало. Пока.}
+{13000}{}{Ну, кое-что из этого осталось после того, как они строили реактор - до войны. Остальное? Я просто не знаю. Скитер собирает все подряд.}
+{13010}{}{Кто такой Скитер?}
+{13020}{}{Интересно. Я хочу спросить тебя еще кое-что.}
+{13030}{}{Думаю, это все, что меня интересовало. Пока.}
+{14000}{}{Ну, да он здесь. Просто разуй глаза и оглянись. Ха-ха. @@ Ну, Скитер обычно в своей мастерской. На юг от недостроенного реактора. Его никогда нельзя увести оттуда.}
+{14010}{}{Дай спрошу еще кое-что.}
+{14020}{}{О, спасибо. Пока.}
+{15000}{}{Ну, обычно я не лезу не в свое дело, но иногда, кажется, я слышу кое-что ночью.}
+{15010}{}{Кое-что слышишь? Что?}
+{15020}{}{О, ну, давай. Ты можешь рассказать мне что ты слышал. Я никому не скажу.}
+{15030}{}{Я тоже, но мне кажется, что это голоса в моей голове. }
+{16000}{}{Ну, я не уверен, знаешь ли. Но думаю, что я слышал людей, по крайней мере, я так думаю. Они шли от реактора поздно ночью.}
+{16010}{}{Люди? Каждую ночь?}
+{16020}{}{Интересно. Давай спрошу еще кое-что. }
+{17000}{}{Я не могу сказать тебе. Люди подумают что я сумасшедший. Возможно, просто ветер шумел в этих всех деталях.}
+{17010}{}{Ладно. Тогда давай спрошу кое о чем еще.}
+{18000}{}{[Глядя прямо вам в глаза] Ты слышишь голоса внутри головы? Они говорят насколько ты лучше, чем все остальные вокруг? Они говорят что однажды люди преклонят колени пред твоим величием? [Улыбаясь и кивая]}
+{18010}{}{Э, нет. Правда нет.}
+{18020}{}{О, да. Конечно лучше. Я лучше всех.}
+{19000}{}{Хорошо. Я действительно начал беспокоиться о тебе.}
+{19010}{}{Спасибо за твой интерес. Давай спрошу еще кое-что.}
+{19020}{}{О, да. Ну, я думаю, мне пора двигаться. Пока.}
+{20000}{}{Мне сразу показалось, но я просто не был уверен. Пошел прочь отсюда, грязный псих!}
+{20010}{}{О, да. Что бы там ни было, пока.}
+{20020}{}{Ну, один из нас псих - я вот только думаю, что ты ошибся в том, кто именно.}
+{21000}{}{Ну, я не знаю были это люди или что, но обычно это бывает раз в пару ночей. Шум приближается и удаляется в сторону ямы реактора. Я не знаю что происходит и не хочу знать.}
+{21010}{}{Разве яма реактора не слишком радиоактивна, чтобы там могло что-либо жить?}
+{21020}{}{Интересно. У меня есть еще вопросы.}
+{21030}{}{Спасибо за информацию. Пока.}
+{22000}{}{Нет, эта часть реактора не была завершена, когда началась война.}
+{22010}{}{Ага, понятно. Хм, скажи мне еще кое-что.}
+
+[pols]
+{100}{}{Krosta}
+{200}{}{Widzisz mężczyznę o bardzo pochmurnym wyglądzie.}
+{210}{}{Widzisz Krostę, przyjaciela i pomocnika Skeetera.}
+{210}{}{Widzisz bardzo chudego mężczyznę o smutnych oczach i bardzo nieszczęśliwym wyrazie twarzy.}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Witaj. Jestem Krosta.}
+{2010}{}{To dość nietypowe imię. Skąd je masz?}
+{2020}{}{Czym się tu zajmujesz?}
+{2030}{}{Ciekawi mnie kilka rzeczy.}
+{2040}{}{Miło mi cię poznać, Krosta. Uch, muszę już iść.}
+{3000}{}{Właściwie tak naprawdę nazywam się John, ale wszyscy mnie tu nazywają Krosta.}
+{3010}{}{Dlaczego Krosta?}
+{3020}{}{Cóż, trudno ich winić. Do widzenia.}
+{4000}{}{Pilnuję braminów i pomagam Skeeterowi w warsztacie.}
+{4010}{}{Kto to jest Skeeter?}
+{4020}{}{Pozwól, że zapytam o coś innego.}
+{4030}{}{To chyba na razie wszystko, co chcę wiedzieć. Bywaj zdrów.}
+{5000}{}{No wiesz, to taki dowcip. Widzisz, na takich jak ja i ty nazywa się tu gładkoskórkami. Ale ja byłem tak źle traktowany w Kryptopolis, że ghule doszły do wniosku, że muszę mieć więcej krost niż inni.}
+{5010}{}{Czemu w Kryptopolis źle cię traktowano?}
+{5020}{}{To wiele wyjaśnia. Do widzenia.}
+{6000}{}{Skeeter to taki trochę mechanik. Rozbierze na części wszystko, co mu wpadnie w ręce. Większość z tego potrafi też wcześniej czy później złożyć z powrotem. Czasami nawet po takiej operacji coś działa lepiej niż przed nią.}
+{6010}{}{Gdzie znajdę Skeetera?}
+{6020}{}{Ciekawe. Pozwól, że zapytam o coś innego.}
+{6030}{}{To chyba wszystkie informacje, których potrzebuję. Do widzenia.}
+{7000}{}{Powiedzieli, że nie jestem dla nich dość ludzki. Jestem odporny na promieniowanie - idealna cecha, gdy się tu mieszka. Ale im to się nie podobało. Traktowali mnie jak śmiecia.}
+{7010}{}{Serio?}
+{8000}{}{W końcu nie mogłem już tego wytrzymać. Doszedłem do wniosku, że lepiej już umrzeć gdzieś na Pustkowiach, niż żyć z tymi dupkami z Kryptopolis.}
+{8010}{}{Więc jak się tu znalazłeś?}
+{9000}{}{Znalazła mnie karawana z Broken Hills. Przywieźli mnie tutaj. Od tej pory tu mieszkam. Trzeba przyznać ghulom, że najbardziej interesuje ich, jakim się jest w środku. To jakby jedna wielka rodzina.}
+{9010}{}{Broken Hills? Gdzie to jest?}
+{9020}{}{Ciekawe. Pozwól jednak, że spytam o coś innego.}
+{9030}{}{To wspaniale, że się tu dobrze czujesz. Do widzenia.}
+{10000}{}{Broken Hills to miejsce, z którego bierzemy cały uran potrzebny do zasilania reaktora atomowego. Z tego, co mi wiadomo, wydobywaniem uranu zajmują się tam mutanci, ale to ludzie handlują nim w ich imieniu.}
+{10010}{}{Dlaczego to ludzie handlują, a nie oni?}
+{11000}{}{Czego chcesz się dowiedzieć?}
+{11010}{}{Do czego służą te wszystkie śmieci na podwórzu?}
+{11020}{}{Czym się tu zajmujesz?}
+{11030}{}{Kto to jest Skeeter?}
+{11040}{}{Dzieje się tu ostatnio coś niezwykłego?}
+{11050}{}{Dzięki, do zobaczenia.}
+{12000}{}{Pewnie dlatego, że sprzedają ten uran również w Kryptopolis. A w Kryptopolis każdego, kto nie jest czystej krwi człowiekiem, traktuje się jak trędowatego. Dlatego w Broken Hills handlarzami są ludzie. Pracuje tam chyba gość o imieniu Chad.}
+{12010}{}{Chad? Zapamiętam to. Pozwól, że zapytam o coś innego.}
+{12020}{}{To chyba na razie wszystko. Do widzenia.}
+{13000}{}{Część tych śmieci pochodzi sprzed wojny, z budowy reaktora. A reszta? Nie wiem. Skeeter zbiera różne dziwne rzeczy.}
+{13010}{}{Kto to jest Skeeter?}
+{13020}{}{Ciekawe. Mam do ciebie następne pytanie.}
+{13030}{}{To chyba na razie wszystko. Do widzenia.}
+{14000}{}{Skeeter zwykle siedzi w swoim warsztacie, zaraz na południe od nieukończonego reaktora. Prawie nigdy nie udaje się go stamtąd wyciągnąć.}
+{14010}{}{Mam do ciebie kolejne pytanie.}
+{14020}{}{Och, dzięki. Na razie.}
+{15000}{}{Właściwie to nie wtykam nosa w cudze sprawy, ale czasem późną nocą wydaje mi się, że słyszę dziwne odgłosy.}
+{15010}{}{Odgłosy? Jakie odgłosy?}
+{15020}{}{Oj, nie bądź taki. Możesz mi przecież powiedzieć, co słyszałeś. Nikomu nie powiem.}
+{15030}{}{Ja też, ale myślę, że te odgłosy wydobywają się z wnętrza mojej głowy.}
+{16000}{}{Pamiętaj, że nie mam co do tego pewności, ale chyba słyszę ludzi, w każdym razie tak mi się wydaje, że to byli ludzie. Przychodzą i wychodzą z reaktora późną nocą.}
+{16010}{}{Ludzie? Co noc?}
+{16020}{}{Ciekawe. Pozwól, że zapytam o coś jeszcze.}
+{17000}{}{Nie mogę ci powiedzieć. Ludzie by pomyśleli, że jestem stuknięty. To pewnie i tak tylko wiatr hulający w śmieciach.}
+{17010}{}{No dobrze. Pozwól więc, że zapytam cię o coś innego.}
+{18000}{}{[Patrzy głęboko w twoje oczy.] Słyszysz głosy w swojej głowie? Czy mówią ci, że górujesz nad wszystkimi ludźmi? Czy mówią ci, że któregoś dnia wszyscy będą kłaniać się przed twoją potęgą? [Uśmiecha się i kiwa głową.]}
+{18010}{}{Uch, nie. Niezupełnie.}
+{18020}{}{Uch, jasne. Pewnie, że słyszę. Chyba każdy słyszy, no nie?}
+{19000}{}{To dobrze. Zaczynałem się już o ciebie martwić.}
+{19010}{}{Cóż, dzięki za troskę. Pozwól, że zadam ci kilka pytań.}
+{19020}{}{Uch, świetnie. No, chyba już pójdę. Do widzenia.}
+{20000}{}{Tak właśnie sobie pomyślałem, jak cię pierwszy raz zobaczyłem, że musisz być kimś takim, ale nie byłem pewny. Wynoś się stąd, jebany świrze!}
+{20010}{}{Uch, pewnie. Jak chcesz. Na razie.}
+{20020}{}{No, jeden z nas rzeczywiście jest świrem, ale myślę, że pomyliłeś się co do tego, kto.}
+{21000}{}{No, nie wiem czy to ludzie, czy co, ale to się powtarza co kilka nocy. Hałas wydobywa się z dziury po reaktorze. Nie wiem i nawet nie chcę wiedzieć, co się tam dzieje.}
+{21010}{}{Czy tam nie ma zbyt dużego promieniowania, żeby coś mogło tam mieszkać?}
+{21020}{}{Ciekawe. Pozwól, że zapytam o coś innego.}
+{21030}{}{Dzięki za informacje. Na razie.}
+{22000}{}{Nie, ta część reaktora nie została ukończona przed wybuchem wojny.}
+{22010}{}{Och, rozumiem. Hmm, w takim razie powiedz mi coś jeszcze.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Unknown}
+{1020}{}{Known}
+{2000}{}{Hello there. My name's Lumpy.}
+{2010}{}{That's sort of an unusual name. How did you come by it?}
+{2020}{}{What do you do here?}
+{2030}{}{I had some questions for you, Lumpy.}
+{2040}{}{Nice meeting you. Bye.}
+{3000}{}{Well, my real name's John -- but everyone here just call me Lumpy.}
+{3010}{}{Why Lumpy?}
+{3020}{}{Well, who can blame them. Goodbye.}
+{4000}{}{I guard the brahmin or help Skeeter in his workshop.}
+{4010}{}{Who's Skeeter?}
+{4020}{}{Let me ask you something else.}
+{4030}{}{I think that's all I need to know for now. Goodbye, Lumpy.}
+{5000}{}{Well, it's sort of a joke. You see, they usually call people like you and me smoothskins. But I was treated so poorly by other smoothskins down in Vault City that everyone here figured that I must be more lumpy than they are.}
+{5010}{}{Why were you treated poorly in Vault City?}
+{5020}{}{That explains a lot. Goodbye.}
+{6000}{}{Well, Skeeter's sort of a mechanic. He'll take apart almost anything that you bring him. Gets most of them back together too, sooner or later. Sometimes things end up working better than they did before.}
+{6010}{}{Where can I find Skeeter?}
+{6020}{}{Interesting. Let me ask you something else.}
+{6030}{}{I guess that's all I need to know for now. Goodbye.}
+{7000}{}{Well, they said I wasn't human enough for them. I'm sorta radiation resistant — perfect for here. But they didn't like it. Treated me like dirt.}
+{7010}{}{Really?}
+{8000}{}{One day I just couldn't take it anymore. I figured that dying out in the Wastes was better than living with those assholes in Vault City.}
+{8010}{}{How'd you end up here, then?}
+{9000}{}{Well, a caravan from Broken Hills found me and brought me here. I've been here ever since. One thing about the ghouls here is that they care more about what kind of person you are inside. It's like a big family.}
+{9010}{}{Broken Hills? Where are those?}
+{9020}{}{Interesting. Let me ask you something else, though.}
+{9030}{}{It's great that you're happy here. Goodbye.}
+{10000}{}{Broken Hills is where we get all the uranium that we need for the atomic reactor from. From what I understand, the uranium is mined by mutants down there. But they have humans trade the stuff for them.}
+{10010}{}{Why do they have humans trade the stuff for them?}
+{11000}{}{What do you want to know?}
+{11010}{}{What's all that junk in the yard?}
+{11020}{}{What do you do here?}
+{11030}{}{Who's Skeeter?}
+{11040}{}{Anything unusual going on around here?}
+{11050}{}{Nothing, goodbye.}
+{12000}{}{Well, because they trade uranium to Vault City, too. Vault City treats anyone that's not a pure strain human just like lepers. So, Broken Hills uses human traders. Some guy named Chad, I think.}
+{12010}{}{Chad, huh? I'll keep that in mind. Let me ask you something else.}
+{12020}{}{I guess that's all I need to know for now. Goodbye.}
+{13000}{}{Well, some of this junk is left over from when they were building the reactor — before the war. The rest of this stuff? I just don't know. Skeeter collects all kinds of stuff.}
+{13010}{}{Who's Skeeter?}
+{13020}{}{Interesting. I have another question for you.}
+{13030}{}{I guess that's all I need to know. Goodbye.}
+{14000}{}{Well, Skeeter's usually in his workshop. Just south of the unfinished reactor. Can't almost never drag him out of there.}
+{14010}{}{I had something else I was wondering.}
+{14020}{}{Oh, thanks. Goodbye.}
+{15000}{}{Well, I mostly stick to my business, but sometimes I think I hear things late at night.}
+{15010}{}{Hear things? Like what?}
+{15020}{}{Aw, come on. You can tell me what you heard. I won't tell anybody.}
+{15030}{}{Me too, but I figure they're just voices inside my head.}
+{16000}{}{Well, I'm not sure, mind you. But I think I've heard people, at least I thought it was people. Coming and going from the reactor pit late at night.}
+{16010}{}{People? Every night?}
+{16020}{}{Interesting. Let me ask you something else.}
+{17000}{}{I can't tell you. People would think I'm nuts. Probably just the wind blowing through the junk, anyway.}
+{17010}{}{Okay. Let me ask you something else, then.}
+{18000}{}{(Looks closely into your eyes) You hear voices inside your head? Do they tell you how much better you are than everyone else? Do they tell you that someday people will kneel before your greatness? (smiles and nods)}
+{18010}{}{Uh, no. Not really.}
+{18020}{}{Uh, yeah. Sure I do. Doesn't everyone?}
+{19000}{}{Good thing. I was really beginning to worry about you.}
+{19010}{}{Well, thanks for your concern. Let me ask you some questions.}
+{19020}{}{Uh, yeah. Well, I think I need to be moving on. Goodbye.}
+{20000}{}{I kinda had you pegged for that type when I first saw you, but I wasn't sure. Get out of here, you frigging nutcase!}
+{20010}{}{Uh, yeah. Whatever. Goodbye.}
+{20020}{}{Well, one of us is a nutcase — I just think you're confused as to which one of us it is.}
+{21000}{}{Well, I don't know if they were people or what, but usually it's just every couple of nights. Noises coming and going from the reactor pit. I don't know what's going on, and I don't want to know, either.}
+{21010}{}{Isn't the reactor pit too radioactive for anything to live in it?}
+{21020}{}{Interesting. I had something else to ask.}
+{21030}{}{Thanks for the information. Goodbye.}
+{22000}{}{No, this part of the reactor wasn't completed when the war started.}
+{22010}{}{Oh, I see. Hmm, tell me something else, then.}
+

@@ -1,0 +1,227 @@
+#include "_macros.fos"
+#include "_itempid.fos"
+
+
+import uint[]@+ GetTownLocationIds() from "worldmap"; 
+
+
+Location@+ GetNearestVisibleLocation(uint x, uint y)
+{
+	uint[]@ townLocationsIds = GetTownLocationIds();
+	uint minDistance = 0xFFFFFFFFFFFFFFFF, locationId = 0;
+	
+	for (uint i = 0; i < townLocationsIds.length(); i++)
+	{
+		Location@ location = GetLocation(townLocationsIds[i]);
+		
+		if (!valid(location))
+		{
+			continue;
+		}
+		
+		uint distance = (x - location.WorldX) * (x - location.WorldX) + (y - location.WorldY) * (y - location.WorldY);
+		
+		if (distance < minDistance)
+		{
+			minDistance = distance;
+			locationId = townLocationsIds[i];
+		}
+	}
+	
+	return GetLocation(locationId);
+}
+
+void SpawnEventFlares(Map& map, uint entire)
+{
+	uint flaresSpawnNum = map.CountEntire(entire);
+	uint16 hexX = 0;
+	uint16 hexY = 0;
+	uint8 dir = 0;
+	
+	for (uint i = 0; i < flaresSpawnNum; i++)
+	{
+		if (map.GetEntireCoords(entire, i, hexX, hexY, dir))
+		{
+			Item @flare = map.AddItem(hexX, hexY, PID_ACTIVE_FLARE, 1);
+			UNSETFLAG(flare.Flags, ITEM_CAN_PICKUP);
+			UNSETFLAG(flare.Flags, ITEM_CAN_USE);
+		}
+	}
+}
+
+void RemoveEventFlares(Map& map)
+{
+	array<Item@> flares;
+	map.GetItems(PID_ACTIVE_FLARE, flares);
+	bool found = false;
+	
+	for (uint i = 0; i < flares.length(); i++)
+	{
+		if (!FLAG(flares[i].Flags, ITEM_CAN_PICKUP)) 
+		{
+			DeleteItem(flares[i]);
+			found = true;
+		}
+	}
+	
+	if (found)
+	{
+		Critter@[] players;
+		map.GetCritters(0, FIND_LIFE | FIND_ONLY_PLAYERS , players);
+		for (uint i = 0; i < players.length(); i++)
+		{
+			players[i].SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70325 );
+		}
+	}
+}
+
+void SpawnMines(Map& map, uint entire, uint entireFillRatio, bool noLoot)
+{
+	if (!valid(map))
+	{
+		return;
+	}
+	
+	uint[] values1 = {map.Id, entire, entireFillRatio, noLoot ? 1 : 0, 0};
+	uint[] values2 = {map.Id, entire, entireFillRatio, noLoot ? 1 : 0, 1};
+	uint[] values3 = {map.Id, entire, entireFillRatio, noLoot ? 1 : 0, 2};
+	uint[] values4 = {map.Id, entire, entireFillRatio, noLoot ? 1 : 0, 3};
+	CreateTimeEvent(__FullSecond + REAL_SECOND(1), "e_SpawnMines", values1, true);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(2), "e_SpawnMines", values2, true);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(3), "e_SpawnMines", values3, true);
+	CreateTimeEvent(__FullSecond + REAL_SECOND(4), "e_SpawnMines", values4, true);
+}
+
+
+uint e_SpawnMines(array<uint>@ values)
+{
+	uint mapId = values[0];
+	uint entire = values[1];
+	uint entireFillRatio = values[2];
+	bool noLoot = values[3] == 1;
+	uint mod4 = values[4];
+	Map@ map = GetMap(mapId);
+	
+	if (!valid(map))
+	{
+		return 0;
+	}
+	
+	uint minesToAdd = SpawnMinesInternal(map, entire, entireFillRatio, noLoot, 100, mod4);
+
+	if (minesToAdd > 0)
+	{
+		return REAL_SECOND(4);
+	}
+
+	return 0;
+}
+
+uint SpawnMinesInternal(Map& map, uint entire, uint entireFillRatio, bool noLoot, uint limit, uint mod4)
+{
+	uint result = 0;	
+	uint entireCount = map.CountEntire(entire);
+	uint mineSpawnNum = (entireCount + (3 - mod4)) >> 2;
+	array<uint16> entireX(entireCount);
+	array<uint16> entireY(entireCount);
+	array<uint> mineSpawnFreeIdx(mineSpawnNum);
+	uint freeSpawnsCount = 0;
+	
+	uint minesCount = 0;
+	for (uint i = mod4 ; i < entireCount ; i += 4)
+	{
+		map.GetEntireCoords(entire, i, entireX[i], entireY[i]);
+		
+		bool notSpawnFree = valid(map.GetItem(entireX[i], entireY[i], PID_ACTIVE_MINE));
+		
+		if (notSpawnFree)
+		{
+			minesCount++;
+		}
+		else
+		{
+			mineSpawnFreeIdx[freeSpawnsCount] = i;
+			freeSpawnsCount++;
+		}
+	}
+
+	if (entireFillRatio * mineSpawnNum / 100 > minesCount)
+	{ 					
+		uint minesToAddCount = entireFillRatio * mineSpawnNum / 100 - minesCount;
+		
+		if (minesToAddCount > limit)
+		{
+			result = minesToAddCount - limit;
+			minesToAddCount = limit;
+		}
+		
+		for (uint i = 0 ; i < minesToAddCount ; i++)
+		{
+			uint swapIdx = Random(0, freeSpawnsCount - 1);
+			uint tmp = mineSpawnFreeIdx[swapIdx];
+			mineSpawnFreeIdx[swapIdx] = mineSpawnFreeIdx[i];
+			mineSpawnFreeIdx[i] = tmp;
+		}
+		
+		if (noLoot) 
+		{
+			for (uint i = 0 ; i < minesToAddCount ; i++)
+			{
+				uint mineSpawnIndex = mineSpawnFreeIdx[i]; 
+				Item @mine = map.AddItem(entireX[mineSpawnIndex], entireY[mineSpawnIndex], PID_ACTIVE_MINE, 1);
+				UNSETFLAG(mine.Flags, ITEM_CAN_PICKUP);		
+			}
+		}
+		else
+		{
+			for (uint i = 0 ; i < minesToAddCount ; i++)
+			{
+				uint mineSpawnIndex = mineSpawnFreeIdx[i]; 
+				Item @mine = map.AddItem(entireX[mineSpawnIndex], entireY[mineSpawnIndex], PID_ACTIVE_MINE, 1);					
+			}
+		}
+	}
+	
+	return result;
+}
+
+//Use only for very small minefields, no refresh
+void SpawnMinesLowQuantity(Map& map, uint entire, uint entireFillRatio, bool noLoot)
+{
+	int entireCount = map.CountEntire(entire);
+	uint16 entireX = 0, entireY = 0;
+	int spawnChance = int(entireFillRatio);
+	
+	if (noLoot) 
+	{
+		for (int i = 0 ; i < entireCount ; i++)
+		{
+			if (HAS_CHANCE(spawnChance))
+			{
+				map.GetEntireCoords(entire, i, entireX, entireY);
+				Item @mine = map.AddItem(entireX, entireY, PID_ACTIVE_MINE, 1);
+				UNSETFLAG(mine.Flags, ITEM_CAN_PICKUP);		
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0 ; i < entireCount ; i++)
+		{
+			if (HAS_CHANCE(spawnChance))
+			{
+				map.GetEntireCoords(entire, i, entireX, entireY);
+				Item @mine = map.AddItem(entireX, entireY, PID_ACTIVE_MINE, 1);				
+			}
+		}
+	}
+}
+
+double CountAliveCrittersPercent(Map &map)
+{
+	array<Critter@> crittersLife, crittersDead;
+	map.GetCritters(0, FIND_LIFE | FIND_ONLY_NPC, crittersLife);
+	map.GetCritters(0, FIND_DEAD | FIND_ONLY_NPC, crittersDead);
+
+	return double(crittersLife.length()) / (double(crittersLife.length()) + double(crittersDead.length()));
+}

@@ -1,0 +1,362 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 1 #
+2 1010 @
+2 2000 None 0 #
+3 2010 #
+5 2020 #
+7 2030 #
+20 2040 D _var p name_mem_player_npc } 1 #
+0 2050 @
+3 3000 None 0 #
+5 3010 #
+6 3020 #
+0 3030 @
+4 4000 None 0 #
+9 4010 @
+5 5000 None 0 #
+8 5010 #
+4 5020 #
+7 5030 #
+0 5040 @
+6 6000 None 0 #
+0 6010 @
+7 7000 None 0 #
+0 7010 @
+8 8000 None 0 #
+0 8010 @
+9 9000 None 0 #
+10 9010 #
+19 9020 #
+0 9030 @
+10 10000 None 0 #
+11 10010 R _var p name_mem_player_npc = 1 @
+11 11000 None 0 #
+12 11010 #
+16 11020 D _var p name_mem_player_npc } 2 #
+20 11030 #
+0 11040 @
+12 12000 None 0 #
+13 12010 #
+14 12020 R _var p name_mem_player_npc = 2 #
+65505 12030 @
+13 13000 None 0 #
+65505 13010 @
+14 14000 None 0 #
+15 14010 @
+15 15000 None 0 #
+11 15010 @
+16 16000 None 0 #
+17 16010 #
+11 16020 @
+17 17000 None 0 #
+18 17010 @
+18 18000 None 0 #
+11 18010 @
+19 19000 None 0 #
+65505 19010 @
+20 20000 None 0 #
+21 20010 D _script quest@quest_checkcd 1 9613 #
+22 20020 D _script quest@quest_checkcdopp 1 9613 #
+0 20030 @
+21 21000 None 0 #
+23 21010 D _script dialog@d_GroupCountMore 1 3 D _script dialog@d_GroupCountLess 1 11 D _script dialog@d_GroupLevelMore 1 14 #
+0 21020 @
+22 22000 None 0 #
+0 22010 @
+23 23000 None 0 #
+0 23010 R _script quest@quest_setcdgroup 2 9613 360 R _script dialog@r_CreateHiddenLocation 5 9323 1152 1572 1 9610 R _script dialog@r_TeleportToCreatedLocation 4 9610 0 0 1 #
+0 23020 &
+
+[engl]
+{100}{}{Rick}
+{200}{}{You see: Rick}
+{210}{}{You see a battle-hardened man in leather armor. He's Blades member.}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[You approach the man. He looks you in the eyes, not stopping in cleaning his gun] Yeah?}
+{2010}{}{Hi. My name is @pname@.}
+{2020}{}{Who are you?}
+{2030}{}{Can I get two cheese pancakes and a box of cookies?}
+{2040}{}{Are you hiring mercenaries willing to help out?}
+{2050}{}{Oh, sorry. I didn't know the bathroom was taken. [Turn around and walk away]}
+{3000}{}{[He furrows his brows.] So?}
+{3010}{}{So I was wondering who you are and what do you do here.}
+{3020}{}{You're rude.}
+{3030}{}{Nevermind.}
+{4000}{}{[He looks you up and down] Are you sure you're in the right place? Metro isn't a topic to be taken lightly, pal, and common folk should stay away from it.}
+{4010}{}{Why is that?}
+{5000}{}{I'm Rick. I'm a member of the Blades, and my job is to make sure nothing surprises us when crawling out of the metro.}
+{5010}{}{Blades? Is that some sort of a gang?}
+{5020}{}{The metro, huh? What about it?}
+{5030}{}{It sounds like your job is very boring.}
+{5040}{}{Wow, awesome! Listen, I have to go wash my crotch, I'll see you later.}
+{6000}{}{[He rolls his eyes] And you are annoying. I don't have time to bother with you.}
+{6010}{}{...}
+{7000}{}{[He blinks twice] No. Now get out.}
+{7010}{}{...}
+{8000}{}{Did you seriously never even heard of us? It doesn't matter any way, go talk to somebody else, I don't have time to teach you about the past.}
+{8010}{}{Okay...}
+{9000}{}{Because we're trying for the metro's existence to remain hidden from public knowledge, to avoid panic mostly. If folks in Adytum knew what we're dealing with here they would've all ran away by now.}
+{9010}{}{Why keep Adytum oblivious to the danger?}
+{9020}{}{What is the "metro"?}
+{9030}{}{Well, I'll leave you alone, then.}
+{10000}{}{We are protecting them, so that trading can run smoothly. If trade routes to Adytum would cease to exist, we would need to move out. Same with Gun Runners. And then no one would keep watch over the entraces to the metro.}
+{10010}{}{[continue]}
+{11000}{}{If no one kept watch, then the horrors of the metro would spread across the wasteland. Hub isn't that far away, and hence much larger human settlements would be endangered.}
+{11010}{}{What are your supply lines?}
+{11020}{}{You've mentioned that there are more entrances than one?}
+{11030}{}{Are you hiring mercenaries willing to help out?}
+{11040}{}{I understand. Good luck.}
+{12000}{}{As I said, trading income lets us buy supplies. Moreover we cooperate with the Gun Runners, and the Hub fatcats pay us both to keep doing our jobs.}
+{12010}{}{Hub fatcats?}
+{12020}{}{Gun Runners?}
+{12030}{}{I think I heard enough of that. (back)}
+{13000}{}{Yeah. They're not doing it out of pure goodness of their hearts. They make their lives safer by helping us do the dirty work.}
+{13010}{}{I see.}
+{14000}{}{They're mechanics and engineers with pre-war schematics. As you may guess, they got all the armors, guns, ammunition and caps they need because of that. Plenty to hire guards, too. They keep watch over the second entrance to the metro.}
+{14010}{}{[continue]}
+{15000}{}{They do a fine job at that, too. They trenched off the whole entrance, and because of how many monsters keep crawling out of there, they had to resort to mortars and carpet bombing the whole place.}
+{15010}{}{I see. (back)}
+{16000}{}{Supposedly there are three entrances to the metro, at least above ground. Blades, that's us, keep watch over the first one. Second one is guarded by the Gun Runners. The third one, though, is a mystery.}
+{16010}{}{Why?}
+{16020}{}{I see. (back)}
+{17000}{}{Once we cleaned the tunnels pretty far. We dispatched a squad of scouts, to mark and explore the underground territory. Soon after they ventured we lost radio contact with them. We thought we'd lost them all.}
+{17010}{}{[continue]}
+{18000}{}{However, after several hours, two men returned, with their equipment in shreds and gas masks broken. No one ever saw any of the seven people that were the rest of the squad again. Those who returned were talking incoherently, and despite our best treatment, soon died of radiation poisoning. That's also why we didn't make another attempt.}
+{18010}{}{Damn. (back)}
+{19000}{}{Metros were used for underground transportation in Pre-War times. There were large vehicles which people were riding in to get wherever it was accessible. Most of it has been buried underneath the rubble during the war.}
+{19010}{}{Oh. (back)}
+{20000}{}{You have no idea. Every hand that is capable of using a firearm is welcome here. We're always recruiting volunteers willing to thin out the population of those nightmarish freaks. However, I must warn you, it is not safe. It's extremely risky, and even the most experienced fighters have low chances of returning back alive. One mistake may cost lives of an entire team.}
+{20010}{}{Stop talking, I want to shed some blood.}
+{20020}{}{Stop talking, I want to shed some blood.}
+{20030}{}{Oh, in that case I think that maybe I'll come back later. Or never, we'll see.}
+{21000}{}{I'm sending squads underground, but I'm not going to do that if it's going to involve plain butchering of my soldiers. I hire only capable fighters, and only in groups of three or more. Otherwise it's too dangerous.}
+{21010}{}{Are your people ready?}
+{21020}{}{Damn. I'll come back when I'm prepared, then.}
+{22000}{}{We're not yet prepared for another onslaught. Come back later.}
+{22010}{}{Okay.}
+{23000}{}{My fireteam is ready for deployment. You want to join them? If you'll make it back alive, there's a handsome reward waiting for you.}
+{23010}{}{My group is hot and bothered. Let's get ready to RUMBLE!}
+{23020}{}{Give me a minute. I have to reconsider.}
+
+[russ]
+{100}{}{Рик}
+{200}{}{Вы видите Рика}
+{210}{}{Вы видите закаленного в боях мужчину одетого в кожаные доспехи. Он член организации Лезвия.}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[Вы подошли, он смотрит Вам в глаза, не переставая чистить оружие] Да?}
+{2010}{}{Привет, я @pname@.}
+{2020}{}{Кто ты?}
+{2030}{}{Можно мне два сырных блинчика и коробочку печенья?}
+{2040}{}{Вы нанимаете людей, желающих вам помочь?}
+{2050}{}{Ох, извини, я не знал что сортир занят. [Развернуться и уйти.]}
+{3000}{}{[Хмурит брови.] И что?}
+{3010}{}{И то, что я интересуюсь кто ты и что ты тут делаешь.}
+{3020}{}{Ты грубый.}
+{3030}{}{Да нет, ничего.}
+{4000}{}{[Осматривает Вас] Ты уверен что пришёл куда надо? Метро не та тема, к которой следует легко относиться, приятель, и простым людям лучше держаться от него подальше.}
+{4010}{}{Почему это?}
+{5000}{}{Я Рик. Я один из Лезвий, и моя работа - сделать так, чтобы метро не принесло нам неожиданностей.}
+{5010}{}{Лезвия? Это что то вроде банды?}
+{5020}{}{Метро, да? Что насчёт него?}
+{5030}{}{Звучит так, как будто у тебя очень скучная работа.}
+{5040}{}{Ого, круто! Слушай, мне нужно в сортир, увидимся позже.}
+{6000}{}{[Закатывает глаза] А ты раздражаешь. У меня нет времени на тебя.}
+{6010}{}{...}
+{7000}{}{[Моргает два раза] Нет. А теперь вали отсюда.}
+{7010}{}{...}
+{8000}{}{Ты что, правда про нас ни разу не слышал? Ладно, не важно, иди поговори с кем нибудь другим, у меня нет времени на урок истории.}
+{8010}{}{Ладно...}
+{9000}{}{Потому что мы стараемся чтобы существование метро было спрятано от лишних глаз, чтобы избежать паники в основном. Если люди из Адитума узнали бы с чем мы тут имеем дело, они бы все уже разбежались.}
+{9010}{}{Зачем держать Адитум в незнании об опасности?}
+{9020}{}{Что такое "метро"?}
+{9030}{}{Ну, тогда я оставлю тебя в покое.}
+{10000}{}{Мы их защищаем, чтобы торговля могла идти спокойно. Если бы торговые пути в Адитум перестали существовать, нам бы пришлось уйти отсюда. То же самое касается Оружейников. И тогда никто не будет следить за входами в метро.}
+{10010}{}{[дать ему продолжить]}
+{11000}{}{Если никто не будет следить, то ужасы метро распространятся по всей пустоши. Хаб не так далеко, следовательно куда большие поселения будут под угрозой.}
+{11010}{}{Какие у вас каналы поддержки?}
+{11020}{}{Ты упомянул что входов больше, чем один?}
+{11030}{}{Вы нанимаете людей чтобы вам помочь?}
+{11040}{}{Я понимаю. Удачи.}
+{12000}{}{Как я уже сказал, доход от торговли наш главный канал для покупки припасов. Более того, мы сотрудничаем с Оружейниками, и толстосумы из Хаба платят нам обоим чтобы мы продолжали делать свою работу.}
+{12010}{}{Толстосумы из Хаба?}
+{12020}{}{Оружейники?}
+{12030}{}{Я думаю я услышал достаточно. (Назад)}
+{13000}{}{Да. Они делают это не от доброй души. Они делают свою жизнь безопаснее, помогая делать нам грязную работу.}
+{13010}{}{Понимаю.}
+{14000}{}{Это механики и инженеры с довоенными чертежами. Как ты уже догадался, у них есть броня, оружие, патроны, и поэтому у них есть крышки. Достаточно для найма охраны тоже. Они следят за вторым входом в метро.}
+{14010}{}{[продолжение]}
+{15000}{}{Они здорово с этим справляются, кстати. Забаррикадровали весь вход, и из-за большого количества монстров выползающих оттуда, им пришлось применить миномёты и провести ковровую бомбардировку всего того места.}
+{15010}{}{Понятно. (Назад)}
+{16000}{}{Предположительно всего три входа в метро, по крайней мере надземных. Лезвия, тоесть мы, следим за первым. Второй под надзором Оружейников. А вот третий остаётся загадкой.}
+{16010}{}{Почему?}
+{16020}{}{Ясно. (Назад)}
+{17000}{}{Однажды мы зачистили тоннели достаточно глубоко. Мы направили отряд разведчиков, чтобы отметить и изучить подземную территорию. Вскоре после их ухода связь с ними прервалась. Мы думали что потеряли их всех.}
+{17010}{}{[дальше]}
+{18000}{}{Тем не менее, через несколько часов двое вернулись, снаряжение в щепки, противогазы были сломаны. Остальных больше никто никогда не видел. Те, кто вернулись бредили и несмотря на лечение вскоре умерли от облучения. Поэтому мы не стали пробовать ещё раз.}
+{18010}{}{Проклятье. (назад)}
+{19000}{}{Метро использовалось как подземный транспорт в довоенное время. Там ездили большие машины, на которых люди добирались всюду, куда был доступ. Большая часть всего этого была завалена во время войны.}
+{19010}{}{Ох.. (Назад)}
+{20000}{}{Ты даже не представляешь... Любой, кто способен держать оружие здесь нужен. Мы всегда нанимаем добровольцев, желающих уменьшить количество этих кошмарных тварей. Но я должен тебя предупредить, это не безопасно. Это большой риск, и даже опытные бойцы имеют мало шансов вернуться назад живыми. Одна ошибка может стоить жизни всей группы.}
+{20010}{}{Хватит болтать, я хочу пролить немного крови.}
+{20020}{}{Хватит болтать, я хочу пролить немного крови.}
+{20030}{}{А, ну в таком случае я приду попозже, наверное. Или вообще не приду, посмотрим.}
+{21000}{}{Я направляю отряды под землю, но я не буду этого делать если это втянет моих солдат в кровавую мясорубку. Я нанимаю только соответствующих бойцов, и только группами, по три или больше. Иначе это слишком опасно.}
+{21010}{}{Твои люди готовы?}
+{21020}{}{Черт возьми, тогда я приду когда я буду готов.}
+{22000}{}{Мы не готовы к очередной резне пока что. Приходи позже.}
+{22010}{}{Лады.}
+{23000}{}{Моя огневая группа готова к выходу. Хочешь присоединиться? Если ты вернёшься обратно живым, тебя ждёт хорошая награда.}
+{23010}{}{Мои люди рвут и мечут! Даёшь РУБИЛОВО!}
+{23020}{}{Дай мне минуту, надо подумать.}
+
+[pols]
+{100}{}{Rick}
+{200}{}{Widzisz: Rick.}
+{210}{}{Widzisz zahartowanego w bitwach mężczyznę w skórzanym pancerzu. Jest członkiem Ostrzy.}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[Podchodzisz do mężczyzny. Spogląda ci w oczy nie przerywając czyszczenia swojej broni.] Tak?}
+{2010}{}{Witaj. Nazywam się @pname@.}
+{2020}{}{Kim jesteś?}
+{2030}{}{Czy mogę dostać talon na kurwę i balon? I pudełko ciasteczek?}
+{2040}{}{Zatrudniasz najemników gotowych do pomocy?}
+{2050}{}{O, pardon. Nie @sex@|wiedziałem||wiedziałam|, że toaleta jest zajęta. [Odwróć się i odejdź]}
+{3000}{}{[Marszy brwi] I co w związku z tym?}
+{3010}{}{Więc tak się zastanawiam kim jesteś i czym się tutaj zajmujesz.}
+{3020}{}{Jesteś nieuprzejmy.}
+{3030}{}{Nieważne.}
+{4000}{}{[Ogląda cię z góry na dół] Jesteś @sex@|pewny||pewna|, że jesteś we właściwym miejscu? Metro to nie jest temat, który można brać nie na poważnie, i prości ludzie powinni się trzymać od niego z dala.}
+{4010}{}{Dlaczego?}
+{5000}{}{Jestem Rick, i jestem członkiem Ostrzy. Moją robotą jest upewnianie się, że nic nas nie zaskoczy wyłażąc z metra.}
+{5010}{}{Ostrza? To jakiś rodzaj gangu?}
+{5020}{}{Metro, ta? Co z nim?}
+{5030}{}{Wygląda na to, że twoja praca jest strasznie nudna.}
+{5040}{}{Wow, zajebiście! Słuchaj, muszę iść przemyć genitalia, widzimy się później.}
+{6000}{}{[Kręci oczami] A ty jesteś @sex@|irytujący||irytująca|. Nie mam czasu na pierduchy-pogaduchy.}
+{6010}{}{...}
+{7000}{}{[Mruga dwa razy] Nie. A teraz się wynoś.}
+{7010}{}{...}
+{8000}{}{Poważnie nigdy o nas nie słyszałeś? Nie ma znaczenia tak czy siak, idź pogadać z kimś innym. Nie mam czasu na uczenie cię o przeszłości.}
+{8010}{}{Okay...}
+{9000}{}{Ponieważ staramy się, by istnienie metra pozostało poza wiedzą publiczną, głównie po to, żeby zapobiec panice. Jeśli mieszkańcy Adytum wiedzieliby z czym my tutaj mamy do czynienia, to już dawno by się stąd wynieśli.}
+{9010}{}{Dlaczego trzymacie Adytum w niewiedzy o niebezpieczeństwie?}
+{9020}{}{Czym jest "metro"?}
+{9030}{}{Dobra, w takim razie zostawię cię samego.}
+{10000}{}{Chronimy ich dlatego, by handel przebiegał bez zakłóceń. Jeśli szlaki handlowe do Adytum przestałyby istnieć, to my również musielibyśmy się wynieść. Podobnie Zbrojeniowcy. A wtedy nikt by nie pilnował wejść do metra.}
+{10010}{}{[kontynuuj]}
+{11000}{}{Jeśli nikt by nie pilnował, to koszmary metra rozprzestrzeniły by się po całym pustkowiu. Hub nie jest wcale tak daleko, więc znacznie więcej ludzi byłyby zagrożonych.}
+{11010}{}{Kto was zaopatruje?}
+{11020}{}{Wspomniałeś, że jest więcej niż jedno wejście?}
+{11030}{}{Zatrudniasz najemników gotowych do pomocy?}
+{11040}{}{Rozumiem. Powodzenia.}
+{12000}{}{Jak wspomniałem, dochód z handlu pozwala nam kupować zapasy. Ponadto współpracujemy ze Zbrojeniowcami, a burżuazja Hubu płaci nam obu byśmy kontynuowali to 'przedsięwzięcie'.}
+{12010}{}{Burżuazja Hubu?}
+{12020}{}{Zbrojeniowcy?}
+{12030}{}{Myślę, że usłyszałem już wystarczająco na ten temat. (powrót)}
+{13000}{}{Ta. Ale nie robią tego z czystej dobroci serca. Po prostu robią swoje życia bezpieczniejszymi pomagając nam wykonywać brudną robotę.}
+{13010}{}{Rozumiem.}
+{14000}{}{To mechanicy i inżynierowie z przedwojennymi schematami. Jak łatwo się domyślić, z tego powodu mają tyle pancerzy, broni, amunicji i kapsli ile tylko zapragną. Wystarczająco by móc również wynająć strażników. Ich działką jest pilnowanie drugiego wejścia do metro.}
+{14010}{}{[kontynuuj]}
+{15000}{}{Świetnie sobie z tym radzą. Porządnie okopali całe wejście, a z powodu ilości świństwa wylewającego się stamtąd musieli uciec się do moździerzy i bombardowania całego miejsca.}
+{15010}{}{Rozumiem. (powrót)}
+{16000}{}{Podobno są trzy wejścia do metra, przynajmniej nad ziemią. Ostrza, czyli my, pilnują pierwszego. Drugi jest chroniony przez przez Zbrojeniowców. Jednakże trzeci jest zagadką.}
+{16010}{}{Czemu?}
+{16020}{}{Aha. (powrót)}
+{17000}{}{Kiedyś wyczyściliśmy tunele całkiem daleko wgłąb. Wtedy wysłaliśmy oddział zwiadowców, by lepiej odkryli podziemne terytorium. Wkrótce po tym, jak wyruszyli, kontakt radiowy się urwał. Myśleliśmy, że wszystkich straciliśmy.}
+{17010}{}{[kontynuuj]}
+{18000}{}{Jednakże, po kilku godzinach, dwóch z nich powróciło z ekwipunkiem i maskami gazowymi w kawałkach. Nikt nie zobaczył żadnego z siedmiu pozostałych ludzi z oddziału nigdy więcej. Ci którzy powrócili bredzili coś bez sensu, i pomimo naszej najlepszej opieki medycznej wkrótce zmarli na chorobę popromienną. Jest to również powód dla którego nie próbowaliśmy ponownie.}
+{18010}{}{Cholera. (powrót)}
+{19000}{}{Metra były używane do podziemnego transportu w przedwojennych czasach. Były tam duże pojazdy w których ludzie podróżowali gdziekolwiek było to dostępne. Większość metra zostało zawalone gruzem podczas wojny.}
+{19010}{}{Aha. (powrót)}
+{20000}{}{Nawet sobie nie wyobrażasz. Każda dłoń zdolna do korzystania z broni palnej jest tutaj mile widziana. Ciągle rekrutujemy chętnych do osłabiania populacji tych koszmarnych istot. Muszę cię jednak ostrzec, gdyż nie jest to wcale bezpieczne. Ryzyko jest ogromne, i nawet najbardziej doświadczeni wojownicy mają niewielkie szanse powrócić cali i zdrowi. Jeden błąd może kosztować życie całej drużyny.}
+{20010}{}{Przestań gadać. Chcę przelać trochę krwi.}
+{20020}{}{Przestań gadać. Chcę przelać trochę krwi.}
+{20030}{}{O, w takim wypadku myślę, że może jednak przyjdę później. Albo nigdy, zobaczymy.}
+{21000}{}{Wysyłam oddziały pod ziemię, ale nie zrobię tego jeśli ma to być bezsensowna rzeź moich żołnierzy. Najmuję jedynie zdolnych i doświadczonych wojowników, i tylko w grupach po trzech lub więcej. Inaczej jest to zbyt niebezpieczne.}
+{21010}{}{Czy twoi ludzie są gotowi?}
+{21020}{}{Cholera. W takim razie wrócę kiedy będę @sex@|przygotowany||przygotowana|.}
+{22000}{}{Jeszcze nie jesteśmy gotowi na kolejny szturm. Przyjdź później.}
+{22010}{}{Okay.}
+{23000}{}{Mój oddział szturmowy jest gotów do wyruszenia. Chcesz do nich dołączyć? Jeśli uda ci się powrócić w jednym kawałku, to będzie na ciebie czekać pokaźna nagroda.}
+{23010}{}{Moja grupa jest zwarta i gotowa. Więc koniec pierdolenia, robota czeka.}
+{23020}{}{Daj mi chwilę. Muszę to przemyśleć.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{2}
+{2000}{}{[You approach the man. He looks you in the eyes, not stopping in cleaning his gun] Yeah?}
+{2010}{}{Hi. My name is @pname@.}
+{2020}{}{Who are you?}
+{2030}{}{Can I get two cheese pancakes and a box of cookies?}
+{2040}{}{Are you hiring mercenaries willing to help out?}
+{2050}{}{Oh, sorry. I didn't know the bathroom was taken. [Turn around and walk away]}
+{3000}{}{[He furrows his brows.] So?}
+{3010}{}{So I was wondering who you are and what do you do here.}
+{3020}{}{You're rude.}
+{3030}{}{Nevermind.}
+{4000}{}{[He looks you up and down] Are you sure you're in the right place? Metro isn't a topic to be taken lightly, pal, and common folk should stay away from it.}
+{4010}{}{Why is that?}
+{5000}{}{I'm Rick. I'm a member of the Blades, and my job is to make sure nothing surprises us when crawling out of the metro.}
+{5010}{}{Blades? Is that some sort of a gang?}
+{5020}{}{The metro, huh? What about it?}
+{5030}{}{It sounds like your job is very boring.}
+{5040}{}{Wow, awesome! Listen, I have to go wash my crotch, I'll see you later.}
+{6000}{}{[He rolls his eyes] And you are annoying. I don't have time to bother with you.}
+{6010}{}{...}
+{7000}{}{[He blinks twice] No. Now get out.}
+{7010}{}{...}
+{8000}{}{Did you seriously never even heard of us? It doesn't matter any way, go talk to somebody else, I don't have time to teach you about the past.}
+{8010}{}{Okay...}
+{9000}{}{Because we're trying for the metro's existence to remain hidden from public knowledge, to avoid panic mostly. If folks in Adytum knew what we're dealing with here they would've all ran away by now.}
+{9010}{}{Why keep Adytum oblivious to the danger?}
+{9020}{}{What is the "metro"?}
+{9030}{}{Well, I'll leave you alone, then.}
+{10000}{}{We are protecting them, so that trading can run smoothly. If trade routes to Adytum would cease to exist, we would need to move out. Same with Gun Runners. And then no one would keep watch over the entraces to the metro.}
+{10010}{}{[continue]}
+{11000}{}{If no one kept watch, then the horrors of the metro would spread across the wasteland. Hub isn't that far away, and hence much larger human settlements would be endangered.}
+{11010}{}{What are your supply lines?}
+{11020}{}{You've mentioned that there are more entrances than one?}
+{11030}{}{Are you hiring mercenaries willing to help out?}
+{11040}{}{I understand. Good luck.}
+{12000}{}{As I said, trading income lets us buy supplies. Moreover we cooperate with the Gun Runners, and the Hub fatcats pay us both to keep doing our jobs.}
+{12010}{}{Hub fatcats?}
+{12020}{}{Gun Runners?}
+{12030}{}{I think I heard enough of that. (back)}
+{13000}{}{Yeah. They're not doing it out of pure goodness of their hearts. They make their lives safer by helping us do the dirty work.}
+{13010}{}{I see.}
+{14000}{}{They're mechanics and engineers with pre-war schematics. As you may guess, they got all the armors, guns, ammunition and caps they need because of that. Plenty to hire guards, too. They keep watch over the second entrance to the metro.}
+{14010}{}{[continue]}
+{15000}{}{They do a fine job at that, too. They trenched off the whole entrance, and because of how many monsters keep crawling out of there, they had to resort to mortars and carpet bombing the whole place.}
+{15010}{}{I see. (back)}
+{16000}{}{Supposedly there are three entrances to the metro, at least above ground. Blades, that's us, keep watch over the first one. Second one is guarded by the Gun Runners. The third one, though, is a mystery.}
+{16010}{}{Why?}
+{16020}{}{I see. (back)}
+{17000}{}{Once we cleaned the tunnels pretty far. We dispatched a squad of scouts, to mark and explore the underground territory. Soon after they ventured we lost radio contact with them. We thought we'd lost them all.}
+{17010}{}{[continue]}
+{18000}{}{However, after several hours, two men returned, with their equipment in shreds and gas masks broken. No one ever saw any of the seven people that were the rest of the squad again. Those who returned were talking incoherently, and despite our best treatment, soon died of radiation poisoning. That's also why we didn't make another attempt.}
+{18010}{}{Damn. (back)}
+{19000}{}{Metros were used for underground transportation in Pre-War times. There were large vehicles which people were riding in to get wherever it was accessible. Most of it has been buried underneath the rubble during the war.}
+{19010}{}{Oh. (back)}
+{20000}{}{You have no idea. Every hand that is capable of using a firearm is welcome here. We're always recruiting volunteers willing to thin out the population of those nightmarish freaks. However, I must warn you, it is not safe. It's extremely risky, and even the most experienced fighters have low chances of returning back alive. One mistake may cost lives of an entire team.}
+{20010}{}{Stop talking, I want to shed some blood.}
+{20020}{}{Stop talking, I want to shed some blood.}
+{20030}{}{Oh, in that case I think that maybe I'll come back later. Or never, we'll see.}
+{21000}{}{I'm sending squads underground, but I'm not going to do that if it's going to involve plain butchering of my soldiers. I hire only capable fighters, and only in groups of three or more. Otherwise it's too dangerous.}
+{21010}{}{Are your people ready?}
+{21020}{}{Damn. I'll come back when I'm prepared, then.}
+{22000}{}{We're not yet prepared for another onslaught. Come back later.}
+{22010}{}{Okay.}
+{23000}{}{My fireteam is ready for deployment. You want to join them? If you'll make it back alive, there's a handsome reward waiting for you.}
+{23010}{}{My group is hot and bothered. Let's get ready to RUMBLE!}
+{23020}{}{Give me a minute. I have to reconsider.}
+

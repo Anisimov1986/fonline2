@@ -1,0 +1,43 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Child}
+{200}{}{You see a youngster covered with dust.}
+{210}{}{You see a child staring at you.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Hey there.@@Whatcha doing?@@Run away, run away!@@I touched a dead gecko once.@@Do you eat people?@@Where are you from?@@Are you from far away?@@Can't catch me!@@Nyah, nyah, nyah, nyah, nyah!@@You're funny looking.@@You smell bad.}
+
+[russ]
+{100}{}{Ребенок}
+{200}{}{Вы видите мальчика покрытого грязью.}
+{210}{}{Вы видите ребенка, он смотрит на вас.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Привет.@@Что делаешь?@@Беги, беги !@@Я коснулся мертвого геккона один раз.@@Вы едите людей?@@Where are you from?@@Вы издалека ?@@Ты не поймешь меня!@@Ня, ня, ня, ня, ня!}
+
+[pols]
+{100}{}{Dziecko}
+{200}{}{Widzisz dziecko okryte pyłem.}
+{210}{}{Widzisz dziecko patrzące się na ciebie.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Cześć!@@Co robisz?@@Uciekaj, uciekaj!@@Kiedyś bawiłem się martwym gekonem.@@Jesz ludzi?@@Skąd jesteś?@@Jesteś z daleka?@@Nie złapiesz mnie!@@Na na na na na!@@Śmiesznie wyglądasz.@@Brzydko pachniesz.}
+
+[ptbr]
+{100}{}{Criança}
+{200}{}{Você vê um jovem coberto de poeira.}
+{210}{}{Você vê uma criança a lhe encarar.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ia ciaeii}
+{2000}{}{Ei @sex@|senhor||senhora|.@@O que tá fazendo?@@Fujam, fujam!@@Eu toquei um Kalango morto uma vez.@@Você come pessoas?@@De onde @sex@|o senhor||a senhora| é?@@@sex@|O senhor||A senhora| vem de longe?@@Nem me pega!@@Nyah, nyah, nyah, nyah, nyah!@@Você é @sex@|engraçado||engraçada|.@@ @sex@|O senhor||A senhora| cheira mau.}

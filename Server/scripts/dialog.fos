@@ -1,0 +1,1613 @@
+// Author: cvet, heX, Тринитротолуол, Tab10id
+#include "_macros.fos"
+#include "stdlib_h.fos"
+#include "wrappers.fos"
+#include "logging_h.fos"
+#include "utils_h.fos"
+
+#define AI_PLANE_ATTACK_PRIORITY_MARK    ( AI_PLANE_ATTACK_PRIORITY + 1 )
+
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target ) from "npc_planes";
+import bool AddAttackPlane( Critter& npc, uint priority, Critter& target, bool run ) from "npc_planes";
+import bool AddWalkPlane( Critter& npc, uint priority, uint16 hexX, uint16 hexY, uint8 dir, bool run, uint cut ) from "npc_planes";
+import void AddAchievement( Critter& cr, uint achievement ) from "achievements";
+
+import void FlushScreen( Critter& cr, bool fadeOut, uint timeMs ) from "effects";
+import void SendQuestMessage( Critter& critter, uint questNameMsgNum, uint questTaskMsgNum ) from "quest";
+import int GetOffenceLevel(Critter& critter) from "critter_offence";
+
+import void SwitchState( Item& locker ) from "lockers";
+import bool UnblockMultihexDoor( Item& door ) from "doors";
+import void OnAutoOpen( Item& locker ) from "doors";
+
+import void UseDrugOn( Critter& cr, Critter& onCr, Item& drug ) from "drugs";
+import void UseDrug( Critter& cr, Item& drug ) from "drugs";
+
+// Возвращает размер группы (живых ее участников)
+// размер береться вне зависимости от того лидер это или просто партиец
+
+int DFGroupCount( Critter& player, Critter@ npc )
+{
+    Critter@[] groups;
+    groups.insertLast( player );
+    player.GetFollowGroup( FIND_LIFE, groups );
+    uint groupsize=0;
+    for (uint i=0; i < groups.length(); i++)
+        if(_CritIsOnline(groups[i]))
+            groupsize++;
+    return groupsize;
+}
+
+// !/ Размер группы больше >=VAL
+bool d_GroupCountMore( Critter& player, Critter@ npc, int val )
+{
+    return DFGroupCount( player, npc ) >= val;
+}
+
+bool d_GroupCountLess( Critter& player, Critter@ npc, int val )
+{
+    return DFGroupCount( player, npc ) < val;
+}
+
+// !/ У всех уровень больше >=VAL
+// Проверка что все игроки в группе больше или равны указанному уровню.
+bool d_GroupLevelMore( Critter& player, Critter@ npc, int val )
+{
+    Critter@[] groups;
+    groups.insertLast( @player );
+    player.GetFollowGroup( FIND_LIFE, groups );
+    for( uint i = 0; i < groups.length(); i++ )
+        if( groups[ i ].Stat[ ST_LEVEL ] < val ) // если хотябы один из них меньше требуемого уровня
+            return false;
+    return true;
+}
+
+bool d_GroupLevelLess( Critter& player, Critter@ npc, int val )
+{
+    Critter@[] groups;
+    groups.insertLast( @player );
+    player.GetFollowGroup( FIND_LIFE, groups );
+    for( uint i = 0; i < groups.length(); i++ )
+        if( groups[ i ].Stat[ ST_LEVEL ] > val ) // если хотябы один из них меньше требуемого уровня
+            return false;
+    return true;
+}
+
+// Игрок нуждаеться в лечении?
+bool d_IsToHeal( Critter& player, Critter@ npc )
+{
+    return player.Stat[ ST_CURRENT_HP ] < player.Stat[ ST_MAX_LIFE ];
+}
+
+// Игроку известна эта локация?
+bool d_IsLocationVisible( Critter& player, Critter@ npc, int LocNum )
+{
+    return player.IsKnownLoc( false, uint16( LocNum ) );
+}
+
+// Игроку НЕ известна эта локация?
+bool d_IsLocationNotVisible( Critter& player, Critter@ npc, int LocNum )
+{
+    return not player.IsKnownLoc( false, uint16( LocNum ) );
+}
+
+// Есть зависимости от наркотиков?
+bool d_IsAddict( Critter& player, Critter@ npc )
+{
+    for( uint i = ADDICTION_BEGIN; i <= ADDICTION_END; i++ )
+        if( player.Addiction[ i ] != 0 )
+            return true;
+    return false;
+}
+
+// У игрока нет зависимостей от наркотиков?
+bool d_IsNotAddict( Critter& player, Critter@ npc )
+{
+    return not d_IsAddict( player, npc );
+}
+
+// Игрок в группе? (лидер тоже считаеться)
+bool d_GroupPresent( Critter& player, Critter@ npc )
+{
+    return DFGroupCount( player, npc ) > 1;
+}
+
+// Игрок НЕ в группе? (лидер тоже считаеться)
+bool d_NotGroupPresent( Critter& player, Critter@ npc )
+{
+    return not d_GroupPresent( player, npc );
+}
+
+/** проверка на таймаут
+   используйте функцию r_TimeoutSet для инициализации
+   если таймаут кончился (или еще и не начинался)
+   то функция вернет истинну (разрешит ответ)
+   иначе вернет ложь (ответ будет скрыт)
+ */
+bool d_TimeoutCheck( Critter& player, Critter@ npc )
+{
+    GameVar @ t = GetLocalVar( LVAR_timeout, npc.Id );
+    if( not valid( t ) )
+        return true;         // таймаут еще и не начался
+    if( __FullSecond >= uint( t.GetValue() ) )
+        return true;         // таймаут истек
+    else
+        return false;        // таймаут еще жив
+}
+
+/**
+        инверсия d_TimeoutCheck
+ */
+bool d_NotTimeoutCheck( Critter& player, Critter@ npc )
+{
+    return not d_TimeoutCheck( player, npc );
+}
+
+
+// Проверка уникальной переменной - таймаута игрок-нпц
+// Время прошло, или таймаут не назначался
+bool d_TimeoutOk( Critter& player, Critter @ npc )
+{
+    if( !valid( npc ) )
+        return false;
+    GameVar @ to = GetUnicumVar( UVAR_uniq_timeout, player.Id, npc.Id );
+    if( !valid( to ) )
+        return false;
+    uint time = to.GetValue();
+    if( time == 0 )
+        return true;
+    return ( time < __FullSecond );
+}
+
+// Таймаут не закончился
+bool d_NotTimeoutOk( Critter& player, Critter @ npc )
+{
+    return !d_TimeoutOk( player, npc );
+}
+
+bool d_CheckMonth( Critter& playe, Critter @npc, int monthFrom, int monthTo )
+{
+    return ( __Month <= monthTo && __Month >= monthFrom );
+}
+
+// НПЦ жив?
+// в v0 указываем NpcRole НПЦ (на карте должен быть в 1 экземпляре)
+// в v1 указываем PID карты (карта должна быть в игре в одном экземпляре)
+bool d_IsLife( Critter& player, Critter@ npc, int v0, int v1 )
+{
+    Map @ map = GetMapByPid( v1, 0 );
+    if( not valid( map ) )
+    {
+        Log( "error" );
+        return false;
+    }
+    Critter @ crit = map.GetNpc( v0, FIND_ALL | FIND_ONLY_NPC, 0 );
+    if( not valid( crit ) )
+    {
+        Log( "error" );
+        return false;
+    }
+    if( crit.IsLife() )
+        return true;
+    else
+        return false;
+}
+
+// НПЦ мертв?
+bool d_IsDead( Critter& player, Critter@ npc, int v0, int v1 )
+{
+    return not d_IsLife( player, npc, v0, v1 );
+}
+
+// Шпионаж
+void dlg_TrySpy( Critter& player, Critter@ banker, string@ playerName )
+{
+    if( !valid( banker ) )
+        return;
+    if( !IS_DIALOG_SAY_MODE( playerName ) || IS_DIALOG_END( playerName ) )
+        return;
+    if( playerName.length() <= 1 )
+        return;
+
+    uint     BankerDialog = banker.Stat[ ST_DIALOG_ID ];
+    uint     DlgStr = 100;
+    string   lexems = "$Victim " + playerName;
+
+    Critter@ cr = GetPlayer( playerName );
+    if( !valid( cr ) )
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 0 ), lexems );
+        return;
+    }
+
+    if( player.Id == cr.Id )
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 9 ) );
+        return;
+    }
+
+    // Пол.
+    if( cr.Stat[ ST_GENDER ] == GENDER_MALE )
+    {
+        lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 10 ) + "@";
+    }
+    else if( cr.Stat[ ST_GENDER ] == GENDER_FEMALE )
+    {
+        lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 11 ) + "@";
+    }
+    else
+    {
+        lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 12 ) + "@";
+    }
+
+    // Репликации.
+    if( cr.Stat[ ST_REPLICATION_COUNT ] / cr.Stat[ ST_LEVEL ] <= 2 )
+    {
+        lexems += "$ReplCount @msg dlg " + DLGSTR( BankerDialog, DlgStr + 13 ) + "@";
+    }
+    else if( cr.Stat[ ST_REPLICATION_COUNT ] / cr.Stat[ ST_LEVEL ] > 2 && cr.Stat[ ST_REPLICATION_COUNT ] / cr.Stat[ ST_LEVEL ] < 10 )
+    {
+        lexems += "$ReplCount @msg dlg " + DLGSTR( BankerDialog, DlgStr + 14 ) + "@";
+    }
+    else
+    {
+        lexems += "$ReplCount @msg dlg " + DLGSTR( BankerDialog, DlgStr + 15 ) + "@";
+    }
+
+    // Год рождения.
+    lexems += "$Born " + ( __Year - cr.Stat[ ST_AGE ] );
+
+    if( player.Skill[ SK_SPEECH ] >= 40 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 1 ), lexems );
+    }
+
+    // Уровень.
+    if( player.Skill[ SK_SPEECH ] >= 50 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+        lexems = "";
+        lexems += "$Level " + cr.Stat[ ST_LEVEL ];
+        player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 2 ), lexems );
+    }
+
+    // Карма.
+    if( player.Skill[ SK_SPEECH ] >= 60 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+        int[] Values = { -2147483647, -1000, -750, -500, -250, 250,     500,    750,    1000 };
+        int[] Descs =   { 6125,                         6122,   6119, 6116, 6113, 6110, 6107, 6104, 6101 };
+        int CurKarma = 0;
+        for( uint i = 0; i < Values.length(); i++ )
+        {
+            if( int(cr.Stat[ ST_KARMA ]) >= Values[ i ] )
+            {
+                CurKarma = Descs[ i ];
+            }
+            else
+            {
+                break;
+            }
+        }
+        player.SayMsg( SAY_APPEND, TEXTMSG_GAME, CurKarma );
+    }
+
+    // Статы.
+    if( player.Skill[ SK_SPEECH ] >= 70 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+        lexems = "";
+        // Сила.
+        if( cr.StatBase[ ST_STRENGTH ] < 4 )
+        {
+            lexems += "$Strength @msg dlg " + DLGSTR( BankerDialog, DlgStr + 16 ) + "@";
+        }
+        else if( cr.StatBase[ ST_STRENGTH ] >= 4 && cr.StatBase[ ST_STRENGTH ] < 7 )
+        {
+            lexems += "$Strength" + "";
+        }
+        else if( cr.StatBase[ ST_STRENGTH ] >= 7 && cr.StatBase[ ST_STRENGTH ] <= 8 )
+        {
+            lexems += "$Strength @msg dlg " + DLGSTR( BankerDialog, DlgStr + 17 ) + "@";
+        }
+        else
+        {
+            lexems += "$Strength @msg dlg " + DLGSTR( BankerDialog, DlgStr + 18 ) + "@";
+        }
+        // Восприятие.
+        if( cr.StatBase[ ST_PERCEPTION ] < 4 )
+        {
+            lexems += "$Perception @msg dlg " + DLGSTR( BankerDialog, DlgStr + 19 ) + "@";
+        }
+        else if( cr.StatBase[ ST_PERCEPTION ] >= 4 && cr.StatBase[ ST_PERCEPTION ] < 7 )
+        {
+            lexems += "$Perception" + "";
+        }
+        else if( cr.StatBase[ ST_PERCEPTION ] >= 7 && cr.StatBase[ ST_PERCEPTION ] <= 8 )
+        {
+            lexems += "$Perception @msg dlg " + DLGSTR( BankerDialog, DlgStr + 20 ) + "@";
+        }
+        else
+        {
+            lexems += "$Perception @msg dlg " + DLGSTR( BankerDialog, DlgStr + 21 ) + "@";
+        }
+        // Выносливость.
+        if( cr.StatBase[ ST_ENDURANCE ] < 4 )
+        {
+            lexems += "$Endurance @msg dlg " + DLGSTR( BankerDialog, DlgStr + 22 ) + "@";
+        }
+        else if( cr.StatBase[ ST_ENDURANCE ] >= 4 && cr.StatBase[ ST_ENDURANCE ] < 7 )
+        {
+            lexems += "$Endurance" + "";
+        }
+        else if( cr.StatBase[ ST_ENDURANCE ] >= 7 && cr.StatBase[ ST_ENDURANCE ] <= 8 )
+        {
+            lexems += "$Endurance @msg dlg " + DLGSTR( BankerDialog, DlgStr + 23 ) + "@";
+        }
+        else
+        {
+            lexems += "$Endurance @msg dlg " + DLGSTR( BankerDialog, DlgStr + 24 ) + "@";
+        }
+        // Обаяние.
+        if( cr.StatBase[ ST_CHARISMA ] < 4 )
+        {
+            lexems += "$Charisma @msg dlg " + DLGSTR( BankerDialog, DlgStr + 25 ) + "@";
+        }
+        else if( cr.StatBase[ ST_CHARISMA ] >= 4 && cr.StatBase[ ST_CHARISMA ] < 7 )
+        {
+            lexems += "$Charisma" + "";
+        }
+        else if( cr.StatBase[ ST_CHARISMA ] >= 7 && cr.StatBase[ ST_CHARISMA ] <= 8 )
+        {
+            lexems += "$Charisma @msg dlg " + DLGSTR( BankerDialog, DlgStr + 26 ) + "@";
+        }
+        else
+        {
+            lexems += "$Charisma @msg dlg " + DLGSTR( BankerDialog, DlgStr + 27 ) + "@";
+        }
+        // Интеллект.
+        if( cr.StatBase[ ST_INTELLECT ] < 4 )
+        {
+            lexems += "$Intellect @msg dlg " + DLGSTR( BankerDialog, DlgStr + 28 ) + "@";
+        }
+        else if( cr.StatBase[ ST_INTELLECT ] >= 4 && cr.StatBase[ ST_INTELLECT ] < 7 )
+        {
+            lexems += "$Intellect" + "";
+        }
+        else if( cr.StatBase[ ST_INTELLECT ] >= 7 && cr.StatBase[ ST_INTELLECT ] <= 8 )
+        {
+            lexems += "$Intellect @msg dlg " + DLGSTR( BankerDialog, DlgStr + 29 ) + "@";
+        }
+        else
+        {
+            lexems += "$Intellect @msg dlg " + DLGSTR( BankerDialog, DlgStr + 30 ) + "@";
+        }
+        // Ловкость.
+        if( cr.StatBase[ ST_AGILITY ] < 4 )
+        {
+            lexems += "$Agility @msg dlg " + DLGSTR( BankerDialog, DlgStr + 31 ) + "@";
+        }
+        else if( cr.StatBase[ ST_AGILITY ] >= 4 && cr.StatBase[ ST_AGILITY ] < 7 )
+        {
+            lexems += "$Agility" + "";
+        }
+        else if( cr.StatBase[ ST_AGILITY ] >= 7 && cr.StatBase[ ST_AGILITY ] <= 8 )
+        {
+            lexems += "$Agility @msg dlg " + DLGSTR( BankerDialog, DlgStr + 32 ) + "@";
+        }
+        else
+        {
+            lexems += "$Agility @msg dlg " + DLGSTR( BankerDialog, DlgStr + 33 ) + "@";
+        }
+        // Удача.
+        if( cr.StatBase[ ST_LUCK ] < 4 )
+        {
+            lexems += "$Luck @msg dlg " + DLGSTR( BankerDialog, DlgStr + 34 ) + "@";
+        }
+        else if( cr.StatBase[ ST_LUCK ] >= 4 && cr.StatBase[ ST_LUCK ] < 7 )
+        {
+            lexems += "$Luck" + "";
+        }
+        else if( cr.StatBase[ ST_LUCK ] >= 7 && cr.StatBase[ ST_LUCK ] <= 8 )
+        {
+            lexems += "$Luck @msg dlg " + DLGSTR( BankerDialog, DlgStr + 35 ) + "@";
+        }
+        else
+        {
+            lexems += "$Luck @msg dlg " + DLGSTR( BankerDialog, DlgStr + 36 ) + "@";
+        }
+        player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 3 ), lexems );
+    }
+
+    // Тагнутые боевые навыки.
+    if( player.Skill[ SK_SPEECH ] >= 80 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+
+        uint[] CombatSkills = { SK_SMALL_GUNS, SK_BIG_GUNS, SK_ENERGY_WEAPONS, SK_UNARMED, SK_THROWING };
+        uint[] TagSkills = { cr.TagSkill[ TAG_SKILL1 ], cr.TagSkill[ TAG_SKILL2 ], cr.TagSkill[ TAG_SKILL3 ], cr.TagSkill[ TAG_SKILL4 ] };
+
+        for( uint i = 0; i < CombatSkills.length(); i++ )
+        {
+            for( uint t = 0; t < TagSkills.length(); t++ )
+            {
+                if( CombatSkills[ i ] == TagSkills[ t ] )
+                {
+                    if( cr.Skill[ TagSkills[ t ] ] < 100 )
+                    {
+                        lexems = "$CmbtSkillTag @msg dlg " + DLGSTR( BankerDialog, DlgStr + 60 + Random( 0, 1 ) ) + "@";
+                        switch( TagSkills[ t ] )
+                        {
+                        case SK_SMALL_GUNS:
+                            lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 41 ) + "@";
+                            break;
+                        case SK_BIG_GUNS:
+                            lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 42 ) + "@";
+                            break;
+                        case SK_ENERGY_WEAPONS:
+                            lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 43 ) + "@";
+                            break;
+                        case SK_UNARMED:
+                            lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 44 ) + "@";
+                            break;
+                        case SK_THROWING:
+                            lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 46 ) + "@";
+                            break;
+                        default:
+                            break;
+                        }
+                        player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 6 ), lexems );
+                    }
+                }
+            }
+        }
+
+    }
+
+    // Тагнутые небоевые навыки.
+    if( player.Skill[ SK_SPEECH ] >= 85 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+        uint[] Skills = { SK_FIRST_AID, SK_DOCTOR, SK_SNEAK, SK_LOCKPICK, SK_STEAL, SK_TRAPS, SK_SCIENCE, SK_REPAIR, SK_SPEECH, SK_BARTER, SK_GAMBLING, SK_OUTDOORSMAN };
+        uint[] TagSkills = { cr.TagSkill[ TAG_SKILL1 ], cr.TagSkill[ TAG_SKILL2 ], cr.TagSkill[ TAG_SKILL3 ], cr.TagSkill[ TAG_SKILL4 ] };
+        for( uint i = 0; i < Skills.length(); i++ )
+        {
+            for( uint t = 0; t < TagSkills.length(); t++ )
+            {
+                if( Skills[ i ] == TagSkills[ t ] )
+                {
+                    if( cr.Skill[ TagSkills[ t ] ] < 100 )
+                    {
+                        lexems = "$SkillTag @msg dlg " + DLGSTR( BankerDialog, DlgStr + 62 + Random( 0, 2 ) ) + "@";
+                        switch( TagSkills[ t ] )
+                        {
+                        case SK_FIRST_AID:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 65 ) + "@";
+                            break;
+                        case SK_DOCTOR:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 66 ) + "@";
+                            break;
+                        case SK_SNEAK:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 67 ) + "@";
+                            break;
+                        case SK_LOCKPICK:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 68 ) + "@";
+                            break;
+                        case SK_STEAL:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 69 ) + "@";
+                            break;
+                        case SK_TRAPS:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 70 ) + "@";
+                            break;
+                        case SK_SCIENCE:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 71 ) + "@";
+                            break;
+                        case SK_REPAIR:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 72 ) + "@";
+                            break;
+                        case SK_SPEECH:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 73 ) + "@";
+                            break;
+                        case SK_BARTER:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 74 ) + "@";
+                            break;
+                        case SK_GAMBLING:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 75 ) + "@";
+                            break;
+                        case SK_OUTDOORSMAN:
+                            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 76 ) + "@";
+                            break;
+                        default:
+                            break;
+                        }
+                        player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 7 ), lexems );
+                    }
+                }
+            }
+        }
+
+    }
+
+    // Прокачаный боевой навык.
+    if( player.Skill[ SK_SPEECH ] >= 90 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+
+        lexems = "";
+        int CurSkill = 0;
+        int MaxSkill = 0;
+        uint[] CombatSkills = { SK_SMALL_GUNS, SK_BIG_GUNS, SK_ENERGY_WEAPONS, SK_UNARMED, SK_THROWING };
+
+        for( uint i = 0; i < CombatSkills.length(); i++ )
+        {
+            if( CurSkill < cr.Skill[ CombatSkills[ i ] ] )
+            {
+                CurSkill = cr.Skill[ CombatSkills[ i ] ];
+                MaxSkill = CombatSkills[ i ];
+            }
+        }
+        if( CurSkill < 90 )
+        {
+            lexems += "$CombatSkillLvl @msg dlg " + DLGSTR( BankerDialog, DlgStr + 37 ) + "@";
+            lexems += "$CombatSkillMax";
+        }
+        else
+        {
+            if( CurSkill >= 90 && CurSkill < 150 )
+                lexems += "$CombatSkillLvl @msg dlg " + DLGSTR( BankerDialog, DlgStr + 38 ) + "@";
+            if( CurSkill >= 150 && CurSkill < 200 )
+                lexems += "$CombatSkillLvl @msg dlg " + DLGSTR( BankerDialog, DlgStr + 39 ) + "@";
+            if( CurSkill >= 200 )
+                lexems += "$CombatSkillLvl @msg dlg " + DLGSTR( BankerDialog, DlgStr + 40 ) + "@";
+            switch( MaxSkill )
+            {
+            case SK_SMALL_GUNS:
+                lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 41 ) + "@";
+                break;
+            case SK_BIG_GUNS:
+                lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 42 ) + "@";
+                break;
+            case SK_ENERGY_WEAPONS:
+                lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 43 ) + "@";
+                break;
+            case SK_UNARMED:
+                lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 44 ) + "@";
+                break;
+            case SK_THROWING:
+                lexems += "$CombatSkillMax @msg dlg " + DLGSTR( BankerDialog, DlgStr + 46 ) + "@";
+                break;
+            default:
+                break;
+            }
+        }
+        player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 4 ), lexems );
+
+    }
+
+    // Прокачаный небоевой навык.
+    if( player.Skill[ SK_SPEECH ] >= 100 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+
+        lexems = "";
+        int CurSkill = 0;
+        int MaxSkill = 0;
+        uint[] Skills = { SK_FIRST_AID, SK_DOCTOR, SK_SNEAK, SK_LOCKPICK, SK_STEAL, SK_TRAPS, SK_SCIENCE, SK_REPAIR, SK_SPEECH, SK_BARTER, SK_GAMBLING, SK_OUTDOORSMAN };
+
+        for( uint i = 0; i < Skills.length(); i++ )
+        {
+            if( CurSkill < cr.Skill[ Skills[ i ] ] )
+            {
+                CurSkill = cr.Skill[ Skills[ i ] ];
+                MaxSkill = Skills[ i ];
+            }
+        }
+        if( CurSkill <= 90 )
+        {
+            lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 47 ) + "@";
+        }
+        else
+        {
+            switch( MaxSkill )
+            {
+            case SK_FIRST_AID:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 48 ) + "@";
+                break;
+            case SK_DOCTOR:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 49 ) + "@";
+                break;
+            case SK_SNEAK:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 50 ) + "@";
+                break;
+            case SK_LOCKPICK:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 51 ) + "@";
+                break;
+            case SK_STEAL:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 52 ) + "@";
+                break;
+            case SK_TRAPS:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 53 ) + "@";
+                break;
+            case SK_SCIENCE:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 54 ) + "@";
+                break;
+            case SK_REPAIR:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 55 ) + "@";
+                break;
+            case SK_SPEECH:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 56 ) + "@";
+                break;
+            case SK_BARTER:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 57 ) + "@";
+                break;
+            case SK_GAMBLING:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 58 ) + "@";
+                break;
+            case SK_OUTDOORSMAN:
+                lexems += "$AnySkill @msg dlg " + DLGSTR( BankerDialog, DlgStr + 59 ) + "@";
+                break;
+            default:
+                break;
+            }
+        }
+        player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 5 ), lexems );
+
+    }
+
+    // Количество денег на счету.
+    if( player.Skill[ SK_SPEECH ] >= 110 - ( player.Stat[ ST_CHARISMA ] + player.Stat[ ST_LUCK ] ) / 2 )
+    {
+        lexems = "";
+        lexems += "$ReplMoney " + cr.Stat[ ST_REPLICATION_MONEY ] + "$ReplCount " + cr.Stat[ ST_REPLICATION_COUNT ];
+        player.SayMsg( SAY_APPEND, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 8 ), lexems );
+    }
+}
+
+void dlg_ForSearching( Critter& player, Critter@ barman, string@ playerName )
+{
+    if( !valid( barman ) )
+        return;
+    if( !IS_DIALOG_SAY_MODE( playerName ) || IS_DIALOG_END( playerName ) )
+        return;
+    if( playerName.length() <= 1 )
+        return;
+    uint   BankerDialog = barman.Stat[ ST_DIALOG_ID ];
+    uint   DlgStr = 200;
+    // Имя запрашиваемого криттера и инициализация переменной с лексемами.
+    string lexems = "$Victim " + playerName;
+    // Пол бармена.
+    if( barman.Stat[ ST_GENDER ] == GENDER_FEMALE )
+    {
+        lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 10 ) + "@";
+    }
+    else
+    {
+        lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 9 ) + "@";
+    }
+    // Игрок не найден.
+    Critter@ cr = GetPlayer( playerName );
+    if( !valid( cr ) )
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 0 ), lexems );
+        return;
+    }
+    // Пол запрашиваемого криттера.
+    if( cr.Stat[ ST_GENDER ] == GENDER_FEMALE )
+    {
+        lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 8 ) + "@";
+    }
+    else
+    {
+        lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 7 ) + "@";
+    }
+    player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 11 ), lexems );
+    return;
+}
+
+void dlg_TrySearching( Critter& player, Critter@ barman, string@ playerName )
+{
+
+    #define LOC_NAME    # (mapId)                       ( ( mapId + 100 ) * 1000 ) // поиск названия локации в файле FOGM.msg
+    if( !valid( barman ) )
+        return;
+    if( !IS_DIALOG_SAY_MODE( playerName ) || IS_DIALOG_END( playerName ) )
+        return;
+    if( playerName.length() <= 1 )
+        return;
+    uint   BankerDialog = barman.Stat[ ST_DIALOG_ID ];
+    uint   DlgStr = 200;
+    // Имя запрашиваемого криттера и инициализация переменной с лексемами.
+    string lexems = "$Victim " + playerName;
+    // Пол бармена.
+    if( barman.Stat[ ST_GENDER ] == GENDER_FEMALE )
+    {
+        lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 10 ) + "@";
+    }
+    else
+    {
+        lexems += "$BarmanGen @msg dlg " + DLGSTR( BankerDialog, DlgStr + 9 ) + "@";
+    }
+    // Игрок не найден.
+    Critter@ cr = GetPlayer( playerName );
+    if( !valid( cr ) )
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 0 ), lexems );
+        return;
+    }
+    // Пол запрашиваемого криттера.
+    if( cr.Stat[ ST_GENDER ] == GENDER_FEMALE )
+    {
+        lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 8 ) + "@";
+    }
+    else
+    {
+        lexems += "$Gender @msg dlg " + DLGSTR( BankerDialog, DlgStr + 7 ) + "@";
+    }
+    // Игрок спрашивает о самом себе.
+    if( player.Id == cr.Id )
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 1 ) );
+        return;
+    }
+    // Криттер на глобале.
+    Map@ map = cr.GetMap();
+    if( !valid( map ) )
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 2 ), lexems );
+        return;
+    }
+    // Локация, где находится криттер. Диапазоны PID: до 150 и 210-235. Города и репликации.
+    if( cr.GetMap().GetLocation().GetProtoId() < 50 || cr.GetMap().GetLocation().GetProtoId() >= 200 )
+    {
+        lexems += "$Place @msg GM " + LOC_NAME( cr.GetMap().GetLocation().GetProtoId() ) + "@";
+        // Криттер находится в той же локации, что и игрок.
+        if( barman.GetMap().GetLocation().Id == cr.GetMap().GetLocation().Id )
+        {
+            player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 3 ), lexems );
+            return;
+        }
+        // Криттер найден, лексемы сформированы - даем информацию.
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 4 + Random( 0, 2 ) ), lexems );
+    }
+    else
+    {
+        player.SayMsg( SAY_DIALOG, TEXTMSG_DLG, DLGSTR( BankerDialog, DlgStr + 2 ), lexems );
+        return;
+    }
+}
+
+void r_ToHeal( Critter& player, Critter@ npc )
+{
+    HealCritter( player );
+}
+
+void r_DropDrugs( Critter& player, Critter @ npc )
+{
+    DropDrugEffects( player );
+}
+
+void r_DropRadiation( Critter& player, Critter @ npc )
+{
+    DropRadiation( player );
+}
+
+void r_DropPoison( Critter& player, Critter @ npc )
+{
+    DropPoison( player );
+}
+
+
+void r_ShowLocation( Critter& player, Critter@ npc, int locNum )
+{
+    player.SetKnownLoc( false, uint16( locNum ) );
+}
+
+void r_FadeOut( Critter& player, Critter@ npc, int time )
+{
+    if( time == 0 )
+        time = 2000;
+    FlushScreen( player, false, time );
+}
+
+void r_FadeInOut( Critter& player, Critter@ npc )
+{
+    FlushScreen( player, false, 2000 );
+    FlushScreen( player, true, 1000 );
+}
+
+void r_TransitToGlobal( Critter& player, Critter@ npc )
+{
+    player.TransitToGlobal( false );
+}
+
+void r_TransitToLocation( Critter& player, Critter@ npc, int locPid, int mapIndex )
+{
+    TransitToLoc( player, locPid, mapIndex, 0 );
+}
+
+void r_TransitToMap( Critter& player, Critter@ npc, int mapPid, int entranceNum )
+{
+    TransitToMap( player, mapPid, entranceNum );
+}
+
+void r_InfoMessage( Critter& player, Critter@ npc, int strNum )
+{
+    InfoMessage( player, npc, strNum );
+}
+
+// Установка таймаута в часах на отдельного нпц (общий для всех игроков).
+void r_TimeoutSet( Critter& player, Critter@ npc, int gameHours )
+{
+    if( valid( npc ) )
+        TimeoutSet( npc, gameHours );
+}
+
+// Установка таймаута в минутах для связки игрок/нпц.
+void r_SetUniqTO( Critter& player, Critter @ npc, int value )
+{
+    if( !valid( npc ) )
+        return;
+    GameVar @ to = GetUnicumVar( UVAR_uniq_timeout, player.Id, npc.Id );
+    if( !valid( to ) )
+        return;
+    to = value * 60 + __FullSecond;
+}
+
+void r_DoorOpen( Critter& player, Critter@ npc, int entireNum )
+{
+    DoorControl( player, entireNum, true );
+}
+
+void r_DoorClose( Critter& player, Critter@ npc, int entireNum )
+{
+    DoorControl( player, entireNum, false );
+}
+
+// Даем игроку голодиск
+void r_GiveHolodisk( Critter& player, Critter@ npc, int holodiskNum )
+{
+    Item@ holo = player.AddItem( PID_HOLODISK, 1 );
+    holo.HolodiskNumber = holodiskNum;
+    holo.Update();
+}
+
+void r_Attack( Critter& player, Critter@ npc, int npcRole )
+{
+    Attack( player, npcRole );
+}
+
+void r_AttackStop( Critter& player, Critter@ npc, int npcRole )
+{
+    AttackStop( player, npcRole );
+}
+
+void r_Kill( Critter& player, Critter@ npc, int type )
+{
+    Kill( player, type );
+}
+
+void r_Damage( Critter& player, Critter@ npc, int dmg, int type, int dir )
+{
+    Damage( player, dmg, type, dir );
+}
+
+// Атака игрока всеми НПЦ на карте, у которых команда совпадает с командой говорящего НПЦ
+void r_TeamAttack( Critter& player, Critter@ npc )
+{
+    if( !valid( npc ) )
+        return;
+    Map@ map = npc.GetMap();
+    if( !valid( map ) )
+        return;
+    Critter@[] team;
+    if( map.GetCritters( 0, FIND_LIFE | FIND_ONLY_NPC, team ) > 0 )
+    {
+        for( uint i = 0, l = team.length(); i < l; i++ )
+        {
+            if( team[ i ].Stat[ ST_TEAM_ID ] == npc.Stat[ ST_TEAM_ID ] )
+                AddAttackPlane( team[ i ], 0, player.Id );
+        }
+    }
+}
+
+// Отложенная всплывающая строка над нпц
+void r_SayMessageDelayed( Critter& player, Critter @ npc, int strNum, int delaySeconds, int sayType )
+{
+    if( !valid( npc ) )
+        return;
+    uint[] values = { npc.Id, uint( sayType ), uint( strNum ) };
+    CreateTimeEvent( __FullSecond + delaySeconds, "e_SayMessage", values, false );
+}
+
+uint e_SayMessage( uint[] @ values )
+{
+    if( values.length() < 3 )
+        return 0;
+    Critter @ cr = GetCritter( values[ 0 ] );
+    if( !valid( cr ) )
+        return 0;
+    int did = cr.Stat[ ST_DIALOG_ID ];
+    if( did == 0 )
+        return 0;
+    cr.SayMsg( values[ 1 ], TEXTMSG_DLG, DLGSTR( did, values[ 2 ] ) );
+    return 0;
+}
+
+void r_SkillUp( Critter& player, Critter@ npc, int skill )
+{
+    SkillUp( player, skill );
+}
+
+void r_QuestReward( Critter& player, Critter@ npc, int base )
+{
+    QuestRewardExperience( player, base );
+}
+
+void r_QuestReward1( Critter& player, Critter@ npc )
+{
+    int base = 10;
+    if( player.Stat[ ST_LEVEL ] < 20 )
+        base = 15;
+    if( player.Stat[ ST_LEVEL ] < 10 )
+        base = 20;
+    if( player.Stat[ ST_LEVEL ] < 5 )
+        base = 40;
+    QuestRewardExperience( player, base );
+}
+
+void r_QuestReward2( Critter& player, Critter@ npc )
+{
+    int base = 15;
+    if( player.Stat[ ST_LEVEL ] < 20 )
+        base = 20;
+    if( player.Stat[ ST_LEVEL ] < 10 )
+        base = 50;
+    QuestRewardExperience( player, base );
+}
+
+void r_QuestReward3( Critter& player, Critter@ npc )
+{
+    int base = 25;
+    if( player.Stat[ ST_LEVEL ] < 20 )
+        base = 30;
+    if( player.Stat[ ST_LEVEL ] < 10 )
+        base = 60;
+    QuestRewardExperience( player, base );
+}
+
+bool d_NotLocationKnown( Critter& player, Critter@ npc, int locPid )
+{
+    return !player.IsKnownLoc( false, uint( locPid ) );
+}
+
+void r_CreateLocation( Critter& player, Critter@ npc, int locPid, int worldX, int worldY, int dayDelete, int varNum )
+{
+    // Создает локацию в радиусе двух зон от заданных координат
+    int       delta = __GlobalMapZoneLength * 2;
+    Location@ loc = CreateLocationForCritter( player, locPid, worldX, worldY, delta, varNum, true );
+    if( valid( loc ) )
+        CreateTimeEvent( __FullSecond + REAL_DAY( dayDelete ), "quest@e_DeleteLocation", loc.Id, true );
+}
+
+void r_CreateHiddenLocation( Critter& player, Critter@ npc, int locPid, int worldX, int worldY, int dayDelete, int varNum )
+{
+    // Создает локацию в радиусе двух зон от заданных координат
+    int       delta = __GlobalMapZoneLength * 2;
+    Location@ loc = CreateLocationForCritter( player, locPid, worldX, worldY, delta, varNum, false );
+    if( valid( loc ) )
+        CreateTimeEvent( __FullSecond + REAL_DAY( dayDelete ), "quest@e_DeleteLocation", loc.Id, true );
+}
+
+void r_CreateHiddenLocationHere( Critter& player, Critter@ npc, int locPid, int , int , int dayDelete, int varNum )
+{
+    // Создает локацию в радиусе двух зон от заданных координат
+    int       delta = __GlobalMapZoneLength * 2;
+    Location@ loc = CreateLocationForCritter( player, locPid, player.WorldX, player.WorldY, delta, varNum, false );
+    if( valid( loc ) )
+        CreateTimeEvent( __FullSecond + REAL_DAY( dayDelete ), "quest@e_DeleteLocation", loc.Id, true );
+}
+
+void r_TeleportToCreatedLocation( Critter& player, Critter@ npc, int varNum, int mapIndex, int entire, int group )
+{
+    GameVar@ var = GetLocalVar( varNum, player.Id );
+    if( valid( var ) )
+    {
+        uint      locId = var.GetValue();
+        Location@ loc = GetLocation( locId );
+        if (!valid(loc))
+        {
+            Log("r_TeleportToCreated Error locId "+locId+" entire "+entire);
+            return;
+        }
+        if( uint( mapIndex ) >= loc.GetMapCount() )
+            return;
+        Map@ map = loc.GetMapByIndex( mapIndex );
+        if( valid( map ) )
+            r_teleport( player, npc, map.Id, entire, group );
+    }
+}
+
+void r_ShowQuestMessage( Critter& player, Critter@ npc, int lvar )
+{
+    GameVar@ var = GetLocalVar( lvar, player.Id );
+    if( !valid( var ) || !var.IsQuest() )
+        return;
+
+    SendQuestMessage( player, lvar * 1000 + 102, var.GetQuestStr() );
+}
+
+bool d_IsOffender( Critter& player, Critter@ npc)
+{
+    return GetOffenceLevel(player) > 0;
+}
+
+bool d_HoldsItems( Critter& player, Critter@ npc )
+{
+    if( !valid( npc ) )
+        return false;
+
+    ItemHolderWrapper wrapper( npc );
+    return wrapper.HoldsItems( player.Id );
+}
+
+void r_RetrieveItems( Critter& player, Critter@ npc )
+{
+    if( !valid( npc ) )
+        return;
+
+    ItemHolderWrapper wrapper( npc );
+    Item@[] items = wrapper.PopItems( player.Id );
+    MoveItems( items, player );
+}
+
+void r_ChangeCrType( Critter& player, Critter@ npc, int baseCrType )
+{
+    player.StatBase[ ST_BASE_CRTYPE ] = baseCrType;
+    uint crType = baseCrType;
+    Item@[] armor;
+    player.GetItems( SLOT_ARMOR, armor );
+    if( armor.length() > 0 )
+        if( player.Stat[ ST_GENDER ] == GENDER_MALE )
+        {
+            crType = armor[ 0 ].Proto.Armor_CrTypeMale;
+            CheckMaleCrType( baseCrType, crType );
+        }
+        else if( player.Stat[ ST_GENDER ] == GENDER_FEMALE )
+            crType = armor[ 0 ].Proto.Armor_CrTypeFemale;
+
+    player.ChangeCrType( crType );
+    FlushScreen( player, false, 2000 );
+}
+
+void r_OpenDoor( Critter& player, Critter@ npc, int hx, int hy, int pid )
+{
+    Map@ map = player.GetMap();
+    if( valid( map ) )
+        r_OpenDoor( player, npc, hx, hy, pid, map.Id );
+}
+
+bool d_NotImplantsInstalled( Critter& player, Critter@ npc )
+{
+    return !IsImplantInstalled( player );
+}
+
+bool d_IsImplantsInstalled( Critter& player, Critter@ npc )
+{
+    return IsImplantInstalled( player );
+}
+
+bool IsImplantInstalled( Critter& cr )
+{
+    for( uint i = IMPLANTS_START; i <= IMPLANTS_END; i++ )
+    {
+        if( cr.Perk[ i ] != 0 )
+            return true;
+
+    }
+    return false;
+}
+
+bool s_MedicalTerminal( Critter& player, Scenery& terminal, int skill, Item@ item )
+{
+    if( player.IsPlayer() && skill == -1 && not valid( item ) )
+        RunDialog( player, DIALOG_medical_terminal, terminal.HexX, terminal.HexY, false );
+    return true;
+}
+
+void r_OpenDoor( Critter& player, Critter@ npc, int hx, int hy, int pid, int mapId )
+{
+    if( hx < 0 || hy < 0 || pid <= 0 || mapId <= 0 )
+        return;
+
+    Map@ map = GetMap( mapId );
+    if( !valid( map ) )
+        return;
+
+    Item@ door = map.GetItem( hx, hy, pid );
+    if( !valid( door ) )
+        return;
+
+    if( _LockerIsOpen( door ) )
+        return;
+
+    if( door.Proto.Type != ITEM_TYPE_DOOR )
+        return;
+
+    SwitchState( door );
+    UnblockMultihexDoor( door );
+    OnAutoOpen( door );
+}
+
+void r_QuestNotice( Critter& player, Critter@ npc, int id1, int id2 )
+{
+    player.SayMsg( SAY_NETMSG, TEXTMSG_QUEST, ( id1 * 1000 ) + id2 );
+}
+
+void r_HoloNotice( Critter& player, Critter@ npc, int id )
+{
+    player.AddHolodiskInfo( id );
+}
+
+void r_HoloRemove( Critter& player, Critter@ npc, int id )
+{
+    player.EraseHolodiskInfo( id );
+}
+
+void r_ChangeProto( Critter& player, Critter@ npc, int protofrom, int prototo )
+{
+    Item@ armor = player.GetItem( 0, SLOT_ARMOR );
+    if( valid( armor ) )
+        player.MoveItem( armor.Id, 0, SLOT_INV );
+
+    array< Item@ > items;
+    if( player.GetItems( -1, items ) > 0 )
+    {
+        for( uint i = 0; i < items.length(); i++ )
+        {
+            if( valid( items[ i ] ) && items[ i ].GetProtoId() == protofrom )
+            {
+                items[ i ].ChangeProto( prototo );
+                items[ i ].Update();
+                return;
+            }
+        }
+    }
+}
+
+void r_teleport( Critter& player, Critter@ npc, int entire )
+{
+    Map@ map = player.GetMap();
+    if( valid( map ) )
+        r_teleport( player, npc, entire, 0 );
+}
+
+void r_teleport( Critter& player, Critter@ npc, int entire, int group )
+{
+    Map@ map = player.GetMap();
+    if( valid( map ) )
+        r_teleport( player, npc, map.Id, entire, group );
+}
+
+void r_teleport( Critter& player, Critter@ npc, int mapId, int entire, int group )
+{
+    Map@ map = GetMap( mapId );
+    if( valid( map ) )
+    {
+        array< Critter@ > crGroup = { player };
+        uint              cLen = 1;
+        if( group > 0 )
+            cLen += player.GetFollowGroup( FIND_ALL, crGroup );
+
+        for( uint c = 0; c < cLen; c++ )
+        {
+            crGroup[ c ].TransitToMap( mapId, entire, true );
+        }
+    }
+}
+
+void r_teleport( Critter& player, Critter@ npc, int mapId, int x, int y, int dir, int group )
+{
+    Map@ map = GetMap( mapId );
+    if( valid( map ) )
+    {
+        array< Critter@ > crGroup = { player };
+        uint              cLen = 1;
+        if( group > 0 )
+            cLen += player.GetFollowGroup( FIND_ALL, crGroup );
+
+        for( uint c = 0; c < cLen; c++ )
+        {
+            crGroup[ c ].TransitToMap( mapId, x, y, dir, true );
+        }
+    }
+}
+// Checks if inventory is empty.
+bool d_EmptyInventory( Critter& player, Critter@ npc )
+{
+    return ( player.ItemsCount() == 0 );
+}
+// Checks if inventory isn't empty.
+bool d_NotEmptyInventory( Critter& player, Critter@ npc )
+{
+    return !d_EmptyInventory( player, npc );
+}
+
+// Checks if inventory is empty Excluding CAPS.
+bool d_EmptyInventoryCaps( Critter& player, Critter@ npc )
+{
+    if ( player.ItemsCount() == 0 )
+       return true;
+    
+    Item@[] items;
+    player.GetItems(-1, items);
+    if ( items.length() == 1 && HasItem( player, PID_BOTTLE_CAPS ) )
+        return true;
+    
+    return false;
+}
+// Checks if inventory isn't empty Excluding CAPS.
+bool d_NotEmptyInventoryCaps( Critter& player, Critter@ npc )
+{
+    return !d_EmptyInventoryCaps( player, npc );
+}
+
+// More advanced way of teleporting, doesn't teleport randomly. Teleports from top left/up to bottom right/down
+void r_TransitToMapAdvanced( Critter& player, Critter@ npc, int mapPid, int entire )
+{
+    Map    @map = GetMapByPid( mapPid, 0 );
+    uint16 hx = 0;
+    uint16 hy = 0;
+    uint8  dir = 0;
+    uint   count = map.CountEntire( entire );
+    for( uint i = 0; i < count; i++ )
+    {
+        if( map.GetEntireCoords( entire, i, hx, hy, dir ) && map.IsHexPassed( hx, hy ) )
+        {
+            player.TransitToMap( map.Id, hx, hy, dir );
+        }
+    }
+}
+// Destroys everything in you'r inventory.
+void r_ClearInventory( Critter& player, Critter@npc )
+{
+    array< Item@ > items;
+    int            count = player.GetItems( -1, items );
+    DeleteItems( items );
+}
+// Equip An armor destroying previous one.
+void r_EquipArmor( Critter& player, Critter@npc, int ArmorId )
+{
+    Item@ oldarmor = player.GetItem( 0, SLOT_ARMOR );
+    if( valid( oldarmor ) )
+        player.MoveItem( oldarmor.Id, 0, SLOT_GROUND );
+
+    Item@ item = player.AddItem( ArmorId, 1 );
+    if( valid( item ) )
+        player.MoveItem( item.Id, 0, SLOT_ARMOR );
+}
+// Deletes npc player talks with
+void r_RemoveNpc( Critter& player, Critter@ npc )
+{
+    DeleteNpc( npc );
+}
+// Random chance to continue.
+uint r_NodeChancePercent( Critter& player, Critter@ npc, int chance, int node )
+{
+    if( Random( 1, 100 ) <= chance )
+        return ( node );
+
+    return ( 0 );
+}
+// Random chance to continue, with fail.
+uint r_NodeChancePercent( Critter& player, Critter@ npc, int chance, int nodeOK, int nodeFAIL )
+{
+    if( Random( 1, 100 ) <= chance )
+        return ( nodeOK );
+
+    return ( nodeFAIL );
+}
+// Makes Npc's attack you in group.
+void r_AttackGroup( Critter& player, Critter@ npc, int npcRole )
+{
+    if( not player.IsPlayer() )
+        return;
+    Map@ map = player.GetMap();
+    uint count = map.GetNpcCount( npcRole, FIND_LIFE_AND_KO | FIND_ONLY_NPC );
+    for( uint i = 0; i < count; i++ )
+        AddAttackPlane( map.GetNpc( npcRole, FIND_LIFE_AND_KO | FIND_ONLY_NPC, i ), AI_PLANE_ATTACK_PRIORITY_MARK, player );
+}
+// Change npc home so he will walk to other place after dialog.
+void r_MoveNpc( Critter& player, Critter@ npc, int HexX, int HexY, int dir )
+{
+    npc.SetHomePos( HexX, HexY, dir );
+}
+// Delete current location
+void r_GarbageLocation( Critter& player, Critter@ npc )
+{
+    Location@ loc = player.GetMap().GetLocation();
+    if( valid( loc ) )
+        loc.AutoGarbage = true;
+}
+// Delete current location off
+void r_GarbageCancel( Critter& player, Critter@ npc )
+{
+    Location@ loc = player.GetMap().GetLocation();
+    if( valid( loc ) )
+        loc.AutoGarbage = false;
+}
+
+// Garbge state checker.
+bool d_GarbageOn( Critter& player, Critter@ npc )
+{
+    Location@ loc = player.GetMap().GetLocation();
+    if( valid( loc ) &&  loc.AutoGarbage == true )
+        return true;
+    else
+        return false;
+}
+// Garbge state checker.
+bool d_GarbageOff( Critter& player, Critter@ npc )
+{
+    return !d_GarbageOn( player, npc );
+}
+// Makes certain Npc's no longer passive, so they will attack when you reenter map after trying to kill them trough dialog.
+void r_MakeAggresive( Critter& player, Critter@ npc, int npcRole )
+{
+    array< Critter@ > crits;
+    uint              n = player.GetMap().GetCritters( 0, FIND_LIFE | FIND_ONLY_NPC, crits );
+    for( uint i = 0; i < n; i++ )
+        if( crits[ i ].Stat[ ST_NPC_ROLE ] == npcRole )
+        {
+            crits[ i ].SetScript( "quest@Mob2" );
+        }
+}
+// Makes Npc with certain role walk to place
+void r_WalkNpc( Critter& player, Critter@ npc, int HexX, int HexY, int dir, int npcRole )
+{
+    Map@     map = player.GetMap();
+    Critter@ moved = map.GetNpc( npcRole, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    {
+        AddWalkPlane( moved, AI_PLANE_WALK_PRIORITY, HexX, HexY, dir, false, 0 );
+        moved.SetHomePos( HexX, HexY, dir );
+        return;
+    }
+}
+// Makes Npc with certain role run to place, any simplier ideas? :F
+void r_RunNpc( Critter& player, Critter@ npc, int HexX, int HexY, int dir, int npcRole )
+{
+    Map@     map = player.GetMap();
+    Critter@ moved = map.GetNpc( npcRole, FIND_LIFE | FIND_ONLY_NPC, 0 );
+    if(valid(moved))
+    {
+        AddWalkPlane( moved, AI_PLANE_WALK_PRIORITY, HexX, HexY, dir, true, 0 );
+        moved.SetHomePos( HexX, HexY, dir );
+    }
+}
+
+void r_Wait( Critter& player, Critter@ npc )
+{
+    player.Wait( 1 );
+}
+
+
+void r_OpenDoor_MapIndex( Critter& player, Critter@ npc, int hx, int hy, int pid, int mapIndex )
+{
+    Map@ crMap = player.GetMap();
+    if( !valid( crMap ) )
+        return;
+
+    Location@ loc = crMap.GetLocation();
+    if( !valid( loc ) )
+        return;
+
+    if( mapIndex < 0 || uint( mapIndex ) >= loc.GetMapCount() )
+        return;
+
+    Map@ map = loc.GetMapByIndex( mapIndex );
+    if( !valid( map ) )
+        return;
+
+    r_OpenDoor( player, npc, hx, hy, pid, map.Id );
+}
+
+void Type( Critter& player, Critter@ npc )
+{
+    int    roll = Random( 1, 8 );
+    string action = "typing";
+    if( roll == 1 )
+        action = "typing-01";
+    else if( roll == 2 )
+        action = "typing-02";
+    else if( roll == 3 )
+        action = "typing-03";
+    else if( roll == 4 )
+        action = "typing-04";
+    else if( roll == 5 )
+        action = "typing-05";
+    else if( roll == 6 )
+        action = "typing-06";
+    else if( roll == 7 )
+        action = "typing-07";
+    else if( roll == 8 )
+        action = "typing-08";
+
+    player.PlaySound( action + ".ogg", true );
+}
+
+
+void r_SexBonus( Critter& player, Critter@ npc )
+{
+    int roll = Random( 1, 3 );
+    int bonus = 0;
+    if( roll == 1 )
+        bonus = PID_KITTY_SEX_DRUG_AGILITY;
+    else if( roll == 2 )
+        bonus = PID_KITTY_SEX_DRUG_INTELLIGENCE;
+    else if( roll == 3 )
+        bonus = PID_KITTY_SEX_DRUG_STRENGTH;
+
+    Item@ item = player.AddItem( bonus, 1 );
+    UseDrugOn( player, player, item );
+
+}
+
+void r_Consume( Critter& player, Critter@ npc, int thing )
+{
+    if( HasItem( player, thing ) )
+    {
+        Item@ item = GetItem( thing );
+        UseDrug( player, item );
+    }
+
+}
+
+void r_RandomVar( Critter& player, Critter@ npc, int var, int x, int y )
+{
+    GameVar@ variable = GetLocalVar( var, player.Id );
+
+    variable = Random( x, y );
+}
+
+// Global visible on current location.
+bool d_IsVisible( Critter& player, Critter@ npc )
+{
+    Map @ map = player.GetMap();
+    Location @ loc = map.GetLocation();
+
+    if( valid( loc ) && loc.Visible )
+        return true;
+
+    return false;
+}
+
+bool d_IsNotVisible( Critter& player, Critter@ npc )
+{
+    return !d_IsVisible( player, npc );
+}
+
+void r_PackRat( Critter& player, Critter@ npc )
+{
+    GameVar@ var = GetLocalVar( LVAR_achiev_strongback, player.Id );
+    if( !valid( var ) )
+        return;
+    if( player.Perk[ PE_PACK_RAT ] != 0 )
+        return;
+
+    var += 1;
+    if( var == 10 )
+        AddAchievement( player, PE_PACK_RAT );
+}
+
+void r_PathFinder( Critter& player, Critter@ npc )
+{
+    GameVar@ var = GetLocalVar( LVAR_achiev_pathfinder, player.Id );
+    if( !valid( var ) )
+        return;
+    if( player.Perk[ PE_PATHFINDER ] != 0 )
+        return;
+
+    var += 1;
+    if( var == 15 )
+        AddAchievement( player, PE_PATHFINDER );
+}
+
+bool d_IsDoorClosed( Critter& player, Critter@ npc, int hx, int hy, int pid )
+{
+    Map@ map = player.GetMap();
+    if( valid( map ) )
+
+        if( hx < 0 || hy < 0 || pid <= 0 )
+            return false;
+
+    if( !valid( map ) )
+        return false;
+
+    Item@ door = map.GetItem( hx, hy, pid );
+    if( !valid( door ) )
+        return false;
+
+    if( _LockerIsClose( door ) )
+        return true;
+    else
+        return false;
+}
+
+bool d_IsDoorOpen( Critter& player, Critter@ npc, int hx, int hy, int pid )
+{
+    return !d_IsDoorClosed( player, npc, hx, hy, pid );
+}
+
+void r_TransferCaps( Critter& player, Critter@ npc )
+{
+	Item@ item = npc.GetItem( PID_BOTTLE_CAPS, -1 );
+	if( !valid( item ) )
+        return;
+	int count = item.GetCount();
+	MoveItem( item, count, player );	
+}
+
+void r_additem( Critter& player, Critter@ npc, int ItemId ) // Some pids are missing in listings. For example BP. Faster.
+{
+    player.AddItem( ItemId, 1 );
+}
+
+void r_LogOpedSAD( Critter& cr, Critter @ npc )
+{
+    FLog( LOG_GM, cr.Name + " (" + cr.Id + ") with acc lvl " + cr.GetAccess() + " SIERRA ARMORY OPENED from ip: " + GetIP( cr.GetIp() ));
+}
+
+void r_GiveT4( Critter& player, Critter@ npc) // Give random t4 crafting part as a prize for completing key quests.
+{
+
+}
+
+void r_giverandomrobe( Critter& player, Critter@ npc) // Special robe for winning stuff.
+{
+    Item@ oldarmor = player.GetItem( 0, SLOT_ARMOR );
+    if( valid( oldarmor ) )
+        player.MoveItem( oldarmor.Id, 0, SLOT_GROUND );
+     
+    uint16[] WinRobe = {PID_SAND_CROBE, PID_RED_CROBE, PID_BLUE_CROBE, PID_GRAY_CROBE}; 
+	Item@ item = player.AddItem(WinRobe[Random(0, WinRobe.length() - 1)], 1);    
+    if( valid( item ) )
+        player.MoveItem( item.Id, 0, SLOT_ARMOR );
+}
+
+void r_hgwinner( Critter& player, Critter@ npc) // Mark the player as winner.
+{
+    player.Say( SAY_NORM_ON_HEAD, "|" + COLOR_GREEN + "I HAVE WON HUNGER GAMES" );
+}
+
+
+void ChangeSkin(  Critter@ cr, int skinnumber) // Mark the player as winner.
+{
+	cr.ChangeCrType(skinnumber);
+	
+    Item@ armor = cr.GetItem(0, SLOT_ARMOR);
+
+    if(valid(armor))
+        cr.MoveItem(armor.Id, 0, SLOT_INV);
+
+    if(cr.ChangeCrType(skinnumber))
+        cr.ParamBase[ST_BASE_CRTYPE] = skinnumber;
+
+    if(valid(armor))
+        cr.MoveItem(armor.Id, 0, SLOT_ARMOR);
+}
+
+void OpenDoor( int hx, int hy, int pid, int mapId )
+{
+    if( hx < 0 || hy < 0 || pid <= 0 || mapId <= 0 )
+        return;
+
+    Map@ map = GetMap( mapId );
+    if( !valid( map ) )
+        return;
+
+    Item@ door = map.GetItem( hx, hy, pid );
+    if( !valid( door ) )
+        return;
+
+    if( _LockerIsOpen( door ) )
+        return;
+
+    if( door.Proto.Type != ITEM_TYPE_DOOR )
+        return;
+
+    SwitchState( door );
+    UnblockMultihexDoor( door );
+    OnAutoOpen( door );
+}

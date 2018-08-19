@@ -1,0 +1,108 @@
+#include "_macros.fos"
+#include "utils_h.fos"
+#define DAY_KARMA    (200)
+#define EVIL_KARMA    (-10000)
+
+#define SCORE_PENALTY_ENEMY_KILL (SCORE_BONUS_ENEMY_KILL * -2)
+#define SCORE_BONUS_ENEMY_KILL (50)
+#define SCORE_PENALTY_ALLY_KILL (SCORE_BONUS_ENEMY_KILL * -1)
+
+import int GetFactionScore(uint faction) from "faction_core";
+import void ChangeFactionScore(uint faction, int score) from "faction_core";
+import bool IsTcTimerHere(Critter& cr) from "tc";
+import bool IsTimeToTc(Critter& cr) from "tc";
+import bool IsRelation(uint faction, uint faction2, int relation) from "faction_cache";
+
+void PlayerKill(Critter& attacker, Critter& target)
+{
+	Location@ loc = GetLocationOf(target);
+	if (!valid(loc))
+		return;
+	uint locPid=loc.GetProtoId();
+    if (loc.IsBase() || loc.IsTent() || loc.IsQuest())
+        return;
+    if (!loc.IsRespawn())
+        KillScore(attacker,target);
+	if (IsTimeToTc(target) || IsTcTimerHere(target) || locPid==LOCATION_SanFrancisco || locPid==LOCATION_NewReno || loc.IsDungeon())
+		return;
+	if (locPid==LOCATION_NCR && (attacker.Param[MAIN_FACTION]== 5 ||  attacker.Param[MAIN_FACTION]== 6))
+		return;
+    if (SAME_FACTION(attacker, target) || IsRelation(attacker.Param[MAIN_FACTION],target.Param[MAIN_FACTION],-1))
+        return;
+	if (_IsGood(target) && _IsNotAggressor(target))
+		attacker.StatBase[ ST_KARMA ]-=100;
+	else if (_IsNotEvil(target) && _IsNotAggressor(target))
+		attacker.StatBase[ ST_KARMA ]-=60;
+	else if(_IsEvil(target) && target.Stat[ ST_LEVEL ]>5)
+	{
+		GameVar@ kill_player = ::GetUnicumVar( UVAR_kill_player, attacker.Id, target.Id );
+		if( kill_player < __FullSecond )
+		{
+			AddKarma(attacker,20);
+			kill_player=__FullSecond+REAL_DAY(1);
+		}
+	}
+}
+
+void KillScore(Critter& attacker, Critter& target)
+{
+    if (attacker.Param[MAIN_FACTION]==0 || target.Param[MAIN_FACTION]==0)
+        return;
+    if (SAME_FACTION(attacker, target) || IsRelation(attacker.Param[MAIN_FACTION],target.Param[MAIN_FACTION],1))
+    {
+        ChangeFactionScore(attacker.Param[MAIN_FACTION],SCORE_PENALTY_ALLY_KILL);
+    }
+    else if (IsRelation(attacker.Param[MAIN_FACTION],target.Param[MAIN_FACTION],-1))
+    {
+        if (uint(target.Param[ ST_LEVEL ])>=__LevelSoftCap )
+        {
+            if (GetFactionScore(target.Param[MAIN_FACTION])>=SCORE_PENALTY_ENEMY_KILL)
+                ChangeFactionScore(attacker.Param[MAIN_FACTION],SCORE_BONUS_ENEMY_KILL);
+
+            ChangeFactionScore(target.Param[MAIN_FACTION],SCORE_PENALTY_ENEMY_KILL);
+        }
+    }
+}
+
+
+void PlayerAttack(Critter& attacker, Critter& target)
+{
+	if (!attacker.IsPlayer() || !target.IsPlayer())
+		return;
+	if (target.Timeout[ TO_AGGRESSOR ] == 0 && _IsNotEvil(target))
+		attacker.TimeoutBase[ TO_AGGRESSOR ] = __FullSecond + REAL_MINUTE( 1 );
+}
+
+void AddKarma( Critter& cr, int Value, int, int )
+{
+	AddKarma( cr,Value );
+}
+
+void r_AddKarma(Critter& player, Critter@ npc, int Value)
+{
+	AddKarma( player,Value );
+}
+
+void AddKarma( Critter& cr, int Value )
+{
+    if( Value>0 && cr.StatBase[ST_KARMA]+Value>EVIL_KARMA )
+	{
+		uint DayKarma = GetLvar(cr,LVAR_karma_limit);
+		uint KarmaTimeout = GetLvar(cr,LVAR_karma_timeout);
+		if (ELAPSED_TIME>KarmaTimeout || KarmaTimeout==0)
+			DayKarma=0;
+		
+		if (DayKarma==0)
+			SetLvar(cr, LVAR_karma_timeout, AFTER(REAL_DAY(1)));
+		
+		if (DayKarma>=DAY_KARMA)
+			return;
+
+		if (DayKarma+Value>DAY_KARMA)
+		{
+			Value = DAY_KARMA-DayKarma;	
+		}
+		SetLvar(cr, LVAR_karma_limit,DayKarma+Value);
+	}
+	cr.StatBase[ST_KARMA]+=Value;
+}

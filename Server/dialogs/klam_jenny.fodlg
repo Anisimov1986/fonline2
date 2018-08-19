@@ -1,0 +1,125 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+10 1010 @
+10 2000 None 0 #
+14 2010 #
+0 2020 @
+14 3000 None 0 #
+15 3010 #
+16 3020 #
+17 3030 #
+0 3040 @
+15 4000 None 0 #
+14 4010 #
+0 4020 @
+16 5000 None 0 #
+14 5010 #
+0 5020 @
+17 6000 None 0 #
+14 6010 #
+0 6020 &
+
+[engl]
+{100}{}{Jenny}
+{200}{}{You see an attractive, but tired, young woman.}
+{210}{}{You see Jenny, the bath attendant.}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic Greetings}
+{2000}{}{Hello there, mister. My name's Jenny. If your looking for a good scrub-down then sorry we are full, come back later.}
+{2010}{}{Well, actually, I just had a few questions that I wanted to ask you if you don't mind.}
+{2020}{}{Uh, no thanks; I was just looking around.}
+{3000}{}{What would you like to know?}
+{3010}{}{Tell me about trappers.}
+{3020}{}{What's the deal with that Vic guy?}
+{3030}{}{Do you happen to know how to get to the Den from here?}
+{3040}{}{Nothing. Bye.}
+{4000}{}{Well, there's not much to tell about the trappers, really. They get a few gecko pelts...or get lucky with a few golden geckos...and then they come in to blow off some steam. Quick and not too demanding —- just the way I like ‘em.}
+{4010}{}{Interesting; let me ask you about something else.}
+{4020}{}{I guess that's all I need to know for now.}
+{5000}{}{You're interested in Vic, huh? He always had extra money to blow, at least when he worked he did. Then one day he upped and left, came back damn near a year later, pockets full of cash, hollering about how him and his 'boss' done saved the world. 'Course, we don't take kindly to liars in this town, so eventually he gave up on them tall tales. I feel sorry for how we treated him back then, though.}
+{5010}{}{Poor guy. Let me ask about something else.}
+{5020}{}{Well that's enough tall tales for me too, I'm out of here.}
+{6000}{}{The Den is a hive of scum and villainy southeast of here. I guess about a week or so? Don't remember too clearly. Anyhow, it's an exciting place. Dangerous, but exciting. Sorry to leave there,
+ in a way.}
+{6010}{}{Thanks, I had some other questions.}
+{6020}{}{Maybe I'll go check it out. See you later.}
+
+[russ]
+{100}{}{Дженни}
+{200}{}{Вы видите Дженни.}
+{200}{}{Вы видите привлекательную, но уставшую женщину.}
+{210}{}{Вы видите привлекательную молодую женщину. Ее лицо покрыто светлой пылью, наподобие какого-то вида пудры.}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic Greetings}
+{2000}{}{Привет, мистер. Меня зовут Дженни.}
+{2010}{}{Ну, на самом деле, у меня просто несколько вопросов, вопросов, если вы не возражаете.}
+{2020}{}{Э-э, я просто осматриваюсь.}
+{3000}{}{Что ты хотел бы узнать?}
+{3010}{}{Расскажи мне об охотниках.}
+{3020}{}{Расскажи побольше о Вике.}
+{3030}{}{Где находится Дэн?}
+{3040}{}{По-моему, я узнал достаточно.}
+{4000}{}{Ну, об охотниках особенно нечего сказать. Они добывают несколько шкурок гекко... или им повезет добыть золотого гекко... и они приходят сюда выпустить пар. Быстро и не очень требовательно - так, как мне и надо.}
+{4010}{}{Интересно; позвольте спросить еще кое о чем.}
+{4020}{}{По-моему, я узнал достаточно.}
+{5000}{}{Точно не знаю где находится Вик. У него есть дом, сразу вниз по нашей улице, к востоку. Он может быть у дикарей торгует, или сразу в Дэн ушел. Не знаю. Думаю, с ним все в порядке. Он для меня не просто постоянный клиент.}
+{5010}{}{Позволь спросить тебя еще кое-что.}
+{5020}{}{Все хватит с меня сказок, я ухожу.}
+{6000}{}{Дэн, это скопище отбросов общества и центр преступлений, то нас на юго-востоке. Что-то около недели пути, или около того. Не помню. В любом случае, там не соскучишься. Опасно, но весело. Но все-таки жаль. Если ты туда уйдешь.}
+{6010}{}{Позволь спросить тебя еще кое-что.}
+{6020}{}{Может быть и схожу туда. Не знаю. Пока.}
+
+[pols]
+{100}{}{Jenny}
+{200}{}{Widzisz atrakcyjną, zmęczononą młodą kobietę.}
+{210}{}{Widzisz Jenny, pracownicę łaźni.}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic Greetings}
+{2000}{}{Witaj, nazywam się Jenny. Chwilowo nie mamy wolnych miejsc, przyjdź później.}
+{2010}{}{Aha, rozumiem. Mogę ci zadać kilka pytań?}
+{2020}{}{W porządku, tylko się rozglądam.}
+{3000}{}{Co chcesz wiedzieć?}
+{3010}{}{Opowiedz mi o traperach.}
+{3020}{}{Wiesz coś o gościu imieniem Vic?}
+{3030}{}{Nie orientujesz się może, jak się stąd dostać do Nory?}
+{3040}{}{Nic, na razie.}
+{4000}{}{Niewiele. Polują na gekony, chleją... Czasami przyłażą tutaj żeby się rozluźnić, zazwyczaj szybko i bez specjalnych wymagań. W sam raz, przynajmniej jak dla mnie.}
+{4010}{}{Rozumiem. Mogę spytać o coś innego?}
+{4020}{}{To chyba wszystko. Do widzenia.}
+{5000}{}{Vic, ha... Zazwyczaj ma sporo kasy, często tu bywa. Dobry z niego klient. Może @sex@|sam||sama| z nim pogadaj, to dowiesz się więcej.}
+{5010}{}{Dobra. Mogę spytać jeszcze o coś?}
+{5020}{}{Dobra, już się @sex@|nasłuchałem||nasłuchałam|. Czas na mnie.}
+{6000}{}{Nora, jak nora, paskudne miejsce. Jeśli szukasz kłopotów, to tam na pewno je znajdziesz... Jakiś tydzień drogi stąd, jeśli dobrze pamiętam.}
+{6010}{}{Dzięki. Mogę spytać o coś jeszcze?}
+{6020}{}{Może kiedyś tam zawitam. Na razie.}
+
+[ptbr]
+{100}{}{none}
+{1000}{}{Predialogue installations}
+{1010}{}{Generic Greetings}
+{2000}{}{Hello there, mister. My name's Jenny. If your looking for a good scrub-down then sorry we are full, come back later.}
+{2010}{}{Well, actually, I just had a few questions that I wanted to ask you if you don't mind.}
+{2020}{}{Uh, no thanks; I was just looking around.}
+{3000}{}{What would you like to know?}
+{3010}{}{Tell me about trappers.}
+{3020}{}{What's the deal with that Vic guy?}
+{3030}{}{Do you happen to know how to get to the Den from here?}
+{3040}{}{Nothing. Bye.}
+{4000}{}{Well, there's not much to tell about the trappers, really. They get a few gecko pelts...or get lucky with a few golden geckos...and then they come in to blow off some steam. Quick and not too demanding —- just the way I like ‘em.}
+{4010}{}{Interesting; let me ask you about something else.}
+{4020}{}{I guess that's all I need to know for now.}
+{5000}{}{You're interested in Vic, huh? He always had extra money to blow, at least when he worked he did. Then one day he upped and left, came back damn near a year later, pockets full of cash, hollering about how him and his 'boss' done saved the world. 'Course, we don't take kindly to liars in this town, so eventually he gave up on them tall tales. I feel sorry for how we treated him back then, though.}
+{5010}{}{Poor guy. Let me ask about something else.}
+{5020}{}{Well that's enough tall tales for me too, I'm out of here.}
+{6000}{}{The Den is a hive of scum and villainy southeast of here. I guess about a week or so? Don't remember too clearly. Anyhow, it's an exciting place. Dangerous, but exciting. Sorry to leave there,
+ in a way.}
+{6010}{}{Thanks, I had some other questions.}
+{6020}{}{Maybe I'll go check it out. See you later.}
+

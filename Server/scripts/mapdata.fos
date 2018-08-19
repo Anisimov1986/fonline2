@@ -1,0 +1,37 @@
+#ifndef __MAPDATA__
+#define __MAPDATA__
+
+#include "mapdata_h.fos"
+
+#define CHECK_MAP_DATA#(idx)	{ if( idx >= MAP_DATA_MAX ) Log( "WARNING: attempt to set map data with index<"+idx+">" ); }
+
+int GetRootMapData(Map& map, uint index)
+{
+    CHECK_MAP_DATA(index);
+
+    return map.GetLocation().GetMapByIndex(0).GetData(index);
+}
+
+void SetRootMapData(Map& map, uint index, int val)
+{
+    CHECK_MAP_DATA(index);
+
+    map.GetLocation().GetMapByIndex(0).SetData(index, val);
+}
+
+int GetRootMapData(Location& loc, uint index)
+{
+    CHECK_MAP_DATA(index);
+
+    return loc.GetMapByIndex(0).GetData(index);
+}
+
+void SetRootMapData(Location& loc, uint index, int val)
+{
+    CHECK_MAP_DATA(index);
+
+    loc.GetMapByIndex(0).SetData(index, val);
+}
+
+
+#endif // __MAPDATA__ //

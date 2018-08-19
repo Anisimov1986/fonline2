@@ -1,0 +1,43 @@
+[comment]
+
+
+[data]
+lang=engl russ pols ptbr
+
+[dialog]
+&
+1 1000 None 0 #
+2 1010 @
+2 2000 None 0 &
+
+[engl]
+{100}{}{Farmer}
+{200}{}{You see Farmer from Redding.}
+{210}{}{You see a Farmer. His clothes are covered in dust.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{What are you looking at?@@Welcome to the big city.@@Hello.@@Been in Redding long?@@First time in Redding, huh?@@We don't want any trouble here.@@I've been looking at you, too.@@Howdy, stranger.@@What's up?@@How're you doing?@@Good day to you.@@Yup.@@Heya.}
+
+[russ]
+{100}{}{Фермер}
+{200}{}{Вы видите фермера из Реддинга.}
+{210}{}{Судя по одежде это обычный фермер.}
+{1000}{}{Преддиалоговые установки}
+{1010}{}{ответ}
+{2000}{}{Что смотришь?@@Добро пожаловать в большой город.@@Здравствуйте.@@Давно в Реддинге?@@Впервые в Реддинге, да?@@Мы не хотим никаких проблем здесь.@@Привет , незнакомец.@@В чем дело?}
+
+[pols]
+{100}{}{Farmer}
+{200}{}{Widzisz farmera z Redding.}
+{210}{}{Widzisz farmera. Jego ubranie jest mocno zakurzone.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{Na co się gapisz?@@Witaj w "wielkim mieście".@@Witaj.@@Długo tu zabawisz?@@Pierwszy raz w Redding, co?@@Nie chcemy tu kłopotów.@@Też cię obserwowałem.@@Witaj, @sex@|nieznajomy||nieznajoma|.@@Co tam?@@Jak się masz?@@Miłego dnia.@@Aha.@@Siema.}
+
+[ptbr]
+{100}{}{Fazendeiro}
+{200}{}{Você vê um fazendeiro de Vermelheiro.}
+{210}{}{Você vê um fazendeiro. Suas roupas estão cobertas de sujeira.}
+{1000}{}{Predialogue installations}
+{1010}{}{Ioaao}
+{2000}{}{Quê que tu tá olhando?@@Bem-vindo a cidade grande.@@Olá.@@Tá em Vermelheiro faz tempo?@@Primeira vez em Vermelheiro, né?@@Não queremos problema por aqui.@@Eu tenho olhando para ti também.@@Como é que vai?@@Diz aí?@@Como é que tão as coisas?@@Tenha um bom dia.@@Opa.@@E aí?}

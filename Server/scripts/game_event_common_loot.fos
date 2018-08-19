@@ -1,0 +1,104 @@
+#ifndef __GAME_EVENT_COMMON_LOOT__
+#define __GAME_EVENT_COMMON_LOOT__
+
+#include "game_event_class_utils.fos"
+
+AutoLootGenerator rareBookLoot = AutoLootGenerator()
+	.AddLoot(PID_BIG_BOOK_OF_SCIENCE, 1, 1, 0.015)
+	.AddLoot(PID_DEANS_ELECTRONICS, 1, 1, 0.015)
+	.AddLoot(PID_FIRST_AID_BOOK, 1, 1, 0.015)
+	.AddLoot(PID_SCOUT_HANDBOOK, 1, 1, 0.015)
+	.AddLoot(PID_GUNS_AND_BULLETS, 1, 1, 0.015);
+	
+AutoLootGenerator rarePreWarLoot = AutoLootGenerator()
+	.AddLoot(PID_MPART_1, 1, 1, 0.001)
+	.AddLoot(PID_MPART_2, 1, 1, 0.001)
+	.AddLoot(PID_MPART_3, 1, 1, 0.001)
+	.AddLoot(PID_MPART_4, 1, 1, 0.001)
+	.AddLoot(PID_EPART_1, 1, 1, 0.001)
+	.AddLoot(PID_EPART_2, 1, 1, 0.001)
+	.AddLoot(PID_EPART_3, 1, 1, 0.001)
+	.AddLoot(PID_EPART_4, 1, 1, 0.001)
+	.AddLoot(PID_EPART_5, 1, 1, 0.001)
+	.AddLoot(PID_PREWAR_1, 1, 1, 0.001)
+	.AddLoot(PID_PREWAR_2, 1, 1, 0.001)		
+	.AddLoot(PID_PREWAR_3, 1, 1, 0.001);
+	
+AutoLootGenerator commonRareLoot = AutoLootGenerator()
+	.AddLoot(rareBookLoot)
+	.AddLoot(rarePreWarLoot)
+	.AddLoot(PID_ELECTRONIC_LOCKPICKS, 1, 1, 0.015)
+	.AddLoot(PID_SUPER_TOOL_KIT, 1, 1, 0.015);
+
+AutoLootGenerator commonL1Loot = AutoLootGenerator()
+	.AddLoot(BLUEPRINT_LEVEL1, 1, 1, 50)
+	.AddLoot(PID_FLAMER, 1, 1, 0.0378)
+	.AddLoot(PID_M60, 1, 1, 0.0378)
+	.AddLoot(PID_LASER_PISTOL, 1, 1, 0.0378)
+	.AddLoot(PID_PLASMA_PISTOL, 1, 1, 0.0378)
+	.AddLoot(PID_SHOTGUN, 1, 1, 0.0378)	
+	.AddLoot(PID_ZIP_GUN, 1, 1, 0.0378)	
+	.AddLoot(PID_10MM_PISTOL, 1, 1, 0.0378)	
+	.AddLoot(PID_44_MAGNUM_REVOLVER, 1, 1, 0.0378)
+	.AddLoot(PID_DESERT_EAGLE, 1, 1, 0.0378)
+	.AddLoot(PID_HUNTING_RIFLE, 1, 1, 0.0378)
+	.AddLoot(PID_SCOPED_HUNTING_RIFLE, 1, 1, 0.0378)
+	.AddLoot(PID_GREASE_GUN, 1, 1, 0.0378)
+	.AddLoot(PID_9MM_MAUSER, 1, 1, 0.0378)
+	.AddLoot(PID_POWER_FIST, 1, 1, 0.0378)
+	.AddLoot(PID_LEATHER_JACKET, 1, 1, 0.0378)
+	.AddLoot(PID_LEATHER_ARMOR, 1, 1, 0.0378)	
+	.AddLoot(PID_LEATHER_ARMOR_MK_II, 1, 1, 0.0378)	
+	.AddLoot(PID_CURED_LEATHER_ARMOR, 1, 1, 0.0378);
+
+AutoLootGenerator commonL2Loot = AutoLootGenerator()
+	.AddLoot(BLUEPRINT_LEVEL2, 1, 1, 50)
+	.AddLoot(PID_MINIGUN, 1, 1, 0.0561)
+	.AddLoot(PID_MAGNETO_LASER_PISTOL, 1, 1, 0561)
+	.AddLoot(PID_COMBAT_SHOTGUN, 1, 1, 0.0561)
+	.AddLoot(PID_TOMMY_GUN, 1, 1, 0.0561)
+	.AddLoot(PID_10MM_SMG, 1, 1, 0.0561)
+	.AddLoot(PID_ASSAULT_RIFLE, 1, 1, 0.0561)	
+	.AddLoot(PID_14MM_PISTOL, 1, 1, 0.0561)	
+	.AddLoot(PID_THROWING_KNIFE, 2, 5, 0.0561)	
+	.AddLoot(PID_CATTLE_PROD, 1, 1, 0.0561)
+	.AddLoot(PID_FRAG_GRENADE, 2, 5, 0.0561)
+	.AddLoot(PID_METAL_ARMOR, 1, 1, 0.0561)
+	.AddLoot(PID_METAL_ARMOR_MK_II, 1, 1, 0.0561);	
+	
+AutoLootGenerator commonL3Loot = AutoLootGenerator()
+	.AddLoot(BLUEPRINT_LEVEL3, 1, 1, 50)
+	.AddLoot(PID_LASER_RIFLE, 1, 1, 0.0611)
+	.AddLoot(PID_PLASMA_PISTOL_EXT_CART, 1, 1, 0.0611)	
+	.AddLoot(PID_FN_FAL, 1, 1, 0.0611)
+	.AddLoot(PID_HK_CAWS, 1, 1, 0.0611)
+	.AddLoot(PID_223_PISTOL, 1, 1, 0.0611)	
+	.AddLoot(PID_MEGA_POWER_FIST, 1, 1, 0.0611)
+	.AddLoot(PID_PLASMA_GRENADE, 2, 5, 0.0611)
+	.AddLoot(PID_SUPER_SLEDGE, 1, 1, 0.0611)
+	.AddLoot(PID_SUPER_CATTLE_PROD, 1, 1, 0.0611)
+	.AddLoot(PID_TESLA_ARMOR, 1, 1, 0.0611)
+	.AddLoot(PID_COMBAT_ARMOR, 1, 1, 0.0611);
+
+AutoLootGenerator commonL4Loot = AutoLootGenerator()
+	.AddLoot(PID_PLASMA_RIFLE_RECIPE, 1, 1, 1)
+	.AddLoot(PID_PLASMA_GRENADE_RECIPE, 1, 1, 1)
+	.AddLoot(PID_AVENGER_MINIGUN_RECIPE, 1, 1, 1)	
+	.AddLoot(PID_SNIPER_RIFLE_RECIPE, 1, 1, 1)
+	.AddLoot(PID_XL70E3_RECIPE, 1, 1, 1)
+	.AddLoot(PID_HK_P90C_RECIPE, 1, 1, 1)	
+	.AddLoot(PID_HUBOLOGIST_ROBE_RECIPE, 1, 1, 1)
+	.AddLoot(PID_LASER_RIFLE_EXT_CAP_RECIPE, 1, 1, 1)
+	.AddLoot(PID_LIGHT_SUPPORT_WEAPON_RECIPE, 1, 1, 1)	
+	.AddLoot(PID_PLASMA_RIFLE, 1, 1, 0.067)
+	.AddLoot(PID_LASER_RIFLE_EXT_CAP, 1, 1, 0.067)	
+	.AddLoot(PID_YK32_PULSE_PISTOL, 1, 1, 0.067)	
+	.AddLoot(PID_NEEDLER_PISTOL, 1, 1, 0.067)
+	.AddLoot(PID_HK_P90C, 1, 1, 0.067)
+	.AddLoot(PID_PANCOR_JACKHAMMER, 1, 1, 0.067)
+	.AddLoot(PID_XL70E3, 1, 1, 0.067)
+	.AddLoot(PID_SNIPER_RIFLE, 1, 1, 0.067)
+	.AddLoot(PID_COMBAT_ARMOR_MK_II, 1, 1, 0.067)
+	.AddLoot(PID_BLACK_ROBE, 1, 1, 0.067);	
+	
+#endif	

@@ -1,0 +1,279 @@
+// Author: skycast
+#include "_macros.fos"
+#include "_msgstr.fos"
+#include "utils_for_array.fos"
+#include "disassemble_define.fos"                                                                        // Define decraft items
+
+import int       GetDeteriorationProcent( Item& item ) from "repair";                                    // Import
+import void      SetDeterioration( Item& item, int deteriorationProcent, int repairPool ) from "repair"; // Import
+import bool      HasItemInHands( Critter@ cr, uint pid ) from "utils";
+import void      AddExp( Critter& cr, uint exp, uint type ) from "experience";
+import Location@ GetLocationOf( Critter& critter ) from "utils";
+
+bool DecraftItem( Critter& cr, Item@ item ) // Export
+{
+    uint[] itemPids;
+    uint[] itemAmmounts;
+    uint totalExp = 0;
+    return DecraftItem(cr, item, false, itemPids, itemAmmounts, totalExp);
+}
+
+bool DecraftItem( Critter& cr, Item@ item, bool mass, uint[]& itemPids, uint[]& itemAmmounts, uint& totalExp )
+{
+    if( !valid( cr ) || !valid( item ) )
+        return false;
+
+    bool success = false;    // If we recieve something
+    bool isammo = false;     // If item is ammo
+    int  itemnum = -1;       // Number in Array
+    uint itempid = item.GetProtoId();
+    uint ammopack = 0;       // Number of ammopacks
+    uint ammonum = 0;        // Number of ammo
+    uint lastammo = 0;       // How much ammo left after disassembling
+    uint powdernum = 0;      // How much Gunpowder from 1 ammo pack
+    int  deterioration = 0;
+    int  durability = 0;
+    int  itempercent = 0;
+
+    if( cr.Timeout[ TO_BATTLE ] > 0 )
+    {
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_TIMEOUT_BATTLE_WAIT );
+        return false;
+    }
+
+    Map@ map = cr.GetMap();
+    if( valid( map ) && ( map.GetProtoId() == MAP_HG_Event || map.GetProtoId() == MAP_Arena1 || map.GetProtoId() == MAP_Arena2 || map.GetProtoId() == MAP_T_LOBBY ) )
+    {
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70380 );
+        return false;
+    }
+
+    if( cr.Timeout[ TO_SK_SCIENCE ] > 0 )
+    {
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_GAME, STR_SKILL_WEARINESS );
+        return false;
+    }
+    for( uint i = 0; i < Pids_Disassemble.length() - 1; i = i + 2 )
+    {
+        if( Pids_Disassemble[ i ] == itempid )
+            itemnum = Pids_Disassemble[ i + 1 ];
+    }
+    if( itemnum == -1 )
+        return false;                           // Item not found
+    CraftItem@ craft = GetCraftItem( itemnum ); // Get info from fixboy
+
+    if( !valid( craft ) )
+        return false;                           // No info in fixboy found
+    int science = cr.Skill[ SK_SCIENCE ] / 2;
+    if( HasItemInHands( cr, PID_MULTI_TOOL ) )
+    {
+        science += 25;
+        if( Random( 0, 30 ) == 0 )
+            cr.DeleteItem( PID_MULTI_TOOL, 1 );
+    }
+    else if( HasItemInHands( cr, PID_SUPER_TOOL_KIT ) )
+    {
+        science += 50;
+        if( Random( 0, 30 ) == 0 )
+            cr.DeleteItem( PID_SUPER_TOOL_KIT, 1 );
+    }
+    if( item.GetType() == ITEM_TYPE_AMMO )
+    {
+        uint16[] out_pids;
+        uint[] out_counts;
+        uint out_all = craft.GetOutItems( out_pids, out_counts );
+        ammonum = item.GetCount();
+        if( ammonum < out_counts[ 0 ] || ammonum > 1000000 )
+            return false;             // perfomance issue
+        isammo = true;
+        science = CLAMP( science, 1, 75 );
+        ammopack = ammonum / out_counts[ 0 ];
+        lastammo = ammonum - ( out_counts[ 0 ] * ammopack );
+        if( lastammo == 0 )
+            DeleteItem( item );
+        else
+            item.SetCount( lastammo );
+    }
+    else
+    {
+        science = CLAMP( science, 1, 80 );
+        if( item.AmmoCount > 0 )
+        {
+            if (mass)
+            {
+                if (itemPids.find(item.AmmoPid)>=0)
+                {
+                    itemAmmounts[itemPids.find(item.AmmoPid)]+=item.AmmoCount;
+                }
+                else
+                {
+                    itemPids.insertLast(item.AmmoPid);
+                    itemAmmounts.insertLast(item.AmmoCount);
+                }
+            }
+            else
+                cr.AddItem( item.AmmoPid, item.AmmoCount );
+        }
+        if( item.IsDeteriorable() )
+        {
+            deterioration = GetDeteriorationProcent( item );
+            itempercent = ITEM_PERCENT( item, deterioration );
+            durability      = DURABILITY_PERCENT( item );
+        }
+        else
+            itempercent = 100;
+        _SubItem( item, 1 );
+    }
+
+    uint16[] res_pids;
+    uint[] res_counts;
+    uint res_all = craft.GetNeedItems( res_pids, res_counts, null );
+    for( uint i = 0; i < res_all; i++ )
+    {
+        if( isammo == false )
+        {
+            for( uint j = 0; j < res_counts[ i ]; j++ )
+            {
+                if( science >= Random( 1, 100 ) )
+                {
+                    ProtoItem@ proto = GetProtoItem( res_pids[ i ] );
+                    if( valid( proto ) && proto.Deteriorable )
+                    {
+                        Item@ item = cr.AddItem( res_pids[ i ], 1 );
+                        SetDeterioration( item, deterioration, durability );
+                        success = true;
+
+                        if( item.GetType() == ITEM_TYPE_WEAPON && item.AmmoCount > 0 )
+                        {
+                            item.AmmoCount = 0;
+                            item.Update();
+                        }
+                    }
+                    else
+                    {
+                        if( Random( 1, 130 ) <=  itempercent )
+                        {
+                            if( Present( res_pids[ i ], Pids_HQ_res ) )
+                            {
+                                if( Random( 1, 100 ) > 30 )
+                                {
+                                    if (mass)
+                                    {
+                                        if (itemPids.find(res_pids[ i ])>=0)
+                                        {
+                                            itemAmmounts[itemPids.find(res_pids[ i ])]+=1;
+                                        }
+                                        else
+                                        {
+                                            itemPids.insertLast(res_pids[ i ]);
+                                            itemAmmounts.insertLast(1);
+                                        }
+                                    }
+                                    else
+                                        cr.AddItem( res_pids[ i ], 1 );
+                                    success = true;
+                                }
+                            }
+                            else
+                            {
+                                if (mass)
+                                {
+                                    if (itemPids.find(res_pids[ i ])>=0)
+                                    {
+                                        itemAmmounts[itemPids.find(res_pids[ i ])]+=1;
+                                    }
+                                    else
+                                    {
+                                        itemPids.insertLast(res_pids[ i ]);
+                                        itemAmmounts.insertLast(1);
+                                    }
+                                }
+                                else
+                                    cr.AddItem( res_pids[ i ], 1 );
+                                success = true;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        if( isammo && res_pids[ i ] == PID_GUNPOWDER )
+        {
+            powdernum = res_counts[ i ];
+        }
+    }
+    if( isammo )
+    {
+        uint gunpowder = 0;
+        for( uint i = 0; i < ammopack; i++ )
+        {
+            for( uint j = 0; j < powdernum; j++ )
+            {
+                if( science >= Random( 1, 100 ) )
+                {
+                    gunpowder++;
+                    success = true;
+                }
+            }
+        }
+        if (success)
+        {
+            if (mass)
+            {
+                if (itemPids.find(PID_GUNPOWDER)>=0)
+                {
+                    itemAmmounts[itemPids.find(PID_GUNPOWDER)]+=gunpowder;
+                }
+                else
+                {
+                    itemPids.insertLast(PID_GUNPOWDER);
+                    itemAmmounts.insertLast(gunpowder);
+                }
+            }
+            else
+                cr.AddItem( PID_GUNPOWDER, gunpowder );
+        }
+    }
+    if (mass)
+    {
+        if (!isammo)
+            totalExp += EXP_DISASSEMBLE;
+        return true;
+    }
+    
+    if( !isammo )
+        AddExp( cr, EXP_DISASSEMBLE, ACT_DISASSEMBLE );
+
+    if( success )
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70343 );
+    else
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70342 );
+
+    cr.PlaySound( "CARREPAR.ACM", true );
+    
+    return true;
+}
+
+void DecraftItems(Critter& cr, Item@[] items)
+{
+    uint[] itemPids;
+    uint[] itemAmmounts;
+    uint totalExp = 0;
+
+    for( uint i = 0, j = items.length(); i < j; i++ )
+        DecraftItem(cr, items[i], true, itemPids, itemAmmounts, totalExp);
+    
+    for( uint i = 0, j = itemPids.length(); i < j; i++ )
+        cr.AddItem( itemPids[i], itemAmmounts[i] );
+
+    if (totalExp>0)
+        AddExp( cr, totalExp, ACT_DISASSEMBLE );
+    
+    if( itemPids.length()>0 )
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70343 );
+    else
+        cr.SayMsg( SAY_NETMSG, TEXTMSG_TEXT, 70342 );
+    
+    cr.PlaySound( "CARREPAR.ACM", true );
+}
